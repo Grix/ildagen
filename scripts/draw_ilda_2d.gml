@@ -1,4 +1,5 @@
 //cycles through every element in frame on screen and draws them
+
 for (i = 0;i < ds_list_size(el_list);i++)
     {
     list_id = ds_list_find_value(el_list,i);
@@ -8,7 +9,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
     
     //TODO if just one
     
-    for (u = 0; u < ((ds_list_size(list_id)-10)/6); u++)
+    for (u = 0; u < (((ds_list_size(list_id)-10)/6)-1); u++)
         {
         xp = ds_list_find_value(list_id,10+u*6+0);
         yp = ds_list_find_value(list_id,10+u*6+1);
@@ -24,7 +25,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
         ng = ds_list_find_value(list_id,10+(u+1)*6+4);
         nr = ds_list_find_value(list_id,10+(u+1)*6+5);
         
-        if (nbl)
+        if (nbl == 0)
             {
             draw_set_color(make_colour_rgb(nr,ng,nb));
             draw_line(xo+ xp/128,yo+ yp/128,xo+ nxp/128,yo+ nyp/128);

@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>el_list = ds_list_create();
+            <string>d3d_start(); //funny workaround for flipping the y axis.
+
+el_list = ds_list_create();
 
 instance_create(mouse_x,mouse_y,obj_cursor);
 
@@ -107,7 +109,7 @@ if (placing_status == 0)
     {
     placing_status = 1;
     startpos[0] = mouse_x;
-    startpos[1] = mouse_y;
+    startpos[1] = 512-mouse_y;
     }
 </string>
           </argument>
@@ -133,17 +135,19 @@ if (placing_status == 0)
             <kind>1</kind>
             <string>draw_clear(c_black);
 draw_set_color(c_ltgray);
-draw_line(512,0,512,512);
+draw_line(513,0,513,512);
 
-
-
+draw_set_color(c_white);
 draw_ilda_2d();
+
+
+draw_set_color(c_ltgray);
 
 
 if (placing_status == 1)
     {
     if (placing == "line")
-        draw_line(startpos[0],startpos[1],mouse_x,mouse_y);
+        draw_line(startpos[0],startpos[1],mouse_x,512-mouse_y);
     }
 </string>
           </argument>

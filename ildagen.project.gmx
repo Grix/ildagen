@@ -7,6 +7,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_b_line</sprite>
+    <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_cursor</sprite>
   </sprites>
   <backgrounds name="background"/>
@@ -14,17 +15,20 @@
   <scripts name="scripts">
     <script>scripts\draw_ilda_2d.gml</script>
     <script>scripts\create_element.gml</script>
+    <script>scripts\export_ilda.gml</script>
+    <script>scripts\endian_switch.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\controller</object>
     <object>objects\obj_b_line</object>
+    <object>objects\obj_export</object>
     <object>objects\obj_cursor</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41873.9789655787</constant>
+    <constant name="GM_build_date">41874.62515125</constant>
     <constant name="GM_version">'1.0.0.0'</constant>
   </constants>
   <help>

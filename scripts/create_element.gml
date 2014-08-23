@@ -17,16 +17,17 @@ ds_list_add(new_list,0);
 
 if (placing == "line")
     {
-    checkpoints = ceil(point_distance(startpos[0],startpos[1],mouse_x,mouse_y,)*128/resolution);
+    checkpoints = ceil(point_distance(startpos[0],startpos[1],mouse_x,512-mouse_y,)*128/resolution);
+    if (checkpoints < 2) checkpoints = 2;
     vector[0] = (mouse_x-startpos[0])/checkpoints;
-    vector[1] = (mouse_y-startpos[1])/checkpoints;
+    vector[1] = (512-mouse_y-startpos[1])/checkpoints;
     
     for (n = 0;n <= checkpoints; n++)
         {
         c[0] = 255;
         c[1] = 255;
         c[2] = 255;
-        blank = $40;
+        blank = 0;
         
         ds_list_add(new_list,n*vector[0]*128);
         ds_list_add(new_list,n*vector[1]*128);
