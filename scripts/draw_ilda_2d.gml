@@ -28,7 +28,10 @@ for (i = 0;i < ds_list_size(el_list);i++)
         if (nbl == 0)
             {
             draw_set_color(make_colour_rgb(nr,ng,nb));
-            draw_line(xo+ xp/128,yo+ yp/128,xo+ nxp/128,yo+ nyp/128);
+            if (xp == nxp) && (yp == nyp)
+                draw_point(xo+xp,yo+yp);
+            else
+                draw_line(xo+ xp/128,yo+ yp/128,xo+ nxp/128,yo+ nyp/128);
             }
         
         }

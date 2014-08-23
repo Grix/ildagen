@@ -24,9 +24,13 @@ if (placing == "line")
     
     for (n = 0;n <= checkpoints; n++)
         {
-        c[0] = 255;
-        c[1] = 255;
-        c[2] = 255;
+        if (colormode = "solid")
+            {
+            c[0] = colour_get_blue(color1);
+            c[1] = colour_get_green(color1);
+            c[2] = colour_get_red(color1);
+            }
+            
         blank = 0;
         
         ds_list_add(new_list,n*vector[0]*128);
