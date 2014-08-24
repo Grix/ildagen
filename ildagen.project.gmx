@@ -7,8 +7,10 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_b_line</sprite>
+    <sprite>sprites\spr_b_circle</sprite>
     <sprite>sprites\spr_colorselect</sprite>
     <sprite>sprites\spr_c_solid</sprite>
+    <sprite>sprites\spr_c_gradient</sprite>
     <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_cursor</sprite>
   </sprites>
@@ -23,9 +25,11 @@
   <objects name="objects">
     <object>objects\controller</object>
     <object>objects\obj_b_line</object>
+    <object>objects\obj_b_circle</object>
     <object>objects\obj_colorselect_1</object>
     <object>objects\obj_colorselect_2</object>
     <object>objects\obj_c_solid</object>
+    <object>objects\obj_c_gradient</object>
     <object>objects\obj_export</object>
     <object>objects\obj_cursor</object>
   </objects>
@@ -33,7 +37,7 @@
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41874.9836152199</constant>
+    <constant name="GM_build_date">41875.5518789583</constant>
     <constant name="GM_version">'0.0.0.0'</constant>
   </constants>
   <help>

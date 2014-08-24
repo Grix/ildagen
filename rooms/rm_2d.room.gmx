@@ -57,6 +57,8 @@
     <instance objName="obj_colorselect_1" x="608" y="224" name="inst_A3F77788" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_c_solid" x="608" y="96" name="inst_1F9E43FD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_colorselect_2" x="736" y="224" name="inst_958ADFC7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_c_gradient" x="672" y="96" name="inst_596FE26F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_b_circle" x="672" y="32" name="inst_F8039A0D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
