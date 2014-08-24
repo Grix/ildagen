@@ -53,14 +53,23 @@ for (i = 0;i < ds_list_size(el_list);i++)
     xo = ds_list_find_value(list_id,0);
     yo = ds_list_find_value(list_id,1);
     
+    blanktemp = 0;
+    
     //TODO if just one
-    for (u = 0; u < ((ds_list_size(list_id)-10)/6)-1; u++)
+    
+    for (u = 0; u < ((ds_list_size(list_id)-10)/6); u++)
         {
-        maxpoints++;
-        
         //getting values from element list
         xp = xo+ds_list_find_value(list_id,10+u*6+0);
         yp = yo+ds_list_find_value(list_id,10+u*6+1);
+        if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
+            {
+            blanktemp = 1;
+            continue;
+            }
+        
+        maxpoints++;
+        
         bl = ds_list_find_value(list_id,10+u*6+2);
         b = ds_list_find_value(list_id,10+u*6+3);
         g = ds_list_find_value(list_id,10+u*6+4);
@@ -90,6 +99,11 @@ for (i = 0;i < ds_list_size(el_list);i++)
             if (u == (ds_list_size(list_id)-10)/6-1)
                 blank = $80;
             }
+        if (blanktemp == 1)
+            {
+            blank = $40;
+            blanktemp = 0;
+            }
         
         //writing point
         buffer_write(ilda_buffer,buffer_u8,xpa[1]);
@@ -106,6 +120,8 @@ for (i = 0;i < ds_list_size(el_list);i++)
     }
     
 //update maxpoints
+
+maxpointspre = maxpoints;
 maxpointsa[0] = maxpoints & 255;
 maxpoints = maxpoints >> 8;
 maxpointsa[1] = maxpoints & 255;
@@ -145,5 +161,5 @@ buffer_write(ilda_buffer,buffer_u8,0); //0
 
 //export
 buffer_save(ilda_buffer,file_loc);
-show_message("ILDA file exported, "+string(maxpoints)+" points in frame");
+show_message("ILDA file exported, "+string(maxpointspre)+" points in frame");
 buffer_delete(ilda_buffer);
