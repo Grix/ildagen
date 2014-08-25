@@ -2,12 +2,14 @@
 
 placing_status = 0;
 
+ds_stack_push(undo_list,0);
+
 new_list = ds_list_create();
 
 ds_list_add(new_list,startpos[0]*128); //origo x
 ds_list_add(new_list,startpos[1]*128); //origo y
-ds_list_add(new_list,0);
-ds_list_add(new_list,0);
+ds_list_add(new_list,obj_cursor.x*128); //end x
+ds_list_add(new_list,obj_cursor.y*128); //end y
 ds_list_add(new_list,0);
 ds_list_add(new_list,0);
 ds_list_add(new_list,0);
@@ -24,6 +26,16 @@ if (placing == "line") //create a line
     
     for (n = 0;n <= checkpoints; n++)
         {
+        if (blankmode = "solid")
+            blank = 0;
+        else if (blankmode = "dash")
+            {
+            if ((n*resolution/blank_period % 1) > blank_dc) or (blank_dc = 0)
+                blank = 1;
+            else blank = 0;
+            
+            }
+        
         if (colormode = "solid")
             {
             c[0] = colour_get_blue(color1);
@@ -32,12 +44,10 @@ if (placing == "line") //create a line
             }
         else if (colormode = "gradient")
             {
-            c[0] = (colour_get_blue(color1)*(checkpoints-n)/checkpoints + colour_get_blue(color2)*n/checkpoints);
-            c[1] = (colour_get_green(color1)*(checkpoints-n)/checkpoints + colour_get_green(color2)*n/checkpoints);
-            c[2] = (colour_get_red(color1)*(checkpoints-n)/checkpoints + colour_get_red(color2)*n/checkpoints);
+            c[0] = ( colour_get_blue(color1)*    (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_blue(color2)*   (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
+            c[1] = ( colour_get_green(color1)*   (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_green(color2)*  (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
+            c[2] = ( colour_get_red(color1)*     (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_red(color2)*    (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
             }
-            
-        blank = 0;
         
         ds_list_add(new_list,n*vector[0]*128);
         ds_list_add(new_list,n*vector[1]*128);
@@ -52,7 +62,7 @@ else if (placing == "circle") //create a circle
     {
     radius = point_distance(startpos[0],startpos[1],mouse_x,512-mouse_y)*128;
     checkpoints = ceil(2*pi*radius/resolution);
-    if (checkpoints < 8) checkpoints = 8;
+    if (checkpoints < 6) checkpoints = 6;
     
     if !((startpos[0] == mouse_x) && (startpos[1] == mouse_y))
         for (n = 0;n <= checkpoints; n++)
@@ -65,12 +75,20 @@ else if (placing == "circle") //create a circle
                 }
             else if (colormode = "gradient")
                 {
-                c[0] = (colour_get_blue(color1)*(checkpoints-n)/checkpoints + colour_get_blue(color2)*n/checkpoints);
-                c[1] = (colour_get_green(color1)*(checkpoints-n)/checkpoints + colour_get_green(color2)*n/checkpoints);
-                c[2] = (colour_get_red(color1)*(checkpoints-n)/checkpoints + colour_get_red(color2)*n/checkpoints);
+                c[0] = ( colour_get_blue(color1)*    (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_blue(color2)*   (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
+                c[1] = ( colour_get_green(color1)*   (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_green(color2)*  (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
+                c[2] = ( colour_get_red(color1)*     (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_red(color2)*    (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
                 }
                 
-            blank = 0;
+            if (blankmode = "solid")
+                blank = 0;
+            else if (blankmode = "dash")
+                {
+                if ((n*resolution/blank_period % 1) > blank_dc) or (blank_dc = 0)
+                    blank = 1;
+                else blank = 0;
+                
+                }
             
             ds_list_add(new_list,cos(2*pi/checkpoints*n)*radius);
             ds_list_add(new_list,sin(2*pi/checkpoints*n)*radius);
@@ -98,7 +116,7 @@ else if (placing == "circle") //create a circle
     }
 if (placing == "wave") //create a wave
     {
-    checkpoints = ceil((point_distance(startpos[0],startpos[1],mouse_x,512-mouse_y)*128+wave_amp*2*wave_period)/resolution);
+    checkpoints = ceil((point_distance(startpos[0],startpos[1],mouse_x,512-mouse_y)*128+abs(wave_amp*2*wave_period))/resolution);
     if (checkpoints < 4) checkpoints = 4;
     vector[0] = (mouse_x-startpos[0])/checkpoints;
     vector[1] = (512-mouse_y-startpos[1])/checkpoints;
@@ -114,9 +132,9 @@ if (placing == "wave") //create a wave
                 }
             else if (colormode = "gradient")
                 {
-                c[0] = (colour_get_blue(color1)*(checkpoints-n)/checkpoints + colour_get_blue(color2)*n/checkpoints);
-                c[1] = (colour_get_green(color1)*(checkpoints-n)/checkpoints + colour_get_green(color2)*n/checkpoints);
-                c[2] = (colour_get_red(color1)*(checkpoints-n)/checkpoints + colour_get_red(color2)*n/checkpoints);
+                c[0] = ( colour_get_blue(color1)*    (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_blue(color2)*   (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
+                c[1] = ( colour_get_green(color1)*   (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_green(color2)*  (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
+                c[2] = ( colour_get_red(color1)*     (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_red(color2)*    (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
                 }
                 
             ratiox = sin(degtorad(point_direction(startpos[0],startpos[1],mouse_x,512-mouse_y)));
@@ -124,7 +142,15 @@ if (placing == "wave") //create a wave
             pointx = vector[0]*n+wave_amp*sin(pi*2/checkpoints*n*wave_period)*ratiox/128;
             pointy = vector[1]*n+wave_amp*sin(pi*2/checkpoints*n*wave_period)*ratioy/128;
                 
-            blank = 0;
+            if (blankmode = "solid")
+                blank = 0;
+            else if (blankmode = "dash")
+                {
+                if ((n*resolution/blank_period % 1) > blank_dc) or (blank_dc = 0)
+                    blank = 1;
+                else blank = 0;
+                
+                }
             
             ds_list_add(new_list,pointx*128);
             ds_list_add(new_list,pointy*128);

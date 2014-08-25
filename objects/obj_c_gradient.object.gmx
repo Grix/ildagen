@@ -72,7 +72,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite_index,image_index,x,512-y-32);
+            <string>if (controller.colormode == "gradient") image_index = 2;
+else image_index = 0;
+
+draw_sprite(sprite_index,image_index,x,512-y-32);
 </string>
           </argument>
         </arguments>

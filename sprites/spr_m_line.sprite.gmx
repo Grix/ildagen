@@ -20,7 +20,9 @@
   <width>32</width>
   <height>32</height>
   <frames>
-    <frame index="0">images\spr_b_line_0.png</frame>
-    <frame index="1">images\spr_b_line_1.png</frame>
+    <frame index="0">images\spr_m_line_0.png</frame>
+    <frame index="1">images\spr_m_line_1.png</frame>
+    <frame index="2">images\spr_m_line_2.png</frame>
+    <frame index="3">images\spr_m_line_3.png</frame>
   </frames>
 </sprite>

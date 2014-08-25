@@ -26,7 +26,79 @@
           <argument>
             <kind>1</kind>
             <string>image_speed = 0;
-
+moving = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (moving == 1)
+    {
+    red = colour_get_red(controller.color2);
+    red -= (mouse_y-mouse_yprevious)*255/23;
+    if (red &lt; 0) red = 0;
+    if (red &gt; 255) red = 255;
+    controller.color2 = make_color_rgb(red,colour_get_green(controller.color2),colour_get_blue(controller.color2));
+    }
+else if (moving == 2)
+    {
+    green = colour_get_green(controller.color2);
+    green -= (mouse_y-mouse_yprevious)*255/23;
+    if (green &lt; 0) green = 0;
+    if (green &gt; 255) green = 255;
+    controller.color2 = make_color_rgb(colour_get_red(controller.color2),green,colour_get_blue(controller.color2));
+    }
+else if (moving == 3)
+    {
+    blue = colour_get_blue(controller.color2);
+    blue -= (mouse_y-mouse_yprevious)*255/23;
+    if (blue &lt; 0) blue = 0;
+    if (blue &gt; 255) blue = 255;
+    controller.color2 = make_color_rgb(colour_get_red(controller.color2),colour_get_green(controller.color2),blue);
+    }
+    
+mouse_yprevious = mouse_y;
+mouse_xprevious = mouse_x;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>moving = 0;
 </string>
           </argument>
         </arguments>
@@ -49,7 +121,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>controller.color2 = make_colour_rgb(get_integer("Enter red value from 0 to 255",255),get_integer("Enter green value from 0 to 255",255),get_integer("Enter blue value from 0 to 255",255));
+            <string>//controller.color1 = make_colour_rgb(get_integer("Enter red value from 0 to 255",255),get_integer("Enter green value from 0 to 255",255),get_integer("Enter blue value from 0 to 255",255));
+
+if (mouse_x &lt; (x+16))
+    moving = 1;
+else if (mouse_x &gt; (x+32))
+    moving = 3;
+else moving = 2;
+
+mouse_xprevious = mouse_x;
+mouse_yprevious = mouse_y;
 </string>
           </argument>
         </arguments>
@@ -73,9 +154,13 @@
           <argument>
             <kind>1</kind>
             <string>draw_sprite(sprite_index,image_index,x,512-y-32);
+draw_sprite(spr_colorselect_red,(moving &gt; 0),x,512-y-32+(colour_get_red(controller.color2)/255*23));
+draw_sprite(spr_colorselect_green,(moving &gt; 0),x+16,512-y-32+(colour_get_green(controller.color2)/255*23));
+draw_sprite(spr_colorselect_blue,(moving &gt; 0),x+32,512-y-32+(colour_get_blue(controller.color2)/255*23));
 
 draw_set_alpha(1);
-draw_circle_colour(x+50,y+48,10,controller.color2,controller.color2,0);
+draw_circle_colour(x+70,512-y-16,10,controller.color2,controller.color2,0);
+
 </string>
           </argument>
         </arguments>

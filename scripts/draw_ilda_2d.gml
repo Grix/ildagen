@@ -1,4 +1,5 @@
 //cycles through every element in frame on screen and draws them
+draw_set_blend_mode(bm_add);
 
 for (i = 0;i < ds_list_size(el_list);i++)
     {
@@ -37,3 +38,5 @@ for (i = 0;i < ds_list_size(el_list);i++)
         }
     
     }
+    
+draw_set_blend_mode(bm_normal);
