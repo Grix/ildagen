@@ -4,12 +4,44 @@ placing_status = 0;
 
 ds_stack_push(undo_list,0);
 
+if (!keyboard_check(vk_shift))
+    {
+    endx = mouse_x;
+    endy = mouse_y;
+    }
+else
+    {
+    if (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 315) || (point_direction(startpos[0],startpos[1],mouse_x,512-mouse_y) < 45) || ( (point_direction(startpos[0],startpos[1],mouse_x,512-mouse_y) > 135) && (point_direction(startpos[0],startpos[1],mouse_x,512-mouse_y) < 225) )
+        {
+        endx = mouse_x;
+        endy = 512-startpos[1];
+        }
+    else
+        {
+        endx = startpos[0];
+        endy = mouse_y;
+        }
+    if (placing == "rect")
+        {
+        //if ( (startpos[0]-mouse_x) > (startpos[1]-(512-mouse_y)) )
+            {
+            endx = mouse_x;
+            endy = startpos[1]-(mouse_x-startpos[0]);
+            }
+        /*else
+            {
+            endy = -mouse_y-startpos[1]+512;
+            endy = 512-mouse_y;
+            }*/
+        }
+    }
+
 new_list = ds_list_create();
 
 ds_list_add(new_list,startpos[0]*128); //origo x
 ds_list_add(new_list,startpos[1]*128); //origo y
-ds_list_add(new_list,obj_cursor.x*128); //end x
-ds_list_add(new_list,obj_cursor.y*128); //end y
+ds_list_add(new_list,endx*128); //end x
+ds_list_add(new_list,(512-endy)*128); //end y
 ds_list_add(new_list,0);
 ds_list_add(new_list,0);
 ds_list_add(new_list,0);
@@ -18,164 +50,15 @@ ds_list_add(new_list,0);
 ds_list_add(new_list,0);
 
 if (placing == "line") //create a line
-    {
-    checkpoints = ceil(point_distance(startpos[0],startpos[1],mouse_x,512-mouse_y)*128/resolution);
-    if (checkpoints < 2) checkpoints = 2;
-    vector[0] = (mouse_x-startpos[0])/checkpoints;
-    vector[1] = (512-mouse_y-startpos[1])/checkpoints;
+    create_line();
     
-    for (n = 0;n <= checkpoints; n++)
-        {
-        if (blankmode = "solid")
-            blank = 0;
-        else if (blankmode = "dash")
-            {
-            if ((n*resolution/blank_period % 1) > blank_dc) or (blank_dc = 0)
-                blank = 1;
-            else blank = 0;
-            
-            }
-        
-        if (colormode = "solid")
-            {
-            c[0] = colour_get_blue(color1);
-            c[1] = colour_get_green(color1);
-            c[2] = colour_get_red(color1);
-            }
-        else if (colormode = "gradient")
-            {
-            c[0] = ( colour_get_blue(color1)*    (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_blue(color2)*   (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
-            c[1] = ( colour_get_green(color1)*   (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_green(color2)*  (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
-            c[2] = ( colour_get_red(color1)*     (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_red(color2)*    (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
-            }
-        
-        ds_list_add(new_list,n*vector[0]*128);
-        ds_list_add(new_list,n*vector[1]*128);
-        ds_list_add(new_list,blank);
-        ds_list_add(new_list,c[0]);
-        ds_list_add(new_list,c[1]);
-        ds_list_add(new_list,c[2]);
-        
-        }
-    }
 else if (placing == "circle") //create a circle
-    {
-    radius = point_distance(startpos[0],startpos[1],mouse_x,512-mouse_y)*128;
-    checkpoints = ceil(2*pi*radius/resolution);
-    if (checkpoints < 6) checkpoints = 6;
+    create_circle();
     
-    if !((startpos[0] == mouse_x) && (startpos[1] == mouse_y))
-        for (n = 0;n <= checkpoints; n++)
-            {
-            if (colormode = "solid")
-                {
-                c[0] = colour_get_blue(color1);
-                c[1] = colour_get_green(color1);
-                c[2] = colour_get_red(color1);
-                }
-            else if (colormode = "gradient")
-                {
-                c[0] = ( colour_get_blue(color1)*    (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_blue(color2)*   (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
-                c[1] = ( colour_get_green(color1)*   (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_green(color2)*  (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
-                c[2] = ( colour_get_red(color1)*     (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_red(color2)*    (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
-                }
-                
-            if (blankmode = "solid")
-                blank = 0;
-            else if (blankmode = "dash")
-                {
-                if ((n*resolution/blank_period % 1) > blank_dc) or (blank_dc = 0)
-                    blank = 1;
-                else blank = 0;
-                
-                }
-            
-            ds_list_add(new_list,cos(2*pi/checkpoints*n)*radius);
-            ds_list_add(new_list,sin(2*pi/checkpoints*n)*radius);
-            ds_list_add(new_list,blank);
-            ds_list_add(new_list,c[0]);
-            ds_list_add(new_list,c[1]);
-            ds_list_add(new_list,c[2]);
-            
-            }
-    else
-        {
-        ds_list_add(new_list,mouse_x*128);
-        ds_list_add(new_list,mouse_y*128);
-        ds_list_add(new_list,blank);
-        ds_list_add(new_list,c[0]);
-        ds_list_add(new_list,c[1]);
-        ds_list_add(new_list,c[2]);
-        ds_list_add(new_list,mouse_x*128);
-        ds_list_add(new_list,mouse_y*128);
-        ds_list_add(new_list,blank);
-        ds_list_add(new_list,c[0]);
-        ds_list_add(new_list,c[1]);
-        ds_list_add(new_list,c[2]);
-        }
-    }
 if (placing == "wave") //create a wave
-    {
-    checkpoints = ceil((point_distance(startpos[0],startpos[1],mouse_x,512-mouse_y)*128+abs(wave_amp*2*wave_period))/resolution);
-    if (checkpoints < 4) checkpoints = 4;
-    vector[0] = (mouse_x-startpos[0])/checkpoints;
-    vector[1] = (512-mouse_y-startpos[1])/checkpoints;
+    create_wave();
     
-    if !((startpos[0] == mouse_x) && (startpos[1] == mouse_y))
-        for (n = 0;n <= checkpoints; n++)
-            {
-            if (colormode = "solid")
-                {
-                c[0] = colour_get_blue(color1);
-                c[1] = colour_get_green(color1);
-                c[2] = colour_get_red(color1);
-                }
-            else if (colormode = "gradient")
-                {
-                c[0] = ( colour_get_blue(color1)*    (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_blue(color2)*   (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
-                c[1] = ( colour_get_green(color1)*   (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_green(color2)*  (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
-                c[2] = ( colour_get_red(color1)*     (0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2) + colour_get_red(color2)*    (1-(0.5+cos( (checkpoints-n)*color_period/checkpoints*2*pi +pi)/2)) );
-                }
-                
-            ratiox = sin(degtorad(point_direction(startpos[0],startpos[1],mouse_x,512-mouse_y)));
-            ratioy = cos(degtorad(point_direction(startpos[0],startpos[1],mouse_x,512-mouse_y)));
-            pointx = vector[0]*n+wave_amp*sin(pi*2/checkpoints*n*wave_period)*ratiox/128;
-            pointy = vector[1]*n+wave_amp*sin(pi*2/checkpoints*n*wave_period)*ratioy/128;
-                
-            if (blankmode = "solid")
-                blank = 0;
-            else if (blankmode = "dash")
-                {
-                if ((n*resolution/blank_period % 1) > blank_dc) or (blank_dc = 0)
-                    blank = 1;
-                else blank = 0;
-                
-                }
-            
-            ds_list_add(new_list,pointx*128);
-            ds_list_add(new_list,pointy*128);
-            ds_list_add(new_list,blank);
-            ds_list_add(new_list,c[0]);
-            ds_list_add(new_list,c[1]);
-            ds_list_add(new_list,c[2]);
-            
-            }
-    else
-        {
-        ds_list_add(new_list,mouse_x*128);
-        ds_list_add(new_list,mouse_y*128);
-        ds_list_add(new_list,blank);
-        ds_list_add(new_list,c[0]);
-        ds_list_add(new_list,c[1]);
-        ds_list_add(new_list,c[2]);
-        ds_list_add(new_list,mouse_x*128);
-        ds_list_add(new_list,mouse_y*128);
-        ds_list_add(new_list,blank);
-        ds_list_add(new_list,c[0]);
-        ds_list_add(new_list,c[1]);
-        ds_list_add(new_list,c[2]);
-        }
-    }
+else if (placing == "rect") //create a rectangle (not working)
+    create_rect();
 
-    
 ds_list_add(el_list,new_list);

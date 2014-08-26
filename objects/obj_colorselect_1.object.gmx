@@ -156,12 +156,13 @@ mouse_yprevious = mouse_y;
             <string>
 draw_set_alpha(1);
 draw_sprite(sprite_index,image_index,x,512-y-32);
-draw_sprite(spr_colorselect_red,(moving &gt; 0),x,512-y-32+(colour_get_red(controller.color1)/255*23));
-draw_sprite(spr_colorselect_green,(moving &gt; 0),x+16,512-y-32+(colour_get_green(controller.color1)/255*23));
-draw_sprite(spr_colorselect_blue,(moving &gt; 0),x+32,512-y-32+(colour_get_blue(controller.color1)/255*23));
+draw_sprite(spr_colorselect_red,(moving == 1),x,512-y-32+(colour_get_red(controller.color1)/255*23));
+draw_sprite(spr_colorselect_green,(moving == 2),x+16,512-y-32+(colour_get_green(controller.color1)/255*23));
+draw_sprite(spr_colorselect_blue,(moving == 3),x+32,512-y-32+(colour_get_blue(controller.color1)/255*23));
+
 
 draw_circle_colour(x+70,512-y-16,10,controller.color1,controller.color1,0);
-
+draw_circle_colour(x+70,512-y-16,10,c_black,c_black,1);
 </string>
           </argument>
         </arguments>

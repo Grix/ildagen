@@ -59,6 +59,10 @@ text_surf = surface_create(300,20);
     
 mouse_yprevious = mouse_y;
 mouse_xprevious = mouse_x;
+
+
+
+visible = (controller.blankmode == "dash");
 </string>
           </argument>
         </arguments>
@@ -104,7 +108,8 @@ mouse_xprevious = mouse_x;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>moving = 1;
+            <string>if (visible)
+moving = 1;
 </string>
           </argument>
         </arguments>
@@ -136,15 +141,15 @@ surface_set_target(text_surf);
 draw_clear_alpha(c_black,0);
 draw_set_alpha(1);
 draw_set_font(fnt_tooltip);
-draw_set_color(c_ltgray);
+draw_set_color(c_dkgray);
 draw_text(0,0,"Blanking duty cycle: "+string(controller.blank_dc));
 draw_set_color(c_white);
 surface_reset_target();
 //flip_surface(tooltip_surf);
 
-draw_set_blend_mode(bm_add);
-draw_surface(text_surf,x+160,512-y-28);
-draw_set_blend_mode(bm_normal);
+
+draw_surface(text_surf,x+160,512-y-26);
+
 </string>
           </argument>
         </arguments>

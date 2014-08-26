@@ -7,16 +7,19 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_m_line</sprite>
+    <sprite>sprites\spr_m_circle</sprite>
+    <sprite>sprites\spr_m_wave</sprite>
+    <sprite>sprites\spr_m_rect</sprite>
     <sprite>sprites\spr_colortselect</sprite>
+    <sprite>sprites\spr_absrel</sprite>
     <sprite>sprites\spr_waveampselect</sprite>
     <sprite>sprites\spr_blankperiodselect</sprite>
     <sprite>sprites\spr_e_undo</sprite>
     <sprite>sprites\spr_b_solid</sprite>
     <sprite>sprites\spr_b_dash</sprite>
+    <sprite>sprites\spr_b_dot</sprite>
     <sprite>sprites\spr_s_res</sprite>
     <sprite>sprites\spr_e_clear</sprite>
-    <sprite>sprites\spr_m_wave</sprite>
-    <sprite>sprites\spr_m_circle</sprite>
     <sprite>sprites\spr_colorselect</sprite>
     <sprite>sprites\spr_c_solid</sprite>
     <sprite>sprites\spr_c_gradient</sprite>
@@ -31,10 +34,13 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\draw_ilda_2d.gml</script>
-    <script>scripts\create_element.gml</script>
     <script>scripts\export_ilda.gml</script>
     <script>scripts\draw_preview_element.gml</script>
-    <script>scripts\flip_surface.gml</script>
+    <script>scripts\create_element.gml</script>
+    <script>scripts\create_line.gml</script>
+    <script>scripts\create_circle.gml</script>
+    <script>scripts\create_wave.gml</script>
+    <script>scripts\create_rect.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
@@ -43,31 +49,43 @@
     <object>objects\controller</object>
     <object>objects\obj_cursor</object>
     <objects name="buttons">
-      <object>objects\obj_m_line</object>
-      <object>objects\obj_m_wave</object>
-      <object>objects\obj_m_circle</object>
-      <object>objects\obj_colorselect_1</object>
-      <object>objects\obj_colorselect_2</object>
-      <object>objects\obj_c_solid</object>
-      <object>objects\obj_c_gradient</object>
-      <object>objects\obj_colortselect</object>
-      <object>objects\obj_waveperiodselect</object>
-      <object>objects\obj_waveampselect</object>
-      <object>objects\obj_blankperiodselect</object>
-      <object>objects\obj_blankingdcselect</object>
-      <object>objects\obj_b_solid</object>
-      <object>objects\obj_b_dash</object>
       <object>objects\obj_export</object>
       <object>objects\obj_s_res</object>
       <object>objects\obj_e_clear</object>
       <object>objects\obj_undo</object>
+      <objects name="blank">
+        <object>objects\obj_blankabsrel</object>
+        <object>objects\obj_blankfreqselect</object>
+        <object>objects\obj_blanktselect</object>
+        <object>objects\obj_blankingdcselect</object>
+        <object>objects\obj_b_solid</object>
+        <object>objects\obj_b_dash</object>
+        <object>objects\obj_b_dot</object>
+      </objects>
+      <objects name="color">
+        <object>objects\obj_colorselect_1</object>
+        <object>objects\obj_colorselect_2</object>
+        <object>objects\obj_c_solid</object>
+        <object>objects\obj_c_gradient</object>
+        <object>objects\obj_colorfreqselect</object>
+        <object>objects\obj_colorabsrel</object>
+        <object>objects\obj_colortselect</object>
+      </objects>
+      <objects name="shape">
+        <object>objects\obj_wavetselect</object>
+        <object>objects\obj_waveampselect</object>
+        <object>objects\obj_s_line</object>
+        <object>objects\obj_s_circle</object>
+        <object>objects\obj_s_wave</object>
+        <object>objects\obj_s_rect</object>
+      </objects>
     </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41876.8197039699</constant>
+    <constant name="GM_build_date">41877.7495472917</constant>
     <constant name="GM_version">'0.0.0.0'</constant>
   </constants>
   <help>
