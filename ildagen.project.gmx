@@ -16,12 +16,14 @@
     <sprite>sprites\spr_blankperiodselect</sprite>
     <sprite>sprites\spr_e_undo</sprite>
     <sprite>sprites\spr_b_solid</sprite>
+    <sprite>sprites\spr_b_enddots</sprite>
     <sprite>sprites\spr_b_dash</sprite>
     <sprite>sprites\spr_b_dot</sprite>
     <sprite>sprites\spr_s_res</sprite>
     <sprite>sprites\spr_e_clear</sprite>
     <sprite>sprites\spr_colorselect</sprite>
     <sprite>sprites\spr_c_solid</sprite>
+    <sprite>sprites\spr_c_dash</sprite>
     <sprite>sprites\spr_c_gradient</sprite>
     <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_cursor</sprite>
@@ -59,6 +61,7 @@
         <object>objects\obj_blanktselect</object>
         <object>objects\obj_blankingdcselect</object>
         <object>objects\obj_b_solid</object>
+        <object>objects\obj_enddots</object>
         <object>objects\obj_b_dash</object>
         <object>objects\obj_b_dot</object>
       </objects>
@@ -67,8 +70,10 @@
         <object>objects\obj_colorselect_2</object>
         <object>objects\obj_c_solid</object>
         <object>objects\obj_c_gradient</object>
+        <object>objects\obj_c_dash</object>
         <object>objects\obj_colorfreqselect</object>
         <object>objects\obj_colorabsrel</object>
+        <object>objects\obj_colordcselect</object>
         <object>objects\obj_colortselect</object>
       </objects>
       <objects name="shape">
@@ -85,7 +90,7 @@
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41877.7495472917</constant>
+    <constant name="GM_build_date">41878.4658457292</constant>
     <constant name="GM_version">'0.0.0.0'</constant>
   </constants>
   <help>

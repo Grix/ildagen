@@ -77,7 +77,7 @@ else if (moving == 3)
 mouse_yprevious = mouse_y;
 mouse_xprevious = mouse_x;
 
-visible = (controller.colormode == "gradient");
+visible = ((controller.colormode == "gradient") || (controller.colormode == "dash"));
 </string>
           </argument>
         </arguments>

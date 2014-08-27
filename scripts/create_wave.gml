@@ -28,6 +28,54 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
                 c[2] = ( colour_get_red(color1)*     (0.5+cos( (checkpoints-n)*resolution/color_period*2*pi +pi)/2) + colour_get_red(color2)*    (1-(0.5+cos( (checkpoints-n)*resolution/color_period*2*pi +pi)/2)) );
                 }
             }
+        else if (colormode == "dash")
+            {
+            if (colormode2 = 0)
+                {
+                if (n = checkpoints)
+                    {
+                    if (color_freq % 1 == 0.5)
+                        {
+                        c[0] = colour_get_blue(color2);
+                        c[1] = colour_get_green(color2);
+                        c[2] = colour_get_red(color2);
+                        }
+                    else 
+                        {
+                        c[0] = colour_get_blue(color1);
+                        c[1] = colour_get_green(color1);
+                        c[2] = colour_get_red(color1);
+                        }
+                    }
+                else if (((n*(color_freq+0.5)/checkpoints % 1) > color_dc) or (color_dc = 0))
+                    {
+                    c[0] = colour_get_blue(color2);
+                    c[1] = colour_get_green(color2);
+                    c[2] = colour_get_red(color2);
+                    }
+                else 
+                    {
+                    c[0] = colour_get_blue(color1);
+                    c[1] = colour_get_green(color1);
+                    c[2] = colour_get_red(color1);
+                    }
+                }
+            else
+                {
+                if ((n*resolution/color_period % 1) > color_dc) or (color_dc = 0)
+                    {
+                    c[0] = colour_get_blue(color2);
+                    c[1] = colour_get_green(color2);
+                    c[2] = colour_get_red(color2);
+                    }
+                else 
+                    {
+                    c[0] = colour_get_blue(color1);
+                    c[1] = colour_get_green(color1);
+                    c[2] = colour_get_red(color1);
+                    }
+                }
+            }
             
         ratiox = sin(degtorad(point_direction(startpos[0],startpos[1],endx,512-endy)));
         ratioy = cos(degtorad(point_direction(startpos[0],startpos[1],endx,512-endy)));

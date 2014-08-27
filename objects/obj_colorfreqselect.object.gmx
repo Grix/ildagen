@@ -51,7 +51,7 @@ text_surf = surface_create(300,20);
           <argument>
             <kind>1</kind>
             <string>
-visible = (controller.colormode == "gradient") &amp;&amp; (controller.colormode2 == 0);
+visible = ((controller.colormode == "gradient") || (controller.colormode == "dash")) &amp;&amp; (controller.colormode2 == 0);
 </string>
           </argument>
         </arguments>
