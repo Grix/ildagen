@@ -9,6 +9,8 @@ blanknew = 0;
 if !((startpos[0] == endx) && (startpos[1] == endy))
     for (n = 0;n <= checkpoints; n++)
         {
+        makedot = 0;
+        
         if (colormode = "solid")
             {
             c[0] = colour_get_blue(color1);
@@ -85,15 +87,45 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
             {
             if (blankmode2 = 0)
                 {
-                if ((n*blank_freq/checkpoints % 1) > blank_dc) or (blank_dc = 0) or (n == checkpoints)
+                if ((n*blank_freq/checkpoints % 1) > blank_dc) or (blank_dc = 0) and (n != 0)
+                    {
+                    blank = 0;
+                    if (blanknew != blank) and (enddots)
+                        {
+                        makedot = 2;
+                        blanknew = blank;
+                        }
+                    }
+                else 
+                    {
                     blank = 1;
-                else blank = 0;
+                    if (blanknew != blank) and (enddots)
+                        {
+                        makedot = 2;
+                        blanknew = blank;
+                        }
+                    }
                 }
             else
                 {
                 if ((n*resolution/blank_period % 1) > blank_dc) or (blank_dc = 0)
+                    {
                     blank = 1;
-                else blank = 0;
+                    if (blanknew != blank) and (enddots)
+                        {
+                        makedot = 2;
+                        blanknew = blank;
+                        }
+                    }
+                else 
+                    {
+                    blank = 0;
+                    if (blanknew != blank) and (enddots)
+                        {
+                        makedot = 2;
+                        blanknew = blank;
+                        }
+                    }
                 }
             }
         else if (blankmode == "dot")
@@ -102,7 +134,7 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
                 {
                 if (blanknew = floor((n*(blank_freq)/checkpoints)))
                     {
-                    blank = 0;
+                    makedot = 1;
                     blanknew = 1+floor((n*(blank_freq)/checkpoints));
                     }
                 else 
@@ -114,7 +146,7 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
                 {
                 if (blanknew = floor(n*resolution/blank_period))
                     {
-                    blank = 0;
+                    makedot = 1;
                     blanknew = 1+floor(n*resolution/blank_period);
                     }
                 else 
@@ -124,7 +156,10 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
                 }
             }
             
-        if (!blank) && (blankmode == "dot")
+        
+    if (makedot)
+        {
+        if (blankmode == "dot")
             {
             ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
             ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
@@ -132,15 +167,70 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
             ds_list_add(new_list,c[0]);
             ds_list_add(new_list,c[1]);
             ds_list_add(new_list,c[2]);
+            ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
+            ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
+            ds_list_add(new_list,0);
+            ds_list_add(new_list,c[0]);
+            ds_list_add(new_list,c[1]);
+            ds_list_add(new_list,c[2])
             }
+        else
+            {
+            if (makedot == 2)
+                {
+                if (blank)
+                    {
+                    ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n-1))*radius);
+                    ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n-1))*radius);
+                    ds_list_add(new_list,1);
+                    ds_list_add(new_list,c[0]);
+                    ds_list_add(new_list,c[1]);
+                    ds_list_add(new_list,c[2]);
+                    }
+                else
+                    {
+                    ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n-1))*radius);
+                    ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n-1))*radius);
+                    ds_list_add(new_list,0);
+                    ds_list_add(new_list,colour_get_blue(controller.enddotscolor));
+                    ds_list_add(new_list,colour_get_green(controller.enddotscolor));
+                    ds_list_add(new_list,colour_get_red(controller.enddotscolor));
+                    }
+                ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n-1))*radius);
+                ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n-1))*radius);
+                ds_list_add(new_list,0);
+                ds_list_add(new_list,colour_get_blue(controller.enddotscolor));
+                ds_list_add(new_list,colour_get_green(controller.enddotscolor));
+                ds_list_add(new_list,colour_get_red(controller.enddotscolor))
+                }
+            else
+                {
+                ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
+                ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
+                ds_list_add(new_list,0);
+                ds_list_add(new_list,c[0]);
+                ds_list_add(new_list,c[1]);
+                ds_list_add(new_list,c[2])
+                ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
+                ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
+                ds_list_add(new_list,0);
+                ds_list_add(new_list,colour_get_blue(controller.enddotscolor));
+                ds_list_add(new_list,colour_get_green(controller.enddotscolor));
+                ds_list_add(new_list,colour_get_red(controller.enddotscolor))
+                }
+            }
+
+        }  
+    else
+        {    
         ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
         ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
         ds_list_add(new_list,blank);
         ds_list_add(new_list,c[0]);
         ds_list_add(new_list,c[1]);
         ds_list_add(new_list,c[2]);
-        
         }
+    }
 else
     {
     ds_list_add(new_list,endx*128);

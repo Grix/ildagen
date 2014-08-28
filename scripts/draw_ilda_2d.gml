@@ -31,7 +31,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
             draw_set_color(make_colour_rgb(nr,ng,nb));
             if (xp == nxp) && (yp == nyp)
                 {
-                draw_rectangle(xo+xp/128,yo+yp/128,xo+xp/128+1,yo+yp/128+1,0);
+                draw_rectangle(xo+xp/128-1,yo+yp/128-1,xo+xp/128+1,yo+yp/128+1,0);
                 }
             else
                 draw_line(xo+ xp/128,yo+ yp/128,xo+ nxp/128,yo+ nyp/128);

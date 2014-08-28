@@ -43,6 +43,7 @@
     <script>scripts\create_circle.gml</script>
     <script>scripts\create_wave.gml</script>
     <script>scripts\create_rect.gml</script>
+    <script>scripts\draw_guidelines.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
@@ -67,6 +68,7 @@
       </objects>
       <objects name="color">
         <object>objects\obj_colorselect_1</object>
+        <object>objects\obj_enddotscolorselect</object>
         <object>objects\obj_colorselect_2</object>
         <object>objects\obj_c_solid</object>
         <object>objects\obj_c_gradient</object>
@@ -90,7 +92,7 @@
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41878.4658457292</constant>
+    <constant name="GM_build_date">41879.9125734722</constant>
     <constant name="GM_version">'0.0.0.0'</constant>
   </constants>
   <help>

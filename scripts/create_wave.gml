@@ -4,9 +4,11 @@ vector[0] = (endx-startpos[0])/checkpoints;
 vector[1] = (512-endy-startpos[1])/checkpoints;
 blanknew = 0;
 
-if !((startpos[0] == endx) && (startpos[1] == endy))
+if !((startpos[0] == endx) && (startpos[1] == (512-endy)))
     for (n = 0;n <= checkpoints; n++)
         {
+        makedot = 0;
+        
         if (colormode = "solid")
             {
             c[0] = colour_get_blue(color1);
@@ -81,22 +83,81 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
         ratioy = cos(degtorad(point_direction(startpos[0],startpos[1],endx,512-endy)));
         pointx = vector[0]*n+wave_amp*sin(pi*2/checkpoints*n*wave_period)*ratiox/128;
         pointy = vector[1]*n+wave_amp*sin(pi*2/checkpoints*n*wave_period)*ratioy/128;
+        pointxprevious = vector[0]*(n-1)+wave_amp*sin(pi*2/checkpoints*(n-1)*wave_period)*ratiox/128;
+        pointyprevious = vector[1]*(n-1)+wave_amp*sin(pi*2/checkpoints*(n-1)*wave_period)*ratioy/128;
             
         if (blankmode = "solid")
             blank = 0;
-        else if (blankmode = "dash")
+        else if (blankmode == "dash")
             {
             if (blankmode2 = 0)
                 {
                 if ((n*(blank_freq-0.5)/checkpoints % 1) > blank_dc) or (blank_dc = 0)
+                    {
                     blank = 1;
-                else blank = 0;
+                    if (blanknew != blank) and (enddots)
+                        {
+                        makedot = 2;
+                        blanknew = blank;
+                        }
+                    }
+                else 
+                    {
+                    blank = 0;
+                    if (blanknew != blank) and (enddots)
+                        {
+                        makedot = 2;
+                        blanknew = blank;
+                        }
+                    }
                 }
             else
                 {
                 if ((n*resolution/blank_period % 1) > blank_dc) or (blank_dc = 0)
+                    {
                     blank = 1;
-                else blank = 0;
+                    if (blanknew != blank) and (enddots)
+                        {
+                        makedot = 2;
+                        blanknew = blank;
+                        }
+                    }
+                else 
+                    {
+                    blank = 0;
+                    if (blanknew != blank) and (enddots)
+                        {
+                        makedot = 2;
+                        blanknew = blank;
+                        }
+                    }
+                }
+            }
+        else if (blankmode == "dot")
+            {
+            if (blankmode2 = 0)
+                {
+                if (blanknew = floor((n*(blank_freq-1)/checkpoints)))
+                    {
+                    makedot = 1;
+                    blanknew = 1+floor((n*(blank_freq-1)/checkpoints));
+                    }
+                else 
+                    {
+                    blank = 1;
+                    }
+                }
+            else
+                {
+                if (blanknew = floor(n*resolution/blank_period))
+                    {
+                    makedot = 1;
+                    blanknew = 1+floor(n*resolution/blank_period);
+                    }
+                else 
+                    {
+                    blank = 1;
+                    }
                 }
             }
         else if (blankmode == "dot")
@@ -127,7 +188,18 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
                 }
             }
             
-        if (!blank) && (blankmode == "dot")
+        
+    if (enddots)
+        {
+        if (!makedot) and ((n == 0) or (n == checkpoints)) and (blankmode != "dot")
+            makedot = 1;
+        }
+        
+        
+    if (makedot)
+        {
+        
+        if (blankmode == "dot")
             {
             ds_list_add(new_list,pointx*128);
             ds_list_add(new_list,pointy*128);
@@ -135,15 +207,70 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
             ds_list_add(new_list,c[0]);
             ds_list_add(new_list,c[1]);
             ds_list_add(new_list,c[2]);
+            ds_list_add(new_list,pointx*128);
+            ds_list_add(new_list,pointy*128);
+            ds_list_add(new_list,0);
+            ds_list_add(new_list,c[0]);
+            ds_list_add(new_list,c[1]);
+            ds_list_add(new_list,c[2])
             }
+        else
+            {
+            if (makedot == 2)
+                {
+                if (blank)
+                    {
+                    ds_list_add(new_list,pointxprevious*128);
+                    ds_list_add(new_list,pointyprevious*128);
+                    ds_list_add(new_list,1);
+                    ds_list_add(new_list,c[0]);
+                    ds_list_add(new_list,c[1]);
+                    ds_list_add(new_list,c[2]);
+                    }
+                else
+                    {
+                    ds_list_add(new_list,pointxprevious*128);
+                    ds_list_add(new_list,pointyprevious*128);
+                    ds_list_add(new_list,0);
+                    ds_list_add(new_list,colour_get_blue(controller.enddotscolor));
+                    ds_list_add(new_list,colour_get_green(controller.enddotscolor));
+                    ds_list_add(new_list,colour_get_red(controller.enddotscolor));
+                    }
+                ds_list_add(new_list,pointxprevious*128);
+                ds_list_add(new_list,pointyprevious*128);
+                ds_list_add(new_list,0);
+                ds_list_add(new_list,colour_get_blue(controller.enddotscolor));
+                ds_list_add(new_list,colour_get_green(controller.enddotscolor));
+                ds_list_add(new_list,colour_get_red(controller.enddotscolor))
+                }
+            else
+                {
+                ds_list_add(new_list,pointx*128);
+                ds_list_add(new_list,pointy*128);
+                ds_list_add(new_list,0);
+                ds_list_add(new_list,c[0]);
+                ds_list_add(new_list,c[1]);
+                ds_list_add(new_list,c[2])
+                ds_list_add(new_list,pointx*128);
+                ds_list_add(new_list,pointy*128);
+                ds_list_add(new_list,0);
+                ds_list_add(new_list,colour_get_blue(controller.enddotscolor));
+                ds_list_add(new_list,colour_get_green(controller.enddotscolor));
+                ds_list_add(new_list,colour_get_red(controller.enddotscolor))
+                }
+            }
+
+        }  
+    else
+        {    
         ds_list_add(new_list,pointx*128);
         ds_list_add(new_list,pointy*128);
         ds_list_add(new_list,blank);
         ds_list_add(new_list,c[0]);
         ds_list_add(new_list,c[1]);
         ds_list_add(new_list,c[2]);
-        
         }
+    }
 else
     {
     ds_list_add(new_list,endx*128);
