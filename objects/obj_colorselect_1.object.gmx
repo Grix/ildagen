@@ -163,6 +163,11 @@ draw_sprite(spr_colorselect_blue,(moving == 3),x+32,512-y-32+(colour_get_blue(co
 
 draw_circle_colour(x+70,512-y-16,10,controller.color1,controller.color1,0);
 draw_circle_colour(x+70,512-y-16,10,c_black,c_black,1);
+
+if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+    {
+    controller.tooltip = "Changes primary color (Sliders represent red, green and blue)";
+    } 
 </string>
           </argument>
         </arguments>

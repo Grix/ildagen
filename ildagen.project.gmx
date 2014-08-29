@@ -44,6 +44,7 @@
     <script>scripts\create_wave.gml</script>
     <script>scripts\create_rect.gml</script>
     <script>scripts\draw_guidelines.gml</script>
+    <script>scripts\surface_flip.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
@@ -53,7 +54,7 @@
     <object>objects\obj_cursor</object>
     <objects name="buttons">
       <object>objects\obj_export</object>
-      <object>objects\obj_s_res</object>
+      <object>objects\obj_e_res</object>
       <object>objects\obj_e_clear</object>
       <object>objects\obj_undo</object>
       <objects name="blank">
@@ -92,7 +93,7 @@
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41879.9125734722</constant>
+    <constant name="GM_build_date">41880.6726773843</constant>
     <constant name="GM_version">'0.0.0.0'</constant>
   </constants>
   <help>

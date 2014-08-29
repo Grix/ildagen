@@ -52,6 +52,11 @@ text_surf = surface_create(300,20);
             <kind>1</kind>
             <string>
 visible = ((controller.blankmode == "dash") || (controller.blankmode == "dot")) &amp;&amp; (controller.blankmode2 == 0);
+
+if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+    {
+    controller.tooltip = "Changes number of blanking intervals per whole element";
+    } 
 </string>
           </argument>
         </arguments>

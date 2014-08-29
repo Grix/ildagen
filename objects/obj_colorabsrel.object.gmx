@@ -54,6 +54,11 @@ text_surf = surface_create(300,20);
 visible = (controller.colormode == "gradient") || (controller.colormode == "dash");
 
 image_index = controller.colormode2;
+
+if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+    {
+    controller.tooltip = "Toggles absolute or relative color cycle length";
+    } 
 </string>
           </argument>
         </arguments>

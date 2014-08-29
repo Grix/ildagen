@@ -167,6 +167,11 @@ draw_set_alpha(1);
 draw_circle_colour(x+70,512-y-16,10,controller.color2,controller.color2,0);
 
 draw_circle_colour(x+70,512-y-16,10,c_black,c_black,1);
+
+if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+    {
+    controller.tooltip = "Changes secondary color (Sliders represent red, green and blue)";
+    } 
 </string>
           </argument>
         </arguments>

@@ -32,6 +32,33 @@
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+    {
+    image_index = 1;
+    controller.tooltip = "Clears everything from the ilda file";
+    } 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="4">
       <action>
         <libid>1</libid>
@@ -49,12 +76,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (i = 0;i &lt; ds_list_size(controller.el_list);i++)
+            <string>if !(show_question("Are you sure you want to clear everything?"))
+    exit;
+
+for (i = 0;i &lt; ds_list_size(controller.el_list);i++)
     {
     list_id = ds_list_find_value(controller.el_list,i);
     ds_list_clear(list_id);
+    surf_id = ds_list_find_value(controller.surf_list,i);
+    surface_free(surf_id);
     }
 ds_list_clear(controller.el_list);
+ds_list_clear(controller.surf_list);
 </string>
           </argument>
         </arguments>

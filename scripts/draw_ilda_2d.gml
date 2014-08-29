@@ -3,7 +3,9 @@ draw_set_blend_mode(bm_add);
 
 for (i = 0;i < ds_list_size(el_list);i++)
     {
-    list_id = ds_list_find_value(el_list,i);
+    draw_surface(ds_list_find_value(surf_list,i),0,0);
+    }
+/*    list_id = ds_list_find_value(el_list,i);
     
     xo = ds_list_find_value(list_id,0)/128;
     yo = ds_list_find_value(list_id,1)/128;
@@ -41,4 +43,4 @@ for (i = 0;i < ds_list_size(el_list);i++)
     
     }
     
-draw_set_blend_mode(bm_normal);
+*/draw_set_blend_mode(bm_normal);

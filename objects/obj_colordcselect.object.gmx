@@ -150,6 +150,10 @@ surface_reset_target();
 
 draw_surface(text_surf,x+160,512-y-26);
 
+if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+    {
+    controller.tooltip = "Changes the ratio of the primary/secondary color";
+    } 
 </string>
           </argument>
         </arguments>

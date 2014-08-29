@@ -63,6 +63,11 @@ mouse_xprevious = mouse_x;
 
 
 visible = (controller.blankmode == "dash");
+
+if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+    {
+    controller.tooltip = "Changes the ratio of blank on/off";
+    } 
 </string>
           </argument>
         </arguments>
