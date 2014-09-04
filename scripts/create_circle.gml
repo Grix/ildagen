@@ -1,5 +1,5 @@
-radius = point_distance(startpos[0],startpos[1],endx,512-endy)*128;
-startrad = degtorad(-point_direction(startpos[0],startpos[1],endx,512-endy));
+radius = point_distance(startpos[0],startpos[1],endx,endy)*128;
+startrad = degtorad(-point_direction(startpos[0],startpos[1],endx,endy));
 
 checkpoints = ceil(2*pi*radius/resolution);
 if (checkpoints < 3) checkpoints = 3;

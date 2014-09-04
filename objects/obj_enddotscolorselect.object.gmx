@@ -164,14 +164,14 @@ mouse_yprevious = mouse_y;
             <kind>1</kind>
             <string>
 draw_set_alpha(1);
-draw_sprite(sprite_index,image_index,x,512-y-32);
-draw_sprite(spr_colorselect_red,(moving == 1),x,512-y-32+(colour_get_red(controller.enddotscolor)/255*23));
-draw_sprite(spr_colorselect_green,(moving == 2),x+16,512-y-32+(colour_get_green(controller.enddotscolor)/255*23));
-draw_sprite(spr_colorselect_blue,(moving == 3),x+32,512-y-32+(colour_get_blue(controller.enddotscolor)/255*23));
+draw_sprite(sprite_index,image_index,x,y);
+draw_sprite(spr_colorselect_red,(moving == 1),x,y+23-(colour_get_red(controller.enddotscolor)/255*23));
+draw_sprite(spr_colorselect_green,(moving == 2),x+16,y+23-(colour_get_green(controller.enddotscolor)/255*23));
+draw_sprite(spr_colorselect_blue,(moving == 3),x+32,y+23-(colour_get_blue(controller.enddotscolor)/255*23));
 
 
-draw_circle_colour(x+70,512-y-16,10,controller.enddotscolor,controller.enddotscolor,0);
-draw_circle_colour(x+70,512-y-16,10,c_black,c_black,1);
+draw_circle_colour(x+70,y+16,10,controller.enddotscolor,controller.enddotscolor,0);
+draw_circle_colour(x+70,y+16,10,c_black,c_black,1);
 
 </string>
           </argument>

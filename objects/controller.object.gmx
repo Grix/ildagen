@@ -25,8 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>d3d_start(); //funny workaround for flipping the y axis.
-surface_resize(application_surface, 1000, 512); 
+            <string>//d3d_start(); //funny workaround for flipping the y axis.
 
 tooltip_surf = surface_create(490,21);
 info_surf = surface_create(1000,512);
@@ -221,37 +220,21 @@ draw_set_color(c_white);
 draw_rectangle_colour(513,0,1000,512,c_ltgray,c_ltgray,c_ltltgray,c_ltltgray,0);
 draw_set_color(c_dkgray);
 draw_line(512,0,512,512);
-draw_line(513,512-150,1000,512-150);
-draw_line(513,512-302,1000,512-302);
-draw_line(513,512-450,1000,512-450);
-surface_set_target(info_surf);
-    draw_clear_alpha(c_black,0);
-    draw_set_alpha(1);
-    draw_set_font(fnt_tooltip);
-    draw_set_color(c_dkgray);
-    draw_enable_alphablend(0);
-    draw_text(536,20,"Shape");
-    draw_text(536,166,"Color");
-    draw_text(536,319,"Blanking");
-    draw_enable_alphablend(1);
-    draw_set_color(c_white);
-surface_reset_target();
-draw_surface(info_surf,0,0);
+draw_line(513,150,1000,150);
+draw_line(513,302,1000,302);
+draw_line(513,450,1000,450);
+draw_set_font(fnt_tooltip);
+draw_set_color(c_dkgray);
+draw_text(536,20,"Shape");
+draw_text(536,166,"Color");
+draw_text(536,319,"Blanking");
 
 if (tooltip != "")
     {
-    surface_set_target(tooltip_surf);
-        draw_clear_alpha(make_colour_rgb(30,30,30),0.5);
-        draw_set_alpha(1);
-        draw_set_font(fnt_tooltip);
-        draw_set_color(c_ltgray);
-        draw_text(0,0,tooltip);
-        draw_set_color(c_white);
-    surface_reset_target();
-    
-    draw_enable_alphablend(0);
-    draw_surface(tooltip_surf,10,487);
-    draw_enable_alphablend(1);
+    draw_set_font(fnt_tooltip);
+    draw_set_color(c_ltgray);
+    draw_text(5,5,tooltip);
+    draw_set_color(c_white);
     
     tooltip = "";
     }

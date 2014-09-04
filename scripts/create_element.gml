@@ -11,10 +11,10 @@ if (!keyboard_check(vk_shift))
     }
 else
     {
-    if (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 315) || (point_direction(startpos[0],startpos[1],mouse_x,512-mouse_y) < 45) || ( (point_direction(startpos[0],startpos[1],mouse_x,512-mouse_y) > 135) && (point_direction(startpos[0],startpos[1],mouse_x,512-mouse_y) < 225) )
+    if (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 315) || (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) < 45) || ( (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 135) && (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) < 225) )
         {
         endx = mouse_x;
-        endy = 512-startpos[1];
+        endy = startpos[1];
         }
     else
         {
@@ -41,7 +41,7 @@ new_list = ds_list_create();
 ds_list_add(new_list,startpos[0]*128); //origo x
 ds_list_add(new_list,startpos[1]*128); //origo y
 ds_list_add(new_list,endx*128); //end x
-ds_list_add(new_list,(512-endy)*128); //end y
+ds_list_add(new_list,endy*128); //end y
 ds_list_add(new_list,0);
 ds_list_add(new_list,0);
 ds_list_add(new_list,0);
@@ -100,5 +100,5 @@ surface_set_target(surf);
         
         }
 surface_reset_target();
-surface_flip(surf);
+//surface_flip(surf);
 ds_list_add(surf_list,surf);

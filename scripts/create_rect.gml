@@ -1,6 +1,6 @@
-checkpoints = ( 2*ceil(abs(endx-startpos[0]))+2*ceil(abs(512-endy-startpos[1])) )*128/resolution;
+checkpoints = ( 2*ceil(abs(endx-startpos[0]))+2*ceil(abs(endy-startpos[1])) )*128/resolution;
 lengtha = abs(endx-startpos[0]);
-lengthb = abs(512-endy-startpos[1]);
+lengthb = abs(endy-startpos[1]);
 if (checkpoints < 4) checkpoints = 4;
 while (checkpoints % 4) checkpoints++;
 cpratio = lengtha/lengthb;

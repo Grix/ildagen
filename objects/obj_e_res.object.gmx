@@ -101,7 +101,7 @@ if (controller.resolution &gt; $8000) controller.resolution = $8000;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite_index,image_index,x,512-y-32);
+            <string>draw_sprite(sprite_index,image_index,x,y);
 </string>
           </argument>
         </arguments>

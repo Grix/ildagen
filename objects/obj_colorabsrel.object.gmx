@@ -111,7 +111,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite_index,image_index,x,512-y-23);
+            <string>draw_sprite(sprite_index,image_index,x,y);
 
 
 

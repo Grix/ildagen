@@ -1,10 +1,10 @@
-checkpoints = ceil((point_distance(startpos[0],startpos[1],endx,512-endy)*128+abs(wave_amp*2*wave_period))/resolution);
+checkpoints = ceil((point_distance(startpos[0],startpos[1],endx,endy)*128+abs(wave_amp*2*wave_period))/resolution);
 if (checkpoints < 4) checkpoints = 4;
 vector[0] = (endx-startpos[0])/checkpoints;
-vector[1] = (512-endy-startpos[1])/checkpoints;
+vector[1] = (endy-startpos[1])/checkpoints;
 blanknew = 0;
 
-if !((startpos[0] == endx) && (startpos[1] == (512-endy)))
+if !((startpos[0] == endx) && (startpos[1] == (endy)))
     for (n = 0;n <= checkpoints; n++)
         {
         makedot = 0;
@@ -79,8 +79,8 @@ if !((startpos[0] == endx) && (startpos[1] == (512-endy)))
                 }
             }
             
-        ratiox = sin(degtorad(point_direction(startpos[0],startpos[1],endx,512-endy)));
-        ratioy = cos(degtorad(point_direction(startpos[0],startpos[1],endx,512-endy)));
+        ratiox = sin(degtorad(point_direction(startpos[0],startpos[1],endx,endy)));
+        ratioy = cos(degtorad(point_direction(startpos[0],startpos[1],endx,endy)));
         pointx = vector[0]*n+wave_amp*sin(pi*2/checkpoints*n*wave_period)*ratiox/128;
         pointy = vector[1]*n+wave_amp*sin(pi*2/checkpoints*n*wave_period)*ratioy/128;
         pointxprevious = vector[0]*(n-1)+wave_amp*sin(pi*2/checkpoints*(n-1)*wave_period)*ratiox/128;

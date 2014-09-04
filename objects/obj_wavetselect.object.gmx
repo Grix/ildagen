@@ -111,19 +111,12 @@ if (controller.wave_period &lt; 0.5)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite_index,image_index,x,512-y-22);
+            <string>draw_sprite(sprite_index,image_index,x,y);
 
-surface_set_target(text_surf);
-draw_clear_alpha(c_black,0);
-draw_set_alpha(1);
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(0,0,"Wave frequenzy: "+string(controller.wave_period));
+draw_text(x+60,y,"Wave frequenzy: "+string(controller.wave_period));
 draw_set_color(c_white);
-surface_reset_target();
-//flip_surface(tooltip_surf);
-
-draw_surface(text_surf,x+60,512-y-21);
 
 
 

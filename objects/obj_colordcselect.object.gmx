@@ -134,21 +134,13 @@ moving = 1;
             <kind>1</kind>
             <string>
 draw_set_alpha(1);
-draw_sprite(sprite_index,image_index,x,512-y-32);
-draw_sprite(spr_knob,(moving &gt; 0),x+controller.color_dc*2*64,512-y-16);
+draw_sprite(sprite_index,image_index,x,y);
+draw_sprite(spr_knob,(moving &gt; 0),x+controller.color_dc*2*64,y+16);
 
-surface_set_target(text_surf);
-draw_clear_alpha(c_black,0);
-draw_set_alpha(1);
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(0,0,"Color duty cycle: "+string(controller.color_dc));
+draw_text(x+160,y+6,"Color duty cycle: "+string(controller.color_dc));
 draw_set_color(c_white);
-surface_reset_target();
-//flip_surface(tooltip_surf);
-
-
-draw_surface(text_surf,x+160,512-y-26);
 
 if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {

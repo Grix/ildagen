@@ -4,6 +4,7 @@ placing_status = 0;
 
 ilda_buffer = buffer_create(1,buffer_grow,1);
 file_loc = get_save_filename("*.ild","");
+//file_loc += ".ild";
 if (file_loc == "")
     exit;
 
@@ -61,7 +62,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
         {
         //getting values from element list
         xp = xo+ds_list_find_value(list_id,10+u*6+0);
-        yp = yo+ds_list_find_value(list_id,10+u*6+1);
+        yp = $ffff-(yo+ds_list_find_value(list_id,10+u*6+1));
         if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
             {
             blanktemp = 1;
