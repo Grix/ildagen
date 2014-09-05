@@ -9,6 +9,7 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
         {
         makedot = 0;
         
+        //COLOR
         if (colormode = "solid")
             {
             c[0] = colour_get_blue(color1);
@@ -86,6 +87,7 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
         pointxprevious = vector[0]*(n-1)+wave_amp*sin(pi*2/checkpoints*(n-1)*wave_period)*ratiox/128;
         pointyprevious = vector[1]*(n-1)+wave_amp*sin(pi*2/checkpoints*(n-1)*wave_period)*ratioy/128;
             
+        //BLANK
         if (blankmode = "solid")
             blank = 0;
         else if (blankmode == "dash")
@@ -186,6 +188,26 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
                     blank = 1;
                     }
                 }
+            }
+        else if (blankmode == "dotsolid")
+            {
+            if (blankmode2 = 0)
+                {
+                if (blanknew = floor((n*(blank_freq-1)/checkpoints)))
+                    {
+                    makedot = 1;
+                    blanknew = 1+floor((n*(blank_freq-1)/checkpoints));
+                    }
+                }
+            else
+                {
+                if (blanknew = floor(n*resolution/blank_period))
+                    {
+                    makedot = 1;
+                    blanknew = 1+floor(n*resolution/blank_period);
+                    }
+                }
+                blank = 0;
             }
             
         

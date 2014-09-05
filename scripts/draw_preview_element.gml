@@ -7,10 +7,10 @@ if (!keyboard_check(vk_shift))
     }
 else
     {
-    if (point_direction(startpos[0],512-startpos[1],mouse_x,mouse_y) > 315) || (point_direction(startpos[0],startpos[1],mouse_x,512-mouse_y) < 45) || ( (point_direction(startpos[0],startpos[1],mouse_x,512-mouse_y) > 135) && (point_direction(startpos[0],startpos[1],mouse_x,512-mouse_y) < 225) )
+    if (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 315) || (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) < 45) || ( (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 135) && (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) < 225) )
         {
         endx = mouse_x;
-        endy = 512-startpos[1];
+        endy = startpos[1];
         }
     else
         {

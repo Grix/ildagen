@@ -11,6 +11,7 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
         {
         makedot = 0;
         
+        //COLOR
         if (colormode = "solid")
             {
             c[0] = colour_get_blue(color1);
@@ -80,7 +81,8 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
                     }
                 }
             }
-            
+         
+        //BLANK   
         if (blankmode = "solid")
             blank = 0;
         else if (blankmode = "dash")
@@ -155,7 +157,27 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
                     }
                 }
             }
-            
+        else if (blankmode == "dotsolid")
+            {
+            if (blankmode2 = 0)
+                {
+                if (blanknew = floor((n*(blank_freq)/checkpoints)))
+                    {
+                    makedot = 1;
+                    blanknew = 1+floor((n*(blank_freq)/checkpoints));
+                    }
+                }
+            else
+                {
+                if (blanknew = floor(n*resolution/blank_period))
+                    {
+                    makedot = 1;
+                    blanknew = 1+floor(n*resolution/blank_period);
+                    }
+                }
+                blank = 0;
+            }
+                
         
     if (makedot)
         {

@@ -9,6 +9,7 @@ for (n = 0;n <= checkpoints; n++)
     {
     makedot = 0;
     
+    //BLANK
     if (blankmode == "solid")
         blank = 0;
     else if (blankmode == "dash")
@@ -83,7 +84,28 @@ for (n = 0;n <= checkpoints; n++)
                 }
             }
         }
+    else if (blankmode == "dotsolid")
+        {
+        if (blankmode2 = 0)
+            {
+            if (blanknew = floor((n*(blank_freq-1)/checkpoints)))
+                {
+                makedot = 1;
+                blanknew = 1+floor((n*(blank_freq-1)/checkpoints));
+                }
+            }
+        else
+            {
+            if (blanknew = floor(n*resolution/blank_period))
+                {
+                makedot = 1;
+                blanknew = 1+floor(n*resolution/blank_period);
+                }
+            }
+            blank = 0;
+        }
     
+    //COLOR
     if (colormode == "solid")
         {
         c[0] = colour_get_blue(color1);
@@ -94,9 +116,9 @@ for (n = 0;n <= checkpoints; n++)
         {
         if (colormode2 == 0)
             {
-            c[0] = ( colour_get_blue(color1)*    (0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2) + colour_get_blue(color2)*   (1-(0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2)) );
-            c[1] = ( colour_get_green(color1)*   (0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2) + colour_get_green(color2)*  (1-(0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2)) );
-            c[2] = ( colour_get_red(color1)*     (0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2) + colour_get_red(color2)*    (1-(0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2)) );
+            c[0] = ( colour_get_blue(color1)*    (0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2*color_dc*2) + colour_get_blue(color2)*   (1-(0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2/color_dc/2)) );
+            c[1] = ( colour_get_green(color1)*   (0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2*color_dc*2) + colour_get_green(color2)*  (1-(0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2/color_dc/2)) );
+            c[2] = ( colour_get_red(color1)*     (0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2*color_dc*2) + colour_get_red(color2)*    (1-(0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2/color_dc/2)) );
             }
         else
             {

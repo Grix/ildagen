@@ -51,7 +51,7 @@ text_surf = surface_create(300,20);
           <argument>
             <kind>1</kind>
             <string>
-visible = (controller.blankmode == "dash") || (controller.blankmode == "dot");
+visible = (controller.blankmode != "solid");
 
 image_index = controller.blankmode2;
 

@@ -19,6 +19,7 @@
     <sprite>sprites\spr_b_enddots</sprite>
     <sprite>sprites\spr_b_dash</sprite>
     <sprite>sprites\spr_b_dot</sprite>
+    <sprite>sprites\spr_dotsolid</sprite>
     <sprite>sprites\spr_s_res</sprite>
     <sprite>sprites\spr_e_clear</sprite>
     <sprite>sprites\spr_colorselect</sprite>
@@ -66,6 +67,7 @@
         <object>objects\obj_enddots</object>
         <object>objects\obj_b_dash</object>
         <object>objects\obj_b_dot</object>
+        <object>objects\obj_b_dotsolid</object>
       </objects>
       <objects name="color">
         <object>objects\obj_colorselect_1</object>
@@ -93,7 +95,7 @@
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41886.7133538426</constant>
+    <constant name="GM_build_date">41887.8930320602</constant>
     <constant name="GM_version">'0.0.0.0'</constant>
   </constants>
   <help>
