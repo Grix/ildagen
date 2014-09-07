@@ -2,6 +2,9 @@
 
 placing_status = 0;
 
+if (maxframes == 1) and (anienable)
+    maxframes = 32;
+
 ds_stack_push(undo_list,0);
 
 if (!keyboard_check(vk_shift))

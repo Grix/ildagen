@@ -7,6 +7,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_m_line</sprite>
+    <sprite>sprites\spr_checkbox</sprite>
     <sprite>sprites\spr_m_circle</sprite>
     <sprite>sprites\spr_m_wave</sprite>
     <sprite>sprites\spr_m_rect</sprite>
@@ -21,6 +22,7 @@
     <sprite>sprites\spr_b_dot</sprite>
     <sprite>sprites\spr_dotsolid</sprite>
     <sprite>sprites\spr_s_res</sprite>
+    <sprite>sprites\spr_maxframes</sprite>
     <sprite>sprites\spr_e_clear</sprite>
     <sprite>sprites\spr_colorselect</sprite>
     <sprite>sprites\spr_c_solid</sprite>
@@ -89,13 +91,20 @@
         <object>objects\obj_s_wave</object>
         <object>objects\obj_s_rect</object>
       </objects>
+      <objects name="ani">
+        <object>objects\obj_anienable</object>
+        <object>objects\obj_anicolorselect_1</object>
+        <object>objects\obj_anicolorselect_2</object>
+        <object>objects\obj_aniblankdcselect</object>
+        <object>objects\obj_maxframes</object>
+      </objects>
     </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41887.8930320602</constant>
+    <constant name="GM_build_date">41889.4641156019</constant>
     <constant name="GM_version">'0.0.0.0'</constant>
   </constants>
   <help>

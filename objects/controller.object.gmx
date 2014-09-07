@@ -25,17 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//d3d_start(); //funny workaround for flipping the y axis.
-
-tooltip_surf = surface_create(490,21);
+            <string>tooltip_surf = surface_create(490,21);
 info_surf = surface_create(1000,512);
 
 
 c_ltltgray = make_colour_rgb(230,230,230);
+c_ltltltgray = make_colour_rgb(240,240,240);
 
 el_list = ds_list_create();
 undo_list = ds_stack_create();
 surf_list = ds_list_create();
+frame_list = ds_list_create();
+ds_list_add(frame_list,el_list);
 
 instance_create(mouse_x,mouse_y,obj_cursor);
 
@@ -68,6 +69,14 @@ blank_dc = 0.5;
 blank_freq = 4;
 enddots = 0;
 makedot = 0;
+
+anienable = 0;
+frame = 0;
+maxframes = 1;
+anicolor1 = c_white;
+anicolor2 = c_white;
+anicolor_dc = 0.5;
+aniblank_dc = 0.5;
 
 alarm[0] = 1;
 </string>
@@ -105,6 +114,39 @@ alarm[0] = 1;
         obj_cursor.y = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),1)/128;
         }
     }
+    
+if (anienable)
+    {
+    if (keyboard_check(vk_left)) and (frame &gt; 0)
+        frame--;
+    else if (keyboard_check(vk_right)) and (frame &lt; (maxframes-1))
+        frame++;
+    }
+else
+    frame = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>el_list = ds_list_find_value(frame_list,frame);
 </string>
           </argument>
         </arguments>
@@ -165,7 +207,7 @@ if (placing_status == 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_x &gt; 512)
+            <string>if (mouse_x &gt; 524) or (mouse_y &gt; 524)
     {
     placing_status = 0;
     exit;
@@ -216,28 +258,32 @@ if (placing_status == 1)
     draw_preview_element();
 
 
+draw_set_font(fnt_tooltip);
 draw_set_color(c_white);
 draw_rectangle_colour(513,0,1000,512,c_ltgray,c_ltgray,c_ltltgray,c_ltltgray,0);
+draw_rectangle_colour(0,512,1000,600,c_ltltgray,c_ltltgray,c_ltltltgray,c_ltltltgray,0);
 draw_set_color(c_dkgray);
 draw_line(512,0,512,512);
 draw_line(513,150,1000,150);
 draw_line(513,302,1000,302);
 draw_line(513,450,1000,450);
+draw_line(0,512,1000,512);
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
 draw_text(536,20,"Shape");
 draw_text(536,166,"Color");
 draw_text(536,319,"Blanking");
+draw_text(24,524,"Animation");
+draw_set_color(c_ltgray);
+draw_text(12,487,"Frame "+string(frame)+"/"+string(maxframes-1));
 
 if (tooltip != "")
     {
-    draw_set_font(fnt_tooltip);
-    draw_set_color(c_ltgray);
     draw_text(5,5,tooltip);
-    draw_set_color(c_white);
-    
     tooltip = "";
     }
+
+draw_set_color(c_white);
 </string>
           </argument>
         </arguments>

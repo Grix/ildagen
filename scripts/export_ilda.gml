@@ -1,5 +1,4 @@
 //exports every element into an ilda file
-placing = "";
 placing_status = 0;
 
 ilda_buffer = buffer_create(1,buffer_grow,1);
@@ -11,10 +10,10 @@ if (file_loc == "")
 maxpoints = 0;
 frame = 0;
 
-maxframes = 1;
-maxframesa[0] = maxframes & 255;
-maxframes = maxframes >> 8;
-maxframesa[1] = maxframes & 255;
+maxframespost = maxframes;
+maxframesa[0] = maxframespost & 255;
+maxframespost = maxframespost >> 8;
+maxframesa[1] = maxframespost & 255;
 
 buffer_write(ilda_buffer,buffer_u8,$49); //ILDA0005
 buffer_write(ilda_buffer,buffer_u8,$4C);
@@ -164,3 +163,5 @@ buffer_write(ilda_buffer,buffer_u8,0); //0
 buffer_save(ilda_buffer,file_loc);
 show_message("ILDA file exported, "+string(maxpointspre)+" points in frame");
 buffer_delete(ilda_buffer);
+
+frame = 0;

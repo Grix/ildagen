@@ -51,9 +51,9 @@ moving = 0;
             <kind>1</kind>
             <string>if (moving == 1)
     {
-    controller.blank_dc += (mouse_x-mouse_xprevious)/128;
-    if (controller.blank_dc  &lt; 0) controller.blank_dc = 0;
-    if (controller.blank_dc &gt; 1) controller.blank_dc = 1;
+    controller.aniblank_dc += (mouse_x-mouse_xprevious)/128;
+    if (controller.aniblank_dc  &lt; 0) controller.aniblank_dc = 0;
+    if (controller.aniblank_dc &gt; 1) controller.aniblank_dc = 1;
     }
     
 mouse_yprevious = mouse_y;
@@ -61,11 +61,11 @@ mouse_xprevious = mouse_x;
 
 
 
-visible = (controller.blankmode == "dash");
+visible = (controller.blankmode == "dash") and (controller.anienable);
 
 if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
-    controller.tooltip = "Changes the ratio of blank on/off";
+    controller.tooltip = "Changes the ratio of blank on/off at the end of the animation.";
     } 
 </string>
           </argument>
@@ -139,11 +139,11 @@ moving = 1;
             <string>
 draw_set_alpha(1);
 draw_sprite(sprite_index,image_index,x,y);
-draw_sprite(spr_knob,(moving &gt; 0),x+controller.blank_dc*2*64,y+16);
+draw_sprite(spr_knob,(moving &gt; 0),x+controller.aniblank_dc*2*64,y+16);
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x+160,y+6,"Blanking duty cycle: "+string(controller.blank_dc));
+draw_text(x,y+36,"Blanking duty cycle: "+string(controller.aniblank_dc));
 draw_set_color(c_white);
 
 </string>
