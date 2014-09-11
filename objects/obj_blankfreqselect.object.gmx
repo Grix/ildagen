@@ -83,11 +83,11 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
     exit;
 
 if (mouse_x &gt; (x+23))
-    controller.blank_freq += 1;
+    controller.blank_freq += 0.5;
 else
-    controller.blank_freq -= 1;
-if (controller.blank_freq &lt; 1)
-    controller.blank_freq = 1;
+    controller.blank_freq -=0.5;
+if (controller.blank_freq &lt; 0.5)
+    controller.blank_freq = 0.5;
 
 </string>
           </argument>

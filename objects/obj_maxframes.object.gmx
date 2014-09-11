@@ -80,11 +80,18 @@
             <kind>1</kind>
             <string>controller.maxframes = get_integer("Enter number of frames in the animation",controller.maxframes);
 if (controller.maxframes &lt; 1) controller.maxframes = 1;
-
+    
 if (ds_list_size(controller.frame_list) &lt; controller.maxframes)
     repeat (controller.maxframes - ds_list_size(controller.frame_list))
-        ds_list_add(controller.frame_list,ds_list_find_value(controller.frame_list,ds_list_size(controller.frame_list)-1))
-    
+        {
+        templist = ds_list_create();
+        ds_list_copy(templist,ds_list_find_value(controller.frame_list,ds_list_size(controller.frame_list)-1))
+        tempsurflist = ds_list_create();
+        ds_list_copy(tempsurflist,ds_list_find_value(controller.surf_frame_list,ds_list_size(controller.surf_frame_list)-1))
+        ds_list_add(controller.frame_list,templist);
+        ds_list_add(controller.surf_frame_list,tempsurflist);
+        }
+if (frame &gt; maxframes) frame = maxframes-1;
 </string>
           </argument>
         </arguments>

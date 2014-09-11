@@ -79,15 +79,20 @@
             <string>if !(show_question("Are you sure you want to clear everything?"))
     exit;
 
-for (i = 0;i &lt; ds_list_size(controller.el_list);i++)
+for (j = 0;j &lt; ds_list_size(controller.frame_list);j++)
     {
-    list_id = ds_list_find_value(controller.el_list,i);
-    ds_list_clear(list_id);
-    surf_id = ds_list_find_value(controller.surf_list,i);
-    surface_free(surf_id);
+    el_list = ds_list_find_value(controller.frame_list,j);
+    surf_list = ds_list_find_value(controller.surf_frame_list,j);
+    for (i = 0;i &lt; ds_list_size(el_list);i++)
+        {
+        list_id = ds_list_find_value(el_list,i);
+        ds_list_clear(list_id);
+        surf_id = ds_list_find_value(surf_list,i);
+        surface_free(surf_id);
+        }
+    ds_list_clear(el_list);
+    ds_list_clear(surf_list);
     }
-ds_list_clear(controller.el_list);
-ds_list_clear(controller.surf_list);
 </string>
           </argument>
         </arguments>

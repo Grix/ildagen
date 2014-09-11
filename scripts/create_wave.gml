@@ -1,4 +1,4 @@
-checkpoints = ceil((point_distance(startpos[0],startpos[1],endx,endy)*128+abs(wave_amp*2*wave_period))/resolution);
+checkpoints = ceil((point_distance(startpos[0],startpos[1],endx,endy)*128+abs(wave_amp_r*2*wave_period_r))/resolution);
 if (checkpoints < 4) checkpoints = 4;
 vector[0] = (endx-startpos[0])/checkpoints;
 vector[1] = (endy-startpos[1])/checkpoints;
@@ -12,80 +12,80 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
         //COLOR
         if (colormode = "solid")
             {
-            c[0] = colour_get_blue(color1);
-            c[1] = colour_get_green(color1);
-            c[2] = colour_get_red(color1);
+            c[0] = colour_get_blue(color1_r);
+            c[1] = colour_get_green(color1_r);
+            c[2] = colour_get_red(color1_r);
             }
         else if (colormode = "gradient")
             {        
             if (colormode2 == 0)
                 {
-                c[0] = ( colour_get_blue(color1)*    (0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2) + colour_get_blue(color2)*   (1-(0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2)) );
-                c[1] = ( colour_get_green(color1)*   (0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2) + colour_get_green(color2)*  (1-(0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2)) );
-                c[2] = ( colour_get_red(color1)*     (0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2) + colour_get_red(color2)*    (1-(0.5+cos( (checkpoints-n)*color_freq/checkpoints*2*pi +pi)/2)) );
+                c[0] = ( colour_get_blue(color1_r)*    (0.5+cos( (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2) + colour_get_blue(color2_r)*   (1-(0.5+cos( (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2)) );
+                c[1] = ( colour_get_green(color1_r)*   (0.5+cos( (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2) + colour_get_green(color2_r)*  (1-(0.5+cos( (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2)) );
+                c[2] = ( colour_get_red(color1_r)*     (0.5+cos( (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2) + colour_get_red(color2_r)*    (1-(0.5+cos( (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2)) );
                 }
             else
                 {
-                c[0] = ( colour_get_blue(color1)*    (0.5+cos( (checkpoints-n)*resolution/color_period*2*pi +pi)/2) + colour_get_blue(color2)*   (1-(0.5+cos( (checkpoints-n)*resolution/color_period*2*pi +pi)/2)) );
-                c[1] = ( colour_get_green(color1)*   (0.5+cos( (checkpoints-n)*resolution/color_period*2*pi +pi)/2) + colour_get_green(color2)*  (1-(0.5+cos( (checkpoints-n)*resolution/color_period*2*pi +pi)/2)) );
-                c[2] = ( colour_get_red(color1)*     (0.5+cos( (checkpoints-n)*resolution/color_period*2*pi +pi)/2) + colour_get_red(color2)*    (1-(0.5+cos( (checkpoints-n)*resolution/color_period*2*pi +pi)/2)) );
+                c[0] = ( colour_get_blue(color1_r)*    (0.5+cos( (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2) + colour_get_blue(color2_r)*   (1-(0.5+cos( (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2)) );
+                c[1] = ( colour_get_green(color1_r)*   (0.5+cos( (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2) + colour_get_green(color2_r)*  (1-(0.5+cos( (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2)) );
+                c[2] = ( colour_get_red(color1_r)*     (0.5+cos( (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2) + colour_get_red(color2_r)*    (1-(0.5+cos( (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2)) );
                 }
             }
         else if (colormode == "dash")
             {
             if (colormode2 = 0)
                 {
-                if (n = checkpoints)
+                if (n = checkpoints) and !(color_dc_r >= 0.98)
                     {
-                    if (color_freq % 1 == 0.5)
+                    //if (color_freq_r % 1 == 0.5)
                         {
-                        c[0] = colour_get_blue(color2);
-                        c[1] = colour_get_green(color2);
-                        c[2] = colour_get_red(color2);
+                        c[0] = colour_get_blue(color2_r);
+                        c[1] = colour_get_green(color2_r);
+                        c[2] = colour_get_red(color2_r);
                         }
-                    else 
+                    /*else 
                         {
-                        c[0] = colour_get_blue(color1);
-                        c[1] = colour_get_green(color1);
-                        c[2] = colour_get_red(color1);
-                        }
+                        c[0] = colour_get_blue(color1_r);
+                        c[1] = colour_get_green(color1_r);
+                        c[2] = colour_get_red(color1_r);
+                        }*/
                     }
-                else if (((n*(color_freq+0.5)/checkpoints % 1) > color_dc) or (color_dc = 0))
+                else if (((n*(color_freq_r+0.5)/checkpoints % 1) > color_dc_r) or (color_dc_r <= 0.02)) and !(color_dc_r >= 0.98)
                     {
-                    c[0] = colour_get_blue(color2);
-                    c[1] = colour_get_green(color2);
-                    c[2] = colour_get_red(color2);
+                    c[0] = colour_get_blue(color2_r);
+                    c[1] = colour_get_green(color2_r);
+                    c[2] = colour_get_red(color2_r);
                     }
                 else 
                     {
-                    c[0] = colour_get_blue(color1);
-                    c[1] = colour_get_green(color1);
-                    c[2] = colour_get_red(color1);
+                    c[0] = colour_get_blue(color1_r);
+                    c[1] = colour_get_green(color1_r);
+                    c[2] = colour_get_red(color1_r);
                     }
                 }
             else
                 {
-                if ((n*resolution/color_period % 1) > color_dc) or (color_dc = 0)
+                if ((n*resolution/color_period_r % 1) > color_dc_r) or (color_dc_r <= 0.02)
                     {
-                    c[0] = colour_get_blue(color2);
-                    c[1] = colour_get_green(color2);
-                    c[2] = colour_get_red(color2);
+                    c[0] = colour_get_blue(color2_r);
+                    c[1] = colour_get_green(color2_r);
+                    c[2] = colour_get_red(color2_r);
                     }
                 else 
                     {
-                    c[0] = colour_get_blue(color1);
-                    c[1] = colour_get_green(color1);
-                    c[2] = colour_get_red(color1);
+                    c[0] = colour_get_blue(color1_r);
+                    c[1] = colour_get_green(color1_r);
+                    c[2] = colour_get_red(color1_r);
                     }
                 }
             }
             
         ratiox = sin(degtorad(point_direction(startpos[0],startpos[1],endx,endy)));
         ratioy = cos(degtorad(point_direction(startpos[0],startpos[1],endx,endy)));
-        pointx = vector[0]*n+wave_amp*sin(pi*2/checkpoints*n*wave_period)*ratiox/128;
-        pointy = vector[1]*n+wave_amp*sin(pi*2/checkpoints*n*wave_period)*ratioy/128;
-        pointxprevious = vector[0]*(n-1)+wave_amp*sin(pi*2/checkpoints*(n-1)*wave_period)*ratiox/128;
-        pointyprevious = vector[1]*(n-1)+wave_amp*sin(pi*2/checkpoints*(n-1)*wave_period)*ratioy/128;
+        pointx = vector[0]*n+wave_amp_r*sin(pi*2/checkpoints*n*wave_period_r)*ratiox/128;
+        pointy = vector[1]*n+wave_amp_r*sin(pi*2/checkpoints*n*wave_period_r)*ratioy/128;
+        pointxprevious = vector[0]*(n-1)+wave_amp_r*sin(pi*2/checkpoints*(n-1)*wave_period_r)*ratiox/128;
+        pointyprevious = vector[1]*(n-1)+wave_amp_r*sin(pi*2/checkpoints*(n-1)*wave_period_r)*ratioy/128;
             
         //BLANK
         if (blankmode = "solid")
@@ -94,7 +94,16 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
             {
             if (blankmode2 = 0)
                 {
-                if ((n*(blank_freq-0.5)/checkpoints % 1) > blank_dc) or (blank_dc = 0)
+                if (blank_dc_r >= 0.98)
+                    {
+                    blank = 0;
+                    if (blanknew != blank) and (enddots)
+                        {
+                        makedot = 2;
+                        blanknew = blank;
+                        }
+                    }
+                else if ((n*(blank_freq_r-0.5)/checkpoints % 1) > blank_dc_r) or (blank_dc_r <= 0.02) or ((blank_freq_r % 1 != 0) and (n == checkpoints))
                     {
                     blank = 1;
                     if (blanknew != blank) and (enddots)
@@ -114,8 +123,17 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
                     }
                 }
             else
-                {
-                if ((n*resolution/blank_period % 1) > blank_dc) or (blank_dc = 0)
+                {            
+                if (blank_dc_r >= 0.98)
+                    {
+                    blank = 0;
+                    if (blanknew != blank) and (enddots)
+                        {
+                        makedot = 2;
+                        blanknew = blank;
+                        }
+                    }
+                else if ((n*resolution/blank_period_r % 1) > blank_dc_r) or (blank_dc_r <= 0.02)
                     {
                     blank = 1;
                     if (blanknew != blank) and (enddots)
@@ -139,10 +157,10 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
             {
             if (blankmode2 = 0)
                 {
-                if (blanknew = floor((n*(blank_freq-1)/checkpoints)))
+                if (blanknew = floor((n*(blank_freq_r-1)/checkpoints)))
                     {
                     makedot = 1;
-                    blanknew = 1+floor((n*(blank_freq-1)/checkpoints));
+                    blanknew = 1+floor((n*(blank_freq_r-1)/checkpoints));
                     }
                 else 
                     {
@@ -151,10 +169,10 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
                 }
             else
                 {
-                if (blanknew = floor(n*resolution/blank_period))
+                if (blanknew = floor(n*resolution/blank_period_r))
                     {
                     makedot = 1;
-                    blanknew = 1+floor(n*resolution/blank_period);
+                    blanknew = 1+floor(n*resolution/blank_period_r);
                     }
                 else 
                     {
@@ -166,10 +184,10 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
             {
             if (blankmode2 = 0)
                 {
-                if (blanknew = floor((n*(blank_freq-1)/checkpoints)))
+                if (blanknew = floor((n*(blank_freq_r-1)/checkpoints)))
                     {
                     blank = 0;
-                    blanknew = 1+floor((n*(blank_freq-1)/checkpoints));
+                    blanknew = 1+floor((n*(blank_freq_r-1)/checkpoints));
                     }
                 else 
                     {
@@ -178,10 +196,10 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
                 }
             else
                 {
-                if (blanknew = floor(n*resolution/blank_period))
+                if (blanknew = floor(n*resolution/blank_period_r))
                     {
                     blank = 0;
-                    blanknew = 1+floor(n*resolution/blank_period);
+                    blanknew = 1+floor(n*resolution/blank_period_r);
                     }
                 else 
                     {
@@ -193,18 +211,18 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
             {
             if (blankmode2 = 0)
                 {
-                if (blanknew = floor((n*(blank_freq-1)/checkpoints)))
+                if (blanknew = floor((n*(blank_freq_r-1)/checkpoints)))
                     {
                     makedot = 1;
-                    blanknew = 1+floor((n*(blank_freq-1)/checkpoints));
+                    blanknew = 1+floor((n*(blank_freq_r-1)/checkpoints));
                     }
                 }
             else
                 {
-                if (blanknew = floor(n*resolution/blank_period))
+                if (blanknew = floor(n*resolution/blank_period_r))
                     {
                     makedot = 1;
-                    blanknew = 1+floor(n*resolution/blank_period);
+                    blanknew = 1+floor(n*resolution/blank_period_r);
                     }
                 }
                 blank = 0;
@@ -254,16 +272,16 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
                     ds_list_add(new_list,pointxprevious*128);
                     ds_list_add(new_list,pointyprevious*128);
                     ds_list_add(new_list,0);
-                    ds_list_add(new_list,colour_get_blue(controller.enddotscolor));
-                    ds_list_add(new_list,colour_get_green(controller.enddotscolor));
-                    ds_list_add(new_list,colour_get_red(controller.enddotscolor));
+                    ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
+                    ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
+                    ds_list_add(new_list,colour_get_red(controller.enddotscolor_r));
                     }
                 ds_list_add(new_list,pointxprevious*128);
                 ds_list_add(new_list,pointyprevious*128);
                 ds_list_add(new_list,0);
-                ds_list_add(new_list,colour_get_blue(controller.enddotscolor));
-                ds_list_add(new_list,colour_get_green(controller.enddotscolor));
-                ds_list_add(new_list,colour_get_red(controller.enddotscolor))
+                ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
+                ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
+                ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
                 }
             else
                 {
@@ -276,9 +294,9 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
                 ds_list_add(new_list,pointx*128);
                 ds_list_add(new_list,pointy*128);
                 ds_list_add(new_list,0);
-                ds_list_add(new_list,colour_get_blue(controller.enddotscolor));
-                ds_list_add(new_list,colour_get_green(controller.enddotscolor));
-                ds_list_add(new_list,colour_get_red(controller.enddotscolor))
+                ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
+                ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
+                ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
                 }
             }
 

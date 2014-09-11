@@ -97,6 +97,7 @@
         <object>objects\obj_anicolorselect_2</object>
         <object>objects\obj_aniblankdcselect</object>
         <object>objects\obj_maxframes</object>
+        <object>objects\obj_anicolordcselect</object>
       </objects>
     </objects>
   </objects>
@@ -104,7 +105,7 @@
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41889.4641156019</constant>
+    <constant name="GM_build_date">41893.8835817824</constant>
     <constant name="GM_version">'0.0.0.0'</constant>
   </constants>
   <help>

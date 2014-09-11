@@ -36,7 +36,9 @@ el_list = ds_list_create();
 undo_list = ds_stack_create();
 surf_list = ds_list_create();
 frame_list = ds_list_create();
+surf_frame_list = ds_list_create();
 ds_list_add(frame_list,el_list);
+ds_list_add(surf_frame_list,surf_list);
 
 instance_create(mouse_x,mouse_y,obj_cursor);
 
@@ -115,15 +117,11 @@ alarm[0] = 1;
         }
     }
     
-if (anienable)
-    {
-    if (keyboard_check(vk_left)) and (frame &gt; 0)
-        frame--;
-    else if (keyboard_check(vk_right)) and (frame &lt; (maxframes-1))
-        frame++;
-    }
-else
-    frame = 0;
+
+if (keyboard_check(vk_left)) and (frame &gt; 0)
+    frame--;
+else if (keyboard_check(vk_right)) and (frame &lt; (maxframes-1))
+    frame++;
 </string>
           </argument>
         </arguments>
@@ -147,6 +145,7 @@ else
           <argument>
             <kind>1</kind>
             <string>el_list = ds_list_find_value(frame_list,frame);
+surf_list = ds_list_find_value(surf_frame_list,frame);
 </string>
           </argument>
         </arguments>

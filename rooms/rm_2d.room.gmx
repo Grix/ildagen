@@ -85,6 +85,7 @@
     <instance objName="obj_anicolorselect_2" x="216" y="544" name="inst_218C2DFB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_aniblankdcselect" x="328" y="528" name="inst_05168740" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_maxframes" x="616" y="464" name="inst_A6C7D046" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_anicolordcselect" x="519" y="528" name="inst_7CEAC26F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
