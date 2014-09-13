@@ -76,7 +76,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if !(show_question("Are you sure you want to clear everything?"))
+            <string>if !(show_question("Are you sure you want to clear everything? (Cannot be undone)"))
     exit;
 
 for (j = 0;j &lt; ds_list_size(controller.frame_list);j++)

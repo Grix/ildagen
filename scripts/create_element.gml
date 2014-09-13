@@ -18,7 +18,6 @@ if (maxframes == 1) and (anienable)
             }
     }
 
-ds_stack_push(undo_list,0);
 
 if (!keyboard_check(vk_shift))
     {
@@ -68,7 +67,7 @@ repeat (maxframes)
     ds_list_add(new_list,0);
     ds_list_add(new_list,0);
     ds_list_add(new_list,0);
-    ds_list_add(new_list,0);
+    ds_list_add(new_list,el_id);
     
     if (anienable == 0) or (maxframes == 1)
         {
@@ -159,3 +158,6 @@ repeat (maxframes)
     frame++;
     }
 frame = framepre;
+
+ds_stack_push(undo_list,el_id);
+el_id++;

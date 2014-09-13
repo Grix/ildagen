@@ -16,4 +16,6 @@ for (i = 0; i < ds_list_size(el_list);i++)
     draw_line(0,512-ds_list_find_value(listtemp,1)/128,512,512-ds_list_find_value(listtemp,1)/128);
     draw_line(0,512-ds_list_find_value(listtemp,3)/128,512,512-ds_list_find_value(listtemp,3)/128);
     }
-
+draw_set_color(make_colour_rgb(20,100,20));
+    draw_line(0,512/2,512,512/2);
+    draw_line(512/2,0,512/2,512);

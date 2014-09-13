@@ -34,6 +34,7 @@ c_ltltltgray = make_colour_rgb(240,240,240);
 
 el_list = ds_list_create();
 undo_list = ds_stack_create();
+el_id = 0;
 surf_list = ds_list_create();
 frame_list = ds_list_create();
 surf_frame_list = ds_list_create();
@@ -43,7 +44,6 @@ ds_list_add(surf_frame_list,surf_list);
 instance_create(mouse_x,mouse_y,obj_cursor);
 
 tooltip = "";
-undo = 0;
 
 placing = "line";
 startpos[1] = 0;

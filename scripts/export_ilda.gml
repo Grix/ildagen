@@ -166,6 +166,9 @@ buffer_write(ilda_buffer,buffer_u16,0); //maxframes
 buffer_write(ilda_buffer,buffer_u8,0); //scanner
 buffer_write(ilda_buffer,buffer_u8,0); //0
 
+//remove excess size
+buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
+
 //export
 buffer_save(ilda_buffer,file_loc);
 show_message("ILDA file exported, "+string(maxpointspre)+" points total");
