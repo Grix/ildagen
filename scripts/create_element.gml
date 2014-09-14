@@ -74,13 +74,16 @@ repeat (maxframes)
         blank_freq_r = blank_freq;
         blank_period_r = blank_period;
         blank_dc_r = blank_dc;
+        blank_offset_r = degtorad(blank_offset);
         color_freq_r = color_freq;
         color_period_r = color_period;
         color_dc_r = color_dc;
+        color_offset_r = degtorad(color_offset);
         color1_r = color1;
         color2_r = color2;
         enddotscolor_r = enddotscolor;
         wave_period_r = wave_period;
+        wave_offset_r = degtorad(wave_offset);
         wave_amp_r = wave_amp;
         }
     else
@@ -88,11 +91,14 @@ repeat (maxframes)
         blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,frame/maxframes);
         blank_period_r = blank_period//lerp(blank_period,aniblank_period,frame/maxframes);
         blank_dc_r = lerp(blank_dc,aniblank_dc,frame/(maxframes));
+        blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,frame/(maxframes)));
         color_freq_r = color_freq//lerp(color_freq,anicolor_freq,frame/maxframes);
         color_period_r = color_period//lerp(color_period,anicolor_period,frame/maxframes);
         color_dc_r = lerp(color_dc,anicolor_dc,frame/maxframes);
+        color_offset_r = degtorad(color_offset);//lerp(color_offset,anicolor_offset,frame/(maxframes));
         wave_period_r = wave_period//lerp(color_period,anicolor_period,frame/maxframes);
         wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,frame/maxframes);
+        wave_offset_r = degtorad(wave_offset);//lerp(wave_offset,aniwave_offset,frame/(maxframes));
         color1_r = merge_color(color1,anicolor1,frame/(maxframes));
         color2_r = merge_color(color2,anicolor2,frame/(maxframes));
         enddotscolor_r = enddotscolor//merge_color(enddotscolor,anienddotscolor,frame/maxframes);

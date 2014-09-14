@@ -5,6 +5,18 @@ vector[0] = (endx-startpos[0])/checkpoints;
 vector[1] = (endy-startpos[1])/checkpoints;
 blanknew = 0;
 
+if (blankmode = "dot") or (blankmode = "dotsolid")
+    {
+    dotlist = ds_list_create();
+    if (blankmode2 == 0)
+        dotfreq = round(checkpoints/(blank_freq_r-1));
+    else
+        dotfreq = round(blank_period_r/resolution);
+    if (dotfreq == 0)
+        dotfreq = 1;
+    }
+        
+
 for (n = 0;n <= checkpoints; n++)
     {
     makedot = 0;
@@ -25,7 +37,7 @@ for (n = 0;n <= checkpoints; n++)
                     blanknew = blank;
                     }
                 }
-            else if ((n*(blank_freq_r-0.5)/checkpoints % 1) > blank_dc_r) or (blank_dc_r <= 0.02) or ((blank_freq_r % 1 != 0) and (n == checkpoints))
+            else if (((n+blank_offset/pi/2)*(blank_freq_r-0.5)/checkpoints % 1) > blank_dc_r) or (blank_dc_r <= 0.02) or ((blank_freq_r % 1 != 0) and (n == checkpoints))
                 {
                 blank = 1;
                 if (blanknew != blank) and (enddots)
@@ -55,7 +67,7 @@ for (n = 0;n <= checkpoints; n++)
                     blanknew = blank;
                     }
                 }
-            else if ((n*resolution/blank_period_r % 1) > blank_dc_r) or (blank_dc_r <= 0.02)
+            else if (((n+blank_offset/pi/2)*resolution/blank_period_r % 1) > blank_dc_r) or (blank_dc_r <= 0.02)
                 {
                 blank = 1;
                 if (blanknew != blank) and (enddots)
@@ -77,50 +89,19 @@ for (n = 0;n <= checkpoints; n++)
         }
     else if (blankmode == "dot")
         {
-        if (blankmode2 = 0)
-            {
-            if (blanknew = floor((n*(blank_freq_r-1)/checkpoints)))
-                {
-                makedot = 1;
-                blanknew = 1+floor((n*(blank_freq_r-1)/checkpoints));
-                }
-            else 
-                {
-                blank = 1;
-                }
-            }
-        else
-            {
-            if (blanknew = floor(n*resolution/blank_period_r))
-                {
-                makedot = 1;
-                blanknew = 1+floor(n*resolution/blank_period_r);
-                }
-            else 
-                {
-                blank = 1;
-                }
-            }
+        if ((n-dotfreq+round(blank_offset_r/pi*dotfreq)) % dotfreq == 0)
+            makedot = 1;
+        if ((n == checkpoints) and ((blank_offset_r = 0) or (blank_offset_r = pi)) and (blankmode2 = 0))
+            makedot = 1;
+        blank = 1;
         }
     else if (blankmode == "dotsolid")
         {
-        if (blankmode2 = 0)
-            {
-            if (blanknew = floor((n*(blank_freq_r-1)/checkpoints)))
-                {
-                makedot = 1;
-                blanknew = 1+floor((n*(blank_freq_r-1)/checkpoints));
-                }
-            }
-        else
-            {
-            if (blanknew = floor(n*resolution/blank_period_r))
-                {
-                makedot = 1;
-                blanknew = 1+floor(n*resolution/blank_period_r);
-                }
-            }
-            blank = 0;
+        if ((n-dotfreq+round(blank_offset_r/pi*dotfreq)) % dotfreq == 0)
+            makedot = 1;
+        if ((n == checkpoints) and ((blank_offset_r = 0) or (blank_offset_r = pi)) and (blankmode2 = 0))
+            makedot = 1;
+        blank = 0;
         }
     
     //COLOR

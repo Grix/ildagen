@@ -52,6 +52,7 @@ wave_amp = 10000;
 wave_period = 1;
 pointx[20] = 0;
 pointy[20] = 0;
+wave_offset = 0;
 
 resolution = 256*2;
 
@@ -63,6 +64,7 @@ enddotscolor = c_red;
 color_period = 8192;
 color_freq = 0.5;
 color_dc = 0.5;
+color_offset = 0;
 
 blankmode = "solid";
 blankmode2 = 0;
@@ -71,6 +73,7 @@ blank_dc = 0.5;
 blank_freq = 4;
 enddots = 0;
 makedot = 0;
+blank_offset = 0;
 
 anienable = 0;
 frame = 0;
@@ -79,6 +82,9 @@ anicolor1 = c_white;
 anicolor2 = c_white;
 anicolor_dc = 0.5;
 aniblank_dc = 0.5;
+aniblank_offset = 0;
+anicolor_offset = 0;
+aniwave_offset = 0;
 
 alarm[0] = 1;
 </string>
@@ -146,6 +152,12 @@ else if (keyboard_check(vk_right)) and (frame &lt; (maxframes-1))
             <kind>1</kind>
             <string>el_list = ds_list_find_value(frame_list,frame);
 surf_list = ds_list_find_value(surf_frame_list,frame);
+
+with (all) 
+    {
+    if (mouse_x &gt; room_width) or (mouse_y &gt; room_height) or (mouse_y &lt; 0)
+        moving = 0;
+    }
 </string>
           </argument>
         </arguments>

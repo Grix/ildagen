@@ -143,7 +143,7 @@ draw_sprite(spr_knob,(moving &gt; 0),x+controller.aniblank_dc*2*64,y+16);
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x,y+36,"Blanking duty cycle: "+string(controller.aniblank_dc));
+draw_text(x,y+26,"Blanking duty cycle: "+string(controller.aniblank_dc));
 draw_set_color(c_white);
 
 </string>

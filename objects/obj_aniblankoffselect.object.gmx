@@ -27,7 +27,6 @@
             <kind>1</kind>
             <string>image_speed = 0;
 moving = 0;
-text_surf = surface_create(300,20);
 </string>
           </argument>
         </arguments>
@@ -52,9 +51,9 @@ text_surf = surface_create(300,20);
             <kind>1</kind>
             <string>if (moving == 1)
     {
-    controller.anicolor_dc += (mouse_x-mouse_xprevious)/128;
-    if (controller.anicolor_dc  &lt; 0) controller.anicolor_dc = 0;
-    if (controller.anicolor_dc &gt; 1) controller.anicolor_dc = 1;
+    controller.aniblank_offset += (mouse_x-mouse_xprevious)*180/128;
+    if (controller.aniblank_offset  &lt; 0) controller.aniblank_offset = 0;
+    if (controller.aniblank_offset &gt; 180) controller.aniblank_offset = 180;
     }
     
 mouse_yprevious = mouse_y;
@@ -62,7 +61,12 @@ mouse_xprevious = mouse_x;
 
 
 
-visible = (controller.colormode == "dash") and (controller.anienable);
+visible = (controller.blankmode != "solid") and (controller.anienable);
+
+if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+    {
+    controller.tooltip = "Changes the blanking periodic offset at end of animation.";
+    } 
 </string>
           </argument>
         </arguments>
@@ -135,17 +139,13 @@ moving = 1;
             <string>
 draw_set_alpha(1);
 draw_sprite(sprite_index,image_index,x,y);
-draw_sprite(spr_knob,(moving &gt; 0),x+controller.anicolor_dc*2*64,y+16);
+draw_sprite(spr_knob,(moving &gt; 0),x+controller.aniblank_offset/180*128,y+16);
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x,y+26,"Color duty cycle: "+string(controller.anicolor_dc));
+draw_text(x,y+26,"Blanking offset: "+string(controller.aniblank_offset));
 draw_set_color(c_white);
 
-if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
-    {
-    controller.tooltip = "Changes the ratio of the primary/secondary color at the end of animation";
-    } 
 </string>
           </argument>
         </arguments>

@@ -64,6 +64,7 @@
         <object>objects\obj_blankabsrel</object>
         <object>objects\obj_blankfreqselect</object>
         <object>objects\obj_blanktselect</object>
+        <object>objects\obj_blankoffselect</object>
         <object>objects\obj_blankingdcselect</object>
         <object>objects\obj_b_solid</object>
         <object>objects\obj_enddots</object>
@@ -96,6 +97,7 @@
         <object>objects\obj_anicolorselect_1</object>
         <object>objects\obj_anicolorselect_2</object>
         <object>objects\obj_aniblankdcselect</object>
+        <object>objects\obj_aniblankoffselect</object>
         <object>objects\obj_maxframes</object>
         <object>objects\obj_anicolordcselect</object>
       </objects>
@@ -105,7 +107,7 @@
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41895.8584049884</constant>
+    <constant name="GM_build_date">41896.6736779514</constant>
     <constant name="GM_version">'0.9.0.0'</constant>
   </constants>
   <help>

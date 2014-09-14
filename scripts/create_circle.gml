@@ -6,6 +6,15 @@ if (checkpoints < 3) checkpoints = 3;
 blanknew = 0;
 
 
+if (blankmode = "dot") or (blankmode = "dotsolid")
+    {
+    dotlist = ds_list_create();
+    if (blankmode2 == 0)
+        dotfreq = ceil(checkpoints/(blank_freq_r));
+    else
+        dotfreq = ceil(blank_period_r/resolution);
+    }
+
 if !((startpos[0] == endx) && (startpos[1] == endy))
     for (n = 0;n <= checkpoints; n++)
         {
@@ -150,50 +159,21 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
             }
         else if (blankmode == "dot")
             {
-            if (blankmode2 = 0)
+            if ((n-dotfreq+round(blank_offset_r/pi*dotfreq)) % dotfreq == 0)
                 {
-                if (blanknew = floor((n*(blank_freq_r)/checkpoints)))
-                    {
+                if !(((n == checkpoints-1) or (n == checkpoints)) and ((blank_offset_r = 0) or (blank_offset_r = pi)))
                     makedot = 1;
-                    blanknew = 1+floor((n*(blank_freq_r)/checkpoints));
-                    }
-                else 
-                    {
-                    blank = 1;
-                    }
-                }
-            else
-                {
-                if (blanknew = floor(n*resolution/blank_period_r))
-                    {
-                    makedot = 1;
-                    blanknew = 1+floor(n*resolution/blank_period_r);
-                    }
-                else 
-                    {
-                    blank = 1;
-                    }
+                blank = 1;
                 }
             }
         else if (blankmode == "dotsolid")
             {
-            if (blankmode2 = 0)
+            if ((n-dotfreq+round(blank_offset_r/pi*dotfreq)) % dotfreq == 0)
                 {
-                if (blanknew = floor((n*(blank_freq_r)/checkpoints)))
-                    {
+                if !(((n == checkpoints-1) or (n == checkpoints)) and ((blank_offset_r = 0) or (blank_offset_r = pi)))
                     makedot = 1;
-                    blanknew = 1+floor((n*(blank_freq_r)/checkpoints));
-                    }
-                }
-            else
-                {
-                if (blanknew = floor(n*resolution/blank_period_r))
-                    {
-                    makedot = 1;
-                    blanknew = 1+floor(n*resolution/blank_period_r);
-                    }
-                }
                 blank = 0;
+                }
             }
                 
         
