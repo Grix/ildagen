@@ -52,9 +52,9 @@ text_surf = surface_create(300,20);
             <kind>1</kind>
             <string>if (moving == 1)
     {
-    controller.blank_offset += (mouse_x-mouse_xprevious)*180/128;
+    controller.blank_offset += (mouse_x-mouse_xprevious)*360/128;
     if (controller.blank_offset  &lt; 0) controller.blank_offset = 0;
-    if (controller.blank_offset &gt; 180) controller.blank_offset = 180;
+    if (controller.blank_offset &gt; 360) controller.blank_offset = 360;
     }
     
 mouse_yprevious = mouse_y;
@@ -139,7 +139,7 @@ moving = 1;
             <string>
 draw_set_alpha(1);
 draw_sprite(sprite_index,image_index,x,y);
-draw_sprite(spr_knob,(moving &gt; 0),x+controller.blank_offset/180*128,y+16);
+draw_sprite(spr_knob,(moving &gt; 0),x+controller.blank_offset/360*128,y+16);
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);

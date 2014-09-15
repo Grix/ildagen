@@ -51,9 +51,9 @@ moving = 0;
             <kind>1</kind>
             <string>if (moving == 1)
     {
-    controller.aniblank_offset += (mouse_x-mouse_xprevious)*180/128;
+    controller.aniblank_offset += (mouse_x-mouse_xprevious)*360/128;
     if (controller.aniblank_offset  &lt; 0) controller.aniblank_offset = 0;
-    if (controller.aniblank_offset &gt; 180) controller.aniblank_offset = 180;
+    if (controller.aniblank_offset &gt; 360) controller.aniblank_offset = 360;
     }
     
 mouse_yprevious = mouse_y;
@@ -139,7 +139,7 @@ moving = 1;
             <string>
 draw_set_alpha(1);
 draw_sprite(sprite_index,image_index,x,y);
-draw_sprite(spr_knob,(moving &gt; 0),x+controller.aniblank_offset/180*128,y+16);
+draw_sprite(spr_knob,(moving &gt; 0),x+controller.aniblank_offset/360*128,y+16);
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
