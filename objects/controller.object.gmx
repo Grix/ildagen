@@ -80,6 +80,7 @@ frame = 0;
 maxframes = 1;
 anicolor1 = c_white;
 anicolor2 = c_white;
+anienddotscolor = c_red;
 anicolor_dc = 0.5;
 aniblank_dc = 0.5;
 aniblank_offset = 0;
@@ -218,7 +219,7 @@ if (placing_status == 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_x &gt; 524) or (mouse_y &gt; 524)
+            <string>if (mouse_x &gt; 515) or (mouse_y &gt; 515)
     {
     placing_status = 0;
     exit;
@@ -279,12 +280,13 @@ draw_line(513,150,1000,150);
 draw_line(513,302,1000,302);
 draw_line(513,450,1000,450);
 draw_line(0,512,1000,512);
-draw_set_font(fnt_tooltip);
+draw_set_font(fnt_bold);
 draw_set_color(c_dkgray);
 draw_text(536,20,"Shape");
 draw_text(536,166,"Color");
 draw_text(536,319,"Blanking");
 draw_text(24,524,"Animation");
+draw_set_font(fnt_tooltip);
 draw_set_color(c_ltgray);
 draw_text(12,487,"Frame "+string(frame)+"/"+string(maxframes-1));
 

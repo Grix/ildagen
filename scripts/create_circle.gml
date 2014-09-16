@@ -18,17 +18,29 @@ if (blankmode == "dot") or (blankmode == "dotsolid")
 else if (blankmode == "dash")
     {
     if (blankmode2 == 0)
-        dotfreq = checkpoints/(blank_freq_r+0.5);
+        dotfreq = checkpoints/(blank_freq_r+0.47);
     else
         dotfreq = blank_period_r/resolution;
     if (dotfreq < 1)
         dotfreq = 1;
     }
-    
-if (floor(checkpoints+blank_offset_r/pi/2*dotfreq) % round(dotfreq) > blank_dc_r*dotfreq) or (blank_dc_r < 0.02)
-    blanknew = 1;
-else
-    blanknew = 0;
+if (colormode == "dash")
+    {
+    if (colormode2 == 0)
+        colorfreq = checkpoints/(color_freq_r+0.47);
+    else
+        colorfreq = color_period_r/resolution;
+    if (colorfreq < 1)
+        colorfreq = 1;
+    }
+
+if (blankmode != "solid")
+    {
+    if (floor(checkpoints+blank_offset_r/pi/2*dotfreq) % round(dotfreq) > blank_dc_r*dotfreq) or (blank_dc_r < 0.02)
+        blanknew = 1;
+    else
+        blanknew = 0;
+    }
 
 if !((startpos[0] == endx) && (startpos[1] == endy))
     for (n = 0;n <= checkpoints; n++)
@@ -46,63 +58,36 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
             {        
             if (colormode2 == 0)
                 {
-                c[0] = ( colour_get_blue(color1_r)*    (0.5+cos( (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2) + colour_get_blue(color2_r)*   (1-(0.5+cos( (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2)) );
-                c[1] = ( colour_get_green(color1_r)*   (0.5+cos( (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2) + colour_get_green(color2_r)*  (1-(0.5+cos( (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2)) );
-                c[2] = ( colour_get_red(color1_r)*     (0.5+cos( (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2) + colour_get_red(color2_r)*    (1-(0.5+cos( (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2)) );
+                c[0] = ( colour_get_blue(color1_r)*    (0.5+cos(color_offset_r+ (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2) + colour_get_blue(color2_r)*   (1-(0.5+cos(color_offset_r+ (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2)) );
+                c[1] = ( colour_get_green(color1_r)*   (0.5+cos(color_offset_r+ (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2) + colour_get_green(color2_r)*  (1-(0.5+cos(color_offset_r+ (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2)) );
+                c[2] = ( colour_get_red(color1_r)*     (0.5+cos(color_offset_r+ (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2) + colour_get_red(color2_r)*    (1-(0.5+cos(color_offset_r+ (checkpoints-n)*color_freq_r/checkpoints*2*pi +pi)/2)) );
                 }
             else
                 {
-                c[0] = ( colour_get_blue(color1_r)*    (0.5+cos( (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2) + colour_get_blue(color2_r)*   (1-(0.5+cos( (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2)) );
-                c[1] = ( colour_get_green(color1_r)*   (0.5+cos( (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2) + colour_get_green(color2_r)*  (1-(0.5+cos( (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2)) );
-                c[2] = ( colour_get_red(color1_r)*     (0.5+cos( (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2) + colour_get_red(color2_r)*    (1-(0.5+cos( (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2)) );
+                c[0] = ( colour_get_blue(color1_r)*    (0.5+cos(color_offset_r+ (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2) + colour_get_blue(color2_r)*   (1-(0.5+cos(color_offset_r+ (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2)) );
+                c[1] = ( colour_get_green(color1_r)*   (0.5+cos(color_offset_r+ (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2) + colour_get_green(color2_r)*  (1-(0.5+cos(color_offset_r+ (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2)) );
+                c[2] = ( colour_get_red(color1_r)*     (0.5+cos(color_offset_r+ (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2) + colour_get_red(color2_r)*    (1-(0.5+cos(color_offset_r+ (checkpoints-n)*resolution/color_period_r*2*pi +pi)/2)) );
                 }
             }
         else if (colormode == "dash")
             {
-            if (colormode2 = 0)
+            if (color_dc_r >= 0.98)
                 {
-                if (n = checkpoints) and !(color_dc_r >= 0.98)
-                    {
-                    //if (color_freq_r % 1 == 0.5)
-                        {
-                        c[0] = colour_get_blue(color2_r);
-                        c[1] = colour_get_green(color2_r);
-                        c[2] = colour_get_red(color2_r);
-                        }
-                    /*else 
-                        {
-                        c[0] = colour_get_blue(color1_r);
-                        c[1] = colour_get_green(color1_r);
-                        c[2] = colour_get_red(color1_r);
-                        }*/
-                    }
-                else if (((n*(color_freq_r+0.5)/checkpoints % 1) > color_dc_r) or (color_dc_r <= 0.02)) and !(color_dc_r >= 0.98)
-                    {
-                    c[0] = colour_get_blue(color2_r);
-                    c[1] = colour_get_green(color2_r);
-                    c[2] = colour_get_red(color2_r);
-                    }
-                else 
-                    {
-                    c[0] = colour_get_blue(color1_r);
-                    c[1] = colour_get_green(color1_r);
-                    c[2] = colour_get_red(color1_r);
-                    }
+                c[0] = colour_get_blue(color1_r);
+                c[1] = colour_get_green(color1_r);
+                c[2] = colour_get_red(color1_r);
                 }
-            else
+            else if (floor(n+color_offset_r/pi/2*colorfreq) % floor(colorfreq) > color_dc_r*colorfreq) or (color_dc_r < 0.02)
                 {
-                if ((n*resolution/color_period_r % 1) > color_dc_r) or (color_dc_r <= 0.02)
-                    {
-                    c[0] = colour_get_blue(color2_r);
-                    c[1] = colour_get_green(color2_r);
-                    c[2] = colour_get_red(color2_r);
-                    }
-                else 
-                    {
-                    c[0] = colour_get_blue(color1_r);
-                    c[1] = colour_get_green(color1_r);
-                    c[2] = colour_get_red(color1_r);
-                    }
+                c[0] = colour_get_blue(color2_r);
+                c[1] = colour_get_green(color2_r);
+                c[2] = colour_get_red(color2_r);
+                }
+            else 
+                {
+                c[0] = colour_get_blue(color1_r);
+                c[1] = colour_get_green(color1_r);
+                c[2] = colour_get_red(color1_r);
                 }
             }
          

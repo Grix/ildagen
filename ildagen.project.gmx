@@ -51,6 +51,7 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
+    <font>fonts\fnt_bold</font>
   </fonts>
   <objects name="objects">
     <object>objects\controller</object>
@@ -83,6 +84,7 @@
         <object>objects\obj_colorabsrel</object>
         <object>objects\obj_colordcselect</object>
         <object>objects\obj_colortselect</object>
+        <object>objects\obj_coloroffselect</object>
       </objects>
       <objects name="shape">
         <object>objects\obj_wavetselect</object>
@@ -91,8 +93,10 @@
         <object>objects\obj_s_circle</object>
         <object>objects\obj_s_wave</object>
         <object>objects\obj_s_rect</object>
+        <object>objects\obj_waveoffselect</object>
       </objects>
       <objects name="ani">
+        <object>objects\obj_aniwaveoffselect</object>
         <object>objects\obj_anienable</object>
         <object>objects\obj_anicolorselect_1</object>
         <object>objects\obj_anicolorselect_2</object>
@@ -100,6 +104,8 @@
         <object>objects\obj_aniblankoffselect</object>
         <object>objects\obj_maxframes</object>
         <object>objects\obj_anicolordcselect</object>
+        <object>objects\obj_anicoloroffselect</object>
+        <object>objects\obj_anienddotscolorselect</object>
       </objects>
     </objects>
   </objects>
@@ -107,7 +113,7 @@
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41897.7606449306</constant>
+    <constant name="GM_build_date">41898.7376309954</constant>
     <constant name="GM_version">'0.9.0.0'</constant>
   </constants>
   <help>
