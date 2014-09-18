@@ -81,7 +81,7 @@ visible = (controller.enddots || (controller.blankmode == "dotsolid")) &amp;&amp
 
 if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
-    controller.tooltip = "Changes color or ending dots at the end of the animation#(Sliders represent red, green and blue) ";
+    controller.tooltip = "Changes color of ending dots at the end of the animation#(Sliders represent red, green and blue) ";
     } 
 </string>
           </argument>

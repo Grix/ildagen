@@ -125,18 +125,14 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
             }
         else if (blankmode == "dot")
             {
-            if (round(n-dotfreq+blank_offset_r/pi/2*dotfreq) % round(dotfreq) == 0)
+            if (floor(n-dotfreq+blank_offset_r/pi/2*dotfreq) % floor(dotfreq) == 0)
                 makedot = 1;
-            //if ((n == checkpoints) and ((blank_offset_r = 0) or (blank_offset_r = pi)) and (blankmode2 = 0))
-             //   makedot = 1;
             blank = 1;
             }
         else if (blankmode == "dotsolid")
             {
-            if (round(n-dotfreq+blank_offset_r/pi/2*dotfreq) % round(dotfreq) == 0)
+            if (floor(n-dotfreq+blank_offset_r/pi/2*dotfreq) % floor(dotfreq) == 0)
                 makedot = 1;
-            //if ((n == checkpoints) and ((blank_offset_r = 0) or (blank_offset_r = pi)) and (blankmode2 = 0))
-             //   makedot = 1;
             blank = 0;
             }
             
