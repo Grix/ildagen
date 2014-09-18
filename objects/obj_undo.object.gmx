@@ -54,6 +54,7 @@
     image_index = 1;
     controller.tooltip = "Undoes last action";
     } 
+else image_index = 0;
 </string>
           </argument>
         </arguments>

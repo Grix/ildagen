@@ -53,9 +53,8 @@
     {
     image_index = 1;
     controller.tooltip = "Edit the number of frames in the animation";
-    } 
-    
-//visible = controller.anienable;
+    }
+else image_index = 0; 
 </string>
           </argument>
         </arguments>

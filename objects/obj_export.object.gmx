@@ -54,6 +54,7 @@
     image_index = 1;
     controller.tooltip = "Exports all elements on screen to an .ild file";
     } 
+else image_index = 0;
 </string>
           </argument>
         </arguments>
@@ -76,7 +77,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (controller) export_ilda();
+            <string>if (ds_list_empty(controller.el_list))
+    exit;
+
+if (!verify_serial())
+    exit;
+
+with (controller) export_ilda();
 </string>
           </argument>
         </arguments>

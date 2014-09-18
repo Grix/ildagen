@@ -54,6 +54,7 @@
     image_index = 1;
     controller.tooltip = "Clears everything from the ilda file";
     } 
+else image_index = 0;
 </string>
           </argument>
         </arguments>
