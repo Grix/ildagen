@@ -68,3 +68,11 @@ else if (placing == "wave")
     if (wave_period < 0.5) wave_period = 0.5;
 
     }
+else if (placing == "free")
+    {
+    draw_line(startpos[0]+ ds_list_find_value(free_list,0),startpos[1]+ ds_list_find_value(free_list,1),startpos[0],startpos[1]);
+    for (i=2;i < ds_list_size(free_list);i+= 2)
+        {
+        draw_line(startpos[0]+ ds_list_find_value(free_list,i),startpos[1]+ ds_list_find_value(free_list,i+1),startpos[0]+ ds_list_find_value(free_list,i-2),startpos[1]+ ds_list_find_value(free_list,i-1));
+        }
+    }

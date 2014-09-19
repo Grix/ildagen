@@ -93,6 +93,7 @@
     <instance objName="obj_aniwaveoffselect" x="704" y="552" name="inst_76B9E917" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_waveoffselect" x="552" y="120" name="inst_0ED1A755" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anienddotscolorselect" x="912" y="528" name="inst_49DA6D2B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_s_free" x="824" y="16" name="inst_3B0DEDA3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

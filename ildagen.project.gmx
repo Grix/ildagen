@@ -7,6 +7,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_m_line</sprite>
+    <sprite>sprites\spr_m_free</sprite>
     <sprite>sprites\spr_checkbox</sprite>
     <sprite>sprites\spr_m_circle</sprite>
     <sprite>sprites\spr_m_wave</sprite>
@@ -43,6 +44,7 @@
     <script>scripts\draw_preview_element.gml</script>
     <script>scripts\create_element.gml</script>
     <script>scripts\create_line.gml</script>
+    <script>scripts\create_free.gml</script>
     <script>scripts\create_circle.gml</script>
     <script>scripts\create_wave.gml</script>
     <script>scripts\create_rect.gml</script>
@@ -91,6 +93,7 @@
         <object>objects\obj_wavetselect</object>
         <object>objects\obj_waveampselect</object>
         <object>objects\obj_s_line</object>
+        <object>objects\obj_s_free</object>
         <object>objects\obj_s_circle</object>
         <object>objects\obj_s_wave</object>
         <object>objects\obj_s_rect</object>
@@ -114,7 +117,7 @@
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41900.8546830093</constant>
+    <constant name="GM_build_date">41901.8757131481</constant>
     <constant name="GM_version">'0.9.0.0'</constant>
   </constants>
   <help>

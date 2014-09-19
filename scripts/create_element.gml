@@ -107,11 +107,14 @@ repeat (maxframes)
     else if (placing == "circle") //create a circle
         create_circle();
         
-    if (placing == "wave") //create a wave
+    else if (placing == "wave") //create a wave
         create_wave();
         
     else if (placing == "rect") //create a rectangle (not working)
         create_rect();
+
+    else if (placing == "free") //create a free drawn shape
+        create_free();
         
     
     ds_list_add(ds_list_find_value(frame_list,frame),new_list);
@@ -178,5 +181,6 @@ for (i = 0;i < ds_list_size(el_list);i++)
     ds_list_add(surf_list,surf);
     }
 
+ds_list_clear(free_list);
 ds_stack_push(undo_list,el_id);
 el_id++;
