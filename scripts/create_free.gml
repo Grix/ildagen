@@ -1,9 +1,15 @@
+if (ds_list_find_value(free_list,ds_list_size(free_list)-2) != mouse_x-startpos[0]) and (ds_list_find_value(free_list,ds_list_size(free_list)-1) != mouse_x-startpos[1])
+    {
+    ds_list_add(free_list,mouse_x-startpos[0]);
+    ds_list_add(free_list,mouse_y-startpos[1]);
+    }
+
 checkpoints = ds_list_size(free_list)/2;
 if (checkpoints < 2) checkpoints = 2;
 
 vector[0] = (endx-startpos[0])/checkpoints;
 vector[1] = (endy-startpos[1])/checkpoints;
-blanknew = 0;
+blanknew = 1;
 
 if (blankmode == "dot") or (blankmode == "dotsolid")
     {
@@ -33,7 +39,6 @@ if (colormode == "dash")
         colorfreq = 1;
     }
 
-        
 
 for (n = 0;n < checkpoints; n++)
     {
@@ -134,7 +139,7 @@ for (n = 0;n < checkpoints; n++)
         
     if (enddots)
         {
-        if (!makedot) and ((n == 0) or (n == checkpoints)) and (blankmode != "dot")
+        if (!makedot) and (blankmode != "dot") and (n == checkpoints) and (blank == 0)
             makedot = 1;
         }
         

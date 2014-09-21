@@ -2,6 +2,7 @@
 
 placing_status = 0;
 
+
 if (maxframes == 1) and (anienable)
     {
     maxframes = 64;

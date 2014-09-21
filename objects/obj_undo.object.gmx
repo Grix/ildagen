@@ -103,6 +103,10 @@ else if (string_char_at(undo,0) == 'a')
     controller.maxframes = real(string_digits(undo));
     if (controller.frame &gt; controller.maxframes) controller.frame = controller.maxframes-1;
     }
+else if (string_char_at(undo,0) == 'r')
+    {
+    controller.resolution = real(string_digits(undo));
+    }
     
     
 with (controller)

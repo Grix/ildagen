@@ -77,7 +77,9 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>controller.resolution = get_integer("Enter resolution (detail level) of ilda file. Lower looks better but is slower.",controller.resolution);
+            <string>ds_stack_push(controller.undo_list,"r"+string(controller.resolution))
+
+controller.resolution = get_integer("Enter resolution (detail level) of ilda file. Lower looks better but is slower.",controller.resolution);
 if (controller.resolution &lt; 4) controller.resolution = 4;
 if (controller.resolution &gt; $8000) controller.resolution = $8000;
 </string>

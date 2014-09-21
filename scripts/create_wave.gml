@@ -2,8 +2,7 @@ checkpoints = ceil((point_distance(startpos[0],startpos[1],endx,endy)*128+abs(wa
 if (checkpoints < 4) checkpoints = 4;
 vector[0] = (endx-startpos[0])/checkpoints;
 vector[1] = (endy-startpos[1])/checkpoints;
-blanknew = 0;
-
+blanknew = 1;
 
 if (blankmode == "dot") or (blankmode == "dotsolid")
     {
@@ -33,6 +32,7 @@ if (colormode == "dash")
         colorfreq = 1;
     }
     
+
 
 if !((startpos[0] == endx) && (startpos[1] == (endy)))
     for (n = 0;n <= checkpoints; n++)
@@ -136,10 +136,9 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
             blank = 0;
             }
             
-        
     if (enddots)
         {
-        if (!makedot) and ((n == 0) or (n == checkpoints)) and (blankmode != "dot")
+        if (!makedot) and (blankmode != "dot") and (n == checkpoints) and (blank == 0)
             makedot = 1;
         }
         
