@@ -2,20 +2,20 @@
 
 if (!keyboard_check(vk_shift))
     {
-    endx = mouse_x;
-    endy = mouse_y;
+    endx = obj_cursor.x;
+    endy = obj_cursor.y;
     }
 else
     {
     if (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 315) || (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) < 45) || ( (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 135) && (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) < 225) )
         {
-        endx = mouse_x;
+        endx = obj_cursor.x;
         endy = startpos[1];
         }
     else
         {
         endx = startpos[0];
-        endy = mouse_y;
+        endy = obj_cursor.y;
         }
 
     }

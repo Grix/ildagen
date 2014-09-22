@@ -7,6 +7,9 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_m_line</sprite>
+    <sprite>sprites\spr_help</sprite>
+    <sprite>sprites\spr_onionskin</sprite>
+    <sprite>sprites\spr_bckimage</sprite>
     <sprite>sprites\spr_m_free</sprite>
     <sprite>sprites\spr_checkbox</sprite>
     <sprite>sprites\spr_m_circle</sprite>
@@ -42,15 +45,17 @@
     <script>scripts\draw_ilda_2d.gml</script>
     <script>scripts\export_ilda.gml</script>
     <script>scripts\draw_preview_element.gml</script>
+    <script>scripts\draw_grid.gml</script>
+    <script>scripts\draw_guidelines.gml</script>
     <script>scripts\create_element.gml</script>
     <script>scripts\create_line.gml</script>
     <script>scripts\create_free.gml</script>
     <script>scripts\create_circle.gml</script>
     <script>scripts\create_wave.gml</script>
     <script>scripts\create_rect.gml</script>
-    <script>scripts\draw_guidelines.gml</script>
     <script>scripts\surface_flip.gml</script>
     <script>scripts\verify_serial.gml</script>
+    <script>scripts\refresh_surfaces.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
@@ -62,6 +67,9 @@
     <objects name="buttons">
       <object>objects\obj_export</object>
       <object>objects\obj_e_res</object>
+      <object>objects\obj_help</object>
+      <object>objects\obj_bckimage</object>
+      <object>objects\obj_onionskin</object>
       <object>objects\obj_e_clear</object>
       <object>objects\obj_undo</object>
       <objects name="blank">
@@ -102,6 +110,7 @@
       <objects name="ani">
         <object>objects\obj_aniwaveoffselect</object>
         <object>objects\obj_anienable</object>
+        <object>objects\obj_fillframes</object>
         <object>objects\obj_anicolorselect_1</object>
         <object>objects\obj_anicolorselect_2</object>
         <object>objects\obj_aniblankdcselect</object>
@@ -117,8 +126,8 @@
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41903.6485440741</constant>
-    <constant name="GM_version">'0.9.0.1'</constant>
+    <constant name="GM_build_date">41904.7665576968</constant>
+    <constant name="GM_version">'0.9.1.1'</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

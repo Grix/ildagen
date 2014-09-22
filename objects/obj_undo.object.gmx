@@ -111,6 +111,90 @@ else if (string_char_at(undo,0) == 'r')
     
 with (controller)
     {
+    refresh_surfaces();
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_sprite(sprite_index,image_index,x,y);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="90">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!keyboard_check(vk_control))
+exit;
+
+if (ds_stack_size(controller.undo_list) == 0)
+    exit;
+
+undo = ds_stack_pop(controller.undo_list);
+
+if (is_real(undo))
+    {
+    for (j = 0;j &lt; ds_list_size(controller.frame_list);j++)
+        {
+        el_list = ds_list_find_value(controller.frame_list,j);
+        for (i = 0;i &lt; ds_list_size(el_list);i++)
+            {
+            if (ds_list_find_value(ds_list_find_value(el_list,i),9) == undo)
+                {
+                list_id = ds_list_find_value(el_list,i);
+                ds_list_clear(list_id);
+                ds_list_delete(el_list,i);
+                }
+            }
+        }
+    }
+else if (string_char_at(undo,0) == 'a')
+    {
+    controller.maxframes = real(string_digits(undo));
+    if (controller.frame &gt; controller.maxframes) controller.frame = controller.maxframes-1;
+    }
+else if (string_char_at(undo,0) == 'r')
+    {
+    controller.resolution = real(string_digits(undo));
+    }
+    
+    
+with (controller)
+    {
     for (i = 0;i &lt; ds_list_size(surf_list);i++)
         {
         surface_free(ds_list_find_value(surf_list,i))
@@ -164,29 +248,6 @@ with (controller)
         ds_list_add(surf_list,surf);
         }
     }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_sprite(sprite_index,image_index,x,y);
 </string>
           </argument>
         </arguments>

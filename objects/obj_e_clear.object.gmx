@@ -96,6 +96,8 @@ for (i = 0;i &lt; ds_list_size(controller.surf_list);i++)
     surface_free(ds_list_find_value(controller.surf_list,i))
     }
 ds_list_clear(controller.surf_list);
+
+
     
 </string>
           </argument>

@@ -39,6 +39,8 @@ free_list = ds_list_create();
 instance_create(mouse_x,mouse_y,obj_cursor);
 
 tooltip = "";
+bckimage = 0;
+onion = 0;
 
 placing = "line";
 startpos[1] = 0;
@@ -72,6 +74,8 @@ blank_offset = 0;
 
 anienable = 0;
 frame = 0;
+framehr = 0;
+fillframes = 1;
 maxframes = 1;
 anicolor1 = c_white;
 anicolor2 = c_white;
@@ -119,123 +123,24 @@ alarm[0] = 1;
         }
     }
     
+if (keyboard_check(ord('S')))
+    with (obj_cursor)
+        move_snap(32,32);
+    
 
 if (keyboard_check(vk_left)) and (frame &gt; 0)
     {
-    frame--;
-    
-    for (i = 0;i &lt; ds_list_size(surf_list);i++)
-        {
-        surface_free(ds_list_find_value(surf_list,i))
-        }
-    ds_list_clear(surf_list);
-    
-    el_list = ds_list_find_value(frame_list,frame);
-
-    for (i = 0;i &lt; ds_list_size(el_list);i++)
-        {
-        new_list = ds_list_find_value(el_list,i);
-        
-        draw_set_alpha(1);
-        surf = surface_create(512,512);
-        surface_set_target(surf);
-            draw_clear_alpha(c_white,0);
-            xo = ds_list_find_value(new_list,0)/128;
-            yo = ds_list_find_value(new_list,1)/128;
-            
-            //TODO if just one
-            
-            for (u = 0; u &lt; (((ds_list_size(new_list)-10)/6)-1); u++)
-                {
-                xp = ds_list_find_value(new_list,10+u*6+0);
-                yp = ds_list_find_value(new_list,10+u*6+1);
-                bl = ds_list_find_value(new_list,10+u*6+2);
-                b = ds_list_find_value(new_list,10+u*6+3);
-                g = ds_list_find_value(new_list,10+u*6+4);
-                r = ds_list_find_value(new_list,10+u*6+5);
-                
-                nxp = ds_list_find_value(new_list,10+(u+1)*6+0);
-                nyp = ds_list_find_value(new_list,10+(u+1)*6+1);
-                nbl = ds_list_find_value(new_list,10+(u+1)*6+2);
-                nb = ds_list_find_value(new_list,10+(u+1)*6+3);
-                ng = ds_list_find_value(new_list,10+(u+1)*6+4);
-                nr = ds_list_find_value(new_list,10+(u+1)*6+5);
-                
-                if (nbl == 0)
-                    {
-                    draw_set_color(make_colour_rgb(nr,ng,nb));
-                    if (xp == nxp) &amp;&amp; (yp == nyp)
-                        {
-                        draw_rectangle(xo+xp/128-1,yo+yp/128-1,xo+xp/128+1,yo+yp/128+1,0);
-                        }
-                    else
-                        draw_line(xo+ xp/128,yo+ yp/128,xo+ nxp/128,yo+ nyp/128);
-                    }
-                
-                }
-        surface_reset_target();
-        ds_list_add(surf_list,surf);
-        }
-    
+    framehr -= 0.3;
+    frame = floor(framehr);
+    refresh_surfaces();
     }
 else if (keyboard_check(vk_right)) and (frame &lt; (maxframes-1))
     {
-    frame++;
-
-    for (i = 0;i &lt; ds_list_size(surf_list);i++)
-        {
-        surface_free(ds_list_find_value(surf_list,i))
-        }
-    ds_list_clear(surf_list);
-    
-    el_list = ds_list_find_value(frame_list,frame);
-
-    draw_set_alpha(1);
-    for (i = 0;i &lt; ds_list_size(el_list);i++)
-        {
-        new_list = ds_list_find_value(el_list,i);
-        
-        surf = surface_create(512,512);
-        surface_set_target(surf);
-            draw_clear_alpha(c_white,0);
-            xo = ds_list_find_value(new_list,0)/128;
-            yo = ds_list_find_value(new_list,1)/128;
-            
-            //TODO if just one
-            
-            for (u = 0; u &lt; (((ds_list_size(new_list)-10)/6)-1); u++)
-                {
-                xp = ds_list_find_value(new_list,10+u*6+0);
-                yp = ds_list_find_value(new_list,10+u*6+1);
-                bl = ds_list_find_value(new_list,10+u*6+2);
-                b = ds_list_find_value(new_list,10+u*6+3);
-                g = ds_list_find_value(new_list,10+u*6+4);
-                r = ds_list_find_value(new_list,10+u*6+5);
-                
-                nxp = ds_list_find_value(new_list,10+(u+1)*6+0);
-                nyp = ds_list_find_value(new_list,10+(u+1)*6+1);
-                nbl = ds_list_find_value(new_list,10+(u+1)*6+2);
-                nb = ds_list_find_value(new_list,10+(u+1)*6+3);
-                ng = ds_list_find_value(new_list,10+(u+1)*6+4);
-                nr = ds_list_find_value(new_list,10+(u+1)*6+5);
-                
-                if (nbl == 0)
-                    {
-                    draw_set_color(make_colour_rgb(nr,ng,nb));
-                    if (xp == nxp) &amp;&amp; (yp == nyp)
-                        {
-                        draw_rectangle(xo+xp/128-1,yo+yp/128-1,xo+xp/128+1,yo+yp/128+1,0);
-                        }
-                    else
-                        draw_line(xo+ xp/128,yo+ yp/128,xo+ nxp/128,yo+ nyp/128);
-                    }
-                
-                }
-        surface_reset_target();
-        ds_list_add(surf_list,surf);
-        }
-    
+    framehr += 0.3;
+    frame = round(framehr);
+    refresh_surfaces();
     }
+
 
 </string>
           </argument>
@@ -368,8 +273,18 @@ if (placing_status == 1)
             <kind>1</kind>
             <string>draw_clear(c_black);
 
+if (bckimage)
+    {
+    draw_set_alpha(0.3);
+    draw_background_stretched(bck_bckimage,0,0,512,512);
+    draw_set_alpha(1);
+    }
+
 if (keyboard_check(ord('A')))
     draw_guidelines();
+    
+if (keyboard_check(ord('S')))
+    draw_grid();
     
 draw_set_color(c_white);
     draw_ilda_2d();
