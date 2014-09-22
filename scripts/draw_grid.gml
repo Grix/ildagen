@@ -12,4 +12,3 @@ for (i=1;i<=512/32;i++)
     
 draw_set_color(c_white);
 draw_set_blend_mode(bm_normal);
-

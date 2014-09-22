@@ -77,7 +77,7 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>url_open("https://github.com/Grix/ildagen/raw/master/help.rtf")
+            <string>url_open("https://github.com/Grix/ildagen/raw/master/help.pdf")
 </string>
           </argument>
         </arguments>
