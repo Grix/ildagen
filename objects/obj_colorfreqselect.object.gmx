@@ -114,7 +114,7 @@ if (controller.color_freq &lt; 0.5)
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x+60,y,"Coloring frequenzy: "+string(controller.color_freq));
+draw_text(x+60,y,"Coloring frequency: "+string(controller.color_freq));
 draw_set_color(c_white);
 
 

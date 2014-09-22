@@ -115,7 +115,7 @@ if (controller.blank_freq &lt; 0.5)
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x+60,y,"Blanking frequenzy: "+string(controller.blank_freq));
+draw_text(x+60,y,"Blanking frequency: "+string(controller.blank_freq));
 draw_set_color(c_white);
 
 

@@ -115,7 +115,7 @@ if (controller.wave_period &lt; 0.5)
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x+60,y,"Wave frequenzy: "+string(controller.wave_period));
+draw_text(x+60,y,"Wave frequency: "+string(controller.wave_period));
 draw_set_color(c_white);
 
 
