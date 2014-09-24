@@ -26,6 +26,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_m_line</sprite>
+    <sprite>sprites\spr_dotmult</sprite>
     <sprite>sprites\spr_help</sprite>
     <sprite>sprites\spr_onionskin</sprite>
     <sprite>sprites\spr_bckimage</sprite>
@@ -65,6 +66,7 @@
     <script>scripts\export_ilda.gml</script>
     <script>scripts\draw_preview_element.gml</script>
     <script>scripts\draw_grid.gml</script>
+    <script>scripts\draw_radialgrid.gml</script>
     <script>scripts\draw_guidelines.gml</script>
     <script>scripts\create_element.gml</script>
     <script>scripts\create_line.gml</script>
@@ -99,6 +101,7 @@
         <object>objects\obj_blankingdcselect</object>
         <object>objects\obj_b_solid</object>
         <object>objects\obj_enddots</object>
+        <object>objects\obj_dotnumber</object>
         <object>objects\obj_b_dash</object>
         <object>objects\obj_b_dot</object>
         <object>objects\obj_b_dotsolid</object>
@@ -145,8 +148,8 @@
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41905.5173599421</constant>
-    <constant name="GM_version">'0.9.1.0'</constant>
+    <constant name="GM_build_date">41906.8757696875</constant>
+    <constant name="GM_version">'0.9.2.1'</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

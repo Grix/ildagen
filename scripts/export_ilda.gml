@@ -2,7 +2,7 @@
 placing_status = 0;
 
 ilda_buffer = buffer_create(1,buffer_grow,1);
-file_loc = get_save_filename("*.ild","");
+file_loc = get_save_filename("*.ild","example.ild");
 //file_loc += ".ild";
 if (file_loc == "")
     exit;
@@ -136,14 +136,14 @@ for (j = 0; j < maxframes;j++)
     
 
 //null header
-buffer_write(ilda_buffer,buffer_u8,$49); //ILDA0000
+buffer_write(ilda_buffer,buffer_u8,$49); //ILDA0005
 buffer_write(ilda_buffer,buffer_u8,$4C);
 buffer_write(ilda_buffer,buffer_u8,$44);
 buffer_write(ilda_buffer,buffer_u8,$41);
 buffer_write(ilda_buffer,buffer_u8,$0);
 buffer_write(ilda_buffer,buffer_u8,$0);
 buffer_write(ilda_buffer,buffer_u8,$0);
-buffer_write(ilda_buffer,buffer_u8,$0);
+buffer_write(ilda_buffer,buffer_u8,$5);
 buffer_write(ilda_buffer,buffer_u8,ord('i')); //name
 buffer_write(ilda_buffer,buffer_u8,ord('l'));
 buffer_write(ilda_buffer,buffer_u8,ord('d'));

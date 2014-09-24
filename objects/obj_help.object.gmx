@@ -50,10 +50,10 @@
           <argument>
             <kind>1</kind>
             <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
-    {
-    image_index = 1;
-    controller.tooltip = "Click here to download the manual";
-    } 
+        {
+        image_index = 1;
+        controller.tooltip = "Click here to download the full manual. Keyboard controls:##Mouse)    Select drawing tool and draw#Left/Right Arrow)    Cycle between frames#Shift)    Force horizontal or vertical lines when drawing#Alt)    Snap mouse to ending position of last element for chaining#Ctrl+Alt)    Snap mouse to starting position of last element for chaining#A)    Show symmetry/alignment guidelines of elements#S)    Show/Snap to square grid#R)    Show radial grid#Ctrl+Z)    Undo#Mouse wheel)    Adjust wave amplitude#Ctrl+Mouse wheel)    Adjust wave frequency#N)    Reset window aspect ratio#M)    Reset window size";
+        } 
 else image_index = 0;
 </string>
           </argument>

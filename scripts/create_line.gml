@@ -140,7 +140,6 @@ for (n = 0;n <= checkpoints; n++)
         
     if (makedot)
         {
-        
         if (blankmode == "dot")
             {
             ds_list_add(new_list,n*vector[0]*128);
@@ -149,12 +148,15 @@ for (n = 0;n <= checkpoints; n++)
             ds_list_add(new_list,c[0]);
             ds_list_add(new_list,c[1]);
             ds_list_add(new_list,c[2]);
-            ds_list_add(new_list,n*vector[0]*128);
-            ds_list_add(new_list,n*vector[1]*128);
-            ds_list_add(new_list,0);
-            ds_list_add(new_list,c[0]);
-            ds_list_add(new_list,c[1]);
-            ds_list_add(new_list,c[2])
+            repeat (dotmultiply)
+                {
+                ds_list_add(new_list,n*vector[0]*128);
+                ds_list_add(new_list,n*vector[1]*128);
+                ds_list_add(new_list,0);
+                ds_list_add(new_list,c[0]);
+                ds_list_add(new_list,c[1]);
+                ds_list_add(new_list,c[2])
+                }
             }
         else
             {
@@ -178,12 +180,15 @@ for (n = 0;n <= checkpoints; n++)
                     ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
                     ds_list_add(new_list,colour_get_red(controller.enddotscolor_r));
                     }
-                ds_list_add(new_list,(n-1)*vector[0]*128);
-                ds_list_add(new_list,(n-1)*vector[1]*128);
-                ds_list_add(new_list,0);
-                ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
-                ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
-                ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
+                repeat (dotmultiply)
+                    {
+                    ds_list_add(new_list,(n-1)*vector[0]*128);
+                    ds_list_add(new_list,(n-1)*vector[1]*128);
+                    ds_list_add(new_list,0);
+                    ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
+                    ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
+                    ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
+                    }
                 }
             else
                 {
@@ -193,12 +198,15 @@ for (n = 0;n <= checkpoints; n++)
                 ds_list_add(new_list,c[0]);
                 ds_list_add(new_list,c[1]);
                 ds_list_add(new_list,c[2])
-                ds_list_add(new_list,n*vector[0]*128);
-                ds_list_add(new_list,n*vector[1]*128);
-                ds_list_add(new_list,0);
-                ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
-                ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
-                ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
+                repeat (dotmultiply)
+                    {
+                    ds_list_add(new_list,n*vector[0]*128);
+                    ds_list_add(new_list,n*vector[1]*128);
+                    ds_list_add(new_list,0);
+                    ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
+                    ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
+                    ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
+                    }
                 }
             }
 

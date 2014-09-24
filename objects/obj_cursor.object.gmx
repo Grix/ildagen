@@ -60,6 +60,8 @@ else if (controller.placing == "circle")
     image_index = 2;
 else if (controller.placing == "wave")
     image_index = 3;
+else if (controller.placing == "free")
+    image_index = 4;
 </string>
           </argument>
         </arguments>

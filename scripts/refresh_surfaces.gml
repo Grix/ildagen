@@ -5,6 +5,7 @@ for (i = 0;i < ds_list_size(surf_list);i++)
 ds_list_clear(surf_list);
 
 el_list = ds_list_find_value(frame_list,frame);
+framepoints = 0;
 
 draw_set_alpha(1);
 for (i = 0;i < ds_list_size(el_list);i++)
@@ -45,6 +46,8 @@ for (i = 0;i < ds_list_size(el_list);i++)
                 else
                     draw_line(xo+ xp/128,yo+ yp/128,xo+ nxp/128,yo+ nyp/128);
                 }
+            
+            framepoints++;
             
             }
     surface_reset_target();
@@ -150,5 +153,6 @@ if (onion) and (frame)
             }
         }
     }
+    
+el_list = ds_list_find_value(frame_list,frame);
 draw_set_alpha(1);
-
