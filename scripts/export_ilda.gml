@@ -96,13 +96,13 @@ for (j = 0; j < maxframes;j++)
             else if (bl)
                 {
                 blank = $40;
-                if (u == (ds_list_size(list_id)-10)/6-1)
+                if (u == (ds_list_size(list_id)-10)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
                     blank = $C0;
                 }
             else
                 {
                 blank = $0;
-                if (u == (ds_list_size(list_id)-10)/6-1)
+                if (u == (ds_list_size(list_id)-10)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
                     blank = $80;
                 }
             if (blanktemp == 1)

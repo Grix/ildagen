@@ -84,7 +84,10 @@ else if (controller.placing == "free")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite_index,image_index,x,y);
+            <string>draw_set_alpha(0.3);
+draw_sprite(sprite_index,image_index,mouse_x,mouse_y);
+draw_set_alpha(1);
+draw_sprite(sprite_index,image_index,x,y);
 </string>
           </argument>
         </arguments>
