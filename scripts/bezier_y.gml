@@ -3,4 +3,4 @@
 
 t = argument0;
 
-return (ay*t*t*t)+(by*t*t)+(cy*t)+starty;
+return ((ay*t*t*t)+(by*t*t)+(cy*t)+starty);

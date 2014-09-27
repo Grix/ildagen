@@ -1,23 +1,26 @@
 //draws a preview of the element under construction
 
-if (!keyboard_check(vk_shift))
+if (placing_status == 1)
     {
-    endx = obj_cursor.x;
-    endy = obj_cursor.y;
-    }
-else
-    {
-    if (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 315) || (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) < 45) || ( (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 135) && (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) < 225) )
+    if (!keyboard_check(vk_shift))
         {
         endx = obj_cursor.x;
-        endy = startpos[1];
+        endy = obj_cursor.y;
         }
     else
         {
-        endx = startpos[0];
-        endy = obj_cursor.y;
+        if (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 315) || (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) < 45) || ( (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 135) && (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) < 225) )
+            {
+            endx = obj_cursor.x;
+            endy = startpos[1];
+            }
+        else
+            {
+            endx = startpos[0];
+            endy = obj_cursor.y;
+            }
+    
         }
-
     }
 
 if (placing == "line")
@@ -88,13 +91,25 @@ else if (placing == "curve")
             }
         tprevx = startx;
         tprevy = starty;
+        
+        bezlength = 0;
         for (i = 0;i < 15;i++)
             {
             tx = bezier_x(i/14);
-            ty = bezier_x(i/14);
+            ty = bezier_y(i/14);
             draw_line(tprevx,tprevy,tx,ty);
+            bezlength += point_distance(tprevx,tprevy,tx,ty);
             tprevx = tx;
             tprevy = ty;
             }
+        
+        draw_set_color(c_green);
+        draw_rectangle(ds_list_find_value(bez_list,0)-1,ds_list_find_value(bez_list,1)-1,ds_list_find_value(bez_list,0)+1,ds_list_find_value(bez_list,1)+1,0);
+        draw_rectangle(ds_list_find_value(bez_list,2)-2,ds_list_find_value(bez_list,3)-2,ds_list_find_value(bez_list,2)+2,ds_list_find_value(bez_list,3)+2,0);
+        draw_rectangle(ds_list_find_value(bez_list,4)-2,ds_list_find_value(bez_list,5)-2,ds_list_find_value(bez_list,4)+2,ds_list_find_value(bez_list,5)+2,0);
+        draw_rectangle(ds_list_find_value(bez_list,6)-1,ds_list_find_value(bez_list,7)-1,ds_list_find_value(bez_list,6)+1,ds_list_find_value(bez_list,7)+1,0);
+        draw_line(ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1),ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3));
+        draw_line(ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5),ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7));
+        draw_set_color(c_dkgray);
         }
     }

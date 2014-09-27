@@ -5,7 +5,7 @@ placing_status = 0;
 
 if (maxframes == 1) and (anienable)
     {
-    maxframes = 64;
+    maxframes = 32;
     
     if (ds_list_size(controller.frame_list) < controller.maxframes)
         repeat (controller.maxframes - ds_list_size(controller.frame_list))
@@ -35,29 +35,26 @@ else
         endx = startpos[0];
         endy = obj_cursor.y;
         }
-    if (placing == "rect")
-        {
-        //if ( (startpos[0]-mouse_x) > (startpos[1]-(512-mouse_y)) )
-            {
-            endx = mouse_x;
-            endy = startpos[1]-(mouse_x-startpos[0]);
-            }
-        /*else
-            {
-            endy = -mouse_y-startpos[1]+512;
-            endy = 512-mouse_y;
-            }*/
-        }
     }
     
 if (!fillframes)
     {
     new_list = ds_list_create();
     
-    ds_list_add(new_list,startpos[0]*128); //origo x
-    ds_list_add(new_list,startpos[1]*128); //origo y
-    ds_list_add(new_list,endx*128); //end x
-    ds_list_add(new_list,endy*128); //end y
+    if (placing != "curve")
+        {
+        ds_list_add(new_list,startpos[0]*128); //origo x
+        ds_list_add(new_list,startpos[1]*128); //origo y
+        ds_list_add(new_list,endx*128); //end x
+        ds_list_add(new_list,endy*128); //end y
+        }
+    else
+        {
+        ds_list_add(new_list,ds_list_find_value(bez_list,0)*128); //origo x
+        ds_list_add(new_list,ds_list_find_value(bez_list,1)*128); //origo y
+        ds_list_add(new_list,ds_list_find_value(bez_list,6)*128); //end x
+        ds_list_add(new_list,ds_list_find_value(bez_list,7)*128); //end y
+        }
     ds_list_add(new_list,0);
     ds_list_add(new_list,0);
     ds_list_add(new_list,0);
@@ -115,6 +112,9 @@ if (!fillframes)
     else if (placing == "free") //create a free drawn shape
         create_free();
         
+    else if (placing == "curve") //create a curve
+        create_curve();
+        
     
     ds_list_add(ds_list_find_value(frame_list,frame),new_list);
     
@@ -128,10 +128,20 @@ else
         
         new_list = ds_list_create();
         
-        ds_list_add(new_list,startpos[0]*128); //origo x
-        ds_list_add(new_list,startpos[1]*128); //origo y
-        ds_list_add(new_list,endx*128); //end x
-        ds_list_add(new_list,endy*128); //end y
+        if (placing != "curve")
+            {
+            ds_list_add(new_list,startpos[0]*128); //origo x
+            ds_list_add(new_list,startpos[1]*128); //origo y
+            ds_list_add(new_list,endx*128); //end x
+            ds_list_add(new_list,endy*128); //end y
+            }
+        else
+            {
+            ds_list_add(new_list,ds_list_find_value(bez_list,0)*128); //origo x
+            ds_list_add(new_list,ds_list_find_value(bez_list,1)*128); //origo y
+            ds_list_add(new_list,ds_list_find_value(bez_list,6)*128); //end x
+            ds_list_add(new_list,ds_list_find_value(bez_list,7)*128); //end y
+            }
         ds_list_add(new_list,0);
         ds_list_add(new_list,0);
         ds_list_add(new_list,0);
@@ -189,6 +199,9 @@ else
         else if (placing == "free") //create a free drawn shape
             create_free();
             
+        else if (placing == "curve") //create a bezier curve
+            create_curve();
+            
         
         ds_list_add(ds_list_find_value(frame_list,frame),new_list);
         
@@ -200,6 +213,7 @@ else
 
 refresh_surfaces();
 
+ds_list_clear(bez_list);
 ds_list_clear(free_list);
 ds_stack_push(undo_list,el_id);
 el_id++;
