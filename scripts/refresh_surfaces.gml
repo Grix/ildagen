@@ -154,5 +154,10 @@ if (onion) and (frame)
         }
     }
     
+    
+if (viewmode != 0)
+    refresh_3dsurfaces();
+    
+    
 el_list = ds_list_find_value(frame_list,frame);
 draw_set_alpha(1);

@@ -76,3 +76,25 @@ else if (placing == "free")
         draw_line(startpos[0]+ ds_list_find_value(free_list,i),startpos[1]+ ds_list_find_value(free_list,i+1),startpos[0]+ ds_list_find_value(free_list,i-2),startpos[1]+ ds_list_find_value(free_list,i-1));
         }
     }
+else if (placing == "curve")
+    {
+    if (placing_status == 1)
+        draw_line(startpos[0],startpos[1],endx,endy);
+    else
+        {
+        if (bez_moving)
+            {
+            bezier_coeffs(ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1),ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3),ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5),ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7));
+            }
+        tprevx = startx;
+        tprevy = starty;
+        for (i = 0;i < 15;i++)
+            {
+            tx = bezier_x(i/14);
+            ty = bezier_x(i/14);
+            draw_line(tprevx,tprevy,tx,ty);
+            tprevx = tx;
+            tprevy = ty;
+            }
+        }
+    }

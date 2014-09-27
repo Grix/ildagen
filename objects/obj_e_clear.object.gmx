@@ -98,6 +98,11 @@ for (i = 0;i &lt; ds_list_size(controller.surf_list);i++)
 ds_list_clear(controller.surf_list);
 controller.framepoints = 0;
 
+with (controller)
+    {
+    refresh_surfaces();
+    }
+
     
 </string>
           </argument>
