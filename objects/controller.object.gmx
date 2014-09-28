@@ -300,7 +300,26 @@ if (placing_status == 1)
     if (placing != "curve")
         create_element();
     else
+        {
         placing_status = 2;
+        point1x = startpos[0]+cos(-mousedir-pi/2)*100;
+        if (point1x &gt; 500) or (point1x &lt; 10)
+            point1x = startpos[0]+cos(-mousedir+pi/2)*100;
+        point1y = startpos[1]+sin(-mousedir-pi/2)*100;
+        if (point1y &gt; 500) or (point1y &lt; 10)
+            point1y = startpos[1]+sin(-mousedir+pi/2)*100;
+        point2x = endx+cos(-mousedir-pi/2)*100;
+        if (point2x &gt; 500) or (point2x &lt; 10)
+            point2x = endx+cos(-mousedir+pi/2)*100;
+        point2y = endy+sin(-mousedir-pi/2)*100;
+        if (point2y &gt; 500) or (point2y &lt; 10)
+            point2y = endy+sin(-mousedir+pi/2)*100;
+        ds_list_replace(bez_list,2,point1x);
+        ds_list_replace(bez_list,3,point1y);
+        ds_list_replace(bez_list,4,point2x);
+        ds_list_replace(bez_list,5,point2y);
+        bezier_coeffs(ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1),ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3),ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5),ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7));
+        }
     }
     
 bez_moving = 0;
@@ -414,10 +433,6 @@ else if (placing == "curve")
     if (placing_status == 1)
         {
         mousedir = degtorad(point_direction(startpos[0],startpos[1],endx,endy));
-        ds_list_replace(bez_list,2,startpos[0]+cos(-mousedir-pi/2)*100);
-        ds_list_replace(bez_list,3,startpos[1]+sin(-mousedir-pi/2)*100);
-        ds_list_replace(bez_list,4,endx+cos(-mousedir-pi/2)*100);
-        ds_list_replace(bez_list,5,endy+sin(-mousedir-pi/2)*100);
         ds_list_replace(bez_list,6,endx);
         ds_list_replace(bez_list,7,endy);
         bezier_coeffs(ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1),ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3),ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5),ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7));

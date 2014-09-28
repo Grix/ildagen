@@ -157,8 +157,8 @@
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41910.5678988426</constant>
-    <constant name="GM_version">'0.9.3.3'</constant>
+    <constant name="GM_build_date">41910.9085308102</constant>
+    <constant name="GM_version">'0.9.3.0'</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
