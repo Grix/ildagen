@@ -212,7 +212,7 @@ if (keyboard_check(ord('S'))) or (sgridshow == 1)
     with (obj_cursor)
         move_snap(32,32);
         
-if (keyboard_check_pressed(vk_backspace) or keyboard_check_pressed(vk_delete))
+if (keyboard_check_pressed(vk_backspace))
     {
     placing_status = 0;
     ds_list_clear(free_list);
@@ -247,7 +247,7 @@ if (keyboard_check(vk_left)) and (frame &gt; 0)
         alarm[0] = 30;
         }
     else if (scroll)
-        framehr -= 0.25;
+        framehr -= 0.3;
     frame = round(framehr);
     refresh_surfaces();
     }
@@ -261,7 +261,7 @@ else if (keyboard_check(vk_right)) and (frame &lt; (maxframes-1))
         alarm[0] = 30;
         }
     else if (scroll)
-        framehr += 0.25;
+        framehr += 0.3;
     frame = round(framehr);
     refresh_surfaces();
     }
@@ -361,13 +361,13 @@ if (placing_status == 0)
     
 else if (placing_status == 2) and (placing == "curve")
     {
-    if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3)) &lt; 5)
+    if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3)) &lt; 7)
         bez_moving = 1;
-    else if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5)) &lt; 5)
+    else if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5)) &lt; 7)
         bez_moving = 2;
-    if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1)) &lt; 5)
+    if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1)) &lt; 7)
         bez_moving = 3;
-    else if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7)) &lt; 5)
+    else if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7)) &lt; 7)
         bez_moving = 4;
     mouse_yprevious = mouse_y;
     mouse_xprevious = mouse_x;
@@ -397,6 +397,7 @@ else if (placing_status == 2) and (placing == "curve")
             <string>if (mouse_x &gt; 512) or (mouse_y &gt; 512)
     exit;
     
+
 if (placing == "free")
     {
     if (placing_status == 1)
@@ -412,13 +413,13 @@ else if (placing == "curve")
     {
     if (placing_status == 1)
         {
-        mousedir = degtorad(point_direction(startpos[0],startpos[1],obj_cursor.x,obj_cursor.y));
+        mousedir = degtorad(point_direction(startpos[0],startpos[1],endx,endy));
         ds_list_replace(bez_list,2,startpos[0]+cos(-mousedir-pi/2)*100);
         ds_list_replace(bez_list,3,startpos[1]+sin(-mousedir-pi/2)*100);
-        ds_list_replace(bez_list,4,obj_cursor.x+cos(-mousedir-pi/2)*100);
-        ds_list_replace(bez_list,5,obj_cursor.y+sin(-mousedir-pi/2)*100);
-        ds_list_replace(bez_list,6,obj_cursor.x);
-        ds_list_replace(bez_list,7,obj_cursor.y);
+        ds_list_replace(bez_list,4,endx+cos(-mousedir-pi/2)*100);
+        ds_list_replace(bez_list,5,endy+sin(-mousedir-pi/2)*100);
+        ds_list_replace(bez_list,6,endx);
+        ds_list_replace(bez_list,7,endy);
         bezier_coeffs(ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1),ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3),ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5),ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7));
         }
     else if (placing_status == 2)

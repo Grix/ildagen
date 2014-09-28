@@ -82,6 +82,13 @@ else image_index = 0;
 controller.resolution = get_integer("Enter resolution (detail level) of ilda file. Lower looks better but is slower.",controller.resolution);
 if (controller.resolution &lt; 4) controller.resolution = 4;
 if (controller.resolution &gt; $8000) controller.resolution = $8000;
+
+with (controller)
+    {
+    placing_status = 0;
+    ds_list_clear(free_list);
+    ds_list_clear(bez_list);
+    }
 </string>
           </argument>
         </arguments>

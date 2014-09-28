@@ -49,26 +49,26 @@ moving = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (moving == 1)
+            <string>if (moving == 1) or ((moving) and keyboard_check(vk_control))
     {
     red = colour_get_red(controller.anicolor2);
-    red -= (mouse_y-mouse_yprevious)*255/23;
+    red -= (mouse_y-mouse_yprevious)*255/25;
     if (red &lt; 0) red = 0;
     if (red &gt; 255) red = 255;
     controller.anicolor2 = make_color_rgb(red,colour_get_green(controller.anicolor2),colour_get_blue(controller.anicolor2));
     }
-else if (moving == 2)
+if (moving == 2) or ((moving) and keyboard_check(vk_control))
     {
     green = colour_get_green(controller.anicolor2);
-    green -= (mouse_y-mouse_yprevious)*255/23;
+    green -= (mouse_y-mouse_yprevious)*255/25;
     if (green &lt; 0) green = 0;
     if (green &gt; 255) green = 255;
     controller.anicolor2 = make_color_rgb(colour_get_red(controller.anicolor2),green,colour_get_blue(controller.anicolor2));
     }
-else if (moving == 3)
+if (moving == 3) or ((moving) and keyboard_check(vk_control))
     {
     blue = colour_get_blue(controller.anicolor2);
-    blue -= (mouse_y-mouse_yprevious)*255/23;
+    blue -= (mouse_y-mouse_yprevious)*255/25;
     if (blue &lt; 0) blue = 0;
     if (blue &gt; 255) blue = 255;
     controller.anicolor2 = make_color_rgb(colour_get_red(controller.anicolor2),colour_get_green(controller.anicolor2),blue);

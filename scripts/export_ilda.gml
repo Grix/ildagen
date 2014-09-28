@@ -2,8 +2,7 @@
 placing_status = 0;
 
 ilda_buffer = buffer_create(1,buffer_grow,1);
-file_loc = get_save_filename("*.ild","example.ild");
-//file_loc += ".ild";
+file_loc = get_save_filename("*.ild","out.ild");
 if (file_loc == "")
     exit;
 

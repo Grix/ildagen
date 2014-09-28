@@ -48,11 +48,11 @@ for (i = 0;i < ds_list_size(el_list);i++)
                 if (xp == nxp) && (yp == nyp)
                     {
                     draw_set_alpha(0.8)
-                    draw_line_colour(256,256,xxp,yyp,make_colour_rgb(nr,ng,nb),make_colour_rgb(nr/7,ng/7,nb/7));
+                    draw_line_colour(256,256,xxp,yyp,make_colour_rgb(nr,ng,nb),make_colour_rgb(nr/9,ng/9,nb/9));
                     draw_set_alpha(0.65)
                     }
                 else
-                    draw_triangle_colour(256,256,xxp,yyp,nxxp,nyyp,make_colour_rgb(nr,ng,nb),make_colour_rgb(nr/7,ng/7,nb/7),make_colour_rgb(nr/7,ng/7,nb/7),0);
+                    draw_triangle_colour(256,256,xxp,yyp,nxxp,nyyp,make_colour_rgb(nr,ng,nb),make_colour_rgb(nr/9,ng/9,nb/9),make_colour_rgb(nr/9,ng/9,nb/9),0);
                 }
         
             
