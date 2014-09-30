@@ -91,7 +91,11 @@ if (ds_list_size(controller.frame_list) &lt; controller.maxframes)
         ds_list_add(controller.frame_list,templist);
         }
         
-if (controller.frame &gt; controller.maxframes) controller.frame = controller.maxframes-1;
+if (controller.frame &gt; controller.maxframes) 
+    {
+    controller.frame = controller.maxframes-1;
+    controller.framehr = controller.maxframes-1;
+    }
 
 with (controller)
     {

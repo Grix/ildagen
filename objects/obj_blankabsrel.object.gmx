@@ -27,7 +27,6 @@
             <kind>1</kind>
             <string>image_speed = 0;
 
-text_surf = surface_create(300,20);
 </string>
           </argument>
         </arguments>

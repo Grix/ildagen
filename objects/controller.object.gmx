@@ -28,6 +28,8 @@
             <string>c_ltltgray = make_colour_rgb(230,230,230);
 c_ltltltgray = make_colour_rgb(240,240,240);
 
+display_reset(0,1);
+
 el_list = ds_list_create();
 undo_list = ds_stack_create();
 el_id = 0;
@@ -101,6 +103,7 @@ aniblank_dc = 0.5;
 aniblank_offset = 0;
 anicolor_offset = 0;
 aniwave_offset = 0;
+anifunc = "saw";
 
 alarm[0] = 1;
 </string>
@@ -237,7 +240,7 @@ if (keyboard_check_pressed(vk_space))
 if (!ds_list_empty(el_list) and !surface_exists(ds_list_find_value(surf_list,0)))
     refresh_surfaces();
 
-if (keyboard_check(vk_left)) and (frame &gt; 0)
+if (keyboard_check(vk_left)) and (maxframes &gt; 1)
     {
     if (keyboard_check_pressed(vk_left))
         {
@@ -247,11 +250,13 @@ if (keyboard_check(vk_left)) and (frame &gt; 0)
         alarm[0] = 30;
         }
     else if (scroll)
-        framehr -= 0.3;
+        framehr -= 0.4;
+    if (framehr &lt; -0.5)
+        framehr+= maxframes;
     frame = round(framehr);
     refresh_surfaces();
     }
-else if (keyboard_check(vk_right)) and (frame &lt; (maxframes-1))
+else if (keyboard_check(vk_right)) and (maxframes &gt; 1)
     {
     if (keyboard_check_pressed(vk_right))
         {
@@ -261,7 +266,9 @@ else if (keyboard_check(vk_right)) and (frame &lt; (maxframes-1))
         alarm[0] = 30;
         }
     else if (scroll)
-        framehr += 0.3;
+        framehr += 0.4;
+    if (framehr &gt; maxframes-1)
+        framehr-= maxframes;
     frame = round(framehr);
     refresh_surfaces();
     }
@@ -544,7 +551,7 @@ if (placing_status)
 draw_set_font(fnt_tooltip);
 draw_set_color(c_white);
 draw_rectangle_colour(513,0,1000,512,c_ltgray,c_ltgray,c_ltltgray,c_ltltgray,0);
-draw_rectangle_colour(0,512,1000,600,c_ltltgray,c_ltltgray,c_ltltltgray,c_ltltltgray,0);
+draw_rectangle_colour(0,512,1000,650,c_ltltgray,c_ltltgray,c_ltltltgray,c_ltltltgray,0);
 draw_set_color(c_dkgray);
 draw_line(512,0,512,512);
 draw_line(513,150,1000,150);

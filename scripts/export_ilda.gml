@@ -9,6 +9,8 @@ if (file_loc == "")
 maxpoints = 0;
 frame = 0;
 
+maxpointstot = 0;
+
 maxframespost = maxframes;
 maxframesa[0] = maxframespost & 255;
 maxframespost = maxframespost >> 8;
@@ -130,6 +132,7 @@ for (j = 0; j < maxframes;j++)
     maxpointsa[1] = maxpoints & 255;
     buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
     buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
+    maxpointstot += maxpointspre;
     maxpoints = 0;
     }
     
@@ -170,7 +173,7 @@ buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
 
 //export
 buffer_save(ilda_buffer,file_loc);
-show_message("ILDA file exported, "+string(maxpointspre)+" points total");
+show_message("ILDA file exported, "+string(maxpointstot)+" points total");
 buffer_delete(ilda_buffer);
 
 frame = 0;
