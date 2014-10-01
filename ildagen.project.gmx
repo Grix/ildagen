@@ -40,8 +40,6 @@
     <sprite>sprites\spr_anifunc</sprite>
     <sprite>sprites\spr_absrel</sprite>
     <sprite>sprites\spr_waveampselect</sprite>
-    <sprite>sprites\spr_xtrans</sprite>
-    <sprite>sprites\spr_ytrans</sprite>
     <sprite>sprites\spr_blankperiodselect</sprite>
     <sprite>sprites\spr_e_undo</sprite>
     <sprite>sprites\spr_b_solid</sprite>
@@ -63,7 +61,6 @@
     <sprite>sprites\spr_colorselect_blue</sprite>
     <sprite>sprites\spr_colorselect_green</sprite>
     <sprite>sprites\spr_knob</sprite>
-    <sprite>sprites\spr_knobvert</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -155,8 +152,6 @@
         <object>objects\obj_anicoloroffselect</object>
         <object>objects\obj_anienddotscolorselect</object>
         <object>objects\obj_anifunc</object>
-        <object>objects\obj_anixtrans</object>
-        <object>objects\obj_aniytrans</object>
       </objects>
     </objects>
   </objects>
@@ -164,7 +159,7 @@
     <room>rooms\rm_2d</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41913.9170528472</constant>
+    <constant name="GM_build_date">41912.7417234259</constant>
     <constant name="GM_version">'0.9.3.0'</constant>
   </constants>
   <help>

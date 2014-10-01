@@ -2,7 +2,7 @@
 <room>
   <caption></caption>
   <width>1000</width>
-  <height>670</height>
+  <height>650</height>
   <vsnap>8</vsnap>
   <hsnap>8</hsnap>
   <isometric>0</isometric>
@@ -81,28 +81,26 @@
     <instance objName="obj_enddots" x="904" y="360" name="inst_40CD9389" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_b_dotsolid" x="824" y="312" name="inst_BF268ABE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anienable" x="48" y="552" name="inst_184A1377" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_anicolorselect_1" x="440" y="584" name="inst_8AA2C06C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_anicolorselect_2" x="440" y="536" name="inst_218C2DFB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_aniblankdcselect" x="560" y="552" name="inst_05168740" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_maxframes" x="160" y="568" name="inst_A6C7D046" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_anicolordcselect" x="736" y="512" name="inst_7CEAC26F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_anicolorselect_1" x="216" y="544" name="inst_8AA2C06C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_anicolorselect_2" x="304" y="544" name="inst_218C2DFB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_aniblankdcselect" x="408" y="552" name="inst_05168740" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_maxframes" x="160" y="560" name="inst_A6C7D046" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_anicolordcselect" x="576" y="512" name="inst_7CEAC26F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_blankoffselect" x="552" y="384" name="inst_6E806301" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_aniblankoffselect" x="560" y="512" name="inst_34717355" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_aniblankoffselect" x="408" y="512" name="inst_34717355" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_coloroffselect" x="664" y="232" name="inst_5ADB8486" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_anicoloroffselect" x="736" y="552" name="inst_BD1FF2D7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_aniwaveoffselect" x="560" y="616" name="inst_76B9E917" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_anicoloroffselect" x="576" y="552" name="inst_BD1FF2D7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_aniwaveoffselect" x="744" y="552" name="inst_76B9E917" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_waveoffselect" x="552" y="120" name="inst_0ED1A755" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anienddotscolorselect" x="912" y="520" name="inst_49DA6D2B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_s_free" x="888" y="16" name="inst_3B0DEDA3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_bckimage" x="640" y="464" name="inst_8383FA41" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_onionskin" x="112" y="568" name="inst_8EE9657B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_onionskin" x="112" y="560" name="inst_8EE9657B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_fillframes" x="144" y="520" name="inst_FA6A6BC8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_help" x="544" y="464" name="inst_9E66828C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_dotnumber" x="952" y="360" name="inst_66667D57" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_curve" x="824" y="16" name="inst_394FF056" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_anifunc" x="16" y="624" name="inst_C3A7CF47" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_anixtrans" x="328" y="632" name="inst_E06F77B2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_aniytrans" x="248" y="584" name="inst_30816D7E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_anifunc" x="16" y="608" name="inst_C3A7CF47" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

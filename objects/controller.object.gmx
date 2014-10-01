@@ -104,8 +104,6 @@ aniblank_offset = 0;
 anicolor_offset = 0;
 aniwave_offset = 0;
 anifunc = "saw";
-anixtrans = 0;
-aniytrans = 0;
 
 alarm[0] = 1;
 </string>
@@ -553,7 +551,7 @@ if (placing_status)
 draw_set_font(fnt_tooltip);
 draw_set_color(c_white);
 draw_rectangle_colour(513,0,1000,512,c_ltgray,c_ltgray,c_ltltgray,c_ltltgray,0);
-draw_rectangle_colour(0,512,1000,670,c_ltltgray,c_ltltgray,c_ltltltgray,c_ltltltgray,0);
+draw_rectangle_colour(0,512,1000,650,c_ltltgray,c_ltltgray,c_ltltltgray,c_ltltltgray,0);
 draw_set_color(c_dkgray);
 draw_line(512,0,512,512);
 draw_line(513,150,1000,150);
