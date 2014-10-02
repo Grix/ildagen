@@ -8,7 +8,7 @@
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
   <bbox_left>0</bbox_left>
-  <bbox_right>179</bbox_right>
+  <bbox_right>224</bbox_right>
   <bbox_top>0</bbox_top>
   <bbox_bottom>21</bbox_bottom>
   <HTile>0</HTile>
@@ -17,12 +17,13 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>180</width>
+  <width>225</width>
   <height>22</height>
   <frames>
     <frame index="0">images\spr_anifunc_0.png</frame>
     <frame index="1">images\spr_anifunc_1.png</frame>
     <frame index="2">images\spr_anifunc_2.png</frame>
     <frame index="3">images\spr_anifunc_3.png</frame>
+    <frame index="4">images\spr_anifunc_4.png</frame>
   </frames>
 </sprite>

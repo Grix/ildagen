@@ -23,10 +23,6 @@ for (i = 0;i < ds_list_size(el_list);i++)
             {
             xp = ds_list_find_value(new_list,10+u*6+0);
             yp = ds_list_find_value(new_list,10+u*6+1);
-            bl = ds_list_find_value(new_list,10+u*6+2);
-            b = ds_list_find_value(new_list,10+u*6+3);
-            g = ds_list_find_value(new_list,10+u*6+4);
-            r = ds_list_find_value(new_list,10+u*6+5);
             
             nxp = ds_list_find_value(new_list,10+(u+1)*6+0);
             nyp = ds_list_find_value(new_list,10+(u+1)*6+1);

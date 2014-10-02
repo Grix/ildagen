@@ -1,7 +1,7 @@
-checkpoints = ceil((point_distance(startpos[0],startpos[1],endx,endy)*128+abs(wave_amp_r*2*wave_period_r))/resolution);
+checkpoints = ceil((point_distance(startposx_r,startposy_r,endx_r,endy_r)*128+abs(wave_amp_r*2*wave_period_r))/resolution);
 if (checkpoints < 4) checkpoints = 4;
-vector[0] = (endx-startpos[0])/checkpoints;
-vector[1] = (endy-startpos[1])/checkpoints;
+vector[0] = (endx_r-startposx_r)/checkpoints;
+vector[1] = (endy_r-startposy_r)/checkpoints;
 blanknew = 1;
 
 if (blankmode == "dot") or (blankmode == "dotsolid")
@@ -34,7 +34,7 @@ if (colormode == "dash")
     
 
 
-if !((startpos[0] == endx) && (startpos[1] == (endy)))
+if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
     for (n = 0;n <= checkpoints; n++)
         {
         makedot = 0;
@@ -83,8 +83,8 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
                 }
             }
             
-        ratiox = sin(degtorad(point_direction(startpos[0],startpos[1],endx,endy)));
-        ratioy = cos(degtorad(point_direction(startpos[0],startpos[1],endx,endy)));
+        ratiox = sin(degtorad(point_direction(startposx_r,startposy_r,endx_r,endy_r)));
+        ratioy = cos(degtorad(point_direction(startposx_r,startposy_r,endx_r,endy_r)));
         pointx = vector[0]*n+wave_amp_r*sin(wave_offset_r+ pi*2/checkpoints*n*wave_period_r)*ratiox/128;
         pointy = vector[1]*n+wave_amp_r*sin(wave_offset_r+ pi*2/checkpoints*n*wave_period_r)*ratioy/128;
         pointxprevious = vector[0]*(n-1)+wave_amp_r*sin(wave_offset_r+ pi*2/checkpoints*(n-1)*wave_period_r)*ratiox/128;
@@ -220,14 +220,14 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
     }
 else
     {
-    ds_list_add(new_list,endx*128);
-    ds_list_add(new_list,endy*128);
+    ds_list_add(new_list,endx_r*128);
+    ds_list_add(new_list,endy_r*128);
     ds_list_add(new_list,blank);
     ds_list_add(new_list,c[0]);
     ds_list_add(new_list,c[1]);
     ds_list_add(new_list,c[2]);
-    ds_list_add(new_list,endx*128);
-    ds_list_add(new_list,endy*128);
+    ds_list_add(new_list,endx_r*128);
+    ds_list_add(new_list,endy_r*128);
     ds_list_add(new_list,blank);
     ds_list_add(new_list,c[0]);
     ds_list_add(new_list,c[1]);

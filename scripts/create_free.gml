@@ -1,14 +1,14 @@
-if (ds_list_find_value(free_list,ds_list_size(free_list)-2) != mouse_x-startpos[0]) and (ds_list_find_value(free_list,ds_list_size(free_list)-1) != mouse_x-startpos[1])
+if (ds_list_find_value(free_list,ds_list_size(free_list)-2) != mouse_x-startposx_r) and (ds_list_find_value(free_list,ds_list_size(free_list)-1) != mouse_x-startposy_r)
     {
-    ds_list_add(free_list,mouse_x-startpos[0]);
-    ds_list_add(free_list,mouse_y-startpos[1]);
+    ds_list_add(free_list,mouse_x-startposx_r);
+    ds_list_add(free_list,mouse_y-startposy_r);
     }
 
 checkpoints = ds_list_size(free_list)/2;
 if (checkpoints < 2) checkpoints = 2;
 
-vector[0] = (endx-startpos[0])/checkpoints;
-vector[1] = (endy-startpos[1])/checkpoints;
+vector[0] = (endx_r-startposx_r)/checkpoints;
+vector[1] = (endy_r-startposy_r)/checkpoints;
 blanknew = 1;
 
 if (blankmode == "dot") or (blankmode == "dotsolid")

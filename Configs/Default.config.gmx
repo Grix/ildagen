@@ -71,6 +71,7 @@
     <option_colordepth>0</option_colordepth>
     <option_display_name>ildaGen</option_display_name>
     <option_displayerrors>True</option_displayerrors>
+    <option_facebook_app_display_name></option_facebook_app_display_name>
     <option_facebook_appid></option_facebook_appid>
     <option_facebook_enable>0</option_facebook_enable>
     <option_freeze>false</option_freeze>

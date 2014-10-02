@@ -138,6 +138,11 @@ moving = 1;
 draw_set_alpha(1);
 draw_sprite(sprite_index,image_index,x,y);
 draw_sprite(spr_knobvert,(moving &gt; 0),x+16,y+controller.aniytrans/$ffff*59);
+
+draw_set_color(c_dkgray);
+draw_rectangle(x+35,y+48,x+150,y-62,1);
+draw_set_color(c_red);
+draw_arrow(x+90-controller.anixtrans/$ffff*55,y-6-controller.aniytrans/$ffff*55,x+90+controller.anixtrans/$ffff*55,y-6+controller.aniytrans/$ffff*55,12);
 </string>
           </argument>
         </arguments>

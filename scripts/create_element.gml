@@ -41,27 +41,6 @@ if (!fillframes)
     {
     new_list = ds_list_create();
     
-    if (placing != "curve")
-        {
-        ds_list_add(new_list,startpos[0]*128); //origo x
-        ds_list_add(new_list,startpos[1]*128); //origo y
-        ds_list_add(new_list,endx*128); //end x
-        ds_list_add(new_list,endy*128); //end y
-        }
-    else
-        {
-        ds_list_add(new_list,ds_list_find_value(bez_list,0)*128); //origo x
-        ds_list_add(new_list,ds_list_find_value(bez_list,1)*128); //origo y
-        ds_list_add(new_list,ds_list_find_value(bez_list,6)*128); //end x
-        ds_list_add(new_list,ds_list_find_value(bez_list,7)*128); //end y
-        }
-    ds_list_add(new_list,0);
-    ds_list_add(new_list,0);
-    ds_list_add(new_list,0);
-    ds_list_add(new_list,0);
-    ds_list_add(new_list,0);
-    ds_list_add(new_list,el_id);
-    
     if (anienable == 0) or (maxframes == 1)
         {
         blank_freq_r = blank_freq;
@@ -78,82 +57,148 @@ if (!fillframes)
         wave_period_r = wave_period;
         wave_offset_r = degtorad(wave_offset);
         wave_amp_r = wave_amp;
+        endx_r = endx;
+        endy_r = endy;
+        startposx_r = startpos[0];
+        startposy_r  = startpos[1];
+        }
+    else
+            {
+            t = frame/maxframes;    
+            if (anifunc = "tri")
+                {
+                t *= 2;
+                if (t > 1)
+                    t = 1-(t%1)
+                blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
+                blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
+                blank_dc_r = lerp(blank_dc,aniblank_dc,t);
+                blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
+                color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
+                color_period_r = color_period//lerp(color_period,anicolor_period,t);
+                color_dc_r = lerp(color_dc,anicolor_dc,t);
+                color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
+                wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
+                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
+                color1_r = merge_color(color1,anicolor1,t);
+                color2_r = merge_color(color2,anicolor2,t);
+                enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
+                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
+                endy_r = lerp(endy,endx+aniytrans/$ffff*512,t);
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
+                }
+            else if (anifunc = "sine")
+                {
+                t = cos(t*pi*2);
+                t += 1;
+                t /= 2;
+                blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
+                blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
+                blank_dc_r = lerp(blank_dc,aniblank_dc,t);
+                blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
+                color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
+                color_period_r = color_period//lerp(color_period,anicolor_period,t);
+                color_dc_r = lerp(color_dc,anicolor_dc,t);
+                color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
+                wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
+                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
+                color1_r = merge_color(color1,anicolor1,t);
+                color2_r = merge_color(color2,anicolor2,t);
+                enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
+                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
+                endy_r = lerp(endy,endx+aniytrans/$ffff*512,t);
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
+                }
+            else if (anifunc = "ssine")
+                {
+                blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,sin(t*pi/2));
+                blank_period_r = blank_period//lerp(blank_period,aniblank_period,sin(t*pi/2));
+                blank_dc_r = lerp(blank_dc,aniblank_dc,sin(t*pi/2));
+                blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,sin(t*pi/2)));
+                color_freq_r = color_freq//lerp(color_freq,anicolor_freq,sin(t*pi/2));
+                color_period_r = color_period//lerp(color_period,anicolor_period,sin(t*pi/2));
+                color_dc_r = lerp(color_dc,anicolor_dc,sin(t*pi/2));
+                color_offset_r = degtorad(lerp(color_offset,anicolor_offset,sin(t*pi/2)));
+                wave_period_r = wave_period//lerp(color_period,anicolor_period,sin(t*pi/2));
+                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,sin(t*pi/2));
+                wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,sin(t*pi/2)));
+                color1_r = merge_color(color1,anicolor1,sin(t*pi/2));
+                color2_r = merge_color(color2,anicolor2,sin(t*pi/2));
+                enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi/2));
+                endx_r = lerp(endx,endx+anixtrans/$ffff*512,sin(t*pi/2));
+                endy_r = lerp(endy,endx+aniytrans/$ffff*512,sin(t*pi/2));
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,sin(t*pi/2));
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,sin(t*pi/2));
+                }
+            else if (anifunc = "hsine")
+                {
+                blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,sin(t*pi));
+                blank_period_r = blank_period//lerp(blank_period,aniblank_period,sin(t*pi));
+                blank_dc_r = lerp(blank_dc,aniblank_dc,sin(t*pi));
+                blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,sin(t*pi)));
+                color_freq_r = color_freq//lerp(color_freq,anicolor_freq,sin(t*pi));
+                color_period_r = color_period//lerp(color_period,anicolor_period,sin(t*pi));
+                color_dc_r = lerp(color_dc,anicolor_dc,sin(t*pi));
+                color_offset_r = degtorad(lerp(color_offset,anicolor_offset,sin(t*pi)));
+                wave_period_r = wave_period//lerp(color_period,anicolor_period,sin(t*pi));
+                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,sin(t*pi));
+                wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,sin(t*pi)));
+                color1_r = merge_color(color1,anicolor1,sin(t*pi));
+                color2_r = merge_color(color2,anicolor2,sin(t*pi));
+                enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi));
+                endx_r = lerp(endx,endx+anixtrans/$ffff*512,sin(t*pi));
+                endy_r = lerp(endy,endx+aniytrans/$ffff*512,sin(t*pi));
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,sin(t*pi));
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,sin(t*pi));
+                }
+            else if (anifunc = "saw")
+                {
+                blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
+                blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
+                blank_dc_r = lerp(blank_dc,aniblank_dc,t);
+                blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
+                color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
+                color_period_r = color_period//lerp(color_period,anicolor_period,t);
+                color_dc_r = lerp(color_dc,anicolor_dc,t);
+                color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
+                wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
+                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
+                color1_r = merge_color(color1,anicolor1,t);
+                color2_r = merge_color(color2,anicolor2,t);
+                enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
+                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
+                endy_r = lerp(endy,endx+aniytrans/$ffff*512,t);
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
+                }
+            }
+        
+    if (placing != "curve")
+        {
+        ds_list_add(new_list,startposx_r*128); //origo x
+        ds_list_add(new_list,startposy_r*128); //origo y
+        ds_list_add(new_list,endx_r*128); //end x
+        ds_list_add(new_list,endy_r*128); //end y
         }
     else
         {
-        t = frame/maxframes;
-        if (anifunc = "tri")
-            {
-            t *= 2;
-            if (t > 1)
-                t = 1-(t%1);
-            blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
-            blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
-            blank_dc_r = lerp(blank_dc,aniblank_dc,t);
-            blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
-            color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
-            color_period_r = color_period//lerp(color_period,anicolor_period,t);
-            color_dc_r = lerp(color_dc,anicolor_dc,t);
-            color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
-            wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
-            wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
-            wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
-            color1_r = merge_color(color1,anicolor1,t);
-            color2_r = merge_color(color2,anicolor2,t);
-            enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            }
-        else if (anifunc = "sine")
-            {
-            blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,sin(t*pi/2));
-            blank_period_r = blank_period//lerp(blank_period,aniblank_period,sin(t*pi/2));
-            blank_dc_r = lerp(blank_dc,aniblank_dc,sin(t*pi/2));
-            blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,sin(t*pi/2)));
-            color_freq_r = color_freq//lerp(color_freq,anicolor_freq,sin(t*pi/2));
-            color_period_r = color_period//lerp(color_period,anicolor_period,sin(t*pi/2));
-            color_dc_r = lerp(color_dc,anicolor_dc,sin(t*pi/2));
-            color_offset_r = degtorad(lerp(color_offset,anicolor_offset,sin(t*pi/2)));
-            wave_period_r = wave_period//lerp(color_period,anicolor_period,sin(t*pi/2));
-            wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,sin(t*pi/2));
-            wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,sin(t*pi/2)));
-            color1_r = merge_color(color1,anicolor1,sin(t*pi/2));
-            color2_r = merge_color(color2,anicolor2,sin(t*pi/2));
-            enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi/2));
-            }
-        else if (anifunc = "hsine")
-            {
-            blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,sin(t*pi));
-            blank_period_r = blank_period//lerp(blank_period,aniblank_period,sin(t*pi));
-            blank_dc_r = lerp(blank_dc,aniblank_dc,sin(t*pi));
-            blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,sin(t*pi)));
-            color_freq_r = color_freq//lerp(color_freq,anicolor_freq,sin(t*pi));
-            color_period_r = color_period//lerp(color_period,anicolor_period,sin(t*pi));
-            color_dc_r = lerp(color_dc,anicolor_dc,sin(t*pi));
-            color_offset_r = degtorad(lerp(color_offset,anicolor_offset,sin(t*pi)));
-            wave_period_r = wave_period//lerp(color_period,anicolor_period,sin(t*pi));
-            wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,sin(t*pi));
-            wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,sin(t*pi)));
-            color1_r = merge_color(color1,anicolor1,sin(t*pi));
-            color2_r = merge_color(color2,anicolor2,sin(t*pi));
-            enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi));
-            }
-        else if (anifunc = "saw")
-            {
-            blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
-            blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
-            blank_dc_r = lerp(blank_dc,aniblank_dc,t);
-            blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
-            color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
-            color_period_r = color_period//lerp(color_period,anicolor_period,t);
-            color_dc_r = lerp(color_dc,anicolor_dc,t);
-            color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
-            wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
-            wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
-            wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
-            color1_r = merge_color(color1,anicolor1,t);
-            color2_r = merge_color(color2,anicolor2,t);
-            enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            }
+        ds_list_add(new_list,ds_list_find_value(bez_list,0)*128); //origo x
+        ds_list_add(new_list,ds_list_find_value(bez_list,1)*128); //origo y
+        ds_list_add(new_list,ds_list_find_value(bez_list,6)*128); //end x
+        ds_list_add(new_list,ds_list_find_value(bez_list,7)*128); //end y
         }
+    ds_list_add(new_list,0);
+    ds_list_add(new_list,0);
+    ds_list_add(new_list,0);
+    ds_list_add(new_list,0);
+    ds_list_add(new_list,0);
+    ds_list_add(new_list,el_id);
+    
     
     if (placing == "line") //create a line
         create_line();
@@ -163,9 +208,6 @@ if (!fillframes)
         
     else if (placing == "wave") //create a wave
         create_wave();
-        
-    else if (placing == "rect") //create a rectangle (not working)
-        create_rect();
 
     else if (placing == "free") //create a free drawn shape
         create_free();
@@ -186,26 +228,6 @@ else
         
         new_list = ds_list_create();
         
-        if (placing != "curve")
-            {
-            ds_list_add(new_list,startpos[0]*128); //origo x
-            ds_list_add(new_list,startpos[1]*128); //origo y
-            ds_list_add(new_list,endx*128); //end x
-            ds_list_add(new_list,endy*128); //end y
-            }
-        else
-            {
-            ds_list_add(new_list,ds_list_find_value(bez_list,0)*128); //origo x
-            ds_list_add(new_list,ds_list_find_value(bez_list,1)*128); //origo y
-            ds_list_add(new_list,ds_list_find_value(bez_list,6)*128); //end x
-            ds_list_add(new_list,ds_list_find_value(bez_list,7)*128); //end y
-            }
-        ds_list_add(new_list,0);
-        ds_list_add(new_list,0);
-        ds_list_add(new_list,0);
-        ds_list_add(new_list,0);
-        ds_list_add(new_list,0);
-        ds_list_add(new_list,el_id);
         
         if (anienable == 0) or (maxframes == 1)
             {
@@ -223,10 +245,14 @@ else
             wave_period_r = wave_period;
             wave_offset_r = degtorad(wave_offset);
             wave_amp_r = wave_amp;
+            endx_r = endx;
+            endy_r = endy;
+            startposx_r = startpos[0];
+            startposy_r  = startpos[1];
             }
         else
             {
-            t = frame/maxframes;
+            t = frame/maxframes;    
             if (anifunc = "tri")
                 {
                 t *= 2;
@@ -246,8 +272,36 @@ else
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
+                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
+                endy_r = lerp(endy,endx+aniytrans/$ffff*512,t);
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
                 }
             else if (anifunc = "sine")
+                {
+                t = cos(t*pi*2);
+                t += 1;
+                t /= 2;
+                blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
+                blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
+                blank_dc_r = lerp(blank_dc,aniblank_dc,t);
+                blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
+                color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
+                color_period_r = color_period//lerp(color_period,anicolor_period,t);
+                color_dc_r = lerp(color_dc,anicolor_dc,t);
+                color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
+                wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
+                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
+                color1_r = merge_color(color1,anicolor1,t);
+                color2_r = merge_color(color2,anicolor2,t);
+                enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
+                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
+                endy_r = lerp(endy,endx+aniytrans/$ffff*512,t);
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
+                }
+            else if (anifunc = "ssine")
                 {
                 blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,sin(t*pi/2));
                 blank_period_r = blank_period//lerp(blank_period,aniblank_period,sin(t*pi/2));
@@ -263,6 +317,10 @@ else
                 color1_r = merge_color(color1,anicolor1,sin(t*pi/2));
                 color2_r = merge_color(color2,anicolor2,sin(t*pi/2));
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi/2));
+                endx_r = lerp(endx,endx+anixtrans/$ffff*512,sin(t*pi/2));
+                endy_r = lerp(endy,endx+aniytrans/$ffff*512,sin(t*pi/2));
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,sin(t*pi/2));
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,sin(t*pi/2));
                 }
             else if (anifunc = "hsine")
                 {
@@ -280,6 +338,10 @@ else
                 color1_r = merge_color(color1,anicolor1,sin(t*pi));
                 color2_r = merge_color(color2,anicolor2,sin(t*pi));
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi));
+                endx_r = lerp(endx,endx+anixtrans/$ffff*512,sin(t*pi));
+                endy_r = lerp(endy,endx+aniytrans/$ffff*512,sin(t*pi));
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,sin(t*pi));
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,sin(t*pi));
                 }
             else if (anifunc = "saw")
                 {
@@ -297,8 +359,34 @@ else
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
+                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
+                endy_r = lerp(endy,endx+aniytrans/$ffff*512,t);
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
                 }
             }
+            
+        if (placing != "curve")
+            {
+            ds_list_add(new_list,startposx_r*128); //origo x
+            ds_list_add(new_list,startposy_r*128); //origo y
+            ds_list_add(new_list,endx_r*128); //end x
+            ds_list_add(new_list,endy_r*128); //end y
+            }
+        else
+            {
+            ds_list_add(new_list,ds_list_find_value(bez_list,0)*128); //origo x
+            ds_list_add(new_list,ds_list_find_value(bez_list,1)*128); //origo y
+            ds_list_add(new_list,ds_list_find_value(bez_list,6)*128); //end x
+            ds_list_add(new_list,ds_list_find_value(bez_list,7)*128); //end y
+            }
+        ds_list_add(new_list,0);
+        ds_list_add(new_list,0);
+        ds_list_add(new_list,0);
+        ds_list_add(new_list,0);
+        ds_list_add(new_list,0);
+        ds_list_add(new_list,el_id);
+        
         
         if (placing == "line") //create a line
             create_line();
@@ -308,9 +396,6 @@ else
             
         else if (placing == "wave") //create a wave
             create_wave();
-            
-        else if (placing == "rect") //create a rectangle (not working)
-            create_rect();
     
         else if (placing == "free") //create a free drawn shape
             create_free();

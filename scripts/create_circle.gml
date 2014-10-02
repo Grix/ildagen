@@ -1,5 +1,5 @@
-radius = point_distance(startpos[0],startpos[1],endx,endy)*128;
-startrad = degtorad(-point_direction(startpos[0],startpos[1],endx,endy));
+radius = point_distance(startposx_r,startposy_r,endx_r,endy_r)*128;
+startrad = degtorad(-point_direction(startposx_r,startposy_r,endx_r,endy_r));
 
 checkpoints = ceil(2*pi*radius/resolution);
 if (checkpoints < 3) checkpoints = 3;
@@ -43,7 +43,7 @@ if (blankmode != "solid")
         blanknew = 0;
     }
 
-if !((startpos[0] == endx) && (startpos[1] == endy))
+if !((startposx_r == endx_r) && (startposy_r == endy_r))
     for (n = 0;n <= checkpoints; n++)
         {
         makedot = 0;
@@ -227,14 +227,14 @@ if !((startpos[0] == endx) && (startpos[1] == endy))
     }
 else
     {
-    ds_list_add(new_list,endx*128);
-    ds_list_add(new_list,endy*128);
+    ds_list_add(new_list,endx_r*128);
+    ds_list_add(new_list,endy_r*128);
     ds_list_add(new_list,blank);
     ds_list_add(new_list,c[0]);
     ds_list_add(new_list,c[1]);
     ds_list_add(new_list,c[2]);
-    ds_list_add(new_list,endx*128);
-    ds_list_add(new_list,endy*128);
+    ds_list_add(new_list,endx_r*128);
+    ds_list_add(new_list,endy_r*128);
     ds_list_add(new_list,blank);
     ds_list_add(new_list,c[0]);
     ds_list_add(new_list,c[1]);

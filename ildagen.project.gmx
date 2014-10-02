@@ -80,7 +80,6 @@
     <script>scripts\create_circle.gml</script>
     <script>scripts\create_wave.gml</script>
     <script>scripts\create_curve.gml</script>
-    <script>scripts\create_rect.gml</script>
     <script>scripts\surface_flip.gml</script>
     <script>scripts\verify_serial.gml</script>
     <script>scripts\refresh_surfaces.gml</script>

@@ -1,8 +1,8 @@
-checkpoints = ceil(point_distance(startpos[0],startpos[1],endx,endy)*128/resolution);
+checkpoints = ceil(point_distance(startposx_r,startposy_r,endx_r,endy_r)*128/resolution);
 if (checkpoints < 2) checkpoints = 2;
 
-vector[0] = (endx-startpos[0])/checkpoints;
-vector[1] = (endy-startpos[1])/checkpoints;
+vector[0] = (endx_r-startposx_r)/checkpoints;
+vector[1] = (endy_r-startposy_r)/checkpoints;
 blanknew = 1;
 
 if (blankmode == "dot") or (blankmode == "dotsolid")

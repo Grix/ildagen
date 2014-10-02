@@ -32,7 +32,7 @@ if (colormode == "dash")
     
 
 
-if !((startpos[0] == endx) && (startpos[1] == (endy)))
+if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
     for (n = 0;n <= checkpoints; n++)
         {
         makedot = 0;
@@ -81,10 +81,10 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
                 }
             }
             
-        pointx = bezier_x(n/checkpoints)-startpos[0];
-        pointy = bezier_y(n/checkpoints)-startpos[1];
-        pointxprevious = bezier_x((n-1)/checkpoints)-startpos[0];
-        pointyprevious = bezier_y((n-1)/checkpoints)-startpos[1];
+        pointx = bezier_x(n/checkpoints)-startposx_r;
+        pointy = bezier_y(n/checkpoints)-startposy_r;
+        pointxprevious = bezier_x((n-1)/checkpoints)-startposx_r;
+        pointyprevious = bezier_y((n-1)/checkpoints)-startposy_r;
             
         //BLANK
         if (blankmode = "solid")
@@ -216,14 +216,14 @@ if !((startpos[0] == endx) && (startpos[1] == (endy)))
     }
 else
     {
-    ds_list_add(new_list,endx*128);
-    ds_list_add(new_list,endy*128);
+    ds_list_add(new_list,endx_r*128);
+    ds_list_add(new_list,endy_r*128);
     ds_list_add(new_list,blank);
     ds_list_add(new_list,c[0]);
     ds_list_add(new_list,c[1]);
     ds_list_add(new_list,c[2]);
-    ds_list_add(new_list,endx*128);
-    ds_list_add(new_list,endy*128);
+    ds_list_add(new_list,endx_r*128);
+    ds_list_add(new_list,endy_r*128);
     ds_list_add(new_list,blank);
     ds_list_add(new_list,c[0]);
     ds_list_add(new_list,c[1]);
