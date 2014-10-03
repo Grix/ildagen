@@ -1,8 +1,12 @@
-if (ds_list_find_value(free_list,ds_list_size(free_list)-2) != mouse_x-startposx_r) and (ds_list_find_value(free_list,ds_list_size(free_list)-1) != mouse_x-startposy_r)
+if (ds_list_find_value(free_list,ds_list_size(free_list)-2) != mouse_x-startpos[0]) and (ds_list_find_value(free_list,ds_list_size(free_list)-1) != mouse_x-startpos[1])
     {
-    ds_list_add(free_list,mouse_x-startposx_r);
-    ds_list_add(free_list,mouse_y-startposy_r);
+    ds_list_add(free_list,mouse_x-startpos[0]);
+    ds_list_add(free_list,mouse_y-startpos[1]);
     }
+
+//ds_list_replace(free_list,0,ds_list_find_value(free_list,0)+(startposx_r-ds_list_find_value(free_list,0)));
+//ds_list_replace(free_list,1,ds_list_find_value(free_list,1)+(startposy_r-ds_list_find_value(free_list,1)));
+    
 
 checkpoints = ds_list_size(free_list)/2;
 if (checkpoints < 2) checkpoints = 2;

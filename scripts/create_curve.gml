@@ -81,10 +81,10 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
                 }
             }
             
-        pointx = bezier_x(n/checkpoints)-startposx_r;
-        pointy = bezier_y(n/checkpoints)-startposy_r;
-        pointxprevious = bezier_x((n-1)/checkpoints)-startposx_r;
-        pointyprevious = bezier_y((n-1)/checkpoints)-startposy_r;
+        pointx = bezier_x(n/checkpoints)-ds_list_find_value(bez_list,0)+(startposx_r-ds_list_find_value(bez_list,0));
+        pointy = bezier_y(n/checkpoints)-ds_list_find_value(bez_list,1)+(startposy_r-ds_list_find_value(bez_list,1));
+        pointxprevious = bezier_x((n-1)/checkpoints)-ds_list_find_value(bez_list,0)+(startposx_r-ds_list_find_value(bez_list,0));
+        pointyprevious = bezier_y((n-1)/checkpoints)-ds_list_find_value(bez_list,1)+(startposy_r-ds_list_find_value(bez_list,1));
             
         //BLANK
         if (blankmode = "solid")

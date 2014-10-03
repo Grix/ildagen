@@ -5,6 +5,7 @@ vector[0] = (endx_r-startposx_r)/checkpoints;
 vector[1] = (endy_r-startposy_r)/checkpoints;
 blanknew = 1;
 
+
 if (blankmode == "dot") or (blankmode == "dotsolid")
     {
     if (blankmode2 == 0)

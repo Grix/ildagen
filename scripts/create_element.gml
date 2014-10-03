@@ -85,13 +85,14 @@ if (!fillframes)
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
                 endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
-                endy_r = lerp(endy,endx+aniytrans/$ffff*512,t);
+                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
                 startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
                 startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
                 }
             else if (anifunc = "sine")
                 {
                 t = cos(t*pi*2);
+                t *= -1;
                 t += 1;
                 t /= 2;
                 blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
@@ -109,7 +110,7 @@ if (!fillframes)
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
                 endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
-                endy_r = lerp(endy,endx+aniytrans/$ffff*512,t);
+                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
                 startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
                 startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
                 }
@@ -130,7 +131,7 @@ if (!fillframes)
                 color2_r = merge_color(color2,anicolor2,sin(t*pi/2));
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi/2));
                 endx_r = lerp(endx,endx+anixtrans/$ffff*512,sin(t*pi/2));
-                endy_r = lerp(endy,endx+aniytrans/$ffff*512,sin(t*pi/2));
+                endy_r = lerp(endy,endy+aniytrans/$ffff*512,sin(t*pi/2));
                 startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,sin(t*pi/2));
                 startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,sin(t*pi/2));
                 }
@@ -151,7 +152,7 @@ if (!fillframes)
                 color2_r = merge_color(color2,anicolor2,sin(t*pi));
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi));
                 endx_r = lerp(endx,endx+anixtrans/$ffff*512,sin(t*pi));
-                endy_r = lerp(endy,endx+aniytrans/$ffff*512,sin(t*pi));
+                endy_r = lerp(endy,endy+aniytrans/$ffff*512,sin(t*pi));
                 startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,sin(t*pi));
                 startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,sin(t*pi));
                 }
@@ -172,7 +173,7 @@ if (!fillframes)
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
                 endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
-                endy_r = lerp(endy,endx+aniytrans/$ffff*512,t);
+                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
                 startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
                 startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
                 }
@@ -273,13 +274,14 @@ else
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
                 endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
-                endy_r = lerp(endy,endx+aniytrans/$ffff*512,t);
+                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
                 startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
                 startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
                 }
             else if (anifunc = "sine")
                 {
                 t = cos(t*pi*2);
+                t *= -1;
                 t += 1;
                 t /= 2;
                 blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
@@ -297,7 +299,7 @@ else
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
                 endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
-                endy_r = lerp(endy,endx+aniytrans/$ffff*512,t);
+                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
                 startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
                 startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
                 }
@@ -318,7 +320,7 @@ else
                 color2_r = merge_color(color2,anicolor2,sin(t*pi/2));
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi/2));
                 endx_r = lerp(endx,endx+anixtrans/$ffff*512,sin(t*pi/2));
-                endy_r = lerp(endy,endx+aniytrans/$ffff*512,sin(t*pi/2));
+                endy_r = lerp(endy,endy+aniytrans/$ffff*512,sin(t*pi/2));
                 startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,sin(t*pi/2));
                 startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,sin(t*pi/2));
                 }
@@ -339,7 +341,7 @@ else
                 color2_r = merge_color(color2,anicolor2,sin(t*pi));
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi));
                 endx_r = lerp(endx,endx+anixtrans/$ffff*512,sin(t*pi));
-                endy_r = lerp(endy,endx+aniytrans/$ffff*512,sin(t*pi));
+                endy_r = lerp(endy,endy+aniytrans/$ffff*512,sin(t*pi));
                 startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,sin(t*pi));
                 startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,sin(t*pi));
                 }
@@ -360,7 +362,7 @@ else
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
                 endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
-                endy_r = lerp(endy,endx+aniytrans/$ffff*512,t);
+                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
                 startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
                 startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
                 }
