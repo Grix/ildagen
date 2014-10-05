@@ -8,7 +8,7 @@ if (file_exists(ini_filename))
 else
     {
     ini_open(ini_filename);
-    updatecheckenabled = show_question("Would you like to enable automatic checking for updates? (Requires internet connection)");
+    updatecheckenabled = 1//show_question("Would you like to enable automatic checking for updates? (Requires internet connection)");
     ini_write_real("main","updatecheck",updatecheckenabled);
     ini_close();
     }
