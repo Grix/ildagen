@@ -56,7 +56,6 @@ moving = 0;
     if (controller.blank_period &gt; $8000) controller.blank_period = $8000;
     }
     
-mouse_yprevious = mouse_y;
 mouse_xprevious = mouse_x;
 
 

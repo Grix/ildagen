@@ -26,6 +26,8 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_m_line</sprite>
+    <sprite>sprites\spr_coltoani</sprite>
+    <sprite>sprites\spr_colfromani</sprite>
     <sprite>sprites\spr_m_curve</sprite>
     <sprite>sprites\spr_dotmult</sprite>
     <sprite>sprites\spr_help</sprite>
@@ -87,6 +89,7 @@
     <script>scripts\bezier_coeffs.gml</script>
     <script>scripts\bezier_x.gml</script>
     <script>scripts\bezier_y.gml</script>
+    <script>scripts\update_check.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
@@ -127,6 +130,8 @@
         <object>objects\obj_colordcselect</object>
         <object>objects\obj_colortselect</object>
         <object>objects\obj_coloroffselect</object>
+        <object>objects\obj_colorcopytoani</object>
+        <object>objects\obj_colorcopyfromani</object>
       </objects>
       <objects name="blank">
         <object>objects\obj_blankabsrel</object>

@@ -109,6 +109,7 @@ else if (string_char_at(undo,0) == 'a')
     {
     controller.maxframes = real(string_digits(undo));
     if (controller.frame &gt; controller.maxframes) controller.frame = controller.maxframes-1;
+    with (controller) refresh_surfaces();
     }
 else if (string_char_at(undo,0) == 'r')
     {
@@ -121,6 +122,16 @@ else if (string_char_at(undo,0) == 'd')
 else if (string_char_at(undo,0) == 'c')
     {
     ds_list_copy(ds_list_find_index(controller.frame_list,real(string_digits(ds_stack_pop(controller.undo_list)))),real(string_digits(undo)));
+    }
+else if (string_char_at(undo,0) == 'v')
+    {
+    controller.anicolor1 = real(string_digits(undo));
+    controller.anicolor2 = real(string_digits(ds_stack_pop(controller.undo_list)));
+    }
+else if (string_char_at(undo,0) == 'b')
+    {
+    controller.color1 = real(string_digits(undo));
+    controller.color2 = real(string_digits(ds_stack_pop(controller.undo_list)));
     }
     
     
@@ -215,6 +226,16 @@ else if (string_char_at(undo,0) == 'c')
     ds_list_copy(ds_list_find_index(controller.frame_list,
                                     real(string_digits(ds_stack_pop(controller.undo_list)))),
                 real(string_digits(undo)));
+    }
+else if (string_char_at(undo,0) == 'v')
+    {
+    controller.anicolor1 = real(string_digits(undo));
+    controller.anicolor2 = real(string_digits(ds_stack_pop(controller.undo_list)));
+    }
+else if (string_char_at(undo,0) == 'b')
+    {
+    controller.color1 = real(string_digits(undo));
+    controller.color2 = real(string_digits(ds_stack_pop(controller.undo_list)));
     }
     
     

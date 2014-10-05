@@ -56,7 +56,6 @@ moving = 0;
     if (controller.blank_offset &gt; 360) controller.blank_offset = 360;
     }
     
-mouse_yprevious = mouse_y;
 mouse_xprevious = mouse_x;
 
 

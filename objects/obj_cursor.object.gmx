@@ -64,6 +64,8 @@ else if (controller.placing == "free")
     image_index = 4;
 else if (controller.placing == "curve")
     image_index = 5;
+if (keyboard_check(ord('E')) and (controller.placing_status != 2))
+    image_index = 6;
 </string>
           </argument>
         </arguments>

@@ -3,6 +3,11 @@ if (ds_list_find_value(free_list,ds_list_size(free_list)-2) != mouse_x-startpos[
     ds_list_add(free_list,mouse_x-startpos[0]);
     ds_list_add(free_list,mouse_y-startpos[1]);
     }
+else if (ds_list_size(free_list) < 3)
+    {
+    ds_list_add(free_list,mouse_x-startpos[0]);
+    ds_list_add(free_list,mouse_y-startpos[1]);
+    }
 
 //ds_list_replace(free_list,0,ds_list_find_value(free_list,0)+(startposx_r-ds_list_find_value(free_list,0)));
 //ds_list_replace(free_list,1,ds_list_find_value(free_list,1)+(startposy_r-ds_list_find_value(free_list,1)));

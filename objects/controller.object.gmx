@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>c_ltltgray = make_colour_rgb(230,230,230);
+            <string>version = "0.9.4";
+
+update_check();
+
+c_ltltgray = make_colour_rgb(230,230,230);
 c_ltltltgray = make_colour_rgb(240,240,240);
 
 display_reset(0,1);
@@ -354,7 +358,15 @@ bez_moving = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if ((mouse_x &gt; 515) or (mouse_y &gt; 515)) and (placing_status != 2)
+            <string>if ((keyboard_check(ord('E'))) and (placing_status != 2))
+    {
+    ds_stack_push(undo_list,"bb"+string(color2));
+    ds_stack_push(undo_list,"b"+string(color1));
+    color1 = draw_getpixel(obj_cursor.x,obj_cursor.y);
+    exit;
+    }
+
+if ((mouse_x &gt; 515) or (mouse_y &gt; 515)) and (placing_status != 2)
     {
     placing_status = 0;
     ds_list_clear(free_list);
@@ -425,7 +437,6 @@ else if (placing_status == 2) and (placing == "curve")
             <string>if (mouse_x &gt; 512) or (mouse_y &gt; 512)
     exit;
     
-
 if (placing == "free")
     {
     if (placing_status == 1)
@@ -488,6 +499,43 @@ else if (placing == "curve")
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="62">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!updatecheckenabled)
+    exit;
+    
+if ds_map_find_value(async_load, "id") == updateget
+    {
+    if ds_map_find_value(async_load, "status") == 0
+       {
+       versionnew = ds_map_find_value(async_load, "result");
+       if (versionnew != version)
+            {
+            if (show_question("New version available: "+versionnew+"##Would you like to visit the download page?"))
+                url_open("http://bitlasers.com/opencart/index.php?route=product/product&amp;path=67&amp;product_id=82");
+            }
+       }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -509,7 +557,8 @@ else if (placing == "curve")
 
 if (bckimage)
     {
-    draw_set_alpha(0.3);
+    if (!keyboard_check(ord('E')) and (placing_status != 2))
+        draw_set_alpha(0.3);
     draw_background_stretched(bck_bckimage,0,0,512,512);
     draw_set_alpha(1);
     }

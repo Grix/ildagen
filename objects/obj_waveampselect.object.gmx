@@ -56,7 +56,6 @@ moving = 0;
     if (controller.wave_amp &gt; $ffff/2) controller.wave_amp = $ffff/2;
     }
     
-mouse_yprevious = mouse_y;
 mouse_xprevious = mouse_x;
 
 

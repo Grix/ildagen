@@ -75,7 +75,6 @@ if (moving == 3) or ((moving) and keyboard_check(vk_control))
     }
     
 mouse_yprevious = mouse_y;
-mouse_xprevious = mouse_x;
 
 visible = ((controller.colormode == "gradient") || (controller.colormode == "dash")) and (controller.anienable);
 </string>
@@ -133,7 +132,6 @@ else if (mouse_x &gt; (x+32))
     moving = 3;
 else moving = 2;
 
-mouse_xprevious = mouse_x;
 mouse_yprevious = mouse_y;
 </string>
           </argument>
