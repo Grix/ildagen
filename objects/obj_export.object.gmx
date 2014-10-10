@@ -90,7 +90,11 @@ with (controller)
 if (!verify_serial())
     exit;
 
-with (controller) export_ilda();
+with (controller) 
+    {
+    if (os_version != -1) export_ilda();
+    else export_ilda_html5();
+    }
 </string>
           </argument>
         </arguments>

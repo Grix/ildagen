@@ -22,7 +22,9 @@
       <filename>help.pdf</filename>
     </datafile>
   </datafiles>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\filesaver</extension>
+  </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_m_line</sprite>
@@ -72,6 +74,7 @@
   <scripts name="scripts">
     <script>scripts\draw_ilda_2d.gml</script>
     <script>scripts\export_ilda.gml</script>
+    <script>scripts\export_ilda_html5.gml</script>
     <script>scripts\draw_preview_element.gml</script>
     <script>scripts\draw_grid.gml</script>
     <script>scripts\draw_radialgrid.gml</script>

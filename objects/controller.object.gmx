@@ -27,7 +27,8 @@
             <kind>1</kind>
             <string>version = "0.9.4";
 
-update_check();
+
+if (os_version != -1) update_check();
 
 c_ltltgray = make_colour_rgb(230,230,230);
 c_ltltltgray = make_colour_rgb(240,240,240);
