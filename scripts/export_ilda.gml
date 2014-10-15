@@ -110,6 +110,8 @@ for (j = 0; j < maxframes;j++)
                 {
                 blank = $40;
                 blanktemp = 0;
+                if (u == (ds_list_size(list_id)-10)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
+                    blank = $C0;
                 }
             
             //writing point

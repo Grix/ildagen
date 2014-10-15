@@ -1,0 +1,40 @@
+//reads the header of the ilda frame, returns 1 if error
+
+if !is_wrong($49) return 0;
+i += 24;
+
+//24
+if (get_bytes() != 0)
+    {
+    frame_list_parse = ds_list_create();
+    ds_list_add(frame_list_parse,get_bytes());
+    }
+else
+    {
+    if (i >= file_size-32)
+        {
+        return 1;
+        }
+    else 
+        {
+        frame_list_parse = ds_list_create();
+        ds_list_add(frame_list_parse,get_bytes());
+        }
+    }
+    
+i+=2;//26
+frame_number = get_bytes();
+i+=6;//32
+
+ds_list_add(frame_list_parse,0);
+ds_list_add(frame_list_parse,0);
+ds_list_add(frame_list_parse,0);
+ds_list_add(frame_list_parse,0);
+ds_list_add(frame_list_parse,0);
+ds_list_add(frame_list_parse,0);
+ds_list_add(frame_list_parse,0);
+ds_list_add(frame_list_parse,0);
+ds_list_add(frame_list_parse,0); 
+ds_list_add(frame_list_parse,el_id); //id
+    
+return 0;
