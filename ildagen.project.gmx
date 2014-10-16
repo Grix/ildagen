@@ -97,8 +97,8 @@
     <scripts name="importilda">
       <script>scripts\get_bytes_signed.gml</script>
       <script>scripts\read_ilda_header_first.gml</script>
-      <script>scripts\get_bytes.gml</script>
       <script>scripts\read_ilda_header.gml</script>
+      <script>scripts\get_bytes.gml</script>
       <script>scripts\read_ilda_frame.gml</script>
       <script>scripts\get_byte_signed.gml</script>
       <script>scripts\get_byte.gml</script>

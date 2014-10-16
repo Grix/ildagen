@@ -7,7 +7,7 @@ i += 24;
 if (get_bytes() != 0)
     {
     frame_list_parse = ds_list_create();
-    ds_list_add(frame_list_parse,get_bytes());
+    maxpoints = get_bytes();
     }
 else
     {
@@ -18,7 +18,7 @@ else
     else 
         {
         frame_list_parse = ds_list_create();
-        ds_list_add(frame_list_parse,get_bytes());
+        maxpoints = get_bytes();
         }
     }
     

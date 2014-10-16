@@ -22,7 +22,7 @@ bytes = get_bytes(); //24
 if (bytes != 0)
     {
     frame_list_parse = ds_list_create();
-    ds_list_add(frame_list_parse,bytes);
+    maxpoints = bytes
     }
 else
     return 1;
