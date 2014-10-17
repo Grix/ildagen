@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>version = "0.9.4";
 
+instance_create(0,0,obj_message);
 
 if (os_version != -1) update_check();
 
@@ -74,6 +75,7 @@ bez_moving = 0;
 
 resolution = 256*2;
 framepoints = 0;
+
 
 colormode = "solid";
 colormode2 = 0;

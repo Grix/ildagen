@@ -73,6 +73,7 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
+    <script>scripts\reapply_properties.gml</script>
     <script>scripts\draw_ilda_2d.gml</script>
     <script>scripts\export_ilda.gml</script>
     <script>scripts\export_ilda_html5.gml</script>
@@ -109,16 +110,19 @@
       <script>scripts\parse_word.gml</script>
     </scripts>
   </scripts>
+  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
     <font>fonts\fnt_bold</font>
   </fonts>
   <objects name="objects">
     <object>objects\controller</object>
+    <object>objects\obj_message</object>
     <object>objects\obj_cursor</object>
     <objects name="buttons">
       <object>objects\obj_export</object>
       <object>objects\obj_e_res</object>
+      <object>objects\obj_reapply</object>
       <object>objects\obj_help</object>
       <object>objects\obj_bckimage</object>
       <object>objects\obj_onionskin</object>
