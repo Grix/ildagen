@@ -29,7 +29,7 @@
 
 reap_color = 0;
 reap_blank = 0;
-reap_enddots = 0;
+reap_removeoverlap = 0;
 reap_trans = 0;
 </string>
           </argument>
@@ -107,8 +107,8 @@ switch (type)
         draw_text(450,300,"Blanking");
         draw_sprite(spr_checkbox,reap_trans,380,350);
         draw_text(450,350,"Displacement");
-        draw_sprite(spr_checkbox,reap_enddots,380,400);
-        draw_text(450,400,"Dotted ends");
+        draw_sprite(spr_checkbox,reap_removeoverlap,380,400);
+        draw_text(450,400,"Remove overlapping points");
         
         break;
         }
@@ -130,12 +130,12 @@ else if (mouse_check_button_pressed(mb_left) &amp;&amp; (mouse_y &gt; 350) &amp;
     }
 else if (mouse_check_button_pressed(mb_left) &amp;&amp; (mouse_y &gt; 400) &amp;&amp; (mouse_y &lt; 432) &amp;&amp; (mouse_x &gt; 380) &amp;&amp; (mouse_x &lt; 412))
     {
-    reap_enddots = !reap_enddots;
+    reap_removeoverlap = !reap_removeoverlap;
     }
 else if (mouse_check_button_pressed(mb_left) &amp;&amp; (mouse_y &gt; 500) &amp;&amp; (mouse_y &lt; 550) &amp;&amp; (mouse_x &gt; 400) &amp;&amp; (mouse_x &lt; 600))
     {
     instance_activate_all();
-    reapply_properties(1);
+    with (controller) reapply_properties(1);
     visible = 0;
     }
     

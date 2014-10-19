@@ -110,7 +110,6 @@
       <script>scripts\parse_word.gml</script>
     </scripts>
   </scripts>
-  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
     <font>fonts\fnt_bold</font>

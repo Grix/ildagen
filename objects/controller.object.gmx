@@ -62,6 +62,7 @@ bckimage = 0;
 onion = 0;
 scroll = 0;
 viewmode = 0;
+selectedelement = -1;
 
 placing = "line";
 startpos[1] = 0;
@@ -284,6 +285,49 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1)
     if (frame &lt; 1)
         frame = 0;
     refresh_surfaces();
+    }
+    
+if (keyboard_check_pressed(vk_up)) and (!ds_list_empty(el_list))
+    {
+    tempstop = 0;
+    while (1)
+        {
+        selectedelement++;
+        for (i = 0; i &lt; ds_list_size(el_list);i++)
+            {
+            if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
+                tempstop = 1;
+            }
+        if (tempstop)
+            exit;
+        
+        if (selectedelement &gt; el_id)
+            {
+            selectedelement = -1;
+            exit;
+            }
+        }
+    }
+if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list))
+    {
+    tempstop = 0;
+    while (1)
+        {
+        selectedelement--;
+        for (i = 0; i &lt; ds_list_size(el_list);i++)
+            {
+            if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
+                tempstop = 1;
+            }
+        if (tempstop)
+            exit;
+        
+        if (selectedelement &lt; 0)
+            {
+            selectedelement = -1;
+            exit;
+            }
+        }
     }
 </string>
           </argument>

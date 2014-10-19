@@ -6,11 +6,311 @@
 
 if (argument0 == 0)
     {
+    if (selectedelement = -1)
+        exit;
     obj_message.visible = 1;
     obj_message.type = 0;
     }
 else if (argument0 == 1)
     {
+    
+    //find elements
+    temp_frame_list = ds_list_create();
+    for (i = 0;i < maxframes;i++)
+        {
+        for (u = 0;u < el_id;u++)
+            {
+            if (ds_list_find_value(ds_list_find_value(ds_list_find_value(frame_list,u),i),9) == selectedelement)
+                {
+                //TODO if removeoverlay
+                ds_list_add(temp_frame_list,ds_list_find_value(ds_list_find_value(frame_list,u),i))
+                }
+            }
+        }
+            
+    if (obj_message.reap_blank)
+        {
+        for (i = 0;i < ds_list_size(temp_frame_list);i++)
+            {
+            if (anienable == 0) or (maxframes == 1)
+                {
+                blank_freq_r = blank_freq;
+                blank_period_r = blank_period;
+                blank_dc_r = blank_dc;
+                blank_offset_r = degtorad(blank_offset);
+                color_freq_r = color_freq;
+                color_period_r = color_period;
+                color_dc_r = color_dc;
+                color_offset_r = degtorad(color_offset);
+                color1_r = color1;
+                color2_r = color2;
+                enddotscolor_r = enddotscolor;
+                wave_period_r = wave_period;
+                wave_offset_r = degtorad(wave_offset);
+                wave_amp_r = wave_amp;
+                endx_r = endx;
+                endy_r = endy;
+                startposx_r = startpos[0];
+                startposy_r  = startpos[1];
+                }
+            else
+                {
+                t = i/ds_list_size(temp_frame_list);    
+                if (anifunc = "tri")
+                    {
+                    t *= 2;
+                    if (t > 1)
+                        t = 1-(t%1)
+                    blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
+                    blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
+                    blank_dc_r = lerp(blank_dc,aniblank_dc,t);
+                    blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
+                    color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
+                    color_period_r = color_period//lerp(color_period,anicolor_period,t);
+                    color_dc_r = lerp(color_dc,anicolor_dc,t);
+                    color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
+                    wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
+                    wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                    wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
+                    color1_r = merge_color(color1,anicolor1,t);
+                    color2_r = merge_color(color2,anicolor2,t);
+                    enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
+                    endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
+                    endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
+                    startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
+                    startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
+                    }
+                else if (anifunc = "sine")
+                    {
+                    t = cos(t*pi*2);
+                    t *= -1;
+                    t += 1;
+                    t /= 2;
+                    blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
+                    blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
+                    blank_dc_r = lerp(blank_dc,aniblank_dc,t);
+                    blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
+                    color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
+                    color_period_r = color_period//lerp(color_period,anicolor_period,t);
+                    color_dc_r = lerp(color_dc,anicolor_dc,t);
+                    color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
+                    wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
+                    wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                    wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
+                    color1_r = merge_color(color1,anicolor1,t);
+                    color2_r = merge_color(color2,anicolor2,t);
+                    enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
+                    endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
+                    endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
+                    startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
+                    startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
+                    }
+                else if (anifunc = "ssine")
+                    {
+                    blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,sin(t*pi/2));
+                    blank_period_r = blank_period//lerp(blank_period,aniblank_period,sin(t*pi/2));
+                    blank_dc_r = lerp(blank_dc,aniblank_dc,sin(t*pi/2));
+                    blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,sin(t*pi/2)));
+                    color_freq_r = color_freq//lerp(color_freq,anicolor_freq,sin(t*pi/2));
+                    color_period_r = color_period//lerp(color_period,anicolor_period,sin(t*pi/2));
+                    color_dc_r = lerp(color_dc,anicolor_dc,sin(t*pi/2));
+                    color_offset_r = degtorad(lerp(color_offset,anicolor_offset,sin(t*pi/2)));
+                    wave_period_r = wave_period//lerp(color_period,anicolor_period,sin(t*pi/2));
+                    wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,sin(t*pi/2));
+                    wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,sin(t*pi/2)));
+                    color1_r = merge_color(color1,anicolor1,sin(t*pi/2));
+                    color2_r = merge_color(color2,anicolor2,sin(t*pi/2));
+                    enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi/2));
+                    endx_r = lerp(endx,endx+anixtrans/$ffff*512,sin(t*pi/2));
+                    endy_r = lerp(endy,endy+aniytrans/$ffff*512,sin(t*pi/2));
+                    startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,sin(t*pi/2));
+                    startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,sin(t*pi/2));
+                    }
+                else if (anifunc = "hsine")
+                    {
+                    blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,sin(t*pi));
+                    blank_period_r = blank_period//lerp(blank_period,aniblank_period,sin(t*pi));
+                    blank_dc_r = lerp(blank_dc,aniblank_dc,sin(t*pi));
+                    blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,sin(t*pi)));
+                    color_freq_r = color_freq//lerp(color_freq,anicolor_freq,sin(t*pi));
+                    color_period_r = color_period//lerp(color_period,anicolor_period,sin(t*pi));
+                    color_dc_r = lerp(color_dc,anicolor_dc,sin(t*pi));
+                    color_offset_r = degtorad(lerp(color_offset,anicolor_offset,sin(t*pi)));
+                    wave_period_r = wave_period//lerp(color_period,anicolor_period,sin(t*pi));
+                    wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,sin(t*pi));
+                    wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,sin(t*pi)));
+                    color1_r = merge_color(color1,anicolor1,sin(t*pi));
+                    color2_r = merge_color(color2,anicolor2,sin(t*pi));
+                    enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi));
+                    endx_r = lerp(endx,endx+anixtrans/$ffff*512,sin(t*pi));
+                    endy_r = lerp(endy,endy+aniytrans/$ffff*512,sin(t*pi));
+                    startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,sin(t*pi));
+                    startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,sin(t*pi));
+                    }
+                else if (anifunc = "saw")
+                    {
+                    blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
+                    blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
+                    blank_dc_r = lerp(blank_dc,aniblank_dc,t);
+                    blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
+                    color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
+                    color_period_r = color_period//lerp(color_period,anicolor_period,t);
+                    color_dc_r = lerp(color_dc,anicolor_dc,t);
+                    color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
+                    wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
+                    wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                    wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
+                    color1_r = merge_color(color1,anicolor1,t);
+                    color2_r = merge_color(color2,anicolor2,t);
+                    enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
+                    endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
+                    endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
+                    startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
+                    startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
+                    }
+                }
+                
+                
+                
+                blanknew = 1;
+                new_list = ds_list_find_value(temp_frame_list,i);
+                checkpoints = (ds_list_size(new_list)-10/6);
+                
+                if (blankmode == "dot") or (blankmode == "dotsolid")
+                    {
+                    if (blankmode2 == 0)
+                        dotfreq = checkpoints/(blank_freq_r);
+                    else
+                        dotfreq = blank_period_r/resolution;
+                    if (dotfreq < 1)
+                        dotfreq = 1;
+                    }
+                else if (blankmode == "dash")
+                    {
+                    if (blankmode2 == 0)
+                        dotfreq = checkpoints/(blank_freq_r+0.48);
+                    else
+                        dotfreq = blank_period_r/resolution;
+                    if (dotfreq < 1)
+                        dotfreq = 1;
+                    }
+    
+                for (i = 0; i < checkpoints;i++)
+                    {
+                    makedot = 0;
+                    
+                    //BLANK
+                    if (blankmode == "solid")
+                        blank = 0;
+                    else if (blankmode == "dash")
+                        {
+                        if (blank_dc_r >= 0.98)
+                            {
+                            blank = 0;
+                            if (blanknew != blank) and (enddots)
+                                {
+                                makedot = 2;
+                                blanknew = blank;
+                                }
+                            }
+                         else if (floor(i+blank_offset_r/pi/2*dotfreq) % round(dotfreq) > blank_dc_r*dotfreq) or (blank_dc_r < 0.02)
+                               {
+                            blank = 1;
+                            if (blanknew != blank) and (enddots)
+                                {
+                                makedot = 2;
+                                blanknew = blank;
+                                }
+                            }
+                        else 
+                            {
+                            blank = 0;
+                            if (blanknew != blank) and (enddots)
+                                {
+                                makedot = 2;
+                                blanknew = blank;
+                                }
+                            }
+                        }
+                    else if (blankmode == "dot")
+                        {
+                        if (floor(i-dotfreq+blank_offset_r/pi/2*dotfreq) % floor(dotfreq) == 0)
+                            makedot = 1;
+                        blank = 1;
+                        }
+                    else if (blankmode == "dotsolid")
+                        {
+                        if (floor(i-dotfreq+blank_offset_r/pi/2*dotfreq) % floor(dotfreq) == 0)
+                            makedot = 1;
+                        blank = 0;
+                        }
+                        
+                            
+                    if (enddots)
+                        {
+                        if (!makedot) and (blankmode != "dot") and (i == checkpoints) and (blank == 0)
+                            makedot = 1;
+                        }
+                        
+                        
+                    if (makedot)
+                        {
+                        if (blankmode == "dot")
+                            {
+                            ds_list_replace(new_list,10+i*6+2,1);
+                            for (u = 0; u < dotmultiply; u++)
+                                {
+                                ds_list_insert(new_list,10+(i+u)*6+6,ds_list_find_value(new_list,10+i*6));
+                                ds_list_insert(new_list,10+(i+u)*6+7,ds_list_find_value(new_list,10+i*6+1));
+                                ds_list_insert(new_list,10+(i+u)*6+8,0);
+                                ds_list_insert(new_list,10+(i+u)*6+9,colour_get_blue(controller.enddotscolor_r));
+                                ds_list_insert(new_list,10+(i+u)*6+10,colour_get_green(controller.enddotscolor_r));
+                                ds_list_insert(new_list,10+(i+u)*6+11,colour_get_red(controller.enddotscolor_r));
+                                }
+                            }
+                        else
+                            {
+                            if (makedot == 2)
+                                {
+                                if (blank)
+                                    ds_list_replace(new_list,10+i*6+2,1);
+                                else
+                                    ds_list_replace(new_list,10+i*6+2,0);
+                                for (u = 0; u < dotmultiply; u++)
+                                    {
+                                    ds_list_insert(new_list,10+(i+u)*6+6,ds_list_find_value(new_list,10+i*6));
+                                    ds_list_insert(new_list,10+(i+u)*6+7,ds_list_find_value(new_list,10+i*6+1));
+                                    ds_list_insert(new_list,10+(i+u)*6+8,0);
+                                    ds_list_insert(new_list,10+(i+u)*6+9,colour_get_blue(controller.enddotscolor_r));
+                                    ds_list_insert(new_list,10+(i+u)*6+10,colour_get_green(controller.enddotscolor_r));
+                                    ds_list_insert(new_list,10+(i+u)*6+11,colour_get_red(controller.enddotscolor_r));
+                                    }
+                                }
+                            else
+                                {
+                                ds_list_replace(new_list,10+i*6+2,0);
+                                for (u = 0; u < dotmultiply; u++)
+                                    {
+                                    ds_list_insert(new_list,10+(i+u)*6+6,ds_list_find_value(new_list,10+i*6));
+                                    ds_list_insert(new_list,10+(i+u)*6+7,ds_list_find_value(new_list,10+i*6+1));
+                                    ds_list_insert(new_list,10+(i+u)*6+8,0);
+                                    ds_list_insert(new_list,10+(i+u)*6+9,colour_get_blue(controller.enddotscolor_r));
+                                    ds_list_insert(new_list,10+(i+u)*6+10,colour_get_green(controller.enddotscolor_r));
+                                    ds_list_insert(new_list,10+(i+u)*6+11,colour_get_red(controller.enddotscolor_r));
+                                    }
+                                }
+                            }
+                
+                        }  
+                    else
+                        { 
+                        ds_list_replace(new_list,10+i*6+2,blank);
+                        }
+        
+                    }
+                
+            }
+        }
     
     
     }
