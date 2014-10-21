@@ -9,7 +9,8 @@ if (placing_status == 1)
         }
     else
         {
-        if (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 315) || (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) < 45) || ( (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) > 135) && (point_direction(startpos[0],startpos[1],mouse_x,mouse_y) < 225) )
+        theta = point_direction(startpos[0],startpos[1],mouse_x,mouse_y)
+        if (theta > 315 || theta < 45 || (theta > 135 && theta < 225))
             {
             endx = obj_cursor.x;
             endy = startpos[1];
