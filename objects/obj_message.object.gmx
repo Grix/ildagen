@@ -132,7 +132,7 @@ else if (mouse_check_button_pressed(mb_left) &amp;&amp; (mouse_y &gt; 400) &amp;
     {
     reap_removeoverlap = !reap_removeoverlap;
     }
-else if (mouse_check_button_pressed(mb_left) &amp;&amp; (mouse_y &gt; 500) &amp;&amp; (mouse_y &lt; 550) &amp;&amp; (mouse_x &gt; 400) &amp;&amp; (mouse_x &lt; 600))
+else if ((mouse_check_button_pressed(mb_left) &amp;&amp; (mouse_y &gt; 500) &amp;&amp; (mouse_y &lt; 550) &amp;&amp; (mouse_x &gt; 400) &amp;&amp; (mouse_x &lt; 600)) || (keyboard_check(vk_enter)))
     {
     instance_activate_all();
     with (controller) reapply_properties(1);

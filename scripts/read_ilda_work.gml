@@ -39,7 +39,6 @@ while (1)
                     ds_list_add(ds_list_find_value(frame_list,i),templist);
                     }
                     //ds_list_add(ds_list_find_value(frame_list,i),ds_list_find_value(ild_list,i%ds_list_size(ild_list)));
-                show_message(i%ds_list_size(ild_list))
                 }
             }
             
