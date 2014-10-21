@@ -28,6 +28,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_m_line</sprite>
+    <sprite>sprites\spr_reapply</sprite>
     <sprite>sprites\spr_import</sprite>
     <sprite>sprites\spr_coltoani</sprite>
     <sprite>sprites\spr_colfromani</sprite>

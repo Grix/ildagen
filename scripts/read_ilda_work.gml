@@ -21,7 +21,11 @@ while (1)
             for (i = 0;i < ds_list_size(ild_list);i++)
                 {
                 if (!ds_list_empty(ds_list_find_value(ild_list,i)))
-                    ds_list_add(ds_list_find_value(frame_list,i),ds_list_find_value(ild_list,i));
+                    {
+                    templist = ds_list_create();
+                    ds_list_copy(templist,ds_list_find_value(ild_list,i));
+                    ds_list_add(ds_list_find_value(frame_list,i),templist);
+                    }
                 }
             }
         else
@@ -29,7 +33,12 @@ while (1)
             for (i = 0;i < ds_list_size(frame_list);i++)
                 {
                 if (!ds_list_empty(ds_list_find_value(ild_list,i%ds_list_size(ild_list))))
-                    ds_list_add(ds_list_find_value(frame_list,i),ds_list_find_value(ild_list,i%ds_list_size(ild_list)));
+                    {
+                    templist = ds_list_create();
+                    ds_list_copy(templist,ds_list_find_value(ild_list,i%ds_list_size(ild_list)));
+                    ds_list_add(ds_list_find_value(frame_list,i),templist);
+                    }
+                    //ds_list_add(ds_list_find_value(frame_list,i),ds_list_find_value(ild_list,i%ds_list_size(ild_list)));
                 show_message(i%ds_list_size(ild_list))
                 }
             }

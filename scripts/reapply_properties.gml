@@ -32,6 +32,16 @@ else if (argument0 == 1)
         {
         for (i = 0;i < ds_list_size(temp_frame_list);i++)
             {
+            blanknew = 1;
+            new_list = ds_list_find_value(temp_frame_list,i);
+            checkpoints = ((ds_list_size(new_list)-10)/6);
+            
+            
+            startpos[0] = ds_list_find_value(new_list,0);
+            startpos[1] = ds_list_find_value(new_list,1);
+            endx = ds_list_find_value(new_list,2);
+            endy = ds_list_find_value(new_list,3);
+            
             if (anienable == 0) or (maxframes == 1)
                 {
                 blank_freq_r = blank_freq;
@@ -171,10 +181,7 @@ else if (argument0 == 1)
                 }
                 
                 
-                
-                blanknew = 1;
-                new_list = ds_list_find_value(temp_frame_list,i);
-                checkpoints = ((ds_list_size(new_list)-10)/6);
+            
                 
                 if (blankmode == "dot") or (blankmode == "dotsolid")
                     {
@@ -260,12 +267,14 @@ else if (argument0 == 1)
                             ds_list_replace(new_list,10+j*6+2,1);
                             for (u = 0; u < dotmultiply; u++)
                                 {
-                                ds_list_insert(new_list,10+(j+u)*6+6,ds_list_find_value(new_list,10+(j+u)*6));
-                                ds_list_insert(new_list,10+(j+u)*6+7,ds_list_find_value(new_list,10+(j+u)*6+1));
-                                ds_list_insert(new_list,10+(j+u)*6+8,0);
-                                ds_list_insert(new_list,10+(j+u)*6+9,colour_get_blue(controller.enddotscolor_r));
-                                ds_list_insert(new_list,10+(j+u)*6+10,colour_get_green(controller.enddotscolor_r));
-                                ds_list_insert(new_list,10+(j+u)*6+11,colour_get_red(controller.enddotscolor_r));
+                                ds_list_insert(new_list,10+j*6+6,ds_list_find_value(new_list,10+j*6));
+                                ds_list_insert(new_list,10+(j)*6+7,ds_list_find_value(new_list,10+j*6+1));
+                                ds_list_insert(new_list,10+(j)*6+8,0);
+                                ds_list_insert(new_list,10+(j)*6+9,colour_get_blue(controller.enddotscolor_r));
+                                ds_list_insert(new_list,10+(j)*6+10,colour_get_green(controller.enddotscolor_r));
+                                ds_list_insert(new_list,10+(j)*6+11,colour_get_red(controller.enddotscolor_r));
+                                checkpoints++;
+                                j++;
                                 }
                             }
                         else
@@ -278,12 +287,14 @@ else if (argument0 == 1)
                                     ds_list_replace(new_list,10+j*6+2,0);
                                 for (u = 0; u < dotmultiply; u++)
                                     {
-                                    ds_list_insert(new_list,10+(j+u)*6+6,ds_list_find_value(new_list,10+(j+u)*6));
-                                    ds_list_insert(new_list,10+(j+u)*6+7,ds_list_find_value(new_list,10+(j+u)*6+1));
-                                    ds_list_insert(new_list,10+(j+u)*6+8,0);
-                                    ds_list_insert(new_list,10+(j+u)*6+9,colour_get_blue(controller.enddotscolor_r));
-                                    ds_list_insert(new_list,10+(j+u)*6+10,colour_get_green(controller.enddotscolor_r));
-                                    ds_list_insert(new_list,10+(j+u)*6+11,colour_get_red(controller.enddotscolor_r));
+                                    ds_list_insert(new_list,10+(j)*6+6,ds_list_find_value(new_list,10+j*6));
+                                    ds_list_insert(new_list,10+(j)*6+7,ds_list_find_value(new_list,10+j*6+1));
+                                    ds_list_insert(new_list,10+(j)*6+8,0);
+                                    ds_list_insert(new_list,10+(j)*6+9,colour_get_blue(controller.enddotscolor_r));
+                                    ds_list_insert(new_list,10+(j)*6+10,colour_get_green(controller.enddotscolor_r));
+                                    ds_list_insert(new_list,10+(j)*6+11,colour_get_red(controller.enddotscolor_r));
+                                    checkpoints++;
+                                    j++;
                                     }
                                 }
                             else
@@ -291,16 +302,17 @@ else if (argument0 == 1)
                                 ds_list_replace(new_list,10+j*6+2,0);
                                 for (u = 0; u < dotmultiply; u++)
                                     {
-                                    ds_list_insert(new_list,10+(j+u)*6+6,ds_list_find_value(new_list,10+(j+u)*6));
-                                    ds_list_insert(new_list,10+(j+u)*6+7,ds_list_find_value(new_list,10+(j+u)*6+1));
-                                    ds_list_insert(new_list,10+(j+u)*6+8,0);
-                                    ds_list_insert(new_list,10+(j+u)*6+9,colour_get_blue(controller.enddotscolor_r));
-                                    ds_list_insert(new_list,10+(j+u)*6+10,colour_get_green(controller.enddotscolor_r));
-                                    ds_list_insert(new_list,10+(j+u)*6+11,colour_get_red(controller.enddotscolor_r));
+                                    ds_list_insert(new_list,10+(j)*6+6,ds_list_find_value(new_list,10+j*6));
+                                    ds_list_insert(new_list,10+(j)*6+7,ds_list_find_value(new_list,10+j*6+1));
+                                    ds_list_insert(new_list,10+(j)*6+8,0);
+                                    ds_list_insert(new_list,10+(j)*6+9,colour_get_blue(controller.enddotscolor_r));
+                                    ds_list_insert(new_list,10+(j)*6+10,colour_get_green(controller.enddotscolor_r));
+                                    ds_list_insert(new_list,10+(j)*6+11,colour_get_red(controller.enddotscolor_r));
+                                    checkpoints++;
+                                    j++;
                                     }
                                 }
                             }
-                
                         }  
                     else
                         { 
@@ -310,7 +322,6 @@ else if (argument0 == 1)
                         }
         
                     }
-                
             }
         }
     
