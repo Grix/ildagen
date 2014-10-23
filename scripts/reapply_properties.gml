@@ -226,7 +226,17 @@ else if (argument0 == 1)
             
         for (j = 0; j < checkpoints;j++)
             {
+            
+            if ((j != 0) and (ds_list_find_value(new_list,10+j*6) == ds_list_find_value(new_list,10+(j-1)*6)) and (ds_list_find_value(new_list,10+j*6+1) == ds_list_find_value(new_list,10+(j-1)*6+1)) and (obj_message.reap_removeoverlap))
+                {
+                repeat(6) ds_list_delete(new_list,10+j*6);
+                checkpoints--;
+                j--;
+                continue;
+                }
+                
             makedot = 0;
+            
             
             if (obj_message.reap_color)
                 {
@@ -395,9 +405,7 @@ else if (argument0 == 1)
                     }  
                 else
                     { 
-                    //show_message(ds_list_find_value(new_list,10+j*6+2))
                     ds_list_replace(new_list,10+j*6+2,blank);
-                    //show_message(ds_list_find_value(new_list,10+j*6+2))
                     }
                 } 
                 

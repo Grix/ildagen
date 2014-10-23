@@ -172,7 +172,6 @@ buffer_write(ilda_buffer,buffer_u8,0); //0
 
 //export
 
-//show_message("ILDA file exported, "+string(maxpointstot)+" points total");
 
 ildastring = "";
 buffersize = buffer_tell(ilda_buffer);

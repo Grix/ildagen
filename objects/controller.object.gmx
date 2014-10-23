@@ -575,7 +575,7 @@ if ds_map_find_value(async_load, "id") == updateget
     if ds_map_find_value(async_load, "status") == 0
        {
        versionnew = ds_map_find_value(async_load, "result");
-       if (versionnew != version)
+       if ((versionnew != version) and (show_messages))
             {
             if (show_question("New version available: "+versionnew+"##Would you like to visit the download page?"))
                 url_open("http://bitlasers.com/opencart/index.php?route=product/product&amp;path=67&amp;product_id=82");
