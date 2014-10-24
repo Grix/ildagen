@@ -54,6 +54,7 @@ moving = 0;
     controller.wave_amp += (mouse_x-mouse_xprevious)*$ffff/128;
     if (controller.wave_amp  &lt; -$ffff/2) controller.wave_amp = -$ffff/2;
     if (controller.wave_amp &gt; $ffff/2) controller.wave_amp = $ffff/2;
+    if (keyboard_check(vk_control)) controller.wave_amp = 0;
     }
     
 mouse_xprevious = mouse_x;
@@ -65,6 +66,8 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
     {
     controller.tooltip = "Changes wave height (Shortcut: Mouse wheel)";
     } 
+    
+
 </string>
           </argument>
         </arguments>

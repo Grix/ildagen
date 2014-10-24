@@ -40,7 +40,7 @@ else if (argument0 == 1)
         endx = ds_list_find_value(new_list,2);
         endy = ds_list_find_value(new_list,3);
         
-        if (anienable == 0) or (maxframes == 1)
+        if (anienable == 0) or (ds_list_size(temp_frame_list) == 1)
             {
             blank_freq_r = blank_freq;
             blank_period_r = blank_period;
@@ -115,45 +115,47 @@ else if (argument0 == 1)
                 }
             else if (anifunc = "ssine")
                 {
-                blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,sin(t*pi/2));
-                blank_period_r = blank_period//lerp(blank_period,aniblank_period,sin(t*pi/2));
-                blank_dc_r = lerp(blank_dc,aniblank_dc,sin(t*pi/2));
-                blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,sin(t*pi/2)));
-                color_freq_r = color_freq//lerp(color_freq,anicolor_freq,sin(t*pi/2));
-                color_period_r = color_period//lerp(color_period,anicolor_period,sin(t*pi/2));
-                color_dc_r = lerp(color_dc,anicolor_dc,sin(t*pi/2));
-                color_offset_r = degtorad(lerp(color_offset,anicolor_offset,sin(t*pi/2)));
-                wave_period_r = wave_period//lerp(color_period,anicolor_period,sin(t*pi/2));
-                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,sin(t*pi/2));
-                wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,sin(t*pi/2)));
-                color1_r = merge_color(color1,anicolor1,sin(t*pi/2));
-                color2_r = merge_color(color2,anicolor2,sin(t*pi/2));
-                enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi/2));
-                endx_r = lerp(endx,endx+anixtrans/$ffff*512,sin(t*pi/2));
-                endy_r = lerp(endy,endy+aniytrans/$ffff*512,sin(t*pi/2));
-                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,sin(t*pi/2));
-                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,sin(t*pi/2));
+                t = sin(t*pi/2);
+                blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
+                blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
+                blank_dc_r = lerp(blank_dc,aniblank_dc,t);
+                blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
+                color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
+                color_period_r = color_period//lerp(color_period,anicolor_period,t);
+                color_dc_r = lerp(color_dc,anicolor_dc,t);
+                color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
+                wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
+                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
+                color1_r = merge_color(color1,anicolor1,t);
+                color2_r = merge_color(color2,anicolor2,t);
+                enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
+                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
+                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
                 }
             else if (anifunc = "hsine")
                 {
-                blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,sin(t*pi));
-                blank_period_r = blank_period//lerp(blank_period,aniblank_period,sin(t*pi));
-                blank_dc_r = lerp(blank_dc,aniblank_dc,sin(t*pi));
-                blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,sin(t*pi)));
-                color_freq_r = color_freq//lerp(color_freq,anicolor_freq,sin(t*pi));
-                color_period_r = color_period//lerp(color_period,anicolor_period,sin(t*pi));
-                color_dc_r = lerp(color_dc,anicolor_dc,sin(t*pi));
-                color_offset_r = degtorad(lerp(color_offset,anicolor_offset,sin(t*pi)));
-                wave_period_r = wave_period//lerp(color_period,anicolor_period,sin(t*pi));
-                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,sin(t*pi));
-                wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,sin(t*pi)));
-                color1_r = merge_color(color1,anicolor1,sin(t*pi));
-                color2_r = merge_color(color2,anicolor2,sin(t*pi));
-                enddotscolor_r = merge_color(enddotscolor,anienddotscolor,sin(t*pi));
-                endx_r = lerp(endx,endx+anixtrans/$ffff*512,sin(t*pi));
-                endy_r = lerp(endy,endy+aniytrans/$ffff*512,sin(t*pi));
-                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,sin(t*pi));
-                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,sin(t*pi));
+                t = sin(t*pi);
+                blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
+                blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
+                blank_dc_r = lerp(blank_dc,aniblank_dc,t);
+                blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
+                color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
+                color_period_r = color_period//lerp(color_period,anicolor_period,t);
+                color_dc_r = lerp(color_dc,anicolor_dc,t);
+                color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
+                wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
+                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
+                color1_r = merge_color(color1,anicolor1,t);
+                color2_r = merge_color(color2,anicolor2,t);
+                enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
+                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
+                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
                 }
             else if (anifunc = "saw")
                 {
@@ -181,10 +183,10 @@ else if (argument0 == 1)
         //TRANS
         if (obj_message.reap_trans)
             {
-            ds_list_replace(new_list,0,startposx_r);
-            ds_list_replace(new_list,0,startposy_r);
-            ds_list_replace(new_list,0,endx_r);
-            ds_list_replace(new_list,0,endy_r);
+            ds_list_replace(new_list,0,startpos[0]+startposx_r*$ffff/512);
+            ds_list_replace(new_list,1,startpos[1]+startposy_r*$ffff/512);
+            ds_list_replace(new_list,2,endx+endx_r*$ffff/512);
+            ds_list_replace(new_list,3,endy+endy_r*$ffff/512);
             }
             
         

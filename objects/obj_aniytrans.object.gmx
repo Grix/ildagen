@@ -54,6 +54,7 @@ moving = 0;
     controller.aniytrans += (mouse_y-mouse_yprevious)*$ffff/59;
     if (controller.aniytrans  &lt; -$ffff) controller.aniytrans = -$ffff;
     if (controller.aniytrans &gt; $ffff) controller.aniytrans = $ffff;
+    if (keyboard_check(vk_control)) controller.aniytrans = 0;
     }
     
 mouse_yprevious = mouse_y;

@@ -85,11 +85,11 @@
     <instance objName="obj_anicolorselect_2" x="216" y="576" name="inst_218C2DFB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_aniblankdcselect" x="560" y="552" name="inst_05168740" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_maxframes" x="160" y="568" name="inst_A6C7D046" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_anicolordcselect" x="736" y="512" name="inst_7CEAC26F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_anicolordcselect" x="728" y="552" name="inst_7CEAC26F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_blankoffselect" x="552" y="384" name="inst_6E806301" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_aniblankoffselect" x="560" y="512" name="inst_34717355" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_coloroffselect" x="688" y="232" name="inst_5ADB8486" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_anicoloroffselect" x="736" y="552" name="inst_BD1FF2D7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_anicoloroffselect" x="728" y="512" name="inst_BD1FF2D7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_aniwaveoffselect" x="560" y="616" name="inst_76B9E917" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_waveoffselect" x="552" y="120" name="inst_0ED1A755" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anienddotscolorselect" x="912" y="520" name="inst_49DA6D2B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

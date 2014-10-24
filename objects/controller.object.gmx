@@ -250,7 +250,7 @@ if (keyboard_check_pressed(vk_space))
 if (!ds_list_empty(el_list) and !surface_exists(ds_list_find_value(surf_list,0)))
     refresh_surfaces();
 
-if (keyboard_check(vk_left)) and (maxframes &gt; 1)
+if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
     {
     if (keyboard_check_pressed(vk_left))
         {
@@ -268,7 +268,7 @@ if (keyboard_check(vk_left)) and (maxframes &gt; 1)
         frame = 0;
     refresh_surfaces();
     }
-else if (keyboard_check(vk_right)) and (maxframes &gt; 1)
+else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status == 0)
     {
     if (keyboard_check_pressed(vk_right))
         {
@@ -287,7 +287,7 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1)
     refresh_surfaces();
     }
     
-if (keyboard_check_pressed(vk_up)) and (!ds_list_empty(el_list))
+if (keyboard_check_pressed(vk_up)) and (!ds_list_empty(el_list)) and (placing_status == 0)
     {
     tempstop = 0;
     while (1)
@@ -308,7 +308,7 @@ if (keyboard_check_pressed(vk_up)) and (!ds_list_empty(el_list))
             }
         }
     }
-if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list))
+if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list)) and (placing_status == 0)
     {
     tempstop = 0;
     while (1)
@@ -487,6 +487,8 @@ else if (placing_status == 2) and (placing == "curve")
             <kind>1</kind>
             <string>if (mouse_x &gt; 512) or (mouse_y &gt; 512)
     exit;
+
+selectedelement = -1;
     
 if (placing == "free")
     {
@@ -575,7 +577,7 @@ if ds_map_find_value(async_load, "id") == updateget
     if ds_map_find_value(async_load, "status") == 0
        {
        versionnew = ds_map_find_value(async_load, "result");
-       if ((versionnew != version) and (show_messages))
+       if (versionnew != version)
             {
             if (show_question("New version available: "+versionnew+"##Would you like to visit the download page?"))
                 url_open("http://bitlasers.com/opencart/index.php?route=product/product&amp;path=67&amp;product_id=82");
@@ -644,7 +646,7 @@ if (keyboard_check(ord('R')) or (rgridshow == 1))
 draw_set_color(c_white);
     draw_ilda_2d();
     
-draw_set_color(c_red);
+draw_set_color(c_aqua);
     
     for (i=0;i &lt; ds_list_size(el_list);i++)
         {
@@ -652,7 +654,7 @@ draw_set_color(c_red);
             {
             draw_circle(ds_list_find_value(ds_list_find_value(el_list,i),2)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),3)/$ffff*512,3,0);
             draw_circle(ds_list_find_value(ds_list_find_value(el_list,i),0)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),1)/$ffff*512,3,0);
-            //draw_rectangle(ds_list_find_value(ds_list_find_value(el_list,i),0)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),1)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),2)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),3)/$ffff*512,1);
+            draw_rectangle(ds_list_find_value(ds_list_find_value(el_list,i),0)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),1)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),2)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),3)/$ffff*512,1);
             }
         }
 

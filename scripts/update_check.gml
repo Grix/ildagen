@@ -2,10 +2,7 @@ ini_filename = working_directory+"settings.ini";
 if (file_exists(ini_filename))
     {
     ini_open(ini_filename);
-    if (!ini_key_exists("main","updatecheck"))
-        updatecheckenabled = ini_read_real("main","updatecheck",0);
-    else
-        updatecheckenabled = 1;
+    updatecheckenabled = ini_read_real("main","updatecheck",0);
     if (!ini_key_exists("main","showmessages"))
         show_messages = ini_read_real("main","showmessages",0);
     else

@@ -77,8 +77,7 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (controller.show_messages)
-    if !(show_question("Are you sure you want to clear everything? (Cannot be undone)"))
+            <string>if !(show_question("Are you sure you want to clear everything? (Cannot be undone)"))
         exit;
     
 with (controller)
