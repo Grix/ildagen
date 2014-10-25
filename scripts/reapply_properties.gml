@@ -15,6 +15,7 @@ else if (argument0 == 1)
     {
     
     //find elements
+    temp_undof_list = ds_list_create();
     temp_frame_list = ds_list_create();
     for (i = 0;i < maxframes;i++)
         {
@@ -23,10 +24,18 @@ else if (argument0 == 1)
             {
             if (ds_list_find_value(ds_list_find_value(el_list_temp,u),9) == selectedelement)
                 {
+                if (ds_list_empty(temp_frame_list))
+                    startframe = i;
                 ds_list_add(temp_frame_list,ds_list_find_value(el_list_temp,u))
+                temp_undo_list = ds_list_create();
+                ds_list_copy(temp_undo_list,ds_list_find_value(el_list_temp,u));
+                ds_list_add(temp_undo_list,i);
+                ds_list_add(temp_undof_list,temp_undo_list);
                 }
             }
         }
+    
+    ds_stack_push(undo_list,"k"+string(temp_undof_list));
             
     for (i = 0;i < ds_list_size(temp_frame_list);i++)
         {
@@ -83,10 +92,10 @@ else if (argument0 == 1)
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
-                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
-                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
-                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
+                endx_r = lerp(endx,endx+anixtrans,t);
+                endy_r = lerp(endy,endy+aniytrans,t);
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t);
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t);
                 }
             else if (anifunc = "sine")
                 {
@@ -108,10 +117,10 @@ else if (argument0 == 1)
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
-                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
-                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
-                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
+                endx_r = lerp(endx,endx+anixtrans,t);
+                endy_r = lerp(endy,endy+aniytrans,t);
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t);
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t);
                 }
             else if (anifunc = "ssine")
                 {
@@ -130,10 +139,10 @@ else if (argument0 == 1)
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
-                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
-                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
-                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
+                endx_r = lerp(endx,endx+anixtrans,t);
+                endy_r = lerp(endy,endy+aniytrans,t);
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t);
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t);
                 }
             else if (anifunc = "hsine")
                 {
@@ -152,10 +161,10 @@ else if (argument0 == 1)
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
-                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
-                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
-                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
+                endx_r = lerp(endx,endx+anixtrans,t);
+                endy_r = lerp(endy,endy+aniytrans,t);
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t);
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t);
                 }
             else if (anifunc = "saw")
                 {
@@ -173,20 +182,20 @@ else if (argument0 == 1)
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t);
-                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t);
-                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t);
-                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t);
+                endx_r = lerp(endx,endx+anixtrans,t);
+                endy_r = lerp(endy,endy+aniytrans,t);
+                startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t);
+                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t);
                 }
             }
             
         //TRANS
         if (obj_message.reap_trans)
             {
-            ds_list_replace(new_list,0,startpos[0]+startposx_r*$ffff/512);
-            ds_list_replace(new_list,1,startpos[1]+startposy_r*$ffff/512);
-            ds_list_replace(new_list,2,endx+endx_r*$ffff/512);
-            ds_list_replace(new_list,3,endy+endy_r*$ffff/512);
+            ds_list_replace(new_list,0,startposx_r);
+            ds_list_replace(new_list,1,startposy_r);
+            ds_list_replace(new_list,2,endx_r);
+            ds_list_replace(new_list,3,endy_r);
             }
             
         
