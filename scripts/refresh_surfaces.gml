@@ -159,3 +159,4 @@ if (viewmode != 0)
     
 el_list = ds_list_find_value(frame_list,frame);
 draw_set_alpha(1);
+
