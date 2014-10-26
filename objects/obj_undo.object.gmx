@@ -109,7 +109,6 @@ else if (string_char_at(undo,0) == 'a')
     {
     controller.maxframes = real(string_digits(undo));
     if (controller.frame &gt; controller.maxframes) controller.frame = controller.maxframes-1;
-    with (controller) refresh_surfaces();
     }
 else if (string_char_at(undo,0) == 'r')
     {
@@ -136,7 +135,23 @@ else if (string_char_at(undo,0) == 'b')
 else if (string_char_at(undo,0) == 'k')
     {
     //undo reapply elements
-    //frame lists, last entry= frame
+    for (u = 0;u &lt; ds_list_size(real(string_digits(undo)));u++)
+        {
+        list = ds_list_find_value(real(string_digits(undo)),u);
+        tempid = ds_list_find_value(list,9);
+        frame = ds_list_find_value(list,ds_list_size(list)-1);
+        ds_list_delete(list,ds_list_size(list)-1);
+        el_list = ds_list_find_value(controller.frame_list,frame);
+        for (i = 0;i &lt; ds_list_size(el_list);i++)
+            {
+            if (ds_list_find_value(ds_list_find_value(el_list,i),9) == tempid)
+                {
+                oldlist = ds_list_find_value(el_list,i);
+                ds_list_clear(oldlist);
+                ds_list_replace(el_list,i,list);
+                }
+            }
+        }
     }
     
     

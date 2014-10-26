@@ -287,6 +287,12 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status ==
     refresh_surfaces();
     }
     
+if (frame &gt;= maxframes)
+    {
+    frame = maxframes-1;
+    framehr = maxframes-1;
+    }
+    
 if (keyboard_check_pressed(vk_up)) and (!ds_list_empty(el_list)) and (placing_status == 0)
     {
     tempstop = 0;

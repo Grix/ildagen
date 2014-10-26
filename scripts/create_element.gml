@@ -11,8 +11,16 @@ if (maxframes == 1) and (anienable)
         repeat (controller.maxframes - ds_list_size(controller.frame_list))
             {
             templist = ds_list_create();
-            if (fillframes)
-                ds_list_copy(templist,ds_list_find_value(controller.frame_list,ds_list_size(controller.frame_list)-1))
+            if (controller.fillframes)
+                {
+                tempelcount = ds_list_size(ds_list_find_value(controller.frame_list,ds_list_size(controller.frame_list)-1));
+                for (u = 0;u < tempelcount;u++)
+                    {
+                    tempellist = ds_list_create();
+                    ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(controller.frame_list,ds_list_size(controller.frame_list)-1),u));
+                    ds_list_add(templist,tempellist);
+                    }
+                }
             ds_list_add(controller.frame_list,templist);
             }
     }

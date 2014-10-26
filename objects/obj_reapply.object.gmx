@@ -77,9 +77,7 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_stack_push(controller.undo_list,"q"+string(controller.resolution))
-
-with (controller)
+            <string>with (controller)
     {
     placing_status = 0;
     ds_list_clear(free_list);
