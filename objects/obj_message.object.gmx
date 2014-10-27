@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>backgroundsurface = -1;
-
+rdy = 0;
 reap_color = 0;
 reap_blank = 0;
 reap_removeoverlap = 0;
@@ -36,7 +36,7 @@ reap_trans = 0;
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="77">
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -53,12 +53,7 @@ reap_trans = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*if (!surface_exists(backgroundsurface))
-    {
-    backgroundsurface = surface_create(surface_get_width(application_surface),surface_get_height(application_surface));
-    //surface_copy(backgroundsurface,0,0,application_surface);
-    backgroundsurface = background_create_from_surface(application_surface,0,0,surface_get_width(application_surface),surface_get_height(application_surface),0,0);
-    }
+            <string>rdy = 1;
 </string>
           </argument>
         </arguments>
@@ -132,11 +127,15 @@ else if (mouse_check_button_pressed(mb_left) &amp;&amp; (mouse_y &gt; 400) &amp;
     {
     reap_removeoverlap = !reap_removeoverlap;
     }
-else if ((mouse_check_button_pressed(mb_left) &amp;&amp; (mouse_y &gt; 500) &amp;&amp; (mouse_y &lt; 550) &amp;&amp; (mouse_x &gt; 400) &amp;&amp; (mouse_x &lt; 600)) || (keyboard_check(vk_enter)))
+else if ((mouse_check_button_pressed(mb_left) &amp;&amp; (mouse_y &gt; 500) &amp;&amp; (mouse_y &lt; 550) &amp;&amp; (mouse_x &gt; 400) &amp;&amp; (mouse_x &lt; 600)) || (keyboard_check_pressed(vk_enter)))
     {
-    instance_activate_all();
-    with (controller) reapply_properties(1);
-    visible = 0;
+    if (rdy)
+        {
+        instance_activate_all();
+        with (controller) reapply_properties(1);
+        visible = 0;
+        rdy = 0;
+        }
     }
     
 draw_sprite(spr_cursor,0,mouse_x,mouse_y);

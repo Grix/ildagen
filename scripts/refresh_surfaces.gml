@@ -44,6 +44,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
             
             if (nbl == 0)
                 {
+                framepoints++;
                 draw_set_color(make_colour_rgb(nr,ng,nb));
                 if (xp == nxp) && (yp == nyp)
                     {
@@ -53,7 +54,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
                     draw_line(xo+ xp/128,yo+ yp/128,xo+ nxp/128,yo+ nyp/128);
                 }
             
-            framepoints++;
+            
             
             }
     surface_reset_target();
@@ -159,4 +160,3 @@ if (viewmode != 0)
     
 el_list = ds_list_find_value(frame_list,frame);
 draw_set_alpha(1);
-

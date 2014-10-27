@@ -64,7 +64,8 @@ for (j = 0; j < maxframes;j++)
         
         //TODO if just one
         
-        for (u = 0; u < ((ds_list_size(list_id)-10)/6); u++)
+        listsize = ((ds_list_size(list_id)-10)/6);
+        for (u = 0; u < listsize; u++)
             {
             //getting values from element list
             xp = xo+ds_list_find_value(list_id,10+u*6+0);
@@ -74,8 +75,7 @@ for (j = 0; j < maxframes;j++)
                 blanktemp = 1;
                 continue;
                 }
-            
-            maxpoints++;
+        
             
             bl = ds_list_find_value(list_id,10+u*6+2);
             b = ds_list_find_value(list_id,10+u*6+3);
@@ -114,15 +114,19 @@ for (j = 0; j < maxframes;j++)
                     blank = $C0;
                 }
             
-            //writing point
-            buffer_write(ilda_buffer,buffer_u8,xpa[1]);
-            buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-            buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-            buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-            buffer_write(ilda_buffer,buffer_u8,blank);
-            buffer_write(ilda_buffer,buffer_u8,b);
-            buffer_write(ilda_buffer,buffer_u8,g);
-            buffer_write(ilda_buffer,buffer_u8,r);
+            if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,10+(u+1)*6+2)))
+                {
+                //writing point
+                buffer_write(ilda_buffer,buffer_u8,xpa[1]);
+                buffer_write(ilda_buffer,buffer_u8,xpa[0]);
+                buffer_write(ilda_buffer,buffer_u8,ypa[1]);
+                buffer_write(ilda_buffer,buffer_u8,ypa[0]);
+                buffer_write(ilda_buffer,buffer_u8,blank);
+                buffer_write(ilda_buffer,buffer_u8,b);
+                buffer_write(ilda_buffer,buffer_u8,g);
+                buffer_write(ilda_buffer,buffer_u8,r);
+                maxpoints++;
+                }
             
             }
         }

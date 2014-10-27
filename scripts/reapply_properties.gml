@@ -6,9 +6,11 @@
 
 if (argument0 == 0)
     {
-    if (selectedelement = -1)
+    if (selectedelement = -1) or (placing_status != 0)
         exit;
     obj_message.visible = 1;
+    obj_message.alarm[0] = 2;
+    obj_message.rdy = 0;
     obj_message.type = 0;
     }
 else if (argument0 == 1)

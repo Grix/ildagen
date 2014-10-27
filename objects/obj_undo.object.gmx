@@ -153,6 +153,19 @@ else if (string_char_at(undo,0) == 'k')
             }
         }
     }
+else if (string_char_at(undo,0) == 'l')
+    {
+    //undo reapply elements
+    for (u = 0;u &lt; ds_list_size(real(string_digits(undo)));u++)
+        {
+        list = ds_list_find_value(real(string_digits(undo)),u);
+        tempid = ds_list_find_value(list,9);
+        frame = ds_list_find_value(list,ds_list_size(list)-1);
+        ds_list_delete(list,ds_list_size(list)-1);
+        el_list = ds_list_find_value(controller.frame_list,frame);
+        ds_list_add(el_list,list);
+        }
+    }
     
     
 with (controller)
@@ -250,9 +263,7 @@ else if (string_char_at(undo,0) == 'd')
     }
 else if (string_char_at(undo,0) == 'c')
     {
-    ds_list_copy(ds_list_find_index(controller.frame_list,
-                                    real(string_digits(ds_stack_pop(controller.undo_list)))),
-                real(string_digits(undo)));
+    ds_list_copy(ds_list_find_index(controller.frame_list,real(string_digits(ds_stack_pop(controller.undo_list)))),real(string_digits(undo)));
     }
 else if (string_char_at(undo,0) == 'v')
     {
@@ -263,6 +274,40 @@ else if (string_char_at(undo,0) == 'b')
     {
     controller.color1 = real(string_digits(undo));
     controller.color2 = real(string_digits(ds_stack_pop(controller.undo_list)));
+    }
+else if (string_char_at(undo,0) == 'k')
+    {
+    //undo reapply elements
+    for (u = 0;u &lt; ds_list_size(real(string_digits(undo)));u++)
+        {
+        list = ds_list_find_value(real(string_digits(undo)),u);
+        tempid = ds_list_find_value(list,9);
+        frame = ds_list_find_value(list,ds_list_size(list)-1);
+        ds_list_delete(list,ds_list_size(list)-1);
+        el_list = ds_list_find_value(controller.frame_list,frame);
+        for (i = 0;i &lt; ds_list_size(el_list);i++)
+            {
+            if (ds_list_find_value(ds_list_find_value(el_list,i),9) == tempid)
+                {
+                oldlist = ds_list_find_value(el_list,i);
+                ds_list_clear(oldlist);
+                ds_list_replace(el_list,i,list);
+                }
+            }
+        }
+    }
+else if (string_char_at(undo,0) == 'l')
+    {
+    //undo reapply elements
+    for (u = 0;u &lt; ds_list_size(real(string_digits(undo)));u++)
+        {
+        list = ds_list_find_value(real(string_digits(undo)),u);
+        tempid = ds_list_find_value(list,9);
+        frame = ds_list_find_value(list,ds_list_size(list)-1);
+        ds_list_delete(list,ds_list_size(list)-1);
+        el_list = ds_list_find_value(controller.frame_list,frame);
+        ds_list_add(el_list,list);
+        }
     }
     
     
