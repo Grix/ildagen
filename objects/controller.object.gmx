@@ -73,7 +73,7 @@ pointy[20] = 0;
 wave_offset = 0;
 bez_moving = 0;
 
-resolution = 512;
+resolution = "auto";
 framepoints = 0;
 
 

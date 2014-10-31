@@ -2,26 +2,27 @@
 
 placing_status = 0;
 
-
+        
+        
 if (maxframes == 1) and (anienable)
     {
     maxframes = 32;
     
-    if (ds_list_size(controller.frame_list) < controller.maxframes)
-        repeat (controller.maxframes - ds_list_size(controller.frame_list))
+    if (ds_list_size(frame_list) < maxframes)
+        repeat (maxframes - ds_list_size(frame_list))
             {
             templist = ds_list_create();
-            if (controller.fillframes)
+            if (fillframes)
                 {
-                tempelcount = ds_list_size(ds_list_find_value(controller.frame_list,ds_list_size(controller.frame_list)-1));
+                tempelcount = ds_list_size(ds_list_find_value(frame_list,ds_list_size(frame_list)-1));
                 for (u = 0;u < tempelcount;u++)
                     {
                     tempellist = ds_list_create();
-                    ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(controller.frame_list,ds_list_size(controller.frame_list)-1),u));
+                    ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(frame_list,ds_list_size(frame_list)-1),u));
                     ds_list_add(templist,tempellist);
                     }
                 }
-            ds_list_add(controller.frame_list,templist);
+            ds_list_add(frame_list,templist);
             }
     }
 
@@ -43,6 +44,24 @@ else
         endx = startpos[0];
         endy = obj_cursor.y;
         }
+    }
+    
+autoresflag = 0;
+if (is_string(resolution))
+    {
+    autoresflag = 1;
+    if ((placing == "line") && (blankmode == "solid") && (colormode == "solid"))
+        resolution = 4096;
+    else
+        resolution = 1024;
+        
+    if (colormode != "solid") or (blankmode != "solid")
+        resolution = 512;
+    
+    if (anienable) and (blankmode != "solid") and ((blank_offset != aniblank_offset) or (blank_dc != aniblank_dc))
+        resolution = 256;
+    else if (anienable) and (colormode != "solid") and ((color_offset != anicolor_offset) or (color_dc != anicolor_dc))
+        resolution = 256;
     }
     
 if (!fillframes)
@@ -427,6 +446,9 @@ else
     }
 
 refresh_surfaces();
+
+if (autoresflag)
+    resolution = "auto";
 
 ds_list_clear(bez_list);
 ds_list_clear(free_list);

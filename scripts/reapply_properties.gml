@@ -4,6 +4,24 @@
 
 //arg0: 0 = init, 1 = do
 
+autoresflag = 0;
+if (is_string(resolution))
+    {
+    autoresflag = 1;
+    if ((placing == "line") && (blankmode == "solid") && (colormode == "solid"))
+        resolution = 4096;
+    else
+        resolution = 1024;
+        
+    if (colormode != "solid") or (blankmode != "solid")
+        resolution = 512;
+    
+    if (anienable) and (blankmode != "solid") and ((blank_offset != aniblank_offset) or (blank_dc != aniblank_dc))
+        resolution = 256;
+    else if (anienable) and (colormode != "solid") and ((color_offset != anicolor_offset) or (color_dc != anicolor_dc))
+        resolution = 256;
+    }
+
 if (argument0 == 0)
     {
     if (selectedelement = -1) or (placing_status != 0)
@@ -428,4 +446,6 @@ else if (argument0 == 1)
         }
     
     refresh_surfaces();
+    if (autoresflag)
+        resolution = "auto";
     }

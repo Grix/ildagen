@@ -111,7 +111,7 @@
       <script>scripts\read_ilda_work.gml</script>
       <script>scripts\parse_word.gml</script>
     </scripts>
-    <scripts name="drowdownactions">
+    <scripts name="dropdown">
       <script>scripts\dropdown_res.gml</script>
       <script>scripts\dd_res_high.gml</script>
       <script>scripts\dd_res_med.gml</script>

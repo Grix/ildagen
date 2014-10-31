@@ -22,9 +22,9 @@
     <glyph character="61" x="10" y="70" w="7" h="11" shift="9" offset="1"/>
     <glyph character="77" x="96" y="2" w="9" h="13" shift="10" offset="0"/>
     <glyph character="56" x="34" y="55" w="6" h="13" shift="7" offset="0"/>
+    <glyph character="115" x="79" y="70" w="5" h="13" shift="6" offset="0"/>
     <glyph character="122" x="86" y="70" w="5" h="13" shift="6" offset="0"/>
     <glyph character="35" x="54" y="19" w="7" h="13" shift="9" offset="1"/>
-    <glyph character="115" x="79" y="70" w="5" h="13" shift="6" offset="0"/>
     <glyph character="105" x="112" y="88" w="1" h="13" shift="3" offset="1"/>
     <glyph character="47" x="33" y="70" w="5" h="15" shift="5" offset="0"/>
     <glyph character="80" x="26" y="55" w="6" h="13" shift="7" offset="0"/>
@@ -33,12 +33,12 @@
     <glyph character="48" x="2" y="55" w="6" h="13" shift="7" offset="0"/>
     <glyph character="32" x="8" y="88" w="4" h="16" shift="4" offset="0"/>
     <glyph character="91" x="52" y="88" w="3" h="15" shift="5" offset="1"/>
-    <glyph character="114" x="30" y="88" w="4" h="13" shift="5" offset="0"/>
-    <glyph character="97" x="10" y="55" w="6" h="13" shift="7" offset="0"/>
-    <glyph character="57" x="18" y="55" w="6" h="13" shift="7" offset="0"/>
     <glyph character="79" x="2" y="19" w="8" h="13" shift="9" offset="0"/>
-    <glyph character="107" x="114" y="55" w="6" h="13" shift="6" offset="0"/>
+    <glyph character="114" x="30" y="88" w="4" h="13" shift="5" offset="0"/>
     <glyph character="98" x="66" y="55" w="6" h="13" shift="7" offset="0"/>
+    <glyph character="97" x="10" y="55" w="6" h="13" shift="7" offset="0"/>
+    <glyph character="107" x="114" y="55" w="6" h="13" shift="6" offset="0"/>
+    <glyph character="57" x="18" y="55" w="6" h="13" shift="7" offset="0"/>
     <glyph character="46" x="115" y="88" w="1" h="13" shift="4" offset="1"/>
     <glyph character="38" x="107" y="2" w="9" h="13" shift="9" offset="0"/>
     <glyph character="100" x="2" y="70" w="6" h="13" shift="7" offset="0"/>

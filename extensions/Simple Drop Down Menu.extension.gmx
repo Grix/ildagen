@@ -3,7 +3,7 @@
   <name>Simple Drop Down Menu</name>
   <version>1.0.1</version>
   <packageID></packageID>
-  <ProductID>834194CDC9859E29D41E723840568CCD</ProductID>
+  <ProductID></ProductID>
   <date>28/07/14</date>
   <license>Free to use, also for commercial games.</license>
   <description></description>
@@ -22,13 +22,8 @@
   <iosThirdPartyFrameworks/>
   <androidPermissions/>
   <IncludedResources>
-    <Resource>Sprites\spr_gear</Resource>
-    <Resource>Sprites\spr_arrow</Resource>
-    <Resource>Scripts\add_dropdown_option</Resource>
     <Resource>Fonts\fnt_popup</Resource>
     <Resource>Objects\oDropDown</Resource>
-    <Resource>Objects\oDropDownTester</Resource>
-    <Resource>Rooms\rm_test</Resource>
   </IncludedResources>
   <files/>
 </extension>
