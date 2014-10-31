@@ -34,7 +34,6 @@ if (os_version != -1) update_check();
 c_ltltgray = make_colour_rgb(230,230,230);
 c_ltltltgray = make_colour_rgb(240,240,240);
 
-display_reset(0,1);
 
 el_list = ds_list_create();
 undo_list = ds_stack_create();
@@ -74,7 +73,7 @@ pointy[20] = 0;
 wave_offset = 0;
 bez_moving = 0;
 
-resolution = 256;
+resolution = 512;
 framepoints = 0;
 
 

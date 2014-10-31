@@ -24,6 +24,7 @@
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\filesaver</extension>
+    <extension index="1">extensions\Simple Drop Down Menu</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -110,15 +111,21 @@
       <script>scripts\read_ilda_work.gml</script>
       <script>scripts\parse_word.gml</script>
     </scripts>
+    <scripts name="drowdownactions">
+      <script>scripts\dropdown_res.gml</script>
+      <script>scripts\dd_res_high.gml</script>
+      <script>scripts\dd_res_med.gml</script>
+      <script>scripts\dd_res_low.gml</script>
+      <script>scripts\dd_res_auto.gml</script>
+      <script>scripts\dd_res_custom.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
     <font>fonts\fnt_bold</font>
+    <font>fonts\fnt_popup</font>
   </fonts>
   <objects name="objects">
-    <object>objects\controller</object>
-    <object>objects\obj_message</object>
-    <object>objects\obj_cursor</object>
     <objects name="buttons">
       <object>objects\obj_export</object>
       <object>objects\obj_e_res</object>
@@ -186,6 +193,10 @@
         <object>objects\obj_aniytrans</object>
       </objects>
     </objects>
+    <object>objects\controller</object>
+    <object>objects\obj_cursor</object>
+    <object>objects\obj_message</object>
+    <object>objects\oDropDown</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_2d</room>
