@@ -18,7 +18,7 @@ if (blankmode == "dot") or (blankmode == "dotsolid")
 else if (blankmode == "dash")
     {
     if (blankmode2 == 0)
-        dotfreq = checkpoints/(blank_freq_r+0.48);
+        dotfreq = checkpoints/(blank_freq_r+0.5);
     else
         dotfreq = blank_period_r/resolution;
     if (dotfreq < 1)
@@ -27,7 +27,7 @@ else if (blankmode == "dash")
 if (colormode == "dash")
     {
     if (colormode2 == 0)
-        colorfreq = checkpoints/(color_freq_r+0.48);
+        colorfreq = checkpoints/(color_freq_r+0.5);
     else
         colorfreq = color_period_r/resolution;
     if (colorfreq < 1)

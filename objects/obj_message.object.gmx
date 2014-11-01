@@ -78,7 +78,6 @@ reap_trans = 0;
             <kind>1</kind>
             <string>/*if (surface_exists(backgroundsurface))
     draw_background(backgroundsurface,0,0);*/
-
 instance_deactivate_all(1);
 
 

@@ -112,6 +112,11 @@
       <script>scripts\parse_word.gml</script>
     </scripts>
     <scripts name="dropdown">
+      <script>scripts\dropdown_ed.gml</script>
+      <script>scripts\dd_ed_custom.gml</script>
+      <script>scripts\dd_ed_low.gml</script>
+      <script>scripts\dd_ed_med.gml</script>
+      <script>scripts\dd_ed_high.gml</script>
       <script>scripts\dropdown_res.gml</script>
       <script>scripts\dd_res_high.gml</script>
       <script>scripts\dd_res_med.gml</script>
@@ -171,7 +176,6 @@
         <object>objects\obj_blankingdcselect</object>
         <object>objects\obj_b_solid</object>
         <object>objects\obj_enddots</object>
-        <object>objects\obj_dotnumber</object>
         <object>objects\obj_b_dash</object>
         <object>objects\obj_b_dot</object>
         <object>objects\obj_b_dotsolid</object>

@@ -1,7 +1,6 @@
 //creates an element from whatever has been done on the screen
 
 placing_status = 0;
-
         
         
 if (maxframes == 1) and (anienable)

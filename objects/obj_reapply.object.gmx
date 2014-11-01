@@ -130,7 +130,9 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (controller)
+            <string>if (controller.placing_status &gt; 1) exit;
+
+with (controller)
     {
     placing_status = 0;
     ds_list_clear(free_list);

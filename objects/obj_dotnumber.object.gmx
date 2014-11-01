@@ -82,11 +82,7 @@ visible = controller.enddots || (controller.blankmode == "dotsolid") || (control
             <string>if (!visible)
     exit;
 
-ds_stack_push(controller.undo_list,"d"+string(controller.dotmultiply))
-
-controller.dotmultiply = get_integer("Enter the intensity (amount of overlapping points) of dots. Higher value make dots brighter.",controller.dotmultiply);
-if (controller.dotmultiply &lt; 1) controller.dotmultiply = 1;
-if (controller.dotmultiply &gt; 32) controller.dotmultiply = 32;
+dropdown_ed();
 </string>
           </argument>
         </arguments>

@@ -55,8 +55,8 @@ bak_color = c_black;
 border_color = c_black;
 highlight_color = c_teal;
 icon_color = c_ltgray;
-separator_color = c_gray;
-text_color = c_ltgray;
+separator_color = c_dkgray;
+text_color = c_gray;
 
 bak_alpha = .9;
 </string>
@@ -82,6 +82,8 @@ bak_alpha = .9;
           <argument>
             <kind>1</kind>
             <string>ds_list_clear(desc_list);
+ds_list_clear(scr_list);
+ds_list_clear(hl_list);
 ds_list_clear(sep_list);
 instance_activate_all();
 </string>
