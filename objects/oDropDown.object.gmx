@@ -194,7 +194,7 @@ instance_destroy();
             <kind>1</kind>
             <string>///Remove if not clicked
 if (!rdy) exit;
-if(selected == noone)
+if(selected == noone) or (selected &gt;= num)
 {
     instance_destroy();
 }

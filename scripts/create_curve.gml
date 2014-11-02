@@ -88,7 +88,11 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
             
         //BLANK
         if (blankmode = "solid")
+            {
             blank = 0;
+            if (n == 0) and (enddots)
+                makedot = 1;
+            }
         else if (blankmode == "dash")
             {
             if (blank_dc_r >= 0.98)

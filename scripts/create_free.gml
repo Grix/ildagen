@@ -55,7 +55,11 @@ for (n = 0;n < checkpoints; n++)
     
     //BLANK
     if (blankmode == "solid")
+        {
         blank = 0;
+        if ((n == 0) or (n == checkpoints-1)) and (enddots)
+            makedot = 1;
+        }
     else if (blankmode == "dash")
         {
         if (blank_dc_r >= 0.98)
@@ -177,8 +181,16 @@ for (n = 0;n < checkpoints; n++)
                 {
                 if (blank)
                     {
-                    ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1))*128);
-                    ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1)*128);
+                    if (n)
+                        {
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1))*128);
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1)*128);
+                        }
+                    else
+                        {
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n))*128);
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1)*128);
+                        }
                     ds_list_add(new_list,1);
                     ds_list_add(new_list,c[0]);
                     ds_list_add(new_list,c[1]);
@@ -186,19 +198,38 @@ for (n = 0;n < checkpoints; n++)
                     }
                 else
                     {
-                    ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1))*128);
-                    ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1)*128);
+                    if (n)
+                        {
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1))*128);
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1)*128);
+                        }
+                    else
+                        {
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n))*128);
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1)*128);
+                        }
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
                     ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
                     ds_list_add(new_list,colour_get_red(controller.enddotscolor_r));
                     }
-                ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1))*128);
-                ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1)*128);
-                ds_list_add(new_list,0);
-                ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
-                ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
-                ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
+                repeat (dotmultiply)
+                    {
+                    if (n)
+                        {
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1))*128);
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1)*128);
+                        }
+                    else
+                        {
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n))*128);
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1)*128);
+                        }
+                    ds_list_add(new_list,0);
+                    ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
+                    ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
+                    ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
+                    }
                 }
             else
                 {
@@ -208,12 +239,15 @@ for (n = 0;n < checkpoints; n++)
                 ds_list_add(new_list,c[0]);
                 ds_list_add(new_list,c[1]);
                 ds_list_add(new_list,c[2])
-                ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
-                ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
-                ds_list_add(new_list,0);
-                ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
-                ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
-                ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
+                repeat (dotmultiply)
+                    {
+                    ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
+                    ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
+                    ds_list_add(new_list,0);
+                    ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
+                    ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
+                    ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
+                    }
                 }
             }
 

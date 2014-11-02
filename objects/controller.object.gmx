@@ -113,6 +113,8 @@ aniwave_offset = 0;
 anifunc = "saw";
 anixtrans = 0;
 aniytrans = 0;
+shaking = 0;
+shaking_sdev = 10;
 
 alarm[0] = 1;
 </string>

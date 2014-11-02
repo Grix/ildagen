@@ -1,6 +1,4 @@
-//add_dropdown_option(x,y)
 
-//Adds an option to the drop down box
 ddobj = instance_create(mouse_x,mouse_y,oDropDown);
 with (ddobj)
     {

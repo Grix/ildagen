@@ -4,24 +4,6 @@
 
 //arg0: 0 = init, 1 = do
 
-autoresflag = 0;
-if (is_string(resolution))
-    {
-    autoresflag = 1;
-    if ((placing == "line") && (blankmode == "solid") && (colormode == "solid"))
-        resolution = 4096;
-    else
-        resolution = 1024;
-        
-    if (colormode != "solid") or (blankmode != "solid")
-        resolution = 512;
-    
-    if (anienable) and (blankmode != "solid") and ((blank_offset != aniblank_offset) or (blank_dc != aniblank_dc))
-        resolution = 256;
-    else if (anienable) and (colormode != "solid") and ((color_offset != anicolor_offset) or (color_dc != anicolor_dc))
-        resolution = 256;
-    }
-
 if (argument0 == 0)
     {
     if (selectedelement = -1) or (placing_status != 0)
@@ -226,7 +208,7 @@ else if (argument0 == 1)
                 if (blankmode2 == 0)
                     dotfreq = checkpoints/(blank_freq_r);
                 else
-                    dotfreq = blank_period_r/resolution;
+                    dotfreq = blank_period_r/512;
                 if (dotfreq < 1)
                     dotfreq = 1;
                 }
@@ -235,7 +217,7 @@ else if (argument0 == 1)
                 if (blankmode2 == 0)
                     dotfreq = checkpoints/(blank_freq_r+0.48);
                 else
-                    dotfreq = blank_period_r/resolution;
+                    dotfreq = blank_period_r/512;
                 if (dotfreq < 1)
                     dotfreq = 1;
                 }
@@ -248,7 +230,7 @@ else if (argument0 == 1)
                 if (colormode2 == 0)
                     colorfreq = checkpoints/(color_freq_r+0.48);
                 else
-                    colorfreq = color_period_r/resolution;
+                    colorfreq = color_period_r/512;
                 if (colorfreq < 1)
                     colorfreq = 1;
                 }
@@ -327,7 +309,11 @@ else if (argument0 == 1)
                 {
                 //BLANK
                 if (blankmode == "solid")
+                    {
                     blank = 0;
+                    if (n == 0) and (enddots)
+                        makedot = 1;
+                    }
                 else if (blankmode == "dash")
                     {
                     if (blank_dc_r >= 0.98)
@@ -402,35 +388,40 @@ else if (argument0 == 1)
                         if (makedot == 2)
                             {
                             if (blank)
-                                ds_list_replace(new_list,10+j*6+2,1);
+                                ds_list_replace(new_list,10+(j-1)*6+2,1);
                             else
-                                ds_list_replace(new_list,10+j*6+2,0);
+                                ds_list_replace(new_list,10+(j-1)*6+2,0);
+                            icount = 0;
                             repeat (dotmultiply)
                                 {
-                                ds_list_insert(new_list,10+(j)*6+6,ds_list_find_value(new_list,10+j*6));
-                                ds_list_insert(new_list,10+(j)*6+7,ds_list_find_value(new_list,10+j*6+1));
-                                ds_list_insert(new_list,10+(j)*6+8,0);
-                                ds_list_insert(new_list,10+(j)*6+9,colour_get_blue(enddotscolor_r));
-                                ds_list_insert(new_list,10+(j)*6+10,colour_get_green(enddotscolor_r));
-                                ds_list_insert(new_list,10+(j)*6+11,colour_get_red(enddotscolor_r));
-                                checkpoints++;
-                                j++;
+                                icount++;
+                                ds_list_insert(new_list,10+(j-1)*6+6,ds_list_find_value(new_list,10+(j-1)*6));
+                                ds_list_insert(new_list,10+(j-1)*6+7,ds_list_find_value(new_list,10+(j-1)*6+1));
+                                ds_list_insert(new_list,10+(j-1)*6+8,0);
+                                ds_list_insert(new_list,10+(j-1)*6+9,colour_get_blue(enddotscolor_r));
+                                ds_list_insert(new_list,10+(j-1)*6+10,colour_get_green(enddotscolor_r));
+                                ds_list_insert(new_list,10+(j-1)*6+11,colour_get_red(enddotscolor_r));
                                 }
+                            j+= icount;
+                            checkpoints += icount;
                             }
                         else
                             {
                             ds_list_replace(new_list,10+j*6+2,0);
+                            icount = 0;
                             repeat (dotmultiply)
                                 {
+                                icount++;
                                 ds_list_insert(new_list,10+(j)*6+6,ds_list_find_value(new_list,10+j*6));
                                 ds_list_insert(new_list,10+(j)*6+7,ds_list_find_value(new_list,10+j*6+1));
                                 ds_list_insert(new_list,10+(j)*6+8,0);
                                 ds_list_insert(new_list,10+(j)*6+9,colour_get_blue(enddotscolor_r));
                                 ds_list_insert(new_list,10+(j)*6+10,colour_get_green(enddotscolor_r));
                                 ds_list_insert(new_list,10+(j)*6+11,colour_get_red(enddotscolor_r));
-                                checkpoints++;
-                                j++;
+                    
                                 }
+                            j+= icount;
+                            checkpoints += icount;
                             }
                         }
                     }  
@@ -446,6 +437,4 @@ else if (argument0 == 1)
         }
     
     refresh_surfaces();
-    if (autoresflag)
-        resolution = "auto";
     }

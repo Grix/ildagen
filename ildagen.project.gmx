@@ -97,6 +97,7 @@
     <script>scripts\bezier_x.gml</script>
     <script>scripts\bezier_y.gml</script>
     <script>scripts\update_check.gml</script>
+    <script>scripts\random_gaussian.gml</script>
     <scripts name="importilda">
       <script>scripts\get_bytes_signed.gml</script>
       <script>scripts\read_ilda_header_first.gml</script>
@@ -123,6 +124,11 @@
       <script>scripts\dd_res_low.gml</script>
       <script>scripts\dd_res_auto.gml</script>
       <script>scripts\dd_res_custom.gml</script>
+      <script>scripts\dropdown_shake.gml</script>
+      <script>scripts\dd_shake_custom.gml</script>
+      <script>scripts\dd_shake_low.gml</script>
+      <script>scripts\dd_shake_med.gml</script>
+      <script>scripts\dd_shake_high.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -150,7 +156,6 @@
         <object>objects\obj_curve</object>
         <object>objects\obj_s_circle</object>
         <object>objects\obj_s_wave</object>
-        <object>objects\obj_s_rect</object>
         <object>objects\obj_waveoffselect</object>
       </objects>
       <objects name="color">
@@ -195,6 +200,7 @@
         <object>objects\obj_anifunc</object>
         <object>objects\obj_anixtrans</object>
         <object>objects\obj_aniytrans</object>
+        <object>objects\obj_shake</object>
       </objects>
     </objects>
     <object>objects\controller</object>

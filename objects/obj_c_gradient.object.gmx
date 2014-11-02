@@ -51,11 +51,11 @@
             <kind>1</kind>
             <string>if (controller.colormode == "gradient") image_index = 2;
 else if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
-    {
     image_index = 1;
-    controller.tooltip = "Selects gradient color mode";
-    } 
 else image_index = 0;
+
+if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+    controller.tooltip = "Selects gradient color mode";
 </string>
           </argument>
         </arguments>

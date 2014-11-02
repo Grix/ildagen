@@ -105,6 +105,36 @@ visible = ((controller.colormode == "gradient") || (controller.colormode == "das
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (mouse_x &lt; (x+14))
+    {
+    controller.anicolor2 = make_color_rgb(clamp(get_integer("Enter value for RED from 0 to 255",colour_get_red(controller.anicolor2)),0,255),colour_get_green(controller.anicolor2),colour_get_blue(controller.anicolor2));
+    }
+else if (mouse_x &gt; (x+30))
+    controller.anicolor2 = make_color_rgb(colour_get_red(controller.anicolor2),colour_get_green(controller.anicolor2),clamp(get_integer("Enter value for BLUE from 0 to 255",colour_get_blue(controller.anicolor2)),0,255));
+else controller.anicolor2 = make_color_rgb(colour_get_red(controller.anicolor2),clamp(get_integer("Enter value for GREEN from 0 to 255",colour_get_green(controller.anicolor2)),0,255),colour_get_blue(controller.anicolor2));
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="4">
       <action>
         <libid>1</libid>
