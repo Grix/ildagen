@@ -19,9 +19,9 @@ with (ddobj)
     ds_list_add(hl_list,0);
     ds_list_add(hl_list,0);
     ds_list_add(hl_list,0);
-    if (controller.shaking_sdev == 40) highlighted = 0;
-    else if (controller.shaking_sdev == 15) highlighted = 1;
-    else if (controller.shaking_sdev == 5) highlighted = 2;
+    if (controller.shaking_sdev == 10) highlighted = 0;
+    else if (controller.shaking_sdev == 5) highlighted = 1;
+    else if (controller.shaking_sdev == 2) highlighted = 2;
     else highlighted = 3;
     ds_list_replace(hl_list,highlighted,1);
     }

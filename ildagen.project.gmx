@@ -29,6 +29,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_m_line</sprite>
+    <sprite>sprites\spr_shaking</sprite>
     <sprite>sprites\spr_reapply</sprite>
     <sprite>sprites\spr_import</sprite>
     <sprite>sprites\spr_coltoani</sprite>
@@ -129,6 +130,11 @@
       <script>scripts\dd_shake_low.gml</script>
       <script>scripts\dd_shake_med.gml</script>
       <script>scripts\dd_shake_high.gml</script>
+      <script>scripts\dropdown_reap.gml</script>
+      <script>scripts\dd_reap_color.gml</script>
+      <script>scripts\dd_reap_blank.gml</script>
+      <script>scripts\dd_reap_trans.gml</script>
+      <script>scripts\dd_reap_overlap.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -137,6 +143,9 @@
     <font>fonts\fnt_popup</font>
   </fonts>
   <objects name="objects">
+    <object>objects\controller</object>
+    <object>objects\obj_cursor</object>
+    <object>objects\oDropDown</object>
     <objects name="buttons">
       <object>objects\obj_export</object>
       <object>objects\obj_e_res</object>
@@ -203,10 +212,6 @@
         <object>objects\obj_shake</object>
       </objects>
     </objects>
-    <object>objects\controller</object>
-    <object>objects\obj_cursor</object>
-    <object>objects\obj_message</object>
-    <object>objects\oDropDown</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_2d</room>

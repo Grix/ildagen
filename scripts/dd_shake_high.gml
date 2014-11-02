@@ -1,3 +1,3 @@
 ds_stack_push(controller.undo_list,"x"+string(controller.shaking_sdev))
 
-controller.shaking_sdev = 40;
+controller.shaking_sdev = 10;

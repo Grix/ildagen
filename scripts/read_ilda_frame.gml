@@ -2,16 +2,22 @@
 
 repeat(maxpoints)
     {
-    repeat (2)//32
-        {
-        bytes = get_bytes_signed();
-        if (bytes >= $7FFF)
-            bytes -= $7FFF;
-        else
-            bytes += $7FFF;
-        ds_list_add(frame_list_parse,bytes); 
-        i+=(2+(format == 4));
-        }
+    bytes = get_bytes_signed();
+    if (bytes >= $7FFF)
+        bytes -= $7FFF;
+    else
+        bytes += $7FFF;
+    ds_list_add(frame_list_parse,bytes); 
+    i+=(2+(format == 4));
+    bytes = get_bytes_signed();
+    if (bytes >= $7FFF)
+        bytes -= $7FFF;
+    else
+        bytes += $7FFF;
+    bytes = $ffff-bytes;
+    ds_list_add(frame_list_parse,bytes); 
+    i+=(2+(format == 4));
+    
     blank = ((get_byte() & $40) > 0);
     ds_list_add(frame_list_parse,blank);
     i++;

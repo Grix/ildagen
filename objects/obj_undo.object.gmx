@@ -114,6 +114,10 @@ else if (string_char_at(undo,0) == 'r')
     {
     controller.resolution = real(string_digits(undo));
     }
+else if (string_char_at(undo,0) == 'x')
+    {
+    controller.shaking_sdev = real(string_digits(undo));
+    }
 else if (string_char_at(undo,0) == 'd')
     {
     controller.dotmultiply = real(string_digits(undo));
@@ -260,6 +264,10 @@ else if (string_char_at(undo,0) == 'r')
 else if (string_char_at(undo,0) == 'd')
     {
     controller.dotmultiply = real(string_digits(undo));
+    }
+else if (string_char_at(undo,0) == 'x')
+    {
+    controller.shaking_sdev = real(string_digits(undo));
     }
 else if (string_char_at(undo,0) == 'c')
     {

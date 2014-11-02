@@ -100,7 +100,7 @@ switch (type)
         draw_sprite(spr_checkbox,reap_blank,380,300);
         draw_text(450,300,"Blanking");
         draw_sprite(spr_checkbox,reap_trans,380,350);
-        draw_text(450,350,"Displacement");
+        draw_text(450,350,"Displacement and shaking");
         draw_sprite(spr_checkbox,reap_removeoverlap,380,400);
         draw_text(450,400,"Remove overlapping points");
         

@@ -27,7 +27,6 @@
             <kind>1</kind>
             <string>version = "0.9.5hf";
 
-instance_create(0,0,obj_message);
 
 if (os_version != -1) update_check();
 
@@ -76,6 +75,10 @@ bez_moving = 0;
 resolution = "auto";
 framepoints = 0;
 
+reap_color = 1;
+reap_blank = 1;
+reap_removeoverlap = 0;
+reap_trans = 1;
 
 colormode = "solid";
 colormode2 = 0;
@@ -114,7 +117,7 @@ anifunc = "saw";
 anixtrans = 0;
 aniytrans = 0;
 shaking = 0;
-shaking_sdev = 10;
+shaking_sdev = 5;
 
 alarm[0] = 1;
 </string>
