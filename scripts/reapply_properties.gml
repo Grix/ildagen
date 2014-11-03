@@ -36,8 +36,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
     endx = ds_list_find_value(new_list,2);
     endy = ds_list_find_value(new_list,3);
     
-    gaussoffsetx = shaking*128*random_gaussian(0,shaking_sdev);
-    gaussoffsety = shaking*128*random_gaussian(0,shaking_sdev);
+    gaussoffsetx = shaking*128*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
+    gaussoffsety = shaking*128*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
     
     if (anienable == 0) or (ds_list_size(temp_frame_list) == 1)
         {

@@ -69,8 +69,8 @@ if (!fillframes)
     {
     new_list = ds_list_create();
     
-    gaussoffsetx = shaking*random_gaussian(0,shaking_sdev);
-    gaussoffsety = shaking*random_gaussian(0,shaking_sdev);
+    gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
+    gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
     
     if (anienable == 0) or (maxframes == 1)
         {
@@ -262,8 +262,8 @@ else
         
         new_list = ds_list_create();
         
-        gaussoffsetx = shaking*random_gaussian(0,shaking_sdev);
-        gaussoffsety = shaking*random_gaussian(0,shaking_sdev);
+        gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
+        gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
 
         if (anienable == 0) or (maxframes == 1)
             {
