@@ -78,10 +78,12 @@ else image_index = 0;
           <argument>
             <kind>1</kind>
             <string>ds_stack_push(controller.undo_list,"a"+string(controller.maxframes))
-controller.maxframes = get_integer("Enter number of frames in the animation",controller.maxframes);
+
+controller.maxframes = get_integer("Enter number of total frames in the animation",controller.maxframes);
 if (controller.maxframes &lt; 1) controller.maxframes = 1;
 else if (controller.maxframes &gt; $ffff) controller.maxframes = $ffff;
-    
+ 
+   
 if (ds_list_size(controller.frame_list) &lt; controller.maxframes)
     repeat (controller.maxframes - ds_list_size(controller.frame_list))
         {
@@ -104,6 +106,8 @@ if (controller.frame &gt; controller.maxframes)
     controller.frame = controller.maxframes-1;
     controller.framehr = controller.maxframes-1;
     }
+    
+dd_scope_reset();
 
 with (controller)
     {

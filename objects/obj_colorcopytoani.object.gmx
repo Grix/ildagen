@@ -81,10 +81,12 @@ visible = controller.anienable;
             <kind>1</kind>
             <string>if (!visible) exit;
 
+ds_stack_push(controller.undo_list,"vvv"+string(controller.enddotscolor))
 ds_stack_push(controller.undo_list,"vv"+string(controller.anicolor2))
 ds_stack_push(controller.undo_list,"v"+string(controller.anicolor1))
 
 controller.anicolor1 = controller.color1;
+controller.anienddotscolor = controller.enddotscolor;
 controller.anicolor2 = controller.color2;
 </string>
           </argument>

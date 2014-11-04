@@ -1,3 +1,4 @@
+
 draw_set_color(c_dkgray);
 draw_set_blend_mode(bm_add);
 draw_set_circle_precision(48);

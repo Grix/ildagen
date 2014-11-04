@@ -130,11 +130,13 @@ else if (string_char_at(undo,0) == 'v')
     {
     controller.anicolor1 = real(string_digits(undo));
     controller.anicolor2 = real(string_digits(ds_stack_pop(controller.undo_list)));
+    controller.anienddotscolor = real(string_digits(ds_stack_pop(controller.undo_list)));
     }
 else if (string_char_at(undo,0) == 'b')
     {
     controller.color1 = real(string_digits(undo));
     controller.color2 = real(string_digits(ds_stack_pop(controller.undo_list)));
+    controller.enddotscolor = real(string_digits(ds_stack_pop(controller.undo_list)));
     }
 else if (string_char_at(undo,0) == 'k')
     {
@@ -277,11 +279,13 @@ else if (string_char_at(undo,0) == 'v')
     {
     controller.anicolor1 = real(string_digits(undo));
     controller.anicolor2 = real(string_digits(ds_stack_pop(controller.undo_list)));
+    controller.anienddotscolor = real(string_digits(ds_stack_pop(controller.undo_list)));
     }
 else if (string_char_at(undo,0) == 'b')
     {
     controller.color1 = real(string_digits(undo));
     controller.color2 = real(string_digits(ds_stack_pop(controller.undo_list)));
+    controller.enddotscolor = real(string_digits(ds_stack_pop(controller.undo_list)));
     }
 else if (string_char_at(undo,0) == 'k')
     {

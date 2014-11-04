@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-100</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,6 +26,15 @@
           <argument>
             <kind>1</kind>
             <string>version = "0.9.5hf";
+
+radialgrid_surf = surface_create(512,512);
+surface_set_target(radialgrid_surf);
+    draw_radialgrid();
+surface_reset_target();
+squaregrid_surf = surface_create(512,512);
+surface_set_target(squaregrid_surf);
+    draw_grid();
+surface_reset_target();
 
 
 if (os_version != -1) update_check();
@@ -58,6 +67,9 @@ instance_create(mouse_x,mouse_y,obj_cursor);
 tooltip = "";
 bckimage = 0;
 onion = 0;
+onion_dropoff = 0.7;
+onion_number = 2;
+onion_alpha = 0.8;
 scroll = 0;
 viewmode = 0;
 selectedelement = -1;
@@ -118,6 +130,8 @@ anixtrans = 0;
 aniytrans = 0;
 shaking = 0;
 shaking_sdev = 5;
+scope_start = 0;
+scope_end = 0;
 
 alarm[0] = 1;
 </string>
@@ -651,9 +665,7 @@ if ds_map_find_value(async_load, "id") == updateget
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_clear(c_black);
-
-if (bckimage)
+            <string>if (bckimage)
     {
     if (!keyboard_check(ord('E')) and (placing_status != 2))
         draw_set_alpha(0.3);
@@ -666,7 +678,7 @@ if (keyboard_check(ord('A')))
     
 if (keyboard_check(ord('S')) or (sgridshow == 1))
     {
-    draw_grid();
+    draw_surface(squaregrid_surf,0,0);
     if  (keyboard_check_pressed(ord('S')))
         {
         if (sgriddouble == 1)
@@ -678,7 +690,7 @@ if (keyboard_check(ord('S')) or (sgridshow == 1))
     
 if (keyboard_check(ord('R')) or (rgridshow == 1))
     {
-    draw_radialgrid();
+    draw_surface(radialgrid_surf,0,0);
     if  (keyboard_check_pressed(ord('R')))
         {
         if (rgriddouble == 1)
@@ -709,22 +721,6 @@ if (placing_status)
     draw_preview_element();
 
 
-draw_set_font(fnt_tooltip);
-draw_set_color(c_white);
-draw_rectangle_colour(513,0,1000,512,c_ltgray,c_ltgray,c_ltltgray,c_ltltgray,0);
-draw_rectangle_colour(0,512,1000,670,c_ltltgray,c_ltltgray,c_ltltltgray,c_ltltltgray,0);
-draw_set_color(c_dkgray);
-draw_line(512,0,512,512);
-draw_line(513,150,1000,150);
-draw_line(513,302,1000,302);
-draw_line(513,450,1000,450);
-draw_line(0,512,1000,512);
-draw_set_font(fnt_bold);
-draw_set_color(c_dkgray);
-draw_text(536,20,"Shape");
-draw_text(536,166,"Color");
-draw_text(536,319,"Blanking");
-draw_text(20,524,"Animation");
 draw_set_font(fnt_tooltip);
 draw_set_color(c_ltgray);
 draw_text(12,487,"Frame: "+string(frame+1)+"/"+string(maxframes));

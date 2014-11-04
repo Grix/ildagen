@@ -46,6 +46,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_m_line</sprite>
+    <sprite>sprites\spr_scope</sprite>
     <sprite>sprites\spr_shaking</sprite>
     <sprite>sprites\spr_reapply</sprite>
     <sprite>sprites\spr_import</sprite>
@@ -90,7 +91,9 @@
     <sprite>sprites\spr_knob</sprite>
     <sprite>sprites\spr_knobvert</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bck_guide</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\reapply_properties.gml</script>
@@ -153,6 +156,14 @@
       <script>scripts\dd_reap_blank.gml</script>
       <script>scripts\dd_reap_trans.gml</script>
       <script>scripts\dd_reap_overlap.gml</script>
+      <script>scripts\dropdown_scope.gml</script>
+      <script>scripts\dd_scope_start.gml</script>
+      <script>scripts\dd_scope_end.gml</script>
+      <script>scripts\dd_scope_reset.gml</script>
+      <script>scripts\dropdown_onion.gml</script>
+      <script>scripts\dd_onion_number.gml</script>
+      <script>scripts\dd_onion_alpha.gml</script>
+      <script>scripts\dd_onion_dropoff.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -221,6 +232,7 @@
         <object>objects\obj_aniblankdcselect</object>
         <object>objects\obj_aniblankoffselect</object>
         <object>objects\obj_maxframes</object>
+        <object>objects\obj_scope</object>
         <object>objects\obj_anicolordcselect</object>
         <object>objects\obj_anicoloroffselect</object>
         <object>objects\obj_anienddotscolorselect</object>
