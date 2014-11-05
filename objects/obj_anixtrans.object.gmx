@@ -62,9 +62,9 @@ mouse_xprevious = mouse_x;
 
 visible = (controller.anienable);
 
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+if (visible) and (mouse_x &gt; x-sprite_width/2) and (mouse_x &lt; (x+sprite_width/2)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
-    controller.tooltip = "Changes horizontal movement";
+    controller.tooltip = "Changes horizontal displacement#-&gt;Right click to enter a precise value";
     } 
 </string>
           </argument>
@@ -89,6 +89,29 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
           <argument>
             <kind>1</kind>
             <string>moving = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>controller.anixtrans = clamp(get_integer("Enter value for horizontal displacement, from -65535 to 65535",controller.anixtrans),-$ffff,$ffff);
 </string>
           </argument>
         </arguments>

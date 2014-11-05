@@ -3,7 +3,7 @@
 //find elements
 temp_undof_list = ds_list_create();
 temp_frame_list = ds_list_create();
-for (i = 0;i < maxframes;i++)
+for (i = scope_start;i < scope_end;i++)
     {
     el_list_temp = ds_list_find_value(frame_list,i);
     for (u = 0;u < ds_list_size(el_list_temp);u++)

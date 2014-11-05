@@ -6,6 +6,7 @@ placing_status = 0;
 if (maxframes == 1) and (anienable)
     {
     maxframes = 32;
+    scope_end = 31;
     
     if (ds_list_size(frame_list) < maxframes)
         repeat (maxframes - ds_list_size(frame_list))
@@ -95,7 +96,7 @@ if (!fillframes)
         }
     else
         {
-        t = frame/maxframes;    
+        t = ((frame-scope_start)/(scope_end-scope_start))%1;
         if (anifunc = "tri")
             {
             t *= 2;
@@ -256,8 +257,8 @@ if (!fillframes)
 else
     {
     framepre = frame;
-    frame = 0;
-    repeat (maxframes)
+    frame = scope_start;
+    repeat (scope_end-scope_start+1)
         {
         
         new_list = ds_list_create();
@@ -288,7 +289,7 @@ else
             }
         else
             {
-            t = frame/maxframes;    
+            t = ((frame-scope_start)/(scope_end-scope_start))%1;
             if (anifunc = "tri")
                 {
                 t *= 2;

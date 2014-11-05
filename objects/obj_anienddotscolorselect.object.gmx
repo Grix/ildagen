@@ -201,6 +201,10 @@ draw_sprite(spr_colorselect_blue,(moving == 3),x+32,y+23-(colour_get_blue(contro
 draw_circle_colour(x+70,y+16,10,controller.anienddotscolor,controller.anienddotscolor,0);
 draw_circle_colour(x+70,y+16,10,c_black,c_black,1);
 
+if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+    {
+    controller.tooltip = "Changes dot color at the end of animation (Sliders represent red, green and blue)#-&gt;Right click to enter a precise value";
+    } 
 </string>
           </argument>
         </arguments>

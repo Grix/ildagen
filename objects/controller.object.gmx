@@ -725,6 +725,10 @@ draw_set_font(fnt_tooltip);
 draw_set_color(c_ltgray);
 draw_text(12,487,"Frame: "+string(frame+1)+"/"+string(maxframes));
 draw_text(440,487,"Points: "+string(framepoints));
+if (!anienable) and (maxframes &lt; 2)
+    draw_set_color(c_dkgray);
+else draw_set_color(c_ltgray);
+draw_text(200,487,"Animation scope: "+string(scope_start)+"-"+string(scope_end));
 
 
 if (tooltip != "")

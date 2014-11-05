@@ -79,9 +79,23 @@ else image_index = 0;
             <kind>1</kind>
             <string>ds_stack_push(controller.undo_list,"a"+string(controller.maxframes))
 
+scopeflag = 0;
+if (controller.maxframes == (controller.scope_end+1)) scopeflag = 1;
+
 controller.maxframes = get_integer("Enter number of total frames in the animation",controller.maxframes);
 if (controller.maxframes &lt; 1) controller.maxframes = 1;
 else if (controller.maxframes &gt; $ffff) controller.maxframes = $ffff;
+
+if (scopeflag) or (controller.scope_end &gt;= controller.maxframes) 
+    controller.scope_end = controller.maxframes-1;
+
+if (controller.scope_start &gt;= controller.scope_end)
+    controller.scope_start = controller.scope_end-1;
+    
+if (controller.scope_start &lt; 0) controller.scope_start = 0;
+
+
+
  
    
 if (ds_list_size(controller.frame_list) &lt; controller.maxframes)
