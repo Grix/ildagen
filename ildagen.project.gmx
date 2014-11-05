@@ -133,7 +133,6 @@
       <script>scripts\read_ilda_init.gml</script>
       <script>scripts\read_ilda_work.gml</script>
       <script>scripts\parse_word.gml</script>
-      <script>scripts\init_palette.gml</script>
     </scripts>
     <scripts name="dropdown">
       <script>scripts\dropdown_ed.gml</script>
