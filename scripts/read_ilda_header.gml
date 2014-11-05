@@ -1,6 +1,6 @@
 //reads the header of the ilda frame, returns 1 if error
 
-if !is_wrong($49) return 0;
+if !is_wrong($49) return 1;
 i += 24;
 
 //24
@@ -11,7 +11,7 @@ if (get_bytes() != 0)
     }
 else
     {
-    if (i >= file_size-32)
+    if (i >= file_size-32) or (frame_number >= maxframes_parse)
         {
         return 1;
         }
