@@ -212,20 +212,27 @@ if (!fillframes)
             startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t)+gaussoffsety;
             }
         }
-        
-    if (placing != "curve")
-        {
-        ds_list_add(new_list,startposx_r*128); //origo x
-        ds_list_add(new_list,startposy_r*128); //origo y
-        ds_list_add(new_list,endx_r*128); //end x
-        ds_list_add(new_list,endy_r*128); //end y
-        }
-    else
+
+    if (placing == "curve")
         {
         ds_list_add(new_list,ds_list_find_value(bez_list,0)*128); //origo x
         ds_list_add(new_list,ds_list_find_value(bez_list,1)*128); //origo y
         ds_list_add(new_list,ds_list_find_value(bez_list,6)*128); //end x
         ds_list_add(new_list,ds_list_find_value(bez_list,7)*128); //end y
+        }
+    else if (placing == "text")
+        {
+        ds_list_add(new_list,(startposx_r+xdelta[frame])*128); //origo x
+        ds_list_add(new_list,startposy_r*128); //origo y
+        ds_list_add(new_list,(endx_r+xdelta[frame])*128); //end x
+        ds_list_add(new_list,endy_r*128); //end y
+        }
+    else
+        {
+        ds_list_add(new_list,startposx_r*128); //origo x
+        ds_list_add(new_list,startposy_r*128); //origo y
+        ds_list_add(new_list,endx_r*128); //end x
+        ds_list_add(new_list,endy_r*128); //end y
         }
     ds_list_add(new_list,0);
     ds_list_add(new_list,0);
@@ -250,6 +257,8 @@ if (!fillframes)
     else if (placing == "curve") //create a curve
         create_curve();
         
+    else if (placing == "text") //create a letter/text
+        create_letter();
     
     ds_list_add(ds_list_find_value(frame_list,frame),new_list);
     
@@ -406,19 +415,26 @@ else
                 }
             }
             
-        if (placing != "curve")
-            {
-            ds_list_add(new_list,startposx_r*128); //origo x
-            ds_list_add(new_list,startposy_r*128); //origo y
-            ds_list_add(new_list,endx_r*128); //end x
-            ds_list_add(new_list,endy_r*128); //end y
-            }
-        else
+        if (placing == "curve")
             {
             ds_list_add(new_list,ds_list_find_value(bez_list,0)*128); //origo x
             ds_list_add(new_list,ds_list_find_value(bez_list,1)*128); //origo y
             ds_list_add(new_list,ds_list_find_value(bez_list,6)*128); //end x
             ds_list_add(new_list,ds_list_find_value(bez_list,7)*128); //end y
+            }
+        else if (placing == "text")
+            {
+            ds_list_add(new_list,(startposx_r+xdelta[frame])*128); //origo x
+            ds_list_add(new_list,startposy_r*128); //origo y
+            ds_list_add(new_list,(endx_r+xdelta[frame])*128); //end x
+            ds_list_add(new_list,endy_r*128); //end y
+            }
+        else
+            {
+            ds_list_add(new_list,startposx_r*128); //origo x
+            ds_list_add(new_list,startposy_r*128); //origo y
+            ds_list_add(new_list,endx_r*128); //end x
+            ds_list_add(new_list,endy_r*128); //end y
             }
         ds_list_add(new_list,0);
         ds_list_add(new_list,0);
@@ -443,6 +459,9 @@ else
         else if (placing == "curve") //create a bezier curve
             create_curve();
             
+        else if (placing == "text") //create a letter/text
+            create_letter();
+            
         
         ds_list_add(ds_list_find_value(frame_list,frame),new_list);
         
@@ -452,7 +471,7 @@ else
     frame = framepre;
     }
 
-refresh_surfaces();
+if (placing != "text") refresh_surfaces();
 
 if (autoresflag)
     resolution = "auto";

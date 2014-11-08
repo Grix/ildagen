@@ -1,22 +1,11 @@
-if (ds_list_find_value(free_list,ds_list_size(free_list)-2) != mouse_x-startpos[0]) and (ds_list_find_value(free_list,ds_list_size(free_list)-1) != mouse_x-startpos[1])
-    {
-    ds_list_add(free_list,mouse_x-startpos[0]);
-    ds_list_add(free_list,mouse_y-startpos[1]);
-    }
-else if (ds_list_size(free_list) < 3)
-    {
-    ds_list_add(free_list,mouse_x-startpos[0]);
-    ds_list_add(free_list,mouse_y-startpos[1]);
-    }
 
-//ds_list_replace(free_list,0,ds_list_find_value(free_list,0)+(startposx_r-ds_list_find_value(free_list,0)));
-//ds_list_replace(free_list,1,ds_list_find_value(free_list,1)+(startposy_r-ds_list_find_value(free_list,1)));
-    
-
-checkpoints = ds_list_size(free_list)/2;
-if (checkpoints < 2) checkpoints = 2;
+letter_list = ds_list_find_value(font_list,ord(string_char_at(text,texti))-33);
+checkpoints = (ds_list_size(letter_list)-10)/6;
 
 blanknew = 1;
+
+xlettermax = 0;
+xlettermin = $ffff;
 
 if (blankmode == "dot") or (blankmode == "dotsolid")
     {
@@ -154,20 +143,22 @@ for (n = 0;n < checkpoints; n++)
             makedot = 1;
         }
         
+    if (ds_list_find_value(letter_list,10+6*n+2))
+        blank = 1;
         
     if (makedot)
         {
         
         if (blankmode == "dot")
             {
-            ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
-            ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
+            ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
+            ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
             ds_list_add(new_list,1);
             ds_list_add(new_list,c[0]);
             ds_list_add(new_list,c[1]);
             ds_list_add(new_list,c[2]);
-            ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
-            ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
+            ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
+            ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
             ds_list_add(new_list,0);
             ds_list_add(new_list,c[0]);
             ds_list_add(new_list,c[1]);
@@ -181,13 +172,13 @@ for (n = 0;n < checkpoints; n++)
                     {
                     if (n)
                         {
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1))*128);
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1)*128);
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*(n-1))-$ffff/2)*font_size/64);
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*(n-1)+1)-$ffff/2)*font_size/64);
                         }
                     else
                         {
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n))*128);
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1)*128);
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
                         }
                     ds_list_add(new_list,1);
                     ds_list_add(new_list,c[0]);
@@ -198,13 +189,13 @@ for (n = 0;n < checkpoints; n++)
                     {
                     if (n)
                         {
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1))*128);
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1)*128);
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*(n-1))-$ffff/2)*font_size/64);
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*(n-1)+1)-$ffff/2)*font_size/64);
                         }
                     else
                         {
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n))*128);
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1)*128);
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
                         }
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
@@ -215,13 +206,13 @@ for (n = 0;n < checkpoints; n++)
                     {
                     if (n)
                         {
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1))*128);
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1)*128);
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*(n-1))-$ffff/2)*font_size/64);
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*(n-1)+1)-$ffff/2)*font_size/64);
                         }
                     else
                         {
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n))*128);
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1)*128);
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
                         }
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
@@ -231,16 +222,16 @@ for (n = 0;n < checkpoints; n++)
                 }
             else
                 {
-                ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
-                ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
+                ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
+                ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
                 ds_list_add(new_list,0);
                 ds_list_add(new_list,c[0]);
                 ds_list_add(new_list,c[1]);
                 ds_list_add(new_list,c[2])
                 repeat (dotmultiply)
                     {
-                    ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
-                    ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
+                    ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
+                    ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
                     ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
@@ -252,12 +243,23 @@ for (n = 0;n < checkpoints; n++)
         }  
     else
         {    
-        ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
-        ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
+        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
+        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
         ds_list_add(new_list,blank);
         ds_list_add(new_list,c[0]);
         ds_list_add(new_list,c[1]);
         ds_list_add(new_list,c[2]);
         }
+        
+    if (((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128 > xlettermax)
+       xlettermax = ((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128;        
+    else if (((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128 < xlettermin)
+       xlettermin = ((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128;
+    
     
     }
+    
+ds_list_replace(new_list,0,(ds_list_find_value(new_list,0)-xlettermin*128));
+ds_list_replace(new_list,2,(ds_list_find_value(new_list,2)-xlettermin*128));
+    
+xdelta[frame]+= xlettermax-xlettermin+font_size/2.6;

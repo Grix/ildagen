@@ -54,6 +54,8 @@ frame_list = ds_list_create();
 ds_list_add(frame_list,el_list);
 free_list = ds_list_create();
 bez_list = ds_list_create();
+font_list = ds_list_create();
+xdelta[32] = 0;
 
 redraw = 0;
 sgridshow = 0;
@@ -85,6 +87,7 @@ pointx[20] = 0;
 pointy[20] = 0;
 wave_offset = 0;
 bez_moving = 0;
+font_size = 20;
 
 resolution = "auto";
 framepoints = 0;
@@ -477,6 +480,8 @@ if ((mouse_x &gt; 515) or (mouse_y &gt; 515)) and (placing_status != 2)
     ds_list_clear(bez_list);
     exit;
     }
+    
+
 
 
 if (placing_status == 0)
@@ -484,7 +489,9 @@ if (placing_status == 0)
     placing_status = 1;
     startpos[0] = obj_cursor.x;
     startpos[1] = obj_cursor.y;
-    if (placing == "free")
+    if (placing == "text")
+        create_text_init();
+    else if (placing == "free")
         {
         ds_list_add(free_list,0);
         ds_list_add(free_list,0);

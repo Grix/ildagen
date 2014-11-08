@@ -58,18 +58,22 @@ else
         
         //blank
         blank = ((get_byte() & $40) > 0);
-        ds_list_add(frame_list_parse,blank);
         i++;
         
         //color lookup
-        color = clamp(get_byte(),0,ds_list_size(pal_list));
-        show_message(color)
-        i++;
-               
+        color = clamp(get_byte(),0,ds_list_size(pal_list)/3);
+        i++;     
+            
+        if (color == 64)
+            blank = 1;
+            
+        ds_list_add(frame_list_parse,blank);
+        
         //rgb
-        ds_list_add(frame_list_parse,ds_list_find_value(pal_list,color));
-        ds_list_add(frame_list_parse,ds_list_find_value(pal_list,color+1));
-        ds_list_add(frame_list_parse,ds_list_find_value(pal_list,color+2));
+        ds_list_add(frame_list_parse,ds_list_find_value(pal_list,3*color+2));
+        ds_list_add(frame_list_parse,ds_list_find_value(pal_list,3*color+1));
+        ds_list_add(frame_list_parse,ds_list_find_value(pal_list,3*color));
+        
         }
     }
     

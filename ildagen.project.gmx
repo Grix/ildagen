@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="2" name="datafiles">
+  <datafiles number="15" name="datafiles">
     <datafile>
       <name>help.pdf</name>
       <exists>-1</exists>
@@ -38,6 +38,231 @@
       </ConfigOptions>
       <filename>palette.txt</filename>
     </datafile>
+    <datafiles number="15" name="laserboy">
+      <datafile>
+        <name>LaserBoy.bat</name>
+        <exists>-1</exists>
+        <size>19</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>LaserBoy.bat</filename>
+      </datafile>
+      <datafile>
+        <name>LaserBoy.exe</name>
+        <exists>-1</exists>
+        <size>1985038</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>LaserBoy.exe</filename>
+      </datafile>
+      <datafile>
+        <name>Raspberry_Pi.txt</name>
+        <exists>-1</exists>
+        <size>6537</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Raspberry_Pi.txt</filename>
+      </datafile>
+      <datafile>
+        <name>README.txt</name>
+        <exists>-1</exists>
+        <size>3743</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>README.txt</filename>
+      </datafile>
+      <datafile>
+        <name>SDL.dll</name>
+        <exists>-1</exists>
+        <size>303616</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>SDL.dll</filename>
+      </datafile>
+      <datafiles number="15" name="ild">
+        <datafile>
+          <name>font_comic_sans.ild</name>
+          <exists>-1</exists>
+          <size>26896</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>font_comic_sans.ild</filename>
+        </datafile>
+        <datafile>
+          <name>font_courier_new.ild</name>
+          <exists>-1</exists>
+          <size>23314</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>font_courier_new.ild</filename>
+        </datafile>
+        <datafile>
+          <name>font_impact.ild</name>
+          <exists>-1</exists>
+          <size>17890</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>font_impact.ild</filename>
+        </datafile>
+        <datafile>
+          <name>font_lucida.ild</name>
+          <exists>-1</exists>
+          <size>16354</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>font_lucida.ild</filename>
+        </datafile>
+        <datafile>
+          <name>font_narrow_vector.ild</name>
+          <exists>-1</exists>
+          <size>9100</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>font_narrow_vector.ild</filename>
+        </datafile>
+        <datafile>
+          <name>font_simple_vector.ild</name>
+          <exists>-1</exists>
+          <size>6784</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>font_simple_vector.ild</filename>
+        </datafile>
+        <datafile>
+          <name>font_times_new_roman.ild</name>
+          <exists>-1</exists>
+          <size>25660</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>font_times_new_roman.ild</filename>
+        </datafile>
+        <datafile>
+          <name>font_wide_vector.ild</name>
+          <exists>-1</exists>
+          <size>9094</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>font_wide_vector.ild</filename>
+        </datafile>
+      </datafiles>
+    </datafiles>
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\filesaver</extension>
@@ -46,6 +271,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_m_line</sprite>
+    <sprite>sprites\spr_text</sprite>
     <sprite>sprites\spr_scope</sprite>
     <sprite>sprites\spr_shaking</sprite>
     <sprite>sprites\spr_reapply</sprite>
@@ -65,10 +291,6 @@
     <sprite>sprites\spr_colortselect</sprite>
     <sprite>sprites\spr_anifunc</sprite>
     <sprite>sprites\spr_absrel</sprite>
-    <sprite>sprites\spr_waveampselect</sprite>
-    <sprite>sprites\spr_xtrans</sprite>
-    <sprite>sprites\spr_ytrans</sprite>
-    <sprite>sprites\spr_blankperiodselect</sprite>
     <sprite>sprites\spr_e_undo</sprite>
     <sprite>sprites\spr_b_solid</sprite>
     <sprite>sprites\spr_b_enddots</sprite>
@@ -79,17 +301,23 @@
     <sprite>sprites\spr_maxframes</sprite>
     <sprite>sprites\spr_clearframe</sprite>
     <sprite>sprites\spr_clearall</sprite>
-    <sprite>sprites\spr_colorselect</sprite>
     <sprite>sprites\spr_c_solid</sprite>
     <sprite>sprites\spr_c_dash</sprite>
     <sprite>sprites\spr_c_gradient</sprite>
     <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_cursor</sprite>
-    <sprite>sprites\spr_colorselect_red</sprite>
-    <sprite>sprites\spr_colorselect_blue</sprite>
-    <sprite>sprites\spr_colorselect_green</sprite>
-    <sprite>sprites\spr_knob</sprite>
-    <sprite>sprites\spr_knobvert</sprite>
+    <sprites name="sliders">
+      <sprite>sprites\spr_knobvert</sprite>
+      <sprite>sprites\spr_knob</sprite>
+      <sprite>sprites\spr_colorselect_green</sprite>
+      <sprite>sprites\spr_colorselect_blue</sprite>
+      <sprite>sprites\spr_colorselect_red</sprite>
+      <sprite>sprites\spr_colorselect</sprite>
+      <sprite>sprites\spr_blankperiodselect</sprite>
+      <sprite>sprites\spr_ytrans</sprite>
+      <sprite>sprites\spr_xtrans</sprite>
+      <sprite>sprites\spr_waveampselect</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_guide</background>
@@ -104,7 +332,9 @@
     <script>scripts\draw_grid.gml</script>
     <script>scripts\draw_radialgrid.gml</script>
     <script>scripts\draw_guidelines.gml</script>
+    <script>scripts\create_text_init.gml</script>
     <script>scripts\create_element.gml</script>
+    <script>scripts\create_letter.gml</script>
     <script>scripts\create_line.gml</script>
     <script>scripts\create_free.gml</script>
     <script>scripts\create_circle.gml</script>
@@ -129,11 +359,12 @@
       <script>scripts\get_byte_signed.gml</script>
       <script>scripts\get_byte.gml</script>
       <script>scripts\is_wrong.gml</script>
-      <script>scripts\import_ilda.gml</script>
-      <script>scripts\read_ilda_init.gml</script>
       <script>scripts\read_ilda_work.gml</script>
       <script>scripts\parse_word.gml</script>
       <script>scripts\init_palette.gml</script>
+      <script>scripts\read_ilda_init.gml</script>
+      <script>scripts\import_ilda.gml</script>
+      <script>scripts\import_font.gml</script>
     </scripts>
     <scripts name="dropdown">
       <script>scripts\dropdown_ed.gml</script>
@@ -165,6 +396,9 @@
       <script>scripts\dd_onion_number.gml</script>
       <script>scripts\dd_onion_alpha.gml</script>
       <script>scripts\dd_onion_dropoff.gml</script>
+      <script>scripts\dropdown_text.gml</script>
+      <script>scripts\dd_text_size.gml</script>
+      <script>scripts\dd_text_font.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -190,6 +424,7 @@
         <object>objects\obj_wavetselect</object>
         <object>objects\obj_waveampselect</object>
         <object>objects\obj_s_line</object>
+        <object>objects\obj_text</object>
         <object>objects\obj_import</object>
         <object>objects\obj_s_free</object>
         <object>objects\obj_curve</object>

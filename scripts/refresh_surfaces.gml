@@ -1,9 +1,10 @@
+
+
 for (i = 0;i < ds_list_size(surf_list);i++)
     {
     surface_free(ds_list_find_value(surf_list,i))
     }
 ds_list_clear(surf_list);
-
 
 el_list = ds_list_find_value(frame_list,frame);
 framepoints = 0;
@@ -41,6 +42,8 @@ for (i = 0;i < ds_list_size(el_list);i++)
             nb = ds_list_find_value(new_list,10+(u+1)*6+3);
             ng = ds_list_find_value(new_list,10+(u+1)*6+4);
             nr = ds_list_find_value(new_list,10+(u+1)*6+5);
+            
+           
             
             if (nbl == 0)
                 {
@@ -93,7 +96,8 @@ for (j = 1;j <= onion_number;j++)
                 nb = ds_list_find_value(new_list,10+(u+1)*6+3);
                 ng = ds_list_find_value(new_list,10+(u+1)*6+4);
                 nr = ds_list_find_value(new_list,10+(u+1)*6+5);
-                
+            
+
                 if (nbl == 0)
                     {
                     draw_set_color(make_colour_rgb(nr,ng,nb));

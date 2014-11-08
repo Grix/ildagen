@@ -9,4 +9,4 @@ pal_list = ds_list_create();
 
 while (!file_text_eof(palfile))
     ds_list_add(pal_list,real(string_digits(file_text_readln(palfile))));
-
+    
