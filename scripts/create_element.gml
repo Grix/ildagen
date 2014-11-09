@@ -260,6 +260,11 @@ if (!fillframes)
     else if (placing == "text") //create a letter/text
         create_letter();
     
+    ds_list_replace(new_list,4,xmin);
+    ds_list_replace(new_list,5,xmax);
+    ds_list_replace(new_list,6,ymin);
+    ds_list_replace(new_list,7,ymax);
+        
     ds_list_add(ds_list_find_value(frame_list,frame),new_list);
     
     }
@@ -462,7 +467,12 @@ else
         else if (placing == "text") //create a letter/text
             create_letter();
             
-        
+        ds_list_replace(new_list,4,xmin);
+        ds_list_replace(new_list,5,xmax);
+        ds_list_replace(new_list,6,ymin);
+        ds_list_replace(new_list,7,ymax);
+            
+            
         ds_list_add(ds_list_find_value(frame_list,frame),new_list);
         
         frame++;

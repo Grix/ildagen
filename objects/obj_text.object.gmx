@@ -80,10 +80,17 @@ controller.tooltip = "Selects text drawing tool#-&gt;Right click for options";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>dropdown_text();
+            <string>if (os_version == -1)
+    {
+    show_message("Sorry, this feature is not available in the web version yet");
+    exit;
+    }
+
+dropdown_text();
 
 with (controller)
     {
+    placing = "text";
     placing_status = 0;
     ds_list_clear(free_list);
     ds_list_clear(bez_list);
@@ -111,7 +118,13 @@ with (controller)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>controller.placing = "text";
+            <string>if (os_version == -1)
+    {
+    show_message("Sorry, this feature is not available in the web version");
+    exit;
+    }
+
+controller.placing = "text";
 with (controller)
     {
     placing_status = 0;

@@ -1,11 +1,13 @@
 
-letter_list = ds_list_find_value(font_list,ord(string_char_at(text,texti))-33);
+letter_list = ds_list_find_value(font_list,ord(letter)-33);
 checkpoints = (ds_list_size(letter_list)-10)/6;
 
 blanknew = 1;
 
-xlettermax = 0;
-xlettermin = $ffff;
+xmax = 0;
+xmin = $ffff;
+ymax = 0;
+ymin = $ffff;
 
 if (blankmode == "dot") or (blankmode == "dotsolid")
     {
@@ -250,16 +252,21 @@ for (n = 0;n < checkpoints; n++)
         ds_list_add(new_list,c[1]);
         ds_list_add(new_list,c[2]);
         }
-        
-    if (((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128 > xlettermax)
-       xlettermax = ((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128;        
-    else if (((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128 < xlettermin)
-       xlettermin = ((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128;
+    
+    if (((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128 > xmax)
+       xmax = ((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128;     
+    if (((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128 < xmin)
+       xmin = ((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128;
+    if (((ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64)/128 > ymax)
+       ymax = ((ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64)/128;     
+    if (((ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64)/128 < ymin)
+       ymin = ((ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64)/128;
     
     
     }
     
-ds_list_replace(new_list,0,(ds_list_find_value(new_list,0)-xlettermin*128));
-ds_list_replace(new_list,2,(ds_list_find_value(new_list,2)-xlettermin*128));
-    
-xdelta[frame]+= xlettermax-xlettermin+font_size/2.6;
+ds_list_replace(new_list,0,(ds_list_find_value(new_list,0)-xmin*128));
+ds_list_replace(new_list,2,(ds_list_find_value(new_list,2)-xmin*128));
+
+xdelta[frame]+= xmax-xmin+font_size/2.6;
+

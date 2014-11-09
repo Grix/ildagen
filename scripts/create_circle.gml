@@ -4,7 +4,10 @@ startrad = degtorad(-point_direction(startposx_r,startposy_r,endx_r,endy_r));
 checkpoints = ceil(2*pi*radius/resolution);
 if (checkpoints < 3) checkpoints = 3;
 
-
+xmax = 0;
+xmin = $ffff;
+ymax = 0;
+ymin = $ffff;
 
 if (blankmode == "dot") or (blankmode == "dotsolid")
     {
@@ -224,6 +227,16 @@ if !((startposx_r == endx_r) && (startposy_r == endy_r))
         ds_list_add(new_list,c[1]);
         ds_list_add(new_list,c[2]);
         }
+    if ((cos(startrad+ 2*pi/checkpoints*n)*radius)/128 > xmax)
+       xmax = cos(startrad+ 2*pi/checkpoints*n)*radius/128;
+    if ((cos(startrad+ 2*pi/checkpoints*n)*radius)/128 < xmin)
+       xmin = cos(startrad+ 2*pi/checkpoints*n)*radius/128;
+    if ((sin(startrad+ 2*pi/checkpoints*n)*radius)/128 > ymax)
+       ymax = sin(startrad+ 2*pi/checkpoints*n)*radius/128;
+    if ((sin(startrad+ 2*pi/checkpoints*n)*radius)/128 < ymin)
+       ymin = sin(startrad+ 2*pi/checkpoints*n)*radius/128;
+        
+        
     }
 else
     {
@@ -239,4 +252,9 @@ else
     ds_list_add(new_list,c[0]);
     ds_list_add(new_list,c[1]);
     ds_list_add(new_list,c[2]);
+    
+    xmax = endx_r+1;
+    xmin = endx_r;
+    ymax = endy_r+1;
+    ymin = endy_r;
     }

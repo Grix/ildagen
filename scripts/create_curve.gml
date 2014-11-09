@@ -2,6 +2,11 @@ checkpoints = ceil(bezlength*128/resolution)
 if (checkpoints < 2) checkpoints = 2;
 blanknew = 1;
 
+xmax = 0;
+xmin = $ffff;
+ymax = 0;
+ymin = $ffff;
+
 if (blankmode == "dot") or (blankmode == "dotsolid")
     {
     if (blankmode2 == 0)
@@ -217,6 +222,15 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
         ds_list_add(new_list,c[1]);
         ds_list_add(new_list,c[2]);
         }
+        
+    if (pointx > xmax)
+       xmax = pointx;
+    if (pointx < xmin)
+       xmin = pointx;
+    if (pointy > ymax)
+       ymax = pointy;
+    if (pointy < ymin)
+       ymin = pointy;
     }
 else
     {
@@ -232,4 +246,9 @@ else
     ds_list_add(new_list,c[0]);
     ds_list_add(new_list,c[1]);
     ds_list_add(new_list,c[2]);
+    
+    xmax = endx_r+1;
+    xmin = endx_r;
+    ymax = endy_r+1;
+    ymin = endy_r;
     }

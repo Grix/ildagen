@@ -718,9 +718,14 @@ draw_set_color(c_aqua);
         {
         if (ds_list_find_value(ds_list_find_value(el_list,i),9) == selectedelement)
             {
-            draw_circle(ds_list_find_value(ds_list_find_value(el_list,i),2)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),3)/$ffff*512,3,0);
-            draw_circle(ds_list_find_value(ds_list_find_value(el_list,i),0)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),1)/$ffff*512,3,0);
-            draw_rectangle(ds_list_find_value(ds_list_find_value(el_list,i),0)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),1)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),2)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),3)/$ffff*512,1);
+            xo = ds_list_find_value(ds_list_find_value(el_list,i),0)/$ffff*512;
+            yo = ds_list_find_value(ds_list_find_value(el_list,i),1)/$ffff*512;
+            //draw_circle(ds_list_find_value(ds_list_find_value(el_list,i),2)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),3)/$ffff*512,3,0);
+            //draw_circle(ds_list_find_value(ds_list_find_value(el_list,i),0)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),1)/$ffff*512,3,0);
+            draw_rectangle(xo + ds_list_find_value(ds_list_find_value(el_list,i),4),
+                           yo + ds_list_find_value(ds_list_find_value(el_list,i),6),
+                           xo + ds_list_find_value(ds_list_find_value(el_list,i),5),
+                           yo + ds_list_find_value(ds_list_find_value(el_list,i),7),1);
             }
         }
 

@@ -77,7 +77,13 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>import_ilda();
+            <string>if (os_version == -1)
+    {
+    show_message("Sorry, this feature is not available in the web version");
+    exit;
+    }
+
+import_ilda();
 with (controller)
     {
     placing_status = 0;

@@ -9,9 +9,11 @@ else if (ds_list_size(free_list) < 3)
     ds_list_add(free_list,mouse_y-startpos[1]);
     }
 
-//ds_list_replace(free_list,0,ds_list_find_value(free_list,0)+(startposx_r-ds_list_find_value(free_list,0)));
-//ds_list_replace(free_list,1,ds_list_find_value(free_list,1)+(startposy_r-ds_list_find_value(free_list,1)));
-    
+
+xmax = 0;
+xmin = $ffff;
+ymax = 0;
+ymin = $ffff;
 
 checkpoints = ds_list_size(free_list)/2;
 if (checkpoints < 2) checkpoints = 2;
@@ -259,5 +261,14 @@ for (n = 0;n < checkpoints; n++)
         ds_list_add(new_list,c[1]);
         ds_list_add(new_list,c[2]);
         }
+        
+    if (ds_list_find_value(free_list,2*n) > xmax)
+       xmax = ds_list_find_value(free_list,2*n);
+    if (ds_list_find_value(free_list,2*n) < xmin)
+       xmin = ds_list_find_value(free_list,2*n);
+    if (ds_list_find_value(free_list,2*n+1) > ymax)
+       ymax = ds_list_find_value(free_list,2*n+1);
+    if (ds_list_find_value(free_list,2*n+1) < ymin)
+       ymin = ds_list_find_value(free_list,2*n+1);
     
     }

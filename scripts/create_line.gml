@@ -5,6 +5,10 @@ vector[0] = (endx_r-startposx_r)/checkpoints;
 vector[1] = (endy_r-startposy_r)/checkpoints;
 blanknew = 1;
 
+xmax = 0;
+xmin = $ffff;
+ymax = 0;
+ymin = $ffff;
 
 if (blankmode == "dot") or (blankmode == "dotsolid")
     {
@@ -225,5 +229,14 @@ for (n = 0;n <= checkpoints; n++)
         ds_list_add(new_list,c[1]);
         ds_list_add(new_list,c[2]);
         }
+        
+    if (n*vector[0] > xmax)
+       xmax = n*vector[0];
+    if (n*vector[0] < xmin)
+       xmin = n*vector[0];
+    if (n*vector[1] > ymax)
+       ymax = n*vector[1];
+    if (n*vector[1] < ymin)
+       ymin = n*vector[1];
     
     }
