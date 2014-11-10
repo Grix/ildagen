@@ -387,6 +387,8 @@
       <script>scripts\dd_reap_color.gml</script>
       <script>scripts\dd_reap_blank.gml</script>
       <script>scripts\dd_reap_trans.gml</script>
+      <script>scripts\dd_reap_interpolate.gml</script>
+      <script>scripts\dd_reap_preserveblank.gml</script>
       <script>scripts\dd_reap_overlap.gml</script>
       <script>scripts\dropdown_scope.gml</script>
       <script>scripts\dd_scope_start.gml</script>
