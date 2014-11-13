@@ -302,6 +302,7 @@
     <sprite>sprites\spr_clearframe</sprite>
     <sprite>sprites\spr_clearall</sprite>
     <sprite>sprites\spr_c_solid</sprite>
+    <sprite>sprites\spr_rainbow</sprite>
     <sprite>sprites\spr_c_dash</sprite>
     <sprite>sprites\spr_c_gradient</sprite>
     <sprite>sprites\spr_export</sprite>
@@ -340,7 +341,6 @@
     <script>scripts\create_circle.gml</script>
     <script>scripts\create_wave.gml</script>
     <script>scripts\create_curve.gml</script>
-    <script>scripts\surface_flip.gml</script>
     <script>scripts\verify_serial.gml</script>
     <script>scripts\refresh_surfaces.gml</script>
     <script>scripts\refresh_3dsurfaces.gml</script>
@@ -441,6 +441,7 @@
         <object>objects\obj_c_solid</object>
         <object>objects\obj_c_gradient</object>
         <object>objects\obj_c_dash</object>
+        <object>objects\obj_rainbow</object>
         <object>objects\obj_colorfreqselect</object>
         <object>objects\obj_colorabsrel</object>
         <object>objects\obj_colordcselect</object>

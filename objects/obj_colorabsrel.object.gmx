@@ -50,7 +50,7 @@
           <argument>
             <kind>1</kind>
             <string>
-visible = (controller.colormode == "gradient") || (controller.colormode == "dash");
+visible = (controller.colormode == "rainbow") || (controller.colormode == "gradient") || (controller.colormode == "dash");
 
 image_index = controller.colormode2;
 

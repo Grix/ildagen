@@ -1,6 +1,25 @@
 //reapplies the object properties
 
 //find elements
+
+autoresflag = 0;
+if (is_string(resolution))
+    {
+    autoresflag = 1;
+    if ((placing == "line") && (blankmode == "solid") && (colormode == "solid"))
+        resolution = 4096;
+    else
+        resolution = 1024;
+        
+    if (colormode != "solid") or (blankmode != "solid")
+        resolution = 512;
+    
+    if (anienable) and (blankmode != "solid") and ((blank_offset != aniblank_offset) or (blank_dc != aniblank_dc))
+        resolution = 256;
+    else if (anienable) and (colormode != "solid") and ((color_offset != anicolor_offset) or (color_dc != anicolor_dc))
+        resolution = 256;
+    }
+
 temp_undof_list = ds_list_create();
 temp_frame_list = ds_list_create();
 for (i = scope_start;i <= scope_end;i++)
@@ -22,7 +41,9 @@ for (i = scope_start;i <= scope_end;i++)
     }
 
 ds_stack_push(undo_list,"k"+string(temp_undof_list));
+
         
+//walk through frames
 randomize();
 for (i = 0;i < ds_list_size(temp_frame_list);i++)
     {
@@ -30,11 +51,52 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
     new_list = ds_list_find_value(temp_frame_list,i);
     checkpoints = ((ds_list_size(new_list)-10)/6);
     
-    
     startpos[0] = ds_list_find_value(new_list,0);
     startpos[1] = ds_list_find_value(new_list,1);
     endx = ds_list_find_value(new_list,2);
     endy = ds_list_find_value(new_list,3);
+    
+    //interpolate
+    if (reap_interpolate)
+        {
+        lengthlist = ds_list_create();
+        for (j = 0; j < (checkpoints-1);j++)
+            {
+            length = point_distance(ds_list_find_value(new_list,10+j*6)
+                                    ,ds_list_find_value(new_list,10+j*6+1)
+                                    ,ds_list_find_value(new_list,10+(j+1)*6)
+                                    ,ds_list_find_value(new_list,10+(j+1)*6+1));
+            ds_list_add(lengthlist,length);
+            }
+            
+        jpp= 0;
+        for (j = 0; j < (checkpoints-1);j++)
+            {
+            if (ds_list_find_value(lengthlist,j) <= resolution) continue;
+            
+            lerpi = 1;
+            jpp_offset = 0;
+            
+            repeat(floor(ds_list_find_value(lengthlist,j) / resolution))
+                {
+                lerpi-= 1/floor(ds_list_find_value(lengthlist,j) / resolution);
+                
+                newx = lerp(ds_list_find_value(new_list,10+(j+1+jpp-jpp_offset)*6),ds_list_find_value(new_list,10+(j+jpp-jpp_offset)*6),lerpi);
+                newy = lerp(ds_list_find_value(new_list,10+(j+1+jpp-jpp_offset)*6+1),ds_list_find_value(new_list,10+(j+jpp-jpp_offset)*6+1),lerpi);
+                ds_list_insert(new_list,10+(j+1+jpp)*6+6,newx);
+                ds_list_insert(new_list,10+(j+1+jpp)*6+7,newy);
+                ds_list_insert(new_list,10+(j+1+jpp)*6+8,ds_list_find_value(new_list,10+(j+1+jpp)*6+2));
+                ds_list_insert(new_list,10+(j+1+jpp)*6+9,ds_list_find_value(new_list,10+(j+1+jpp)*6+3));
+                ds_list_insert(new_list,10+(j+1+jpp)*6+10,ds_list_find_value(new_list,10+(j+1+jpp)*6+4));
+                ds_list_insert(new_list,10+(j+1+jpp)*6+11,ds_list_find_value(new_list,10+(j+1+jpp)*6+5));
+                
+                jpp++;
+                jpp_offset++;
+                }
+            }
+            ds_list_destroy(lengthlist);
+        }
+            
     
     gaussoffsetx = shaking*128*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
     gaussoffsety = shaking*128*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
@@ -225,6 +287,7 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         }
 
         
+    //walk through points
     for (j = 0; j < checkpoints;j++)
         {
         
@@ -247,6 +310,23 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 c[0] = colour_get_blue(color1_r);
                 c[1] = colour_get_green(color1_r);
                 c[2] = colour_get_red(color1_r);
+                }
+            else if (colormode == "rainbow")
+                {
+                if (colormode2 == 0)
+                    {
+                    colorrb = make_colour_hsv((color_offset_r/(2*pi)+ (checkpoints-j)*color_freq_r/checkpoints)*255,255,255); 
+                    c[0] = colour_get_blue(colorrb );
+                    c[1] = colour_get_green(colorrb );
+                    c[2] = colour_get_red(colorrb );
+                    }
+                else
+                    {
+                    colorrb = make_colour_hsv((color_offset_r/(2*pi)+ (checkpoints-j)*resolution/color_period_r)*255,255,255); 
+                    c[0] = colour_get_blue(colorrb );
+                    c[1] = colour_get_green(colorrb );
+                    c[2] = colour_get_red(colorrb );
+                    }
                 }
             else if (colormode == "gradient")
                 {
@@ -345,6 +425,9 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 blank = 0;
                 }
                 
+            if (reap_preserveblank and ds_list_find_value(new_list,10+j*6+2))
+                blank = 1;
+                
                     
             if (enddots)
                 {
@@ -422,5 +505,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         }
         
     }
+    
+if (autoresflag)
+resolution = "auto";
 
 refresh_surfaces();

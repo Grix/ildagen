@@ -97,7 +97,7 @@ reap_blank = 1;
 reap_removeoverlap = 0;
 reap_trans = 1;
 reap_preserveblank = 1;
-reap_interpolate = 1;
+reap_interpolate = 0;
 
 colormode = "solid";
 colormode2 = 0;
@@ -749,6 +749,7 @@ draw_text(200,487,"Animation scope: "+string(scope_start+1)+"-"+string(scope_end
 
 if (tooltip != "")
     {
+    draw_set_color(c_ltgray);
     draw_text(5,5,tooltip);
     tooltip = "";
     }

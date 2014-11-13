@@ -76,7 +76,7 @@ if (moving == 3) or ((moving) and keyboard_check(vk_control))
     
 mouse_yprevious = mouse_y;
 
-visible = (controller.anienable);
+visible = (controller.anienable) and (controller.colormode != "rainbow");
 </string>
           </argument>
         </arguments>
