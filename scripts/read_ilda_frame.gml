@@ -96,7 +96,9 @@ else
         i++;     
             
         if (color == 64)
+            {
             blank = 1;
+            }
             
         ds_list_add(frame_list_parse,blank);
         

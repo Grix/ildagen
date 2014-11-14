@@ -271,6 +271,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_m_line</sprite>
+    <sprite>sprites\spr_resettrans</sprite>
     <sprite>sprites\spr_text</sprite>
     <sprite>sprites\spr_scope</sprite>
     <sprite>sprites\spr_shaking</sprite>
@@ -479,6 +480,7 @@
         <object>objects\obj_anixtrans</object>
         <object>objects\obj_aniytrans</object>
         <object>objects\obj_shake</object>
+        <object>objects\obj_resettrans</object>
       </objects>
     </objects>
   </objects>

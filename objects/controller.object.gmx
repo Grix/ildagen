@@ -25,9 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "0.9.5hf";
+            <string>version = "0.9.6";
 
-init_palette();
+if (os_version != -1) init_palette();
 
 radialgrid_surf = surface_create(512,512);
 surface_set_target(radialgrid_surf);
@@ -744,7 +744,10 @@ draw_text(440,487,"Points: "+string(framepoints));
 if (!anienable) and (maxframes &lt; 2)
     draw_set_color(c_dkgray);
 else draw_set_color(c_ltgray);
-draw_text(200,487,"Animation scope: "+string(scope_start+1)+"-"+string(scope_end+1));
+if (scope_start == 0) and (scope_end == maxframes-1)
+    draw_text(225,487,"Scope: All frames");
+else
+    draw_text(225,487,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
 
 
 if (tooltip != "")

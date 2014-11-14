@@ -79,8 +79,11 @@ for (j = 0; j < maxframes;j++)
             
             bl = ds_list_find_value(list_id,10+u*6+2);
             b = ds_list_find_value(list_id,10+u*6+3);
+            if (is_undefined(b) and bl) {b = 0}
             g = ds_list_find_value(list_id,10+u*6+4);
+            if (is_undefined(g) and bl) {g = 0}
             r = ds_list_find_value(list_id,10+u*6+5);
+            if (is_undefined(r) and bl) {r = 0}
             
             //adjusting values for writing to buffer
             xp -= $8000;

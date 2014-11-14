@@ -20,6 +20,7 @@ if (is_string(resolution))
         resolution = 256;
     }
 
+//find elements
 temp_undof_list = ds_list_create();
 temp_frame_list = ds_list_create();
 for (i = scope_start;i <= scope_end;i++)
@@ -379,7 +380,7 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             if (blankmode == "solid")
                 {
                 blank = 0;
-                if (n == 0) and (enddots)
+                if (j == 0) and (enddots)
                     makedot = 1;
                 }
             else if (blankmode == "dash")
