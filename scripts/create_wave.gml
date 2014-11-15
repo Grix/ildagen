@@ -55,14 +55,14 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
             {
             if (colormode2 == 0)
                 {
-                colorrb = make_colour_hsv((color_offset_r/(2*pi)+ (checkpoints-n)*color_freq_r/checkpoints)*255,255,255); 
+                colorrb = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-n)*color_freq_r/checkpoints)*255)%255,255,255); 
                 c[0] = colour_get_blue(colorrb );
                 c[1] = colour_get_green(colorrb );
                 c[2] = colour_get_red(colorrb );
                 }
             else
                 {
-                colorrb = make_colour_hsv((color_offset_r/(2*pi)+ (checkpoints-n)*resolution/color_period_r)*255,255,255); 
+                colorrb = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-n)*resolution/color_period_r)*255)%255,255,255); 
                 c[0] = colour_get_blue(colorrb );
                 c[1] = colour_get_green(colorrb );
                 c[2] = colour_get_red(colorrb );

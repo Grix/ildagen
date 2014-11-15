@@ -316,14 +316,14 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 {
                 if (colormode2 == 0)
                     {
-                    colorrb = make_colour_hsv((color_offset_r/(2*pi)+ (checkpoints-j)*color_freq_r/checkpoints)*255,255,255); 
+                    colorrb = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-j)*color_freq_r/checkpoints)*255)%255,255,255); 
                     c[0] = colour_get_blue(colorrb );
                     c[1] = colour_get_green(colorrb );
                     c[2] = colour_get_red(colorrb );
                     }
                 else
                     {
-                    colorrb = make_colour_hsv((color_offset_r/(2*pi)+ (checkpoints-j)*resolution/color_period_r)*255,255,255); 
+                    colorrb = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-j)*resolution/color_period_r)*255)%255,255,255); 
                     c[0] = colour_get_blue(colorrb );
                     c[1] = colour_get_green(colorrb );
                     c[2] = colour_get_red(colorrb );
