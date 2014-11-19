@@ -406,8 +406,6 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
-    <font>fonts\fnt_bold</font>
-    <font>fonts\fnt_popup</font>
   </fonts>
   <objects name="objects">
     <object>objects\controller</object>
@@ -423,6 +421,7 @@
       <object>objects\obj_clear</object>
       <object>objects\obj_clearframe</object>
       <object>objects\obj_undo</object>
+      <object>objects\obj_scope</object>
       <objects name="shape">
         <object>objects\obj_wavetselect</object>
         <object>objects\obj_waveampselect</object>
@@ -472,7 +471,6 @@
         <object>objects\obj_aniblankdcselect</object>
         <object>objects\obj_aniblankoffselect</object>
         <object>objects\obj_maxframes</object>
-        <object>objects\obj_scope</object>
         <object>objects\obj_anicolordcselect</object>
         <object>objects\obj_anicoloroffselect</object>
         <object>objects\obj_anienddotscolorselect</object>

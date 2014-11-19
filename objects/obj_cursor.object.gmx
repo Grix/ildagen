@@ -68,6 +68,9 @@ else if (controller.placing == "text")
     image_index = 7;
 if (keyboard_check(ord('E')) and (controller.placing_status != 2))
     image_index = 6;
+
+if (keyboard_check(ord('Z')))
+    image_index = 8;
 </string>
           </argument>
         </arguments>

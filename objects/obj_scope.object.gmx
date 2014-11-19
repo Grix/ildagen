@@ -49,7 +49,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>visible = (controller.anienable) and (controller.maxframes &gt; 1);
+            <string>visible = (controller.maxframes &gt; 1);
 if (!visible) exit;
 
 if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))

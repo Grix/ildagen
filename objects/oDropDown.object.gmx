@@ -42,7 +42,7 @@ scr_list = ds_list_create();
 hl_list = ds_list_create();
 
 //font
-font = fnt_popup;
+font = fnt_tooltip;
 
 //size
 total_width = 200;

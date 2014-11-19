@@ -60,11 +60,13 @@
         "Delete)    Delete selected object#"+
         "Spacebar)    Switch between 2D and 3D frame previewing#"+
         "Shift)    Force horizontal or vertical lines when drawing#"+
+        "Q)    Snap cursor to the nearest tip of object#"+
         "Alt)    Snap mouse to ending position of last element for chaining#"+
         "Ctrl+Alt)    Snap mouse to starting position of last element for chaining##"+
         "A)    Show symmetry/alignment guidelines of elements#"+
         "S)    Show/Snap to square grid (Double click to toggle)#"+
         "R)    Show radial grid (Double click to toggle)#"+
+        "Z)    Zoom in around the cursor#"+
         "E)    Clone color from background image##"+
         "Ctrl)    Move all color sliders, or center symmetric sliders#"+
         "Ctrl+Z)    Undo#"+

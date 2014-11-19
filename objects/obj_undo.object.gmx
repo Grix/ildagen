@@ -112,7 +112,10 @@ else if (string_char_at(undo,0) == 'a')
     }
 else if (string_char_at(undo,0) == 'r')
     {
-    controller.resolution = real(string_digits(undo));
+    if (string_digits(undo) == "rauto")
+        controller.resolution = clamp(real(string_digits(undo)),4,$ffff);
+    else
+        controller.resolution = "auto";
     }
 else if (string_char_at(undo,0) == 'x')
     {
@@ -261,7 +264,10 @@ else if (string_char_at(undo,0) == 'a')
     }
 else if (string_char_at(undo,0) == 'r')
     {
-    controller.resolution = real(string_digits(undo));
+    if (string_digits(undo) == "rauto")
+        controller.resolution = clamp(real(string_digits(undo)),4,$ffff);
+    else
+        controller.resolution = "auto";
     }
 else if (string_char_at(undo,0) == 'd')
     {
