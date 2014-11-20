@@ -303,7 +303,7 @@ else
             }
         else
             {
-            t = ((frame-scope_start)/(scope_end-scope_start))%1;
+            t = ((frame-scope_start)/(scope_end-scope_start+1))%1;
             if (anifunc = "tri")
                 {
                 t *= 2;

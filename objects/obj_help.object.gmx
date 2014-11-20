@@ -75,7 +75,8 @@
         "Mouse wheel)    Adjust wave amplitude#"+
         "Ctrl+Mouse wheel)    Adjust wave frequency##"+
         "N)    Reset window aspect ratio#"+
-        "M)    Reset window size";
+        "M)    Reset window size#"+
+        "F11)    Toggle fullscreen";
         } 
 else image_index = 0;
 </string>

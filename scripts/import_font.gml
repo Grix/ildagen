@@ -42,7 +42,10 @@ with(controller)
     
     read_ilda_work();
     
-    ds_list_copy(font_list,ild_list);
+    if (ds_list_size(ild_list) < 94)
+        show_message("Not enough frames in ilda file. Are you sure this is a font file?"); 
+    else   
+        ds_list_copy(font_list,ild_list);
    
     buffer_delete(ild_file);
         

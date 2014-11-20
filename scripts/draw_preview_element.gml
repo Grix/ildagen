@@ -1,5 +1,8 @@
 //draws a preview of the element under construction
 
+if (placing == "font")
+    exit;
+
 if (placing_status == 1)
     {
     if (!keyboard_check(vk_shift))

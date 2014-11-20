@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="15" name="datafiles">
+  <datafiles number="17" name="datafiles">
     <datafile>
       <name>help.pdf</name>
       <exists>-1</exists>
@@ -38,231 +38,40 @@
       </ConfigOptions>
       <filename>palette.txt</filename>
     </datafile>
-    <datafiles number="15" name="laserboy">
-      <datafile>
-        <name>LaserBoy.bat</name>
-        <exists>-1</exists>
-        <size>19</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>LaserBoy.bat</filename>
-      </datafile>
-      <datafile>
-        <name>LaserBoy.exe</name>
-        <exists>-1</exists>
-        <size>1985038</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>LaserBoy.exe</filename>
-      </datafile>
-      <datafile>
-        <name>Raspberry_Pi.txt</name>
-        <exists>-1</exists>
-        <size>6537</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Raspberry_Pi.txt</filename>
-      </datafile>
-      <datafile>
-        <name>README.txt</name>
-        <exists>-1</exists>
-        <size>3743</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>README.txt</filename>
-      </datafile>
-      <datafile>
-        <name>SDL.dll</name>
-        <exists>-1</exists>
-        <size>303616</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>SDL.dll</filename>
-      </datafile>
-      <datafiles number="15" name="ild">
-        <datafile>
-          <name>font_comic_sans.ild</name>
-          <exists>-1</exists>
-          <size>26896</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>font_comic_sans.ild</filename>
-        </datafile>
-        <datafile>
-          <name>font_courier_new.ild</name>
-          <exists>-1</exists>
-          <size>23314</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>font_courier_new.ild</filename>
-        </datafile>
-        <datafile>
-          <name>font_impact.ild</name>
-          <exists>-1</exists>
-          <size>17890</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>font_impact.ild</filename>
-        </datafile>
-        <datafile>
-          <name>font_lucida.ild</name>
-          <exists>-1</exists>
-          <size>16354</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>font_lucida.ild</filename>
-        </datafile>
-        <datafile>
-          <name>font_narrow_vector.ild</name>
-          <exists>-1</exists>
-          <size>9100</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>font_narrow_vector.ild</filename>
-        </datafile>
-        <datafile>
-          <name>font_simple_vector.ild</name>
-          <exists>-1</exists>
-          <size>6784</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>font_simple_vector.ild</filename>
-        </datafile>
-        <datafile>
-          <name>font_times_new_roman.ild</name>
-          <exists>-1</exists>
-          <size>25660</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>font_times_new_roman.ild</filename>
-        </datafile>
-        <datafile>
-          <name>font_wide_vector.ild</name>
-          <exists>-1</exists>
-          <size>9094</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>font_wide_vector.ild</filename>
-        </datafile>
-      </datafiles>
-    </datafiles>
+    <datafile>
+      <name>font_arial.ild</name>
+      <exists>-1</exists>
+      <size>20674</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>font_arial.ild</filename>
+    </datafile>
+    <datafile>
+      <name>LaserBoy_2013_11_06.zip</name>
+      <exists>-1</exists>
+      <size>4650208</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>LaserBoy_2013_11_06.zip</filename>
+    </datafile>
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\filesaver</extension>
