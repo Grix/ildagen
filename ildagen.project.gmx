@@ -143,6 +143,7 @@
     <script>scripts\draw_grid.gml</script>
     <script>scripts\draw_radialgrid.gml</script>
     <script>scripts\draw_guidelines.gml</script>
+    <script>scripts\create_optimize_lines.gml</script>
     <script>scripts\create_text_init.gml</script>
     <script>scripts\create_element.gml</script>
     <script>scripts\create_letter.gml</script>
@@ -159,7 +160,7 @@
     <script>scripts\bezier_y.gml</script>
     <script>scripts\update_check.gml</script>
     <script>scripts\random_gaussian.gml</script>
-    <script>scripts\random_triangular.gml</script>
+    <script>scripts\dist_triangular.gml</script>
     <scripts name="importilda">
       <script>scripts\get_bytes_signed.gml</script>
       <script>scripts\read_ilda_header_first.gml</script>

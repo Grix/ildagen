@@ -51,7 +51,7 @@ if (is_string(resolution))
     {
     autoresflag = 1;
     if ((placing == "line") && (blankmode == "solid") && (colormode == "solid"))
-        resolution = 4096;
+        resolution = 3000;
     else
         resolution = 1024;
         

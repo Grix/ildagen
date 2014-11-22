@@ -70,7 +70,7 @@
         "E)    Clone color from background image##"+
         "Ctrl)    Move all color sliders, or center symmetric sliders#"+
         "Ctrl+Z)    Undo#"+
-        "Backspace)    Cancel object placing#"+
+        "Backspace)    Cancel object placing and selection#"+
         "0)    Jump to first frame##"+
         "Mouse wheel)    Adjust wave amplitude#"+
         "Ctrl+Mouse wheel)    Adjust wave frequency##"+

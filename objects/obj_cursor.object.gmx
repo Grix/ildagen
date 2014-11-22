@@ -49,10 +49,7 @@ image_speed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = mouse_x;
-y = mouse_y;
-
-if (controller.placing == "")
+            <string>if (controller.placing == "")
     image_index = 0;
 else if (controller.placing == "line")
     image_index = 1;
@@ -70,7 +67,14 @@ if (keyboard_check(ord('E')) and (controller.placing_status != 2))
     image_index = 6;
 
 if (keyboard_check(ord('Z')))
+    {
     image_index = 8;
+    x = clamp(mouse_x,0,view_wview[0]-128);
+    y = clamp(mouse_y,0,view_hview[0]-128);
+    }
+else     
+    x = mouse_x;
+    y = mouse_y;
 </string>
           </argument>
         </arguments>

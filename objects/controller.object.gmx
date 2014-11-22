@@ -75,6 +75,7 @@ onion_alpha = 0.8;
 scroll = 0;
 viewmode = 0;
 selectedelement = -1;
+exp_optimize = 1;
 
 placing = "line";
 startpos[1] = 0;
@@ -103,7 +104,7 @@ color1 = c_white;
 color2 = c_white;
 enddotscolor = c_red;
 color_period = 8192;
-color_freq = 0.5;
+color_freq = 1;
 color_dc = 0.5;
 color_offset = 0;
 
@@ -251,17 +252,17 @@ alarm[0] = 1;
         for (i = 0;i &lt; ds_list_size(el_list);i++)
             {
             templist =  ds_list_find_value(el_list,i);
-            if (point_distance(ds_list_find_value(templist,0)/128,ds_list_find_value(templist,1)/128,obj_cursor.x,obj_cursor.y) &lt; nearestdist)
+            if (point_distance(ds_list_find_value(templist,0)/128,ds_list_find_value(templist,1)/128,mouse_x,mouse_y) &lt; nearestdist)
                 {
                 obj_cursor.x = ds_list_find_value(templist,0)/128;
                 obj_cursor.y = ds_list_find_value(templist,1)/128;
-                nearestdist = point_distance(ds_list_find_value(templist,0)/128,ds_list_find_value(templist,1)/128,obj_cursor.x,obj_cursor.y);
+                nearestdist = point_distance(ds_list_find_value(templist,0)/128,ds_list_find_value(templist,1)/128,mouse_x,mouse_y);
                 }
-            if (point_distance(ds_list_find_value(templist,2)/128,ds_list_find_value(templist,3)/128,obj_cursor.x,obj_cursor.y) &lt; nearestdist)
+            if (point_distance(ds_list_find_value(templist,2)/128,ds_list_find_value(templist,3)/128,mouse_x,mouse_y) &lt; nearestdist)
                 {
                 obj_cursor.x = ds_list_find_value(templist,2)/128;
                 obj_cursor.y = ds_list_find_value(templist,3)/128;
-                nearestdist = point_distance(ds_list_find_value(templist,2)/128,ds_list_find_value(templist,3)/128,obj_cursor.x,obj_cursor.y);
+                nearestdist = point_distance(ds_list_find_value(templist,2)/128,ds_list_find_value(templist,3)/128,mouse_x,mouse_y);
                 }
             }
         }
@@ -270,8 +271,8 @@ alarm[0] = 1;
 if (keyboard_check(ord('Z')))    
     {
     view_visible[2] = 1;
-    view_xport[2] = obj_cursor.x-128;
-    view_yport[2] = obj_cursor.y-128;
+    view_xport[2] = clamp(obj_cursor.x-128,0,view_wview[0]-256);
+    view_yport[2] = clamp(obj_cursor.y-128,0,view_hview[0]-256);
     }
 else
     view_visible[2] = 0;
@@ -287,6 +288,7 @@ if (keyboard_check_released(vk_f11))
 if (keyboard_check_pressed(vk_backspace))
     {
     placing_status = 0;
+    selectedelement = -1;
     ds_list_clear(free_list);
     ds_list_clear(bez_list);
     exit;
@@ -756,7 +758,7 @@ draw_set_color(c_white);
             <kind>1</kind>
             <string>if (bckimage)
     {
-    if (!keyboard_check(ord('E')) and (placing_status != 2))
+    if (!keyboard_check(ord('E')))
         draw_set_alpha(0.3);
     draw_background_stretched(bck_bckimage,0,0,512,512);
     draw_set_alpha(1);
