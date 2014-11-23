@@ -129,6 +129,7 @@
       <sprite>sprites\spr_xtrans</sprite>
       <sprite>sprites\spr_waveampselect</sprite>
     </sprites>
+    <sprite>sprites\spr_trans</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_guide</background>
@@ -276,22 +277,23 @@
         <object>objects\obj_b_dotsolid</object>
       </objects>
       <objects name="ani">
-        <object>objects\obj_aniwaveoffselect</object>
         <object>objects\obj_anienable</object>
         <object>objects\obj_fillframes</object>
         <object>objects\obj_anicolorselect_1</object>
         <object>objects\obj_anicolorselect_2</object>
+        <object>objects\obj_anienddotscolorselect</object>
         <object>objects\obj_aniblankdcselect</object>
         <object>objects\obj_aniblankoffselect</object>
-        <object>objects\obj_maxframes</object>
         <object>objects\obj_anicolordcselect</object>
         <object>objects\obj_anicoloroffselect</object>
-        <object>objects\obj_anienddotscolorselect</object>
+        <object>objects\obj_aniwaveoffselect</object>
         <object>objects\obj_anifunc</object>
         <object>objects\obj_anixtrans</object>
         <object>objects\obj_aniytrans</object>
+        <object>objects\obj_maxframes</object>
         <object>objects\obj_shake</object>
         <object>objects\obj_resettrans</object>
+        <object>objects\obj_trans</object>
       </objects>
     </objects>
   </objects>

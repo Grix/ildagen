@@ -96,6 +96,32 @@ if (visible) and (mouse_x &gt; x-sprite_width/2) and (mouse_x &lt; (x+sprite_wid
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!visible)
+    exit;
+
+controller.wave_amp = get_integer("Enter the wave amplitude",controller.wave_amp);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="4">
       <action>
         <libid>1</libid>
@@ -140,7 +166,7 @@ moving = 1;
             <string>
 draw_set_alpha(1);
 draw_sprite(sprite_index,image_index,x,y);
-draw_sprite(spr_knob,(moving &gt; 0),x+controller.wave_amp/$ffff*2*64,y+16);
+draw_sprite(spr_knob,(moving &gt; 0),x+clamp(controller.wave_amp,-$ffff/2,$ffff/2)/$ffff*2*64,y+16);
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
