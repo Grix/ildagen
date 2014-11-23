@@ -132,6 +132,13 @@ aniblank_offset = 0;
 anicolor_offset = 0;
 aniwave_offset = 0;
 anifunc = "saw";
+
+rot = 45;
+anirot = 45;
+scale = 1;
+aniscale = 1;
+anchorx = $8000;
+anchory = $8000;
 anixtrans = 0;
 aniytrans = 0;
 shaking = 0;

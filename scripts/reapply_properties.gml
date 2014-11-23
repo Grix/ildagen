@@ -122,6 +122,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         endy_r = endy;
         startposx_r = startpos[0];
         startposy_r  = startpos[1];
+        rot_r = degtorad(rot);
+        scale_r = scale;
         }
     else
         {
@@ -149,6 +151,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             endy_r = lerp(endy,endy+aniytrans,t)+gaussoffsety;
             startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
+            rot_r = degtorad(lerp(rot,anirot,t));
+            scale_r = lerp(scale,aniscale,t);
             }
         else if (anifunc = "sine")
             {
@@ -174,6 +178,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             endy_r = lerp(endy,endy+aniytrans,t)+gaussoffsety;
             startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
+            rot_r = degtorad(lerp(rot,anirot,t));
+            scale_r = lerp(scale,aniscale,t);
             }
         else if (anifunc = "ssine")
             {
@@ -196,6 +202,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             endy_r = lerp(endy,endy+aniytrans,t)+gaussoffsety;
             startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
+            rot_r = degtorad(lerp(rot,anirot,t));
+            scale_r = lerp(scale,aniscale,t);
             }
         else if (anifunc = "hsine")
             {
@@ -218,6 +226,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             endy_r = lerp(endy,endy+aniytrans,t)+gaussoffsety;
             startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
+            rot_r = degtorad(lerp(rot,anirot,t));
+            scale_r = lerp(scale,aniscale,t);
             }
         else if (anifunc = "saw")
             {
@@ -239,16 +249,14 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             endy_r = lerp(endy,endy+aniytrans,t)+gaussoffsety;
             startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
+            rot_r = degtorad(lerp(rot,anirot,t));
+            scale_r = lerp(scale,aniscale,t);
             }
         }
         
     //TRANS
     if (controller.reap_trans)
         {
-        ds_list_replace(new_list,0,startposx_r);
-        ds_list_replace(new_list,1,startposy_r);
-        ds_list_replace(new_list,2,endx_r);
-        ds_list_replace(new_list,3,endy_r);
         }
         
     
@@ -291,10 +299,11 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
     //walk through points
     for (j = 0; j < checkpoints;j++)
         {
+        listpos = 10+j*6;
         
-        if ((j != 0) and (ds_list_find_value(new_list,10+j*6) == ds_list_find_value(new_list,10+(j-1)*6)) and (ds_list_find_value(new_list,10+j*6+1) == ds_list_find_value(new_list,10+(j-1)*6+1)) and (controller.reap_removeoverlap))
+        if ((j != 0) and (ds_list_find_value(new_list,listpos) == ds_list_find_value(new_list,10+(j-1)*6)) and (ds_list_find_value(new_list,listpos+1) == ds_list_find_value(new_list,10+(j-1)*6+1)) and (controller.reap_removeoverlap))
             {
-            repeat(6) ds_list_delete(new_list,10+j*6);
+            repeat(6) ds_list_delete(new_list,listpos);
             checkpoints--;
             j--;
             continue;
@@ -367,9 +376,9 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 }
                 
             
-            ds_list_replace(new_list,10+j*6+3,c[0]);
-            ds_list_replace(new_list,10+j*6+4,c[1]);
-            ds_list_replace(new_list,10+j*6+5,c[2]);
+            ds_list_replace(new_list,listpos+3,c[0]);
+            ds_list_replace(new_list,listpos+4,c[1]);
+            ds_list_replace(new_list,listpos+5,c[2]);
                 
             }
         
@@ -426,7 +435,7 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 blank = 0;
                 }
                 
-            if (reap_preserveblank and ds_list_find_value(new_list,10+j*6+2))
+            if (reap_preserveblank and ds_list_find_value(new_list,listpos+2))
                 blank = 1;
                 
                     
@@ -442,15 +451,15 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 {
                 if (blankmode == "dot")
                     {
-                    ds_list_replace(new_list,10+j*6+2,1);
+                    ds_list_replace(new_list,listpos+2,1);
                     repeat (dotmultiply)
                         {
-                        ds_list_insert(new_list,10+j*6+6,ds_list_find_value(new_list,10+j*6));
-                        ds_list_insert(new_list,10+(j)*6+7,ds_list_find_value(new_list,10+j*6+1));
-                        ds_list_insert(new_list,10+(j)*6+8,0);
-                        ds_list_insert(new_list,10+(j)*6+9,colour_get_blue(enddotscolor_r));
-                        ds_list_insert(new_list,10+(j)*6+10,colour_get_green(enddotscolor_r));
-                        ds_list_insert(new_list,10+(j)*6+11,colour_get_red(enddotscolor_r));
+                        ds_list_insert(new_list,listpos+6,ds_list_find_value(new_list,listpos));
+                        ds_list_insert(new_list,listpos+7,ds_list_find_value(new_list,listpos+1));
+                        ds_list_insert(new_list,listpos+8,0);
+                        ds_list_insert(new_list,listpos+9,colour_get_blue(enddotscolor_r));
+                        ds_list_insert(new_list,listpos+10,colour_get_green(enddotscolor_r));
+                        ds_list_insert(new_list,listpos+11,colour_get_red(enddotscolor_r));
                         checkpoints++;
                         j++;
                         }
@@ -479,17 +488,17 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                         }
                     else
                         {
-                        ds_list_replace(new_list,10+j*6+2,0);
+                        ds_list_replace(new_list,listpos+2,0);
                         icount = 0;
                         repeat (dotmultiply)
                             {
                             icount++;
-                            ds_list_insert(new_list,10+(j)*6+6,ds_list_find_value(new_list,10+j*6));
-                            ds_list_insert(new_list,10+(j)*6+7,ds_list_find_value(new_list,10+j*6+1));
-                            ds_list_insert(new_list,10+(j)*6+8,0);
-                            ds_list_insert(new_list,10+(j)*6+9,colour_get_blue(enddotscolor_r));
-                            ds_list_insert(new_list,10+(j)*6+10,colour_get_green(enddotscolor_r));
-                            ds_list_insert(new_list,10+(j)*6+11,colour_get_red(enddotscolor_r));
+                            ds_list_insert(new_list,listpos+6,ds_list_find_value(new_list,listpos));
+                            ds_list_insert(new_list,listpos+7,ds_list_find_value(new_list,listpos+1));
+                            ds_list_insert(new_list,listpos+8,0);
+                            ds_list_insert(new_list,listpos+9,colour_get_blue(enddotscolor_r));
+                            ds_list_insert(new_list,listpos+10,colour_get_green(enddotscolor_r));
+                            ds_list_insert(new_list,listpos+11,colour_get_red(enddotscolor_r));
                 
                             }
                         j+= icount;
@@ -499,10 +508,30 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 }  
             else
                 { 
-                ds_list_replace(new_list,10+j*6+2,blank);
+                ds_list_replace(new_list,listpos+2,blank);
                 }
-            } 
+            }     
             
+        if (reap_trans)
+            {
+            
+            xp = startpos[0]+ds_list_find_value(new_list,listpos);
+            yp = startpos[1]+ds_list_find_value(new_list,listpos+1);
+            
+            angle = degtorad(point_direction(anchorx,anchory,xp,yp));
+            dist = point_distance(anchorx,anchory,xp,yp);
+            
+            xpnew = anchorx+cos(angle+rot_r)*dist-startpos[0];
+            ypnew = anchory+sin(angle+rot_r)*dist-startpos[1];
+            
+            ds_list_replace(new_list,listpos,xpnew);
+            ds_list_replace(new_list,listpos+1,ypnew);
+            
+            ds_list_replace(new_list,0,startposx_r);
+            ds_list_replace(new_list,1,startposy_r);
+            ds_list_replace(new_list,2,endx_r);
+            ds_list_replace(new_list,3,endy_r);
+            }
         }
         
     }
