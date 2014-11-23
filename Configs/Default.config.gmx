@@ -106,7 +106,7 @@
     <option_html5_outputdebugtoconsole>False</option_html5_outputdebugtoconsole>
     <option_html5_outputname>indextemp.html</option_html5_outputname>
     <option_html5_scale>-1</option_html5_scale>
-    <option_html5_showcursor>True</option_html5_showcursor>
+    <option_html5_showcursor>False</option_html5_showcursor>
     <option_html5_splash_png>Configs\Default\html5\splash.png</option_html5_splash_png>
     <option_html5_texture_page>2048</option_html5_texture_page>
     <option_html5_use_test_ads>0</option_html5_use_test_ads>
@@ -246,7 +246,7 @@
     <option_quitkey>true</option_quitkey>
     <option_resolution>0</option_resolution>
     <option_savekey>true</option_savekey>
-    <option_scale>0</option_scale>
+    <option_scale>-1</option_scale>
     <option_scaleprogress>true</option_scaleprogress>
     <option_sci_UseSCI>0</option_sci_UseSCI>
     <option_sci_serverLocation></option_sci_serverLocation>

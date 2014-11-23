@@ -175,6 +175,8 @@ for (j = 0; j < maxframes;j++)
                 }
             
             
+            if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,10+(u+1)*6+2))) or (exp_optimize == 1)
+                {
                 //writing point
                 buffer_write(ilda_buffer,buffer_u8,xpa[1]);
                 buffer_write(ilda_buffer,buffer_u8,xpa[0]);
@@ -185,6 +187,7 @@ for (j = 0; j < maxframes;j++)
                 buffer_write(ilda_buffer,buffer_u8,g);
                 buffer_write(ilda_buffer,buffer_u8,r);
                 maxpoints++;
+                }
             
             }
             

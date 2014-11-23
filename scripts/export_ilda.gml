@@ -6,9 +6,6 @@ file_loc = get_save_filename("*.ild","out.ild");
 if (file_loc == "")
     exit;
     
-if (exp_optimize == 1)
-    //create_optimize_lines();
-    
     
 maxpoints = 0;
 frame = 0;
@@ -60,8 +57,10 @@ for (j = 0; j < maxframes;j++)
     //optimize first
     if (exp_optimize == 1)
         {
-        xpe = xo*128+ds_list_find_value(ds_list_find_value(el_list,0),10+0*6+0);
-        ype = $ffff-(yo*128+ds_list_find_value(ds_list_find_value(el_list,0),10+0*6+1));
+        xo = ds_list_find_value(ds_list_find_value(el_list,0),0);
+        yo = ds_list_find_value(ds_list_find_value(el_list,0),1);
+        xpe = xo+ds_list_find_value(ds_list_find_value(el_list,0),10+0*6+0);
+        ype = $ffff-(yo+ds_list_find_value(ds_list_find_value(el_list,0),10+0*6+1));
         
         opt_dist = point_distance($ffff/2,$ffff/2,xpe,ype);
         opt_vectorx = ($ffff/2-xpe)/opt_dist;
@@ -87,6 +86,11 @@ for (j = 0; j < maxframes;j++)
             xp = $ffff/2+opt_vectorx*trav_dist;
             yp = $ffff/2+opt_vectory*trav_dist;
             
+            if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
+                {
+                continue;
+                }
+            
             xp -= $8000;
             yp -= $8000;
             xpa[0] = xp & 255;
@@ -95,6 +99,8 @@ for (j = 0; j < maxframes;j++)
             ypa[0] = yp & 255;
             yp = yp >> 8;
             ypa[1] = yp & 255;
+        
+            
             
             //writing point
             buffer_write(ilda_buffer,buffer_u8,xpa[1]);
@@ -178,6 +184,8 @@ for (j = 0; j < maxframes;j++)
                 }
             
             
+            if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,10+(u+1)*6+2))) or (exp_optimize == 1)
+                {
                 //writing point
                 buffer_write(ilda_buffer,buffer_u8,xpa[1]);
                 buffer_write(ilda_buffer,buffer_u8,xpa[0]);
@@ -188,6 +196,7 @@ for (j = 0; j < maxframes;j++)
                 buffer_write(ilda_buffer,buffer_u8,g);
                 buffer_write(ilda_buffer,buffer_u8,r);
                 maxpoints++;
+                }
             
             }
             
@@ -202,6 +211,7 @@ for (j = 0; j < maxframes;j++)
             yo = ds_list_find_value(list_id,1);
             xpe = xo+ds_list_find_value(list_id,10+0*6+0);
             ype = $ffff-(yo+ds_list_find_value(list_id,10+0*6+1));
+            
             
             opt_dist = point_distance(xpeprev,ypeprev,xpe,ype);
             opt_vectorx = (xpe-xpeprev)/opt_dist;
@@ -226,6 +236,11 @@ for (j = 0; j < maxframes;j++)
                 {
                 xp = xpe+opt_vectorx*trav_dist;
                 yp = ype+opt_vectory*trav_dist;
+                
+                if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
+                {
+                continue;
+                }
                 
                 xp -= $8000;
                 yp -= $8000;
@@ -279,6 +294,11 @@ for (j = 0; j < maxframes;j++)
             {
             xp = xpeprev+opt_vectorx*trav_dist;
             yp = ypeprev+opt_vectory*trav_dist;
+            
+            if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
+                {
+                continue;
+                }
             
             xp -= $8000;
             yp -= $8000;

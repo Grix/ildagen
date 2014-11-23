@@ -294,11 +294,11 @@ if (keyboard_check_pressed(vk_backspace))
     exit;
     }
         
-if (keyboard_check_pressed(ord('N')))
-    window_set_size(window_get_width(),window_get_width()/1100*670);
-        
 if (keyboard_check_pressed(ord('M')))
+    {
+    window_set_fullscreen(0);
     window_set_size(1100,670);
+    }
     
 if (keyboard_check_pressed(vk_space))
     {
@@ -339,7 +339,6 @@ if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
     {
     if (keyboard_check_pressed(vk_left))
         {
-        show_message(framehr)
         frame--;
         framehr--;
         scroll = 0;
@@ -365,7 +364,7 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status ==
         }
     else if (scroll)
         framehr += 0.4;
-    if (framehr &gt; maxframes-1)
+    if (framehr &gt; maxframes-0.5)
         framehr-= maxframes;
     frame = round(framehr);
     if (frame &lt; 1)

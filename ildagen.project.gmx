@@ -212,6 +212,9 @@
       <script>scripts\dropdown_text.gml</script>
       <script>scripts\dd_text_size.gml</script>
       <script>scripts\dd_text_font.gml</script>
+      <script>scripts\dropdown_export.gml</script>
+      <script>scripts\dd_export_opt.gml</script>
+      <script>scripts\dd_export_min.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
