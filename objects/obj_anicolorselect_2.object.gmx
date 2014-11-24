@@ -77,6 +77,11 @@ if (moving == 3) or ((moving) and keyboard_check(vk_control))
 mouse_yprevious = mouse_y;
 
 visible = ((controller.colormode == "gradient") || (controller.colormode == "dash")) and (controller.anienable);
+
+if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+    {
+    controller.tooltip = "Changes secondary color at the end of the animation#(Sliders represent red, green and blue)#-&gt;Right click to enter a precise value";
+    } 
 </string>
           </argument>
         </arguments>
@@ -196,10 +201,6 @@ draw_circle_colour(x+70,y+16,10,controller.anicolor2,controller.anicolor2,0);
 
 draw_circle_colour(x+70,y+16,10,c_black,c_black,1);
 
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
-    {
-    controller.tooltip = "Changes secondary color at the end of the animation#(Sliders represent red, green and blue)#-&gt;Right click to enter a precise value";
-    } 
 </string>
           </argument>
         </arguments>

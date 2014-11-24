@@ -75,6 +75,7 @@ onion_alpha = 0.8;
 scroll = 0;
 viewmode = 0;
 selectedelement = -1;
+selectedelementlist = 0;
 exp_optimize = 1;
 
 placing = "line";
@@ -133,10 +134,12 @@ anicolor_offset = 0;
 aniwave_offset = 0;
 anifunc = "saw";
 
-rot = 45;
-anirot = 45;
-scale = 1;
-aniscale = 1;
+rot = 0;
+anirot = 0;
+scalex = 1;
+scaley = 1;
+aniscalex = 1;
+aniscaley = 1;
 anchorx = $8000;
 anchory = $8000;
 anixtrans = 0;
@@ -275,7 +278,7 @@ alarm[0] = 1;
         }
     }
     
-if (keyboard_check(ord('Z')))    
+if (keyboard_check(ord('Z')) and !keyboard_check(vk_control))
     {
     view_visible[2] = 1;
     view_xport[2] = clamp(obj_cursor.x-128,0,view_wview[0]-256);
@@ -394,7 +397,10 @@ if (keyboard_check_pressed(vk_up)) and (!ds_list_empty(el_list)) and (placing_st
         for (i = 0; i &lt; ds_list_size(el_list);i++)
             {
             if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
+                {
                 tempstop = 1;
+                selectedelementlist = ds_list_find_value(el_list,i);
+                }
             }
         if (tempstop)
             exit;
@@ -413,9 +419,12 @@ if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list)) and (placing_
         {
         selectedelement--;
         for (i = 0; i &lt; ds_list_size(el_list);i++)
-            {
+            {   
             if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
+                {
                 tempstop = 1;
+                selectedelementlist = ds_list_find_value(el_list,i);
+                }
             }
         if (tempstop)
             exit;
@@ -801,21 +810,15 @@ draw_set_color(c_white);
     draw_ilda_2d();
     
 draw_set_color(c_aqua);
-    
-    for (i=0;i &lt; ds_list_size(el_list);i++)
-        {
-        if (ds_list_find_value(ds_list_find_value(el_list,i),9) == selectedelement)
-            {
-            xo = ds_list_find_value(ds_list_find_value(el_list,i),0)/$ffff*512;
-            yo = ds_list_find_value(ds_list_find_value(el_list,i),1)/$ffff*512;
-            //draw_circle(ds_list_find_value(ds_list_find_value(el_list,i),2)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),3)/$ffff*512,3,0);
-            //draw_circle(ds_list_find_value(ds_list_find_value(el_list,i),0)/$ffff*512,ds_list_find_value(ds_list_find_value(el_list,i),1)/$ffff*512,3,0);
-            draw_rectangle(xo + ds_list_find_value(ds_list_find_value(el_list,i),4),
-                           yo + ds_list_find_value(ds_list_find_value(el_list,i),6),
-                           xo + ds_list_find_value(ds_list_find_value(el_list,i),5),
-                           yo + ds_list_find_value(ds_list_find_value(el_list,i),7),1);
-            }
-        }
+if (selectedelement != -1)
+    {
+    xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+    yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
+    draw_rectangle(xo + ds_list_find_value(selectedelementlist,4),
+                   yo + ds_list_find_value(selectedelementlist,6),
+                   xo + ds_list_find_value(selectedelementlist,5),
+                   yo + ds_list_find_value(selectedelementlist,7),1);
+    }
 
 draw_set_color(c_gray);
 

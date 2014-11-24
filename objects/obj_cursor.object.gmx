@@ -32,7 +32,7 @@ image_speed = 0;
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="8" enumb="72">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -49,7 +49,7 @@ image_speed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (controller.placing == "")
+            <string>if (obj_cursor.x &gt; 512 or obj_cursor.y &gt; 512)
     image_index = 0;
 else if (controller.placing == "line")
     image_index = 1;
@@ -63,6 +63,13 @@ else if (controller.placing == "curve")
     image_index = 5;
 else if (controller.placing == "text")
     image_index = 7;
+if (controller.tooltip != "")
+    {
+    if (mouse_check_button(mb_left))
+        image_index = 10;
+    else
+        image_index = 9;
+    }
 if (keyboard_check(ord('E')) and (controller.placing_status != 2))
     image_index = 6;
 
@@ -75,29 +82,8 @@ if (keyboard_check(ord('Z')))
 else     
     x = mouse_x;
     y = mouse_y;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="73">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_set_alpha(0.3);
+
+draw_set_alpha(0.3);
 draw_sprite(sprite_index,image_index,mouse_x,mouse_y);
 draw_set_alpha(1);
 draw_sprite(sprite_index,image_index,x,y);

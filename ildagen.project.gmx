@@ -117,6 +117,7 @@
     <sprite>sprites\spr_c_gradient</sprite>
     <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_cursor</sprite>
+    <sprite>sprites\spr_trans</sprite>
     <sprites name="sliders">
       <sprite>sprites\spr_knobvert</sprite>
       <sprite>sprites\spr_knob</sprite>
@@ -129,7 +130,7 @@
       <sprite>sprites\spr_xtrans</sprite>
       <sprite>sprites\spr_waveampselect</sprite>
     </sprites>
-    <sprite>sprites\spr_trans</sprite>
+    <sprite>sprites\spr_anchor</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_guide</background>

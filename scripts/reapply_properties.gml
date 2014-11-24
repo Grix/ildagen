@@ -123,7 +123,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         startposx_r = startpos[0];
         startposy_r  = startpos[1];
         rot_r = degtorad(rot);
-        scale_r = scale;
+        scalex_r = scalex;
+        scaley_r = scaley;
         }
     else
         {
@@ -152,7 +153,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
             rot_r = degtorad(lerp(rot,anirot,t));
-            scale_r = lerp(scale,aniscale,t);
+            scalex_r = lerp(scalex,aniscalex,t);
+            scaley_r = lerp(scaley,aniscaley,t);
             }
         else if (anifunc = "sine")
             {
@@ -179,7 +181,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
             rot_r = degtorad(lerp(rot,anirot,t));
-            scale_r = lerp(scale,aniscale,t);
+            scalex_r = lerp(scalex,aniscalex,t);
+            scaley_r = lerp(scaley,aniscaley,t);
             }
         else if (anifunc = "ssine")
             {
@@ -203,7 +206,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
             rot_r = degtorad(lerp(rot,anirot,t));
-            scale_r = lerp(scale,aniscale,t);
+            scalex_r = lerp(scalex,aniscalex,t);
+            scaley_r = lerp(scaley,aniscaley,t);
             }
         else if (anifunc = "hsine")
             {
@@ -227,7 +231,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
             rot_r = degtorad(lerp(rot,anirot,t));
-            scale_r = lerp(scale,aniscale,t);
+            scalex_r = lerp(scalex,aniscalex,t);
+            scaley_r = lerp(scaley,aniscaley,t);
             }
         else if (anifunc = "saw")
             {
@@ -250,13 +255,9 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
             rot_r = degtorad(lerp(rot,anirot,t));
-            scale_r = lerp(scale,aniscale,t);
+            scalex_r = lerp(scalex,aniscalex,t);
+            scaley_r = lerp(scaley,aniscaley,t);
             }
-        }
-        
-    //TRANS
-    if (controller.reap_trans)
-        {
         }
         
     
@@ -514,15 +515,14 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             
         if (reap_trans)
             {
-            
             xp = startpos[0]+ds_list_find_value(new_list,listpos);
             yp = startpos[1]+ds_list_find_value(new_list,listpos+1);
             
             angle = degtorad(point_direction(anchorx,anchory,xp,yp));
             dist = point_distance(anchorx,anchory,xp,yp);
             
-            xpnew = anchorx+cos(angle+rot_r)*dist-startpos[0];
-            ypnew = anchory+sin(angle+rot_r)*dist-startpos[1];
+            xpnew = anchorx+cos(-angle+rot_r)*dist*scalex_r-startpos[0];
+            ypnew = anchory+sin(-angle+rot_r)*dist*scaley_r-startpos[1];
             
             ds_list_replace(new_list,listpos,xpnew);
             ds_list_replace(new_list,listpos+1,ypnew);

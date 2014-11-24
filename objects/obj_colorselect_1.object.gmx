@@ -51,6 +51,11 @@ moving = 0;
             <kind>1</kind>
             <string>visible = (controller.colormode != "rainbow")
 
+if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+    {
+    controller.tooltip = "Changes primary color (Sliders represent red, green and blue)#-&gt;Right click to enter a precise value";
+    } 
+
 if (moving == 1) or ((moving) and keyboard_check(vk_control))
     {
     red = colour_get_red(controller.color1);
@@ -196,11 +201,6 @@ draw_sprite(spr_colorselect_blue,(moving == 3),x+32,y+23-(colour_get_blue(contro
 
 draw_circle_colour(x+70,y+16,10,controller.color1,controller.color1,0);
 draw_circle_colour(x+70,y+16,10,c_black,c_black,1);
-
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
-    {
-    controller.tooltip = "Changes primary color (Sliders represent red, green and blue)#-&gt;Right click to enter a precise value";
-    } 
 </string>
           </argument>
         </arguments>

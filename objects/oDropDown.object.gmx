@@ -351,6 +351,8 @@ for(var i = 0; i &lt; num; i++)
         draw_set_alpha(1);
     }
 }
+
+draw_sprite(spr_cursor,9,obj_cursor.x,obj_cursor.y);
 </string>
           </argument>
         </arguments>
