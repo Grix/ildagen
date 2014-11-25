@@ -63,7 +63,7 @@ else if (controller.placing == "curve")
     image_index = 5;
 else if (controller.placing == "text")
     image_index = 7;
-if (controller.tooltip != "")
+if (controller.tooltip != "") or (controller.objmoving)
     {
     if (mouse_check_button(mb_left))
         image_index = 10;

@@ -4,8 +4,8 @@ Permission is hereby granted to any person purchasing a license
 to this program and associated documentation files (the "Software"), to use, copy and 
 modify this software subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. You have purchased a license code for the software from BitLasers.com, and
+2. You do not redistribute the software without permission from the author, Gitle Mikkelsen
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -18,4 +18,4 @@ SOFTWARE.
 You may install the program and use the license on as many computer you'd like, 
 but you must not share the license key with others, or your license may be revoked.
 
-You retain ownership of all ILDA files you export using the licensed software.
+You, the user, retain ownership of all ILDA files you export using the licensed software.

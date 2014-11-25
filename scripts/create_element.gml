@@ -116,10 +116,10 @@ if (!fillframes)
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
             enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx+anixtrans/$ffff*512,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy+aniytrans/$ffff*512,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t)+gaussoffsety;
+            endx_r = endx+gaussoffsetx;
+            endy_r = endy+gaussoffsety;
+            startposx_r = startpos[0]+gaussoffsetx;
+            startposy_r = startpos[1]+gaussoffsety;
             }
         else if (anifunc = "sine")
             {
@@ -141,10 +141,10 @@ if (!fillframes)
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
             enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx+anixtrans/$ffff*512,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy+aniytrans/$ffff*512,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t)+gaussoffsety;
+            endx_r = endx+gaussoffsetx;
+            endy_r = endy+gaussoffsety;
+            startposx_r = startpos[0]+gaussoffsetx;
+            startposy_r = startpos[1]+gaussoffsety;
             }
         else if (anifunc = "ssine")
             {
@@ -163,10 +163,10 @@ if (!fillframes)
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
             enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx+anixtrans/$ffff*512,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy+aniytrans/$ffff*512,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t)+gaussoffsety;
+            endx_r = endx+gaussoffsetx;
+            endy_r = endy+gaussoffsety;
+            startposx_r = startpos[0]+gaussoffsetx;
+            startposy_r = startpos[1]+gaussoffsety;
             }
         else if (anifunc = "hsine")
             {
@@ -185,10 +185,10 @@ if (!fillframes)
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
             enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx+anixtrans/$ffff*512,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy+aniytrans/$ffff*512,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t)+gaussoffsety;
+            endx_r = endx+gaussoffsetx;
+            endy_r = endy+gaussoffsety;
+            startposx_r = startpos[0]+gaussoffsetx;
+            startposy_r = startpos[1]+gaussoffsety;
             }
         else if (anifunc = "saw")
             {
@@ -206,10 +206,10 @@ if (!fillframes)
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
             enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx+anixtrans/$ffff*512,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy+aniytrans/$ffff*512,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t)+gaussoffsety;
+            endx_r = endx+gaussoffsetx;
+            endy_r = endy+gaussoffsety;
+            startposx_r = startpos[0]+gaussoffsetx;
+            startposy_r = startpos[1]+gaussoffsety;
             }
         }
 
@@ -323,10 +323,10 @@ else
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t)+gaussoffsetx;
-                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t)+gaussoffsety;
-                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t)+gaussoffsetx;
-                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t)+gaussoffsety;
+                endx_r = endx+gaussoffsetx;
+                endy_r = endy+gaussoffsety;
+                startposx_r = startpos[0]+gaussoffsetx;
+                startposy_r = startpos[1]+gaussoffsety;
                 }
             else if (anifunc = "sine")
                 {
@@ -348,10 +348,10 @@ else
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t)+gaussoffsetx;
-                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t)+gaussoffsety;
-                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t)+gaussoffsetx;
-                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t)+gaussoffsety;
+                endx_r = endx+gaussoffsetx;
+                endy_r = endy+gaussoffsety;
+                startposx_r = startpos[0]+gaussoffsetx;
+                startposy_r = startpos[1]+gaussoffsety;
                 }
             else if (anifunc = "ssine")
                 {
@@ -370,10 +370,10 @@ else
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t)+gaussoffsetx;
-                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t)+gaussoffsety;
-                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t)+gaussoffsetx;
-                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t)+gaussoffsety;
+                endx_r = endx+gaussoffsetx;
+                endy_r = endy+gaussoffsety;
+                startposx_r = startpos[0]+gaussoffsetx;
+                startposy_r = startpos[1]+gaussoffsety;
                 }
             else if (anifunc = "hsine")
                 {
@@ -392,10 +392,10 @@ else
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t)+gaussoffsetx;
-                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t)+gaussoffsety;
-                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t)+gaussoffsetx;
-                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t)+gaussoffsety;
+                endx_r = endx+gaussoffsetx;
+                endy_r = endy+gaussoffsety;
+                startposx_r = startpos[0]+gaussoffsetx;
+                startposy_r = startpos[1]+gaussoffsety;
                 }
             else if (anifunc = "saw")
                 {
@@ -413,10 +413,10 @@ else
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
                 enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-                endx_r = lerp(endx,endx+anixtrans/$ffff*512,t)+gaussoffsetx;
-                endy_r = lerp(endy,endy+aniytrans/$ffff*512,t)+gaussoffsety;
-                startposx_r = lerp(startpos[0],startpos[0]+anixtrans/$ffff*512,t)+gaussoffsetx;
-                startposy_r  = lerp(startpos[1],startpos[1]+aniytrans/$ffff*512,t)+gaussoffsety;
+                endx_r = endx+gaussoffsetx;
+                endy_r = endy+gaussoffsety;
+                startposx_r = startpos[0]+gaussoffsetx;
+                startposy_r = startpos[1]+gaussoffsety;
                 }
             }
             

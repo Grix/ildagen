@@ -9,8 +9,6 @@ ds_list_clear(surf_list);
 el_list = ds_list_find_value(frame_list,frame);
 framepoints = 0;
 
-controller.selectedelement = -1;
-
 draw_set_alpha(1);
 for (i = 0;i < ds_list_size(el_list);i++)
     {

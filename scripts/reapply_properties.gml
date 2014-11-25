@@ -1,6 +1,5 @@
 //reapplies the object properties
 
-//find elements
 
 autoresflag = 0;
 if (is_string(resolution))
@@ -527,13 +526,26 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             ds_list_replace(new_list,listpos,xpnew);
             ds_list_replace(new_list,listpos+1,ypnew);
             
-            ds_list_replace(new_list,0,startposx_r);
-            ds_list_replace(new_list,1,startposy_r);
-            ds_list_replace(new_list,2,endx_r);
-            ds_list_replace(new_list,3,endy_r);
+            if (xpnew > xmax)
+               xmax = xpnew;
+            if (xpnew < xmin)
+               xmin = xpnew;
+            if (ypnew > ymax)
+               ymax = ypnew;
+            if (ypnew < ymin)
+               ymin = ypnew;
             }
-        }
+        }       
         
+    ds_list_replace(new_list,0,startposx_r);
+    ds_list_replace(new_list,1,startposy_r);
+    ds_list_replace(new_list,2,endx_r);
+    ds_list_replace(new_list,3,endy_r);
+    
+    ds_list_replace(new_list,4,xmin);
+    ds_list_replace(new_list,5,xmax);
+    ds_list_replace(new_list,6,ymin);
+    ds_list_replace(new_list,7,ymax);    
     }
     
 if (autoresflag)

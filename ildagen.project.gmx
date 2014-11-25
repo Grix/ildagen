@@ -79,6 +79,18 @@
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
+    <sprites name="sliders">
+      <sprite>sprites\spr_knobvert</sprite>
+      <sprite>sprites\spr_knob</sprite>
+      <sprite>sprites\spr_colorselect_green</sprite>
+      <sprite>sprites\spr_colorselect_blue</sprite>
+      <sprite>sprites\spr_colorselect_red</sprite>
+      <sprite>sprites\spr_colorselect</sprite>
+      <sprite>sprites\spr_blankperiodselect</sprite>
+      <sprite>sprites\spr_ytrans</sprite>
+      <sprite>sprites\spr_xtrans</sprite>
+      <sprite>sprites\spr_waveampselect</sprite>
+    </sprites>
     <sprite>sprites\spr_m_line</sprite>
     <sprite>sprites\spr_resettrans</sprite>
     <sprite>sprites\spr_text</sprite>
@@ -117,52 +129,14 @@
     <sprite>sprites\spr_c_gradient</sprite>
     <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_cursor</sprite>
-    <sprite>sprites\spr_trans</sprite>
-    <sprites name="sliders">
-      <sprite>sprites\spr_knobvert</sprite>
-      <sprite>sprites\spr_knob</sprite>
-      <sprite>sprites\spr_colorselect_green</sprite>
-      <sprite>sprites\spr_colorselect_blue</sprite>
-      <sprite>sprites\spr_colorselect_red</sprite>
-      <sprite>sprites\spr_colorselect</sprite>
-      <sprite>sprites\spr_blankperiodselect</sprite>
-      <sprite>sprites\spr_ytrans</sprite>
-      <sprite>sprites\spr_xtrans</sprite>
-      <sprite>sprites\spr_waveampselect</sprite>
-    </sprites>
     <sprite>sprites\spr_anchor</sprite>
+    <sprite>sprites\spr_trans</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_guide</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\reapply_properties.gml</script>
-    <script>scripts\draw_ilda_2d.gml</script>
-    <script>scripts\export_ilda.gml</script>
-    <script>scripts\export_ilda_html5.gml</script>
-    <script>scripts\draw_preview_element.gml</script>
-    <script>scripts\draw_grid.gml</script>
-    <script>scripts\draw_radialgrid.gml</script>
-    <script>scripts\draw_guidelines.gml</script>
-    <script>scripts\create_optimize_lines.gml</script>
-    <script>scripts\create_text_init.gml</script>
-    <script>scripts\create_element.gml</script>
-    <script>scripts\create_letter.gml</script>
-    <script>scripts\create_line.gml</script>
-    <script>scripts\create_free.gml</script>
-    <script>scripts\create_circle.gml</script>
-    <script>scripts\create_wave.gml</script>
-    <script>scripts\create_curve.gml</script>
-    <script>scripts\verify_serial.gml</script>
-    <script>scripts\refresh_surfaces.gml</script>
-    <script>scripts\refresh_3dsurfaces.gml</script>
-    <script>scripts\bezier_coeffs.gml</script>
-    <script>scripts\bezier_x.gml</script>
-    <script>scripts\bezier_y.gml</script>
-    <script>scripts\update_check.gml</script>
-    <script>scripts\random_gaussian.gml</script>
-    <script>scripts\dist_triangular.gml</script>
     <scripts name="importilda">
       <script>scripts\get_bytes_signed.gml</script>
       <script>scripts\read_ilda_header_first.gml</script>
@@ -218,6 +192,35 @@
       <script>scripts\dd_export_opt.gml</script>
       <script>scripts\dd_export_min.gml</script>
     </scripts>
+    <scripts name="createobject">
+      <script>scripts\create_element.gml</script>
+      <script>scripts\create_line.gml</script>
+      <script>scripts\create_circle.gml</script>
+      <script>scripts\create_wave.gml</script>
+      <script>scripts\create_curve.gml</script>
+      <script>scripts\create_free.gml</script>
+      <script>scripts\create_text_init.gml</script>
+      <script>scripts\create_letter.gml</script>
+    </scripts>
+    <script>scripts\reapply_properties.gml</script>
+    <script>scripts\reapply_trans.gml</script>
+    <script>scripts\handle_trans.gml</script>
+    <script>scripts\draw_ilda_2d.gml</script>
+    <script>scripts\export_ilda.gml</script>
+    <script>scripts\export_ilda_html5.gml</script>
+    <script>scripts\draw_preview_element.gml</script>
+    <script>scripts\draw_grid.gml</script>
+    <script>scripts\draw_radialgrid.gml</script>
+    <script>scripts\draw_guidelines.gml</script>
+    <script>scripts\verify_serial.gml</script>
+    <script>scripts\refresh_surfaces.gml</script>
+    <script>scripts\refresh_3dsurfaces.gml</script>
+    <script>scripts\bezier_coeffs.gml</script>
+    <script>scripts\bezier_x.gml</script>
+    <script>scripts\bezier_y.gml</script>
+    <script>scripts\update_check.gml</script>
+    <script>scripts\random_gaussian.gml</script>
+    <script>scripts\dist_triangular.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
