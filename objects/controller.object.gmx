@@ -242,7 +242,20 @@ alarm[0] = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (ds_list_size(el_list) &gt; 0)
+            <string>with (obj_cursor)
+    {
+    if (keyboard_check(ord('Z')) and !keyboard_check(vk_control))
+        {
+        image_index = 8;
+        x = clamp(mouse_x,0,view_wview[0]-128);
+        y = clamp(mouse_y,0,view_hview[0]-128);
+        }
+    else     
+        x = mouse_x;
+        y = mouse_y;
+    }
+
+if (ds_list_size(el_list) &gt; 0)
     {
     if (keyboard_check(vk_alt) and (placing_status == 0))
         {
@@ -276,6 +289,7 @@ alarm[0] = 1;
                 nearestdist = point_distance(ds_list_find_value(templist,2)/128,ds_list_find_value(templist,3)/128,mouse_x,mouse_y);
                 }
             }
+        
         }
     }
     
@@ -413,6 +427,13 @@ if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
             if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
                 {
                 sefound = 1;
+                selectedelementlist = ds_list_find_value(el_list,i);
+                xo = ds_list_find_value(controller.selectedelementlist,0)/$ffff*512;
+                yo = ds_list_find_value(controller.selectedelementlist,1)/$ffff*512;
+                rectxmin = x+xo + (ds_list_find_value(controller.selectedelementlist,4));
+                rectymin = y+yo + (ds_list_find_value(controller.selectedelementlist,6));
+                rectxmax = x+xo + (ds_list_find_value(controller.selectedelementlist,5));
+                rectymax = y+yo + (ds_list_find_value(controller.selectedelementlist,7));
                 }
             }
         if (sefound == 0)
@@ -450,6 +471,13 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status ==
             if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
                 {
                 sefound = 1;
+                selectedelementlist = ds_list_find_value(el_list,i);
+                xo = ds_list_find_value(controller.selectedelementlist,0)/$ffff*512;
+                yo = ds_list_find_value(controller.selectedelementlist,1)/$ffff*512;
+                rectxmin = x+xo + (ds_list_find_value(controller.selectedelementlist,4));
+                rectymin = y+yo + (ds_list_find_value(controller.selectedelementlist,6));
+                rectxmax = x+xo + (ds_list_find_value(controller.selectedelementlist,5));
+                rectymax = y+yo + (ds_list_find_value(controller.selectedelementlist,7));
                 }
             }
         if (sefound == 0)
@@ -559,8 +587,10 @@ if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list)) and (placing_
           <argument>
             <kind>1</kind>
             <string>if ((mouse_x &gt; 550) or (mouse_y &gt; 550)) and (placing_status != 2) or ((selectedelement != -1)  and (
-((mouse_x == clamp(mouse_x,rectxmin,rectxmax)) and (mouse_y == clamp(mouse_y,rectymin,rectymax)))
+((mouse_x == clamp(mouse_x,rectxmin-2,rectxmax+2)) and (mouse_y == clamp(mouse_y,rectymin-2,rectymax+2)))
 or ((mouse_x == clamp(mouse_x,anchorx/$ffff*512-10,anchorx/$ffff*512+10)) and (mouse_y == clamp(mouse_y,anchory/$ffff*512-10,anchory/$ffff*512+10)))
+or ((mouse_x == clamp(mouse_x,rectxmin-20,rectxmin-2)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20)))
+or ((mouse_x == clamp(mouse_x,rectxmax+2,rectxmax+20)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20)))
 ))
     {
     placing_status = 0;
@@ -623,8 +653,10 @@ bez_moving = 0;
     exit;
 
 if (selectedelement != -1)  and (
-((mouse_x == clamp(mouse_x,rectxmin,rectxmax)) and (mouse_y == clamp(mouse_y,rectymin,rectymax)))
+((mouse_x == clamp(mouse_x,rectxmin-2,rectxmax+2)) and (mouse_y == clamp(mouse_y,rectymin-2,rectymax+2)))
 or ((mouse_x == clamp(mouse_x,anchorx/$ffff*512-10,anchorx/$ffff*512+10)) and (mouse_y == clamp(mouse_y,anchory/$ffff*512-10,anchory/$ffff*512+10)))
+or ((mouse_x == clamp(mouse_x,rectxmin-20,rectxmin-2)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20)))
+or ((mouse_x == clamp(mouse_x,rectxmax+2,rectxmax+20)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20)))
 )
     exit;
     
@@ -926,15 +958,52 @@ draw_set_color(c_aqua);
 if (selectedelement != -1)
     {
     draw_sprite(spr_anchor,0,anchorx/$ffff*512,anchory/$ffff*512);
+    draw_set_alpha(0.6);
+    draw_sprite(spr_rotate,0,rectxmin,rectymax);
+    draw_sprite(spr_resize,0,rectxmax,rectymax);
+    draw_set_alpha(1);
+    
     draw_rectangle(rectxmin,rectymin,rectxmax,rectymax,1);
+    
     if (objmoving == 1)
         {
+        xp1 = rectxmin+anixtrans/$ffff*512;
+        yp1 = rectymin+aniytrans/$ffff*512;
+        xp2 = rectxmax+anixtrans/$ffff*512;
+        yp2 = rectymax+aniytrans/$ffff*512;
+        rot_r = degtorad(anirot);
+        
+        /*angle1 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp1,yp1));
+        dist1 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp1,yp1);
+        
+        xpnew1 = anchorx/$ffff*512+cos(rot_r-angle1)*dist1*scalex;
+        ypnew1 = anchory/$ffff*512+sin(rot_r-angle1)*dist1*scaley;
+        
+        angle2 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp2,yp2));
+        dist2 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp2,yp2);
+        
+        xpnew2 = anchorx/$ffff*512+cos(rot_r-angle2)*dist2*scalex;
+        ypnew2 = anchory/$ffff*512+sin(rot_r-angle2)*dist2*scaley;
+        
+        xpnew3 = xpnew1+cos(rot_r)*(xp2-xp1);
+        xpnew4 = xpnew2-cos(rot_r)*(xp2-xp1);
+        
+        ypnew3 = ypnew1+sin(rot_r)*(yp2-yp1);
+        ypnew4 = ypnew2-sin(rot_r)*(yp2-yp1);*/
+        
         draw_set_color(c_teal);
-        draw_rectangle(rectxmin+anixtrans/$ffff*512,rectymin+aniytrans/$ffff*512,rectxmax+anixtrans/$ffff*512,rectymax+aniytrans/$ffff*512,1);
+        draw_rectangle(xp1,yp1,xp2,yp2,1);
+        /*draw_line(xpnew1,ypnew1,xpnew3,ypnew3);
+        draw_line(xpnew2,ypnew2,xpnew3,ypnew3);
+        draw_line(xpnew2,ypnew2,xpnew4,ypnew4);
+        draw_line(xpnew4,ypnew4,xpnew1,ypnew1);*/
+    
         draw_set_alpha(0.6);
-            draw_arrow(mean(rectxmin,rectxmax),mean(rectymin,rectymax),mean(rectxmin+anixtrans/$ffff*512,rectxmax+anixtrans/$ffff*512),mean(rectymin+aniytrans/$ffff*512,rectymax+aniytrans/$ffff*512),12);
+            //draw_arrow(mean(rectxmin,rectxmax),mean(rectymin,rectymax),mean(xpnew1,xpnew2),mean(ypnew1,ypnew2),12);
+            //draw_arrow(mean(xpnew1,xpnew2),mean(ypnew1,ypnew2),mean(xpnew1,xpnew2)+sin(rot_r)*48,mean(ypnew1,ypnew2)-cos(rot_r)*48,9);
         draw_set_alpha(1);
         }
+    
     }
 
 draw_set_color(c_gray);

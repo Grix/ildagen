@@ -131,6 +131,8 @@
     <sprite>sprites\spr_cursor</sprite>
     <sprite>sprites\spr_anchor</sprite>
     <sprite>sprites\spr_trans</sprite>
+    <sprite>sprites\spr_resize</sprite>
+    <sprite>sprites\spr_rotate</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_guide</background>

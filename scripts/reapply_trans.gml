@@ -41,7 +41,7 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         endy_r = endy+aniytrans;
         startposx_r = startpos[0]+anixtrans;
         startposy_r  = startpos[1]+aniytrans;
-        rot_r = degtorad(rot);
+        rot_r = degtorad(anirot);
         scalex_r = scalex;
         scaley_r = scaley;
         }

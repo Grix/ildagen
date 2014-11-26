@@ -147,10 +147,10 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
             enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx+anixtrans,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy+aniytrans,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
+            endx_r = lerp(endx,endx,t)+gaussoffsetx;
+            endy_r = lerp(endy,endy,t)+gaussoffsety;
+            startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
+            startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
             rot_r = degtorad(lerp(rot,anirot,t));
             scalex_r = lerp(scalex,aniscalex,t);
             scaley_r = lerp(scaley,aniscaley,t);
@@ -175,10 +175,10 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
             enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx+anixtrans,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy+aniytrans,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
+            endx_r = lerp(endx,endx,t)+gaussoffsetx;
+            endy_r = lerp(endy,endy,t)+gaussoffsety;
+            startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
+            startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
             rot_r = degtorad(lerp(rot,anirot,t));
             scalex_r = lerp(scalex,aniscalex,t);
             scaley_r = lerp(scaley,aniscaley,t);
@@ -200,10 +200,10 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
             enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx+anixtrans,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy+aniytrans,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
+            endx_r = lerp(endx,endx,t)+gaussoffsetx;
+            endy_r = lerp(endy,endy,t)+gaussoffsety;
+            startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
+            startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
             rot_r = degtorad(lerp(rot,anirot,t));
             scalex_r = lerp(scalex,aniscalex,t);
             scaley_r = lerp(scaley,aniscaley,t);
@@ -225,10 +225,10 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
             enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx+anixtrans,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy+aniytrans,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
+            endx_r = lerp(endx,endx,t)+gaussoffsetx;
+            endy_r = lerp(endy,endy,t)+gaussoffsety;
+            startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
+            startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
             rot_r = degtorad(lerp(rot,anirot,t));
             scalex_r = lerp(scalex,aniscalex,t);
             scaley_r = lerp(scaley,aniscaley,t);
@@ -249,10 +249,10 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
             enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx+anixtrans,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy+aniytrans,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t)+gaussoffsety;
+            endx_r = lerp(endx,endx,t)+gaussoffsetx;
+            endy_r = lerp(endy,endy,t)+gaussoffsety;
+            startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
+            startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
             rot_r = degtorad(lerp(rot,anirot,t));
             scalex_r = lerp(scalex,aniscalex,t);
             scaley_r = lerp(scaley,aniscaley,t);
@@ -511,30 +511,6 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 ds_list_replace(new_list,listpos+2,blank);
                 }
             }     
-            
-        if (reap_trans)
-            {
-            xp = startpos[0]+ds_list_find_value(new_list,listpos);
-            yp = startpos[1]+ds_list_find_value(new_list,listpos+1);
-            
-            angle = degtorad(point_direction(anchorx,anchory,xp,yp));
-            dist = point_distance(anchorx,anchory,xp,yp);
-            
-            xpnew = anchorx+cos(-angle+rot_r)*dist*scalex_r-startpos[0];
-            ypnew = anchory+sin(-angle+rot_r)*dist*scaley_r-startpos[1];
-            
-            ds_list_replace(new_list,listpos,xpnew);
-            ds_list_replace(new_list,listpos+1,ypnew);
-            
-            if (xpnew > xmax)
-               xmax = xpnew;
-            if (xpnew < xmin)
-               xmin = xpnew;
-            if (ypnew > ymax)
-               ymax = ypnew;
-            if (ypnew < ymin)
-               ymin = ypnew;
-            }
         }       
         
     ds_list_replace(new_list,0,startposx_r);
