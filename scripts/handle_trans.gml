@@ -60,9 +60,16 @@ else if (objmoving == 3)
     }
 else if (objmoving == 4)
     {
-    scalex+= (obj_cursor.x-mousexprevious)/256;
-    scaley+= (obj_cursor.y-mouseyprevious)/256;
-    //anirot+= (obj_cursor.y-mouseyprevious);
+    if (!keyboard_check(vk_control))
+        {
+        scalex+= (obj_cursor.x-mousexprevious)/150;
+        scaley+= (obj_cursor.y-mouseyprevious)/150;
+        }
+    else
+        {
+        scalex+= (obj_cursor.x-mousexprevious)/150;
+        scaley+= (obj_cursor.x-mousexprevious)/150;
+        }    
     
     mousexprevious = obj_cursor.x;
     mouseyprevious = obj_cursor.y;
@@ -100,27 +107,37 @@ else
             objmoving = 1;
             anixtrans = 0;
             aniytrans = 0;
+            anirot = 0;
+            scalex = 1;
+            scaley = 1;
             mousexprevious = obj_cursor.x;
             mouseyprevious = obj_cursor.y;
             }
         }
     else if (mouse_x == clamp(mouse_x,rectxmin-20,rectxmin-2)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20))
         {
-        tooltip = "Click and drag to rotate the selected object.#If animation is enabled, the rotation will be animated."
+        tooltip = "Click and drag to rotate the selected object around the anchor.#If animation is enabled, the rotation will be animated."
         if (mouse_check_button_pressed(mb_left)) 
             {
             objmoving = 3;
+            anixtrans = 0;
+            aniytrans = 0;
             anirot = 0;
+            scalex = 1;
+            scaley = 1;
             mousexprevious = obj_cursor.x;
             mouseyprevious = obj_cursor.y;
             }
         }
     else if (mouse_x == clamp(mouse_x,rectxmax+2,rectxmax+20)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20))
         {
-        tooltip = "Click and drag to resize the selected object.#If animation is enabled, the change will be animated."
+        tooltip = "Click and drag to resize the selected object around the anchor.#If animation is enabled, the change will be animated."
         if (mouse_check_button_pressed(mb_left)) 
             {
             objmoving = 4;
+            anixtrans = 0;
+            aniytrans = 0;
+            anirot = 0;
             scalex = 1;
             scaley = 1;
             mousexprevious = obj_cursor.x;

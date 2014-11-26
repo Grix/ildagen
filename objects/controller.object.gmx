@@ -42,6 +42,7 @@ surface_reset_target();
 
 
 
+
 el_list = ds_list_create();
 undo_list = ds_stack_create();
 el_id = 0;
@@ -54,6 +55,7 @@ bez_list = ds_list_create();
 font_list = ds_list_create();
 xdelta[32] = 0;
 snap_list = ds_list_create();
+selsurf = surface_create(512,512);
 
 redraw = 0;
 sgridshow = 0;
@@ -965,15 +967,19 @@ if (selectedelement != -1)
     
     draw_rectangle(rectxmin,rectymin,rectxmax,rectymax,1);
     
-    if (objmoving == 1)
+    if (objmoving == 1) or (objmoving == 3) or (objmoving == 4)
         {
         xp1 = rectxmin+anixtrans/$ffff*512;
         yp1 = rectymin+aniytrans/$ffff*512;
         xp2 = rectxmax+anixtrans/$ffff*512;
         yp2 = rectymax+aniytrans/$ffff*512;
+        xp3 = rectxmax+anixtrans/$ffff*512;
+        yp3 = rectymin+aniytrans/$ffff*512;
+        xp4 = rectxmin+anixtrans/$ffff*512;
+        yp4 = rectymax+aniytrans/$ffff*512;
         rot_r = degtorad(anirot);
         
-        /*angle1 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp1,yp1));
+        angle1 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp1,yp1));
         dist1 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp1,yp1);
         
         xpnew1 = anchorx/$ffff*512+cos(rot_r-angle1)*dist1*scalex;
@@ -984,19 +990,27 @@ if (selectedelement != -1)
         
         xpnew2 = anchorx/$ffff*512+cos(rot_r-angle2)*dist2*scalex;
         ypnew2 = anchory/$ffff*512+sin(rot_r-angle2)*dist2*scaley;
+
+        angle3 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp3,yp3));
+        dist3 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp3,yp3);
         
-        xpnew3 = xpnew1+cos(rot_r)*(xp2-xp1);
-        xpnew4 = xpnew2-cos(rot_r)*(xp2-xp1);
+        xpnew3 = anchorx/$ffff*512+cos(rot_r-angle3)*dist3*scalex;
+        ypnew3 = anchory/$ffff*512+sin(rot_r-angle3)*dist3*scaley;
         
-        ypnew3 = ypnew1+sin(rot_r)*(yp2-yp1);
-        ypnew4 = ypnew2-sin(rot_r)*(yp2-yp1);*/
+        angle4 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp4,yp4));
+        dist4 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp4,yp4);
         
+        xpnew4 = anchorx/$ffff*512+cos(rot_r-angle4)*dist4*scalex;
+        ypnew4 = anchory/$ffff*512+sin(rot_r-angle4)*dist4*scaley;
+        
+
         draw_set_color(c_teal);
         draw_rectangle(xp1,yp1,xp2,yp2,1);
-        /*draw_line(xpnew1,ypnew1,xpnew3,ypnew3);
+        
+        draw_line(xpnew1,ypnew1,xpnew3,ypnew3);
         draw_line(xpnew2,ypnew2,xpnew3,ypnew3);
         draw_line(xpnew2,ypnew2,xpnew4,ypnew4);
-        draw_line(xpnew4,ypnew4,xpnew1,ypnew1);*/
+        draw_line(xpnew4,ypnew4,xpnew1,ypnew1);
     
         draw_set_alpha(0.6);
             //draw_arrow(mean(rectxmin,rectxmax),mean(rectymin,rectymax),mean(xpnew1,xpnew2),mean(ypnew1,ypnew2),12);

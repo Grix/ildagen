@@ -98,8 +98,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         }
             
     
-    gaussoffsetx = shaking*128*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
-    gaussoffsety = shaking*128*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
+    gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
+    gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
     
     if (anienable == 0) or (ds_list_size(temp_frame_list) == 1)
         {
@@ -121,9 +121,6 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         endy_r = endy;
         startposx_r = startpos[0];
         startposy_r  = startpos[1];
-        rot_r = degtorad(rot);
-        scalex_r = scalex;
-        scaley_r = scaley;
         }
     else
         {
@@ -151,9 +148,6 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             endy_r = lerp(endy,endy,t)+gaussoffsety;
             startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
-            rot_r = degtorad(lerp(rot,anirot,t));
-            scalex_r = lerp(scalex,aniscalex,t);
-            scaley_r = lerp(scaley,aniscaley,t);
             }
         else if (anifunc = "sine")
             {
@@ -179,9 +173,6 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             endy_r = lerp(endy,endy,t)+gaussoffsety;
             startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
-            rot_r = degtorad(lerp(rot,anirot,t));
-            scalex_r = lerp(scalex,aniscalex,t);
-            scaley_r = lerp(scaley,aniscaley,t);
             }
         else if (anifunc = "ssine")
             {
@@ -204,9 +195,6 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             endy_r = lerp(endy,endy,t)+gaussoffsety;
             startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
-            rot_r = degtorad(lerp(rot,anirot,t));
-            scalex_r = lerp(scalex,aniscalex,t);
-            scaley_r = lerp(scaley,aniscaley,t);
             }
         else if (anifunc = "hsine")
             {
@@ -229,9 +217,6 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             endy_r = lerp(endy,endy,t)+gaussoffsety;
             startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
-            rot_r = degtorad(lerp(rot,anirot,t));
-            scalex_r = lerp(scalex,aniscalex,t);
-            scaley_r = lerp(scaley,aniscaley,t);
             }
         else if (anifunc = "saw")
             {
@@ -253,9 +238,6 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             endy_r = lerp(endy,endy,t)+gaussoffsety;
             startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
             startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
-            rot_r = degtorad(lerp(rot,anirot,t));
-            scalex_r = lerp(scalex,aniscalex,t);
-            scaley_r = lerp(scaley,aniscaley,t);
             }
         }
         
@@ -512,16 +494,15 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 }
             }     
         }       
-        
-    ds_list_replace(new_list,0,startposx_r);
-    ds_list_replace(new_list,1,startposy_r);
-    ds_list_replace(new_list,2,endx_r);
-    ds_list_replace(new_list,3,endy_r);
     
-    ds_list_replace(new_list,4,xmin);
-    ds_list_replace(new_list,5,xmax);
-    ds_list_replace(new_list,6,ymin);
-    ds_list_replace(new_list,7,ymax);    
+    if (reap_trans)
+        {
+        ds_list_replace(new_list,0,startposx_r);
+        ds_list_replace(new_list,1,startposy_r);
+        ds_list_replace(new_list,2,endx_r);
+        ds_list_replace(new_list,3,endy_r);
+        }
+     
     }
     
 if (autoresflag)
