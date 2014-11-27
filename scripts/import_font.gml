@@ -1,6 +1,5 @@
 with(controller)
     {
-    //"laserboy/ild/"
     filename = get_open_filename_ext("ILDA files|*.ild","",program_directory,"Select ILDA font file")
     if (filename != "")
         {
@@ -11,7 +10,10 @@ with(controller)
         buffer_load_ext(ild_file,filename,0);
         }
     else
+        {
         return 0;
+        }
+        
         
     i = 0;
     if !is_wrong($49)

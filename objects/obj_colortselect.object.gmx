@@ -160,14 +160,12 @@ moving = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-draw_set_alpha(1);
-draw_sprite(sprite_index,image_index,x,y);
+            <string>draw_sprite(sprite_index,image_index,x,y);
 draw_sprite(spr_knob,(moving &gt; 0),x+clamp(controller.color_period,-$8000,$8000)/$8000*128,y+16);
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x+160,y+6,"Color period: "+string(controller.color_period));
+draw_text(x+150,y+9,"Period: "+string(round(controller.color_period)));
 draw_set_color(c_white);
 
 </string>

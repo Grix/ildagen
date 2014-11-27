@@ -42,7 +42,7 @@ surface_reset_target();
 
 
 
-
+letter = "";
 el_list = ds_list_create();
 undo_list = ds_stack_create();
 el_id = 0;

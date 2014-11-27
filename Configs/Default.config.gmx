@@ -427,5 +427,95 @@
     <option_xbone_texture_page>1024</option_xbone_texture_page>
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
-  <ConfigConstants/>
+  <ConfigConstants>
+    <constants number="87">
+      <constant name="ML_O_LEFTASSOC">0</constant>
+      <constant name="ML_O_RIGHTASSOC">1</constant>
+      <constant name="ML_UO_PREFIX">0</constant>
+      <constant name="ML_UO_POSTFIX">1</constant>
+      <constant name="ML_TT_UNKNOWN">-1</constant>
+      <constant name="ML_TT_VALUE">0</constant>
+      <constant name="ML_TT_UNARY">1</constant>
+      <constant name="ML_TT_BINARY">2</constant>
+      <constant name="ML_TT_FUNCTION">3</constant>
+      <constant name="ML_TT_VARIABLE">4</constant>
+      <constant name="ML_TT_ARGSEP">5</constant>
+      <constant name="ML_TT_LEFTP">6</constant>
+      <constant name="ML_TT_RIGHTP">7</constant>
+      <constant name="ML_TT_ASSIGN">8</constant>
+      <constant name="ML_TT_EOL">9</constant>
+      <constant name="ML_TT_TERNARY1">10</constant>
+      <constant name="ML_TT_TERNARY2">11</constant>
+      <constant name="ML_TT_TERNARY">12</constant>
+      <constant name="ML_TT_COMMA">13</constant>
+      <constant name="ML_TT_EXPRTERMINATOR">14</constant>
+      <constant name="ML_TT_FUNCFLAT">15</constant>
+      <constant name="ML_TT_ASSIGNFLAT">16</constant>
+      <constant name="ML_VAL_REAL">"R"</constant>
+      <constant name="ML_VAL_STRING">"S"</constant>
+      <constant name="ML_VAL_ANY">"A"</constant>
+      <constant name="ML_VAL_UNDEFINED">"U"</constant>
+      <constant name="ML_EXCEPT_CHAR">1</constant>
+      <constant name="ML_EXCEPT_TOKENTYPE">2</constant>
+      <constant name="ML_EXCEPT_FUNCTION">3</constant>
+      <constant name="ML_EXCEPT_VARIABLE">4</constant>
+      <constant name="ML_EXCEPT_BINOPERATOR">5</constant>
+      <constant name="ML_EXCEPT_UNOPERATOR">6</constant>
+      <constant name="ML_EXCEPT_VALUE">7</constant>
+      <constant name="ML_EXCEPT_ARGC">8</constant>
+      <constant name="ML_EXCEPT_UNKNOWNTOKEN">9</constant>
+      <constant name="ML_EXCEPT_PARENTHESIS">10</constant>
+      <constant name="ML_EXCEPT_ASSIGN">11</constant>
+      <constant name="ML_EXCEPT_ARGTYPE">12</constant>
+      <constant name="ML_EXCEPT_CALC">13</constant>
+      <constant name="ML_EXCEPT_TERNARY">14</constant>
+      <constant name="ML_LI_STR">0</constant>
+      <constant name="ML_LIVAR_READONLY">1</constant>
+      <constant name="ML_LIVAR_TYPE">2</constant>
+      <constant name="ML_LIFUNC_ACTUAL">1</constant>
+      <constant name="ML_LIOP_PREC">2</constant>
+      <constant name="ML_LIOP_ASSOC">3</constant>
+      <constant name="ML_LITOP_STR_P1">4</constant>
+      <constant name="ML_LIUOP_AFFIX">4</constant>
+      <constant name="ML_LITOP_STR_P2">5</constant>
+      <constant name="ML_LIS_SCRIPT">0</constant>
+      <constant name="ML_LIS_RETTYPE">1</constant>
+      <constant name="ML_LIFS_ARGC">2</constant>
+      <constant name="ML_LIFS_ARGS">3</constant>
+      <constant name="ML_LIBOPS_LHSTYPE">2</constant>
+      <constant name="ML_LIBOPS_RHSTYPE">3</constant>
+      <constant name="ML_LIUOPS_ARGTYPE">2</constant>
+      <constant name="ML_LITOPS_LHSTYPE">2</constant>
+      <constant name="ML_LITOPS_RHSTYPE">3</constant>
+      <constant name="ML_LITOPS_MHSTYPE">4</constant>
+      <constant name="ML_LIAOPS_LHSTYPE">2</constant>
+      <constant name="ML_LIAOPS_RHSTYPE">3</constant>
+      <constant name="ML_LITOK_TYPE">0</constant>
+      <constant name="ML_LITOK_STR">1</constant>
+      <constant name="ML_LITOK_POS">2</constant>
+      <constant name="ML_LITOK_OP">3</constant>
+      <constant name="ML_LITOK_ARGC">4</constant>
+      <constant name="ML_LIP_BINOPSTABLE">0</constant>
+      <constant name="ML_LIP_UNOPSTABLE">1</constant>
+      <constant name="ML_LIP_ASOPSTABLE">2</constant>
+      <constant name="ML_LIP_TERNOPSTABLE">3</constant>
+      <constant name="ML_LIP_TERNOPS2TABLE">4</constant>
+      <constant name="ML_LIP_FUNCTABLE">5</constant>
+      <constant name="ML_LIP_VARTABLE">6</constant>
+      <constant name="ML_LIP_FUNCSTR">7</constant>
+      <constant name="ML_LIP_VARMAP">8</constant>
+      <constant name="ML_LIP_ERRFLAGS">9</constant>
+      <constant name="ML_LIP_ERRPOS">10</constant>
+      <constant name="ML_LIP_ERRSTRING">11</constant>
+      <constant name="ML_LIP_RESOBJECT">12</constant>
+      <constant name="ML_LIP_OPSIGROOTS">13</constant>
+      <constant name="ML_LIRO_CALCULATED">0</constant>
+      <constant name="ML_LIRO_ANSWER">1</constant>
+      <constant name="ML_LIRO_ALLANSWERS">2</constant>
+      <constant name="ML_LIRO_ALLANSWERSTYPE">3</constant>
+      <constant name="ML_CTT_CONSTANT">0</constant>
+      <constant name="ML_CTT_VARIABLE">1</constant>
+      <constant name="ML_CTT_ASSIGNABLE">2</constant>
+    </constants>
+  </ConfigConstants>
 </Config>

@@ -1,0 +1,1 @@
+return radtodeg(argument0);

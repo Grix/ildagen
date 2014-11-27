@@ -1,15 +1,7 @@
 if (objmoving == 1)
     {
-    if (!keyboard_check(vk_control))
-        {
-        anixtrans+= (obj_cursor.x-mousexprevious)*$ffff/512;
-        aniytrans+= (obj_cursor.y-mouseyprevious)*$ffff/512;
-        }
-    else
-        {
-        anirot+= (obj_cursor.x-mousexprevious);
-        //anirot+= (obj_cursor.y-mouseyprevious)*$ffff/1024;
-        }
+    anixtrans+= (obj_cursor.x-mousexprevious)*$ffff/512;
+    aniytrans+= (obj_cursor.y-mouseyprevious)*$ffff/512;
     mousexprevious = obj_cursor.x;
     mouseyprevious = obj_cursor.y;
     
@@ -39,11 +31,11 @@ else if (objmoving == 2)
     }
 else if (objmoving == 3)
     {
-    anirot+= (obj_cursor.x-mousexprevious);
-    //anirot+= (obj_cursor.y-mouseyprevious);
+    mouseangle = point_direction(obj_cursor.x,obj_cursor.y,anchorx/$ffff*512,anchory/$ffff*512);
     
-    mousexprevious = obj_cursor.x;
-    mouseyprevious = obj_cursor.y;
+    anirot+= mouseangleprevious-mouseangle;
+    
+    mouseangleprevious = mouseangle;
     
     if (mouse_check_button_released(mb_left))
         {
@@ -69,8 +61,8 @@ else if (objmoving == 4)
         {
         scalex+= (obj_cursor.x-mousexprevious)/150;
         scaley+= (obj_cursor.x-mousexprevious)/150;
-        }    
-    
+        }  
+          
     mousexprevious = obj_cursor.x;
     mouseyprevious = obj_cursor.y;
     
@@ -125,8 +117,7 @@ else
             anirot = 0;
             scalex = 1;
             scaley = 1;
-            mousexprevious = obj_cursor.x;
-            mouseyprevious = obj_cursor.y;
+            mouseangleprevious = point_direction(obj_cursor.x,obj_cursor.y,anchorx/$ffff*512,anchory/$ffff*512);
             }
         }
     else if (mouse_x == clamp(mouse_x,rectxmax+2,rectxmax+20)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20))

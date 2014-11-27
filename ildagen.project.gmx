@@ -81,52 +81,61 @@
   <sprites name="sprites">
     <sprites name="sliders">
       <sprite>sprites\spr_knobvert</sprite>
+      <sprite>sprites\spr_aniknobvert</sprite>
       <sprite>sprites\spr_knob</sprite>
+      <sprite>sprites\spr_aniknob</sprite>
       <sprite>sprites\spr_colorselect_green</sprite>
+      <sprite>sprites\spr_anicolorselectgreen</sprite>
       <sprite>sprites\spr_colorselect_blue</sprite>
+      <sprite>sprites\spr_anicolorselectblue</sprite>
       <sprite>sprites\spr_colorselect_red</sprite>
+      <sprite>sprites\spr_anicolorselectred</sprite>
       <sprite>sprites\spr_colorselect</sprite>
+      <sprite>sprites\spr_anicolorselect</sprite>
       <sprite>sprites\spr_blankperiodselect</sprite>
+      <sprite>sprites\spr_aniblankperiodselect</sprite>
       <sprite>sprites\spr_ytrans</sprite>
       <sprite>sprites\spr_xtrans</sprite>
       <sprite>sprites\spr_waveampselect</sprite>
+      <sprite>sprites\spr_aniwaveampselect</sprite>
     </sprites>
-    <sprite>sprites\spr_m_line</sprite>
+    <sprites name="selectors">
+      <sprite>sprites\spr_m_line</sprite>
+      <sprite>sprites\spr_m_free</sprite>
+      <sprite>sprites\spr_text</sprite>
+      <sprite>sprites\spr_m_wave</sprite>
+      <sprite>sprites\spr_m_curve</sprite>
+      <sprite>sprites\spr_m_circle</sprite>
+      <sprite>sprites\spr_b_solid</sprite>
+      <sprite>sprites\spr_dotsolid</sprite>
+      <sprite>sprites\spr_b_dot</sprite>
+      <sprite>sprites\spr_b_dash</sprite>
+      <sprite>sprites\spr_c_solid</sprite>
+      <sprite>sprites\spr_rainbow</sprite>
+      <sprite>sprites\spr_c_gradient</sprite>
+      <sprite>sprites\spr_c_dash</sprite>
+    </sprites>
     <sprite>sprites\spr_resettrans</sprite>
-    <sprite>sprites\spr_text</sprite>
     <sprite>sprites\spr_scope</sprite>
     <sprite>sprites\spr_shaking</sprite>
     <sprite>sprites\spr_reapply</sprite>
     <sprite>sprites\spr_import</sprite>
+    <sprite>sprites\spr_anitocol</sprite>
     <sprite>sprites\spr_coltoani</sprite>
-    <sprite>sprites\spr_colfromani</sprite>
-    <sprite>sprites\spr_m_curve</sprite>
     <sprite>sprites\spr_dotmult</sprite>
     <sprite>sprites\spr_help</sprite>
+    <sprite>sprites\spr_b_enddots</sprite>
     <sprite>sprites\spr_onionskin</sprite>
     <sprite>sprites\spr_bckimage</sprite>
-    <sprite>sprites\spr_m_free</sprite>
     <sprite>sprites\spr_checkbox</sprite>
-    <sprite>sprites\spr_m_circle</sprite>
-    <sprite>sprites\spr_m_wave</sprite>
-    <sprite>sprites\spr_m_rect</sprite>
     <sprite>sprites\spr_colortselect</sprite>
     <sprite>sprites\spr_anifunc</sprite>
     <sprite>sprites\spr_absrel</sprite>
     <sprite>sprites\spr_e_undo</sprite>
-    <sprite>sprites\spr_b_solid</sprite>
-    <sprite>sprites\spr_b_enddots</sprite>
-    <sprite>sprites\spr_b_dash</sprite>
-    <sprite>sprites\spr_b_dot</sprite>
-    <sprite>sprites\spr_dotsolid</sprite>
     <sprite>sprites\spr_s_res</sprite>
     <sprite>sprites\spr_maxframes</sprite>
     <sprite>sprites\spr_clearframe</sprite>
     <sprite>sprites\spr_clearall</sprite>
-    <sprite>sprites\spr_c_solid</sprite>
-    <sprite>sprites\spr_rainbow</sprite>
-    <sprite>sprites\spr_c_dash</sprite>
-    <sprite>sprites\spr_c_gradient</sprite>
     <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_cursor</sprite>
     <sprite>sprites\spr_anchor</sprite>
@@ -139,6 +148,382 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <scripts name="MATH_LOGICAL PARSER">
+      <script>scripts\ML_Initialize.gml</script>
+      <script>scripts\ML_HasAnswer.gml</script>
+      <script>scripts\ML_ResObj_HasAnswer.gml</script>
+      <script>scripts\ML_GetFinalAnswer.gml</script>
+      <script>scripts\ML_ResObj_GetFinalAnswer.gml</script>
+      <script>scripts\ML_GetAnswerNum.gml</script>
+      <script>scripts\ML_ResObj_GetAnswerNum.gml</script>
+      <script>scripts\ML_GetAnswer.gml</script>
+      <script>scripts\ML_ResObj_GetAnswer.gml</script>
+      <script>scripts\ML_GetAnswerType.gml</script>
+      <script>scripts\ML_ResObj_GetAnswerType.gml</script>
+      <script>scripts\ML_GetExprString.gml</script>
+      <script>scripts\ML_ResObj_Cleanup.gml</script>
+      <script>scripts\ML_ResObj_GetCalculated.gml</script>
+      <scripts name="Compilation">
+        <script>scripts\ML_Interpret.gml</script>
+        <script>scripts\ML_Calculate.gml</script>
+        <script>scripts\ML_Compile.gml</script>
+        <script>scripts\ML_CompileCleanup.gml</script>
+        <script>scripts\ML_CompileEncode.gml</script>
+        <script>scripts\ML_CompileDecode.gml</script>
+        <script>scripts\ML_Execute.gml</script>
+        <scripts name="detail">
+          <script>scripts\_ML_EC_DataInBuff.gml</script>
+          <script>scripts\_ML_EC_RPNtoBuff.gml</script>
+          <scripts name="bufferdecode">
+            <script>scripts\_ML_BD_DecodeList.gml</script>
+            <script>scripts\_ML_BD_DecodeMap.gml</script>
+            <script>scripts\_ML_BD_DecodeGrid.gml</script>
+            <script>scripts\_ML_BD_DecodePriority.gml</script>
+            <script>scripts\_ML_BD_DecodeQueue.gml</script>
+            <script>scripts\_ML_BD_DecodeStack.gml</script>
+            <script>scripts\_ML_BD_GetData.gml</script>
+          </scripts>
+          <script>scripts\_ML_Interpret_Detail.gml</script>
+        </scripts>
+      </scripts>
+      <scripts name="ExceptionHandling">
+        <script>scripts\ML_NoException_CurParser.gml</script>
+        <script>scripts\ML_LastExceptionPosition_CurParser.gml</script>
+        <script>scripts\ML_LastExceptionString_CurParser.gml</script>
+        <script>scripts\ML_LastException_CurParser.gml</script>
+        <script>scripts\ML_ClearExceptions_CurParser.gml</script>
+        <script>scripts\ML_RaiseException_CurParser.gml</script>
+        <script>scripts\ML_NoException.gml</script>
+        <script>scripts\ML_LastExceptionPosition.gml</script>
+        <script>scripts\ML_LastExceptionString.gml</script>
+        <script>scripts\ML_LastException.gml</script>
+        <script>scripts\ML_ClearExceptions.gml</script>
+        <script>scripts\ML_RaiseException.gml</script>
+      </scripts>
+      <scripts name="BuildFunctions">
+        <script>scripts\ML_InitParserEmpty.gml</script>
+        <script>scripts\ML_DestroyParser.gml</script>
+        <scripts name="Functions">
+          <script>scripts\ML_AddFunction.gml</script>
+          <script>scripts\ML_AddFunctionArgList.gml</script>
+          <script>scripts\_ML_AddFunctionSig.gml</script>
+          <script>scripts\_ML_NewFunction.gml</script>
+          <script>scripts\ML_ClearFunction.gml</script>
+          <script>scripts\ML_RemFunctionStr.gml</script>
+          <script>scripts\ML_RemFunction.gml</script>
+        </scripts>
+        <scripts name="Operators">
+          <scripts name="Binary">
+            <script>scripts\ML_AddBinaryOper.gml</script>
+            <script>scripts\_ML_AddBinarySig.gml</script>
+            <script>scripts\_ML_NewBinaryOper.gml</script>
+            <script>scripts\ML_RemBinaryOperStr.gml</script>
+            <script>scripts\ML_ClearBinaryOper.gml</script>
+            <script>scripts\ML_RemBinaryOper.gml</script>
+          </scripts>
+          <scripts name="Unary">
+            <script>scripts\ML_AddUnaryOper.gml</script>
+            <script>scripts\_ML_NewUnaryOper.gml</script>
+            <script>scripts\_ML_AddUnarySig.gml</script>
+            <script>scripts\ML_RemUnaryOperStr.gml</script>
+            <script>scripts\ML_RemUnaryOper.gml</script>
+            <script>scripts\ML_ClearUnaryOper.gml</script>
+          </scripts>
+          <scripts name="Assign">
+            <script>scripts\_ML_AddAssignSig.gml</script>
+            <script>scripts\_ML_NewAssignOper.gml</script>
+            <script>scripts\ML_AddAssignOper.gml</script>
+            <script>scripts\ML_RemAssignOperStr.gml</script>
+            <script>scripts\ML_RemAssignOper.gml</script>
+            <script>scripts\ML_ClearAssignOper.gml</script>
+          </scripts>
+          <scripts name="Ternary">
+            <script>scripts\ML_AddTernaryOper.gml</script>
+            <script>scripts\_ML_NewTernaryOper.gml</script>
+            <script>scripts\_ML_AddTernarySig.gml</script>
+            <script>scripts\_ML_TernaryAddSecond.gml</script>
+            <script>scripts\ML_ClearTernaryOper.gml</script>
+            <script>scripts\ML_RemTernaryOper.gml</script>
+            <script>scripts\ML_RemTernaryOperStr.gml</script>
+          </scripts>
+          <script>scripts\_ML_OpRemRoots.gml</script>
+          <script>scripts\_ML_OpAddRoots.gml</script>
+        </scripts>
+        <scripts name="Variable">
+          <script>scripts\ML_AddVariable.gml</script>
+          <script>scripts\ML_ClearVariable.gml</script>
+          <script>scripts\ML_RemVariableStr.gml</script>
+          <script>scripts\ML_RemVariable.gml</script>
+        </scripts>
+        <scripts name="Variable Map">
+          <script>scripts\ML_VM_Get.gml</script>
+          <script>scripts\ML_VM_Set.gml</script>
+          <script>scripts\ML_VM_VarExists.gml</script>
+          <script>scripts\ML_VM_HasNoPVar.gml</script>
+          <script>scripts\ML_VM_GetPVarList.gml</script>
+          <script>scripts\ML_VM_GetVar.gml</script>
+          <script>scripts\ML_VM_GetVarString.gml</script>
+          <script>scripts\ML_VM_GetVarReal.gml</script>
+          <script>scripts\ML_VM_SetVar.gml</script>
+          <script>scripts\ML_VM_SetVarString.gml</script>
+          <script>scripts\ML_VM_SetVarReal.gml</script>
+          <script>scripts\ML_VM_RemVar.gml</script>
+        </scripts>
+        <script>scripts\ML_SetExpression.gml</script>
+      </scripts>
+      <scripts name="Helperfunctions">
+        <scripts name="math">
+          <script>scripts\_ML_FCeil.gml</script>
+          <script>scripts\_ML_FFloor.gml</script>
+          <script>scripts\_ML_FFrac.gml</script>
+          <script>scripts\_ML_FRound.gml</script>
+          <script>scripts\_ML_FSin.gml</script>
+          <script>scripts\_ML_FCos.gml</script>
+          <script>scripts\_ML_FTan.gml</script>
+          <script>scripts\_ML_FASin.gml</script>
+          <script>scripts\_ML_FATan.gml</script>
+          <script>scripts\_ML_FACos.gml</script>
+          <script>scripts\_ML_FAbs.gml</script>
+          <script>scripts\_ML_FRadians.gml</script>
+          <script>scripts\_ML_FDegrees.gml</script>
+          <script>scripts\_ML_FSqrt.gml</script>
+          <script>scripts\_ML_FPower.gml</script>
+          <script>scripts\_ML_FExp.gml</script>
+          <script>scripts\_ML_FLn.gml</script>
+          <script>scripts\_ML_FLog.gml</script>
+          <script>scripts\_ML_FLog2.gml</script>
+          <script>scripts\_ML_FLogn.gml</script>
+          <script>scripts\_ML_FCombination.gml</script>
+          <script>scripts\_ML_FPermutation.gml</script>
+          <script>scripts\_ML_FFactorial.gml</script>
+          <script>scripts\_ML_FProcent.gml</script>
+        </scripts>
+        <script>scripts\_ML_FMakeReal.gml</script>
+        <script>scripts\_ML_FMakeString.gml</script>
+        <script>scripts\_ML_FAssign.gml</script>
+        <script>scripts\_ML_FSumassign.gml</script>
+        <script>scripts\_ML_FSubassign.gml</script>
+        <script>scripts\_ML_FMulassign.gml</script>
+        <script>scripts\_ML_FDivassign.gml</script>
+        <script>scripts\_ML_FModassign.gml</script>
+        <script>scripts\_ML_FBSLassign.gml</script>
+        <script>scripts\_ML_FBSRassign.gml</script>
+        <script>scripts\_ML_FAndassign.gml</script>
+        <script>scripts\_ML_FOrassign.gml</script>
+        <script>scripts\_ML_FXorassign.gml</script>
+        <script>scripts\_ML_FBSL.gml</script>
+        <script>scripts\_ML_FBSR.gml</script>
+        <script>scripts\_ML_FLess.gml</script>
+        <script>scripts\_ML_FLessequal.gml</script>
+        <script>scripts\_ML_FGreater.gml</script>
+        <script>scripts\_ML_FGreaterequal.gml</script>
+        <script>scripts\_ML_FIs.gml</script>
+        <script>scripts\_ML_FIsnot.gml</script>
+        <script>scripts\_ML_FBitand.gml</script>
+        <script>scripts\_ML_FBitxor.gml</script>
+        <script>scripts\_ML_FBitor.gml</script>
+        <script>scripts\_ML_FXor.gml</script>
+        <script>scripts\_ML_FOr.gml</script>
+        <script>scripts\_ML_FAnd.gml</script>
+        <script>scripts\_ML_FModulo.gml</script>
+        <script>scripts\_ML_FDivision.gml</script>
+        <script>scripts\_ML_FDivide.gml</script>
+        <script>scripts\_ML_FMultiply.gml</script>
+        <script>scripts\_ML_FSubstract.gml</script>
+        <script>scripts\_ML_FAdd.gml</script>
+        <script>scripts\_ML_FPositive.gml</script>
+        <script>scripts\_ML_FNegate.gml</script>
+        <script>scripts\_ML_FBitnegate.gml</script>
+        <script>scripts\_ML_FNot.gml</script>
+        <script>scripts\_ML_FComma.gml</script>
+        <script>scripts\_ML_FConditional.gml</script>
+        <script>scripts\ML_InitParserCS.gml</script>
+        <script>scripts\ML_InitParserMath.gml</script>
+        <script>scripts\ML_InitParserScience.gml</script>
+      </scripts>
+      <scripts name="detail">
+        <scripts name="lexer">
+          <script>scripts\_ML_LEX_Graph.gml</script>
+          <script>scripts\_ML_LEX_Print.gml</script>
+          <script>scripts\_ML_LEX_Punct.gml</script>
+          <script>scripts\_ML_LEX_Space.gml</script>
+          <script>scripts\_ML_LEX_Xdigit.gml</script>
+          <script>scripts\_ML_LEX_Upper.gml</script>
+          <script>scripts\_ML_LEX_Word.gml</script>
+          <script>scripts\_ML_LEX_Lower.gml</script>
+          <script>scripts\_ML_LEX_Alpha.gml</script>
+          <script>scripts\_ML_LEX_Alnum.gml</script>
+          <script>scripts\_ML_LEX_Cntrl.gml</script>
+          <script>scripts\_ML_LEX_Digit.gml</script>
+          <script>scripts\_ML_LEX_Blank.gml</script>
+          <script>scripts\_ML_LEX_IsTernOper.gml</script>
+          <script>scripts\_ML_LEX_IsTernOper2.gml</script>
+          <script>scripts\_ML_LEX_IsAssignoper.gml</script>
+          <script>scripts\_ML_LEX_IsUnoper.gml</script>
+          <script>scripts\_ML_LEX_IsBinoper.gml</script>
+          <script>scripts\_ML_LEX_IsFunction.gml</script>
+          <script>scripts\_ML_LEX_IsVariable.gml</script>
+          <script>scripts\_ML_LEX_IsValue.gml</script>
+          <script>scripts\_ML_LEX_TokenSetType.gml</script>
+          <script>scripts\_ML_LEX_TokenAdd.gml</script>
+          <script>scripts\_ML_LexicalAnalysis.gml</script>
+          <script>scripts\_ML_FirstStringPos.gml</script>
+          <script>scripts\_ML_FirstStringPos1.gml</script>
+          <script>scripts\_ML_FirstStringPos2.gml</script>
+          <script>scripts\_ML_FirstStringPos3.gml</script>
+        </scripts>
+        <scripts name="shunting_yard">
+          <script>scripts\_ML_SY_HandleValue.gml</script>
+          <script>scripts\_ML_SY_HandleFunction.gml</script>
+          <script>scripts\_ML_SY_HandleLeftPar.gml</script>
+          <script>scripts\_ML_SY_HandleArgSep.gml</script>
+          <script>scripts\_ML_SY_HandleOperator.gml</script>
+          <script>scripts\_ML_SY_HandleRightPar.gml</script>
+          <script>scripts\_ML_SY_HandleTernary2.gml</script>
+          <script>scripts\_ML_SY_HandleEOL.gml</script>
+          <script>scripts\_ML_SY_HandleExprTerminator.gml</script>
+          <script>scripts\_ML_SY_OperatorActBefore.gml</script>
+          <script>scripts\_ML_SY_TokenIsOperator.gml</script>
+          <script>scripts\_ML_SY_TernaryIsMatchingToken.gml</script>
+          <script>scripts\_ML_SY_QueueAppendQueue.gml</script>
+          <script>scripts\_ML_SY_ListAppendList.gml</script>
+          <script>scripts\_ML_ShuntingYard.gml</script>
+        </scripts>
+        <scripts name="Parsing">
+          <script>scripts\_ML_PARSE_Binary.gml</script>
+          <script>scripts\_ML_PARSE_Ternary.gml</script>
+          <script>scripts\_ML_PARSE_Assign.gml</script>
+          <script>scripts\_ML_PARSE_AssignFlat.gml</script>
+          <script>scripts\_ML_PARSE_Unary.gml</script>
+          <script>scripts\_ML_PARSE_Function.gml</script>
+          <script>scripts\_ML_PARSE_Value.gml</script>
+          <script>scripts\_ML_PARSE_FuncFlat.gml</script>
+          <script>scripts\_ML_PARSE_EvalLine.gml</script>
+          <script>scripts\_ML_PARSE_EvalToken.gml</script>
+          <script>scripts\_ML_Parse.gml</script>
+          <script>scripts\_ML_ParseCompiled.gml</script>
+          <script>scripts\_ML_PARSECOMP_EvalLine.gml</script>
+          <script>scripts\_ML_PARSECOMP_EvalToken.gml</script>
+        </scripts>
+        <scripts name="compile">
+          <script>scripts\_ML_COMP_RemoveExtraTokens.gml</script>
+          <script>scripts\_ML_COMP_Value.gml</script>
+          <script>scripts\_ML_COMP_Variable.gml</script>
+          <script>scripts\_ML_COMP_Unary.gml</script>
+          <script>scripts\_ML_COMP_Binary.gml</script>
+          <script>scripts\_ML_COMP_Function.gml</script>
+          <script>scripts\_ML_COMP_Assign.gml</script>
+          <script>scripts\_ML_COMP_Ternary.gml</script>
+          <script>scripts\_ML_COMP_EvalAll.gml</script>
+          <script>scripts\_ML_COMP_EvalToken.gml</script>
+          <script>scripts\_ML_COMP_EvalLine.gml</script>
+        </scripts>
+        <script>scripts\_ML_TokCleanUp.gml</script>
+      </scripts>
+      <scripts name="data_containers">
+        <script>scripts\_ML_Li_GetName.gml</script>
+        <scripts name="variables">
+          <script>scripts\_ML_LiVar_GetReadonly.gml</script>
+          <script>scripts\_ML_LiVar_GetType.gml</script>
+          <script>scripts\_ML_LiVar_Create.gml</script>
+          <script>scripts\_ML_LiVar_Destroy.gml</script>
+        </scripts>
+        <scripts name="functions">
+          <script>scripts\_ML_LiF_GetFuncs.gml</script>
+          <script>scripts\_ML_LiF_GetFunc.gml</script>
+          <script>scripts\_ML_LiF_Create.gml</script>
+          <script>scripts\_ML_LiF_Destroy.gml</script>
+          <script>scripts\_ML_LiF_AddSig.gml</script>
+          <scripts name="operators">
+            <script>scripts\_ML_LiOp_GetPrec.gml</script>
+            <script>scripts\_ML_LiOp_GetAssoc.gml</script>
+            <scripts name="binary_operators">
+              <script>scripts\_ML_LiBOp_Create.gml</script>
+              <script>scripts\_ML_LiBOp_Destroy.gml</script>
+            </scripts>
+            <scripts name="unary_operators">
+              <script>scripts\_ML_LiUOp_Create.gml</script>
+              <script>scripts\_ML_LiUOp_Destroy.gml</script>
+              <script>scripts\_ML_LiUOp_GetAffix.gml</script>
+            </scripts>
+            <scripts name="ternary">
+              <script>scripts\_ML_LiTOp_Destroy.gml</script>
+              <script>scripts\_ML_LiTOp_GetFirstName.gml</script>
+              <script>scripts\_ML_LiTOp_GetSecondName.gml</script>
+              <script>scripts\_ML_LiTOp_Create.gml</script>
+            </scripts>
+            <scripts name="assign">
+              <script>scripts\_ML_LiAOp_Create.gml</script>
+              <script>scripts\_ML_LiAOp_Destroy.gml</script>
+            </scripts>
+          </scripts>
+        </scripts>
+        <scripts name="functions_fullname">
+          <script>scripts\_ML_LiS_Destroy.gml</script>
+          <script>scripts\_ML_LiS_GetScript.gml</script>
+          <script>scripts\_ML_LiS_Create.gml</script>
+          <script>scripts\_ML_LiS_GetRettype.gml</script>
+        </scripts>
+        <scripts name="token">
+          <script>scripts\_ML_LiTok_Destroy.gml</script>
+          <script>scripts\_ML_LiTok_GetPos.gml</script>
+          <script>scripts\_ML_LiTok_GetType.gml</script>
+          <script>scripts\_ML_LiTok_GetOperator.gml</script>
+          <script>scripts\_ML_LiTok_GetArgcount.gml</script>
+          <script>scripts\_ML_LiTok_GetVal.gml</script>
+          <script>scripts\_ML_LiTok_SetString.gml</script>
+          <script>scripts\_ML_LiTok_SetType.gml</script>
+          <script>scripts\_ML_LiTok_SetArgcount.gml</script>
+          <script>scripts\_ML_LiTok_SetOperator.gml</script>
+          <script>scripts\_ML_LiTok_Create.gml</script>
+          <script>scripts\_ML_LiTok_ToBuff.gml</script>
+          <script>scripts\_ML_LiTok_FromBuff.gml</script>
+        </scripts>
+        <scripts name="parser">
+          <script>scripts\_ML_LiP_Create.gml</script>
+          <script>scripts\_ML_LiP_Destroy.gml</script>
+          <scripts name="getters">
+            <script>scripts\_ML_LiP_GetResultObject.gml</script>
+            <script>scripts\_ML_LiP_GetOperatorRoots.gml</script>
+            <script>scripts\_ML_LiP_GetBinOpsTable.gml</script>
+            <script>scripts\_ML_LiP_GetUnOpsTable.gml</script>
+            <script>scripts\_ML_LiP_GetTernOpsTable.gml</script>
+            <script>scripts\_ML_LiP_GetTernOps2Table.gml</script>
+            <script>scripts\_ML_LiP_GetAssignOpsTable.gml</script>
+            <script>scripts\_ML_LiP_GetFunctionTable.gml</script>
+            <script>scripts\_ML_LiP_GetVariableTable.gml</script>
+            <script>scripts\_ML_LiP_GetFunctionString.gml</script>
+            <script>scripts\_ML_LiP_GetVarMap.gml</script>
+            <script>scripts\_ML_LiP_GetErrorFlags.gml</script>
+            <script>scripts\_ML_LiP_GetErrorPos.gml</script>
+            <script>scripts\_ML_LiP_GetErrorString.gml</script>
+          </scripts>
+          <scripts name="setters">
+            <script>scripts\_ML_LiP_SetFunctionString.gml</script>
+            <script>scripts\_ML_LiP_SetVarMap.gml</script>
+            <script>scripts\_ML_LiP_SetErrorFlags.gml</script>
+            <script>scripts\_ML_LiP_SetErrorPos.gml</script>
+            <script>scripts\_ML_LiP_SetErrorString.gml</script>
+          </scripts>
+        </scripts>
+        <scripts name="ResultObject">
+          <script>scripts\_ML_LiRO_Create.gml</script>
+          <script>scripts\_ML_LiRO_Clear.gml</script>
+          <script>scripts\_ML_LiRO_GetType.gml</script>
+          <script>scripts\_ML_LiRO_Get.gml</script>
+          <script>scripts\_ML_LiRO_Destroy.gml</script>
+          <script>scripts\_ML_LiRO_Size.gml</script>
+          <script>scripts\_ML_LiRO_AddToken.gml</script>
+          <script>scripts\_ML_LiRO_Add.gml</script>
+          <script>scripts\_ML_LiRO_GetCalculated.gml</script>
+          <script>scripts\_ML_LiRO_GetFinal.gml</script>
+          <script>scripts\_ML_LiRO_GetAll.gml</script>
+          <script>scripts\_ML_LiRO_GetAllType.gml</script>
+          <script>scripts\_ML_LiRO_SetFinal.gml</script>
+          <script>scripts\_ML_LiRO_SetCalculated.gml</script>
+        </scripts>
+      </scripts>
+    </scripts>
     <scripts name="importilda">
       <script>scripts\get_bytes_signed.gml</script>
       <script>scripts\read_ilda_header_first.gml</script>
@@ -223,6 +608,7 @@
     <script>scripts\update_check.gml</script>
     <script>scripts\random_gaussian.gml</script>
     <script>scripts\dist_triangular.gml</script>
+    <script>scripts\buttons_set_active.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
@@ -294,12 +680,9 @@
         <object>objects\obj_anicoloroffselect</object>
         <object>objects\obj_aniwaveoffselect</object>
         <object>objects\obj_anifunc</object>
-        <object>objects\obj_anixtrans</object>
-        <object>objects\obj_aniytrans</object>
         <object>objects\obj_maxframes</object>
         <object>objects\obj_shake</object>
         <object>objects\obj_resettrans</object>
-        <object>objects\obj_trans</object>
       </objects>
     </objects>
   </objects>

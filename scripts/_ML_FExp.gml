@@ -1,0 +1,1 @@
+return exp(argument0);

@@ -1,0 +1,1 @@
+return ceil(argument0)

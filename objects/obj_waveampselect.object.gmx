@@ -163,14 +163,12 @@ moving = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-draw_set_alpha(1);
-draw_sprite(sprite_index,image_index,x,y);
+            <string>draw_sprite(sprite_index,image_index,x,y);
 draw_sprite(spr_knob,(moving &gt; 0),x+clamp(controller.wave_amp,-$ffff/2,$ffff/2)/$ffff*2*64,y+16);
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x+90,y+6,"Wave amplitude: "+string(controller.wave_amp));
+draw_text(x+87,y+9,"Amplitude: "+string(round(controller.wave_amp)));
 draw_set_color(c_white);
 
 </string>

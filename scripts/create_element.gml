@@ -5,6 +5,7 @@ placing_status = 0;
         
 if (maxframes == 1) and (anienable)
     {
+    //ds_stack_push(controller.undo_list,"a"+string(controller.maxframes))
     maxframes = 32;
     scope_end = 31;
     

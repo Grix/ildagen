@@ -1,0 +1,1 @@
+return frac(argument0);

@@ -1,0 +1,1 @@
+return degtorad(argument0);

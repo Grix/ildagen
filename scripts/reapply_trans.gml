@@ -1,5 +1,29 @@
 //reapplies the object properties
 
+if (maxframes == 1) and (anienable)
+    {
+    //ds_stack_push(controller.undo_list,"a"+string(controller.maxframes))
+    maxframes = 32;
+    scope_end = 31;
+    
+    if (ds_list_size(frame_list) < maxframes)
+        repeat (maxframes - ds_list_size(frame_list))
+            {
+            templist = ds_list_create();
+            if (fillframes)
+                {
+                tempelcount = ds_list_size(ds_list_find_value(frame_list,ds_list_size(frame_list)-1));
+                for (u = 0;u < tempelcount;u++)
+                    {
+                    tempellist = ds_list_create();
+                    ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(frame_list,ds_list_size(frame_list)-1),u));
+                    ds_list_add(templist,tempellist);
+                    }
+                }
+            ds_list_add(frame_list,templist);
+            }
+    }
+
 //find elements
 temp_undof_list = ds_list_create();
 temp_frame_list = ds_list_create();
@@ -71,6 +95,10 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             endy_r = lerp(endy,endy+aniytrans,t);
             startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t);
             startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t);
+            /*if (anirot > 180)
+                rot_r = degtorad(lerp(0,anirot,t));
+            else
+                rot_r = degtorad(lerp(360,anirot,t));*/
             rot_r = degtorad(lerp(0,anirot,t));
             scalex_r = lerp(1,scalex,t);
             scaley_r = lerp(1,scaley,t);

@@ -1,0 +1,1 @@
+return sin(argument0);

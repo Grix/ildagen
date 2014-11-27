@@ -1,5 +1,29 @@
 //reapplies the object properties
 
+if (maxframes == 1) and (anienable)
+    {
+    //ds_stack_push(controller.undo_list,"a"+string(controller.maxframes))
+    maxframes = 32;
+    scope_end = 31;
+    
+    if (ds_list_size(frame_list) < maxframes)
+        repeat (maxframes - ds_list_size(frame_list))
+            {
+            templist = ds_list_create();
+            if (fillframes)
+                {
+                tempelcount = ds_list_size(ds_list_find_value(frame_list,ds_list_size(frame_list)-1));
+                for (u = 0;u < tempelcount;u++)
+                    {
+                    tempellist = ds_list_create();
+                    ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(frame_list,ds_list_size(frame_list)-1),u));
+                    ds_list_add(templist,tempellist);
+                    }
+                }
+            ds_list_add(frame_list,templist);
+            }
+    }
+
 
 autoresflag = 0;
 if (is_string(resolution))
