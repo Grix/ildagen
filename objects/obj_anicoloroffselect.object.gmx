@@ -61,7 +61,7 @@ mouse_xprevious = mouse_x;
 
 visible = (controller.colormode != "solid") and (controller.anienable);
 
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y+7) and ((mouse_y &lt; y+25))
     {
     controller.tooltip = "Changes the periodic offset of the coloring at the end of the animation";
     } 

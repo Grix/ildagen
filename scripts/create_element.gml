@@ -112,7 +112,7 @@ if (!fillframes)
             color_dc_r = lerp(color_dc,anicolor_dc,t);
             color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
             wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
-            wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+            wave_amp_r = lerp(wave_amp,aniwave_amp,t);
             wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
@@ -137,7 +137,7 @@ if (!fillframes)
             color_dc_r = lerp(color_dc,anicolor_dc,t);
             color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
             wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
-            wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+            wave_amp_r = lerp(wave_amp,aniwave_amp,t);
             wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
@@ -159,7 +159,7 @@ if (!fillframes)
             color_dc_r = lerp(color_dc,anicolor_dc,t);
             color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
             wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
-            wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+            wave_amp_r = lerp(wave_amp,aniwave_amp,t);
             wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
@@ -181,7 +181,7 @@ if (!fillframes)
             color_dc_r = lerp(color_dc,anicolor_dc,t);
             color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
             wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
-            wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+            wave_amp_r = lerp(wave_amp,aniwave_amp,t);
             wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
@@ -202,7 +202,7 @@ if (!fillframes)
             color_dc_r = lerp(color_dc,anicolor_dc,t);
             color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
             wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
-            wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+            wave_amp_r = lerp(wave_amp,aniwave_amp,t);
             wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
             color1_r = merge_color(color1,anicolor1,t);
             color2_r = merge_color(color2,anicolor2,t);
@@ -319,7 +319,7 @@ else
                 color_dc_r = lerp(color_dc,anicolor_dc,t);
                 color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
                 wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
-                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                wave_amp_r = lerp(wave_amp,aniwave_amp,t);
                 wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
@@ -344,7 +344,7 @@ else
                 color_dc_r = lerp(color_dc,anicolor_dc,t);
                 color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
                 wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
-                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                wave_amp_r = lerp(wave_amp,aniwave_amp,t);
                 wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
@@ -366,7 +366,7 @@ else
                 color_dc_r = lerp(color_dc,anicolor_dc,t);
                 color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
                 wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
-                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                wave_amp_r = lerp(wave_amp,aniwave_amp,t);
                 wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
@@ -388,7 +388,7 @@ else
                 color_dc_r = lerp(color_dc,anicolor_dc,t);
                 color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
                 wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
-                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                wave_amp_r = lerp(wave_amp,aniwave_amp,t);
                 wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);
@@ -409,7 +409,7 @@ else
                 color_dc_r = lerp(color_dc,anicolor_dc,t);
                 color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
                 wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
-                wave_amp_r = wave_amp//lerp(color_dc,anicolor_dc,t);
+                wave_amp_r = lerp(wave_amp,aniwave_amp,t);
                 wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
                 color1_r = merge_color(color1,anicolor1,t);
                 color2_r = merge_color(color2,anicolor2,t);

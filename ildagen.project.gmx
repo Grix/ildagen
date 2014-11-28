@@ -101,6 +101,7 @@
     </sprites>
     <sprites name="selectors">
       <sprite>sprites\spr_m_line</sprite>
+      <sprite>sprites\spr_func</sprite>
       <sprite>sprites\spr_m_free</sprite>
       <sprite>sprites\spr_text</sprite>
       <sprite>sprites\spr_m_wave</sprite>
@@ -122,7 +123,6 @@
     <sprite>sprites\spr_import</sprite>
     <sprite>sprites\spr_anitocol</sprite>
     <sprite>sprites\spr_coltoani</sprite>
-    <sprite>sprites\spr_dotmult</sprite>
     <sprite>sprites\spr_help</sprite>
     <sprite>sprites\spr_b_enddots</sprite>
     <sprite>sprites\spr_onionskin</sprite>
@@ -131,6 +131,7 @@
     <sprite>sprites\spr_colortselect</sprite>
     <sprite>sprites\spr_anifunc</sprite>
     <sprite>sprites\spr_absrel</sprite>
+    <sprite>sprites\spr_rgbhsv</sprite>
     <sprite>sprites\spr_e_undo</sprite>
     <sprite>sprites\spr_s_res</sprite>
     <sprite>sprites\spr_maxframes</sprite>
@@ -139,7 +140,6 @@
     <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_cursor</sprite>
     <sprite>sprites\spr_anchor</sprite>
-    <sprite>sprites\spr_trans</sprite>
     <sprite>sprites\spr_resize</sprite>
     <sprite>sprites\spr_rotate</sprite>
   </sprites>
@@ -633,6 +633,7 @@
         <object>objects\obj_waveampselect</object>
         <object>objects\obj_s_line</object>
         <object>objects\obj_text</object>
+        <object>objects\obj_func</object>
         <object>objects\obj_import</object>
         <object>objects\obj_s_free</object>
         <object>objects\obj_curve</object>
@@ -679,6 +680,7 @@
         <object>objects\obj_anicolordcselect</object>
         <object>objects\obj_anicoloroffselect</object>
         <object>objects\obj_aniwaveoffselect</object>
+        <object>objects\obj_aniwaveamp</object>
         <object>objects\obj_anifunc</object>
         <object>objects\obj_maxframes</object>
         <object>objects\obj_shake</object>

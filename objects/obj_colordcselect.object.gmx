@@ -58,9 +58,12 @@ moving = 0;
     
 mouse_xprevious = mouse_x;
 
-
-
 visible = (controller.colormode == "dash");
+
+if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y+7) and ((mouse_y &lt; y+25))
+    {
+    controller.tooltip = "Changes the ratio of the primary and secondary color";
+    } 
 </string>
           </argument>
         </arguments>
@@ -164,10 +167,6 @@ draw_set_color(c_dkgray);
 draw_text(x+150,y+9,"Ratio: "+string(controller.color_dc));
 draw_set_color(c_white);
 
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
-    {
-    controller.tooltip = "Changes the ratio of the primary and secondary color";
-    } 
 </string>
           </argument>
         </arguments>

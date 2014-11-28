@@ -100,7 +100,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (controller.anienable)
+            <string>if (controller.anienable == 1) or (controller.maxframes == 1)
     draw_set_alpha(0.6);
 
 if (controller.fillframes == 1) image_index = 1;

@@ -30,6 +30,10 @@
 if (os_version != -1) init_palette();
 if (os_version != -1) update_check();
 
+varmap = ds_map_create();
+parser = ML_InitParserScience(varmap);
+    ML_AddVariable(parser, "point",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser, "frame",0, ML_VAL_REAL, 1);
 
 radialgrid_surf = surface_create(512,512);
 surface_set_target(radialgrid_surf);
@@ -135,6 +139,7 @@ aniblank_offset = 0;
 anicolor_offset = 0;
 aniwave_offset = 0;
 anifunc = "saw";
+aniwave_amp = 10000;
 
 rot = 0;
 anirot = 0;

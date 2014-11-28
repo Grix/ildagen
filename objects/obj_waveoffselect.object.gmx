@@ -51,7 +51,8 @@ moving = 0;
             <kind>1</kind>
             <string>if (moving == 1)
     {
-    controller.wave_offset += clamp((mouse_x-mouse_xprevious)*360/128,0,360);
+    controller.wave_offset += (mouse_x-mouse_xprevious)*360/128;
+    controller.wave_offset = clamp(controller.wave_offset,0,360);
     }
     
 mouse_xprevious = mouse_x;
@@ -59,7 +60,7 @@ mouse_xprevious = mouse_x;
 
 visible = (controller.placing == "wave");
 
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y+7) and ((mouse_y &lt; y+25))
     {
     controller.tooltip = "Changes the periodic offset of the wave shape";
     } 
