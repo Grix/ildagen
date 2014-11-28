@@ -31,9 +31,14 @@ if (os_version != -1) init_palette();
 if (os_version != -1) update_check();
 
 varmap = ds_map_create();
-parser = ML_InitParserScience(varmap);
-    ML_AddVariable(parser, "point",0, ML_VAL_REAL, 1);
-    ML_AddVariable(parser, "frame",0, ML_VAL_REAL, 1);
+parser_shape = ML_InitParserScience(varmap);
+    ML_AddVariable(parser_shape, "point",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "frame",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "startx",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "starty",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "endx",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "endy",0, ML_VAL_REAL, 1);
+    
 
 radialgrid_surf = surface_create(512,512);
 surface_set_target(radialgrid_surf);
@@ -156,6 +161,10 @@ shaking_sdev = 5;
 scope_start = 0;
 scope_end = 0;
 objmoving = 0;
+
+shapefunc_cp = 100;
+shapefunc_string_x = "";
+shapefunc_string_y = "";
 
 alarm[0] = 1;
 </string>

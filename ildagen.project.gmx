@@ -117,6 +117,8 @@
       <sprite>sprites\spr_c_dash</sprite>
     </sprites>
     <sprite>sprites\spr_resettrans</sprite>
+    <sprite>sprites\spr_funcx</sprite>
+    <sprite>sprites\spr_funcy</sprite>
     <sprite>sprites\spr_scope</sprite>
     <sprite>sprites\spr_shaking</sprite>
     <sprite>sprites\spr_reapply</sprite>
@@ -582,6 +584,7 @@
     <scripts name="createobject">
       <script>scripts\create_element.gml</script>
       <script>scripts\create_line.gml</script>
+      <script>scripts\create_func.gml</script>
       <script>scripts\create_circle.gml</script>
       <script>scripts\create_wave.gml</script>
       <script>scripts\create_curve.gml</script>
@@ -619,6 +622,7 @@
     <object>objects\oDropDown</object>
     <objects name="buttons">
       <object>objects\obj_export</object>
+      <object>objects\obj_import</object>
       <object>objects\obj_e_res</object>
       <object>objects\obj_reapply</object>
       <object>objects\obj_help</object>
@@ -630,16 +634,18 @@
       <object>objects\obj_scope</object>
       <objects name="shape">
         <object>objects\obj_wavetselect</object>
-        <object>objects\obj_waveampselect</object>
         <object>objects\obj_s_line</object>
+        <object>objects\obj_funcxselect</object>
+        <object>objects\obj_funcyselect</object>
         <object>objects\obj_text</object>
         <object>objects\obj_func</object>
-        <object>objects\obj_import</object>
         <object>objects\obj_s_free</object>
         <object>objects\obj_curve</object>
         <object>objects\obj_s_circle</object>
         <object>objects\obj_s_wave</object>
+        <object>objects\obj_waveampselect</object>
         <object>objects\obj_waveoffselect</object>
+        <object>objects\obj_funcpointselect</object>
       </objects>
       <objects name="color">
         <object>objects\obj_colorselect_1</object>

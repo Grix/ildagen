@@ -9,11 +9,10 @@ else if (ds_list_size(free_list) < 3)
     ds_list_add(free_list,mouse_y-startpos[1]);
     }
 
-
-xmax = 0;
-xmin = $ffff;
-ymax = 0;
-ymin = $ffff;
+xmax = 20;
+xmin = $ffff-20;
+ymax = 20;
+ymin = $ffff-20;
 
 checkpoints = ds_list_size(free_list)/2;
 if (checkpoints < 2) checkpoints = 2;

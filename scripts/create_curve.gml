@@ -2,10 +2,10 @@ checkpoints = ceil(bezlength*128/resolution)
 if (checkpoints < 2) checkpoints = 2;
 blanknew = 1;
 
-xmax = 0;
-xmin = $ffff;
-ymax = 0;
-ymin = $ffff;
+xmax = 20;
+xmin = $ffff-20;
+ymax = 20;
+ymin = $ffff-20;
 
 if (blankmode == "dot") or (blankmode == "dotsolid")
     {

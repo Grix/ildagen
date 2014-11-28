@@ -2,7 +2,6 @@
 
 placing_status = 0;
         
-        
 if (maxframes == 1) and (anienable)
     {
     //ds_stack_push(controller.undo_list,"a"+string(controller.maxframes))
@@ -76,6 +75,7 @@ if (!fillframes)
     
     if (anienable == 0) or (maxframes == 1)
         {
+        t = 0;
         blank_freq_r = blank_freq;
         blank_period_r = blank_period;
         blank_dc_r = blank_dc;
@@ -228,6 +228,13 @@ if (!fillframes)
         ds_list_add(new_list,(endx_r+xdelta[frame])*128); //end x
         ds_list_add(new_list,endy_r*128); //end y
         }
+    else if (placing == "func")
+        {
+        ds_list_add(new_list,0); //origo x
+        ds_list_add(new_list,0); //origo y
+        ds_list_add(new_list,0); //end x
+        ds_list_add(new_list,0); //end y
+        }
     else
         {
         ds_list_add(new_list,startposx_r*128); //origo x
@@ -260,6 +267,20 @@ if (!fillframes)
         
     else if (placing == "text") //create a letter/text
         create_letter();
+        
+    else if (placing == "func") //create a function based shape
+        {
+        if (!create_func())
+            {
+            show_message("fail")
+            ds_list_clear(bez_list);
+            ds_list_clear(free_list);
+            ds_stack_push(undo_list,el_id);
+            ds_list_destroy(new_list);
+            frame = framepre;
+            return 0;
+            }
+        }
     
     ds_list_replace(new_list,4,xmin);
     ds_list_replace(new_list,5,xmax);
@@ -283,6 +304,7 @@ else
 
         if (anienable == 0) or (maxframes == 1)
             {
+            t = 0;
             blank_freq_r = blank_freq;
             blank_period_r = blank_period;
             blank_dc_r = blank_dc;
@@ -435,6 +457,13 @@ else
             ds_list_add(new_list,(endx_r+xdelta[frame])*128); //end x
             ds_list_add(new_list,endy_r*128); //end y
             }
+        else if (placing == "func")
+            {
+            ds_list_add(new_list,0); //origo x
+            ds_list_add(new_list,0); //origo y
+            ds_list_add(new_list,0); //end x
+            ds_list_add(new_list,0); //end y
+            }
         else
             {
             ds_list_add(new_list,startposx_r*128); //origo x
@@ -467,6 +496,19 @@ else
             
         else if (placing == "text") //create a letter/text
             create_letter();
+            
+        else if (placing == "func") //create a function based shape
+            {
+            if (!create_func())
+                {
+                ds_list_clear(bez_list);
+                ds_list_clear(free_list);
+                ds_stack_push(undo_list,el_id);
+                ds_list_destroy(new_list);
+                frame = framepre;
+                return 0;
+                }
+            }
             
         ds_list_replace(new_list,4,xmin);
         ds_list_replace(new_list,5,xmax);

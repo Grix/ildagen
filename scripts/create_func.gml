@@ -1,6 +1,31 @@
+if (shapefunc_string_x == "") or is_undefined(shapefunc_string_x) 
+    {
+    show_message("Please write a function for X");
+    return 0;
+    }
+if (shapefunc_string_y == "") or is_undefined(shapefunc_string_y) 
+    {
+    show_message("Please write a function for Y");
+    return 0;
+    }
 
-letter_list = ds_list_find_value(font_list,ord(letter)-33);
-checkpoints = (ds_list_size(letter_list)-10)/6;
+compiled_x = ML_Compile(parser_shape,shapefunc_string_x);
+if (!ML_NoException(parser_shape))
+    {
+    show_message("Error in X: "+ML_LastExceptionString(parser_shape));
+    ML_CompileCleanup(compiled_x);
+    return 0;
+    }
+compiled_y = ML_Compile(parser_shape,shapefunc_string_y);
+if (!ML_NoException(parser_shape))
+    {
+    show_message("Error in Y: "+ML_LastExceptionString(parser_shape));
+    ML_CompileCleanup(compiled_x);
+    ML_CompileCleanup(compiled_y);
+    return 0;
+    }
+
+checkpoints = ceil(shapefunc_cp);
 
 blanknew = 1;
 
@@ -21,7 +46,7 @@ if (blankmode == "dot") or (blankmode == "dotsolid")
 else if (blankmode == "dash")
     {
     if (blankmode2 == 0)
-        dotfreq = checkpoints/(blank_freq_r+0.48);
+        dotfreq = checkpoints/(blank_freq_r+0.5);
     else
         dotfreq = blank_period_r/resolution;
     if (dotfreq < 1)
@@ -30,15 +55,14 @@ else if (blankmode == "dash")
 if (colormode == "dash")
     {
     if (colormode2 == 0)
-        colorfreq = checkpoints/(color_freq_r+0.48);
+        colorfreq = checkpoints/(color_freq_r+0.5);
     else
         colorfreq = color_period_r/resolution;
     if (colorfreq < 1)
         colorfreq = 1;
     }
-
-
-for (n = 0;n < checkpoints; n++)
+    
+for (n = 0;n <= checkpoints; n++)
     {
     makedot = 0;
     
@@ -46,7 +70,7 @@ for (n = 0;n < checkpoints; n++)
     if (blankmode == "solid")
         {
         blank = 0;
-        if ((n == 0) or (n == checkpoints-1)) and (enddots)
+        if (n == 0) and (enddots)
             makedot = 1;
         }
     else if (blankmode == "dash")
@@ -162,26 +186,63 @@ for (n = 0;n < checkpoints; n++)
             makedot = 1;
         }
         
-    if (ds_list_find_value(letter_list,10+6*n+2))
-        blank = 1;
+    ML_VM_SetVarReal(parser_shape,"startx",startposx_r*128);
+    ML_VM_SetVarReal(parser_shape,"starty",startposy_r*128);
+    ML_VM_SetVarReal(parser_shape,"endx",endx_r*128);
+    ML_VM_SetVarReal(parser_shape,"endy",endy_r*128);
+    ML_VM_SetVarReal(parser_shape,"point",n/checkpoints);
+    ML_VM_SetVarReal(parser_shape,"frame",t);
+    
+    result_x = ML_Execute(parser_shape,compiled_x);
+    if (!ML_ResObj_HasAnswer(result_x))
+        {
+        show_message("Unexpected value for X at point="+string(n/checkpoints)+" , frame="+string(t));  
+        ML_ResObj_Cleanup(result_x);
+        ML_CompileCleanup(compiled_x);
+        ML_CompileCleanup(compiled_y);
+        return 0;
+        }    
+    result_y = ML_Execute(parser_shape,compiled_y);
+    if (!ML_ResObj_HasAnswer(result_y))
+        {
+        show_message("Unexpected value for Y at point="+string(n/checkpoints)+" , frame="+string(t));
+        ML_ResObj_Cleanup(result_y);
+        ML_ResObj_Cleanup(result_x);
+        ML_CompileCleanup(compiled_x);
+        ML_CompileCleanup(compiled_y);
+        return 0;
+        }
+        
+    if (n)
+        {
+        xpprev = xp;
+        ypprev = yp;
+        }
+        
+    xp = ML_ResObj_GetFinalAnswer(result_x);
+    yp = ML_ResObj_GetFinalAnswer(result_y);
+    ML_ResObj_Cleanup(result_y);
+    ML_ResObj_Cleanup(result_x);
         
     if (makedot)
         {
-        
         if (blankmode == "dot")
             {
-            ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
-            ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
+            ds_list_add(new_list,xp);
+            ds_list_add(new_list,yp);
             ds_list_add(new_list,1);
             ds_list_add(new_list,c[0]);
             ds_list_add(new_list,c[1]);
             ds_list_add(new_list,c[2]);
-            ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
-            ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
-            ds_list_add(new_list,0);
-            ds_list_add(new_list,c[0]);
-            ds_list_add(new_list,c[1]);
-            ds_list_add(new_list,c[2])
+            repeat (dotmultiply)
+                {
+                ds_list_add(new_list,xp);
+                ds_list_add(new_list,yp);
+                ds_list_add(new_list,0);
+                ds_list_add(new_list,c[0]);
+                ds_list_add(new_list,c[1]);
+                ds_list_add(new_list,c[2])
+                }
             }
         else
             {
@@ -189,16 +250,8 @@ for (n = 0;n < checkpoints; n++)
                 {
                 if (blank)
                     {
-                    if (n)
-                        {
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*(n-1))-$ffff/2)*font_size/64);
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*(n-1)+1)-$ffff/2)*font_size/64);
-                        }
-                    else
-                        {
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
-                        }
+                    ds_list_add(new_list,xpprev);
+                    ds_list_add(new_list,ypprev);
                     ds_list_add(new_list,1);
                     ds_list_add(new_list,c[0]);
                     ds_list_add(new_list,c[1]);
@@ -206,16 +259,8 @@ for (n = 0;n < checkpoints; n++)
                     }
                 else
                     {
-                    if (n)
-                        {
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*(n-1))-$ffff/2)*font_size/64);
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*(n-1)+1)-$ffff/2)*font_size/64);
-                        }
-                    else
-                        {
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
-                        }
+                    ds_list_add(new_list,xpprev);
+                    ds_list_add(new_list,ypprev);
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
                     ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
@@ -223,16 +268,8 @@ for (n = 0;n < checkpoints; n++)
                     }
                 repeat (dotmultiply)
                     {
-                    if (n)
-                        {
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*(n-1))-$ffff/2)*font_size/64);
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*(n-1)+1)-$ffff/2)*font_size/64);
-                        }
-                    else
-                        {
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
-                        }
+                    ds_list_add(new_list,xpprev);
+                    ds_list_add(new_list,ypprev);
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
                     ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
@@ -241,16 +278,16 @@ for (n = 0;n < checkpoints; n++)
                 }
             else
                 {
-                ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
-                ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
+                ds_list_add(new_list,xp);
+                ds_list_add(new_list,yp);
                 ds_list_add(new_list,0);
                 ds_list_add(new_list,c[0]);
                 ds_list_add(new_list,c[1]);
                 ds_list_add(new_list,c[2])
                 repeat (dotmultiply)
                     {
-                    ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
-                    ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
+                    ds_list_add(new_list,xp);
+                    ds_list_add(new_list,yp);
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
                     ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
@@ -262,27 +299,27 @@ for (n = 0;n < checkpoints; n++)
         }  
     else
         {    
-        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64);
-        ds_list_add(new_list,(ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64);
+        ds_list_add(new_list,xp);
+        ds_list_add(new_list,yp);
         ds_list_add(new_list,blank);
         ds_list_add(new_list,c[0]);
         ds_list_add(new_list,c[1]);
         ds_list_add(new_list,c[2]);
         }
-    
-    if (((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128 > xmax)
-       xmax = ((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128;     
-    if (((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128 < xmin)
-       xmin = ((ds_list_find_value(letter_list,10+6*n)-$ffff/2)*font_size/64)/128;
-    if (((ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64)/128 > ymax)
-       ymax = ((ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64)/128;     
-    if (((ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64)/128 < ymin)
-       ymin = ((ds_list_find_value(letter_list,10+6*n+1)-$ffff/2)*font_size/64)/128;
-    
+        
+    if (xp/128 > xmax)
+       xmax = xp/128;
+    if (xp/128 < xmin)
+       xmin = xp/128;
+    if (yp/128 > ymax)
+       ymax = yp/128;
+    if (yp/128 < ymin)
+       ymin = yp/128;
     
     }
-    
-ds_list_replace(new_list,0,(ds_list_find_value(new_list,0)-xmin*128));
-ds_list_replace(new_list,2,(ds_list_find_value(new_list,2)-xmin*128));
 
-xdelta[frame]+= xmax-xmin+font_size/2.6;
+
+ML_CompileCleanup(compiled_x);
+ML_CompileCleanup(compiled_y);
+
+return 1;

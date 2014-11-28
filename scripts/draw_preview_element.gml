@@ -33,6 +33,12 @@ else if (placing == "rect")
     draw_rectangle(startpos[0],startpos[1],endx,endy,1);
 else if (placing == "circle")
     draw_circle(startpos[0],startpos[1],point_distance(startpos[0],startpos[1],endx,endy),1);
+else if (placing == "func")
+    {
+    draw_circle(startpos[0],startpos[1],2,0);
+    draw_text(startpos[0]+5,startpos[1]-10,"startx, starty");
+    draw_text(obj_cursor.x+8,obj_cursor.y-10,"endx, endy");
+    }
 else if (placing == "wave")
     {
     cp = 20+5*wave_period;

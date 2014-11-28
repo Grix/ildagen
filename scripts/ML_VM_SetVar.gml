@@ -20,4 +20,3 @@ key = argument1;
 value = argument2;
 var VARMAP = _ML_LiP_GetVarMap(argument0);
 VARMAP[? key] = value;
-

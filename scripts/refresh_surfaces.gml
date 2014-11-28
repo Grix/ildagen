@@ -31,6 +31,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
         
         for (u = 0; u < (((ds_list_size(new_list)-10)/6)-1); u++)
             {
+            
             xp = ds_list_find_value(new_list,10+u*6+0);
             yp = ds_list_find_value(new_list,10+u*6+1);
             
@@ -40,7 +41,6 @@ for (i = 0;i < ds_list_size(el_list);i++)
             nb = ds_list_find_value(new_list,10+(u+1)*6+3);
             ng = ds_list_find_value(new_list,10+(u+1)*6+4);
             nr = ds_list_find_value(new_list,10+(u+1)*6+5);
-            
            
             
             if (nbl == 0)

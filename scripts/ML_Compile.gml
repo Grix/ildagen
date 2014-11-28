@@ -52,4 +52,3 @@ ds_list_destroy(tokenlist);
 ds_map_destroy(important_tokens);
 return newrpn;
 
-
