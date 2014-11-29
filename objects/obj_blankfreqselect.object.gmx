@@ -50,7 +50,7 @@
           <argument>
             <kind>1</kind>
             <string>
-visible = (controller.blankmode != "solid") &amp;&amp; (controller.blankmode2 == 0);
+visible = (controller.blankmode != "solid") &amp;&amp; (controller.blankmode2 == 0) and (controller.blankmode != "func");
 
 if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {

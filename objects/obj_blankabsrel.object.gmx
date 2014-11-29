@@ -50,7 +50,7 @@
           <argument>
             <kind>1</kind>
             <string>
-visible = (controller.blankmode != "solid");
+visible = (controller.blankmode != "solid") and (controller.blankmode != "func");
 
 image_index = controller.blankmode2;
 

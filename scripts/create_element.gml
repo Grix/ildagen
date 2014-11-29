@@ -66,6 +66,41 @@ if (is_string(resolution))
     
 randomize();
 
+if (placing == "func")
+    {
+    if (shapefunc_string_x == "") or is_undefined(shapefunc_string_x) 
+        {
+        show_message("Please write a function for X");
+        frame = framepre;
+        return 0;
+        }
+    if (shapefunc_string_y == "") or is_undefined(shapefunc_string_y) 
+        {
+        show_message("Please write a function for Y");
+        frame = framepre;
+        return 0;
+        }
+    
+    compiled_x = ML_Compile(parser_shape,shapefunc_string_x); 
+    if (!ML_NoException(parser_shape))
+        {
+        show_message("Error in X: "+ML_LastExceptionString(parser_shape));
+        ML_CompileCleanup(compiled_x);
+        frame = framepre;
+        return 0;
+        }
+    compiled_y = ML_Compile(parser_shape,shapefunc_string_y);
+    if (!ML_NoException(parser_shape))
+        {
+        show_message("Error in Y: "+ML_LastExceptionString(parser_shape));
+        ML_CompileCleanup(compiled_x);
+        ML_CompileCleanup(compiled_y);
+        frame = framepre;
+        return 0;
+        }
+    }
+
+
 if (!fillframes)
     {
     new_list = ds_list_create();

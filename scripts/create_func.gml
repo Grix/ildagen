@@ -1,30 +1,3 @@
-if (shapefunc_string_x == "") or is_undefined(shapefunc_string_x) 
-    {
-    show_message("Please write a function for X");
-    return 0;
-    }
-if (shapefunc_string_y == "") or is_undefined(shapefunc_string_y) 
-    {
-    show_message("Please write a function for Y");
-    return 0;
-    }
-
-compiled_x = ML_Compile(parser_shape,shapefunc_string_x);
-if (!ML_NoException(parser_shape))
-    {
-    show_message("Error in X: "+ML_LastExceptionString(parser_shape));
-    ML_CompileCleanup(compiled_x);
-    return 0;
-    }
-compiled_y = ML_Compile(parser_shape,shapefunc_string_y);
-if (!ML_NoException(parser_shape))
-    {
-    show_message("Error in Y: "+ML_LastExceptionString(parser_shape));
-    ML_CompileCleanup(compiled_x);
-    ML_CompileCleanup(compiled_y);
-    return 0;
-    }
-
 checkpoints = ceil(shapefunc_cp);
 
 blanknew = 1;
@@ -33,6 +6,12 @@ xmax = 20;
 xmin = $ffff-20;
 ymax = 20;
 ymin = $ffff-20;
+
+ML_VM_SetVarReal(parser_shape,"startx",startposx_r*128);
+ML_VM_SetVarReal(parser_shape,"starty",startposy_r*128);
+ML_VM_SetVarReal(parser_shape,"endx",endx_r*128);
+ML_VM_SetVarReal(parser_shape,"endy",endy_r*128);
+ML_VM_SetVarReal(parser_shape,"frame",t);
 
 if (blankmode == "dot") or (blankmode == "dotsolid")
     {
@@ -186,12 +165,8 @@ for (n = 0;n <= checkpoints; n++)
             makedot = 1;
         }
         
-    ML_VM_SetVarReal(parser_shape,"startx",startposx_r*128);
-    ML_VM_SetVarReal(parser_shape,"starty",startposy_r*128);
-    ML_VM_SetVarReal(parser_shape,"endx",endx_r*128);
-    ML_VM_SetVarReal(parser_shape,"endy",endy_r*128);
     ML_VM_SetVarReal(parser_shape,"point",n/checkpoints);
-    ML_VM_SetVarReal(parser_shape,"frame",t);
+
     
     result_x = ML_Execute(parser_shape,compiled_x);
     if (!ML_ResObj_HasAnswer(result_x))
@@ -317,9 +292,5 @@ for (n = 0;n <= checkpoints; n++)
        ymin = yp/128;
     
     }
-
-
-ML_CompileCleanup(compiled_x);
-ML_CompileCleanup(compiled_y);
 
 return 1;

@@ -50,7 +50,12 @@
           <argument>
             <kind>1</kind>
             <string>
-visible = (controller.colormode == "rainbow") || (controller.colormode == "gradient") || (controller.colormode == "dash");
+visible = (controller.colormode == "rainbow") || (controller.colormode == "gradient") || (controller.colormode == "dash") || (controller.colormode == "func");
+
+if (controller.colormode == "func")
+    sprite_index = spr_rgbhsv;
+else
+    sprite_index = spr_absrel;
 
 image_index = controller.colormode2;
 

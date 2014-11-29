@@ -59,7 +59,7 @@ moving = 0;
 mouse_xprevious = mouse_x;
 
 
-visible = (controller.blankmode != "solid") &amp;&amp; (controller.blankmode2 == 1);
+visible = (controller.blankmode != "solid") &amp;&amp; (controller.blankmode2 == 1) and (controller.blankmode != "func");
 
 if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y+7) and ((mouse_y &lt; y+25))
     {

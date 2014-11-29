@@ -49,7 +49,7 @@ moving = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>visible = (controller.colormode != "rainbow")
+            <string>visible = (controller.colormode != "rainbow") and (controller.colormode != "func");
 
 if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {

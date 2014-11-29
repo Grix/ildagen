@@ -38,6 +38,22 @@ parser_shape = ML_InitParserScience(varmap);
     ML_AddVariable(parser_shape, "starty",0, ML_VAL_REAL, 1);
     ML_AddVariable(parser_shape, "endx",0, ML_VAL_REAL, 1);
     ML_AddVariable(parser_shape, "endy",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "width",$ffff, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "height",$ffff, ML_VAL_REAL, 1);
+    ML_AddFunction(parser_shape, "lerp", _ML_Lerp, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
+varmap = ds_map_create();
+parser_cb = ML_InitParserScience(varmap);
+    ML_AddVariable(parser_cb, "point",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "frame",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "startx",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "starty",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "endx",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "endy",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "x",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "y",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "width",$ffff, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "height",$ffff, ML_VAL_REAL, 1);
+    ML_AddFunction(parser_cb, "lerp", _ML_Lerp, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
     
 
 radialgrid_surf = surface_create(512,512);
@@ -165,6 +181,10 @@ objmoving = 0;
 shapefunc_cp = 100;
 shapefunc_string_x = "";
 shapefunc_string_y = "";
+colorfunc_string_1 = "";
+colorfunc_string_2 = "";
+colorfunc_string_3 = "";
+blankfunc_string = "";
 
 alarm[0] = 1;
 </string>

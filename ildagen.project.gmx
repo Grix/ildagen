@@ -116,9 +116,19 @@
       <sprite>sprites\spr_c_gradient</sprite>
       <sprite>sprites\spr_c_dash</sprite>
     </sprites>
+    <sprites name="func">
+      <sprite>sprites\spr_funcx</sprite>
+      <sprite>sprites\spr_funcy</sprite>
+      <sprite>sprites\spr_funcv</sprite>
+      <sprite>sprites\spr_funcs</sprite>
+      <sprite>sprites\spr_funcblank</sprite>
+      <sprite>sprites\spr_funcb</sprite>
+      <sprite>sprites\spr_funcg</sprite>
+      <sprite>sprites\spr_funch</sprite>
+      <sprite>sprites\spr_funcselect</sprite>
+      <sprite>sprites\spr_funcr</sprite>
+    </sprites>
     <sprite>sprites\spr_resettrans</sprite>
-    <sprite>sprites\spr_funcx</sprite>
-    <sprite>sprites\spr_funcy</sprite>
     <sprite>sprites\spr_scope</sprite>
     <sprite>sprites\spr_shaking</sprite>
     <sprite>sprites\spr_reapply</sprite>
@@ -342,6 +352,7 @@
         <script>scripts\ML_InitParserCS.gml</script>
         <script>scripts\ML_InitParserMath.gml</script>
         <script>scripts\ML_InitParserScience.gml</script>
+        <script>scripts\_ML_Lerp.gml</script>
       </scripts>
       <scripts name="detail">
         <scripts name="lexer">
@@ -655,8 +666,15 @@
         <object>objects\obj_c_gradient</object>
         <object>objects\obj_c_dash</object>
         <object>objects\obj_rainbow</object>
+        <object>objects\obj_c_func</object>
         <object>objects\obj_colorfreqselect</object>
         <object>objects\obj_colorabsrel</object>
+        <object>objects\obj_funcrselect</object>
+        <object>objects\obj_funcgselect</object>
+        <object>objects\obj_funcbselect</object>
+        <object>objects\obj_funchselect</object>
+        <object>objects\obj_funcsselect</object>
+        <object>objects\obj_funcvselect</object>
         <object>objects\obj_colordcselect</object>
         <object>objects\obj_colortselect</object>
         <object>objects\obj_coloroffselect</object>
@@ -667,6 +685,7 @@
         <object>objects\obj_blankabsrel</object>
         <object>objects\obj_blankfreqselect</object>
         <object>objects\obj_blanktselect</object>
+        <object>objects\obj_funcblank</object>
         <object>objects\obj_blankoffselect</object>
         <object>objects\obj_blankingdcselect</object>
         <object>objects\obj_b_solid</object>
@@ -674,6 +693,7 @@
         <object>objects\obj_b_dash</object>
         <object>objects\obj_b_dot</object>
         <object>objects\obj_b_dotsolid</object>
+        <object>objects\obj_b_func</object>
       </objects>
       <objects name="ani">
         <object>objects\obj_anienable</object>
