@@ -92,6 +92,9 @@ for (n = 0;n <= checkpoints; n++)
             makedot = 1;
         blank = 0;
         }
+    else if (blankmode == "func")
+        if (!func_blank())
+            return 0;
     
         
         
@@ -156,6 +159,9 @@ for (n = 0;n <= checkpoints; n++)
             c[2] = colour_get_red(color1_r);
             }
         }
+    else if (colormode == "func")
+        if (!func_color())
+            return 0;
         
     if (enddots)
         {
@@ -257,3 +263,5 @@ for (n = 0;n <= checkpoints; n++)
        ymin = n*vector[1];
     
     }
+    
+return 1;

@@ -66,6 +66,7 @@ if (is_string(resolution))
     
 randomize();
 
+//PREPARING FUNCTIONS
 if (placing == "func")
     {
     if (shapefunc_string_x == "") or is_undefined(shapefunc_string_x) 
@@ -99,8 +100,122 @@ if (placing == "func")
         return 0;
         }
     }
+    
+if (colormode == "func")
+    {
+    if (colorfunc_string_1 == "") or is_undefined(colorfunc_string_1) 
+        {
+        if (colormode2)
+            show_message("Please write a function for HUE");
+        else
+            show_message("Please write a function for RED");
+        frame = framepre;
+        return 0;
+        }
+    if (colorfunc_string_2 == "") or is_undefined(colorfunc_string_2) 
+        {
+        if (colormode2)
+            show_message("Please write a function for SATURATION");
+        else
+            show_message("Please write a function for GREEN");
+        frame = framepre;
+        return 0;
+        }
+    if (colorfunc_string_3 == "") or is_undefined(colorfunc_string_3) 
+        {
+        if (colormode2)
+            show_message("Please write a function for VALUE");
+        else
+            show_message("Please write a function for BLUE");
+        frame = framepre;
+        return 0;
+        }
+    
+    compiled_1 = ML_Compile(parser_cb,colorfunc_string_1); 
+    if (!ML_NoException(parser_cb))
+        {
+        if (colormode2)
+            show_message("Error in HUE: "+ML_LastExceptionString(cb_shape));
+        else
+            show_message("Error in RED: "+ML_LastExceptionString(cb_shape));
+        ML_CompileCleanup(compiled_1);
+        if (placing == "func")
+            {
+            ML_CompileCleanup(compiled_x);
+            ML_CompileCleanup(compiled_y);
+            }
+        frame = framepre;
+        return 0;
+        }
+    compiled_2 = ML_Compile(parser_cb,colorfunc_string_2); 
+    if (!ML_NoException(parser_cb))
+        {
+        if (colormode2)
+            show_message("Error in SATURATION: "+ML_LastExceptionString(cb_shape));
+        else
+            show_message("Error in GREEN: "+ML_LastExceptionString(cb_shape));
+        ML_CompileCleanup(compiled_2);
+        ML_CompileCleanup(compiled_1);
+        if (placing == "func")
+            {
+            ML_CompileCleanup(compiled_x);
+            ML_CompileCleanup(compiled_y);
+            }
+        frame = framepre;
+        return 0;
+        }
+    compiled_3 = ML_Compile(parser_cb,colorfunc_string_3); 
+    if (!ML_NoException(parser_cb))
+        {
+        if (colormode2)
+            show_message("Error in VALUE: "+ML_LastExceptionString(cb_shape));
+        else
+            show_message("Error in BLUE: "+ML_LastExceptionString(cb_shape));
+        ML_CompileCleanup(compiled_3);
+        ML_CompileCleanup(compiled_2);
+        ML_CompileCleanup(compiled_1);
+        if (placing == "func")
+            {
+            ML_CompileCleanup(compiled_x);
+            ML_CompileCleanup(compiled_y);
+            }
+        frame = framepre;
+        return 0;
+        }
+    }
+    
+if (blankmode == "func")
+    {
+    if (blankfunc_string == "") or is_undefined(blankfunc_string) 
+        {
+        show_message("Please write a function for BLANKING");
+        frame = framepre;
+        return 0;
+        }
+    
+    compiled_en = ML_Compile(parser_cb,blankfunc_string);
+    if (!ML_NoException(parser_cb))
+        {
+        show_message("Error in BLANKING: "+ML_LastExceptionString(parser_cb));
+        ML_CompileCleanup(compiled_en);
+        if (colormode == "func")
+            {
+            ML_CompileCleanup(compiled_3);
+            ML_CompileCleanup(compiled_2);
+            ML_CompileCleanup(compiled_1);
+            }
+        if (placing == "func")
+            {
+            ML_CompileCleanup(compiled_x);
+            ML_CompileCleanup(compiled_y);
+            }
+        frame = framepre;
+        return 0;
+        }
+    }
 
-
+    
+//ONLY ONE FRAME
 if (!fillframes)
     {
     new_list = ds_list_create();
@@ -284,30 +399,90 @@ if (!fillframes)
     ds_list_add(new_list,0);
     ds_list_add(new_list,el_id);
     
+    func_startofframe();
     
     if (placing == "line") //create a line
-        create_line();
+        {
+        if (!create_line())
+            {
+            ds_list_clear(bez_list);
+            ds_list_clear(free_list);
+            ds_stack_push(undo_list,el_id);
+            ds_list_destroy(new_list);
+            frame = framepre;
+            return 0;
+            }
+        }
         
     else if (placing == "circle") //create a circle
-        create_circle();
+        {
+        if (!create_circle())
+            {
+            ds_list_clear(bez_list);
+            ds_list_clear(free_list);
+            ds_stack_push(undo_list,el_id);
+            ds_list_destroy(new_list);
+            frame = framepre;
+            return 0;
+            }
+        }
         
     else if (placing == "wave") //create a wave
-        create_wave();
+        {
+        if (!create_wave())
+            {
+            ds_list_clear(bez_list);
+            ds_list_clear(free_list);
+            ds_stack_push(undo_list,el_id);
+            ds_list_destroy(new_list);
+            frame = framepre;
+            return 0;
+            }
+        }
 
     else if (placing == "free") //create a free drawn shape
-        create_free();
+        {
+        if (!create_free())
+            {
+            ds_list_clear(bez_list);
+            ds_list_clear(free_list);
+            ds_stack_push(undo_list,el_id);
+            ds_list_destroy(new_list);
+            frame = framepre;
+            return 0;
+            }
+        }
         
     else if (placing == "curve") //create a curve
-        create_curve();
+        {
+        if (!create_curve())
+            {
+            ds_list_clear(bez_list);
+            ds_list_clear(free_list);
+            ds_stack_push(undo_list,el_id);
+            ds_list_destroy(new_list);
+            frame = framepre;
+            return 0;
+            }
+        }
         
     else if (placing == "text") //create a letter/text
-        create_letter();
+        {
+        if (!create_letter())
+            {
+            ds_list_clear(bez_list);
+            ds_list_clear(free_list);
+            ds_stack_push(undo_list,el_id);
+            ds_list_destroy(new_list);
+            frame = framepre;
+            return 0;
+            }
+        }
         
     else if (placing == "func") //create a function based shape
         {
         if (!create_func())
             {
-            show_message("fail")
             ds_list_clear(bez_list);
             ds_list_clear(free_list);
             ds_stack_push(undo_list,el_id);
@@ -513,24 +688,85 @@ else
         ds_list_add(new_list,0);
         ds_list_add(new_list,el_id);
         
+        func_startofframe();
         
         if (placing == "line") //create a line
-            create_line();
+            {
+            if (!create_line())
+                {
+                ds_list_clear(bez_list);
+                ds_list_clear(free_list);
+                ds_stack_push(undo_list,el_id);
+                ds_list_destroy(new_list);
+                frame = framepre;
+                return 0;
+                }
+            }
             
         else if (placing == "circle") //create a circle
-            create_circle();
+            {
+            if (!create_circle())
+                {
+                ds_list_clear(bez_list);
+                ds_list_clear(free_list);
+                ds_stack_push(undo_list,el_id);
+                ds_list_destroy(new_list);
+                frame = framepre;
+                return 0;
+                }
+            }
             
         else if (placing == "wave") //create a wave
-            create_wave();
+            {
+            if (!create_wave())
+                {
+                ds_list_clear(bez_list);
+                ds_list_clear(free_list);
+                ds_stack_push(undo_list,el_id);
+                ds_list_destroy(new_list);
+                frame = framepre;
+                return 0;
+                }
+            }
     
         else if (placing == "free") //create a free drawn shape
-            create_free();
+            {
+            if (!create_free())
+                {
+                ds_list_clear(bez_list);
+                ds_list_clear(free_list);
+                ds_stack_push(undo_list,el_id);
+                ds_list_destroy(new_list);
+                frame = framepre;
+                return 0;
+                }
+            }
             
-        else if (placing == "curve") //create a bezier curve
-            create_curve();
+        else if (placing == "curve") //create a curve
+            {
+            if (!create_curve())
+                {
+                ds_list_clear(bez_list);
+                ds_list_clear(free_list);
+                ds_stack_push(undo_list,el_id);
+                ds_list_destroy(new_list);
+                frame = framepre;
+                return 0;
+                }
+            }
             
         else if (placing == "text") //create a letter/text
-            create_letter();
+            {
+            if (!create_letter())
+                {
+                ds_list_clear(bez_list);
+                ds_list_clear(free_list);
+                ds_stack_push(undo_list,el_id);
+                ds_list_destroy(new_list);
+                frame = framepre;
+                return 0;
+                }
+            }
             
         else if (placing == "func") //create a function based shape
             {

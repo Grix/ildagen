@@ -111,6 +111,9 @@ if !((startposx_r == endx_r) && (startposy_r == endy_r))
                 c[2] = colour_get_red(color1_r);
                 }
             }
+        else if (colormode == "func")
+            if (!func_color())
+                return 0;
          
         //BLANK   
         if (blankmode = "solid")
@@ -169,6 +172,9 @@ if !((startposx_r == endx_r) && (startposy_r == endy_r))
             if (n == checkpoints) and (numdots < (blank_freq_r)) and (blank_freq_r % 1 == 0)
                 makedot = 1;
             }
+        else if (blankmode == "func")
+            if (!func_blank())
+                return 0;
                 
         
     if (makedot)
@@ -275,3 +281,5 @@ else
     ymax = endy_r+1;
     ymin = endy_r;
     }
+    
+return 1;

@@ -7,12 +7,6 @@ xmin = $ffff-20;
 ymax = 20;
 ymin = $ffff-20;
 
-ML_VM_SetVarReal(parser_shape,"startx",startposx_r*128);
-ML_VM_SetVarReal(parser_shape,"starty",startposy_r*128);
-ML_VM_SetVarReal(parser_shape,"endx",endx_r*128);
-ML_VM_SetVarReal(parser_shape,"endy",endy_r*128);
-ML_VM_SetVarReal(parser_shape,"frame",t);
-
 if (blankmode == "dot") or (blankmode == "dotsolid")
     {
     if (blankmode2 == 0)
@@ -44,6 +38,30 @@ if (colormode == "dash")
 for (n = 0;n <= checkpoints; n++)
     {
     makedot = 0;
+    
+    //XY
+    ML_VM_SetVarReal(parser_shape,"point",n/checkpoints);
+
+    
+    result_x = ML_Execute(parser_shape,compiled_x);
+    if (!ML_ResObj_HasAnswer(result_x))
+        {
+        show_message("Unexpected value for X at point="+string(n/checkpoints)+" , frame="+string(t));  
+        ML_ResObj_Cleanup(result_x);
+        ML_CompileCleanup(compiled_x);
+        ML_CompileCleanup(compiled_y);
+        return 0;
+        }    
+    result_y = ML_Execute(parser_shape,compiled_y);
+    if (!ML_ResObj_HasAnswer(result_y))
+        {
+        show_message("Unexpected value for Y at point="+string(n/checkpoints)+" , frame="+string(t));
+        ML_ResObj_Cleanup(result_y);
+        ML_ResObj_Cleanup(result_x);
+        ML_CompileCleanup(compiled_x);
+        ML_CompileCleanup(compiled_y);
+        return 0;
+        }
     
     //BLANK
     if (blankmode == "solid")
@@ -94,6 +112,9 @@ for (n = 0;n <= checkpoints; n++)
             makedot = 1;
         blank = 0;
         }
+    else if (blankmode == "func")
+        if (!func_blank())
+            return 0;
     
         
         
@@ -158,35 +179,16 @@ for (n = 0;n <= checkpoints; n++)
             c[2] = colour_get_red(color1_r);
             }
         }
+    else if (colormode == "func")
+        if (!func_color())
+            return 0;
         
     if (enddots)
         {
         if (!makedot) and (blankmode != "dot") and (n == checkpoints) and (blank == 0)
             makedot = 1;
         }
-        
-    ML_VM_SetVarReal(parser_shape,"point",n/checkpoints);
-
     
-    result_x = ML_Execute(parser_shape,compiled_x);
-    if (!ML_ResObj_HasAnswer(result_x))
-        {
-        show_message("Unexpected value for X at point="+string(n/checkpoints)+" , frame="+string(t));  
-        ML_ResObj_Cleanup(result_x);
-        ML_CompileCleanup(compiled_x);
-        ML_CompileCleanup(compiled_y);
-        return 0;
-        }    
-    result_y = ML_Execute(parser_shape,compiled_y);
-    if (!ML_ResObj_HasAnswer(result_y))
-        {
-        show_message("Unexpected value for Y at point="+string(n/checkpoints)+" , frame="+string(t));
-        ML_ResObj_Cleanup(result_y);
-        ML_ResObj_Cleanup(result_x);
-        ML_CompileCleanup(compiled_x);
-        ML_CompileCleanup(compiled_y);
-        return 0;
-        }
         
     if (n)
         {

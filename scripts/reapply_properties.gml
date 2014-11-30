@@ -127,6 +127,7 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
     
     if (anienable == 0) or (ds_list_size(temp_frame_list) == 1)
         {
+        t = 0;
         blank_freq_r = blank_freq;
         blank_period_r = blank_period;
         blank_dc_r = blank_dc;
@@ -247,6 +248,9 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             }
         }
         
+        
+    func_startofframe();
+        
     
     if (controller.reap_blank)
         {
@@ -361,6 +365,12 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                     c[1] = colour_get_green(color1_r);
                     c[2] = colour_get_red(color1_r);
                     }
+                }
+            else if (colormode == "func")
+                {
+                c[0] = colour_get_blue(color1_r);
+                c[1] = colour_get_green(color1_r);
+                c[2] = colour_get_red(color1_r);
                 }
                 
             

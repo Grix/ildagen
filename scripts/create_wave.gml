@@ -44,6 +44,15 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
         {
         makedot = 0;
         
+        //XY
+        ratiox = sin(degtorad(point_direction(startposx_r,startposy_r,endx_r,endy_r)));
+        ratioy = cos(degtorad(point_direction(startposx_r,startposy_r,endx_r,endy_r)));
+        pointx = vector[0]*n+wave_amp_r*sin(wave_offset_r+ pi*2/checkpoints*n*wave_period_r)*ratiox/128;
+        pointy = vector[1]*n+wave_amp_r*sin(wave_offset_r+ pi*2/checkpoints*n*wave_period_r)*ratioy/128;
+        pointxprevious = vector[0]*(n-1)+wave_amp_r*sin(wave_offset_r+ pi*2/checkpoints*(n-1)*wave_period_r)*ratiox/128;
+        pointyprevious = vector[1]*(n-1)+wave_amp_r*sin(wave_offset_r+ pi*2/checkpoints*(n-1)*wave_period_r)*ratioy/128;
+        
+        
         //COLOR
         if (colormode = "solid")
             {
@@ -104,13 +113,10 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
                 c[2] = colour_get_red(color1_r);
                 }
             }
-            
-        ratiox = sin(degtorad(point_direction(startposx_r,startposy_r,endx_r,endy_r)));
-        ratioy = cos(degtorad(point_direction(startposx_r,startposy_r,endx_r,endy_r)));
-        pointx = vector[0]*n+wave_amp_r*sin(wave_offset_r+ pi*2/checkpoints*n*wave_period_r)*ratiox/128;
-        pointy = vector[1]*n+wave_amp_r*sin(wave_offset_r+ pi*2/checkpoints*n*wave_period_r)*ratioy/128;
-        pointxprevious = vector[0]*(n-1)+wave_amp_r*sin(wave_offset_r+ pi*2/checkpoints*(n-1)*wave_period_r)*ratiox/128;
-        pointyprevious = vector[1]*(n-1)+wave_amp_r*sin(wave_offset_r+ pi*2/checkpoints*(n-1)*wave_period_r)*ratioy/128;
+        else if (colormode == "func")
+            if (!func_color())
+                return 0;
+        
             
         //BLANK
         if (blankmode = "solid")
@@ -161,6 +167,9 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
                 makedot = 1;
             blank = 0;
             }
+        else if (blankmode == "func")
+            if (!func_blank())
+                return 0;
             
     if (enddots)
         {
@@ -274,3 +283,5 @@ else
     ymax = endy_r+1;
     ymin = endy_r;
     }
+
+return 1;

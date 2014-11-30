@@ -42,6 +42,11 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
         {
         makedot = 0;
         
+        pointx = bezier_x(n/checkpoints)-ds_list_find_value(bez_list,0)+(startposx_r-ds_list_find_value(bez_list,0));
+        pointy = bezier_y(n/checkpoints)-ds_list_find_value(bez_list,1)+(startposy_r-ds_list_find_value(bez_list,1));
+        pointxprevious = bezier_x((n-1)/checkpoints)-ds_list_find_value(bez_list,0)+(startposx_r-ds_list_find_value(bez_list,0));
+        pointyprevious = bezier_y((n-1)/checkpoints)-ds_list_find_value(bez_list,1)+(startposy_r-ds_list_find_value(bez_list,1));
+        
         //COLOR
         if (colormode = "solid")
             {
@@ -102,11 +107,10 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
                 c[2] = colour_get_red(color1_r);
                 }
             }
-            
-        pointx = bezier_x(n/checkpoints)-ds_list_find_value(bez_list,0)+(startposx_r-ds_list_find_value(bez_list,0));
-        pointy = bezier_y(n/checkpoints)-ds_list_find_value(bez_list,1)+(startposy_r-ds_list_find_value(bez_list,1));
-        pointxprevious = bezier_x((n-1)/checkpoints)-ds_list_find_value(bez_list,0)+(startposx_r-ds_list_find_value(bez_list,0));
-        pointyprevious = bezier_y((n-1)/checkpoints)-ds_list_find_value(bez_list,1)+(startposy_r-ds_list_find_value(bez_list,1));
+        else if (colormode == "func")
+            if (!func_color())
+                return 0;
+        
             
         //BLANK
         if (blankmode = "solid")
@@ -157,6 +161,9 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
                 makedot = 1;
             blank = 0;
             }
+        else if (blankmode == "func")
+            if (!func_blank())
+                return 0;
             
     if (enddots)
         {
@@ -269,3 +276,5 @@ else
     ymax = endy_r+1;
     ymin = endy_r;
     }
+    
+return 1;

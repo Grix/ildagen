@@ -594,14 +594,17 @@
     </scripts>
     <scripts name="createobject">
       <script>scripts\create_element.gml</script>
+      <script>scripts\create_text_init.gml</script>
       <script>scripts\create_line.gml</script>
       <script>scripts\create_func.gml</script>
       <script>scripts\create_circle.gml</script>
       <script>scripts\create_wave.gml</script>
       <script>scripts\create_curve.gml</script>
       <script>scripts\create_free.gml</script>
-      <script>scripts\create_text_init.gml</script>
       <script>scripts\create_letter.gml</script>
+      <script>scripts\func_startofframe.gml</script>
+      <script>scripts\func_color.gml</script>
+      <script>scripts\func_blank.gml</script>
     </scripts>
     <script>scripts\reapply_properties.gml</script>
     <script>scripts\reapply_trans.gml</script>
