@@ -131,12 +131,28 @@ mouse_yprevious = mouse_y;
 
 if (mouse_x &lt; (x+14))
     {
-    controller.color1 = make_color_rgb(clamp(get_integer("Enter value for RED from 0 to 255",colour_get_red(controller.color1)),0,255),colour_get_green(controller.color1),colour_get_blue(controller.color1));
+    with (controller)
+        {
+        dialog = "c1r";
+        getint = get_integer_async("Enter value for RED from 0 to 255",colour_get_red(controller.color1));
+        }
     }
 else if (mouse_x &gt; (x+30))
-    controller.color1 = make_color_rgb(colour_get_red(controller.color1),colour_get_green(controller.color1),clamp(get_integer("Enter value for BLUE from 0 to 255",colour_get_blue(controller.color1)),0,255));
-else controller.color1 = make_color_rgb(colour_get_red(controller.color1),clamp(get_integer("Enter value for GREEN from 0 to 255",colour_get_green(controller.color1)),0,255),colour_get_blue(controller.color1));
-
+    {
+    with (controller)
+        {
+        dialog = "c1b";
+        getint = get_integer_async("Enter value for BLUE from 0 to 255",colour_get_blue(controller.color1));
+        }
+    }
+else 
+    {
+    with (controller)
+        {
+        dialog = "c1g";
+        getint = get_integer_async("Enter value for GREEN from 0 to 255",colour_get_green(controller.color1));
+        }
+    }
 </string>
           </argument>
         </arguments>

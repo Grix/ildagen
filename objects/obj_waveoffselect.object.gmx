@@ -112,7 +112,11 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-controller.wave_offset = get_integer("Enter the wave offset in degrees",controller.wave_offset);
+with (controller)
+    {
+    dialog = "waveoffset";
+    getint = get_integer_async("Enter the wave offset in degrees",controller.wave_offset);
+    }
 </string>
           </argument>
         </arguments>

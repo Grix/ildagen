@@ -115,8 +115,12 @@ if (visible) and (mouse_x &gt; x-sprite_width/2) and (mouse_x &lt; (x+sprite_wid
             <kind>1</kind>
             <string>if (!visible)
     exit;
-
-controller.wave_amp = get_integer("Enter the wave amplitude",controller.wave_amp);
+    
+with (controller)
+    {
+    dialog = "waveamp";
+    getint = get_integer_async("Enter the wave amplitude",controller.wave_amp);
+    }
 </string>
           </argument>
         </arguments>

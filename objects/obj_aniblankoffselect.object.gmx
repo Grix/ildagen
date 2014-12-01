@@ -114,7 +114,12 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-controller.aniblank_offset = get_integer("Enter the animation end blanking offset",controller.aniblank_offset);
+    
+with (controller)
+{
+dialog = "aniblankoffset";
+getint = get_integer_async("Enter the animation end blanking offset",controller.aniblank_offset);
+}
 </string>
           </argument>
         </arguments>

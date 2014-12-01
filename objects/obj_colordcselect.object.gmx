@@ -112,7 +112,11 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-controller.color_dc = clamp(get_integer("Enter the coloring duty cycle",controller.color_dc),0,1);
+with (controller)
+{
+dialog = "colordc";
+getint = get_integer_async("Enter the coloring duty cycle",controller.color_dc);
+}
 </string>
           </argument>
         </arguments>

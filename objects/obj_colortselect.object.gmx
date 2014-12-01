@@ -113,7 +113,11 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-controller.color_period = get_integer("Enter the color period",controller.color_period);
+with (controller)
+{
+dialog = "colorperiod";
+getint = get_integer_async("Enter the color period",controller.color_period);
+}
 </string>
           </argument>
         </arguments>

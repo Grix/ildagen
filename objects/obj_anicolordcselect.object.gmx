@@ -112,7 +112,11 @@ if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y+7) a
             <string>if (!visible)
     exit;
 
-controller.anicolor_dc = clamp(get_integer("Enter the animation end color duty cycle",controller.anicolor_dc),0,1);
+with (controller)
+{
+dialog = "anicolordc";
+getint = get_integer_async("Enter the animation end color duty cycle",controller.anicolor_dc);
+}
 </string>
           </argument>
         </arguments>

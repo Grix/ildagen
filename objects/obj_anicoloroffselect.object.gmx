@@ -113,7 +113,12 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-controller.anicolor_offset = get_integer("Enter the animation end color offset",controller.anicolor_offset);
+    
+with (controller)
+{
+dialog = "anicoloroffset";
+getint = get_integer_async("Enter the animation end color offset",controller.anicolor_offset);
+}
 </string>
           </argument>
         </arguments>

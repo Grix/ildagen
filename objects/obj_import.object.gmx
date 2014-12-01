@@ -79,11 +79,10 @@ else image_index = 0;
             <kind>1</kind>
             <string>if (os_version == -1)
     {
-    show_message("Sorry, this feature is not available in the web version");
+    show_message_async("Sorry, this feature is not available in the web version");
     exit;
     }
-
-import_ilda();
+    
 with (controller)
     {
     placing_status = 0;
@@ -91,6 +90,7 @@ with (controller)
     ds_list_clear(bez_list);
     exit;
     }
+import_ilda();
 </string>
           </argument>
         </arguments>

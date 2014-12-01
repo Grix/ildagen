@@ -127,14 +127,32 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_x &lt; (x+14))
+            <string>if (!visible) exit;
+
+if (mouse_x &lt; (x+14))
     {
-    controller.anicolor2 = make_color_rgb(clamp(get_integer("Enter value for RED from 0 to 255",colour_get_red(controller.anicolor2)),0,255),colour_get_green(controller.anicolor2),colour_get_blue(controller.anicolor2));
+    with (controller)
+        {
+        dialog = "ac2r";
+        getint = get_integer_async("Enter value for RED from 0 to 255",colour_get_red(controller.anicolor2));
+        }
     }
 else if (mouse_x &gt; (x+30))
-    controller.anicolor2 = make_color_rgb(colour_get_red(controller.anicolor2),colour_get_green(controller.anicolor2),clamp(get_integer("Enter value for BLUE from 0 to 255",colour_get_blue(controller.anicolor2)),0,255));
-else controller.anicolor2 = make_color_rgb(colour_get_red(controller.anicolor2),clamp(get_integer("Enter value for GREEN from 0 to 255",colour_get_green(controller.anicolor2)),0,255),colour_get_blue(controller.anicolor2));
-
+    {
+    with (controller)
+        {
+        dialog = "ac2b";
+        getint = get_integer_async("Enter value for BLUE from 0 to 255",colour_get_blue(controller.anicolor2));
+        }
+    }
+else 
+    {
+    with (controller)
+        {
+        dialog = "ac2g";
+        getint = get_integer_async("Enter value for GREEN from 0 to 255",colour_get_green(controller.anicolor2));
+        }
+    }
 </string>
           </argument>
         </arguments>

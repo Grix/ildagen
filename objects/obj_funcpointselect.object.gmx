@@ -111,7 +111,12 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-controller.shapefunc_cp = get_integer("Enter the number of points to calculate",controller.shapefunc_cp);
+    
+with (controller)
+    {
+    dialog = "shapefuncpoints";
+    getint = get_integer_async("Enter the number of points to calculate",controller.shapefunc_cp);
+    }
 </string>
           </argument>
         </arguments>

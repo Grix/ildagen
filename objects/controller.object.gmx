@@ -456,7 +456,7 @@ if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
         alarm[0] = 30;
         }
     else if (scroll)
-        framehr -= 0.4;
+        framehr -= 0.49;
     if (framehr &lt; -0.5)
         framehr+= maxframes;
     frame = round(framehr);
@@ -500,7 +500,7 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status ==
         alarm[0] = 30;
         }
     else if (scroll)
-        framehr += 0.4;
+        framehr += 0.49;
     if (framehr &gt; maxframes-0.5)
         framehr-= maxframes;
     frame = round(framehr);
@@ -880,7 +880,7 @@ else if (placing == "curve")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//what a mess, thanks yoyogames :)
+            <string>//what a mess
 
 //Get integer
 var new_id = ds_map_find_value(async_load, "id");
@@ -890,6 +890,244 @@ if (new_id == getint)
        {
       switch (dialog)
           {
+          case "wavet":
+            {
+            wave_period = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+          case "waveamp":
+            {
+            wave_amp = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+          case "waveoffset":
+            {
+            wave_offset = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+          case "shapefuncpoints":
+            {
+            shapefunc_cp = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+          case "colorfreq":
+            {
+            color_freq = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+          case "colordc":
+            {
+            color_dc = clamp(ds_map_find_value(async_load, "value"),0,1);
+            
+            break;
+            }
+          case "colorperiod":
+            {
+            color_period = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+          case "coloroffset":
+            {
+            color_offset = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+          case "aniblankdc":
+            {
+            aniblank_dc = clamp(ds_map_find_value(async_load, "value"),0,1);
+            
+            break;
+            }
+          case "aniblankoffset":
+            {
+            aniblank_offset = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+          case "anicolordc":
+            {
+            anicolor_dc = clamp(ds_map_find_value(async_load, "value"),0,1);
+            
+            break;
+            }
+          case "anicoloroffset":
+            {
+            anicolor_offset = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+          case "aniwaveoffset":
+            {
+            aniwave_offset = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+          case "aniwaveamp":
+            {
+            aniwave_amp = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+            
+            //COLOR
+          case "c1r":
+            {
+            controller.color1 = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(controller.color1),colour_get_blue(controller.color1));
+            
+            break;
+            }
+          case "c1g":
+            {
+            controller.color1 = make_color_rgb(colour_get_red(controller.color1),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(controller.color1));
+            
+            break;
+            }
+          case "c1b":
+            {
+            controller.color1 = make_color_rgb(colour_get_red(controller.color1),colour_get_green(controller.color1),clamp(ds_map_find_value(async_load, "value"),0,255));
+            
+            break;
+            }
+          case "c2r":
+            {
+            controller.color2 = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(controller.color2),colour_get_blue(controller.color2));
+            
+            break;
+            }
+          case "c2g":
+            {
+            controller.color2 = make_color_rgb(colour_get_red(controller.color2),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(controller.color2));
+            
+            break;
+            }
+          case "c2b":
+            {
+            controller.color2 = make_color_rgb(colour_get_red(controller.color2),colour_get_green(controller.color2),clamp(ds_map_find_value(async_load, "value"),0,255));
+            
+            break;
+            }
+          case "c3r":
+            {
+            controller.enddotscolor = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(controller.enddotscolor),colour_get_blue(controller.enddotscolor));
+            
+            break;
+            }
+          case "c3g":
+            {
+            controller.enddotscolor = make_color_rgb(colour_get_red(controller.enddotscolor),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(controller.enddotscolor));
+            
+            break;
+            }
+          case "c3b":
+            {
+            controller.enddotscolor = make_color_rgb(colour_get_red(controller.enddotscolor),colour_get_green(controller.enddotscolor),clamp(ds_map_find_value(async_load, "value"),0,255));
+            
+            break;
+            }
+            //ANI COLOR
+          case "ac1r":
+            {
+            controller.anicolor1 = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(controller.anicolor1),colour_get_blue(controller.anicolor1));
+            
+            break;
+            }
+          case "ac1g":
+            {
+            controller.anicolor1 = make_color_rgb(colour_get_red(controller.anicolor1),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(controller.anicolor1));
+            
+            break;
+            }
+          case "ac1b":
+            {
+            controller.anicolor1 = make_color_rgb(colour_get_red(controller.anicolor1),colour_get_green(controller.anicolor1),clamp(ds_map_find_value(async_load, "value"),0,255));
+            
+            break;
+            }
+          case "ac2r":
+            {
+            controller.anicolor2 = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(controller.anicolor2),colour_get_blue(controller.anicolor2));
+            
+            break;
+            }
+          case "ac2g":
+            {
+            controller.anicolor2 = make_color_rgb(colour_get_red(controller.anicolor2),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(controller.anicolor2));
+            
+            break;
+            }
+          case "ac2b":
+            {
+            controller.anicolor2 = make_color_rgb(colour_get_red(controller.anicolor2),colour_get_green(controller.anicolor2),clamp(ds_map_find_value(async_load, "value"),0,255));
+            
+            break;
+            }
+          case "ac3r":
+            {
+            controller.anienddotscolor = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(controller.anienddotscolor),colour_get_blue(controller.anienddotscolor));
+            
+            break;
+            }
+          case "ac3g":
+            {
+            controller.anienddotscolor = make_color_rgb(colour_get_red(controller.anienddotscolor),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(controller.anienddotscolor));
+            
+            break;
+            }
+          case "ac3b":
+            {
+            controller.anienddotscolor = make_color_rgb(colour_get_red(controller.anienddotscolor),colour_get_green(controller.anienddotscolor),clamp(ds_map_find_value(async_load, "value"),0,255));
+            
+            break;
+            }
+          
+          case "clearall":
+            {
+            onion_number = ds_map_find_value(async_load, "value");
+    
+            placing_status = 0;
+            ds_list_clear(free_list);
+            ds_list_clear(bez_list);
+            selectedelement = -1;
+            
+            for (j = 0;j &lt; ds_list_size(frame_list);j++)
+                {
+                el_list = ds_list_find_value(frame_list,j);
+                for (i = 0;i &lt; ds_list_size(el_list);i++)
+                    {
+                    list_id = ds_list_find_value(el_list,i);
+                    ds_list_clear(list_id);
+                    }
+                ds_list_clear(el_list);
+                }
+                
+            for (i = 0;i &lt; ds_list_size(surf_list);i++)
+                {
+                surface_free(ds_list_find_value(surf_list,i))
+                }
+            if (viewmode != 0)
+                {
+                for (i = 0;i &lt; ds_list_size(surf3d_list);i++)
+                    {
+                    surface_free(ds_list_find_value(surf_list,i))
+                    }
+                ds_list_clear(surf3d_list);
+                }
+                        
+            ds_list_clear(surf_list);
+            ds_list_clear(surf3d_list);
+            framepoints = 0;
+            
+            refresh_surfaces();
+            
+            break;
+            }
+          
           case "dotintensity":
             {
             ds_stack_push(undo_list,"d"+string(dotmultiply))

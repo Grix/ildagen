@@ -114,7 +114,12 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-controller.aniwave_amp = get_integer("Enter the animation end wave amplitude",controller.aniwave_amp);
+    
+with (controller)
+{
+dialog = "aniwaveamp";
+getint = get_integer_async("Enter the animation end wave amplitude",controller.aniwave_amp);
+}
 </string>
           </argument>
         </arguments>

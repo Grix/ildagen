@@ -113,7 +113,11 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-controller.aniwave_offset = get_integer("Enter the animation end wave offset",controller.aniwave_offset);
+with (controller)
+{
+dialog = "aniwaveoffset";
+getint = get_integer_async("Enter the animation end wave offset",controller.aniwave_offset);
+}
 </string>
           </argument>
         </arguments>

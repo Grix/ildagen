@@ -663,8 +663,8 @@
       </objects>
       <objects name="color">
         <object>objects\obj_colorselect_1</object>
-        <object>objects\obj_enddotscolorselect</object>
         <object>objects\obj_colorselect_2</object>
+        <object>objects\obj_enddotscolorselect</object>
         <object>objects\obj_c_solid</object>
         <object>objects\obj_c_gradient</object>
         <object>objects\obj_c_dash</object>

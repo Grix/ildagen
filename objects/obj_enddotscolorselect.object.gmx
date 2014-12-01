@@ -127,14 +127,32 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_x &lt; (x+14))
+            <string>if (!visible) exit;
+
+if (mouse_x &lt; (x+14))
     {
-    controller.enddotscolor = make_color_rgb(clamp(get_integer("Enter value for RED from 0 to 255",colour_get_red(controller.enddotscolor)),0,255),colour_get_green(controller.enddotscolor),colour_get_blue(controller.enddotscolor));
+    with (controller)
+        {
+        dialog = "c3r";
+        getint = get_integer_async("Enter value for RED from 0 to 255",colour_get_red(controller.enddotscolor));
+        }
     }
 else if (mouse_x &gt; (x+30))
-    controller.enddotscolor = make_color_rgb(colour_get_red(controller.enddotscolor),colour_get_green(controller.enddotscolor),clamp(get_integer("Enter value for BLUE from 0 to 255",colour_get_blue(controller.enddotscolor)),0,255));
-else controller.enddotscolor = make_color_rgb(colour_get_red(controller.enddotscolor),clamp(get_integer("Enter value for GREEN from 0 to 255",colour_get_green(controller.enddotscolor)),0,255),colour_get_blue(controller.enddotscolor));
-
+    {
+    with (controller)
+        {
+        dialog = "c3b";
+        getint = get_integer_async("Enter value for BLUE from 0 to 255",colour_get_blue(controller.enddotscolor));
+        }
+    }
+else 
+    {
+    with (controller)
+        {
+        dialog = "c3g";
+        getint = get_integer_async("Enter value for GREEN from 0 to 255",colour_get_green(controller.enddotscolor));
+        }
+    }
 </string>
           </argument>
         </arguments>
