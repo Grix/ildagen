@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>version = "0.9.6.1";
 
+
 if (os_version != -1) init_palette();
 if (os_version != -1) update_check();
 
@@ -392,7 +393,7 @@ if (selectedelement != -1)
             {
             for (j = scope_start;j &lt;= scope_end;j++)
                 {
-                el_list = ds_list_find_value(controller.frame_list,j);
+                el_list = ds_list_find_value(frame_list,j);
                 for (i = 0;i &lt; ds_list_size(el_list);i++)
                     {
                     if (ds_list_find_value(ds_list_find_value(el_list,i),9) == selectedelement)
@@ -411,7 +412,7 @@ if (selectedelement != -1)
         else
             {
             temp_undof_list = ds_list_create();
-            el_list = ds_list_find_value(controller.frame_list,frame);
+            el_list = ds_list_find_value(frame_list,frame);
             for (i = 0;i &lt; ds_list_size(el_list);i++)
                 {
                 if (ds_list_find_value(ds_list_find_value(el_list,i),9) == selectedelement)
@@ -472,12 +473,12 @@ if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
                 {
                 sefound = 1;
                 selectedelementlist = ds_list_find_value(el_list,i);
-                xo = ds_list_find_value(controller.selectedelementlist,0)/$ffff*512;
-                yo = ds_list_find_value(controller.selectedelementlist,1)/$ffff*512;
-                rectxmin = x+xo + (ds_list_find_value(controller.selectedelementlist,4));
-                rectymin = y+yo + (ds_list_find_value(controller.selectedelementlist,6));
-                rectxmax = x+xo + (ds_list_find_value(controller.selectedelementlist,5));
-                rectymax = y+yo + (ds_list_find_value(controller.selectedelementlist,7));
+                xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+                yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
+                rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
+                rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
+                rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
+                rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
                 }
             }
         if (sefound == 0)
@@ -516,12 +517,12 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status ==
                 {
                 sefound = 1;
                 selectedelementlist = ds_list_find_value(el_list,i);
-                xo = ds_list_find_value(controller.selectedelementlist,0)/$ffff*512;
-                yo = ds_list_find_value(controller.selectedelementlist,1)/$ffff*512;
-                rectxmin = x+xo + (ds_list_find_value(controller.selectedelementlist,4));
-                rectymin = y+yo + (ds_list_find_value(controller.selectedelementlist,6));
-                rectxmax = x+xo + (ds_list_find_value(controller.selectedelementlist,5));
-                rectymax = y+yo + (ds_list_find_value(controller.selectedelementlist,7));
+                xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+                yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
+                rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
+                rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
+                rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
+                rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
                 }
             }
         if (sefound == 0)
@@ -548,12 +549,12 @@ if (keyboard_check_pressed(vk_up)) and (!ds_list_empty(el_list)) and (placing_st
                 {
                 tempstop = 1;
                 selectedelementlist = ds_list_find_value(el_list,i);
-                xo = ds_list_find_value(controller.selectedelementlist,0)/$ffff*512;
-                yo = ds_list_find_value(controller.selectedelementlist,1)/$ffff*512;
-                rectxmin = x+xo + (ds_list_find_value(controller.selectedelementlist,4));
-                rectymin = y+yo + (ds_list_find_value(controller.selectedelementlist,6));
-                rectxmax = x+xo + (ds_list_find_value(controller.selectedelementlist,5));
-                rectymax = y+yo + (ds_list_find_value(controller.selectedelementlist,7));
+                xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+                yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
+                rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
+                rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
+                rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
+                rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
                 }
             }
         if (tempstop)
@@ -585,12 +586,12 @@ if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list)) and (placing_
                 {
                 tempstop = 1;
                 selectedelementlist = ds_list_find_value(el_list,i);
-                xo = ds_list_find_value(controller.selectedelementlist,0)/$ffff*512;
-                yo = ds_list_find_value(controller.selectedelementlist,1)/$ffff*512;
-                rectxmin = x+xo + (ds_list_find_value(controller.selectedelementlist,4));
-                rectymin = y+yo + (ds_list_find_value(controller.selectedelementlist,6));
-                rectxmax = x+xo + (ds_list_find_value(controller.selectedelementlist,5));
-                rectymax = y+yo + (ds_list_find_value(controller.selectedelementlist,7));
+                xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+                yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
+                rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
+                rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
+                rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
+                rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
                 }
             }
         if (tempstop)
@@ -879,14 +880,140 @@ else if (placing == "curve")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var i_d = ds_map_find_value(async_load, "id");
- if i_d == msg_get_funcx
+            <string>//what a mess, thanks yoyogames :)
+
+//Get integer
+var new_id = ds_map_find_value(async_load, "id");
+if (new_id == getint)
     {
     if ds_map_find_value(async_load, "status")
        {
-       if ds_map_find_value(async_load, "result") != ""
+      switch (dialog)
           {
-          global.Name = ds_map_find_value(async_load, "result");
+          case "dotintensity":
+            {
+            ds_stack_push(undo_list,"d"+string(dotmultiply))
+
+            dotmultiply = ds_map_find_value(async_load, "value");
+            if (dotmultiply &lt; 1) dotmultiply = 1;
+            if (dotmultiply &gt; 32) dotmultiply = 32;
+            
+            break;
+            }
+          case "onion_number":
+            {
+            onion_number = ds_map_find_value(async_load, "value");
+            refresh_surfaces();
+            
+            break;
+            }
+          case "onion_alpha":
+            {
+            onion_alpha = clamp(ds_map_find_value(async_load, "value"),0,1);
+            refresh_surfaces();
+            
+            break;
+            }
+          case "onion_dropoff":
+            {
+            onion_dropoff = clamp(ds_map_find_value(async_load, "value"),0,1);
+            refresh_surfaces();
+            
+            break;
+            }
+          case "fontsize":
+            {
+            font_size = clamp(ds_map_find_value(async_load, "value"),1,128);
+            break;
+            }
+            
+          case "res":
+            {
+            ds_stack_push(undo_list,"r"+string(resolution))
+
+            resolution = ds_map_find_value(async_load, "value");
+            if (resolution &lt; 4) resolution = 4;
+            if (resolution &gt; $8000) resolution = $8000;
+            
+            break;
+            }
+            
+          case "scopestart":
+            {
+            scope_start = clamp(ds_map_find_value(async_load, "value"),0,scope_end-1);
+            frame = scope_start;
+            framehr = scope_start;
+            refresh_surfaces();
+            
+            break;
+            }
+            
+          case "scopeend":
+            {
+            scope_end = clamp(ds_map_find_value(async_load, "value"),scope_start+1,maxframes-1);
+            
+            break;
+            }
+            
+          case "shake":
+            {
+            ds_stack_push(undo_list,"x"+string(shaking_sdev))
+            
+            shaking_sdev = ds_map_find_value(async_load, "value");
+            if (shaking_sdev &lt; 0.1) shaking_sdev = 0.1;
+            if (shaking_sdev &gt; 512) shaking_sdev = 512;
+            
+            break;
+            }
+            
+          case "maxframes":
+            {
+            ds_stack_push(undo_list,"a"+string(maxframes))
+            
+            scopeflag = 0;
+            if (maxframes == (scope_end+1)) scopeflag = 1;
+            
+            maxframes = ds_map_find_value(async_load, "value");
+            
+            if (maxframes &lt; 1) maxframes = 1;
+            else if (maxframes &gt; $ffff) maxframes = $ffff;
+            
+            if (scopeflag) or (scope_end &gt;= maxframes) 
+                scope_end = maxframes-1;
+            
+            if (scope_start &gt;= scope_end)
+                scope_start = scope_end-1;
+                
+            if (scope_start &lt; 0) scope_start = 0;
+            
+            if (ds_list_size(frame_list) &lt; maxframes)
+                repeat (maxframes - ds_list_size(frame_list))
+                    {
+                    templist = ds_list_create();
+                    if (fillframes)
+                        {
+                        tempelcount = ds_list_size(ds_list_find_value(frame_list,ds_list_size(frame_list)-1));
+                        for (u = 0;u &lt; tempelcount;u++)
+                            {
+                            tempellist = ds_list_create();
+                            ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(frame_list,ds_list_size(frame_list)-1),u));
+                            ds_list_add(templist,tempellist);
+                            }
+                        }
+                    ds_list_add(frame_list,templist);
+                    }
+                    
+            if (frame &gt; maxframes) 
+                {
+                frame = maxframes-1;
+                framehr = maxframes-1;
+                }
+                
+            dd_scope_reset();
+            
+            break;
+            }
+            
           }
        }
     }
@@ -970,6 +1097,7 @@ if (tooltip != "")
     }
     
 draw_set_color(c_white);
+draw_set_alpha(1);
 </string>
           </argument>
         </arguments>
@@ -1100,6 +1228,7 @@ draw_set_color(c_gray);
 if (placing_status) or (placing == "text")
     draw_preview_element();
 
+draw_set_alpha(1);
 draw_set_color(c_white);
 </string>
           </argument>

@@ -113,7 +113,7 @@ with (controller)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>draw_set_alpha(1);
 draw_sprite(sprite_index,image_index,x,y);
 </string>
           </argument>

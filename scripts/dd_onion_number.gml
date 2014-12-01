@@ -1,2 +1,6 @@
-controller.onion_number = clamp(get_integer("Enter the number of previous frames to preview",controller.onion_number),1,controller.maxframes);
-with (controller) refresh_surfaces();
+with (controller)
+{
+
+getint = get_integer_async("Enter the number of previous frames to preview",controller.onion_number);
+dialog = "onion_number";
+}

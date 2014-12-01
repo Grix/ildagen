@@ -77,7 +77,14 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_stack_push(controller.undo_list,"a"+string(controller.maxframes))
+            <string>with (controller)
+    {
+    getint = get_integer_async("Enter number of total frames in the animation",maxframes);
+    dialog = "maxframes";
+    }
+
+
+/*ds_stack_push(controller.undo_list,"a"+string(controller.maxframes))
 
 scopeflag = 0;
 if (controller.maxframes == (controller.scope_end+1)) scopeflag = 1;

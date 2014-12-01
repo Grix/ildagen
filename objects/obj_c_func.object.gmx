@@ -102,7 +102,7 @@ if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>draw_set_alpha(1);
 draw_sprite(sprite_index,image_index,x,y);
 </string>
           </argument>
