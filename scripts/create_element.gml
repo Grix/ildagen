@@ -1,5 +1,6 @@
 //creates an element from whatever has been done on the screen
 
+framepre = frame;
 placing_status = 0;
         
 if (maxframes == 1) and (anienable)
@@ -87,6 +88,7 @@ if (placing == "func")
         {
         show_message("Error in X: "+ML_LastExceptionString(parser_shape));
         ML_CompileCleanup(compiled_x);
+        ML_ClearExceptions(parser_shape);
         frame = framepre;
         return 0;
         }
@@ -96,6 +98,7 @@ if (placing == "func")
         show_message("Error in Y: "+ML_LastExceptionString(parser_shape));
         ML_CompileCleanup(compiled_x);
         ML_CompileCleanup(compiled_y);
+        ML_ClearExceptions(parser_shape);
         frame = framepre;
         return 0;
         }
@@ -135,10 +138,11 @@ if (colormode == "func")
     if (!ML_NoException(parser_cb))
         {
         if (colormode2)
-            show_message("Error in HUE: "+ML_LastExceptionString(cb_shape));
+            show_message("Error in HUE: "+ML_LastExceptionString(parser_cb));
         else
-            show_message("Error in RED: "+ML_LastExceptionString(cb_shape));
+            show_message("Error in RED: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_1);
+        ML_ClearExceptions(parser_cb);
         if (placing == "func")
             {
             ML_CompileCleanup(compiled_x);
@@ -151,11 +155,12 @@ if (colormode == "func")
     if (!ML_NoException(parser_cb))
         {
         if (colormode2)
-            show_message("Error in SATURATION: "+ML_LastExceptionString(cb_shape));
+            show_message("Error in SATURATION: "+ML_LastExceptionString(parser_cb));
         else
-            show_message("Error in GREEN: "+ML_LastExceptionString(cb_shape));
+            show_message("Error in GREEN: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_2);
         ML_CompileCleanup(compiled_1);
+        ML_ClearExceptions(parser_cb);
         if (placing == "func")
             {
             ML_CompileCleanup(compiled_x);
@@ -168,12 +173,13 @@ if (colormode == "func")
     if (!ML_NoException(parser_cb))
         {
         if (colormode2)
-            show_message("Error in VALUE: "+ML_LastExceptionString(cb_shape));
+            show_message("Error in VALUE: "+ML_LastExceptionString(parser_cb));
         else
-            show_message("Error in BLUE: "+ML_LastExceptionString(cb_shape));
+            show_message("Error in BLUE: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_3);
         ML_CompileCleanup(compiled_2);
         ML_CompileCleanup(compiled_1);
+        ML_ClearExceptions(parser_cb);
         if (placing == "func")
             {
             ML_CompileCleanup(compiled_x);
@@ -198,6 +204,7 @@ if (blankmode == "func")
         {
         show_message("Error in BLANKING: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_en);
+        ML_ClearExceptions(parser_cb);
         if (colormode == "func")
             {
             ML_CompileCleanup(compiled_3);
@@ -502,7 +509,6 @@ if (!fillframes)
     }
 else
     {
-    framepre = frame;
     frame = scope_start;
     repeat (scope_end-scope_start+1)
         {

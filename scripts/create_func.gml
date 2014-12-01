@@ -113,8 +113,15 @@ for (n = 0;n <= checkpoints; n++)
         blank = 0;
         }
     else if (blankmode == "func")
+        {
         if (!func_blank())
             return 0;
+        if (blanknew != blank) and (enddots)
+            {
+            makedot = 2;
+            blanknew = blank;
+            }
+        }
     
         
         

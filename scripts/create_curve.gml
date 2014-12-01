@@ -162,8 +162,15 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
             blank = 0;
             }
         else if (blankmode == "func")
+            {
             if (!func_blank())
                 return 0;
+            if (blanknew != blank) and (enddots)
+                {
+                makedot = 2;
+                blanknew = blank;
+                }
+            }
             
     if (enddots)
         {

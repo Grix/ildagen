@@ -57,7 +57,7 @@ if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and
     } 
 else image_index = 0;
 if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
-controller.tooltip = "Sets the function for the Y coordinate";
+controller.tooltip = "Sets the function for the Y coordinate#Value from 0 (top) to 65535 (bottom)";
 </string>
           </argument>
         </arguments>
