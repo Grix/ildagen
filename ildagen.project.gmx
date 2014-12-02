@@ -611,8 +611,8 @@
       <script>scripts\reapply_properties.gml</script>
       <script>scripts\reapply_trans.gml</script>
     </scripts>
-    <script>scripts\draw_ilda_2d.gml</script>
     <script>scripts\handle_trans.gml</script>
+    <script>scripts\draw_ilda_2d.gml</script>
     <script>scripts\export_ilda.gml</script>
     <script>scripts\export_ilda_html5.gml</script>
     <script>scripts\draw_preview_element.gml</script>
@@ -649,6 +649,7 @@
       <object>objects\obj_clearframe</object>
       <object>objects\obj_undo</object>
       <object>objects\obj_scope</object>
+      <object>objects\obj_maxframes</object>
       <objects name="shape">
         <object>objects\obj_wavetselect</object>
         <object>objects\obj_s_line</object>
@@ -714,7 +715,6 @@
         <object>objects\obj_aniwaveoffselect</object>
         <object>objects\obj_aniwaveamp</object>
         <object>objects\obj_anifunc</object>
-        <object>objects\obj_maxframes</object>
         <object>objects\obj_shake</object>
         <object>objects\obj_resettrans</object>
       </objects>

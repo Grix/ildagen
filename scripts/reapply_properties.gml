@@ -266,7 +266,7 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         }
     else
         {
-        t = i/ds_list_size(temp_frame_list);    
+        t = i/(ds_list_size(temp_frame_list));    
         if (anifunc = "tri")
             {
             t *= 2;

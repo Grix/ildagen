@@ -100,7 +100,7 @@ if (is_real(undo))
             if (ds_list_find_value(ds_list_find_value(el_list,i),9) == undo)
                 {
                 list_id = ds_list_find_value(el_list,i);
-                ds_list_clear(list_id);
+                ds_list_destroy(list_id);
                 ds_list_delete(el_list,i);
                 }
             }
@@ -253,7 +253,7 @@ if (is_real(undo))
             if (ds_list_find_value(ds_list_find_value(el_list,i),9) == undo)
                 {
                 list_id = ds_list_find_value(el_list,i);
-                ds_list_clear(list_id);
+                ds_list_destroy(list_id);
                 ds_list_delete(el_list,i);
                 }
             }

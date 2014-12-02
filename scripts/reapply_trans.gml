@@ -47,7 +47,7 @@ for (i = scope_start;i <= scope_end;i++)
 
 ds_stack_push(undo_list,"k"+string(temp_undof_list));
 
-        
+
 //walk through frames
 for (i = 0;i < ds_list_size(temp_frame_list);i++)
     {
@@ -71,7 +71,7 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         }
     else
         {
-        t = i/ds_list_size(temp_frame_list);    
+        t = i/(ds_list_size(temp_frame_list));    
         if (anifunc = "tri")
             {
             t *= 2;
@@ -137,7 +137,6 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             }
         }
         
-
     xmax = 16;
     xmin = $ffff-16;
     ymax = 16;

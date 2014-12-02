@@ -47,6 +47,9 @@ with(controller)
         }
                 
     buffer_delete(ild_file);
+    for (i = 0;i < ds_list_size(ild_list);i++)
+        ds_list_destroy(ds_list_find_value(ild_list,i));
+    ds_list_destroy(ild_list);
     refresh_surfaces();
         
     ds_stack_push(undo_list,el_id);

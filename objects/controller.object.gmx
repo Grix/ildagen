@@ -408,7 +408,7 @@ if (selectedelement != -1)
                         ds_list_copy(temp_undo_list,list_id);
                         ds_list_add(temp_undo_list,j);
                         ds_list_add(temp_undof_list,temp_undo_list);
-                        ds_list_clear(list_id);
+                        ds_list_destroy(list_id);
                         ds_list_delete(el_list,i);
                         }
                     }
@@ -427,7 +427,7 @@ if (selectedelement != -1)
                     ds_list_copy(temp_undo_list,list_id);
                     ds_list_add(temp_undo_list,frame);
                     ds_list_add(temp_undof_list,temp_undo_list);
-                    ds_list_clear(list_id);
+                    ds_list_destroy(list_id);
                     ds_list_delete(el_list,i);
                     }
                 }
@@ -1027,118 +1027,132 @@ if (new_id == getint)
             //COLOR
           case "c1r":
             {
-            controller.color1 = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(controller.color1),colour_get_blue(controller.color1));
+            color1 = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(color1),colour_get_blue(color1));
             
             break;
             }
           case "c1g":
             {
-            controller.color1 = make_color_rgb(colour_get_red(controller.color1),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(controller.color1));
+            color1 = make_color_rgb(colour_get_red(color1),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(color1));
             
             break;
             }
           case "c1b":
             {
-            controller.color1 = make_color_rgb(colour_get_red(controller.color1),colour_get_green(controller.color1),clamp(ds_map_find_value(async_load, "value"),0,255));
+            color1 = make_color_rgb(colour_get_red(color1),colour_get_green(color1),clamp(ds_map_find_value(async_load, "value"),0,255));
             
             break;
             }
           case "c2r":
             {
-            controller.color2 = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(controller.color2),colour_get_blue(controller.color2));
+            color2 = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(color2),colour_get_blue(color2));
             
             break;
             }
           case "c2g":
             {
-            controller.color2 = make_color_rgb(colour_get_red(controller.color2),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(controller.color2));
+            color2 = make_color_rgb(colour_get_red(color2),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(color2));
             
             break;
             }
           case "c2b":
             {
-            controller.color2 = make_color_rgb(colour_get_red(controller.color2),colour_get_green(controller.color2),clamp(ds_map_find_value(async_load, "value"),0,255));
+            color2 = make_color_rgb(colour_get_red(color2),colour_get_green(color2),clamp(ds_map_find_value(async_load, "value"),0,255));
             
             break;
             }
           case "c3r":
             {
-            controller.enddotscolor = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(controller.enddotscolor),colour_get_blue(controller.enddotscolor));
+            enddotscolor = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(enddotscolor),colour_get_blue(enddotscolor));
             
             break;
             }
           case "c3g":
             {
-            controller.enddotscolor = make_color_rgb(colour_get_red(controller.enddotscolor),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(controller.enddotscolor));
+            enddotscolor = make_color_rgb(colour_get_red(enddotscolor),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(enddotscolor));
             
             break;
             }
           case "c3b":
             {
-            controller.enddotscolor = make_color_rgb(colour_get_red(controller.enddotscolor),colour_get_green(controller.enddotscolor),clamp(ds_map_find_value(async_load, "value"),0,255));
+            enddotscolor = make_color_rgb(colour_get_red(enddotscolor),colour_get_green(enddotscolor),clamp(ds_map_find_value(async_load, "value"),0,255));
             
             break;
             }
             //ANI COLOR
           case "ac1r":
             {
-            controller.anicolor1 = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(controller.anicolor1),colour_get_blue(controller.anicolor1));
+            anicolor1 = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(anicolor1),colour_get_blue(anicolor1));
             
             break;
             }
           case "ac1g":
             {
-            controller.anicolor1 = make_color_rgb(colour_get_red(controller.anicolor1),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(controller.anicolor1));
+            anicolor1 = make_color_rgb(colour_get_red(anicolor1),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(anicolor1));
             
             break;
             }
           case "ac1b":
             {
-            controller.anicolor1 = make_color_rgb(colour_get_red(controller.anicolor1),colour_get_green(controller.anicolor1),clamp(ds_map_find_value(async_load, "value"),0,255));
+            anicolor1 = make_color_rgb(colour_get_red(anicolor1),colour_get_green(anicolor1),clamp(ds_map_find_value(async_load, "value"),0,255));
             
             break;
             }
           case "ac2r":
             {
-            controller.anicolor2 = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(controller.anicolor2),colour_get_blue(controller.anicolor2));
+            anicolor2 = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(anicolor2),colour_get_blue(anicolor2));
             
             break;
             }
           case "ac2g":
             {
-            controller.anicolor2 = make_color_rgb(colour_get_red(controller.anicolor2),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(controller.anicolor2));
+            anicolor2 = make_color_rgb(colour_get_red(anicolor2),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(anicolor2));
             
             break;
             }
           case "ac2b":
             {
-            controller.anicolor2 = make_color_rgb(colour_get_red(controller.anicolor2),colour_get_green(controller.anicolor2),clamp(ds_map_find_value(async_load, "value"),0,255));
+            anicolor2 = make_color_rgb(colour_get_red(anicolor2),colour_get_green(anicolor2),clamp(ds_map_find_value(async_load, "value"),0,255));
             
             break;
             }
           case "ac3r":
             {
-            controller.anienddotscolor = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(controller.anienddotscolor),colour_get_blue(controller.anienddotscolor));
+            anienddotscolor = make_color_rgb(clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_green(anienddotscolor),colour_get_blue(anienddotscolor));
             
             break;
             }
           case "ac3g":
             {
-            controller.anienddotscolor = make_color_rgb(colour_get_red(controller.anienddotscolor),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(controller.anienddotscolor));
+            anienddotscolor = make_color_rgb(colour_get_red(anienddotscolor),clamp(ds_map_find_value(async_load, "value"),0,255),colour_get_blue(anienddotscolor));
             
             break;
             }
           case "ac3b":
             {
-            controller.anienddotscolor = make_color_rgb(colour_get_red(controller.anienddotscolor),colour_get_green(controller.anienddotscolor),clamp(ds_map_find_value(async_load, "value"),0,255));
+            anienddotscolor = make_color_rgb(colour_get_red(anienddotscolor),colour_get_green(anienddotscolor),clamp(ds_map_find_value(async_load, "value"),0,255));
+            
+            break;
+            }
+            
+            
+          case "anirot":
+            {
+            anirot = ds_map_find_value(async_load, "value");
+            reapply_trans();
+            
+            xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+            yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
+            rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
+            rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
+            rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
+            rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
             
             break;
             }
           
           case "clearall":
             {
-            onion_number = ds_map_find_value(async_load, "value");
-    
             placing_status = 0;
             ds_list_clear(free_list);
             ds_list_clear(bez_list);
@@ -1150,7 +1164,7 @@ if (new_id == getint)
                 for (i = 0;i &lt; ds_list_size(el_list);i++)
                     {
                     list_id = ds_list_find_value(el_list,i);
-                    ds_list_clear(list_id);
+                    ds_list_destroy(list_id);
                     }
                 ds_list_clear(el_list);
                 }
@@ -1227,7 +1241,7 @@ if (new_id == getint)
             
           case "scopestart":
             {
-            scope_start = clamp(ds_map_find_value(async_load, "value"),0,scope_end-1);
+            scope_start = clamp(ds_map_find_value(async_load, "value")-1,0,scope_end-1);
             frame = scope_start;
             framehr = scope_start;
             refresh_surfaces();
@@ -1237,7 +1251,7 @@ if (new_id == getint)
             
           case "scopeend":
             {
-            scope_end = clamp(ds_map_find_value(async_load, "value"),scope_start+1,maxframes-1);
+            scope_end = clamp(ds_map_find_value(async_load, "value")-1,scope_start+1,maxframes-1);
             
             break;
             }
@@ -1289,7 +1303,14 @@ if (new_id == getint)
                         }
                     ds_list_add(frame_list,templist);
                     }
-                    
+            /*else
+                repeat (ds_list_size(frame_list)-maxframes)
+                    {
+                    el_list_temp = ds_list_find_value(frame_list,ds_list_size(frame_list)-1);
+                    //for (u = 0;u &lt; ds_list_size(el_list_temp);u++)
+                    //    ds_list_destroy(ds_list_find_value(el_list_temp,u));
+                    ds_list_destroy(el_list_temp);
+                    }*/
             if (frame &gt; maxframes) 
                 {
                 frame = maxframes-1;
@@ -1446,7 +1467,8 @@ if ds_map_find_value(async_load, "id") == updateget
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(fnt_tooltip);
+            <string>draw_set_alpha(0.8);
+draw_set_font(fnt_tooltip);
 draw_set_color(c_ltgray);
 draw_text(12,487,"Frame: "+string(frame+1)+"/"+string(maxframes));
 draw_text(440,487,"Points: "+string(framepoints));
@@ -1464,6 +1486,20 @@ if (tooltip != "")
     draw_set_color(c_ltgray);
     draw_text(5,5,tooltip);
     tooltip = "";
+    }
+    
+if (maxframes &gt; 1)
+    {
+    draw_set_alpha(0.5);
+    draw_set_color(c_gray);
+    draw_line(12,505,512-12,505);
+    draw_line(12,506,512-12,506);
+    draw_set_color(c_teal);
+    draw_line(lerp(12,512-12,scope_start/(maxframes-1)),505,lerp(12,512-12,scope_end/(maxframes-1)),505);
+    draw_line(lerp(12,512-12,scope_start/(maxframes-1)),506,lerp(12,512-12,scope_end/(maxframes-1)),506);
+    draw_set_color(c_yellow);
+    draw_line(lerp(12,512-12,frame/(maxframes-1)),508,lerp(12,512-12,frame/(maxframes-1)),502);
+    draw_line(lerp(12,512-12,frame/(maxframes-1))+1,508,lerp(12,512-12,frame/(maxframes-1))+1,502);
     }
     
 draw_set_color(c_white);
@@ -1496,6 +1532,9 @@ draw_set_alpha(1);
         draw_set_alpha(0.3);
     draw_background_stretched(bck_bckimage,0,0,512,512);
     }
+
+if (objmoving == 3)
+    draw_text(20,20,anirot);
     
 draw_set_alpha(1);
 

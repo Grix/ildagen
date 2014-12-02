@@ -10,12 +10,12 @@ if (objmoving == 1)
         objmoving = 0;
         reapply_trans();
         
-        xo = ds_list_find_value(controller.selectedelementlist,0)/$ffff*512;
-        yo = ds_list_find_value(controller.selectedelementlist,1)/$ffff*512;
-        rectxmin = x+xo + (ds_list_find_value(controller.selectedelementlist,4));
-        rectymin = y+yo + (ds_list_find_value(controller.selectedelementlist,6));
-        rectxmax = x+xo + (ds_list_find_value(controller.selectedelementlist,5));
-        rectymax = y+yo + (ds_list_find_value(controller.selectedelementlist,7));
+        xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+        yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
+        rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
+        rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
+        rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
+        rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
         }
     }
 else if (objmoving == 2)    
@@ -33,6 +33,11 @@ else if (objmoving == 3)
     {
     mouseangle = point_direction(obj_cursor.x,obj_cursor.y,anchorx/$ffff*512,anchory/$ffff*512);
     
+    if ((mouseangleprevious-mouseangle) > 180)
+        anirot-=360;
+    else if ((mouseangleprevious-mouseangle) < -180)
+        anirot+=360;
+        
     anirot+= mouseangleprevious-mouseangle;
     
     mouseangleprevious = mouseangle;
@@ -42,12 +47,12 @@ else if (objmoving == 3)
         objmoving = 0;
         reapply_trans();
         
-        xo = ds_list_find_value(controller.selectedelementlist,0)/$ffff*512;
-        yo = ds_list_find_value(controller.selectedelementlist,1)/$ffff*512;
-        rectxmin = x+xo + (ds_list_find_value(controller.selectedelementlist,4));
-        rectymin = y+yo + (ds_list_find_value(controller.selectedelementlist,6));
-        rectxmax = x+xo + (ds_list_find_value(controller.selectedelementlist,5));
-        rectymax = y+yo + (ds_list_find_value(controller.selectedelementlist,7));
+        xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+        yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
+        rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
+        rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
+        rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
+        rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
         }
     }
 else if (objmoving == 4)
@@ -71,24 +76,29 @@ else if (objmoving == 4)
         objmoving = 0;
         reapply_trans();
         
-        xo = ds_list_find_value(controller.selectedelementlist,0)/$ffff*512;
-        yo = ds_list_find_value(controller.selectedelementlist,1)/$ffff*512;
-        rectxmin = x+xo + (ds_list_find_value(controller.selectedelementlist,4));
-        rectymin = y+yo + (ds_list_find_value(controller.selectedelementlist,6));
-        rectxmax = x+xo + (ds_list_find_value(controller.selectedelementlist,5));
-        rectymax = y+yo + (ds_list_find_value(controller.selectedelementlist,7));
+        xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+        yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
+        rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
+        rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
+        rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
+        rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
         }
     }
 else
     {
     if (mouse_x == clamp(mouse_x,anchorx/$ffff*512-10,anchorx/$ffff*512+10)) and (mouse_y == clamp(mouse_y,anchory/$ffff*512-10,anchory/$ffff*512+10))
         {
-        tooltip = "Click and drag to move the rotation anchor point."
+        tooltip = "Click and drag to move the rotation anchor point.#Right click to move to center of object."
         if (mouse_check_button_pressed(mb_left)) 
             {
             objmoving = 2;
             mousexprevious = obj_cursor.x;
             mouseyprevious = obj_cursor.y;
+            }
+        else if (mouse_check_button_pressed(mb_right)) 
+            {
+            anchorx = (rectxmin+rectxmax)*128/2;
+            anchory = (rectymin+rectymax)*128/2;
             }
         }
     else if (mouse_x == clamp(mouse_x,rectxmin-2,rectxmax+2)) and (mouse_y == clamp(mouse_y,rectymin-2,rectymax+2))
@@ -108,7 +118,7 @@ else
         }
     else if (mouse_x == clamp(mouse_x,rectxmin-20,rectxmin-2)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20))
         {
-        tooltip = "Click and drag to rotate the selected object around the anchor.#If animation is enabled, the rotation will be animated."
+        tooltip = "Click and drag to rotate the selected object around the anchor.#If animation is enabled, the rotation will be animated.#Right click to enter precise rotation amount."
         if (mouse_check_button_pressed(mb_left)) 
             {
             objmoving = 3;
@@ -118,6 +128,16 @@ else
             scalex = 1;
             scaley = 1;
             mouseangleprevious = point_direction(obj_cursor.x,obj_cursor.y,anchorx/$ffff*512,anchory/$ffff*512);
+            }
+        if (mouse_check_button_pressed(mb_right)) 
+            {
+            anixtrans = 0;
+            aniytrans = 0;
+            anirot = 0;
+            scalex = 1;
+            scaley = 1;
+            dialog = "anirot";
+            getint = get_integer_async("Enter the amount of degrees to rotate.",0);
             }
         }
     else if (mouse_x == clamp(mouse_x,rectxmax+2,rectxmax+20)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20))
