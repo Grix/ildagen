@@ -1,15 +1,15 @@
-ML_VM_SetVarReal(parser_shape,"startx",startposx_r*128);
-ML_VM_SetVarReal(parser_shape,"starty",startposy_r*128);
-ML_VM_SetVarReal(parser_shape,"endx",endx_r*128);
-ML_VM_SetVarReal(parser_shape,"endy",endy_r*128);
+ML_VM_SetVarReal(parser_shape,"startx",startposx_r);
+ML_VM_SetVarReal(parser_shape,"starty",startposy_r);
+ML_VM_SetVarReal(parser_shape,"endx",endx_r);
+ML_VM_SetVarReal(parser_shape,"endy",endy_r);
 ML_VM_SetVarReal(parser_shape,"frame",t);
 
 if (colormode == "func") or (blankmode == "func")
     {
-    ML_VM_SetVarReal(parser_cb,"startx",startposx_r*128);
-    ML_VM_SetVarReal(parser_cb,"starty",startposy_r*128);
-    ML_VM_SetVarReal(parser_cb,"endx",endx_r*128);
-    ML_VM_SetVarReal(parser_cb,"endy",endy_r*128);
+    ML_VM_SetVarReal(parser_cb,"startx",startposx_r);
+    ML_VM_SetVarReal(parser_cb,"starty",startposy_r);
+    ML_VM_SetVarReal(parser_cb,"endx",endx_r);
+    ML_VM_SetVarReal(parser_cb,"endy",endy_r);
     ML_VM_SetVarReal(parser_cb,"frame",t);
     ML_VM_SetVarReal(parser_cb,"anchorx",anchorx);
     ML_VM_SetVarReal(parser_cb,"anchory",anchory);

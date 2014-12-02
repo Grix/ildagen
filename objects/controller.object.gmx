@@ -28,9 +28,6 @@
             <string>version = "0.9.6.1";
 
 
-if (os_version != -1) init_palette();
-if (os_version != -1) update_check();
-
 varmap = ds_map_create();
 parser_shape = ML_InitParserScience(varmap);
     ML_AddVariable(parser_shape, "point",0, ML_VAL_REAL, 1);
@@ -49,6 +46,8 @@ parser_cb = ML_InitParserScience(varmap);
     ML_AddVariable(parser_cb, "frame",0, ML_VAL_REAL, 1);
     ML_AddVariable(parser_cb, "startx",0, ML_VAL_REAL, 1);
     ML_AddVariable(parser_cb, "starty",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "anchorx",0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "anchory",0, ML_VAL_REAL, 1);
     ML_AddVariable(parser_cb, "endx",0, ML_VAL_REAL, 1);
     ML_AddVariable(parser_cb, "endy",0, ML_VAL_REAL, 1);
     ML_AddVariable(parser_cb, "pri_red",0, ML_VAL_REAL, 1);
@@ -113,6 +112,9 @@ viewmode = 0;
 selectedelement = -1;
 selectedelementlist = 0;
 exp_optimize = 1;
+getint = -1;
+getstr = -1;
+dialog = "";
 
 placing = "line";
 startpos[1] = 0;
@@ -194,6 +196,9 @@ colorfunc_string_1 = "";
 colorfunc_string_2 = "";
 colorfunc_string_3 = "";
 blankfunc_string = "";
+
+if (os_version != -1) init_palette();
+if (os_version != -1) update_check();
 
 alarm[0] = 1;
 </string>
@@ -882,10 +887,28 @@ else if (placing == "curve")
             <kind>1</kind>
             <string>//what a mess
 
+
 //Get integer
 var new_id = ds_map_find_value(async_load, "id");
 if (new_id == getint)
     {
+    if (dialog == "update")
+        {
+        updatecheckenabled = ds_map_find_value(async_load, "status");
+        ini_open(ini_filename);
+        ini_write_real("main","updatecheck",updatecheckenabled);
+        ini_close();
+        if (updatecheckenabled)
+            {
+            updateget = http_get("http://github.com/Grix/ildagen/raw/master/version.txt");
+            }
+        }
+    if (dialog == "updatefound")
+        {
+        if (ds_map_find_value(async_load, "status"))
+            url_open("http://bitlasers.com/opencart/index.php?route=product/product&amp;path=67&amp;product_id=82");
+        }        
+
     if ds_map_find_value(async_load, "status")
        {
       switch (dialog)
@@ -938,12 +961,38 @@ if (new_id == getint)
             
             break;
             }
+          case "blankoffset":
+            {
+            blank_offset = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+          case "blankdc":
+            {
+            blank_dc = clamp(ds_map_find_value(async_load, "value"),0,1);
+            
+            break;
+            }
           case "aniblankdc":
             {
             aniblank_dc = clamp(ds_map_find_value(async_load, "value"),0,1);
             
             break;
             }
+          case "blankperiod":
+            {
+            blank_period = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+          case "blankfreq":
+            {
+            blank_freq = ds_map_find_value(async_load, "value");
+            
+            break;
+            }
+            
+          //ANI
           case "aniblankoffset":
             {
             aniblank_offset = ds_map_find_value(async_load, "value");
@@ -1255,6 +1304,89 @@ if (new_id == getint)
           }
        }
     }
+else if (new_id == getstr)
+    {
+    if ds_map_find_value(async_load, "status")
+       {
+      if ds_map_find_value(async_load, "result") != ""
+          {
+          switch (dialog)
+            {
+            case ("funcx"):
+                {
+                shapefunc_string_x = ds_map_find_value(async_load, "result");
+                break;
+                }
+            case ("funcy"):
+                {
+                shapefunc_string_y = ds_map_find_value(async_load, "result");
+                break;
+                }
+            case ("func1"):
+                {
+                colorfunc_string_1 = ds_map_find_value(async_load, "result");
+                break;
+                }
+            case ("func2"):
+                {
+                colorfunc_string_2 = ds_map_find_value(async_load, "result");
+                break;
+                }
+            case ("func3"):
+                {
+                colorfunc_string_3 = ds_map_find_value(async_load, "result");
+                break;
+                }
+            case ("funcen"):
+                {
+                blankfunc_string = ds_map_find_value(async_load, "result");
+                break;
+                }
+            case ("text"):
+                {
+                text = ds_map_find_value(async_load, "result");
+
+                for (i = 0;i &lt;= maxframes;i++)
+                    xdelta[i] = 0;
+                
+                //start making elements
+                for (texti = 1; texti &lt;= string_length(text);texti++)
+                    {
+                    letter = string_char_at(text,texti);
+                    if (ord(letter) != clamp(ord(letter),33,126))
+                        {
+                        for (i = 0;i &lt;= maxframes;i++)
+                            xdelta[i] += font_size*1.3;
+                        }
+                    else
+                        create_element();
+                    }
+                    
+                refresh_surfaces();
+                break;
+                }
+            case ("exporthtml5"):
+                {
+                file_loc = ds_map_find_value(async_load, "result");
+                export_ilda_html5();
+                break;
+                }
+            case ("serial"):
+                {
+                obj_export.serial = ds_map_find_value(async_load, "result");
+                with (obj_export)
+                    {
+                    serialfile = file_text_open_write(working_directory+"serial");
+                    file_text_write_string(serialfile,serial);
+                    file_text_close(serialfile);
+                    event_user(0);
+                    }
+                break;
+                }
+            }
+          }
+      }
+    }
 </string>
           </argument>
         </arguments>
@@ -1287,8 +1419,8 @@ if ds_map_find_value(async_load, "id") == updateget
        versionnew = ds_map_find_value(async_load, "result");
        if (versionnew != version)
             {
-            if (show_question("New version available: "+versionnew+"##Would you like to visit the download page?"))
-                url_open("http://bitlasers.com/opencart/index.php?route=product/product&amp;path=67&amp;product_id=82");
+            getint = show_question_async("New version available: "+versionnew+"##Would you like to visit the download page?")
+            dialog = "updatefound";
             }
        }
     }

@@ -1,14 +1,8 @@
 //exports every element into an ilda file
 placing_status = 0;
 
-ilda_buffer = buffer_create(1,buffer_grow,1);
-file_loc = get_string("Enter the name of the ILDA file","out.ild");
-if (file_loc == "")
-    exit;
-    
 maxpoints = 0;
 frame = 0;
-
 
 maxpointstot = 0;
 

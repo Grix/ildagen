@@ -81,7 +81,12 @@ controller.tooltip = "Sets the function for the X coordinate#Value from 0 (left)
           <argument>
             <kind>1</kind>
             <string>if (is_undefined(controller.shapefunc_string_x)) controller.shapefunc_string_x = "";
-controller.shapefunc_string_x = get_string("Enter function for X coordinate",controller.shapefunc_string_x);
+
+with (controller)
+    {
+    dialog = "funcx";
+    getstr = get_string_async("Enter function for X coordinate",controller.shapefunc_string_x);
+    }
 
 </string>
           </argument>

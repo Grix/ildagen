@@ -55,7 +55,7 @@
     } 
 else image_index = 0;
 
-visible = (controller.anienable) and (controller.colormode != "rainbow") and (controller.colormode != "func");
+visible = obj_anicolorselect_1.visible;
 </string>
           </argument>
         </arguments>

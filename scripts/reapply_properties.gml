@@ -69,6 +69,126 @@ ds_stack_push(undo_list,"k"+string(temp_undof_list));
         
 //walk through frames
 randomize();
+
+//PREPARING FUNCTIONS
+if (colormode == "func")
+    {
+    if (colorfunc_string_1 == "") or is_undefined(colorfunc_string_1) 
+        {
+        if (colormode2)
+            show_message_async("Please write a function for HUE");
+        else
+            show_message_async("Please write a function for RED");
+        frame = framepre;
+        return 0;
+        }
+    if (colorfunc_string_2 == "") or is_undefined(colorfunc_string_2) 
+        {
+        if (colormode2)
+            show_message_async("Please write a function for SATURATION");
+        else
+            show_message_async("Please write a function for GREEN");
+        frame = framepre;
+        return 0;
+        }
+    if (colorfunc_string_3 == "") or is_undefined(colorfunc_string_3) 
+        {
+        if (colormode2)
+            show_message_async("Please write a function for VALUE");
+        else
+            show_message_async("Please write a function for BLUE");
+        frame = framepre;
+        return 0;
+        }
+
+compiled_1 = ML_Compile(parser_cb,colorfunc_string_1); 
+if (!ML_NoException(parser_cb))
+    {
+    if (colormode2)
+        show_message_async("Error in HUE: "+ML_LastExceptionString(parser_cb));
+    else
+        show_message_async("Error in RED: "+ML_LastExceptionString(parser_cb));
+    ML_CompileCleanup(compiled_1);
+    ML_ClearExceptions(parser_cb);
+    if (placing == "func")
+        {
+        ML_CompileCleanup(compiled_x);
+        ML_CompileCleanup(compiled_y);
+        }
+    frame = framepre;
+    return 0;
+    }
+compiled_2 = ML_Compile(parser_cb,colorfunc_string_2); 
+if (!ML_NoException(parser_cb))
+    {
+    if (colormode2)
+        show_message_async("Error in SATURATION: "+ML_LastExceptionString(parser_cb));
+    else
+        show_message_async("Error in GREEN: "+ML_LastExceptionString(parser_cb));
+    ML_CompileCleanup(compiled_2);
+    ML_CompileCleanup(compiled_1);
+    ML_ClearExceptions(parser_cb);
+    if (placing == "func")
+        {
+        ML_CompileCleanup(compiled_x);
+        ML_CompileCleanup(compiled_y);
+        }
+    frame = framepre;
+    return 0;
+    }
+compiled_3 = ML_Compile(parser_cb,colorfunc_string_3); 
+if (!ML_NoException(parser_cb))
+    {
+    if (colormode2)
+        show_message_async("Error in VALUE: "+ML_LastExceptionString(parser_cb));
+    else
+        show_message_async("Error in BLUE: "+ML_LastExceptionString(parser_cb));
+    ML_CompileCleanup(compiled_3);
+    ML_CompileCleanup(compiled_2);
+    ML_CompileCleanup(compiled_1);
+    ML_ClearExceptions(parser_cb);
+    if (placing == "func")
+        {
+        ML_CompileCleanup(compiled_x);
+        ML_CompileCleanup(compiled_y);
+        }
+    frame = framepre;
+    return 0;
+    }
+}
+
+if (blankmode == "func")
+    {
+    if (blankfunc_string == "") or is_undefined(blankfunc_string) 
+        {
+        show_message_async("Please write a function for BLANKING");
+        frame = framepre;
+        return 0;
+        }
+    
+    compiled_en = ML_Compile(parser_cb,blankfunc_string);
+    if (!ML_NoException(parser_cb))
+        {
+        show_message_async("Error in BLANKING: "+ML_LastExceptionString(parser_cb));
+        ML_CompileCleanup(compiled_en);
+        ML_ClearExceptions(parser_cb);
+        if (colormode == "func")
+            {
+            ML_CompileCleanup(compiled_3);
+            ML_CompileCleanup(compiled_2);
+            ML_CompileCleanup(compiled_1);
+            }
+        if (placing == "func")
+            {
+            ML_CompileCleanup(compiled_x);
+            ML_CompileCleanup(compiled_y);
+            }
+        frame = framepre;
+        return 0;
+        }
+    }
+
+
 for (i = 0;i < ds_list_size(temp_frame_list);i++)
     {
     blanknew = 1;
@@ -249,7 +369,7 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         }
         
         
-    func_startofframe();
+    func_startofframe_blank();
         
     
     if (controller.reap_blank)
@@ -286,12 +406,13 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 colorfreq = 1;
             }
         }
-
-        
     //walk through points
     for (j = 0; j < checkpoints;j++)
         {
         listpos = 10+j*6;
+        xp = ds_list_find_value(new_list,listpos);
+        yp = ds_list_find_value(new_list,listpos+1);
+        
         
         if ((j != 0) and (ds_list_find_value(new_list,listpos) == ds_list_find_value(new_list,10+(j-1)*6)) and (ds_list_find_value(new_list,listpos+1) == ds_list_find_value(new_list,10+(j-1)*6+1)) and (controller.reap_removeoverlap))
             {
@@ -368,9 +489,13 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 }
             else if (colormode == "func")
                 {
-                c[0] = colour_get_blue(color1_r);
-                c[1] = colour_get_green(color1_r);
-                c[2] = colour_get_red(color1_r);
+                if (!func_color_reapply())
+                    {
+                    frame = framepre;
+                    if (autoresflag)
+                        resolution = "auto";
+                    return 0;
+                    }
                 }
                 
             
@@ -431,6 +556,22 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 if (floor(j-dotfreq+blank_offset_r/pi/2*dotfreq) % floor(dotfreq) == 0)
                     makedot = 1;
                 blank = 0;
+                }
+            else if (blankmode == "func")
+                {
+                if (!func_blank_reapply())
+                    {
+                    frame = framepre;
+                    if (autoresflag)
+                        resolution = "auto";
+                    return 0;
+                    }
+                    
+                if (blanknew != blank) and (enddots)
+                    {
+                    makedot = 2;
+                    blanknew = blank;
+                    }
                 }
                 
             if (reap_preserveblank and ds_list_find_value(new_list,listpos+2))

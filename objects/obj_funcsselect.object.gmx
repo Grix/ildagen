@@ -84,8 +84,11 @@ controller.tooltip = "Sets the function for the SATURATION channel#Value from 0 
           <argument>
             <kind>1</kind>
             <string>if (is_undefined(controller.colorfunc_string_2)) controller.colorfunc_string_2 = "";
-controller.colorfunc_string_2 = get_string("Enter function for the SATURATION channel",controller.colorfunc_string_2);
-
+with (controller)
+    {
+    dialog = "func2";
+    getstr = get_string_async("Enter function for SATURATION channel",controller.colorfunc_string_2);
+    }
 </string>
           </argument>
         </arguments>

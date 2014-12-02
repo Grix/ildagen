@@ -46,7 +46,7 @@ for (n = 0;n <= checkpoints; n++)
     result_x = ML_Execute(parser_shape,compiled_x);
     if (!ML_ResObj_HasAnswer(result_x))
         {
-        show_message("Unexpected value for X at point="+string(n/checkpoints)+" , frame="+string(t));  
+        show_message_async("Unexpected value for X at point="+string(n/checkpoints)+" , frame="+string(t));  
         ML_ResObj_Cleanup(result_x);
         ML_CompileCleanup(compiled_x);
         ML_CompileCleanup(compiled_y);
@@ -55,7 +55,7 @@ for (n = 0;n <= checkpoints; n++)
     result_y = ML_Execute(parser_shape,compiled_y);
     if (!ML_ResObj_HasAnswer(result_y))
         {
-        show_message("Unexpected value for Y at point="+string(n/checkpoints)+" , frame="+string(t));
+        show_message_async("Unexpected value for Y at point="+string(n/checkpoints)+" , frame="+string(t));
         ML_ResObj_Cleanup(result_y);
         ML_ResObj_Cleanup(result_x);
         ML_CompileCleanup(compiled_x);

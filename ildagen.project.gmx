@@ -603,20 +603,22 @@
       <script>scripts\create_free.gml</script>
       <script>scripts\create_letter.gml</script>
       <script>scripts\func_startofframe.gml</script>
+      <script>scripts\func_startofframe_blank.gml</script>
       <script>scripts\func_color.gml</script>
+      <script>scripts\func_color_reapply.gml</script>
       <script>scripts\func_blank.gml</script>
+      <script>scripts\func_blank_reapply.gml</script>
+      <script>scripts\reapply_properties.gml</script>
+      <script>scripts\reapply_trans.gml</script>
     </scripts>
-    <script>scripts\reapply_properties.gml</script>
-    <script>scripts\reapply_trans.gml</script>
-    <script>scripts\handle_trans.gml</script>
     <script>scripts\draw_ilda_2d.gml</script>
+    <script>scripts\handle_trans.gml</script>
     <script>scripts\export_ilda.gml</script>
     <script>scripts\export_ilda_html5.gml</script>
     <script>scripts\draw_preview_element.gml</script>
     <script>scripts\draw_grid.gml</script>
     <script>scripts\draw_radialgrid.gml</script>
     <script>scripts\draw_guidelines.gml</script>
-    <script>scripts\verify_serial.gml</script>
     <script>scripts\refresh_surfaces.gml</script>
     <script>scripts\refresh_3dsurfaces.gml</script>
     <script>scripts\bezier_coeffs.gml</script>
@@ -626,6 +628,7 @@
     <script>scripts\random_gaussian.gml</script>
     <script>scripts\dist_triangular.gml</script>
     <script>scripts\buttons_set_active.gml</script>
+    <script>scripts\verify_serial.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>

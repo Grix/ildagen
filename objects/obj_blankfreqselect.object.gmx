@@ -81,7 +81,11 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-controller.blank_freq = get_integer("Enter the blanking frequency",controller.blank_freq);
+with (controller)
+    {
+    dialog = "blankfreq";
+    getint = get_integer_async("Enter the blanking frequency",controller.blank_freq);
+    }
 </string>
           </argument>
         </arguments>

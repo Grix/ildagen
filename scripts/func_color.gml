@@ -42,7 +42,7 @@ if (n/checkpoints != ML_VM_GetVarReal(parser_cb,"point"))
 result_1 = ML_Execute(parser_cb,compiled_1);
 if (!ML_ResObj_HasAnswer(result_1))
     {
-    show_message("Unexpected value for COLOR 1 at point="+string(n/checkpoints)+" , frame="+string(t));  
+    show_message_async("Unexpected value for COLOR 1 at point="+string(n/checkpoints)+" , frame="+string(t));  
     ML_ResObj_Cleanup(result_1);
     ML_CompileCleanup(compiled_1);
     ML_CompileCleanup(compiled_2);
@@ -52,7 +52,7 @@ if (!ML_ResObj_HasAnswer(result_1))
 result_2 = ML_Execute(parser_cb,compiled_2);
 if (!ML_ResObj_HasAnswer(result_2))
     {
-    show_message("Unexpected value for COLOR 2 at point="+string(n/checkpoints)+" , frame="+string(t));  
+    show_message_async("Unexpected value for COLOR 2 at point="+string(n/checkpoints)+" , frame="+string(t));  
     ML_ResObj_Cleanup(result_1);
     ML_ResObj_Cleanup(result_2);
     ML_CompileCleanup(compiled_1);
@@ -63,7 +63,7 @@ if (!ML_ResObj_HasAnswer(result_2))
 result_3 = ML_Execute(parser_cb,compiled_3);
 if (!ML_ResObj_HasAnswer(result_3))
     {
-    show_message("Unexpected value for COLOR 3 at point="+string(n/checkpoints)+" , frame="+string(t));  
+    show_message_async("Unexpected value for COLOR 3 at point="+string(n/checkpoints)+" , frame="+string(t));  
     ML_ResObj_Cleanup(result_1);
     ML_ResObj_Cleanup(result_2);
     ML_ResObj_Cleanup(result_3);

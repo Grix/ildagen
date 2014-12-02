@@ -84,8 +84,11 @@ controller.tooltip = "Sets the function for the HUE channel#Value from 0 to 255"
           <argument>
             <kind>1</kind>
             <string>if (is_undefined(controller.colorfunc_string_1)) controller.colorfunc_string_1 = "";
-controller.colorfunc_string_1 = get_string("Enter function for the HUE channel",controller.colorfunc_string_1);
-
+with (controller)
+    {
+    dialog = "func1";
+    getstr = get_string_async("Enter function for HUE channel",controller.colorfunc_string_1);
+    }
 </string>
           </argument>
         </arguments>

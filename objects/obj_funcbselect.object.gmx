@@ -84,8 +84,11 @@ controller.tooltip = "Sets the function for the BLUE channel#Value from 0 to 255
           <argument>
             <kind>1</kind>
             <string>if (is_undefined(controller.colorfunc_string_3)) controller.colorfunc_string_3 = "";
-controller.colorfunc_string_3 = get_string("Enter function for the BLUE channel",controller.colorfunc_string_3);
-
+with (controller)
+    {
+    dialog = "func3";
+    getstr = get_string_async("Enter function for BLUE channel",controller.colorfunc_string_3);
+    }
 </string>
           </argument>
         </arguments>

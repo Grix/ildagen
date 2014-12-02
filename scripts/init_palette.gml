@@ -1,6 +1,6 @@
 if (!file_exists(working_directory+"/palette.txt"))
     {
-    show_message("Color palette file missing. Try reinstalling the program.");
+    show_message_async("Color palette file missing. Try reinstalling the program.");
     exit;
     }
 

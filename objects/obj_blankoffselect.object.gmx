@@ -113,7 +113,11 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-controller.blank_offset = get_integer("Enter the blanking offset",controller.blank_offset);
+with (controller)
+    {
+    dialog = "blankoffset";
+    getint = get_integer_async("Enter the blanking offset",controller.blank_offset);
+    }
 </string>
           </argument>
         </arguments>

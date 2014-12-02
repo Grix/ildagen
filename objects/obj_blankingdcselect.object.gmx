@@ -114,7 +114,11 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-controller.blank_dc = clamp(get_integer("Enter the blanking duty cycle",controller.blank_dc),0,1);
+with (controller)
+    {
+    dialog = "blankdc";
+    getint = get_integer_async("Enter the blanking duty cycle",controller.blank_dc);
+    }
 </string>
           </argument>
         </arguments>

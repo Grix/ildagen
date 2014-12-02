@@ -82,60 +82,6 @@ else image_index = 0;
     getint = get_integer_async("Enter number of total frames in the animation",maxframes);
     dialog = "maxframes";
     }
-
-
-/*ds_stack_push(controller.undo_list,"a"+string(controller.maxframes))
-
-scopeflag = 0;
-if (controller.maxframes == (controller.scope_end+1)) scopeflag = 1;
-
-controller.maxframes = get_integer("Enter number of total frames in the animation",controller.maxframes);
-if (controller.maxframes &lt; 1) controller.maxframes = 1;
-else if (controller.maxframes &gt; $ffff) controller.maxframes = $ffff;
-
-if (scopeflag) or (controller.scope_end &gt;= controller.maxframes) 
-    controller.scope_end = controller.maxframes-1;
-
-if (controller.scope_start &gt;= controller.scope_end)
-    controller.scope_start = controller.scope_end-1;
-    
-if (controller.scope_start &lt; 0) controller.scope_start = 0;
-
-
-
- 
-   
-if (ds_list_size(controller.frame_list) &lt; controller.maxframes)
-    repeat (controller.maxframes - ds_list_size(controller.frame_list))
-        {
-        templist = ds_list_create();
-        if (controller.fillframes)
-            {
-            tempelcount = ds_list_size(ds_list_find_value(controller.frame_list,ds_list_size(controller.frame_list)-1));
-            for (u = 0;u &lt; tempelcount;u++)
-                {
-                tempellist = ds_list_create();
-                ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(controller.frame_list,ds_list_size(controller.frame_list)-1),u));
-                ds_list_add(templist,tempellist);
-                }
-            }
-        ds_list_add(controller.frame_list,templist);
-        }
-        
-if (controller.frame &gt; controller.maxframes) 
-    {
-    controller.frame = controller.maxframes-1;
-    controller.framehr = controller.maxframes-1;
-    }
-    
-dd_scope_reset();
-
-with (controller)
-    {
-    placing_status = 0;
-    ds_list_clear(free_list);
-    ds_list_clear(bez_list);
-    }
 </string>
           </argument>
         </arguments>

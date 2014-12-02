@@ -176,8 +176,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//controller.color1 = make_colour_rgb(get_integer("Enter red value from 0 to 255",255),get_integer("Enter green value from 0 to 255",255),get_integer("Enter blue value from 0 to 255",255));
-if (!visible)
+            <string>if (!visible)
 exit;
 
 if (mouse_x &lt; (x+14))

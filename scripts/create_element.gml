@@ -72,13 +72,13 @@ if (placing == "func")
     {
     if (shapefunc_string_x == "") or is_undefined(shapefunc_string_x) 
         {
-        show_message("Please write a function for X");
+        show_message_async("Please write a function for X");
         frame = framepre;
         return 0;
         }
     if (shapefunc_string_y == "") or is_undefined(shapefunc_string_y) 
         {
-        show_message("Please write a function for Y");
+        show_message_async("Please write a function for Y");
         frame = framepre;
         return 0;
         }
@@ -86,7 +86,7 @@ if (placing == "func")
     compiled_x = ML_Compile(parser_shape,shapefunc_string_x); 
     if (!ML_NoException(parser_shape))
         {
-        show_message("Error in X: "+ML_LastExceptionString(parser_shape));
+        show_message_async("Error in X: "+ML_LastExceptionString(parser_shape));
         ML_CompileCleanup(compiled_x);
         ML_ClearExceptions(parser_shape);
         frame = framepre;
@@ -95,7 +95,7 @@ if (placing == "func")
     compiled_y = ML_Compile(parser_shape,shapefunc_string_y);
     if (!ML_NoException(parser_shape))
         {
-        show_message("Error in Y: "+ML_LastExceptionString(parser_shape));
+        show_message_async("Error in Y: "+ML_LastExceptionString(parser_shape));
         ML_CompileCleanup(compiled_x);
         ML_CompileCleanup(compiled_y);
         ML_ClearExceptions(parser_shape);
@@ -109,27 +109,27 @@ if (colormode == "func")
     if (colorfunc_string_1 == "") or is_undefined(colorfunc_string_1) 
         {
         if (colormode2)
-            show_message("Please write a function for HUE");
+            show_message_async("Please write a function for HUE");
         else
-            show_message("Please write a function for RED");
+            show_message_async("Please write a function for RED");
         frame = framepre;
         return 0;
         }
     if (colorfunc_string_2 == "") or is_undefined(colorfunc_string_2) 
         {
         if (colormode2)
-            show_message("Please write a function for SATURATION");
+            show_message_async("Please write a function for SATURATION");
         else
-            show_message("Please write a function for GREEN");
+            show_message_async("Please write a function for GREEN");
         frame = framepre;
         return 0;
         }
     if (colorfunc_string_3 == "") or is_undefined(colorfunc_string_3) 
         {
         if (colormode2)
-            show_message("Please write a function for VALUE");
+            show_message_async("Please write a function for VALUE");
         else
-            show_message("Please write a function for BLUE");
+            show_message_async("Please write a function for BLUE");
         frame = framepre;
         return 0;
         }
@@ -138,9 +138,9 @@ if (colormode == "func")
     if (!ML_NoException(parser_cb))
         {
         if (colormode2)
-            show_message("Error in HUE: "+ML_LastExceptionString(parser_cb));
+            show_message_async("Error in HUE: "+ML_LastExceptionString(parser_cb));
         else
-            show_message("Error in RED: "+ML_LastExceptionString(parser_cb));
+            show_message_async("Error in RED: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_1);
         ML_ClearExceptions(parser_cb);
         if (placing == "func")
@@ -155,9 +155,9 @@ if (colormode == "func")
     if (!ML_NoException(parser_cb))
         {
         if (colormode2)
-            show_message("Error in SATURATION: "+ML_LastExceptionString(parser_cb));
+            show_message_async("Error in SATURATION: "+ML_LastExceptionString(parser_cb));
         else
-            show_message("Error in GREEN: "+ML_LastExceptionString(parser_cb));
+            show_message_async("Error in GREEN: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_2);
         ML_CompileCleanup(compiled_1);
         ML_ClearExceptions(parser_cb);
@@ -173,9 +173,9 @@ if (colormode == "func")
     if (!ML_NoException(parser_cb))
         {
         if (colormode2)
-            show_message("Error in VALUE: "+ML_LastExceptionString(parser_cb));
+            show_message_async("Error in VALUE: "+ML_LastExceptionString(parser_cb));
         else
-            show_message("Error in BLUE: "+ML_LastExceptionString(parser_cb));
+            show_message_async("Error in BLUE: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_3);
         ML_CompileCleanup(compiled_2);
         ML_CompileCleanup(compiled_1);
@@ -194,7 +194,7 @@ if (blankmode == "func")
     {
     if (blankfunc_string == "") or is_undefined(blankfunc_string) 
         {
-        show_message("Please write a function for BLANKING");
+        show_message_async("Please write a function for BLANKING");
         frame = framepre;
         return 0;
         }
@@ -202,7 +202,7 @@ if (blankmode == "func")
     compiled_en = ML_Compile(parser_cb,blankfunc_string);
     if (!ML_NoException(parser_cb))
         {
-        show_message("Error in BLANKING: "+ML_LastExceptionString(parser_cb));
+        show_message_async("Error in BLANKING: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_en);
         ML_ClearExceptions(parser_cb);
         if (colormode == "func")
@@ -704,6 +704,8 @@ else
                 ds_list_clear(free_list);
                 ds_stack_push(undo_list,el_id);
                 ds_list_destroy(new_list);
+                if (autoresflag)
+                    resolution = "auto";
                 frame = framepre;
                 return 0;
                 }
@@ -717,7 +719,9 @@ else
                 ds_list_clear(free_list);
                 ds_stack_push(undo_list,el_id);
                 ds_list_destroy(new_list);
-                frame = framepre;
+                frame = framepre;                
+                if (autoresflag)
+                    resolution = "auto";
                 return 0;
                 }
             }
@@ -729,7 +733,9 @@ else
                 ds_list_clear(bez_list);
                 ds_list_clear(free_list);
                 ds_stack_push(undo_list,el_id);
-                ds_list_destroy(new_list);
+                ds_list_destroy(new_list);                
+                if (autoresflag)
+                    resolution = "auto";
                 frame = framepre;
                 return 0;
                 }
@@ -742,7 +748,9 @@ else
                 ds_list_clear(bez_list);
                 ds_list_clear(free_list);
                 ds_stack_push(undo_list,el_id);
-                ds_list_destroy(new_list);
+                ds_list_destroy(new_list);                
+                if (autoresflag)
+                    resolution = "auto";
                 frame = framepre;
                 return 0;
                 }
@@ -755,7 +763,9 @@ else
                 ds_list_clear(bez_list);
                 ds_list_clear(free_list);
                 ds_stack_push(undo_list,el_id);
-                ds_list_destroy(new_list);
+                ds_list_destroy(new_list);                
+                if (autoresflag)
+                    resolution = "auto";
                 frame = framepre;
                 return 0;
                 }
@@ -768,7 +778,9 @@ else
                 ds_list_clear(bez_list);
                 ds_list_clear(free_list);
                 ds_stack_push(undo_list,el_id);
-                ds_list_destroy(new_list);
+                ds_list_destroy(new_list);                
+                if (autoresflag)
+                    resolution = "auto";
                 frame = framepre;
                 return 0;
                 }
@@ -781,7 +793,9 @@ else
                 ds_list_clear(bez_list);
                 ds_list_clear(free_list);
                 ds_stack_push(undo_list,el_id);
-                ds_list_destroy(new_list);
+                ds_list_destroy(new_list);                
+                if (autoresflag)
+                    resolution = "auto";
                 frame = framepre;
                 return 0;
                 }
