@@ -1530,7 +1530,9 @@ draw_set_alpha(1);
     {
     if (!keyboard_check(ord('E')))
         draw_set_alpha(0.3);
-    draw_background_stretched(bck_bckimage,0,0,512,512);
+    if (sprite_exists(bck_bckimage))
+        draw_sprite_stretched(bck_bckimage,0,0,0,512,512);
+    else bckimage = 0;
     }
 
 if (objmoving == 3)

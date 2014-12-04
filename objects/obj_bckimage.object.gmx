@@ -90,14 +90,17 @@ bckimage = !bckimage;
 
 if (bckimage)
     {
-    bckfile = get_open_filename("PNG image|*.png","");
+    bckfile = get_open_filename("Image files|*.png;*.jpg","");
     if (bckfile != "")
         {
-        bck_bckimage = background_add(bckfile,0,0);
+        bck_bckimage = sprite_add(bckfile,0,0,0,0,0);
         }
     else
         bckimage = 0;
     }
+else
+    if (sprite_exists(bck_bckimage))
+        sprite_delete(bck_bckimage);
 }
     
 </string>
