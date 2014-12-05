@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "0.9.6.1";
+            <string>version = "0.9.7";
 
 
 varmap = ds_map_create();
@@ -649,7 +649,7 @@ or ((mouse_x == clamp(mouse_x,rectxmax+2,rectxmax+20)) and (mouse_y == clamp(mou
     exit;
     }
 
-if (placing_status == 1)
+if (placing_status == 1) and (placing != "text")
     {
     if (placing != "curve")
         create_element();
@@ -728,9 +728,7 @@ if ((mouse_x &gt; 515) or (mouse_y &gt; 515)) and (placing_status != 2)
     exit;
     }
     
-
-
-
+    
 if (placing_status == 0)
     {
     placing_status = 1;
@@ -1380,7 +1378,9 @@ else if (new_id == getstr)
                             xdelta[i] += font_size*1.3;
                         }
                     else
+                        {
                         create_element();
+                        }
                     }
                     
                 refresh_surfaces();

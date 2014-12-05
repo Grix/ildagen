@@ -1,4 +1,3 @@
-
 letter_list = ds_list_find_value(font_list,ord(letter)-33);
 checkpoints = (ds_list_size(letter_list)-10)/6;
 
@@ -298,5 +297,6 @@ ds_list_replace(new_list,0,(ds_list_find_value(new_list,0)-xmin*128));
 ds_list_replace(new_list,2,(ds_list_find_value(new_list,2)-xmin*128));
 
 xdelta[frame]+= xmax-xmin+font_size/2.6;
+
 
 return 1;
