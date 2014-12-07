@@ -3,4 +3,3 @@
 /// @returnType void
 /// @hidden     true
 ds_list_destroy(argument0);
-

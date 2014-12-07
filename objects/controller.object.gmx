@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "0.9.7";
+            <string>version = "0.9.7.1";
 
 
 varmap = ds_map_create();
@@ -89,6 +89,7 @@ font_list = ds_list_create();
 xdelta[32] = 0;
 snap_list = ds_list_create();
 selsurf = surface_create(512,512);
+copy_list = -1;
 
 redraw = 0;
 sgridshow = 0;
@@ -386,11 +387,81 @@ if (keyboard_check_pressed(vk_space))
 if (!ds_list_empty(el_list) and !surface_exists(ds_list_find_value(surf_list,0)))
     refresh_surfaces();
     
+//PASTE
+if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('V')))
+    {
+    if (copy_list == -1)
+        exit;
+        
+    el_list = ds_list_find_value(frame_list,frame);
+    list_id = ds_list_create();
+    ds_list_copy(list_id,copy_list);
+    ds_list_replace(list_id,9,el_id);
+    selectedelement = el_id;
+    ds_stack_push(undo_list,el_id);
+    selectedelementlist = list_id;
+    el_id++;
+    ds_list_add(el_list,list_id);
+    
+    xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+    yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
+    rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
+    rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
+    rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
+    rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
+    
+    refresh_surfaces();
+    }
+    
 //SELECTED ELEMENT STUFFS
 if (selectedelement != -1)
     {
     handle_trans();
     
+    //COPY
+    if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('C')))
+        {
+        list_id = selectedelementlist;
+        
+        if (copy_list != -1)
+            ds_list_destroy(copy_list);
+        
+        copy_list = ds_list_create();
+        ds_list_copy(copy_list,list_id);
+        
+        //el_list = ds_list_find_value(frame_list,frame);
+        //ds_list_delete(el_list,i);
+        }
+        
+    //CUT
+    if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('X')))
+        {
+        list_id = selectedelementlist;
+        if (copy_list != -1)
+            ds_list_destroy(copy_list);
+            
+        copy_list = ds_list_create();
+        ds_list_copy(copy_list,list_id);
+        
+        temp_undof_list = ds_list_create();
+        temp_undo_list = ds_list_create();
+        ds_list_copy(temp_undo_list,list_id);
+        ds_list_add(temp_undo_list,frame);
+        ds_list_add(temp_undof_list,temp_undo_list);
+        el_list = ds_list_find_value(frame_list,frame);
+        ds_list_delete(el_list,ds_list_find_index(el_list,list_id));
+        ds_list_destroy(list_id);
+        
+        ds_stack_push(undo_list,"l"+string(temp_undof_list));
+        refresh_surfaces();
+        
+        placing_status = 0;
+        selectedelement = -1;
+        ds_list_clear(free_list);
+        ds_list_clear(bez_list);
+        }
+        
+    //DELETE
     if (keyboard_check_pressed(vk_delete))
         {
         temp_undof_list = ds_list_create();
@@ -416,21 +487,15 @@ if (selectedelement != -1)
             }
         else
             {
-            temp_undof_list = ds_list_create();
             el_list = ds_list_find_value(frame_list,frame);
-            for (i = 0;i &lt; ds_list_size(el_list);i++)
-                {
-                if (ds_list_find_value(ds_list_find_value(el_list,i),9) == selectedelement)
-                    {
-                    list_id = ds_list_find_value(el_list,i);
-                    temp_undo_list = ds_list_create();
-                    ds_list_copy(temp_undo_list,list_id);
-                    ds_list_add(temp_undo_list,frame);
-                    ds_list_add(temp_undof_list,temp_undo_list);
-                    ds_list_destroy(list_id);
-                    ds_list_delete(el_list,i);
-                    }
-                }
+            
+            list_id = selectedelementlist;
+            temp_undo_list = ds_list_create();
+            ds_list_copy(temp_undo_list,list_id);
+            ds_list_add(temp_undo_list,frame);
+            ds_list_add(temp_undof_list,temp_undo_list);
+            ds_list_delete(el_list,ds_list_find_index(el_list,list_id));
+            ds_list_destroy(list_id);
             }
             
         ds_stack_push(undo_list,"l"+string(temp_undof_list));

@@ -10,4 +10,3 @@ ds_list_add(l, argument1); //precedence
 ds_list_add(l, argument2); //associativity
 
 return l;
-

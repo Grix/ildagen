@@ -244,16 +244,18 @@ if (typeof module !== "undefined" && module !== null) {
 
 var ildablob = new Array();
 
-toArray = function(argument0, argument1)
-{
-ildablob[argument0] = new Uint8Array(1);
-ildablob[argument0][0] = argument1;
-return 1;
-}
+
 
 save = function(argument0)
 {
 var blob = new Blob(ildablob, {type: "application/octet-stream"});
 saveAs(blob, argument0);
+return 1;
+}
+
+toArray = function(argument0, argument1)
+{
+ildablob[argument0] = new Uint8Array(1);
+ildablob[argument0][0] = argument1;
 return 1;
 }

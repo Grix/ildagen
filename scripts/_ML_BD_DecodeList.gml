@@ -19,4 +19,3 @@ do {
 
 
 } until (!value[1] || buffer_tell(b) == s);
-

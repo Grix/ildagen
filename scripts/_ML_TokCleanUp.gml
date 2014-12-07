@@ -11,4 +11,3 @@ s = ds_list_size(tokenlist)
 for (i = 0; i < s; ++i) {
     _ML_LiTok_Destroy(ds_list_find_value(tokenlist,i));
 }
-

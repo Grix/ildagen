@@ -83,7 +83,9 @@ controller.tooltip = "Sets the function for the HUE channel#Value from 0 to 255"
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (is_undefined(controller.colorfunc_string_1)) controller.colorfunc_string_1 = "";
+            <string>if (!visible) exit;
+
+if (is_undefined(controller.colorfunc_string_1)) controller.colorfunc_string_1 = "";
 with (controller)
     {
     dialog = "func1";

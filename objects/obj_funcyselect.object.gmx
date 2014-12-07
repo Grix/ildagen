@@ -80,7 +80,9 @@ controller.tooltip = "Sets the function for the Y coordinate#Value from 0 (top) 
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (is_undefined(controller.shapefunc_string_y)) controller.shapefunc_string_y = "";
+            <string>if (!visible) exit;
+
+if (is_undefined(controller.shapefunc_string_y)) controller.shapefunc_string_y = "";
 with (controller)
     {
     dialog = "funcy";

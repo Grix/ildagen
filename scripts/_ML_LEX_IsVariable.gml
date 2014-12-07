@@ -8,4 +8,3 @@ var vstr, p, ret, prevtok, t;
 prevtok = argument2;
 vstr = string(_ML_LiTok_GetVal(argument1));
 return ds_map_exists(P_VARIABLE, vstr);
-

@@ -8,4 +8,3 @@ if (ds_map_exists(ActualFunctions, argument1) ) {
 } else {
     return -1;
 }
-

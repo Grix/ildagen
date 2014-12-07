@@ -70,6 +70,9 @@
         "E)    Clone color from background image##"+
         "Ctrl)    Move all color sliders, or center symmetric sliders#"+
         "Ctrl+Z)    Undo#"+
+        "Ctrl+C)    Copy#"+
+        "Ctrl+X)    Cut#"+
+        "Ctrl+V)    Paste#"+
         "Backspace)    Cancel object placing and selection#"+
         "0)    Jump to first frame##"+
         "Mouse wheel)    Adjust wave amplitude#"+

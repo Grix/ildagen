@@ -25,4 +25,3 @@ if (ds_list_empty(entry)) {
 _ML_OpRemRoots(argument0, str1);
 _ML_OpRemRoots(argument0, str2);
 _ML_LiTOp_Destroy(ind);
-

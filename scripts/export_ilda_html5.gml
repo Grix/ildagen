@@ -4,12 +4,16 @@ placing_status = 0;
 maxpoints = 0;
 frame = 0;
 
+ilda_buffer = buffer_create(1,buffer_grow,1);
+
 maxpointstot = 0;
 
 maxframespost = maxframes;
 maxframesa[0] = maxframespost & 255;
 maxframespost = maxframespost >> 8;
 maxframesa[1] = maxframespost & 255;
+
+
 
 for (j = 0; j < maxframes;j++)
     {
@@ -345,14 +349,17 @@ buffer_write(ilda_buffer,buffer_u8,0); //0
 ildastring = "";
 buffersize = buffer_tell(ilda_buffer);
 
-
-
+error = 0;
 for (i = 0;i < buffersize;i++)
     {
-    toArray(i,buffer_peek(ilda_buffer,i,buffer_u8));
+    if (!toArray(i,buffer_peek(ilda_buffer,i,buffer_u8)))
+        {
+        if (!error) show_message_async("Error filling file with data, may not save correctly!");
+        error = 1;
+        }
     }
     
 save(file_loc);
     
-    
 frame = 0;
+buffer_delete(ilda_buffer);

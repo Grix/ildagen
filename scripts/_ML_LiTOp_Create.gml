@@ -12,4 +12,3 @@ ds_list_add(l, argument0); //str1
 ds_list_add(l, argument1); //str2
 
 return l;
-

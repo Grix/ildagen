@@ -17,4 +17,3 @@ else
         getint = show_question_async("Would you like to enable automatic checking for updates? (Requires internet connection)");
         }
     }
-

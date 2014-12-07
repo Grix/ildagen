@@ -14,4 +14,3 @@ val_type = buffer_read(b, buffer_u8);
 v = _ML_BD_GetData(b, val_type);
 if (v[1]) { return 0}
 _ML_LiTok_SetType(tok, v[0]);
-

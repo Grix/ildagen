@@ -9,4 +9,3 @@ entry = argument1;
 if (_ML_LiTok_GetType(t1) != ML_TT_TERNARY1) return false;
 o1 = _ML_LiTok_GetOperator(t1);
 return (ds_list_find_index(entry, o1) >= 0);
-
