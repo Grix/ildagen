@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>-10</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -49,7 +49,13 @@ image_speed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (obj_cursor.x &gt; 512 or obj_cursor.y &gt; 512) or (controller.placing == "func")
+            <string>if (room = rm_seq)
+    {
+    image_index = 0;
+    exit;
+    }
+
+if (room = rm_seq) or (obj_cursor.x &gt; 512 or obj_cursor.y &gt; 512) or (controller.placing == "func")
     image_index = 0;
 else if (controller.placing == "line")
     image_index = 1;

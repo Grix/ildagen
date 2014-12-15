@@ -25,5 +25,3 @@ do {
     }
 
 } until (buffer_tell(b) == s || !key[1] || !val[1]);
-
-

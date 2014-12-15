@@ -6,7 +6,7 @@ ds_list_clear(surf3d_list);
 
 el_list = ds_list_find_value(frame_list,frame);
 
-draw_set_alpha(0.75);
+draw_set_alpha(0.85);
 for (i = 0;i < ds_list_size(el_list);i++)
     {
     new_list = ds_list_find_value(el_list,i);
@@ -43,9 +43,9 @@ for (i = 0;i < ds_list_size(el_list);i++)
                 draw_set_color(make_colour_rgb(nr,ng,nb));
                 if (xp == nxp) && (yp == nyp)
                     {
-                    draw_set_alpha(0.9)
+                    draw_set_alpha(1)
                     draw_line_colour(256,256,xxp,yyp,make_colour_rgb(nr,ng,nb),make_colour_rgb(nr/9,ng/9,nb/9));
-                    draw_set_alpha(0.75)
+                    draw_set_alpha(0.85)
                     }
                 else
                     draw_triangle_colour(256,256,xxp,yyp,nxxp,nyyp,make_colour_rgb(nr,ng,nb),make_colour_rgb(nr/9,ng/9,nb/9),make_colour_rgb(nr/9,ng/9,nb/9),0);

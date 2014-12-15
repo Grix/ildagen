@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="17" name="datafiles">
+  <datafiles number="19" name="datafiles">
     <datafile>
       <name>help.pdf</name>
       <exists>-1</exists>
@@ -71,6 +71,40 @@
         </Config>
       </ConfigOptions>
       <filename>LaserBoy_2013_11_06.zip</filename>
+    </datafile>
+    <datafile>
+      <name>fmodex.dll</name>
+      <exists>-1</exists>
+      <size>370688</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>fmodex.dll</filename>
+    </datafile>
+    <datafile>
+      <name>GMFMODSimple.dll</name>
+      <exists>-1</exists>
+      <size>495104</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>GMFMODSimple.dll</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -157,9 +191,199 @@
   </sprites>
   <backgrounds name="background">
     <background>background\bck_guide</background>
+    <background>background\bck_seq</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <scripts name="GMFMODSimple">
+      <script>scripts\HowToUse.gml</script>
+      <script>scripts\Known_Problems_and_Questions.gml</script>
+      <scripts name="StartOfGame">
+        <script>scripts\LoadFMOD.gml</script>
+        <script>scripts\UnloadFMOD.gml</script>
+        <script>scripts\FMODfree.gml</script>
+        <script>scripts\FMODinit.gml</script>
+      </scripts>
+      <scripts name="EndStep">
+        <script>scripts\FMODUpdate.gml</script>
+      </scripts>
+      <scripts name="AddingSounds">
+        <script>scripts\FMODSoundAdd.gml</script>
+        <script>scripts\FMODSoundFree.gml</script>
+        <script>scripts\FMODSoundSetGroup.gml</script>
+        <script>scripts\FMODSoundSetMaxVolume.gml</script>
+        <script>scripts\FMODSoundGetMaxVolume.gml</script>
+        <script>scripts\FMODSoundGetMaxDist.gml</script>
+        <script>scripts\FMODSoundSetEffects.gml</script>
+        <script>scripts\FMODSoundAddEffect.gml</script>
+        <script>scripts\FMODSoundSet3dMinMaxDistance.gml</script>
+        <script>scripts\FMODSoundSet3dDopplerMax.gml</script>
+        <script>scripts\FMODSoundSet3dCone.gml</script>
+        <script>scripts\FMODSoundGetNumChannels.gml</script>
+        <script>scripts\FMODSoundGetLength.gml</script>
+        <script>scripts\FMODSoundSetLoopCount.gml</script>
+        <script>scripts\FMODSoundGetLoopCount.gml</script>
+        <script>scripts\FMODSoundSetLoopPoints.gml</script>
+        <script>scripts\FMODSoundGetMusicNumChannels.gml</script>
+        <script>scripts\FMODSoundGetMusicChannelVolume.gml</script>
+        <script>scripts\FMODSoundSetMusicChannelVolume.gml</script>
+      </scripts>
+      <scripts name="PlayingSounds">
+        <script>scripts\FMODSoundPlay.gml</script>
+        <script>scripts\FMODSoundLoop.gml</script>
+        <script>scripts\FMODSoundPlay3d.gml</script>
+        <script>scripts\FMODSoundLoop3d.gml</script>
+      </scripts>
+      <scripts name="SoundInstances">
+        <script>scripts\FMODInstanceStop.gml</script>
+        <script>scripts\FMODInstanceGetSound.gml</script>
+        <script>scripts\FMODInstanceIsPlaying.gml</script>
+        <script>scripts\FMODInstanceSetVolume.gml</script>
+        <script>scripts\FMODInstanceGetVolume.gml</script>
+        <script>scripts\FMODInstanceSetFrequency.gml</script>
+        <script>scripts\FMODInstanceGetFrequency.gml</script>
+        <script>scripts\FMODInstanceSetMuted.gml</script>
+        <script>scripts\FMODInstanceGetMuted.gml</script>
+        <script>scripts\FMODInstanceSetPaused.gml</script>
+        <script>scripts\FMODInstanceGetPaused.gml</script>
+        <script>scripts\FMODInstanceSetPosition.gml</script>
+        <script>scripts\FMODInstanceGetPosition.gml</script>
+        <script>scripts\FMODInstanceSetPan.gml</script>
+        <script>scripts\FMODInstanceGetPan.gml</script>
+        <script>scripts\FMODInstanceSetLoopCount.gml</script>
+        <script>scripts\FMODInstanceGetLoopCount.gml</script>
+        <script>scripts\FMODInstanceSet3dConeOrientation.gml</script>
+        <script>scripts\FMODInstanceSet3dPosition.gml</script>
+        <script>scripts\FMODInstanceFadeVolume.gml</script>
+        <script>scripts\FMODInstanceFadeFrequency.gml</script>
+        <script>scripts\FMODInstanceFadePan.gml</script>
+        <script>scripts\FMODInstanceSet3dMinMaxDistance.gml</script>
+        <script>scripts\FMODInstanceSet3dDopplerMax.gml</script>
+        <script>scripts\FMODInstanceSet3dCone.gml</script>
+        <script>scripts\FMODInstanceGetMaxDist.gml</script>
+        <script>scripts\FMODInstanceGetWaveSnapshot.gml</script>
+        <script>scripts\FMODInstanceGetSpectrumSnapshot.gml</script>
+        <script>scripts\FMODInstanceGetWaveSnapshot2.gml</script>
+        <script>scripts\FMODInstanceGetSpectrumSnapshot2.gml</script>
+        <script>scripts\FMODInstanceSoundGetLength.gml</script>
+        <script>scripts\FMODInstanceSetLoopPoints.gml</script>
+        <script>scripts\FMODInstanceGetAudibility.gml</script>
+        <script>scripts\FMODInstanceSetSpeakerMix.gml</script>
+        <script>scripts\FMODInstanceSet3DPanLevel.gml</script>
+        <script>scripts\FMODInstanceGet3DPanLevel.gml</script>
+        <script>scripts\FMODInstanceSet3DSpread.gml</script>
+        <script>scripts\FMODInstanceGet3DSpread.gml</script>
+        <script>scripts\FMODInstanceGetPitch.gml</script>
+        <script>scripts\FMODInstanceSetPitch.gml</script>
+      </scripts>
+      <scripts name="Groupings">
+        <script>scripts\FMODAllStop.gml</script>
+        <script>scripts\FMODGroupStop.gml</script>
+        <script>scripts\FMODMasterSetVolume.gml</script>
+        <script>scripts\FMODGroupSetVolume.gml</script>
+        <script>scripts\FMODGroupGetVolume.gml</script>
+        <script>scripts\FMODGroupSetPitch.gml</script>
+        <script>scripts\FMODGroupGetPitch.gml</script>
+        <script>scripts\FMODGroupSetPaused.gml</script>
+        <script>scripts\FMODGroupGetPaused.gml</script>
+        <script>scripts\FMODGroupSetMuted.gml</script>
+        <script>scripts\FMODGroupGetMuted.gml</script>
+        <script>scripts\FMODGroupSetFrequency.gml</script>
+        <script>scripts\FMODGroupSetPan.gml</script>
+        <script>scripts\FMODGroupFadeVolume.gml</script>
+        <script>scripts\FMODGroupFadePitch.gml</script>
+        <script>scripts\FMODGroupFadePan.gml</script>
+        <script>scripts\FMODGroupGetWaveSnapshot.gml</script>
+        <script>scripts\FMODGroupGetSpectrumSnapshot.gml</script>
+        <script>scripts\FMODGroupGetWaveSnapshot2.gml</script>
+        <script>scripts\FMODGroupGetSpectrumSnapshot2.gml</script>
+      </scripts>
+      <scripts name="Listener">
+        <script>scripts\FMODListenerSetNumber.gml</script>
+        <script>scripts\FMODListenerSet3dPosition.gml</script>
+        <script>scripts\FMODListenerSet3dPositionEx.gml</script>
+        <script>scripts\FMODListenerHearsDistanceOnly.gml</script>
+        <script>scripts\FMODSetDopplerFPS.gml</script>
+        <script>scripts\FMODSetWorldScale.gml</script>
+      </scripts>
+      <scripts name="Password">
+        <script>scripts\FMODSetPassword.gml</script>
+      </scripts>
+      <scripts name="Blockers">
+        <script>scripts\FMODBlockersInit.gml</script>
+        <script>scripts\FMODBlockersFree.gml</script>
+        <script>scripts\FMODBlockersAddGMObjects.gml</script>
+        <script>scripts\FMODBlockerAdd.gml</script>
+        <script>scripts\FMODBlockerSet3dPosition.gml</script>
+        <script>scripts\FMODBlockerSet3dOrientation.gml</script>
+        <script>scripts\FMODBlockerSet3dScale.gml</script>
+        <script>scripts\FMODBlockerSetEnabled.gml</script>
+        <script>scripts\FMODBlockerGetEnabled.gml</script>
+        <script>scripts\FMODBlockerGetStrength.gml</script>
+        <script>scripts\FMODBlockerSetStrength.gml</script>
+      </scripts>
+      <scripts name="DynaEffects">
+        <script>scripts\FMODInstanceAddEffect.gml</script>
+        <script>scripts\FMODGroupAddEffect.gml</script>
+        <script>scripts\FMODEffectFree.gml</script>
+        <script>scripts\FMODEffectGetNumParams.gml</script>
+        <script>scripts\FMODEffectGetParamValue.gml</script>
+        <script>scripts\FMODEffectSetParamValue.gml</script>
+        <script>scripts\FMODEffectGetParamValueStr.gml</script>
+        <script>scripts\FMODEffectGetParamName.gml</script>
+        <script>scripts\FMODEffectGetParamLabel.gml</script>
+        <script>scripts\FMODEffectGetParamDesc.gml</script>
+        <script>scripts\FMODEffectGetParamMin.gml</script>
+        <script>scripts\FMODEffectGetParamMax.gml</script>
+        <script>scripts\FMODEffectGetActive.gml</script>
+        <script>scripts\FMODEffectSetActive.gml</script>
+        <script>scripts\FMODEffectGetBypass.gml</script>
+        <script>scripts\FMODEffectSetBypass.gml</script>
+        <script>scripts\FMODEffectGetDefaultPan.gml</script>
+        <script>scripts\FMODEffectGetDefaultFr.gml</script>
+        <script>scripts\FMODEffectSetDefaultFr.gml</script>
+        <script>scripts\FMODEffectSetDefaultPan.gml</script>
+        <script>scripts\FMODEffectGetDefaultVol.gml</script>
+        <script>scripts\FMODEffectSetDefaultVol.gml</script>
+        <script>scripts\FMODEffectGetSpeakerActive.gml</script>
+        <script>scripts\FMODEffectSetSpeakerActive.gml</script>
+        <script>scripts\FMODEffectReset.gml</script>
+      </scripts>
+      <scripts name="Debugging">
+        <script>scripts\FMODGetNumInstances.gml</script>
+        <script>scripts\FMODSoundIsStreamed.gml</script>
+        <script>scripts\FMODSoundInstanciate.gml</script>
+        <script>scripts\FMODSoundIs3d.gml</script>
+        <script>scripts\FMODErrorStr.gml</script>
+        <script>scripts\FMODGetLastError.gml</script>
+      </scripts>
+      <scripts name="Helpers">
+        <script>scripts\FMODNormalizeWaveData.gml</script>
+        <script>scripts\FMODNormalizeSpectrumData.gml</script>
+        <script>scripts\FMODGetSnapshotEntry.gml</script>
+        <script>scripts\FMODGetSpectrumBuffer.gml</script>
+        <script>scripts\FMODGetWaveBuffer.gml</script>
+        <script>scripts\FMODEncryptFile.gml</script>
+        <script>scripts\FMODUpdateTakeOverWhileLocked.gml</script>
+        <script>scripts\FMODUpdateTakeOverDone.gml</script>
+        <script>scripts\FMODSpectrumSetSnapshotType.gml</script>
+        <script>scripts\FMODSnapShotToDsList.gml</script>
+      </scripts>
+      <scripts name="webstream">
+        <script>scripts\FMODSoundAddAsyncStream.gml</script>
+        <script>scripts\FMODSoundAsyncReady.gml</script>
+        <script>scripts\FMODInstanceAsyncOK.gml</script>
+        <script>scripts\FMODServerError.gml</script>
+        <script>scripts\FMODGetTagData.gml</script>
+        <script>scripts\FMODGetTagName.gml</script>
+        <script>scripts\FMODInstanceGetNextTag.gml</script>
+      </scripts>
+      <scripts name="Mic">
+        <script>scripts\FMODCreateSoundFromMicInput.gml</script>
+        <script>scripts\FMODMicStart.gml</script>
+        <script>scripts\FMODMicStop.gml</script>
+      </scripts>
+    </scripts>
     <scripts name="MATH_LOGICAL PARSER">
       <script>scripts\ML_Initialize.gml</script>
       <script>scripts\ML_HasAnswer.gml</script>
@@ -629,99 +853,115 @@
     <script>scripts\dist_triangular.gml</script>
     <script>scripts\buttons_set_active.gml</script>
     <script>scripts\verify_serial.gml</script>
+    <script>scripts\controller_setup.gml</script>
+    <script>scripts\refresh_audio.gml</script>
+    <script>scripts\refresh_audio_surf.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
   </fonts>
   <objects name="objects">
     <object>objects\controller</object>
-    <object>objects\obj_cursor</object>
+    <object>objects\seqcontrol</object>
     <object>objects\oDropDown</object>
+    <object>objects\obj_cursor</object>
     <objects name="buttons">
-      <object>objects\obj_export</object>
-      <object>objects\obj_import</object>
-      <object>objects\obj_e_res</object>
-      <object>objects\obj_reapply</object>
-      <object>objects\obj_help</object>
-      <object>objects\obj_bckimage</object>
-      <object>objects\obj_onionskin</object>
-      <object>objects\obj_clear</object>
-      <object>objects\obj_clearframe</object>
-      <object>objects\obj_undo</object>
-      <object>objects\obj_scope</object>
-      <object>objects\obj_maxframes</object>
-      <objects name="shape">
-        <object>objects\obj_wavetselect</object>
-        <object>objects\obj_s_line</object>
-        <object>objects\obj_funcxselect</object>
-        <object>objects\obj_funcyselect</object>
-        <object>objects\obj_text</object>
-        <object>objects\obj_func</object>
-        <object>objects\obj_s_free</object>
-        <object>objects\obj_curve</object>
-        <object>objects\obj_s_circle</object>
-        <object>objects\obj_s_wave</object>
-        <object>objects\obj_waveampselect</object>
-        <object>objects\obj_waveoffselect</object>
-        <object>objects\obj_funcpointselect</object>
+      <objects name="seq">
+        <object>objects\obj_loadaudio</object>
       </objects>
-      <objects name="color">
-        <object>objects\obj_colorselect_1</object>
-        <object>objects\obj_colorselect_2</object>
-        <object>objects\obj_enddotscolorselect</object>
-        <object>objects\obj_c_solid</object>
-        <object>objects\obj_c_gradient</object>
-        <object>objects\obj_c_dash</object>
-        <object>objects\obj_rainbow</object>
-        <object>objects\obj_c_func</object>
-        <object>objects\obj_colorfreqselect</object>
-        <object>objects\obj_colorabsrel</object>
-        <object>objects\obj_funcrselect</object>
-        <object>objects\obj_funcgselect</object>
-        <object>objects\obj_funcbselect</object>
-        <object>objects\obj_funchselect</object>
-        <object>objects\obj_funcsselect</object>
-        <object>objects\obj_funcvselect</object>
-        <object>objects\obj_colordcselect</object>
-        <object>objects\obj_colortselect</object>
-        <object>objects\obj_coloroffselect</object>
-        <object>objects\obj_colorcopytoani</object>
-        <object>objects\obj_colorcopyfromani</object>
+      <objects name="ilda">
+        <objects name="ani">
+          <object>objects\obj_anienable</object>
+          <object>objects\obj_fillframes</object>
+          <object>objects\obj_anicolorselect_1</object>
+          <object>objects\obj_anicolorselect_2</object>
+          <object>objects\obj_anienddotscolorselect</object>
+          <object>objects\obj_aniblankdcselect</object>
+          <object>objects\obj_aniblankoffselect</object>
+          <object>objects\obj_anicolordcselect</object>
+          <object>objects\obj_anicoloroffselect</object>
+          <object>objects\obj_aniwaveoffselect</object>
+          <object>objects\obj_aniwaveamp</object>
+          <object>objects\obj_anifunc</object>
+          <object>objects\obj_shake</object>
+          <object>objects\obj_resettrans</object>
+        </objects>
+        <objects name="blank">
+          <object>objects\obj_blankabsrel</object>
+          <object>objects\obj_blankfreqselect</object>
+          <object>objects\obj_blanktselect</object>
+          <object>objects\obj_funcblank</object>
+          <object>objects\obj_blankoffselect</object>
+          <object>objects\obj_blankingdcselect</object>
+          <object>objects\obj_b_solid</object>
+          <object>objects\obj_enddots</object>
+          <object>objects\obj_b_dash</object>
+          <object>objects\obj_b_dot</object>
+          <object>objects\obj_b_dotsolid</object>
+          <object>objects\obj_b_func</object>
+        </objects>
+        <objects name="color">
+          <object>objects\obj_colorselect_1</object>
+          <object>objects\obj_colorselect_2</object>
+          <object>objects\obj_enddotscolorselect</object>
+          <object>objects\obj_c_solid</object>
+          <object>objects\obj_c_gradient</object>
+          <object>objects\obj_c_dash</object>
+          <object>objects\obj_rainbow</object>
+          <object>objects\obj_c_func</object>
+          <object>objects\obj_colorfreqselect</object>
+          <object>objects\obj_colorabsrel</object>
+          <object>objects\obj_funcrselect</object>
+          <object>objects\obj_funcgselect</object>
+          <object>objects\obj_funcbselect</object>
+          <object>objects\obj_funchselect</object>
+          <object>objects\obj_funcsselect</object>
+          <object>objects\obj_funcvselect</object>
+          <object>objects\obj_colordcselect</object>
+          <object>objects\obj_colortselect</object>
+          <object>objects\obj_coloroffselect</object>
+          <object>objects\obj_colorcopytoani</object>
+          <object>objects\obj_colorcopyfromani</object>
+        </objects>
+        <objects name="shape">
+          <object>objects\obj_wavetselect</object>
+          <object>objects\obj_s_line</object>
+          <object>objects\obj_funcxselect</object>
+          <object>objects\obj_funcyselect</object>
+          <object>objects\obj_text</object>
+          <object>objects\obj_func</object>
+          <object>objects\obj_s_free</object>
+          <object>objects\obj_curve</object>
+          <object>objects\obj_s_circle</object>
+          <object>objects\obj_s_wave</object>
+          <object>objects\obj_waveampselect</object>
+          <object>objects\obj_waveoffselect</object>
+          <object>objects\obj_funcpointselect</object>
+        </objects>
+        <object>objects\obj_e_res</object>
+        <object>objects\obj_maxframes</object>
+        <object>objects\obj_scope</object>
+        <object>objects\obj_undo</object>
+        <object>objects\obj_reapply</object>
+        <object>objects\obj_clear</object>
+        <object>objects\obj_export</object>
+        <object>objects\obj_import</object>
+        <object>objects\obj_onionskin</object>
+        <object>objects\obj_clearframe</object>
+        <object>objects\obj_bckimage</object>
+        <object>objects\obj_help</object>
       </objects>
-      <objects name="blank">
-        <object>objects\obj_blankabsrel</object>
-        <object>objects\obj_blankfreqselect</object>
-        <object>objects\obj_blanktselect</object>
-        <object>objects\obj_funcblank</object>
-        <object>objects\obj_blankoffselect</object>
-        <object>objects\obj_blankingdcselect</object>
-        <object>objects\obj_b_solid</object>
-        <object>objects\obj_enddots</object>
-        <object>objects\obj_b_dash</object>
-        <object>objects\obj_b_dot</object>
-        <object>objects\obj_b_dotsolid</object>
-        <object>objects\obj_b_func</object>
-      </objects>
-      <objects name="ani">
-        <object>objects\obj_anienable</object>
-        <object>objects\obj_fillframes</object>
-        <object>objects\obj_anicolorselect_1</object>
-        <object>objects\obj_anicolorselect_2</object>
-        <object>objects\obj_anienddotscolorselect</object>
-        <object>objects\obj_aniblankdcselect</object>
-        <object>objects\obj_aniblankoffselect</object>
-        <object>objects\obj_anicolordcselect</object>
-        <object>objects\obj_anicoloroffselect</object>
-        <object>objects\obj_aniwaveoffselect</object>
-        <object>objects\obj_aniwaveamp</object>
-        <object>objects\obj_anifunc</object>
-        <object>objects\obj_shake</object>
-        <object>objects\obj_resettrans</object>
-      </objects>
+    </objects>
+    <objects name="GMFMODSimple">
+      <object>objects\FMODFaderObj</object>
+      <object>objects\FMODPanFaderObj</object>
+      <object>objects\FMODFreqFaderObj</object>
+      <object>objects\FMODPitchFaderObj</object>
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_2d</room>
+    <room>rooms\rm_ilda</room>
+    <room>rooms\rm_seq</room>
   </rooms>
   <constants number="2">
     <constant name="GM_build_date">41913.9170528472</constant>
