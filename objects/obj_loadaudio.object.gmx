@@ -116,11 +116,15 @@ else image_index = 0;
         length = FMODSoundGetLength(song)/1000*projectfps;
     FMODSoundSetGroup(song, 1);
     
-    //FMODGroupGetWaveSnapshot2(1,0,8192);
-    
     ds_list_clear(audio_list);
     parseinstance = FMODSoundPlay(song,0);
-    FMODInstanceSetMuted(parseinstance,0);
+    FMODInstanceSetMuted(parseinstance,1);
+    /*FMODInstanceSetFrequency(parseinstance,FMODInstanceGetFrequency(parseinstance)*2);
+    //pitchshift = FMODInstanceAddEffect(parseinstance, 11);
+    //FMODEffectSetParamValue(pitchshift, 0, 1/2);
+    pitchshift = FMODInstanceAddEffect(parseinstance, 11);
+    FMODEffectSetParamValue(pitchshift, 0, 0.5);
+    FMODEffectSetParamValue(pitchshift, 1, 4096);*/
     parsingaudio = 1;
     
     }

@@ -856,6 +856,7 @@
     <script>scripts\controller_setup.gml</script>
     <script>scripts\refresh_audio.gml</script>
     <script>scripts\refresh_audio_surf.gml</script>
+    <script>scripts\handle_scrolling.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>

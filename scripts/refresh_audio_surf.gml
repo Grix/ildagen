@@ -6,7 +6,7 @@ surface_set_target(audio_surf);
     draw_set_alpha(0.6);
     for (u=0; u < tlw; u++)
         {
-        nearesti = (tlx+u*tlzoom/tlw)/projectfps*60*3;
+        nearesti = round((tlx+u*tlzoom/tlw/2)/projectfps*60)*3;
         
         if (nearesti > ds_list_size(audio_list)-5)
             break;
@@ -18,12 +18,11 @@ surface_set_target(audio_surf);
         v = ds_list_find_value(audio_list,nearesti+1);
         draw_set_color(c_red);
         draw_line(u,46+v*45,u,46-v*45);
-        
+        //show_debug_message(v)
         v = ds_list_find_value(audio_list,nearesti+2);
         draw_set_color(c_blue);
         draw_line(u,46+v*45,u,46-v*45);
-        
-
+        //show_debug_message(v)
         }
         
 surface_reset_target();

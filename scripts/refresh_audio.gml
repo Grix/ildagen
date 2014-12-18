@@ -4,21 +4,21 @@ FMODUpdate();
 
 FMODInstanceGetWaveSnapshot2(parseinstance,0,numentries);
 w = FMODNormalizeWaveData(0,numentries)
-//w = FMODGetSnapshotEntry(500)
 ds_list_add(audio_list,w);
       
 FMODSpectrumSetSnapshotType(1);
-//FMODInstanceGetSpectrumSnapshot2(songinstance,0,numentries);
 FMODInstanceGetSpectrumSnapshot2(parseinstance,0,numentries);
 s = FMODNormalizeSpectrumData(0,5);
-//s = FMODGetSnapshotEntry(8)
-ds_list_add(audio_list,clamp(s*5,0,45));
-s = FMODNormalizeSpectrumData(100,400);
-//s = FMODGetSnapshotEntry(8)
-ds_list_add(audio_list,clamp(s*5,0,45));
-
+ds_list_add(audio_list,ln(1+clamp(s*8,0,45*1.7)));
+//show_debug_message(s)
+s = FMODNormalizeSpectrumData(50,200);
+ds_list_add(audio_list,ln(1+clamp(s*10,0,45*1.7)));
+//show_debug_message(s)
 
 pos = FMODInstanceGetPosition(parseinstance);
 
-if (pos/1000*projectfps = clamp(pos/1000*projectfps,tlx,tlx+tlw))
+//if (pos/1000*projectfps == clamp(pos/1000*projectfps,tlx,tlx+tlzoom))
     refresh_audio_surf();
+    
+if (pos >= 1)
+    parsingaudio = 0;

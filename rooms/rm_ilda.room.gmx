@@ -10,7 +10,7 @@
   <persistent>-1</persistent>
   <colour>8421440</colour>
   <showcolour>-1</showcolour>
-  <code>instance_activate_object(controller);</code>
+  <code></code>
   <enableViews>-1</enableViews>
   <clearViewBackground>0</clearViewBackground>
   <clearDisplayBuffer>0</clearDisplayBuffer>
