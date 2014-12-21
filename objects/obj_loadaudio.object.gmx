@@ -53,7 +53,7 @@
             <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     image_index = 1;
-    seqcontrol.tooltip = "Load an audio file for the timeline";
+    controller.tooltip = "Load an audio file for the timeline";
     } 
 else image_index = 0;
 </string>
@@ -103,8 +103,12 @@ else image_index = 0;
             <kind>1</kind>
             <string>with (seqcontrol)
     {
+    //UnloadFMOD();
+    //LoadFMOD();
+    //FMODinit(2,0);
+    
     songinstance = 0;
-    FMODSoundFree(song);
+    if (song) FMODSoundFree(song);
     song = FMODSoundAdd(get_open_filename_ext("","","","Select audio file"),0,0);
     if (!song) 
         {
@@ -112,20 +116,32 @@ else image_index = 0;
         exit;
         }
     songlength = FMODSoundGetLength(song);
-    if (length/projectfps*1000 &gt; FMODSoundGetLength(song))
-        length = FMODSoundGetLength(song)/1000*projectfps;
+    if (length &lt; songlength/1000*projectfps)
+        {
+        length = songlength/1000*projectfps;
+        }
     FMODSoundSetGroup(song, 1);
     
     ds_list_clear(audio_list);
     parseinstance = FMODSoundPlay(song,0);
     FMODInstanceSetMuted(parseinstance,1);
-    /*FMODInstanceSetFrequency(parseinstance,FMODInstanceGetFrequency(parseinstance)*2);
-    //pitchshift = FMODInstanceAddEffect(parseinstance, 11);
-    //FMODEffectSetParamValue(pitchshift, 0, 1/2);
-    pitchshift = FMODInstanceAddEffect(parseinstance, 11);
-    FMODEffectSetParamValue(pitchshift, 0, 0.5);
-    FMODEffectSetParamValue(pitchshift, 1, 4096);*/
     parsingaudio = 1;
+    
+    songinstance = FMODSoundPlay(song,0);
+    errorcheck = 0;
+    deltatime = 0;
+    
+    
+    /*FMODInstanceSetFrequency(songinstance,FMODInstanceGetFrequency(songinstance)/4);
+    pitchshift = FMODInstanceAddEffect(songinstance, 11);
+    FMODEffectSetParamValue(pitchshift, 0, 1.6);
+    FMODEffectSetParamValue(pitchshift, 1, 4096*2);
+    pitchshift = FMODInstanceAddEffect(songinstance, 11);
+    FMODEffectSetParamValue(pitchshift, 0, 1.6);
+    FMODEffectSetParamValue(pitchshift, 1, 4096*2);
+    pitchshift = FMODInstanceAddEffect(songinstance, 11);
+    FMODEffectSetParamValue(pitchshift, 0, 1.6);
+    FMODEffectSetParamValue(pitchshift, 1, 4096*2);*/
     
     }
 </string>

@@ -52,7 +52,7 @@
             <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     //image_index = 1;
-    controller.tooltip = "Toggles copying of element to all frames or just current";
+    controller.tooltip = "Toggles editing all frames in scope or just current";
     } 
     
 </string>
@@ -78,6 +78,8 @@
           <argument>
             <kind>1</kind>
             <string>controller.fillframes = !controller.fillframes;
+if (controller.fillframes == 1) image_index = 0;
+else image_index = 1;
 </string>
           </argument>
         </arguments>
@@ -103,14 +105,11 @@
             <string>if (controller.anienable == 1) or (controller.maxframes == 1)
     draw_set_alpha(0.6);
 
-if (controller.fillframes == 1) image_index = 1;
-else image_index = 0;
-
 draw_sprite(sprite_index,image_index,x,y);
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x-18,y+18,"Fill frames");
+draw_text(x-22,y+18,"Single frame");
 draw_set_color(c_white);
 
 draw_set_alpha(1);
