@@ -127,7 +127,7 @@ else image_index = 0;
     FMODInstanceSetMuted(parseinstance,1);
     parsingaudio = 1;
     
-    songinstance = FMODSoundPlay(song,0);
+    songinstance = FMODSoundPlay(song,1);
     errorcheck = 0;
     deltatime = 0;
     
