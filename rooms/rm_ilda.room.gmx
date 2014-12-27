@@ -121,6 +121,7 @@
     <instance objName="obj_funcyselect" x="644" y="108" name="inst_7C769331" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_c_func" x="564" y="200" name="inst_90D8F13B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_b_func" x="564" y="372" name="inst_7B42C762" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_cursor" x="100" y="28" name="inst_21FB3F94" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

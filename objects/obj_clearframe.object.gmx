@@ -95,25 +95,12 @@ ds_stack_push(controller.undo_list,"cf"+string(controller.frame))
 ds_stack_push(controller.undo_list,"c"+string(framedellist))
 ds_list_clear(el_list);
 
-for (i = 0;i &lt; ds_list_size(controller.surf_list);i++)
-    {
-    surface_free(ds_list_find_value(controller.surf_list,i))
-    }
-if (controller.viewmode != 0)
-    {
-    for (i = 0;i &lt; ds_list_size(controller.surf3d_list);i++)
-        {
-        surface_free(ds_list_find_value(controller.surf_list,i))
-        }
-    ds_list_clear(controller.surf3d_list);
-    }
     
-ds_list_clear(controller.surf_list);
 controller.framepoints = 0;
 
 with (controller)
     {
-    refresh_surfaces();
+    frame_surf_refresh = 1;
     }
 
     
@@ -180,25 +167,11 @@ ds_stack_push(controller.undo_list,"cf"+string(controller.frame))
 ds_stack_push(controller.undo_list,"c"+string(framedellist))
 ds_list_clear(el_list);
 
-for (i = 0;i &lt; ds_list_size(controller.surf_list);i++)
-    {
-    surface_free(ds_list_find_value(controller.surf_list,i))
-    }
-if (controller.viewmode != 0)
-    {
-    for (i = 0;i &lt; ds_list_size(controller.surf3d_list);i++)
-        {
-        surface_free(ds_list_find_value(controller.surf_list,i))
-        }
-    ds_list_clear(controller.surf3d_list);
-    }
-    
-ds_list_clear(controller.surf_list);
 controller.framepoints = 0;
 
 with (controller)
     {
-    refresh_surfaces();
+    frame_surf_refresh = 1;
     }
 
     

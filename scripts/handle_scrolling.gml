@@ -34,5 +34,5 @@ if (scroll_moving == 1)
     if (mouse_check_button_released(mb_left))
         scroll_moving = 0;
     
-    refresh_audio_surf();
+    //refresh_audio_surf();
     }

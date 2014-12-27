@@ -815,7 +815,7 @@ else
     frame = framepre;
     }
 
-if (placing != "text") refresh_surfaces();
+if (placing != "text") frame_surf_refresh = 1;
 
 if (autoresflag)
     resolution = "auto";

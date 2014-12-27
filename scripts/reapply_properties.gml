@@ -665,4 +665,4 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
 if (autoresflag)
 resolution = "auto";
 
-refresh_surfaces();
+frame_surf_refresh = 1;

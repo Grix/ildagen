@@ -1,22 +1,16 @@
 //cycles through every element in frame on screen and draws them
-draw_set_blend_mode(bm_add);
-    
-if (viewmode == 1) or (viewmode == 2)
-    for (i = 0;i < ds_list_size(surf3d_list);i++)
-        {
-        if (surface_exists(ds_list_find_value(surf3d_list,i))) 
-            draw_surface(ds_list_find_value(surf3d_list,i),0,0);
-        }
-        
-if (viewmode == 2)
-    draw_set_blend_mode(bm_normal);
-    
+if (frame_surf_refresh == 1)
+    {
+    refresh_surfaces();
+    frame_surf_refresh = 0;
+    }
+draw_set_alpha(1);
+if (viewmode != 0)
+    {
+    //draw_set_blend_mode(bm_add);
+    draw_surface(frame3d_surf,0,0);
+    //draw_set_blend_mode(bm_normal);
+    }
+draw_set_alpha(1);
 if (viewmode == 0) or (viewmode == 2)
-    for (i = 0;i < ds_list_size(surf_list);i++)
-        {
-        if (surface_exists(ds_list_find_value(surf_list,i))) 
-            draw_surface(ds_list_find_value(surf_list,i),0,0);
-        }
-
-
-draw_set_blend_mode(bm_normal);
+    draw_surface(frame_surf,0,0);

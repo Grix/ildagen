@@ -180,7 +180,7 @@ else if (string_char_at(undo,0) == 'l')
     
 with (controller)
     {
-    refresh_surfaces();
+    frame_surf_refresh = 1;
     }
 </string>
           </argument>
@@ -333,7 +333,7 @@ else if (string_char_at(undo,0) == 'l')
     
 with (controller)
     {
-    refresh_surfaces();
+    frame_surf_refresh = 1;
     }
 </string>
           </argument>

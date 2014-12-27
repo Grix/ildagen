@@ -74,13 +74,13 @@ surface_set_target(squaregrid_surf);
 surface_reset_target();
 
 
-
+frame_surf_refresh = 0;
 letter = "";
 el_list = ds_list_create();
 undo_list = ds_stack_create();
 el_id = 0;
-surf_list = ds_list_create();
-surf3d_list = ds_list_create();
+frame_surf = surface_create(512,512);
+frame3d_surf = surface_create(512,512);
 frame_list = ds_list_create();
 ds_list_add(frame_list,el_list);
 free_list = ds_list_create();
@@ -100,7 +100,7 @@ rgriddouble = 0;
 mouse_yprevious = mouse_y;
 mouse_xprevious = mouse_x;
 
-instance_create(mouse_x,mouse_y,obj_cursor);
+//instance_create(mouse_x,mouse_y,obj_cursor);
 
 tooltip = "";
 bckimage = 0;
@@ -387,11 +387,11 @@ if (keyboard_check_pressed(vk_space))
     viewmode++;
     if (viewmode &gt; 2)
         viewmode = 0;
-    refresh_surfaces();
+    frame_surf_refresh = 1;
     }
     
-if (!ds_list_empty(el_list) and !surface_exists(ds_list_find_value(surf_list,0)))
-    refresh_surfaces();
+if (!surface_exists(frame_surf))
+    frame_surf_refresh = 1;
     
 //PASTE
 if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('V')))
@@ -416,7 +416,7 @@ if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('V')))
     rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
     rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
     
-    refresh_surfaces();
+    frame_surf_refresh = 1;
     }
     
 //SELECTED ELEMENT STUFFS
@@ -459,7 +459,7 @@ if (selectedelement != -1)
         ds_list_destroy(list_id);
         
         ds_stack_push(undo_list,"l"+string(temp_undof_list));
-        refresh_surfaces();
+        frame_surf_refresh = 1;
         
         placing_status = 0;
         selectedelement = -1;
@@ -505,7 +505,7 @@ if (selectedelement != -1)
             }
             
         ds_stack_push(undo_list,"l"+string(temp_undof_list));
-        refresh_surfaces();
+        frame_surf_refresh = 1;
         
         placing_status = 0;
         selectedelement = -1;
@@ -537,7 +537,7 @@ if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
     frame = round(framehr);
     if (frame &lt; 1)
         frame = 0;
-    refresh_surfaces();
+    frame_surf_refresh = 1;
     
     if (selectedelement != -1)
         {
@@ -581,7 +581,7 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status ==
     frame = round(framehr);
     if (frame &lt; 1)
         frame = 0;
-    refresh_surfaces();
+    frame_surf_refresh = 1;
     
     if (selectedelement != -1)
         {
@@ -690,45 +690,6 @@ if (keyboard_check_pressed(vk_tab))
     room_goto(rm_seq);
     }
 
-//SEQ
-/*if (room != rm_seq) exit;
-
-if (song) FMODUpdate();
-
-with (obj_cursor)
-    {
-    x = mouse_x;
-    y = mouse_y;
-    }
-
-if (keyboard_check_pressed(vk_tab))
-    {
-    if (song) FMODInstanceSetPaused(songinstance,1);
-    room_goto(rm_ilda);
-    }
-    
-if (keyboard_check_pressed(vk_backspace))
-    {
-    tlx = 0;
-    if (song)
-        FMODInstanceSetPaused(songinstance,1);
-    }
-    
-if (parsingaudio)
-    {
-    refresh_audio();
-    }
-    
-handle_scrolling();
-
-if (keyboard_check_released(vk_f11))
-    window_set_fullscreen(!window_get_fullscreen())
-    
-if (keyboard_check_pressed(ord('M')))
-    {
-    window_set_fullscreen(0);
-    window_set_size(1100,670);
-    }
 </string>
           </argument>
         </arguments>
@@ -1284,24 +1245,10 @@ if (new_id == getint)
                 ds_list_clear(el_list);
                 }
                 
-            for (i = 0;i &lt; ds_list_size(surf_list);i++)
-                {
-                surface_free(ds_list_find_value(surf_list,i))
-                }
-            if (viewmode != 0)
-                {
-                for (i = 0;i &lt; ds_list_size(surf3d_list);i++)
-                    {
-                    surface_free(ds_list_find_value(surf_list,i))
-                    }
-                ds_list_clear(surf3d_list);
-                }
-                        
-            ds_list_clear(surf_list);
-            ds_list_clear(surf3d_list);
+            
             framepoints = 0;
             
-            refresh_surfaces();
+            frame_surf_refresh = 1;
             
             break;
             }
@@ -1319,21 +1266,21 @@ if (new_id == getint)
           case "onion_number":
             {
             onion_number = ds_map_find_value(async_load, "value");
-            refresh_surfaces();
+            frame_surf_refresh = 1;
             
             break;
             }
           case "onion_alpha":
             {
             onion_alpha = clamp(ds_map_find_value(async_load, "value"),0,1);
-            refresh_surfaces();
+            frame_surf_refresh = 1;
             
             break;
             }
           case "onion_dropoff":
             {
             onion_dropoff = clamp(ds_map_find_value(async_load, "value"),0,1);
-            refresh_surfaces();
+            frame_surf_refresh = 1;
             
             break;
             }
@@ -1359,7 +1306,7 @@ if (new_id == getint)
             scope_start = clamp(ds_map_find_value(async_load, "value")-1,0,scope_end-1);
             frame = scope_start;
             framehr = scope_start;
-            refresh_surfaces();
+            frame_surf_refresh = 1;
             
             break;
             }
@@ -1500,7 +1447,7 @@ else if (new_id == getstr)
                         }
                     }
                     
-                refresh_surfaces();
+                frame_surf_refresh = 1;
                 break;
                 }
             case ("exporthtml5"):
@@ -1851,7 +1798,7 @@ draw_rectangle(scrollbarx,room_height,scrollbarx+scrollbarw,room_height-16,0);
             <string>if (room != rm_ilda) exit;
 frame = 0;
 framehr = 0;
-refresh_surfaces();
+frame_surf_refresh = 1;
 </string>
           </argument>
         </arguments>

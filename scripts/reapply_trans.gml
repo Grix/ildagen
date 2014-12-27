@@ -180,4 +180,4 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
     ds_list_replace(new_list,7,ymax/$ffff*512);    
     }
 
-refresh_surfaces();
+frame_surf_refresh = 1;

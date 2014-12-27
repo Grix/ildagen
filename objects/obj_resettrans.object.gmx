@@ -123,7 +123,7 @@ with (controller)
             }
         }
         
-    refresh_surfaces();
+    frame_surf_refresh = 1;
     
     }
 </string>

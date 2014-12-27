@@ -104,8 +104,7 @@ else image_index = 0;
             <string>with (controller)
 {
 onion = !onion;
-    
-refresh_surfaces();
+frame_surf_refresh = 1;
 }
     
 </string>

@@ -30,7 +30,8 @@
 layer_list = ds_list_create();
 layer = ds_list_create();
 ds_list_add(layer_list,layer);
-surface_list = ds_list_create();
+frame_surf = surface_create(512,512);
+audio_surf = surface_create(1024,1024);
 audio_list = ds_list_create();
 songinstance = 0;
 
@@ -38,7 +39,6 @@ tlw = 897;
 tlh = 128;
 phi = 1.618;
 
-audio_surf = surface_create(1024,1024);
 
 tlzoom = tlw;
 tlx = 0;
@@ -110,7 +110,7 @@ FMODinit(2,0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (parsingaudio) or (song &amp;&amp; !FMODInstanceGetPaused(songinstance))
+            <string>if (parsingaudio) or (song &amp;&amp; !FMODInstanceGetPaused(songinstance)) or (scroll_moving)
     refresh_audio_surf();
 alarm[0] = 2;
 </string>

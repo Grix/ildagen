@@ -50,7 +50,7 @@ with(controller)
     for (i = 0;i < ds_list_size(ild_list);i++)
         ds_list_destroy(ds_list_find_value(ild_list,i));
     ds_list_destroy(ild_list);
-    refresh_surfaces();
+    frame_surf_refresh = 1;
         
     ds_stack_push(undo_list,el_id);
     el_id++;
