@@ -157,7 +157,8 @@ else if (string_char_at(undo,0) == 'k')
             if (ds_list_find_value(ds_list_find_value(el_list,i),9) == tempid)
                 {
                 oldlist = ds_list_find_value(el_list,i);
-                ds_list_clear(oldlist);
+                //ds_list_clear(oldlist);
+                ds_list_destroy(oldlist);
                 ds_list_replace(el_list,i,list);
                 }
             }
@@ -165,7 +166,7 @@ else if (string_char_at(undo,0) == 'k')
     }
 else if (string_char_at(undo,0) == 'l')
     {
-    //undo reapply elements
+    //undo delete
     for (u = 0;u &lt; ds_list_size(real(string_digits(undo)));u++)
         {
         list = ds_list_find_value(real(string_digits(undo)),u);
