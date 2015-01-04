@@ -34,8 +34,8 @@ FMODSpectrumSetSnapshotType(1);
 FMODInstanceGetSpectrumSnapshot2(parseinstance,0,numentries);
 s = FMODNormalizeSpectrumData(0,5);
 ds_list_add(audio_list,ln(1+clamp(s*8,0,3.4)));
-s = FMODNormalizeSpectrumData(50,250);
-ds_list_add(audio_list,ln(1+clamp(s*10,0,3.4)));
+s = FMODNormalizeSpectrumData(40,150);
+ds_list_add(audio_list,ln(1+clamp(s*8,0,3.4)));
 
 pos = FMODInstanceGetPosition(parseinstance);
 

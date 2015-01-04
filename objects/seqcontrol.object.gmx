@@ -30,42 +30,14 @@
 layer_list = ds_list_create();
 layer = ds_list_create();
 ds_list_add(layer_list,layer);
-frame_surf = surface_create(512,512);
-audio_surf = surface_create(1024,1024);
-audio_list = ds_list_create();
-songinstance = 0;
-
-tlw = 897;
-tlh = 128;
-phi = 1.618;
-
-
-tlzoom = tlw;
-tlx = 0;
-tly = 0;
-song = 0;
-songlength = 0;
-length = 1;
-projectfps = 30;
-tooltip = "";
-tlpos = 0;
-parsingaudio = 0;
-scrollbarx = 0;
-scrollbarw = 0;
-scroll_moving = 0;
-tlhalf = tlh/2;
-tlthird = tlh/3;
-deltatime = 0;
-
-layer_list = ds_list_create();
-layer = ds_list_create();
-ds_list_add(layer_list,layer);
 surface_list = ds_list_create();
 audio_list = ds_list_create();
+audio_surf = surface_create(1024,1024);
 songinstance = 0;
 
 tlw = 897;
 tlh = 128;
+lbh = room_height-32-tlh-138;
 phi = 1.618;
 
 audio_surf = surface_create(1024,1024);
@@ -75,16 +47,21 @@ tlx = 0;
 tly = 0;
 song = 0;
 songlength = 0;
-length = 1;
+length = 30*30;
 projectfps = 30;
 tooltip = "";
 tlpos = 0;
 parsingaudio = 0;
 scrollbarx = 0;
 scrollbarw = 0;
+layerbarx = 0;
+layerbarw = 0;
 scroll_moving = 0;
 tlhalf = tlh/2;
 tlthird = tlh/3;
+playing = 0;
+pos = 0;
+deltatime = 0;
 
 LoadFMOD();
 FMODinit(2,0);
@@ -110,8 +87,8 @@ FMODinit(2,0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (parsingaudio) or (song &amp;&amp; !FMODInstanceGetPaused(songinstance)) or (scroll_moving)
-    refresh_audio_surf();
+            <string>//if (parsingaudio) or (scroll_moving) or (song &amp;&amp; !FMODInstanceGetPaused(songinstance))
+refresh_audio_surf();
 alarm[0] = 2;
 </string>
           </argument>
@@ -144,6 +121,31 @@ if (room != rm_seq) exit;
 
 if (song) FMODUpdate();
 
+if (playing == 1)
+    {
+    tlpos += delta_time/1000;
+    if (song)
+        FMODInstanceSetPaused(songinstance,0);    
+    if (tlpos &gt; length/projectfps*1000) 
+        {
+        playing = 0;
+        tlpos = 0;
+        if (song)
+            {
+            FMODInstanceStop(songinstance);
+            songinstance = FMODSoundPlay(song,1);
+            }
+        }
+    if (song) &amp;&amp; (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-tlpos) &gt; 17)
+        FMODInstanceSetPosition(songinstance,tlpos-16/FMODSoundGetLength(song));
+
+    }
+else
+    {
+    if (song)
+        FMODInstanceSetPaused(songinstance,1);
+    }
+
 with (obj_cursor)
     {
     x = mouse_x;
@@ -153,16 +155,19 @@ with (obj_cursor)
 if (keyboard_check_pressed(vk_tab))
     {
     if (song) FMODInstanceSetPaused(songinstance,1);
+    playing = 0;
     room_goto(rm_ilda);
     }
     
 if (keyboard_check_pressed(vk_backspace))
     {
     tlx = 0;
+    playing = 0;
+    tlpos = 0;
     if (song)
         {
-        FMODInstanceSetPaused(songinstance,1);
-        FMODInstanceSetPosition(songinstance,0);
+        FMODInstanceStop(songinstance);
+        songinstance = FMODSoundPlay(song,1);
         }
     }
     
@@ -177,6 +182,29 @@ if (keyboard_check_pressed(ord('M')))
     window_set_fullscreen(0);
     window_set_size(1100,670);
     }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (room == rm_seq) refresh_audio_surf();
 </string>
           </argument>
         </arguments>
@@ -228,21 +256,19 @@ UnloadFMOD();
             <string>if (room != rm_seq) exit;
 
 draw_set_color(c_white);
-if (song)
-    {
-    draw_surface(audio_surf,0,137);
-    cursorlinex = FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)/1000*projectfps;
-    draw_set_color(c_black);
-    draw_set_alpha(0.8);
-    draw_line((cursorlinex-tlx)/tlzoom*tlw,137,(cursorlinex-tlx)/tlzoom*tlw,136+tlh);
-    if ((cursorlinex-tlx)/tlzoom*tlw &gt; (tlw/phi)) &amp;&amp; !FMODInstanceGetPaused(songinstance)
-        tlx = cursorlinex-(tlw/phi)*tlzoom/tlw;
-    }
+draw_surface(audio_surf,0,137);
+cursorlinex = tlpos/1000*projectfps;
+draw_set_color(c_black);
+draw_set_alpha(0.8);
+draw_line((cursorlinex-tlx)/tlzoom*tlw,136,(cursorlinex-tlx)/tlzoom*tlw,136+tlh);
+if ((cursorlinex-tlx)/tlzoom*tlw &gt; (tlw/2)) &amp;&amp; (playing)
+    tlx = cursorlinex-(tlw/2)*tlzoom/tlw;
     
 //scroll
 draw_set_color(c_gray);
 draw_set_alpha(1);
 draw_rectangle(scrollbarx,room_height,scrollbarx+scrollbarw,room_height-16,0);
+draw_rectangle(tlw-16,138+tlh+16+layerbarx,tlw,138+tlh+16+layerbarx+layerbarw,0);
 </string>
           </argument>
         </arguments>
@@ -267,7 +293,9 @@ draw_rectangle(scrollbarx,room_height,scrollbarx+scrollbarw,room_height-16,0);
             <kind>1</kind>
             <string>if (room != rm_seq) exit;
 
-FMODInstanceSetPaused(songinstance,!FMODInstanceGetPaused(songinstance));
+playing = !playing;
+
+//FMODInstanceSetPaused(songinstance,!FMODInstanceGetPaused(songinstance));
 </string>
           </argument>
         </arguments>

@@ -27,7 +27,7 @@ surface_set_target(audio_surf);
                 draw_set_alpha(0.8);
                 draw_set_halign(fa_center);
                 draw_set_valign(fa_center);
-                draw_text(tempx,tlh+8,string_replace(string_format(floor(drawtime/60),2,0)," ","0")+
+                draw_text(tempx,tlh+9,string_replace(string_format(floor(drawtime/60),2,0)," ","0")+
                                     ":"+string_replace(string_format(drawtime %60,2,0)," ","0"));
                 draw_set_halign(fa_left);
                 draw_set_valign(fa_top);
@@ -41,28 +41,31 @@ surface_set_target(audio_surf);
             drawtime++;
             }
             
-    draw_set_alpha(0.6);
-    for (u=0; u <= tlw; u++)
+    if (song)
         {
-        nearesti = round((tlx+u*tlzoom/tlw/1)/projectfps*60)*3;
-        
-        if (nearesti > ds_list_size(audio_list)-3)
-            break;
+        draw_set_alpha(0.6);
+        for (u=0; u <= tlw; u++)
+            {
+            nearesti = round((tlx+u*tlzoom/tlw/1)/projectfps*60)*3;
             
-        v = ds_list_find_value(audio_list,nearesti);
-        draw_set_color(c_green);
-        draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);
-        
-        v = ds_list_find_value(audio_list,nearesti+1);
-        draw_set_color(c_red);
-        draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);
-        
-        v = ds_list_find_value(audio_list,nearesti+2);
-        draw_set_color(c_blue);
-        draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);    
+            if (nearesti > ds_list_size(audio_list)-3)
+                break;
+                
+            v = ds_list_find_value(audio_list,nearesti);
+            draw_set_color(c_green);
+            draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);
+            
+            v = ds_list_find_value(audio_list,nearesti+1);
+            draw_set_color(c_red);
+            draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);
+            
+            v = ds_list_find_value(audio_list,nearesti+2);
+            draw_set_color(c_blue);
+            draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);    
+            }
+        draw_set_alpha(1);
+        draw_set_color(c_dkgray);
         }
-    draw_set_alpha(1);
-    draw_set_color(c_dkgray);
         
         
 surface_reset_target();
