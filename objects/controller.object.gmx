@@ -601,7 +601,7 @@ if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
         alarm[0] = 30;
         }
     else if (scroll)
-        framehr -= 0.49;
+        framehr -= delta_time/1000000*seqcontrol.projectfps;
     if (framehr &lt; -0.5)
         framehr+= maxframes;
     frame = round(framehr);
@@ -645,7 +645,7 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status ==
         alarm[0] = 30;
         }
     else if (scroll)
-        framehr += 0.49;
+        framehr += delta_time/1000000*seqcontrol.projectfps;
     if (framehr &gt; maxframes-0.5)
         framehr-= maxframes;
     frame = round(framehr);
@@ -1317,8 +1317,20 @@ if (new_id == getint)
                 
             
             framepoints = 0;
+            frame = 0;
+            framehr = 0;
+            maxframes = 1;
+            scope_start = 0;
+            scope_end = maxframes-1;
             
             frame_surf_refresh = 1;
+            
+            break;
+            }
+            
+          case "loadfile":
+            {
+            load_frames();
             
             break;
             }

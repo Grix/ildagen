@@ -3,7 +3,7 @@ draw_clear_alpha(c_black,1);
 el_list = ds_list_find_value(frame_list,frame);
 
 draw_set_blend_mode(bm_add);
-draw_set_alpha(0.85);
+draw_set_alpha(0.7);
 for (i = 0;i < ds_list_size(el_list);i++)
     {
     new_list = ds_list_find_value(el_list,i);

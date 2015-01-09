@@ -162,11 +162,13 @@
       <sprite>sprites\spr_funcselect</sprite>
       <sprite>sprites\spr_funcr</sprite>
     </sprites>
+    <sprite>sprites\spr_save</sprite>
+    <sprite>sprites\spr_import</sprite>
+    <sprite>sprites\spr_load</sprite>
     <sprite>sprites\spr_resettrans</sprite>
     <sprite>sprites\spr_scope</sprite>
     <sprite>sprites\spr_shaking</sprite>
     <sprite>sprites\spr_reapply</sprite>
-    <sprite>sprites\spr_import</sprite>
     <sprite>sprites\spr_anitocol</sprite>
     <sprite>sprites\spr_coltoani</sprite>
     <sprite>sprites\spr_help</sprite>
@@ -857,6 +859,8 @@
     <script>scripts\refresh_audio.gml</script>
     <script>scripts\refresh_audio_surf.gml</script>
     <script>scripts\handle_scrolling.gml</script>
+    <script>scripts\save_frames.gml</script>
+    <script>scripts\load_frames.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
@@ -947,6 +951,8 @@
         <object>objects\obj_reapply</object>
         <object>objects\obj_clear</object>
         <object>objects\obj_export</object>
+        <object>objects\obj_save</object>
+        <object>objects\obj_load</object>
         <object>objects\obj_import</object>
         <object>objects\obj_onionskin</object>
         <object>objects\obj_clearframe</object>

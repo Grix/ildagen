@@ -1,14 +1,12 @@
 //exports every element into an ilda file
 placing_status = 0;
 
-ilda_buffer = buffer_create(1,buffer_grow,1);
-file_loc = get_save_filename("*.ild","out.ild");
+file_loc = get_save_filename_ext("*.ild","example.ild","","Select ILDA file");
 if (file_loc == "")
     exit;
-    
+ilda_buffer = buffer_create(1,buffer_grow,1);    
     
 maxpoints = 0;
-frame = 0;
 
 maxpointstot = 0;
 
@@ -53,6 +51,8 @@ for (j = 0; j < maxframes;j++)
     buffer_write(ilda_buffer,buffer_u8,maxframesa[0]); 
     buffer_write(ilda_buffer,buffer_u8,0); //scanner
     buffer_write(ilda_buffer,buffer_u8,0); //0
+    
+    if (!ds_list_size(el_list)) continue;
     
     //optimize first
     if (exp_optimize == 1)
@@ -372,5 +372,3 @@ buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
 buffer_save(ilda_buffer,file_loc);
 show_message_async("ILDA file exported, "+string(maxpointstot)+" points total");
 buffer_delete(ilda_buffer);
-
-frame = 0;

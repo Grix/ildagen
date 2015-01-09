@@ -87,7 +87,9 @@ FMODinit(2,0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//if (parsingaudio) or (scroll_moving) or (song &amp;&amp; !FMODInstanceGetPaused(songinstance))
+            <string>if (room != rm_seq) exit;
+
+//if (parsingaudio) or (scroll_moving) or (song &amp;&amp; !FMODInstanceGetPaused(songinstance))
 refresh_audio_surf();
 alarm[0] = 2;
 </string>

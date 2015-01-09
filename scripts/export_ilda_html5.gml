@@ -14,7 +14,6 @@ maxframespost = maxframespost >> 8;
 maxframesa[1] = maxframespost & 255;
 
 
-
 for (j = 0; j < maxframes;j++)
     {
     el_list = ds_list_find_value(frame_list,j);
@@ -51,6 +50,8 @@ for (j = 0; j < maxframes;j++)
     buffer_write(ilda_buffer,buffer_u8,maxframesa[0]); 
     buffer_write(ilda_buffer,buffer_u8,0); //scanner
     buffer_write(ilda_buffer,buffer_u8,0); //0
+    
+    if (!ds_list_size(el_list)) continue;
     
     //optimize first
     if (exp_optimize == 1)
