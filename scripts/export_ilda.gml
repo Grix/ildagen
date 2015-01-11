@@ -57,62 +57,7 @@ for (j = 0; j < maxframes;j++)
     //optimize first
     if (exp_optimize == 1)
         {
-        xo = ds_list_find_value(ds_list_find_value(el_list,0),0);
-        yo = ds_list_find_value(ds_list_find_value(el_list,0),1);
-        xpe = xo+ds_list_find_value(ds_list_find_value(el_list,0),10+0*6+0);
-        ype = $ffff-(yo+ds_list_find_value(ds_list_find_value(el_list,0),10+0*6+1));
-        
-        opt_dist = point_distance($ffff/2,$ffff/2,xpe,ype);
-        opt_vectorx = ($ffff/2-xpe)/opt_dist;
-        opt_vectory = ($ffff/2-ype)/opt_dist;
-        
-        /*for (m = 0;m > 3;m++)
-            {
-            //writing point
-            buffer_write(ilda_buffer,buffer_u8,);
-            buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-            buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-            buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-            buffer_write(ilda_buffer,buffer_u8,$40);
-            buffer_write(ilda_buffer,buffer_u8,0);
-            buffer_write(ilda_buffer,buffer_u8,0);
-            buffer_write(ilda_buffer,buffer_u8,0);
-            maxpoints++;
-            }*/
-        
-        trav = -4096;    
-        for (trav_dist = trav/2;trav_dist >= -opt_dist; trav_dist += trav;)
-            {
-            xp = $ffff/2+opt_vectorx*trav_dist;
-            yp = $ffff/2+opt_vectory*trav_dist;
-            
-            if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
-                {
-                continue;
-                }
-            
-            xp -= $8000;
-            yp -= $8000;
-            xpa[0] = xp & 255;
-            xp = xp >> 8;
-            xpa[1] = xp & 255;
-            ypa[0] = yp & 255;
-            yp = yp >> 8;
-            ypa[1] = yp & 255;
-        
-            
-            
-            //writing point
-            buffer_write(ilda_buffer,buffer_u8,xpa[1]);
-            buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-            buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-            buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-            buffer_write(ilda_buffer,buffer_u8,$40);
-            buffer_write(ilda_buffer,buffer_u8,0);
-            buffer_write(ilda_buffer,buffer_u8,0);
-            buffer_write(ilda_buffer,buffer_u8,0);
-            maxpoints++;
-            }
+        optimize_first();
         }
     
     for (i = 0;i < ds_list_size(el_list);i++)
@@ -126,14 +71,14 @@ for (j = 0; j < maxframes;j++)
         
         //TODO if just one
         
-        listsize = ((ds_list_size(list_id)-10)/6);
+        listsize = ((ds_list_size(list_id)-50)/6);
         
         
         for (u = 0; u < listsize; u++)
             {
             //getting values from element list
-            xp = xo+ds_list_find_value(list_id,10+u*6+0);
-            yp = $ffff-(yo+ds_list_find_value(list_id,10+u*6+1));
+            xp = xo+ds_list_find_value(list_id,50+u*6+0);
+            yp = $ffff-(yo+ds_list_find_value(list_id,50+u*6+1));
             if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
                 {
                 blanktemp = 1;
@@ -141,12 +86,12 @@ for (j = 0; j < maxframes;j++)
                 }
         
             
-            bl = ds_list_find_value(list_id,10+u*6+2);
-            b = ds_list_find_value(list_id,10+u*6+3);
+            bl = ds_list_find_value(list_id,50+u*6+2);
+            b = ds_list_find_value(list_id,50+u*6+3);
             if (is_undefined(b) and bl) {b = 0}
-            g = ds_list_find_value(list_id,10+u*6+4);
+            g = ds_list_find_value(list_id,50+u*6+4);
             if (is_undefined(g) and bl) {g = 0}
-            r = ds_list_find_value(list_id,10+u*6+5);
+            r = ds_list_find_value(list_id,50+u*6+5);
             if (is_undefined(r) and bl) {r = 0}
             
             //adjusting values for writing to buffer
@@ -166,25 +111,25 @@ for (j = 0; j < maxframes;j++)
             else if (bl)
                 {
                 blank = $40;
-                if (u == (ds_list_size(list_id)-10)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
+                if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
                     blank = $C0;
                 }
             else
                 {
                 blank = $0;
-                if (u == (ds_list_size(list_id)-10)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
+                if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
                     blank = $80;
                 }
             if (blanktemp == 1)
                 {
                 blank = $40;
                 blanktemp = 0;
-                if (u == (ds_list_size(list_id)-10)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
+                if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
                     blank = $C0;
                 }
             
             
-            if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,10+(u+1)*6+2))) or (exp_optimize == 1)
+            if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,50+(u+1)*6+2))) or (exp_optimize == 1)
                 {
                 //writing point
                 buffer_write(ilda_buffer,buffer_u8,xpa[1]);
@@ -203,123 +148,14 @@ for (j = 0; j < maxframes;j++)
         //optimize between elements
         if (exp_optimize == 1) and (i != ds_list_size(el_list)-1)
             {
-            xpeprev = xpe;
-            ypeprev = ype;
-            
-            list_id = ds_list_find_value(el_list,i+1);
-            xo = ds_list_find_value(list_id,0);
-            yo = ds_list_find_value(list_id,1);
-            xpe = xo+ds_list_find_value(list_id,10+0*6+0);
-            ype = $ffff-(yo+ds_list_find_value(list_id,10+0*6+1));
-            
-            
-            opt_dist = point_distance(xpeprev,ypeprev,xpe,ype);
-            opt_vectorx = (xpe-xpeprev)/opt_dist;
-            opt_vectory = (ype-ypeprev)/opt_dist;
-            
-            /*for (m = 0;m > 3;m++)
-                {
-                //writing point
-                buffer_write(ilda_buffer,buffer_u8,);
-                buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-                buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-                buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-                buffer_write(ilda_buffer,buffer_u8,$40);
-                buffer_write(ilda_buffer,buffer_u8,0);
-                buffer_write(ilda_buffer,buffer_u8,0);
-                buffer_write(ilda_buffer,buffer_u8,0);
-                maxpoints++;
-                }*/
-            
-            trav = -4096;    
-            for (trav_dist = trav/2;trav_dist >= -opt_dist; trav_dist += trav;)
-                {
-                xp = xpe+opt_vectorx*trav_dist;
-                yp = ype+opt_vectory*trav_dist;
-                
-                if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
-                {
-                continue;
-                }
-                
-                xp -= $8000;
-                yp -= $8000;
-                xpa[0] = xp & 255;
-                xp = xp >> 8;
-                xpa[1] = xp & 255;
-                ypa[0] = yp & 255;
-                yp = yp >> 8;
-                ypa[1] = yp & 255;
-                
-                //writing point
-                buffer_write(ilda_buffer,buffer_u8,xpa[1]);
-                buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-                buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-                buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-                buffer_write(ilda_buffer,buffer_u8,$40);
-                buffer_write(ilda_buffer,buffer_u8,0);
-                buffer_write(ilda_buffer,buffer_u8,0);
-                buffer_write(ilda_buffer,buffer_u8,0);
-                maxpoints++;
-                }
+            optimize_between();
             }
         }
         
     //optimize last
     if (exp_optimize == 1)
         {
-        xpeprev = xpe;
-        ypeprev = ype;
-        
-        opt_dist = point_distance($ffff/2,$ffff/2,xpe,ype);
-        opt_vectorx = (xpeprev-$ffff/2)/opt_dist;
-        opt_vectory = (ypeprev-$ffff/2)/opt_dist;
-        
-        /*for (m = 0;m > 3;m++)
-            {
-            //writing point
-            buffer_write(ilda_buffer,buffer_u8,);
-            buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-            buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-            buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-            buffer_write(ilda_buffer,buffer_u8,$40);
-            buffer_write(ilda_buffer,buffer_u8,0);
-            buffer_write(ilda_buffer,buffer_u8,0);
-            buffer_write(ilda_buffer,buffer_u8,0);
-            maxpoints++;
-            }*/
-        
-        trav = -4096;    
-        for (trav_dist = trav/2;trav_dist >= -opt_dist; trav_dist += trav;)
-            {
-            xp = xpeprev+opt_vectorx*trav_dist;
-            yp = ypeprev+opt_vectory*trav_dist;
-            
-            if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
-                {
-                continue;
-                }
-            
-            xp -= $8000;
-            yp -= $8000;
-            xpa[0] = xp & 255;
-            xp = xp >> 8;
-            xpa[1] = xp & 255;
-            ypa[0] = yp & 255;
-            yp = yp >> 8;
-            ypa[1] = yp & 255;
-            
-            //writing point
-            buffer_write(ilda_buffer,buffer_u8,xpa[1]);
-            buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-            buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-            buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-            buffer_write(ilda_buffer,buffer_u8,$40);
-            buffer_write(ilda_buffer,buffer_u8,0);
-            buffer_write(ilda_buffer,buffer_u8,0);
-            buffer_write(ilda_buffer,buffer_u8,0);
-            maxpoints++;
-            }
+        optimize_last();
         }
         
     //update maxpoints

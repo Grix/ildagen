@@ -117,6 +117,8 @@ getint = -1;
 getstr = -1;
 dialog = "";
 
+opt_maxdist = 2048;
+
 placing = "line";
 startpos[1] = 0;
 placing_status = 0;

@@ -13,20 +13,20 @@ for (i = 0;i < ds_list_size(el_list);i++)
         
         //TODO if just one
         
-        for (u = 0; u < (((ds_list_size(new_list)-10)/6)-1); u++)
+        for (u = 0; u < (((ds_list_size(new_list)-50)/6)-1); u++)
             {
-            nbl = ds_list_find_value(new_list,10+(u+1)*6+2);
+            nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
             
             if (nbl == 0)
                 {
-                xp = ds_list_find_value(new_list,10+u*6+0);
-                yp = ds_list_find_value(new_list,10+u*6+1);
+                xp = ds_list_find_value(new_list,50+u*6+0);
+                yp = ds_list_find_value(new_list,50+u*6+1);
                 
-                nxp = ds_list_find_value(new_list,10+(u+1)*6+0);
-                nyp = ds_list_find_value(new_list,10+(u+1)*6+1);
-                nb = ds_list_find_value(new_list,10+(u+1)*6+3);
-                ng = ds_list_find_value(new_list,10+(u+1)*6+4);
-                nr = ds_list_find_value(new_list,10+(u+1)*6+5);
+                nxp = ds_list_find_value(new_list,50+(u+1)*6+0);
+                nyp = ds_list_find_value(new_list,50+(u+1)*6+1);
+                nb = ds_list_find_value(new_list,50+(u+1)*6+3);
+                ng = ds_list_find_value(new_list,50+(u+1)*6+4);
+                nr = ds_list_find_value(new_list,50+(u+1)*6+5);
                 
                 pdir = point_direction(256,256,xo+ xp/128,yo+ yp/128);
                 npdir = point_direction(256,256,xo+ nxp/128,yo+ nyp/128);

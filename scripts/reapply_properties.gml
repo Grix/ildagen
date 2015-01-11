@@ -213,7 +213,7 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
     {
     blanknew = 1;
     new_list = ds_list_find_value(temp_frame_list,i);
-    checkpoints = ((ds_list_size(new_list)-10)/6);
+    checkpoints = ((ds_list_size(new_list)-50)/6);
     
     startpos[0] = ds_list_find_value(new_list,0);
     startpos[1] = ds_list_find_value(new_list,1);
@@ -226,10 +226,10 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         lengthlist = ds_list_create();
         for (j = 0; j < (checkpoints-1);j++)
             {
-            length = point_distance(ds_list_find_value(new_list,10+j*6)
-                                    ,ds_list_find_value(new_list,10+j*6+1)
-                                    ,ds_list_find_value(new_list,10+(j+1)*6)
-                                    ,ds_list_find_value(new_list,10+(j+1)*6+1));
+            length = point_distance(ds_list_find_value(new_list,50+j*6)
+                                    ,ds_list_find_value(new_list,50+j*6+1)
+                                    ,ds_list_find_value(new_list,50+(j+1)*6)
+                                    ,ds_list_find_value(new_list,50+(j+1)*6+1));
             ds_list_add(lengthlist,length);
             }
             
@@ -245,14 +245,14 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 {
                 lerpi-= 1/floor(ds_list_find_value(lengthlist,j) / resolution);
                 
-                newx = lerp(ds_list_find_value(new_list,10+(j+1+jpp-jpp_offset)*6),ds_list_find_value(new_list,10+(j+jpp-jpp_offset)*6),lerpi);
-                newy = lerp(ds_list_find_value(new_list,10+(j+1+jpp-jpp_offset)*6+1),ds_list_find_value(new_list,10+(j+jpp-jpp_offset)*6+1),lerpi);
-                ds_list_insert(new_list,10+(j+1+jpp)*6+6,newx);
-                ds_list_insert(new_list,10+(j+1+jpp)*6+7,newy);
-                ds_list_insert(new_list,10+(j+1+jpp)*6+8,ds_list_find_value(new_list,10+(j+1+jpp)*6+2));
-                ds_list_insert(new_list,10+(j+1+jpp)*6+9,ds_list_find_value(new_list,10+(j+1+jpp)*6+3));
-                ds_list_insert(new_list,10+(j+1+jpp)*6+10,ds_list_find_value(new_list,10+(j+1+jpp)*6+4));
-                ds_list_insert(new_list,10+(j+1+jpp)*6+11,ds_list_find_value(new_list,10+(j+1+jpp)*6+5));
+                newx = lerp(ds_list_find_value(new_list,50+(j+1+jpp-jpp_offset)*6),ds_list_find_value(new_list,50+(j+jpp-jpp_offset)*6),lerpi);
+                newy = lerp(ds_list_find_value(new_list,50+(j+1+jpp-jpp_offset)*6+1),ds_list_find_value(new_list,50+(j+jpp-jpp_offset)*6+1),lerpi);
+                ds_list_insert(new_list,50+(j+1+jpp)*6+6,newx);
+                ds_list_insert(new_list,50+(j+1+jpp)*6+7,newy);
+                ds_list_insert(new_list,50+(j+1+jpp)*6+8,ds_list_find_value(new_list,50+(j+1+jpp)*6+2));
+                ds_list_insert(new_list,50+(j+1+jpp)*6+9,ds_list_find_value(new_list,50+(j+1+jpp)*6+3));
+                ds_list_insert(new_list,50+(j+1+jpp)*6+10,ds_list_find_value(new_list,50+(j+1+jpp)*6+4));
+                ds_list_insert(new_list,50+(j+1+jpp)*6+11,ds_list_find_value(new_list,50+(j+1+jpp)*6+5));
                 
                 jpp++;
                 jpp_offset++;
@@ -429,12 +429,12 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
     //walk through points
     for (j = 0; j < checkpoints;j++)
         {
-        listpos = 10+j*6;
+        listpos = 50+j*6;
         xp = ds_list_find_value(new_list,listpos);
         yp = ds_list_find_value(new_list,listpos+1);
         
         
-        if ((j != 0) and (ds_list_find_value(new_list,listpos) == ds_list_find_value(new_list,10+(j-1)*6)) and (ds_list_find_value(new_list,listpos+1) == ds_list_find_value(new_list,10+(j-1)*6+1)) and (controller.reap_removeoverlap))
+        if ((j != 0) and (ds_list_find_value(new_list,listpos) == ds_list_find_value(new_list,50+(j-1)*6)) and (ds_list_find_value(new_list,listpos+1) == ds_list_find_value(new_list,50+(j-1)*6+1)) and (controller.reap_removeoverlap))
             {
             repeat(6) ds_list_delete(new_list,listpos);
             checkpoints--;
@@ -628,19 +628,19 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                     if (makedot == 2)
                         {
                         if (blank)
-                            ds_list_replace(new_list,10+(j-1)*6+2,1);
+                            ds_list_replace(new_list,50+(j-1)*6+2,1);
                         else
-                            ds_list_replace(new_list,10+(j-1)*6+2,0);
+                            ds_list_replace(new_list,50+(j-1)*6+2,0);
                         icount = 0;
                         repeat (dotmultiply)
                             {
                             icount++;
-                            ds_list_insert(new_list,10+(j-1)*6+6,ds_list_find_value(new_list,10+(j-1)*6));
-                            ds_list_insert(new_list,10+(j-1)*6+7,ds_list_find_value(new_list,10+(j-1)*6+1));
-                            ds_list_insert(new_list,10+(j-1)*6+8,0);
-                            ds_list_insert(new_list,10+(j-1)*6+9,colour_get_blue(enddotscolor_r));
-                            ds_list_insert(new_list,10+(j-1)*6+10,colour_get_green(enddotscolor_r));
-                            ds_list_insert(new_list,10+(j-1)*6+11,colour_get_red(enddotscolor_r));
+                            ds_list_insert(new_list,50+(j-1)*6+6,ds_list_find_value(new_list,50+(j-1)*6));
+                            ds_list_insert(new_list,50+(j-1)*6+7,ds_list_find_value(new_list,50+(j-1)*6+1));
+                            ds_list_insert(new_list,50+(j-1)*6+8,0);
+                            ds_list_insert(new_list,50+(j-1)*6+9,colour_get_blue(enddotscolor_r));
+                            ds_list_insert(new_list,50+(j-1)*6+10,colour_get_green(enddotscolor_r));
+                            ds_list_insert(new_list,50+(j-1)*6+11,colour_get_red(enddotscolor_r));
                             }
                         j+= icount;
                         checkpoints += icount;

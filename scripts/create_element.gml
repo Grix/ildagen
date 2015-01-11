@@ -52,7 +52,7 @@ if (is_string(resolution))
     {
     autoresflag = 1;
     if ((placing == "line") && (blankmode == "solid") && (colormode == "solid"))
-        resolution = 3000;
+        resolution = 2048;
     else
         resolution = 1024;
         
@@ -405,6 +405,8 @@ if (!fillframes)
     ds_list_add(new_list,0);
     ds_list_add(new_list,0);
     ds_list_add(new_list,el_id);
+    repeat (40) ds_list_add(new_list,0);
+    
     
     func_startofframe();
     
@@ -693,6 +695,7 @@ else
         ds_list_add(new_list,0);
         ds_list_add(new_list,0);
         ds_list_add(new_list,el_id);
+        repeat (40) ds_list_add(new_list,0);
         
         func_startofframe();
         

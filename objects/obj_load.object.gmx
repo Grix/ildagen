@@ -99,7 +99,7 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room == rm_seq)
+            <string>if (room == rm_ilda)
     {
     with (controller)
         {
