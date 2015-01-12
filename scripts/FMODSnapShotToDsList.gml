@@ -1,4 +1,4 @@
-/*//GM7 ONLY, GM8 see bottom
+//GM7 ONLY, GM8 see bottom
 //export double FMODSnapShotToDsList(double startpos, double size, double ds)
 //returns 0 on error; probable error because...
 //... returns the variation of the data (maxv-minv) which can be used to normalise the data 
@@ -26,7 +26,7 @@ return 1;
 
 return external_call(global.dll_FMODSnapShotToDsList,argument0,argument1,argument2);
 
-*/
+/*
 //////////////////////////////
 //GM8 version
 //export double FMODSnapShotToDsList(double startpos, double size, double ds)
@@ -54,3 +54,4 @@ repeat(argument1)
 }
 
 //return external_call(global.dll_FMODSnapShotToDsList,argument0,argument1,argument2);
+*/

@@ -57,6 +57,7 @@
         "Enter)    Remake selected object, press OK, or finalize curve#"+
         "Left/Right Arrows)    Cycle between frames#"+
         "Up/Down Arrows)    Cycle between selected object#"+
+        "Ctrl+Mouse)    Select object#"+
         "Delete)    Delete selected object#"+
         "Spacebar)    Switch between 2D and 3D frame previewing#"+
         "Shift)    Force horizontal or vertical lines when drawing#"+
@@ -67,14 +68,14 @@
         "S)    Show/Snap to square grid (Double click to toggle)#"+
         "R)    Show radial grid (Double click to toggle)#"+
         "Z)    Zoom in around the cursor#"+
-        "E)    Clone color from background image##"+
+        "E)    Clone color from background image#"+
         "Ctrl)    Move all color sliders, or center symmetric sliders#"+
         "Ctrl+Z)    Undo#"+
         "Ctrl+C)    Copy#"+
         "Ctrl+X)    Cut#"+
         "Ctrl+V)    Paste#"+
         "Backspace)    Cancel object placing and selection#"+
-        "0)    Jump to first frame##"+
+        "0)    Jump to first frame#"+
         "Mouse wheel)    Adjust wave amplitude#"+
         "Ctrl+Mouse wheel)    Adjust wave frequency##"+
         "M)    Reset window size#"+
@@ -106,29 +107,6 @@ else image_index = 0;
             <string>//url_open("https://github.com/Grix/ildagen/raw/master/help.pdf");
 url_open(working_directory+"help.pdf");
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_sprite(sprite_index,image_index,x,y);
 </string>
           </argument>
         </arguments>

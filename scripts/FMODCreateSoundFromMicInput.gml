@@ -3,3 +3,4 @@
 
 //See FMODMicStart
 return external_call(global.dll_FMODCreateSoundFromMicInput);
+

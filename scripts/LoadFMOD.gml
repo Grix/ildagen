@@ -587,3 +587,9 @@ if(WTF) show_debug_message("Defined: FMODInstanceSet3DPanLevel")
 //export double FMODInstanceGet3DPanLevel(double instance)
 global.dll_FMODInstanceGet3DPanLevel=external_define("GMFMODSimple.dll","FMODInstanceGet3DPanLevel",dll_cdecl,ty_real,1,ty_real);
 if(WTF) show_debug_message("Defined: FMODInstanceGet3DPanLevel")
+
+
+//export string FMODGetErrorString(double error_code)
+global.dll_FMODGetErrorString=external_define("GMFMODSimple.dll","FMODGetErrorString",dll_cdecl,ty_string,1,ty_real);
+if(WTF) show_debug_message("Defined: FMODGetErrorString")
+

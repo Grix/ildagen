@@ -12,10 +12,10 @@ if (objmoving == 1)
         
         xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
         yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-        rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
-        rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
-        rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
-        rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
+        rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
+        rectymin = yo + (ds_list_find_value(selectedelementlist,6));
+        rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
+        rectymax = yo + (ds_list_find_value(selectedelementlist,7));
         }
     }
 else if (objmoving == 2)    
@@ -49,10 +49,10 @@ else if (objmoving == 3)
         
         xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
         yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-        rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
-        rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
-        rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
-        rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
+        rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
+        rectymin = yo + (ds_list_find_value(selectedelementlist,6));
+        rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
+        rectymax = yo + (ds_list_find_value(selectedelementlist,7));
         }
     }
 else if (objmoving == 4)
@@ -78,10 +78,10 @@ else if (objmoving == 4)
         
         xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
         yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-        rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
-        rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
-        rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
-        rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
+        rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
+        rectymin = yo + (ds_list_find_value(selectedelementlist,6));
+        rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
+        rectymax = yo + (ds_list_find_value(selectedelementlist,7));
         }
     }
 else

@@ -90,6 +90,7 @@ xdelta[32] = 0;
 snap_list = ds_list_create();
 selsurf = surface_create(512,512);
 copy_list = -1;
+selectedelementlist = ds_list_create();
 
 redraw = 0;
 sgridshow = 0;
@@ -112,10 +113,11 @@ scroll = 0;
 viewmode = 0;
 selectedelement = -1;
 selectedelementlist = 0;
-exp_optimize = 1;
+exp_optimize = 0;
 getint = -1;
 getstr = -1;
 dialog = "";
+selecting = 0;
 
 opt_maxdist = 2048;
 
@@ -395,6 +397,11 @@ if (keyboard_check_pressed(vk_space))
 if (!surface_exists(frame_surf) || (!surface_exists(frame3d_surf) &amp;&amp; viewmode != 0))
     frame_surf_refresh = 1;
     
+if (keyboard_check(vk_control)) and ds_list_size(el_list)
+    {
+    check_elementselect();
+    }
+    
 //PASTE
 if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('V')))
     {
@@ -435,10 +442,10 @@ if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('V')))
         {
         xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
         yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-        rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
-        rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
-        rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
-        rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
+        rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
+        rectymin = yo + (ds_list_find_value(selectedelementlist,6));
+        rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
+        rectymax = yo + (ds_list_find_value(selectedelementlist,7));
         }
     
     frame_surf_refresh = 1;
@@ -622,10 +629,10 @@ if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
                 selectedelementlist = ds_list_find_value(el_list,i);
                 xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
                 yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-                rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
-                rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
-                rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
-                rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
+                rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
+                rectymin = yo + (ds_list_find_value(selectedelementlist,6));
+                rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
+                rectymax = yo + (ds_list_find_value(selectedelementlist,7));
                 }
             }
         if (sefound == 0)
@@ -666,10 +673,10 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status ==
                 selectedelementlist = ds_list_find_value(el_list,i);
                 xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
                 yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-                rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
-                rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
-                rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
-                rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
+                rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
+                rectymin = yo + (ds_list_find_value(selectedelementlist,6));
+                rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
+                rectymax = yo + (ds_list_find_value(selectedelementlist,7));
                 }
             }
         if (sefound == 0)
@@ -698,10 +705,10 @@ if (keyboard_check_pressed(vk_up)) and (!ds_list_empty(el_list)) and (placing_st
                 selectedelementlist = ds_list_find_value(el_list,i);
                 xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
                 yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-                rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
-                rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
-                rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
-                rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
+                rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
+                rectymin = yo + (ds_list_find_value(selectedelementlist,6));
+                rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
+                rectymax = yo + (ds_list_find_value(selectedelementlist,7));
                 }
             }
         if (tempstop)
@@ -735,10 +742,10 @@ if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list)) and (placing_
                 selectedelementlist = ds_list_find_value(el_list,i);
                 xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
                 yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-                rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
-                rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
-                rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
-                rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
+                rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
+                rectymin = yo + (ds_list_find_value(selectedelementlist,6));
+                rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
+                rectymax = yo + (ds_list_find_value(selectedelementlist,7));
                 }
             }
         if (tempstop)
@@ -1291,10 +1298,10 @@ if (new_id == getint)
             
             xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
             yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-            rectxmin = x+xo + (ds_list_find_value(selectedelementlist,4));
-            rectymin = y+yo + (ds_list_find_value(selectedelementlist,6));
-            rectxmax = x+xo + (ds_list_find_value(selectedelementlist,5));
-            rectymax = y+yo + (ds_list_find_value(selectedelementlist,7));
+            rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
+            rectymin = yo + (ds_list_find_value(selectedelementlist,6));
+            rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
+            rectymax = yo + (ds_list_find_value(selectedelementlist,7));
             
             break;
             }
@@ -1713,6 +1720,15 @@ if (bckimage)
         draw_sprite_stretched(bck_bckimage,0,0,0,512,512);
     else bckimage = 0;
     }
+    
+if (tooltip == "Click to select this object")
+    {
+    draw_set_alpha(0.5);
+    draw_set_colour(c_teal);
+        draw_rectangle(rectxmin2,rectymin2,rectxmax2,rectymax2,1);
+    draw_set_alpha(1);
+    draw_set_colour(c_white);
+    }
 
 draw_set_color(c_gray);
 if (objmoving == 3)
@@ -1837,26 +1853,6 @@ if (placing_status) or (placing == "text")
 
 draw_set_alpha(1);
 draw_set_color(c_white);
-
-//SEQ
-/*if (room != rm_seq) exit;
-
-draw_set_color(c_white);
-if (song)
-    {
-    draw_surface(audio_surf,0,137);
-    cursorlinex = FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)/1000*projectfps;
-    draw_set_color(c_black);
-    draw_set_alpha(0.8);
-    draw_line((cursorlinex-tlx)/tlzoom*tlw,137,(cursorlinex-tlx)/tlzoom*tlw,230);
-    if ((cursorlinex-tlx)/tlzoom*tlw &gt; (tlw/phi)) &amp;&amp; !FMODInstanceGetPaused(songinstance)
-        tlx = cursorlinex-(tlw/phi)*tlzoom/tlw;
-    }
-    
-//scroll
-draw_set_color(c_gray);
-draw_set_alpha(1);
-draw_rectangle(scrollbarx,room_height,scrollbarx+scrollbarw,room_height-16,0);
 </string>
           </argument>
         </arguments>

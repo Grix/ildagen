@@ -4,3 +4,4 @@
 //see FMODMicStart
 
 return external_call(global.dll_FMODRecordStop);
+

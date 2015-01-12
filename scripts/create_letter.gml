@@ -3,10 +3,10 @@ checkpoints = (ds_list_size(letter_list)-50)/6;
 
 blanknew = 1;
 
-xmax = 20;
-xmin = $ffff-20;
-ymax = 20;
-ymin = $ffff-20;
+xmax = -$ffff;
+xmin = $ffff;
+ymax = -$ffff;
+ymin = $ffff;
 
 if (blankmode == "dot") or (blankmode == "dotsolid")
     {

@@ -4,10 +4,10 @@ startrad = degtorad(-point_direction(startposx_r,startposy_r,endx_r,endy_r));
 checkpoints = ceil(2*pi*radius/resolution);
 if (checkpoints < 3) checkpoints = 3;
 
-xmax = 20;
-xmin = $ffff-20;
-ymax = 20;
-ymin = $ffff-20;
+xmax = -$ffff;
+xmin = $ffff;
+ymax = -$ffff;
+ymin = $ffff;
 
 if (blankmode == "dot") or (blankmode == "dotsolid")
     {

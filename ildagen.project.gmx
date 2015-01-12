@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="20" name="datafiles">
+  <datafiles number="21" name="datafiles">
     <datafile>
       <name>help.pdf</name>
       <exists>-1</exists>
@@ -90,9 +90,9 @@
       <filename>GMFMODSimple.dll</filename>
     </datafile>
     <datafile>
-      <name>LaserBoy_2014_12_20.zip</name>
+      <name>LaserBoy_2015_01_04.zip</name>
       <exists>-1</exists>
-      <size>4697598</size>
+      <size>4698490</size>
       <exportAction>2</exportAction>
       <exportDir></exportDir>
       <overwrite>0</overwrite>
@@ -104,7 +104,7 @@
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
-      <filename>LaserBoy_2014_12_20.zip</filename>
+      <filename>LaserBoy_2015_01_04.zip</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -864,6 +864,7 @@
     <script>scripts\handle_scrolling.gml</script>
     <script>scripts\save_frames.gml</script>
     <script>scripts\load_frames.gml</script>
+    <script>scripts\check_elementselect.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>

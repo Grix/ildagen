@@ -6,7 +6,7 @@ Go here for details
 Forum: http://gmc.yoyogames.com/index.php?showtopic=333705
 GMFMODSimple v4.28 
 Using 
-FMOD Sound System, copyright ? Firelight Technologies Pty, Ltd., 1994-2007.
+FMOD Sound System, copyright � Firelight Technologies Pty, Ltd., 1994-2007.
 FMOD Ex API version: 4.28 
 "
 
@@ -173,15 +173,17 @@ FMODSoundFree(sound);
 //////////////////////////////
 //To quickly play a file in a moving object without having it loaded on game start
 //Recommended for MIDIs or streamed files
+/*
 //on create
 sound = 0;
 instance = 0;
 alarm[0] = 1;
-//path_start(path0,3,3,true);
-
+path_start(path0,3,3,true);
+*/
 //on alarm[0]
-sound = FMODSoundAdd("music.mid",true,false /* or true if large mp3*/);
+//sound = FMODSoundAdd("music.mid",true,false /* or true if large mp3*/);
 //It's really like a moving boombox or a talking character, so ambient effect group could be used
+/*
 FMODSoundSetGroup(sound,4);
 FMODSoundSet3dMinMaxDistance(sound,100,300);
 instance = FMODSoundLoop3d(sound,x,y,0,0);
@@ -239,7 +241,7 @@ UnloadFMOD();
 //Play3dEcono
 //Must be called by object making the noise
 //You mus set the playerobject to your object
-/*with(PlayerObj)
+with(PlayerObj)
 {
     if(point_distance(x,y,other.x,other.x) < FMODSoundGetMaxDist(argument0))
     {
@@ -248,3 +250,4 @@ UnloadFMOD();
 }
 ///////////////////
 /////////////////
+*/

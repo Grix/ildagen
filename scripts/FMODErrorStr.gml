@@ -1,5 +1,6 @@
 //argument0 is a value from FMODGetLastError()
-
+///FMOD_ErrorString
+return external_call(global.dll_FMODGetErrorString,argument0);
 //show_debug_message(FMODErrorStr(FMODGetLastError()))
 var FMOD_OK,
     FMOD_ERR_ALREADYLOCKED,         /* Tried to call lock a second time before unlock was called. */
