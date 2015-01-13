@@ -865,6 +865,7 @@
     <script>scripts\save_frames.gml</script>
     <script>scripts\load_frames.gml</script>
     <script>scripts\check_elementselect.gml</script>
+    <script>scripts\parse_parameter.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>

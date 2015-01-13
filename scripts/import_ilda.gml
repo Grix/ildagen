@@ -1,7 +1,7 @@
 with(controller)
     {
-    if (read_ilda_init() == 0) exit;
-    
+    if (read_ilda_init(argument0) == 0) exit;
+
     if ( (ds_list_size(ild_list)) > maxframes)
         repeat (ds_list_size(ild_list) - maxframes)
             {

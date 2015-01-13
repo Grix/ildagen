@@ -1,4 +1,4 @@
-file_loc = get_open_filename_ext("*.igf","example.igf","","Select ildaGen frames file");
+file_loc = argument0;
 if (file_loc == "")
     exit;
 

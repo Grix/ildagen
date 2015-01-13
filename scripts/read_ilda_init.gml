@@ -4,7 +4,7 @@
 
 
 
-filename = get_open_filename_ext("ILDA files|*.ild","","","Select ILDA file")
+filename = argument0;
 if (filename != "")
     {
     ild_file = file_bin_open(filename,0);
