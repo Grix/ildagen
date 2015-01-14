@@ -205,6 +205,24 @@ buffer_write(ilda_buffer,buffer_u8,0); //0
 buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
 
 //export
+file = FS_file_bin_open(file_loc,1);
+for (i = 0;i < buffer_get_size(ilda_buffer);i++)
+    {
+    FS_file_bin_write_byte(file,buffer_peek(ilda_buffer,i,buffer_u8));
+    }
+FS_file_bin_close(file);
+
+if (FS_file_exists(file_loc))
+    show_message_async("ILDA file exported, "+string(maxpointstot)+" points total");
+else
+    show_message_async("Could not save file. May not have access rights, try a different folder.");
+
+/*
 buffer_save(ilda_buffer,file_loc);
-show_message_async("ILDA file exported, "+string(maxpointstot)+" points total");
+if (file_exists(file_loc))
+    show_message_async("ILDA file exported, "+string(maxpointstot)+" points total");
+else
+    show_message_async("Could not save file. May not have access rights, try a different folder.");
+    
+*/
 buffer_delete(ilda_buffer);

@@ -29,6 +29,18 @@ for (j = 0; j < maxframes;j++)
 buffer_resize(save_buffer,buffer_tell(save_buffer));
 
 //export
-buffer_save(save_buffer,file_loc);
-show_message_async("Frames saved.");
+file = FS_file_bin_open(file_loc,1);
+for (i = 0;i < buffer_get_size(save_buffer);i++)
+    {
+    FS_file_bin_write_byte(file,buffer_peek(save_buffer,i,buffer_u8));
+    }
+FS_file_bin_close(file);
+
+if (FS_file_exists(file_loc))
+    show_message_async("Frames saved.");
+else
+    show_message_async("Could not save file. May not have access rights, try a different folder.");
+
+//buffer_save(save_buffer,file_loc);
+//show_message_async("Frames saved.");
 buffer_delete(save_buffer);

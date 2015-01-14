@@ -110,6 +110,7 @@
   <NewExtensions>
     <extension index="0">extensions\filesaver</extension>
     <extension index="1">extensions\Simple Drop Down Menu</extension>
+    <extension index="2">extensions\GMFileSystem</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">

@@ -8,6 +8,8 @@
 ;--------------------------------
 !include MUI2.nsh 
 
+!include "FileAssociation.nsh"
+
 !ifndef FULL_VERSION
 !define FULL_VERSION      "1.0.0.0"
 !endif
@@ -130,6 +132,8 @@ Section `${APP_NAME}`
   
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
+
+  ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igf" "ildaGen Frames"
   
   ; Put file there
   File "${LICENSE_NAME}"
