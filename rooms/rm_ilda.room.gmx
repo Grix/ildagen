@@ -85,7 +85,7 @@
     <instance objName="obj_colordcselect" x="644" y="280" name="inst_F5808D6E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_enddots" x="960" y="464" name="inst_40CD9389" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_b_dotsolid" x="532" y="468" name="inst_BF268ABE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_anienable" x="556" y="556" name="inst_184A1377" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_anienable" x="556" y="544" name="inst_184A1377" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anicolorselect_1" x="1008" y="224" name="inst_8AA2C06C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anicolorselect_2" x="1008" y="272" name="inst_218C2DFB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_aniblankdcselect" x="644" y="472" name="inst_05168740" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -101,7 +101,7 @@
     <instance objName="obj_s_free" x="564" y="28" name="inst_3B0DEDA3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_bckimage" x="268" y="572" name="inst_8383FA41" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_onionskin" x="224" y="572" name="inst_8EE9657B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_fillframes" x="556" y="612" name="inst_FA6A6BC8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_fillframes" x="556" y="600" name="inst_FA6A6BC8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_help" x="268" y="528" name="inst_9E66828C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_curve" x="532" y="124" name="inst_394FF056" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anifunc" x="640" y="624" name="inst_C3A7CF47" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

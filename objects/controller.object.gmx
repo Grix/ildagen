@@ -768,7 +768,6 @@ if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list)) and (placing_
     
 if (keyboard_check_pressed(vk_tab))
     {
-    exit;
     if (os_version == -1)
         {
         show_message_async("Sorry, this timeline is not available in the web version");
@@ -1670,29 +1669,29 @@ if (room != rm_ilda) exit;
 draw_set_alpha(0.8);
 draw_set_font(fnt_tooltip);
 draw_set_color(c_ltgray);
-draw_text(12,487,"Frame: "+string(frame+1)+"/"+string(maxframes));
-draw_text(440,487,"Points: "+string(framepoints));
+draw_text(12,492,"Frame: "+string(frame+1)+"/"+string(maxframes));
+draw_text(440,492,"Points: "+string(framepoints));
 if (!anienable) and (maxframes &lt; 2)
     draw_set_color(c_dkgray);
 else draw_set_color(c_ltgray);
 if (scope_start == 0) and (scope_end == maxframes-1)
-    draw_text(220,487,"Scope: All frames");
+    draw_text(220,492,"Scope: All frames");
 else
-    draw_text(220,487,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
+    draw_text(220,492,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
 
     
 if (maxframes &gt; 1)
     {
     draw_set_alpha(0.5);
     draw_set_color(c_gray);
-    draw_line(12,505,512-12,505);
-    draw_line(12,506,512-12,506);
+    draw_line(12,508,512-12,508);
+    draw_line(12,509,512-12,509);
     draw_set_color(c_teal);
-    draw_line(lerp(12,512-12,scope_start/(maxframes-1)),505,lerp(12,512-12,scope_end/(maxframes-1)),505);
-    draw_line(lerp(12,512-12,scope_start/(maxframes-1)),506,lerp(12,512-12,scope_end/(maxframes-1)),506);
+    draw_line(lerp(12,512-12,scope_start/(maxframes-1)),508,lerp(12,512-12,scope_end/(maxframes-1)),508);
+    draw_line(lerp(12,512-12,scope_start/(maxframes-1)),509,lerp(12,512-12,scope_end/(maxframes-1)),509);
     draw_set_color(c_yellow);
-    draw_line(lerp(12,512-12,frame/(maxframes-1)),508,lerp(12,512-12,frame/(maxframes-1)),502);
-    draw_line(lerp(12,512-12,frame/(maxframes-1))+1,508,lerp(12,512-12,frame/(maxframes-1))+1,502);
+    draw_line(lerp(12,512-12,frame/(maxframes-1)),511,lerp(12,512-12,frame/(maxframes-1)),505);
+    draw_line(lerp(12,512-12,frame/(maxframes-1))+1,511,lerp(12,512-12,frame/(maxframes-1))+1,505);
     }
     
 draw_set_color(c_white);

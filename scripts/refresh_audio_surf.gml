@@ -2,14 +2,39 @@ if (!surface_exists(audio_surf))
     audio_surf = surface_create(1024,1024);
     
 surface_set_target(audio_surf);
+    
     draw_clear_alpha(c_white,0);
     draw_set_alpha(1);
     draw_set_font(fnt_small);
     draw_set_color(c_white);
+    draw_rectangle(0,0,tlw,room_height,0);
+    draw_set_colour(c_black);
+    
+    //layers
+    //tempstartx and layerbarx are really Y
+    tempstartx = tlh+16-layerbarx//tlh+16-floor(layerbarx);
+    for (i = 0; i <= ds_list_size(layer_list);i++)
+        {
+        if (i < floor(layerbarx/48))
+            continue;
+        
+        mouseover = (mouse_x == clamp(mouse_x,8,40)) && (mouse_y == clamp(mouse_y,138+tempstartx+i*48+8,138+tempstartx+i*48+40))
+        if (i == ds_list_size(layer_list))
+            {
+            draw_sprite(spr_e_undo,mouseover,8,tempstartx+i*48+8);
+            break;
+            }
+        
+        draw_rectangle(0,tempstartx+i*48,tlw-16,tempstartx+i*48+48,1);
+        draw_sprite(spr_e_undo,mouseover,8,tempstartx+i*48+8);
+        }
+        
+    //timeline
+    draw_set_color(c_white);
         draw_rectangle(0,0,tlw,tlh+16,0);
     draw_set_color(c_black);
         draw_line(0,tlh,tlw,tlh);
-    
+        draw_line(0,tlh+16,tlw,tlh+16);
     draw_set_alpha(0.2);
         drawtime = ceil(tlx/projectfps);
         while (1)
@@ -40,7 +65,9 @@ surface_set_target(audio_surf);
                 }
             drawtime++;
             }
-            
+
+         
+    //audio   
     if (song)
         {
         draw_set_alpha(0.6);

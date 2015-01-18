@@ -28,6 +28,9 @@
             <string>alarm[0] = 2;
 
 layer_list = ds_list_create();
+ds_list_add(layer_list,1);
+ds_list_add(layer_list,1);
+ds_list_add(layer_list,1);
 layer = ds_list_create();
 ds_list_add(layer_list,layer);
 surface_list = ds_list_create();
@@ -37,6 +40,7 @@ songinstance = 0;
 
 tlw = 897;
 tlh = 128;
+tls = tlh+138+16;
 lbh = room_height-32-tlh-138;
 phi = 1.618;
 
@@ -89,9 +93,9 @@ FMODinit(2,0);
             <kind>1</kind>
             <string>alarm[0] = 2;
 
-if (room != rm_seq) exit;
+//if (room != rm_seq) exit;
 //if (parsingaudio) or (scroll_moving) or (song &amp;&amp; !FMODInstanceGetPaused(songinstance))
-refresh_audio_surf();
+//refresh_audio_surf();
 
 </string>
           </argument>
@@ -115,11 +119,8 @@ refresh_audio_surf();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (parsingaudio)
-    {
-    refresh_audio();
-    }
-    
+            <string> if (parsingaudio == 1) refresh_audio();
+
 if (room != rm_seq) exit;
 
 if (song) FMODUpdate();
@@ -139,7 +140,7 @@ if (playing == 1)
             songinstance = FMODSoundPlay(song,1);
             }
         }
-    if (song) &amp;&amp; (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-tlpos) &gt; 17)
+    if (scroll_moving != 1) &amp;&amp; (song) &amp;&amp; (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-tlpos) &gt; 17)
         FMODInstanceSetPosition(songinstance,tlpos-16/FMODSoundGetLength(song));
 
     }
@@ -258,20 +259,32 @@ UnloadFMOD();
             <kind>1</kind>
             <string>if (room != rm_seq) exit;
 
+if (alarm[0] == 1)
+    {
+    refresh_audio_surf();
+    }
+    
 draw_set_color(c_white);
+draw_set_alpha(1);
 draw_surface(audio_surf,0,137);
 cursorlinex = tlpos/1000*projectfps;
 draw_set_color(c_black);
 draw_set_alpha(0.8);
 draw_line((cursorlinex-tlx)/tlzoom*tlw,136,(cursorlinex-tlx)/tlzoom*tlw,136+tlh);
+draw_line((cursorlinex-tlx)/tlzoom*tlw,tls,(cursorlinex-tlx)/tlzoom*tlw,room_height-16);
 if ((cursorlinex-tlx)/tlzoom*tlw &gt; (tlw/2)) &amp;&amp; (playing)
+    {
     tlx = cursorlinex-(tlw/2)*tlzoom/tlw;
+        if ((tlx+tlzoom) &gt; length) length = tlx+tlzoom;
+    }
     
 //scroll
 draw_set_color(c_gray);
 draw_set_alpha(1);
+draw_line(0,room_height-16,tlw,room_height-16);
+draw_line(tlw-16,tls,tlw-16,room_height);
 draw_rectangle(scrollbarx,room_height,scrollbarx+scrollbarw,room_height-16,0);
-draw_rectangle(tlw-16,138+tlh+16+layerbarx,tlw,138+tlh+16+layerbarx+layerbarw,0);
+draw_rectangle(tlw-16,tls+layerbarx,tlw,tls+layerbarx+layerbarw,0);
 </string>
           </argument>
         </arguments>

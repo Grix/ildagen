@@ -56,7 +56,7 @@ Filesystem improvements</description>
       <kind>1</kind>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
+          <CopyToMask>17593036542144</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>
@@ -765,7 +765,7 @@ Filesystem improvements</description>
       <kind>1</kind>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
+          <CopyToMask>17593040752846</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>
@@ -895,7 +895,7 @@ Filesystem improvements</description>
       <kind>2</kind>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
+          <CopyToMask>17593040752846</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>
@@ -1352,7 +1352,7 @@ Filesystem improvements</description>
       <kind>1</kind>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
+          <CopyToMask>17593040752846</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>
@@ -1614,7 +1614,7 @@ Filesystem improvements</description>
       <kind>1</kind>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
+          <CopyToMask>17593040752846</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>
