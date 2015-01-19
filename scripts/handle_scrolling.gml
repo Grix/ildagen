@@ -12,7 +12,7 @@ if (mouse_x == clamp(mouse_x,0,tlw))
 
 scrollbarw = clamp(((tlzoom+17)/length)*tlw-17,32,tlw-17);
 scrollbarx = (tlw-17-scrollbarw)*(tlx)/(length-tlzoom);
-layerbarw = clamp(6/((ds_list_size(layer_list)+6))*lbh,32,lbh-1);
+layerbarw = clamp(7/(ds_list_size(layer_list)+6)*lbh,32,lbh-1);
 
 //horizontal
 if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw)) 
@@ -77,7 +77,10 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
             {
             controller.tooltip = "Click to create a new layer";
             if  mouse_check_button_pressed(mb_left)
-                ds_list_add(layer_list,0);
+                {
+                newlayer = ds_list_create();
+                ds_list_add(layer_list,newlayer);
+                }
             }
         break;
         }
@@ -87,11 +90,12 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
         {
         controller.tooltip = "Click to delete this layer.";
         if  mouse_check_button_pressed(mb_left)
-            ds_list_delete(layer_list,i);
+            {
+            layertodelete = ds_list_find_value(layer_list,i);
+            getint = show_question_async("Are you sure you want to delete this layer? (Cannot be undone)");
+            dialog = "layerdelete";
+            }
         }
     }
-    
-    
-
     
 

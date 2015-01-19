@@ -6,12 +6,10 @@ surface_set_target(audio_surf);
     draw_clear_alpha(c_white,0);
     draw_set_alpha(1);
     draw_set_font(fnt_small);
-    draw_set_color(c_white);
-    draw_rectangle(0,0,tlw,room_height,0);
     draw_set_colour(c_black);
     
     //layers
-    //tempstartx and layerbarx are really Y
+    //tempstartx and layerbarx are really Y values
     tempstartx = tlh+16-layerbarx//tlh+16-floor(layerbarx);
     for (i = 0; i <= ds_list_size(layer_list);i++)
         {
@@ -21,12 +19,14 @@ surface_set_target(audio_surf);
         mouseover = (mouse_x == clamp(mouse_x,8,40)) && (mouse_y == clamp(mouse_y,138+tempstartx+i*48+8,138+tempstartx+i*48+40))
         if (i == ds_list_size(layer_list))
             {
-            draw_sprite(spr_e_undo,mouseover,8,tempstartx+i*48+8);
+            draw_sprite(spr_addlayer,mouseover,8,tempstartx+i*48+8);
             break;
             }
         
+        draw_rectangle_color(0,tempstartx+i*48,tlw-16,tempstartx+i*48+48,c_white,c_white,c_silver,c_silver,0);
+        draw_set_colour(c_black);
         draw_rectangle(0,tempstartx+i*48,tlw-16,tempstartx+i*48+48,1);
-        draw_sprite(spr_e_undo,mouseover,8,tempstartx+i*48+8);
+        draw_sprite(spr_deletelayer,mouseover,8,tempstartx+i*48+8);
         }
         
     //timeline

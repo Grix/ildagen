@@ -163,6 +163,11 @@
       <sprite>sprites\spr_funcselect</sprite>
       <sprite>sprites\spr_funcr</sprite>
     </sprites>
+    <sprites name="seq">
+      <sprite>sprites\spr_addaudio</sprite>
+      <sprite>sprites\spr_deletelayer</sprite>
+      <sprite>sprites\spr_addlayer</sprite>
+    </sprites>
     <sprite>sprites\spr_save</sprite>
     <sprite>sprites\spr_import</sprite>
     <sprite>sprites\spr_load</sprite>
