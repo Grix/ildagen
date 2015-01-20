@@ -223,42 +223,41 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
     //interpolate
     if (reap_interpolate)
         {
-        lengthlist = ds_list_create();
         for (j = 0; j < (checkpoints-1);j++)
             {
-            length = point_distance(ds_list_find_value(new_list,50+j*6)
-                                    ,ds_list_find_value(new_list,50+j*6+1)
-                                    ,ds_list_find_value(new_list,50+(j+1)*6)
-                                    ,ds_list_find_value(new_list,50+(j+1)*6+1));
-            ds_list_add(lengthlist,length);
-            }
+            temppos = 50+j*6;
+            length = point_distance( ds_list_find_value(new_list,temppos)
+                                    ,ds_list_find_value(new_list,temppos+1)
+                                    ,ds_list_find_value(new_list,temppos+6)
+                                    ,ds_list_find_value(new_list,temppos+7));
             
-        jpp= 0;
-        for (j = 0; j < (checkpoints-1);j++)
-            {
-            if (ds_list_find_value(lengthlist,j) <= resolution) continue;
+            if (length <= resolution) continue;
             
-            lerpi = 1;
-            jpp_offset = 0;
+            steps = length / resolution;
+            stepscount = steps-1;
+            tempx0 = ds_list_find_value(new_list,temppos);
+            tempy0 = ds_list_find_value(new_list,temppos+1);
+            tempvectx = (ds_list_find_value(new_list,temppos+6)-tempx0)/steps;
+            tempvecty = (ds_list_find_value(new_list,temppos+7)-tempy0)/steps;
+            show_debug_message("length: "+string(length))
             
-            repeat(floor(ds_list_find_value(lengthlist,j) / resolution))
+            repeat(floor(steps))
                 {
-                lerpi-= 1/floor(ds_list_find_value(lengthlist,j) / resolution);
-                
-                newx = lerp(ds_list_find_value(new_list,50+(j+1+jpp-jpp_offset)*6),ds_list_find_value(new_list,50+(j+jpp-jpp_offset)*6),lerpi);
-                newy = lerp(ds_list_find_value(new_list,50+(j+1+jpp-jpp_offset)*6+1),ds_list_find_value(new_list,50+(j+jpp-jpp_offset)*6+1),lerpi);
-                ds_list_insert(new_list,50+(j+1+jpp)*6+6,newx);
-                ds_list_insert(new_list,50+(j+1+jpp)*6+7,newy);
-                ds_list_insert(new_list,50+(j+1+jpp)*6+8,ds_list_find_value(new_list,50+(j+1+jpp)*6+2));
-                ds_list_insert(new_list,50+(j+1+jpp)*6+9,ds_list_find_value(new_list,50+(j+1+jpp)*6+3));
-                ds_list_insert(new_list,50+(j+1+jpp)*6+10,ds_list_find_value(new_list,50+(j+1+jpp)*6+4));
-                ds_list_insert(new_list,50+(j+1+jpp)*6+11,ds_list_find_value(new_list,50+(j+1+jpp)*6+5));
-                
-                jpp++;
-                jpp_offset++;
+                newx = tempx0+tempvectx*(stepscount);
+                newy = tempy0+tempvecty*(stepscount);
+                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+5));
+                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+4));
+                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+3));
+                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+2));
+                ds_list_insert(new_list,temppos+6,newy);
+                ds_list_insert(new_list,temppos+6,newx);
+                show_debug_message(newx);
+                j++;
+                checkpoints++;
+                stepscount--;
                 }
+            
             }
-            ds_list_destroy(lengthlist);
         }
             
     

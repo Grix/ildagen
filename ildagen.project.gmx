@@ -169,8 +169,9 @@
       <sprite>sprites\spr_addlayer</sprite>
     </sprites>
     <sprite>sprites\spr_save</sprite>
-    <sprite>sprites\spr_import</sprite>
+    <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_load</sprite>
+    <sprite>sprites\spr_import</sprite>
     <sprite>sprites\spr_resettrans</sprite>
     <sprite>sprites\spr_scope</sprite>
     <sprite>sprites\spr_shaking</sprite>
@@ -191,7 +192,6 @@
     <sprite>sprites\spr_maxframes</sprite>
     <sprite>sprites\spr_clearframe</sprite>
     <sprite>sprites\spr_clearall</sprite>
-    <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_cursor</sprite>
     <sprite>sprites\spr_anchor</sprite>
     <sprite>sprites\spr_resize</sprite>

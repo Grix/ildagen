@@ -143,7 +143,7 @@ reap_blank = 1;
 reap_removeoverlap = 0;
 reap_trans = 1;
 reap_preserveblank = 1;
-reap_interpolate = 0;
+reap_interpolate = 1;
 
 colormode = "solid";
 colormode2 = 0;

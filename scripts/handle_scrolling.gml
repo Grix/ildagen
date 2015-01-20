@@ -85,7 +85,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
         break;
         }
     
-    draw_rectangle(0,tempstartx+i*48,tlw-16,tempstartx+i*48+48,1);
+    //draw_rectangle(0,tempstartx+i*48,tlw-16,tempstartx+i*48+48,1);
     if (mouseover) 
         {
         controller.tooltip = "Click to delete this layer.";
@@ -98,4 +98,3 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
         }
     }
     
-

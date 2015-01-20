@@ -34,6 +34,7 @@ surface_list = ds_list_create();
 audio_list = ds_list_create();
 audio_surf = surface_create(1024,1024);
 songinstance = 0;
+getint = -1;
 
 tlw = 897;
 tlh = 128;
