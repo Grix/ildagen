@@ -35,12 +35,12 @@ if (is_string(resolution))
         resolution = 1024;
         
     if (colormode != "solid") or (blankmode != "solid")
-        resolution = 512;
+        resolution = 256;
     
     if (anienable) and (blankmode != "solid") and ((blank_offset != aniblank_offset) or (blank_dc != aniblank_dc))
-        resolution = 256;
+        resolution = 128;
     else if (anienable) and (colormode != "solid") and ((color_offset != anicolor_offset) or (color_dc != anicolor_dc))
-        resolution = 256;
+        resolution = 128;
     }
 
 //find elements
@@ -231,7 +231,9 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                                     ,ds_list_find_value(new_list,temppos+6)
                                     ,ds_list_find_value(new_list,temppos+7));
             
-            if (length <= resolution) continue;
+            if  (length < resolution*1.5) ||
+                ((reap_preserveblank) && ds_list_find_value(new_list,temppos+2))
+                    continue;
             
             steps = length / resolution;
             stepscount = steps-1;
@@ -251,7 +253,7 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                 ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+2));
                 ds_list_insert(new_list,temppos+6,newy);
                 ds_list_insert(new_list,temppos+6,newx);
-                show_debug_message(newx);
+                //show_debug_message(newx);
                 j++;
                 checkpoints++;
                 stepscount--;

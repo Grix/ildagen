@@ -154,6 +154,7 @@ color_period = 8192;
 color_freq = 1;
 color_dc = 0.5;
 color_offset = 0;
+color_blendmode = 0; //0 replace 1 add 2 subtract
 
 blankmode = "solid";
 blankmode2 = 0;
@@ -864,7 +865,7 @@ bez_moving = 0;
           <argument>
             <kind>1</kind>
             <string>if (room != rm_ilda) exit;
-if (instance_exists(oDropDown)) or (mouse_x &gt; 512) or (mouse_y &gt; 512)
+if (instance_exists(oDropDown)) or (mouse_x &gt; 512) or (mouse_y &gt; 512) or (keyboard_check(vk_control))
     exit;
 
 if (selectedelement != -1)  and (

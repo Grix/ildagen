@@ -181,6 +181,7 @@
     <sprite>sprites\spr_help</sprite>
     <sprite>sprites\spr_b_enddots</sprite>
     <sprite>sprites\spr_onionskin</sprite>
+    <sprite>sprites\spr_colorblendmode</sprite>
     <sprite>sprites\spr_bckimage</sprite>
     <sprite>sprites\spr_checkbox</sprite>
     <sprite>sprites\spr_colortselect</sprite>
@@ -925,6 +926,7 @@
           <object>objects\obj_c_gradient</object>
           <object>objects\obj_c_dash</object>
           <object>objects\obj_rainbow</object>
+          <object>objects\obj_colorblendmode</object>
           <object>objects\obj_c_func</object>
           <object>objects\obj_colorfreqselect</object>
           <object>objects\obj_colorabsrel</object>

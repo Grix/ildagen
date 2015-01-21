@@ -57,12 +57,12 @@ if (is_string(resolution))
         resolution = 1024;
         
     if (colormode != "solid") or (blankmode != "solid")
-        resolution = 512;
+        resolution = 256;
     
     if (anienable) and (blankmode != "solid") and ((blank_offset != aniblank_offset) or (blank_dc != aniblank_dc))
-        resolution = 256;
+        resolution = 128;
     else if (anienable) and (colormode != "solid") and ((color_offset != anicolor_offset) or (color_dc != anicolor_dc))
-        resolution = 256;
+        resolution = 128;
     }
     
 randomize();

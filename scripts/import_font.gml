@@ -48,7 +48,64 @@ with(controller)
         show_message_async("Not enough frames in ilda file. Are you sure this is a font file?"); 
     else   
         ds_list_copy(font_list,ild_list);
-   
+        
+    //interpolate
+    /*for (i = 0; i < ds_list_size(font_list); i++)
+        {
+        new_list = ds_list_find_value(font_list,i);
+        checkpoints = ((ds_list_size(new_list)-50)/6);
+        
+        for (j = 0; j < (checkpoints-1);j++)
+            {
+            temppos = 50+j*6;
+            
+            if  (ds_list_find_value(new_list,temppos+2) == 1)
+                continue;
+                
+            if  (ds_list_find_value(new_list,temppos+3) == 0) &&
+                (ds_list_find_value(new_list,temppos+4) == 0) &&
+                (ds_list_find_value(new_list,temppos+5) == 0)
+                    {
+                    show_debug_message("black")
+                    ds_list_replace(new_list,temppos+2,1);
+                    continue;
+                    }
+                
+            length = point_distance( ds_list_find_value(new_list,temppos)
+                                    ,ds_list_find_value(new_list,temppos+1)
+                                    ,ds_list_find_value(new_list,temppos+6)
+                                    ,ds_list_find_value(new_list,temppos+7));
+            
+            if (length <= 4096*1.5) continue;
+            
+            steps = length / 4096;
+            stepscount = steps-1;
+            tempx0 = ds_list_find_value(new_list,temppos);
+            tempy0 = ds_list_find_value(new_list,temppos+1);
+            tempvectx = (ds_list_find_value(new_list,temppos+6)-tempx0)/steps;
+            tempvecty = (ds_list_find_value(new_list,temppos+7)-tempy0)/steps;
+            //if (i == 0)
+            //show_debug_message("length: "+string(length))
+            
+            repeat(floor(steps))
+                {
+                newx = tempx0+tempvectx*(stepscount);
+                newy = tempy0+tempvecty*(stepscount);
+                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+5));
+                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+4));
+                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+3));
+                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+2));
+                ds_list_insert(new_list,temppos+6,newy);
+                ds_list_insert(new_list,temppos+6,newx);
+                //show_debug_message(newx);
+                j++;
+                checkpoints++;
+                stepscount--;
+                }
+            
+            }
+        }*/
+        
     buffer_delete(ild_file);
     ds_list_destroy(ild_list);
         
