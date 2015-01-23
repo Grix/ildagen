@@ -103,7 +103,7 @@ rgriddouble = 0;
 mouse_yprevious = mouse_y;
 mouse_xprevious = mouse_x;
 
-//instance_create(mouse_x,mouse_y,obj_cursor);
+phi = 1.618;
 
 tooltip = "";
 bckimage = 0;

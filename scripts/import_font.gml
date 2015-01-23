@@ -50,7 +50,7 @@ with(controller)
         ds_list_copy(font_list,ild_list);
         
     //interpolate
-    /*for (i = 0; i < ds_list_size(font_list); i++)
+    for (i = 0; i < ds_list_size(font_list); i++)
         {
         new_list = ds_list_find_value(font_list,i);
         checkpoints = ((ds_list_size(new_list)-50)/6);
@@ -59,12 +59,12 @@ with(controller)
             {
             temppos = 50+j*6;
             
-            if  (ds_list_find_value(new_list,temppos+2) == 1)
+            if  (ds_list_find_value(new_list,temppos+8) == 1)
                 continue;
                 
-            if  (ds_list_find_value(new_list,temppos+3) == 0) &&
-                (ds_list_find_value(new_list,temppos+4) == 0) &&
-                (ds_list_find_value(new_list,temppos+5) == 0)
+            if  (ds_list_find_value(new_list,temppos+9) == 0) &&
+                (ds_list_find_value(new_list,temppos+10) == 0) &&
+                (ds_list_find_value(new_list,temppos+11) == 0)
                     {
                     show_debug_message("black")
                     ds_list_replace(new_list,temppos+2,1);
@@ -76,25 +76,29 @@ with(controller)
                                     ,ds_list_find_value(new_list,temppos+6)
                                     ,ds_list_find_value(new_list,temppos+7));
             
-            if (length <= 4096*1.5) continue;
+            if (length <= 3000*phi) continue;
             
-            steps = length / 4096;
-            stepscount = steps-1;
+            steps = length / 3000;
+            stepscount = floor(steps);
             tempx0 = ds_list_find_value(new_list,temppos);
             tempy0 = ds_list_find_value(new_list,temppos+1);
-            tempvectx = (ds_list_find_value(new_list,temppos+6)-tempx0)/steps;
-            tempvecty = (ds_list_find_value(new_list,temppos+7)-tempy0)/steps;
+            tempvectx = (ds_list_find_value(new_list,temppos+6)-tempx0)/3000;
+            tempvecty = (ds_list_find_value(new_list,temppos+7)-tempy0)/3000;
+            tempblank = ds_list_find_value(new_list,temppos+8);
+            tempc1 = ds_list_find_value(new_list,temppos+9);
+            tempc2 = ds_list_find_value(new_list,temppos+10);
+            tempc3 = ds_list_find_value(new_list,temppos+11);
             //if (i == 0)
-            //show_debug_message("length: "+string(length))
-            
-            repeat(floor(steps))
+            //show_debug_message("length: "+string(length))     
+                   
+            repeat(floor(stepscount))
                 {
                 newx = tempx0+tempvectx*(stepscount);
                 newy = tempy0+tempvecty*(stepscount);
-                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+5));
-                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+4));
-                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+3));
-                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+2));
+                ds_list_insert(new_list,temppos+6,tempc3);
+                ds_list_insert(new_list,temppos+6,tempc2);
+                ds_list_insert(new_list,temppos+6,tempc1);
+                ds_list_insert(new_list,temppos+6,tempblank);
                 ds_list_insert(new_list,temppos+6,newy);
                 ds_list_insert(new_list,temppos+6,newx);
                 //show_debug_message(newx);
@@ -104,7 +108,7 @@ with(controller)
                 }
             
             }
-        }*/
+        }
         
     buffer_delete(ild_file);
     ds_list_destroy(ild_list);

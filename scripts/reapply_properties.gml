@@ -231,26 +231,30 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                                     ,ds_list_find_value(new_list,temppos+6)
                                     ,ds_list_find_value(new_list,temppos+7));
             
-            if  (length < resolution*1.5) ||
-                ((reap_preserveblank) && ds_list_find_value(new_list,temppos+2))
+            if  (length < resolution*phi) ||
+                ((reap_preserveblank) && ds_list_find_value(new_list,temppos+8))
                     continue;
             
             steps = length / resolution;
-            stepscount = steps-1;
+            stepscount = floor(steps);
             tempx0 = ds_list_find_value(new_list,temppos);
             tempy0 = ds_list_find_value(new_list,temppos+1);
-            tempvectx = (ds_list_find_value(new_list,temppos+6)-tempx0)/steps;
-            tempvecty = (ds_list_find_value(new_list,temppos+7)-tempy0)/steps;
-            show_debug_message("length: "+string(length))
+            tempvectx = (ds_list_find_value(new_list,temppos+6)-tempx0)/resolution;
+            tempvecty = (ds_list_find_value(new_list,temppos+7)-tempy0)/resolution;
+            tempblank = ds_list_find_value(new_list,temppos+8);
+            tempc1 = ds_list_find_value(new_list,temppos+9);
+            tempc2 = ds_list_find_value(new_list,temppos+10);
+            tempc3 = ds_list_find_value(new_list,temppos+11);
+            //show_debug_message("length: "+string(length))
             
-            repeat(floor(steps))
+            repeat(stepscount)
                 {
                 newx = tempx0+tempvectx*(stepscount);
                 newy = tempy0+tempvecty*(stepscount);
-                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+5));
-                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+4));
-                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+3));
-                ds_list_insert(new_list,temppos+6,ds_list_find_value(new_list,temppos+2));
+                ds_list_insert(new_list,temppos+6,tempc3);
+                ds_list_insert(new_list,temppos+6,tempc2);
+                ds_list_insert(new_list,temppos+6,tempc1);
+                ds_list_insert(new_list,temppos+6,tempblank);
                 ds_list_insert(new_list,temppos+6,newy);
                 ds_list_insert(new_list,temppos+6,newx);
                 //show_debug_message(newx);
