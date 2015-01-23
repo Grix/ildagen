@@ -125,9 +125,9 @@ compiled_1 = ML_Compile(parser_cb,colorfunc_string_1);
 if (!ML_NoException(parser_cb))
     {
     if (colormode2)
-        show_message_async("Error in HUE: "+ML_LastExceptionString(parser_cb));
+        show_message_async("Error in function for HUE: "+ML_LastExceptionString(parser_cb));
     else
-        show_message_async("Error in RED: "+ML_LastExceptionString(parser_cb));
+        show_message_async("Error in function for RED: "+ML_LastExceptionString(parser_cb));
     ML_CompileCleanup(compiled_1);
     ML_ClearExceptions(parser_cb);
     if (placing == "func")
@@ -142,9 +142,9 @@ compiled_2 = ML_Compile(parser_cb,colorfunc_string_2);
 if (!ML_NoException(parser_cb))
     {
     if (colormode2)
-        show_message_async("Error in SATURATION: "+ML_LastExceptionString(parser_cb));
+        show_message_async("Error in function for SATURATION: "+ML_LastExceptionString(parser_cb));
     else
-        show_message_async("Error in GREEN: "+ML_LastExceptionString(parser_cb));
+        show_message_async("Error in function for GREEN: "+ML_LastExceptionString(parser_cb));
     ML_CompileCleanup(compiled_2);
     ML_CompileCleanup(compiled_1);
     ML_ClearExceptions(parser_cb);
@@ -160,9 +160,9 @@ compiled_3 = ML_Compile(parser_cb,colorfunc_string_3);
 if (!ML_NoException(parser_cb))
     {
     if (colormode2)
-        show_message_async("Error in VALUE: "+ML_LastExceptionString(parser_cb));
+        show_message_async("Error in function for VALUE: "+ML_LastExceptionString(parser_cb));
     else
-        show_message_async("Error in BLUE: "+ML_LastExceptionString(parser_cb));
+        show_message_async("Error in function for BLUE: "+ML_LastExceptionString(parser_cb));
     ML_CompileCleanup(compiled_3);
     ML_CompileCleanup(compiled_2);
     ML_CompileCleanup(compiled_1);
@@ -189,7 +189,7 @@ if (blankmode == "func")
     compiled_en = ML_Compile(parser_cb,blankfunc_string);
     if (!ML_NoException(parser_cb))
         {
-        show_message_async("Error in BLANKING: "+ML_LastExceptionString(parser_cb));
+        show_message_async("Error in function for BLANKING: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_en);
         ML_ClearExceptions(parser_cb);
         if (colormode == "func")
@@ -523,6 +523,19 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                     }
                 }
                 
+            //blending
+            if (color_blendmode == 1)
+                {
+                c[0] = clamp(ds_list_find_value(new_list,listpos+3)+c[0],0,255);
+                c[1] = clamp(ds_list_find_value(new_list,listpos+4)+c[1],0,255);
+                c[2] = clamp(ds_list_find_value(new_list,listpos+5)+c[2],0,255);
+                }
+            else if (color_blendmode == 2)
+                {
+                c[0] = clamp(ds_list_find_value(new_list,listpos+3)-c[0],0,255);
+                c[1] = clamp(ds_list_find_value(new_list,listpos+4)-c[1],0,255);
+                c[2] = clamp(ds_list_find_value(new_list,listpos+5)-c[2],0,255);
+                }
             
             ds_list_replace(new_list,listpos+3,c[0]);
             ds_list_replace(new_list,listpos+4,c[1]);

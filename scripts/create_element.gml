@@ -138,9 +138,9 @@ if (colormode == "func")
     if (!ML_NoException(parser_cb))
         {
         if (colormode2)
-            show_message_async("Error in HUE: "+ML_LastExceptionString(parser_cb));
+            show_message_async("Error in function for HUE: "+ML_LastExceptionString(parser_cb));
         else
-            show_message_async("Error in RED: "+ML_LastExceptionString(parser_cb));
+            show_message_async("Error in function for RED: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_1);
         ML_ClearExceptions(parser_cb);
         if (placing == "func")
@@ -155,9 +155,9 @@ if (colormode == "func")
     if (!ML_NoException(parser_cb))
         {
         if (colormode2)
-            show_message_async("Error in SATURATION: "+ML_LastExceptionString(parser_cb));
+            show_message_async("Error in function for SATURATION: "+ML_LastExceptionString(parser_cb));
         else
-            show_message_async("Error in GREEN: "+ML_LastExceptionString(parser_cb));
+            show_message_async("Error in function for GREEN: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_2);
         ML_CompileCleanup(compiled_1);
         ML_ClearExceptions(parser_cb);
@@ -173,9 +173,9 @@ if (colormode == "func")
     if (!ML_NoException(parser_cb))
         {
         if (colormode2)
-            show_message_async("Error in VALUE: "+ML_LastExceptionString(parser_cb));
+            show_message_async("Error in function for VALUE: "+ML_LastExceptionString(parser_cb));
         else
-            show_message_async("Error in BLUE: "+ML_LastExceptionString(parser_cb));
+            show_message_async("Error in function for BLUE: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_3);
         ML_CompileCleanup(compiled_2);
         ML_CompileCleanup(compiled_1);
@@ -202,7 +202,7 @@ if (blankmode == "func")
     compiled_en = ML_Compile(parser_cb,blankfunc_string);
     if (!ML_NoException(parser_cb))
         {
-        show_message_async("Error in BLANKING: "+ML_LastExceptionString(parser_cb));
+        show_message_async("Error in function for BLANKING: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_en);
         ML_ClearExceptions(parser_cb);
         if (colormode == "func")
