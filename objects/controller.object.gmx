@@ -91,6 +91,7 @@ font_list = ds_list_create();
 xdelta[32] = 0;
 snap_list = ds_list_create();
 selsurf = surface_create(512,512);
+miniaudio_surf = surface_create(512,512);
 copy_list = -1;
 selectedelementlist = ds_list_create();
 
@@ -104,6 +105,8 @@ mouse_yprevious = mouse_y;
 mouse_xprevious = mouse_x;
 
 phi = 1.618;
+tlw = 512;
+tlh = 42;
 
 tooltip = "";
 bckimage = 0;
@@ -206,9 +209,34 @@ colorfunc_string_2 = "";
 colorfunc_string_3 = "";
 blankfunc_string = "";
 
+alarm[3] = 2;
+
 if (os_version != -1) init_palette();
 if (os_version != -1) update_check();
 if (os_version != -1) parse_parameter();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>alarm[3] = 2;
 </string>
           </argument>
         </arguments>
@@ -1418,6 +1446,14 @@ if (new_id == getint)
             break;
             }
             
+          case "fps":
+            {
+            seqcontrol.projectfps = clamp(ds_map_find_value(async_load, "value"),1,999);
+            projectfps = seqcontrol.projectfps;
+            
+            break;
+            }
+            
           case "shake":
             {
             ds_stack_push(undo_list,"x"+string(shaking_sdev))
@@ -1663,40 +1699,34 @@ UnloadFMOD();
     draw_text(5,5,tooltip);
     tooltip = "";
     }
-
+/*
 
 if (room != rm_ilda) exit;
 
 draw_set_alpha(0.8);
 draw_set_font(fnt_tooltip);
 draw_set_color(c_ltgray);
-draw_text(12,492,"Frame: "+string(frame+1)+"/"+string(maxframes));
-draw_text(440,492,"Points: "+string(framepoints));
+draw_text(12,495,"Frame: "+string(frame+1)+"/"+string(maxframes));
+//draw_text(440,492,"Points: "+string(framepoints));
 if (!anienable) and (maxframes &lt; 2)
     draw_set_color(c_dkgray);
 else draw_set_color(c_ltgray);
 if (scope_start == 0) and (scope_end == maxframes-1)
-    draw_text(220,492,"Scope: All frames");
+    draw_text(220,495,"Scope: All frames");
 else
-    draw_text(220,492,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
+    draw_text(220,495,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
 
-    
-if (maxframes &gt; 1)
-    {
-    draw_set_alpha(0.5);
-    draw_set_color(c_gray);
-    draw_line(12,508,512-12,508);
-    draw_line(12,509,512-12,509);
-    draw_set_color(c_teal);
-    draw_line(lerp(12,512-12,scope_start/(maxframes-1)),508,lerp(12,512-12,scope_end/(maxframes-1)),508);
-    draw_line(lerp(12,512-12,scope_start/(maxframes-1)),509,lerp(12,512-12,scope_end/(maxframes-1)),509);
-    draw_set_color(c_yellow);
-    draw_line(lerp(12,512-12,frame/(maxframes-1)),511,lerp(12,512-12,frame/(maxframes-1)),505);
-    draw_line(lerp(12,512-12,frame/(maxframes-1))+1,511,lerp(12,512-12,frame/(maxframes-1))+1,505);
-    }
-    
-draw_set_color(c_white);
-draw_set_alpha(1);
+/*draw_set_alpha(0.5);
+draw_set_color(c_gray);
+draw_line(12,508,512-12,508);
+draw_line(12,509,512-12,509);
+draw_set_color(c_teal);
+draw_line(lerp(12,512-12,scope_start/(maxframes-1)),508,lerp(12,512-12,scope_end/(maxframes-1)),508);
+draw_line(lerp(12,512-12,scope_start/(maxframes-1)),509,lerp(12,512-12,scope_end/(maxframes-1)),509);
+draw_set_color(c_yellow);
+draw_line(lerp(12,512-12,frame/(maxframes-1)),511,lerp(12,512-12,frame/(maxframes-1)),505);
+draw_line(lerp(12,512-12,frame/(maxframes-1))+1,511,lerp(12,512-12,frame/(maxframes-1))+1,505);*/
+
 </string>
           </argument>
         </arguments>
@@ -1720,6 +1750,23 @@ draw_set_alpha(1);
           <argument>
             <kind>1</kind>
             <string>if (room != rm_ilda) exit;
+
+if (alarm[3] == 1)
+    {
+    refresh_miniaudio_surf();
+    }
+    
+draw_set_color(c_white);
+draw_set_alpha(1);
+if (surface_exists(miniaudio_surf))
+    draw_surface_part(miniaudio_surf,0,0,tlw,tlh,0,515);
+if (maxframes &gt; 1)
+    {
+    draw_set_color(c_black);
+    cursorlinex = lerp(2,510,frame/(maxframes-1))//framehr/projectfps/1000;//framehr/1000*projectfps;
+    draw_line(cursorlinex,515,cursorlinex,515+tlh-13);
+    }
+draw_set_color(c_white);
 
 if (bckimage)
     {
@@ -1859,9 +1906,32 @@ draw_set_color(c_gray);
 
 if (placing_status) or (placing == "text")
     draw_preview_element();
+    
+draw_set_alpha(0.8);
+draw_set_font(fnt_tooltip);
+draw_set_color(c_ltgray);
+draw_text(12,495,"Frame: "+string(frame+1)+"/"+string(maxframes));
+draw_text(440,492,"Points: "+string(framepoints));
+if (!anienable) and (maxframes &lt; 2)
+    draw_set_color(c_dkgray);
+else draw_set_color(c_ltgray);
+if (scope_start == 0) and (scope_end == maxframes-1)
+    draw_text(220,495,"Scope: All frames");
+else
+    draw_text(220,495,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
+    
+/*draw_set_alpha(0.5);
+draw_set_color(c_gray);
+draw_line(12,508,512-12,508);
+draw_line(12,509,512-12,509);
+draw_set_color(c_teal);
+draw_line(lerp(12,512-12,scope_start/(maxframes-1)),508,lerp(12,512-12,scope_end/(maxframes-1)),508);
+draw_line(lerp(12,512-12,scope_start/(maxframes-1)),509,lerp(12,512-12,scope_end/(maxframes-1)),509);
+draw_set_color(c_yellow);
+draw_line(lerp(12,512-12,frame/(maxframes-1)),511,lerp(12,512-12,frame/(maxframes-1)),505);
+draw_line(lerp(12,512-12,frame/(maxframes-1))+1,511,lerp(12,512-12,frame/(maxframes-1))+1,505);*/
 
-draw_set_alpha(1);
-draw_set_color(c_white);
+
 </string>
           </argument>
         </arguments>

@@ -41,12 +41,14 @@ tlh = 128;
 tls = tlh+138+16;
 lbh = room_height-32-tlh-138;
 phi = 1.618;
-
-audio_surf = surface_create(1024,1024);
-
 tlzoom = tlw;
 tlx = 0;
 tly = 0;
+tlhalf = tlh/2;
+tlthird = tlh/3;
+
+audio_surf = surface_create(1024,1024);
+
 song = 0;
 songlength = 0;
 length = 30*30;
@@ -59,8 +61,7 @@ scrollbarw = 0;
 layerbarx = 0;
 layerbarw = 0;
 scroll_moving = 0;
-tlhalf = tlh/2;
-tlthird = tlh/3;
+
 playing = 0;
 pos = 0;
 deltatime = 0;
@@ -223,8 +224,10 @@ if (new_id == getint)
        {
       switch (dialog)
           {
-          case "":
+          case "fps":
             {
+            projectfps = clamp(ds_map_find_value(async_load, "value"),1,999);
+            controller.projectfps = projectfps;
             
             break;
             }
@@ -311,7 +314,8 @@ if (alarm[0] == 1)
     
 draw_set_color(c_white);
 draw_set_alpha(1);
-draw_surface(audio_surf,0,137);
+if (surface_exists(audio_surf))
+    draw_surface_part(audio_surf,0,0,tlw,room_height,0,137);
 cursorlinex = tlpos/1000*projectfps;
 draw_set_color(c_black);
 draw_set_alpha(0.8);

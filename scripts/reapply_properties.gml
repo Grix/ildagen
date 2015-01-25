@@ -236,16 +236,19 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
                     continue;
             
             steps = length / resolution;
-            stepscount = floor(steps);
+            stepscount = round(steps-1);
             tempx0 = ds_list_find_value(new_list,temppos);
             tempy0 = ds_list_find_value(new_list,temppos+1);
-            tempvectx = (ds_list_find_value(new_list,temppos+6)-tempx0)/resolution;
-            tempvecty = (ds_list_find_value(new_list,temppos+7)-tempy0)/resolution;
+            tempvectx = (ds_list_find_value(new_list,temppos+6)-tempx0)/steps;
+            tempvecty = (ds_list_find_value(new_list,temppos+7)-tempy0)/steps;
             tempblank = ds_list_find_value(new_list,temppos+8);
             tempc1 = ds_list_find_value(new_list,temppos+9);
             tempc2 = ds_list_find_value(new_list,temppos+10);
             tempc3 = ds_list_find_value(new_list,temppos+11);
-            //show_debug_message("length: "+string(length))
+            /*show_debug_message("length: "+string(length))
+            show_debug_message("stepsc: "+string(stepscount))
+            show_debug_message("x0: "+string(tempx0))
+            show_debug_message("xvect: "+string(tempvectx))*/
             
             repeat(stepscount)
                 {

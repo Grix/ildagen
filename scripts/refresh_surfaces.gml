@@ -33,6 +33,7 @@ if (viewmode == 0) or (viewmode == 2)
                 {
                 
                 nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
+                framepoints++;
                 
                 if (nbl == 0)
                     {
@@ -45,7 +46,7 @@ if (viewmode == 0) or (viewmode == 2)
                     ng = ds_list_find_value(new_list,50+(u+1)*6+4);
                     nr = ds_list_find_value(new_list,50+(u+1)*6+5);
                     
-                    framepoints++;
+                    
                     draw_set_color(make_colour_rgb(nr,ng,nb));
                     if (xp == nxp) && (yp == nyp)
                         {

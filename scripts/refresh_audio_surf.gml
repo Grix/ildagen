@@ -35,16 +35,19 @@ surface_set_target(audio_surf);
     draw_set_color(c_black);
         draw_line(0,tlh,tlw,tlh);
         draw_line(0,tlh+16,tlw,tlh+16);
+        
+    drawtime = ceil(tlx/projectfps);
+    if (tlw/tlzoom > 0.3) modulus = 5;
+    else if (tlw/tlzoom > 0.05) modulus = 25;
+    else modulus = 60;
+    
     draw_set_alpha(0.2);
-        drawtime = ceil(tlx/projectfps);
         while (1)
             {
             tempx = (drawtime*projectfps-tlx)*tlw/tlzoom;
             if (tempx > tlw)
                 break;
-            if (tlw/tlzoom > 0.3) modulus = 5;
-            else if (tlw/tlzoom > 0.05) modulus = 25;
-            else modulus = 60;
+
             if ((drawtime % modulus) == 0)
                 {
                 draw_set_alpha(0.5);

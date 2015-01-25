@@ -66,7 +66,7 @@ with(controller)
                 (ds_list_find_value(new_list,temppos+10) == 0) &&
                 (ds_list_find_value(new_list,temppos+11) == 0)
                     {
-                    show_debug_message("black")
+                    //show_debug_message("black")
                     ds_list_replace(new_list,temppos+2,1);
                     continue;
                     }
@@ -76,14 +76,14 @@ with(controller)
                                     ,ds_list_find_value(new_list,temppos+6)
                                     ,ds_list_find_value(new_list,temppos+7));
             
-            if (length <= 3000*phi) continue;
+            if (length < 2000*phi) continue;
             
-            steps = length / 3000;
-            stepscount = floor(steps);
+            steps = length / 2000;
+            stepscount = round(steps-1);
             tempx0 = ds_list_find_value(new_list,temppos);
             tempy0 = ds_list_find_value(new_list,temppos+1);
-            tempvectx = (ds_list_find_value(new_list,temppos+6)-tempx0)/3000;
-            tempvecty = (ds_list_find_value(new_list,temppos+7)-tempy0)/3000;
+            tempvectx = (ds_list_find_value(new_list,temppos+6)-tempx0)/steps;
+            tempvecty = (ds_list_find_value(new_list,temppos+7)-tempy0)/steps;
             tempblank = ds_list_find_value(new_list,temppos+8);
             tempc1 = ds_list_find_value(new_list,temppos+9);
             tempc2 = ds_list_find_value(new_list,temppos+10);
