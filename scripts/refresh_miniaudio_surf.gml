@@ -16,35 +16,33 @@ surface_set_target(miniaudio_surf);
         projectfps = seqcontrol.projectfps;;
         drawtime = ceil(tlx/projectfps);
         tlzoom = maxframes;
-        /*if (tlw/tlzoom > 0.3) modulus = 5;
-        else if (tlw/tlzoom > 0.05) modulus = 25;
-        else modulus = 60;*/
-        modulus = 1;
-        while (1)
+        modulus = ceil(maxframes/90)*0.2;
+        /*if (maxframes < 90) modulus = 0.2;
+        else if (maxframes < 450) modulus = 1;
+        else if (maxframes < 3000) modulus = 20;
+        else modulus = 0.0002;*/
+        templine = 0;
+        for (u=0; u <= tlw; u++)
             {
-            tempx = (drawtime*projectfps-tlx)*tlw/tlzoom;
-            if (tempx > tlw)
-                break;
-                
-            if ((drawtime % modulus) < 0.01)
+            temptime = u/tlw*(maxframes-1)/projectfps;
+            if (floor(temptime / modulus) != templine)
                 {
-                draw_set_alpha(0.5);
-                    draw_line(tempx,0,tempx,tlh-13);
-                draw_set_alpha(0.8);
+                templine = floor(temptime / modulus);
+                if ((templine % 5) = 0)
+                    draw_set_alpha(0.8);
+                else
+                    draw_set_alpha(0.3);
+                draw_line(u,0,u,tlh-13);
+                draw_set_alpha(1);
                 draw_set_halign(fa_center);
                 draw_set_valign(fa_center);
-                draw_text(tempx,tlh-6,  string_replace(string_format(drawtime,2,0)," ","0")+
-                                    "."+string_replace(string_format(drawtime/10,2,0)," ","0"));
+                draw_text(u,tlh-6,  string_replace(string_format(floor(temptime),2,0)," ","0")+
+                                    "."+string_replace(string_format(frac(temptime)*100,2,0)," ","0"));
                 draw_set_halign(fa_left);
                 draw_set_valign(fa_top);
                 draw_set_alpha(0.2);
                 }
-            else
-                {
-                if ((drawtime % (modulus/5)) < 0)
-                    draw_line(tempx,0,tempx,tlh-13);
-                }
-            drawtime += 0.01;
+            
             }
 
 draw_set_alpha(0.3);

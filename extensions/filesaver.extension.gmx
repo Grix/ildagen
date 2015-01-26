@@ -29,6 +29,7 @@
       <init></init>
       <final></final>
       <kind>5</kind>
+      <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
           <CopyToMask>32</CopyToMask>

@@ -54,6 +54,7 @@ Filesystem improvements</description>
       <init></init>
       <final></final>
       <kind>1</kind>
+      <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
           <CopyToMask>17593036542144</CopyToMask>
@@ -763,6 +764,7 @@ Filesystem improvements</description>
       <init></init>
       <final>FS_clean_temporary</final>
       <kind>1</kind>
+      <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
           <CopyToMask>17593040752846</CopyToMask>
@@ -893,6 +895,7 @@ Filesystem improvements</description>
       <init>FS_gmfilesystem_initialize_detail</init>
       <final></final>
       <kind>2</kind>
+      <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
           <CopyToMask>17593040752846</CopyToMask>
@@ -1350,6 +1353,7 @@ Filesystem improvements</description>
       <init></init>
       <final></final>
       <kind>1</kind>
+      <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
           <CopyToMask>17593040752846</CopyToMask>
@@ -1612,6 +1616,7 @@ Filesystem improvements</description>
       <init></init>
       <final></final>
       <kind>1</kind>
+      <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
           <CopyToMask>17593040752846</CopyToMask>

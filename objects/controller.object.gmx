@@ -27,6 +27,10 @@
             <kind>1</kind>
             <string>version = "0.9.7.2";
 
+show_debug_message(frac(0.4)*100)
+show_debug_message(string_format(frac(0.4)*100,2,0))
+show_debug_message(string_replace(string_format(frac(0.4)*100,2,0)," ","0"))
+
 FS_gmfilesystem_initialize(1);
 FS_set_gm_save_area("%appdata%\ildagen");
 
@@ -77,6 +81,7 @@ surface_reset_target();
 
 
 frame_surf_refresh = 0;
+refresh_miniaudio_flag = 1;
 letter = "";
 el_list = ds_list_create();
 undo_list = ds_stack_create();
@@ -94,6 +99,7 @@ selsurf = surface_create(512,512);
 miniaudio_surf = surface_create(512,512);
 copy_list = -1;
 selectedelementlist = ds_list_create();
+projectfps = 30;
 
 redraw = 0;
 sgridshow = 0;
@@ -209,34 +215,10 @@ colorfunc_string_2 = "";
 colorfunc_string_3 = "";
 blankfunc_string = "";
 
-alarm[3] = 2;
 
 if (os_version != -1) init_palette();
 if (os_version != -1) update_check();
 if (os_version != -1) parse_parameter();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="3">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>alarm[3] = 2;
 </string>
           </argument>
         </arguments>
@@ -1368,6 +1350,7 @@ if (new_id == getint)
             maxframes = 1;
             scope_start = 0;
             scope_end = maxframes-1;
+            refresh_miniaudio_flag = 1;
             
             frame_surf_refresh = 1;
             
@@ -1435,6 +1418,7 @@ if (new_id == getint)
             frame = scope_start;
             framehr = scope_start;
             frame_surf_refresh = 1;
+            refresh_miniaudio_flag = 1;
             
             break;
             }
@@ -1442,6 +1426,7 @@ if (new_id == getint)
           case "scopeend":
             {
             scope_end = clamp(ds_map_find_value(async_load, "value")-1,scope_start+1,maxframes-1);
+            refresh_miniaudio_flag = 1;
             
             break;
             }
@@ -1450,6 +1435,7 @@ if (new_id == getint)
             {
             seqcontrol.projectfps = clamp(ds_map_find_value(async_load, "value"),1,999);
             projectfps = seqcontrol.projectfps;
+            refresh_miniaudio_flag = 1;
             
             break;
             }
@@ -1468,6 +1454,8 @@ if (new_id == getint)
           case "maxframes":
             {
             ds_stack_push(undo_list,"a"+string(maxframes))
+            
+            refresh_miniaudio_flag = 1;
             
             scopeflag = 0;
             if (maxframes == (scope_end+1)) scopeflag = 1;
@@ -1751,9 +1739,10 @@ draw_line(lerp(12,512-12,frame/(maxframes-1))+1,511,lerp(12,512-12,frame/(maxfra
             <kind>1</kind>
             <string>if (room != rm_ilda) exit;
 
-if (alarm[3] == 1)
+if (!surface_exists(miniaudio_surf) || refresh_miniaudio_flag)
     {
     refresh_miniaudio_surf();
+    refresh_miniaudio_flag = 0;
     }
     
 draw_set_color(c_white);
