@@ -16,8 +16,8 @@
   <clearDisplayBuffer>-1</clearDisplayBuffer>
   <makerSettings>
     <isSet>-1</isSet>
-    <w>1405</w>
-    <h>910</h>
+    <w>1427</w>
+    <h>600</h>
     <showGrid>0</showGrid>
     <showObjects>-1</showObjects>
     <showTiles>-1</showTiles>
@@ -57,6 +57,7 @@
     <instance objName="obj_fps" x="688" y="88" name="inst_EA941C7B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_undo" x="1052" y="88" name="inst_E9A7F173" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_help" x="1052" y="44" name="inst_7C60627E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_info" x="1008" y="44" name="inst_20EE3B97" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

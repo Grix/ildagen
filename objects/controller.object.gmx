@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>version = "0.9.7.2";
+versiondate = "2015-01-26";
 
 show_debug_message(frac(0.4)*100)
 show_debug_message(string_format(frac(0.4)*100,2,0))
@@ -79,7 +80,8 @@ surface_set_target(squaregrid_surf);
     draw_grid();
 surface_reset_target();
 
-
+update_verbose = 0;
+serial = "";
 frame_surf_refresh = 0;
 refresh_miniaudio_flag = 1;
 letter = "";
@@ -1580,15 +1582,21 @@ else if (new_id == getstr)
                 export_ilda_html5();
                 break;
                 }
+            case ("saveframes"):
+                {
+                file_loc = ds_map_find_value(async_load, "result");
+                save_frames_html5();
+                break;
+                }
             case ("serial"):
                 {
-                obj_export.serial = ds_map_find_value(async_load, "result");
+                serial = ds_map_find_value(async_load, "result");
                 with (obj_export)
                     {
-                    serialfile = file_text_open_write(working_directory+"serial");
-                    file_text_write_string(serialfile,serial);
-                    file_text_close(serialfile);
-                    event_user(0);
+                    controller.serialfile = file_text_open_write(working_directory+"serial");
+                    file_text_write_string(controller.serialfile,controller.serial);
+                    file_text_close(controller.serialfile);
+                    show_message_async("Registered successfully");
                     }
                 break;
                 }
@@ -1626,10 +1634,15 @@ if ds_map_find_value(async_load, "id") == updateget
     if ds_map_find_value(async_load, "status") == 0
        {
        versionnew = ds_map_find_value(async_load, "result");
+       show_debug_message("Checking version")
        if (versionnew != version)
             {
             getint = show_question_async("New version available: "+versionnew+"##Would you like to visit the download page?")
             dialog = "updatefound";
+            }
+       else if (update_verbose == 1)
+            {
+            show_message_async("Current version is up to date.");
             }
        }
     }

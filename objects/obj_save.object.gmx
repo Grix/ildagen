@@ -99,17 +99,52 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (os_version == -1)
-    {
-    show_message_async("Sorry, this feature is not available in the web version");
-    exit;
-    }
-
+            <string>event_user(0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
 if (controller.maxframes == 1) &amp;&amp; !ds_list_size(controller.el_list)
     exit;
 
 with (controller)
-    save_frames();
+    {
+    placing_status = 0;
+    ds_list_clear(free_list);
+    ds_list_clear(bez_list);
+    }
+
+if (!verify_serial())
+    exit;
+
+with (controller) 
+    {
+    if (os_version != -1) save_frames();
+    else 
+        {
+        dialog = "saveframes";
+        getstr = get_string_async("Enter the name of the ildagen frames IGF file","example.igf");
+        }
+    }
 </string>
           </argument>
         </arguments>

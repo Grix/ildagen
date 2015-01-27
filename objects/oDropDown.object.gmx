@@ -81,10 +81,10 @@ bak_alpha = .9;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_list_clear(desc_list);
-ds_list_clear(scr_list);
-ds_list_clear(hl_list);
-ds_list_clear(sep_list);
+            <string>ds_list_destroy(desc_list);
+ds_list_destroy(scr_list);
+ds_list_destroy(hl_list);
+ds_list_destroy(sep_list);
 instance_activate_all();
 </string>
           </argument>
@@ -259,7 +259,7 @@ instance_deactivate_region(x1,ty1,total_width,total_height,1,1);
 instance_activate_object(controller);
 instance_activate_object(obj_cursor);
 
-alarm[0] = 1;
+alarm[0] = 2;
 </string>
           </argument>
         </arguments>
@@ -283,7 +283,7 @@ alarm[0] = 1;
           <argument>
             <kind>1</kind>
             <string>///Override me for each option
-
+show_debug_message(ds_list_find_value(scr_list,selected));
 script_execute(ds_list_find_value(scr_list,selected));
 
 instance_destroy();

@@ -180,6 +180,7 @@
     <sprite>sprites\spr_anitocol</sprite>
     <sprite>sprites\spr_coltoani</sprite>
     <sprite>sprites\spr_help</sprite>
+    <sprite>sprites\spr_info</sprite>
     <sprite>sprites\spr_b_enddots</sprite>
     <sprite>sprites\spr_onionskin</sprite>
     <sprite>sprites\spr_colorblendmode</sprite>
@@ -825,6 +826,7 @@
       <script>scripts\dropdown_export.gml</script>
       <script>scripts\dd_export_opt.gml</script>
       <script>scripts\dd_export_min.gml</script>
+      <script>scripts\dropdown_info.gml</script>
     </scripts>
     <scripts name="createobject">
       <script>scripts\create_element.gml</script>
@@ -852,6 +854,9 @@
     <script>scripts\optimize_first.gml</script>
     <script>scripts\optimize_between.gml</script>
     <script>scripts\optimize_last.gml</script>
+    <script>scripts\save_frames.gml</script>
+    <script>scripts\save_frames_html5.gml</script>
+    <script>scripts\load_frames.gml</script>
     <script>scripts\draw_preview_element.gml</script>
     <script>scripts\draw_grid.gml</script>
     <script>scripts\draw_radialgrid.gml</script>
@@ -862,6 +867,7 @@
     <script>scripts\bezier_x.gml</script>
     <script>scripts\bezier_y.gml</script>
     <script>scripts\update_check.gml</script>
+    <script>scripts\update_check_verbose.gml</script>
     <script>scripts\random_gaussian.gml</script>
     <script>scripts\dist_triangular.gml</script>
     <script>scripts\buttons_set_active.gml</script>
@@ -871,8 +877,6 @@
     <script>scripts\refresh_audio_surf.gml</script>
     <script>scripts\refresh_miniaudio_surf.gml</script>
     <script>scripts\handle_scrolling.gml</script>
-    <script>scripts\save_frames.gml</script>
-    <script>scripts\load_frames.gml</script>
     <script>scripts\check_elementselect.gml</script>
     <script>scripts\parse_parameter.gml</script>
   </scripts>
@@ -974,6 +978,7 @@
         <object>objects\obj_clearframe</object>
         <object>objects\obj_bckimage</object>
         <object>objects\obj_help</object>
+        <object>objects\obj_info</object>
       </objects>
     </objects>
     <objects name="GMFMODSimple">

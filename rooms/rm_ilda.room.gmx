@@ -99,8 +99,8 @@
     <instance objName="obj_waveoffselect" x="644" y="108" name="inst_0ED1A755" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anienddotscolorselect" x="1008" y="416" name="inst_49DA6D2B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_s_free" x="564" y="28" name="inst_3B0DEDA3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bckimage" x="380" y="580" name="inst_8383FA41" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_onionskin" x="420" y="580" name="inst_8EE9657B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bckimage" x="340" y="580" name="inst_8383FA41" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_onionskin" x="380" y="580" name="inst_8EE9657B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_fillframes" x="636" y="560" name="inst_FA6A6BC8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_help" x="460" y="580" name="inst_9E66828C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_curve" x="532" y="124" name="inst_394FF056" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -126,6 +126,7 @@
     <instance objName="obj_load" x="928" y="580" name="inst_2E4B54DC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_colorblendmode" x="108" y="620" name="inst_3622800B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_fps" x="340" y="620" name="inst_F50087C3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_info" x="420" y="580" name="inst_51D4CB42" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

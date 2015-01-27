@@ -2,7 +2,6 @@
 placing_status = 0;
 
 maxpoints = 0;
-frame = 0;
 
 ilda_buffer = buffer_create(1,buffer_grow,1);
 
@@ -218,5 +217,4 @@ for (i = 0;i < buffersize;i++)
     
 save(file_loc);
     
-frame = 0;
 buffer_delete(ilda_buffer);
