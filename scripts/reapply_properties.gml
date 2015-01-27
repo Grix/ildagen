@@ -36,12 +36,12 @@ if (is_string(resolution))
         resolution = 1024;
         
     if (colormode != "solid") or (blankmode != "solid")
-        resolution = 256;
+        resolution = 512;
     
     if (anienable) and (blankmode != "solid") and ((blank_offset != aniblank_offset) or (blank_dc != aniblank_dc))
-        resolution = 128;
+        resolution = 256;
     else if (anienable) and (colormode != "solid") and ((color_offset != anicolor_offset) or (color_dc != anicolor_dc))
-        resolution = 128;
+        resolution = 256;
     }
 
 //find elements
@@ -444,7 +444,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         yp = ds_list_find_value(new_list,listpos+1);
         
         
-        if ((j != 0) and (ds_list_find_value(new_list,listpos) == ds_list_find_value(new_list,50+(j-1)*6)) and (ds_list_find_value(new_list,listpos+1) == ds_list_find_value(new_list,50+(j-1)*6+1)) and (controller.reap_removeoverlap))
+        if ((j != 0) and (ds_list_find_value(new_list,listpos) == ds_list_find_value(new_list,50+(j-1)*6)) and 
+        (ds_list_find_value(new_list,listpos+1) == ds_list_find_value(new_list,50+(j-1)*6+1)) and (controller.reap_removeoverlap))
             {
             repeat(6) ds_list_delete(new_list,listpos);
             checkpoints--;
@@ -555,7 +556,8 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             if (blankmode == "solid")
                 {
                 blank = 0;
-
+                if ((j == 0) or (j == checkpoints-1)) and (enddots) and (loop)
+                    makedot = 1;
                 }
             else if (blankmode == "dash")
                 {
