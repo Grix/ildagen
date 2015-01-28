@@ -21,37 +21,21 @@ for (j = 0; j < maxframes;j++)
             }
         }
     }
-//remove excess size
-buffer_resize(save_buffer,buffer_tell(save_buffer));
 
 //export
 ildastring = "";
-buffersize = buffer_tell(ilda_buffer);
+buffersize = buffer_tell(save_buffer);
+
 
 error = 0;
 for (i = 0;i < buffersize;i++)
     {
-    if (!toArray(i,buffer_peek(ilda_buffer,i,buffer_u8)))
+    if (!toArray(i,buffer_peek(save_buffer,i,buffer_u8)))
         {
         if (!error) show_message_async("Error filling file with data, may not save correctly!");
         error = 1;
         }
     }
-    
 save(file_loc);
 
-/*file = FS_file_bin_open(file_loc,1);
-for (i = 0;i < buffer_get_size(save_buffer);i++)
-    {
-    FS_file_bin_write_byte(file,buffer_peek(save_buffer,i,buffer_u8));
-    }
-FS_file_bin_close(file);
-
-if (FS_file_exists(file_loc))
-    show_message_async("Frames saved.");
-else
-    show_message_async("Could not save file. May not have access rights, try a different folder.");
-*/
-//buffer_save(save_buffer,file_loc);
-//show_message_async("Frames saved.");
 buffer_delete(save_buffer);

@@ -217,12 +217,5 @@ if (FS_file_exists(file_loc))
 else
     show_message_async("Could not save file. May not have access rights, try a different folder.");
 
-/*
-buffer_save(ilda_buffer,file_loc);
-if (file_exists(file_loc))
-    show_message_async("ILDA file exported, "+string(maxpointstot)+" points total");
-else
-    show_message_async("Could not save file. May not have access rights, try a different folder.");
-    
-*/
+
 buffer_delete(ilda_buffer);

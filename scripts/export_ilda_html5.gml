@@ -12,7 +12,6 @@ maxframesa[0] = maxframespost & 255;
 maxframespost = maxframespost >> 8;
 maxframesa[1] = maxframespost & 255;
 
-
 for (j = 0; j < maxframes;j++)
     {
     el_list = ds_list_find_value(frame_list,j);

@@ -1,5 +1,6 @@
 if (is_undefined(parameter_string(1))) exit;
 temp = 0;
+fastload = 0;
 for (i = 1; i <= parameter_count(); i++)
     {
     if (i == temp) exit;
@@ -20,3 +21,5 @@ for (i = 1; i <= parameter_count(); i++)
         import_ilda(parameter);
         }
     }
+    
+fastload = 1;

@@ -28,9 +28,6 @@
             <string>version = "0.9.7.2";
 versiondate = "2015-01-26";
 
-show_debug_message(frac(0.4)*100)
-show_debug_message(string_format(frac(0.4)*100,2,0))
-show_debug_message(string_replace(string_format(frac(0.4)*100,2,0)," ","0"))
 
 FS_gmfilesystem_initialize(1);
 FS_set_gm_save_area("%appdata%\ildagen");
@@ -1361,7 +1358,7 @@ if (new_id == getint)
             
           case "loadfile":
             {
-            load_frames(get_open_filename_ext("*.igf","example.igf","","Select ildaGen frames file"));
+            load_frames(get_open_filename_ext("ildaGen frames|*.igf","","","Select ildaGen frames file"));
             
             break;
             }

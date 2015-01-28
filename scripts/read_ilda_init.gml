@@ -2,16 +2,21 @@
 //arg0 is scanner number
 //return 1 if successful
 
-
-
 filename = argument0;
 if (filename != "")
     {
-    ild_file = file_bin_open(filename,0);
-    file_size = file_bin_size(ild_file);
-    file_bin_close(ild_file);
-    ild_file = buffer_create(file_size,buffer_fast,1);
-    buffer_load_ext(ild_file,filename,0);
+    ild_filename = FS_file_bin_open(filename,0);
+    file_size = FS_file_bin_size(ild_filename);
+    FS_file_bin_close(ild_filename);
+    if (fastload)
+        {
+        ild_file = buffer_create(file_size,buffer_fast,1);
+        buffer_load_ext(ild_file,filename,0);
+        }
+    else
+        {
+        ild_file = buffer_load_alt(filename);
+        }
     }
 else
     return 0;

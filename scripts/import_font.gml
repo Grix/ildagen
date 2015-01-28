@@ -3,9 +3,9 @@ with(controller)
     filename = get_open_filename_ext("ILDA files|*.ild","",program_directory,"Select ILDA font file")
     if (filename != "")
         {
-        ild_file = file_bin_open(filename,0);
-        file_size = file_bin_size(ild_file);
-        file_bin_close(ild_file);
+        ild_filename = FS_file_bin_open(filename,0);
+        file_size = FS_file_bin_size(ild_filename);
+        FS_file_bin_close(ild_filename);
         ild_file = buffer_create(file_size,buffer_fast,1);
         buffer_load_ext(ild_file,filename,0);
         }

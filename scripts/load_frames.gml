@@ -1,11 +1,17 @@
 file_loc = argument0;
-if (file_loc == "")
+if (file_loc == "") or is_undefined(file_loc)
     exit;
 
-load_buffer = buffer_load(file_loc);
+if (fastload)
+    {
+    load_buffer = buffer_load(file_loc);
+    }
+else
+    load_buffer = buffer_load_alt(file_loc);
+    
 if (buffer_read(load_buffer,buffer_u8) != 0)
     {
-    show_message_async("Error parsing file, is this a valid ildaGen frames file?");
+    show_message_async("Unexpected byte, is this a valid ildaGen frames file?");
     exit;
     }
 
@@ -37,6 +43,7 @@ frame_surf_refresh = 1;
 
 //load
 maxframes = buffer_read(load_buffer,buffer_s32);
+show_debug_message(maxframes)
 for (j = 0; j < maxframes;j++)
     {
     el_list = ds_list_create();
