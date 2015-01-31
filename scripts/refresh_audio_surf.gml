@@ -23,9 +23,9 @@ surface_set_target(audio_surf);
             break;
             }
         
-        draw_rectangle_color(0,tempstartx+i*48,tlw-16,tempstartx+i*48+48,c_white,c_white,c_silver,c_silver,0);
+        draw_rectangle_color(0,tempstartx+i*48,tlw-17,tempstartx+i*48+48,c_white,c_white,c_silver,c_silver,0);
         draw_set_colour(c_black);
-        draw_rectangle(0,tempstartx+i*48,tlw-16,tempstartx+i*48+48,1);
+        draw_rectangle(0,tempstartx+i*48,tlw-17,tempstartx+i*48+48,1);
         draw_sprite(spr_deletelayer,mouseover,8,tempstartx+i*48+8);
         }
         

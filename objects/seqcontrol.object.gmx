@@ -140,10 +140,11 @@ if (playing == 1)
             {
             FMODInstanceStop(songinstance);
             songinstance = FMODSoundPlay(song,1);
+            set_audio_speed();
             }
         }
     if (scroll_moving != 1) &amp;&amp; (song) &amp;&amp; (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-tlpos) &gt; 17)
-        FMODInstanceSetPosition(songinstance,tlpos-16/FMODSoundGetLength(song));
+        tlpos = FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song);
 
     }
 else
@@ -174,6 +175,7 @@ if (keyboard_check_pressed(vk_backspace))
         {
         FMODInstanceStop(songinstance);
         songinstance = FMODSoundPlay(song,1);
+        set_audio_speed();
         }
     }
     
@@ -232,6 +234,12 @@ if (new_id == getint)
             projectfps = clamp(ds_map_find_value(async_load, "value"),1,999);
             controller.projectfps = projectfps;
             
+            break;
+            }
+          case "loadfile":
+            {
+            load_project(get_open_filename_ext("ildaGen project|*.igp","","","Select ildaGen project file"));
+          
             break;
             }
           }
@@ -320,23 +328,27 @@ draw_set_alpha(1);
 if (surface_exists(audio_surf))
     draw_surface_part(audio_surf,0,0,tlw,room_height,0,137);
 cursorlinex = tlpos/1000*projectfps;
-draw_set_color(c_black);
-draw_set_alpha(0.8);
-draw_line((cursorlinex-tlx)/tlzoom*tlw,136,(cursorlinex-tlx)/tlzoom*tlw,136+tlh);
-draw_line((cursorlinex-tlx)/tlzoom*tlw,tls,(cursorlinex-tlx)/tlzoom*tlw,room_height-16);
-if ((cursorlinex-tlx)/tlzoom*tlw &gt; (tlw/2)) &amp;&amp; (playing)
+cursorlinexdraw = (cursorlinex-tlx)/tlzoom*tlw;
+if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
     {
-    tlx = cursorlinex-(tlw/2)*tlzoom/tlw;
-        if ((tlx+tlzoom) &gt; length) length = tlx+tlzoom;
+    draw_set_color(c_black);
+    draw_set_alpha(0.8);
+    draw_line(cursorlinexdraw,136,cursorlinexdraw,136+tlh);
+    draw_line(cursorlinexdraw,tls,cursorlinexdraw,room_height-16);
+    if (cursorlinexdraw &gt; (tlw/2)) &amp;&amp; (playing) &amp;&amp; (!scroll_moving)
+        {
+        tlx = cursorlinex-(tlw/2)*tlzoom/tlw;
+            if ((tlx+tlzoom) &gt; length) length = tlx+tlzoom;
+        }
     }
     
 //scroll
-draw_set_color(c_gray);
+draw_set_color(c_black);
 draw_set_alpha(1);
 draw_line(0,room_height-16,tlw,room_height-16);
-draw_line(tlw-16,tls,tlw-16,room_height);
-draw_rectangle(scrollbarx,room_height,scrollbarx+scrollbarw,room_height-16,0);
-draw_rectangle(tlw-16,tls+layerbarx,tlw,tls+layerbarx+layerbarw,0);
+draw_line(tlw-17,tls,tlw-17,room_height);
+draw_rectangle_colour(scrollbarx,room_height,scrollbarx+scrollbarw,room_height-16,c_ltgray,c_ltgray,c_gray,c_gray,0);
+draw_rectangle_colour(tlw-16,tls+layerbarx,tlw,tls+layerbarx+layerbarw,c_ltgray,c_gray,c_gray,c_ltgray,0);
 </string>
           </argument>
         </arguments>

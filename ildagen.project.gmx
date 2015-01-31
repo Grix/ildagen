@@ -164,15 +164,17 @@
       <sprite>sprites\spr_funcr</sprite>
     </sprites>
     <sprites name="seq">
+      <sprite>sprites\spr_fps</sprite>
       <sprite>sprites\spr_addaudio</sprite>
       <sprite>sprites\spr_deletelayer</sprite>
       <sprite>sprites\spr_addlayer</sprite>
+      <sprite>sprites\spr_saveproject</sprite>
+      <sprite>sprites\spr_loadproject</sprite>
     </sprites>
     <sprite>sprites\spr_save</sprite>
     <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_load</sprite>
     <sprite>sprites\spr_import</sprite>
-    <sprite>sprites\spr_fps</sprite>
     <sprite>sprites\spr_resettrans</sprite>
     <sprite>sprites\spr_scope</sprite>
     <sprite>sprites\spr_shaking</sprite>
@@ -848,9 +850,12 @@
       <script>scripts\reapply_trans.gml</script>
     </scripts>
     <scripts name="seq">
+      <script>scripts\save_project.gml</script>
+      <script>scripts\load_project.gml</script>
       <script>scripts\refresh_audio.gml</script>
       <script>scripts\refresh_audio_surf.gml</script>
       <script>scripts\handle_scrolling.gml</script>
+      <script>scripts\set_audio_speed.gml</script>
     </scripts>
     <script>scripts\handle_trans.gml</script>
     <script>scripts\draw_ilda_2d.gml</script>
@@ -894,6 +899,8 @@
     <object>objects\obj_cursor</object>
     <objects name="buttons">
       <objects name="seq">
+        <object>objects\obj_saveproject</object>
+        <object>objects\obj_loadproject</object>
         <object>objects\obj_loadaudio</object>
         <object>objects\obj_fps</object>
         <object>objects\obj_playbackspeed</object>

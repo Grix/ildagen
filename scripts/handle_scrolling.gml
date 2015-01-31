@@ -10,8 +10,8 @@ if (mouse_x == clamp(mouse_x,0,tlw))
         tlzoom *= 1.2;
     }
 
-scrollbarw = clamp(((tlzoom+17)/length)*tlw-17,32,tlw-17);
-scrollbarx = (tlw-17-scrollbarw)*(tlx)/(length-tlzoom);
+scrollbarw = clamp(((tlzoom+18)/length)*tlw-18,32,tlw-18);
+scrollbarx = (tlw-18-scrollbarw)*(tlx)/(length-tlzoom);
 layerbarw = clamp(7/(ds_list_size(layer_list)+6)*lbh,32,lbh-1);
 
 //horizontal
