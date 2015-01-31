@@ -847,6 +847,11 @@
       <script>scripts\reapply_properties.gml</script>
       <script>scripts\reapply_trans.gml</script>
     </scripts>
+    <scripts name="seq">
+      <script>scripts\refresh_audio.gml</script>
+      <script>scripts\refresh_audio_surf.gml</script>
+      <script>scripts\handle_scrolling.gml</script>
+    </scripts>
     <script>scripts\handle_trans.gml</script>
     <script>scripts\draw_ilda_2d.gml</script>
     <script>scripts\export_ilda.gml</script>
@@ -873,10 +878,7 @@
     <script>scripts\buttons_set_active.gml</script>
     <script>scripts\verify_serial.gml</script>
     <script>scripts\controller_setup.gml</script>
-    <script>scripts\refresh_audio.gml</script>
-    <script>scripts\refresh_audio_surf.gml</script>
     <script>scripts\refresh_miniaudio_surf.gml</script>
-    <script>scripts\handle_scrolling.gml</script>
     <script>scripts\check_elementselect.gml</script>
     <script>scripts\parse_parameter.gml</script>
     <script>scripts\buffer_load_alt.gml</script>
@@ -894,6 +896,7 @@
       <objects name="seq">
         <object>objects\obj_loadaudio</object>
         <object>objects\obj_fps</object>
+        <object>objects\obj_playbackspeed</object>
       </objects>
       <objects name="ilda">
         <objects name="ani">

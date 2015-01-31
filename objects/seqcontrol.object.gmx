@@ -33,6 +33,7 @@ ds_list_add(layer_list,layer);
 surface_list = ds_list_create();
 audio_list = ds_list_create();
 audio_surf = surface_create(1024,1024);
+effect_list = ds_list_create();
 songinstance = 0;
 getint = -1;
 
@@ -61,6 +62,7 @@ scrollbarw = 0;
 layerbarx = 0;
 layerbarw = 0;
 scroll_moving = 0;
+playbackspeed = 1;
 
 playing = 0;
 pos = 0;
@@ -127,7 +129,7 @@ if (song) FMODUpdate();
 
 if (playing == 1)
     {
-    tlpos += delta_time/1000;
+    tlpos += delta_time/1000*playbackspeed;
     if (song)
         FMODInstanceSetPaused(songinstance,0);    
     if (tlpos &gt; length/projectfps*1000) 

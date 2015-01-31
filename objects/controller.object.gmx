@@ -28,9 +28,10 @@
             <string>version = "0.9.7.2";
 versiondate = "2015-01-26";
 
-
 FS_gmfilesystem_initialize(1);
 FS_set_gm_save_area("%appdata%\ildagen");
+
+math_set_epsilon(0.001);
 
 varmap = ds_map_create();
 parser_shape = ML_InitParserScience(varmap);
@@ -1693,7 +1694,11 @@ UnloadFMOD();
             <kind>1</kind>
             <string>if (tooltip != "")
     {
-    draw_set_color(c_ltgray);
+    draw_set_alpha(0.7);
+    draw_set_color(c_black);
+    draw_rectangle(0,0,string_width(tooltip)+20,string_height(tooltip)+20,0);
+    draw_set_color(c_white);
+    draw_set_alpha(1);
     draw_text(5,5,tooltip);
     tooltip = "";
     }
