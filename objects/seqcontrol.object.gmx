@@ -34,8 +34,13 @@ surface_list = ds_list_create();
 audio_list = ds_list_create();
 audio_surf = surface_create(1024,1024);
 effect_list = ds_list_create();
-songinstance = 0;
-getint = -1;
+ilda_list = ds_list_create();
+
+temp_dir = working_directory+"tempproject/"
+//if (FS_directory_exists(working_directory+"tempproject"))
+ //   FS_directory_delete(working_directory+"tempproject");
+FS_directory_create(temp_dir);
+show_debug_message("dir exists "+string(FS_directory_exists(temp_dir)))
 
 tlw = 897;
 tlh = 128;
@@ -63,6 +68,10 @@ layerbarx = 0;
 layerbarw = 0;
 scroll_moving = 0;
 playbackspeed = 1;
+songinstance = 0;
+getint = -1;
+getstr = -1;
+dialog = "";
 
 playing = 0;
 pos = 0;

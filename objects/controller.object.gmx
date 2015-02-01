@@ -30,6 +30,7 @@ versiondate = "2015-01-26";
 
 FS_gmfilesystem_initialize(1);
 FS_set_gm_save_area("%appdata%\ildagen");
+FS_set_working_directory("%appdata%\ildagen");
 
 math_set_epsilon(0.001);
 
