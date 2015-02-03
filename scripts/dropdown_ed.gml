@@ -20,8 +20,8 @@ with (ddobj)
     ds_list_add(hl_list,0);
     ds_list_add(hl_list,0);
     ds_list_add(hl_list,0);
-    if (controller.dotmultiply == 10) highlighted = 0;
-    else if (controller.dotmultiply == 4) highlighted = 1;
+    if (controller.dotmultiply == 100) highlighted = 0;
+    else if (controller.dotmultiply == 20) highlighted = 1;
     else if (controller.dotmultiply == 1) highlighted = 2;
     else highlighted = 3;
     ds_list_replace(hl_list,highlighted,1);

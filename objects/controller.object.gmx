@@ -32,7 +32,7 @@ FS_gmfilesystem_initialize(1);
 FS_set_gm_save_area("%appdata%\ildagen");
 FS_set_working_directory("%appdata%\ildagen");
 
-math_set_epsilon(0.001);
+math_set_epsilon(0.00001);
 
 varmap = ds_map_create();
 parser_shape = ML_InitParserScience(varmap);
@@ -173,7 +173,7 @@ blank_dc = 0.5;
 blank_freq = 4;
 enddots = 0;
 makedot = 0;
-dotmultiply = 4;
+dotmultiply = 20;
 blank_offset = 0;
 
 anienable = 0;
@@ -1697,7 +1697,7 @@ UnloadFMOD();
     {
     draw_set_alpha(0.7);
     draw_set_color(c_black);
-    draw_rectangle(0,0,string_width(tooltip)+20,string_height(tooltip)+20,0);
+    draw_rectangle(0,0,string_width(tooltip)+20,string_height(tooltip)+10,0);
     draw_set_color(c_white);
     draw_set_alpha(1);
     draw_text(5,5,tooltip);

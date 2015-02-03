@@ -35,26 +35,19 @@ audio_list = ds_list_create();
 audio_surf = surface_create(1024,1024);
 effect_list = ds_list_create();
 ilda_list = ds_list_create();
-
-temp_dir = working_directory+"tempproject/"
-//if (FS_directory_exists(working_directory+"tempproject"))
- //   FS_directory_delete(working_directory+"tempproject");
-FS_directory_create(temp_dir);
-show_debug_message("dir exists "+string(FS_directory_exists(temp_dir)))
-
-tlw = 897;
-tlh = 128;
-tls = tlh+138+16;
-lbh = room_height-32-tlh-138;
-phi = 1.618;
-tlzoom = tlw;
-tlx = 0;
-tly = 0;
-tlhalf = tlh/2;
-tlthird = tlh/3;
-
 audio_surf = surface_create(1024,1024);
 
+temp_dir = working_directory+"tempproject/"
+if (FS_directory_exists(working_directory+"tempproject"))
+    FS_directory_delete(working_directory+"tempproject");
+FS_directory_create(temp_dir);
+if !FS_directory_exists(temp_dir)
+    {
+    show_message_async("Error: Could not write to temporary directory. The program may not function correctly.");
+    }
+
+selectedlayer = -1;
+selectedx = 0;
 song = 0;
 songlength = 0;
 length = 30*30;
@@ -72,6 +65,19 @@ songinstance = 0;
 getint = -1;
 getstr = -1;
 dialog = "";
+drawcursorx = 0;
+drawcursory = 0;
+
+tlw = 897;
+tlh = 128;
+tls = tlh+138+16;
+lbh = room_height-32-tlh-138;
+phi = 1.618;
+tlzoom = tlw;
+tlx = 0;
+tly = 0;
+tlhalf = tlh/2;
+tlthird = tlh/3;
 
 playing = 0;
 pos = 0;
@@ -228,6 +234,8 @@ if (new_id == getint)
     if (dialog == "layerdelete")
         {
         layer = layertodelete;
+        if (ds_list_find_index(layer_list,layer) == selectedlayer)
+            selectedlayer = -1;
         for (j = 0; j &lt; ds_list_size(layer); j++)
             ds_list_destroy(ds_list_find_value(layer,j));
         ds_list_delete(layer_list,ds_list_find_index(layer_list,layertodelete));
@@ -336,6 +344,9 @@ draw_set_color(c_white);
 draw_set_alpha(1);
 if (surface_exists(audio_surf))
     draw_surface_part(audio_surf,0,0,tlw,room_height,0,137);
+    
+draw_set_color(c_black);
+draw_set_alpha(0.8);
 cursorlinex = tlpos/1000*projectfps;
 cursorlinexdraw = (cursorlinex-tlx)/tlzoom*tlw;
 if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
@@ -350,9 +361,22 @@ if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
             if ((tlx+tlzoom) &gt; length) length = tlx+tlzoom;
         }
     }
+
+if (selectedlayer != -1)
+    {
+    drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
+    drawcursorycorrected = tls+selectedlayer*48-layerbarx;
+    if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
+        draw_line(drawcursorxcorrected,drawcursorycorrected,drawcursorxcorrected,drawcursorycorrected+48);
+    }
+draw_set_alpha(0.4);
+if (draw_cursorline = 1)
+    {
+    floatingcursorxcorrected = (floatingcursorx-tlx)/tlzoom*tlw;
+    draw_line(floatingcursorxcorrected,floatingcursory,floatingcursorxcorrected,floatingcursory+48);
+    }
     
 //scroll
-draw_set_color(c_black);
 draw_set_alpha(1);
 draw_line(0,room_height-16,tlw,room_height-16);
 draw_line(tlw-17,tls,tlw-17,room_height);
