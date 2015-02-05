@@ -419,195 +419,40 @@ if (keyboard_check(vk_control)) and ds_list_size(el_list)
 //PASTE
 if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('V')))
     {
-    if (copy_list == -1)
-        exit;
-        
-    changese = 0;
-    for (u = 0;u &lt; ds_list_size(copy_list);u++)
-        {
-        list = ds_list_create();
-        ds_list_copy(list,ds_list_find_value(copy_list,u));
-        if (u == 0)
-            firstframe = ds_list_find_value(list,ds_list_size(list)-1);
-        framei = frame+ds_list_find_value(list,ds_list_size(list)-1)-firstframe;
-        if (framei &gt; maxframes-1)
-            {
-            ds_list_destroy(list);
-            break;
-            }
-        if (frame == framei)
-            {
-            changese = 1;
-            selectedelementlist = list;
-            }
-        ds_list_delete(list,ds_list_size(list)-1);
-        ds_list_replace(list,9,el_id);
-        el_list = ds_list_find_value(frame_list,framei);
-        show_debug_message(framei);
-        ds_list_add(el_list,list);
-        }    
-        
-    if (changese)
-        selectedelement = el_id;
-    ds_stack_push(undo_list,el_id);
-    el_id++;
-    
-    if (changese)
-        {
-        xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
-        yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-        rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
-        rectymin = yo + (ds_list_find_value(selectedelementlist,6));
-        rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-        rectymax = yo + (ds_list_find_value(selectedelementlist,7));
-        }
-    
-    frame_surf_refresh = 1;
+    paste_object();
     }
     
 //SELECTED ELEMENT STUFFS
+canrightclick = 1;
 if (selectedelement != -1)
     {
-    handle_trans();
+    if (objmoving) or ((mouse_x == clamp(mouse_x,0,532)) and (mouse_y == clamp(mouse_y,0,room_height)))
+        {
+        canrightclick = !handle_trans();
+        }
     
     //COPY
     if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('C')))
         {
-        if (copy_list != -1)
-            ds_list_destroy(copy_list);
-            
-        copy_list = ds_list_create();
-        if (fillframes)
-            {
-            for (j = scope_start;j &lt;= scope_end;j++)
-                {
-                el_list = ds_list_find_value(frame_list,j);
-                for (i = 0;i &lt; ds_list_size(el_list);i++)
-                    {
-                    if (ds_list_find_value(ds_list_find_value(el_list,i),9) == selectedelement)
-                        {
-                        list_id = ds_list_find_value(el_list,i);
-                        temp_undo_list = ds_list_create();
-                        ds_list_copy(temp_undo_list,list_id);
-                        ds_list_add(temp_undo_list,j);
-                        ds_list_add(copy_list,temp_undo_list);
-                        }
-                    }
-                }
-            }
-        else
-            {
-            el_list = ds_list_find_value(frame_list,frame);
-            
-            list_id = selectedelementlist;
-            copy_list = ds_list_create();
-            ds_list_copy(temp_undo_list,list_id);
-            ds_list_add(temp_undo_list,frame);
-            ds_list_add(copy_list,temp_undo_list);
-            }
-        
-        
-        placing_status = 0;
-        ds_list_clear(free_list);
-        ds_list_clear(bez_list);
+        copy_object();
         }
         
     //CUT
     if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('X')))
         {
-        if (copy_list != -1)
-            ds_list_destroy(copy_list);
-            
-        copy_list = ds_list_create();
-        if (fillframes)
-            {
-            for (j = scope_start;j &lt;= scope_end;j++)
-                {
-                el_list = ds_list_find_value(frame_list,j);
-                for (i = 0;i &lt; ds_list_size(el_list);i++)
-                    {
-                    if (ds_list_find_value(ds_list_find_value(el_list,i),9) == selectedelement)
-                        {
-                        list_id = ds_list_find_value(el_list,i);
-                        temp_undo_list = ds_list_create();
-                        ds_list_copy(temp_undo_list,list_id);
-                        ds_list_add(temp_undo_list,j);
-                        ds_list_add(copy_list,temp_undo_list);
-                        ds_list_destroy(list_id);
-                        ds_list_delete(el_list,i);
-                        }
-                    }
-                }
-            }
-        else
-            {
-            el_list = ds_list_find_value(frame_list,frame);
-            
-            list_id = selectedelementlist;
-            temp_undo_list = ds_list_create();
-            ds_list_copy(temp_undo_list,list_id);
-            ds_list_add(temp_undo_list,frame);
-            ds_list_add(copy_list,temp_undo_list);
-            ds_list_delete(el_list,ds_list_find_index(el_list,list_id));
-            ds_list_destroy(list_id);
-            }
-            
-        frame_surf_refresh = 1;
-        
-        placing_status = 0;
-        selectedelement = -1;
-        ds_list_clear(free_list);
-        ds_list_clear(bez_list);
+        cut_object();
         }
         
     //DELETE
     if (keyboard_check_pressed(vk_delete))
         {
-        temp_undof_list = ds_list_create();
-        if (fillframes)
-            {
-            for (j = scope_start;j &lt;= scope_end;j++)
-                {
-                el_list = ds_list_find_value(frame_list,j);
-                for (i = 0;i &lt; ds_list_size(el_list);i++)
-                    {
-                    if (ds_list_find_value(ds_list_find_value(el_list,i),9) == selectedelement)
-                        {
-                        list_id = ds_list_find_value(el_list,i);
-                        temp_undo_list = ds_list_create();
-                        ds_list_copy(temp_undo_list,list_id);
-                        ds_list_add(temp_undo_list,j);
-                        ds_list_add(temp_undof_list,temp_undo_list);
-                        ds_list_destroy(list_id);
-                        ds_list_delete(el_list,i);
-                        }
-                    }
-                }
-            }
-        else
-            {
-            el_list = ds_list_find_value(frame_list,frame);
-            
-            list_id = selectedelementlist;
-            temp_undo_list = ds_list_create();
-            ds_list_copy(temp_undo_list,list_id);
-            ds_list_add(temp_undo_list,frame);
-            ds_list_add(temp_undof_list,temp_undo_list);
-            ds_list_delete(el_list,ds_list_find_index(el_list,list_id));
-            ds_list_destroy(list_id);
-            }
-            
-        ds_stack_push(undo_list,"l"+string(temp_undof_list));
-        frame_surf_refresh = 1;
-        
-        placing_status = 0;
-        selectedelement = -1;
-        ds_list_clear(free_list);
-        ds_list_clear(bez_list);
+        delete_object();
         }
     }
 
-
+if (mouse_x == clamp(mouse_x,0,512)) and (mouse_y == clamp(mouse_y,0,512))
+and (mouse_check_button_pressed(mb_right)) and (canrightclick)
+    dropdown_empty();
     
 //KEYBOARD RIGHT LEFT
 if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)

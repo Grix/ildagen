@@ -1,5 +1,8 @@
 //reapplies the object properties
-
+placing_status = 0;
+ds_list_clear(free_list);
+ds_list_clear(bez_list);
+    
 if (maxframes == 1) and (anienable)
     {
     //ds_stack_push(controller.undo_list,"a"+string(controller.maxframes))

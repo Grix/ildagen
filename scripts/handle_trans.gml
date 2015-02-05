@@ -103,7 +103,7 @@ else
         }
     else if (mouse_x == clamp(mouse_x,rectxmin-2,rectxmax+2)) and (mouse_y == clamp(mouse_y,rectymin-2,rectymax+2))
         {
-        tooltip = "Click and drag to move the selected object.#If animation is enabled, the movement will be animated."
+        tooltip = "Click and drag to move the selected object.#If animation is enabled, the movement will be animated.#Right click for other actions."
         if (mouse_check_button_pressed(mb_left)) 
             {
             objmoving = 1;
@@ -114,6 +114,10 @@ else
             scaley = 1;
             mousexprevious = obj_cursor.x;
             mouseyprevious = obj_cursor.y;
+            }
+        else if (mouse_check_button_pressed(mb_right)) 
+            {
+            dropdown_object();
             }
         }
     else if (mouse_x == clamp(mouse_x,rectxmin-20,rectxmin-2)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20))
@@ -129,7 +133,7 @@ else
             scaley = 1;
             mouseangleprevious = point_direction(obj_cursor.x,obj_cursor.y,anchorx/$ffff*512,anchory/$ffff*512);
             }
-        if (mouse_check_button_pressed(mb_right)) 
+        else if (mouse_check_button_pressed(mb_right)) 
             {
             anixtrans = 0;
             aniytrans = 0;
@@ -155,4 +159,6 @@ else
             mouseyprevious = obj_cursor.y;
             }
         }
+    else return 0;
     }
+return 1;

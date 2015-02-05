@@ -283,8 +283,8 @@ alarm[0] = 2;
           <argument>
             <kind>1</kind>
             <string>///Override me for each option
-show_debug_message(ds_list_find_value(scr_list,selected));
-script_execute(ds_list_find_value(scr_list,selected));
+with (controller) 
+    script_execute(ds_list_find_value(oDropDown.scr_list,oDropDown.selected));
 
 instance_destroy();
 </string>
