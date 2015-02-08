@@ -422,7 +422,6 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             }
         loop = (ds_list_find_value(new_list,50+checkpoints*6) == ds_list_find_value(new_list,50)) and 
                (ds_list_find_value(new_list,51+checkpoints*6) == ds_list_find_value(new_list,51));
-        show_debug_message("Loop: "+string(loop))
         }
         
     if (controller.reap_color)

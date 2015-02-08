@@ -38,12 +38,15 @@ ilda_list = ds_list_create();
 audio_surf = surface_create(1024,1024);
 
 temp_dir = working_directory+"tempproject/"
-if (FS_directory_exists(working_directory+"tempproject"))
-    FS_directory_delete(working_directory+"tempproject");
-FS_directory_create(temp_dir);
-if !FS_directory_exists(temp_dir)
+if (os_version != -1)
     {
-    show_message_async("Error: Could not write to temporary directory. The program may not function correctly.");
+    if (FS_directory_exists(working_directory+"tempproject"))
+        FS_directory_delete(working_directory+"tempproject");
+    FS_directory_create(temp_dir);
+    if !FS_directory_exists(temp_dir)
+        {
+        show_message_async("Error: Could not write to temporary directory. The program may not function correctly.");
+        }
     }
 
 selectedlayer = -1;
@@ -83,8 +86,8 @@ playing = 0;
 pos = 0;
 deltatime = 0;
 
-LoadFMOD();
-FMODinit(2,0);
+//LoadFMOD();
+//FMODinit(2,0);
 
 </string>
           </argument>

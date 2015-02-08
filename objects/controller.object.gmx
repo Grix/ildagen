@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "0.9.7.2";
-versiondate = "2015-01-26";
+            <string>version = "0.9.8";
+versiondate = "2015-02-08";
 
 FS_gmfilesystem_initialize(1);
 FS_set_gm_save_area("%appdata%\ildagen");
@@ -623,7 +623,7 @@ if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list)) and (placing_
         }
     }
     
-if (keyboard_check_pressed(vk_tab))
+/*if (keyboard_check_pressed(vk_tab))
     {
     if (os_version == -1)
         {
