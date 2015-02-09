@@ -12,7 +12,9 @@ if (mouse_x == clamp(mouse_x,0,tlw))
 
 scrollbarw = clamp(((tlzoom+18)/length)*tlw-18,32,tlw-18);
 scrollbarx = (tlw-18-scrollbarw)*(tlx)/(length-tlzoom);
-layerbarw = clamp(7/(ds_list_size(layer_list)+6)*lbh,32,lbh-1);
+layerbarw = clamp(lbh/(ds_list_size(layer_list)*48+lbh)*(lbh-1),32,lbh-1);
+
+//layerbarx/(ds_list_size(layer_list)*48-lbh)*lbh-18
 
 //horizontal
 if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw)) 
@@ -52,9 +54,9 @@ if (scroll_moving == 1)
 //vertical
 else if (scroll_moving == 2)
     {
-    layerbarx += (mouse_y-mouseyprev);//*(length/tlw);
+    layerbarx += (mouse_y-mouseyprev)*lbh/layerbarw;//*(length/tlw);
     if (layerbarx < 0) layerbarx = 0;
-    if ((layerbarx/48) > ds_list_size(layer_list)-1) layerbarx = (ds_list_size(layer_list)-1)*48;
+    if ((layerbarx/48) > ds_list_size(layer_list)) layerbarx = (ds_list_size(layer_list))*48;
     
     mouseyprev = mouse_y;
     

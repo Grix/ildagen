@@ -623,7 +623,7 @@ if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list)) and (placing_
         }
     }
     
-/*if (keyboard_check_pressed(vk_tab))
+if (keyboard_check_pressed(vk_tab))
     {
     if (os_version == -1)
         {

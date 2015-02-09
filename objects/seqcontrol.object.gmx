@@ -86,8 +86,8 @@ playing = 0;
 pos = 0;
 deltatime = 0;
 
-//LoadFMOD();
-//FMODinit(2,0);
+LoadFMOD();
+FMODinit(2,0);
 
 </string>
           </argument>
@@ -384,7 +384,7 @@ draw_set_alpha(1);
 draw_line(0,room_height-16,tlw,room_height-16);
 draw_line(tlw-17,tls,tlw-17,room_height);
 draw_rectangle_colour(scrollbarx,room_height,scrollbarx+scrollbarw,room_height-16,c_ltgray,c_ltgray,c_gray,c_gray,0);
-draw_rectangle_colour(tlw-16,tls+layerbarx,tlw,tls+layerbarx+layerbarw,c_ltgray,c_gray,c_gray,c_ltgray,0);
+draw_rectangle_colour(tlw-16,tls+(layerbarx*layerbarw/lbh),tlw,tls+(layerbarx*layerbarw/lbh)+layerbarw,c_ltgray,c_gray,c_gray,c_ltgray,0);
 </string>
           </argument>
         </arguments>

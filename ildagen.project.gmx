@@ -888,14 +888,16 @@
       <script>scripts\save_frames_html5.gml</script>
       <script>scripts\buffer_load_alt.gml</script>
     </scripts>
-    <script>scripts\handle_trans.gml</script>
-    <script>scripts\refresh_surfaces.gml</script>
-    <script>scripts\refresh_3dsurfaces.gml</script>
-    <script>scripts\refresh_miniaudio_surf.gml</script>
-    <script>scripts\bezier_coeffs.gml</script>
-    <script>scripts\bezier_x.gml</script>
-    <script>scripts\bezier_y.gml</script>
-    <script>scripts\dist_triangular.gml</script>
+    <scripts name="ilda">
+      <script>scripts\dist_triangular.gml</script>
+      <script>scripts\bezier_y.gml</script>
+      <script>scripts\bezier_x.gml</script>
+      <script>scripts\bezier_coeffs.gml</script>
+      <script>scripts\refresh_miniaudio_surf.gml</script>
+      <script>scripts\refresh_3dsurfaces.gml</script>
+      <script>scripts\refresh_surfaces.gml</script>
+      <script>scripts\handle_trans.gml</script>
+    </scripts>
     <script>scripts\controller_setup.gml</script>
     <script>scripts\parse_parameter.gml</script>
   </scripts>
