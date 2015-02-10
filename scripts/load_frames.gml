@@ -40,6 +40,7 @@ frame = 0;
 maxframes = 1;
 
 frame_surf_refresh = 1;
+refresh_miniaudio_flag = 1;
 
 //load
 maxframes = buffer_read(load_buffer,buffer_s32);
@@ -64,4 +65,3 @@ for (j = 0; j < maxframes;j++)
     
 scope_start = 0;
 scope_end = maxframes-1;
-frame_surf_refresh = 1;

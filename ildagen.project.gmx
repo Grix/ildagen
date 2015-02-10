@@ -67,7 +67,7 @@
       <store>0</store>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
+          <CopyToMask>1048640</CopyToMask>
         </Config>
       </ConfigOptions>
       <filename>fmodex.dll</filename>
@@ -101,7 +101,7 @@
       <store>0</store>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
+          <CopyToMask>1048640</CopyToMask>
         </Config>
       </ConfigOptions>
       <filename>LaserBoy_2015_01_12.zip</filename>
@@ -861,6 +861,7 @@
       <script>scripts\delete_object.gml</script>
       <script>scripts\paste_object.gml</script>
       <script>scripts\deselect_object.gml</script>
+      <script>scripts\clear_all.gml</script>
     </scripts>
     <scripts name="files">
       <scripts name="importilda">
@@ -887,6 +888,7 @@
       <script>scripts\save_frames.gml</script>
       <script>scripts\save_frames_html5.gml</script>
       <script>scripts\buffer_load_alt.gml</script>
+      <script>scripts\frames_toseq.gml</script>
     </scripts>
     <scripts name="ilda">
       <script>scripts\dist_triangular.gml</script>
@@ -896,6 +898,7 @@
       <script>scripts\refresh_miniaudio_surf.gml</script>
       <script>scripts\refresh_3dsurfaces.gml</script>
       <script>scripts\refresh_surfaces.gml</script>
+      <script>scripts\make_screenshot.gml</script>
       <script>scripts\handle_trans.gml</script>
     </scripts>
     <script>scripts\controller_setup.gml</script>
@@ -997,6 +1000,7 @@
         <object>objects\obj_export</object>
         <object>objects\obj_save</object>
         <object>objects\obj_load</object>
+        <object>objects\obj_toseq</object>
         <object>objects\obj_import</object>
         <object>objects\obj_onionskin</object>
         <object>objects\obj_clearframe</object>

@@ -1173,32 +1173,7 @@ if (new_id == getint)
           
           case "clearall":
             {
-            placing_status = 0;
-            ds_list_clear(free_list);
-            ds_list_clear(bez_list);
-            selectedelement = -1;
-            
-            for (j = 0;j &lt; ds_list_size(frame_list);j++)
-                {
-                el_list = ds_list_find_value(frame_list,j);
-                for (i = 0;i &lt; ds_list_size(el_list);i++)
-                    {
-                    list_id = ds_list_find_value(el_list,i);
-                    ds_list_destroy(list_id);
-                    }
-                ds_list_clear(el_list);
-                }
-                
-            
-            framepoints = 0;
-            frame = 0;
-            framehr = 0;
-            maxframes = 1;
-            scope_start = 0;
-            scope_end = maxframes-1;
-            refresh_miniaudio_flag = 1;
-            
-            frame_surf_refresh = 1;
+            clear_all();
             
             break;
             }
@@ -1490,6 +1465,30 @@ if ds_map_find_value(async_load, "id") == updateget
             }
        }
     }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>refresh_miniaudio_flag = 1;
+frame_surf_refresh = 1;
 </string>
           </argument>
         </arguments>

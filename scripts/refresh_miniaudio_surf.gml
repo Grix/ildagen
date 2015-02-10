@@ -12,7 +12,7 @@ surface_set_target(miniaudio_surf);
     draw_set_color(c_black);
         draw_line(0,tlh-13,tlw,tlh-13);
     draw_set_alpha(0.2);
-        tlx = 0
+        tlx = seqcontrol.selectedx;
         projectfps = seqcontrol.projectfps;;
         drawtime = ceil(tlx/projectfps);
         tlzoom = maxframes;

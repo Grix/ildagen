@@ -36,6 +36,7 @@ audio_surf = surface_create(1024,1024);
 effect_list = ds_list_create();
 ilda_list = ds_list_create();
 audio_surf = surface_create(1024,1024);
+buffer_list = ds_list_create();
 
 temp_dir = working_directory+"tempproject/"
 if (os_version != -1)
