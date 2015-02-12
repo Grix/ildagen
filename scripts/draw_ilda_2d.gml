@@ -11,6 +11,5 @@ if (viewmode != 0)
     draw_surface(frame3d_surf,0,0);
     //draw_set_blend_mode(bm_normal);
     }
-draw_set_alpha(1);
 if (viewmode == 0) or (viewmode == 2)
     draw_surface(frame_surf,0,0);

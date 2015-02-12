@@ -44,7 +44,6 @@ refresh_miniaudio_flag = 1;
 
 //load
 maxframes = buffer_read(load_buffer,buffer_s32);
-show_debug_message(maxframes)
 for (j = 0; j < maxframes;j++)
     {
     el_list = ds_list_create();

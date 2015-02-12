@@ -45,8 +45,6 @@ for (i = 0;i < ds_list_size(el_list);i++)
                 else
                     draw_triangle_colour(256,256,xxp,yyp,nxxp,nyyp,make_colour_rgb(nr,ng,nb),make_colour_rgb(nr/9,ng/9,nb/9),make_colour_rgb(nr/9,ng/9,nb/9),0);
                 }
-        
-            
             }
     }
 draw_set_blend_mode(bm_normal);

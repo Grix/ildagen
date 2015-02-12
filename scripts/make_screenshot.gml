@@ -5,7 +5,7 @@ el_buffer = argument0;
 buffer_ver = buffer_read(el_buffer,buffer_u8);
 if (buffer_ver != 0)
     {
-    show_message_async("Error: Unexpected byte. Contact developer.");
+    show_message_async("Error: Unexpected byte. Things might get ugly. Contact developer.");
     return temp_surf;
     }
 buffer_maxframes = buffer_read(el_buffer,buffer_s32);
