@@ -26,10 +26,9 @@ if (viewmode == 0) or (viewmode == 2)
         
         xo = ds_list_find_value(new_list,0)/128;
         yo = ds_list_find_value(new_list,1)/128;
+        listsize = (((ds_list_size(new_list)-50)/6)-1);
         
-        //TODO if just one
-        
-        for (u = 0; u < (((ds_list_size(new_list)-50)/6)-1); u++)
+        for (u = 0; u < listsize; u++)
             {
             
             nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
@@ -75,36 +74,35 @@ if (viewmode == 0) or (viewmode == 2)
             {
             new_list = ds_list_find_value(el_list,i);
             
-                xo = ds_list_find_value(new_list,0)/128;
-                yo = ds_list_find_value(new_list,1)/128;
+            xo = ds_list_find_value(new_list,0)/128;
+            yo = ds_list_find_value(new_list,1)/128;
+            listsize = (((ds_list_size(new_list)-50)/6)-1);
+            
+            for (u = 0; u < listsize; u++)
+                {
+                nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
                 
-                //TODO if just one
-                
-                for (u = 0; u < (((ds_list_size(new_list)-50)/6)-1); u++)
+                if (nbl == 0)
                     {
-                    nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
+                    xp = ds_list_find_value(new_list,50+u*6+0);
+                    yp = ds_list_find_value(new_list,50+u*6+1);
                     
-                    if (nbl == 0)
+                    nxp = ds_list_find_value(new_list,50+(u+1)*6+0);
+                    nyp = ds_list_find_value(new_list,50+(u+1)*6+1);
+                    nb = ds_list_find_value(new_list,50+(u+1)*6+3);
+                    ng = ds_list_find_value(new_list,50+(u+1)*6+4);
+                    nr = ds_list_find_value(new_list,50+(u+1)*6+5);
+                    
+                    draw_set_color(make_colour_rgb(nr,ng,nb));
+                    if (xp == nxp) && (yp == nyp)
                         {
-                        xp = ds_list_find_value(new_list,50+u*6+0);
-                        yp = ds_list_find_value(new_list,50+u*6+1);
-                        
-                        nxp = ds_list_find_value(new_list,50+(u+1)*6+0);
-                        nyp = ds_list_find_value(new_list,50+(u+1)*6+1);
-                        nb = ds_list_find_value(new_list,50+(u+1)*6+3);
-                        ng = ds_list_find_value(new_list,50+(u+1)*6+4);
-                        nr = ds_list_find_value(new_list,50+(u+1)*6+5);
-                        
-                        draw_set_color(make_colour_rgb(nr,ng,nb));
-                        if (xp == nxp) && (yp == nyp)
-                            {
-                            draw_rectangle(xo+xp/128-1,yo+yp/128-1,xo+xp/128+1,yo+yp/128+1,0);
-                            }
-                        else
-                            draw_line(xo+ xp/128,yo+ yp/128,xo+ nxp/128,yo+ nyp/128);
+                        draw_rectangle(xo+xp/128-1,yo+yp/128-1,xo+xp/128+1,yo+yp/128+1,0);
                         }
-                    
+                    else
+                        draw_line(xo+ xp/128,yo+ yp/128,xo+ nxp/128,yo+ nyp/128);
                     }
+                
+                }
             }
         }
         

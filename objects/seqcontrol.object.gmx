@@ -365,10 +365,10 @@ if (frame_surf_refresh == 1)
     }
 draw_set_alpha(1);
 if (viewmode != 0)
-    draw_surface_part(frame3d_surf,0,0,512,134,0,0);
+    draw_surface_part(frame3d_surf,0,0,509,135,0,0);
     
 if (viewmode == 0) or (viewmode == 2)
-    draw_surface_part(frame_surf,0,0,512,134,0,0);
+    draw_surface_part(frame_surf,0,0,509,135,0,0);
     
 if (surface_exists(audio_surf))
     draw_surface_part(audio_surf,0,0,tlw,room_height,0,137);
@@ -393,7 +393,7 @@ if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
 if (selectedlayer != -1)
     {
     drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
-    drawcursorycorrected = tls+selectedlayer*48-layerbarx;
+    drawcursorycorrected = tls+selectedlayer*48-layerbarx-1;
     if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
         draw_line(drawcursorxcorrected,drawcursorycorrected,drawcursorxcorrected,drawcursorycorrected+48);
     }

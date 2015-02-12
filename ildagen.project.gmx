@@ -866,8 +866,8 @@
       <script>scripts\refresh_miniaudio_surf.gml</script>
       <script>scripts\bezier_x.gml</script>
       <script>scripts\refresh_surfaces.gml</script>
-      <script>scripts\handle_trans.gml</script>
       <script>scripts\refresh_3dsurfaces.gml</script>
+      <script>scripts\handle_trans.gml</script>
       <script>scripts\clear_all.gml</script>
     </scripts>
     <scripts name="files">

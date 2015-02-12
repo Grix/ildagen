@@ -83,14 +83,14 @@ if (viewmode == 0) or (viewmode == 2)
                     ds_list_sort(el_list,0);
                     continue;
                     }
-                    
+                xo = 187+ds_list_find_value(new_list,0)/$ffff*134;
+                yo = ds_list_find_value(new_list,1)/$ffff*134;    
+                listsize = (((ds_list_size(new_list)-50)/6)-1);
+                
                 //2d
                 surface_set_target(frame_surf);
                 
-                xo = 187+ds_list_find_value(new_list,0)/$ffff*134;
-                yo = ds_list_find_value(new_list,1)/$ffff*134;
-                
-                for (u = 0; u < (((ds_list_size(new_list)-50)/6)-1); u++)
+                for (u = 0; u < listsize; u++)
                     {
                     nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
                     
@@ -121,10 +121,7 @@ if (viewmode == 0) or (viewmode == 2)
                 draw_set_blend_mode(bm_add);
                 draw_set_alpha(0.7);
                 
-                xo = 187+ds_list_find_value(new_list,0)/$ffff*134;
-                yo = ds_list_find_value(new_list,1)/$ffff*134;
-                
-                for (u = 0; u < (((ds_list_size(new_list)-50)/6)-1); u++)
+                for (u = 0; u < listsize; u++)
                     {
                     nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
                     
@@ -146,17 +143,20 @@ if (viewmode == 0) or (viewmode == 2)
                         nxxp = 256+cos(degtorad(-npdir))*400;
                         nyyp = 68+sin(degtorad(-npdir))*400;
                         
-                        draw_set_color(make_colour_rgb(nr,ng,nb));
+                        colorp = make_colour_rgb(nr,ng,nb);
+                        colorpfade = make_colour_rgb(nr/9,ng/9,nb/9);
+                        
                         if (xp == nxp) && (yp == nyp)
                             {
                             draw_set_alpha(1);
-                            draw_line_colour(256,68,xxp,yyp,make_colour_rgb(nr,ng,nb),make_colour_rgb(nr/9,ng/9,nb/9));
+                            draw_line_colour(256,68,xxp,yyp,colorp,colorpfade);
                             draw_set_alpha(0.85);
                             }
                         else
-                            draw_triangle_colour(256,68,xxp,yyp,nxxp,nyyp,make_colour_rgb(nr,ng,nb),make_colour_rgb(nr/9,ng/9,nb/9),make_colour_rgb(nr/9,ng/9,nb/9),0);
+                            draw_triangle_colour(256,68,xxp,yyp,nxxp,nyyp,colorp,colorpfade,colorpfade,0);
                         }
                     }
+                draw_set_blend_mode(bm_normal);
                 surface_reset_target();  
                 }
             
