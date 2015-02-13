@@ -54,12 +54,12 @@
         image_index = 1;
         controller.tooltip = "Click here to open the full manual. Keyboard controls:##"+
         "Mouse)    Select drawing tool and draw#"+
-        "Enter)    Remake selected object, press OK, or finalize curve#"+
+        "Enter)    Remake selected object, or finalize curve#"+
         "Left/Right Arrows)    Cycle between frames#"+
         "Up/Down Arrows)    Cycle between selected object#"+
         "Ctrl+Mouse)    Select object#"+
         "Delete)    Delete selected object#"+
-        "Spacebar)    Switch between 2D and 3D frame previewing#"+
+        "P)    Switch between 2D and 3D frame previewing#"+
         "Shift)    Force horizontal or vertical lines when drawing#"+
         "Q)    Snap cursor to the nearest tip of object#"+
         "Alt)    Snap mouse to ending position of last element for chaining#"+

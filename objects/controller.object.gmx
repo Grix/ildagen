@@ -79,14 +79,8 @@ surface_set_target(squaregrid_surf);
     draw_grid();
 surface_reset_target();
 
-update_verbose = 0;
-serial = "";
-frame_surf_refresh = 0;
-refresh_miniaudio_flag = 1;
-letter = "";
 el_list = ds_list_create();
 undo_list = ds_stack_create();
-el_id = 0;
 frame_surf = surface_create(512,512);
 frame3d_surf = surface_create(512,512);
 frame_list = ds_list_create();
@@ -94,13 +88,21 @@ ds_list_add(frame_list,el_list);
 free_list = ds_list_create();
 bez_list = ds_list_create();
 font_list = ds_list_create();
-xdelta[32] = 0;
 snap_list = ds_list_create();
 selsurf = surface_create(512,512);
 miniaudio_surf = surface_create(512,512);
 copy_list = -1;
 selectedelementlist = ds_list_create();
+
+el_id = 0;
 projectfps = 30;
+xdelta[32] = 0;
+playing = 1;
+update_verbose = 0;
+serial = "";
+frame_surf_refresh = 0;
+refresh_miniaudio_flag = 1;
+letter = "";
 
 redraw = 0;
 sgridshow = 0;
@@ -179,6 +181,7 @@ blank_offset = 0;
 anienable = 0;
 frame = 0;
 framehr = 0;
+frameprev = 0;
 fillframes = 1;
 maxframes = 1;
 anicolor1 = c_white;
@@ -330,6 +333,64 @@ with (obj_cursor)
         y = mouse_y;
         }
     }
+    
+if (keyboard_check_pressed(vk_space))
+    {
+    playing = !playing;
+    if (seqcontrol.song)
+        {
+        if (playing)
+            {
+            FMODInstanceSetPosition(seqcontrol.songinstance,(tlx+framehr)/seqcontrol.projectfps*1000/FMODSoundGetLength(seqcontrol.song));
+            FMODInstanceSetPaused(seqcontrol.songinstance,0);
+            }
+        else
+            FMODInstanceSetPaused(seqcontrol.songinstance,1);
+        }
+    }
+    
+if (keyboard_check_pressed(vk_backspace))
+    {
+    deselect_object();
+    }
+    
+if (playing == 1)
+    {
+    framehr += delta_time/1000000*seqcontrol.projectfps*seqcontrol.playbackspeed;
+    if (framehr &gt; maxframes-0.5)
+        framehr-= maxframes;
+    frame = round(framehr);
+    if (frame &lt; 1)
+        frame = 0;
+    if (frame != frameprev)
+        frame_surf_refresh = 1;
+    
+    if (selectedelement != -1)
+        {
+        sefound = 0;
+        for (i = 0; i &lt; ds_list_size(el_list);i++)
+            {
+            if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
+                {
+                sefound = 1;
+                selectedelementlist = ds_list_find_value(el_list,i);
+                xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+                yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
+                rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
+                rectymin = yo + (ds_list_find_value(selectedelementlist,6));
+                rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
+                rectymax = yo + (ds_list_find_value(selectedelementlist,7));
+                }
+            }
+        if (sefound == 0)
+            selectedelement = -1;
+        }
+        
+    if (frameprev != 0) and (frame == 0) and (seqcontrol.song)
+        {
+        FMODInstanceSetPosition(seqcontrol.songinstance,tlx/seqcontrol.projectfps*1000/FMODSoundGetLength(seqcontrol.song));
+        }
+    }
 
 if (ds_list_size(el_list) &gt; 0)
     {
@@ -391,7 +452,7 @@ if (keyboard_check_pressed(ord('M')))
     window_set_size(1100,670);
     }
         
-if (keyboard_check_pressed(vk_backspace))
+if (keyboard_check_pressed(ord("0")))
     {
     placing_status = 0;
     selectedelement = -1;
@@ -400,7 +461,7 @@ if (keyboard_check_pressed(vk_backspace))
     exit;
     }
     
-if (keyboard_check_pressed(vk_space))
+if (keyboard_check_pressed(ord("P")))
     {
     viewmode++;
     if (viewmode &gt; 2)
@@ -519,7 +580,8 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status ==
     frame = round(framehr);
     if (frame &lt; 1)
         frame = 0;
-    frame_surf_refresh = 1;
+    if (frame != frameprev)
+        frame_surf_refresh = 1;
     
     if (selectedelement != -1)
         {
@@ -623,6 +685,8 @@ if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list)) and (placing_
         }
     }
     
+frameprev = frame;    
+
 if (keyboard_check_pressed(vk_tab))
     {
     if (os_version == -1)
@@ -630,6 +694,11 @@ if (keyboard_check_pressed(vk_tab))
         show_message_async("Sorry, this timeline is not available in the web version");
         exit;
         }
+    playing = 0;
+    frame = 0;
+    framehr = 0;
+    if (seqcontrol.song)
+        FMODInstanceSetPaused(seqcontrol.songinstance,1);
         
     room_goto(rm_seq);
     }
@@ -1807,6 +1876,8 @@ draw_line(lerp(12,512-12,frame/(maxframes-1))+1,511,lerp(12,512-12,frame/(maxfra
 frame = 0;
 framehr = 0;
 frame_surf_refresh = 1;
+if (seqcontrol.song)
+    FMODInstanceSetPaused(seqcontrol.songinstance,1);
 </string>
           </argument>
         </arguments>

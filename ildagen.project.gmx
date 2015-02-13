@@ -862,9 +862,9 @@
       <script>scripts\dist_triangular.gml</script>
       <script>scripts\draw_ilda_2d.gml</script>
       <script>scripts\bezier_coeffs.gml</script>
-      <script>scripts\bezier_y.gml</script>
       <script>scripts\refresh_miniaudio_surf.gml</script>
       <script>scripts\bezier_x.gml</script>
+      <script>scripts\bezier_y.gml</script>
       <script>scripts\refresh_surfaces.gml</script>
       <script>scripts\refresh_3dsurfaces.gml</script>
       <script>scripts\handle_trans.gml</script>

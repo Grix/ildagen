@@ -150,11 +150,25 @@ if (room != rm_seq) exit;
 
 if (song) FMODUpdate();
 
+if (keyboard_check_pressed(vk_space))
+    {
+    playing = !playing;
+    if (seqcontrol.song)
+        {
+        if (playing)
+            {
+            FMODInstanceSetPosition(songinstance,tlpos/FMODSoundGetLength(song));
+            FMODInstanceSetPaused(songinstance,0);
+            }
+        else
+            FMODInstanceSetPaused(songinstance,1);
+        }
+    }
+
+
 if (playing == 1)
     {
     tlpos += delta_time/1000*playbackspeed;
-    if (song)
-        FMODInstanceSetPaused(songinstance,0);    
     if (tlpos &gt; length/projectfps*1000) 
         {
         playing = 0;
@@ -166,14 +180,11 @@ if (playing == 1)
             set_audio_speed();
             }
         }
-    if (scroll_moving != 1) &amp;&amp; (song) &amp;&amp; (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-tlpos) &gt; 17)
-        tlpos = FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song);
-
-    }
-else
-    {
-    if (song)
-        FMODInstanceSetPaused(songinstance,1);
+    if (scroll_moving != 1) &amp;&amp; (song) &amp;&amp; (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-tlpos) &gt; 35)
+        {
+        show_debug_message(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-tlpos)
+        FMODInstanceSetPosition(songinstance,(tlpos-10)/FMODSoundGetLength(song));
+        }
     }
 
 with (obj_cursor)
@@ -182,11 +193,20 @@ with (obj_cursor)
     y = mouse_y;
     }
 
+
 if (keyboard_check_pressed(vk_tab))
     {
     if (song) FMODInstanceSetPaused(songinstance,1);
     playing = 0;
     room_goto(rm_ilda);
+    }
+    
+if (keyboard_check_pressed(ord("P")))
+    {
+    viewmode++;
+    if (viewmode &gt; 2)
+        viewmode = 0;
+    frame_surf_refresh = 1;
     }
     
 if (keyboard_check_pressed(vk_backspace))
@@ -410,33 +430,6 @@ draw_line(0,room_height-16,tlw,room_height-16);
 draw_line(tlw-17,tls,tlw-17,room_height);
 draw_rectangle_colour(scrollbarx,room_height,scrollbarx+scrollbarw,room_height-16,c_ltgray,c_ltgray,c_gray,c_gray,0);
 draw_rectangle_colour(tlw-16,tls+(layerbarx*layerbarw/lbh),tlw,tls+(layerbarx*layerbarw/lbh)+layerbarw,c_ltgray,c_gray,c_gray,c_ltgray,0);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="32">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (room != rm_seq) exit;
-
-playing = !playing;
-
-//FMODInstanceSetPaused(songinstance,!FMODInstanceGetPaused(songinstance));
 </string>
           </argument>
         </arguments>
