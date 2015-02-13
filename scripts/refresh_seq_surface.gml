@@ -89,7 +89,6 @@ if (viewmode == 0) or (viewmode == 2)
                 
                 //2d
                 surface_set_target(frame_surf);
-                
                 for (u = 0; u < listsize; u++)
                     {
                     nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
@@ -157,6 +156,7 @@ if (viewmode == 0) or (viewmode == 2)
                         }
                     }
                 draw_set_blend_mode(bm_normal);
+                draw_set_alpha(1);
                 surface_reset_target();  
                 }
             

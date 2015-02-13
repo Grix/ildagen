@@ -37,7 +37,7 @@ surface_set_target(audio_surf);
                 draw_rectangle(frametime-tlx,tempstartx+i*48,frametime-tlx+ds_list_find_value(infolist,0),tempstartx+i*48+48,0);
                 if (!surface_exists(ds_list_find_value(infolist,1)))
                     ds_list_replace(infolist,1,make_screenshot(ds_list_find_value(layer,j+1)));
-                draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp(ds_list_find_value(infolist,0),0,32),32,frametime-tlx+8,tempstartx+i*48+8);
+                draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp(ds_list_find_value(infolist,0),0,32),32,frametime-tlx,tempstartx+i*48+8);
                 }
             }
         

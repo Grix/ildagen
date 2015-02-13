@@ -75,6 +75,7 @@ getstr = -1;
 dialog = "";
 drawcursorx = 0;
 drawcursory = 0;
+moving_object = 0;
 
 tlw = 897;
 tlh = 128;
@@ -182,7 +183,6 @@ if (playing == 1)
         }
     if (scroll_moving != 1) &amp;&amp; (song) &amp;&amp; (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-tlpos) &gt; 35)
         {
-        show_debug_message(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-tlpos)
         FMODInstanceSetPosition(songinstance,(tlpos-10)/FMODSoundGetLength(song));
         }
     }
