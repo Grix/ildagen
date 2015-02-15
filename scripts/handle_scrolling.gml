@@ -17,7 +17,7 @@ layerbarw = clamp(lbh/(ds_list_size(layer_list)*48+lbh)*(lbh-1),32,lbh-1);
 if (moving_object == 1)
     {
     //currently dragging object on timeline
-    ds_list_replace(layertomove,objectindex,ds_list_find_value(layertomove,objectindex)+round((mouse_x-mousexprev)*tlw/tlzoom));
+    ds_list_replace(layertomove,objectindex,ds_list_find_value(layertomove,objectindex)+round((mouse_x-mousexprev)*tlzoom/tlw));
     mousexprev = mouse_x;
     mouseyprev = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -26,7 +26,19 @@ if (moving_object == 1)
         }
     exit;
     }
-
+else if (moving_object == 2)
+    {
+    //resizing object on timeline
+    ds_list_replace(infolisttomove,0,ds_list_find_value(infolisttomove,0)+round((mouse_x-mousexprev)*tlzoom/tlw));
+    mousexprev = mouse_x;
+    if (mouse_check_button_released(mb_left))
+        {
+        moving_object = 0;
+        }
+    exit;
+    }
+    
+    
 //horizontal
 if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw)) 
 && (mouse_y == clamp(mouse_y,room_height-16,room_height))
@@ -134,11 +146,29 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                     controller.tooltip = "Click and drag to move object. Drag the far edge to adjust duration.#Double-click to edit frames#Right click for more actions";
                     if  mouse_check_button_pressed(mb_left)
                         {
-                        moving_object = 1;
-                        objectindex = m;
-                        layertomove = layer;
-                        mousexprev = mouse_x;
-                        mouseyprev = mouse_y;
+                        if (doubleclick)
+                            {
+                            //edit object
+                            }
+                        else
+                            {
+                            if (mouse_x > ((frametime-tlx)/tlzoom*tlw)+object_length/tlzoom*tlw-1)
+                                {
+                                //resize object
+                                moving_object = 2;
+                                infolisttomove = infolist;
+                                mousexprev = mouse_x;
+                                }
+                            else
+                                {
+                                //drag object
+                                moving_object = 1;
+                                objectindex = m;
+                                layertomove = layer;
+                                mousexprev = mouse_x;
+                                mouseyprev = mouse_y;
+                                }
+                            }
                         }
                     exit;
                     }
@@ -153,9 +183,8 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 
                 if  mouse_check_button_pressed(mb_left)
                     {
-                    if (selectedlayer == i) and (selectedx == floatingcursorx)
+                    if (selectedlayer == i) and (selectedx == floatingcursorx) and (doubleclick)
                         {
-                        
                         
                         show_debug_message("create ilda")
                         }

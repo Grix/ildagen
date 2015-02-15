@@ -56,6 +56,7 @@
         "Mouse)    Select drawing tool and draw#"+
         "Enter)    Remake selected object, or finalize curve#"+
         "Left/Right Arrows)    Cycle between frames#"+
+        "Space)    Play/Pause"+
         "Up/Down Arrows)    Cycle between selected object#"+
         "Ctrl+Mouse)    Select object#"+
         "Delete)    Delete selected object#"+

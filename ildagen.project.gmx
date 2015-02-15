@@ -842,6 +842,7 @@
       <script>scripts\set_audio_speed.gml</script>
       <script>scripts\refresh_seq_surface.gml</script>
       <script>scripts\make_screenshot.gml</script>
+      <script>scripts\clear_project.gml</script>
     </scripts>
     <scripts name="ilda">
       <script>scripts\draw_grid.gml</script>

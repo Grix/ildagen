@@ -1,13 +1,13 @@
-//exports every element into an ilda file
+//exports the frames from the ilda editor into an igf file
 placing_status = 0;
 
-file_loc = get_save_filename_ext("*.igf","example.igf","","Select ildaGen frames file");
+file_loc = get_save_filename_ext("*.igf","example.igf","","Select ildaGen frames file location");
 if (file_loc == "")
     exit;
     
 save_buffer = buffer_create(1,buffer_grow,1);
 
-buffer_write(save_buffer,buffer_u8,0);
+buffer_write(save_buffer,buffer_u8,50);
 buffer_write(save_buffer,buffer_s32,maxframes);
 
 for (j = 0; j < maxframes;j++)
@@ -41,6 +41,4 @@ if (FS_file_exists(file_loc))
 else
     show_message_async("Could not save file. May not have access rights, try a different folder.");
 
-//buffer_save(save_buffer,file_loc);
-//show_message_async("Frames saved.");
 buffer_delete(save_buffer);

@@ -30,14 +30,15 @@ surface_set_target(audio_surf);
             {
             infolist = ds_list_find_value(layer,j+2);
             frametime = ds_list_find_value(layer,j);
+            framedelta = (frametime-tlx)/tlzoom*tlw;
             draw_set_colour(c_dkgray);
             if (frametime = clamp(frametime,tlx,tlx+tlzoom)) 
                 {
                 //draw object on timeline
-                draw_rectangle(frametime-tlx,tempstartx+i*48,frametime-tlx+ds_list_find_value(infolist,0),tempstartx+i*48+48,0);
+                draw_rectangle(framedelta,tempstartx+i*48,framedelta+ds_list_find_value(infolist,0)/tlzoom*tlw,tempstartx+i*48+48,0);
                 if (!surface_exists(ds_list_find_value(infolist,1)))
                     ds_list_replace(infolist,1,make_screenshot(ds_list_find_value(layer,j+1)));
-                draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp(ds_list_find_value(infolist,0),0,32),32,frametime-tlx,tempstartx+i*48+8);
+                draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp(ds_list_find_value(infolist,0),1,32)/tlzoom*tlw,32,framedelta,tempstartx+i*48+8);
                 }
             }
         

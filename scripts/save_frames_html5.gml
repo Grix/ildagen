@@ -3,7 +3,7 @@ placing_status = 0;
     
 save_buffer = buffer_create(1,buffer_grow,1);
 
-buffer_write(save_buffer,buffer_u8,0);
+buffer_write(save_buffer,buffer_u8,50);
 buffer_write(save_buffer,buffer_s32,maxframes);
 
 for (j = 0; j < maxframes;j++)

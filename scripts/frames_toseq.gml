@@ -3,7 +3,7 @@ placing_status = 0;
 
 if (seqcontrol.selectedlayer = -1)
     {
-    show_message_async("No timeline position marked, enter the timeline and select a position first");
+    show_message_async("No timeline position marked, enter timeline mode and select a position first");
     exit;
     }
     
@@ -46,8 +46,6 @@ for (j = 0; j < maxframes;j++)
 //remove excess size
 buffer_resize(save_buffer,buffer_tell(save_buffer));
 
-ds_list_add(seqcontrol.buffer_list,save_buffer);
-
 //send to sequencer
 with (seqcontrol)
     {
@@ -63,7 +61,8 @@ with (seqcontrol)
     ds_list_add(selectedlayerlist,selectedx);
     ds_list_add(selectedlayerlist,controller.save_buffer);
     info = ds_list_create();
-    ds_list_add(info,controller.maxframes);
+    ds_list_add(info,controller.maxframes-1);
     ds_list_add(info,make_screenshot(controller.save_buffer));
+    ds_list_add(info,controller.maxframes);
     ds_list_add(selectedlayerlist,info);
     }

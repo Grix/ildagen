@@ -9,7 +9,8 @@ if (fastload)
 else
     load_buffer = buffer_load_alt(file_loc);
     
-if (buffer_read(load_buffer,buffer_u8) != 0)
+idbyte = buffer_read(load_buffer,buffer_u8);
+if (idbyte != 0) or (idbyte != 50)
     {
     show_message_async("Unexpected byte, is this a valid ildaGen frames file?");
     exit;

@@ -52,6 +52,9 @@ if (os_version != -1)
         }
     }
 
+fastload = 1;
+draw_cursorline = 0;
+doubleclick = 0;    
 frameprev = -1;
 viewmode = 2;
 selectedlayer = -1;
@@ -95,6 +98,29 @@ deltatime = 0;
 LoadFMOD();
 FMODinit(2,0);
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>doubleclick = 0;
 </string>
           </argument>
         </arguments>
@@ -192,6 +218,15 @@ with (obj_cursor)
     x = mouse_x;
     y = mouse_y;
     }
+    
+if (keyboard_check_pressed(vk_right))
+    {
+    tlpos += 1/projectfps*1000;
+    }
+else if (keyboard_check_pressed(vk_left)) and (tlpos &gt; projectfps/1000)
+    {
+    tlpos -= 1/projectfps*1000;
+    }
 
 
 if (keyboard_check_pressed(vk_tab))
@@ -209,7 +244,7 @@ if (keyboard_check_pressed(ord("P")))
     frame_surf_refresh = 1;
     }
     
-if (keyboard_check_pressed(vk_backspace))
+if (keyboard_check_pressed(ord("0")))
     {
     tlx = 0;
     playing = 0;
@@ -238,6 +273,30 @@ if (keyboard_check_pressed(ord('M')))
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>doubleclick = 1;
+alarm[1] = 10;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="63">
       <action>
         <libid>1</libid>
@@ -258,18 +317,7 @@ if (keyboard_check_pressed(ord('M')))
             <string>//Get integer
 var new_id = ds_map_find_value(async_load, "id");
 if (new_id == getint)
-    {
-    if (dialog == "layerdelete")
-        {
-        layer = layertodelete;
-        if (ds_list_find_index(layer_list,layer) == selectedlayer)
-            selectedlayer = -1;
-        for (j = 0; j &lt; ds_list_size(layer); j++)
-            ds_list_destroy(ds_list_find_value(layer,j));
-        ds_list_delete(layer_list,ds_list_find_index(layer_list,layertodelete));
-        ds_list_destroy(layer);
-        }        
-
+    { 
     if ds_map_find_value(async_load, "status")
        {
       switch (dialog)
@@ -281,12 +329,25 @@ if (new_id == getint)
             
             break;
             }
-          case "loadfile":
+          case "loadproject":
             {
             load_project(get_open_filename_ext("ildaGen project|*.igp","","","Select ildaGen project file"));
           
             break;
             }
+            
+          case "layerdelete":
+            {
+            layer = layertodelete;
+            if (ds_list_find_index(layer_list,layer) == selectedlayer)
+                selectedlayer = -1;
+            for (j = 0; j &lt; ds_list_size(layer); j++)
+                ds_list_destroy(ds_list_find_value(layer,j));
+            ds_list_delete(layer_list,ds_list_find_index(layer_list,layertodelete));
+            ds_list_destroy(layer);
+            
+            break;
+            }  
           }
         }
     }
@@ -387,7 +448,7 @@ draw_set_alpha(1);
 if (viewmode != 0)
     draw_surface_part(frame3d_surf,0,0,509,135,0,0);
     
-if (viewmode == 0) or (viewmode == 2)
+if (viewmode != 1)
     draw_surface_part(frame_surf,0,0,509,135,0,0);
     
 if (surface_exists(audio_surf))
