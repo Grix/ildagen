@@ -9,7 +9,8 @@ if (mouse_x == clamp(mouse_x,0,tlw))
     if (mouse_wheel_down())
         tlzoom *= 1.2;
     }
-
+    
+mouseonsomelayer = 0;
 scrollbarw = clamp(((tlzoom+18)/length)*tlw-18,32,tlw-18);
 scrollbarx = (tlw-18-scrollbarw)*(tlx)/(length-tlzoom);
 layerbarw = clamp(lbh/(ds_list_size(layer_list)*48+lbh)*(lbh-1),32,lbh-1);
@@ -43,6 +44,7 @@ else if (moving_object == 2)
 if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw)) 
 && (mouse_y == clamp(mouse_y,room_height-16,room_height))
     {
+    mouseonsomelayer = 1;
     controller.tooltip = "Drag to scroll the timeline. Hold and scroll the mouse wheel to zoom";
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
         {
@@ -54,6 +56,7 @@ if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw))
 else if (mouse_y == clamp(mouse_y,tls+layerbarx,tls+layerbarx+layerbarw)) 
 && (mouse_x == clamp(mouse_x,tlw-16,tlw))
     {
+    mouseonsomelayer = 1;
     controller.tooltip = "Drag to scroll the layer list.";
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
         {
@@ -94,7 +97,7 @@ if !((mouse_x == clamp(mouse_x,0,tlw))
 //layers
 draw_cursorline = 0;
 tempstartx = tls-layerbarx;
-mouseonsomelayer = 0;
+
 
 for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < floor((layerbarx+lbh)/48); i++)
     {
@@ -104,6 +107,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
     mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,tempstartx+i*48,tempstartx+i*48+48))
     if (mouseonlayer)
         {
+        mouseonsomelayer = 1;
         mouseover = (mouse_x == clamp(mouse_x,8,40)) && (mouse_y == clamp(mouse_y,tempstartx+i*48+8,tempstartx+i*48+40))
         if (i == ds_list_size(layer_list))
             {
@@ -196,7 +200,6 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                     }
                 }
             }
-        mouseonsomelayer = 1;
         }
     }
     

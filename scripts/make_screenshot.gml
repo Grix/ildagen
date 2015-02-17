@@ -1,15 +1,13 @@
-frame = 0;
-
 temp_surf = surface_create(32,32);
 el_buffer = argument0;
 buffer_ver = buffer_read(el_buffer,buffer_u8);
-if (buffer_ver != 0)
+if (buffer_ver != 50)
     {
     show_message_async("Error: Unexpected byte. Things might get ugly. Contact developer.");
     return temp_surf;
     }
-buffer_maxframes = buffer_read(el_buffer,buffer_s32);
-buffer_maxelements = buffer_read(el_buffer,buffer_s32);
+buffer_maxframes = buffer_read(el_buffer,buffer_u32);
+buffer_maxelements = buffer_read(el_buffer,buffer_u32);
 
 surface_set_target(temp_surf);
 
@@ -21,12 +19,25 @@ el_list = ds_list_create();
 
 for (i = 0; i < buffer_maxelements;i++)
     {
-    numofinds = buffer_read(el_buffer,buffer_s32);
+    numofinds = buffer_read(el_buffer,buffer_u32);
     ind_list = ds_list_create();
     ds_list_add(el_list,ind_list);
-    for (u = 0; u < numofinds; u++)
+    for (u = 0; u < 10; u++)
         {
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_s32));
+        ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
+        }
+    for (u = 10; u < 50; u++)
+        {
+        ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
+        }
+    for (u = 50; u < numofinds; u += 6)
+        {
+        ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
+        ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
+        ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
+        ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
+        ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
+        ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
         }
     }
 

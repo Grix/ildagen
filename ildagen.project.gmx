@@ -209,7 +209,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="GMFMODSimple">
-      <script>scripts\HowToUse.gml</script>
+      <script>scripts\.gml</script>
       <script>scripts\Known_Problems_and_Questions.gml</script>
       <scripts name="StartOfGame">
         <script>scripts\LoadFMOD.gml</script>

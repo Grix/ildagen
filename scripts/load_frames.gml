@@ -2,17 +2,19 @@ file_loc = argument0;
 if (file_loc == "") or is_undefined(file_loc)
     exit;
 
-if (fastload)
-    {
-    load_buffer = buffer_load(file_loc);
-    }
-else
-    load_buffer = buffer_load_alt(file_loc);
+//if (fastload)
+//    {
+    tempname = FS_unique_fname(working_directory,".igf");
+    FS_file_copy(file_loc,tempname);
+    load_buffer = buffer_load(tempname);
+//    }
+//else
+//    load_buffer = buffer_load_alt(file_loc);
     
 idbyte = buffer_read(load_buffer,buffer_u8);
-if (idbyte != 0) or (idbyte != 50)
+if (idbyte != 0) and (idbyte != 50)
     {
-    show_message_async("Unexpected byte, is this a valid ildaGen frames file?");
+    show_message_async("Unexpected ID byte: "+string(idbyte)+", is this a valid ildaGen frames file?");
     exit;
     }
 
@@ -44,21 +46,59 @@ frame_surf_refresh = 1;
 refresh_miniaudio_flag = 1;
 
 //load
-maxframes = buffer_read(load_buffer,buffer_s32);
-for (j = 0; j < maxframes;j++)
+if (idbyte == 0)
     {
-    el_list = ds_list_create();
-    ds_list_add(frame_list,el_list);
-    
-    numofelems = buffer_read(load_buffer,buffer_s32);
-    for (i = 0; i < numofelems;i++)
+    maxframes = buffer_read(load_buffer,buffer_s32);
+    for (j = 0; j < maxframes;j++)
         {
-        numofinds = buffer_read(load_buffer,buffer_s32);
-        ind_list = ds_list_create();
-        ds_list_add(el_list,ind_list);
-        for (u = 0; u < numofinds; u++)
+        el_list = ds_list_create();
+        ds_list_add(frame_list,el_list);
+        
+        numofelems = buffer_read(load_buffer,buffer_s32);
+        for (i = 0; i < numofelems;i++)
             {
-            ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
+            numofinds = buffer_read(load_buffer,buffer_s32);
+            ind_list = ds_list_create();
+            ds_list_add(el_list,ind_list);
+            for (u = 0; u < numofinds; u++)
+                {
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
+                }
+            }
+        }
+    }
+else if (idbyte == 50)
+    {
+    maxframes = buffer_read(load_buffer,buffer_u32);
+    for (j = 0; j < maxframes;j++)
+        {
+        el_list = ds_list_create();
+        ds_list_add(frame_list,el_list);
+        
+        numofelems = buffer_read(load_buffer,buffer_u32);
+        for (i = 0; i < numofelems;i++)
+            {
+            numofinds = buffer_read(load_buffer,buffer_u32);
+            ind_list = ds_list_create();
+            ds_list_add(el_list,ind_list);
+            
+            for (u = 0; u < 10; u++)
+                {
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
+                }
+            for (u = 10; u < 50; u++)
+                {
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                }
+            for (u = 50; u < numofinds; u += 6)
+                {
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                }
             }
         }
     }

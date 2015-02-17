@@ -34,17 +34,17 @@ if (is_string(resolution))
     {
     autoresflag = 1;
     if ((placing == "line") && (blankmode == "solid") && (colormode == "solid"))
-        resolution = 4096;
+        resolution = 2300;
     else
-        resolution = 1024;
+        resolution = 1300;
         
     if (colormode != "solid") or (blankmode != "solid")
-        resolution = 512;
+        resolution = 700;
     
     if (anienable) and (blankmode != "solid") and ((blank_offset != aniblank_offset) or (blank_dc != aniblank_dc))
-        resolution = 256;
+        resolution = 400;
     else if (anienable) and (colormode != "solid") and ((color_offset != anicolor_offset) or (color_dc != anicolor_dc))
-        resolution = 256;
+        resolution = 400;
     }
 
 //find elements
