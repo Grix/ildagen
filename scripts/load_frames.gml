@@ -4,9 +4,9 @@ if (file_loc == "") or is_undefined(file_loc)
 
 //if (fastload)
 //    {
-    tempname = FS_unique_fname(working_directory,".igf");
-    FS_file_copy(file_loc,tempname);
-    load_buffer = buffer_load(tempname);
+    //tempname = FS_unique_fname(working_directory,".igf");
+    //FS_file_copy(file_loc,tempname);
+    load_buffer = buffer_load(FS_copy_fast(file_loc));
 //    }
 //else
 //    load_buffer = buffer_load_alt(file_loc);

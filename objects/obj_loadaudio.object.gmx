@@ -110,10 +110,14 @@ else image_index = 0;
     songinstance = 0;
     if (song) FMODSoundFree(song);
     songfile = get_open_filename_ext("","","","Select audio file");
-    song = FMODSoundAdd(songfile,0,0);
+    songfile_name = filename_name(songfile);
+    //tempname = FS_unique_fname(working_directory,filename_ext(songfile));
+    //FS_file_copy(songfile, tempname);
+    //show_message(FS_file_exists(tempname))
+    song = FMODSoundAdd(FS_copy_fast(songfile),0,0);
     if (!song) 
         {
-        show_message_async("Failed to load audio");
+        show_message_async("Failed to load audio: "+FMODErrorStr(FMODGetLastError()));
         exit;
         }
     songlength = FMODSoundGetLength(song);
@@ -168,7 +172,7 @@ draw_set_font(fnt_tooltip);
 if (seqcontrol.song == 0) draw_text(x+70,y+2,"No audio");
 else
     {
-    draw_text_ext(x+70,y+2,filename_name(seqcontrol.songfile),500,110);
+    draw_text_ext(x+70,y+2,seqcontrol.songfile_name,500,110);
     if (seqcontrol.parsingaudio == 1)
         draw_text(x+70,y+18,"Analyzing ...");
     }

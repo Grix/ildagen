@@ -46,7 +46,7 @@ for (i = 0; i < ds_list_size(layer_list); i++)
 if (song)
     {
     //todo: cache to speed up
-    buffer_write(save_buffer,buffer_string,filename_name(songfile));
+    buffer_write(save_buffer,buffer_string,songfile_name);
     songfile_bin = FS_file_bin_open(songfile,0);
     songfile_size = FS_file_bin_size(songfile_bin);
     buffer_write(save_buffer,buffer_u32,songfile_size);

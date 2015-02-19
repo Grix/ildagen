@@ -5,9 +5,9 @@ if (file_loc == "") or is_undefined(file_loc)
     
 clear_project();
 
-tempname = FS_unique_fname(working_directory,".igf");
-FS_file_copy(file_loc,tempname);
-load_buffer = buffer_load(tempname);
+//tempname = FS_unique_fname(working_directory,".igf");
+//FS_file_copy(file_loc,tempname);
+load_buffer = buffer_load(FS_copy_fast(file_loc));
     
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 50)
@@ -52,7 +52,8 @@ if (songload)
     songfile_size = buffer_read(load_buffer,buffer_u32);
     //if !(FS_file_exists(working_directory+songfile_name))
         //{
-        songfile_instance = FS_file_bin_open(working_directory+songfile_name,1);
+        songfile_tempname = FS_unique_fname(working_directory,filename_ext(songfile_name));
+        songfile_instance = FS_file_bin_open(songfile_tempname,1);
         FS_file_bin_write_flush(songfile_instance);
         for (i = 0; i < songfile_size; i++)
             {
@@ -62,11 +63,11 @@ if (songload)
         //}
         
     songinstance = 0;
-    songfile = working_directory+songfile_name;
+    songfile = songfile_tempname;
     song = FMODSoundAdd(songfile,0,0);
     if (!song) 
         {
-        show_message_async("Failed to load audio");
+        show_message_async("Failed to load audio: "+FMODErrorStr(FMODGetLastError()));
         exit;
         }
     songlength = FMODSoundGetLength(song);
