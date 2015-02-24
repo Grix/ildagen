@@ -51,7 +51,8 @@ if (os_version != -1)
         show_message_async("Error: Could not write to temporary directory. The program may not function correctly.");
         }
     }
-
+    
+draw_mouseline = 0;
 fastload = 1;
 draw_cursorline = 0;
 doubleclick = 0;    
@@ -90,6 +91,8 @@ tlx = 0;
 tly = 0;
 tlhalf = tlh/2;
 tlthird = tlh/3;
+
+c_gold = make_colour_rgb(255,220,0);
 
 playing = 0;
 pos = 0;
@@ -460,6 +463,7 @@ cursorlinex = tlpos/1000*projectfps;
 cursorlinexdraw = (cursorlinex-tlx)/tlzoom*tlw;
 if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
     {
+    //timeline cursor
     draw_set_color(c_black);
     draw_set_alpha(0.8);
     draw_line(cursorlinexdraw,136,cursorlinexdraw,136+tlh);
@@ -473,18 +477,33 @@ if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
 
 if (selectedlayer != -1)
     {
-    drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
+    //selected position line
+    draw_set_colour(180);
     drawcursorycorrected = tls+selectedlayer*48-layerbarx-1;
-    if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
-        draw_line(drawcursorxcorrected,drawcursorycorrected,drawcursorxcorrected,drawcursorycorrected+48);
+    if (drawcursorycorrected+48 &gt; tls) and (drawcursorycorrected &lt; room_height-16)
+        {
+        drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
+        if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
+            draw_line(drawcursorxcorrected,clamp(drawcursorycorrected,tls,room_height),drawcursorxcorrected,drawcursorycorrected+48);
+        }
     }
-draw_set_alpha(0.4);
+    
+draw_set_colour(c_teal);
+
+if (draw_mouseline = 1)
+    {
+    draw_set_alpha(0.2);
+    draw_line(mouse_x,136,mouse_x,136+tlh);
+    draw_line(mouse_x,tls,mouse_x,room_height-16);
+    draw_mouseline = 0;
+    }
 if (draw_cursorline = 1)
     {
+    draw_set_alpha(0.3);
     floatingcursorxcorrected = (floatingcursorx-tlx)/tlzoom*tlw;
     draw_line(floatingcursorxcorrected,floatingcursory,floatingcursorxcorrected,floatingcursory+48);
     }
-    
+
 //scroll
 draw_set_alpha(1);
 draw_line(0,room_height-16,tlw,room_height-16);

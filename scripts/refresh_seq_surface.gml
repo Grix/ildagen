@@ -28,7 +28,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
     for (m = 0; m < ds_list_size(layer); m += 3)
         {
         infolist =  ds_list_find_value(layer,m+2);
-        frametime = ds_list_find_value(layer,m);
+        frametime = round(ds_list_find_value(layer,m));
         object_length = ds_list_find_value(infolist,0);
         object_maxframes = ds_list_find_value(infolist,2);
         

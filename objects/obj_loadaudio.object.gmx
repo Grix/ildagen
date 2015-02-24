@@ -111,9 +111,6 @@ else image_index = 0;
     if (song) FMODSoundFree(song);
     songfile = get_open_filename_ext("","","","Select audio file");
     songfile_name = filename_name(songfile);
-    //tempname = FS_unique_fname(working_directory,filename_ext(songfile));
-    //FS_file_copy(songfile, tempname);
-    //show_message(FS_file_exists(tempname))
     song = FMODSoundAdd(FS_copy_fast(songfile),0,0);
     if (!song) 
         {

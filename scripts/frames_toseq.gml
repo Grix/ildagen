@@ -80,4 +80,5 @@ with (seqcontrol)
     ds_list_add(info,make_screenshot(controller.save_buffer));
     ds_list_add(info,controller.maxframes);
     ds_list_add(selectedlayerlist,info);
+    selectedx += controller.maxframes;
     }

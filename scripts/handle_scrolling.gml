@@ -17,8 +17,9 @@ layerbarw = clamp(lbh/(ds_list_size(layer_list)*48+lbh)*(lbh-1),32,lbh-1);
 
 if (moving_object == 1)
     {
+    draw_mouseline = 1;
     //currently dragging object on timeline
-    ds_list_replace(layertomove,objectindex,ds_list_find_value(layertomove,objectindex)+round((mouse_x-mousexprev)*tlzoom/tlw));
+    ds_list_replace(layertomove,objectindex,ds_list_find_value(layertomove,objectindex)+(mouse_x-mousexprev)*tlzoom/tlw);
     mousexprev = mouse_x;
     mouseyprev = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -29,8 +30,9 @@ if (moving_object == 1)
     }
 else if (moving_object == 2)
     {
+    draw_mouseline = 1;
     //resizing object on timeline
-    ds_list_replace(infolisttomove,0,ds_list_find_value(infolisttomove,0)+round((mouse_x-mousexprev)*tlzoom/tlw));
+    ds_list_replace(infolisttomove,0,ds_list_find_value(infolisttomove,0)+(mouse_x-mousexprev)*tlzoom/tlw);
     mousexprev = mouse_x;
     if (mouse_check_button_released(mb_left))
         {
@@ -107,12 +109,12 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
     mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,tempstartx+i*48,tempstartx+i*48+48))
     if (mouseonlayer)
         {
-        mouseonsomelayer = 1;
         mouseover = (mouse_x == clamp(mouse_x,8,40)) && (mouse_y == clamp(mouse_y,tempstartx+i*48+8,tempstartx+i*48+40))
         if (i == ds_list_size(layer_list))
             {
             if (mouseover) 
                 {
+                mouseonsomelayer = 1;
                 controller.tooltip = "Click to create a new layer";
                 if  mouse_check_button_pressed(mb_left)
                     {
@@ -120,9 +122,12 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                     ds_list_add(layer_list,newlayer);
                     }
                 }
+            else
+                draw_mouseline = 1;
             break;
             }
-        
+            
+        mouseonsomelayer = 1;
         if (mouseover) 
             {
             controller.tooltip = "Click to delete this layer and all its content";
@@ -143,6 +148,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 frametime = ds_list_find_value(layer,m);
                 object_length = ds_list_find_value(infolist,0);
                 correctframe = round(tlx+mouse_x/tlw*tlzoom);
+                draw_mouseline = 1;
                 
                 if (correctframe == clamp(correctframe, frametime-1, frametime+object_length+1))
                     {
@@ -180,10 +186,11 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 
             if !(moving_object)
                 {
-                controller.tooltip = "Click to select this position and layer#Double-click to create and place new ILDA frames";
+                controller.tooltip = "Click to select this layer position#Double-click to create and place new ILDA frames";
                 floatingcursorx = round(tlx+mouse_x/tlw*tlzoom);
                 floatingcursory = tempstartx+i*48-1;
                 draw_cursorline = 1;
+                draw_mouseline = 1;
                 
                 if  mouse_check_button_pressed(mb_left)
                     {
@@ -205,7 +212,8 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
     
 if !(mouseonsomelayer)
     {
-    if (mouse_y > tls)
+    draw_mouseline = 1;
+    if (mouse_y > 132)
         {
         //mouse over layer area
         controller.tooltip = "Click to set playback position.#Right click for more actions";
