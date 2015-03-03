@@ -156,9 +156,13 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                     controller.tooltip = "Click and drag to move object. Drag the far edge to adjust duration.#Double-click to edit frames#Right click for more actions";
                     if  mouse_check_button_pressed(mb_left)
                         {
+                        selectedlayer = i;
+                        selectedx = -m;
                         if (doubleclick)
                             {
                             //edit object
+                            getint = show_question_async("This will discard unsaved changes in the frames editor. Continue? (Cannot be undone)");
+                            dialog = "fromseq";
                             }
                         else
                             {
@@ -179,6 +183,13 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                                 mouseyprev = mouse_y;
                                 }
                             }
+                        }
+                    else if mouse_check_button_pressed(mb_right)
+                        {
+                        //right clicked on object
+                        selectedlayer = i;
+                        selectedx = -m;
+                        dropdown_seqobject();
                         }
                     exit;
                     }

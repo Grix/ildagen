@@ -65,20 +65,38 @@ buffer_resize(save_buffer,buffer_tell(save_buffer));
 with (seqcontrol)
     {
     selectedlayerlist = ds_list_find_value(layer_list,selectedlayer);
-    for (j = 0; j < ds_list_size(selectedlayerlist); j += 3)
+    /* what is this???? for (j = 0; j < ds_list_size(selectedlayerlist); j += 3)
         {
         if (selectedx == ds_list_find_value(selectedlayerlist,j)) 
             {
             buffer_delete(ds_list_find_value(selectedlayerlist,j+1));
             exit;
             }
+        }*/ 
+        
+    if (selectedx >= 0)
+        {
+        ds_list_add(selectedlayerlist,selectedx);
+        ds_list_add(selectedlayerlist,controller.save_buffer);
+        
+        info = ds_list_create();
+        ds_list_add(info,controller.maxframes-1);
+        ds_list_add(info,make_screenshot(controller.save_buffer));
+        ds_list_add(info,controller.maxframes);
+        ds_list_add(selectedlayerlist,info);
+        
+        selectedx += controller.maxframes;
         }
-    ds_list_add(selectedlayerlist,selectedx);
-    ds_list_add(selectedlayerlist,controller.save_buffer);
-    info = ds_list_create();
-    ds_list_add(info,controller.maxframes-1);
-    ds_list_add(info,make_screenshot(controller.save_buffer));
-    ds_list_add(info,controller.maxframes);
-    ds_list_add(selectedlayerlist,info);
-    selectedx += controller.maxframes;
+    else
+        {
+        buffer_delete(ds_list_find_value(selectedlayerlist,abs(selectedx)+1));
+        ds_list_replace(selectedlayerlist,abs(selectedx)+1,controller.save_buffer);
+        
+        var infolist = ds_list_find_value(selectedlayerlist,abs(selectedx)+2);
+        ds_list_replace(infolist,0,controller.maxframes-1);
+        if (surface_exists(ds_list_find_value(infolist,1)))
+            surface_free(ds_list_find_value(infolist,1));
+        ds_list_replace(infolist,1,make_screenshot(controller.save_buffer));
+        ds_list_replace(infolist,2,controller.maxframes);
+        }
     }

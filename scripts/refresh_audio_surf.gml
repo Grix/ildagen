@@ -40,6 +40,14 @@ surface_set_target(audio_surf);
                 if (!surface_exists(ds_list_find_value(infolist,1)))
                     ds_list_replace(infolist,1,make_screenshot(ds_list_find_value(layer,j+1)));
                 draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp(duration,1,32)/tlzoom*tlw,32,framedelta,tempstartx+i*48+8);
+                if (selectedlayer == i) and (selectedx == -j)
+                    {
+                    draw_set_color(c_gold);
+                    draw_set_alpha(0.3);
+                        draw_rectangle(framedelta,tempstartx+i*48,framedelta+duration/tlzoom*tlw,tempstartx+i*48+48,0);
+                    draw_set_alpha(1);
+                    draw_set_color(c_black);
+                    }
                 }
             }
         

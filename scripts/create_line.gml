@@ -1,3 +1,7 @@
+//testing
+//resolution = resolution/5;
+//imp_point_list = ds_list_create();
+
 checkpoints = ceil(point_distance(startposx_r,startposy_r,endx_r,endy_r)*128/resolution);
 if (checkpoints < 2) checkpoints = 2;
 
@@ -41,6 +45,8 @@ if (colormode == "dash")
 
 for (n = 0;n <= checkpoints; n++)
     {
+    blanksig = 0;
+    colorsig = 0;
     makedot = 0;
     
     //BLANK
@@ -55,28 +61,40 @@ for (n = 0;n <= checkpoints; n++)
         if (blank_dc_r >= 0.98)
             {
             blank = 0;
-            if (blanknew != blank) and (enddots)
+            if (blanknew != blank)
                 {
-                makedot = 2;
+                if (enddots)
+                    {
+                    makedot = 2;
+                    }
                 blanknew = blank;
+                //blanksig = 1;
                 }
             }
          else if (floor(n+blank_offset_r/pi/2*dotfreq) % round(dotfreq) > blank_dc_r*dotfreq) or (blank_dc_r < 0.02)
-               {
+            {
             blank = 1;
-            if (blanknew != blank) and (enddots)
+            if (blanknew != blank)
                 {
-                makedot = 2;
+                if (enddots)
+                    {
+                    makedot = 2;
+                    }
                 blanknew = blank;
+                //blanksig = 1;
                 }
             }
         else 
             {
             blank = 0;
-            if (blanknew != blank) and (enddots)
+            if (blanknew != blank)
                 {
-                makedot = 2;
+                if (enddots)
+                    {
+                    makedot = 2;
+                    }
                 blanknew = blank;
+                //blanksig = 1;
                 }
             }
         }
@@ -96,10 +114,14 @@ for (n = 0;n <= checkpoints; n++)
         {
         if (!func_blank())
             return 0;
-        if (blanknew != blank) and (enddots)
+        if (blanknew != blank)
             {
-            makedot = 2;
+            if (enddots)
+                {
+                makedot = 2;
+                }
             blanknew = blank;
+            blanksig = 1;
             }
         }
     
@@ -179,6 +201,7 @@ for (n = 0;n <= checkpoints; n++)
         
     if (makedot)
         {
+        
         if (blankmode == "dot")
             {
             ds_list_add(new_list,n*vector[0]*128);
@@ -252,13 +275,18 @@ for (n = 0;n <= checkpoints; n++)
         }  
     else
         {    
-        ds_list_add(new_list,n*vector[0]*128);
-        ds_list_add(new_list,n*vector[1]*128);
-        ds_list_add(new_list,blank);
-        ds_list_add(new_list,c[0]);
-        ds_list_add(new_list,c[1]);
-        ds_list_add(new_list,c[2]);
+        //if (blanksig) or (colorsig) or (n % 5 == 0)
+         //   {
+            ds_list_add(new_list,n*vector[0]*128);
+            ds_list_add(new_list,n*vector[1]*128);
+            ds_list_add(new_list,blank);
+            ds_list_add(new_list,c[0]);
+            ds_list_add(new_list,c[1]);
+            ds_list_add(new_list,c[2]);
+            //show_debug_message(string(n*vector[0]*128)+" point");
+          //  }
         }
+    
         
     if (n*vector[0] > xmax)
        xmax = n*vector[0];
@@ -268,7 +296,15 @@ for (n = 0;n <= checkpoints; n++)
        ymax = n*vector[1];
     if (n*vector[1] < ymin)
        ymin = n*vector[1];
-    
     }
+    
+ /* 
+for (n = 50; n < ds_list_size(new_list)-3; n+=6)
+    {
+
+    }
+  */
+//resolution = resolution*5;
+    
     
 return 1;

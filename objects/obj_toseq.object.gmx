@@ -106,7 +106,15 @@ else image_index = 0;
     }
 
 with (controller)
-    frames_toseq();
+    {
+    if (seqcontrol.selectedx &lt; 0)
+        {
+        getint = show_question_async("This will replace the selected timeline object with these frames. Continue? (Cannot be undone)");
+        dialog = "toseqreplace";
+        }
+    else
+        frames_toseq();
+    }
 </string>
           </argument>
         </arguments>

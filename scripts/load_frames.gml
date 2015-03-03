@@ -2,14 +2,7 @@ file_loc = argument0;
 if (file_loc == "") or is_undefined(file_loc)
     exit;
 
-//if (fastload)
-//    {
-    //tempname = FS_unique_fname(working_directory,".igf");
-    //FS_file_copy(file_loc,tempname);
-    load_buffer = buffer_load(FS_copy_fast(file_loc));
-//    }
-//else
-//    load_buffer = buffer_load_alt(file_loc);
+load_buffer = buffer_load(FS_copy_fast(file_loc));
     
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 0) and (idbyte != 50)

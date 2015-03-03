@@ -106,6 +106,30 @@ FMODinit(2,0);
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>doubleclick = 1;
+alarm[1] = 18;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="1">
       <action>
         <libid>1</libid>
@@ -276,7 +300,7 @@ if (keyboard_check_pressed(ord('M')))
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="4">
+    <event eventtype="6" enumb="53">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -293,8 +317,7 @@ if (keyboard_check_pressed(ord('M')))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>doubleclick = 1;
-alarm[1] = 10;
+            <string>alarm[2] = 1;
 </string>
           </argument>
         </arguments>
@@ -336,6 +359,13 @@ if (new_id == getint)
             {
             load_project(get_open_filename_ext("ildaGen project|*.igp","","","Select ildaGen project file"));
           
+            break;
+            }
+          
+          case "fromseq":
+            {
+            frames_fromseq();
+            
             break;
             }
             
@@ -464,8 +494,6 @@ cursorlinexdraw = (cursorlinex-tlx)/tlzoom*tlw;
 if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
     {
     //timeline cursor
-    draw_set_color(c_black);
-    draw_set_alpha(0.8);
     draw_line(cursorlinexdraw,136,cursorlinexdraw,136+tlh);
     draw_line(cursorlinexdraw,tls,cursorlinexdraw,room_height-16);
     if (cursorlinexdraw &gt; (tlw/2)) &amp;&amp; (playing) &amp;&amp; (!scroll_moving)
@@ -475,7 +503,7 @@ if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
         }
     }
 
-if (selectedlayer != -1)
+if (selectedlayer != -1) and (selectedx &gt;= 0)
     {
     //selected position line
     draw_set_colour(180);
@@ -506,6 +534,7 @@ if (draw_cursorline = 1)
 
 //scroll
 draw_set_alpha(1);
+draw_set_colour(c_black);
 draw_line(0,room_height-16,tlw,room_height-16);
 draw_line(tlw-17,tls,tlw-17,room_height);
 draw_rectangle_colour(scrollbarx,room_height,scrollbarx+scrollbarw,room_height-16,c_ltgray,c_ltgray,c_gray,c_gray,0);

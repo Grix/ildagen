@@ -774,46 +774,55 @@
       </scripts>
     </scripts>
     <scripts name="dropdown">
-      <script>scripts\dropdown_ed.gml</script>
-      <script>scripts\dd_ed_custom.gml</script>
-      <script>scripts\dd_ed_low.gml</script>
-      <script>scripts\dd_ed_med.gml</script>
-      <script>scripts\dd_ed_high.gml</script>
-      <script>scripts\dropdown_res.gml</script>
-      <script>scripts\dd_res_high.gml</script>
-      <script>scripts\dd_res_med.gml</script>
-      <script>scripts\dd_res_low.gml</script>
-      <script>scripts\dd_res_auto.gml</script>
-      <script>scripts\dd_res_custom.gml</script>
-      <script>scripts\dropdown_shake.gml</script>
-      <script>scripts\dd_shake_custom.gml</script>
-      <script>scripts\dd_shake_low.gml</script>
-      <script>scripts\dd_shake_med.gml</script>
-      <script>scripts\dd_shake_high.gml</script>
-      <script>scripts\dropdown_reap.gml</script>
-      <script>scripts\dd_reap_color.gml</script>
-      <script>scripts\dd_reap_blank.gml</script>
-      <script>scripts\dd_reap_trans.gml</script>
-      <script>scripts\dd_reap_interpolate.gml</script>
-      <script>scripts\dd_reap_preserveblank.gml</script>
-      <script>scripts\dd_reap_overlap.gml</script>
-      <script>scripts\dropdown_scope.gml</script>
-      <script>scripts\dd_scope_start.gml</script>
-      <script>scripts\dd_scope_end.gml</script>
-      <script>scripts\dd_scope_reset.gml</script>
-      <script>scripts\dropdown_onion.gml</script>
-      <script>scripts\dd_onion_number.gml</script>
-      <script>scripts\dd_onion_alpha.gml</script>
-      <script>scripts\dd_onion_dropoff.gml</script>
-      <script>scripts\dropdown_text.gml</script>
-      <script>scripts\dd_text_size.gml</script>
-      <script>scripts\dd_text_font.gml</script>
-      <script>scripts\dropdown_export.gml</script>
-      <script>scripts\dd_export_opt.gml</script>
-      <script>scripts\dd_export_min.gml</script>
-      <script>scripts\dropdown_info.gml</script>
-      <script>scripts\dropdown_object.gml</script>
-      <script>scripts\dropdown_empty.gml</script>
+      <scripts name="dd_ilda">
+        <script>scripts\dropdown_ed.gml</script>
+        <script>scripts\dd_ed_custom.gml</script>
+        <script>scripts\dd_ed_low.gml</script>
+        <script>scripts\dd_ed_med.gml</script>
+        <script>scripts\dd_ed_high.gml</script>
+        <script>scripts\dropdown_res.gml</script>
+        <script>scripts\dd_res_high.gml</script>
+        <script>scripts\dd_res_med.gml</script>
+        <script>scripts\dd_res_low.gml</script>
+        <script>scripts\dd_res_auto.gml</script>
+        <script>scripts\dd_res_custom.gml</script>
+        <script>scripts\dropdown_shake.gml</script>
+        <script>scripts\dd_shake_custom.gml</script>
+        <script>scripts\dd_shake_low.gml</script>
+        <script>scripts\dd_shake_med.gml</script>
+        <script>scripts\dd_shake_high.gml</script>
+        <script>scripts\dropdown_reap.gml</script>
+        <script>scripts\dd_reap_color.gml</script>
+        <script>scripts\dd_reap_blank.gml</script>
+        <script>scripts\dd_reap_trans.gml</script>
+        <script>scripts\dd_reap_interpolate.gml</script>
+        <script>scripts\dd_reap_preserveblank.gml</script>
+        <script>scripts\dd_reap_overlap.gml</script>
+        <script>scripts\dropdown_scope.gml</script>
+        <script>scripts\dd_scope_start.gml</script>
+        <script>scripts\dd_scope_end.gml</script>
+        <script>scripts\dd_scope_reset.gml</script>
+        <script>scripts\dropdown_onion.gml</script>
+        <script>scripts\dd_onion_number.gml</script>
+        <script>scripts\dd_onion_alpha.gml</script>
+        <script>scripts\dd_onion_dropoff.gml</script>
+        <script>scripts\dropdown_text.gml</script>
+        <script>scripts\dd_text_size.gml</script>
+        <script>scripts\dd_text_font.gml</script>
+        <script>scripts\dropdown_export.gml</script>
+        <script>scripts\dd_export_opt.gml</script>
+        <script>scripts\dd_export_min.gml</script>
+        <script>scripts\dropdown_info.gml</script>
+        <script>scripts\dropdown_object.gml</script>
+        <script>scripts\dropdown_empty.gml</script>
+      </scripts>
+      <scripts name="dd_seq">
+        <script>scripts\dropdown_seqobject.gml</script>
+        <script>scripts\seq_copy_object.gml</script>
+        <script>scripts\seq_edit_object.gml</script>
+        <script>scripts\seq_delete_object.gml</script>
+        <script>scripts\seq_cut_object.gml</script>
+      </scripts>
     </scripts>
     <scripts name="createobject">
       <script>scripts\create_element.gml</script>
@@ -894,8 +903,8 @@
       <script>scripts\save_project.gml</script>
       <script>scripts\save_frames.gml</script>
       <script>scripts\save_frames_html5.gml</script>
-      <script>scripts\buffer_load_alt.gml</script>
       <script>scripts\frames_toseq.gml</script>
+      <script>scripts\frames_fromseq.gml</script>
     </scripts>
     <script>scripts\update_check.gml</script>
     <script>scripts\update_check_verbose.gml</script>
