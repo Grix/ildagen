@@ -6,6 +6,10 @@ if (seqcontrol.selectedlayer = -1)
     show_message_async("No timeline position marked, enter timeline mode and select a position first");
     exit;
     }
+
+placing_status = 0;
+ds_list_clear(free_list);
+ds_list_clear(bez_list);
     
 //check for overlaps
 /*with (seqcontrol)
@@ -100,3 +104,5 @@ with (seqcontrol)
         ds_list_replace(infolist,2,controller.maxframes);
         }
     }
+    
+room_goto(rm_seq);

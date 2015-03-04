@@ -100,3 +100,7 @@ with (controller)
     scope_start = 0;
     scope_end = maxframes-1;
     }
+
+if (song) FMODInstanceSetPaused(songinstance,1);
+playing = 0;
+room_goto(rm_ilda);

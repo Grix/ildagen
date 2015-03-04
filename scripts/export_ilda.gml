@@ -1,7 +1,7 @@
 //exports every element into an ilda file
 placing_status = 0;
 
-file_loc = get_save_filename_ext("*.ild","example.ild","","Select ILDA file");
+file_loc = get_save_filename_ext("*.ild","example.ild","","Select ILDA file location");
 if (file_loc == "")
     exit;
 ilda_buffer = buffer_create(1,buffer_grow,1);    
