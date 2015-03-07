@@ -915,6 +915,7 @@
     <script>scripts\controller_setup.gml</script>
     <script>scripts\parse_parameter.gml</script>
     <script>scripts\verify_serial.gml</script>
+    <script>scripts\optimize_middle3.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>

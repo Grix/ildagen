@@ -10,6 +10,8 @@ file_loc = get_save_filename_ext("*.igp","example.igp","","Select ildaGen projec
 if (file_loc == "")
     exit;
     
+length = ceil(length);
+    
 buffer_write(save_buffer,buffer_u8,50); //version / ID
 buffer_write(save_buffer,buffer_u8,projectfps); //fps
 buffer_write(save_buffer,buffer_u8,song); //audio enabled

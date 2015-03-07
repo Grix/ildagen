@@ -14,6 +14,8 @@ ilda_buffer = buffer_create(1,buffer_grow,1);
 maxpointstot = 0;    
 maxpoints = 0;
 
+length = ceil(length);
+
 //stupid GM can't choose endian type
 maxframespost = length;
 maxframesa[0] = maxframespost & 255;
@@ -25,6 +27,10 @@ show_debug_message(length)
 for (j = 0; j < length;j++)
     {
     correctframe = j;
+    framepost = j;
+    framea[0] = framepost & 255;
+    framepost = framepost >> 8;
+    framea[1] = framepost & 255;   
     
     buffer_write(ilda_buffer,buffer_u8,$49); //ILDA0005
     buffer_write(ilda_buffer,buffer_u8,$4C);
@@ -51,8 +57,9 @@ for (j = 0; j < length;j++)
     buffer_write(ilda_buffer,buffer_u8,ord('M'));
     buffer_write(ilda_buffer,buffer_u8,ord(' '));
     maxpointspos = buffer_tell(ilda_buffer);
-    buffer_write(ilda_buffer,buffer_u16,0); //maxpoints
-    buffer_write(ilda_buffer,buffer_u16,j); //frame
+    buffer_write(ilda_buffer,buffer_u16,3); //maxpoints
+    buffer_write(ilda_buffer,buffer_u8,framea[1]); //frame
+    buffer_write(ilda_buffer,buffer_u8,framea[0]); //frame
     buffer_write(ilda_buffer,buffer_u8,maxframesa[1]); //maxframes
     buffer_write(ilda_buffer,buffer_u8,maxframesa[0]); 
     buffer_write(ilda_buffer,buffer_u8,0); //scanner
@@ -63,11 +70,12 @@ for (j = 0; j < length;j++)
         {
         optimize_first();
         }
+    else optimize_middle3();
         
     //check which should be drawn
-    for (j = 0; j < ds_list_size(layer_list); j++)
+    for (k = 0; k < ds_list_size(layer_list); k++)
         {
-        layer = ds_list_find_value(layer_list, j);
+        layer = ds_list_find_value(layer_list, k);
         for (m = 0; m < ds_list_size(layer); m += 3)
             {
             infolist =  ds_list_find_value(layer,m+2);
@@ -249,7 +257,6 @@ for (j = 0; j < length;j++)
     buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
     maxpointstot += maxpointspre;
     maxpoints = 0;
-    show_debug_message(j);
     }
     
 
