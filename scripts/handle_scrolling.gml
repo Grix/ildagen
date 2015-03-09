@@ -12,7 +12,8 @@ if (mouse_x == clamp(mouse_x,0,tlw))
     
 mouseonsomelayer = 0;
 scrollbarw = clamp(((tlzoom+18)/length)*tlw-18,32,tlw-18);
-scrollbarx = (tlw-18-scrollbarw)*(tlx)/(length-tlzoom);
+if (length != tlzoom)
+    scrollbarx = (tlw-18-scrollbarw)*(tlx)/(length-tlzoom);
 layerbarw = clamp(lbh/(ds_list_size(layer_list)*48+lbh)*(lbh-1),32,lbh-1);
 
 if (moving_object == 1)
@@ -33,6 +34,28 @@ else if (moving_object == 2)
     draw_mouseline = 1;
     //resizing object on timeline
     ds_list_replace(infolisttomove,0,ds_list_find_value(infolisttomove,0)+(mouse_x-mousexprev)*tlzoom/tlw);
+    mousexprev = mouse_x;
+    if (mouse_check_button_released(mb_left))
+        {
+        moving_object = 0;
+        }
+    exit;
+    }
+else if (moving_object == 3)
+    {
+    //moving startframe
+    startframe += (mouse_x-mousexprev)*tlzoom/tlw;
+    mousexprev = mouse_x;
+    if (mouse_check_button_released(mb_left))
+        {
+        moving_object = 0;
+        }
+    exit;
+    }
+else if (moving_object == 4)
+    {
+    //moving endframe
+    endframe += (mouse_x-mousexprev)*tlzoom/tlw;
     mousexprev = mouse_x;
     if (mouse_check_button_released(mb_left))
         {
@@ -95,6 +118,28 @@ else if (scroll_moving == 2)
 if !((mouse_x == clamp(mouse_x,0,tlw)) 
 && (mouse_y == clamp(mouse_y,132,room_height)))
     exit;
+
+if (mouse_x == clamp(mouse_x,startframex-1,startframex+2))                         
+    {
+    controller.tooltip = "Drag to adjust the start of the project";
+    if (mouse_check_button_pressed(mb_left))
+        {
+        mousexprev = mouse_x;
+        moving_object = 3;
+        show_debug_message("yes")
+        }
+    exit;
+    }
+else if (mouse_x == clamp(mouse_x,endframex-1,endframex+2))                         
+    {
+    controller.tooltip = "Drag to adjust the end of the project";
+    if (mouse_check_button_pressed(mb_left))
+        {
+        mousexprev = mouse_x;
+        moving_object = 4;
+        }
+    exit;
+    }
 
 //layers
 draw_cursorline = 0;
@@ -195,28 +240,18 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                     }
                 }
                 
-            if !(moving_object)
+            controller.tooltip = "Click to select this layer position";
+            floatingcursorx = round(tlx+mouse_x/tlw*tlzoom);
+            floatingcursory = tempstartx+i*48-1;
+            draw_cursorline = 1;
+            draw_mouseline = 1;
+            
+            if  mouse_check_button_pressed(mb_left)
                 {
-                controller.tooltip = "Click to select this layer position#Double-click to create and place new ILDA frames";
-                floatingcursorx = round(tlx+mouse_x/tlw*tlzoom);
-                floatingcursory = tempstartx+i*48-1;
-                draw_cursorline = 1;
-                draw_mouseline = 1;
-                
-                if  mouse_check_button_pressed(mb_left)
-                    {
-                    if (selectedlayer == i) and (selectedx == floatingcursorx) and (doubleclick)
-                        {
-                        
-                        show_debug_message("create ilda")
-                        }
-                    else
-                        {
-                        selectedlayer = i;
-                        selectedx = floatingcursorx;
-                        }
-                    }
+                selectedlayer = i;
+                selectedx = floatingcursorx;
                 }
+                
             }
         }
     }

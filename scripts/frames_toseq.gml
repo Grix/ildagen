@@ -78,7 +78,7 @@ with (seqcontrol)
             }
         }*/ 
         
-    if (selectedx >= 0)
+    if (selectedx > 0)
         {
         ds_list_add(selectedlayerlist,selectedx);
         ds_list_add(selectedlayerlist,controller.save_buffer);

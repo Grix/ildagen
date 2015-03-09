@@ -40,7 +40,7 @@ buffer_list = ds_list_create();
 frame_surf = surface_create(512,512);
 frame3d_surf = surface_create(512,512);
 
-temp_dir = working_directory+"tempproject/"
+/*temp_dir = working_directory+"tempproject/"
 if (os_version != -1)
     {
     if (FS_directory_exists(working_directory+"tempproject"))
@@ -50,8 +50,9 @@ if (os_version != -1)
         {
         show_message_async("Error: Could not write to temporary directory. The program may not function correctly.");
         }
-    }
+    }*/
     
+
 draw_mouseline = 0;
 fastload = 1;
 draw_cursorline = 0;
@@ -80,6 +81,10 @@ dialog = "";
 drawcursorx = 0;
 drawcursory = 0;
 moving_object = 0;
+startframe = 0;
+endframe = 400;
+startframex = -1;
+endframex = -1;
 
 tlw = 897;
 tlh = 128;

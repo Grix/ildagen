@@ -919,6 +919,7 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
+    <font>fonts\fnt_bold</font>
     <font>fonts\fnt_small</font>
   </fonts>
   <objects name="objects">

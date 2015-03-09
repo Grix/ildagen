@@ -22,9 +22,7 @@ maxframesa[0] = maxframespost & 255;
 maxframespost = maxframespost >> 8;
 maxframesa[1] = maxframespost & 255;
 
-show_debug_message(length)
-
-for (j = 0; j < length;j++)
+for (j = startframe; j < endframe;j++)
     {
     correctframe = j;
     framepost = j;

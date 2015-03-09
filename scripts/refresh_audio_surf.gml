@@ -2,7 +2,9 @@ if (!surface_exists(audio_surf))
     audio_surf = surface_create(1024,1024);
     
 surface_set_target(audio_surf);
-    
+
+    tlwdivtlzoom = tlw/tlzoom;    
+
     draw_clear_alpha(c_white,0);
     draw_set_alpha(1);
     draw_set_font(fnt_small);
@@ -65,39 +67,63 @@ surface_set_target(audio_surf);
         draw_line(0,tlh+16,tlw,tlh+16);
         
     drawtime = ceil(tlx/projectfps);
-    if (tlw/tlzoom > 0.3) modulus = 5;
-    else if (tlw/tlzoom > 0.05) modulus = 25;
+    if (tlwdivtlzoom > 0.3) modulus = 5;
+    else if (tlwdivtlzoom > 0.05) modulus = 25;
     else modulus = 60;
     
     draw_set_alpha(0.2);
-        while (1)
+    while (1)
+        {
+        tempx = (drawtime*projectfps-tlx)*tlwdivtlzoom;
+        if (tempx > tlw)
+            break;
+
+        if ((drawtime % modulus) == 0)
             {
-            tempx = (drawtime*projectfps-tlx)*tlw/tlzoom;
-            if (tempx > tlw)
-                break;
-
-            if ((drawtime % modulus) == 0)
-                {
-                //draw timestamp
-                draw_set_alpha(0.5);
-                    draw_line(tempx,0,tempx,tlh);
-                draw_set_alpha(0.8);
-                draw_set_halign(fa_center);
-                draw_set_valign(fa_center);
-                draw_text(tempx,tlh+9,string_replace(string_format(floor(drawtime/60),2,0)," ","0")+
-                                    ":"+string_replace(string_format(drawtime %60,2,0)," ","0"));
-                draw_set_halign(fa_left);
-                draw_set_valign(fa_top);
-                draw_set_alpha(0.2);
-                }
-            else
-                {
-                if ((drawtime % (modulus/5)) == 0)
-                    draw_line(tempx,0,tempx,tlh);
-                }
-            drawtime++;
+            //draw timestamp
+            draw_set_alpha(0.5);
+                draw_line(tempx,0,tempx,tlh);
+            draw_set_alpha(0.8);
+            draw_set_halign(fa_center);
+            draw_set_valign(fa_center);
+            draw_text(tempx,tlh+9,string_replace(string_format(floor(drawtime/60),2,0)," ","0")+
+                                ":"+string_replace(string_format(drawtime %60,2,0)," ","0"));
+            draw_set_halign(fa_left);
+            draw_set_valign(fa_top);
+            draw_set_alpha(0.2);
             }
-
+        else
+            {
+            if ((drawtime % (modulus/5)) == 0)
+                draw_line(tempx,0,tempx,tlh);
+            }
+        drawtime++;
+        }
+        
+    draw_set_alpha(1);
+    startframex = 0;
+    endframex = tlw;
+    for (u=0; u <= tlzoom; u++)
+        {
+        if (round(tlx)+u == startframe)
+            {
+            startframex = u*tlwdivtlzoom;
+            draw_set_color(c_blue);
+            draw_rectangle(startframex,0,startframex+1,tlh,0);
+            draw_rectangle(startframex,tlh+16,startframex+1,tlh+16+lbh,0);
+            draw_set_font(fnt_bold);
+            draw_text(startframex+4,tlh+16+lbh-20,"Start");
+            }
+        if (round(tlx)+u == endframe)
+            {
+            endframex = u*tlwdivtlzoom;
+            draw_set_color(c_red);
+            draw_rectangle(endframex,0,endframex+1,tlh,0);
+            draw_rectangle(endframex,tlh+16,endframex+1,tlh+16+lbh,0);
+            draw_set_font(fnt_bold);
+            draw_text(endframex-25,tlh+16+lbh-20,"End");
+            }
+        }
          
     //audio   
     if (song)
@@ -125,6 +151,11 @@ surface_set_target(audio_surf);
         draw_set_alpha(1);
         draw_set_color(c_dkgray);
         }
+
+    draw_set_alpha(0.3);
+    draw_set_colour(c_black);
+    draw_rectangle(0,0,startframex,tlh+16+lbh,0);
+    draw_rectangle(endframex,0,tlw,tlh+16+lbh,0);
         
         
 surface_reset_target();
