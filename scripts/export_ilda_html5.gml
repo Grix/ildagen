@@ -83,10 +83,29 @@ for (j = 0; j < maxframes;j++)
         
         listsize = ((ds_list_size(list_id)-50)/6);
         
-        
+        var blankprev = 0;
         for (u = 0; u < listsize; u++)
             {
             //getting values from element list
+            
+            if (exp_optimize == 1) and (bl != blankprev)
+                {
+                repeat (3)
+                    {
+                    //writing point
+                    buffer_write(ilda_buffer,buffer_u8,xpa[1]);
+                    buffer_write(ilda_buffer,buffer_u8,xpa[0]);
+                    buffer_write(ilda_buffer,buffer_u8,ypa[1]);
+                    buffer_write(ilda_buffer,buffer_u8,ypa[0]);
+                    buffer_write(ilda_buffer,buffer_u8,bl);
+                    buffer_write(ilda_buffer,buffer_u8,b);
+                    buffer_write(ilda_buffer,buffer_u8,g);
+                    buffer_write(ilda_buffer,buffer_u8,r);
+                    maxpoints++;
+                    }
+                blankprev = bl;
+                }
+                
             xp = xo+ds_list_find_value(list_id,50+u*6+0);
             yp = $ffff-(yo+ds_list_find_value(list_id,50+u*6+1));
             if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
@@ -95,8 +114,6 @@ for (j = 0; j < maxframes;j++)
                 continue;
                 }
         
-            
-            bl = ds_list_find_value(list_id,50+u*6+2);
             b = ds_list_find_value(list_id,50+u*6+3);
             if (is_undefined(b) and bl) {b = 0}
             g = ds_list_find_value(list_id,50+u*6+4);

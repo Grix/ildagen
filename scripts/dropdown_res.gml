@@ -27,7 +27,7 @@ with (ddobj)
     if (is_string(controller.resolution)) highlighted = 0;
     else if (controller.resolution == 300) highlighted = 1;
     else if (controller.resolution == 700) highlighted = 2;
-    else if (controller.resolution == 4000) highlighted = 3;
+    else if (controller.resolution == 3000) highlighted = 3;
     else highlighted = 4;
     ds_list_replace(hl_list,highlighted,1);
     }

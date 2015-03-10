@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="22" name="datafiles">
+  <datafiles number="23" name="datafiles">
     <datafile>
       <name>help.pdf</name>
       <exists>-1</exists>
@@ -90,9 +90,9 @@
       <filename>GMFMODSimple.dll</filename>
     </datafile>
     <datafile>
-      <name>LaserBoy_2015_01_12.zip</name>
+      <name>LaserBoy_2015_02_23.zip</name>
       <exists>-1</exists>
-      <size>4706517</size>
+      <size>4719403</size>
       <exportAction>2</exportAction>
       <exportDir></exportDir>
       <overwrite>0</overwrite>
@@ -104,7 +104,7 @@
           <CopyToMask>1048640</CopyToMask>
         </Config>
       </ConfigOptions>
-      <filename>LaserBoy_2015_01_12.zip</filename>
+      <filename>LaserBoy_2015_02_23.zip</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -173,9 +173,9 @@
     </sprites>
     <sprite>sprites\spr_save</sprite>
     <sprite>sprites\spr_export</sprite>
-    <sprite>sprites\spr_exportproject</sprite>
     <sprite>sprites\spr_load</sprite>
     <sprite>sprites\spr_totimeline</sprite>
+    <sprite>sprites\spri_toseq</sprite>
     <sprite>sprites\spr_toframes</sprite>
     <sprite>sprites\spr_import</sprite>
     <sprite>sprites\spr_resettrans</sprite>

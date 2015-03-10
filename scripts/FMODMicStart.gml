@@ -15,4 +15,3 @@
 //    instance = 0;
 
 return external_call(global.dll_FMODRecordStart, argument0);
-

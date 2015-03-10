@@ -27,8 +27,8 @@
     <deleteUnderlyingObj>0</deleteUnderlyingObj>
     <deleteUnderlyingTiles>-1</deleteUnderlyingTiles>
     <page>0</page>
-    <xoffset>-98</xoffset>
-    <yoffset>-110</yoffset>
+    <xoffset>-107</xoffset>
+    <yoffset>134</yoffset>
   </makerSettings>
   <backgrounds>
     <background visible="-1" foreground="0" name="bck_guide" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
@@ -127,8 +127,6 @@
     <instance objName="obj_colorblendmode" x="144" y="620" name="inst_3622800B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_fps" x="340" y="620" name="inst_F50087C3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_info" x="420" y="580" name="inst_51D4CB42" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_toseq" x="848" y="620" name="inst_9BA48A83" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_totimeline" x="20" y="620" name="inst_2A0EAE79" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

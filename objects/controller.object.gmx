@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "0.9.8";
-versiondate = "2015-02-08";
+            <string>version = "0.9.8.1";
+versiondate = "2015-03-10";
 
 
 FS_gmfilesystem_initialize(1);
@@ -128,14 +128,14 @@ scroll = 0;
 viewmode = 0;
 selectedelement = -1;
 selectedelementlist = 0;
-exp_optimize = 0;
+exp_optimize = 1;
 getint = -1;
 getstr = -1;
 dialog = "";
 selecting = 0;
 scroll = 0;
 
-opt_maxdist = 2048;
+opt_maxdist = 3000;
 
 placing = "line";
 startpos[1] = 0;
@@ -688,7 +688,7 @@ if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list)) and (placing_
     
 frameprev = frame;    
 
-if (keyboard_check_pressed(vk_tab))
+/*if (keyboard_check_pressed(vk_tab))
     {
     if (os_version == -1)
         {
@@ -1582,32 +1582,6 @@ if ds_map_find_value(async_load, "id") == updateget
             <kind>1</kind>
             <string>refresh_miniaudio_flag = 1;
 frame_surf_refresh = 1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="3">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//to free the system
-FMODfree();
-UnloadFMOD();
-
 </string>
           </argument>
         </arguments>

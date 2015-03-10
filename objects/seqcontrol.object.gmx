@@ -103,7 +103,7 @@ playing = 0;
 pos = 0;
 deltatime = 0;
 
-LoadFMOD();
+/*LoadFMOD();
 FMODinit(2,0);
 
 </string>
@@ -435,7 +435,7 @@ if (new_id == getint)
           <argument>
             <kind>1</kind>
             <string>//to free the system
-FMODfree();
+/*FMODfree();
 UnloadFMOD();
 
 </string>
