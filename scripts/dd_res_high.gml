@@ -1,3 +1,3 @@
 ds_stack_push(controller.undo_list,"r"+string(controller.resolution))
 
-controller.resolution = 300;
+controller.resolution = 250;

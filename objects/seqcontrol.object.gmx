@@ -82,7 +82,7 @@ drawcursorx = 0;
 drawcursory = 0;
 moving_object = 0;
 startframe = 0;
-endframe = 400;
+endframe = 800;
 startframex = -1;
 endframex = -1;
 
@@ -103,7 +103,7 @@ playing = 0;
 pos = 0;
 deltatime = 0;
 
-/*LoadFMOD();
+LoadFMOD();
 FMODinit(2,0);
 
 </string>
@@ -129,7 +129,7 @@ FMODinit(2,0);
           <argument>
             <kind>1</kind>
             <string>doubleclick = 1;
-alarm[1] = 18;
+alarm[1] = 15;
 </string>
           </argument>
         </arguments>
@@ -203,7 +203,7 @@ alarm[1] = 18;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string> if (parsingaudio == 1) refresh_audio();
+            <string>if (parsingaudio == 1) refresh_audio();
 
 if (room != rm_seq) exit;
 
@@ -435,7 +435,7 @@ if (new_id == getint)
           <argument>
             <kind>1</kind>
             <string>//to free the system
-/*FMODfree();
+FMODfree();
 UnloadFMOD();
 
 </string>

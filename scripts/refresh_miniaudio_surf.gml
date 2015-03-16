@@ -48,9 +48,9 @@ surface_set_target(miniaudio_surf);
 draw_set_alpha(0.3);
 draw_set_color(c_teal);
 if (maxframes > 1)
-    draw_rectangle(lerp(0,512,scope_start/(maxframes-1)),tlh-13,lerp(0,512,scope_end/(maxframes-1)),tlh,0);
+    draw_rectangle(lerp(0,512,scope_start/(maxframes-1)),tlh-13,lerp(0,512,scope_end/(maxframes-1)),tlh+1,0);
 else
-    draw_rectangle(0,tlh-13,512,tlh,0);
+    draw_rectangle(0,tlh-13,512,tlh+1,0);
          
     //audio  
     if (seqcontrol.song)

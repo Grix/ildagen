@@ -45,6 +45,7 @@ else if (moving_object == 3)
     {
     //moving startframe
     startframe += (mouse_x-mousexprev)*tlzoom/tlw;
+    if (startframe < 0) startframe = 0;
     mousexprev = mouse_x;
     if (mouse_check_button_released(mb_left))
         {

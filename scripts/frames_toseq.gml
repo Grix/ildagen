@@ -1,4 +1,4 @@
-//exports every element into an ilda file
+//sends editor frames to a timeline object
 placing_status = 0;
 
 if (seqcontrol.selectedlayer = -1)
@@ -40,8 +40,8 @@ for (j = 0; j < maxframes;j++)
     for (i = 0; i < ds_list_size(el_list);i++)
         {
         ind_list = ds_list_find_value(el_list,i);
-        buffer_write(save_buffer,buffer_u32,ds_list_size(ind_list));
         tempsize = ds_list_size(ind_list);
+        buffer_write(save_buffer,buffer_u32,tempsize);
         
         for (u = 0; u < 10; u++)
             {
