@@ -96,5 +96,6 @@ else if (idbyte == 50)
         }
     }
     
+buffer_delete(load_buffer);
 scope_start = 0;
 scope_end = maxframes-1;

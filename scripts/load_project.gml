@@ -101,3 +101,4 @@ if (!parsingaudioload)
         }
     }
     
+buffer_delete(load_buffer);

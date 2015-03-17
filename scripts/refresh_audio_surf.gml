@@ -134,8 +134,8 @@ surface_set_target(audio_surf);
     if (startframex == clamp(startframex,0,tlw+1))
         {
         draw_set_color(c_blue);
-        draw_rectangle(startframex,0,startframex+1,tlh,0);
-        draw_rectangle(startframex,tlh+16,startframex+1,tlh+16+lbh,0);
+        draw_rectangle(startframex,0,startframex+1,tlh-1,0);
+        draw_rectangle(startframex,tlh+17,startframex+1,1000,0);
         draw_set_font(fnt_bold);
         draw_text(startframex+4,tlh+16+lbh-20,"Start");
         }
@@ -144,16 +144,16 @@ surface_set_target(audio_surf);
     if (endframex == clamp(endframex,0,tlw+1))
         {
         draw_set_color(c_red);
-        draw_rectangle(endframex,0,endframex+1,tlh,0);
-        draw_rectangle(endframex,tlh+16,endframex+1,tlh+16+lbh,0);
+        draw_rectangle(endframex,0,endframex+1,tlh-1,0);
+        draw_rectangle(endframex,tlh+17,endframex+1,1000,0);
         draw_set_font(fnt_bold);
         draw_text(endframex-25,tlh+16+lbh-20,"End");
         }
 
     draw_set_alpha(0.3);
     draw_set_colour(c_black);
-    draw_rectangle(0,0,clamp(startframex,0,tlw+1),tlh+16+lbh,0);
-    draw_rectangle(clamp(endframex,0,tlw+1),0,tlw+1,tlh+16+lbh,0);
+    draw_rectangle(0,0,clamp(startframex,0,tlw+1),1000,0);
+    draw_rectangle(clamp(endframex,0,tlw+1),0,tlw+1,1000,0);
         
         
 surface_reset_target();

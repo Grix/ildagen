@@ -113,6 +113,13 @@ if (room == rm_ilda)
         dialog = "loadfile";
         }
     }
+else
+    {
+    with (controller)
+        {
+        load_frames_seq(get_open_filename_ext("ildaGen frames|*.igf","","","Select ildaGen frames file"));
+        }
+    }
 </string>
           </argument>
         </arguments>
