@@ -51,7 +51,7 @@
             <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     image_index = 1;
-    controller.tooltip = "Loads an ildaGen project";
+    controller.tooltip = "Enter timeline mode";
     } 
 else image_index = 0;
 </string>
@@ -106,6 +106,7 @@ else image_index = 0;
         show_message_async("Sorry, this timeline is not available in the web version");
         exit;
         }
+        
     placing_status = 0;
     ds_list_clear(free_list);
     ds_list_clear(bez_list);

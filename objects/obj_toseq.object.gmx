@@ -51,7 +51,7 @@
             <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     image_index = 1;
-    controller.tooltip = "Sends the frames to the sequencer timeline.";
+    controller.tooltip = "Sends the current frames to the timeline.";
     } 
 else image_index = 0;
 </string>
@@ -107,6 +107,12 @@ else image_index = 0;
 
 with (controller)
     {
+    if (seqcontrol.selectedlayer == -1)
+        {
+        show_message_async("Please select a position on the sequencer timeline first.");
+        exit;
+        }    
+    
     if (seqcontrol.selectedx &lt;= 0)
         {
         getint = show_question_async("This will replace the selected timeline object with these frames. Continue? (Cannot be undone)");

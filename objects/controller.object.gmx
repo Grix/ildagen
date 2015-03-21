@@ -28,7 +28,6 @@
             <string>version = "0.9.8.1";
 versiondate = "2015-03-10";
 
-
 FS_gmfilesystem_initialize(1);
 FS_set_gm_save_area("%appdata%\ildagen");
 FS_set_working_directory("%appdata%\ildagen");

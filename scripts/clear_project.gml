@@ -9,4 +9,3 @@ if (song)
     }
     
 ds_list_clear(layer_list);
-
