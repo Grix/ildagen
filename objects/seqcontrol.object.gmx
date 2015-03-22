@@ -52,7 +52,7 @@ if (os_version != -1)
         }
     }*/
     
-
+image_speed = 0;
 draw_mouseline = 0;
 fastload = 1;
 draw_cursorline = 0;

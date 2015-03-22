@@ -228,12 +228,12 @@ if (!fillframes)
     {
     new_list = ds_list_create();
     
-    gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
-    gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
-    
     if (anienable == 0) or (maxframes == 1)
         {
         t = 0;
+        shaking_sdev_r = shaking_sdev;
+        gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+        gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
         blank_freq_r = blank_freq;
         blank_period_r = blank_period;
         blank_dc_r = blank_dc;
@@ -261,6 +261,9 @@ if (!fillframes)
             t *= 2;
             if (t > 1)
                 t = 1-(t%1)
+            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+            gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
             blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
             blank_dc_r = lerp(blank_dc,aniblank_dc,t);
@@ -286,6 +289,9 @@ if (!fillframes)
             t *= -1;
             t += 1;
             t /= 2;
+            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+            gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
             blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
             blank_dc_r = lerp(blank_dc,aniblank_dc,t);
@@ -308,6 +314,9 @@ if (!fillframes)
         else if (anifunc = "ssine")
             {
             t = sin(t*pi/2);
+            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+            gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
             blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
             blank_dc_r = lerp(blank_dc,aniblank_dc,t);
@@ -330,6 +339,9 @@ if (!fillframes)
         else if (anifunc = "hsine")
             {
             t = sin(t*pi);
+            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+            gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
             blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
             blank_dc_r = lerp(blank_dc,aniblank_dc,t);
@@ -351,6 +363,9 @@ if (!fillframes)
             }
         else if (anifunc = "saw")
             {
+            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+            gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
             blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
             blank_dc_r = lerp(blank_dc,aniblank_dc,t);
@@ -517,13 +532,13 @@ else
         {
         
         new_list = ds_list_create();
-        
-        gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
-        gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
 
         if (anienable == 0) or (maxframes == 1)
             {
             t = 0;
+            shaking_sdev_r = shaking_sdev;
+            gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             blank_freq_r = blank_freq;
             blank_period_r = blank_period;
             blank_dc_r = blank_dc;
@@ -551,6 +566,9 @@ else
                 t *= 2;
                 if (t > 1)
                     t = 1-(t%1)
+                shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+                gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+                gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
                 blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
                 blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
                 blank_dc_r = lerp(blank_dc,aniblank_dc,t);
@@ -576,6 +594,9 @@ else
                 t *= -1;
                 t += 1;
                 t /= 2;
+                shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+                gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+                gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
                 blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
                 blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
                 blank_dc_r = lerp(blank_dc,aniblank_dc,t);
@@ -598,6 +619,9 @@ else
             else if (anifunc = "ssine")
                 {
                 t = sin(t*pi/2);
+                shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+                gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+                gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
                 blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
                 blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
                 blank_dc_r = lerp(blank_dc,aniblank_dc,t);
@@ -620,6 +644,9 @@ else
             else if (anifunc = "hsine")
                 {
                 t = sin(t*pi);
+                shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+                gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+                gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
                 blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
                 blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
                 blank_dc_r = lerp(blank_dc,aniblank_dc,t);
@@ -641,6 +668,9 @@ else
                 }
             else if (anifunc = "saw")
                 {
+                shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+                gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+                gaussoffsety = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
                 blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
                 blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
                 blank_dc_r = lerp(blank_dc,aniblank_dc,t);

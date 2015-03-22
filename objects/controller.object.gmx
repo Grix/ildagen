@@ -103,6 +103,7 @@ serial = "";
 frame_surf_refresh = 0;
 refresh_miniaudio_flag = 1;
 letter = "";
+image_speed = 0;
 
 redraw = 0;
 sgridshow = 0;
@@ -207,6 +208,7 @@ anixtrans = 0;
 aniytrans = 0;
 shaking = 0;
 shaking_sdev = 5;
+anishaking_sdev = 5;
 scope_start = 0;
 scope_end = 0;
 objmoving = 0;
@@ -1353,13 +1355,15 @@ if (new_id == getint)
             break;
             }
             
-          case "shake":
+          case "shaking_sdevset":
             {
-            ds_stack_push(undo_list,"x"+string(shaking_sdev))
-            
             shaking_sdev = ds_map_find_value(async_load, "value");
-            if (shaking_sdev &lt; 0.1) shaking_sdev = 0.1;
-            if (shaking_sdev &gt; 512) shaking_sdev = 512;
+            
+            break;
+            }
+          case "anishaking_sdevset":
+            {
+            anishaking_sdev = ds_map_find_value(async_load, "value");
             
             break;
             }

@@ -268,14 +268,14 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             
             }
         }
-            
-    
-    gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
-    gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev),-shaking_sdev*3,shaking_sdev*3);
+        
     
     if (anienable == 0) or (ds_list_size(temp_frame_list) == 1)
         {
         t = 0;
+        shaking_sdev_r = shaking_sdev;
+        gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+        gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
         blank_freq_r = blank_freq;
         blank_period_r = blank_period;
         blank_dc_r = blank_dc;
@@ -300,6 +300,9 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             t *= 2;
             if (t > 1)
                 t = 1-(t%1)
+            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+            gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
             blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
             blank_dc_r = lerp(blank_dc,aniblank_dc,t);
@@ -322,6 +325,9 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             t *= -1;
             t += 1;
             t /= 2;
+            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+            gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
             blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
             blank_dc_r = lerp(blank_dc,aniblank_dc,t);
@@ -341,6 +347,9 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         else if (anifunc = "ssine")
             {
             t = sin(t*pi/2);
+            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+            gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
             blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
             blank_dc_r = lerp(blank_dc,aniblank_dc,t);
@@ -360,6 +369,9 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         else if (anifunc = "hsine")
             {
             t = sin(t*pi);
+            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+            gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
             blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
             blank_dc_r = lerp(blank_dc,aniblank_dc,t);
@@ -378,6 +390,9 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             }
         else if (anifunc = "saw")
             {
+            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+            gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
             blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
             blank_dc_r = lerp(blank_dc,aniblank_dc,t);

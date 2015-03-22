@@ -789,11 +789,6 @@
         <script>scripts\dd_res_low.gml</script>
         <script>scripts\dd_res_auto.gml</script>
         <script>scripts\dd_res_custom.gml</script>
-        <script>scripts\dropdown_shake.gml</script>
-        <script>scripts\dd_shake_custom.gml</script>
-        <script>scripts\dd_shake_low.gml</script>
-        <script>scripts\dd_shake_med.gml</script>
-        <script>scripts\dd_shake_high.gml</script>
         <script>scripts\dropdown_reap.gml</script>
         <script>scripts\dd_reap_color.gml</script>
         <script>scripts\dd_reap_blank.gml</script>
@@ -948,6 +943,8 @@
           <object>objects\obj_anienddotscolorselect</object>
           <object>objects\obj_aniblankdcselect</object>
           <object>objects\obj_aniblankoffselect</object>
+          <object>objects\obj_shakingsdev</object>
+          <object>objects\obj_anishakingsdev</object>
           <object>objects\obj_anicolordcselect</object>
           <object>objects\obj_anicoloroffselect</object>
           <object>objects\obj_aniwaveoffselect</object>

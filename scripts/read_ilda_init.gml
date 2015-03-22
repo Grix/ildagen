@@ -43,4 +43,6 @@ read_ilda_frame();
 
 read_ilda_work();
 
+buffer_delete(ild_file);
+
 return 1;
