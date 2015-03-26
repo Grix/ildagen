@@ -105,7 +105,7 @@ else image_index = 1;
             <string>if (controller.anienable == 1) or (controller.maxframes == 1)
     draw_set_alpha(0.6);
 
-draw_sprite(sprite_index,image_index,x,y);
+draw_self();
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);

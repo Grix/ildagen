@@ -5,8 +5,6 @@ if (file_loc == "") or is_undefined(file_loc)
     
 clear_project();
 
-//tempname = FS_unique_fname(working_directory,".igf");
-//FS_file_copy(file_loc,tempname);
 load_buffer = buffer_load(FS_copy_fast(file_loc));
     
 idbyte = buffer_read(load_buffer,buffer_u8);
@@ -50,7 +48,7 @@ if (songload)
     {
     songfile_name = buffer_read(load_buffer,buffer_string);
     songfile_size = buffer_read(load_buffer,buffer_u32);
-    //if !(FS_file_exists(working_directory+songfile_name))
+    //if !(FS_file_exists(songfile_name))
         //{
         songfile_tempname = FS_unique_fname(working_directory,filename_ext(songfile_name));
         songfile_instance = FS_file_bin_open(songfile_tempname,1);

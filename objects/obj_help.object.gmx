@@ -106,7 +106,7 @@ else image_index = 0;
           <argument>
             <kind>1</kind>
             <string>//url_open("https://github.com/Grix/ildagen/raw/master/help.pdf");
-url_open(working_directory+"help.pdf");
+url_open("help.pdf");
 
 </string>
           </argument>

@@ -62,7 +62,7 @@ mouse_xprevious = mouse_x;
 
 visible = (controller.placing == "wave") and (controller.anienable);
 
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y+7) and ((mouse_y &lt; y+25))
+if (visible) and (mouse_x &gt; x-sprite_width/2) and (mouse_x &lt; (x+sprite_width/2)) and (mouse_y &gt; y+7) and ((mouse_y &lt; y+25))
     {
     controller.tooltip = "Changes wave height at the end of the animation.";
     } 
@@ -166,7 +166,7 @@ moving = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite_index,image_index,x,y);
+            <string>draw_self();
 draw_sprite(spr_aniknob,(moving &gt; 0),x+clamp(controller.aniwave_amp,-$ffff/2,$ffff/2)/$ffff*2*64,y+16);
 
 draw_set_font(fnt_tooltip);

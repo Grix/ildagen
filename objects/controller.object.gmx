@@ -1508,7 +1508,7 @@ else if (new_id == getstr)
                 serial = ds_map_find_value(async_load, "result");
                 with (obj_export)
                     {
-                    controller.serialfile = file_text_open_write(working_directory+"serial");
+                    controller.serialfile = file_text_open_write("serial");
                     file_text_write_string(controller.serialfile,controller.serial);
                     file_text_close(controller.serialfile);
                     show_message_async("Registered successfully");
@@ -1649,6 +1649,9 @@ if (!surface_exists(miniaudio_surf) || refresh_miniaudio_flag)
     }
     
 draw_set_color(c_white);
+    draw_ilda_2d();
+    
+draw_set_color(c_white);
 draw_set_alpha(1);
 if (surface_exists(miniaudio_surf))
     draw_surface_part(miniaudio_surf,0,0,tlw,tlh+1,0,515);
@@ -1727,8 +1730,7 @@ if (keyboard_check(ord('R')) or (rgridshow == 1))
         }
     }
     
-draw_set_color(c_white);
-    draw_ilda_2d();
+
     
 draw_set_color(c_aqua);
 if (selectedelement != -1)

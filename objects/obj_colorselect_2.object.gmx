@@ -207,7 +207,7 @@ mouse_yprevious = mouse_y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite_index,image_index,x,y);
+            <string>draw_self();
 draw_sprite(spr_colorselect_red,(moving == 1),x,y+23-(colour_get_red(controller.color2)/255*23));
 draw_sprite(spr_colorselect_green,(moving == 2),x+16,y+23-(colour_get_green(controller.color2)/255*23));
 draw_sprite(spr_colorselect_blue,(moving == 3),x+32,y+23-(colour_get_blue(controller.color2)/255*23));

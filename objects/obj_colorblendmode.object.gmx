@@ -51,6 +51,8 @@
             <kind>1</kind>
             <string>visible = controller.reap_color;
 
+if (!visible) exit;
+
 if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     faded = 1;
@@ -108,7 +110,7 @@ image_index = controller.color_blendmode;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite_index,image_index,x,y);
+            <string>draw_self();
 if (faded) 
     {
     draw_set_color(c_ltgray);

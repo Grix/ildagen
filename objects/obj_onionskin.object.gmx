@@ -56,6 +56,7 @@ else if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y
     controller.tooltip = "Toggle onion skinning (previous frames superimposing)";
     } 
 else image_index = 0;
+
 </string>
           </argument>
         </arguments>

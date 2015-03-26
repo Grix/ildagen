@@ -141,7 +141,7 @@ if (controller.color_freq &lt; 0.5)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite_index,image_index,x,y);
+            <string>draw_self();
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);

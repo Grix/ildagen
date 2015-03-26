@@ -114,7 +114,7 @@ with (controller)
           <argument>
             <kind>1</kind>
             <string>draw_set_colour(c_dkgray);
-draw_sprite(sprite_index,image_index,x,y);
+draw_self();
 draw_text(x+48,y+4,controller.colorfunc_string_3);
 </string>
           </argument>

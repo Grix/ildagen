@@ -101,10 +101,10 @@
     <instance objName="obj_s_free" x="564" y="28" name="inst_3B0DEDA3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_bckimage" x="340" y="580" name="inst_8383FA41" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_onionskin" x="380" y="580" name="inst_8EE9657B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_fillframes" x="612" y="560" name="inst_FA6A6BC8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_fillframes" x="616" y="560" name="inst_FA6A6BC8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_help" x="460" y="580" name="inst_9E66828C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_curve" x="532" y="124" name="inst_394FF056" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_anifunc" x="532" y="624" name="inst_C3A7CF47" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_anifunc" x="536" y="628" name="inst_C3A7CF47" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_resettrans" x="776" y="620" name="inst_43C59E11" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_rainbow" x="532" y="296" name="inst_D06E99B7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_colorcopytoani" x="976" y="312" name="inst_FB5573EC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

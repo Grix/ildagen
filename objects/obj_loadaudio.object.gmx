@@ -160,7 +160,7 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite_index,image_index,x,y);
+            <string>draw_self();
 
 draw_set_color(c_black);
 draw_set_alpha(1);

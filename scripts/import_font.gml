@@ -6,10 +6,6 @@ with(controller)
         ild_filename = FS_file_bin_open(filename,0);
         file_size = FS_file_bin_size(ild_filename);
         FS_file_bin_close(ild_filename);
-        //tempname = FS_unique_fname(working_directory,".ild");
-        //FS_file_copy(filename,tempname);
-        //if (fastload)
-         //   {
         ild_file = buffer_create(file_size,buffer_fast,1);
         buffer_load_ext(ild_file,FS_copy_fast(filename),0);
         }
@@ -105,7 +101,6 @@ with(controller)
                 ds_list_insert(new_list,temppos+6,tempblank);
                 ds_list_insert(new_list,temppos+6,newy);
                 ds_list_insert(new_list,temppos+6,newx);
-                //show_debug_message(newx);
                 j++;
                 checkpoints++;
                 stepscount--;

@@ -2,7 +2,7 @@ if (os_version == -1) exit;
 
 show_debug_message("Checking for updates")
 
-ini_filename = working_directory+"settings.ini";
+ini_filename = "settings.ini";
 if (file_exists(ini_filename))
     {
     ini_open(ini_filename);

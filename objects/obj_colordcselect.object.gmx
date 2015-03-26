@@ -163,7 +163,7 @@ moving = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite_index,image_index,x,y);
+            <string>draw_self();
 draw_sprite(spr_knob,(moving &gt; 0),x+clamp(controller.color_dc,0,1)*2*64,y+16);
 
 draw_set_font(fnt_tooltip);
