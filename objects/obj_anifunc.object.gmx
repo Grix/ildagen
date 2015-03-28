@@ -48,16 +48,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switch (controller.anifunc)
-    {
-    case "tri": image_index = 0;break;
-    case "sine": image_index = 1;break;
-    case "hsine": image_index = 2;break;
-    case "saw": image_index = 3;break;
-    case "ssine": image_index = 4;break;
-    }
-
-visible = controller.anienable;
+            <string>visible = controller.anienable;
 
 if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
@@ -88,16 +79,27 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-if (mouse_x &lt; (x+45))
-    controller.anifunc = "tri";
-else if (mouse_x &lt; (x+89))
-    controller.anifunc = "sine";
-else if (mouse_x &lt; (x+135))
-    controller.anifunc = "hsine";
-else if (mouse_x &lt; (x+180))
-    controller.anifunc = "saw";
-else
-    controller.anifunc = "ssine";
+switch (floor( (mouse_x-x)/32.14))
+    {
+    case 0: controller.anifunc = "saw"; break;
+    case 1: controller.anifunc = "tri"; break;
+    case 2: controller.anifunc = "easeout"; break;
+    case 3: controller.anifunc = "easein"; break;
+    case 4: controller.anifunc = "easeinout"; break;
+    case 5: controller.anifunc = "sine"; break;
+    case 6: controller.anifunc = "bounce"; break;  
+    }
+    
+switch (controller.anifunc)
+    {
+    case "saw": image_index = 0; break;
+    case "tri": image_index = 1; break;
+    case "easeout": image_index = 2; break;
+    case "easein": image_index = 3; break;
+    case "easeinout": image_index = 4; break;
+    case "sine": image_index = 5; break;
+    case "bounce": image_index = 6; break;
+    }
 </string>
           </argument>
         </arguments>

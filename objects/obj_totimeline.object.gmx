@@ -99,7 +99,9 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (controller)
+            <string>show_message_async("Timeline mode coming soon!");/*
+
+with (controller)
     {
     if (os_version == -1)
         {

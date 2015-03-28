@@ -295,29 +295,12 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
     else
         {
         t = i/(ds_list_size(temp_frame_list));    
+        t = (t*anirep)%1;
         if (anifunc = "tri")
             {
             t *= 2;
             if (t > 1)
-                t = 1-(t%1)
-            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
-            gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
-            gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
-            blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
-            blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
-            blank_dc_r = lerp(blank_dc,aniblank_dc,t);
-            blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
-            color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
-            color_period_r = color_period//lerp(color_period,anicolor_period,t);
-            color_dc_r = lerp(color_dc,anicolor_dc,t);
-            color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
-            color1_r = merge_color(color1,anicolor1,t);
-            color2_r = merge_color(color2,anicolor2,t);
-            enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
+                t = 1-(t%1);
             }
         else if (anifunc = "sine")
             {
@@ -325,90 +308,43 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             t *= -1;
             t += 1;
             t /= 2;
-            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
-            gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
-            gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
-            blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
-            blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
-            blank_dc_r = lerp(blank_dc,aniblank_dc,t);
-            blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
-            color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
-            color_period_r = color_period//lerp(color_period,anicolor_period,t);
-            color_dc_r = lerp(color_dc,anicolor_dc,t);
-            color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
-            color1_r = merge_color(color1,anicolor1,t);
-            color2_r = merge_color(color2,anicolor2,t);
-            enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
             }
-        else if (anifunc = "ssine")
+        else if (anifunc = "easeout")
             {
             t = sin(t*pi/2);
-            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
-            gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
-            gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
-            blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
-            blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
-            blank_dc_r = lerp(blank_dc,aniblank_dc,t);
-            blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
-            color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
-            color_period_r = color_period//lerp(color_period,anicolor_period,t);
-            color_dc_r = lerp(color_dc,anicolor_dc,t);
-            color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
-            color1_r = merge_color(color1,anicolor1,t);
-            color2_r = merge_color(color2,anicolor2,t);
-            enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
             }
-        else if (anifunc = "hsine")
+        else if (anifunc = "easein")
+            {
+            t = 1-sin(t*pi/2+pi/2);
+            }
+        else if (anifunc = "bounce")
             {
             t = sin(t*pi);
-            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
-            gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
-            gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
-            blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
-            blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
-            blank_dc_r = lerp(blank_dc,aniblank_dc,t);
-            blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
-            color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
-            color_period_r = color_period//lerp(color_period,anicolor_period,t);
-            color_dc_r = lerp(color_dc,anicolor_dc,t);
-            color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
-            color1_r = merge_color(color1,anicolor1,t);
-            color2_r = merge_color(color2,anicolor2,t);
-            enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
             }
-        else if (anifunc = "saw")
+        else if (anifunc = "easeinout")
             {
-            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
-            gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
-            gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
-            blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
-            blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
-            blank_dc_r = lerp(blank_dc,aniblank_dc,t);
-            blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
-            color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
-            color_period_r = color_period//lerp(color_period,anicolor_period,t);
-            color_dc_r = lerp(color_dc,anicolor_dc,t);
-            color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
-            color1_r = merge_color(color1,anicolor1,t);
-            color2_r = merge_color(color2,anicolor2,t);
-            enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
-            endx_r = lerp(endx,endx,t)+gaussoffsetx;
-            endy_r = lerp(endy,endy,t)+gaussoffsety;
-            startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
-            startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
+            t = sin(t*pi-pi/2);
+            t += 1;
+            t /= 2;
             }
+        shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
+        gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+        gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+        blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
+        blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
+        blank_dc_r = lerp(blank_dc,aniblank_dc,t);
+        blank_offset_r = degtorad(lerp(blank_offset,aniblank_offset,t));
+        color_freq_r = color_freq//lerp(color_freq,anicolor_freq,t);
+        color_period_r = color_period//lerp(color_period,anicolor_period,t);
+        color_dc_r = lerp(color_dc,anicolor_dc,t);
+        color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
+        color1_r = merge_color(color1,anicolor1,t);
+        color2_r = merge_color(color2,anicolor2,t);
+        enddotscolor_r = merge_color(enddotscolor,anienddotscolor,t);
+        endx_r = lerp(endx,endx,t)+gaussoffsetx;
+        endy_r = lerp(endy,endy,t)+gaussoffsety;
+        startposx_r = lerp(startpos[0],startpos[0],t)+gaussoffsetx;
+        startposy_r  = lerp(startpos[1],startpos[1],t)+gaussoffsety;
         }
         
         

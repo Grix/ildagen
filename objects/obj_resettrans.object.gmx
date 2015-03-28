@@ -123,6 +123,22 @@ with (controller)
             }
         }
         
+    
+    for (i = 0; i &lt; ds_list_size(el_list);i++)
+        {
+        if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
+            {
+            sefound = 1;
+            selectedelementlist = ds_list_find_value(el_list,i);
+            xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+            yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
+            rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
+            rectymin = yo + (ds_list_find_value(selectedelementlist,6));
+            rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
+            rectymax = yo + (ds_list_find_value(selectedelementlist,7));
+            }
+        }
+        
     frame_surf_refresh = 1;
     
     }

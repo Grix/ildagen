@@ -1,7 +1,6 @@
-
+draw_set_circle_precision(48);
 draw_set_color(c_dkgray);
 draw_set_blend_mode(bm_add);
-draw_set_circle_precision(48);
 
 draw_circle(256,256,52,1);
 draw_circle(256,256,103,1);
@@ -15,3 +14,4 @@ for (i = 0;i < 2*pi; i += degtorad(45))
     
 draw_set_color(c_white);
 draw_set_blend_mode(bm_normal);
+draw_set_circle_precision(24);

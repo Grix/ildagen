@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="23" name="datafiles">
+  <datafiles number="24" name="datafiles">
     <datafile>
       <name>help.pdf</name>
       <exists>-1</exists>
@@ -37,23 +37,6 @@
         </Config>
       </ConfigOptions>
       <filename>palette.txt</filename>
-    </datafile>
-    <datafile>
-      <name>font_arial.ild</name>
-      <exists>-1</exists>
-      <size>20674</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>1048640</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>font_arial.ild</filename>
     </datafile>
     <datafile>
       <name>fmodex.dll</name>
@@ -105,6 +88,23 @@
         </Config>
       </ConfigOptions>
       <filename>LaserBoy_2015_02_23.zip</filename>
+    </datafile>
+    <datafile>
+      <name>font_arial.ild</name>
+      <exists>-1</exists>
+      <size>20674</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>17593040752846</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>font_arial.ild</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -950,6 +950,7 @@
           <object>objects\obj_aniwaveoffselect</object>
           <object>objects\obj_aniwaveamp</object>
           <object>objects\obj_anifunc</object>
+          <object>objects\obj_anirepselect</object>
           <object>objects\obj_shake</object>
           <object>objects\obj_resettrans</object>
         </objects>

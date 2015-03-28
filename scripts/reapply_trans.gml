@@ -72,19 +72,13 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
         }
     else
         {
-        t = i/(ds_list_size(temp_frame_list));    
+        t = i/(ds_list_size(temp_frame_list));
+        t = (t*anirep)%1;
         if (anifunc = "tri")
             {
             t *= 2;
             if (t > 1)
-                t = 1-(t%1)
-            endx_r = lerp(endx,endx+anixtrans,t);
-            endy_r = lerp(endy,endy+aniytrans,t);
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t);
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t);
-            rot_r = degtorad(lerp(0,anirot,t));
-            scalex_r = lerp(1,scalex,t);
-            scaley_r = lerp(1,scaley,t);
+                t = 1-(t%1);
             }
         else if (anifunc = "sine")
             {
@@ -92,50 +86,33 @@ for (i = 0;i < ds_list_size(temp_frame_list);i++)
             t *= -1;
             t += 1;
             t /= 2;
-            endx_r = lerp(endx,endx+anixtrans,t);
-            endy_r = lerp(endy,endy+aniytrans,t);
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t);
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t);
-            /*if (anirot > 180)
-                rot_r = degtorad(lerp(0,anirot,t));
-            else
-                rot_r = degtorad(lerp(360,anirot,t));*/
-            rot_r = degtorad(lerp(0,anirot,t));
-            scalex_r = lerp(1,scalex,t);
-            scaley_r = lerp(1,scaley,t);
             }
-        else if (anifunc = "ssine")
+        else if (anifunc = "easeout")
             {
             t = sin(t*pi/2);
-            endx_r = lerp(endx,endx+anixtrans,t);
-            endy_r = lerp(endy,endy+aniytrans,t);
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t);
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t);
-            rot_r = degtorad(lerp(0,anirot,t));
-            scalex_r = lerp(1,scalex,t);
-            scaley_r = lerp(1,scaley,t);
             }
-        else if (anifunc = "hsine")
+        else if (anifunc = "easein")
+            {
+            t = 1-sin(t*pi/2+pi/2);
+            }
+        else if (anifunc = "bounce")
             {
             t = sin(t*pi);
-            endx_r = lerp(endx,endx+anixtrans,t);
-            endy_r = lerp(endy,endy+aniytrans,t);
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t);
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t);
-            rot_r = degtorad(lerp(0,anirot,t));
-            scalex_r = lerp(1,scalex,t);
-            scaley_r = lerp(1,scaley,t);
             }
-        else if (anifunc = "saw")
+        else if (anifunc = "easeinout")
             {
-            endx_r = lerp(endx,endx+anixtrans,t);
-            endy_r = lerp(endy,endy+aniytrans,t);
-            startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t);
-            startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t);
-            rot_r = degtorad(lerp(0,anirot,t));
-            scalex_r = lerp(1,scalex,t);
-            scaley_r = lerp(1,scaley,t);
+            t = sin(t*pi-pi/2);
+            t += 1;
+            t /= 2;
             }
+            
+        endx_r = lerp(endx,endx+anixtrans,t);
+        endy_r = lerp(endy,endy+aniytrans,t);
+        startposx_r = lerp(startpos[0],startpos[0]+anixtrans,t);
+        startposy_r  = lerp(startpos[1],startpos[1]+aniytrans,t);
+        rot_r = degtorad(lerp(0,anirot,t));
+        scalex_r = lerp(1,scalex,t);
+        scaley_r = lerp(1,scaley,t);
         }
         
     xmax = -$ffff;

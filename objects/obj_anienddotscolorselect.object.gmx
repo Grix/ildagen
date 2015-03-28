@@ -27,6 +27,18 @@
             <kind>1</kind>
             <string>image_speed = 0;
 moving = 0;
+
+activecolor = controller.anienddotscolor;
+redy = y+23-(colour_get_red(activecolor)/255*23);
+greeny = y+23-(colour_get_green(activecolor)/255*23);
+bluey = y+23-(colour_get_blue(activecolor)/255*23);
+
+redx = x;
+greenx = x+16;
+bluex = x+32;
+
+xplus70 = x+70;
+yplus16 = y+16;
 </string>
           </argument>
         </arguments>
@@ -209,13 +221,23 @@ mouse_yprevious = mouse_y;
           <argument>
             <kind>1</kind>
             <string>draw_self();
-draw_sprite(spr_anicolorselectred,(moving == 1),x,y+23-(colour_get_red(controller.anienddotscolor)/255*23));
-draw_sprite(spr_anicolorselectgreen,(moving == 2),x+16,y+23-(colour_get_green(controller.anienddotscolor)/255*23));
-draw_sprite(spr_anicolorselectblue,(moving == 3),x+32,y+23-(colour_get_blue(controller.anienddotscolor)/255*23));
+if (moving)
+    {
+    activecolor = controller.anienddotscolor;
+    redy = y+23-(colour_get_red(activecolor)/255*23);
+    greeny = y+23-(colour_get_green(activecolor)/255*23);
+    bluey = y+23-(colour_get_blue(activecolor)/255*23);
+    }
+draw_sprite(spr_anicolorselectred,(moving == 1),redx,redy);
+draw_sprite(spr_anicolorselectgreen,(moving == 2),greenx,greeny);
+draw_sprite(spr_anicolorselectblue,(moving == 3),bluex,bluey);
 
-draw_circle_colour(x+70,y+16,10,controller.anienddotscolor,controller.anienddotscolor,0);
-draw_circle_colour(x+70,y+16,10,c_aqua,c_aqua,1);
-
+draw_set_circle_precision(8);
+draw_set_colour(activecolor);
+    draw_circle(x+70,y+16,10,0);
+draw_set_color(c_aqua);
+    draw_circle(x+70,y+16,10,1);
+draw_set_circle_precision(24);
 </string>
           </argument>
         </arguments>
