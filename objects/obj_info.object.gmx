@@ -59,7 +59,10 @@ regflag = 0;
                 regflag = 1;
                 }
             else
+                {
                 registeredstring = "Not Registered. Exporting is disabled.";
+                regflag = 1;
+                }
             }
         image_index = 1;
         controller.tooltip = 
