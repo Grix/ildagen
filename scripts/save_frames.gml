@@ -1,7 +1,7 @@
 //exports the frames from the ilda editor into an igf file
 placing_status = 0;
 
-file_loc = get_save_filename_ext("*.igf","example.igf","","Select ildaGen frames file location");
+file_loc = get_save_filename_ext("*.igf","example.igf","","Select LasershowGen frames file location");
 if (file_loc == "")
     exit;
     

@@ -8,7 +8,7 @@ with (controller)
     idbyte = buffer_read(load_buffer,buffer_u8);
     if (idbyte != 0) and (idbyte != 50)
         {
-        show_message_async("Unexpected ID byte: "+string(idbyte)+", is this a valid ildaGen frames file?");
+        show_message_async("Unexpected ID byte: "+string(idbyte)+", is this a valid LasershowGen frames file?");
         exit;
         }
     

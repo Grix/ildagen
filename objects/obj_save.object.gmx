@@ -51,7 +51,7 @@
             <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     image_index = 1;
-    controller.tooltip = "Saves the ildaGen frames file";
+    controller.tooltip = "Saves the LasershowGen frames file";
     } 
 else image_index = 0;
 </string>
@@ -142,7 +142,7 @@ with (controller)
     else 
         {
         dialog = "saveframes";
-        getstr = get_string_async("Enter the name of the ildagen frames IGF file","example.igf");
+        getstr = get_string_async("Enter the name of the LasershowGen frames IGF file","example.igf");
         }
     }
 </string>

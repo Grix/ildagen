@@ -71,7 +71,7 @@
     <option_changeresolution>false</option_changeresolution>
     <option_closeesc>true</option_closeesc>
     <option_colordepth>0</option_colordepth>
-    <option_display_name>ildaGen</option_display_name>
+    <option_display_name>LasershowGen</option_display_name>
     <option_displayerrors>True</option_displayerrors>
     <option_facebook_app_display_name></option_facebook_app_display_name>
     <option_facebook_appid></option_facebook_appid>
@@ -96,7 +96,7 @@
     <option_html5_centergame>True</option_html5_centergame>
     <option_html5_flurry_enable>0</option_html5_flurry_enable>
     <option_html5_flurry_id></option_html5_flurry_id>
-    <option_html5_foldername>ildagen_data</option_html5_foldername>
+    <option_html5_foldername>lsg_data</option_html5_foldername>
     <option_html5_generate_spotify_app>0</option_html5_generate_spotify_app>
     <option_html5_google_analytics_enable>0</option_html5_google_analytics_enable>
     <option_html5_google_tracking_id></option_html5_google_tracking_id>
@@ -296,7 +296,7 @@
     <option_version_description></option_version_description>
     <option_version_major>0</option_version_major>
     <option_version_minor>9</option_version_minor>
-    <option_version_product>ildaGen</option_version_product>
+    <option_version_product>LasershowGen</option_version_product>
     <option_version_release>9</option_version_release>
     <option_win8_advertising_appid></option_win8_advertising_appid>
     <option_win8_advertising_enable>0</option_win8_advertising_enable>
@@ -344,7 +344,7 @@
     <option_windows_mainor_version>9</option_windows_mainor_version>
     <option_windows_major_version>0</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
-    <option_windows_product_info>ildaGen</option_windows_product_info>
+    <option_windows_product_info>LasershowGen</option_windows_product_info>
     <option_windows_release_version>9</option_windows_release_version>
     <option_windows_runner_finished>Configs\Default\windows\Runner_finish.bmp</option_windows_runner_finished>
     <option_windows_runner_header>Configs\Default\windows\Runner_header.bmp</option_windows_runner_header>

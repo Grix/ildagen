@@ -6,7 +6,7 @@ if (song)
     
 save_buffer = buffer_create(1,buffer_grow,1);
 
-file_loc = get_save_filename_ext("*.igp","example.igp","","Select ildaGen project file location");
+file_loc = get_save_filename_ext("*.igp","example.igp","","Select LasershowGen project file location");
 if (file_loc == "")
     exit;
     

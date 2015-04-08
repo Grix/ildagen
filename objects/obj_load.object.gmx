@@ -51,7 +51,7 @@
             <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     image_index = 1;
-    controller.tooltip = "Loads an ildaGen frames file";
+    controller.tooltip = "Loads an LasershowGen frames file";
     } 
 else image_index = 0;
 </string>
@@ -117,7 +117,7 @@ else
     {
     with (controller)
         {
-        load_frames_seq(get_open_filename_ext("ildaGen frames|*.igf","","","Select ildaGen frames file"));
+        load_frames_seq(get_open_filename_ext("LasershowGen frames|*.igf","","","Select LasershowGen frames file"));
         }
     }
 </string>

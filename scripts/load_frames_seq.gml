@@ -1,4 +1,4 @@
-//load ildagen frames file for sequencer object
+//load frames file for sequencer object
 if (seqcontrol.selectedlayer = -1) or (seqcontrol.selectedx < 0)
     {
     show_message_async("No timeline position marked, select a position first");
@@ -16,7 +16,7 @@ load_buffer = buffer_load(FS_copy_fast(file_loc));
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 0) and (idbyte != 50)
     {
-    show_message_async("Unexpected ID byte: "+string(idbyte)+", is this a valid ildaGen frames file?");
+    show_message_async("Unexpected ID byte: "+string(idbyte)+", is this a valid LasershowGen frames file?");
     exit;
     }
 
@@ -180,4 +180,3 @@ for (i = 0;i < ds_list_size(temp_list);i++)
 ds_list_destroy(temp_list);
 
 room_goto(rm_seq);
-

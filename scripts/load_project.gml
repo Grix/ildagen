@@ -10,7 +10,7 @@ load_buffer = buffer_load(FS_copy_fast(file_loc));
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 50)
     {
-    show_message_async("Unexpected byte, is this a valid ildaGen project file?");
+    show_message_async("Unexpected byte, is this a valid LasershowGen project file?");
     exit;
     }
     

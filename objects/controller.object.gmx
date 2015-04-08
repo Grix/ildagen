@@ -1280,7 +1280,7 @@ if (new_id == getint)
             
           case "loadfile":
             {
-            load_frames(get_open_filename_ext("ildaGen frames|*.igf","","","Select ildaGen frames file"));
+            load_frames(get_open_filename_ext("LasershowGen frames|*.igf","","","Select LasershowGen frames file"));
             
             break;
             }
