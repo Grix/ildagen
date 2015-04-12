@@ -907,12 +907,14 @@
       <script>scripts\optimize_last.gml</script>
       <script>scripts\optimize_first.gml</script>
       <script>scripts\optimize_between.gml</script>
+      <script>scripts\read_hershey.gml</script>
     </scripts>
     <script>scripts\update_check.gml</script>
     <script>scripts\update_check_verbose.gml</script>
     <script>scripts\controller_setup.gml</script>
     <script>scripts\parse_parameter.gml</script>
     <script>scripts\verify_serial.gml</script>
+    <script>scripts\hershey_error.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>

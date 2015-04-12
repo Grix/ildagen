@@ -89,11 +89,12 @@ ds_list_add(frame_list,el_list);
 free_list = ds_list_create();
 bez_list = ds_list_create();
 font_list = ds_list_create();
+font_map = ds_map_create();
 snap_list = ds_list_create();
 selsurf = surface_create(512,512);
 miniaudio_surf = surface_create(512,512);
 copy_list = -1;
-selectedelementlist = ds_list_create();
+semaster_list = ds_list_create();
 
 el_id = 0;
 projectfps = 30;
@@ -105,6 +106,7 @@ frame_surf_refresh = 0;
 refresh_miniaudio_flag = 1;
 letter = "";
 image_speed = 0;
+font_type = -1;
 
 redraw = 0;
 sgridshow = 0;
@@ -369,25 +371,32 @@ if (playing == 1)
     if (frame != frameprev)
         frame_surf_refresh = 1;
     
-    if (selectedelement != -1)
+    if !ds_list_empty(semaster_list)
         {
-        sefound = 0;
+        sefound = 0
+        xmax = -$ffff;
+        xmin = $ffff;
+        ymax = -$ffff;
+        ymin = $ffff;;
         for (i = 0; i &lt; ds_list_size(el_list);i++)
             {
-            if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
+            for (j = 0;j &lt; ds_list_size(semaster_list);j++)
                 {
-                sefound = 1;
-                selectedelementlist = ds_list_find_value(el_list,i);
-                xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
-                yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-                rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
-                rectymin = yo + (ds_list_find_value(selectedelementlist,6));
-                rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-                rectymax = yo + (ds_list_find_value(selectedelementlist,7));
+                templist = ds_list_find_value(semaster_list,j);
+                xo = ds_list_find_value(templist,0)/$ffff*512;
+                yo = ds_list_find_value(templist,1)/$ffff*512;
+                if (xmin &gt; xo + (ds_list_find_value(templist,4)))
+                    xmin = xo + (ds_list_find_value(templist,4));
+                if (ymin &gt; yo + (ds_list_find_value(templist,6)))
+                    ymin = yo + (ds_list_find_value(templist,6));
+                if (xmax &lt; xo + (ds_list_find_value(templist,5)))
+                    xmax = xo + (ds_list_find_value(templist,5));
+                if (ymax &lt; yo + (ds_list_find_value(templist,7)))
+                    ymax = yo + (ds_list_find_value(templist,7));
                 }
             }
         if (sefound == 0)
-            selectedelement = -1;
+            ds_list_clear(semaster_list);
         }
         
     if (frameprev != 0) and (frame == 0) and (seqcontrol.song)
@@ -459,7 +468,7 @@ if (keyboard_check_pressed(ord('M')))
 if (keyboard_check_pressed(ord("0")))
     {
     placing_status = 0;
-    selectedelement = -1;
+    ds_list_clear(semaster_list);
     ds_list_clear(free_list);
     ds_list_clear(bez_list);
     exit;
@@ -489,7 +498,7 @@ if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('V')))
     
 //SELECTED ELEMENT STUFFS
 canrightclick = 1;
-if (selectedelement != -1)
+if !ds_list_empty(semaster_list)
     {
     if (objmoving) or ((mouse_x == clamp(mouse_x,0,532)) and (mouse_y == clamp(mouse_y,0,room_height)))
         {
@@ -520,7 +529,7 @@ and (mouse_check_button_pressed(mb_right)) and (canrightclick)
     dropdown_empty();
     
 //KEYBOARD RIGHT LEFT
-if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
+/*if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
     {
     placing_status = 0;
     ds_list_clear(free_list);
@@ -607,7 +616,7 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status ==
         if (sefound == 0)
             selectedelement = -1;
         }
-    }
+    }*/
     
 if (frame &gt;= maxframes)
     {
@@ -799,7 +808,7 @@ bez_moving = 0;
 if (instance_exists(oDropDown)) or (mouse_x &gt; 512) or (mouse_y &gt; 512) or (keyboard_check(vk_control))
     exit;
 
-if (selectedelement != -1)  and (
+if !ds_list_empty(semaster_list)  and (
 ((mouse_x == clamp(mouse_x,rectxmin-2,rectxmax+2)) and (mouse_y == clamp(mouse_y,rectymin-2,rectymax+2)))
 or ((mouse_x == clamp(mouse_x,anchorx/$ffff*512-10,anchorx/$ffff*512+10)) and (mouse_y == clamp(mouse_y,anchory/$ffff*512-10,anchory/$ffff*512+10)))
 or ((mouse_x == clamp(mouse_x,rectxmin-20,rectxmin-2)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20)))
@@ -1686,6 +1695,14 @@ if (tooltip == "Click to select this object")
     draw_set_alpha(1);
     draw_set_colour(c_white);
     }
+else if (tooltip == "Click to deselect this object")
+    {
+    draw_set_alpha(0.7);
+    draw_set_colour(c_maroon);
+        draw_rectangle(rectxmin2,rectymin2,rectxmax2,rectymax2,1);
+    draw_set_alpha(1);
+    draw_set_colour(c_white);
+    }
 
 draw_set_color(c_gray);
 if (objmoving == 3)
@@ -1739,7 +1756,7 @@ if (keyboard_check(ord('R')) or (rgridshow == 1))
 
     
 draw_set_color(c_aqua);
-if (selectedelement != -1)
+if !(ds_list_empty(semaster_list))//(selectedelement != -1)
     {
     draw_sprite(spr_anchor,0,anchorx/$ffff*512,anchory/$ffff*512);
     draw_set_alpha(0.6);

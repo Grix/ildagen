@@ -11,12 +11,7 @@ if (objmoving == 1)
         objmoving = 0;
         reapply_trans();
         
-        xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
-        yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-        rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
-        rectymin = yo + (ds_list_find_value(selectedelementlist,6));
-        rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-        rectymax = yo + (ds_list_find_value(selectedelementlist,7));
+        //REDO RECT
         }
     }
 else if (objmoving == 2)    
@@ -50,12 +45,7 @@ else if (objmoving == 3)
         objmoving = 0;
         reapply_trans();
         
-        xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
-        yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-        rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
-        rectymin = yo + (ds_list_find_value(selectedelementlist,6));
-        rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-        rectymax = yo + (ds_list_find_value(selectedelementlist,7));
+        //REDO RECT
         }
     }
 else if (objmoving == 4)
@@ -80,15 +70,10 @@ else if (objmoving == 4)
         objmoving = 0;
         reapply_trans();
         
-        xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
-        yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-        rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
-        rectymin = yo + (ds_list_find_value(selectedelementlist,6));
-        rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-        rectymax = yo + (ds_list_find_value(selectedelementlist,7));
+        //REDO RECT
         }
     }
-else
+else if !keyboard_check(vk_control)
     {
     if (mouse_x == clamp(mouse_x,anchorx/$ffff*512-10,anchorx/$ffff*512+10)) and (mouse_y == clamp(mouse_y,anchory/$ffff*512-10,anchory/$ffff*512+10))
         {

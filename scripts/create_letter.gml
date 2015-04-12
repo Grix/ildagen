@@ -1,6 +1,16 @@
-letter_list = ds_list_find_value(font_list,ord(letter)-33);
+if (font_type = 0)
+    {
+    letter_list = ds_list_find_value(font_list,ord(letter)-33);
+    }
+else if (font_type = 1)
+    {
+    letter_list = ds_map_find_value(font_map,real(letter))//ord(letter)-39);
+    show_message(real(letter))
+    show_message(is_undefined(letter_list))
+    //show_message("siz " +string(ds_map_size(font_map)))
+    }
+    
 checkpoints = (ds_list_size(letter_list)-50)/6;
-
 blanknew = 1;
 
 xmax = -$ffff;

@@ -1,13 +1,24 @@
 with(controller)
     {
-    filename = get_open_filename_ext("ILDA files|*.ild","",program_directory,"Select ILDA font file")
-    if (filename != "")
+    font_type = -1;
+    filename = get_open_filename_ext("","",program_directory,"Select ILDA or Hershey font file")
+    if (filename_ext(filename) == ".ild")
         {
         ild_filename = FS_file_bin_open(filename,0);
         file_size = FS_file_bin_size(ild_filename);
         FS_file_bin_close(ild_filename);
         ild_file = buffer_create(file_size,buffer_fast,1);
         buffer_load_ext(ild_file,FS_copy_fast(filename),0);
+        }
+    else if (filename != "")
+        {
+        hershey_file = FS_file_text_open_read(filename);
+        if read_hershey()
+            return 1;
+        else   
+            {
+            return 0;
+            }
         }
     else
         {
@@ -44,10 +55,8 @@ with(controller)
     
     read_ilda_work();
     
-    if (ds_list_size(ild_list) < 94)
-        show_message_async("Not enough frames in ilda file. Are you sure this is a font file?"); 
-    else   
-        ds_list_copy(font_list,ild_list);
+    
+    ds_list_copy(font_list,ild_list);
         
     //interpolate
     for (i = 0; i < ds_list_size(font_list); i++)
@@ -76,9 +85,9 @@ with(controller)
                                     ,ds_list_find_value(new_list,temppos+6)
                                     ,ds_list_find_value(new_list,temppos+7));
             
-            if (length < 2000*phi) continue;
+            if (length < opt_maxdist*phi) continue;
             
-            steps = length / 2000;
+            steps = length / opt_maxdist;
             stepscount = round(steps-1);
             tempx0 = ds_list_find_value(new_list,temppos);
             tempy0 = ds_list_find_value(new_list,temppos+1);
@@ -113,5 +122,6 @@ with(controller)
     ds_list_destroy(ild_list);
         
     el_id++;
+    font_type = 0;
     }
 return 1;

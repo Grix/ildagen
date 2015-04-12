@@ -92,7 +92,7 @@
     <option_html5_advertising_type>Supersonic Ads</option_html5_advertising_type>
     <option_html5_allow_fullscreen>False</option_html5_allow_fullscreen>
     <option_html5_alwaysreload>False</option_html5_alwaysreload>
-    <option_html5_browser_title>Created with GameMaker:Studio</option_html5_browser_title>
+    <option_html5_browser_title>LasershowGen Web Edition</option_html5_browser_title>
     <option_html5_centergame>True</option_html5_centergame>
     <option_html5_flurry_enable>0</option_html5_flurry_enable>
     <option_html5_flurry_id></option_html5_flurry_id>
@@ -105,7 +105,7 @@
     <option_html5_interpolate>0</option_html5_interpolate>
     <option_html5_jsprepend></option_html5_jsprepend>
     <option_html5_loadingbar>-1</option_html5_loadingbar>
-    <option_html5_localrunalert>True</option_html5_localrunalert>
+    <option_html5_localrunalert>False</option_html5_localrunalert>
     <option_html5_outputdebugtoconsole>False</option_html5_outputdebugtoconsole>
     <option_html5_outputname>indextemp.html</option_html5_outputname>
     <option_html5_scale>-1</option_html5_scale>
@@ -114,7 +114,7 @@
     <option_html5_texture_page>4096</option_html5_texture_page>
     <option_html5_use_test_ads>0</option_html5_use_test_ads>
     <option_html5_usebuiltinparticles>True</option_html5_usebuiltinparticles>
-    <option_html5_usesplash>False</option_html5_usesplash>
+    <option_html5_usesplash>True</option_html5_usesplash>
     <option_icon>nil</option_icon>
     <option_in_app_purchase_enable>0</option_in_app_purchase_enable>
     <option_in_app_purchase_sandbox_mode>0</option_in_app_purchase_sandbox_mode>
@@ -293,11 +293,11 @@
     <option_version_build>0</option_version_build>
     <option_version_company>Gitle Mikkelsen</option_version_company>
     <option_version_copyright></option_version_copyright>
-    <option_version_description></option_version_description>
+    <option_version_description>Laser show editor</option_version_description>
     <option_version_major>0</option_version_major>
     <option_version_minor>9</option_version_minor>
     <option_version_product>LasershowGen</option_version_product>
-    <option_version_release>9</option_version_release>
+    <option_version_release>10</option_version_release>
     <option_win8_advertising_appid></option_win8_advertising_appid>
     <option_win8_advertising_enable>0</option_win8_advertising_enable>
     <option_win8_advertising_key></option_win8_advertising_key>
@@ -337,7 +337,7 @@
     <option_windows_build_version>0</option_windows_build_version>
     <option_windows_company_info>Gitle Mikkelsen</option_windows_company_info>
     <option_windows_copyright_info></option_windows_copyright_info>
-    <option_windows_description_info></option_windows_description_info>
+    <option_windows_description_info>Laser show editor</option_windows_description_info>
     <option_windows_enable_steam>0</option_windows_enable_steam>
     <option_windows_game_icon>Configs\Default\windows\runner_icon.ico</option_windows_game_icon>
     <option_windows_license>Configs\Default\windows\License.txt</option_windows_license>
@@ -345,7 +345,7 @@
     <option_windows_major_version>0</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
     <option_windows_product_info>LasershowGen</option_windows_product_info>
-    <option_windows_release_version>9</option_windows_release_version>
+    <option_windows_release_version>10</option_windows_release_version>
     <option_windows_runner_finished>Configs\Default\windows\Runner_finish.bmp</option_windows_runner_finished>
     <option_windows_runner_header>Configs\Default\windows\Runner_header.bmp</option_windows_runner_header>
     <option_windows_save_location>1</option_windows_save_location>
