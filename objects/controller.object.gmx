@@ -373,30 +373,7 @@ if (playing == 1)
     
     if !ds_list_empty(semaster_list)
         {
-        sefound = 0
-        xmax = -$ffff;
-        xmin = $ffff;
-        ymax = -$ffff;
-        ymin = $ffff;;
-        for (i = 0; i &lt; ds_list_size(el_list);i++)
-            {
-            for (j = 0;j &lt; ds_list_size(semaster_list);j++)
-                {
-                templist = ds_list_find_value(semaster_list,j);
-                xo = ds_list_find_value(templist,0)/$ffff*512;
-                yo = ds_list_find_value(templist,1)/$ffff*512;
-                if (xmin &gt; xo + (ds_list_find_value(templist,4)))
-                    xmin = xo + (ds_list_find_value(templist,4));
-                if (ymin &gt; yo + (ds_list_find_value(templist,6)))
-                    ymin = yo + (ds_list_find_value(templist,6));
-                if (xmax &lt; xo + (ds_list_find_value(templist,5)))
-                    xmax = xo + (ds_list_find_value(templist,5));
-                if (ymax &lt; yo + (ds_list_find_value(templist,7)))
-                    ymax = yo + (ds_list_find_value(templist,7));
-                }
-            }
-        if (sefound == 0)
-            ds_list_clear(semaster_list);
+        update_semasterlist();
         }
         
     if (frameprev != 0) and (frame == 0) and (seqcontrol.song)
@@ -529,7 +506,7 @@ and (mouse_check_button_pressed(mb_right)) and (canrightclick)
     dropdown_empty();
     
 //KEYBOARD RIGHT LEFT
-/*if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
+if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
     {
     placing_status = 0;
     ds_list_clear(free_list);
@@ -551,25 +528,9 @@ and (mouse_check_button_pressed(mb_right)) and (canrightclick)
         frame = 0;
     frame_surf_refresh = 1;
     
-    if (selectedelement != -1)
+    if !ds_list_empty(semaster_list)
         {
-        sefound = 0;
-        for (i = 0; i &lt; ds_list_size(el_list);i++)
-            {
-            if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
-                {
-                sefound = 1;
-                selectedelementlist = ds_list_find_value(el_list,i);
-                xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
-                yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-                rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
-                rectymin = yo + (ds_list_find_value(selectedelementlist,6));
-                rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-                rectymax = yo + (ds_list_find_value(selectedelementlist,7));
-                }
-            }
-        if (sefound == 0)
-            selectedelement = -1;
+        update_semasterlist();
         }
     }
 else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status == 0)
@@ -596,27 +557,11 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status ==
     if (frame != frameprev)
         frame_surf_refresh = 1;
     
-    if (selectedelement != -1)
+    if !ds_list_empty(semaster_list)
         {
-        sefound = 0;
-        for (i = 0; i &lt; ds_list_size(el_list);i++)
-            {
-            if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
-                {
-                sefound = 1;
-                selectedelementlist = ds_list_find_value(el_list,i);
-                xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
-                yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-                rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
-                rectymin = yo + (ds_list_find_value(selectedelementlist,6));
-                rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-                rectymax = yo + (ds_list_find_value(selectedelementlist,7));
-                }
-            }
-        if (sefound == 0)
-            selectedelement = -1;
+        update_semasterlist();
         }
-    }*/
+    }
     
 if (frame &gt;= maxframes)
     {
@@ -625,7 +570,7 @@ if (frame &gt;= maxframes)
     }
     
 //KEYBOARD UP DOWN
-if (keyboard_check_pressed(vk_up)) and (!ds_list_empty(el_list)) and (placing_status == 0)
+/*if (keyboard_check_pressed(vk_up)) and (!ds_list_empty(el_list)) and (placing_status == 0)
     {
     tempstop = 0;
     while (1)
@@ -695,7 +640,7 @@ if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list)) and (placing_
             exit;
             }
         }
-    }
+    }*/
     
 frameprev = frame;    
 
@@ -816,7 +761,7 @@ or ((mouse_x == clamp(mouse_x,rectxmax+2,rectxmax+20)) and (mouse_y == clamp(mou
 )
     exit;
     
-selectedelement = -1;
+ds_list_clear(semaster_list);
 
 if ((keyboard_check(ord('E'))) and (placing_status != 2))
     {
@@ -1866,26 +1811,9 @@ frame = 0;
 framehr = 0;
 frame_surf_refresh = 1;
 
-if (selectedelement != -1)
-    {
-    sefound = 0;
-    for (i = 0; i &lt; ds_list_size(el_list);i++)
-        {
-        if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
-            {
-            sefound = 1;
-            selectedelementlist = ds_list_find_value(el_list,i);
-            xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
-            yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-            rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
-            rectymin = yo + (ds_list_find_value(selectedelementlist,6));
-            rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-            rectymax = yo + (ds_list_find_value(selectedelementlist,7));
-            }
-        }
-    if (sefound == 0)
-        selectedelement = -1;
-    }
+
+ds_list_clear(semaster_list);
+update_semasterlist();
 
 if (seqcontrol.song)
     FMODInstanceSetPaused(seqcontrol.songinstance,1);

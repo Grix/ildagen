@@ -11,7 +11,7 @@ if (objmoving == 1)
         objmoving = 0;
         reapply_trans();
         
-        //REDO RECT
+        update_semasterlist();
         }
     }
 else if (objmoving == 2)    
@@ -44,8 +44,6 @@ else if (objmoving == 3)
         {
         objmoving = 0;
         reapply_trans();
-        
-        //REDO RECT
         }
     }
 else if (objmoving == 4)
@@ -69,8 +67,6 @@ else if (objmoving == 4)
         {
         objmoving = 0;
         reapply_trans();
-        
-        //REDO RECT
         }
     }
 else if !keyboard_check(vk_control)

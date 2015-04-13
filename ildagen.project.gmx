@@ -873,6 +873,7 @@
       <script>scripts\refresh_3dsurfaces.gml</script>
       <script>scripts\handle_trans.gml</script>
       <script>scripts\clear_all.gml</script>
+      <script>scripts\update_semasterlist.gml</script>
     </scripts>
     <scripts name="files">
       <scripts name="importilda">

@@ -1,7 +1,7 @@
 ddobj = instance_create(mouse_x,mouse_y,oDropDown);
 with (ddobj)
     {
-    num = 4;
+    num = 5;
     event_user(1);
     ds_list_add(desc_list,"Copy");
     ds_list_add(desc_list,"Cut");
@@ -19,4 +19,8 @@ with (ddobj)
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
+    ds_list_add(desc_list,"Deselect all objects");
+    ds_list_add(sep_list,1);
+    ds_list_add(scr_list,deselect_object);
+    ds_list_add(hl_list,controller.selectedelement != -1);
     }

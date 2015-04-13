@@ -1,1 +1,4 @@
-selectedelement = -1;
+with (controller)
+    {
+    ds_list_clear(semaster_list);
+    }
