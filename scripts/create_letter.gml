@@ -4,10 +4,7 @@ if (font_type = 0)
     }
 else if (font_type = 1)
     {
-    letter_list = ds_map_find_value(font_map,real(letter))//ord(letter)-39);
-    show_message(real(letter))
-    show_message(is_undefined(letter_list))
-    //show_message("siz " +string(ds_map_size(font_map)))
+    letter_list = ds_list_find_value(font_list,real(letter));
     }
     
 checkpoints = (ds_list_size(letter_list)-50)/6;

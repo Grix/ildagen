@@ -686,7 +686,7 @@ frameprev = frame;
           <argument>
             <kind>1</kind>
             <string>if (room != rm_ilda) exit;
-if ((mouse_x &gt; 550) or (mouse_y &gt; 550)) and (placing_status != 2) or ((selectedelement != -1)  and (
+if ((mouse_x &gt; 550) or (mouse_y &gt; 550)) and (placing_status != 2) or (!ds_list_empty(semaster_list) and (
 ((mouse_x == clamp(mouse_x,rectxmin-2,rectxmax+2)) and (mouse_y == clamp(mouse_y,rectymin-2,rectymax+2)))
 or ((mouse_x == clamp(mouse_x,anchorx/$ffff*512-10,anchorx/$ffff*512+10)) and (mouse_y == clamp(mouse_y,anchory/$ffff*512-10,anchory/$ffff*512+10)))
 or ((mouse_x == clamp(mouse_x,rectxmin-20,rectxmin-2)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20)))
@@ -846,7 +846,7 @@ if (mouse_x &gt; 512) or (mouse_y &gt; 512)
     exit;
 
 
-//selectedelement = -1;
+//ds_list_clear(semaster_list);
     
 if (placing == "free")
     {
@@ -1200,12 +1200,12 @@ if (new_id == getint)
             scaley = scalex;
             reapply_trans();
             
-            xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+            /*xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
             yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
             rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
             rectymin = yo + (ds_list_find_value(selectedelementlist,6));
             rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-            rectymax = yo + (ds_list_find_value(selectedelementlist,7));
+            rectymax = yo + (ds_list_find_value(selectedelementlist,7));*/
             
             break;
             }            
@@ -1215,12 +1215,12 @@ if (new_id == getint)
             anirot = ds_map_find_value(async_load, "value");
             reapply_trans();
             
-            xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
+            /*xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
             yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
             rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
             rectymin = yo + (ds_list_find_value(selectedelementlist,6));
             rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-            rectymax = yo + (ds_list_find_value(selectedelementlist,7));
+            rectymax = yo + (ds_list_find_value(selectedelementlist,7));*/
             
             break;
             }

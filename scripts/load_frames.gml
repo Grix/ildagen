@@ -15,7 +15,7 @@ if (idbyte != 0) and (idbyte != 50)
 placing_status = 0;
 ds_list_clear(free_list);
 ds_list_clear(bez_list);
-selectedelement = -1;
+ds_list_clear(semaster_list);
 
 for (j = 0;j < ds_list_size(frame_list);j++)
     {

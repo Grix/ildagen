@@ -22,5 +22,5 @@ with (ddobj)
     ds_list_add(desc_list,"Deselect all objects");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,deselect_object);
-    ds_list_add(hl_list,controller.selectedelement != -1);
+    ds_list_add(hl_list,!ds_list_empty(controller.semaster_list));
     }
