@@ -36,6 +36,9 @@ for (i = 0;i < ds_list_size(el_list); i++)
                 }
             }
             
-        exit;
+        return 0;
         }
     }
+    
+if (mouse_check_button_pressed(mb_left))
+    deselect_object();

@@ -151,6 +151,9 @@ else if !keyboard_check(vk_control)
             getint = get_integer_async("Enter the scaling multiplier (F.ex. 1 is no change, 2 is double the size)",1);
             }
         }
-    else return 0;
+    else 
+        {
+        return 0;
+        }
     }
 return 1;
