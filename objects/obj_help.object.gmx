@@ -57,7 +57,6 @@
         "Enter)    Remake selected object, or finalize curve#"+
         "Left/Right Arrows)    Cycle between frames#"+
         "Space)    Play/Pause"+
-        "Up/Down Arrows)    Cycle between selected object#"+
         "Ctrl+Mouse)    Select object#"+
         "Delete)    Delete selected object#"+
         "P)    Switch between 2D and 3D frame previewing#"+
@@ -72,8 +71,8 @@
         "E)    Clone color from background image#"+
         "Ctrl)    Move all color sliders, or center symmetric sliders#"+
         "Ctrl+Z)    Undo#"+
-        "Ctrl+C)    Copy#"+
-        "Ctrl+X)    Cut#"+
+        "Ctrl+C)    Copy selected objects#"+
+        "Ctrl+X)    Cut selected objects#"+
         "Ctrl+V)    Paste#"+
         "Backspace)    Cancel object placing and selection#"+
         "0)    Jump to first frame#"+
