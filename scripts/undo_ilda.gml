@@ -1,4 +1,4 @@
-if (ds_stack_size(controller.undo_list) == 0)
+if (ds_list_size(controller.undo_list) == 0)
     exit;
 
 with (controller)
@@ -6,9 +6,11 @@ with (controller)
     placing_status = 0;
     ds_list_clear(free_list);
     ds_list_clear(bez_list);
+    ds_list_clear(semaster_list);
     }
     
-undo = ds_stack_pop(controller.undo_list);
+undo = ds_list_find_value(controller.undo_list,ds_list_size(controller.undo_list)-1);
+ds_list_delete(controller.undo_list,ds_list_size(controller.undo_list)-1);
 
 if (is_real(undo))
     {
@@ -44,19 +46,27 @@ else if (string_char_at(undo,0) == 'd')
     }
 else if (string_char_at(undo,0) == 'c')
     {
-    ds_list_copy(ds_list_find_index(controller.frame_list,real(string_digits(ds_stack_pop(controller.undo_list)))),real(string_digits(undo)));
+    //clear frame, unused
+    ds_list_copy(ds_list_find_index(controller.frame_list,real(string_digits(ds_list_find_value(controller.undo_list,ds_list_size(controller.undo_list)-1)))),real(string_digits(undo)));
+    ds_list_delete(controller.undo_list,ds_list_size(controller.undo_list)-1);
     }
 else if (string_char_at(undo,0) == 'v')
     {
     controller.anicolor1 = real(string_digits(undo));
-    controller.anicolor2 = real(string_digits(ds_stack_pop(controller.undo_list)));
-    controller.anienddotscolor = real(string_digits(ds_stack_pop(controller.undo_list)));
+    controller.anicolor2 = real(string_digits(ds_list_find_value(controller.undo_list,ds_list_size(controller.undo_list)-1)));
+    ds_list_delete(controller.undo_list,ds_list_size(controller.undo_list)-1);
+    controller.anienddotscolor = real(string_digits(ds_list_find_value(controller.undo_list,ds_list_size(controller.undo_list)-1)));
+    ds_list_delete(controller.undo_list,ds_list_size(controller.undo_list)-1);
+    update_anicolors();
     }
 else if (string_char_at(undo,0) == 'b')
     {
     controller.color1 = real(string_digits(undo));
-    controller.color2 = real(string_digits(ds_stack_pop(controller.undo_list)));
-    controller.enddotscolor = real(string_digits(ds_stack_pop(controller.undo_list)));
+    controller.color2 = real(string_digits(ds_list_find_value(controller.undo_list,ds_list_size(controller.undo_list)-1)));
+    ds_list_delete(controller.undo_list,ds_list_size(controller.undo_list)-1);
+    controller.enddotscolor = real(string_digits(ds_list_find_value(controller.undo_list,ds_list_size(controller.undo_list)-1)));
+    ds_list_delete(controller.undo_list,ds_list_size(controller.undo_list)-1);
+    update_colors();
     }
 else if (string_char_at(undo,0) == 'k')
     {
@@ -73,7 +83,7 @@ else if (string_char_at(undo,0) == 'k')
             if (ds_list_find_value(ds_list_find_value(el_list,i),9) == tempid)
                 {
                 oldlist = ds_list_find_value(el_list,i);
-                ds_list_clear(oldlist);
+                ds_list_destroy(oldlist);
                 ds_list_replace(el_list,i,list);
                 }
             }

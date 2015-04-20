@@ -85,14 +85,15 @@ with (controller)
     placing_status = 0;
     ds_list_clear(free_list);
     ds_list_clear(bez_list);
+    ds_list_clear(semaster_list);
     }
 
 
 el_list = controller.el_list;
 framedellist = ds_list_create();
 ds_list_copy(framedellist,el_list);
-ds_stack_push(controller.undo_list,"cf"+string(controller.frame))
-ds_stack_push(controller.undo_list,"c"+string(framedellist))
+ds_list_add(controller.undo_list,"cf"+string(controller.frame))
+ds_list_add(controller.undo_list,"c"+string(framedellist))
 ds_list_clear(el_list);
 
     
@@ -102,56 +103,6 @@ with (controller)
     {
     frame_surf_refresh = 1;
     }
-
-    
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="46">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (ds_list_empty(controller.el_list))
-    exit;
-
-with (controller)
-    {
-    placing_status = 0;
-    ds_list_clear(free_list);
-    ds_list_clear(bez_list);
-    }
-
-
-el_list = ds_list_find_value(controller.frame_list,controller.frame);
-framedellist = ds_list_create();
-ds_list_copy(el_list,framedellist);
-ds_stack_push(controller.undo_list,"cf"+string(controller.frame))
-ds_stack_push(controller.undo_list,"c"+string(framedellist))
-ds_list_clear(el_list);
-
-controller.framepoints = 0;
-
-with (controller)
-    {
-    frame_surf_refresh = 1;
-    }
-
-    
 </string>
           </argument>
         </arguments>

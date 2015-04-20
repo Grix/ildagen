@@ -27,11 +27,10 @@ for (u = 0;u < ds_list_size(copy_list);u++)
     
     if (tempelid != ds_list_find_value(list,9))
         {
-        show_debug_message(el_id)
         el_id++;
         ds_list_add(semaster_list,el_id);
         tempelid = ds_list_find_value(list,9);
-        ds_stack_push(undo_list,el_id);
+        ds_list_add(undo_list,el_id);
         }
     ds_list_replace(list,9,el_id);
     el_list = ds_list_find_value(frame_list,framei);

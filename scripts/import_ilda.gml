@@ -61,7 +61,7 @@ with(controller)
                     ds_list_destroy(ds_list_find_value(ild_list,i));
                 }
             }
-        ds_stack_push(undo_list,el_id);
+        ds_list_add(undo_list,el_id);
         el_id++;
         frame_surf_refresh = 1;
         refresh_miniaudio_flag = 1;

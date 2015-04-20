@@ -80,13 +80,15 @@ visible = obj_anicolorselect_1.visible;
             <kind>1</kind>
             <string>if (!visible) exit;
 
-ds_stack_push(controller.undo_list,"bbb"+string(controller.enddotscolor))
-ds_stack_push(controller.undo_list,"bb"+string(controller.color2))
-ds_stack_push(controller.undo_list,"b"+string(controller.color1))
+ds_list_add(controller.undo_list,"bbb"+string(controller.enddotscolor))
+ds_list_add(controller.undo_list,"bb"+string(controller.color2))
+ds_list_add(controller.undo_list,"b"+string(controller.color1))
 
 controller.color1 = controller.anicolor1;
 controller.enddotscolor = controller.anienddotscolor;
 controller.color2 = controller.anicolor2;
+
+update_colors();
 </string>
           </argument>
         </arguments>

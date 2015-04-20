@@ -5,7 +5,6 @@ ds_list_clear(bez_list);
     
 if (maxframes == 1) and (anienable)
     {
-    //ds_stack_push(controller.undo_list,"a"+string(controller.maxframes))
     maxframes = 32;
     scope_end = 31;
     refresh_miniaudio_flag = 1;
@@ -92,7 +91,7 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                 }
         }
     
-    ds_stack_push(undo_list,"k"+string(temp_undof_list));
+    ds_list_add(undo_list,"k"+string(temp_undof_list));
     
             
     //walk through frames

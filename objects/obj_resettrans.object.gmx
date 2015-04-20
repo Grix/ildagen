@@ -106,7 +106,7 @@ with (controller)
                     }
                 }
             }
-        ds_stack_push(undo_list,"k"+string(temp_undof_list));
+        ds_list_add(undo_list,"k"+string(temp_undof_list));
         
         for (i = 0;i &lt; ds_list_size(temp_frame_list);i++)
             {

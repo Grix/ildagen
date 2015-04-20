@@ -892,6 +892,8 @@
       <script>scripts\clear_all.gml</script>
       <script>scripts\update_semasterlist.gml</script>
       <script>scripts\undo_ilda.gml</script>
+      <script>scripts\update_colors.gml</script>
+      <script>scripts\update_anicolors.gml</script>
     </scripts>
     <scripts name="files">
       <scripts name="importilda">

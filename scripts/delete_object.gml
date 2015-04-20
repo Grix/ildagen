@@ -36,7 +36,7 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
         ds_list_delete(el_list,ds_list_find_index(el_list,list_id));
         ds_list_destroy(list_id);
         }
-    ds_stack_push(undo_list,"l"+string(temp_undof_list));
+    ds_list_add(undo_list,"l"+string(temp_undof_list));
     }
     
 

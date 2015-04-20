@@ -82,7 +82,7 @@ surface_set_target(squaregrid_surf);
 surface_reset_target();
 
 el_list = ds_list_create();
-undo_list = ds_stack_create();
+undo_list = ds_list_create();
 frame_surf = surface_create(512,512);
 frame3d_surf = surface_create(512,512);
 frame_list = ds_list_create();
@@ -260,55 +260,37 @@ alarm[3] = 300;
 
 if (ds_list_size(undo_list) &gt; 100)
     {
-    undo = ds_stack_pop(undo_list);
+    undo = ds_list_find_value(undo_list,0);
+    ds_list_delete(undo_list,0);
 
     if (is_real(undo))
         {
-        for (j = 0;j &lt; ds_list_size(frame_list);j++)
-            {
-            el_list = ds_list_find_value(frame_list,j);
-            for (i = 0;i &lt; ds_list_size(el_list);i++)
-                {
-                if (ds_list_find_value(ds_list_find_value(el_list,i),9) == undo)
-                    {
-                    list_id = ds_list_find_value(el_list,i);
-                    ds_list_destroy(list_id);
-                    ds_list_delete(el_list,i);
-                    }
-                }
-            }
+        //nothing
         }
     else if (string_char_at(undo,0) == 'a')
         {
-        maxframes = real(string_digits(undo));
-        if (frame &gt; maxframes) frame = maxframes-1;
+        //nothing
         }
     else if (string_char_at(undo,0) == 'r')
         {
-        if (string_digits(undo) == "rauto")
-            resolution = clamp(real(string_digits(undo)),4,$ffff);
-        else
-            resolution = "auto";
+        //nothing
         }
     else if (string_char_at(undo,0) == 'd')
         {
-        dotmultiply = real(string_digits(undo));
+        //nothing
         }
     else if (string_char_at(undo,0) == 'c')
         {
-        ds_list_copy(ds_list_find_index(frame_list,real(string_digits(ds_stack_pop(undo_list)))),real(string_digits(undo)));
+        //clear frame, unused and not done, lists within the list
+        ds_list_destroy(real(string_digits(undo)));
         }
     else if (string_char_at(undo,0) == 'v')
         {
-        anicolor1 = real(string_digits(undo));
-        anicolor2 = real(string_digits(ds_stack_pop(undo_list)));
-        anienddotscolor = real(string_digits(ds_stack_pop(undo_list)));
+        //nothing
         }
     else if (string_char_at(undo,0) == 'b')
         {
-        color1 = real(string_digits(undo));
-        color2 = real(string_digits(ds_stack_pop(undo_list)));
-        enddotscolor = real(string_digits(ds_stack_pop(undo_list)));
+        //nothing
         }
     else if (string_char_at(undo,0) == 'k')
         {
@@ -316,20 +298,9 @@ if (ds_list_size(undo_list) &gt; 100)
         for (u = 0;u &lt; ds_list_size(real(string_digits(undo)));u++)
             {
             list = ds_list_find_value(real(string_digits(undo)),u);
-            tempid = ds_list_find_value(list,9);
-            frame = ds_list_find_value(list,ds_list_size(list)-1);
-            ds_list_delete(list,ds_list_size(list)-1);
-            el_list = ds_list_find_value(frame_list,frame);
-            for (i = 0;i &lt; ds_list_size(el_list);i++)
-                {
-                if (ds_list_find_value(ds_list_find_value(el_list,i),9) == tempid)
-                    {
-                    oldlist = ds_list_find_value(el_list,i);
-                    ds_list_clear(oldlist);
-                    ds_list_replace(el_list,i,list);
-                    }
-                }
+            ds_list_destroy(list);
             }
+        ds_list_destroy(real(string_digits(undo)));
         }
     else if (string_char_at(undo,0) == 'l')
         {
@@ -337,12 +308,9 @@ if (ds_list_size(undo_list) &gt; 100)
         for (u = 0;u &lt; ds_list_size(real(string_digits(undo)));u++)
             {
             list = ds_list_find_value(real(string_digits(undo)),u);
-            tempid = ds_list_find_value(list,9);
-            frame = ds_list_find_value(list,ds_list_size(list)-1);
-            ds_list_delete(list,ds_list_size(list)-1);
-            el_list = ds_list_find_value(frame_list,frame);
-            ds_list_add(el_list,list);
+            ds_list_destroy(list);
             }
+        ds_list_destroy(real(string_digits(undo)));
         }
     }
 
@@ -882,8 +850,8 @@ ds_list_clear(semaster_list);
 
 if ((keyboard_check(ord('E'))) and (placing_status != 2))
     {
-    ds_stack_push(undo_list,"bb"+string(color2));
-    ds_stack_push(undo_list,"b"+string(color1));
+    ds_list_add(undo_list,"bb"+string(color2));
+    ds_list_add(undo_list,"b"+string(color1));
     color1 = draw_getpixel(obj_cursor.x,obj_cursor.y);
     exit;
     }
@@ -1358,7 +1326,7 @@ if (new_id == getint)
           
           case "dotintensity":
             {
-            ds_stack_push(undo_list,"d"+string(dotmultiply))
+            ds_list_add(undo_list,"d"+string(dotmultiply))
 
             dotmultiply = ds_map_find_value(async_load, "value");
             if (dotmultiply &lt; 1) dotmultiply = 1;
@@ -1395,7 +1363,7 @@ if (new_id == getint)
             
           case "res":
             {
-            ds_stack_push(undo_list,"r"+string(resolution))
+            ds_list_add(undo_list,"r"+string(resolution))
 
             resolution = ds_map_find_value(async_load, "value");
             if (resolution &lt; 4) resolution = 4;
@@ -1447,7 +1415,7 @@ if (new_id == getint)
             
           case "maxframes":
             {
-            ds_stack_push(undo_list,"a"+string(maxframes))
+            ds_list_add(undo_list,"a"+string(maxframes))
             
             refresh_miniaudio_flag = 1;
             

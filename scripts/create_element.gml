@@ -5,7 +5,7 @@ placing_status = 0;
         
 if (maxframes == 1) and (anienable)
     {
-    //ds_stack_push(controller.undo_list,"a"+string(controller.maxframes))
+    //ds_list_add(controller.undo_list,"a"+string(controller.maxframes))
     maxframes = 32;
     scope_end = 31;
     refresh_miniaudio_flag = 1;
@@ -357,8 +357,9 @@ if (!fillframes)
             {
             ds_list_clear(bez_list);
             ds_list_clear(free_list);
-            ds_stack_push(undo_list,el_id);
             ds_list_destroy(new_list);
+            if (autoresflag)
+                resolution = "auto";
             frame = framepre;
             return 0;
             }
@@ -370,8 +371,9 @@ if (!fillframes)
             {
             ds_list_clear(bez_list);
             ds_list_clear(free_list);
-            ds_stack_push(undo_list,el_id);
             ds_list_destroy(new_list);
+            if (autoresflag)
+                resolution = "auto";
             frame = framepre;
             return 0;
             }
@@ -383,8 +385,9 @@ if (!fillframes)
             {
             ds_list_clear(bez_list);
             ds_list_clear(free_list);
-            ds_stack_push(undo_list,el_id);
             ds_list_destroy(new_list);
+            if (autoresflag)
+                resolution = "auto";
             frame = framepre;
             return 0;
             }
@@ -396,8 +399,9 @@ if (!fillframes)
             {
             ds_list_clear(bez_list);
             ds_list_clear(free_list);
-            ds_stack_push(undo_list,el_id);
             ds_list_destroy(new_list);
+            if (autoresflag)
+                resolution = "auto";
             frame = framepre;
             return 0;
             }
@@ -409,8 +413,9 @@ if (!fillframes)
             {
             ds_list_clear(bez_list);
             ds_list_clear(free_list);
-            ds_stack_push(undo_list,el_id);
             ds_list_destroy(new_list);
+            if (autoresflag)
+                resolution = "auto";
             frame = framepre;
             return 0;
             }
@@ -422,8 +427,9 @@ if (!fillframes)
             {
             ds_list_clear(bez_list);
             ds_list_clear(free_list);
-            ds_stack_push(undo_list,el_id);
             ds_list_destroy(new_list);
+            if (autoresflag)
+                resolution = "auto";
             frame = framepre;
             return 0;
             }
@@ -435,8 +441,9 @@ if (!fillframes)
             {
             ds_list_clear(bez_list);
             ds_list_clear(free_list);
-            ds_stack_push(undo_list,el_id);
             ds_list_destroy(new_list);
+            if (autoresflag)
+                resolution = "auto";
             frame = framepre;
             return 0;
             }
@@ -586,7 +593,6 @@ else
                 {
                 ds_list_clear(bez_list);
                 ds_list_clear(free_list);
-                ds_stack_push(undo_list,el_id);
                 ds_list_destroy(new_list);
                 if (autoresflag)
                     resolution = "auto";
@@ -601,7 +607,6 @@ else
                 {
                 ds_list_clear(bez_list);
                 ds_list_clear(free_list);
-                ds_stack_push(undo_list,el_id);
                 ds_list_destroy(new_list);
                 frame = framepre;                
                 if (autoresflag)
@@ -616,7 +621,6 @@ else
                 {
                 ds_list_clear(bez_list);
                 ds_list_clear(free_list);
-                ds_stack_push(undo_list,el_id);
                 ds_list_destroy(new_list);                
                 if (autoresflag)
                     resolution = "auto";
@@ -631,7 +635,6 @@ else
                 {
                 ds_list_clear(bez_list);
                 ds_list_clear(free_list);
-                ds_stack_push(undo_list,el_id);
                 ds_list_destroy(new_list);                
                 if (autoresflag)
                     resolution = "auto";
@@ -646,7 +649,6 @@ else
                 {
                 ds_list_clear(bez_list);
                 ds_list_clear(free_list);
-                ds_stack_push(undo_list,el_id);
                 ds_list_destroy(new_list);                
                 if (autoresflag)
                     resolution = "auto";
@@ -661,7 +663,6 @@ else
                 {
                 ds_list_clear(bez_list);
                 ds_list_clear(free_list);
-                ds_stack_push(undo_list,el_id);
                 ds_list_destroy(new_list);                
                 if (autoresflag)
                     resolution = "auto";
@@ -676,7 +677,6 @@ else
                 {
                 ds_list_clear(bez_list);
                 ds_list_clear(free_list);
-                ds_stack_push(undo_list,el_id);
                 ds_list_destroy(new_list);                
                 if (autoresflag)
                     resolution = "auto";
@@ -706,5 +706,5 @@ if (autoresflag)
 
 ds_list_clear(bez_list);
 ds_list_clear(free_list);
-ds_stack_push(undo_list,el_id);
+ds_list_add(undo_list,el_id);
 el_id++;
