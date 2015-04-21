@@ -36,6 +36,8 @@ math_set_epsilon(0.00001);
 ds_set_precision(0.00001); 
 draw_set_circle_precision(24);
 
+
+
 varmap = ds_map_create();
 parser_shape = ML_InitParserScience(varmap);
     ML_AddVariable(parser_shape, "point",0, ML_VAL_REAL, 1);
@@ -110,6 +112,10 @@ refresh_miniaudio_flag = 1;
 letter = "";
 image_speed = 0;
 font_type = -1;
+hershey_moving = 0;
+hershey_scrollw = 30;
+hershey_scrollx = 0;
+hershey_scrollh = 5000;
 
 redraw = 0;
 sgridshow = 0;
@@ -232,6 +238,8 @@ blankfunc_string = "";
 if (os_version != -1) init_palette();
 if (os_version != -1) update_check();
 if (os_version != -1) parse_parameter();
+
+draw_hershey();
 </string>
           </argument>
         </arguments>
@@ -409,6 +417,9 @@ scroll = 1;
           <argument>
             <kind>1</kind>
             <string>if (room != rm_ilda) exit;
+
+if (placing = "hershey")
+    hershey_handle_scroll();
 
 with (obj_cursor)
     {
@@ -1710,6 +1721,9 @@ frame_surf_refresh = 1;
           <argument>
             <kind>1</kind>
             <string>if (room != rm_ilda) exit;
+
+if (placing = "hershey")
+    draw_surface_part(hershey_surf,0,hershey_scrollx,420,120,650,30);
 
 if (!surface_exists(miniaudio_surf) || refresh_miniaudio_flag)
     {

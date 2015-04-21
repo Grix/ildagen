@@ -153,6 +153,7 @@
     </sprites>
     <sprites name="selectors">
       <sprite>sprites\spr_m_line</sprite>
+      <sprite>sprites\spr_hershey</sprite>
       <sprite>sprites\spr_func</sprite>
       <sprite>sprites\spr_m_free</sprite>
       <sprite>sprites\spr_text</sprite>
@@ -894,6 +895,7 @@
       <script>scripts\undo_ilda.gml</script>
       <script>scripts\update_colors.gml</script>
       <script>scripts\update_anicolors.gml</script>
+      <script>scripts\hershey_handle_scroll.gml</script>
     </scripts>
     <scripts name="files">
       <scripts name="importilda">
@@ -936,6 +938,7 @@
     <script>scripts\parse_parameter.gml</script>
     <script>scripts\verify_serial.gml</script>
     <script>scripts\hershey_error.gml</script>
+    <script>scripts\draw_hershey.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
@@ -1021,6 +1024,7 @@
           <object>objects\obj_funcxselect</object>
           <object>objects\obj_funcyselect</object>
           <object>objects\obj_text</object>
+          <object>objects\obj_hershey</object>
           <object>objects\obj_func</object>
           <object>objects\obj_s_free</object>
           <object>objects\obj_curve</object>

@@ -1,7 +1,6 @@
 with(controller)
     {
-    font_type = -1;
-    filename = get_open_filename_ext("","",program_directory,"Select ILDA or Hershey font file")
+    filename = get_open_filename_ext("ILDA font file|.ild","",program_directory,"Select ILDA font file")
     if (filename_ext(filename) == ".ild")
         {
         ild_filename = FS_file_bin_open(filename,0);
@@ -9,16 +8,6 @@ with(controller)
         FS_file_bin_close(ild_filename);
         ild_file = buffer_create(file_size,buffer_fast,1);
         buffer_load_ext(ild_file,FS_copy_fast(filename),0);
-        }
-    else if (filename != "")
-        {
-        hershey_file = FS_file_text_open_read(filename);
-        if read_hershey()
-            return 1;
-        else   
-            {
-            return 0;
-            }
         }
     else
         {

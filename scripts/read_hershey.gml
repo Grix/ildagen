@@ -1,5 +1,6 @@
 //reads a hershey font file and makes it the active font
-ds_list_destroy(font_list);
+if (ds_exists(font_list,ds_type_list))
+    ds_list_destroy(font_list);
 font_list = ds_list_create();
 cnt = 0
 while (!FS_file_text_eof(hershey_file))
@@ -44,8 +45,8 @@ while (!FS_file_text_eof(hershey_file))
     
     constrxchar = FS_file_text_read_char(hershey_file,1);
     constrychar = FS_file_text_read_char(hershey_file,1);
-    //constrx = max((ord(constrxchar) - ord('R')),1);
-    //constry = max((ord(constrychar) - ord('R')),1);
+    constrx = max((ord(constrxchar) - ord('R')),1);
+    constry = max((ord(constrychar) - ord('R')),1);
     
     repeat(maxglyphpoints-1)
         {
@@ -56,8 +57,8 @@ while (!FS_file_text_eof(hershey_file))
             blank = 1;
             continue;
             }
-        nextpointx = (ord(nextcharx) - ord('R'))*3000;///constrx*32500;
-        nextpointy = (ord(nextchary) - ord('R'))*3000;///constry*32500;
+        nextpointx = (ord(nextcharx) - ord('R'))/constrx*1000//*3000;///constrx*32500;
+        nextpointy = (ord(nextchary) - ord('R'))/constrx*1000//*3000;///constry*32500;
         
         ds_list_add(frame_list_parse,nextpointx);
         ds_list_add(frame_list_parse,nextpointy);
