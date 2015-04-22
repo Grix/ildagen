@@ -1,5 +1,3 @@
-hershey_file = FS_file_text_open_read("hershey");
-
 read_hershey();
 
 hershey_surf = surface_create(512,4096*2);
