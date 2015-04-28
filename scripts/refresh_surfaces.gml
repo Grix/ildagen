@@ -1,3 +1,5 @@
+//cycles through every element in frame on screen and draws them on the frame surfaces
+
 if (!surface_exists(frame_surf))
     frame_surf = surface_create(512,512);
 if (!surface_exists(frame3d_surf))

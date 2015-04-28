@@ -5,9 +5,9 @@ hershey_surf = surface_create(512,4096*2);
 surface_set_target(hershey_surf);
 draw_clear(c_ltgray);
 
-for (c = 0; c < ds_list_size(font_list); c++)
+for (c = 0; c < ds_list_size(hershey_list); c++)
     {
-    //letter_list = ds_list_find_value(font_list,c);
+    //letter_list = ds_list_find_value(hershey_list,c);
     //new_list = ds_list_create();
     
     /*
@@ -33,10 +33,10 @@ for (c = 0; c < ds_list_size(font_list); c++)
         
         }*/
         
-    new_list = ds_list_find_value(font_list,c);
+    new_list = ds_list_find_value(hershey_list,c);
         
-    xo = (c mod 14)*30+30;
-    yo = ceil((c+1)/14)*30+30;
+    xo = (c mod 14)*30+15;
+    yo = ceil((c+1)/14)*30-15;
     listsize = (((ds_list_size(new_list)-50)/6)-1);
     
     for (u = 0; u < listsize; u++)
@@ -65,3 +65,5 @@ for (c = 0; c < ds_list_size(font_list); c++)
     }
     
 surface_reset_target();
+
+ds_list_destroy(hershey_list);

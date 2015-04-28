@@ -1,8 +1,9 @@
-//reads a hershey font file and makes it the active font
-if (ds_exists(font_list,ds_type_list))
-    ds_list_destroy(font_list);
-font_list = ds_list_create();
-cnt = 0
+//reads a hershey font file
+if (ds_exists(hershey_list,ds_type_list))
+    exit;
+hershey_list = ds_list_create();
+ds_list_clear(hershey_index_list);
+cnt = 0;
 
 hershey_file = file_bin_open("hershey",0);
 
@@ -27,6 +28,7 @@ while (1)
     if !hershey_error() return 0;*/
     //c+= 5;
     file_bin_seek(hershey_file,file_bin_position(hershey_file)+5);
+    ds_list_add(hershey_index_list,file_bin_position(hershey_file));
 
     maxglyphpoints = 0;
     maxglyphpoints += 100*real(chr(file_bin_read_byte(hershey_file)));//  string_char_at(hershey_string,c));
@@ -72,13 +74,15 @@ while (1)
         ds_list_add(frame_list_parse,255);
         
         }
-    ds_list_add(font_list,frame_list_parse);
+    ds_list_add(hershey_list,frame_list_parse);
     }
+    
+file_bin_close(hershey_file);
 
 //interpolate
-for (i = 0; i < ds_list_size(font_list); i++)
+for (i = 0; i < ds_list_size(hershey_list); i++)
     {
-    new_list = ds_list_find_value(font_list,i);
+    new_list = ds_list_find_value(hershey_list,i);
     checkpoints = ((ds_list_size(new_list)-50)/6);
     
     for (j = 0; j < (checkpoints-1);j++)

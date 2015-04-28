@@ -232,6 +232,12 @@ if (playing == 1)
         FMODInstanceSetPosition(songinstance,(tlpos-10)/FMODSoundGetLength(song));
         }
     }
+    
+if (frameprev != round(tlpos/1000*projectfps))
+    {
+    frame_surf_refresh = 1;
+    frameprev = round(tlpos/1000*projectfps);
+    }
 
 with (obj_cursor)
     {
@@ -457,15 +463,9 @@ if (alarm[0] == 1)
     
 draw_set_color(c_white);
 draw_set_alpha(1);
-
-if (!surface_exists(frame_surf)) or (frameprev != round(tlpos/1000*projectfps))
-    {
-    frame_surf_refresh = 1;
-    frameprev = round(tlpos/1000*projectfps);
-    }
     
 //draws laser preview
-if (frame_surf_refresh == 1)
+if (frame_surf_refresh == 1) or !surface_exists(frame_surf)
     {
     refresh_seq_surface();
     frame_surf_refresh = 0;

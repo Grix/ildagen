@@ -1,6 +1,6 @@
 with(controller)
     {
-    filename = get_open_filename_ext("ILDA font file|.ild","",program_directory,"Select ILDA font file")
+    filename = get_open_filename_ext("ILDA font file|*.ild|All files|*","",program_directory,"Select ILDA font file")
     if (filename_ext(filename) == ".ild")
         {
         ild_filename = FS_file_bin_open(filename,0);
@@ -44,8 +44,10 @@ with(controller)
     
     read_ilda_work();
     
-    
     ds_list_copy(font_list,ild_list);
+    
+    buffer_delete(ild_file);
+    ds_list_destroy(ild_list);
         
     //interpolate
     for (i = 0; i < ds_list_size(font_list); i++)
@@ -106,9 +108,6 @@ with(controller)
             
             }
         }
-        
-    buffer_delete(ild_file);
-    ds_list_destroy(ild_list);
         
     el_id++;
     font_type = 0;

@@ -1,5 +1,5 @@
 //get and check data
-if (font_type = -1)
+if (ds_list_empty(font_list))
     {
     if (!import_font())
         return 0;

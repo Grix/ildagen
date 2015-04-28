@@ -92,14 +92,16 @@ ds_list_add(frame_list,el_list);
 free_list = ds_list_create();
 bez_list = ds_list_create();
 font_list = ds_list_create();
-font_map = ds_map_create();
 snap_list = ds_list_create();
 selsurf = surface_create(512,512);
 miniaudio_surf = surface_create(512,512);
 copy_list = -1;
 semaster_list = ds_list_create();
+hershey_index_list = ds_list_create();
+hershey_list = -1;
 
 alarm[3] = 3000;
+c_gold = make_colour_rgb(255,220,0);
 
 el_id = 0;
 projectfps = 30;
@@ -113,9 +115,10 @@ letter = "";
 image_speed = 0;
 font_type = -1;
 hershey_moving = 0;
-hershey_scrollw = 30;
+hershey_scrollw = 19;
 hershey_scrollx = 0;
 hershey_scrollh = 5000;
+hershey_selected = 0;
 
 redraw = 0;
 sgridshow = 0;
@@ -264,7 +267,7 @@ draw_hershey();
             <kind>1</kind>
             <string>///reset undo
 
-alarm[3] = 300;
+alarm[3] = 500;
 
 if (ds_list_size(undo_list) &gt; 100)
     {
@@ -1723,7 +1726,24 @@ frame_surf_refresh = 1;
             <string>if (room != rm_ilda) exit;
 
 if (placing = "hershey")
+    {
     draw_surface_part(hershey_surf,0,hershey_scrollx,420,120,650,30);
+    
+    draw_set_alpha(1);
+    draw_set_colour(c_white);
+    draw_rectangle(1070,30,1090,150,0);
+    draw_set_colour(c_dkgray);
+    draw_rectangle(1070,30+hershey_scrollx*100/hershey_scrollh,1090,30+hershey_scrollx*100/hershey_scrollh+hershey_scrollw,0);
+    
+    yo = ceil((hershey_selected+1)/14)*30-30;
+    if (yo = clamp(yo,hershey_scrollx-30,hershey_scrollx+120))
+        {
+        draw_set_alpha(0.3)
+        draw_set_colour(c_gold);
+        xo = (hershey_selected mod 14)*30;
+        draw_rectangle(650+xo,max(30+yo-hershey_scrollx,30),680+xo,min(30+yo-hershey_scrollx+30,150),0);
+        }
+    }
 
 if (!surface_exists(miniaudio_surf) || refresh_miniaudio_flag)
     {

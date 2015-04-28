@@ -850,6 +850,7 @@
       <script>scripts\create_curve.gml</script>
       <script>scripts\create_free.gml</script>
       <script>scripts\create_letter.gml</script>
+      <script>scripts\create_hershey.gml</script>
       <script>scripts\func_startofframe.gml</script>
       <script>scripts\func_startofframe_blank.gml</script>
       <script>scripts\func_color.gml</script>
@@ -931,6 +932,7 @@
       <script>scripts\optimize_first.gml</script>
       <script>scripts\optimize_between.gml</script>
       <script>scripts\read_hershey.gml</script>
+      <script>scripts\read_hershey_index.gml</script>
     </scripts>
     <script>scripts\update_check.gml</script>
     <script>scripts\update_check_verbose.gml</script>

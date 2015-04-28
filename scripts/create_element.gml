@@ -434,6 +434,19 @@ if (!fillframes)
             return 0;
             }
         }
+    else if (placing == "hershey") //create a symbol
+        {
+        if (!create_hershey())
+            {
+            ds_list_clear(bez_list);
+            ds_list_clear(free_list);
+            ds_list_destroy(new_list);
+            if (autoresflag)
+                resolution = "auto";
+            frame = framepre;
+            return 0;
+            }
+        }
         
     else if (placing == "func") //create a function based shape
         {
@@ -562,7 +575,7 @@ else
             ds_list_add(new_list,startposy_r*128); //origo y
             ds_list_add(new_list,(endx_r+xdelta[frame])*128); //end x
             ds_list_add(new_list,endy_r*128); //end y
-            }
+            }    
         else if (placing == "func")
             {
             ds_list_add(new_list,0); //origo x
@@ -670,6 +683,19 @@ else
                 return 0;
                 }
             }
+        else if (placing == "hershey") //create a symbol
+            {
+            if (!create_hershey())
+                {
+                ds_list_clear(bez_list);
+                ds_list_clear(free_list);
+                ds_list_destroy(new_list);
+                if (autoresflag)
+                    resolution = "auto";
+                frame = framepre;
+                return 0;
+                }
+            }
             
         else if (placing == "func") //create a function based shape
             {
@@ -698,6 +724,8 @@ else
         
     frame = framepre;
     }
+    
+show_debug_message(ds_list_find_value(new_list,0))
 
 if (placing != "text") frame_surf_refresh = 1;
 
