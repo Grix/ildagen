@@ -111,7 +111,8 @@ else image_index = 0;
     if (song) FMODSoundFree(song);
     songfile = get_open_filename_ext("","","","Select audio file");
     songfile_name = filename_name(songfile);
-    song = FMODSoundAdd(FS_copy_fast(songfile),0,0);
+    FS_file_copy(songfile,songfile_name);
+    song = FMODSoundAdd(songfile_name,0,0);
     if (!song) 
         {
         show_message_async("Failed to load audio: "+FMODErrorStr(FMODGetLastError()));
