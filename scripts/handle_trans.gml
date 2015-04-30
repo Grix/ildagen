@@ -51,13 +51,13 @@ else if (objmoving == 4)
     //resize
     if (!keyboard_check(vk_control))
         {
-        scalex+= (obj_cursor.x-mousexprevious)/min(1,(rectxmax-rectxmin))*2;
-        scaley+= (obj_cursor.y-mouseyprevious)/min(1,(rectymax-rectymin))*2;
+        scalex+= (obj_cursor.x-mousexprevious)/max(1,(rectxmax-rectxmin))*2;
+        scaley+= (obj_cursor.y-mouseyprevious)/max(1,(rectymax-rectymin))*2;
         }
     else
         {
-        scalex+= (obj_cursor.x-mousexprevious)/min(1,(rectxmax-rectxmin))*2;
-        scaley+= (obj_cursor.x-mousexprevious)/min(1,(rectymax-rectymin))*2;
+        scalex+= (obj_cursor.x-mousexprevious)/max(1,(rectxmax-rectxmin))*2;
+        scaley+= (obj_cursor.x-mousexprevious)/max(1,(rectymax-rectymin))*2;
         }  
           
     mousexprevious = obj_cursor.x;

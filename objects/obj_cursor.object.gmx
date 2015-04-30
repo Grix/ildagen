@@ -49,7 +49,7 @@ image_speed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room == rm_seq) or (obj_cursor.x &gt; 512 or obj_cursor.y &gt; 512) or (controller.placing == "func") or (controller.placing == "hershey")
+            <string>if (room == rm_seq) or (obj_cursor.x &gt; 512 or obj_cursor.y &gt; 512) or (controller.placing == "func")
     image_index = 0;
 else if (controller.placing == "line")
     image_index = 1;
@@ -63,6 +63,8 @@ else if (controller.placing == "curve")
     image_index = 5;
 else if (controller.placing == "text")
     image_index = 7;
+else if (controller.placing == "hershey")
+    image_index = 11;
 if (controller.tooltip != "") or (controller.objmoving)
     {
     if (mouse_check_button(mb_left))

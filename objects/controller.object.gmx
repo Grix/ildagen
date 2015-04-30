@@ -267,9 +267,9 @@ draw_hershey();
             <kind>1</kind>
             <string>///reset undo
 
-alarm[3] = 500;
+alarm[3] = 600;
 
-if (ds_list_size(undo_list) &gt; 100)
+/*if (ds_list_size(undo_list) &gt; 500)
     {
     undo = ds_list_find_value(undo_list,0);
     ds_list_delete(undo_list,0);

@@ -52,9 +52,10 @@ with(controller)
                     ds_list_copy(templist,ds_list_find_value(ild_list,i%ildlistsize));
                     ds_list_add(ds_list_find_value(frame_list,i),templist);
                     }
-                //ds_list_destroy(ds_list_find_value(ild_list,i%ildlistsize));
-                //ds_list_delete(ild_list,i%ildlistsize);
-                //ds_list_add(ds_list_find_value(frame_list,i),ds_list_find_value(ild_list,i%ildlistsize));
+                /*if (ildlistsize > framelistsize)
+                    {
+                    ds_list_destroy(ds_list_find_value(ild_list,i%ildlistsize));
+                    }*/
                 }
             for (i = 0;i < ds_list_size(ild_list);i++)
                 {
