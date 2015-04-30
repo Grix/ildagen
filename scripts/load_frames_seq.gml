@@ -16,7 +16,7 @@ FS_file_copy(file_loc,filename_name(file_loc));
 load_buffer = buffer_load(filename_name(file_loc));
     
 idbyte = buffer_read(load_buffer,buffer_u8);
-if (idbyte != 0) and (idbyte != 50)
+if (idbyte != 0) and (idbyte != 50) and (idbyte != 51)
     {
     show_message_async("Unexpected ID byte: "+string(idbyte)+", is this a valid LasershowGen frames file?");
     exit;
@@ -72,6 +72,41 @@ else if (idbyte == 50)
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                }
+            }
+        }
+    }
+else if (idbyte == 51)
+    {
+    tempmaxframes = buffer_read(load_buffer,buffer_u32);
+    for (j = 0; j < tempmaxframes;j++)
+        {
+        tempel_list = ds_list_create();
+        ds_list_add(temp_list,tempel_list);
+        
+        numofelems = buffer_read(load_buffer,buffer_u32);
+        for (i = 0; i < numofelems;i++)
+            {
+            numofinds = buffer_read(load_buffer,buffer_u32);
+            ind_list = ds_list_create();
+            ds_list_add(tempel_list,ind_list);
+            
+            for (u = 0; u < 10; u++)
+                {
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
+                }
+            for (u = 10; u < 50; u++)
+                {
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_bool));
+                }
+            for (u = 50; u < numofinds; u += 6)
+                {
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_bool));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));

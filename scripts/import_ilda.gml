@@ -44,7 +44,7 @@ with(controller)
             }
         else
             {
-            for (i = 0;i < framelistsize;i++)
+            for (i = 0;i < ds_list_size(frame_list);i++)
                 {
                 if (!ds_list_empty(ds_list_find_value(ild_list,i%ildlistsize)))
                     {
@@ -52,13 +52,13 @@ with(controller)
                     ds_list_copy(templist,ds_list_find_value(ild_list,i%ildlistsize));
                     ds_list_add(ds_list_find_value(frame_list,i),templist);
                     }
-                ds_list_destroy(ds_list_find_value(ild_list,i%ildlistsize));
-                    //ds_list_add(ds_list_find_value(frame_list,i),ds_list_find_value(ild_list,i%ildlistsize));
+                //ds_list_destroy(ds_list_find_value(ild_list,i%ildlistsize));
+                //ds_list_delete(ild_list,i%ildlistsize);
+                //ds_list_add(ds_list_find_value(frame_list,i),ds_list_find_value(ild_list,i%ildlistsize));
                 }
-            for (i = 0;i < ildlistsize;i++)
+            for (i = 0;i < ds_list_size(ild_list);i++)
                 {
-                if (i >= framelistsize)
-                    ds_list_destroy(ds_list_find_value(ild_list,i));
+                ds_list_destroy(ds_list_find_value(ild_list,i));
                 }
             }
         ds_list_add(undo_list,el_id);

@@ -598,6 +598,7 @@ else
         ds_list_add(new_list,el_id);
         repeat (40) ds_list_add(new_list,0);
         
+        
         func_startofframe();
         
         if (placing == "line") //create a line
@@ -725,7 +726,6 @@ else
     frame = framepre;
     }
     
-show_debug_message(ds_list_find_value(new_list,0))
 
 if (placing != "text") frame_surf_refresh = 1;
 

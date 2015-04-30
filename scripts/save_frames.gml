@@ -7,7 +7,7 @@ if (file_loc == "")
     
 save_buffer = buffer_create(1,buffer_grow,1);
 
-buffer_write(save_buffer,buffer_u8,50);
+buffer_write(save_buffer,buffer_u8,51);
 buffer_write(save_buffer,buffer_u32,maxframes);
 
 for (j = 0; j < maxframes;j++)
@@ -27,16 +27,16 @@ for (j = 0; j < maxframes;j++)
             }
         for (u = 10; u < 50; u++)
             {
-            buffer_write(save_buffer,buffer_u8,0);//ds_list_find_value(ind_list,u));
+            buffer_write(save_buffer,buffer_bool,0);//ds_list_find_value(ind_list,u));
             }
         for (u = 50; u < tempsize; u += 6)
             {
             buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u));
             buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u+1));
-            buffer_write(save_buffer,buffer_u8,ds_list_find_value(ind_list,u+2));
-            buffer_write(save_buffer,buffer_u8,ds_list_find_value(ind_list,u+3));
-            buffer_write(save_buffer,buffer_u8,ds_list_find_value(ind_list,u+4));
-            buffer_write(save_buffer,buffer_u8,ds_list_find_value(ind_list,u+5));
+            buffer_write(save_buffer,buffer_bool,ds_list_find_value(ind_list,u+2));
+            buffer_write(save_buffer,buffer_u8,floor(ds_list_find_value(ind_list,u+3)));
+            buffer_write(save_buffer,buffer_u8,floor(ds_list_find_value(ind_list,u+4)));
+            buffer_write(save_buffer,buffer_u8,floor(ds_list_find_value(ind_list,u+5)));
             }
         }
     }

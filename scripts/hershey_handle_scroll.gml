@@ -39,6 +39,7 @@ else
         if (mouse_check_button_pressed(mb_left))
             {
             hershey_selected = floor((hershey_scrollx+mouse_y-30)/30)*14+floor((mouse_x-650) / 30);
+            draw_preview_hershey();
             }
         else if (mouse_wheel_up())
             {

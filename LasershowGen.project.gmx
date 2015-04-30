@@ -897,6 +897,8 @@
       <script>scripts\update_colors.gml</script>
       <script>scripts\update_anicolors.gml</script>
       <script>scripts\hershey_handle_scroll.gml</script>
+      <script>scripts\draw_hershey.gml</script>
+      <script>scripts\draw_preview_hershey.gml</script>
     </scripts>
     <scripts name="files">
       <scripts name="importilda">
@@ -940,7 +942,6 @@
     <script>scripts\parse_parameter.gml</script>
     <script>scripts\verify_serial.gml</script>
     <script>scripts\hershey_error.gml</script>
-    <script>scripts\draw_hershey.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>

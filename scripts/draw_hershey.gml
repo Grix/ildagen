@@ -55,9 +55,7 @@ for (c = 0; c < ds_list_size(hershey_list); c++)
             
             
             draw_set_color(c_black);
-            draw_line(xo+ xp/1000,yo+ yp/1000,xo+ nxp/1000,yo+ nyp/1000);
-            //show_message(xo+ xp/128)
-            //show_message(xo+ nxp/128);
+            draw_line(xo+ xp,yo+ yp,xo+ nxp,yo+ nyp);
             }
         }
             

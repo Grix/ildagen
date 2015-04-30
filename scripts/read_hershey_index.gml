@@ -38,8 +38,8 @@ repeat(maxglyphpoints-1)
         blank = 1;
         continue;
         }
-    nextpointx = (nextcharx - $52)/constrx*900//*3000;///constrx*32500;
-    nextpointy = (nextchary - $52)/constrx*900//*3000;///constry*32500;
+    nextpointx = (nextcharx - $52)/constrx*600//*3000;///constrx*32500;
+    nextpointy = (nextchary - $52)/constrx*600//*3000;///constry*32500;
     
     ds_list_add(frame_list_parse,nextpointx);
     ds_list_add(frame_list_parse,nextpointy);
@@ -53,53 +53,53 @@ repeat(maxglyphpoints-1)
 file_bin_close(hershey_file);
 
 //interpolate
-new_list = frame_list_parse;
-checkpoints = ((ds_list_size(new_list)-50)/6);
+new_list_parse = frame_list_parse;
+checkpoints = ((ds_list_size(new_list_parse)-50)/6);
 
 for (j = 0; j < (checkpoints-1);j++)
     {
     temppos = 50+j*6;
     
-    if  (ds_list_find_value(new_list,temppos+8) == 1)
+    if  (ds_list_find_value(new_list_parse,temppos+8) == 1)
         continue;
         
-    if  (ds_list_find_value(new_list,temppos+9) == 0) &&
-        (ds_list_find_value(new_list,temppos+10) == 0) &&
-        (ds_list_find_value(new_list,temppos+11) == 0)
+    if  (ds_list_find_value(new_list_parse,temppos+9) == 0) &&
+        (ds_list_find_value(new_list_parse,temppos+10) == 0) &&
+        (ds_list_find_value(new_list_parse,temppos+11) == 0)
             {
             //show_debug_message("black")
-            ds_list_replace(new_list,temppos+2,1);
+            ds_list_replace(new_list_parse,temppos+2,1);
             continue;
             }
         
-    length = point_distance( ds_list_find_value(new_list,temppos)
-                            ,ds_list_find_value(new_list,temppos+1)
-                            ,ds_list_find_value(new_list,temppos+6)
-                            ,ds_list_find_value(new_list,temppos+7));
+    length = point_distance( ds_list_find_value(new_list_parse,temppos)
+                            ,ds_list_find_value(new_list_parse,temppos+1)
+                            ,ds_list_find_value(new_list_parse,temppos+6)
+                            ,ds_list_find_value(new_list_parse,temppos+7));
     
-    if (length < opt_maxdist*phi) continue;
+    if (length < resolution*phi) continue;
     
-    steps = length / opt_maxdist;
+    steps = length / resolution;
     stepscount = round(steps-1);
-    tempx0 = ds_list_find_value(new_list,temppos);
-    tempy0 = ds_list_find_value(new_list,temppos+1);
-    tempvectx = (ds_list_find_value(new_list,temppos+6)-tempx0)/steps;
-    tempvecty = (ds_list_find_value(new_list,temppos+7)-tempy0)/steps;
-    tempblank = ds_list_find_value(new_list,temppos+8);
-    tempc1 = ds_list_find_value(new_list,temppos+9);
-    tempc2 = ds_list_find_value(new_list,temppos+10);
-    tempc3 = ds_list_find_value(new_list,temppos+11);
+    tempx0 = ds_list_find_value(new_list_parse,temppos);
+    tempy0 = ds_list_find_value(new_list_parse,temppos+1);
+    tempvectx = (ds_list_find_value(new_list_parse,temppos+6)-tempx0)/steps;
+    tempvecty = (ds_list_find_value(new_list_parse,temppos+7)-tempy0)/steps;
+    tempblank = ds_list_find_value(new_list_parse,temppos+8);
+    tempc1 = ds_list_find_value(new_list_parse,temppos+9);
+    tempc2 = ds_list_find_value(new_list_parse,temppos+10);
+    tempc3 = ds_list_find_value(new_list_parse,temppos+11);
            
     repeat(floor(stepscount))
         {
         newx = tempx0+tempvectx*(stepscount);
         newy = tempy0+tempvecty*(stepscount);
-        ds_list_insert(new_list,temppos+6,tempc3);
-        ds_list_insert(new_list,temppos+6,tempc2);
-        ds_list_insert(new_list,temppos+6,tempc1);
-        ds_list_insert(new_list,temppos+6,tempblank);
-        ds_list_insert(new_list,temppos+6,newy);
-        ds_list_insert(new_list,temppos+6,newx);
+        ds_list_insert(new_list_parse,temppos+6,tempc3);
+        ds_list_insert(new_list_parse,temppos+6,tempc2);
+        ds_list_insert(new_list_parse,temppos+6,tempc1);
+        ds_list_insert(new_list_parse,temppos+6,tempblank);
+        ds_list_insert(new_list_parse,temppos+6,newy);
+        ds_list_insert(new_list_parse,temppos+6,newx);
         j++;
         checkpoints++;
         stepscount--;

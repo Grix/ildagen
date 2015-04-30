@@ -29,6 +29,7 @@
 versiondate = "2015-03-28";
 
 FS_gmfilesystem_initialize(1);
+FStemp = "%appdata%\LasershowGen\temp\";
 FS_set_gm_save_area("%appdata%\LasershowGen\temp");
 FS_set_working_directory("%appdata%\LasershowGen\temp");
 
@@ -93,6 +94,7 @@ font_list = ds_list_create();
 snap_list = ds_list_create();
 selsurf = surface_create(512,512);
 miniaudio_surf = surface_create(512,512);
+hershey_preview_surf = -1;
 copy_list = -1;
 semaster_list = ds_list_create();
 hershey_index_list = ds_list_create();
@@ -1907,7 +1909,7 @@ if !(ds_list_empty(semaster_list))//(selectedelement != -1)
 
 draw_set_color(c_gray);
 
-if (placing_status) or (placing == "text")
+if (placing_status) or (placing == "text") or (placing == "hershey") 
     draw_preview_element();
     
 draw_set_alpha(0.8);

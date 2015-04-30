@@ -33,6 +33,8 @@ else if (placing == "rect")
     draw_rectangle(startpos[0],startpos[1],endx,endy,1);
 else if (placing == "circle")
     draw_circle(startpos[0],startpos[1],point_distance(startpos[0],startpos[1],endx,endy),1);
+//else if (placing == "hershey")
+//    draw_surface(hershey_preview_surf,mouse_x-256,mouse_y-256);
 else if (placing == "func")
     {
     draw_circle(startpos[0],startpos[1],2,0);
