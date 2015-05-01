@@ -117,7 +117,7 @@ font_type = -1;
 hershey_moving = 0;
 hershey_scrollw = 19;
 hershey_scrollx = 0;
-hershey_scrollh = 5000;
+hershey_scrollh = 4930;
 hershey_selected = 0;
 
 redraw = 0;

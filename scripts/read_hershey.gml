@@ -53,7 +53,24 @@ while (1)
     constrx = max((constrxchar - $52),1);
     constry = max((constrychar - $52),1);
     
-    repeat(maxglyphpoints-1)
+    /*if (maxglyphpoints == 1)
+        {
+        nextcharx = file_bin_read_byte(hershey_file);
+        nextchary = file_bin_read_byte(hershey_file);
+        nextpointx = (nextcharx - $52)/constrx/1.2;
+        nextpointy = (nextchary - $52)/constrx/1.2;
+        
+        repeat (2)
+            {
+            ds_list_add(frame_list_parse,nextpointx);
+            ds_list_add(frame_list_parse,nextpointy);
+            ds_list_add(frame_list_parse,blank);
+            ds_list_add(frame_list_parse,255);
+            ds_list_add(frame_list_parse,255);
+            ds_list_add(frame_list_parse,255);
+            }
+        }
+    else*/ repeat(maxglyphpoints-1)
         {
         nextcharx = file_bin_read_byte(hershey_file);
         nextchary = file_bin_read_byte(hershey_file);

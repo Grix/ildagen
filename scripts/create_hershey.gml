@@ -283,11 +283,11 @@ for (n = 0;n < checkpoints; n++)
     
     if (((ds_list_find_value(letter_list,50+6*n)))/128 > xmax)
        xmax = ((ds_list_find_value(letter_list,50+6*n)))/128;     
-    if (((ds_list_find_value(letter_list,50+6*n))/4)/128 < xmin)
+    if (((ds_list_find_value(letter_list,50+6*n)))/128 < xmin)
        xmin = ((ds_list_find_value(letter_list,50+6*n)))/128;
-    if (((ds_list_find_value(letter_list,50+6*n+1))/4)/128 > ymax)
+    if (((ds_list_find_value(letter_list,50+6*n+1)))/128 > ymax)
        ymax = ((ds_list_find_value(letter_list,50+6*n+1)))/128;     
-    if (((ds_list_find_value(letter_list,50+6*n+1))/4)/128 < ymin)
+    if (((ds_list_find_value(letter_list,50+6*n+1)))/128 < ymin)
        ymin = ((ds_list_find_value(letter_list,50+6*n+1)))/128;
     
     

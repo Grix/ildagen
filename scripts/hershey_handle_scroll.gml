@@ -1,7 +1,7 @@
 if (hershey_moving)
     {
     hershey_scrollx += (mouse_y-hmouseyprev)*hershey_scrollh/100;
-    hershey_scrollx = clamp(hershey_scrollx,0,5000);
+    hershey_scrollx = clamp(hershey_scrollx,0,4930);
     hmouseyprev = mouse_y;
     tooltip = "Drag to scroll the table of symbols.";
     if (!mouse_check_button(mb_left))
@@ -24,12 +24,12 @@ else
         else if (mouse_wheel_up())
             {
             hershey_scrollx-=30;
-            hershey_scrollx = clamp(hershey_scrollx,0,5000);
+            hershey_scrollx = clamp(hershey_scrollx,0,4930);
             }
         else if (mouse_wheel_down())
             {
             hershey_scrollx+=30;
-            hershey_scrollx = clamp(hershey_scrollx,0,5000);
+            hershey_scrollx = clamp(hershey_scrollx,0,4930);
             }
         }
     else if (mouse_y == clamp(mouse_y,30,150)) 
@@ -44,12 +44,12 @@ else
         else if (mouse_wheel_up())
             {
             hershey_scrollx-=30;
-            hershey_scrollx = clamp(hershey_scrollx,0,5000);
+            hershey_scrollx = clamp(hershey_scrollx,0,4930);
             }
         else if (mouse_wheel_down())
             {
             hershey_scrollx+=30;
-            hershey_scrollx = clamp(hershey_scrollx,0,5000);
+            hershey_scrollx = clamp(hershey_scrollx,0,4930);
             }
         }
     }

@@ -29,7 +29,24 @@ constrychar = file_bin_read_byte(hershey_file);
 constrx = max((constrxchar - $52),1);
 constry = max((constrychar - $52),1);
 
-repeat(maxglyphpoints-1)
+/*if (maxglyphpoints == 1)
+        {
+        nextcharx = file_bin_read_byte(hershey_file);
+        nextchary = file_bin_read_byte(hershey_file);
+        nextpointx = (nextcharx - $52)/constrx*600;
+        nextpointy = (nextchary - $52)/constrx*600;
+        
+        repeat (2)
+            {
+            ds_list_add(frame_list_parse,nextpointx);
+            ds_list_add(frame_list_parse,nextpointy);
+            ds_list_add(frame_list_parse,blank);
+            ds_list_add(frame_list_parse,255);
+            ds_list_add(frame_list_parse,255);
+            ds_list_add(frame_list_parse,255);
+            }
+        }
+else */repeat(maxglyphpoints-1)
     {
     nextcharx = file_bin_read_byte(hershey_file);
     nextchary = file_bin_read_byte(hershey_file);
@@ -38,8 +55,8 @@ repeat(maxglyphpoints-1)
         blank = 1;
         continue;
         }
-    nextpointx = (nextcharx - $52)/constrx*600//*3000;///constrx*32500;
-    nextpointy = (nextchary - $52)/constrx*600//*3000;///constry*32500;
+    nextpointx = (nextcharx - $52)/constrx*600;
+    nextpointy = (nextchary - $52)/constrx*600;
     
     ds_list_add(frame_list_parse,nextpointx);
     ds_list_add(frame_list_parse,nextpointy);
