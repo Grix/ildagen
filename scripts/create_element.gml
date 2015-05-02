@@ -59,6 +59,9 @@ if (is_string(resolution))
         
     if (colormode != "solid") or (blankmode != "solid")
         resolution = 500;
+        
+    if (placing == "text") or (placing == "hershey")
+        resolution = 300;
     
     if (anienable) and (blankmode != "solid") and ((blank_offset != aniblank_offset) or (blank_dc != aniblank_dc))
         resolution = 250;

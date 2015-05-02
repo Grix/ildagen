@@ -1727,11 +1727,15 @@ frame_surf_refresh = 1;
 
 if (placing = "hershey")
     {
-    draw_surface_part(hershey_surf,0,hershey_scrollx,420,120,650,30);
+    draw_surface_part(hershey_surf1,0,clamp(hershey_scrollx,0,2048),420,120,650,30);
+    draw_surface_part(hershey_surf2,0,clamp(hershey_scrollx-2048,0,2048),420,120-clamp(2048-hershey_scrollx,0,120),650,30+clamp(2048-hershey_scrollx,0,120));
+    draw_surface_part(hershey_surf3,0,clamp(hershey_scrollx-4096,0,2048),420,120-clamp(4096-hershey_scrollx,0,120),650,30+clamp(4096-hershey_scrollx,0,120));
     
     draw_set_alpha(1);
     draw_set_colour(c_white);
     draw_rectangle(1070,30,1090,150,0);
+    draw_set_colour(c_black);
+    draw_rectangle(1070,30,1090,150,1);
     draw_set_colour(c_dkgray);
     draw_rectangle(1070,30+hershey_scrollx*100/hershey_scrollh,1090,30+hershey_scrollx*100/hershey_scrollh+hershey_scrollw,0);
     

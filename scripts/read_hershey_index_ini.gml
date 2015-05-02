@@ -1,15 +1,11 @@
 //reads a hershey font file and returns the index font list
 
-hershey_file = file_bin_open("hershey",0);
-
 frame_list_parse = ds_list_create();
 
-file_bin_seek(hershey_file,ds_list_find_value(hershey_index_list,argument0));
+ini_open("hershey.ini");
 
-maxglyphpoints = 0;
-maxglyphpoints += 100*real(chr(file_bin_read_byte(hershey_file)));//  string_char_at(hershey_string,c));
-maxglyphpoints += 10*real(chr(file_bin_read_byte(hershey_file)));
-maxglyphpoints += real(chr(file_bin_read_byte(hershey_file)));
+maxglyphpoints = ini_read_real(string(argument0),"n",0);
+hershey_string = ini_read_string(string(argument0),"s","");
 
 ds_list_add(frame_list_parse,0);
 ds_list_add(frame_list_parse,0);
@@ -24,32 +20,37 @@ ds_list_add(frame_list_parse,el_id); //id
 repeat (40) ds_list_add(frame_list_parse,0); 
 blank = 0;
 
-constrxchar = file_bin_read_byte(hershey_file);
-constrychar = file_bin_read_byte(hershey_file);
+j = 1;
+constrxchar = ord(string_char_at(hershey_string,j));
+j++;
+constrychar = ord(string_char_at(hershey_string,j));
+j++;
 constrx = max((constrxchar - $52),1);
 constry = max((constrychar - $52),1);
 
 /*if (maxglyphpoints == 1)
-        {
-        nextcharx = file_bin_read_byte(hershey_file);
-        nextchary = file_bin_read_byte(hershey_file);
-        nextpointx = (nextcharx - $52)/constrx*600;
-        nextpointy = (nextchary - $52)/constrx*600;
-        
-        repeat (2)
-            {
-            ds_list_add(frame_list_parse,nextpointx);
-            ds_list_add(frame_list_parse,nextpointy);
-            ds_list_add(frame_list_parse,blank);
-            ds_list_add(frame_list_parse,255);
-            ds_list_add(frame_list_parse,255);
-            ds_list_add(frame_list_parse,255);
-            }
-        }
-else */repeat(maxglyphpoints-1)
     {
     nextcharx = file_bin_read_byte(hershey_file);
     nextchary = file_bin_read_byte(hershey_file);
+    nextpointx = (nextcharx - $52)/constrx/1.2;
+    nextpointy = (nextchary - $52)/constrx/1.2;
+    
+    repeat (2)
+        {
+        ds_list_add(frame_list_parse,nextpointx);
+        ds_list_add(frame_list_parse,nextpointy);
+        ds_list_add(frame_list_parse,blank);
+        ds_list_add(frame_list_parse,255);
+        ds_list_add(frame_list_parse,255);
+        ds_list_add(frame_list_parse,255);
+        }
+    }
+else*/ repeat(maxglyphpoints-1)
+    {
+    nextcharx = ord(string_char_at(hershey_string,j));
+    j++;
+    nextchary = ord(string_char_at(hershey_string,j));
+    j++;
     if (nextcharx == $20) and (nextchary == $52)
         {
         blank = 1;
@@ -65,9 +66,10 @@ else */repeat(maxglyphpoints-1)
     ds_list_add(frame_list_parse,255);
     ds_list_add(frame_list_parse,255);
     ds_list_add(frame_list_parse,255);
+    
     }
     
-file_bin_close(hershey_file);
+ini_close();
 
 //interpolate
 new_list_parse = frame_list_parse;

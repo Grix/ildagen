@@ -77,9 +77,9 @@ with(controller)
                                     ,ds_list_find_value(new_list,temppos+6)
                                     ,ds_list_find_value(new_list,temppos+7));
             
-            if (length < opt_maxdist*phi) continue;
+            if (length < 500*phi) continue;
             
-            steps = length / opt_maxdist;
+            steps = length / 500;
             stepscount = round(steps-1);
             tempx0 = ds_list_find_value(new_list,temppos);
             tempy0 = ds_list_find_value(new_list,temppos+1);
