@@ -111,12 +111,7 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-    
-with (controller)
-    {
-    dialog = "shapefuncpoints";
-    getint = get_integer_async("Enter the number of points to calculate",controller.shapefunc_cp);
-    }
+ilda_dialog_num("shapefuncpoints","Enter the number of points to calculate",controller.shapefunc_cp);
 </string>
           </argument>
         </arguments>

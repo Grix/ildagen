@@ -143,27 +143,18 @@ visible = ((controller.colormode == "gradient") || (controller.colormode == "das
 
 if (mouse_x &lt; (x+14))
     {
-    with (controller)
-        {
-        dialog = "c2r";
-        getint = get_integer_async("Enter value for RED from 0 to 255",colour_get_red(controller.color2));
-        }
+    ilda_dialog_num("c2r","Enter value for RED from 0 to 255",colour_get_red(controller.color2));
+    
     }
 else if (mouse_x &gt; (x+30))
     {
-    with (controller)
-        {
-        dialog = "c2b";
-        getint = get_integer_async("Enter value for BLUE from 0 to 255",colour_get_blue(controller.color2));
-        }
+    ilda_dialog_num("c2b","Enter value for BLUE from 0 to 255",colour_get_blue(controller.color2));
+   
     }
 else 
     {
-    with (controller)
-        {
-        dialog = "c2g";
-        getint = get_integer_async("Enter value for GREEN from 0 to 255",colour_get_green(controller.color2));
-        }
+    ilda_dialog_num("c2g","Enter value for GREEN from 0 to 255",colour_get_green(controller.color2));
+   
     }
 </string>
           </argument>

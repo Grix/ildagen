@@ -113,12 +113,8 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-    
-with (controller)
-{
-dialog = "coloroffset";
-getint = get_integer_async("Enter the color offset",controller.color_offset);
-}
+ilda_dialog_num("coloroffset","Enter the color offset",controller.color_offset);
+
 </string>
           </argument>
         </arguments>

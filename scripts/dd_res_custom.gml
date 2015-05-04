@@ -1,5 +1,1 @@
-with (controller)
-    {
-    getint = get_integer_async("Enter point density (detail level) of new objects. Lower is denser.",controller.resolution);
-    dialog = "res";
-    }
+ilda_dialog_num("res","Enter point density (detail level) of new objects. Lower is denser.",controller.resolution);

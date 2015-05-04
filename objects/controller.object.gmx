@@ -119,6 +119,7 @@ hershey_scrollw = 19;
 hershey_scrollx = 0;
 hershey_scrollh = 4930;
 hershey_selected = 0;
+dialog_open = 0;
 
 redraw = 0;
 sgridshow = 0;
@@ -1036,6 +1037,8 @@ else if (placing == "curve")
             <kind>1</kind>
             <string>//what a mess
 
+dialog_open = 0;
+
 //Get integer
 var new_id = ds_map_find_value(async_load, "id");
 if (new_id == getint)
@@ -1611,8 +1614,7 @@ if ds_map_find_value(async_load, "id") == updateget
        show_debug_message("Checking version")
        if (versionnew != version)
             {
-            getint = show_question_async("New version available: "+versionnew+"##Would you like to visit the download page?")
-            dialog = "updatefound";
+            ilda_dialog_yesno("updatefound","New version available: "+versionnew+"##Would you like to visit the download page?");
             }
        else if (update_verbose == 1)
             {

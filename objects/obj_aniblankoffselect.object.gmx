@@ -114,12 +114,8 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-    
-with (controller)
-{
-dialog = "aniblankoffset";
-getint = get_integer_async("Enter the animation end blanking offset",controller.aniblank_offset);
-}
+ilda_dialog_num("aniblankoffset","Enter the animation end blanking offset",controller.aniblank_offset);
+
 </string>
           </argument>
         </arguments>

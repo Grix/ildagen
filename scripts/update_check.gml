@@ -15,9 +15,5 @@ if (file_exists(ini_filename))
     }
 else
     {
-    with (controller)
-        {
-        dialog = "update";
-        getint = show_question_async("Would you like to enable automatic checking for updates? (Requires internet connection)");
-        }
+    ilda_dialog_yesno("update","Would you like to enable automatic checking for updates? (Requires internet connection)");
     }

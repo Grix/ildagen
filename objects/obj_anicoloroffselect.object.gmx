@@ -113,12 +113,8 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-    
-with (controller)
-{
-dialog = "anicoloroffset";
-getint = get_integer_async("Enter the animation end color offset",controller.anicolor_offset);
-}
+ilda_dialog_num("anicoloroffset","Enter the animation end color offset",controller.anicolor_offset);
+
 </string>
           </argument>
         </arguments>

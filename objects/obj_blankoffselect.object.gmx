@@ -113,11 +113,8 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-with (controller)
-    {
-    dialog = "blankoffset";
-    getint = get_integer_async("Enter the blanking offset",controller.blank_offset);
-    }
+ilda_dialog_num("blankoffset","Enter the blanking offset",controller.blank_offset);
+
 </string>
           </argument>
         </arguments>

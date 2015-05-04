@@ -124,8 +124,7 @@ else if !keyboard_check(vk_control)
             aniytrans = 0;
             scalex = 1;
             scaley = 1;
-            dialog = "anirot";
-            getint = get_integer_async("Enter the amount of degrees to rotate.",0);
+            ilda_dialog_num("anirot","Enter the amount of degrees to rotate.",0);
             }
         }
     else if (mouse_x == clamp(mouse_x,rectxmax+2,rectxmax+20)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20))
@@ -147,8 +146,7 @@ else if !keyboard_check(vk_control)
             anixtrans = 0;
             aniytrans = 0;
             anirot = 0;
-            dialog = "aniscale";
-            getint = get_integer_async("Enter the scaling multiplier (F.ex. 1 is no change, 2 is double the size)",1);
+            ilda_dialog_num("aniscale","Enter the scaling multiplier (F.ex. 1 is no change, 2 is double the size)",1);
             }
         }
     else 

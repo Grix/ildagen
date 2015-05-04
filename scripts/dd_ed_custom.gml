@@ -1,6 +1,1 @@
-
-with (controller)
-{
-getint = get_integer_async("Enter the intensity/brightness (amount of overlapping points) per dot.",dotmultiply);
-dialog = "dotintensity";
-}
+ilda_dialog_num("dotintensity","Enter the intensity/brightness (amount of overlapping points) per dot.",dotmultiply);

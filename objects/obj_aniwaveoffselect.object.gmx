@@ -113,11 +113,8 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-with (controller)
-{
-dialog = "aniwaveoffset";
-getint = get_integer_async("Enter the animation end wave offset",controller.aniwave_offset);
-}
+ilda_dialog_num("aniwaveoffset","Enter the animation end wave offset",controller.aniwave_offset);
+
 </string>
           </argument>
         </arguments>

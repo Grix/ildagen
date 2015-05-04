@@ -112,12 +112,8 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-    
-with (controller)
-{
-dialog = "anishaking_sdevset";
-getint = get_integer_async("Enter the shaking instensity at the end of the animation",controller.shaking_sdev);
-}
+ilda_dialog_num("anishaking_sdevset","Enter the shaking instensity at the end of the animation",controller.shaking_sdev);
+
 </string>
           </argument>
         </arguments>

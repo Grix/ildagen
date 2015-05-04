@@ -114,12 +114,8 @@ if (visible) and (mouse_x &gt; x-sprite_width/2) and (mouse_x &lt; (x+sprite_wid
             <string>if (!visible)
     exit;
 
-    
-with (controller)
-{
-dialog = "aniwaveamp";
-getint = get_integer_async("Enter the animation end wave amplitude",controller.aniwave_amp);
-}
+ilda_dialog_num("aniwaveamp","Enter the animation end wave amplitude",controller.aniwave_amp);
+
 </string>
           </argument>
         </arguments>

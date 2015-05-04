@@ -107,11 +107,7 @@ else image_index = 0;
 
 if (room == rm_ilda)
     {
-    with (controller)
-        {
-        getint = show_question_async("This will replace your current frames, all unsaved work will be lost. Continue? (Cannot be undone)");
-        dialog = "loadfile";
-        }
+    ilda_dialog_yesno("loadfile","This will replace your current frames, all unsaved work will be lost. Continue? (Cannot be undone)");
     }
 else
     {

@@ -1,6 +1,3 @@
-//if (os_version == -1) letter_list = read_hershey_index_ini(hershey_selected);
-//else letter_list = read_hershey_index(hershey_selected);
-
 letter_list = read_hershey_index_ini(hershey_selected);
     
 checkpoints = (ds_list_size(letter_list)-50)/6;

@@ -81,11 +81,7 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-with (controller)
-    {
-    dialog = "blankfreq";
-    getint = get_integer_async("Enter the blanking frequency",controller.blank_freq);
-    }
+ilda_dialog_num("blankfreq","Enter the blanking frequency",controller.blank_freq);
 </string>
           </argument>
         </arguments>

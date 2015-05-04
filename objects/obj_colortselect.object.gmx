@@ -113,11 +113,7 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-with (controller)
-{
-dialog = "colorperiod";
-getint = get_integer_async("Enter the color period",controller.color_period);
-}
+ilda_dialog_num("colorperiod","Enter the color period",controller.color_period);
 </string>
           </argument>
         </arguments>

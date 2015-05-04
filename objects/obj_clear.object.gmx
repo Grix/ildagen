@@ -77,12 +77,7 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (controller)
-    {
-    getint = show_question_async("Are you sure you want to clear everything? (Cannot be undone)");
-    dialog = "clearall";
-    }
-    
+            <string>ilda_dialog_yesno("clearall","Are you sure you want to clear everything? (Cannot be undone)");
 </string>
           </argument>
         </arguments>

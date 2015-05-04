@@ -1,5 +1,4 @@
-/*if (os_version == -1)*/// read_hershey_ini();
-//else read_hershey();
+
 
 hershey_surf1 = surface_create(512,2048);
 hershey_surf2 = surface_create(512,2048);

@@ -113,12 +113,8 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-    
-with (controller)
-    {
-    dialog = "blankperiod";
-    getint = get_integer_async("Enter the blanking period",controller.blank_period);
-    }
+ilda_dialog_num("blankperiod","Enter the blanking period",controller.blank_period);
+
 </string>
           </argument>
         </arguments>

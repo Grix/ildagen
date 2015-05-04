@@ -81,11 +81,7 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
             <string>if (!visible)
     exit;
 
-with (controller)
-{
-dialog = "colorfreq";
-getint = get_integer_async("Enter the color frequency",controller.color_freq);
-}
+ilda_dialog_num("colorfreq","Enter the color frequency",controller.color_freq);
 
 </string>
           </argument>

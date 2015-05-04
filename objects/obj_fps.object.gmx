@@ -79,11 +79,7 @@ else image_index = 0;
           <argument>
             <kind>1</kind>
             <string>if (room = rm_ilda)
-    with (controller)
-        {
-        getint = get_integer_async("Enter number of frames per second",seqcontrol.projectfps);
-        dialog = "fps";
-        }
+    ilda_dialog_num("fps","Enter number of frames per second",seqcontrol.projectfps);
 else if (room = rm_seq)
     with (seqcontrol)
         {

@@ -116,8 +116,7 @@ with (controller)
     
     if (seqcontrol.selectedx &lt;= 0)
         {
-        getint = show_question_async("This will replace the selected timeline object with these frames. Continue? (Cannot be undone)");
-        dialog = "toseqreplace";
+        ilda_dialog_yesno("toseqreplace","This will replace the selected timeline object with these frames. Continue? (Cannot be undone)");
         }
     else
         frames_toseq();

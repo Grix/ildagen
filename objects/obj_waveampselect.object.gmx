@@ -116,11 +116,7 @@ if (visible) and (mouse_x &gt; x-sprite_width/2) and (mouse_x &lt; (x+sprite_wid
             <string>if (!visible)
     exit;
     
-with (controller)
-    {
-    dialog = "waveamp";
-    getint = get_integer_async("Enter the wave amplitude",controller.wave_amp);
-    }
+ilda_dialog_num("waveamp","Enter the wave amplitude",controller.wave_amp);
 </string>
           </argument>
         </arguments>
