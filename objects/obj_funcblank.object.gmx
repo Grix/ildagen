@@ -83,11 +83,9 @@ controller.tooltip = "Sets the function for the blanking#Value below 1: Blanked"
             <string>if (!visible) exit;
 
 if (is_undefined(controller.blankfunc_string)) controller.blankfunc_string = "";
-with (controller)
-    {
-    dialog = "funcen";
-    getstr = get_string_async("Enter function for the blanking",controller.blankfunc_string);
-    }
+
+ilda_dialog_string("funcen","Enter function for the blanking",controller.blankfunc_string);
+
 </string>
           </argument>
         </arguments>

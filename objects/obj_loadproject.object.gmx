@@ -99,11 +99,7 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (seqcontrol)
-    {
-    getint = show_question_async("This will replace your current project, all unsaved work will be lost. Continue? (Cannot be undone)");
-    dialog = "loadproject";
-    }
+            <string>seq_dialog_yesno("loadproject","This will replace your current project, all unsaved work will be lost. Continue? (Cannot be undone)");
 </string>
           </argument>
         </arguments>

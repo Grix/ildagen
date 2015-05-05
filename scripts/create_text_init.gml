@@ -5,5 +5,4 @@ if (ds_list_empty(font_list))
         return 0;
     }
 
-getstr = get_string_async("Enter text","");
-dialog = "text";
+ilda_dialog_string("text","Enter text","");

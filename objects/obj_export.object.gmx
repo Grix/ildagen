@@ -138,12 +138,10 @@ if (!verify_serial())
 
 with (controller) 
     {
-    if (os_version != -1) export_ilda();
+    if (os_version != -1) 
+        export_ilda();
     else 
-        {
-        dialog = "exporthtml5";
-        getstr = get_string_async("Enter the name of the ILDA file","example.ild");
-        }
+        ilda_dialog_string("exporthtml5","Enter the name of the ILDA file","example.ild");
     }
 </string>
           </argument>

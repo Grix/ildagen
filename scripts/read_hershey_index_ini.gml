@@ -45,8 +45,13 @@ constry = max((constrychar - $52),1);
         ds_list_add(frame_list_parse,255);
         }
     }
-else*/ repeat(maxglyphpoints-1)
+else*/ 
+/*show_debug_message(hershey_string)
+show_debug_message(string_char_at(hershey_string,16))*/
+//show_debug_message(maxglyphpoints-1)
+repeat(maxglyphpoints-1)
     {
+    if ( j > (maxglyphpoints)*2) break;
     nextcharx = ord(string_char_at(hershey_string,j));
     j++;
     nextchary = ord(string_char_at(hershey_string,j));

@@ -123,57 +123,6 @@
       </ConfigOptions>
       <filename>hershey.ini</filename>
     </datafile>
-    <datafile>
-      <name>hershey_surf1.png</name>
-      <exists>-1</exists>
-      <size>46862</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>hershey_surf1.png</filename>
-    </datafile>
-    <datafile>
-      <name>hershey_surf2.png</name>
-      <exists>-1</exists>
-      <size>63232</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>hershey_surf2.png</filename>
-    </datafile>
-    <datafile>
-      <name>hershey_surf3.png</name>
-      <exists>-1</exists>
-      <size>46532</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>hershey_surf3.png</filename>
-    </datafile>
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\filesaver</extension>
@@ -277,6 +226,9 @@
   <backgrounds name="background">
     <background>background\bck_guide</background>
     <background>background\bck_seq</background>
+    <background>background\bck_hershey1</background>
+    <background>background\bck_hershey2</background>
+    <background>background\bck_hershey3</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -995,7 +947,9 @@
     <script>scripts\verify_serial.gml</script>
     <script>scripts\hershey_error.gml</script>
     <script>scripts\ilda_dialog_yesno.gml</script>
+    <script>scripts\seq_dialog_yesno.gml</script>
     <script>scripts\ilda_dialog_num.gml</script>
+    <script>scripts\seq_dialog_num.gml</script>
     <script>scripts\ilda_dialog_string.gml</script>
   </scripts>
   <fonts name="fonts">

@@ -86,11 +86,8 @@ controller.tooltip = "Sets the function for the BLUE channel#Value from 0 to 255
             <string>if (!visible) exit;
 
 if (is_undefined(controller.colorfunc_string_3)) controller.colorfunc_string_3 = "";
-with (controller)
-    {
-    dialog = "func3";
-    getstr = get_string_async("Enter function for BLUE channel",controller.colorfunc_string_3);
-    }
+
+ilda_dialog_string("func3","Enter function for BLUE channel",controller.colorfunc_string_3);
 </string>
           </argument>
         </arguments>

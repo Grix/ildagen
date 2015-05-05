@@ -103,8 +103,7 @@ else image_index = 0;
     {
     if (selectedlayer != -1) and (selectedx &lt; 0)
         {
-        getint = show_question_async("This will discard unsaved changes in the frames editor. Continue? (Cannot be undone)");
-        dialog = "fromseq";
+        seq_dialog_yesno("fromseq","This will discard unsaved changes in the frames editor. Continue? (Cannot be undone)");
         }
     else
         {

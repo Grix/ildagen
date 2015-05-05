@@ -180,8 +180,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
             if  mouse_check_button_pressed(mb_left)
                 {
                 layertodelete = ds_list_find_value(layer_list,i);
-                getint = show_question_async("Are you sure you want to delete this layer? (Cannot be undone)");
-                dialog = "layerdelete";
+                seq_dialog_yesno("layerdelete","Are you sure you want to delete this layer? (Cannot be undone)");
                 }
             }
         else
@@ -207,8 +206,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                         if (doubleclick)
                             {
                             //edit object
-                            getint = show_question_async("This will discard unsaved changes in the frames editor. Continue? (Cannot be undone)");
-                            dialog = "fromseq";
+                            seq_dialog_yesno("fromseq","This will discard unsaved changes in the frames editor. Continue? (Cannot be undone)");
                             }
                         else
                             {
