@@ -240,7 +240,11 @@ buffer_write(ilda_buffer,buffer_u8,0); //0
 buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
 
 //export
-FS_buffer_save(ilda_buffer,file_loc);
+if (file_exists("temp/"+filename_name(file_loc)))
+    file_delete("temp/"+filename_name(file_loc));
+buffer_save(ilda_buffer,"temp/"+filename_name(file_loc));
+show_debug_message(FS_file_exists(FStemp+filename_name(file_loc)))
+FS_file_copy(FStemp+filename_name(file_loc),file_loc);
 
 /*file = FS_file_bin_open(file_loc,1);
 for (i = 0;i < buffer_get_size(ilda_buffer);i++)

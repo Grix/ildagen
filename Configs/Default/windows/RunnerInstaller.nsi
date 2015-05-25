@@ -33,7 +33,7 @@
 !endif
 
 !ifndef FILE_DESC
-!define FILE_DESC         "ildaGen by Gitle Mikkelsen/BitLasers.com"
+!define FILE_DESC         "LasershowGen by Gitle Mikkelsen/BitLasers.com"
 !endif
 
 !ifndef LICENSE_NAME
@@ -133,7 +133,8 @@ Section `${APP_NAME}`
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
 
-  ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igf" "ildaGen Frames"
+  ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igf" "LasershowGen Frames"
+  ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igp" "LasershowGen Project"
   
   ; Put file there
   File "${LICENSE_NAME}"

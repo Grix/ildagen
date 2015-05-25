@@ -26,12 +26,14 @@
           <argument>
             <kind>1</kind>
             <string>version = "0.9.10";
-versiondate = "2015-05-05";
+versiondate = "2015-05-22";
 
 FS_gmfilesystem_initialize(1);
 FStemp = "%appdata%\LasershowGen\temp\";
 FS_set_gm_save_area("%appdata%\LasershowGen\temp");
 FS_set_working_directory("%appdata%\LasershowGen\temp");
+
+FS_clean_temporary();
 
 math_set_epsilon(0.00001);
 ds_set_precision(0.00001); 
@@ -244,6 +246,31 @@ if (os_version != -1) update_check();
 if (os_version != -1) parse_parameter();
 
 draw_hershey();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///game end
+
+game_end();
 </string>
           </argument>
         </arguments>
@@ -1633,7 +1660,13 @@ if ds_map_find_value(async_load, "id") == updateget
 else if ds_map_find_value(async_load, "id") == file
     {
     if (file_exists("update.exe"))
-        url_open("update.exe");
+        {
+        if (alarm[4] == -1)
+            {
+            url_open("update.exe");
+            alarm[4] = 30;
+            }
+        }
     else 
         {
         show_message_async("Failed to automatically download update. Opening download website..");
@@ -1664,30 +1697,6 @@ else if ds_map_find_value(async_load, "id") == file
             <kind>1</kind>
             <string>refresh_miniaudio_flag = 1;
 frame_surf_refresh = 1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="3">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>FS_clean_temporary();
-
 </string>
           </argument>
         </arguments>
@@ -1796,7 +1805,9 @@ if (bckimage)
     if (!keyboard_check(ord('E')))
         draw_set_alpha(0.3);
     if (sprite_exists(bck_bckimage))
-        draw_sprite_stretched(bck_bckimage,0,0,0,512,512);
+        {
+        draw_sprite_stretched(bck_bckimage,0,bckimage_left,bckimage_top,bckimage_width,bckimage_height);
+        }
     else bckimage = 0;
     }
     

@@ -85,23 +85,42 @@ else image_index = 0;
     }
 
 with (controller)
-{
-bckimage = !bckimage;
-
-if (bckimage)
     {
-    bckfile = get_open_filename("Image files|*.png;*.jpg","");
-    if (bckfile != "")
+    bckimage = !bckimage;
+    
+    if (bckimage)
         {
-        bck_bckimage = sprite_add(bckfile,0,0,0,0,0);
+        bckfile = get_open_filename("Image files|*.png;*.jpg;*.gif","");
+        show_debug_message(bckfile);
+        if (bckfile != "")
+            {
+            //bckfile = FS_copy_fast(bckfile);
+            show_debug_message(bckfile);
+            bck_bckimage = sprite_add(bckfile,1,0,0,0,0);
+            if (sprite_get_width(bck_bckimage) &gt; sprite_get_height(bck_bckimage))
+                {
+                bckimage_width = 512;
+                bckimage_height = 512/sprite_get_width(bck_bckimage)*sprite_get_height(bck_bckimage);
+                bckimage_top = (512-bckimage_height)/2;
+                bckimage_left = 0;
+                }
+            else
+                {
+                bckimage_height = 512;
+                bckimage_width = 512/sprite_get_height(bck_bckimage)*sprite_get_width(bck_bckimage);
+                bckimage_top = 0;
+                bckimage_left = (512-bckimage_width)/2;
+                }
+            }
+        else
+            bckimage = 0;
         }
     else
-        bckimage = 0;
+        {
+        if (sprite_exists(bck_bckimage))
+            sprite_delete(bck_bckimage);
+        }
     }
-else
-    if (sprite_exists(bck_bckimage))
-        sprite_delete(bck_bckimage);
-}
     
 </string>
           </argument>

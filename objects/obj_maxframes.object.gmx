@@ -77,7 +77,7 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ilda_dialog_num("maxframes","Enter number of total frames in the animation",maxframes);
+            <string>ilda_dialog_num("maxframes","Enter number of total frames in the animation",controller.maxframes);
 </string>
           </argument>
         </arguments>
