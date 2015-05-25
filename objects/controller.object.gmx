@@ -51,6 +51,8 @@ parser_shape = ML_InitParserScience(varmap);
     ML_AddVariable(parser_shape, "height",$ffff, ML_VAL_REAL, 1);
     ML_AddVariable(parser_shape, "max",$ffff, ML_VAL_REAL, 1);
     ML_AddFunction(parser_shape, "lerp", _ML_Lerp, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
+    ML_AddFunction(parser_shape, "random", _ML_random, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
+    ML_AddFunction(parser_shape, "random_normal", _ML_random_gauss, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
 varmap = ds_map_create();
 parser_cb = ML_InitParserScience(varmap);
     ML_AddVariable(parser_cb, "point",0, ML_VAL_REAL, 1);
@@ -73,6 +75,8 @@ parser_cb = ML_InitParserScience(varmap);
     ML_AddVariable(parser_cb, "width",$ffff, ML_VAL_REAL, 1);
     ML_AddVariable(parser_cb, "height",$ffff, ML_VAL_REAL, 1);
     ML_AddFunction(parser_cb, "lerp", _ML_Lerp, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
+    ML_AddFunction(parser_cb, "random", _ML_random, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
+    ML_AddFunction(parser_cb, "random_normal", _ML_random_gauss, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
     
 
 radialgrid_surf = surface_create(512,512);

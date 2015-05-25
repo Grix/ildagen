@@ -613,6 +613,8 @@
         <script>scripts\ML_InitParserMath.gml</script>
         <script>scripts\ML_InitParserScience.gml</script>
         <script>scripts\_ML_Lerp.gml</script>
+        <script>scripts\_ML_random.gml</script>
+        <script>scripts\_ML_random_gauss.gml</script>
       </scripts>
       <scripts name="detail">
         <scripts name="lexer">

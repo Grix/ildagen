@@ -1,4 +1,4 @@
-//random_gaussian(mean,standard deviation)
+///random_gaussian(mean,standard deviation)
 //generates a random number around the mean with a gaussian probability
 
 m=argument0; s=argument1;
