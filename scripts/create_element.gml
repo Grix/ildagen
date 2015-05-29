@@ -1,5 +1,6 @@
 //creates an element from whatever has been done on the screen
 
+lastpointadded = 0
 framepre = frame;
 placing_status = 0;
         

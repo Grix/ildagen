@@ -11,9 +11,9 @@ if (file_loc == "") or is_undefined(file_loc)
     
 temp_list = ds_list_create();
 
-FS_file_copy(file_loc,filename_name(file_loc));
+FS_file_copy(file_loc,FStemp+filename_name(file_loc));
     
-load_buffer = buffer_load(filename_name(file_loc));
+load_buffer = buffer_load("temp\"+filename_name(file_loc));
     
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 0) and (idbyte != 50) and (idbyte != 51)

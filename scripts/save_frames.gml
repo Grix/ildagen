@@ -44,8 +44,11 @@ for (j = 0; j < maxframes;j++)
 buffer_resize(save_buffer,buffer_tell(save_buffer));
 
 //export
-//tempname = FS_unique_fname(working_directory,".igf");
-FS_buffer_save(save_buffer,file_loc);
+if (file_exists("temp/"+filename_name(file_loc)))
+    file_delete("temp/"+filename_name(file_loc));
+buffer_save(save_buffer,"temp/"+filename_name(file_loc));
+show_debug_message(FS_file_exists(FStemp+filename_name(file_loc)))
+FS_file_copy(FStemp+filename_name(file_loc),file_loc);
 
 if (FS_file_exists(file_loc))
     show_message_async("Frames saved.");

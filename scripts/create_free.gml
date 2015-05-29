@@ -1,13 +1,48 @@
-if (ds_list_find_value(free_list,ds_list_size(free_list)-2) != mouse_x-startpos[0]) and (ds_list_find_value(free_list,ds_list_size(free_list)-1) != mouse_x-startpos[1])
+if (lastpointadded = 0)
     {
+    lastpointadded = 1;
+    show_debug_message(1);
     ds_list_add(free_list,mouse_x-startpos[0]);
     ds_list_add(free_list,mouse_y-startpos[1]);
+    
+    //interpolate
+    checkpoints = ((ds_list_size(free_list))/2);
+    
+    for (j = 0; j < (checkpoints-1);j++)
+        {
+        temppos = j*2;
+            
+        length = point_distance( ds_list_find_value(free_list,temppos)
+                                ,ds_list_find_value(free_list,temppos+1)
+                                ,ds_list_find_value(free_list,temppos+2)
+                                ,ds_list_find_value(free_list,temppos+3))*128;
+        
+        if (length < resolution*phi) continue;
+        
+        steps = length / resolution;
+        stepscount = round(steps-1);
+        tempx0 = ds_list_find_value(free_list,temppos);
+        tempy0 = ds_list_find_value(free_list,temppos+1);
+        tempvectx = (ds_list_find_value(free_list,temppos+2)-tempx0)/steps;
+        tempvecty = (ds_list_find_value(free_list,temppos+3)-tempy0)/steps;
+               
+        repeat(floor(stepscount))
+            {
+            
+            newx = tempx0+tempvectx*(stepscount);
+            newy = tempy0+tempvecty*(stepscount);
+            ds_list_insert(free_list,temppos+2,newy);
+            ds_list_insert(free_list,temppos+2,newx);
+            j++;
+            checkpoints++;
+            stepscount--;
+            show_debug_message(newx);
+            }
+        
+        }
     }
-else if (ds_list_size(free_list) < 3)
-    {
-    ds_list_add(free_list,mouse_x-startpos[0]);
-    ds_list_add(free_list,mouse_y-startpos[1]);
-    }
+
+
 
 xmax = -$ffff;
 xmin = $ffff;

@@ -33,13 +33,13 @@ for (j = 0; j < maxframes;j++)
     buffer_write(ilda_buffer,buffer_u8,$0);
     buffer_write(ilda_buffer,buffer_u8,$0);
     buffer_write(ilda_buffer,buffer_u8,$5);
-    buffer_write(ilda_buffer,buffer_u8,ord('i')); //name
-    buffer_write(ilda_buffer,buffer_u8,ord('l'));
-    buffer_write(ilda_buffer,buffer_u8,ord('d'));
-    buffer_write(ilda_buffer,buffer_u8,ord('a'));
+    buffer_write(ilda_buffer,buffer_u8,ord('L')); //name
+    buffer_write(ilda_buffer,buffer_u8,ord('S'));
     buffer_write(ilda_buffer,buffer_u8,ord('G'));
     buffer_write(ilda_buffer,buffer_u8,ord('e'));
     buffer_write(ilda_buffer,buffer_u8,ord('n'));
+    buffer_write(ilda_buffer,buffer_u8,ord(' '));
+    buffer_write(ilda_buffer,buffer_u8,ord(' '));
     buffer_write(ilda_buffer,buffer_u8,ord(' '));
     buffer_write(ilda_buffer,buffer_u8,ord('G')); //author
     buffer_write(ilda_buffer,buffer_u8,ord('i'));
@@ -73,8 +73,6 @@ for (j = 0; j < maxframes;j++)
         {
         optimize_first();
         }
-        
-    
     
     for (i = 0;i < ds_list_size(el_list);i++)
         {
@@ -95,24 +93,6 @@ for (j = 0; j < maxframes;j++)
             //getting values from element list
             
             bl = ds_list_find_value(list_id,50+u*6+2);
-            
-            if (exp_optimize == 1) and (bl != blankprev)
-                {
-                repeat (3)
-                    {
-                    //writing point
-                    buffer_write(ilda_buffer,buffer_u8,xpa[1]);
-                    buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-                    buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-                    buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-                    buffer_write(ilda_buffer,buffer_u8,bl);
-                    buffer_write(ilda_buffer,buffer_u8,b);
-                    buffer_write(ilda_buffer,buffer_u8,g);
-                    buffer_write(ilda_buffer,buffer_u8,r);
-                    maxpoints++;
-                    }
-                blankprev = bl;
-                }
             
             xp = xo+ds_list_find_value(list_id,50+u*6+0);
             yp = $ffff-(yo+ds_list_find_value(list_id,50+u*6+1));
@@ -141,6 +121,24 @@ for (j = 0; j < maxframes;j++)
             yp = yp >> 8;
             ypa[1] = yp & 255;
             
+            if (exp_optimize == 1) and (bl != blankprev)
+                {
+                repeat (3)
+                    {
+                    //writing point
+                    buffer_write(ilda_buffer,buffer_u8,xpa[1]);
+                    buffer_write(ilda_buffer,buffer_u8,xpa[0]);
+                    buffer_write(ilda_buffer,buffer_u8,ypa[1]);
+                    buffer_write(ilda_buffer,buffer_u8,ypa[0]);
+                    buffer_write(ilda_buffer,buffer_u8,bl);
+                    buffer_write(ilda_buffer,buffer_u8,b);
+                    buffer_write(ilda_buffer,buffer_u8,g);
+                    buffer_write(ilda_buffer,buffer_u8,r);
+                    maxpoints++;
+                    }
+                blankprev = bl;
+                }
+            
             if (u = 0)
                 blank = $40;
             else if (bl)
@@ -162,6 +160,8 @@ for (j = 0; j < maxframes;j++)
                 if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
                     blank = $C0;
                 }
+                
+
             
             
             if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,50+(u+1)*6+2))) or (exp_optimize == 1)
@@ -214,13 +214,13 @@ buffer_write(ilda_buffer,buffer_u8,$0);
 buffer_write(ilda_buffer,buffer_u8,$0);
 buffer_write(ilda_buffer,buffer_u8,$0);
 buffer_write(ilda_buffer,buffer_u8,$5);
-buffer_write(ilda_buffer,buffer_u8,ord('i')); //name
-buffer_write(ilda_buffer,buffer_u8,ord('l'));
-buffer_write(ilda_buffer,buffer_u8,ord('d'));
-buffer_write(ilda_buffer,buffer_u8,ord('a'));
+buffer_write(ilda_buffer,buffer_u8,ord('L')); //name
+buffer_write(ilda_buffer,buffer_u8,ord('S'));
 buffer_write(ilda_buffer,buffer_u8,ord('G'));
 buffer_write(ilda_buffer,buffer_u8,ord('e'));
 buffer_write(ilda_buffer,buffer_u8,ord('n'));
+buffer_write(ilda_buffer,buffer_u8,ord(' '));
+buffer_write(ilda_buffer,buffer_u8,ord(' '));
 buffer_write(ilda_buffer,buffer_u8,ord(' '));
 buffer_write(ilda_buffer,buffer_u8,ord('G')); //author
 buffer_write(ilda_buffer,buffer_u8,ord('i'));
@@ -240,18 +240,18 @@ buffer_write(ilda_buffer,buffer_u8,0); //0
 buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
 
 //export
-if (file_exists("temp/"+filename_name(file_loc)))
+/*if (file_exists("temp/"+filename_name(file_loc)))
     file_delete("temp/"+filename_name(file_loc));
 buffer_save(ilda_buffer,"temp/"+filename_name(file_loc));
 show_debug_message(FS_file_exists(FStemp+filename_name(file_loc)))
-FS_file_copy(FStemp+filename_name(file_loc),file_loc);
+FS_file_copy(FStemp+filename_name(file_loc),file_loc);*/
 
-/*file = FS_file_bin_open(file_loc,1);
+file = FS_file_bin_open(file_loc,1);
 for (i = 0;i < buffer_get_size(ilda_buffer);i++)
     {
     FS_file_bin_write_byte(file,buffer_peek(ilda_buffer,i,buffer_u8));
     }
-FS_file_bin_close(file);*/
+FS_file_bin_close(file);
 
 if (FS_file_exists(file_loc))
     show_message_async("ILDA file exported");

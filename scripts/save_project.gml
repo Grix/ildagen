@@ -71,7 +71,11 @@ if (song)
 buffer_resize(save_buffer,buffer_tell(save_buffer));
 
 //export
-FS_buffer_save(save_buffer,file_loc);
+if (file_exists("temp/"+filename_name(file_loc)))
+    file_delete("temp/"+filename_name(file_loc));
+buffer_save(save_buffer,"temp/"+filename_name(file_loc));
+show_debug_message(FS_file_exists(FStemp+filename_name(file_loc)))
+FS_file_copy(FStemp+filename_name(file_loc),file_loc);
 
 //todo: save_buffer() if possible to speed up
 /*file = FS_file_bin_open(file_loc,1);

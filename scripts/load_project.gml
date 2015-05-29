@@ -5,9 +5,9 @@ if (file_loc == "") or is_undefined(file_loc)
     
 clear_project();
 
-FS_file_copy(file_loc,filename_name(file_loc));
+FS_file_copy(file_loc,FStemp+filename_name(file_loc));
     
-load_buffer = buffer_load(filename_name(file_loc));
+load_buffer = buffer_load("temp\"+filename_name(file_loc));
     
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 50)

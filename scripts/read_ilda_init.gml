@@ -8,9 +8,10 @@ if (filename != "")
     ild_filename = FS_file_bin_open(filename,0);
     file_size = FS_file_bin_size(ild_filename);
     FS_file_bin_close(ild_filename);
-    ild_file = buffer_create(file_size,buffer_fast,1);
-    FS_file_copy(filename,filename_name(filename))
-    buffer_load_ext(ild_file,filename_name(filename),0);
+    FS_file_copy(filename,FStemp+filename_name(filename));
+    ild_file = buffer_load("temp\"+filename_name(filename));
+    //ild_file = buffer_create(file_size,buffer_fast,1);
+    //buffer_load_ext(ild_file,"temp\"+filename_name(filename),0);
     }
 else
     return 0;

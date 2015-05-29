@@ -25,16 +25,31 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "0.9.10";
-versiondate = "2015-05-22";
+            <string>version = "0.9.10.1";
+versiondate = "2015-05-29";
 
 FS_gmfilesystem_initialize(1);
 FStemp = "%appdata%\LasershowGen\temp\";
 FS_set_gm_save_area("%appdata%\LasershowGen\temp");
 FS_set_working_directory("%appdata%\LasershowGen\temp");
 
+//clean temp files
 FS_clean_temporary();
+if (FS_directory_exists(FStemp))
+    {
+    while (1)
+        {
+        file = FS_file_find_first(FStemp+"*", 0);
+        show_debug_message(file)
+        if (file == "") or is_undefined(file) or !is_string(file)
+            break;
+        FS_file_delete(FStemp+file);
+        if (FS_file_exists(FStemp+file))
+            break;
+        }
+    }
 
+//declarations and setup
 math_set_epsilon(0.00001);
 ds_set_precision(0.00001); 
 draw_set_circle_precision(24);
