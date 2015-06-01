@@ -103,10 +103,6 @@ else image_index = 0;
             <kind>1</kind>
             <string>with (seqcontrol)
     {
-    //UnloadFMOD();
-    //LoadFMOD();
-    //FMODinit(2,0);
-    
     songinstance = 0;
     if (song) FMODSoundFree(song);
     songfile = get_open_filename_ext("","","","Select audio file");
@@ -122,6 +118,7 @@ else image_index = 0;
     if (length &lt; songlength/1000*projectfps)
         {
         length = songlength/1000*projectfps;
+        endframe = length;
         }
     FMODSoundSetGroup(song, 1);
     

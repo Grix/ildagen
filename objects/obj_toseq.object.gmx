@@ -99,7 +99,7 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>show_message_async("Timeline mode coming soon!");/*
+            <string>//show_message_async("Timeline mode coming soon!");/*
 if (os_version == -1)
     {
     show_message_async("Sorry, this feature is not available in the web version");

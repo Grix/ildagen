@@ -204,7 +204,7 @@ color_period = 8192;
 color_freq = 1;
 color_dc = 0.5;
 color_offset = 0;
-color_blendmode = 0; //0 replace 1 add 2 subtract
+color_blendmode = 0; //0 replace, 1 add, 2 subtract
 
 blankmode = "solid";
 blankmode2 = 0;
@@ -260,9 +260,12 @@ colorfunc_string_3 = "";
 blankfunc_string = "";
 
 
-if (os_version != -1) init_palette();
-if (os_version != -1) update_check();
-if (os_version != -1) parse_parameter();
+if (os_version != -1) 
+    {
+    init_palette();
+    update_check();
+    parse_parameter();
+    }
 
 draw_hershey();
 </string>
@@ -790,7 +793,7 @@ if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list)) and (placing_
     
 frameprev = frame;    
 
-/*if (keyboard_check_pressed(vk_tab))
+if (keyboard_check_pressed(vk_tab))
     {
     if (os_version == -1)
         {

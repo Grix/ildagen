@@ -28,13 +28,21 @@ if (errorcheck) && (repeatc)
     
 
 FMODInstanceGetWaveSnapshot2(parseinstance,0,numentries);
-w = FMODNormalizeWaveData(0,numentries);
+w1 = FMODNormalizeWaveData(0,numentries);
+FMODInstanceGetWaveSnapshot2(parseinstance,1,numentries);
+w2 = FMODNormalizeWaveData(0,numentries);
+w = (w1+w2)/2;
 ds_list_add(audio_list,ln(1+clamp(w*1.5,0,3.4)));
-FMODSpectrumSetSnapshotType(1);
+FMODSpectrumSetSnapshotType(2);
 FMODInstanceGetSpectrumSnapshot2(parseinstance,0,numentries);
-s = FMODNormalizeSpectrumData(0,5);
+s1 = FMODNormalizeSpectrumData(0,5);
+s3 = FMODNormalizeSpectrumData(40,150);
+FMODInstanceGetSpectrumSnapshot2(parseinstance,1,numentries);
+s2 = FMODNormalizeSpectrumData(0,5);
+s4 = FMODNormalizeSpectrumData(40,150);
+s = (s1+s2)/2;
 ds_list_add(audio_list,ln(1+clamp(s*8,0,3.4)));
-s = FMODNormalizeSpectrumData(40,150);
+s = (s3+s4)/2;
 ds_list_add(audio_list,ln(1+clamp(s*8,0,3.4)));
 
 pos = FMODInstanceGetPosition(parseinstance);

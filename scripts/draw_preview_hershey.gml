@@ -88,4 +88,3 @@ surface_reset_target();
      
 ds_list_destroy(new_list);
     
-
