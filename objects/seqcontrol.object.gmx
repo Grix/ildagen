@@ -31,6 +31,7 @@ layer_list = ds_list_create();
 layer = ds_list_create();
 ds_list_add(layer_list,layer);
 surface_list = ds_list_create();
+undo_list = ds_list_create();
 audio_list = ds_list_create();
 audio_surf = surface_create(1024,1024);
 effect_list = ds_list_create();
@@ -194,6 +195,8 @@ alarm[1] = 15;
             <string>if (parsingaudio == 1) refresh_audio();
 
 if (room != rm_seq) exit;
+
+//length = min(endframe,tlzoom)+100;
 
 if (song) FMODUpdate();
 

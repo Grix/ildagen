@@ -119,19 +119,20 @@ else if (scroll_moving == 2)
 if !((mouse_x == clamp(mouse_x,0,tlw)) 
 && (mouse_y == clamp(mouse_y,132,room_height)))
     exit;
-
-if (mouse_x == clamp(mouse_x,startframex-1,startframex+2))                         
+//startframe
+if (mouse_x == clamp(mouse_x,startframex-2,startframex+2))                         
     {
     controller.tooltip = "Drag to adjust the start of the project";
     if (mouse_check_button_pressed(mb_left))
         {
         mousexprev = mouse_x;
         moving_object = 3;
-        show_debug_message("yes")
+        //show_debug_message("yes")
         }
     exit;
     }
-else if (mouse_x == clamp(mouse_x,endframex-1,endframex+2))                         
+//endframe
+else if (mouse_x == clamp(mouse_x,endframex-2,endframex+2))                         
     {
     controller.tooltip = "Drag to adjust the end of the project";
     if (mouse_check_button_pressed(mb_left))
@@ -195,7 +196,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 correctframe = round(tlx+mouse_x/tlw*tlzoom);
                 draw_mouseline = 1;
                 
-                if (correctframe == clamp(correctframe, frametime-1, frametime+object_length+1))
+                if (correctframe == clamp(correctframe, frametime-2, frametime+object_length+1))
                     {
                     //mouse over object
                     controller.tooltip = "Click and drag to move object. Drag the far edge to adjust duration.#Double-click to edit frames#Right click for more actions";
@@ -210,7 +211,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                             }
                         else
                             {
-                            if (mouse_x > ((frametime-tlx)/tlzoom*tlw)+object_length/tlzoom*tlw-1)
+                            if (mouse_x > ((frametime-tlx)/tlzoom*tlw)+object_length/tlzoom*tlw-2)
                                 {
                                 //resize object
                                 moving_object = 2;

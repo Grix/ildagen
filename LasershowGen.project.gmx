@@ -873,6 +873,7 @@
       <script>scripts\refresh_seq_surface.gml</script>
       <script>scripts\make_screenshot.gml</script>
       <script>scripts\clear_project.gml</script>
+      <script>scripts\undo_seq.gml</script>
     </scripts>
     <scripts name="ilda">
       <script>scripts\draw_grid.gml</script>
@@ -1051,21 +1052,21 @@
         <object>objects\obj_e_res</object>
         <object>objects\obj_maxframes</object>
         <object>objects\obj_scope</object>
-        <object>objects\obj_undo</object>
         <object>objects\obj_reapply</object>
         <object>objects\obj_clear</object>
         <object>objects\obj_export</object>
         <object>objects\obj_save</object>
-        <object>objects\obj_load</object>
         <object>objects\obj_toseq</object>
-        <object>objects\obj_import</object>
         <object>objects\obj_onionskin</object>
         <object>objects\obj_clearframe</object>
         <object>objects\obj_bckimage</object>
-        <object>objects\obj_help</object>
         <object>objects\obj_totimeline</object>
-        <object>objects\obj_info</object>
       </objects>
+      <object>objects\obj_info</object>
+      <object>objects\obj_load</object>
+      <object>objects\obj_import</object>
+      <object>objects\obj_help</object>
+      <object>objects\obj_undo</object>
     </objects>
     <objects name="GMFMODSimple">
       <object>objects\FMODFaderObj</object>

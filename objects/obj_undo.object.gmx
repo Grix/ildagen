@@ -77,7 +77,10 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>undo_ilda();
+            <string>if (room = rm_ilda)
+    undo_ilda();
+else if (room = rm_seq)
+    undo_seq();
 </string>
           </argument>
         </arguments>
@@ -103,7 +106,10 @@ else image_index = 0;
             <string>if (!keyboard_check(vk_control))
 exit;
 
-undo_ilda();
+if (room = rm_ilda)
+    undo_ilda();
+else if (room = rm_seq)
+    undo_seq();
 </string>
           </argument>
         </arguments>

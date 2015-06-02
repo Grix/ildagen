@@ -33,15 +33,20 @@ surface_set_target(audio_surf);
             infolist = ds_list_find_value(layer,j+2);
             duration = ds_list_find_value(infolist,0);
             frametime = round(ds_list_find_value(layer,j));
-            draw_set_colour(c_dkgray);
+            
             if (frametime < tlx+tlzoom) and (frametime+duration > tlx)
                 {
                 //draw object on timeline
                 framedelta = (frametime-tlx)/tlzoom*tlw;
-                draw_rectangle(framedelta,tempstartx+i*48,framedelta+duration/tlzoom*tlw,tempstartx+i*48+48,0);
+                draw_set_colour(c_dkgray);
+                    draw_rectangle(framedelta,tempstartx+i*48,framedelta+duration/tlzoom*tlw,tempstartx+i*48+48,0);
+                draw_set_colour(c_green);
+                    draw_line(framedelta+duration/tlzoom*tlw+1,tempstartx+i*48,framedelta+duration/tlzoom*tlw+1,tempstartx+i*48+48);
+                    draw_line(framedelta-1,tempstartx+i*48,framedelta-1,tempstartx+i*48+48);
+                draw_set_colour(c_white);
                 if (!surface_exists(ds_list_find_value(infolist,1)))
                     ds_list_replace(infolist,1,make_screenshot(ds_list_find_value(layer,j+1)));
-                draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp(duration,1,32)/tlzoom*tlw,32,framedelta,tempstartx+i*48+8);
+                draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp(duration-1,0,32)/tlzoom*tlw,32,framedelta+1,tempstartx+i*48+8);
                 if (selectedlayer == i) and (selectedx == -j)
                     {
                     draw_set_color(c_gold);
