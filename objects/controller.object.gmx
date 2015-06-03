@@ -504,9 +504,61 @@ if (keyboard_check_pressed(vk_space))
         }
     }
     
-if (keyboard_check_pressed(vk_backspace))
+else if (keyboard_check_pressed(vk_backspace))
     {
     deselect_object();
+    }
+    
+else if (keyboard_check_pressed(ord('M')))
+    {
+    window_set_fullscreen(0);
+    window_set_size(1100,670);
+    }
+        
+else if (keyboard_check_pressed(ord("0")))
+    {
+    placing_status = 0;
+    ds_list_clear(semaster_list);
+    ds_list_clear(free_list);
+    ds_list_clear(bez_list);
+    exit;
+    }
+    
+else if (keyboard_check_pressed(ord("P")))
+    {
+    viewmode++;
+    if (viewmode &gt; 2)
+        viewmode = 0;
+    frame_surf_refresh = 1;
+    }
+        
+else if (keyboard_check_released(vk_f11))
+    window_set_fullscreen(!window_get_fullscreen());
+    
+else if (keyboard_check(vk_control)) and ds_list_size(el_list)
+    {
+    check_elementselect();
+    }
+    
+//PASTE
+if (keyboard_check(vk_control) and keyboard_check_pressed(ord('V')))
+    {
+    paste_object();
+    }
+    
+if (keyboard_check(ord('Z')) and !keyboard_check(vk_control))
+    {
+    view_visible[2] = 1;
+    view_xport[2] = clamp(obj_cursor.x-128,0,view_wview[0]-256);
+    view_yport[2] = clamp(obj_cursor.y-128,0,view_hview[0]-256);
+    }
+else
+    view_visible[2] = 0;
+    
+if (keyboard_check(ord('S'))) or (sgridshow == 1)
+    {
+    with (obj_cursor)
+        move_snap(32,32);
     }
     
 if (playing == 1)
@@ -569,58 +621,9 @@ if (ds_list_size(el_list) &gt; 0)
         }
     }
     
-if (keyboard_check(ord('Z')) and !keyboard_check(vk_control))
-    {
-    view_visible[2] = 1;
-    view_xport[2] = clamp(obj_cursor.x-128,0,view_wview[0]-256);
-    view_yport[2] = clamp(obj_cursor.y-128,0,view_hview[0]-256);
-    }
-else
-    view_visible[2] = 0;
-    
-if (keyboard_check(ord('S'))) or (sgridshow == 1)
-    with (obj_cursor)
-        move_snap(32,32);
-        
-if (keyboard_check_released(vk_f11))
-    window_set_fullscreen(!window_get_fullscreen())
-    
-if (keyboard_check_pressed(ord('M')))
-    {
-    window_set_fullscreen(0);
-    window_set_size(1100,670);
-    }
-        
-if (keyboard_check_pressed(ord("0")))
-    {
-    placing_status = 0;
-    ds_list_clear(semaster_list);
-    ds_list_clear(free_list);
-    ds_list_clear(bez_list);
-    exit;
-    }
-    
-if (keyboard_check_pressed(ord("P")))
-    {
-    viewmode++;
-    if (viewmode &gt; 2)
-        viewmode = 0;
-    frame_surf_refresh = 1;
-    }
-    
 if (!surface_exists(frame_surf) || (!surface_exists(frame3d_surf) &amp;&amp; viewmode != 0))
     frame_surf_refresh = 1;
-    
-if (keyboard_check(vk_control)) and ds_list_size(el_list)
-    {
-    check_elementselect();
-    }
-    
-//PASTE
-if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('V')))
-    {
-    paste_object();
-    }
+
     
 //SELECTED ELEMENT STUFFS
 canrightclick = 1;
@@ -638,13 +641,13 @@ if !ds_list_empty(semaster_list)
         }
         
     //CUT
-    if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('X')))
+    else if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('X')))
         {
         cut_object();
         }
         
     //DELETE
-    if (keyboard_check_pressed(vk_delete))
+    else if (keyboard_check_pressed(vk_delete))
         {
         delete_object();
         }

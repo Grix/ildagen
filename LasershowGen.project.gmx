@@ -840,9 +840,9 @@
       <scripts name="dd_seq">
         <script>scripts\dropdown_seqobject.gml</script>
         <script>scripts\seq_copy_object.gml</script>
+        <script>scripts\seq_cut_object.gml</script>
         <script>scripts\seq_edit_object.gml</script>
         <script>scripts\seq_delete_object.gml</script>
-        <script>scripts\seq_cut_object.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">
@@ -868,7 +868,7 @@
     <scripts name="seq">
       <script>scripts\refresh_audio.gml</script>
       <script>scripts\refresh_audio_surf.gml</script>
-      <script>scripts\handle_scrolling.gml</script>
+      <script>scripts\handle_mousecontrol.gml</script>
       <script>scripts\set_audio_speed.gml</script>
       <script>scripts\refresh_seq_surface.gml</script>
       <script>scripts\make_screenshot.gml</script>

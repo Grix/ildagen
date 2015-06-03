@@ -200,22 +200,6 @@ if (room != rm_seq) exit;
 
 if (song) FMODUpdate();
 
-if (keyboard_check_pressed(vk_space))
-    {
-    playing = !playing;
-    if (seqcontrol.song)
-        {
-        if (playing)
-            {
-            FMODInstanceSetPosition(songinstance,tlpos/FMODSoundGetLength(song));
-            FMODInstanceSetPaused(songinstance,0);
-            }
-        else
-            FMODInstanceSetPaused(songinstance,1);
-        }
-    }
-
-
 if (playing == 1)
     {
     tlpos += delta_time/1000*playbackspeed;
@@ -252,20 +236,36 @@ if (keyboard_check_pressed(vk_right))
     {
     tlpos += 1/projectfps*1000;
     }
+    
+else if (keyboard_check_pressed(vk_space))
+    {
+    playing = !playing;
+    if (seqcontrol.song)
+        {
+        if (playing)
+            {
+            FMODInstanceSetPosition(songinstance,tlpos/FMODSoundGetLength(song));
+            FMODInstanceSetPaused(songinstance,0);
+            }
+        else
+            FMODInstanceSetPaused(songinstance,1);
+        }
+    }
+    
 else if (keyboard_check_pressed(vk_left)) and (tlpos &gt; projectfps/1000)
     {
     tlpos -= 1/projectfps*1000;
     }
 
 
-if (keyboard_check_pressed(vk_tab))
+else if (keyboard_check_pressed(vk_tab))
     {
     if (song) FMODInstanceSetPaused(songinstance,1);
     playing = 0;
     room_goto(rm_ilda);
     }
     
-if (keyboard_check_pressed(ord("P")))
+else if (keyboard_check_pressed(ord("P")))
     {
     viewmode++;
     if (viewmode &gt; 2)
@@ -273,7 +273,7 @@ if (keyboard_check_pressed(ord("P")))
     frame_surf_refresh = 1;
     }
     
-if (keyboard_check_pressed(ord("0")))
+else if (keyboard_check_pressed(ord("0")))
     {
     tlx = 0;
     playing = 0;
@@ -285,18 +285,27 @@ if (keyboard_check_pressed(ord("0")))
         set_audio_speed();
         }
     }
-    
-    
-handle_scrolling();
 
-if (keyboard_check_released(vk_f11))
+else if (keyboard_check_pressed(vk_delete))
+    {
+    if (selectedlayer &gt;= 0) and (selectedx &lt;= 0)
+        {
+        seq_delete_object();
+        }
+    }
+    
+else if (keyboard_check_released(vk_f11))
     window_set_fullscreen(!window_get_fullscreen())
     
-if (keyboard_check_pressed(ord('M')))
+else if (keyboard_check_pressed(ord('M')))
     {
     window_set_fullscreen(0);
     window_set_size(1100,670);
-    }
+    }    
+    
+handle_mousecontrol();
+
+
 </string>
           </argument>
         </arguments>

@@ -1,13 +1,14 @@
 with (seqcontrol)
     {
     if (ds_list_size(undo_list) == 0)
-    exit;
+        exit;
         
     undo = ds_list_find_value(undo_list,ds_list_size(undo_list)-1);
     ds_list_delete(undo_list,ds_list_size(undo_list)-1);
     
     if (string_char_at(undo,0) == 'd')
         {
+        show_debug_message(undo)
         //undo delete object
         layertemp = real(string_digits(undo));
         infolisttemp = real(string_digits(ds_list_find_value(undo_list,ds_list_size(undo_list)-1)));
