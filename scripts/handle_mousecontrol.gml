@@ -240,7 +240,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                     }
                 }
                 
-            controller.tooltip = "Click to select this layer position";
+            controller.tooltip = "Click to select this layer position#Right click for more options";
             floatingcursorx = round(tlx+mouse_x/tlw*tlzoom);
             floatingcursory = tempstartx+i*48-1;
             draw_cursorline = 1;
@@ -250,6 +250,12 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 {
                 selectedlayer = i;
                 selectedx = floatingcursorx;
+                }
+            else if  mouse_check_button_pressed(mb_right)
+                {
+                selectedlayer = i;
+                selectedx = floatingcursorx;
+                dropdown_layer();
                 }
                 
             }
@@ -262,7 +268,7 @@ if !(mouseonsomelayer)
     if (mouse_y > 132)
         {
         //mouse over layer area
-        controller.tooltip = "Click to set playback position.#Right click for more actions";
+        controller.tooltip = "Click to set playback position.";
         if  mouse_check_button_pressed(mb_left)
             {
             tlpos = (tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
