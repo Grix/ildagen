@@ -41,6 +41,7 @@ buffer_list = ds_list_create();
 frame_surf = surface_create(512,512);
 frame3d_surf = surface_create(512,512);
 copy_list = -1;
+copy_buffer = -1;
     
 image_speed = 0;
 draw_mouseline = 0;

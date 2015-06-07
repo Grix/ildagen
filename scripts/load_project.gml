@@ -10,7 +10,7 @@ FS_file_copy(file_loc,FStemp+filename_name(file_loc));
 load_buffer = buffer_load("temp\"+filename_name(file_loc));
     
 idbyte = buffer_read(load_buffer,buffer_u8);
-if (idbyte != 50)
+if (idbyte != 50) and (idbyte != 51) 
     {
     show_message_async("Unexpected byte, is this a valid LasershowGen project file?");
     exit;

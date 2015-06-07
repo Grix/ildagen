@@ -89,7 +89,7 @@ for (j = startframe; j < endframe;j++)
             fetchedframe = (correctframe-frametime) mod object_maxframes;
             buffer_seek(el_buffer,buffer_seek_start,0);
             buffer_ver = buffer_read(el_buffer,buffer_u8);
-            if (buffer_ver != 50)
+            if (buffer_ver != 50) and (buffer_ver != 51)
                 {
                 show_message_async("Error: Unexpected byte. Things might get ugly. Contact developer.");
                 surface_reset_target();
@@ -124,13 +124,13 @@ for (j = startframe; j < endframe;j++)
                     }
                 for (u = 10; u < 50; u++)
                     {
-                    ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
+                    ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
                     }
                 for (u = 50; u < numofinds; u += 6)
                     {
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
-                    ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
+                    ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));

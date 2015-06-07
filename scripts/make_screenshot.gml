@@ -1,9 +1,10 @@
 temp_surf = surface_create(32,32);
 el_buffer = argument0;
 buffer_ver = buffer_read(el_buffer,buffer_u8);
-if (buffer_ver != 50)
+if (buffer_ver != 50) and (buffer_ver != 51)
     {
     show_message_async("Error: Unexpected byte. Things might get ugly. Contact developer.");
+    show_debug_message("make_screenshot buffer_ver: "+string(buffer_ver));
     return temp_surf;
     }
 buffer_maxframes = buffer_read(el_buffer,buffer_u32);
@@ -28,13 +29,13 @@ for (i = 0; i < buffer_maxelements;i++)
         }
     for (u = 10; u < 50; u++)
         {
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
+        ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
         }
     for (u = 50; u < numofinds; u += 6)
         {
         ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
         ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
+        ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
         ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
         ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
         ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
