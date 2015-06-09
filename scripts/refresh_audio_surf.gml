@@ -1,3 +1,5 @@
+//redraws the surface containing the layer list and audio visualization in the timeline mode
+
 if (!surface_exists(audio_surf))
     audio_surf = surface_create(1024,1024);
     
@@ -41,8 +43,7 @@ surface_set_target(audio_surf);
                 draw_set_colour(c_dkgray);
                     draw_rectangle(framedelta,tempstartx+i*48,framedelta+duration/tlzoom*tlw,tempstartx+i*48+48,0);
                 draw_set_colour(c_green);
-                    draw_line(framedelta+duration/tlzoom*tlw+1,tempstartx+i*48,framedelta+duration/tlzoom*tlw+1,tempstartx+i*48+48);
-                    draw_line(framedelta-1,tempstartx+i*48,framedelta-1,tempstartx+i*48+48);
+                    draw_rectangle(framedelta,tempstartx+i*48,framedelta+duration/tlzoom*tlw,tempstartx+i*48+48,1);
                 draw_set_colour(c_white);
                 if (!surface_exists(ds_list_find_value(infolist,1)))
                     ds_list_replace(infolist,1,make_screenshot(ds_list_find_value(layer,j+1)));

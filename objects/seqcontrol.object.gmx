@@ -234,7 +234,36 @@ with (obj_cursor)
     y = mouse_y;
     }
     
-if (keyboard_check_pressed(vk_right))
+    
+if (keyboard_check(vk_control))
+    {
+    //CTRL+~
+    if (keyboard_check_pressed(ord('C')))
+        {
+        if (selectedlayer &gt;= 0) and (selectedx &lt;= 0)
+            {
+            //COPY
+            seq_copy_object();
+            }
+        }
+    else if (keyboard_check_pressed(ord('X')))
+        {
+        if (selectedlayer &gt;= 0) and (selectedx &lt;= 0)
+            {
+            //COPY
+            seq_cut_object();
+            }
+        }
+    else if (keyboard_check_pressed(ord('V')))
+        {
+        if (selectedlayer &gt;= 0) and (selectedx &gt;= 0)
+            {
+            //COPY
+            seq_paste_object();
+            }
+        }
+    }
+else if (keyboard_check_pressed(vk_right))
     {
     tlpos += 1/projectfps*1000;
     }
@@ -303,7 +332,7 @@ else if (keyboard_check_pressed(ord('M')))
     {
     window_set_fullscreen(0);
     window_set_size(1100,670);
-    }    
+    }   
     
 handle_mousecontrol();
 
@@ -388,8 +417,11 @@ if (new_id == getint)
             layer = layertodelete;
             if (ds_list_find_index(layer_list,layer) == selectedlayer)
                 selectedlayer = -1;
-            for (j = 0; j &lt; ds_list_size(layer); j++)
-                ds_list_destroy(ds_list_find_value(layer,j));
+            for (j = 0; j &lt; ds_list_size(layer)/3; j+=3)
+                {
+                ds_list_destroy(ds_list_find_value(layer,j+2));
+                buffer_delete(ds_list_find_value(layer,j+1));
+                }
             ds_list_delete(layer_list,ds_list_find_index(layer_list,layertodelete));
             ds_list_destroy(layer);
             
@@ -471,7 +503,7 @@ UnloadFMOD();
             <kind>1</kind>
             <string>if (room != rm_seq) exit;
 
-if (alarm[0] == 1)
+if ((alarm[0] == 1)) or (moving_object)
     {
     refresh_audio_surf();
     }

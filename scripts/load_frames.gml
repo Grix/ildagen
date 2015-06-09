@@ -5,7 +5,7 @@ if (file_loc == "") or is_undefined(file_loc)
 FS_file_copy(file_loc,FStemp+filename_name(file_loc));
     
 load_buffer = buffer_load("temp\"+filename_name(file_loc));
-    
+buffer_seek(load_buffer,buffer_seek_start,0);
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 0) and (idbyte != 50) and (idbyte != 51)
     {

@@ -839,11 +839,6 @@
       <scripts name="dd_seq">
         <script>scripts\dropdown_seqobject.gml</script>
         <script>scripts\dropdown_layer.gml</script>
-        <script>scripts\seq_edit_object.gml</script>
-        <script>scripts\seq_copy_object.gml</script>
-        <script>scripts\seq_cut_object.gml</script>
-        <script>scripts\seq_delete_object.gml</script>
-        <script>scripts\seq_paste_object.gml</script>
         <script>scripts\seq_fromilda.gml</script>
       </scripts>
     </scripts>
@@ -877,6 +872,11 @@
       <script>scripts\clear_project.gml</script>
       <script>scripts\undo_seq.gml</script>
       <script>scripts\layer_delete.gml</script>
+      <script>scripts\seq_delete_object.gml</script>
+      <script>scripts\seq_paste_object.gml</script>
+      <script>scripts\seq_cut_object.gml</script>
+      <script>scripts\seq_copy_object.gml</script>
+      <script>scripts\seq_edit_object.gml</script>
     </scripts>
     <scripts name="ilda">
       <script>scripts\draw_grid.gml</script>

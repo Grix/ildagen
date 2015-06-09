@@ -20,11 +20,12 @@ if (moving_object == 1)
     {
     draw_mouseline = 1;
     //currently dragging object on timeline
-    ds_list_replace(layertomove,objectindex,ds_list_find_value(layertomove,objectindex)+(mouse_x-mousexprev)*tlzoom/tlw);
+    ds_list_replace(layertomove,objectindex,max(0,ds_list_find_value(layertomove,objectindex)+(mouse_x-mousexprev)*tlzoom/tlw));
     mousexprev = mouse_x;
     mouseyprev = mouse_y;
     if (mouse_check_button_released(mb_left))
         {
+        ds_list_replace(layertomove,objectindex,round(ds_list_find_value(layertomove,objectindex)));
         moving_object = 0;
         }
     exit;
@@ -33,10 +34,11 @@ else if (moving_object == 2)
     {
     draw_mouseline = 1;
     //resizing object on timeline
-    ds_list_replace(infolisttomove,0,ds_list_find_value(infolisttomove,0)+(mouse_x-mousexprev)*tlzoom/tlw);
+    ds_list_replace(infolisttomove,0,max(1,ds_list_find_value(infolisttomove,0)+(mouse_x-mousexprev)*tlzoom/tlw));
     mousexprev = mouse_x;
     if (mouse_check_button_released(mb_left))
         {
+        ds_list_replace(infolisttomove,0,round(ds_list_find_value(infolisttomove,0)));
         moving_object = 0;
         }
     exit;
@@ -49,6 +51,7 @@ else if (moving_object == 3)
     mousexprev = mouse_x;
     if (mouse_check_button_released(mb_left))
         {
+        startframe = round(startframe);
         moving_object = 0;
         }
     exit;
@@ -60,6 +63,7 @@ else if (moving_object == 4)
     mousexprev = mouse_x;
     if (mouse_check_button_released(mb_left))
         {
+        endframe = round(endframe);
         moving_object = 0;
         }
     exit;

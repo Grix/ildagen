@@ -1,4 +1,6 @@
 //paste timeline object
+if (!ds_exists(copy_list,ds_type_list))
+    exit;
 
 copy_list_new = ds_list_create();
 ds_list_copy(copy_list_new,copy_list); 
@@ -15,5 +17,7 @@ ds_list_add(layerlisttemp,copy_buffer_new);
 ds_list_add(layerlisttemp,copy_list_new);
 
 frame_surf_refresh = 1;
+
+selectedx += ds_list_find_value(copy_list_new,2);
 
 //TODO UNDO

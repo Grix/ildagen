@@ -1,5 +1,8 @@
+//returns a surface with a preview of argument0, which is a buffer containing laser frames
+
 temp_surf = surface_create(32,32);
 el_buffer = argument0;
+buffer_seek(el_buffer,buffer_seek_start,0);
 buffer_ver = buffer_read(el_buffer,buffer_u8);
 if (buffer_ver != 50) and (buffer_ver != 51)
     {

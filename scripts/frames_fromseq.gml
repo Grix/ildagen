@@ -1,12 +1,11 @@
 var layer = ds_list_find_value(layer_list,selectedlayer);
 controller.load_buffer = ds_list_find_value(layer,abs(selectedx)+1);
 
-
 with (controller)
     {
     buffer_seek(load_buffer,buffer_seek_start,0);
     idbyte = buffer_read(load_buffer,buffer_u8);
-    if (idbyte != 0) and (idbyte != 50)
+    if (idbyte != 50) and (idbyte != 51)
         {
         show_message_async("Unexpected ID byte: "+string(idbyte)+", is this a valid LasershowGen frames file?");
         exit;
@@ -40,28 +39,7 @@ with (controller)
     refresh_miniaudio_flag = 1;
     
     //load
-    if (idbyte == 0)
-        {
-        maxframes = buffer_read(load_buffer,buffer_s32);
-        for (j = 0; j < maxframes;j++)
-            {
-            el_list = ds_list_create();
-            ds_list_add(frame_list,el_list);
-            
-            numofelems = buffer_read(load_buffer,buffer_s32);
-            for (i = 0; i < numofelems;i++)
-                {
-                numofinds = buffer_read(load_buffer,buffer_s32);
-                ind_list = ds_list_create();
-                ds_list_add(el_list,ind_list);
-                for (u = 0; u < numofinds; u++)
-                    {
-                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
-                    }
-                }
-            }
-        }
-    else if (idbyte == 50)
+    if (idbyte == 50)
         {
         maxframes = buffer_read(load_buffer,buffer_u32);
         for (j = 0; j < maxframes;j++)
@@ -89,6 +67,41 @@ with (controller)
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                    }
+                }
+            }
+        }
+    else if (idbyte == 51)
+        {
+        maxframes = buffer_read(load_buffer,buffer_u32);
+        for (j = 0; j < maxframes;j++)
+            {
+            el_list = ds_list_create();
+            ds_list_add(frame_list,el_list);
+            
+            numofelems = buffer_read(load_buffer,buffer_u32);
+            for (i = 0; i < numofelems;i++)
+                {
+                numofinds = buffer_read(load_buffer,buffer_u32);
+                ind_list = ds_list_create();
+                ds_list_add(el_list,ind_list);
+                
+                for (u = 0; u < 10; u++)
+                    {
+                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
+                    }
+                for (u = 10; u < 50; u++)
+                    {
+                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_bool));
+                    }
+                for (u = 50; u < numofinds; u += 6)
+                    {
+                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
+                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
+                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_bool));
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
