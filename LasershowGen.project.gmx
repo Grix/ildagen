@@ -1059,13 +1059,13 @@
         <object>objects\obj_clear</object>
         <object>objects\obj_export</object>
         <object>objects\obj_save</object>
-        <object>objects\obj_toseq</object>
         <object>objects\obj_onionskin</object>
         <object>objects\obj_clearframe</object>
         <object>objects\obj_bckimage</object>
         <object>objects\obj_totimeline</object>
       </objects>
       <object>objects\obj_info</object>
+      <object>objects\obj_toseq</object>
       <object>objects\obj_load</object>
       <object>objects\obj_import</object>
       <object>objects\obj_help</object>
