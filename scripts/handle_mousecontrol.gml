@@ -1,3 +1,5 @@
+//all the interaction with the timeline
+
 if (mouse_x == clamp(mouse_x,0,tlw)) 
 && (mouse_y == clamp(mouse_y,132,room_height))
     {
@@ -22,10 +24,70 @@ if (moving_object == 1)
     //currently dragging object on timeline
     ds_list_replace(layertomove,objectindex,max(0,ds_list_find_value(layertomove,objectindex)+(mouse_x-mousexprev)*tlzoom/tlw));
     mousexprev = mouse_x;
-    mouseyprev = mouse_y;
+    
+    if (mouse_y > (mouseyprev+48)) and (ds_list_find_index(layer_list,layertomove) < (ds_list_size(layer_list)-1))
+        {
+        //move to lower layer
+        mouseyprev = mouse_y;
+        var newlayertomove = ds_list_find_value(layer_list,ds_list_find_index(layer_list,layertomove)+1);
+        ds_list_add(newlayertomove,ds_list_find_value(layertomove,objectindex));
+        ds_list_add(newlayertomove,ds_list_find_value(layertomove,objectindex+1));
+        ds_list_add(newlayertomove,ds_list_find_value(layertomove,objectindex+2));
+        repeat (3) ds_list_delete(layertomove,objectindex);
+        layertomove = newlayertomove;
+        objectindex = ds_list_size(newlayertomove)-3;
+        selectedlayer = ds_list_find_index(layer_list,newlayertomove);
+        selectedx = -objectindex;
+        }
+    else if (mouse_y < (mouseyprev-48)) and (ds_list_find_index(layer_list,layertomove) > 0)
+        {
+        //move to above layer
+        mouseyprev = mouse_y;
+        var newlayertomove = ds_list_find_value(layer_list,ds_list_find_index(layer_list,layertomove)-1);
+        ds_list_add(newlayertomove,ds_list_find_value(layertomove,objectindex));
+        ds_list_add(newlayertomove,ds_list_find_value(layertomove,objectindex+1));
+        ds_list_add(newlayertomove,ds_list_find_value(layertomove,objectindex+2));
+        repeat (3) ds_list_delete(layertomove,objectindex);
+        layertomove = newlayertomove;
+        objectindex = ds_list_size(newlayertomove)-3;
+        selectedlayer = ds_list_find_index(layer_list,newlayertomove);
+        selectedx = -objectindex;
+        }
     if (mouse_check_button_released(mb_left))
         {
-        ds_list_replace(layertomove,objectindex,round(ds_list_find_value(layertomove,objectindex)));
+        var tempxstart = round(ds_list_find_value(layertomove,objectindex));
+        if (!keyboard_check(vk_alt))
+            {
+            //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
+            var loop = 1;
+            while (loop)
+                {
+                loop = 0;
+                var tempxend = tempxstart + ds_list_find_value(ds_list_find_value(layertomove,objectindex+2),0);
+                for ( u = 0; u < ds_list_size(layertomove); u+= 3)
+                    {
+                    if (u == objectindex) continue;
+                    var tempxstart2 = ds_list_find_value(layertomove,u); 
+                    if (tempxstart2 > tempxend) //if end collides with start ahead
+                        continue;
+    
+                    var tempxend2 = tempxstart2 + ds_list_find_value(ds_list_find_value(layertomove,u+2),0);
+                    if (tempxend2 < tempxstart) //if start collides with end behind
+                        continue;
+                        
+                    loop = 1;
+                    if (tempxstart2 < tempxstart)
+                        {
+                        tempxstart = tempxend2+1;
+                        }
+                    else
+                        {
+                        tempxstart = tempxstart2-1-(tempxend-tempxstart);
+                        }
+                    }
+                }
+            }
+        ds_list_replace(layertomove,objectindex,tempxstart);
         moving_object = 0;
         }
     exit;
