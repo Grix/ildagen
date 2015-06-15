@@ -268,6 +268,7 @@ if (os_version != -1)
     }
 
 draw_hershey();
+
 </string>
           </argument>
         </arguments>
@@ -1984,8 +1985,6 @@ if (scope_start == 0) and (scope_end == maxframes-1)
     draw_text(220,495,"Scope: All frames");
 else
     draw_text(220,495,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
-    
-
 
 </string>
           </argument>

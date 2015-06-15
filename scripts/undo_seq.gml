@@ -8,7 +8,6 @@ with (seqcontrol)
     
     if (string_char_at(undo,0) == 'd')
         {
-        show_debug_message(undo)
         //undo delete object
         layertemp = real(string_digits(undo));
         infolisttemp = real(string_digits(ds_list_find_value(undo_list,ds_list_size(undo_list)-1)));
@@ -28,6 +27,18 @@ with (seqcontrol)
         ds_list_add(layerlisttemp,frametime);
         ds_list_add(layerlisttemp,-1);
         ds_list_add(layerlisttemp,infolisttemp);
+        }
+    if (string_char_at(undo,0) == 'm')
+        {
+        //undo move object
+        undolisttemp = real(string_digits(undo));
+        
+        }
+    if (string_char_at(undo,0) == 'r')
+        {
+        //undo resize object
+        undolisttemp = real(string_digits(undo));
+        
         }
     
     frame_surf_refresh = 1;

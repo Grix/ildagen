@@ -87,14 +87,13 @@ for (j = 0; j < (checkpoints-1);j++)
     if  (ds_list_find_value(new_list_parse,temppos+8) == 1)
         continue;
         
-    if  (ds_list_find_value(new_list_parse,temppos+9) == 0) &&
+    /*if  (ds_list_find_value(new_list_parse,temppos+9) == 0) &&
         (ds_list_find_value(new_list_parse,temppos+10) == 0) &&
         (ds_list_find_value(new_list_parse,temppos+11) == 0)
             {
-            //show_debug_message("black")
             ds_list_replace(new_list_parse,temppos+2,1);
             continue;
-            }
+            }*/
         
     length = point_distance( ds_list_find_value(new_list_parse,temppos)
                             ,ds_list_find_value(new_list_parse,temppos+1)

@@ -87,6 +87,10 @@ if (moving_object == 1)
                     }
                 }
             }
+            
+        ds_list_add(undolisttemp,layertomove);
+        ds_list_add(undo_list,"m"+string(undotemplist));
+        
         ds_list_replace(layertomove,objectindex,tempxstart);
         moving_object = 0;
         }
@@ -101,6 +105,9 @@ else if (moving_object == 2)
     if (mouse_check_button_released(mb_left))
         {
         ds_list_replace(infolisttomove,0,round(ds_list_find_value(infolisttomove,0)));
+        
+        ds_list_add(undo_list,"r"+string(undotemplist));
+        
         moving_object = 0;
         }
     exit;
@@ -282,6 +289,11 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                                 //resize object
                                 moving_object = 2;
                                 infolisttomove = infolist;
+                               
+                                undotemplist = ds_list_create();
+                                ds_list_add(undolisttemp,infolisttomove);
+                                ds_list_add(undolisttemp,ds_list_find_value(infolisttomove,0));
+                                
                                 mousexprev = mouse_x;
                                 }
                             else
@@ -290,6 +302,13 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                                 moving_object = 1;
                                 objectindex = m;
                                 layertomove = layer;
+                                infolisttomove = infolist;
+                                
+                                undotemplist = ds_list_create();
+                                ds_list_add(undolisttemp,layertomove);
+                                ds_list_add(undolisttemp,infolisttomove);
+                                ds_list_add(undolisttemp,ds_list_find_value(layertomove,objectindex));
+                                
                                 mousexprev = mouse_x;
                                 mouseyprev = mouse_y;
                                 }

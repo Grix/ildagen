@@ -66,7 +66,6 @@ with(controller)
                 (ds_list_find_value(new_list,temppos+10) == 0) &&
                 (ds_list_find_value(new_list,temppos+11) == 0)
                     {
-                    //show_debug_message("black")
                     ds_list_replace(new_list,temppos+2,1);
                     continue;
                     }
@@ -87,9 +86,7 @@ with(controller)
             tempblank = ds_list_find_value(new_list,temppos+8);
             tempc1 = ds_list_find_value(new_list,temppos+9);
             tempc2 = ds_list_find_value(new_list,temppos+10);
-            tempc3 = ds_list_find_value(new_list,temppos+11);
-            //if (i == 0)
-            //show_debug_message("length: "+string(length))     
+            tempc3 = ds_list_find_value(new_list,temppos+11);  
                    
             repeat(floor(stepscount))
                 {

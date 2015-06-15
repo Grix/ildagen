@@ -1,4 +1,4 @@
-//dist_triangular(min,mean,max,probability)
+///dist_triangular(min,mean,max,probability)
 //generates a triangular distributed number
 
 a = argument0;
