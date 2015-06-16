@@ -2,6 +2,7 @@
 placing_status = 0;
     
 save_buffer = buffer_create(1,buffer_grow,1);
+buffer_seek(save_buffer,buffer_seek_start,0);
 
 buffer_write(save_buffer,buffer_u8,51);
 buffer_write(save_buffer,buffer_s32,maxframes);
@@ -36,23 +37,21 @@ for (j = 0; j < maxframes;j++)
             }
         }
     }
-//remove excess size
-buffer_resize(save_buffer,buffer_tell(save_buffer));
 
 //export
-ildastring = "";
 buffersize = buffer_tell(save_buffer);
 
+filesaver_clearArray();
 
 error = 0;
 for (i = 0;i < buffersize;i++)
     {
-    if (!toArray(i,buffer_peek(save_buffer,i,buffer_u8)))
+    if (!filesaver_toArray(i,buffer_peek(save_buffer,i,buffer_u8)))
         {
         if (!error) show_message_async("Error filling file with data, may not save correctly!");
         error = 1;
         }
     }
-save(file_loc);
+filesaver_save(file_loc);
 
 buffer_delete(save_buffer);

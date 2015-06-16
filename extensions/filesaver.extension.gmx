@@ -3,7 +3,7 @@
   <name>filesaver</name>
   <version>1.0.0</version>
   <packageID></packageID>
-  <ProductID></ProductID>
+  <ProductID>ACBD3CFF4E539AD869A0E8E3B4B022DD</ProductID>
   <date>09/10/14</date>
   <license>Free to use, also for commercial games.</license>
   <description></description>
@@ -38,7 +38,7 @@
       <ProxyFiles/>
       <functions>
         <function>
-          <name>save</name>
+          <name>filesaver_save</name>
           <externalName></externalName>
           <kind>11</kind>
           <help></help>
@@ -49,7 +49,7 @@
           </args>
         </function>
         <function>
-          <name>toArray</name>
+          <name>filesaver_toArray</name>
           <externalName></externalName>
           <kind>11</kind>
           <help></help>
@@ -59,6 +59,15 @@
             <arg>2</arg>
             <arg>2</arg>
           </args>
+        </function>
+        <function>
+          <name>filesaver_clearArray</name>
+          <externalName>filesaver_clearArray</externalName>
+          <kind>10</kind>
+          <help></help>
+          <returnType>0</returnType>
+          <argCount>-1</argCount>
+          <args/>
         </function>
       </functions>
       <constants/>

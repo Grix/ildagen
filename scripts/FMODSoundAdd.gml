@@ -1,4 +1,4 @@
-//export double FMODSoundAdd(LPCSTR soundfile, double threed, double streamed)
+///export double FMODSoundAdd(LPCSTR soundfile, double threed, double streamed)
 
 //Adds a sound resource in the system but does not play it
 //returns a soundid which you should store in a variable
@@ -7,6 +7,7 @@
 
 //threed (optional false is default) specifies to load the file as 3d enabled
 //stream (optional false is default) specifies the system to load the file a chunk at a time to play it
+//2: compressedsample
 
 // specify threed as true if the sound will be 3d enabled
 // You cannot mix 3d functions with non 3d sounds

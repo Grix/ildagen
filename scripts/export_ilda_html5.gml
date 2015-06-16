@@ -229,21 +229,20 @@ buffer_write(ilda_buffer,buffer_u8,0); //scanner
 buffer_write(ilda_buffer,buffer_u8,0); //0
 
 //export
-
-
-ildastring = "";
 buffersize = buffer_tell(ilda_buffer);
+
+filesaver_clearArray();
 
 error = 0;
 for (i = 0;i < buffersize;i++)
     {
-    if (!toArray(i,buffer_peek(ilda_buffer,i,buffer_u8)))
+    if (!filesaver_toArray(i,buffer_peek(ilda_buffer,i,buffer_u8)))
         {
         if (!error) show_message_async("Error filling file with data, may not save correctly!");
         error = 1;
         }
     }
     
-save(file_loc);
+filesaver_save(file_loc);
     
 buffer_delete(ilda_buffer);
