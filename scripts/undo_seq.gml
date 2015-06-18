@@ -28,17 +28,24 @@ with (seqcontrol)
         ds_list_add(layerlisttemp,-1);
         ds_list_add(layerlisttemp,infolisttemp);
         }
-    if (string_char_at(undo,0) == 'm')
+    else if (string_char_at(undo,0) == 'm')
         {
         //undo move object
         undolisttemp = real(string_digits(undo));
         
         }
-    if (string_char_at(undo,0) == 'r')
+    else if (string_char_at(undo,0) == 'r')
         {
         //undo resize object
         undolisttemp = real(string_digits(undo));
         
+        }
+    else if (string_char_at(undo,0) == 'l')
+        {
+        //undo marker clear
+        undolisttemp = real(string_digits(undo));
+        ds_list_destroy(marker_list);
+        marker_list = undolisttemp;
         }
     
     frame_surf_refresh = 1;

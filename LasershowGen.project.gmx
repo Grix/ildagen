@@ -189,6 +189,7 @@
       <sprite>sprites\spr_saveproject</sprite>
       <sprite>sprites\spr_loadproject</sprite>
       <sprite>sprites\spr_addmarker</sprite>
+      <sprite>sprites\spr_clearmarker</sprite>
     </sprites>
     <sprite>sprites\spr_save</sprite>
     <sprite>sprites\spr_export</sprite>
@@ -980,6 +981,7 @@
         <object>objects\obj_loadaudio</object>
         <object>objects\obj_fps</object>
         <object>objects\obj_addmarker</object>
+        <object>objects\obj_clearmarkers</object>
         <object>objects\obj_playbackspeed</object>
       </objects>
       <objects name="ilda">

@@ -65,6 +65,7 @@
     <instance objName="obj_exportproject" x="1012" y="620" name="inst_8B2D86B5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_toseq" x="940" y="88" name="inst_CBB04664" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_addmarker" x="924" y="172" name="inst_F3A8D49B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_clearmarkers" x="964" y="172" name="inst_692C7040" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

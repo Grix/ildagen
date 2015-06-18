@@ -122,7 +122,7 @@ FMODinit(2,0);
           <argument>
             <kind>1</kind>
             <string>doubleclick = 1;
-alarm[1] = 15;
+alarm[1] = 13;
 </string>
           </argument>
         </arguments>

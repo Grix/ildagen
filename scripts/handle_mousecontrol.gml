@@ -137,6 +137,18 @@ else if (moving_object == 4)
         }
     exit;
     }
+else if (moving_object == 5)
+    {
+    //moving marker
+    ds_list_replace(marker_list,markertomove,max(1,ds_list_find_value(marker_list,markertomove)+(mouse_x-mousexprev)*tlzoom/tlw));
+    mousexprev = mouse_x;
+    if (mouse_check_button_released(mb_left))
+        {
+        ds_list_replace(marker_list,markertomove,round(ds_list_find_value(marker_list,markertomove)));
+        moving_object = 0;
+        }
+    exit;
+    }
     
     
 //horizontal
@@ -189,9 +201,10 @@ else if (scroll_moving == 2)
         scroll_moving = 0;
     }
     
-if !((mouse_x == clamp(mouse_x,0,tlw)) 
-&& (mouse_y == clamp(mouse_y,132,room_height)))
+if (mouse_x > tlw) 
+or (mouse_y < 132)
     exit;
+
 //startframe
 if (mouse_x == clamp(mouse_x,startframex-2,startframex+2))                         
     {
@@ -214,11 +227,34 @@ else if (mouse_x == clamp(mouse_x,endframex-2,endframex+2))
         }
     exit;
     }
+    
+draw_cursorline = 0;    
+
+//markers
+for (i = 0; i < ds_list_size(marker_list); i++)
+    {
+    var markerpostemp = (ds_list_find_value(marker_list,i)-tlx)*tlwdivtlzoom;
+    if (mouse_x == clamp(mouse_x,markerpostemp-2,markerpostemp+2))                         
+        {
+        mouseonsomelayer = 1;
+        controller.tooltip = "Drag to adjust the marker. Ctrl+Click to delete marker.";
+        if (mouse_check_button_pressed(mb_left))
+            {
+            if (keyboard_check(vk_control))
+                ds_list_delete(marker_list,i);
+            else
+                {
+                markertomove = i;
+                mousexprev = mouse_x;
+                moving_object = 5;
+                }
+            }
+        return 1;
+        }
+    }
 
 //layers
-draw_cursorline = 0;
 tempstartx = tls-layerbarx;
-
 
 for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < floor((layerbarx+lbh)/48); i++)
     {
@@ -363,4 +399,4 @@ if !(mouseonsomelayer)
     }
     
     
-    
+return 1;
