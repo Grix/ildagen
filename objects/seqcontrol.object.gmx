@@ -33,11 +33,12 @@ ds_list_add(layer_list,layer);
 surface_list = ds_list_create();
 undo_list = ds_list_create();
 audio_list = ds_list_create();
-audio_surf = surface_create(1024,1024);
 effect_list = ds_list_create();
 ilda_list = ds_list_create();
-audio_surf = surface_create(1024,1024);
 buffer_list = ds_list_create();
+marker_list = ds_list_create();
+audio_surf = surface_create(1024,1024);
+audio_surf = surface_create(1024,1024);
 frame_surf = surface_create(512,512);
 frame3d_surf = surface_create(512,512);
 copy_list = -1;
@@ -81,6 +82,7 @@ tlw = 897;
 tlh = 128;
 tls = tlh+138+16;
 lbh = room_height-32-tlh-138;
+lbsh = tlh+16+lbh;
 phi = 1.618;
 tlzoom = tlw;
 tlx = 0;
@@ -166,7 +168,7 @@ alarm[1] = 15;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0] = 2;
+            <string>alarm[0] = 5;
 
 //if (room != rm_seq) exit;
 //if (parsingaudio) or (scroll_moving) or (song &amp;&amp; !FMODInstanceGetPaused(songinstance))
@@ -265,7 +267,7 @@ if (keyboard_check(vk_control))
     }
 else if (keyboard_check_pressed(vk_right))
     {
-    tlpos += 1/projectfps*1000;
+    tlpos += 1000/projectfps;
     }
     
 else if (keyboard_check_pressed(vk_space))
@@ -285,7 +287,7 @@ else if (keyboard_check_pressed(vk_space))
     
 else if (keyboard_check_pressed(vk_left)) and (tlpos &gt; projectfps/1000)
     {
-    tlpos -= 1/projectfps*1000;
+    tlpos -= 1000/projectfps;
     }
 
 
@@ -503,7 +505,7 @@ UnloadFMOD();
             <kind>1</kind>
             <string>if (room != rm_seq) exit;
 
-if ((alarm[0] == 1)) or (moving_object)
+if ((alarm[0] == 1)) or (playing and (alarm[0] mod 2) == 1) or (moving_object) or (scroll_moving)
     {
     refresh_audio_surf();
     }

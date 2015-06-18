@@ -5,15 +5,16 @@ if (!surface_exists(audio_surf))
     
 surface_set_target(audio_surf);
 
-    tlwdivtlzoom = tlw/tlzoom;    
+    tlwdivtlzoom = tlw/tlzoom; 
+    tlwmulttlzoom = 1/tlzoom*tlw;    
 
     draw_clear_alpha(c_white,0);
-    draw_set_alpha(1);
     draw_set_font(fnt_small);
-    draw_set_colour(c_black);
     
     //layers
     //tempstartx and layerbarx are really Y values
+    draw_set_alpha(1);
+    draw_set_colour(c_black);
     tempstartx = tlh+16-layerbarx//tlh+16-floor(layerbarx);
     for (i = 0; i <= ds_list_size(layer_list);i++)
         {
@@ -39,20 +40,20 @@ surface_set_target(audio_surf);
             if (frametime < tlx+tlzoom) and (frametime+duration > tlx)
                 {
                 //draw object on timeline
-                framedelta = (frametime-tlx)/tlzoom*tlw;
+                framedelta = (frametime-tlx)*tlwmulttlzoom;
                 draw_set_colour(c_dkgray);
-                    draw_rectangle(framedelta,tempstartx+i*48,framedelta+duration/tlzoom*tlw,tempstartx+i*48+48,0);
+                    draw_rectangle(framedelta,tempstartx+i*48,framedelta+duration*tlwmulttlzoom,tempstartx+i*48+48,0);
                 draw_set_colour(c_green);
-                    draw_rectangle(framedelta,tempstartx+i*48,framedelta+duration/tlzoom*tlw,tempstartx+i*48+48,1);
+                    draw_rectangle(framedelta,tempstartx+i*48,framedelta+duration*tlwmulttlzoom,tempstartx+i*48+48,1);
                 draw_set_colour(c_white);
                 if (!surface_exists(ds_list_find_value(infolist,1)))
                     ds_list_replace(infolist,1,make_screenshot(ds_list_find_value(layer,j+1)));
-                draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp(duration-1,0,32)/tlzoom*tlw,32,framedelta+1,tempstartx+i*48+8);
+                draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp(duration-1,0,32)*tlwmulttlzoom,32,framedelta+1,tempstartx+i*48+8);
                 if (selectedlayer == i) and (selectedx == -j)
                     {
                     draw_set_color(c_gold);
                     draw_set_alpha(0.3);
-                        draw_rectangle(framedelta,tempstartx+i*48,framedelta+duration/tlzoom*tlw,tempstartx+i*48+48,0);
+                        draw_rectangle(framedelta,tempstartx+i*48,framedelta+duration*tlwmulttlzoom,tempstartx+i*48+48,0);
                     draw_set_alpha(1);
                     draw_set_color(c_black);
                     }
@@ -84,7 +85,7 @@ surface_set_target(audio_surf);
         if (tempx > tlw)
             break;
 
-        if ((drawtime % modulus) == 0)
+        if ((drawtime mod modulus) == 0)
             {
             //draw timestamp
             draw_set_alpha(0.5);
@@ -105,15 +106,37 @@ surface_set_target(audio_surf);
             }
         drawtime++;
         }
+        
+    draw_set_alpha(1);
     
-         
+    //start and end frame lines
+    startframex = (startframe-tlx)*tlwdivtlzoom;
+    if (startframex == clamp(startframex,0,tlw+1))
+        {
+        draw_set_color(c_blue);
+        draw_rectangle(startframex,0,startframex+1,tlh-1,0);
+        draw_rectangle(startframex,tlh+17,startframex+1,lbsh,0);
+        draw_set_font(fnt_bold);
+        draw_text(startframex+4,lbsh-20,"Start");
+        }
+
+    endframex = (endframe-tlx)*tlwdivtlzoom;
+    if (endframex == clamp(endframex,0,tlw+1))
+        {
+        draw_set_color(c_red);
+        draw_rectangle(endframex,0,endframex+1,tlh-1,0);
+        draw_rectangle(endframex,tlh+17,endframex+1,lbsh,0);
+        draw_set_font(fnt_bold);
+        draw_text(endframex-25,lbsh-20,"End");
+        }
+        
     //audio   
     if (song)
         {
         draw_set_alpha(0.6);
         for (u=0; u <= tlw; u++)
             {
-            nearesti = round((tlx+u*tlzoom/tlw/1)/projectfps*60)*3;
+            nearesti = round((tlx+u*tlzoom/tlw)/projectfps*60)*3;
             
             if (nearesti > ds_list_size(audio_list)-3)
                 break;
@@ -130,37 +153,25 @@ surface_set_target(audio_surf);
             draw_set_color(c_blue);
             draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);    
             }
-        draw_set_alpha(1);
-        draw_set_color(c_dkgray);
         }
         
-    draw_set_alpha(1);
-    
-    startframex = (startframe-tlx)*tlwdivtlzoom;
-    if (startframex == clamp(startframex,0,tlw+1))
+    //markers
+    draw_set_alpha(0.7);
+    draw_set_colour(c_fuchsia);
+    for (i = 0; i < ds_list_size(marker_list); i++)
         {
-        draw_set_color(c_blue);
-        draw_rectangle(startframex,0,startframex+1,tlh-1,0);
-        draw_rectangle(startframex,tlh+17,startframex+1,1000,0);
-        draw_set_font(fnt_bold);
-        draw_text(startframex+4,tlh+16+lbh-20,"Start");
-        }
-
-    endframex = (endframe-tlx)*tlwdivtlzoom;
-    if (endframex == clamp(endframex,0,tlw+1))
-        {
-        draw_set_color(c_red);
-        draw_rectangle(endframex,0,endframex+1,tlh-1,0);
-        draw_rectangle(endframex,tlh+17,endframex+1,1000,0);
-        draw_set_font(fnt_bold);
-        draw_text(endframex-25,tlh+16+lbh-20,"End");
+        if (ds_list_find_value(marker_list,i) == clamp(ds_list_find_value(marker_list,i),tlx,tlx+tlzoom))
+            {
+            var markerpostemp = (ds_list_find_value(marker_list,i)-tlx)*tlwdivtlzoom;
+            draw_rectangle(markerpostemp,0,markerpostemp+1,tlh-1,0);
+            draw_rectangle(markerpostemp,tlh+17,markerpostemp+1,lbsh,0);
+            }
         }
 
     draw_set_alpha(0.3);
     draw_set_colour(c_black);
-    draw_rectangle(0,0,clamp(startframex,0,tlw+1),1000,0);
-    draw_rectangle(clamp(endframex,0,tlw+1),0,tlw+1,1000,0);
-        
+    draw_rectangle(0,0,clamp(startframex,0,tlw+1),lbsh,0);
+    draw_rectangle(clamp(endframex,0,tlw+1),0,tlw+1,lbsh,0);
         
 surface_reset_target();
 draw_set_color(c_white);

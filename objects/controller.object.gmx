@@ -522,7 +522,6 @@ else if (keyboard_check_pressed(ord("0")))
     ds_list_clear(semaster_list);
     ds_list_clear(free_list);
     ds_list_clear(bez_list);
-    exit;
     }
     
 else if (keyboard_check_pressed(ord("P")))
@@ -801,7 +800,7 @@ if (keyboard_check_pressed(vk_tab))
     {
     if (os_version == -1)
         {
-        show_message_async("Sorry, this timeline is not available in the web version");
+        show_message_async("Sorry, this timeline is not available in the web version yet");
         exit;
         }
     placing_status = 0;

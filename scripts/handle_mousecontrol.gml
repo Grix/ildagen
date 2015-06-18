@@ -200,7 +200,6 @@ if (mouse_x == clamp(mouse_x,startframex-2,startframex+2))
         {
         mousexprev = mouse_x;
         moving_object = 3;
-        //show_debug_message("yes")
         }
     exit;
     }

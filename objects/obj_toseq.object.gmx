@@ -51,7 +51,7 @@
             <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     image_index = 1;
-    controller.tooltip = "Sends the current frames to the timeline.";
+    controller.tooltip = "Sends the current frames from the editor mode to the timeline mode (Shortcut: I)";
     } 
 else image_index = 0;
 </string>
@@ -83,6 +83,50 @@ else image_index = 0;
       </action>
     </event>
     <event eventtype="6" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//show_message_async("Timeline mode coming soon!");/*
+if (os_version == -1)
+    {
+    show_message_async("Sorry, this feature is not available in the web version");
+    exit;
+    }
+
+with (controller)
+    {
+    if (seqcontrol.selectedlayer == -1)
+        {
+        show_message_async("Please select a position on the sequencer timeline first.");
+        exit;
+        }    
+    
+    if (seqcontrol.selectedx &lt;= 0)
+        {
+        ilda_dialog_yesno("toseqreplace","This will replace the selected timeline object with these frames. Continue? (Cannot be undone)");
+        }
+    else
+        frames_toseq();
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="73">
       <action>
         <libid>1</libid>
         <id>603</id>

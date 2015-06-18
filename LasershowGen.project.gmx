@@ -188,6 +188,7 @@
       <sprite>sprites\spr_addlayer</sprite>
       <sprite>sprites\spr_saveproject</sprite>
       <sprite>sprites\spr_loadproject</sprite>
+      <sprite>sprites\spr_addmarker</sprite>
     </sprites>
     <sprite>sprites\spr_save</sprite>
     <sprite>sprites\spr_export</sprite>
@@ -877,6 +878,7 @@
       <script>scripts\seq_cut_object.gml</script>
       <script>scripts\seq_copy_object.gml</script>
       <script>scripts\seq_edit_object.gml</script>
+      <script>scripts\add_marker.gml</script>
     </scripts>
     <scripts name="ilda">
       <script>scripts\draw_grid.gml</script>
@@ -977,6 +979,7 @@
         <object>objects\obj_toeditor</object>
         <object>objects\obj_loadaudio</object>
         <object>objects\obj_fps</object>
+        <object>objects\obj_addmarker</object>
         <object>objects\obj_playbackspeed</object>
       </objects>
       <objects name="ilda">
