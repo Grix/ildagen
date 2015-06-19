@@ -59,29 +59,6 @@ else image_index = 0;
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="5">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//dropdown_export();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="6" enumb="4">
       <action>
         <libid>1</libid>
@@ -100,7 +77,7 @@ else image_index = 0;
           <argument>
             <kind>1</kind>
             <string>//show_message_async("Timeline mode coming soon!");/*
-if (os_version == -1)
+if (os_browser != browser_not_a_browser)
     {
     show_message_async("Sorry, this feature is not available in the web version");
     exit;
@@ -144,9 +121,9 @@ with (controller)
           <argument>
             <kind>1</kind>
             <string>//show_message_async("Timeline mode coming soon!");/*
-if (os_version == -1)
+if (os_browser != browser_not_a_browser)
     {
-    show_message_async("Sorry, this feature is not available in the web version");
+    show_message_async("Sorry, the timeline mode is not available in the web version yet");
     exit;
     }
 

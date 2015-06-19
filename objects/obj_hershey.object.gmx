@@ -79,13 +79,7 @@ controller.tooltip = "Selects symbol tool";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*if (os_version == -1)
-    {
-    show_message_async("Sorry, this feature is not available in the web version");
-    exit;
-    }*/
-
-controller.placing = "hershey";
+            <string>controller.placing = "hershey";
 with (controller)
     {
     draw_preview_hershey();

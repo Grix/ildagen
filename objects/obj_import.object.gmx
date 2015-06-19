@@ -77,9 +77,9 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (os_version == -1)
+            <string>if (os_browser != browser_not_a_browser)
     {
-    show_message_async("Sorry, this feature is not available in the web version");
+    show_message_async("Sorry, this feature is not available in the web version yet");
     exit;
     }
     

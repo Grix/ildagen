@@ -1,4 +1,4 @@
-if (os_version == -1) exit;
+if (os_browser != browser_not_a_browser) exit;
 
 show_debug_message("Checking for updates")
 

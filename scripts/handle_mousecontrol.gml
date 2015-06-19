@@ -89,7 +89,7 @@ if (moving_object == 1)
             }
             
         ds_list_add(undolisttemp,layertomove);
-        ds_list_add(undo_list,"m"+string(undotemplist));
+        ds_list_add(undo_list,"m"+string(undolisttemp));
         
         ds_list_replace(layertomove,objectindex,tempxstart);
         moving_object = 0;
@@ -106,7 +106,7 @@ else if (moving_object == 2)
         {
         ds_list_replace(infolisttomove,0,round(ds_list_find_value(infolisttomove,0)));
         
-        ds_list_add(undo_list,"r"+string(undotemplist));
+        ds_list_add(undo_list,"r"+string(undolisttemp));
         
         moving_object = 0;
         }
@@ -325,7 +325,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                                 moving_object = 2;
                                 infolisttomove = infolist;
                                
-                                undotemplist = ds_list_create();
+                                undolisttemp = ds_list_create();
                                 ds_list_add(undolisttemp,infolisttomove);
                                 ds_list_add(undolisttemp,ds_list_find_value(infolisttomove,0));
                                 
@@ -339,7 +339,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                                 layertomove = layer;
                                 infolisttomove = infolist;
                                 
-                                undotemplist = ds_list_create();
+                                undolisttemp = ds_list_create();
                                 ds_list_add(undolisttemp,layertomove);
                                 ds_list_add(undolisttemp,infolisttomove);
                                 ds_list_add(undolisttemp,ds_list_find_value(layertomove,objectindex));

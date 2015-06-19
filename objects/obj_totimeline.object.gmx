@@ -103,7 +103,7 @@ else image_index = 0;
 
 with (controller)
     {
-    if (os_version == -1)
+    if (os_browser != browser_not_a_browser)
         {
         show_message_async("Sorry, this timeline is not available in the web version");
         exit;

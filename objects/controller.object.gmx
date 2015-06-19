@@ -260,7 +260,7 @@ colorfunc_string_3 = "";
 blankfunc_string = "";
 
 
-if (os_version != -1) 
+if (os_browser == browser_not_a_browser)
     {
     init_palette();
     update_check();
@@ -798,7 +798,7 @@ frameprev = frame;
 
 if (keyboard_check_pressed(vk_tab))
     {
-    if (os_version == -1)
+    if (os_browser != browser_not_a_browser)
         {
         show_message_async("Sorry, this timeline is not available in the web version yet");
         exit;
