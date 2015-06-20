@@ -6,6 +6,23 @@ with (seqcontrol)
     undo = ds_list_find_value(undo_list,ds_list_size(undo_list)-1);
     ds_list_delete(undo_list,ds_list_size(undo_list)-1);
     
+    if (string_char_at(undo,0) == 'c')
+        {
+        //undo create object (delete)
+        undolisttemp = real(string_digits(undo));
+        var finallayer = ds_list_find_value(undolisttemp,0);
+        infolisttemp = ds_list_find_value(undolisttemp,1);
+        var loopsafety = 1000;
+        do 
+            {
+            finalx = ds_list_find_index(finallayer,infolisttemp)-2;
+            loopsafety--;
+            }
+        until ((finalx mod 3) == 0) or !loopsafety
+        selectedlayer = ds_list_find_index(layer_list,finallayer);
+        selectedx = -finalx;
+        seq_delete_object_noundo();
+        }
     if (string_char_at(undo,0) == 'd')
         {
         //undo delete object

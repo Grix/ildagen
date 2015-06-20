@@ -875,6 +875,7 @@
       <script>scripts\undo_seq.gml</script>
       <script>scripts\layer_delete.gml</script>
       <script>scripts\seq_delete_object.gml</script>
+      <script>scripts\seq_delete_object_noundo.gml</script>
       <script>scripts\seq_paste_object.gml</script>
       <script>scripts\seq_cut_object.gml</script>
       <script>scripts\seq_copy_object.gml</script>

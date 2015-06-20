@@ -89,6 +89,7 @@ with (seqcontrol)
         ds_list_add(info,controller.maxframes);
         ds_list_add(selectedlayerlist,info);
         
+        infolisttemp = info;
         selectedx += controller.maxframes;
         }
     else
@@ -102,7 +103,14 @@ with (seqcontrol)
             surface_free(ds_list_find_value(infolist,1));
         ds_list_replace(infolist,1,make_screenshot(controller.save_buffer));
         ds_list_replace(infolist,2,controller.maxframes);
+        
+        infolisttemp = infolist;
         }
+        
+    undolisttemp = ds_list_create();
+    ds_list_add(undolisttemp,selectedlayerlist);
+    ds_list_add(undolisttemp,infolisttemp);
+    ds_list_add(undo_list,"c"+string(undolisttemp));
     }
     
 room_goto(rm_seq);
