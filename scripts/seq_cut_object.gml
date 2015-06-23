@@ -18,6 +18,4 @@ buffer_copy(ds_list_find_value(layerlisttemp,abs(selectedx)+1),
             copy_buffer,
             0);
 
-repeat (3) ds_list_delete(layerlisttemp,abs(selectedx));
-
-selectedx = abs(selectedx);
+seq_delete_object();

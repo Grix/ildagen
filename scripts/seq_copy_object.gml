@@ -18,4 +18,4 @@ buffer_copy(ds_list_find_value(layerlisttemp,abs(selectedx)+1),
             copy_buffer,
             0);
 
-selectedx = abs(selectedx);
+selectedx = ds_list_find_value(layerlisttemp,abs(selectedx))+ds_list_find_value(ds_list_find_value(layerlisttemp,abs(selectedx)+2),0);

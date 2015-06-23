@@ -3,8 +3,6 @@ if (!surface_exists(frame_surf))
 if (!surface_exists(frame3d_surf))
     frame3d_surf = surface_create(512,512);
 
-//surface_set_target(frame_surf);
-
 if (viewmode != 1)
     {
     surface_set_target(frame_surf);
@@ -25,18 +23,20 @@ correctframe = round(tlpos/1000*projectfps);
 for (j = 0; j < ds_list_size(layer_list); j++)
     {
     layer = ds_list_find_value(layer_list, j);
-    for (m = 0; m < ds_list_size(layer); m += 3)
+    for (m = 0; m < ds_list_size(layer); m++)
         {
-        infolist =  ds_list_find_value(layer,m+2);
-        frametime = round(ds_list_find_value(layer,m));
+        objectlist = ds_list_find_value(layer,m);
+        
+        infolist =  ds_list_find_value(objectlist,2);
+        frametime = round(ds_list_find_value(objectlist,m));
         object_length = ds_list_find_value(infolist,0);
         object_maxframes = ds_list_find_value(infolist,2);
         
         if (correctframe != clamp(correctframe, frametime, frametime+object_length))
             continue;
         
-        //yup, draw object
-        el_buffer = ds_list_find_value(layer,m+1);
+        //draw object
+        el_buffer = ds_list_find_value(objectlist,1);
         fetchedframe = (correctframe-frametime) mod object_maxframes;
         buffer_seek(el_buffer,buffer_seek_start,0);
         buffer_ver = buffer_read(el_buffer,buffer_u8);

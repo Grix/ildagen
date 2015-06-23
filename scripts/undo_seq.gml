@@ -10,15 +10,16 @@ with (seqcontrol)
         {
         //undo create object (delete)
         undolisttemp = real(string_digits(undo));
-        var finallayer = ds_list_find_value(undolisttemp,0);
+        finallayer = ds_list_find_value(undolisttemp,0);
         infolisttemp = ds_list_find_value(undolisttemp,1);
-        var loopsafety = 1000;
+        loopsafety = 100;
         do 
             {
             finalx = ds_list_find_index(finallayer,infolisttemp)-2;
             loopsafety--;
             }
         until ((finalx mod 3) == 0) or !loopsafety
+        if (finalx == -1) exit;
         selectedlayer = ds_list_find_index(layer_list,finallayer);
         selectedx = -finalx;
         seq_delete_object_noundo();
@@ -26,11 +27,11 @@ with (seqcontrol)
     if (string_char_at(undo,0) == 'd')
         {
         //undo delete object
-        layertemp = real(string_digits(undo));
-        infolisttemp = real(string_digits(ds_list_find_value(undo_list,ds_list_size(undo_list)-1)));
-        ds_list_delete(undo_list,ds_list_size(undo_list)-1);
-        frametime = real(string_digits(ds_list_find_value(undo_list,ds_list_size(undo_list)-1)));
-        ds_list_delete(undo_list,ds_list_size(undo_list)-1);
+        undolisttemp = real(string_digits(undo));
+        layertemp = ds_list_find_value(undolisttemp,2);
+        infolisttemp = ds_list_find_value(undolisttemp,1);
+        frametime = ds_list_find_value(undolisttemp,0);
+        undobuffertemp = ds_list_find_value(undolisttemp,0);
         
         if (ds_list_size(layer_list)-1 > layertemp)
             {
@@ -42,8 +43,9 @@ with (seqcontrol)
             }
         layerlisttemp = ds_list_find_value(layer_list,layertemp);
         ds_list_add(layerlisttemp,frametime);
-        ds_list_add(layerlisttemp,-1);
+        ds_list_add(layerlisttemp,undobuffertemp);
         ds_list_add(layerlisttemp,infolisttemp);
+        ds_list_destroy(undolisttemp);
         }
     else if (string_char_at(undo,0) == 'r')
         {
@@ -56,17 +58,18 @@ with (seqcontrol)
         {
         //undo move object
         undolisttemp = real(string_digits(undo));
-        var originallayer = ds_list_find_value(undolisttemp,0);
+        originallayer = ds_list_find_value(undolisttemp,0);
         infolisttemp = ds_list_find_value(undolisttemp,1);
-        var originalx = ds_list_find_value(undolisttemp,2);
-        var finallayer = ds_list_find_value(undolisttemp,3);
-        var loopsafety = 1000;
+        originalx = ds_list_find_value(undolisttemp,2);
+        finallayer = ds_list_find_value(undolisttemp,3);
+        loopsafety = 100;
         do 
             {
             finalx = ds_list_find_index(finallayer,infolisttemp)-2;
             loopsafety--;
             }
         until ((finalx mod 3) == 0) or !loopsafety
+        if (finalx == -1) exit;
         ds_list_add(originallayer,originalx);
         ds_list_add(originallayer,ds_list_find_value(finallayer,finalx+1));
         ds_list_add(originallayer,ds_list_find_value(finallayer,finalx+2));

@@ -18,6 +18,9 @@ ds_list_add(layerlisttemp,copy_list_new);
 
 frame_surf_refresh = 1;
 
-selectedx += ds_list_find_value(copy_list_new,2);
+undolisttemp = ds_list_create();
+ds_list_add(undolisttemp,layerlisttemp);
+ds_list_add(undolisttemp,copy_list_new);
+ds_list_add(undo_list,"c"+string(undolisttemp));
 
-//TODO UNDO
+selectedx += ds_list_find_value(copy_list_new,2);

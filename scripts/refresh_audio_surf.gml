@@ -15,7 +15,7 @@ surface_set_target(audio_surf);
     //tempstartx and layerbarx are really Y values
     draw_set_alpha(1);
     draw_set_colour(c_black);
-    tempstartx = tlh+16-layerbarx//tlh+16-floor(layerbarx);
+    tempstartx = tlh+16-layerbarx;//tlh+16-floor(layerbarx);
     for (i = 0; i <= ds_list_size(layer_list);i++)
         {
         if (i < floor(layerbarx/48))
@@ -31,11 +31,13 @@ surface_set_target(audio_surf);
         draw_rectangle_colour(0,tempstartx+i*48,tlw-17,tempstartx+i*48+48,c_white,c_white,c_silver,c_silver,0);
         
         layer = ds_list_find_value(layer_list, i);
-        for (j = 0; j < ds_list_size(layer); j += 3)
+        for (j = 0; j < ds_list_size(layer); j++)
             {
-            infolist = ds_list_find_value(layer,j+2);
+            objectlist = ds_list_find_value(layer,j);
+            
+            infolist = ds_list_find_value(objectlist,2);
             duration = ds_list_find_value(infolist,0);
-            frametime = round(ds_list_find_value(layer,j));
+            frametime = round(ds_list_find_value(objectlist,0));
             
             if (frametime < tlx+tlzoom) and (frametime+duration > tlx)
                 {
@@ -47,9 +49,9 @@ surface_set_target(audio_surf);
                     draw_rectangle(framedelta,tempstartx+i*48,framedelta+duration*tlwmulttlzoom,tempstartx+i*48+48,1);
                 draw_set_colour(c_white);
                 if (!surface_exists(ds_list_find_value(infolist,1)))
-                    ds_list_replace(infolist,1,make_screenshot(ds_list_find_value(layer,j+1)));
+                    ds_list_replace(infolist,1,make_screenshot(ds_list_find_value(objectlist,1)));
                 draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp(duration-1,0,32)*tlwmulttlzoom,32,framedelta+1,tempstartx+i*48+8);
-                if (selectedlayer == i) and (selectedx == -j)
+                if (selectedlayer == i) and (selectedx == -objectlist)
                     {
                     draw_set_color(c_gold);
                     draw_set_alpha(0.3);

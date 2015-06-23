@@ -81,6 +81,11 @@ with (seqcontrol)
     ds_list_add(selectedlayerlist,info);
     
     selectedx += ds_list_size(controller.ild_list);
+    
+    undolisttemp = ds_list_create();
+    ds_list_add(undolisttemp,selectedlayerlist);
+    ds_list_add(undolisttemp,info);
+    ds_list_add(undo_list,"c"+string(undolisttemp));
     }
     
 room_goto(rm_seq);
