@@ -11,46 +11,38 @@ with (seqcontrol)
         //undo create object (delete)
         undolisttemp = real(string_digits(undo));
         finallayer = ds_list_find_value(undolisttemp,0);
-        infolisttemp = ds_list_find_value(undolisttemp,1);
-        loopsafety = 100;
-        do 
+        objectlist = ds_list_find_value(undolisttemp,1);
+        if (!ds_exists(finallayer,ds_type_list)) or (!ds_exists(objectlist,ds_type_list))
             {
-            finalx = ds_list_find_index(finallayer,infolisttemp)-2;
-            loopsafety--;
+            ds_list_destroy(undolisttemp);
+            exit;
             }
-        until ((finalx mod 3) == 0) or !loopsafety
-        if (finalx == -1) exit;
         selectedlayer = ds_list_find_index(layer_list,finallayer);
-        selectedx = -finalx;
+        
+        selectedx = -objectlist;
         seq_delete_object_noundo();
         }
     if (string_char_at(undo,0) == 'd')
         {
         //undo delete object
         undolisttemp = real(string_digits(undo));
-        layertemp = ds_list_find_value(undolisttemp,2);
-        infolisttemp = ds_list_find_value(undolisttemp,1);
-        frametime = ds_list_find_value(undolisttemp,0);
-        undobuffertemp = ds_list_find_value(undolisttemp,0);
-        
-        if (ds_list_size(layer_list)-1 > layertemp)
-            {
-            repeat (layertemp - ds_list_size(layer_list)-1) 
-                {
-                newlayer = ds_list_create();
-                ds_list_add(layer_list,newlayer);
-                }
-            }
-        layerlisttemp = ds_list_find_value(layer_list,layertemp);
-        ds_list_add(layerlisttemp,frametime);
-        ds_list_add(layerlisttemp,undobuffertemp);
-        ds_list_add(layerlisttemp,infolisttemp);
+        objectlist = ds_list_find_value(undolisttemp,1);
+        layerlisttemp = ds_list_find_value(undolisttemp,0);
+        if (!ds_exists(layerlisttemp,ds_type_list))
+            layerlisttemp = ds_list_find_value(layer_list,0);
+            
+        ds_list_add(layerlisttemp,objectlist);
         ds_list_destroy(undolisttemp);
         }
     else if (string_char_at(undo,0) == 'r')
         {
         //undo resize object
         undolisttemp = real(string_digits(undo));
+        if (!ds_exists(ds_list_find_value(undolisttemp,0),ds_type_list))
+            {
+            ds_list_destroy(undolisttemp);
+            exit;
+            }
         ds_list_replace(ds_list_find_value(undolisttemp,0),0,ds_list_find_value(undolisttemp,1));
         ds_list_destroy(undolisttemp);
         }
@@ -58,23 +50,20 @@ with (seqcontrol)
         {
         //undo move object
         undolisttemp = real(string_digits(undo));
-        originallayer = ds_list_find_value(undolisttemp,0);
-        infolisttemp = ds_list_find_value(undolisttemp,1);
+        originallayerlist = ds_list_find_value(undolisttemp,0);
+        objectlist = ds_list_find_value(undolisttemp,1);
         originalx = ds_list_find_value(undolisttemp,2);
-        finallayer = ds_list_find_value(undolisttemp,3);
-        loopsafety = 100;
-        do 
+        finallayerlist = ds_list_find_value(undolisttemp,3);
+        
+        if (!ds_exists(originallayerlist,ds_type_list)) or (!ds_exists(finallayerlist,ds_type_list)) or (!ds_exists(objectlist,ds_type_list))
             {
-            finalx = ds_list_find_index(finallayer,infolisttemp)-2;
-            loopsafety--;
+            ds_list_destroy(undolisttemp);
+            exit;
             }
-        until ((finalx mod 3) == 0) or !loopsafety
-        if (finalx == -1) exit;
-        ds_list_add(originallayer,originalx);
-        ds_list_add(originallayer,ds_list_find_value(finallayer,finalx+1));
-        ds_list_add(originallayer,ds_list_find_value(finallayer,finalx+2));
-        repeat (3)
-            ds_list_delete(finallayer,finalx);
+        
+        ds_list_replace(objectlist,0,originalx);
+        ds_list_add(originallayerlist,objectlist);
+        ds_list_delete(finallayerlist,ds_list_find_index(finallayerlist,objectlist));
         ds_list_destroy(undolisttemp);
         }
     else if (string_char_at(undo,0) == 'l')

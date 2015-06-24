@@ -1,3 +1,4 @@
+///make_screenshot(buffer)
 //returns a surface with a preview of argument0, which is a buffer containing laser frames
 
 temp_surf = surface_create(32,32);
@@ -6,8 +7,7 @@ buffer_seek(el_buffer,buffer_seek_start,0);
 buffer_ver = buffer_read(el_buffer,buffer_u8);
 if (buffer_ver != 50) and (buffer_ver != 51)
     {
-    show_message_async("Error: Unexpected byte. Things might get ugly. Contact developer.");
-    show_debug_message("make_screenshot buffer_ver: "+string(buffer_ver));
+    show_message_async("Error: Unexpected ID byte in make_screenshot. Things might get ugly. Contact developer.");
     return temp_surf;
     }
 buffer_maxframes = buffer_read(el_buffer,buffer_u32);

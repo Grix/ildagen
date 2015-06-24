@@ -12,15 +12,17 @@ buffer_copy(copy_buffer,
             0);
 
 layerlisttemp = ds_list_find_value(layer_list,selectedlayer);
-ds_list_add(layerlisttemp,selectedx);
-ds_list_add(layerlisttemp,copy_buffer_new);
-ds_list_add(layerlisttemp,copy_list_new);
+new_objectlist = ds_list_create();
+ds_list_add(new_objectlist,selectedx);
+ds_list_add(new_objectlist,copy_buffer_new);
+ds_list_add(new_objectlist,copy_list_new);
+ds_list_add(layerlisttemp,new_objectlist);
 
 frame_surf_refresh = 1;
 
 undolisttemp = ds_list_create();
 ds_list_add(undolisttemp,layerlisttemp);
-ds_list_add(undolisttemp,copy_list_new);
+ds_list_add(undolisttemp,new_objectlist);
 ds_list_add(undo_list,"c"+string(undolisttemp));
 
 selectedx += ds_list_find_value(copy_list_new,2);

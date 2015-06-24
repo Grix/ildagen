@@ -10,11 +10,11 @@ if (ds_exists(copy_list,ds_type_list))
 
 layerlisttemp = ds_list_find_value(layer_list,selectedlayer);
 copy_list = ds_list_create();
-ds_list_copy(copy_list,ds_list_find_value(layerlisttemp,abs(selectedx)+2)); 
+ds_list_copy(copy_list,ds_list_find_value(abs(selectedx),2)); 
 copy_buffer = buffer_create(1,buffer_grow,1);
-buffer_copy(ds_list_find_value(layerlisttemp,abs(selectedx)+1),
+buffer_copy(ds_list_find_value(abs(selectedx),1),
             0,
-            buffer_get_size(ds_list_find_value(layerlisttemp,abs(selectedx)+1)),
+            buffer_get_size(ds_list_find_value(abs(selectedx),1)),
             copy_buffer,
             0);
 

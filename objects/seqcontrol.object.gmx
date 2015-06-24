@@ -417,15 +417,17 @@ if (new_id == getint)
           case "layerdelete":
             {
             layer = layertodelete;
-            if (ds_list_find_index(layer_list,layer) == selectedlayer)
-                selectedlayer = -1;
-            for (j = 0; j &lt; ds_list_size(layer)/3; j+=3)
+            selectedlayer = ds_list_find_index(layer_list,layer);
+            num_objects = ds_list_size(layer);
+            repeat (num_objects)   
                 {
-                ds_list_destroy(ds_list_find_value(layer,j+2));
-                buffer_delete(ds_list_find_value(layer,j+1));
+                selectedx = -ds_list_find_value(layer,0);
+                seq_delete_object_noundo();
                 }
-            ds_list_delete(layer_list,ds_list_find_index(layer_list,layertodelete));
             ds_list_destroy(layer);
+            ds_list_delete(layer_list,selectedlayer);
+            
+            selectedlayer = -1;
             
             break;
             }  

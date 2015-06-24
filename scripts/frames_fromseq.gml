@@ -1,5 +1,5 @@
-var layer = ds_list_find_value(layer_list,selectedlayer);
-controller.load_buffer = ds_list_find_value(layer,abs(selectedx)+1);
+layer = ds_list_find_value(layer_list,selectedlayer);
+controller.load_buffer = ds_list_find_value(abs(selectedx),1);
 
 with (controller)
     {
@@ -7,36 +7,12 @@ with (controller)
     idbyte = buffer_read(load_buffer,buffer_u8);
     if (idbyte != 50) and (idbyte != 51)
         {
-        show_message_async("Unexpected ID byte: "+string(idbyte)+", is this a valid LasershowGen frames file?");
+        show_message_async("Unexpected ID byte in frames_fromseq: "+string(idbyte)+", things might get ugly. Contact developer.");
         exit;
         }
     
     //clear
-    placing_status = 0;
-    ds_list_clear(free_list);
-    ds_list_clear(bez_list);
-    ds_list_clear(semaster_list);
-    
-    for (j = 0;j < ds_list_size(frame_list);j++)
-        {
-        el_list = ds_list_find_value(frame_list,j);
-        for (i = 0;i < ds_list_size(el_list);i++)
-            {
-            list_id = ds_list_find_value(el_list,i);
-            ds_list_destroy(list_id);
-            }
-        ds_list_destroy(el_list);
-        }
-    ds_list_clear(frame_list);
-        
-    
-    framepoints = 0;
-    framehr = 0;
-    frame = 0;
-    maxframes = 1;
-    
-    frame_surf_refresh = 1;
-    refresh_miniaudio_flag = 1;
+    clear_all();
     
     //load
     if (idbyte == 50)

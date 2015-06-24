@@ -62,29 +62,24 @@ buffer_resize(save_buffer,buffer_tell(save_buffer));
 with (seqcontrol)
     {
     selectedlayerlist = ds_list_find_value(layer_list,selectedlayer);
-    /* what is this???? for (j = 0; j < ds_list_size(selectedlayerlist); j += 3)
-        {
-        if (selectedx == ds_list_find_value(selectedlayerlist,j)) 
-            {
-            buffer_delete(ds_list_find_value(selectedlayerlist,j+1));
-            exit;
-            }
-        }*/ 
-        
-    ds_list_add(selectedlayerlist,selectedx);
-    ds_list_add(selectedlayerlist,controller.save_buffer);
+    
+    objectlist = ds_list_create();
+    ds_list_add(objectlist,selectedx);
+    ds_list_add(objectlist,controller.save_buffer);
     
     info = ds_list_create();
     ds_list_add(info,ds_list_size(controller.ild_list)-1);
     ds_list_add(info,make_screenshot(controller.save_buffer));
     ds_list_add(info,ds_list_size(controller.ild_list));
-    ds_list_add(selectedlayerlist,info);
+    ds_list_add(objectlist,info);
+        
+    ds_list_add(selectedlayerlist,objectlist);
     
     selectedx += ds_list_size(controller.ild_list);
     
     undolisttemp = ds_list_create();
     ds_list_add(undolisttemp,selectedlayerlist);
-    ds_list_add(undolisttemp,info);
+    ds_list_add(undolisttemp,objectlist);
     ds_list_add(undo_list,"c"+string(undolisttemp));
     }
     
