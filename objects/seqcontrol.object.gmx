@@ -43,6 +43,11 @@ frame_surf = surface_create(512,512);
 frame3d_surf = surface_create(512,512);
 copy_list = -1;
 copy_buffer = -1;
+
+project_dir = "";
+project_loaded = 0;
+project_name = "";
+objid = 1;
     
 image_speed = 0;
 draw_mouseline = 0;
@@ -80,9 +85,9 @@ endframex = -1;
 
 tlw = 897;
 tlh = 128;
-tls = tlh+138+16;
-lbh = room_height-32-tlh-138;
-lbsh = tlh+16+lbh;
+tls = tlh+138+16; //start of layer area, seen from outside surface
+lbh = 670-32-tlh-138;
+lbsh = tlh+16+lbh; //start of bottom scrollbar
 phi = 1.618;
 tlzoom = tlw;
 tlx = 0;
@@ -333,7 +338,7 @@ else if (keyboard_check_released(vk_f11))
 else if (keyboard_check_pressed(ord('M')))
     {
     window_set_fullscreen(0);
-    window_set_size(1100,670);
+    window_set_size(1100,693);
     }   
     
 handle_mousecontrol();
@@ -456,7 +461,7 @@ if (new_id == getint)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room == rm_seq) refresh_audio_surf();
+            <string>if (room == rm_seq) frame_surf_refresh = 1;
 </string>
           </argument>
         </arguments>
@@ -529,7 +534,7 @@ if (viewmode != 1)
     draw_surface_part(frame_surf,0,0,509,135,0,0);
     
 if (surface_exists(audio_surf))
-    draw_surface_part(audio_surf,0,0,tlw+1,room_height,0,137);
+    draw_surface_part(audio_surf,0,0,tlw+1,lbsh+17,0,137);
     
 draw_set_color(c_black);
 draw_set_alpha(0.8);
@@ -539,7 +544,7 @@ if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
     {
     //timeline cursor
     draw_line(cursorlinexdraw,136,cursorlinexdraw,136+tlh);
-    draw_line(cursorlinexdraw,tls,cursorlinexdraw,room_height-16);
+    draw_line(cursorlinexdraw,tls,cursorlinexdraw,lbsh+138);
     if (cursorlinexdraw &gt; (tlw/2)) &amp;&amp; (playing) &amp;&amp; (!scroll_moving)
         {
         tlx = cursorlinex-(tlw/2)*tlzoom/tlw;
@@ -552,11 +557,11 @@ if (selectedlayer != -1) and (selectedx &gt;= 0)
     //selected position line
     draw_set_colour(180);
     drawcursorycorrected = tls+selectedlayer*48-layerbarx-1;
-    if (drawcursorycorrected+48 &gt; tls-1) and (drawcursorycorrected &lt; room_height-16)
+    if (drawcursorycorrected+48 &gt; tls-1) and (drawcursorycorrected &lt; lbsh+138)
         {
         drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
         if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
-            draw_line(drawcursorxcorrected,clamp(drawcursorycorrected,tls-1,room_height),drawcursorxcorrected,drawcursorycorrected+48);
+            draw_line(drawcursorxcorrected,clamp(drawcursorycorrected,tls-1,lbsh+16+138),drawcursorxcorrected,drawcursorycorrected+48);
         }
     }
     
@@ -566,7 +571,7 @@ if (draw_mouseline = 1)
     {
     draw_set_alpha(0.2);
     draw_line(mouse_x,136,mouse_x,136+tlh);
-    draw_line(mouse_x,tls,mouse_x,room_height-16);
+    draw_line(mouse_x,tls,mouse_x,lbsh+138);
     draw_mouseline = 0;
     }
 if (draw_cursorline = 1)
@@ -575,14 +580,9 @@ if (draw_cursorline = 1)
     floatingcursorxcorrected = (floatingcursorx-tlx)/tlzoom*tlw;
     draw_line(floatingcursorxcorrected,floatingcursory,floatingcursorxcorrected,floatingcursory+48);
     }
-
-//scroll
+    
 draw_set_alpha(1);
-draw_set_colour(c_black);
-draw_line(0,room_height-16,tlw,room_height-16);
-draw_line(tlw-17,tls,tlw-17,room_height);
-draw_rectangle_colour(scrollbarx,room_height,scrollbarx+scrollbarw,room_height-16,c_ltgray,c_ltgray,c_gray,c_gray,0);
-draw_rectangle_colour(tlw-16,tls+(layerbarx*layerbarw/lbh),tlw,tls+(layerbarx*layerbarw/lbh)+layerbarw,c_ltgray,c_gray,c_gray,c_ltgray,0);
+draw_set_colour(c_white);
 </string>
           </argument>
         </arguments>

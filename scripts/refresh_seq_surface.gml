@@ -1,3 +1,4 @@
+//refreshes the laser show preview surface in the sequencer mode room
 if (!surface_exists(frame_surf))
     frame_surf = surface_create(512,512);
 if (!surface_exists(frame3d_surf))
@@ -28,7 +29,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
         objectlist = ds_list_find_value(layer,m);
         
         infolist =  ds_list_find_value(objectlist,2);
-        frametime = round(ds_list_find_value(objectlist,m));
+        frametime = round(ds_list_find_value(objectlist,0));
         object_length = ds_list_find_value(infolist,0);
         object_maxframes = ds_list_find_value(infolist,2);
         

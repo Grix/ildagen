@@ -5,7 +5,7 @@ temp_surf = surface_create(32,32);
 el_buffer = argument0;
 buffer_seek(el_buffer,buffer_seek_start,0);
 buffer_ver = buffer_read(el_buffer,buffer_u8);
-if (buffer_ver != 50) and (buffer_ver != 51)
+if (buffer_ver != 51)
     {
     show_message_async("Error: Unexpected ID byte in make_screenshot. Things might get ugly. Contact developer.");
     return temp_surf;

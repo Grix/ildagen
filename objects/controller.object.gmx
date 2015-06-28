@@ -34,7 +34,7 @@ FS_set_gm_save_area("%appdata%\LasershowGen\temp");
 FS_set_working_directory("%appdata%\LasershowGen\temp");
 
 //clean temp files
-FS_clean_temporary();
+//FS_clean_temporary();
 if (FS_directory_exists(FStemp))
     {
     while (1)
@@ -513,7 +513,7 @@ else if (keyboard_check_pressed(vk_backspace))
 else if (keyboard_check_pressed(ord('M')))
     {
     window_set_fullscreen(0);
-    window_set_size(1100,670);
+    window_set_size(1100,693);
     }
         
 else if (keyboard_check_pressed(ord("0")))
@@ -720,79 +720,6 @@ if (frame &gt;= maxframes)
     frame = maxframes-1;
     framehr = maxframes-1;
     }
-    
-//KEYBOARD UP DOWN
-/*if (keyboard_check_pressed(vk_up)) and (!ds_list_empty(el_list)) and (placing_status == 0)
-    {
-    tempstop = 0;
-    while (1)
-        {
-        selectedelement++;
-        for (i = 0; i &lt; ds_list_size(el_list);i++)
-            {
-            if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
-                {
-                tempstop = 1;
-                selectedelementlist = ds_list_find_value(el_list,i);
-                xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
-                yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-                rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
-                rectymin = yo + (ds_list_find_value(selectedelementlist,6));
-                rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-                rectymax = yo + (ds_list_find_value(selectedelementlist,7));
-                }
-            }
-        if (tempstop)
-            {
-            placing_status = 0;
-            ds_list_clear(free_list);
-            ds_list_clear(bez_list);
-            exit;
-            }
-        
-        if (selectedelement &gt; el_id)
-            {
-            selectedelement = -1;
-            exit;
-            }
-        }
-    }
-    
-if (keyboard_check_pressed(vk_down)) and (!ds_list_empty(el_list)) and (placing_status == 0)
-    {
-    tempstop = 0;
-    while (1)
-        {
-        selectedelement--;
-        for (i = 0; i &lt; ds_list_size(el_list);i++)
-            {   
-            if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
-                {
-                tempstop = 1;
-                selectedelementlist = ds_list_find_value(el_list,i);
-                xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
-                yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-                rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
-                rectymin = yo + (ds_list_find_value(selectedelementlist,6));
-                rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-                rectymax = yo + (ds_list_find_value(selectedelementlist,7));
-                }
-            }
-        if (tempstop)
-            {
-            placing_status = 0;
-            ds_list_clear(free_list);
-            ds_list_clear(bez_list);
-            exit;
-            }
-        
-        if (selectedelement &lt; 0)
-            {
-            selectedelement = -1;
-            exit;
-            }
-        }
-    }*/
     
 frameprev = frame;    
 

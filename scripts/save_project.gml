@@ -30,12 +30,13 @@ buffer_write(save_buffer,buffer_s32,ds_list_size(layer_list)); //pos 50
 for (i = 0; i < ds_list_size(layer_list); i++)
     {
     layer = ds_list_find_value(layer_list,i);
-    buffer_write(save_buffer,buffer_u32,ds_list_size(layer)/3);
-    for (j = 0; j < ds_list_size(layer); j+=3)
+    buffer_write(save_buffer,buffer_u32,ds_list_size(layer));
+    for (j = 0; j < ds_list_size(layer); j++)
         {
-        tempframe = ds_list_find_value(layer,j);
-        tempbuffer = ds_list_find_value(layer,j+1);
-        tempinfolist = ds_list_find_value(layer,j+2);
+        objectlist = ds_list_find_value(layer,j);
+        tempframe = ds_list_find_value(objectlist,0);
+        tempbuffer = ds_list_find_value(objectlist,1);
+        tempinfolist = ds_list_find_value(objectlist,2);
         buffer_write(save_buffer,buffer_u32,tempframe);
         buffer_write(save_buffer,buffer_u32,buffer_get_size(tempbuffer));
         buffer_copy(tempbuffer,0,buffer_get_size(tempbuffer),save_buffer,buffer_tell(save_buffer));
@@ -49,14 +50,22 @@ if (song)
     {
     //todo: cache to speed up
     buffer_write(save_buffer,buffer_string,songfile_name);
-    songfile_bin = FS_file_bin_open(songfile,0);
-    songfile_size = FS_file_bin_size(songfile_bin);
+    
+    file_loc_song = songfile;
+    FS_file_copy(file_loc_song,controller.FStemp+filename_name(file_loc_song));
+    load_buffer_song = buffer_load("temp\"+filename_name(file_loc_song));
+    songfile_size = buffer_get_size(load_buffer_song);
     buffer_write(save_buffer,buffer_u32,songfile_size);
-    for (i = 0; i < songfile_size; i++)
+    buffer_copy(load_buffer_song,0,songfile_size,save_buffer,buffer_tell(save_buffer));
+    buffer_seek(save_buffer,buffer_seek_relative,songfile_size);
+    //buffer_save(save_buffer,"testsave");
+    //buffer_save(load_buffer_song,"testsong");
+    /*for (i = 0; i < songfile_size; i++)
         {
         buffer_write(save_buffer,buffer_u8,FS_file_bin_read_byte(songfile_bin));
         }
     FS_file_bin_close(songfile_bin);
+    */
     if (!parsingaudio)
         {
         buffer_write(save_buffer,buffer_u32,ds_list_size(audio_list));
@@ -74,8 +83,7 @@ buffer_resize(save_buffer,buffer_tell(save_buffer));
 if (file_exists("temp/"+filename_name(file_loc)))
     file_delete("temp/"+filename_name(file_loc));
 buffer_save(save_buffer,"temp/"+filename_name(file_loc));
-show_debug_message(FS_file_exists(FStemp+filename_name(file_loc)))
-FS_file_copy(FStemp+filename_name(file_loc),file_loc);
+FS_file_copy(controller.FStemp+filename_name(file_loc),file_loc);
 
 //todo: save_buffer() if possible to speed up
 /*file = FS_file_bin_open(file_loc,1);

@@ -61,29 +61,6 @@ else image_index = 0;
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="5">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//dropdown_loadaudio();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="6" enumb="4">
       <action>
         <libid>1</libid>
@@ -105,10 +82,13 @@ else image_index = 0;
     {
     songinstance = 0;
     if (song) FMODSoundFree(song);
-    songfile = get_open_filename_ext("","","","Select audio file");
+    songfile_loc = get_open_filename_ext("","","","Select audio file");
+    if (is_undefined(songfile_loc) or (songfile_loc == "")) 
+        exit;
+    songfile = songfile_loc;
     songfile_name = filename_name(songfile);
     FS_file_copy(songfile,songfile_name);
-    song = FMODSoundAdd(songfile_name,0,2);
+    song = FMODSoundAdd(songfile_name,0,0);
     if (!song) 
         {
         show_message_async("Failed to load audio: "+FMODErrorStr(FMODGetLastError()));

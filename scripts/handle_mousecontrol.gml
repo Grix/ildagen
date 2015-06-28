@@ -47,6 +47,7 @@ if (moving_object == 1)
         }
     if (mouse_check_button_released(mb_left))
         {
+        frame_surf_refresh = 1;
         tempxstart = round(ds_list_find_value(objecttomove,0));
         if (!keyboard_check(vk_alt))
             {
@@ -99,6 +100,7 @@ else if (moving_object == 2)
     mousexprev = mouse_x;
     if (mouse_check_button_released(mb_left))
         {
+        frame_surf_refresh = 1;
         templength = round(ds_list_find_value(infolisttomove,0));
         if (!keyboard_check(vk_alt))
             {

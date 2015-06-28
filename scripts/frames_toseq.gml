@@ -81,7 +81,8 @@ with (seqcontrol)
         ds_list_add(info,make_screenshot(controller.save_buffer));
         ds_list_add(info,controller.maxframes);
         ds_list_add(objectlist,info);
-        
+       // ds_list_add(objectlist,objid);
+        //objid++;
         ds_list_add(selectedlayerlist,objectlist);
         
         infolisttemp = info;

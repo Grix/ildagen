@@ -17,3 +17,5 @@ selectedx = ds_list_find_value(objectlist,0);
 
 ds_list_destroy(infolist);
 ds_list_destroy(objectlist);
+
+frame_surf_refresh = 1;

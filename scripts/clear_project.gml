@@ -8,7 +8,7 @@ if (song)
     FMODSoundFree(song);
     }
     
-num_layers = ds_list_size(layer);
+num_layers = ds_list_size(layer_list);
 selectedlayer = 0;
 repeat (num_layers)   
     {
@@ -24,6 +24,5 @@ repeat (num_layers)
     }
     
 selectedlayer = -1;
-ds_list_clear(layer_list);
 
 //todo clear undo list

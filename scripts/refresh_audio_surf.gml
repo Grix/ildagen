@@ -174,6 +174,16 @@ surface_set_target(audio_surf);
     draw_set_colour(c_black);
     draw_rectangle(0,0,clamp(startframex,0,tlw+1),lbsh,0);
     draw_rectangle(clamp(endframex,0,tlw+1),0,tlw+1,lbsh,0);
+    
+    //scroll
+    draw_set_alpha(1);
+    draw_set_colour(c_black);
+    draw_line(0,lbsh,tlw,lbsh);
+    draw_line(tlw-17,tls-138,tlw-17,lbsh+16);
+    draw_rectangle_colour(scrollbarx,lbsh+17,scrollbarx+scrollbarw,lbsh,c_ltgray,c_ltgray,c_gray,c_gray,0);
+    draw_rectangle_colour(tlw-16,tls+(layerbarx*layerbarw/lbh)-138,tlw,tls+(layerbarx*layerbarw/lbh)+layerbarw-138,c_ltgray,c_gray,c_gray,c_ltgray,0);
+    
+    draw_set_colour(c_white);
         
 surface_reset_target();
 draw_set_color(c_white);
