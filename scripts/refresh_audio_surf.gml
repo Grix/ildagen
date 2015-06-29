@@ -65,10 +65,20 @@ surface_set_target(audio_surf);
         draw_set_colour(c_black);
         draw_rectangle(0,tempstartx+i*48,tlw-17,tempstartx+i*48+48,1);
         draw_sprite(spr_deletelayer,mouseover,8,tempstartx+i*48+8);
-        
         }
-        
-    //timeline
+    
+    //scroll
+    draw_set_alpha(1);
+    draw_set_colour(c_white);
+        draw_rectangle(0,lbsh+17,tlw,lbsh,0);
+        draw_rectangle(tlw-16,tls,tlw,lbsh+17,0);
+    draw_set_colour(c_black);
+        draw_line(0,lbsh,tlw,lbsh);
+        draw_line(tlw-17,tls-138,tlw-17,lbsh+16);
+    draw_rectangle_colour(scrollbarx,lbsh+17,scrollbarx+scrollbarw,lbsh,c_ltgray,c_ltgray,c_gray,c_gray,0);
+    draw_rectangle_colour(tlw-16,tls+(layerbarx*layerbarw/lbh)-138,tlw,tls+(layerbarx*layerbarw/lbh)+layerbarw-138,c_ltgray,c_gray,c_gray,c_ltgray,0);
+    
+    //timeline 
     draw_set_color(c_white);
         draw_rectangle(0,0,tlw,tlh+16,0);
     draw_set_color(c_black);
@@ -175,14 +185,7 @@ surface_set_target(audio_surf);
     draw_rectangle(0,0,clamp(startframex,0,tlw+1),lbsh,0);
     draw_rectangle(clamp(endframex,0,tlw+1),0,tlw+1,lbsh,0);
     
-    //scroll
     draw_set_alpha(1);
-    draw_set_colour(c_black);
-    draw_line(0,lbsh,tlw,lbsh);
-    draw_line(tlw-17,tls-138,tlw-17,lbsh+16);
-    draw_rectangle_colour(scrollbarx,lbsh+17,scrollbarx+scrollbarw,lbsh,c_ltgray,c_ltgray,c_gray,c_gray,0);
-    draw_rectangle_colour(tlw-16,tls+(layerbarx*layerbarw/lbh)-138,tlw,tls+(layerbarx*layerbarw/lbh)+layerbarw-138,c_ltgray,c_gray,c_gray,c_ltgray,0);
-    
     draw_set_colour(c_white);
         
 surface_reset_target();

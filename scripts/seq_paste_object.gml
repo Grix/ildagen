@@ -25,4 +25,4 @@ ds_list_add(undolisttemp,layerlisttemp);
 ds_list_add(undolisttemp,new_objectlist);
 ds_list_add(undo_list,"c"+string(undolisttemp));
 
-selectedx += ds_list_find_value(copy_list_new,2);
+selectedx += (ds_list_find_value(copy_list_new,0)+1);

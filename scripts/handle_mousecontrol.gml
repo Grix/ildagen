@@ -178,9 +178,42 @@ else if (moving_object == 5)
     }
     
     
-//horizontal
+//horizontal scroll moving
+else if (scroll_moving == 1)
+    {
+    tlx += (mouse_x-mousexprev)*(length/(tlw-17));
+    if (tlx < 0) tlx = 0;
+    if ((tlx+tlzoom) > length) length = tlx+tlzoom;
+    
+    mousexprev = mouse_x;
+    
+    if (mouse_check_button_released(mb_left))
+        scroll_moving = 0;
+        
+    exit;
+    }
+//vertical scroll moving
+else if (scroll_moving == 2)
+    {
+    layerbarx += (mouse_y-mouseyprev)*lbh/layerbarw;//*(length/tlw);
+    if (layerbarx < 0) layerbarx = 0;
+    if ((layerbarx/48) > ds_list_size(layer_list)) layerbarx = (ds_list_size(layer_list))*48;
+    
+    mouseyprev = mouse_y;
+    
+    if (mouse_check_button_released(mb_left))
+        scroll_moving = 0;
+        
+    exit;
+    }
+    
+if (mouse_x > tlw) 
+or (mouse_y < 132)
+    exit;    
+    
+//horizontal scroll
 if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw)) 
-&& (mouse_y == clamp(mouse_y,room_height-16,room_height))
+&& (mouse_y == clamp(mouse_y,lbsh+138,lbsh+16+138))
     {
     mouseonsomelayer = 1;
     controller.tooltip = "Drag to scroll the timeline. Hold and scroll the mouse wheel to zoom";
@@ -190,7 +223,7 @@ if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw))
         mousexprev = mouse_x;
         }
     }
-//vertical
+//vertical scroll
 else if (mouse_y == clamp(mouse_y,tls+layerbarx,tls+layerbarx+layerbarw)) 
 && (mouse_x == clamp(mouse_x,tlw-16,tlw))
     {
@@ -203,33 +236,7 @@ else if (mouse_y == clamp(mouse_y,tls+layerbarx,tls+layerbarx+layerbarw))
         }
     }
     
-//horizontal
-if (scroll_moving == 1)
-    {
-    tlx += (mouse_x-mousexprev)*(length/(tlw-17));
-    if (tlx < 0) tlx = 0;
-    if ((tlx+tlzoom) > length) length = tlx+tlzoom;
-    
-    mousexprev = mouse_x;
-    
-    if (mouse_check_button_released(mb_left))
-        scroll_moving = 0;
-    }
-//vertical
-else if (scroll_moving == 2)
-    {
-    layerbarx += (mouse_y-mouseyprev)*lbh/layerbarw;//*(length/tlw);
-    if (layerbarx < 0) layerbarx = 0;
-    if ((layerbarx/48) > ds_list_size(layer_list)) layerbarx = (ds_list_size(layer_list))*48;
-    
-    mouseyprev = mouse_y;
-    
-    if (mouse_check_button_released(mb_left))
-        scroll_moving = 0;
-    }
-    
-if (mouse_x > tlw) 
-or (mouse_y < 132)
+if (mouse_y > lbsh+136) 
     exit;
 
 //startframe

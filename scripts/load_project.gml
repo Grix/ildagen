@@ -19,6 +19,9 @@ if (idbyte != 50) and (idbyte != 51)
 projectfps = buffer_read(load_buffer,buffer_u8);
 songload = buffer_read(load_buffer,buffer_u8);
 parsingaudioload = buffer_read(load_buffer,buffer_u8);
+startframe = buffer_read(load_buffer,buffer_u32);
+endframe = buffer_read(load_buffer,buffer_u32);
+length = endframe+50;
 buffer_seek(load_buffer,buffer_seek_start,50);
 
 maxlayers = buffer_read(load_buffer,buffer_u32);
@@ -98,6 +101,9 @@ if (songload)
     
     }
     
+
+    
+//audio data
 if (!parsingaudioload)
     {
     parsinglistsize = buffer_read(load_buffer,buffer_u32);
@@ -106,5 +112,11 @@ if (!parsingaudioload)
         ds_list_add(audio_list,buffer_read(load_buffer,buffer_f32));
         }
     }
+//markers
+parsinglistsize = buffer_read(load_buffer,buffer_u32);
+    for (i = 0; i < parsinglistsize; i++)
+        {
+        ds_list_add(marker_list,buffer_read(load_buffer,buffer_u32));
+        }
     
 buffer_delete(load_buffer);

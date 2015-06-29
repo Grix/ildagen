@@ -1,11 +1,15 @@
 tlpos = 0;    
 playing = 0;
 frame_surf_refresh = 1;
+parsingaudio = 0;
+ds_list_destroy(audio_list);
+audio_list = ds_list_create();
 
 if (song)
     {
     FMODInstanceStop(songinstance);
     FMODSoundFree(song);
+    song = 0;
     }
     
 num_layers = ds_list_size(layer_list);
