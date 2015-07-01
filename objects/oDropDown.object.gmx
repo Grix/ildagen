@@ -28,6 +28,12 @@
             <string>rdy = 0;
 selected = noone;
 
+with (oDropDown)
+    {
+    if (other.id != id)
+        instance_destroy();
+    }
+
 with (controller)
     {
     placing_status = 0;
@@ -51,14 +57,14 @@ highlight_padding = 3;   //extra padding for highlight indicator
 highlight_rad = 4;       //Radius for round rect highlight
 
 //colors
-bak_color = c_black;
-border_color = c_black;
+bak_color = $333333;
+border_color = c_dkgray;
 highlight_color = c_teal;
 icon_color = c_ltgray;
 separator_color = c_dkgray;
 text_color = c_gray;
 
-bak_alpha = .9;
+bak_alpha = 1;
 </string>
           </argument>
         </arguments>

@@ -120,6 +120,7 @@ copy_list = -1;
 semaster_list = ds_list_create();
 hershey_index_list = ds_list_create();
 hershey_list = -1;
+menu_surf = -1;
 
 alarm[3] = 3000;
 c_gold = make_colour_rgb(255,220,0);
@@ -259,6 +260,14 @@ colorfunc_string_2 = "";
 colorfunc_string_3 = "";
 blankfunc_string = "";
 
+draw_set_font(fnt_tooltip);
+menu_width_start[0] = 0;
+menu_width[0] = string_width("   File   ");
+menu_width_start[1] = menu_width[0];
+menu_width[1] = string_width("   Tools   ");
+menu_width_start[2] = menu_width_start[1]+menu_width[1];
+menu_width[2] = string_width("   About   ");
+menu_width_start[3] = menu_width_start[2]+menu_width[2];
 
 if (os_browser == browser_not_a_browser)
     {
@@ -829,6 +838,26 @@ bez_moving = 0;
           <argument>
             <kind>1</kind>
             <string>if (room != rm_ilda) exit;
+
+//menu
+if (mouse_y &gt; view_yview[3])   
+    {
+    if (mouse_x &gt; menu_width_start[0]) and (mouse_x &lt; menu_width_start[1])
+        {
+        dropdown_menu_ilda_file();
+        }
+    else if (mouse_x &gt; menu_width_start[1]) and (mouse_x &lt; menu_width_start[2])
+        {
+        dropdown_menu_ilda_tools();
+        }
+    else if (mouse_x &gt; menu_width_start[2]) and (mouse_x &lt; menu_width_start[3])
+        {
+        dropdown_menu_ilda_about();
+        }
+    draw_set_alpha(1);
+    exit;
+    }
+
 if (instance_exists(oDropDown)) or (mouse_x &gt; 512) or (mouse_y &gt; 512) or (keyboard_check(vk_control))
     exit;
 
@@ -1886,10 +1915,10 @@ if !(ds_list_empty(semaster_list))//(selectedelement != -1)
         draw_line(xpnew2,ypnew2,xpnew4,ypnew4);
         draw_line(xpnew4,ypnew4,xpnew1,ypnew1);
     
-        draw_set_alpha(0.6);
+        //draw_set_alpha(0.6);
             //draw_arrow(mean(rectxmin,rectxmax),mean(rectymin,rectymax),mean(xpnew1,xpnew2),mean(ypnew1,ypnew2),12);
             //draw_arrow(mean(xpnew1,xpnew2),mean(ypnew1,ypnew2),mean(xpnew1,xpnew2)+sin(rot_r)*48,mean(ypnew1,ypnew2)-cos(rot_r)*48,9);
-        draw_set_alpha(1);
+        //draw_set_alpha(1);
         }
     
     }
@@ -1898,7 +1927,8 @@ draw_set_color(c_gray);
 
 if (placing_status) or (placing == "text") or (placing == "hershey") 
     draw_preview_element();
-    
+
+//
 draw_set_alpha(0.8);
 draw_set_font(fnt_tooltip);
 draw_set_color(c_ltgray);
@@ -1911,6 +1941,34 @@ if (scope_start == 0) and (scope_end == maxframes-1)
     draw_text(220,495,"Scope: All frames");
 else
     draw_text(220,495,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
+draw_set_colour(c_black);
+draw_set_alpha(1);
+    
+draw_text(0,view_yview[3]+3,"   File      Tools      About   ");
+if (mouse_y &gt; view_yview[3])   
+    {
+    draw_set_colour(c_teal);
+    if (mouse_x &gt; menu_width_start[0]) and (mouse_x &lt; menu_width_start[1])
+        {
+        draw_rectangle(menu_width_start[0],view_yview[3]+1,menu_width_start[1],view_yview[3]+20,1);
+        draw_set_alpha(0.3);
+        draw_rectangle(menu_width_start[0],view_yview[3]+1,menu_width_start[1],view_yview[3]+20,0);
+        }
+    else if (mouse_x &gt; menu_width_start[1]) and (mouse_x &lt; menu_width_start[2])
+        {
+        draw_rectangle(menu_width_start[1],view_yview[3]+1,menu_width_start[2],view_yview[3]+20,1);
+        draw_set_alpha(0.3);
+        draw_rectangle(menu_width_start[1],view_yview[3]+1,menu_width_start[2],view_yview[3]+20,0);
+        }
+    else if (mouse_x &gt; menu_width_start[2]) and (mouse_x &lt; menu_width_start[3])
+        {
+        draw_rectangle(menu_width_start[2],view_yview[3]+1,menu_width_start[3],view_yview[3]+20,1);
+        draw_set_alpha(0.3);
+        draw_rectangle(menu_width_start[2],view_yview[3]+1,menu_width_start[3],view_yview[3]+20,0);
+        }
+    draw_set_alpha(1);
+    }
+draw_set_colour(c_white);
 
 </string>
           </argument>

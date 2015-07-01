@@ -18,4 +18,4 @@ buffer_copy(ds_list_find_value(abs(selectedx),1),
             copy_buffer,
             0);
 
-selectedx = ds_list_find_value(abs(selectedx),0)+ds_list_find_value(ds_list_find_value(abs(selectedx),2),0);
+selectedx = ds_list_find_value(abs(selectedx),0)+ds_list_find_value(ds_list_find_value(abs(selectedx),2),0)+1;

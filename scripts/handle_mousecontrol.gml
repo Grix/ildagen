@@ -52,9 +52,11 @@ if (moving_object == 1)
         if (!keyboard_check(vk_alt))
             {
             //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
+            loopcount = 5;
             loop = 1;
-            while (loop)
+            while (loop and loopcount)
                 {
+                loopcount--;
                 loop = 0;
                 tempxend = tempxstart + ds_list_find_value(ds_list_find_value(objecttomove,2),0);
                 for ( u = 0; u < ds_list_size(layertomove); u++)
@@ -106,9 +108,11 @@ else if (moving_object == 2)
             {
             tempxstart = round(ds_list_find_value(objecttomove,0));
             //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
+            loopcount = 5;
             loop = 1;
-            while (loop)
+            while (loop and loopcount)
                 {
+                loopcount--;
                 loop = 0;
                 tempxend = tempxstart + templength;
                 for ( u = 0; u < ds_list_size(layertomove); u++)

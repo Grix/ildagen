@@ -837,6 +837,11 @@
         <script>scripts\dropdown_info.gml</script>
         <script>scripts\dropdown_object.gml</script>
         <script>scripts\dropdown_empty.gml</script>
+        <scripts name="menu">
+          <script>scripts\dropdown_menu_ilda_file.gml</script>
+          <script>scripts\dropdown_menu_ilda_tools.gml</script>
+          <script>scripts\dropdown_menu_ilda_about.gml</script>
+        </scripts>
       </scripts>
       <scripts name="dd_seq">
         <script>scripts\dropdown_seqobject.gml</script>
