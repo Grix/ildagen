@@ -122,8 +122,7 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-if (controller.maxframes == 1) &amp;&amp; !ds_list_size(controller.el_list)
+            <string>if (controller.maxframes == 1) &amp;&amp; !ds_list_size(controller.el_list)
     exit;
 
 with (controller)

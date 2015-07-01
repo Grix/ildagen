@@ -26,5 +26,5 @@ with (ddobj)
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
-    ds_list_add(hl_list,1);//(seqcontrol.selectedlayer != -1));
+    ds_list_add(hl_list,(seqcontrol.selectedlayer != -1));
     }

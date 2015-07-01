@@ -802,6 +802,23 @@
     </scripts>
     <scripts name="dropdown">
       <scripts name="dd_ilda">
+        <scripts name="menu">
+          <script>scripts\dropdown_menu_ilda_file.gml</script>
+          <script>scripts\dropdown_menu_ilda_tools.gml</script>
+          <script>scripts\dropdown_menu_ilda_settings.gml</script>
+          <script>scripts\dropdown_menu_ilda_about.gml</script>
+          <script>scripts\dd_ilda_saveframes.gml</script>
+          <script>scripts\dd_ilda_loadframes.gml</script>
+          <script>scripts\dd_ilda_exportilda.gml</script>
+          <script>scripts\dd_ilda_importilda.gml</script>
+          <script>scripts\dd_ilda_clear.gml</script>
+          <script>scripts\dd_ilda_sgridtoggle.gml</script>
+          <script>scripts\dd_ilda_selectall.gml</script>
+          <script>scripts\dd_ilda_guidelinetoggle.gml</script>
+          <script>scripts\dd_ilda_oniontoggle.gml</script>
+          <script>scripts\dd_ilda_rgridtoggle.gml</script>
+          <script>scripts\dd_ilda_bckimagetoggle.gml</script>
+        </scripts>
         <script>scripts\dropdown_ed.gml</script>
         <script>scripts\dd_ed_custom.gml</script>
         <script>scripts\dd_ed_low.gml</script>
@@ -837,11 +854,6 @@
         <script>scripts\dropdown_info.gml</script>
         <script>scripts\dropdown_object.gml</script>
         <script>scripts\dropdown_empty.gml</script>
-        <scripts name="menu">
-          <script>scripts\dropdown_menu_ilda_file.gml</script>
-          <script>scripts\dropdown_menu_ilda_tools.gml</script>
-          <script>scripts\dropdown_menu_ilda_about.gml</script>
-        </scripts>
       </scripts>
       <scripts name="dd_seq">
         <script>scripts\dropdown_seqobject.gml</script>

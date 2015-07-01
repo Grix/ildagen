@@ -148,6 +148,8 @@ sgridshow = 0;
 rgridshow = 0;
 sgriddouble = 0;
 rgriddouble = 0;
+guidelineshow = 0;
+guidelinedouble = 0;
 
 mouse_yprevious = mouse_y;
 mouse_xprevious = mouse_x;
@@ -278,6 +280,30 @@ if (os_browser == browser_not_a_browser)
 
 draw_hershey();
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (room != rm_ilda) exit;
+guidelinedouble = 0;
 </string>
           </argument>
         </arguments>
@@ -731,6 +757,40 @@ if (frame &gt;= maxframes)
     }
     
 frameprev = frame;    
+
+//guidelines
+if (keyboard_check(ord('A')) or (guidelineshow == 1))
+    {
+    if  (keyboard_check_pressed(ord('A')))
+        {
+        if (guidelinedouble == 1)
+            guidelineshow = !guidelineshow;
+        alarm[5] = 30;
+        guidelinedouble = 1;
+        }
+    }
+   
+//grids 
+if (keyboard_check(ord('S')) or (sgridshow == 1))
+    {
+    if  (keyboard_check_pressed(ord('S')))
+        {
+        if (sgriddouble == 1)
+            sgridshow = !sgridshow;
+        alarm[2] = 30;
+        sgriddouble = 1;
+        }
+    } 
+if (keyboard_check(ord('R')) or (rgridshow == 1))
+    {
+    if  (keyboard_check_pressed(ord('R')))
+        {
+        if (rgriddouble == 1)
+            rgridshow = !rgridshow;
+        alarm[1] = 30;
+        rgriddouble = 1;
+        }
+    }
 
 if (keyboard_check_pressed(vk_tab))
     {
@@ -1830,35 +1890,23 @@ draw_set_color(c_white);
     
 draw_set_alpha(1);
 
-if (keyboard_check(ord('A')))
+if (keyboard_check(ord('A')) or (guidelineshow == 1))
+    {
     draw_guidelines();
-    
+    }
+   
+//grids 
 if (keyboard_check(ord('S')) or (sgridshow == 1))
     {
     draw_surface(squaregrid_surf,0,0);
-    if  (keyboard_check_pressed(ord('S')))
-        {
-        if (sgriddouble == 1)
-            sgridshow = !sgridshow;
-        alarm[2] = 40;
-        sgriddouble = 1;
-        }
-    }
-    
+    } 
 if (keyboard_check(ord('R')) or (rgridshow == 1))
     {
     draw_surface(radialgrid_surf,0,0);
-    if  (keyboard_check_pressed(ord('R')))
-        {
-        if (rgriddouble == 1)
-            rgridshow = !rgridshow;
-        alarm[1] = 40;
-        rgriddouble = 1;
-        }
     }
     
 
-    
+//selected elements
 draw_set_color(c_aqua);
 if !(ds_list_empty(semaster_list))//(selectedelement != -1)
     {
@@ -1943,7 +1991,8 @@ else
     draw_text(220,495,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
 draw_set_colour(c_black);
 draw_set_alpha(1);
-    
+
+//menu
 draw_text(0,view_yview[3]+3,"   File      Tools      About   ");
 if (mouse_y &gt; view_yview[3])   
     {
