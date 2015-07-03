@@ -54,10 +54,7 @@
     <instance objName="obj_loadaudio" x="924" y="432" name="inst_182C9004" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_import" x="1012" y="476" name="inst_6C0F2C34" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_load" x="924" y="476" name="inst_D488A866" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_fps" x="688" y="88" name="inst_EA941C7B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_undo" x="728" y="88" name="inst_E9A7F173" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_help" x="728" y="48" name="inst_7C60627E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_info" x="688" y="48" name="inst_20EE3B97" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_playbackspeed" x="928" y="352" name="inst_281043B7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_saveproject" x="1012" y="576" name="inst_7BF5C18C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_loadproject" x="924" y="576" name="inst_29A80009" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

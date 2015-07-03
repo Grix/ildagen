@@ -52,7 +52,7 @@
             <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     image_index = 1;
-    controller.tooltip = "Edit/Reapply the object's properties (coloring, blanking etc.)#Right click for settings";
+    controller.tooltip = "Edit/Reapply the object's properties (coloring, blanking etc.)#Right click for settings#(Keyboard shortcut: Enter)";
     } 
 else image_index = 0;
 </string>

@@ -3,8 +3,8 @@
   <caption></caption>
   <width>1100</width>
   <height>693</height>
-  <vsnap>1</vsnap>
-  <hsnap>1</hsnap>
+  <vsnap>4</vsnap>
+  <hsnap>4</hsnap>
   <isometric>0</isometric>
   <speed>60</speed>
   <persistent>-1</persistent>
@@ -16,8 +16,8 @@
   <clearDisplayBuffer>0</clearDisplayBuffer>
   <makerSettings>
     <isSet>-1</isSet>
-    <w>1024</w>
-    <h>600</h>
+    <w>1936</w>
+    <h>1066</h>
     <showGrid>-1</showGrid>
     <showObjects>-1</showObjects>
     <showTiles>-1</showTiles>
@@ -26,9 +26,9 @@
     <showViews>0</showViews>
     <deleteUnderlyingObj>0</deleteUnderlyingObj>
     <deleteUnderlyingTiles>-1</deleteUnderlyingTiles>
-    <page>4</page>
-    <xoffset>8</xoffset>
-    <yoffset>-11</yoffset>
+    <page>0</page>
+    <xoffset>-223</xoffset>
+    <yoffset>-15</yoffset>
   </makerSettings>
   <backgrounds>
     <background visible="-1" foreground="0" name="bck_guide" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
@@ -58,18 +58,15 @@
     <instance objName="obj_funcbselect" x="644" y="276" name="inst_514D039C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_funcblank" x="644" y="384" name="inst_CE038DD5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_s_line" x="532" y="28" name="inst_E4137209" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_export" x="1016" y="620" name="inst_2854033D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_export" x="1008" y="620" name="inst_2854033D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_colorselect_1" x="920" y="224" name="inst_A3F77788" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_c_solid" x="532" y="200" name="inst_1F9E43FD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_c_gradient" x="532" y="232" name="inst_596FE26F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_s_circle" x="532" y="60" name="inst_F8039A0D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_s_wave" x="532" y="92" name="inst_CE19BDFD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_clear" x="300" y="580" name="inst_BC02A216" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_e_res" x="460" y="620" name="inst_02823271" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_b_solid" x="532" y="372" name="inst_9F8DC4AD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_b_dash" x="532" y="404" name="inst_FDC4C5F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_colorselect_2" x="920" y="272" name="inst_6D24A98C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_undo" x="300" y="620" name="inst_2290E3F4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_colorfreqselect" x="644" y="192" name="inst_725A02D8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_waveampselect" x="708" y="52" name="inst_FA3B944E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_blanktselect" x="644" y="352" name="inst_B9CC0009" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -89,7 +86,6 @@
     <instance objName="obj_anicolorselect_1" x="1008" y="224" name="inst_8AA2C06C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anicolorselect_2" x="1008" y="272" name="inst_218C2DFB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_aniblankdcselect" x="644" y="472" name="inst_05168740" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_maxframes" x="420" y="620" name="inst_A6C7D046" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anicolordcselect" x="644" y="304" name="inst_7CEAC26F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_blankoffselect" x="644" y="392" name="inst_6E806301" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_aniblankoffselect" x="644" y="416" name="inst_34717355" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -99,10 +95,8 @@
     <instance objName="obj_waveoffselect" x="644" y="108" name="inst_0ED1A755" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anienddotscolorselect" x="1008" y="416" name="inst_49DA6D2B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_s_free" x="564" y="28" name="inst_3B0DEDA3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bckimage" x="340" y="580" name="inst_8383FA41" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_onionskin" x="380" y="580" name="inst_8EE9657B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_fillframes" x="616" y="548" name="inst_FA6A6BC8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_help" x="460" y="580" name="inst_9E66828C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_help" x="92" y="620" name="inst_9E66828C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_curve" x="532" y="124" name="inst_394FF056" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anifunc" x="536" y="604" name="inst_C3A7CF47" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_resettrans" x="780" y="620" name="inst_43C59E11" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -110,9 +104,9 @@
     <instance objName="obj_colorcopytoani" x="976" y="312" name="inst_FB5573EC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_colorcopyfromani" x="1012" y="312" name="inst_C64BAA3A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_import" x="936" y="620" name="inst_7A4C3450" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_reapply" x="184" y="620" name="inst_EE9E3A75" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_reapply" x="188" y="620" name="inst_EE9E3A75" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_shake" x="780" y="580" name="inst_533CCD04" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_scope" x="380" y="620" name="inst_2B6D16DD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_scope" x="460" y="620" name="inst_2B6D16DD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_text" x="564" y="60" name="inst_CEB5228B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_func" x="564" y="124" name="inst_63778A51" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_aniwaveamp" x="708" y="76" name="inst_FC5D7F0A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -122,17 +116,16 @@
     <instance objName="obj_c_func" x="564" y="200" name="inst_90D8F13B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_b_func" x="564" y="372" name="inst_7B42C762" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_cursor" x="100" y="28" name="inst_21FB3F94" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_save" x="1016" y="576" name="inst_A714775C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_load" x="936" y="576" name="inst_2E4B54DC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_colorblendmode" x="144" y="620" name="inst_3622800B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_fps" x="340" y="620" name="inst_F50087C3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_info" x="420" y="580" name="inst_51D4CB42" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_save" x="1008" y="580" name="inst_A714775C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_load" x="936" y="580" name="inst_2E4B54DC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_colorblendmode" x="272" y="620" name="inst_3622800B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_totimeline" x="20" y="620" name="inst_300C7532" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_toseq" x="856" y="620" name="inst_0BD3085F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_toseq" x="864" y="620" name="inst_0BD3085F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_shakingsdev" x="664" y="516" name="inst_80EA4E92" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anishakingsdev" x="664" y="540" name="inst_57C4CD9A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_anirepselect" x="536" y="632" name="inst_65CC8375" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_hershey" x="564" y="92" name="inst_0D63D06D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_blankblendmode" x="272" y="580" name="inst_D8EDDA3F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

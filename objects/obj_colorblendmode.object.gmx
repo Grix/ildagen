@@ -53,12 +53,12 @@
 
 if (!visible) exit;
 
-if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+else if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
-    faded = 1;
     controller.tooltip = "Changes the color blending mode when reapplying color properties to an object.";
+    image_index = 1;
     } 
-else faded = 0;    
+else image_index = 0;
 </string>
           </argument>
         </arguments>
@@ -86,8 +86,6 @@ else faded = 0;
 controller.color_blendmode++;
 if (controller.color_blendmode &gt;= 3)
     controller.color_blendmode = 0;
-
-image_index = controller.color_blendmode;
 </string>
           </argument>
         </arguments>
@@ -111,13 +109,7 @@ image_index = controller.color_blendmode;
           <argument>
             <kind>1</kind>
             <string>draw_self();
-if (faded) 
-    {
-    draw_set_color(c_ltgray);
-    draw_set_alpha(0.4);
-    draw_rectangle(x,y,x+sprite_width,y+sprite_width,0);
-    draw_set_alpha(1);
-    }
+draw_sprite(spr_colorblendmode_preview,controller.color_blendmode,x+32,y);
 </string>
           </argument>
         </arguments>

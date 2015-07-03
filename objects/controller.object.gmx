@@ -142,6 +142,7 @@ hershey_scrollx = 0;
 hershey_scrollh = 4930;
 hershey_selected = 0;
 dialog_open = 0;
+regflag = 0;
 
 redraw = 0;
 sgridshow = 0;
@@ -195,7 +196,6 @@ reap_color = 1;
 reap_blank = 1;
 reap_removeoverlap = 0;
 reap_trans = 1;
-reap_preserveblank = 1;
 reap_interpolate = 1;
 
 colormode = "solid";
@@ -218,6 +218,7 @@ enddots = 0;
 makedot = 0;
 dotmultiply = 20;
 blank_offset = 0;
+blank_blendmode = 0; //0 replace, 1 and, 2 or, 3 xor
 
 anienable = 0;
 frame = 0;
@@ -263,13 +264,20 @@ colorfunc_string_3 = "";
 blankfunc_string = "";
 
 draw_set_font(fnt_tooltip);
+menu_string = "   File      Properties      Edit      Tools      Options      About   ";
 menu_width_start[0] = 0;
 menu_width[0] = string_width("   File   ");
 menu_width_start[1] = menu_width[0];
-menu_width[1] = string_width("   Tools   ");
+menu_width[1] = string_width("   Properties   ");
 menu_width_start[2] = menu_width_start[1]+menu_width[1];
-menu_width[2] = string_width("   About   ");
+menu_width[2] = string_width("   Edit   ");
 menu_width_start[3] = menu_width_start[2]+menu_width[2];
+menu_width[3] = string_width("   Tools   ");
+menu_width_start[4] = menu_width_start[3]+menu_width[3];
+menu_width[4] = string_width("   Options   ");
+menu_width_start[5] = menu_width_start[4]+menu_width[4];
+menu_width[5] = string_width("   About   ");
+menu_width_start[6] = menu_width_start[5]+menu_width[5];
 
 if (os_browser == browser_not_a_browser)
     {
@@ -549,6 +557,11 @@ else if (keyboard_check_pressed(ord('M')))
     {
     window_set_fullscreen(0);
     window_set_size(1100,693);
+    }
+    
+else if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('Z')))
+    {
+    undo_ilda();
     }
         
 else if (keyboard_check_pressed(ord("0")))
@@ -908,13 +921,24 @@ if (mouse_y &gt; view_yview[3])
         }
     else if (mouse_x &gt; menu_width_start[1]) and (mouse_x &lt; menu_width_start[2])
         {
-        dropdown_menu_ilda_tools();
+        dropdown_menu_ilda_properties();
         }
     else if (mouse_x &gt; menu_width_start[2]) and (mouse_x &lt; menu_width_start[3])
         {
+        dropdown_menu_ilda_edit();
+        }
+    else if (mouse_x &gt; menu_width_start[3]) and (mouse_x &lt; menu_width_start[4])
+        {
+        dropdown_menu_ilda_tools();
+        }
+    else if (mouse_x &gt; menu_width_start[4]) and (mouse_x &lt; menu_width_start[5])
+        {
+        dropdown_menu_ilda_settings();
+        }
+    else if (mouse_x &gt; menu_width_start[5]) and (mouse_x &lt; menu_width_start[6])
+        {
         dropdown_menu_ilda_about();
         }
-    draw_set_alpha(1);
     exit;
     }
 
@@ -1114,6 +1138,7 @@ if (new_id == getint)
     if (dialog == "update")
         {
         updatecheckenabled = ds_map_find_value(async_load, "status");
+        ini_filename = "settings.ini";
         ini_open(ini_filename);
         ini_write_real("main","updatecheck",updatecheckenabled);
         ini_close();
@@ -1993,7 +2018,7 @@ draw_set_colour(c_black);
 draw_set_alpha(1);
 
 //menu
-draw_text(0,view_yview[3]+3,"   File      Tools      About   ");
+draw_text(0,view_yview[3]+4,menu_string);
 if (mouse_y &gt; view_yview[3])   
     {
     draw_set_colour(c_teal);
@@ -2014,6 +2039,24 @@ if (mouse_y &gt; view_yview[3])
         draw_rectangle(menu_width_start[2],view_yview[3]+1,menu_width_start[3],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[2],view_yview[3]+1,menu_width_start[3],view_yview[3]+20,0);
+        }
+    else if (mouse_x &gt; menu_width_start[3]) and (mouse_x &lt; menu_width_start[4])
+        {
+        draw_rectangle(menu_width_start[3],view_yview[3]+1,menu_width_start[4],view_yview[3]+20,1);
+        draw_set_alpha(0.3);
+        draw_rectangle(menu_width_start[3],view_yview[3]+1,menu_width_start[4],view_yview[3]+20,0);
+        }
+    else if (mouse_x &gt; menu_width_start[4]) and (mouse_x &lt; menu_width_start[5])
+        {
+        draw_rectangle(menu_width_start[4],view_yview[3]+1,menu_width_start[5],view_yview[3]+20,1);
+        draw_set_alpha(0.3);
+        draw_rectangle(menu_width_start[4],view_yview[3]+1,menu_width_start[5],view_yview[3]+20,0);
+        }
+    else if (mouse_x &gt; menu_width_start[5]) and (mouse_x &lt; menu_width_start[6])
+        {
+        draw_rectangle(menu_width_start[5],view_yview[3]+1,menu_width_start[6],view_yview[3]+20,1);
+        draw_set_alpha(0.3);
+        draw_rectangle(menu_width_start[5],view_yview[3]+1,menu_width_start[6],view_yview[3]+20,0);
         }
     draw_set_alpha(1);
     }

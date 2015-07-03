@@ -12,4 +12,3 @@ var tttinv = 1-argument2 mod 1;
 return make_colour_rgb( sqrt((ct1r*ttt+ct2r*tttinv)/2),
                         sqrt((ct1g*ttt+ct2g*tttinv)/2),
                         sqrt((ct1b*ttt+ct2b*tttinv)/2));
-

@@ -238,9 +238,8 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                                         ,ds_list_find_value(new_list,temppos+6)
                                         ,ds_list_find_value(new_list,temppos+7));
                 
-                if  (length < resolution*phi) ||
-                    ((reap_preserveblank) && ds_list_find_value(new_list,temppos+8))
-                        continue;
+                if  (length < resolution*phi)
+                    continue;
                 
                 steps = length / resolution;
                 stepscount = round(steps-1);
@@ -578,8 +577,19 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                         }
                     }
                     
-                if (reap_preserveblank and ds_list_find_value(new_list,listpos+2))
-                    blank = 1;
+                //blending
+                if (blank_blendmode == 1)
+                    {
+                    blank = !(!ds_list_find_value(new_list,listpos+2) and !blank);
+                    }
+                else if (blank_blendmode == 2)
+                    {
+                    blank = !(!ds_list_find_value(new_list,listpos+2) or !blank);
+                    }
+                else if (blank_blendmode == 3)
+                    {
+                    blank = !(!ds_list_find_value(new_list,listpos+2) xor !blank);
+                    }
                     
                         
                 if (enddots)
