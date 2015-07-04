@@ -1703,8 +1703,8 @@ update_anicolors();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!updatecheckenabled)
-    exit;
+            <string>//if (!updatecheckenabled)
+//    exit;
     
 if ds_map_find_value(async_load, "id") == updateget
     {

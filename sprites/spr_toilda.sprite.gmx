@@ -20,7 +20,7 @@
   <width>80</width>
   <height>32</height>
   <frames>
-    <frame index="0">images\spr_toseq_0.png</frame>
-    <frame index="1">images\spr_toseq_1.png</frame>
+    <frame index="0">images\spr_toilda_0.png</frame>
+    <frame index="1">images\spr_toilda_1.png</frame>
   </frames>
 </sprite>

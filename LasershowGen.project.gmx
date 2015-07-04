@@ -126,7 +126,7 @@
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\filesaver</extension>
-    <extension index="2">extensions\GMFileSystem</extension>
+    <extension index="1">extensions\GMFileSystem</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -181,7 +181,6 @@
       <sprite>sprites\spr_funcr</sprite>
     </sprites>
     <sprites name="seq">
-      <sprite>sprites\spr_fps</sprite>
       <sprite>sprites\spr_addaudio</sprite>
       <sprite>sprites\spr_deletelayer</sprite>
       <sprite>sprites\spr_addlayer</sprite>
@@ -194,8 +193,9 @@
     <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_load</sprite>
     <sprite>sprites\spr_totimeline</sprite>
-    <sprite>sprites\spri_toseq</sprite>
-    <sprite>sprites\spr_toframes</sprite>
+    <sprite>sprites\spr_toseq</sprite>
+    <sprite>sprites\spr_toilda</sprite>
+    <sprite>sprites\spr_editormode</sprite>
     <sprite>sprites\spr_import</sprite>
     <sprite>sprites\spr_resettrans</sprite>
     <sprite>sprites\spr_scope</sprite>
@@ -204,7 +204,6 @@
     <sprite>sprites\spr_anitocol</sprite>
     <sprite>sprites\spr_coltoani</sprite>
     <sprite>sprites\spr_help</sprite>
-    <sprite>sprites\spr_info</sprite>
     <sprite>sprites\spr_b_enddots</sprite>
     <sprite>sprites\spr_onionskin</sprite>
     <sprite>sprites\spr_colorblendmode</sprite>
@@ -218,8 +217,6 @@
     <sprite>sprites\spr_e_undo</sprite>
     <sprite>sprites\spr_s_res</sprite>
     <sprite>sprites\spr_maxframes</sprite>
-    <sprite>sprites\spr_clearframe</sprite>
-    <sprite>sprites\spr_clearall</sprite>
     <sprite>sprites\spr_cursor</sprite>
     <sprite>sprites\spr_anchor</sprite>
     <sprite>sprites\spr_resize</sprite>
@@ -1011,7 +1008,8 @@
         <object>objects\obj_saveproject</object>
         <object>objects\obj_exportproject</object>
         <object>objects\obj_loadproject</object>
-        <object>objects\obj_toeditor</object>
+        <object>objects\obj_sendtoeditor</object>
+        <object>objects\obj_openeditor</object>
         <object>objects\obj_loadaudio</object>
         <object>objects\obj_addmarker</object>
         <object>objects\obj_clearmarkers</object>
