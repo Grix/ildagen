@@ -1,0 +1,1 @@
+seqcontrol.selectedlayer = -1;

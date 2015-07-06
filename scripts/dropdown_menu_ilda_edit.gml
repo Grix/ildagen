@@ -1,7 +1,7 @@
 ddobj = instance_create(controller.menu_width_start[2],0,oDropDown);
 with (ddobj)
     {
-    num = 6;
+    num = 7;
     event_user(1);
     ds_list_add(desc_list,"Undo (Ctrl+Z)");
     ds_list_add(sep_list,0);
@@ -18,7 +18,11 @@ with (ddobj)
     ds_list_add(desc_list,"Paste (Ctrl+V)");
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,paste_object);
-    ds_list_add(hl_list,controller.copy_list != -1);
+    ds_list_add(hl_list,(controller.copy_list != -1));
+    ds_list_add(desc_list,"Delete (Del)");
+    ds_list_add(sep_list,1);
+    ds_list_add(scr_list,delete_object);
+    ds_list_add(hl_list,!ds_list_empty(controller.semaster_list));
     ds_list_add(desc_list,"Select all");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,dd_ilda_selectall);

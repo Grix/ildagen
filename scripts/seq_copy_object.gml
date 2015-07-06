@@ -1,4 +1,7 @@
 //copy timeline object
+if ((seqcontrol.selectedlayer == -1) or (seqcontrol.selectedx >= 0))
+    exit;
+
 if (ds_exists(copy_list,ds_type_list))
     {
     if (surface_exists(ds_list_find_value(copy_list,1)))

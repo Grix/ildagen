@@ -76,11 +76,14 @@ else if (idbyte == 50)
             numofinds = buffer_read(load_buffer,buffer_u32);
             ind_list = ds_list_create();
             ds_list_add(el_list,ind_list);
+            el_id++;
             
-            for (u = 0; u < 10; u++)
+            for (u = 0; u < 9; u++)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 }
+            buffer_read(load_buffer,buffer_f32);
+            ds_list_add(ind_list,el_id);
             for (u = 10; u < 50; u++)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
@@ -111,11 +114,14 @@ else if (idbyte == 51)
             numofinds = buffer_read(load_buffer,buffer_u32);
             ind_list = ds_list_create();
             ds_list_add(el_list,ind_list);
+            el_id++;
             
-            for (u = 0; u < 10; u++)
+            for (u = 0; u < 9; u++)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 }
+            buffer_read(load_buffer,buffer_f32);
+            ds_list_add(ind_list,el_id);
             for (u = 10; u < 50; u++)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_bool));
@@ -133,6 +139,7 @@ else if (idbyte == 51)
         }
     }
     
+el_id++;
 buffer_delete(load_buffer);
 scope_start = 0;
 scope_end = maxframes-1;

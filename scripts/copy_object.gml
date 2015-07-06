@@ -1,3 +1,5 @@
+if (ds_list_empty(controller.semaster_list)) exit;
+
 if (copy_list != -1)
     ds_list_destroy(copy_list);
     

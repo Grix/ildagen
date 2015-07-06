@@ -1,4 +1,7 @@
 //delete timeline object
+if ((seqcontrol.selectedlayer == -1) or (seqcontrol.selectedx >= 0))
+    exit;
+
 layerlisttemp = ds_list_find_value(layer_list,selectedlayer);
 
 objectlist = abs(selectedx);

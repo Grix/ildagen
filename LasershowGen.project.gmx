@@ -880,6 +880,8 @@
           <script>scripts\dd_seq_importframes.gml</script>
           <script>scripts\dd_seq_toseq.gml</script>
           <script>scripts\dd_seq_clearproject.gml</script>
+          <script>scripts\dd_seq_fromseq.gml</script>
+          <script>scripts\dd_seq_deselect.gml</script>
         </scripts>
         <script>scripts\dropdown_seqobject.gml</script>
         <script>scripts\dropdown_layer.gml</script>
