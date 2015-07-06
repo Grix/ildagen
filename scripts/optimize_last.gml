@@ -31,7 +31,7 @@ for (m = 0;m < 3;m++)
     maxpoints++;
     }
 
-trav = -opt_maxdist;
+trav = -controller.opt_maxdist;
 for (trav_dist = trav/2;trav_dist >= -opt_dist; trav_dist += trav;)
     {
     xp = xpeprev+opt_vectorx*trav_dist;

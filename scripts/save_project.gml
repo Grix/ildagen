@@ -12,7 +12,7 @@ if (file_loc == "")
     
 length = ceil(length);
     
-buffer_write(save_buffer,buffer_u8,50); //version / ID
+buffer_write(save_buffer,buffer_u8,100); //version / ID
 buffer_write(save_buffer,buffer_u8,projectfps); //fps
 buffer_write(save_buffer,buffer_u8,song); //audio enabled
 buffer_write(save_buffer,buffer_u8,parsingaudio); //audio still parsing
@@ -52,7 +52,6 @@ for (i = 0; i < ds_list_size(layer_list); i++)
 
 if (song)
     {
-    //todo: cache to speed up
     buffer_write(save_buffer,buffer_string,songfile_name);
     
     file_loc_song = songfile;
@@ -62,14 +61,7 @@ if (song)
     buffer_write(save_buffer,buffer_u32,songfile_size);
     buffer_copy(load_buffer_song,0,songfile_size,save_buffer,buffer_tell(save_buffer));
     buffer_seek(save_buffer,buffer_seek_relative,songfile_size);
-    //buffer_save(save_buffer,"testsave");
-    //buffer_save(load_buffer_song,"testsong");
-    /*for (i = 0; i < songfile_size; i++)
-        {
-        buffer_write(save_buffer,buffer_u8,FS_file_bin_read_byte(songfile_bin));
-        }
-    FS_file_bin_close(songfile_bin);
-    */
+    
     if (!parsingaudio)
         {
         buffer_write(save_buffer,buffer_u32,ds_list_size(audio_list));

@@ -1,3 +1,4 @@
+///seq_dialog_yesno(id, question string)
 if (controller.dialog_open) exit;
 with (seqcontrol)
     {

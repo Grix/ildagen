@@ -8,7 +8,7 @@ xpe = xo+ds_list_find_value(list_id,50+0*6+0);
 ype = $ffff-(yo+ds_list_find_value(list_id,50+0*6+1));
 opt_dist = point_distance(xpeprev,ypeprev,xpe,ype);
 
-if (opt_dist < opt_maxdist)
+if (opt_dist < controller.opt_maxdist)
     return 1;
     
 opt_vectorx = (xpe-xpeprev)/opt_dist;
@@ -40,7 +40,7 @@ for (m = 0;m < 3;m++)
     maxpoints++;
     }
 
-trav = -opt_maxdist;
+trav = -controller.opt_maxdist;
     
 for (trav_dist = trav/2;opt_dist >= -trav_dist; trav_dist += trav)
     {

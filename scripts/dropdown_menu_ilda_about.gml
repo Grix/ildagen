@@ -1,4 +1,4 @@
-ddobj = instance_create(controller.menu_width_start[5],0,oDropDown);
+ddobj = instance_create(controller.menu_width_start[6],0,oDropDown);
 with (ddobj)
     {
     num = 4;

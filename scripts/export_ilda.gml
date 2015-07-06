@@ -7,7 +7,6 @@ if (file_loc == "")
 ilda_buffer = buffer_create(1,buffer_grow,1);    
     
 maxpoints = 0;
-
 maxpointstot = 0;
 
 maxframespost = maxframes;
@@ -50,7 +49,7 @@ for (j = 0; j < maxframes;j++)
     buffer_write(ilda_buffer,buffer_u8,ord('M'));
     buffer_write(ilda_buffer,buffer_u8,ord(' '));
     maxpointspos = buffer_tell(ilda_buffer);
-    buffer_write(ilda_buffer,buffer_u16,$300); //maxpoints
+    buffer_write(ilda_buffer,buffer_u16,0); //maxpoints
     buffer_write(ilda_buffer,buffer_u8,framea[1]); //frame
     buffer_write(ilda_buffer,buffer_u8,framea[0]); //frame
     buffer_write(ilda_buffer,buffer_u8,maxframesa[1]); //maxframes
@@ -58,12 +57,17 @@ for (j = 0; j < maxframes;j++)
     buffer_write(ilda_buffer,buffer_u8,0); //scanner
     buffer_write(ilda_buffer,buffer_u8,0); //0
     
-    
-
     if (!ds_list_size(el_list)) 
         {
         optimize_middle3();
-        maxpointstot += maxpoints;
+        //update maxpoints
+        maxpointspre = maxpoints;
+        maxpointsa[0] = maxpoints & 255;
+        maxpoints = maxpoints >> 8;
+        maxpointsa[1] = maxpoints & 255;
+        buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
+        buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
+        maxpointstot += maxpointspre;
         maxpoints = 0;
         continue;
         }
@@ -160,8 +164,6 @@ for (j = 0; j < maxframes;j++)
                 if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
                     blank = $C0;
                 }
-                
-
             
             
             if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,50+(u+1)*6+2))) or (exp_optimize == 1)

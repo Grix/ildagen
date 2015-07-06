@@ -14,10 +14,8 @@ ilda_buffer = buffer_create(1,buffer_grow,1);
 maxpointstot = 0;    
 maxpoints = 0;
 
-length = ceil(length);
-
 //stupid GM can't choose endian type
-maxframespost = length;
+maxframespost = endframe-startframe;
 maxframesa[0] = maxframespost & 255;
 maxframespost = maxframespost >> 8;
 maxframesa[1] = maxframespost & 255;
@@ -25,7 +23,7 @@ maxframesa[1] = maxframespost & 255;
 for (j = startframe; j < endframe;j++)
     {
     correctframe = j;
-    framepost = j;
+    framepost = j-startframe;
     framea[0] = framepost & 255;
     framepost = framepost >> 8;
     framea[1] = framepost & 255;   
@@ -55,29 +53,26 @@ for (j = startframe; j < endframe;j++)
     buffer_write(ilda_buffer,buffer_u8,ord('M'));
     buffer_write(ilda_buffer,buffer_u8,ord(' '));
     maxpointspos = buffer_tell(ilda_buffer);
-    buffer_write(ilda_buffer,buffer_u16,3); //maxpoints
+    buffer_write(ilda_buffer,buffer_u16,0); //maxpoints
     buffer_write(ilda_buffer,buffer_u8,framea[1]); //frame
     buffer_write(ilda_buffer,buffer_u8,framea[0]); //frame
     buffer_write(ilda_buffer,buffer_u8,maxframesa[1]); //maxframes
     buffer_write(ilda_buffer,buffer_u8,maxframesa[0]); 
     buffer_write(ilda_buffer,buffer_u8,0); //scanner
     buffer_write(ilda_buffer,buffer_u8,0); //0
-    
-    //optimize first
-    if (controller.exp_optimize == 1)
-        {
-        optimize_first();
-        }
-    else optimize_middle3();
         
+    el_list = ds_list_create(); 
+    
     //check which should be drawn
     for (k = 0; k < ds_list_size(layer_list); k++)
         {
         layer = ds_list_find_value(layer_list, k);
-        for (m = 0; m < ds_list_size(layer); m += 3)
+        for (m = 0; m < ds_list_size(layer); m++)
             {
-            infolist =  ds_list_find_value(layer,m+2);
-            frametime = round(ds_list_find_value(layer,m));
+            objectlist = ds_list_find_value(layer,m);
+            
+            infolist =  ds_list_find_value(objectlist,2);
+            frametime = round(ds_list_find_value(objectlist,0));
             object_length = ds_list_find_value(infolist,0);
             object_maxframes = ds_list_find_value(infolist,2);
             
@@ -85,19 +80,17 @@ for (j = startframe; j < endframe;j++)
                 continue;
             
             //yup, draw object
-            el_buffer = ds_list_find_value(layer,m+1);
+            el_buffer = ds_list_find_value(objectlist,1);
             fetchedframe = (correctframe-frametime) mod object_maxframes;
             buffer_seek(el_buffer,buffer_seek_start,0);
             buffer_ver = buffer_read(el_buffer,buffer_u8);
-            if (buffer_ver != 50) and (buffer_ver != 51)
+            if (buffer_ver != 51)
                 {
                 show_message_async("Error: Unexpected byte. Things might get ugly. Contact developer.");
                 surface_reset_target();
                 exit;
                 }
             buffer_maxframes = buffer_read(el_buffer,buffer_u32);
-            
-            el_list = ds_list_create(); 
             
             //skip to correct frame
             for (i = 0; i < fetchedframe;i++)
@@ -136,135 +129,158 @@ for (j = startframe; j < endframe;j++)
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
                     }
                 }
-                
-            //write to ilda buffer
-            for (i = 0;i < ds_list_size(el_list);i++)
-                {
-                list_id = ds_list_find_value(el_list,i);
-                
-                xo = ds_list_find_value(list_id,0);
-                yo = ds_list_find_value(list_id,1);
-                
-                blanktemp = 0;
-                
-                //TODO if just one
-                
-                listsize = ((ds_list_size(list_id)-50)/6);
-                
-                var blankprev = 0;
-                for (u = 0; u < listsize; u++)
-                    {
-                    //getting values from element list
-                    bl = ds_list_find_value(list_id,50+u*6+2);
-                        
-                    xp = xo+ds_list_find_value(list_id,50+u*6+0);
-                    yp = $ffff-(yo+ds_list_find_value(list_id,50+u*6+1));
-                    if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
-                        {
-                        blanktemp = 1;
-                        continue;
-                        }
-                    
-                    b = ds_list_find_value(list_id,50+u*6+3);
-                    if (is_undefined(b) and bl) {b = 0}
-                    g = ds_list_find_value(list_id,50+u*6+4);
-                    if (is_undefined(g) and bl) {g = 0}
-                    r = ds_list_find_value(list_id,50+u*6+5);
-                    if (is_undefined(r) and bl) {r = 0}
-                    
-                    //adjusting values for writing to buffer
-                    xpe = xp;
-                    ype = yp;
-                    xp -= $8000;
-                    yp -= $8000;
-                    xpa[0] = xp & 255;
-                    xp = xp >> 8;
-                    xpa[1] = xp & 255;
-                    ypa[0] = yp & 255;
-                    yp = yp >> 8;
-                    ypa[1] = yp & 255;
-                    
-                    if (exp_optimize == 1) and (bl != blankprev)
-                        {
-                        repeat (3)
-                            {
-                            //writing point
-                            buffer_write(ilda_buffer,buffer_u8,xpa[1]);
-                            buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-                            buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-                            buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-                            buffer_write(ilda_buffer,buffer_u8,bl);
-                            buffer_write(ilda_buffer,buffer_u8,b);
-                            buffer_write(ilda_buffer,buffer_u8,g);
-                            buffer_write(ilda_buffer,buffer_u8,r);
-                            maxpoints++;
-                            }
-                        blankprev = bl;
-                        }
-                    
-                    if (u = 0)
-                        blank = $40;
-                    else if (bl)
-                        {
-                        blank = $40;
-                        if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
-                            blank = $C0;
-                        }
-                    else
-                        {
-                        blank = $0;
-                        if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
-                            blank = $80;
-                        }
-                    if (blanktemp == 1)
-                        {
-                        blank = $40;
-                        blanktemp = 0;
-                        if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
-                            blank = $C0;
-                        }
-                    
-                    
-                    if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,50+(u+1)*6+2))) or (controller.exp_optimize == 1)
-                        {
-                        //writing point
-                        buffer_write(ilda_buffer,buffer_u8,xpa[1]);
-                        buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-                        buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-                        buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-                        buffer_write(ilda_buffer,buffer_u8,blank);
-                        buffer_write(ilda_buffer,buffer_u8,b);
-                        buffer_write(ilda_buffer,buffer_u8,g);
-                        buffer_write(ilda_buffer,buffer_u8,r);
-                        maxpoints++;
-                        }
-                    
-                    }
-                    
-                //optimize between elements
-                if (controller.exp_optimize == 1) and (i != ds_list_size(el_list)-1)
-                    {
-                    optimize_between();
-                    }
-                }
-                
-            //optimize last
-            if (controller.exp_optimize == 1)
-                {
-                optimize_last();
-                }
-                
-                
-            //cleanup
-            for (i = 0;i < ds_list_size(el_list);i++)
-                {
-                ds_list_destroy(ds_list_find_value(el_list,i));
-                }
-            ds_list_destroy(el_list);
                     
             }
         
         }
+    
+    //write to ilda buffer
+    if (!ds_list_size(el_list)) 
+        {
+        optimize_middle3();
+        //update maxpoints
+        maxpointspre = maxpoints;
+        maxpointsa[0] = maxpoints & 255;
+        maxpoints = maxpoints >> 8;
+        maxpointsa[1] = maxpoints & 255;
+        buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
+        buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
+        maxpointstot += maxpointspre;
+        maxpoints = 0;
+        continue;
+        }
+    
+    //optimize first
+    if (controller.exp_optimize == 1)
+        {
+        optimize_first();
+        }
+    
+    for (i = 0;i < ds_list_size(el_list);i++)
+        {
+        list_id = ds_list_find_value(el_list,i);
+        
+        xo = ds_list_find_value(list_id,0);
+        yo = ds_list_find_value(list_id,1);
+        
+        blanktemp = 0;
+        
+        //TODO if just one
+        
+        listsize = ((ds_list_size(list_id)-50)/6);
+        
+        var blankprev = 0;
+        for (u = 0; u < listsize; u++)
+            {
+            //getting values from element list
+            
+            bl = ds_list_find_value(list_id,50+u*6+2);
+            
+            xp = xo+ds_list_find_value(list_id,50+u*6+0);
+            yp = $ffff-(yo+ds_list_find_value(list_id,50+u*6+1));
+            if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
+                {
+                blanktemp = 1;
+                continue;
+                }
+            
+            b = ds_list_find_value(list_id,50+u*6+3);
+            if (is_undefined(b) and bl) {b = 0}
+            g = ds_list_find_value(list_id,50+u*6+4);
+            if (is_undefined(g) and bl) {g = 0}
+            r = ds_list_find_value(list_id,50+u*6+5);
+            if (is_undefined(r) and bl) {r = 0}
+            
+            //adjusting values for writing to buffer
+            xpe = xp;
+            ype = yp;
+            xp -= $8000;
+            yp -= $8000;
+            xpa[0] = xp & 255;
+            xp = xp >> 8;
+            xpa[1] = xp & 255;
+            ypa[0] = yp & 255;
+            yp = yp >> 8;
+            ypa[1] = yp & 255;
+            
+            if (controller.exp_optimize == 1) and (bl != blankprev)
+                {
+                repeat (3)
+                    {
+                    //writing point
+                    buffer_write(ilda_buffer,buffer_u8,xpa[1]);
+                    buffer_write(ilda_buffer,buffer_u8,xpa[0]);
+                    buffer_write(ilda_buffer,buffer_u8,ypa[1]);
+                    buffer_write(ilda_buffer,buffer_u8,ypa[0]);
+                    buffer_write(ilda_buffer,buffer_u8,bl);
+                    buffer_write(ilda_buffer,buffer_u8,b);
+                    buffer_write(ilda_buffer,buffer_u8,g);
+                    buffer_write(ilda_buffer,buffer_u8,r);
+                    maxpoints++;
+                    }
+                blankprev = bl;
+                }
+            
+            if (u = 0)
+                blank = $40;
+            else if (bl)
+                {
+                blank = $40;
+                if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
+                    blank = $C0;
+                }
+            else
+                {
+                blank = $0;
+                if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
+                    blank = $80;
+                }
+            if (blanktemp == 1)
+                {
+                blank = $40;
+                blanktemp = 0;
+                if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
+                    blank = $C0;
+                }
+            
+            
+            if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,50+(u+1)*6+2))) or (controller.exp_optimize == 1)
+                {
+                //writing point
+                buffer_write(ilda_buffer,buffer_u8,xpa[1]);
+                buffer_write(ilda_buffer,buffer_u8,xpa[0]);
+                buffer_write(ilda_buffer,buffer_u8,ypa[1]);
+                buffer_write(ilda_buffer,buffer_u8,ypa[0]);
+                buffer_write(ilda_buffer,buffer_u8,blank);
+                buffer_write(ilda_buffer,buffer_u8,b);
+                buffer_write(ilda_buffer,buffer_u8,g);
+                buffer_write(ilda_buffer,buffer_u8,r);
+                maxpoints++;
+                }
+            
+            }
+            
+        //optimize between elements
+        if (controller.exp_optimize == 1) and (i != ds_list_size(el_list)-1)
+            {
+            optimize_between();
+            }
+        }
+        
+    //optimize last
+    if (controller.exp_optimize == 1)
+        {
+        optimize_last();
+        }
+        
+        
+    //cleanup
+    for (i = 0;i < ds_list_size(el_list);i++)
+        {
+        ds_list_destroy(ds_list_find_value(el_list,i));
+        }
+    ds_list_destroy(el_list);  
+      
     //update maxpoints
     maxpointspre = maxpoints;
     maxpointsa[0] = maxpoints & 255;

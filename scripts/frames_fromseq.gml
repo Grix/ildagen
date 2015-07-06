@@ -5,7 +5,7 @@ with (controller)
     {
     buffer_seek(load_buffer,buffer_seek_start,0);
     idbyte = buffer_read(load_buffer,buffer_u8);
-    if (idbyte != 50) and (idbyte != 51)
+    if (idbyte != 51)
         {
         show_message_async("Unexpected ID byte in frames_fromseq: "+string(idbyte)+", things might get ugly. Contact developer.");
         exit;

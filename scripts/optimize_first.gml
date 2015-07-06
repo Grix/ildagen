@@ -11,7 +11,7 @@ opt_dist = point_distance($ffff/2,$ffff/2,xpe,ype);
 opt_vectorx = ($ffff/2-xpe)/opt_dist;
 opt_vectory = ($ffff/2-ype)/opt_dist;
 
-trav = -opt_maxdist;    
+trav = -controller.opt_maxdist;    
 for (trav_dist = trav/2;trav_dist >= -opt_dist; trav_dist += trav;)
     {
     xp = $ffff/2+opt_vectorx*trav_dist;

@@ -806,6 +806,7 @@
           <script>scripts\dropdown_menu_ilda_properties.gml</script>
           <script>scripts\dropdown_menu_ilda_edit.gml</script>
           <script>scripts\dropdown_menu_ilda_tools.gml</script>
+          <script>scripts\dropdown_menu_ilda_view.gml</script>
           <script>scripts\dropdown_menu_ilda_settings.gml</script>
           <script>scripts\dropdown_menu_ilda_about.gml</script>
           <script>scripts\dd_ilda_saveframes.gml</script>
@@ -825,6 +826,10 @@
           <script>scripts\dd_ilda_contact.gml</script>
           <script>scripts\dd_ilda_maxframes.gml</script>
           <script>scripts\dd_ilda_fps.gml</script>
+          <script>scripts\dd_ilda_resetwindow.gml</script>
+          <script>scripts\dd_ilda_togglefullscreen.gml</script>
+          <script>scripts\dd_ilda_viewtimeline.gml</script>
+          <script>scripts\dd_ilda_vieweditor.gml</script>
         </scripts>
         <script>scripts\dropdown_ed.gml</script>
         <script>scripts\dd_ed_custom.gml</script>
@@ -868,6 +873,13 @@
           <script>scripts\dropdown_menu_seq_edit.gml</script>
           <script>scripts\dropdown_menu_seq_tools.gml</script>
           <script>scripts\dropdown_menu_seq_settings.gml</script>
+          <script>scripts\dd_seq_saveproject.gml</script>
+          <script>scripts\dd_seq_exportilda.gml</script>
+          <script>scripts\dd_seq_loadproject.gml</script>
+          <script>scripts\dd_seq_importilda.gml</script>
+          <script>scripts\dd_seq_importframes.gml</script>
+          <script>scripts\dd_seq_toseq.gml</script>
+          <script>scripts\dd_seq_clearproject.gml</script>
         </scripts>
         <script>scripts\dropdown_seqobject.gml</script>
         <script>scripts\dropdown_layer.gml</script>
