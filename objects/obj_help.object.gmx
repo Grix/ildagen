@@ -60,7 +60,8 @@
             "Left/Right Arrows)    Cycle between frames#"+
             "Space)    Play/Pause#"+
             "Ctrl+Mouse)    Select object#"+
-            "I)    Send frames from editor mode to timeline mode"+
+            "Tab)    Enter timeline mode#"+
+            "I)    Send frames from editor mode to timeline mode#"+
             "Delete)    Delete selected object#"+
             "P)    Switch between 2D and 3D frame previewing#"+
             "Shift)    Force horizontal or vertical lines when drawing#"+
@@ -95,6 +96,7 @@ else if (room = rm_seq)
             "Mouse)    Select object or time on timeline#"+
             "Left/Right Arrows)    Cycle between frames#"+
             "Space)    Play/Pause#"+
+            "Tab)    Enter frame editor mode#"+
             "I)    Send frames from editor mode to timeline mode#"+
             "L)    Insert marker on timeline#"+
             "Delete)    Delete selected object#"+

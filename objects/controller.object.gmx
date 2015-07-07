@@ -1790,7 +1790,9 @@ frame_surf_refresh = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (tooltip != "")
+            <string>if (instance_exists(oDropDown)) exit;
+
+if (tooltip != "")
     {
     draw_set_alpha(0.7);
     draw_set_color(c_black);

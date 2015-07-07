@@ -13,7 +13,8 @@ for (j = 0;j < ds_list_size(frame_list);j++)
         }
     ds_list_clear(el_list);
     }
-    
+
+ds_list_clear(frame_list);
 
 framepoints = 0;
 frame = 0;

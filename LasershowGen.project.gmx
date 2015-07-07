@@ -882,6 +882,8 @@
           <script>scripts\dd_seq_clearproject.gml</script>
           <script>scripts\dd_seq_fromseq.gml</script>
           <script>scripts\dd_seq_deselect.gml</script>
+          <script>scripts\dd_seq_clearmarker.gml</script>
+          <script>scripts\dd_seq_addmarker.gml</script>
         </scripts>
         <script>scripts\dropdown_seqobject.gml</script>
         <script>scripts\dropdown_layer.gml</script>
@@ -911,8 +913,10 @@
     <scripts name="seq">
       <script>scripts\refresh_audio.gml</script>
       <script>scripts\refresh_audio_surf.gml</script>
-      <script>scripts\handle_mousecontrol.gml</script>
+      <script>scripts\remove_audio.gml</script>
+      <script>scripts\load_audio.gml</script>
       <script>scripts\set_audio_speed.gml</script>
+      <script>scripts\handle_mousecontrol.gml</script>
       <script>scripts\refresh_seq_surface.gml</script>
       <script>scripts\make_screenshot.gml</script>
       <script>scripts\clear_project.gml</script>

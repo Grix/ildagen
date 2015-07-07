@@ -76,14 +76,21 @@ else if (idbyte == 50)
             numofinds = buffer_read(load_buffer,buffer_u32);
             ind_list = ds_list_create();
             ds_list_add(el_list,ind_list);
-            el_id++;
             
             for (u = 0; u < 9; u++)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 }
-            buffer_read(load_buffer,buffer_f32);
-            ds_list_add(ind_list,el_id);
+            el_id_read = buffer_read(load_buffer,buffer_f32);
+            if (ds_map_exists(el_idmap,el_id_read))
+                el_id_real = ds_map_find_value(el_idmap,el_id_read);
+            else
+                {
+                el_id_real = el_id;
+                el_id++;
+                ds_map_add(el_idmap,el_id_read,el_id_real);
+                }
+            ds_list_add(ind_list,el_id_real);
             for (u = 10; u < 50; u++)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
@@ -114,14 +121,21 @@ else if (idbyte == 51)
             numofinds = buffer_read(load_buffer,buffer_u32);
             ind_list = ds_list_create();
             ds_list_add(el_list,ind_list);
-            el_id++;
             
             for (u = 0; u < 9; u++)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 }
-            buffer_read(load_buffer,buffer_f32);
-            ds_list_add(ind_list,el_id);
+            el_id_read = buffer_read(load_buffer,buffer_f32);
+            if (ds_map_exists(el_idmap,el_id_read))
+                el_id_real = ds_map_find_value(el_idmap,el_id_read);
+            else
+                {
+                el_id_real = el_id;
+                el_id++;
+                ds_map_add(el_idmap,el_id_read,el_id_real);
+                }
+            ds_list_add(ind_list,el_id_real);
             for (u = 10; u < 50; u++)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_bool));
@@ -138,6 +152,8 @@ else if (idbyte == 51)
             }
         }
     }
+    
+ds_map_destroy(el_idmap);
     
 el_id++;
 buffer_delete(load_buffer);

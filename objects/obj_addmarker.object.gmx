@@ -78,7 +78,7 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>add_marker(round(seqcontrol.tlpos/1000*seqcontrol.projectfps));
+            <string>dd_seq_addmarker();
 </string>
           </argument>
         </arguments>
@@ -101,7 +101,7 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>add_marker(round(seqcontrol.tlpos/1000*seqcontrol.projectfps));
+            <string>dd_seq_addmarker();
 </string>
           </argument>
         </arguments>
