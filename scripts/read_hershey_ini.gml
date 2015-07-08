@@ -10,20 +10,6 @@ ini_open("hershey.ini");
 for (i = 0; i < 2352; i++)
     {
     frame_list_parse = ds_list_create();
-    
-    /*glyphno = 0;
-    if !hershey_error() return 0;
-    glyphno += 10000*real(FS_file_text_read_char(hershey_file,1));
-    if !hershey_error() return 0;
-    glyphno += 1000*real(FS_file_text_read_char(hershey_file,1));
-    if !hershey_error() return 0;
-    glyphno += 100*real(FS_file_text_read_char(hershey_file,1));
-    if !hershey_error() return 0;
-    glyphno += 10*real(FS_file_text_read_char(hershey_file,1));
-    if !hershey_error() return 0;
-    glyphno += real(FS_file_text_read_char(hershey_file,1));
-    if !hershey_error() return 0;*/
-    //c+= 5;
 
     maxglyphpoints = ini_read_real(string(i),"n",0);
     hershey_string = ini_read_string(string(i),"s","");

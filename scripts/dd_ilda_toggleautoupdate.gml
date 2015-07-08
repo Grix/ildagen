@@ -1,3 +1,5 @@
+if (os_browser != browser_not_a_browser) exit;
+
 controller.ini_filename = "settings.ini";
 
 ini_open(controller.ini_filename);

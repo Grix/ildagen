@@ -17,19 +17,6 @@ for (i = 0; i < 9999; i++)
     
     frame_list_parse = ds_list_create();
     
-    /*glyphno = 0;
-    if !hershey_error() return 0;
-    glyphno += 10000*real(FS_file_text_read_char(hershey_file,1));
-    if !hershey_error() return 0;
-    glyphno += 1000*real(FS_file_text_read_char(hershey_file,1));
-    if !hershey_error() return 0;
-    glyphno += 100*real(FS_file_text_read_char(hershey_file,1));
-    if !hershey_error() return 0;
-    glyphno += 10*real(FS_file_text_read_char(hershey_file,1));
-    if !hershey_error() return 0;
-    glyphno += real(FS_file_text_read_char(hershey_file,1));
-    if !hershey_error() return 0;*/
-    //c+= 5;
     file_bin_seek(hershey_file,file_bin_position(hershey_file)+5);
     ds_list_add(hershey_index_list,file_bin_position(hershey_file));
 

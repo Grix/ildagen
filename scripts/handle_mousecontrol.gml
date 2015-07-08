@@ -45,8 +45,9 @@ if (moving_object == 1)
         layertomove = newlayertomove;
         selectedlayer = ds_list_find_index(layer_list,newlayertomove);
         }
-    if (mouse_check_button_released(mb_left))
+    if (mouse_check_button_released(mb_left)) or (!keyboard_check_direct(1))
         {
+        mouse_clear(mb_left);
         frame_surf_refresh = 1;
         tempxstart = round(ds_list_find_value(objecttomove,0));
         if (!keyboard_check(vk_alt))
@@ -98,10 +99,11 @@ else if (moving_object == 2)
     {
     draw_mouseline = 1;
     //resizing object on timeline
-    ds_list_replace(infolisttomove,0,max(1,ds_list_find_value(infolisttomove,0)+(mouse_x-mousexprev)*tlzoom/tlw));
+    ds_list_replace(infolisttomove,0,max(0,ds_list_find_value(infolisttomove,0)+(mouse_x-mousexprev)*tlzoom/tlw));
     mousexprev = mouse_x;
-    if (mouse_check_button_released(mb_left))
+    if (mouse_check_button_released(mb_left)) or (!keyboard_check_direct(1))
         {
+        mouse_clear(mb_left);
         frame_surf_refresh = 1;
         templength = round(ds_list_find_value(infolisttomove,0));
         if (!keyboard_check(vk_alt))
@@ -149,8 +151,9 @@ else if (moving_object == 3)
     startframe += (mouse_x-mousexprev)*tlzoom/tlw;
     if (startframe < 0) startframe = 0;
     mousexprev = mouse_x;
-    if (mouse_check_button_released(mb_left))
+    if (mouse_check_button_released(mb_left)) or (!keyboard_check_direct(1))
         {
+        mouse_clear(mb_left);
         startframe = round(startframe);
         moving_object = 0;
         }
@@ -161,8 +164,9 @@ else if (moving_object == 4)
     //moving endframe
     endframe += (mouse_x-mousexprev)*tlzoom/tlw;
     mousexprev = mouse_x;
-    if (mouse_check_button_released(mb_left))
+    if (mouse_check_button_released(mb_left)) or (!keyboard_check_direct(1))
         {
+        mouse_clear(mb_left);
         endframe = round(endframe);
         moving_object = 0;
         }
@@ -173,8 +177,9 @@ else if (moving_object == 5)
     //moving marker
     ds_list_replace(marker_list,markertomove,max(1,ds_list_find_value(marker_list,markertomove)+(mouse_x-mousexprev)*tlzoom/tlw));
     mousexprev = mouse_x;
-    if (mouse_check_button_released(mb_left))
+    if (mouse_check_button_released(mb_left)) or (!keyboard_check_direct(1))
         {
+        mouse_clear(mb_left);
         ds_list_replace(marker_list,markertomove,round(ds_list_find_value(marker_list,markertomove)));
         moving_object = 0;
         }
@@ -191,8 +196,11 @@ else if (scroll_moving == 1)
     
     mousexprev = mouse_x;
     
-    if (mouse_check_button_released(mb_left))
+    if (mouse_check_button_released(mb_left)) or (!keyboard_check_direct(1))
+        {
+        mouse_clear(mb_left);
         scroll_moving = 0;
+        }
         
     exit;
     }
@@ -205,8 +213,11 @@ else if (scroll_moving == 2)
     
     mouseyprev = mouse_y;
     
-    if (mouse_check_button_released(mb_left))
+    if (mouse_check_button_released(mb_left)) or (!keyboard_check_direct(1))
+        {
+        mouse_clear(mb_left);
         scroll_moving = 0;
+        }
         
     exit;
     }
@@ -292,17 +303,17 @@ for (i = 0; i < ds_list_size(marker_list); i++)
     }
 
 //layers
-tempstartx = tls-layerbarx;
+tempstarty = tls-layerbarx;
 
 for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < floor((layerbarx+lbh)/48); i++)
-    {
+    { 
     if (i < floor(layerbarx/48))
         continue;
         
-    mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,tempstartx+i*48,tempstartx+i*48+48))
+    mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,tempstarty+i*48,tempstarty+i*48+48))
     if (mouseonlayer)
         {
-        mouseover = (mouse_x == clamp(mouse_x,8,40)) && (mouse_y == clamp(mouse_y,tempstartx+i*48+8,tempstartx+i*48+40))
+        mouseover = (mouse_x == clamp(mouse_x,8,40)) && (mouse_y == clamp(mouse_y,tempstarty+i*48+8,tempstarty+i*48+40))
         if (i == ds_list_size(layer_list))
             {
             if (mouseover) 
@@ -324,7 +335,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
         if (mouseover) 
             {
             controller.tooltip = "Click to delete this layer and all its content";
-            if  mouse_check_button_pressed(mb_left)
+            if  mouse_check_button_pressed(mb_left) 
                 {
                 layertodelete = ds_list_find_value(layer_list,i);
                 seq_dialog_yesno("layerdelete","Are you sure you want to delete this layer? (Cannot be undone)");
@@ -404,7 +415,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 
             controller.tooltip = "Click to select this layer position#Right click for more options";
             floatingcursorx = round(tlx+mouse_x/tlw*tlzoom);
-            floatingcursory = tempstartx+i*48-1;
+            floatingcursory = tempstarty+i*48-1;
             draw_cursorline = 1;
             draw_mouseline = 1;
             
@@ -433,7 +444,7 @@ if !(mouseonsomelayer)
         controller.tooltip = "Click to set playback position.";
         if  mouse_check_button_pressed(mb_left)
             {
-            tlpos = (tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
+            tlpos = round(tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
             if (song)
                 FMODInstanceSetPosition(songinstance,(tlpos-10)/FMODSoundGetLength(song));
             }
