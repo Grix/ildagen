@@ -5,6 +5,15 @@ parsingaudio = 0;
 ds_list_destroy(audio_list);
 audio_list = ds_list_create();
 
+//todo free memory better:
+for (u = 0; u < ds_list_size(undo_list); u++)
+    {
+    if (ds_exists(ds_list_find_value(undo_list,u),ds_type_list))
+        ds_list_destroy(ds_list_find_value(undo_list,u));
+    }
+ds_list_destroy(undo_list);
+undo_list = ds_list_create();
+
 if (song)
     {
     FMODInstanceStop(songinstance);

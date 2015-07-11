@@ -1,7 +1,7 @@
 ddobj = instance_create(seqcontrol.menu_width_start[2],0,oDropDown);
 with (ddobj)
     {
-    num = 7;
+    num = 8;
     total_width = 230;
     event_user(1);
     ds_list_add(desc_list,"Undo (Ctrl+Z)");
@@ -28,8 +28,13 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,seq_delete_object);
     ds_list_add(hl_list,((seqcontrol.selectedlayer != -1) and (seqcontrol.selectedx < 0)));
+    ds_list_add(desc_list,"Change duration");
+    ds_list_add(sep_list,1);
+    ds_list_add(scr_list,dd_seq_object_duration);
+    ds_list_add(hl_list,((seqcontrol.selectedlayer != -1) and (seqcontrol.selectedx < 0)));  
     ds_list_add(desc_list,"Deselect");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,dd_seq_deselect);
     ds_list_add(hl_list,((seqcontrol.selectedlayer != -1) and (seqcontrol.selectedx < 0)));
+ 
     }

@@ -4,6 +4,12 @@ if (selectedlayer == -1) or (selectedx < 0)
     show_message_async("No timeline position marked, select a position first");
     exit;
     }
+    
+with (seqcontrol)
+    {
+    if (song) FMODInstanceSetPaused(songinstance,1);
+    playing = 0;
+    }
 
 file_loc = argument0;
 if (file_loc == "") or is_undefined(file_loc)

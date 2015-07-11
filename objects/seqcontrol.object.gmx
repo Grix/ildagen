@@ -284,6 +284,10 @@ if (keyboard_check(vk_control))
             seq_paste_object();
             }
         }
+    else if (keyboard_check_pressed(ord('Z')))
+        {
+        undo_seq();
+        }
     }
 else if (keyboard_check_pressed(vk_right))
     {
@@ -449,6 +453,24 @@ if (new_id == getint)
        {
       switch (dialog)
           {
+          case "objectduration":
+            {
+            if (selectedlayer == -1) or (selectedx &gt;= 0)
+                exit;
+            
+            newduration = round(ds_map_find_value(async_load, "value"));
+            if (newduration &lt; 1) newduration = 1;
+            newduration--;
+            
+            ds_list_replace(infolisttomove,0,newduration);
+            
+            if (ds_exists(undolisttemp,ds_type_list))
+                {
+                ds_list_add(undo_list,"r"+string(undolisttemp));
+                }
+            
+            break;
+            }
           case "fps":
             {
             projectfps = clamp(ds_map_find_value(async_load, "value"),1,999);

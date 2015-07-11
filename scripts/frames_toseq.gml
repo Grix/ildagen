@@ -1,5 +1,4 @@
 //sends editor frames to a timeline object
-placing_status = 0;
 
 if (seqcontrol.selectedlayer = -1)
     {
@@ -10,6 +9,9 @@ if (seqcontrol.selectedlayer = -1)
 placing_status = 0;
 ds_list_clear(free_list);
 ds_list_clear(bez_list);
+playing = 0;
+frame = 0;
+framehr = 0;
     
 //check for overlaps
 /*with (seqcontrol)
@@ -70,7 +72,7 @@ with (seqcontrol)
     {
     selectedlayerlist = ds_list_find_value(layer_list,selectedlayer);
         
-    if (selectedx > 0)
+    if (selectedx >= 0)
         {
         objectlist = ds_list_create();
         ds_list_add(objectlist,selectedx);
@@ -96,7 +98,6 @@ with (seqcontrol)
         ds_list_replace(objectlist,1,controller.save_buffer);
         
         var infolist = ds_list_find_value(objectlist,2);
-        ds_list_replace(infolist,0,controller.maxframes-1);
         if (surface_exists(ds_list_find_value(infolist,1)))
             surface_free(ds_list_find_value(infolist,1));
         ds_list_replace(infolist,1,make_screenshot(controller.save_buffer));
@@ -111,6 +112,12 @@ with (seqcontrol)
     ds_list_add(undolisttemp,selectedlayerlist);
     ds_list_add(undolisttemp,objectlist);
     ds_list_add(undo_list,"c"+string(undolisttemp));
+    }
+    
+with (seqcontrol)
+    {
+    if (song) FMODInstanceSetPaused(songinstance,1);
+    playing = 0;
     }
     
 room_goto(rm_seq);

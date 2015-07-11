@@ -22,10 +22,6 @@ if (errorcheck) && (repeatc)
         ds_list_add(audio_list,lastb);
         }
     }
-//show_debug_message(ds_list_size(audio_list))
-//show_debug_message(errorcheck)
-    
-    
 
 FMODInstanceGetWaveSnapshot2(parseinstance,0,numentries);
 w1 = FMODNormalizeWaveData(0,numentries);
@@ -47,8 +43,6 @@ ds_list_add(audio_list,ln(1+clamp(s*8,0,3.4)));
 
 pos = FMODInstanceGetPosition(parseinstance);
 
-//if (pos/1000*projectfps == clamp(pos/1000*projectfps,tlx,tlx+tlzoom))
-   // refresh_audio_surf();
     
 if (pos >= 0.999)
     {

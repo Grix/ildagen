@@ -12,15 +12,14 @@ surface_set_target(miniaudio_surf);
     draw_set_color(c_black);
         draw_line(-1,tlh-13,tlw,tlh-13);
     draw_set_alpha(0.2);
-        tlx = seqcontrol.selectedx;
+        if (seqcontrol.selectedx >= 0)
+            tlx = seqcontrol.selectedx;
+        else
+            tlx = ds_list_find_value(abs(seqcontrol.selectedx),0);
         projectfps = seqcontrol.projectfps;;
         drawtime = ceil(tlx/projectfps);
         tlzoom = maxframes;
         modulus = ceil(maxframes/90)*0.2;
-        /*if (maxframes < 90) modulus = 0.2;
-        else if (maxframes < 450) modulus = 1;
-        else if (maxframes < 3000) modulus = 20;
-        else modulus = 0.0002;*/
         templine = 0;
         for (u=0; u <= tlw; u++)
             {
@@ -48,7 +47,10 @@ surface_set_target(miniaudio_surf);
 draw_set_alpha(0.3);
 draw_set_color(c_teal);
 if (maxframes > 1)
-    draw_rectangle(lerp(0,512,scope_start/(maxframes-1)),tlh-13,lerp(0,512,scope_end/(maxframes-1)),tlh+1,0);
+    {
+    minicursorx = lerp(0,512,scope_start/(maxframes-1));
+    draw_rectangle(minicursorx,tlh-13,minicursorx,tlh+1,0);
+    }
 else
     draw_rectangle(0,tlh-13,512,tlh+1,0);
          
@@ -60,7 +62,7 @@ else
         tlthird = (tlh-13)/3;
         for (u=0; u <= tlw; u++)
             {
-            nearesti = round((tlx+u*tlzoom/tlw/1)/projectfps*60)*3;
+            nearesti = round((tlx+u*tlzoom/tlw)/projectfps*60)*3;
             
             if (nearesti > ds_list_size(seqcontrol.audio_list)-3)
                 break;
@@ -78,7 +80,6 @@ else
             draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);    
             }
         draw_set_alpha(1);
-        draw_set_color(c_dkgray);
         }
         
         

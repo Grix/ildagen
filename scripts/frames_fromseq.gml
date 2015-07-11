@@ -1,6 +1,11 @@
+if (os_browser != browser_not_a_browser)
+    {
+    show_message_async("Sorry, this timeline is not available in the web version yet");
+    exit;
+    }
+
 layer = ds_list_find_value(layer_list,selectedlayer);
 controller.load_buffer = ds_list_find_value(abs(selectedx),1);
-show_debug_message("fromseq "+string(buffer_get_size(controller.load_buffer)));
 
 with (controller)
     {
@@ -14,6 +19,8 @@ with (controller)
     
     //clear
     clear_all();
+    
+    ds_list_clear(frame_list);
     
     el_idmap = ds_map_create();
     
@@ -64,6 +71,13 @@ with (controller)
     scope_start = 0;
     scope_end = maxframes-1;
     el_id++;
+    
+    placing_status = 0;
+    ds_list_clear(free_list);
+    ds_list_clear(bez_list);
+    playing = 0;
+    frame = 0;
+    framehr = 0;
     
     ds_map_destroy(el_idmap);
     }

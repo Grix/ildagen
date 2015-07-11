@@ -1,3 +1,4 @@
+///seq_dialog_num(id, string, default)
 if (controller.dialog_open) exit;
 with (seqcontrol)
     {

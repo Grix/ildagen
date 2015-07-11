@@ -63,7 +63,7 @@
             "Tab)    Enter timeline mode#"+
             "I)    Send frames from editor mode to timeline mode#"+
             "Delete)    Delete selected object#"+
-            "P)    Switch between 2D and 3D frame previewing#"+
+            "P)    Toggle 3D frame previewing#"+
             "Shift)    Force horizontal or vertical lines when drawing#"+
             "Q)    Snap cursor to the nearest tip of object#"+
             "Alt)    Snap mouse to ending position of last element for chaining#"+
@@ -99,13 +99,14 @@ else if (room = rm_seq)
             "Tab)    Enter frame editor mode#"+
             "I)    Send frames from editor mode to timeline mode#"+
             "L)    Insert marker on timeline#"+
+            "P)    Toggle 3D frame previewing##"+
             "Delete)    Delete selected object#"+
             "Ctrl+Z)    Undo#"+
             "Ctrl+C)    Copy selected objects#"+
             "Ctrl+X)    Cut selected objects#"+
             "Ctrl+V)    Paste#"+
             "0)    Jump to first frame#"+
-            "Mouse wheel)    Scroll (where applicable)##"+
+            "Mouse wheel)    Scroll/Zoom (where applicable)##"+
             "M)    Reset window size#"+
             "F11)    Toggle fullscreen";
             } 

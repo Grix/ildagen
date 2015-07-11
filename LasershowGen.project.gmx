@@ -888,6 +888,7 @@
         <script>scripts\dropdown_seqobject.gml</script>
         <script>scripts\dropdown_layer.gml</script>
         <script>scripts\seq_fromilda.gml</script>
+        <script>scripts\dd_seq_object_duration.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">
@@ -938,7 +939,6 @@
       <script>scripts\random_gaussian.gml</script>
       <script>scripts\dist_triangular.gml</script>
       <script>scripts\draw_preview_element.gml</script>
-      <script>scripts\buttons_set_active.gml</script>
       <script>scripts\copy_object.gml</script>
       <script>scripts\cut_object.gml</script>
       <script>scripts\delete_object.gml</script>
@@ -1000,7 +1000,6 @@
     </scripts>
     <script>scripts\update_check.gml</script>
     <script>scripts\update_check_verbose.gml</script>
-    <script>scripts\controller_setup.gml</script>
     <script>scripts\parse_parameter.gml</script>
     <script>scripts\verify_serial.gml</script>
     <script>scripts\seq_dialog_yesno.gml</script>

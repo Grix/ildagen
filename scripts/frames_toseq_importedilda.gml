@@ -6,6 +6,12 @@ if (seqcontrol.selectedlayer = -1) or (seqcontrol.selectedx < 0)
     exit;
     }
     
+with (seqcontrol)
+    {
+    if (song) FMODInstanceSetPaused(songinstance,1);
+    playing = 0;
+    }
+    
 //check for overlaps
 /*with (seqcontrol)
     {
@@ -84,5 +90,3 @@ with (seqcontrol)
     }
     
 ds_list_destroy(ild_list);
-    
-room_goto(rm_seq);
