@@ -41,6 +41,8 @@ audio_surf = surface_create(1024,1024);
 audio_surf = surface_create(1024,1024);
 frame_surf = surface_create(512,512);
 frame3d_surf = surface_create(512,512);
+frame_surf_large = surface_create(1024,1024);
+frame3d_surf_large = surface_create(1024,1024);
 copy_list = -1;
 copy_buffer = -1;
 
@@ -82,6 +84,7 @@ startframe = 0;
 endframe = 800;
 startframex = -1;
 endframex = -1;
+largepreview = 0;
 
 tlw = 897;
 tlh = 128;
@@ -601,17 +604,16 @@ draw_set_color(c_white);
 draw_set_alpha(1);
     
 //draws laser preview
-if (frame_surf_refresh == 1) or !surface_exists(frame_surf)
+if (frame_surf_refresh == 1) or !surface_exists(frame_surf) or !surface_exists(frame_surf_large) or !surface_exists(frame3d_surf_large) or !surface_exists(frame3d_surf)
     {
-    refresh_seq_surface();
+    if (largepreview)
+        refresh_seq_surface_large();
+    else
+        refresh_seq_surface();
+        
     frame_surf_refresh = 0;
     }
 draw_set_alpha(1);
-if (viewmode != 0)
-    draw_surface_part(frame3d_surf,0,0,509,135,0,0);
-    
-if (viewmode != 1)
-    draw_surface_part(frame_surf,0,0,509,135,0,0);
     
 if (surface_exists(audio_surf))
     draw_surface_part(audio_surf,0,0,tlw+1,lbsh+17,0,137);
@@ -659,6 +661,28 @@ if (draw_cursorline = 1)
     draw_set_alpha(0.3);
     floatingcursorxcorrected = (floatingcursorx-tlx)/tlzoom*tlw;
     draw_line(floatingcursorxcorrected,floatingcursory,floatingcursorxcorrected,floatingcursory+48);
+    }
+    
+draw_set_alpha(1);
+if (largepreview)
+    {
+    draw_set_colour(c_black);
+    draw_rectangle(89,49,691,651,0);
+    draw_set_color(c_white);
+    
+    if (viewmode != 0)
+        draw_surface_part(frame3d_surf_large,0,0,600,600,90,50);
+        
+    if (viewmode != 1)
+        draw_surface_part(frame_surf_large,0,0,600,600,90,50);
+    }
+else
+    {
+    if (viewmode != 0)
+        draw_surface_part(frame3d_surf,0,0,509,135,0,0);
+        
+    if (viewmode != 1)
+        draw_surface_part(frame_surf,0,0,509,135,0,0);
     }
     
 //menu

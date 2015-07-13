@@ -188,6 +188,7 @@
       <sprite>sprites\spr_loadproject</sprite>
       <sprite>sprites\spr_addmarker</sprite>
       <sprite>sprites\spr_clearmarker</sprite>
+      <sprite>sprites\spr_largepreview</sprite>
     </sprites>
     <sprite>sprites\spr_save</sprite>
     <sprite>sprites\spr_export</sprite>
@@ -919,6 +920,7 @@
       <script>scripts\set_audio_speed.gml</script>
       <script>scripts\handle_mousecontrol.gml</script>
       <script>scripts\refresh_seq_surface.gml</script>
+      <script>scripts\refresh_seq_surface_large.gml</script>
       <script>scripts\make_screenshot.gml</script>
       <script>scripts\clear_project.gml</script>
       <script>scripts\undo_seq.gml</script>
@@ -1027,6 +1029,7 @@
         <object>objects\obj_openeditor</object>
         <object>objects\obj_loadaudio</object>
         <object>objects\obj_addmarker</object>
+        <object>objects\obj_largepreview</object>
         <object>objects\obj_clearmarkers</object>
         <object>objects\obj_playbackspeed</object>
       </objects>

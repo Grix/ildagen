@@ -37,5 +37,3 @@ repeat (num_layers)
     }
     
 selectedlayer = -1;
-
-//todo clear undo list

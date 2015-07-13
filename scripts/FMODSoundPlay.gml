@@ -1,4 +1,4 @@
-//export double FMODSoundPlay(double sound, double paused)
+///export double FMODSoundPlay(double sound, double paused)
 
 //Plays a sound... Finally
 
