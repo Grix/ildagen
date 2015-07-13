@@ -48,6 +48,8 @@ if (FS_directory_exists(FStemp))
             break;
         }
     }
+else
+    FS_directory_create(FStemp);
 
 //declarations and setup
 math_set_epsilon(0.00001);
