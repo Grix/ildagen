@@ -1,4 +1,10 @@
 //sends editor frames to a timeline object
+if (os_browser != browser_not_a_browser)
+    {
+    show_message_async("Sorry, this timeline is not available in the web version");
+    exit;
+    }
+
 
 if (seqcontrol.selectedlayer = -1)
     {

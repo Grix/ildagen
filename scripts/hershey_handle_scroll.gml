@@ -7,7 +7,6 @@ if (hershey_moving)
     if (!mouse_check_button(mb_left))
         {
         hershey_moving = 0;
-        show_debug_message(hershey_scrollx);
         }
     }
 else

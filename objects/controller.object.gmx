@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.0.0";
+            <string>version = "1.0.1";
 versiondate = "2015-07-13";
 
 FS_gmfilesystem_initialize(1);
@@ -626,7 +626,7 @@ if (playing == 1)
     
     if !ds_list_empty(semaster_list)
         {
-        update_semasterlist();
+        update_semasterlist_flag = 1;
         }
         
     if (frameprev != 0) and (frame == 0) and (seqcontrol.song)
@@ -734,7 +734,7 @@ if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
     
     if !ds_list_empty(semaster_list)
         {
-        update_semasterlist();
+        update_semasterlist_flag = 1;
         }
     }
 else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status == 0)
@@ -763,7 +763,7 @@ else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status ==
     
     if !ds_list_empty(semaster_list)
         {
-        update_semasterlist();
+        update_semasterlist_flag = 1;
         }
     }
     
@@ -1945,6 +1945,9 @@ if (keyboard_check(ord('R')) or (rgridshow == 1))
 draw_set_color(c_aqua);
 if !(ds_list_empty(semaster_list))//(selectedelement != -1)
     {
+    if (update_semasterlist_flag)
+        update_semasterlist();
+    
     draw_sprite(spr_anchor,0,anchorx/$ffff*512,anchory/$ffff*512);
     draw_set_alpha(0.6);
     draw_sprite(spr_rotate,0,rectxmin,rectymax);
@@ -2011,7 +2014,7 @@ draw_set_color(c_gray);
 if (placing_status) or (placing == "text") or (placing == "hershey") 
     draw_preview_element();
 
-//
+//info
 draw_set_alpha(0.8);
 draw_set_font(fnt_tooltip);
 draw_set_color(c_ltgray);
@@ -2107,7 +2110,7 @@ frame_surf_refresh = 1;
 
 
 ds_list_clear(semaster_list);
-update_semasterlist();
+update_semasterlist_flag = 1;
 
 if (seqcontrol.song)
     FMODInstanceSetPaused(seqcontrol.songinstance,1);

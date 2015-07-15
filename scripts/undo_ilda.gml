@@ -107,5 +107,5 @@ else if (string_char_at(undo,0) == 'l')
 with (controller)
     {
     frame_surf_refresh = 1;
-    update_semasterlist();
+    update_semasterlist_flag = 1;
     }

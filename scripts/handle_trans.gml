@@ -11,7 +11,7 @@ if (objmoving == 1)
         objmoving = 0;
         reapply_trans();
         
-        update_semasterlist();
+        update_semasterlist_flag = 1;
         }
     }
 else if (objmoving == 2)    

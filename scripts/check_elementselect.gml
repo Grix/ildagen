@@ -21,7 +21,7 @@ for (i = 0;i < ds_list_size(el_list); i++)
                 {
                 ds_list_add(semaster_list,ds_list_find_value(templist,9));
                 
-                update_semasterlist();
+                update_semasterlist_flag = 1;
                 }
             }
         else
@@ -32,7 +32,7 @@ for (i = 0;i < ds_list_size(el_list); i++)
                 {
                 ds_list_delete(semaster_list,ds_list_find_index(semaster_list,ds_list_find_value(templist,9)));
                 
-                update_semasterlist();
+                update_semasterlist_flag = 1;
                 }
             }
             

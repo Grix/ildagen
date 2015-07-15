@@ -178,4 +178,4 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
     }
 
 frame_surf_refresh = 1;
-update_semasterlist();
+update_semasterlist_flag = 1;

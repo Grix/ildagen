@@ -15,7 +15,6 @@ for (u = 0;u < ds_list_size(copy_list);u++)
     if (framei > maxframes-1)
         {
         ds_list_destroy(list);
-        show_debug_message(framei)
         continue;
         }
     
@@ -37,5 +36,5 @@ for (u = 0;u < ds_list_size(copy_list);u++)
     ds_list_add(el_list,list);
     }
 
-update_semasterlist();
+update_semasterlist_flag = 1;
 frame_surf_refresh = 1;

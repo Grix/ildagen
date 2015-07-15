@@ -1,5 +1,7 @@
 //converts newly imported ilda in ild_list to sequencer object
 
+
+
 if (seqcontrol.selectedlayer = -1) or (seqcontrol.selectedx < 0)
     {
     show_message_async("No timeline position marked, select a position first");

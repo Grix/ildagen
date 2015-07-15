@@ -45,9 +45,8 @@ if (moving_object == 1)
         layertomove = newlayertomove;
         selectedlayer = ds_list_find_index(layer_list,newlayertomove);
         }
-    if (mouse_check_button_released(mb_left)) or (device_mouse_check_button_released(0,mb_left))
+    if (mouse_check_button_released(mb_left))
         {
-        mouse_clear(mb_left);
         frame_surf_refresh = 1;
         tempxstart = round(ds_list_find_value(objecttomove,0));
         if (!keyboard_check(vk_alt))
@@ -101,9 +100,8 @@ else if (moving_object == 2)
     //resizing object on timeline
     ds_list_replace(infolisttomove,0,max(0,ds_list_find_value(infolisttomove,0)+(mouse_x-mousexprev)*tlzoom/tlw));
     mousexprev = mouse_x;
-    if (mouse_check_button_released(mb_left)) or (device_mouse_check_button_released(0,mb_left))
+    if (mouse_check_button_released(mb_left))
         {
-        mouse_clear(mb_left);
         frame_surf_refresh = 1;
         templength = round(ds_list_find_value(infolisttomove,0));
         if (!keyboard_check(vk_alt))
@@ -151,9 +149,8 @@ else if (moving_object == 3)
     startframe += (mouse_x-mousexprev)*tlzoom/tlw;
     if (startframe < 0) startframe = 0;
     mousexprev = mouse_x;
-    if (mouse_check_button_released(mb_left)) or (device_mouse_check_button_released(0,mb_left))
+    if (mouse_check_button_released(mb_left))
         {
-        mouse_clear(mb_left);
         startframe = round(startframe);
         moving_object = 0;
         }
@@ -164,9 +161,8 @@ else if (moving_object == 4)
     //moving endframe
     endframe += (mouse_x-mousexprev)*tlzoom/tlw;
     mousexprev = mouse_x;
-    if (mouse_check_button_released(mb_left)) or (device_mouse_check_button_released(0,mb_left))
+    if (mouse_check_button_released(mb_left))
         {
-        mouse_clear(mb_left);
         endframe = round(endframe);
         moving_object = 0;
         }
@@ -177,9 +173,8 @@ else if (moving_object == 5)
     //moving marker
     ds_list_replace(marker_list,markertomove,max(1,ds_list_find_value(marker_list,markertomove)+(mouse_x-mousexprev)*tlzoom/tlw));
     mousexprev = mouse_x;
-    if (mouse_check_button_released(mb_left)) or (device_mouse_check_button_released(0,mb_left))
+    if (mouse_check_button_released(mb_left))
         {
-        mouse_clear(mb_left);
         ds_list_replace(marker_list,markertomove,round(ds_list_find_value(marker_list,markertomove)));
         moving_object = 0;
         }
@@ -196,9 +191,8 @@ else if (scroll_moving == 1)
     
     mousexprev = mouse_x;
     
-    if (mouse_check_button_released(mb_left)) or (device_mouse_check_button_released(0,mb_left))
+    if (mouse_check_button_released(mb_left))
         {
-        mouse_clear(mb_left);
         scroll_moving = 0;
         }
         
@@ -213,9 +207,8 @@ else if (scroll_moving == 2)
     
     mouseyprev = mouse_y;
     
-    if (mouse_check_button_released(mb_left)) or (device_mouse_check_button_released(0,mb_left))
+    if (mouse_check_button_released(mb_left))
         {
-        mouse_clear(mb_left);
         scroll_moving = 0;
         }
         

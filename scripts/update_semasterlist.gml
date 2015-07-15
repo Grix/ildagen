@@ -28,3 +28,5 @@ rectxmax = xmax;
 rectxmin = xmin;
 rectymax = ymax;
 rectymin = ymin;
+
+update_semasterlistflag = 0;
