@@ -47,6 +47,4 @@ read_ilda_work();
 
 buffer_delete(ild_file);
 
-el_id++;
-
 return 1;

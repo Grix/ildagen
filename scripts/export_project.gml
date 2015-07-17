@@ -280,6 +280,9 @@ for (j = startframe; j < endframe;j++)
         ds_list_destroy(ds_list_find_value(el_list,i));
         }
     ds_list_destroy(el_list);  
+    
+    if !(j mod 100)
+        cleanmem_ifneeded();
       
     //update maxpoints
     maxpointspre = maxpoints;
@@ -351,3 +354,5 @@ else
     show_message_async("Could not save file. May not have access rights, try a different folder.");
 
 buffer_delete(ilda_buffer);
+
+cleanmem_ifneeded();

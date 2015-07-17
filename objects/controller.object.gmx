@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.0.1";
-versiondate = "2015-07-13";
+            <string>version = "1.0.2";
+versiondate = "2015-07-17";
 
 FS_gmfilesystem_initialize(1);
 FStemp = "%appdata%\LasershowGen\temp\";
@@ -50,6 +50,9 @@ if (FS_directory_exists(FStemp))
     }
 else
     FS_directory_create(FStemp);
+    
+cleanmem_init(0);
+alarm[6] = 1200;
 
 //declarations and setup
 math_set_epsilon(0.00001);
@@ -292,6 +295,30 @@ if (os_browser == browser_not_a_browser)
 
 draw_hershey();
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="6">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>cleanmem_ifneeded();
+alarm[6] = 1200;
 </string>
           </argument>
         </arguments>
@@ -1770,6 +1797,29 @@ else if ds_map_find_value(async_load, "id") == file
             <kind>1</kind>
             <string>refresh_miniaudio_flag = 1;
 frame_surf_refresh = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>cleanmem_init(1);
 </string>
           </argument>
         </arguments>
