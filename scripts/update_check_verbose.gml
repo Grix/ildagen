@@ -1,6 +1,7 @@
 if (os_browser != browser_not_a_browser) exit;
 
-show_debug_message("Checking for updates")
+show_debug_message("Checking for updates");
+updatereceived = 0;
 
 with (controller)   
     {

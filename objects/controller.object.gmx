@@ -135,6 +135,7 @@ projectfps = 30;
 xdelta[32] = 0;
 playing = 0;
 update_verbose = 0;
+updatereceived = 0;
 serial = "";
 frame_surf_refresh = 0;
 refresh_miniaudio_flag = 1;
@@ -1769,8 +1770,12 @@ else if ds_map_find_value(async_load, "id") == file
         }
     else 
         {
-        show_message_async("Failed to automatically download update. Opening download website..");
-        url_open("http://bitlasers.com/opencart/index.php?route=product/product&amp;path=67&amp;product_id=82");
+        if (updatereceived == 0)
+            {
+            show_message_async("Failed to automatically download update. Opening download website..");
+            url_open("http://bitlasers.com/opencart/index.php?route=product/product&amp;path=67&amp;product_id=82");
+            updatereceived = 1;
+            }
         }
     }
 </string>
