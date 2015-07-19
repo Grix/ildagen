@@ -72,10 +72,8 @@ with (controller)
     scope_end = maxframes-1;
     el_id++;
     
-    placing_status = 0;
-    ds_list_clear(free_list);
-    ds_list_clear(bez_list);
-    playing = 0;
+    ilda_cancel();
+    ds_list_clear(semaster_list);
     frame = 0;
     framehr = 0;
     

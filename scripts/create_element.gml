@@ -359,8 +359,7 @@ if (!fillframes)
         {
         if (!create_line())
             {
-            ds_list_clear(bez_list);
-            ds_list_clear(free_list);
+            ilda_cancel();
             ds_list_destroy(new_list);
             if (autoresflag)
                 resolution = "auto";
@@ -373,8 +372,7 @@ if (!fillframes)
         {
         if (!create_circle())
             {
-            ds_list_clear(bez_list);
-            ds_list_clear(free_list);
+            ilda_cancel();
             ds_list_destroy(new_list);
             if (autoresflag)
                 resolution = "auto";
@@ -387,8 +385,7 @@ if (!fillframes)
         {
         if (!create_wave())
             {
-            ds_list_clear(bez_list);
-            ds_list_clear(free_list);
+            ilda_cancel();
             ds_list_destroy(new_list);
             if (autoresflag)
                 resolution = "auto";
@@ -401,8 +398,7 @@ if (!fillframes)
         {
         if (!create_free())
             {
-            ds_list_clear(bez_list);
-            ds_list_clear(free_list);
+            ilda_cancel();
             ds_list_destroy(new_list);
             if (autoresflag)
                 resolution = "auto";
@@ -415,8 +411,7 @@ if (!fillframes)
         {
         if (!create_curve())
             {
-            ds_list_clear(bez_list);
-            ds_list_clear(free_list);
+            ilda_cancel();
             ds_list_destroy(new_list);
             if (autoresflag)
                 resolution = "auto";
@@ -429,8 +424,7 @@ if (!fillframes)
         {
         if (!create_letter())
             {
-            ds_list_clear(bez_list);
-            ds_list_clear(free_list);
+            ilda_cancel();
             ds_list_destroy(new_list);
             if (autoresflag)
                 resolution = "auto";
@@ -442,8 +436,7 @@ if (!fillframes)
         {
         if (!create_hershey())
             {
-            ds_list_clear(bez_list);
-            ds_list_clear(free_list);
+            ilda_cancel();
             ds_list_destroy(new_list);
             if (autoresflag)
                 resolution = "auto";
@@ -456,8 +449,7 @@ if (!fillframes)
         {
         if (!create_func())
             {
-            ds_list_clear(bez_list);
-            ds_list_clear(free_list);
+            ilda_cancel();
             ds_list_destroy(new_list);
             if (autoresflag)
                 resolution = "auto";
@@ -609,8 +601,7 @@ else
             {
             if (!create_line())
                 {
-                ds_list_clear(bez_list);
-                ds_list_clear(free_list);
+                ilda_cancel();
                 ds_list_destroy(new_list);
                 if (autoresflag)
                     resolution = "auto";
@@ -623,8 +614,7 @@ else
             {
             if (!create_circle())
                 {
-                ds_list_clear(bez_list);
-                ds_list_clear(free_list);
+                ilda_cancel();
                 ds_list_destroy(new_list);
                 frame = framepre;                
                 if (autoresflag)
@@ -637,8 +627,7 @@ else
             {
             if (!create_wave())
                 {
-                ds_list_clear(bez_list);
-                ds_list_clear(free_list);
+                ilda_cancel();
                 ds_list_destroy(new_list);                
                 if (autoresflag)
                     resolution = "auto";
@@ -651,8 +640,7 @@ else
             {
             if (!create_free())
                 {
-                ds_list_clear(bez_list);
-                ds_list_clear(free_list);
+                ilda_cancel();
                 ds_list_destroy(new_list);                
                 if (autoresflag)
                     resolution = "auto";
@@ -665,8 +653,7 @@ else
             {
             if (!create_curve())
                 {
-                ds_list_clear(bez_list);
-                ds_list_clear(free_list);
+                ilda_cancel();
                 ds_list_destroy(new_list);                
                 if (autoresflag)
                     resolution = "auto";
@@ -679,8 +666,7 @@ else
             {
             if (!create_letter())
                 {
-                ds_list_clear(bez_list);
-                ds_list_clear(free_list);
+                ilda_cancel();
                 ds_list_destroy(new_list);                
                 if (autoresflag)
                     resolution = "auto";
@@ -692,8 +678,7 @@ else
             {
             if (!create_hershey())
                 {
-                ds_list_clear(bez_list);
-                ds_list_clear(free_list);
+                ilda_cancel();
                 ds_list_destroy(new_list);
                 if (autoresflag)
                     resolution = "auto";
@@ -706,8 +691,7 @@ else
             {
             if (!create_func())
                 {
-                ds_list_clear(bez_list);
-                ds_list_clear(free_list);
+                ilda_cancel();
                 ds_list_destroy(new_list);                
                 if (autoresflag)
                     resolution = "auto";
@@ -736,7 +720,6 @@ if (placing != "text") frame_surf_refresh = 1;
 if (autoresflag)
     resolution = "auto";
 
-ds_list_clear(bez_list);
-ds_list_clear(free_list);
+ilda_cancel();
 ds_list_add(undo_list,el_id);
 el_id++;

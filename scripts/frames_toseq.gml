@@ -12,10 +12,7 @@ if (seqcontrol.selectedlayer = -1)
     exit;
     }
 
-placing_status = 0;
-ds_list_clear(free_list);
-ds_list_clear(bez_list);
-playing = 0;
+ilda_cancel();
 frame = 0;
 framehr = 0;
     

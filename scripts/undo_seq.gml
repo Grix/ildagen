@@ -1,6 +1,6 @@
 with (seqcontrol)
     {
-    if (ds_list_size(undo_list) == 0)
+    if (ds_list_empty(undo_list))
         exit;
         
     undo = ds_list_find_value(undo_list,ds_list_size(undo_list)-1);

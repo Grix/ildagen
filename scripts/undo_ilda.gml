@@ -1,13 +1,7 @@
-if (ds_list_size(controller.undo_list) == 0)
+if (ds_list_empty(controller.undo_list))
     exit;
 
-with (controller)
-    {
-    placing_status = 0;
-    ds_list_clear(free_list);
-    ds_list_clear(bez_list);
-    ds_list_clear(semaster_list);
-    }
+ilda_cancel();
     
 undo = ds_list_find_value(controller.undo_list,ds_list_size(controller.undo_list)-1);
 ds_list_delete(controller.undo_list,ds_list_size(controller.undo_list)-1);
@@ -44,36 +38,37 @@ else if (string_char_at(undo,0) == 'd')
     {
     controller.dotmultiply = real(string_digits(undo));
     }
-else if (string_char_at(undo,0) == 'c')
-    {
-    //clear frame, unused
-    ds_list_copy(ds_list_find_index(controller.frame_list,real(string_digits(ds_list_find_value(controller.undo_list,ds_list_size(controller.undo_list)-1)))),real(string_digits(undo)));
-    ds_list_delete(controller.undo_list,ds_list_size(controller.undo_list)-1);
-    }
 else if (string_char_at(undo,0) == 'v')
     {
-    controller.anicolor1 = real(string_digits(undo));
-    controller.anicolor2 = real(string_digits(ds_list_find_value(controller.undo_list,ds_list_size(controller.undo_list)-1)));
-    ds_list_delete(controller.undo_list,ds_list_size(controller.undo_list)-1);
-    controller.anienddotscolor = real(string_digits(ds_list_find_value(controller.undo_list,ds_list_size(controller.undo_list)-1)));
-    ds_list_delete(controller.undo_list,ds_list_size(controller.undo_list)-1);
+    if (!ds_exists(real(string_digits(undo)),ds_type_list))
+        exit;
+    tempundolist = real(string_digits(undo));
+    controller.anicolor1 = ds_list_find_value(tempundolist,2);
+    controller.anicolor2 = ds_list_find_value(tempundolist,1);
+    controller.anienddotscolor = ds_list_find_value(tempundolist,0);
+    ds_list_destroy(tempundolist);
     update_anicolors();
     }
 else if (string_char_at(undo,0) == 'b')
     {
-    controller.color1 = real(string_digits(undo));
-    controller.color2 = real(string_digits(ds_list_find_value(controller.undo_list,ds_list_size(controller.undo_list)-1)));
-    ds_list_delete(controller.undo_list,ds_list_size(controller.undo_list)-1);
-    controller.enddotscolor = real(string_digits(ds_list_find_value(controller.undo_list,ds_list_size(controller.undo_list)-1)));
-    ds_list_delete(controller.undo_list,ds_list_size(controller.undo_list)-1);
+    if (!ds_exists(real(string_digits(undo)),ds_type_list))
+        exit;
+    tempundolist = real(string_digits(undo));
+    controller.color1 = ds_list_find_value(tempundolist,2);
+    controller.color2 = ds_list_find_value(tempundolist,1);
+    controller.enddotscolor = ds_list_find_value(tempundolist,0);
+    ds_list_destroy(tempundolist);
     update_colors();
     }
 else if (string_char_at(undo,0) == 'k')
     {
     //undo reapply elements
-    for (u = 0;u < ds_list_size(real(string_digits(undo)));u++)
+    if (!ds_exists(real(string_digits(undo)),ds_type_list))
+        exit;
+    tempundolist = real(string_digits(undo));
+    for (u = 0;u < ds_list_size(tempundolist);u++)
         {
-        list = ds_list_find_value(real(string_digits(undo)),u);
+        list = ds_list_find_value(tempundolist,u);
         tempid = ds_list_find_value(list,9);
         frame = ds_list_find_value(list,ds_list_size(list)-1);
         ds_list_delete(list,ds_list_size(list)-1);
@@ -88,19 +83,24 @@ else if (string_char_at(undo,0) == 'k')
                 }
             }
         }
+    ds_list_destroy(tempundolist);
     }
 else if (string_char_at(undo,0) == 'l')
     {
+    if (!ds_exists(real(string_digits(undo)),ds_type_list))
+        exit;
     //undo delete
-    for (u = 0;u < ds_list_size(real(string_digits(undo)));u++)
+    tempundolist = real(string_digits(undo));
+    for (u = 0;u < ds_list_size(tempundolist);u++)
         {
-        list = ds_list_find_value(real(string_digits(undo)),u);
+        list = ds_list_find_value(tempundolist,u);
         tempid = ds_list_find_value(list,9);
         frame = ds_list_find_value(list,ds_list_size(list)-1);
         ds_list_delete(list,ds_list_size(list)-1);
         el_list = ds_list_find_value(controller.frame_list,frame);
         ds_list_add(el_list,list);
         }
+    ds_list_destroy(tempundolist);
     }
     
     

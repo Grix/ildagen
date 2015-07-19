@@ -44,7 +44,4 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
         }
     }
 
-
-placing_status = 0;
-ds_list_clear(free_list);
-ds_list_clear(bez_list);
+ilda_cancel();

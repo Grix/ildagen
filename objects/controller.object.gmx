@@ -50,9 +50,6 @@ if (FS_directory_exists(FStemp))
     }
 else
     FS_directory_create(FStemp);
-    
-cleanmem_init(0);
-alarm[6] = 1200;
 
 //declarations and setup
 math_set_epsilon(0.00001);
@@ -98,6 +95,7 @@ parser_cb = ML_InitParserScience(varmap);
     ML_AddFunction(parser_cb, "random", _ML_random, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
     ML_AddFunction(parser_cb, "random_normal", _ML_random_gauss, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
     
+alarm[3] = 120;
 
 radialgrid_surf = surface_create(512,512);
 surface_set_target(radialgrid_surf);
@@ -127,7 +125,6 @@ hershey_index_list = ds_list_create();
 hershey_list = -1;
 menu_surf = -1;
 
-alarm[3] = 3000;
 c_gold = make_colour_rgb(255,220,0);
 
 el_id = 0;
@@ -294,32 +291,6 @@ if (os_browser == browser_not_a_browser)
     parse_parameter();
     }
 
-draw_hershey();
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="6">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>cleanmem_ifneeded();
-alarm[6] = 1200;
 </string>
           </argument>
         </arguments>
@@ -395,8 +366,9 @@ game_end();
 
 alarm[3] = 600;
 
-/*if (ds_list_size(undo_list) &gt; 500)
+while (ds_list_size(undo_list) &gt; 100)
     {
+    show_debug_message("cleaning undo list");
     undo = ds_list_find_value(undo_list,0);
     ds_list_delete(undo_list,0);
 
@@ -416,38 +388,43 @@ alarm[3] = 600;
         {
         //nothing
         }
-    else if (string_char_at(undo,0) == 'c')
-        {
-        //clear frame, unused and not done, lists within the list
-        ds_list_destroy(real(string_digits(undo)));
-        }
     else if (string_char_at(undo,0) == 'v')
         {
-        //nothing
+        if (!ds_exists(real(string_digits(undo)),ds_type_list))
+            continue;
+        ds_list_destroy(real(string_digits(undo)));
         }
     else if (string_char_at(undo,0) == 'b')
         {
-        //nothing
+        if (!ds_exists(real(string_digits(undo)),ds_type_list))
+            continue;
+        ds_list_destroy(real(string_digits(undo)));
         }
     else if (string_char_at(undo,0) == 'k')
         {
         //undo reapply elements
-        for (u = 0;u &lt; ds_list_size(real(string_digits(undo)));u++)
+        if (!ds_exists(real(string_digits(undo)),ds_type_list))
+            continue;
+        tempundolist = real(string_digits(undo));
+        for (u = 0;u &lt; ds_list_size(tempundolist)-1;u++)
             {
-            list = ds_list_find_value(real(string_digits(undo)),u);
+            list = ds_list_find_value(tempundolist,u);
             ds_list_destroy(list);
             }
-        ds_list_destroy(real(string_digits(undo)));
+        ds_list_destroy(tempundolist);
         }
     else if (string_char_at(undo,0) == 'l')
         {
         //undo delete
-        for (u = 0;u &lt; ds_list_size(real(string_digits(undo)));u++)
+        if (!ds_exists(real(string_digits(undo)),ds_type_list))
+            continue;
+        tempundolist = real(string_digits(undo));
+        for (u = 0;u &lt; ds_list_size(tempundolist)-1;u++)
             {
-            list = ds_list_find_value(real(string_digits(undo)),u);
+            list = ds_list_find_value(tempundolist,u);
             ds_list_destroy(list);
             }
-        ds_list_destroy(real(string_digits(undo)));
+        ds_list_destroy(tempundolist);
         }
     }
 
@@ -598,10 +575,9 @@ else if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('Z')))
         
 else if (keyboard_check_pressed(ord("0")))
     {
-    placing_status = 0;
-    ds_list_clear(semaster_list);
-    ds_list_clear(free_list);
-    ds_list_clear(bez_list);
+    ilda_cancel();
+    frame = 0;
+    framehr = 0;
     }
     
 else if (keyboard_check_pressed(ord("P")))
@@ -740,7 +716,6 @@ and (mouse_check_button_pressed(mb_right)) and (canrightclick)
 //KEYBOARD RIGHT LEFT
 if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
     {
-    placing_status = 0;
     ds_list_clear(free_list);
     ds_list_clear(bez_list);
     
@@ -767,8 +742,6 @@ if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
     }
 else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status == 0)
     {
-
-    placing_status = 0;
     ds_list_clear(free_list);
     ds_list_clear(bez_list);
     
@@ -844,10 +817,7 @@ if (keyboard_check_pressed(vk_tab))
         show_message_async("Sorry, this timeline is not available in the web version yet");
         exit;
         }
-    placing_status = 0;
-    ds_list_clear(free_list);
-    ds_list_clear(bez_list);
-    playing = 0;
+    ilda_cancel();
     frame = 0;
     framehr = 0;
     if (seqcontrol.song)
@@ -1807,29 +1777,6 @@ frame_surf_refresh = 1;
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="3">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>cleanmem_init(1);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="8" enumb="73">
       <action>
         <libid>1</libid>
@@ -1886,10 +1833,9 @@ if (tooltip != "")
 
 if (placing = "hershey")
     {
-
-    draw_surface_part(hershey_surf1,0,clamp(hershey_scrollx,0,2048),420,120,650,30);
-    draw_surface_part(hershey_surf2,0,clamp(hershey_scrollx-2048,0,2048),420,120-clamp(2048-hershey_scrollx,0,120),650,30+clamp(2048-hershey_scrollx,0,120));
-    draw_surface_part(hershey_surf3,0,clamp(hershey_scrollx-4096,0,2048),420,120-clamp(4096-hershey_scrollx,0,120),650,30+clamp(4096-hershey_scrollx,0,120));
+    draw_background_part(bck_hershey1,0,clamp(hershey_scrollx,0,2048),420,120,650,30);
+    draw_background_part(bck_hershey2,0,clamp(hershey_scrollx-2048,0,2048),420,120-clamp(2048-hershey_scrollx,0,120),650,30+clamp(2048-hershey_scrollx,0,120));
+    draw_background_part(bck_hershey3,0,clamp(hershey_scrollx-4096,0,2048),420,120-clamp(4096-hershey_scrollx,0,120),650,30+clamp(4096-hershey_scrollx,0,120));
     
     draw_set_alpha(1);
     draw_set_colour(c_white);
@@ -1988,10 +1934,24 @@ if (keyboard_check(ord('A')) or (guidelineshow == 1))
 //grids 
 if (keyboard_check(ord('S')) or (sgridshow == 1))
     {
+    if (!surface_exists(squaregrid_surf))
+        {
+        squaregrid_surf = surface_create(512,512);
+        surface_set_target(squaregrid_surf);
+            draw_grid();
+        surface_reset_target();
+        }
     draw_surface(squaregrid_surf,0,0);
     } 
 if (keyboard_check(ord('R')) or (rgridshow == 1))
     {
+    if (!surface_exists(radialgrid_surf))
+        {
+        radialgrid_surf = surface_create(512,512);
+        surface_set_target(radialgrid_surf);
+            draw_radialgrid();
+        surface_reset_target();
+        }
     draw_surface(radialgrid_surf,0,0);
     }
     

@@ -153,22 +153,22 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
         /*angle = degtorad(point_direction(anchorx,anchory,startposx_r,startposy_r));
         dist = point_distance(anchorx,anchory,startposx_r,startposy_r);
         
-        startposx_r_fix = anchorx+cos(rot_r-angle)*dist*scalex_r-startpos[0];
-        startposy_r_fix = anchory+sin(rot_r-angle)*dist*scaley_r-startpos[1];*/
+        startposx_r_fix = anchorx+cos(rot_r-angle)*dist*scalex_r;
+        startposy_r_fix = anchory+sin(rot_r-angle)*dist*scaley_r;*/
         
         //TODO fix snapping
             
         ds_list_replace(new_list,0,startposx_r);
         ds_list_replace(new_list,1,startposy_r);
         
-        /*angle = degtorad(point_direction(anchorx,anchory,endx_r,endy_r));
+        angle = degtorad(point_direction(anchorx,anchory,endx_r,endy_r));
         dist = point_distance(anchorx,anchory,endx_r,endy_r);
         
-        endx_r_fix = anchorx+cos(rot_r-angle)*dist*scalex_r-startpos[0];
-        endy_r_fix = anchory+sin(rot_r-angle)*dist*scaley_r-startpos[1];*/
+        endx_r_fix = anchorx+cos(rot_r-angle)*dist*scalex_r;
+        endy_r_fix = anchory+sin(rot_r-angle)*dist*scaley_r;
         
-        ds_list_replace(new_list,2,endx_r);
-        ds_list_replace(new_list,3,endy_r);
+        ds_list_replace(new_list,2,endx_r_fix);
+        ds_list_replace(new_list,3,endy_r_fix);
         
         ds_list_replace(new_list,4,xmin/$ffff*512);
         ds_list_replace(new_list,5,xmax/$ffff*512);

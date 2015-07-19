@@ -123,23 +123,6 @@
       </ConfigOptions>
       <filename>hershey.ini</filename>
     </datafile>
-    <datafile>
-      <name>CleanMem.dll</name>
-      <exists>-1</exists>
-      <size>1024</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>CleanMem.dll</filename>
-    </datafile>
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\filesaver</extension>
@@ -977,8 +960,8 @@
       <script>scripts\update_colors.gml</script>
       <script>scripts\update_anicolors.gml</script>
       <script>scripts\hershey_handle_scroll.gml</script>
-      <script>scripts\draw_hershey.gml</script>
       <script>scripts\draw_preview_hershey.gml</script>
+      <script>scripts\ilda_cancel.gml</script>
     </scripts>
     <scripts name="files">
       <scripts name="importilda">
@@ -1026,12 +1009,6 @@
     <script>scripts\ilda_dialog_yesno.gml</script>
     <script>scripts\ilda_dialog_num.gml</script>
     <script>scripts\ilda_dialog_string.gml</script>
-    <scripts name="cleanmem">
-      <script>scripts\cleanmem.gml</script>
-      <script>scripts\cleanmem_init.gml</script>
-      <script>scripts\cleanmem_get_mem.gml</script>
-      <script>scripts\cleanmem_ifneeded.gml</script>
-    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>

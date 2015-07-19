@@ -1,7 +1,5 @@
 //reapplies the object properties
-placing_status = 0;
-ds_list_clear(free_list);
-ds_list_clear(bez_list);
+ilda_cancel();
     
 if (maxframes == 1) and (anienable)
     {
@@ -93,9 +91,9 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
     
     ds_list_add(undo_list,"k"+string(temp_undof_list));
     
+    randomize();
             
     //walk through frames
-    randomize();
     
     //PREPARING FUNCTIONS
     if (colormode == "func")

@@ -49,8 +49,5 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
     
 
 frame_surf_refresh = 1;
-
-placing_status = 0;
 ds_list_clear(semaster_list);
-ds_list_clear(free_list);
-ds_list_clear(bez_list);
+ilda_cancel();

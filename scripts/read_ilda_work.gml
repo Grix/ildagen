@@ -9,6 +9,4 @@ while (1)
         exit;
         }
     read_ilda_frame();
-    
-    cleanmem_ifneeded();
     }

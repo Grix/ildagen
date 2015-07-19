@@ -5,8 +5,6 @@ with(controller)
     ildlistsize = ds_list_size(ild_list);
     framelistsize = ds_list_size(frame_list);
     
-    cleanmem_ifneeded();
-    
     if (room == rm_seq)
         {
         frames_toseq_importedilda();
@@ -42,8 +40,6 @@ with(controller)
                     ds_list_add(ds_list_find_value(frame_list,i),templist);
                     }
                 ds_list_destroy(ds_list_find_value(ild_list,i));
-                if !(i mod 100)
-                    cleanmem_ifneeded();
                 }
             }
         else
@@ -77,5 +73,4 @@ with(controller)
     refresh_miniaudio_flag = 1;
     
     }
-cleanmem_ifneeded();
 return 1;
