@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.0.2";
-versiondate = "2015-07-17";
+            <string>version = "1.0.3";
+versiondate = "2015-07-20";
 
 FS_gmfilesystem_initialize(1);
 FStemp = "%appdata%\LasershowGen\temp\";
@@ -219,7 +219,7 @@ blank_dc = 0.5;
 blank_freq = 4;
 enddots = 0;
 makedot = 0;
-dotmultiply = 20;
+dotmultiply = 15;
 blank_offset = 0;
 blank_blendmode = 0; //0 replace, 1 and, 2 or, 3 xor
 
@@ -362,9 +362,9 @@ game_end();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///reset undo
+            <string>///clean undo
 
-alarm[3] = 600;
+alarm[3] = 1200;
 
 while (ds_list_size(undo_list) &gt; 100)
     {

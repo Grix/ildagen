@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>alarm[0] = 2;
+alarm[4] = 600;
 
 layer_list = ds_list_create();
 layer = ds_list_create();
@@ -124,6 +125,88 @@ menu_width[5] = string_width("   Options   ");
 menu_width_start[6] = menu_width_start[5]+menu_width[5];
 menu_width[6] = string_width("   About   ");
 menu_width_start[7] = menu_width_start[6]+menu_width[6];
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///clean undo
+
+alarm[4] = 1200;
+
+while (ds_list_size(undo_list) &gt; 20)
+    {
+    show_debug_message("cleaning undo list");
+    undo = ds_list_find_value(undo_list,0);
+    ds_list_delete(undo_list,0);
+
+    if (string_char_at(undo,0) == 'c')
+        {
+        //undo create object (delete)
+        undolisttemp = real(string_digits(undo));
+        if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
+        ds_list_destroy(undolisttemp);
+        }
+    if (string_char_at(undo,0) == 'd')
+        {
+        //undo delete object
+        undolisttemp = real(string_digits(undo));
+        if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
+        objectlist = ds_list_find_value(undolisttemp,1);
+        infolist = ds_list_find_value(objectlist, 2);
+        if (surface_exists(ds_list_find_value(infolist,1)))
+            surface_free(ds_list_find_value(infolist,1));
+        //if buffer exists
+            buffer_delete(ds_list_find_value(objectlist,1));
+        ds_list_destroy(infolist);
+        ds_list_destroy(objectlist);
+        ds_list_destroy(undolisttemp);
+        }
+    else if (string_char_at(undo,0) == 'r')
+        {
+        //undo resize object
+        undolisttemp = real(string_digits(undo));
+        if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
+        ds_list_destroy(undolisttemp);
+        }
+    else if (string_char_at(undo,0) == 'm')
+        {
+        //undo move object
+        undolisttemp = real(string_digits(undo));
+        if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
+        ds_list_destroy(undolisttemp);
+        }
+    else if (string_char_at(undo,0) == 'l')
+        {
+        //undo marker clear
+        undolisttemp = real(string_digits(undo));
+        if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
+        ds_list_destroy(undolisttemp);
+        }
+    }
+
 </string>
           </argument>
         </arguments>

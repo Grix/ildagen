@@ -96,7 +96,7 @@ if (FS_file_exists(file_loc))
     binfilesize = FS_file_bin_size(binfile);
     FS_file_bin_close(binfile);
     if (binfilesize == buffer_get_size(save_buffer))
-        show_message_async("Project saved.");
+        show_message_async("IGP saved.");
     else
         {
         show_message_async("Problem saving file: Did not pass integrity test. May be corrupt, you might want to try again.");
