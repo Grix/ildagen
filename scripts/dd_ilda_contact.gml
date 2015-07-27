@@ -1,1 +1,1 @@
-url_open("mailto:gitlem@gmail.com");
+url_open_new("mailto:gitlem@gmail.com");

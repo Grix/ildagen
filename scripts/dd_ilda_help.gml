@@ -1,1 +1,1 @@
-url_open("help.pdf");
+url_open_new("help.pdf");

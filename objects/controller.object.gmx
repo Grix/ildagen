@@ -25,13 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.0.3";
+            <string>version = "1.0.4";
 versiondate = "2015-07-20";
 
 FS_gmfilesystem_initialize(1);
-FStemp = "%appdata%\LasershowGen\temp\";
-FS_set_gm_save_area("%appdata%\LasershowGen\temp");
-FS_set_working_directory("%appdata%\LasershowGen\temp");
+FStemp = environment_get_variable("APPDATA")+"\LasershowGen\temp\";
+FS_set_gm_save_area(environment_get_variable("APPDATA")+"\LasershowGen\temp");
+FS_set_working_directory(environment_get_variable("APPDATA")+"\LasershowGen\temp");
 
 //clean temp files
 //FS_clean_temporary();
@@ -1167,8 +1167,8 @@ if (new_id == getint)
           
             case "updatefound":
                 {
-                file = http_get_file("https://github.com/Grix/ildagen/raw/master/LasershowGen-"+versionnew+"-Installer.exe","update.exe");
-                
+                file = http_get_file("https://github.com/Grix/ildagen/raw/master/LasershowGen-"+versionnew+"-Installer.exe","temp/update.exe");
+                show_message_async("Download started, installation will start shortly..");
                 break;
                 }      
             
@@ -1730,23 +1730,27 @@ if ds_map_find_value(async_load, "id") == updateget
     }
 else if ds_map_find_value(async_load, "id") == file
     {
-    if (file_exists("update.exe"))
+     if ds_map_find_value(async_load, "status") == 0
         {
-        if (alarm[4] == -1)
+        if (file_exists("temp/update.exe"))
             {
-            url_open("update.exe");
-            alarm[4] = 30;
+            if (alarm[4] == -1)
+                {
+                show_message_async("Launching installer");
+                url_open_new(FStemp+"update.exe")
+                alarm[4] = 60;
+                }
             }
-        }
-    else 
-        {
-        if (updatereceived == 0)
+        else 
             {
-            show_message_async("Failed to automatically download update. Opening download website..");
-            url_open("http://bitlasers.com/opencart/index.php?route=product/product&amp;path=67&amp;product_id=82");
-            updatereceived = 1;
+            if (updatereceived == 0)
+                {
+                show_message_async("Failed to automatically download update. Opening download website..");
+                url_open_new("http://bitlasers.com/opencart/index.php?route=product/product&amp;path=67&amp;product_id=82");
+                updatereceived = 1;
+                }
             }
-        }
+         }
     }
 </string>
           </argument>

@@ -127,6 +127,7 @@
   <NewExtensions>
     <extension index="0">extensions\filesaver</extension>
     <extension index="1">extensions\GMFileSystem</extension>
+    <extension index="2">extensions\GMopen</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -1009,6 +1010,7 @@
     <script>scripts\ilda_dialog_yesno.gml</script>
     <script>scripts\ilda_dialog_num.gml</script>
     <script>scripts\ilda_dialog_string.gml</script>
+    <script>scripts\url_open_new.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>

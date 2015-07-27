@@ -136,7 +136,7 @@ else if (room = rm_seq)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>url_open("help.pdf");
+            <string>dd_ilda_help();
 
 </string>
           </argument>
@@ -160,8 +160,7 @@ else if (room = rm_seq)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>url_open("help.pdf");
-
+            <string>dd_ilda_help();
 </string>
           </argument>
         </arguments>
