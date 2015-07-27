@@ -1,4 +1,5 @@
 ilda_cancel();
+ds_list_clear(semaster_list);
 
 for (j = 0;j < ds_list_size(frame_list);j++)
     {

@@ -1012,7 +1012,6 @@
     <script>scripts\ilda_dialog_string.gml</script>
     <script>scripts\url_open_new.gml</script>
   </scripts>
-  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
     <font>fonts\fnt_bold</font>
