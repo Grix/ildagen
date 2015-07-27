@@ -1405,12 +1405,6 @@ if (new_id == getint)
               scaley = scalex;
               reapply_trans();
               
-              /*xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
-              yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-              rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
-              rectymin = yo + (ds_list_find_value(selectedelementlist,6));
-              rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-              rectymax = yo + (ds_list_find_value(selectedelementlist,7));*/
               
               break;
               }            
@@ -1420,12 +1414,6 @@ if (new_id == getint)
               anirot = ds_map_find_value(async_load, "value");
               reapply_trans();
               
-              /*xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
-              yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-              rectxmin = xo + (ds_list_find_value(selectedelementlist,4));
-              rectymin = yo + (ds_list_find_value(selectedelementlist,6));
-              rectxmax = xo + (ds_list_find_value(selectedelementlist,5));
-              rectymax = yo + (ds_list_find_value(selectedelementlist,7));*/
               
               break;
               }

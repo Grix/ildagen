@@ -176,7 +176,6 @@ for (j = 0; j < maxframes;j++)
                 buffer_write(ilda_buffer,buffer_u8,r);
                 maxpoints++;
                 }
-            
             }
             
         //optimize between elements
@@ -236,7 +235,7 @@ buffer_write(ilda_buffer,buffer_u8,0); //scanner
 buffer_write(ilda_buffer,buffer_u8,0); //0
 
 //remove excess size
-buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
+buffersize = buffer_tell(ilda_buffer);
 
 filesaver_clearArray();
 
