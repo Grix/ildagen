@@ -60,45 +60,42 @@ if (songload)
     songfile_buffer = buffer_create(songfile_size,buffer_fixed,1);
     buffer_copy(load_buffer,buffer_tell(load_buffer),songfile_size,songfile_buffer,0);
     buffer_seek(load_buffer,buffer_seek_relative,songfile_size);
-    buffer_save(songfile_buffer,"temp/song");
-    FS_file_copy(controller.FStemp+"song",songfile);
-    songfile = songfile_name;
-    
+    buffer_save(songfile_buffer,"temp\"+songfile);
+    show_debug_message(controller.FStemp+songfile);
     buffer_delete(songfile_buffer);
         
     songinstance = 0;
-    show_debug_message(songfile);
-    song = FMODSoundAdd(songfile,0,0);
+    song = FMODSoundAdd(controller.FStemp+songfile,0,0);
     if (!song) 
         {
         show_message_async("Failed to load audio: "+FMODErrorStr(FMODGetLastError()));
-        buffer_delete(load_buffer);
-        ds_list_clear(audio_list);
-        playing = 0;
-        parsingaudio = 0;
-        tlpos = 0;
-        exit;
         }
-    songlength = FMODSoundGetLength(song);
-    if (length < songlength/1000*projectfps)
+    else
         {
-        length = songlength/1000*projectfps;
+        songlength = FMODSoundGetLength(song);
+        if (length < songlength/1000*projectfps)
+            {
+            length = songlength/1000*projectfps;
+            }
+        FMODSoundSetGroup(song, 1);
+        
+        
+        parseinstance = FMODSoundPlay(song,0);
+        FMODInstanceSetMuted(parseinstance,1);
+        parsingaudio = parsingaudioload;
         }
-    FMODSoundSetGroup(song, 1);
-    
     ds_list_clear(audio_list);
-    parseinstance = FMODSoundPlay(song,0);
-    FMODInstanceSetMuted(parseinstance,1);
-    parsingaudio = parsingaudioload;
     errorcheck = 0;
     deltatime = 0;    
     playing = 0;
     tlpos = 0;
     
-    songinstance = FMODSoundPlay(song,1);
-    
-    set_audio_speed();
-    
+    if (song)
+        {
+        songinstance = FMODSoundPlay(song,1);
+        
+        set_audio_speed();
+        }
     }
     
 
