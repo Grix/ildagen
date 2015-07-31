@@ -86,28 +86,28 @@ for (j = 0; j < maxframes;j++)
         
         //TODO if just one
         
-        listsize = ((ds_list_size(list_id)-50)/6);
+        listsize = ((ds_list_size(list_id)-20)/6);
         
         var blankprev = 0;
         for (u = 0; u < listsize; u++)
             {
             //getting values from element list
             
-            bl = ds_list_find_value(list_id,50+u*6+2);
+            bl = ds_list_find_value(list_id,20+u*6+2);
             
-            xp = xo+ds_list_find_value(list_id,50+u*6+0);
-            yp = $ffff-(yo+ds_list_find_value(list_id,50+u*6+1));
+            xp = xo+ds_list_find_value(list_id,20+u*6+0);
+            yp = $ffff-(yo+ds_list_find_value(list_id,20+u*6+1));
             if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
                 {
                 blanktemp = 1;
                 continue;
                 }
             
-            b = ds_list_find_value(list_id,50+u*6+3);
+            b = ds_list_find_value(list_id,20+u*6+3);
             if (is_undefined(b) and bl) {b = 0}
-            g = ds_list_find_value(list_id,50+u*6+4);
+            g = ds_list_find_value(list_id,20+u*6+4);
             if (is_undefined(g) and bl) {g = 0}
-            r = ds_list_find_value(list_id,50+u*6+5);
+            r = ds_list_find_value(list_id,20+u*6+5);
             if (is_undefined(r) and bl) {r = 0}
             
             //adjusting values for writing to buffer
@@ -145,25 +145,25 @@ for (j = 0; j < maxframes;j++)
             else if (bl)
                 {
                 blank = $40;
-                if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
+                if (u == (ds_list_size(list_id)-20)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
                     blank = $C0;
                 }
             else
                 {
                 blank = $0;
-                if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
+                if (u == (ds_list_size(list_id)-20)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
                     blank = $80;
                 }
             if (blanktemp == 1)
                 {
                 blank = $40;
                 blanktemp = 0;
-                if (u == (ds_list_size(list_id)-50)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
+                if (u == (ds_list_size(list_id)-20)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
                     blank = $C0;
                 }
             
             
-            if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,50+(u+1)*6+2))) or (exp_optimize == 1)
+            if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,20+(u+1)*6+2))) or (exp_optimize == 1)
                 {
                 //writing point
                 buffer_write(ilda_buffer,buffer_u8,xpa[1]);

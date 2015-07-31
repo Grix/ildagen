@@ -41,7 +41,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
         fetchedframe = (correctframe-frametime) mod object_maxframes;
         buffer_seek(el_buffer,buffer_seek_start,0);
         buffer_ver = buffer_read(el_buffer,buffer_u8);
-        if (buffer_ver != 51)
+        if (buffer_ver != 52)
             {
             show_message_async("Error: Unexpected byte. Things might get ugly. Contact developer.");
             surface_reset_target();
@@ -57,8 +57,8 @@ for (j = 0; j < ds_list_size(layer_list); j++)
             numofel = buffer_read(el_buffer,buffer_u32);
             for (u = 0; u < numofel; u++)
                 {
-                numofdata = buffer_read(el_buffer,buffer_u32)-50;
-                buffer_seek(el_buffer,buffer_seek_relative,10*4+40+numofdata*2);
+                numofdata = buffer_read(el_buffer,buffer_u32)-20;
+                buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*2);
                 }
             }
             
@@ -74,11 +74,11 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 {
                 ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
                 }
-            for (u = 10; u < 50; u++)
+            for (u = 10; u < 20; u++)
                 {
                 ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
                 }
-            for (u = 50; u < numofinds; u += 6)
+            for (u = 20; u < numofinds; u += 6)
                 {
                 ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
                 ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
@@ -104,7 +104,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 }
             xo = 187+ds_list_find_value(new_list,0)/409;
             yo = ds_list_find_value(new_list,1)/409;    
-            listsize = (((ds_list_size(new_list)-50)/6)-1);
+            listsize = (((ds_list_size(new_list)-20)/6)-1);
             
             //2d
             if (viewmode != 1)
@@ -112,21 +112,22 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 surface_set_target(frame_surf);
                 for (u = 0; u < listsize; u++)
                     {
-                    nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
+                    nextpos = 20+(u+1)*6;
+                    nbl = ds_list_find_value(new_list,nextpos+2);
                     
                     if (nbl == 0)
                         {
-                        xp = ds_list_find_value(new_list,50+u*6+0);
-                        yp = ds_list_find_value(new_list,50+u*6+1);
+                        xp = ds_list_find_value(new_list,nextpos-6);
+                        yp = ds_list_find_value(new_list,nextpos-5);
                         
-                        nxp = ds_list_find_value(new_list,50+(u+1)*6+0);
-                        nyp = ds_list_find_value(new_list,50+(u+1)*6+1);
-                        nb = ds_list_find_value(new_list,50+(u+1)*6+3);
-                        ng = ds_list_find_value(new_list,50+(u+1)*6+4);
-                        nr = ds_list_find_value(new_list,50+(u+1)*6+5);
+                        nxp = ds_list_find_value(new_list,nextpos);
+                        nyp = ds_list_find_value(new_list,nextpos+1);
+                        nb = ds_list_find_value(new_list,nextpos+3);
+                        ng = ds_list_find_value(new_list,nextpos+4);
+                        nr = ds_list_find_value(new_list,nextpos+5);
                         
                         draw_set_color(make_colour_rgb(nr,ng,nb));
-                        if (xp == nxp) && (yp == nyp)
+                        if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-4))
                             {
                             draw_point(xo+xp/409,yo+yp/409);
                             }
@@ -146,18 +147,19 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 
                 for (u = 0; u < listsize; u++)
                     {
-                    nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
+                    nextpos = 20+(u+1)*6;
+                    nbl = ds_list_find_value(new_list,nextpos+2);
                     
                     if (nbl == 0)
                         {
-                        xp = ds_list_find_value(new_list,50+u*6+0);
-                        yp = ds_list_find_value(new_list,50+u*6+1);
+                        xp = ds_list_find_value(new_list,nextpos-6);
+                        yp = ds_list_find_value(new_list,nextpos-5);
                         
-                        nxp = ds_list_find_value(new_list,50+(u+1)*6+0);
-                        nyp = ds_list_find_value(new_list,50+(u+1)*6+1);
-                        nb = ds_list_find_value(new_list,50+(u+1)*6+3);
-                        ng = ds_list_find_value(new_list,50+(u+1)*6+4);
-                        nr = ds_list_find_value(new_list,50+(u+1)*6+5);
+                        nxp = ds_list_find_value(new_list,nextpos);
+                        nyp = ds_list_find_value(new_list,nextpos+1);
+                        nb = ds_list_find_value(new_list,nextpos+3);
+                        ng = ds_list_find_value(new_list,nextpos+4);
+                        nr = ds_list_find_value(new_list,nextpos+5);
                         
                         pdir = point_direction(256,68,xo+ xp/409,yo+ yp/409);
                         npdir = point_direction(256,68,xo+ nxp/409,yo+ nyp/409);
@@ -169,7 +171,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                         colorp = make_colour_rgb(nr,ng,nb);
                         colorpfade = make_colour_rgb(nr/9,ng/9,nb/9);
                         
-                        if (xp == nxp) && (yp == nyp)
+                        if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-4))
                             {
                             draw_set_alpha(1);
                             draw_line_colour(256,68,xxp,yyp,colorp,colorpfade);

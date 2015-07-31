@@ -180,6 +180,7 @@ selecting = 0;
 scroll = 0;
 
 opt_maxdist = 3000;
+opt_maxdwell = 3;
 
 placing = "line";
 startpos[1] = 0;
@@ -221,7 +222,7 @@ enddots = 0;
 makedot = 0;
 dotmultiply = 15;
 blank_offset = 0;
-blank_blendmode = 0; //0 replace, 1 and, 2 or, 3 xor
+blank_blendmode = 1; //0 replace, 1 and, 2 or, 3 xor
 
 anienable = 0;
 frame = 0;

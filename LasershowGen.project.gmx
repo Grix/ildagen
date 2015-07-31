@@ -997,6 +997,7 @@
       <script>scripts\optimize_last.gml</script>
       <script>scripts\optimize_first.gml</script>
       <script>scripts\optimize_between.gml</script>
+      <script>scripts\optimize_arb.gml</script>
       <script>scripts\read_hershey_ini.gml</script>
       <script>scripts\read_hershey_index_ini.gml</script>
       <script>scripts\read_hershey_createini.gml</script>

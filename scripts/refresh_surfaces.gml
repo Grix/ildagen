@@ -28,28 +28,27 @@ if (viewmode == 0) or (viewmode == 2)
         
         xo = ds_list_find_value(new_list,0)/128;
         yo = ds_list_find_value(new_list,1)/128;
-        listsize = (((ds_list_size(new_list)-50)/6)-1);
+        listsize = (((ds_list_size(new_list)-20)/6)-1);
         
         for (u = 0; u < listsize; u++)
             {
-            
-            nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
             framepoints++;
+            nextpos = 20+(u+1)*6;
+            nbl = ds_list_find_value(new_list,nextpos+2);
             
             if (nbl == 0)
                 {
-                xp = ds_list_find_value(new_list,50+u*6+0);
-                yp = ds_list_find_value(new_list,50+u*6+1);
+                xp = ds_list_find_value(new_list,nextpos-6);
+                yp = ds_list_find_value(new_list,nextpos-5);
                 
-                nxp = ds_list_find_value(new_list,50+(u+1)*6+0);
-                nyp = ds_list_find_value(new_list,50+(u+1)*6+1);
-                nb = ds_list_find_value(new_list,50+(u+1)*6+3);
-                ng = ds_list_find_value(new_list,50+(u+1)*6+4);
-                nr = ds_list_find_value(new_list,50+(u+1)*6+5);
-                
+                nxp = ds_list_find_value(new_list,nextpos);
+                nyp = ds_list_find_value(new_list,nextpos+1);
+                nb = ds_list_find_value(new_list,nextpos+3);
+                ng = ds_list_find_value(new_list,nextpos+4);
+                nr = ds_list_find_value(new_list,nextpos+5);
                 
                 draw_set_color(make_colour_rgb(nr,ng,nb));
-                if (xp == nxp) && (yp == nyp)
+                if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-4))
                     {
                     draw_rectangle(xo+xp/128-1,yo+yp/128-1,xo+xp/128+1,yo+yp/128+1,0);
                     }
@@ -78,25 +77,26 @@ if (viewmode == 0) or (viewmode == 2)
             
             xo = ds_list_find_value(new_list,0)/128;
             yo = ds_list_find_value(new_list,1)/128;
-            listsize = (((ds_list_size(new_list)-50)/6)-1);
+            listsize = (((ds_list_size(new_list)-20)/6)-1);
             
             for (u = 0; u < listsize; u++)
                 {
-                nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
+                nextpos = 20+(u+1)*6;
+                nbl = ds_list_find_value(new_list,nextpos+2);
                 
                 if (nbl == 0)
                     {
-                    xp = ds_list_find_value(new_list,50+u*6+0);
-                    yp = ds_list_find_value(new_list,50+u*6+1);
+                    xp = ds_list_find_value(new_list,nextpos-6);
+                    yp = ds_list_find_value(new_list,nextpos-5);
                     
-                    nxp = ds_list_find_value(new_list,50+(u+1)*6+0);
-                    nyp = ds_list_find_value(new_list,50+(u+1)*6+1);
-                    nb = ds_list_find_value(new_list,50+(u+1)*6+3);
-                    ng = ds_list_find_value(new_list,50+(u+1)*6+4);
-                    nr = ds_list_find_value(new_list,50+(u+1)*6+5);
+                    nxp = ds_list_find_value(new_list,nextpos);
+                    nyp = ds_list_find_value(new_list,nextpos+1);
+                    nb = ds_list_find_value(new_list,nextpos+3);
+                    ng = ds_list_find_value(new_list,nextpos+4);
+                    nr = ds_list_find_value(new_list,nextpos+5);
                     
                     draw_set_color(make_colour_rgb(nr,ng,nb));
-                    if (xp == nxp) && (yp == nyp)
+                    if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-4))
                         {
                         draw_rectangle(xo+xp/128-1,yo+yp/128-1,xo+xp/128+1,yo+yp/128+1,0);
                         }

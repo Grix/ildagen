@@ -11,7 +11,7 @@ with (controller)
     {
     buffer_seek(load_buffer,buffer_seek_start,0);
     idbyte = buffer_read(load_buffer,buffer_u8);
-    if (idbyte != 51)
+    if (idbyte != 52)
         {
         show_message_async("Unexpected ID byte in frames_fromseq: "+string(idbyte)+", things might get ugly. Contact developer.");
         exit;
@@ -52,11 +52,11 @@ with (controller)
                 ds_map_add(el_idmap,el_id_read,el_id_real);
                 }
             ds_list_add(ind_list,el_id_real);
-            for (u = 10; u < 50; u++)
+            for (u = 10; u < 20; u++)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_bool));
                 }
-            for (u = 50; u < numofinds; u += 6)
+            for (u = 20; u < numofinds; u += 6)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));

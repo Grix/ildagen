@@ -7,7 +7,7 @@ if (file_loc == "")
     
 save_buffer = buffer_create(1,buffer_grow,1);
 
-buffer_write(save_buffer,buffer_u8,51);
+buffer_write(save_buffer,buffer_u8,52);
 buffer_write(save_buffer,buffer_u32,maxframes);
 
 for (j = 0; j < maxframes;j++)
@@ -18,18 +18,18 @@ for (j = 0; j < maxframes;j++)
     for (i = 0; i < ds_list_size(el_list);i++)
         {
         ind_list = ds_list_find_value(el_list,i);
-        buffer_write(save_buffer,buffer_u32,ds_list_size(ind_list));
         tempsize = ds_list_size(ind_list);
+        buffer_write(save_buffer,buffer_u32,tempsize);
         
         for (u = 0; u < 10; u++)
             {
             buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u));
             }
-        for (u = 10; u < 50; u++)
+        for (u = 10; u < 20; u++)
             {
             buffer_write(save_buffer,buffer_bool,0);//ds_list_find_value(ind_list,u));
             }
-        for (u = 50; u < tempsize; u += 6)
+        for (u = 20; u < tempsize; u += 6)
             {
             buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u));
             buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u+1));

@@ -20,7 +20,7 @@ FS_file_copy(file_loc,controller.FStemp+filename_name(file_loc));
 load_buffer = buffer_load("temp\"+filename_name(file_loc));
 buffer_seek(load_buffer,buffer_seek_start,0);
 idbyte = buffer_read(load_buffer,buffer_u8);
-if (idbyte != 0) and (idbyte != 50) and (idbyte != 51)
+if (idbyte != 0) and (idbyte != 50) and (idbyte != 51) and (idbyte != 52)
     {
     show_message_async("Unexpected ID byte: "+string(idbyte)+", is this a valid LasershowGen frames file?");
     exit;
@@ -29,7 +29,7 @@ if (idbyte != 0) and (idbyte != 50) and (idbyte != 51)
 temp_list = ds_list_create();
 
 //load
-if (idbyte == 0) or (idbyte == 50)
+if (idbyte == 0) or (idbyte == 50) or (idbyte == 51)
     {
     if (idbyte == 0)
         {
@@ -49,6 +49,7 @@ if (idbyte == 0) or (idbyte == 50)
                     {
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
                     }
+                repeat (30) ds_list_delete(ind_list,19);
                 }
             }
         }
@@ -84,6 +85,7 @@ if (idbyte == 0) or (idbyte == 50)
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
                     }
+                repeat (30) ds_list_delete(ind_list,19);
                 }
             }
         }
@@ -119,6 +121,7 @@ if (idbyte == 0) or (idbyte == 50)
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
                     }
+                repeat (30) ds_list_delete(ind_list,19);
                 }
             }
         }
@@ -128,7 +131,7 @@ if (idbyte == 0) or (idbyte == 50)
     save_buffer = buffer_create(1,buffer_grow,1);
     buffer_seek(save_buffer,buffer_seek_start,0);
     
-    buffer_write(save_buffer,buffer_u8,51);
+    buffer_write(save_buffer,buffer_u8,52);
     buffer_write(save_buffer,buffer_u32,ds_list_size(temp_list));
     
     for (j = 0; j < ds_list_size(temp_list);j++)
@@ -146,11 +149,11 @@ if (idbyte == 0) or (idbyte == 50)
                 {
                 buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u));
                 }
-            for (u = 10; u < 50; u++)
+            for (u = 10; u < 20; u++)
                 {
                 buffer_write(save_buffer,buffer_bool,0);//ds_list_find_value(ind_list,u));
                 }
-            for (u = 50; u < tempsize; u += 6)
+            for (u = 20; u < tempsize; u += 6)
                 {
                 buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u));
                 buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u+1));
@@ -167,7 +170,7 @@ if (idbyte == 0) or (idbyte == 50)
     buffer_resize(save_buffer,buffer_tell(save_buffer));
     
     }
-else if (idbyte == 51)
+else if (idbyte == 52)
     {
     tempmaxframes = buffer_read(load_buffer,buffer_u32);
     save_buffer = load_buffer;
@@ -176,7 +179,7 @@ else if (idbyte == 51)
 //send to sequencer
 selectedlayerlist = ds_list_find_value(layer_list,selectedlayer);
     
-if (selectedx > 0)
+if (selectedx >= 0)
     {
     objectlist = ds_list_create();
     ds_list_add(objectlist,selectedx);

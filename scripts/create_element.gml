@@ -350,7 +350,7 @@ if (!fillframes)
     ds_list_add(new_list,0);
     ds_list_add(new_list,0);
     ds_list_add(new_list,el_id);
-    repeat (40) ds_list_add(new_list,0);
+    repeat (10) ds_list_add(new_list,0);
     
     
     func_startofframe();
@@ -592,7 +592,7 @@ else
         ds_list_add(new_list,0);
         ds_list_add(new_list,0);
         ds_list_add(new_list,el_id);
-        repeat (40) ds_list_add(new_list,0);
+        repeat (10) ds_list_add(new_list,0);
         
         
         func_startofframe();

@@ -218,7 +218,7 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
         {
         blanknew = 1;
         new_list = ds_list_find_value(temp_frame_list,i);
-        checkpoints = ((ds_list_size(new_list)-50)/6);
+        checkpoints = ((ds_list_size(new_list)-20)/6);
         
         startpos[0] = ds_list_find_value(new_list,0);
         startpos[1] = ds_list_find_value(new_list,1);
@@ -230,7 +230,7 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
             {
             for (j = 0; j < (checkpoints-1);j++)
                 {
-                temppos = 50+j*6;
+                temppos = 20+j*6;
                 length = point_distance( ds_list_find_value(new_list,temppos)
                                         ,ds_list_find_value(new_list,temppos+1)
                                         ,ds_list_find_value(new_list,temppos+6)
@@ -371,8 +371,8 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                 if (dotfreq < 1)
                     dotfreq = 1;
                 }
-            loop = (ds_list_find_value(new_list,50+checkpoints*6) == ds_list_find_value(new_list,50)) and 
-                   (ds_list_find_value(new_list,51+checkpoints*6) == ds_list_find_value(new_list,51));
+            loop = (ds_list_find_value(new_list,20+checkpoints*6) == ds_list_find_value(new_list,20)) and 
+                   (ds_list_find_value(new_list,21+checkpoints*6) == ds_list_find_value(new_list,21));
             }
             
         if (controller.reap_color)
@@ -392,13 +392,13 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
         //walk through points
         for (j = 0; j < checkpoints;j++)
             {
-            listpos = 50+j*6;
+            listpos = 20+j*6;
             xp = ds_list_find_value(new_list,listpos);
             yp = ds_list_find_value(new_list,listpos+1);
             
             
-            if ((j != 0) and (ds_list_find_value(new_list,listpos) == ds_list_find_value(new_list,50+(j-1)*6)) and 
-            (ds_list_find_value(new_list,listpos+1) == ds_list_find_value(new_list,50+(j-1)*6+1)) and (controller.reap_removeoverlap))
+            if ((j != 0) and (ds_list_find_value(new_list,listpos) == ds_list_find_value(new_list,20+(j-1)*6)) and 
+            (ds_list_find_value(new_list,listpos+1) == ds_list_find_value(new_list,20+(j-1)*6+1)) and (controller.reap_removeoverlap))
                 {
                 repeat(6) ds_list_delete(new_list,listpos);
                 checkpoints--;
@@ -621,9 +621,9 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                             {
                             show_debug_message(j)
                             /*if (blank)
-                                ds_list_replace(new_list,50+(j-1)*6+2,1);
+                                ds_list_replace(new_list,20+(j-1)*6+2,1);
                             else
-                                ds_list_replace(new_list,50+(j-1)*6+2,0);*/
+                                ds_list_replace(new_list,20+(j-1)*6+2,0);*/
                             icount = 0;
                             repeat (dotmultiply)
                                 {

@@ -22,7 +22,7 @@ ds_list_add(frame_list_parse,0);
 ds_list_add(frame_list_parse,0);
 ds_list_add(frame_list_parse,0); 
 ds_list_add(frame_list_parse,0); //id
-repeat (40) ds_list_add(frame_list_parse,0); 
+repeat (10) ds_list_add(frame_list_parse,0); 
 blank = 0;
 
 constrxchar = file_bin_read_byte(hershey_file);
@@ -65,19 +65,19 @@ new_list = frame_list_parse;
     
 xo = 256;
 yo = 256;
-listsize = (((ds_list_size(new_list)-50)/6)-1);
+listsize = (((ds_list_size(new_list)-20)/6)-1);
 
 for (u = 0; u < listsize; u++)
     {
-    nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
+    nbl = ds_list_find_value(new_list,20+(u+1)*6+2);
     
     if (nbl == 0)
         {
-        xp = ds_list_find_value(new_list,50+u*6+0);
-        yp = ds_list_find_value(new_list,50+u*6+1);
+        xp = ds_list_find_value(new_list,20+u*6+0);
+        yp = ds_list_find_value(new_list,20+u*6+1);
         
-        nxp = ds_list_find_value(new_list,50+(u+1)*6+0);
-        nyp = ds_list_find_value(new_list,50+(u+1)*6+1);
+        nxp = ds_list_find_value(new_list,20+(u+1)*6+0);
+        nyp = ds_list_find_value(new_list,20+(u+1)*6+1);
         
         draw_line(xo+ xp,yo+ yp,xo+ nxp,yo+ nyp);
         show_debug_message(xo+xp)

@@ -56,7 +56,7 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
     for (i = 0;i < ds_list_size(temp_frame_list);i++)
         {
         new_list = ds_list_find_value(temp_frame_list,i);
-        checkpoints = ((ds_list_size(new_list)-50)/6);
+        checkpoints = ((ds_list_size(new_list)-20)/6);
         
         startpos[0] = ds_list_find_value(new_list,0);
         startpos[1] = ds_list_find_value(new_list,1);
@@ -126,7 +126,7 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
         //walk through points
         for (j = 0; j < checkpoints;j++)
             {
-            listpos = 50+j*6;
+            listpos = 20+j*6;
             
             xp = startpos[0]+ds_list_find_value(new_list,listpos);
             yp = startpos[1]+ds_list_find_value(new_list,listpos+1);

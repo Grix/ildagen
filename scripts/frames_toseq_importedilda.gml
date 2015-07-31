@@ -33,7 +33,7 @@ with (seqcontrol)
 save_buffer = buffer_create(1,buffer_grow,1);
 buffer_seek(save_buffer,buffer_seek_start,0);
 
-buffer_write(save_buffer,buffer_u8,51);
+buffer_write(save_buffer,buffer_u8,52);
 buffer_write(save_buffer,buffer_u32,ds_list_size(ild_list));
 
 for (j = 0; j < ds_list_size(ild_list);j++)
@@ -48,11 +48,11 @@ for (j = 0; j < ds_list_size(ild_list);j++)
         {
         buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u));
         }
-    for (u = 10; u < 50; u++)
+    for (u = 10; u < 20; u++)
         {
         buffer_write(save_buffer,buffer_bool,0);//ds_list_find_value(ind_list,u));
         }
-    for (u = 50; u < tempsize; u += 6)
+    for (u = 20; u < tempsize; u += 6)
         {
         buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u));
         buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u+1));

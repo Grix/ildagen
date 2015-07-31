@@ -36,6 +36,6 @@ ds_list_add(frame_list_parse,0);
 ds_list_add(frame_list_parse,0);
 ds_list_add(frame_list_parse,0); 
 ds_list_add(frame_list_parse,el_id); //id
-repeat (40) ds_list_add(frame_list_parse,0);
+repeat (10) ds_list_add(frame_list_parse,0);
     
 return 0;

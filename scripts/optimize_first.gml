@@ -2,8 +2,8 @@ optimize_middle3();
     
 xo = ds_list_find_value(ds_list_find_value(el_list,0),0);
 yo = ds_list_find_value(ds_list_find_value(el_list,0),1);
-xpe = xo+ds_list_find_value(ds_list_find_value(el_list,0),50+0*6+0);
-ype = $ffff-(yo+ds_list_find_value(ds_list_find_value(el_list,0),50+0*6+1));
+xpe = xo+ds_list_find_value(ds_list_find_value(el_list,0),20+0*6+0);
+ype = $ffff-(yo+ds_list_find_value(ds_list_find_value(el_list,0),20+0*6+1));
 
 
 
@@ -44,7 +44,7 @@ for (trav_dist = trav/2;trav_dist >= -opt_dist; trav_dist += trav;)
     maxpoints++;
     }
     
-for (m = 0;m < 3;m++)
+for (m = 0;m < opt_maxdwell;m++)
     {
     xp = xpe;
     yp = ype;

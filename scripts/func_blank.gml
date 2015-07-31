@@ -34,8 +34,8 @@ if (n/checkpoints != ML_VM_GetVarReal(parser_cb,"point"))
         }
     else if (placing == "letter")
         {
-        ML_VM_SetVarReal(parser_cb,"x",ML_VM_GetVarReal(parser_cb,"startx")+(ds_list_find_value(letter_list,50+6*n)-$ffff/2)*font_size/64);
-        ML_VM_SetVarReal(parser_cb,"y",ML_VM_GetVarReal(parser_cb,"starty")+(ds_list_find_value(letter_list,50+6*n+1)-$ffff/2)*font_size/64);
+        ML_VM_SetVarReal(parser_cb,"x",ML_VM_GetVarReal(parser_cb,"startx")+(ds_list_find_value(letter_list,20+6*n)-$ffff/2)*font_size/64);
+        ML_VM_SetVarReal(parser_cb,"y",ML_VM_GetVarReal(parser_cb,"starty")+(ds_list_find_value(letter_list,20+6*n+1)-$ffff/2)*font_size/64);
         }
     }
     

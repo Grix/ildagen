@@ -5,7 +5,7 @@ temp_surf = surface_create(32,32);
 el_buffer = argument0;
 buffer_seek(el_buffer,buffer_seek_start,0);
 buffer_ver = buffer_read(el_buffer,buffer_u8);
-if (buffer_ver != 51)
+if (buffer_ver != 52)
     {
     show_message_async("Error: Unexpected ID byte in make_screenshot. Things might get ugly. Contact developer.");
     return temp_surf;
@@ -30,11 +30,11 @@ for (i = 0; i < buffer_maxelements;i++)
         {
         ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
         }
-    for (u = 10; u < 50; u++)
+    for (u = 10; u < 20; u++)
         {
         ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
         }
-    for (u = 50; u < numofinds; u += 6)
+    for (u = 20; u < numofinds; u += 6)
         {
         ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
         ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
@@ -61,20 +61,20 @@ for (i = 0;i < ds_list_size(el_list);i++)
     
     //TODO if just one
     
-    for (u = 0; u < (((ds_list_size(new_list)-50)/6)-1); u++)
+    for (u = 0; u < (((ds_list_size(new_list)-20)/6)-1); u++)
         {
-        nbl = ds_list_find_value(new_list,50+(u+1)*6+2);
+        nbl = ds_list_find_value(new_list,20+(u+1)*6+2);
         
         if (nbl == 0)
             {
-            xp = ds_list_find_value(new_list,50+u*6+0);
-            yp = ds_list_find_value(new_list,50+u*6+1);
+            xp = ds_list_find_value(new_list,20+u*6+0);
+            yp = ds_list_find_value(new_list,20+u*6+1);
             
-            nxp = ds_list_find_value(new_list,50+(u+1)*6+0);
-            nyp = ds_list_find_value(new_list,50+(u+1)*6+1);
-            nb = ds_list_find_value(new_list,50+(u+1)*6+3);
-            ng = ds_list_find_value(new_list,50+(u+1)*6+4);
-            nr = ds_list_find_value(new_list,50+(u+1)*6+5);
+            nxp = ds_list_find_value(new_list,20+(u+1)*6+0);
+            nyp = ds_list_find_value(new_list,20+(u+1)*6+1);
+            nb = ds_list_find_value(new_list,20+(u+1)*6+3);
+            ng = ds_list_find_value(new_list,20+(u+1)*6+4);
+            nr = ds_list_find_value(new_list,20+(u+1)*6+5);
             
             
             draw_set_color(make_colour_rgb(nr,ng,nb));

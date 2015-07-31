@@ -53,14 +53,14 @@ with(controller)
     for (i = 0; i < ds_list_size(font_list); i++)
         {
         new_list = ds_list_find_value(font_list,i);
-        checkpoints = ((ds_list_size(new_list)-50)/6);
+        checkpoints = ((ds_list_size(new_list)-20)/6);
         
         for (j = 0; j < (checkpoints-1);j++)
             {
-            temppos = 50+j*6;
+            temppos = 20+j*6;
             
-            if  (ds_list_find_value(new_list,temppos+8) == 1)
-                continue;
+            //if  (ds_list_find_value(new_list,temppos+8) == 1)
+            //    continue;
                 
             if  (ds_list_find_value(new_list,temppos+9) == 0) &&
                 (ds_list_find_value(new_list,temppos+10) == 0) &&
@@ -75,9 +75,9 @@ with(controller)
                                     ,ds_list_find_value(new_list,temppos+6)
                                     ,ds_list_find_value(new_list,temppos+7));
             
-            if (length < 500*phi) continue;
+            if (length < 600*phi) continue;
             
-            steps = length / 500;
+            steps = length / 600;
             stepscount = round(steps-1);
             tempx0 = ds_list_find_value(new_list,temppos);
             tempy0 = ds_list_find_value(new_list,temppos+1);

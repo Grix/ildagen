@@ -1,6 +1,6 @@
 letter_list = read_hershey_index_ini(hershey_selected);
     
-checkpoints = (ds_list_size(letter_list)-50)/6;
+checkpoints = (ds_list_size(letter_list)-20)/6;
 blanknew = 1;
 
 xmax = -$ffff;
@@ -175,7 +175,9 @@ for (n = 0;n < checkpoints; n++)
             makedot = 1;
         }
         
-    if (ds_list_find_value(letter_list,50+6*n+2))
+    currentpos = 20+6*n;
+        
+    if (ds_list_find_value(letter_list,currentpos+2))
         blank = 1;
         
     if (makedot)
@@ -183,14 +185,14 @@ for (n = 0;n < checkpoints; n++)
         
         if (blankmode == "dot")
             {
-            ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n)));
-            ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n+1)));
+            ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)));
+            ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)));
             ds_list_add(new_list,1);
             ds_list_add(new_list,c[0]);
             ds_list_add(new_list,c[1]);
             ds_list_add(new_list,c[2]);
-            ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n)));
-            ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n+1)));
+            ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)));
+            ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)));
             ds_list_add(new_list,0);
             ds_list_add(new_list,c[0]);
             ds_list_add(new_list,c[1]);
@@ -204,13 +206,13 @@ for (n = 0;n < checkpoints; n++)
                     {
                     if (n)
                         {
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*(n-1))));
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*(n-1)+1)));
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+6*(n-1))));
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+6*(n-1)+1)));
                         }
                     else
                         {
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n)));
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n+1)));
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)));
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)));
                         }
                     ds_list_add(new_list,1);
                     ds_list_add(new_list,c[0]);
@@ -221,13 +223,13 @@ for (n = 0;n < checkpoints; n++)
                     {
                     if (n)
                         {
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*(n-1))));
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*(n-1)+1)));
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+6*(n-1))));
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+6*(n-1)+1)));
                         }
                     else
                         {
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n)));
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n+1)));
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)));
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)));
                         }
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
@@ -238,13 +240,13 @@ for (n = 0;n < checkpoints; n++)
                     {
                     if (n)
                         {
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*(n-1))));
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*(n-1)+1)));
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+6*(n-1))));
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+6*(n-1)+1)));
                         }
                     else
                         {
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n)));
-                        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n+1)));
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)));
+                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)));
                         }
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
@@ -254,16 +256,16 @@ for (n = 0;n < checkpoints; n++)
                 }
             else
                 {
-                ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n)));
-                ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n+1)));
+                ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)));
+                ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)));
                 ds_list_add(new_list,0);
                 ds_list_add(new_list,c[0]);
                 ds_list_add(new_list,c[1]);
                 ds_list_add(new_list,c[2])
                 repeat (dotmultiply)
                     {
-                    ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n)));
-                    ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n+1)));
+                    ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)));
+                    ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)));
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
                     ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
@@ -275,23 +277,22 @@ for (n = 0;n < checkpoints; n++)
         }  
     else
         {    
-        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n)));
-        ds_list_add(new_list,(ds_list_find_value(letter_list,50+6*n+1)));
+        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)));
+        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)));
         ds_list_add(new_list,blank);
         ds_list_add(new_list,c[0]);
         ds_list_add(new_list,c[1]);
         ds_list_add(new_list,c[2]);
         }
     
-    if (((ds_list_find_value(letter_list,50+6*n)))/128 > xmax)
-       xmax = ((ds_list_find_value(letter_list,50+6*n)))/128;     
-    if (((ds_list_find_value(letter_list,50+6*n)))/128 < xmin)
-       xmin = ((ds_list_find_value(letter_list,50+6*n)))/128;
-    if (((ds_list_find_value(letter_list,50+6*n+1)))/128 > ymax)
-       ymax = ((ds_list_find_value(letter_list,50+6*n+1)))/128;     
-    if (((ds_list_find_value(letter_list,50+6*n+1)))/128 < ymin)
-       ymin = ((ds_list_find_value(letter_list,50+6*n+1)))/128;
-    
+    if (((ds_list_find_value(letter_list,currentpos)))/128 > xmax)
+       xmax = ((ds_list_find_value(letter_list,currentpos)))/128;     
+    if (((ds_list_find_value(letter_list,currentpos)))/128 < xmin)
+       xmin = ((ds_list_find_value(letter_list,currentpos)))/128;
+    if (((ds_list_find_value(letter_list,currentpos+1)))/128 > ymax)
+       ymax = ((ds_list_find_value(letter_list,currentpos+1)))/128;     
+    if (((ds_list_find_value(letter_list,currentpos+1)))/128 < ymin)
+       ymin = ((ds_list_find_value(letter_list,currentpos+1)))/128;
     
     }
     

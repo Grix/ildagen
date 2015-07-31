@@ -17,7 +17,7 @@ ds_list_add(frame_list_parse,0);
 ds_list_add(frame_list_parse,0);
 ds_list_add(frame_list_parse,0); 
 ds_list_add(frame_list_parse,el_id); //id
-repeat (40) ds_list_add(frame_list_parse,0); 
+repeat (10) ds_list_add(frame_list_parse,0); 
 blank = 0;
 
 j = 1;
@@ -78,22 +78,14 @@ ini_close();
 
 //interpolate
 new_list_parse = frame_list_parse;
-checkpoints = ((ds_list_size(new_list_parse)-50)/6);
+checkpoints = ((ds_list_size(new_list_parse)-20)/6);
 
 for (j = 0; j < (checkpoints-1);j++)
     {
-    temppos = 50+j*6;
+    temppos = 20+j*6;
     
-    if  (ds_list_find_value(new_list_parse,temppos+8) == 1)
-        continue;
-        
-    /*if  (ds_list_find_value(new_list_parse,temppos+9) == 0) &&
-        (ds_list_find_value(new_list_parse,temppos+10) == 0) &&
-        (ds_list_find_value(new_list_parse,temppos+11) == 0)
-            {
-            ds_list_replace(new_list_parse,temppos+2,1);
-            continue;
-            }*/
+    //if  (ds_list_find_value(new_list_parse,temppos+8) == 1)
+    //    continue;
         
     length = point_distance( ds_list_find_value(new_list_parse,temppos)
                             ,ds_list_find_value(new_list_parse,temppos+1)
