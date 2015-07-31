@@ -146,8 +146,6 @@
       <sprite>sprites\spr_anicolorselect</sprite>
       <sprite>sprites\spr_blankperiodselect</sprite>
       <sprite>sprites\spr_aniblankperiodselect</sprite>
-      <sprite>sprites\spr_ytrans</sprite>
-      <sprite>sprites\spr_xtrans</sprite>
       <sprite>sprites\spr_waveampselect</sprite>
       <sprite>sprites\spr_aniwaveampselect</sprite>
     </sprites>
@@ -216,9 +214,6 @@
     <sprite>sprites\spr_anifunc</sprite>
     <sprite>sprites\spr_absrel</sprite>
     <sprite>sprites\spr_rgbhsv</sprite>
-    <sprite>sprites\spr_e_undo</sprite>
-    <sprite>sprites\spr_s_res</sprite>
-    <sprite>sprites\spr_maxframes</sprite>
     <sprite>sprites\spr_cursor</sprite>
     <sprite>sprites\spr_anchor</sprite>
     <sprite>sprites\spr_resize</sprite>
