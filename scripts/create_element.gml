@@ -54,7 +54,7 @@ if (is_string(resolution))
     {
     autoresflag = 1;
     if ((placing == "line") && (blankmode == "solid") && (colormode == "solid"))
-        resolution = 3000;
+        resolution = opt_maxdist;
     else
         resolution = 1300;
         

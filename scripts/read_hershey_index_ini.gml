@@ -68,9 +68,7 @@ repeat(maxglyphpoints-1)
     ds_list_add(frame_list_parse,nextpointy);
     ds_list_add(frame_list_parse,blank);
     blank = 0;
-    ds_list_add(frame_list_parse,255);
-    ds_list_add(frame_list_parse,255);
-    ds_list_add(frame_list_parse,255);
+    ds_list_add(frame_list_parse,c_white);
     
     }
     
@@ -89,8 +87,8 @@ for (j = 0; j < (checkpoints-1);j++)
         
     length = point_distance( ds_list_find_value(new_list_parse,temppos)
                             ,ds_list_find_value(new_list_parse,temppos+1)
-                            ,ds_list_find_value(new_list_parse,temppos+6)
-                            ,ds_list_find_value(new_list_parse,temppos+7));
+                            ,ds_list_find_value(new_list_parse,temppos+4)
+                            ,ds_list_find_value(new_list_parse,temppos+5));
     
     if (length < resolution*phi) continue;
     
@@ -98,23 +96,19 @@ for (j = 0; j < (checkpoints-1);j++)
     stepscount = round(steps-1);
     tempx0 = ds_list_find_value(new_list_parse,temppos);
     tempy0 = ds_list_find_value(new_list_parse,temppos+1);
-    tempvectx = (ds_list_find_value(new_list_parse,temppos+6)-tempx0)/steps;
-    tempvecty = (ds_list_find_value(new_list_parse,temppos+7)-tempy0)/steps;
-    tempblank = ds_list_find_value(new_list_parse,temppos+8);
-    tempc1 = ds_list_find_value(new_list_parse,temppos+9);
-    tempc2 = ds_list_find_value(new_list_parse,temppos+10);
-    tempc3 = ds_list_find_value(new_list_parse,temppos+11);
+    tempvectx = (ds_list_find_value(new_list_parse,temppos+4)-tempx0)/steps;
+    tempvecty = (ds_list_find_value(new_list_parse,temppos+5)-tempy0)/steps;
+    tempblank = ds_list_find_value(new_list_parse,temppos+6);
+    tempc = ds_list_find_value(new_list_parse,temppos+7);
            
     repeat(floor(stepscount))
         {
         newx = tempx0+tempvectx*(stepscount);
         newy = tempy0+tempvecty*(stepscount);
-        ds_list_insert(new_list_parse,temppos+6,tempc3);
-        ds_list_insert(new_list_parse,temppos+6,tempc2);
-        ds_list_insert(new_list_parse,temppos+6,tempc1);
-        ds_list_insert(new_list_parse,temppos+6,tempblank);
-        ds_list_insert(new_list_parse,temppos+6,newy);
-        ds_list_insert(new_list_parse,temppos+6,newx);
+        ds_list_insert(new_list_parse,temppos+4,tempc);
+        ds_list_insert(new_list_parse,temppos+4,tempblank);
+        ds_list_insert(new_list_parse,temppos+4,newy);
+        ds_list_insert(new_list_parse,temppos+4,newx);
         j++;
         checkpoints++;
         stepscount--;

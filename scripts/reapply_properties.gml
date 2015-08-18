@@ -31,7 +31,7 @@ if (is_string(resolution))
     {
     autoresflag = 1;
     if ((placing == "line") && (blankmode == "solid") && (colormode == "solid"))
-        resolution = 3000;
+        resolution = opt_maxdist;
     else
         resolution = 1300;
         
@@ -218,7 +218,7 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
         {
         blanknew = 1;
         new_list = ds_list_find_value(temp_frame_list,i);
-        checkpoints = ((ds_list_size(new_list)-20)/6);
+        checkpoints = ((ds_list_size(new_list)-20)/4);
         
         startpos[0] = ds_list_find_value(new_list,0);
         startpos[1] = ds_list_find_value(new_list,1);
@@ -230,11 +230,11 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
             {
             for (j = 0; j < (checkpoints-1);j++)
                 {
-                temppos = 20+j*6;
+                temppos = 20+j*4;
                 length = point_distance( ds_list_find_value(new_list,temppos)
                                         ,ds_list_find_value(new_list,temppos+1)
-                                        ,ds_list_find_value(new_list,temppos+6)
-                                        ,ds_list_find_value(new_list,temppos+7));
+                                        ,ds_list_find_value(new_list,temppos+4)
+                                        ,ds_list_find_value(new_list,temppos+5));
                 
                 if  (length < resolution*phi)
                     continue;
@@ -243,23 +243,19 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                 stepscount = round(steps-1);
                 tempx0 = ds_list_find_value(new_list,temppos);
                 tempy0 = ds_list_find_value(new_list,temppos+1);
-                tempvectx = (ds_list_find_value(new_list,temppos+6)-tempx0)/steps;
-                tempvecty = (ds_list_find_value(new_list,temppos+7)-tempy0)/steps;
-                tempblank = ds_list_find_value(new_list,temppos+8);
-                tempc1 = ds_list_find_value(new_list,temppos+9);
-                tempc2 = ds_list_find_value(new_list,temppos+10);
-                tempc3 = ds_list_find_value(new_list,temppos+11);
+                tempvectx = (ds_list_find_value(new_list,temppos+4)-tempx0)/steps;
+                tempvecty = (ds_list_find_value(new_list,temppos+5)-tempy0)/steps;
+                tempblank = ds_list_find_value(new_list,temppos+6);
+                tempc = ds_list_find_value(new_list,temppos+7);
                 
                 repeat(stepscount)
                     {
                     newx = tempx0+tempvectx*(stepscount);
                     newy = tempy0+tempvecty*(stepscount);
-                    ds_list_insert(new_list,temppos+6,tempc3);
-                    ds_list_insert(new_list,temppos+6,tempc2);
-                    ds_list_insert(new_list,temppos+6,tempc1);
-                    ds_list_insert(new_list,temppos+6,tempblank);
-                    ds_list_insert(new_list,temppos+6,newy);
-                    ds_list_insert(new_list,temppos+6,newx);
+                    ds_list_insert(new_list,temppos+4,tempc);
+                    ds_list_insert(new_list,temppos+4,tempblank);
+                    ds_list_insert(new_list,temppos+4,newy);
+                    ds_list_insert(new_list,temppos+4,newx);
                     //show_debug_message(newx);
                     j++;
                     checkpoints++;
@@ -371,8 +367,8 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                 if (dotfreq < 1)
                     dotfreq = 1;
                 }
-            loop = (ds_list_find_value(new_list,20+checkpoints*6) == ds_list_find_value(new_list,20)) and 
-                   (ds_list_find_value(new_list,21+checkpoints*6) == ds_list_find_value(new_list,21));
+            loop = (ds_list_find_value(new_list,20+checkpoints*4) == ds_list_find_value(new_list,20)) and 
+                   (ds_list_find_value(new_list,21+checkpoints*4) == ds_list_find_value(new_list,21));
             }
             
         if (controller.reap_color)
@@ -392,15 +388,15 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
         //walk through points
         for (j = 0; j < checkpoints;j++)
             {
-            listpos = 20+j*6;
+            listpos = 20+j*4;
             xp = ds_list_find_value(new_list,listpos);
             yp = ds_list_find_value(new_list,listpos+1);
             
             
-            if ((j != 0) and (ds_list_find_value(new_list,listpos) == ds_list_find_value(new_list,20+(j-1)*6)) and 
-            (ds_list_find_value(new_list,listpos+1) == ds_list_find_value(new_list,20+(j-1)*6+1)) and (controller.reap_removeoverlap))
+            if ((j != 0) and (ds_list_find_value(new_list,listpos) == ds_list_find_value(new_list,20+(j-1)*4)) and 
+            (ds_list_find_value(new_list,listpos+1) == ds_list_find_value(new_list,21+(j-1)*4)) and (controller.reap_removeoverlap))
                 {
-                repeat(6) ds_list_delete(new_list,listpos);
+                repeat(4) ds_list_delete(new_list,listpos);
                 checkpoints--;
                 j--;
                 continue;
@@ -414,61 +410,49 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                 //COLOR
                 if (colormode == "solid")
                     {
-                    c[0] = colour_get_blue(color1_r);
-                    c[1] = colour_get_green(color1_r);
-                    c[2] = colour_get_red(color1_r);
+                    c = color1_r;
                     }
                 else if (colormode == "rainbow")
                     {
                     if (colormode2 == 0)
                         {
-                        colorrb = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-j)*color_freq_r/checkpoints)*255)%255,255,255); 
-                        c[0] = colour_get_blue(colorrb );
-                        c[1] = colour_get_green(colorrb );
-                        c[2] = colour_get_red(colorrb );
+                        c = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-j)*color_freq_r/checkpoints)*255)%255,255,255); 
                         }
                     else
                         {
-                        colorrb = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-j)*resolution/color_period_r)*255)%255,255,255); 
-                        c[0] = colour_get_blue(colorrb );
-                        c[1] = colour_get_green(colorrb );
-                        c[2] = colour_get_red(colorrb );
+                        c = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-j)*resolution/color_period_r)*255)%255,255,255);
                         }
                     }
                 else if (colormode == "gradient")
                     {
                     if (colormode2 == 0)
                         {
-                        c[0] = ( colour_get_blue(color1_r)*    (0.5+cos(color_offset_r+ (checkpoints-j)*color_freq_r/checkpoints*2*pi +pi)/2) + colour_get_blue(color2_r)*   (1-(0.5+cos(color_offset_r+ (checkpoints-j)*color_freq_r/checkpoints*2*pi +pi)/2)) );
-                        c[1] = ( colour_get_green(color1_r)*   (0.5+cos(color_offset_r+ (checkpoints-j)*color_freq_r/checkpoints*2*pi +pi)/2) + colour_get_green(color2_r)*  (1-(0.5+cos(color_offset_r+ (checkpoints-j)*color_freq_r/checkpoints*2*pi +pi)/2)) );
-                        c[2] = ( colour_get_red(color1_r)*     (0.5+cos(color_offset_r+ (checkpoints-j)*color_freq_r/checkpoints*2*pi +pi)/2) + colour_get_red(color2_r)*    (1-(0.5+cos(color_offset_r+ (checkpoints-j)*color_freq_r/checkpoints*2*pi +pi)/2)) );
+                        tt = color_offset_r/(2*pi)+ (checkpoints-j)*color_freq_r/checkpoints;
+                        tt = (tt*2) mod 2;
+                        if (tt > 1) tt = 2-tt;
+                        c = merge_colour(color1_r,color2_r,tt);
                         }
                     else
                         {
-                        c[0] = ( colour_get_blue(color1_r)*    (0.5+cos(color_offset_r+ (checkpoints-j)*resolution/color_period_r*2*pi +pi)/2) + colour_get_blue(color2_r)*   (1-(0.5+cos(color_offset_r+ (checkpoints-j)*resolution/color_period_r*2*pi +pi)/2)) );
-                        c[1] = ( colour_get_green(color1_r)*   (0.5+cos(color_offset_r+ (checkpoints-j)*resolution/color_period_r*2*pi +pi)/2) + colour_get_green(color2_r)*  (1-(0.5+cos(color_offset_r+ (checkpoints-j)*resolution/color_period_r*2*pi +pi)/2)) );
-                        c[2] = ( colour_get_red(color1_r)*     (0.5+cos(color_offset_r+ (checkpoints-j)*resolution/color_period_r*2*pi +pi)/2) + colour_get_red(color2_r)*    (1-(0.5+cos(color_offset_r+ (checkpoints-j)*resolution/color_period_r*2*pi +pi)/2)) );
+                        tt = color_offset_r/(2*pi)+ (checkpoints-j)*resolution/color_period_r;
+                        tt = (tt*2) mod 2;
+                        if (tt > 1) tt = 2-tt;
+                        c = merge_colour(color1_r,color2_r,tt);
                         }
                     }
                 else if (colormode == "dash")
                     {
                     if (color_dc_r >= 0.98)
                         {
-                        c[0] = colour_get_blue(color1_r);
-                        c[1] = colour_get_green(color1_r);
-                        c[2] = colour_get_red(color1_r);
+                        c = color1_r;
                         }
                     else if (floor(j+color_offset_r/pi/2*colorfreq) % floor(colorfreq) > color_dc_r*colorfreq) or (color_dc_r < 0.02)
                         {
-                        c[0] = colour_get_blue(color2_r);
-                        c[1] = colour_get_green(color2_r);
-                        c[2] = colour_get_red(color2_r);
+                        c = color2_r;
                         }
                     else 
                         {
-                        c[0] = colour_get_blue(color1_r);
-                        c[1] = colour_get_green(color1_r);
-                        c[2] = colour_get_red(color1_r);
+                        c = color1_r;
                         }
                     }
                 else if (colormode == "func")
@@ -485,20 +469,20 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                 //blending
                 if (color_blendmode == 1)
                     {
-                    c[0] = clamp(ds_list_find_value(new_list,listpos+3)+c[0],0,255);
-                    c[1] = clamp(ds_list_find_value(new_list,listpos+4)+c[1],0,255);
-                    c[2] = clamp(ds_list_find_value(new_list,listpos+5)+c[2],0,255);
+                    cr = clamp(colour_get_red(ds_list_find_value(new_list,listpos+3))   +colour_get_red(c),0,255);
+                    cg = clamp(colour_get_green(ds_list_find_value(new_list,listpos+3)) +colour_get_green(c),0,255);
+                    cb = clamp(colour_get_blue(ds_list_find_value(new_list,listpos+3))  +colour_get_blue(c),0,255);
+                    c = make_colour_rgb(cr,cg,cb);
                     }
                 else if (color_blendmode == 2)
                     {
-                    c[0] = clamp(ds_list_find_value(new_list,listpos+3)-c[0],0,255);
-                    c[1] = clamp(ds_list_find_value(new_list,listpos+4)-c[1],0,255);
-                    c[2] = clamp(ds_list_find_value(new_list,listpos+5)-c[2],0,255);
+                    cr = clamp(colour_get_red(ds_list_find_value(new_list,listpos+3))   -colour_get_red(c),0,255);
+                    cg = clamp(colour_get_green(ds_list_find_value(new_list,listpos+3)) -colour_get_green(c),0,255);
+                    cb = clamp(colour_get_blue(ds_list_find_value(new_list,listpos+3))  -colour_get_blue(c),0,255);
+                    c = make_colour_rgb(cr,cg,cb);
                     }
                 
-                ds_list_replace(new_list,listpos+3,c[0]);
-                ds_list_replace(new_list,listpos+4,c[1]);
-                ds_list_replace(new_list,listpos+5,c[2]);
+                ds_list_replace(new_list,listpos+3,c);
                     
                 }
             
@@ -605,12 +589,10 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                         ds_list_replace(new_list,listpos+2,1);
                         repeat (dotmultiply)
                             {
-                            ds_list_insert(new_list,listpos+6,ds_list_find_value(new_list,listpos));
-                            ds_list_insert(new_list,listpos+7,ds_list_find_value(new_list,listpos+1));
-                            ds_list_insert(new_list,listpos+8,0);
-                            ds_list_insert(new_list,listpos+9,colour_get_blue(enddotscolor_r));
-                            ds_list_insert(new_list,listpos+10,colour_get_green(enddotscolor_r));
-                            ds_list_insert(new_list,listpos+11,colour_get_red(enddotscolor_r));
+                            ds_list_insert(new_list,listpos+4,ds_list_find_value(new_list,listpos));
+                            ds_list_insert(new_list,listpos+5,ds_list_find_value(new_list,listpos+1));
+                            ds_list_insert(new_list,listpos+6,0);
+                            ds_list_insert(new_list,listpos+7,enddotscolor_r);
                             checkpoints++;
                             j++;
                             }
@@ -619,7 +601,6 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                         {
                         if (makedot == 2)
                             {
-                            show_debug_message(j)
                             /*if (blank)
                                 ds_list_replace(new_list,20+(j-1)*6+2,1);
                             else
@@ -628,13 +609,10 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                             repeat (dotmultiply)
                                 {
                                 icount++;
-                                ds_list_insert(new_list,listpos+6,colour_get_red(enddotscolor_r));
-                                ds_list_insert(new_list,listpos+6,colour_get_green(enddotscolor_r));
-                                ds_list_insert(new_list,listpos+6,colour_get_blue(enddotscolor_r));
-                                ds_list_insert(new_list,listpos+6,0);
-                                ds_list_insert(new_list,listpos+6,ds_list_find_value(new_list,listpos+1));
-                                ds_list_insert(new_list,listpos+6,ds_list_find_value(new_list,listpos));
-                                
+                                ds_list_insert(new_list,listpos+4,enddotscolor_r);
+                                ds_list_insert(new_list,listpos+4,0);
+                                ds_list_insert(new_list,listpos+4,ds_list_find_value(new_list,listpos+1));
+                                ds_list_insert(new_list,listpos+4,ds_list_find_value(new_list,listpos));
                                 }
                             j+= icount;
                             checkpoints += icount;
@@ -646,13 +624,10 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                             repeat (dotmultiply)
                                 {
                                 icount++;
-                                ds_list_insert(new_list,listpos+6,ds_list_find_value(new_list,listpos));
-                                ds_list_insert(new_list,listpos+7,ds_list_find_value(new_list,listpos+1));
-                                ds_list_insert(new_list,listpos+8,0);
-                                ds_list_insert(new_list,listpos+9,colour_get_blue(enddotscolor_r));
-                                ds_list_insert(new_list,listpos+10,colour_get_green(enddotscolor_r));
-                                ds_list_insert(new_list,listpos+11,colour_get_red(enddotscolor_r));
-                    
+                                ds_list_insert(new_list,listpos+4,ds_list_find_value(new_list,listpos));
+                                ds_list_insert(new_list,listpos+5,ds_list_find_value(new_list,listpos+1));
+                                ds_list_insert(new_list,listpos+6,0);
+                                ds_list_insert(new_list,listpos+7,enddotscolor_r);
                                 }
                             j+= icount;
                             checkpoints += icount;

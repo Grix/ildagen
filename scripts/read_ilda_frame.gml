@@ -44,12 +44,11 @@ if (format > 2)
         blank = ((get_byte() & $40) > 0);
         ds_list_add(frame_list_parse,blank);
         i++;
-        //rgb
-        repeat (3)//34/5
-            {
-            ds_list_add(frame_list_parse,get_byte());
-            i++;
-            }
+        //rgb//34/5
+        cb = get_byte(); i++;
+        cg = get_byte(); i++;
+        cr = get_byte(); i++;
+        ds_list_add(frame_list_parse,make_colour_rgb(cr,cg,cb));
         }
     }
 else
@@ -103,10 +102,9 @@ else
         ds_list_add(frame_list_parse,blank);
         
         //rgb
-        ds_list_add(frame_list_parse,ds_list_find_value(pal_list,3*color+2));
-        ds_list_add(frame_list_parse,ds_list_find_value(pal_list,3*color+1));
-        ds_list_add(frame_list_parse,ds_list_find_value(pal_list,3*color));
-        
+        ds_list_add(frame_list_parse,make_colour_rgb(ds_list_find_value(pal_list,3*color+2),
+                                                    ds_list_find_value(pal_list,3*color+1),
+                                                    ds_list_find_value(pal_list,3*color)));
         }
     }
     

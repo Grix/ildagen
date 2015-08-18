@@ -1,7 +1,6 @@
 if (lastpointadded = 0)
     {
     lastpointadded = 1;
-    show_debug_message(1);
     ds_list_add(free_list,mouse_x-startpos[0]);
     ds_list_add(free_list,mouse_y-startpos[1]);
     
@@ -28,7 +27,6 @@ if (lastpointadded = 0)
                
         repeat(floor(stepscount))
             {
-            
             newx = tempx0+tempvectx*(stepscount);
             newy = tempy0+tempvecty*(stepscount);
             ds_list_insert(free_list,temppos+2,newy);
@@ -36,7 +34,6 @@ if (lastpointadded = 0)
             j++;
             checkpoints++;
             stepscount--;
-            show_debug_message(newx);
             }
         
         }
@@ -147,15 +144,10 @@ for (n = 0;n < checkpoints; n++)
             }
         }
     
-        
-        
-        
     //COLOR
     if (colormode == "solid")
         {
-        c[0] = colour_get_blue(color1_r);
-        c[1] = colour_get_green(color1_r);
-        c[2] = colour_get_red(color1_r);
+        c = color1_r;
         }
     else if (colormode == "rainbow")
         {
@@ -167,9 +159,7 @@ for (n = 0;n < checkpoints; n++)
             {
             colorrb = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-n)*resolution/color_period_r)*255)%255,255,255); 
             }
-        c[0] = colour_get_blue(colorrb );
-        c[1] = colour_get_green(colorrb );
-        c[2] = colour_get_red(colorrb );
+        c = colorrb;
         }
     else if (colormode == "gradient")
         {
@@ -187,29 +177,21 @@ for (n = 0;n < checkpoints; n++)
             if (tt > 1) tt = 2-tt;
             var colorresult = merge_colour(color1_r,color2_r,tt);
             }
-        c[0] = colour_get_blue(colorresult);
-        c[1] = colour_get_green(colorresult);
-        c[2] = colour_get_red(colorresult);
+        c = colorresult;
         }
     else if (colormode == "dash")
         {
         if (color_dc_r >= 0.98)
             {
-            c[0] = colour_get_blue(color1_r);
-            c[1] = colour_get_green(color1_r);
-            c[2] = colour_get_red(color1_r);
+            c = color1_r;
             }
         else if (floor(n+color_offset_r/pi/2*colorfreq) % floor(colorfreq) > color_dc_r*colorfreq) or (color_dc_r < 0.02)
             {
-            c[0] = colour_get_blue(color2_r);
-            c[1] = colour_get_green(color2_r);
-            c[2] = colour_get_red(color2_r);
+            c = color2_r;
             }
         else 
             {
-            c[0] = colour_get_blue(color1_r);
-            c[1] = colour_get_green(color1_r);
-            c[2] = colour_get_red(color1_r);
+            c = color1_r;
             }
         }
     else if (colormode == "func")
@@ -231,15 +213,14 @@ for (n = 0;n < checkpoints; n++)
             ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
             ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
             ds_list_add(new_list,1);
-            ds_list_add(new_list,c[0]);
-            ds_list_add(new_list,c[1]);
-            ds_list_add(new_list,c[2]);
-            ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
-            ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
-            ds_list_add(new_list,0);
-            ds_list_add(new_list,c[0]);
-            ds_list_add(new_list,c[1]);
-            ds_list_add(new_list,c[2])
+            ds_list_add(new_list,c);
+            repeat (dotmultiply)
+                {
+                ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
+                ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
+                ds_list_add(new_list,0);
+                ds_list_add(new_list,c);
+                }
             }
         else
             {
@@ -258,9 +239,7 @@ for (n = 0;n < checkpoints; n++)
                         ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1)*128);
                         }
                     ds_list_add(new_list,1);
-                    ds_list_add(new_list,c[0]);
-                    ds_list_add(new_list,c[1]);
-                    ds_list_add(new_list,c[2]);
+                    ds_list_add(new_list,c);
                     }
                 else
                     {
@@ -275,9 +254,7 @@ for (n = 0;n < checkpoints; n++)
                         ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1)*128);
                         }
                     ds_list_add(new_list,0);
-                    ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
-                    ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
-                    ds_list_add(new_list,colour_get_red(controller.enddotscolor_r));
+                    ds_list_add(new_list,controller.enddotscolor_r);
                     }
                 repeat (dotmultiply)
                     {
@@ -292,9 +269,7 @@ for (n = 0;n < checkpoints; n++)
                         ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1)*128);
                         }
                     ds_list_add(new_list,0);
-                    ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
-                    ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
-                    ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
+                    ds_list_add(new_list,controller.enddotscolor_r);
                     }
                 }
             else
@@ -302,17 +277,13 @@ for (n = 0;n < checkpoints; n++)
                 ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
                 ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
                 ds_list_add(new_list,0);
-                ds_list_add(new_list,c[0]);
-                ds_list_add(new_list,c[1]);
-                ds_list_add(new_list,c[2])
+                ds_list_add(new_list,c);
                 repeat (dotmultiply)
                     {
                     ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
                     ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
                     ds_list_add(new_list,0);
-                    ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
-                    ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
-                    ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
+                    ds_list_add(new_list,controller.enddotscolor_r);
                     }
                 }
             }
@@ -323,9 +294,7 @@ for (n = 0;n < checkpoints; n++)
         ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
         ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
         ds_list_add(new_list,blank);
-        ds_list_add(new_list,c[0]);
-        ds_list_add(new_list,c[1]);
-        ds_list_add(new_list,c[2]);
+        ds_list_add(new_list,c);
         }
         
     if (ds_list_find_value(free_list,2*n) > xmax)

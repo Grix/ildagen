@@ -45,9 +45,17 @@ if (idbyte == 0) or (idbyte == 50) or (idbyte == 51)
                 numofinds = buffer_read(load_buffer,buffer_s32);
                 ind_list = ds_list_create();
                 ds_list_add(tempel_list,ind_list);
-                for (u = 0; u < numofinds; u++)
+                for (u = 0; u < 50; u++)
+                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
+                for (u = 50; u < numofinds; u+=6)
                     {
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
+                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
+                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
+                    cr = buffer_read(load_buffer,buffer_s32);
+                    cg = buffer_read(load_buffer,buffer_s32);
+                    cb = buffer_read(load_buffer,buffer_s32);
+                    ds_list_add(ind_list,make_colour_rgb(cr,cg,cb));
                     }
                 repeat (30) ds_list_delete(ind_list,19);
                 }
@@ -81,9 +89,9 @@ if (idbyte == 0) or (idbyte == 50) or (idbyte == 51)
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                    ds_list_add(ind_list,make_colour_rgb(buffer_read(load_buffer,buffer_u8),
+                                                        buffer_read(load_buffer,buffer_u8),
+                                                        buffer_read(load_buffer,buffer_u8)));
                     }
                 repeat (30) ds_list_delete(ind_list,19);
                 }
@@ -117,9 +125,9 @@ if (idbyte == 0) or (idbyte == 50) or (idbyte == 51)
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                     ds_list_add(ind_list,buffer_read(load_buffer,buffer_bool));
-                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                    ds_list_add(ind_list,make_colour_rgb(buffer_read(load_buffer,buffer_u8),
+                                                        buffer_read(load_buffer,buffer_u8),
+                                                        buffer_read(load_buffer,buffer_u8)));
                     }
                 repeat (30) ds_list_delete(ind_list,19);
                 }
@@ -153,14 +161,12 @@ if (idbyte == 0) or (idbyte == 50) or (idbyte == 51)
                 {
                 buffer_write(save_buffer,buffer_bool,0);//ds_list_find_value(ind_list,u));
                 }
-            for (u = 20; u < tempsize; u += 6)
+            for (u = 20; u < tempsize; u += 4)
                 {
                 buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u));
                 buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u+1));
                 buffer_write(save_buffer,buffer_bool,ds_list_find_value(ind_list,u+2));
-                buffer_write(save_buffer,buffer_u8,round(ds_list_find_value(ind_list,u+3)));
-                buffer_write(save_buffer,buffer_u8,round(ds_list_find_value(ind_list,u+4)));
-                buffer_write(save_buffer,buffer_u8,round(ds_list_find_value(ind_list,u+5)));
+                buffer_write(save_buffer,buffer_u32,ds_list_find_value(ind_list,u+3));
                 }
             ds_list_destroy(ind_list);
             }
@@ -168,7 +174,6 @@ if (idbyte == 0) or (idbyte == 50) or (idbyte == 51)
         }
     //remove excess size
     buffer_resize(save_buffer,buffer_tell(save_buffer));
-    
     }
 else if (idbyte == 52)
     {

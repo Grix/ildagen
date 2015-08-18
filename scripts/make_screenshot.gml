@@ -34,14 +34,12 @@ for (i = 0; i < buffer_maxelements;i++)
         {
         ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
         }
-    for (u = 20; u < numofinds; u += 6)
+    for (u = 20; u < numofinds; u += 4)
         {
         ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
         ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
         ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
+        ds_list_add(ind_list,buffer_read(el_buffer,buffer_u32));
         }
     }
 
@@ -61,7 +59,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
     
     //TODO if just one
     
-    for (u = 0; u < (((ds_list_size(new_list)-20)/6)-1); u++)
+    for (u = 0; u < (((ds_list_size(new_list)-20)/4)-1); u++)
         {
         nbl = ds_list_find_value(new_list,20+(u+1)*6+2);
         
@@ -72,12 +70,8 @@ for (i = 0;i < ds_list_size(el_list);i++)
             
             nxp = ds_list_find_value(new_list,20+(u+1)*6+0);
             nyp = ds_list_find_value(new_list,20+(u+1)*6+1);
-            nb = ds_list_find_value(new_list,20+(u+1)*6+3);
-            ng = ds_list_find_value(new_list,20+(u+1)*6+4);
-            nr = ds_list_find_value(new_list,20+(u+1)*6+5);
             
-            
-            draw_set_color(make_colour_rgb(nr,ng,nb));
+            draw_set_color(ds_list_find_value(new_list,20+(u+1)*6+3));
             if (xp == nxp) && (yp == nyp)
                 {
                 draw_point(xo+xp/$ffff*32,yo+yp/$ffff*32);

@@ -82,16 +82,13 @@ ML_ResObj_Cleanup(result_3);
 
 if (colormode2 == 0)
     {
-    c[2] = clamp(answer_1,0,255);
-    c[1] = clamp(answer_2,0,255);
-    c[0] = clamp(answer_3,0,255);
+    colortemp = make_colour_rgb(clamp(answer_1,0,255),clamp(answer_2,0,255),clamp(answer_3,0,255));
+    c = colortemp;
     }
 else if (colormode2 == 1)
     {
     colortemp = make_colour_hsv(clamp(answer_1,0,255),clamp(answer_2,0,255),clamp(answer_3,0,255));
-    c[2] = colour_get_red(colortemp);
-    c[1] = colour_get_green(colortemp);
-    c[0] = colour_get_blue(colortemp);
+    c = colortemp;
     }
 
 return 1;

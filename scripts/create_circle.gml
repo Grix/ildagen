@@ -50,72 +50,6 @@ if !((startposx_r == endx_r) && (startposy_r == endy_r))
     for (n = 0;n <= checkpoints; n++)
         {
         makedot = 0;
-        
-        //COLOR
-        if (colormode = "solid")
-            {
-            c[0] = colour_get_blue(color1_r);
-            c[1] = colour_get_green(color1_r);
-            c[2] = colour_get_red(color1_r);
-            }
-        else if (colormode == "rainbow")
-            {
-            if (colormode2 == 0)
-                {
-                colorrb = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-n)*color_freq_r/checkpoints)*255)%255,255,255); 
-                }
-            else
-                {
-                colorrb = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-n)*resolution/color_period_r)*255)%255,255,255); 
-                }
-            c[0] = colour_get_blue(colorrb );
-            c[1] = colour_get_green(colorrb );
-            c[2] = colour_get_red(colorrb );
-            }
-        else if (colormode = "gradient")
-            {
-            if (colormode2 == 0)
-                {
-                var tt = color_offset_r/(2*pi)+ (checkpoints-n)*color_freq_r/checkpoints;
-                tt = (tt*2) mod 2;
-                if (tt > 1) tt = 2-tt;
-                var colorresult = merge_colour(color1_r,color2_r,tt);
-                }
-            else
-                {
-                var tt = color_offset_r/(2*pi)+ (checkpoints-n)*resolution/color_period_r;
-                tt = (tt*2) mod 2;
-                if (tt > 1) tt = 2-tt;
-                var colorresult = merge_colour(color1_r,color2_r,tt);
-                }
-            c[0] = colour_get_blue(colorresult);
-            c[1] = colour_get_green(colorresult);
-            c[2] = colour_get_red(colorresult);
-            }
-        else if (colormode == "dash")
-            {
-            if (color_dc_r >= 0.98)
-                {
-                c[0] = colour_get_blue(color1_r);
-                c[1] = colour_get_green(color1_r);
-                c[2] = colour_get_red(color1_r);
-                }
-            else if (floor(n+color_offset_r/pi/2*colorfreq) % floor(colorfreq) > color_dc_r*colorfreq) or (color_dc_r < 0.02)
-                {
-                c[0] = colour_get_blue(color2_r);
-                c[1] = colour_get_green(color2_r);
-                c[2] = colour_get_red(color2_r);
-                }
-            else 
-                {
-                c[0] = colour_get_blue(color1_r);
-                c[1] = colour_get_green(color1_r);
-                c[2] = colour_get_red(color1_r);
-                }
-            }
-        else if (colormode == "func")
-            if (!func_color())
-                return 0;
          
         //BLANK   
         if (blankmode = "solid")
@@ -184,6 +118,60 @@ if !((startposx_r == endx_r) && (startposy_r == endy_r))
                 blanknew = blank;
                 }
             }
+            
+        //COLOR
+        if (colormode == "solid")
+            {
+            c = color1_r;
+            }
+        else if (colormode == "rainbow")
+            {
+            if (colormode2 == 0)
+                {
+                colorrb = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-n)*color_freq_r/checkpoints)*255)%255,255,255); 
+                }
+            else
+                {
+                colorrb = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-n)*resolution/color_period_r)*255)%255,255,255); 
+                }
+            c = colorrb;
+            }
+        else if (colormode == "gradient")
+            {
+            if (colormode2 == 0)
+                {
+                var tt = color_offset_r/(2*pi)+ (checkpoints-n)*color_freq_r/checkpoints;
+                tt = (tt*2) mod 2;
+                if (tt > 1) tt = 2-tt;
+                var colorresult = merge_colour(color1_r,color2_r,tt);
+                }
+            else
+                {
+                var tt = color_offset_r/(2*pi)+ (checkpoints-n)*resolution/color_period_r;
+                tt = (tt*2) mod 2;
+                if (tt > 1) tt = 2-tt;
+                var colorresult = merge_colour(color1_r,color2_r,tt);
+                }
+            c = colorresult;
+            }
+        else if (colormode == "dash")
+            {
+            if (color_dc_r >= 0.98)
+                {
+                c = color1_r;
+                }
+            else if (floor(n+color_offset_r/pi/2*colorfreq) % floor(colorfreq) > color_dc_r*colorfreq) or (color_dc_r < 0.02)
+                {
+                c = color2_r;
+                }
+            else 
+                {
+                c = color1_r;
+                }
+            }
+        else if (colormode == "func")
+            if (!func_color())
+                return 0;
                 
         
     if (makedot)
@@ -193,15 +181,14 @@ if !((startposx_r == endx_r) && (startposy_r == endy_r))
             ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
             ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
             ds_list_add(new_list,1);
-            ds_list_add(new_list,c[0]);
-            ds_list_add(new_list,c[1]);
-            ds_list_add(new_list,c[2]);
-            ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
-            ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
-            ds_list_add(new_list,0);
-            ds_list_add(new_list,c[0]);
-            ds_list_add(new_list,c[1]);
-            ds_list_add(new_list,c[2])
+            ds_list_add(new_list,c);
+            repeat (dotmultiply)
+                {
+                ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
+                ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
+                ds_list_add(new_list,0);
+                ds_list_add(new_list,c);
+                }
             }
         else
             {
@@ -212,40 +199,36 @@ if !((startposx_r == endx_r) && (startposy_r == endy_r))
                     ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n-1))*radius);
                     ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n-1))*radius);
                     ds_list_add(new_list,1);
-                    ds_list_add(new_list,c[0]);
-                    ds_list_add(new_list,c[1]);
-                    ds_list_add(new_list,c[2]);
+                    ds_list_add(new_list,c);
                     }
                 else
                     {
                     ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n-1))*radius);
                     ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n-1))*radius);
                     ds_list_add(new_list,0);
-                    ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
-                    ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
-                    ds_list_add(new_list,colour_get_red(controller.enddotscolor_r));
+                    ds_list_add(new_list,controller.enddotscolor_r);
                     }
-                ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n-1))*radius);
-                ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n-1))*radius);
-                ds_list_add(new_list,0);
-                ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
-                ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
-                ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
+                repeat (dotmultiply)
+                    {
+                    ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n-1))*radius);
+                    ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n-1))*radius);
+                    ds_list_add(new_list,0);
+                    ds_list_add(new_list,controller.enddotscolor_r);
+                    }
                 }
             else
                 {
                 ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
                 ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
                 ds_list_add(new_list,0);
-                ds_list_add(new_list,c[0]);
-                ds_list_add(new_list,c[1]);
-                ds_list_add(new_list,c[2])
-                ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
-                ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
-                ds_list_add(new_list,0);
-                ds_list_add(new_list,colour_get_blue(controller.enddotscolor_r));
-                ds_list_add(new_list,colour_get_green(controller.enddotscolor_r));
-                ds_list_add(new_list,colour_get_red(controller.enddotscolor_r))
+                ds_list_add(new_list,c);
+                repeat (dotmultiply)
+                    {
+                    ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
+                    ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
+                    ds_list_add(new_list,0);
+                    ds_list_add(new_list,controller.enddotscolor_r);
+                    }
                 }
             }
 
@@ -255,10 +238,9 @@ if !((startposx_r == endx_r) && (startposy_r == endy_r))
         ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
         ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
         ds_list_add(new_list,blank);
-        ds_list_add(new_list,c[0]);
-        ds_list_add(new_list,c[1]);
-        ds_list_add(new_list,c[2]);
+        ds_list_add(new_list,c);
         }
+        
     if ((cos(startrad+ 2*pi/checkpoints*n)*radius)/128 > xmax)
        xmax = cos(startrad+ 2*pi/checkpoints*n)*radius/128;
     if ((cos(startrad+ 2*pi/checkpoints*n)*radius)/128 < xmin)
@@ -275,15 +257,11 @@ else
     ds_list_add(new_list,endx_r*128);
     ds_list_add(new_list,endy_r*128);
     ds_list_add(new_list,blank);
-    ds_list_add(new_list,c[0]);
-    ds_list_add(new_list,c[1]);
-    ds_list_add(new_list,c[2]);
+    ds_list_add(new_list,c);
     ds_list_add(new_list,endx_r*128);
     ds_list_add(new_list,endy_r*128);
     ds_list_add(new_list,blank);
-    ds_list_add(new_list,c[0]);
-    ds_list_add(new_list,c[1]);
-    ds_list_add(new_list,c[2]);
+    ds_list_add(new_list,c);
     
     xmax = endx_r+1;
     xmin = endx_r;

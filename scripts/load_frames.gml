@@ -34,9 +34,17 @@ if (idbyte == 0)
             numofinds = buffer_read(load_buffer,buffer_s32);
             ind_list = ds_list_create();
             ds_list_add(el_list,ind_list);
-            for (u = 0; u < numofinds; u++)
+            for (u = 0; u < 50; u++)
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
+            for (u = 50; u < numofinds; u+=6)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
+                cr = buffer_read(load_buffer,buffer_s32);
+                cg = buffer_read(load_buffer,buffer_s32);
+                cb = buffer_read(load_buffer,buffer_s32);
+                ds_list_add(ind_list,make_colour_rgb(cr,cg,cb));
                 }
             repeat (30) ds_list_delete(ind_list,19);
             }
@@ -80,9 +88,9 @@ else if (idbyte == 50)
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                ds_list_add(ind_list,make_colour_rgb(buffer_read(load_buffer,buffer_u8),
+                                                    buffer_read(load_buffer,buffer_u8),
+                                                    buffer_read(load_buffer,buffer_u8)));
                 }
             repeat (30) ds_list_delete(ind_list,19);
             }
@@ -126,9 +134,9 @@ else if (idbyte == 51)
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_bool));
-                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                ds_list_add(ind_list,make_colour_rgb(buffer_read(load_buffer,buffer_u8),
+                                                    buffer_read(load_buffer,buffer_u8),
+                                                    buffer_read(load_buffer,buffer_u8)));
                 }
             repeat (30) ds_list_delete(ind_list,19);
             }
@@ -167,14 +175,12 @@ else if (idbyte == 52)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_bool));
                 }
-            for (u = 20; u < numofinds; u += 6)
+            for (u = 20; u < numofinds; u += 4)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_bool));
-                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u32));
                 }
             }
         }

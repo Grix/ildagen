@@ -29,14 +29,12 @@ for (j = 0; j < maxframes;j++)
             {
             buffer_write(save_buffer,buffer_bool,0);//ds_list_find_value(ind_list,u));
             }
-        for (u = 20; u < tempsize; u += 6)
+        for (u = 20; u < tempsize; u += 4)
             {
             buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u));
             buffer_write(save_buffer,buffer_f32,ds_list_find_value(ind_list,u+1));
             buffer_write(save_buffer,buffer_bool,ds_list_find_value(ind_list,u+2));
-            buffer_write(save_buffer,buffer_u8,floor(ds_list_find_value(ind_list,u+3)));
-            buffer_write(save_buffer,buffer_u8,floor(ds_list_find_value(ind_list,u+4)));
-            buffer_write(save_buffer,buffer_u8,floor(ds_list_find_value(ind_list,u+5)));
+            buffer_write(save_buffer,buffer_u32,ds_list_find_value(ind_list,u+3));
             }
         }
     }

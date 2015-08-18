@@ -71,8 +71,6 @@ for (i = 0; i < 2352; i++)
         ds_list_add(frame_list_parse,blank);
         blank = 0;
         ds_list_add(frame_list_parse,255);
-        ds_list_add(frame_list_parse,255);
-        ds_list_add(frame_list_parse,255);
         
         }
     ds_list_add(hershey_list,frame_list_parse);

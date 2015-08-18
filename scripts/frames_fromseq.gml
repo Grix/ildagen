@@ -56,14 +56,12 @@ with (controller)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_bool));
                 }
-            for (u = 20; u < numofinds; u += 6)
+            for (u = 20; u < numofinds; u += 4)
                 {
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_f32));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_bool));
-                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
-                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u8));
+                ds_list_add(ind_list,buffer_read(load_buffer,buffer_u32));
                 }
             }
         }

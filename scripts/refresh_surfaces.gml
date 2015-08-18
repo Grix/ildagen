@@ -5,12 +5,11 @@ if (!surface_exists(frame_surf))
 if (!surface_exists(frame3d_surf))
     frame3d_surf = surface_create(512,512);
 
-surface_set_target(frame_surf);
-
-draw_clear_alpha(c_white,0);
-
 if (viewmode == 0) or (viewmode == 2)
     {
+    surface_set_target(frame_surf);
+    draw_clear_alpha(c_white,0);
+    
     el_list = ds_list_find_value(frame_list,frame);
     framepoints = 0;
     
@@ -28,27 +27,24 @@ if (viewmode == 0) or (viewmode == 2)
         
         xo = ds_list_find_value(new_list,0)/128;
         yo = ds_list_find_value(new_list,1)/128;
-        listsize = (((ds_list_size(new_list)-20)/6)-1);
+        listsize = (((ds_list_size(new_list)-20)/4)-1);
         
         for (u = 0; u < listsize; u++)
             {
             framepoints++;
-            nextpos = 20+(u+1)*6;
+            nextpos = 20+(u+1)*4;
             nbl = ds_list_find_value(new_list,nextpos+2);
             
             if (nbl == 0)
                 {
-                xp = ds_list_find_value(new_list,nextpos-6);
-                yp = ds_list_find_value(new_list,nextpos-5);
+                xp = ds_list_find_value(new_list,nextpos-4);
+                yp = ds_list_find_value(new_list,nextpos-3);
                 
                 nxp = ds_list_find_value(new_list,nextpos);
                 nyp = ds_list_find_value(new_list,nextpos+1);
-                nb = ds_list_find_value(new_list,nextpos+3);
-                ng = ds_list_find_value(new_list,nextpos+4);
-                nr = ds_list_find_value(new_list,nextpos+5);
                 
-                draw_set_color(make_colour_rgb(nr,ng,nb));
-                if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-4))
+                draw_set_color(ds_list_find_value(new_list,nextpos+3));
+                if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-2))
                     {
                     draw_rectangle(xo+xp/128-1,yo+yp/128-1,xo+xp/128+1,yo+yp/128+1,0);
                     }
@@ -77,26 +73,23 @@ if (viewmode == 0) or (viewmode == 2)
             
             xo = ds_list_find_value(new_list,0)/128;
             yo = ds_list_find_value(new_list,1)/128;
-            listsize = (((ds_list_size(new_list)-20)/6)-1);
+            listsize = (((ds_list_size(new_list)-20)/4)-1);
             
             for (u = 0; u < listsize; u++)
                 {
-                nextpos = 20+(u+1)*6;
+                nextpos = 20+(u+1)*4;
                 nbl = ds_list_find_value(new_list,nextpos+2);
                 
                 if (nbl == 0)
                     {
-                    xp = ds_list_find_value(new_list,nextpos-6);
-                    yp = ds_list_find_value(new_list,nextpos-5);
+                    xp = ds_list_find_value(new_list,nextpos-4);
+                    yp = ds_list_find_value(new_list,nextpos-3);
                     
                     nxp = ds_list_find_value(new_list,nextpos);
                     nyp = ds_list_find_value(new_list,nextpos+1);
-                    nb = ds_list_find_value(new_list,nextpos+3);
-                    ng = ds_list_find_value(new_list,nextpos+4);
-                    nr = ds_list_find_value(new_list,nextpos+5);
                     
-                    draw_set_color(make_colour_rgb(nr,ng,nb));
-                    if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-4))
+                    draw_set_color(ds_list_find_value(new_list,nextpos+3));
+                    if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-2))
                         {
                         draw_rectangle(xo+xp/128-1,yo+yp/128-1,xo+xp/128+1,yo+yp/128+1,0);
                         }
@@ -110,10 +103,8 @@ if (viewmode == 0) or (viewmode == 2)
         
     el_list = ds_list_find_value(frame_list,frame);
     draw_set_alpha(1);
-    
+    surface_reset_target();
     }
-
-surface_reset_target();
 
 if (viewmode != 0)
     {
