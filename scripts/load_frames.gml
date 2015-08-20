@@ -41,10 +41,9 @@ if (idbyte == 0)
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
                 ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
-                cr = buffer_read(load_buffer,buffer_s32);
-                cg = buffer_read(load_buffer,buffer_s32);
-                cb = buffer_read(load_buffer,buffer_s32);
-                ds_list_add(ind_list,make_colour_rgb(cr,cg,cb));
+                ds_list_add(ind_list,make_colour_rgb(buffer_read(load_buffer,buffer_s32),
+                                                    buffer_read(load_buffer,buffer_s32),
+                                                    buffer_read(load_buffer,buffer_s32)));
                 }
             repeat (30) ds_list_delete(ind_list,19);
             }

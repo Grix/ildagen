@@ -104,12 +104,9 @@ for (j = 0; j < maxframes;j++)
                 continue;
                 }
             
-            b = colour_get_blue(ds_list_find_value(list_id,currentpos+3));
-            if (is_undefined(b) and bl) {b = 0}
-            g = colour_get_green(ds_list_find_value(list_id,currentpos+3));
-            if (is_undefined(g) and bl) {g = 0}
-            r = colour_get_red(ds_list_find_value(list_id,currentpos+3));
-            if (is_undefined(r) and bl) {r = 0}
+            c = ds_list_find_value(list_id,currentpos+3);
+            if (is_undefined(c)) and (bl)
+                c = c_black;
             
             //adjusting values for writing to buffer
             xpe = xp;
@@ -125,7 +122,7 @@ for (j = 0; j < maxframes;j++)
             
             if (exp_optimize == 1) and (bl != blankprev)
                 {
-                repeat (3)
+                repeat (2)
                     {
                     //writing point
                     buffer_write(ilda_buffer,buffer_u8,xpa[1]);
@@ -133,9 +130,9 @@ for (j = 0; j < maxframes;j++)
                     buffer_write(ilda_buffer,buffer_u8,ypa[1]);
                     buffer_write(ilda_buffer,buffer_u8,ypa[0]);
                     buffer_write(ilda_buffer,buffer_u8,bl);
-                    buffer_write(ilda_buffer,buffer_u8,b);
-                    buffer_write(ilda_buffer,buffer_u8,g);
-                    buffer_write(ilda_buffer,buffer_u8,r);
+                    buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
+                    buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
+                    buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
                     maxpoints++;
                     }
                 blankprev = bl;
@@ -172,9 +169,9 @@ for (j = 0; j < maxframes;j++)
                 buffer_write(ilda_buffer,buffer_u8,ypa[1]);
                 buffer_write(ilda_buffer,buffer_u8,ypa[0]);
                 buffer_write(ilda_buffer,buffer_u8,blank);
-                buffer_write(ilda_buffer,buffer_u8,b);
-                buffer_write(ilda_buffer,buffer_u8,g);
-                buffer_write(ilda_buffer,buffer_u8,r);
+                buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
+                buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
+                buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
                 maxpoints++;
                 }
             }

@@ -4,8 +4,8 @@ ypeprev = ype;
 list_id = ds_list_find_value(el_list,i+1);
 xo = ds_list_find_value(list_id,0);
 yo = ds_list_find_value(list_id,1);
-xpe = xo+ds_list_find_value(list_id,20+0*6+0);
-ype = $ffff-(yo+ds_list_find_value(list_id,20+0*6+1));
+xpe = xo+ds_list_find_value(list_id,20+0*4+0);
+ype = $ffff-(yo+ds_list_find_value(list_id,20+0*4+1));
 opt_dist = point_distance(xpeprev,ypeprev,xpe,ype);
 
 if (opt_dist < controller.opt_maxdist)

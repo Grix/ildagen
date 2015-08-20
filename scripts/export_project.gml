@@ -94,7 +94,7 @@ for (j = startframe; j < endframe;j++)
                 for (u = 0; u < numofel; u++)
                     {
                     numofdata = buffer_read(el_buffer,buffer_u32)-20;
-                    buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*2);
+                    buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*3.25);
                     }
                 }
                 
@@ -114,14 +114,12 @@ for (j = startframe; j < endframe;j++)
                     {
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
                     }
-                for (u = 20; u < numofinds; u += 6)
+                for (u = 20; u < numofinds; u += 4)
                     {
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
-                    ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
-                    ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
-                    ds_list_add(ind_list,buffer_read(el_buffer,buffer_u8));
+                    ds_list_add(ind_list,buffer_read(el_buffer,buffer_u32));
                     }
                 }
                     
@@ -162,29 +160,27 @@ for (j = startframe; j < endframe;j++)
         
         //TODO if just one
         
-        listsize = ((ds_list_size(list_id)-20)/6);
+        listsize = ((ds_list_size(list_id)-20)/4);
         
         var blankprev = 0;
         for (u = 0; u < listsize; u++)
             {
             //getting values from element list
+            currentpos = 20+u*4;
             
-            bl = ds_list_find_value(list_id,20+u*6+2);
+            bl = ds_list_find_value(list_id,currentpos+2);
             
-            xp = xo+ds_list_find_value(list_id,20+u*6+0);
-            yp = $ffff-(yo+ds_list_find_value(list_id,20+u*6+1));
+            xp = xo+ds_list_find_value(list_id,currentpos+0);
+            yp = $ffff-(yo+ds_list_find_value(list_id,currentpos+1));
             if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
                 {
                 blanktemp = 1;
                 continue;
                 }
             
-            b = ds_list_find_value(list_id,20+u*6+3);
-            if (is_undefined(b) and bl) {b = 0}
-            g = ds_list_find_value(list_id,20+u*6+4);
-            if (is_undefined(g) and bl) {g = 0}
-            r = ds_list_find_value(list_id,20+u*6+5);
-            if (is_undefined(r) and bl) {r = 0}
+            c = ds_list_find_value(list_id,currentpos+3);
+            if (is_undefined(c)) and (bl)
+                c = c_black;
             
             //adjusting values for writing to buffer
             xpe = xp;
@@ -200,7 +196,7 @@ for (j = startframe; j < endframe;j++)
             
             if (controller.exp_optimize == 1) and (bl != blankprev)
                 {
-                repeat (3)
+                repeat (2)
                     {
                     //writing point
                     buffer_write(ilda_buffer,buffer_u8,xpa[1]);
@@ -208,9 +204,9 @@ for (j = startframe; j < endframe;j++)
                     buffer_write(ilda_buffer,buffer_u8,ypa[1]);
                     buffer_write(ilda_buffer,buffer_u8,ypa[0]);
                     buffer_write(ilda_buffer,buffer_u8,bl);
-                    buffer_write(ilda_buffer,buffer_u8,b);
-                    buffer_write(ilda_buffer,buffer_u8,g);
-                    buffer_write(ilda_buffer,buffer_u8,r);
+                    buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
+                    buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
+                    buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
                     maxpoints++;
                     }
                 blankprev = bl;
@@ -221,25 +217,25 @@ for (j = startframe; j < endframe;j++)
             else if (bl)
                 {
                 blank = $40;
-                if (u == (ds_list_size(list_id)-20)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
+                if (u == (ds_list_size(list_id)-20)/4-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
                     blank = $C0;
                 }
             else
                 {
                 blank = $0;
-                if (u == (ds_list_size(list_id)-20)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
+                if (u == (ds_list_size(list_id)-20)/4-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
                     blank = $80;
                 }
             if (blanktemp == 1)
                 {
                 blank = $40;
                 blanktemp = 0;
-                if (u == (ds_list_size(list_id)-20)/6-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
+                if (u == (ds_list_size(list_id)-20)/4-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
                     blank = $C0;
                 }
             
             
-            if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,20+(u+1)*6+2))) or (controller.exp_optimize == 1)
+            if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,20+(u+1)*4+2))) or (controller.exp_optimize == 1)
                 {
                 //writing point
                 buffer_write(ilda_buffer,buffer_u8,xpa[1]);
@@ -247,9 +243,9 @@ for (j = startframe; j < endframe;j++)
                 buffer_write(ilda_buffer,buffer_u8,ypa[1]);
                 buffer_write(ilda_buffer,buffer_u8,ypa[0]);
                 buffer_write(ilda_buffer,buffer_u8,blank);
-                buffer_write(ilda_buffer,buffer_u8,b);
-                buffer_write(ilda_buffer,buffer_u8,g);
-                buffer_write(ilda_buffer,buffer_u8,r);
+                buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
+                buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
+                buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
                 maxpoints++;
                 }
             

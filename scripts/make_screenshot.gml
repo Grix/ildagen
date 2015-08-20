@@ -61,17 +61,18 @@ for (i = 0;i < ds_list_size(el_list);i++)
     
     for (u = 0; u < (((ds_list_size(new_list)-20)/4)-1); u++)
         {
-        nbl = ds_list_find_value(new_list,20+(u+1)*6+2);
+        currentpos = 20+u*4;
+        nextpos = 20+(u+1)*4;
         
-        if (nbl == 0)
+        if (ds_list_find_value(new_list,nextpos+2) == 0)
             {
-            xp = ds_list_find_value(new_list,20+u*6+0);
-            yp = ds_list_find_value(new_list,20+u*6+1);
+            xp = ds_list_find_value(new_list,currentpos+0);
+            yp = ds_list_find_value(new_list,currentpos+1);
             
-            nxp = ds_list_find_value(new_list,20+(u+1)*6+0);
-            nyp = ds_list_find_value(new_list,20+(u+1)*6+1);
+            nxp = ds_list_find_value(new_list,nextpos+0);
+            nyp = ds_list_find_value(new_list,nextpos+1);
             
-            draw_set_color(ds_list_find_value(new_list,20+(u+1)*6+3));
+            draw_set_color(ds_list_find_value(new_list,nextpos+3));
             if (xp == nxp) && (yp == nyp)
                 {
                 draw_point(xo+xp/$ffff*32,yo+yp/$ffff*32);

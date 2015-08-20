@@ -1,16 +1,4 @@
 //all the interaction with the timeline
-
-if (mouse_x == clamp(mouse_x,0,tlw)) 
-&& (mouse_y == clamp(mouse_y,132,room_height))
-    {
-    if (mouse_wheel_up())
-        {
-        tlzoom *= 0.8;
-        if (tlzoom < 10) tlzoom = 10;
-        }
-    if (mouse_wheel_down())
-        tlzoom *= 1.2;
-    }
     
 mouseonsomelayer = 0;
 scrollbarw = clamp(((tlzoom+18)/length)*tlw-18,32,tlw-18);
@@ -217,7 +205,25 @@ else if (scroll_moving == 2)
     
 if (mouse_x > tlw) 
 or (mouse_y < 132)
-    exit;    
+    exit;  
+    
+if (mouse_wheel_up())
+    {
+    tlxtemp = tlx+mouse_x/tlw*tlzoom;
+    tlzoom *= 0.8;
+    if (tlzoom < 20) 
+        tlzoom = 20;
+    tlx = tlxtemp-mouse_x/tlw*tlzoom;
+    }
+if (mouse_wheel_down())
+    {
+    tlxtemp = tlx+mouse_x/tlw*tlzoom;
+    tlzoom *= 1.2;
+    tlx -= mouse_x/tlw*tlzoom/10;
+    tlx = tlxtemp-mouse_x/tlw*tlzoom;
+    if (tlx < 0) 
+        tlx = 0;
+    }  
     
 //horizontal scroll
 if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw)) 
