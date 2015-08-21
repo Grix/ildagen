@@ -1,7 +1,9 @@
 file_loc = argument0;
 if (file_loc == "") or is_undefined(file_loc)
     exit;
-
+    
+if (FS_file_exists(FStemp+filename_name(file_loc)))
+    FS_file_delete(FStemp+filename_name(file_loc));
 FS_file_copy(file_loc,FStemp+filename_name(file_loc));
     
 load_buffer = buffer_load("temp\"+filename_name(file_loc));

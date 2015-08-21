@@ -28,13 +28,10 @@
             <string>version = "1.0.4";
 versiondate = "2015-07-27";
 
-FS_gmfilesystem_initialize(1);
-FStemp = environment_get_variable("APPDATA")+"\LasershowGen\temp\";
-FS_set_gm_save_area(environment_get_variable("APPDATA")+"\LasershowGen\temp");
-FS_set_working_directory(environment_get_variable("APPDATA")+"\LasershowGen\temp");
+show_debug_message(buffer_load("her"))
 
-//clean temp files
-//FS_clean_temporary();
+//setup file handling system
+FStemp = game_save_id+"temp\";
 if (FS_directory_exists(FStemp))
     {
     while (1)

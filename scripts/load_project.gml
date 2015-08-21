@@ -5,6 +5,8 @@ if (file_loc == "") or is_undefined(file_loc)
     
 clear_project();
 
+if (FS_file_exists(controller.FStemp+filename_name(file_loc)))
+    FS_file_delete(controller.FStemp+filename_name(file_loc));
 FS_file_copy(file_loc,controller.FStemp+filename_name(file_loc));
     
 load_buffer = buffer_load("temp\"+filename_name(file_loc));

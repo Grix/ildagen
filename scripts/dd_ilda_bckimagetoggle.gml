@@ -13,8 +13,6 @@ if (bckimage)
     show_debug_message(bckfile);
     if (bckfile != "")
         {
-        //bckfile = FS_copy_fast(bckfile);
-        show_debug_message(bckfile);
         bck_bckimage = sprite_add(bckfile,1,0,0,0,0);
         if (sprite_get_width(bck_bckimage) > sprite_get_height(bck_bckimage))
             {

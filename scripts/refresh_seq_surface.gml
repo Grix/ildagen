@@ -138,7 +138,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 {
                 surface_set_target(frame3d_surf);
                 draw_set_blend_mode(bm_add);
-                draw_set_alpha(0.6);
+                draw_set_alpha(0.8);
                 
                 for (u = 0; u < listsize; u++)
                     {
@@ -155,21 +155,18 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                         pdir = point_direction(256,68,xo+ xp/409,yo+ yp/409);
                         npdir = point_direction(256,68,xo+ nxp/409,yo+ nyp/409);
                         xxp = 256+cos(degtorad(-pdir))*400;
-                        yyp = 68+sin(degtorad(-pdir))*400;
+                        yyp = 68+sin(degtorad(-pdir))*200;
                         nxxp = 256+cos(degtorad(-npdir))*400;
-                        nyyp = 68+sin(degtorad(-npdir))*400;
-                        
-                        colorp = ds_list_find_value(new_list,nextpos+3);
-                        colorpfade = merge_colour(colorp,c_black,0.1);
+                        nyyp = 68+sin(degtorad(-npdir))*200;
                         
                         if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-2))
                             {
+                            draw_set_alpha(0.9);
+                            draw_line_colour(256,68,xxp,yyp,ds_list_find_value(new_list,nextpos+3),c_black);
                             draw_set_alpha(0.8);
-                            draw_line_colour(256,68,xxp,yyp,colorp,colorpfade);
-                            draw_set_alpha(0.6);
                             }
                         else
-                            draw_triangle_colour(256,68,xxp,yyp,nxxp,nyyp,colorp,colorpfade,colorpfade,0);
+                            draw_triangle_colour(256,68,xxp,yyp,nxxp,nyyp,ds_list_find_value(new_list,nextpos+3),c_black,c_black,0);
                         }
                     }
                 draw_set_blend_mode(bm_normal);

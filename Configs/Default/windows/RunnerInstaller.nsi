@@ -29,7 +29,7 @@
 !endif
 
 !ifndef COPYRIGHT_TXT
-!define COPYRIGHT_TXT     "(c)Copyright 2014"
+!define COPYRIGHT_TXT     "(c)Copyright 2015"
 !endif
 
 !ifndef FILE_DESC
@@ -173,6 +173,10 @@ SectionEnd
 ; Uninstaller
 
 Section "Uninstall"
+
+  ${unregisterExtension} ".igf" "LasershowGen Frames"
+  ${unregisterExtension} ".igp" "LasershowGen Project"
+
   ; Remove registry keys
   DeleteRegKey SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\${SHORT_NAME}"
 

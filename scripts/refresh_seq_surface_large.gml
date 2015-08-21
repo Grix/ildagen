@@ -138,7 +138,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 {
                 surface_set_target(frame3d_surf_large);
                 draw_set_blend_mode(bm_add);
-                draw_set_alpha(0.6);
+                draw_set_alpha(0.8);
                 
                 for (u = 0; u < listsize; u++)
                     {
@@ -155,22 +155,19 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                         
                         pdir = point_direction(300,300,xo+ xp/110,yo+ yp/110);
                         npdir = point_direction(300,300,xo+ nxp/110,yo+ nyp/110);
-                        xxp = 300+cos(degtorad(-pdir))*1500;
-                        yyp = 300+sin(degtorad(-pdir))*1500;
-                        nxxp = 300+cos(degtorad(-npdir))*1500;
-                        nyyp = 300+sin(degtorad(-npdir))*1500;
-                        
-                        colorp = ds_list_find_value(new_list,nextpos+3);
-                        colorpfade = merge_colour(colorp,c_black,0.9);
+                        xxp = 300+cos(degtorad(-pdir))*500;
+                        yyp = 300+sin(degtorad(-pdir))*500;
+                        nxxp = 300+cos(degtorad(-npdir))*500;
+                        nyyp = 300+sin(degtorad(-npdir))*500;
                         
                         if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-2))
                             {
+                            draw_set_alpha(0.9);
+                            draw_line_colour(300,300,xxp,yyp,ds_list_find_value(new_list,nextpos+3),c_black);
                             draw_set_alpha(0.8);
-                            draw_line_colour(300,300,xxp,yyp,colorp,colorpfade);
-                            draw_set_alpha(0.6);
                             }
                         else
-                            draw_triangle_colour(300,300,xxp,yyp,nxxp,nyyp,colorp,colorpfade,colorpfade,0);
+                            draw_triangle_colour(300,300,xxp,yyp,nxxp,nyyp,ds_list_find_value(new_list,nextpos+3),c_black,c_black,0);
                         }
                     }
                 draw_set_blend_mode(bm_normal);
