@@ -7,7 +7,7 @@ songfile = songfile_loc;
 songfile_name = filename_name(songfile);
 FS_file_copy(songfile,songfile_name);
 song = FMODSoundAdd(songfile_name,0,0);
-if (!song) 
+if (!song)
     {
     show_message_async("Failed to load audio: "+FMODErrorStr(FMODGetLastError()));
     exit;
