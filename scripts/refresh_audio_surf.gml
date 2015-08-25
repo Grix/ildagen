@@ -15,21 +15,22 @@ surface_set_target(audio_surf);
     draw_set_alpha(1);
     draw_set_colour(c_black);
     tempstarty = tlh+16-layerbarx;
+    ypos = tempstarty-48;
     for (i = 0; i <= ds_list_size(layer_list);i++)
         {
+        ypos += 48;
         if (i < floor(layerbarx/48))
             continue;
-            
-        i48 = i*48;
         
-        mouseover = (mouse_x == clamp(mouse_x,8,40)) && (mouse_y == clamp(mouse_y,138+tempstarty+i48+8,138+tempstarty+i48+40))
         if (i == ds_list_size(layer_list))
             {
-            draw_sprite(spr_addlayer,mouseover,8,tempstarty+i48+8);
+            draw_sprite(spr_addlayer,
+                        (mouse_x == clamp(mouse_x,tlw-56,tlw-24)) && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
+                        tlw-56,ypos+8);
             break;
             }
                         
-        draw_rectangle_colour(0,tempstarty+i48,tlw-17,tempstarty+i48+48,c_white,c_white,c_silver,c_silver,0);
+        draw_rectangle_colour(0,ypos,tlw-17,ypos+48,c_white,c_white,c_silver,c_silver,0);
         
         layer = ds_list_find_value(layer_list, i);
         for (j = 0; j < ds_list_size(layer); j++)
@@ -51,18 +52,18 @@ surface_set_target(audio_surf);
                 show_debug_message("start" +string(framestartx))
                 show_debug_message("end" +string(frameendx))*/
                 draw_set_colour(c_dkgray);
-                    draw_rectangle(framestartx,tempstarty+i48,frameendx,tempstarty+i48+48,0);
+                    draw_rectangle(framestartx,ypos,frameendx,ypos+48,0);
                 draw_set_colour(c_green);
-                    draw_rectangle(framestartx,tempstarty+i48,frameendx,tempstarty+i48+48,1);
+                    draw_rectangle(framestartx,ypos,frameendx,ypos+48,1);
                 draw_set_colour(c_white);
                 if (!surface_exists(ds_list_find_value(infolist,1)))
                     ds_list_replace(infolist,1,make_screenshot(ds_list_find_value(objectlist,1)));
-                draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp((duration+1)*tlwdivtlzoom,0,32)-1,32,framestartx+1,tempstarty+i48+8);
+                draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp((duration+1)*tlwdivtlzoom,0,32)-1,32,framestartx+1,ypos+8);
                 if (selectedlayer == i) and (selectedx == -objectlist)
                     {
                     draw_set_color(c_gold);
                     draw_set_alpha(0.3);
-                        draw_rectangle(framestartx,tempstarty+i48,frameendx,tempstarty+i48+48,0);
+                        draw_rectangle(framestartx,ypos,frameendx,ypos+48,0);
                     draw_set_alpha(1);
                     draw_set_color(c_black);
                     }
@@ -70,8 +71,10 @@ surface_set_target(audio_surf);
             }
         
         draw_set_colour(c_black);
-        draw_rectangle(0,tempstarty+i48,tlw-17,tempstarty+i48+48,1);
-        draw_sprite(spr_deletelayer,mouseover,8,tempstarty+i48+8);
+        draw_rectangle(0,ypos,tlw-17,ypos+48,1);
+        draw_sprite(spr_deletelayer,
+                        (mouse_x == clamp(mouse_x,tlw-56,tlw-24)) && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
+                        tlw-56,ypos+8);
         }
     
     //scroll

@@ -21,9 +21,8 @@ if (song)
     song = 0;
     }
     
-num_layers = ds_list_size(layer_list);
 selectedlayer = 0;
-repeat (num_layers)   
+repeat (ds_list_size(layer_list))   
     {
     layer = ds_list_find_value(layer_list,0);
     num_objects = ds_list_size(layer);

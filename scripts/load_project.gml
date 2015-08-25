@@ -12,9 +12,9 @@ FS_file_copy(file_loc,controller.FStemp+filename_name(file_loc));
 load_buffer = buffer_load("temp\"+filename_name(file_loc));
     
 idbyte = buffer_read(load_buffer,buffer_u8);
-if (idbyte != 100)
+if (idbyte != 100) and (idbyte != 101)
     {
-    show_message_async("Unexpected byte, is this a valid LasershowGen project file?");
+    show_message_async("Unexpected ID byte, is this a valid LasershowGen project file?");
     exit;
     }
     
@@ -26,31 +26,84 @@ endframe = buffer_read(load_buffer,buffer_u32);
 length = endframe+50;
 buffer_seek(load_buffer,buffer_seek_start,50);
 
-maxlayers = buffer_read(load_buffer,buffer_u32);
-for (j = 0; j < maxlayers;j++)
+if (idbyte == 101)
     {
-    layertemp = ds_list_create();
-    ds_list_add(layer_list,layertemp);
-    
-    numofobjects = buffer_read(load_buffer,buffer_u32);
-    for (i = 0; i < numofobjects;i++)
+    maxlayers = buffer_read(load_buffer,buffer_u32);
+    for (j = 0; j < maxlayers;j++)
         {
-        objectlist = ds_list_create();
-        ds_list_add(objectlist,buffer_read(load_buffer,buffer_u32));
+        layertemp = ds_list_create();
+        ds_list_add(layer_list,layertemp);
         
-        objectbuffersize = buffer_read(load_buffer,buffer_u32);
-        objectbuffer = buffer_create(objectbuffersize,buffer_fixed,1);
-        ds_list_add(objectlist,objectbuffer);
-        buffer_copy(load_buffer,buffer_tell(load_buffer),objectbuffersize,objectbuffer,0);
-        buffer_seek(load_buffer,buffer_seek_relative,objectbuffersize);
+        numofobjects = buffer_read(load_buffer,buffer_u32);
+        for (i = 0; i < numofobjects;i++)
+            {
+            objectlist = ds_list_create();
+            ds_list_add(objectlist,buffer_read(load_buffer,buffer_u32));
+            
+            objectbuffersize = buffer_read(load_buffer,buffer_u32);
+            objectbuffer = buffer_create(objectbuffersize,buffer_fixed,1);
+            ds_list_add(objectlist,objectbuffer);
+            buffer_copy(load_buffer,buffer_tell(load_buffer),objectbuffersize,objectbuffer,0);
+            buffer_seek(load_buffer,buffer_seek_relative,objectbuffersize);
+            
+            objectinfolist = ds_list_create();
+            ds_list_add(objectlist,objectinfolist);
+            ds_list_add(objectinfolist,buffer_read(load_buffer,buffer_u32));
+            ds_list_add(objectinfolist,-1);
+            ds_list_add(objectinfolist,buffer_read(load_buffer,buffer_u32));
+            
+            ds_list_add(layertemp,objectlist);
+            }
+        numofparameters = buffer_read(load_buffer,buffer_u32);
+        }
+    }
+else if (idbyte == 100) //old, need to remake buffers
+    {
+    maxlayers = buffer_read(load_buffer,buffer_u32);
+    for (j = 0; j < maxlayers;j++)
+        {
+        layertemp = ds_list_create();
+        ds_list_add(layer_list,layertemp);
         
-        objectinfolist = ds_list_create();
-        ds_list_add(objectlist,objectinfolist);
-        ds_list_add(objectinfolist,buffer_read(load_buffer,buffer_u32));
-        ds_list_add(objectinfolist,-1);
-        ds_list_add(objectinfolist,buffer_read(load_buffer,buffer_u32));
-        
-        ds_list_add(layertemp,objectlist);
+        numofobjects = buffer_read(load_buffer,buffer_u32);
+        for (i = 0; i < numofobjects;i++)
+            {
+            objectlist = ds_list_create();
+            ds_list_add(objectlist,buffer_read(load_buffer,buffer_u32));
+            
+            objectbuffersize = buffer_read(load_buffer,buffer_u32);
+            objectbuffer = buffer_create(objectbuffersize,buffer_fixed,1);
+            buffer_copy(load_buffer,buffer_tell(load_buffer),objectbuffersize,objectbuffer,0);
+            buffer_seek(load_buffer,buffer_seek_relative,objectbuffersize);
+            bufferpos = buffer_tell(load_buffer);
+            
+            //remake
+            buffer_seek(objectbuffer,buffer_seek_start,0);
+            bufferver = buffer_read(objectbuffer,buffer_u8);
+            new_objectbuffer = buffer_create(1,buffer_grow,1);
+            ds_list_add(objectlist,new_objectbuffer);
+            buffer_copy(objectbuffer,0,50,new_objectbuffer,0);
+            buffer_seek(objectbuffer,buffer_seek_start,50);
+            buffer_seek(new_objectbuffer,buffer_seek_start,50);
+            for (u = 50; u >= objectbuffersize; u += 6)
+                {
+                buffer_write(new_objectbuffer,buffer_f32,buffer_read(objectbuffer,buffer_f32));
+                buffer_write(new_objectbuffer,buffer_f32,buffer_read(objectbuffer,buffer_f32));
+                buffer_write(new_objectbuffer,buffer_bool,buffer_read(objectbuffer,buffer_bool));
+                buffer_write(new_objectbuffer,buffer_u32,make_colour_rgb(buffer_read(objectbuffer,buffer_u8),
+                                                                        buffer_read(objectbuffer,buffer_u8),
+                                                                        buffer_read(objectbuffer,buffer_u8)));
+                }
+            buffer_delete(objectbuffer);
+            
+            objectinfolist = ds_list_create();
+            ds_list_add(objectlist,objectinfolist);
+            ds_list_add(objectinfolist,buffer_read(load_buffer,buffer_u32));
+            ds_list_add(objectinfolist,-1);
+            ds_list_add(objectinfolist,buffer_read(load_buffer,buffer_u32));
+            
+            ds_list_add(layertemp,objectlist);
+            }
         }
     }
     

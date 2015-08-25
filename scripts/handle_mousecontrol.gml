@@ -304,15 +304,18 @@ for (i = 0; i < ds_list_size(marker_list); i++)
 //layers
 tempstarty = tls-layerbarx;
 
+ypos = tempstarty-48;
 for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < floor((layerbarx+lbh)/48); i++)
     { 
+    ypos += 48;
+    
     if (i < floor(layerbarx/48))
         continue;
         
-    mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,tempstarty+i*48,tempstarty+i*48+48))
+    mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+48))
     if (mouseonlayer)
         {
-        mouseover = (mouse_x == clamp(mouse_x,8,40)) && (mouse_y == clamp(mouse_y,tempstarty+i*48+8,tempstarty+i*48+40))
+        mouseover = (mouse_x == clamp(mouse_x,tlw-56,tlw-24)) && (mouse_y == clamp(mouse_y,ypos+8,ypos+40))
         if (i == ds_list_size(layer_list))
             {
             if (mouseover) 
@@ -414,7 +417,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 
             controller.tooltip = "Click to select this layer position#Right click for more options";
             floatingcursorx = round(tlx+mouse_x/tlw*tlzoom);
-            floatingcursory = tempstarty+i*48-1;
+            floatingcursory = ypos-1;
             draw_cursorline = 1;
             draw_mouseline = 1;
             

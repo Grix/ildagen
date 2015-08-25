@@ -25,10 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.0.4";
-versiondate = "2015-07-27";
-
-show_debug_message(buffer_load("her"))
+            <string>version = "1.0.5";
+versiondate = "2015-08-25";
 
 //setup file handling system
 FStemp = game_save_id+"temp\";

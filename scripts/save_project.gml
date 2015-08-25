@@ -12,7 +12,7 @@ if (file_loc == "")
     
 length = ceil(length);
     
-buffer_write(save_buffer,buffer_u8,100); //version / ID
+buffer_write(save_buffer,buffer_u8,101); //version / ID
 buffer_write(save_buffer,buffer_u8,projectfps); //fps
 buffer_write(save_buffer,buffer_u8,song); //audio enabled
 buffer_write(save_buffer,buffer_u8,parsingaudio); //audio still parsing
@@ -48,6 +48,7 @@ for (i = 0; i < ds_list_size(layer_list); i++)
         buffer_write(save_buffer,buffer_u32,ds_list_find_value(tempinfolist,0));
         buffer_write(save_buffer,buffer_u32,ds_list_find_value(tempinfolist,2));
         }
+    buffer_write(save_buffer,buffer_u32,0);
     }
 
 if (song)
