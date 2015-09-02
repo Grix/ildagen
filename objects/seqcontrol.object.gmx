@@ -63,6 +63,7 @@ selectedlayer = -1;
 selectedx = 0;
 song = 0;
 songlength = 0;
+volume = 100;
 length = 30*30;
 projectfps = 30;
 tooltip = "";
@@ -342,6 +343,7 @@ with (obj_cursor)
     y = mouse_y;
     }
     
+if (controller.dialog_open) exit;
     
 if (keyboard_check(vk_control))
     {

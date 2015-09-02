@@ -32,3 +32,5 @@ tlpos = 0;
 songinstance = FMODSoundPlay(song,1);
 
 set_audio_speed();
+
+FMODGroupSetVolume(1,seqcontrol.volume/100);

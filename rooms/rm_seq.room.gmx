@@ -65,6 +65,7 @@
     <instance objName="obj_clearmarkers" x="968" y="172" name="inst_692C7040" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_openeditor" x="540" y="84" name="inst_44790796" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_largepreview" x="624" y="12" name="inst_1E56ABDC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_volume" x="804" y="52" name="inst_FBE74879" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

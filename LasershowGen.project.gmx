@@ -126,7 +126,7 @@
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\filesaver</extension>
-    <extension index="2">extensions\GMopen</extension>
+    <extension index="1">extensions\GMopen</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -1029,6 +1029,7 @@
         <object>objects\obj_largepreview</object>
         <object>objects\obj_clearmarkers</object>
         <object>objects\obj_playbackspeed</object>
+        <object>objects\obj_volume</object>
       </objects>
       <objects name="ilda">
         <objects name="ani">

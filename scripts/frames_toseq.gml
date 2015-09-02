@@ -84,12 +84,11 @@ with (seqcontrol)
         ds_list_add(info,make_screenshot(controller.save_buffer));
         ds_list_add(info,controller.maxframes);
         ds_list_add(objectlist,info);
-       // ds_list_add(objectlist,objid);
-        //objid++;
         ds_list_add(selectedlayerlist,objectlist);
         
         infolisttemp = info;
         selectedx += controller.maxframes;
+        show_debug_message("new");
         }
     else
         {
@@ -103,8 +102,6 @@ with (seqcontrol)
             surface_free(ds_list_find_value(infolist,1));
         ds_list_replace(infolist,1,make_screenshot(controller.save_buffer));
         ds_list_replace(infolist,2,controller.maxframes);
-        
-        ds_list_add(selectedlayerlist,objectlist);
         
         infolisttemp = infolist;
         }
