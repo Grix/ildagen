@@ -19,6 +19,7 @@ if (song)
     FMODInstanceStop(songinstance);
     FMODSoundFree(song);
     song = 0;
+    buffer_delete(song_buffer);
     }
     
 selectedlayer = 0;

@@ -1,6 +1,6 @@
 letter_list = read_hershey_index_ini(hershey_selected);
     
-checkpoints = (ds_list_size(letter_list)-20)/6;
+checkpoints = (ds_list_size(letter_list)-20)/4;
 blanknew = 1;
 
 xmax = -$ffff;

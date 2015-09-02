@@ -30,21 +30,20 @@ versiondate = "2015-08-25";
 
 //setup file handling system
 FStemp = game_save_id+"temp\";
-if (FS_directory_exists(FStemp))
+if (directory_exists("temp"))
     {
     while (1)
         {
-        file = FS_file_find_first(FStemp+"*", 0);
+        file = file_find_first("temp\*", 0);
         show_debug_message(file)
         if (file == "") or is_undefined(file) or !is_string(file)
             break;
-        FS_file_delete(FStemp+file);
-        if (FS_file_exists(FStemp+file))
+        if (!file_delete("temp\"+file))
             break;
         }
     }
 else
-    FS_directory_create(FStemp);
+    directory_create("temp");
 
 //declarations and setup
 math_set_epsilon(0.00001);
@@ -174,7 +173,7 @@ dialog = "";
 selecting = 0;
 scroll = 0;
 
-opt_maxdist = 3000;
+opt_maxdist = 2500;
 opt_maxdwell = 3;
 
 placing = "line";

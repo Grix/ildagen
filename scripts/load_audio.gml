@@ -4,9 +4,9 @@ songfile_loc = get_open_filename_ext("","","","Select audio file");
 if (is_undefined(songfile_loc) or (songfile_loc == "")) 
     exit;
 songfile = songfile_loc;
+song_buffer = buffer_load(songfile_loc);
 songfile_name = filename_name(songfile);
-FS_file_copy(songfile,songfile_name);
-song = FMODSoundAdd(songfile_name,0,0);
+song = FMODSoundAdd(songfile_loc,0,0);
 if (!song)
     {
     show_message_async("Failed to load audio: "+FMODErrorStr(FMODGetLastError()));

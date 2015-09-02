@@ -15,11 +15,7 @@ file_loc = argument0;
 if (file_loc == "") or is_undefined(file_loc)
     exit;
 
-if (FS_file_exists(controller.FStemp+filename_name(file_loc)))
-    FS_file_delete(controller.FStemp+filename_name(file_loc));
-FS_file_copy(file_loc,controller.FStemp+filename_name(file_loc));
-    
-load_buffer = buffer_load("temp\"+filename_name(file_loc));
+load_buffer = buffer_load(file_loc);
 buffer_seek(load_buffer,buffer_seek_start,0);
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 0) and (idbyte != 50) and (idbyte != 51) and (idbyte != 52)

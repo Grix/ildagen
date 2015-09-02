@@ -54,13 +54,9 @@ for (i = 0; i < ds_list_size(layer_list); i++)
 if (song)
     {
     buffer_write(save_buffer,buffer_string,songfile_name);
-    
-    file_loc_song = songfile;
-    FS_file_copy(file_loc_song,controller.FStemp+filename_name(file_loc_song));
-    load_buffer_song = buffer_load("temp\"+filename_name(file_loc_song));
-    songfile_size = buffer_get_size(load_buffer_song);
+    songfile_size = buffer_get_size(song_buffer);
     buffer_write(save_buffer,buffer_u32,songfile_size);
-    buffer_copy(load_buffer_song,0,songfile_size,save_buffer,buffer_tell(save_buffer));
+    buffer_copy(song_buffer,0,songfile_size,save_buffer,buffer_tell(save_buffer));
     buffer_seek(save_buffer,buffer_seek_relative,songfile_size);
     
     if (!parsingaudio)
@@ -84,26 +80,7 @@ for (i = 0; i < parsinglistsize; i++)
 buffer_resize(save_buffer,buffer_tell(save_buffer));
 
 //export
-if (file_exists("temp/"+filename_name(file_loc)))
-    file_delete("temp/"+filename_name(file_loc));
-if (FS_file_exists(file_loc))
-    FS_file_delete(file_loc);
-buffer_save(save_buffer,"temp/"+filename_name(file_loc));
-FS_file_copy(controller.FStemp+filename_name(file_loc),file_loc);
-
-if (FS_file_exists(file_loc))
-    {
-    binfile = FS_file_bin_open(file_loc,0);
-    binfilesize = FS_file_bin_size(binfile);
-    FS_file_bin_close(binfile);
-    if (binfilesize == buffer_get_size(save_buffer))
-        show_message_async("IGP saved.");
-    else
-        {
-        show_message_async("Problem saving file: Did not pass integrity test. May be corrupt, you might want to try again.");
-        }
-    }
-else
-    show_message_async("Could not save file. May not have access rights, try a different folder.");
+buffer_save(save_buffer,file_loc);
+show_message_async("LasershowGen project saved to "+string(file_loc));
 
 buffer_delete(save_buffer);

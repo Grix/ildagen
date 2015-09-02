@@ -240,26 +240,7 @@ buffer_write(ilda_buffer,buffer_u8,0); //0
 buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
 
 //export
-if (file_exists("temp/"+filename_name(file_loc)))
-    file_delete("temp/"+filename_name(file_loc));
-if (FS_file_exists(file_loc))
-    FS_file_delete(file_loc);
-buffer_save(ilda_buffer,"temp/"+filename_name(file_loc));
-FS_file_copy(controller.FStemp+filename_name(file_loc),file_loc);
-
-if (FS_file_exists(file_loc))
-    {
-    binfile = FS_file_bin_open(file_loc,0);
-    binfilesize = FS_file_bin_size(binfile);
-    FS_file_bin_close(binfile);
-    if (binfilesize == buffer_get_size(ilda_buffer))
-        show_message_async("ILDA file saved.");
-    else
-        {
-        show_message_async("Problem saving file: Did not pass integrity test. May be corrupt, you might want to try again.");
-        }
-    }
-else
-    show_message_async("Could not save file. May not have access rights, try a different folder.");
+buffer_save(ilda_buffer,file_loc);
+show_message_async("ILDA file exported to "+string(file_loc));
 
 buffer_delete(ilda_buffer);

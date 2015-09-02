@@ -4,12 +4,8 @@ if (file_loc == "") or is_undefined(file_loc)
     exit;
     
 clear_project();
-
-if (FS_file_exists(controller.FStemp+filename_name(file_loc)))
-    FS_file_delete(controller.FStemp+filename_name(file_loc));
-FS_file_copy(file_loc,controller.FStemp+filename_name(file_loc));
     
-load_buffer = buffer_load("temp\"+filename_name(file_loc));
+load_buffer = buffer_load(file_loc);
     
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 100) and (idbyte != 101)
@@ -112,12 +108,10 @@ if (songload)
     songfile_name = buffer_read(load_buffer,buffer_string);
     songfile = songfile_name;
     songfile_size = buffer_read(load_buffer,buffer_u32);
-    songfile_buffer = buffer_create(songfile_size,buffer_fixed,1);
-    buffer_copy(load_buffer,buffer_tell(load_buffer),songfile_size,songfile_buffer,0);
+    song_buffer = buffer_create(songfile_size,buffer_fixed,1);
+    buffer_copy(load_buffer,buffer_tell(load_buffer),songfile_size,song_buffer,0);
     buffer_seek(load_buffer,buffer_seek_relative,songfile_size);
-    buffer_save(songfile_buffer,"temp\"+songfile);
-    show_debug_message(controller.FStemp+songfile);
-    buffer_delete(songfile_buffer);
+    buffer_save(song_buffer,"temp\"+songfile);
         
     songinstance = 0;
     song = FMODSoundAdd(controller.FStemp+songfile,0,0);

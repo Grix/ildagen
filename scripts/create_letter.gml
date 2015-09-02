@@ -1,6 +1,6 @@
 letter_list = ds_list_find_value(font_list,ord(letter)-33);
     
-checkpoints = (ds_list_size(letter_list)-20)/6;
+checkpoints = (ds_list_size(letter_list)-20)/4;
 blanknew = 1;
 
 xmax = -$ffff;

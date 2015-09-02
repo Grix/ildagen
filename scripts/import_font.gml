@@ -1,13 +1,10 @@
 with(controller)
     {
     filename = get_open_filename_ext("ILDA font file|*.ild|All files|*","",program_directory,"Select ILDA font file")
-    if (filename_ext(filename) == ".ild")
+    if (filename != "") and (!is_undefined(filename)) and (is_string(filename))
         {
-        ild_filename = FS_file_bin_open(filename,0);
-        file_size = FS_file_bin_size(ild_filename);
-        FS_file_bin_close(ild_filename);
-        FS_file_copy(filename,FStemp+filename_name(filename));
-        ild_file = buffer_load("temp\"+filename_name(filename));
+        ild_file = buffer_load(filename);
+        file_size = buffer_get_size(ild_file);
         }
     else
         {
@@ -53,18 +50,18 @@ with(controller)
     for (i = 0; i < ds_list_size(font_list); i++)
         {
         new_list = ds_list_find_value(font_list,i);
-        checkpoints = ((ds_list_size(new_list)-20)/6);
+        checkpoints = ((ds_list_size(new_list)-20)/4);
         
         for (j = 0; j < (checkpoints-1);j++)
             {
-            temppos = 20+j*6;
+            temppos = 20+j*4;
             
             //if  (ds_list_find_value(new_list,temppos+8) == 1)
             //    continue;
                 
-            if  (ds_list_find_value(new_list,temppos+9) == 0) &&
-                (ds_list_find_value(new_list,temppos+10) == 0) &&
-                (ds_list_find_value(new_list,temppos+11) == 0)
+            if  (ds_list_find_value(new_list,temppos+7) == 0) &&
+                (ds_list_find_value(new_list,temppos+8) == 0) &&
+                (ds_list_find_value(new_list,temppos+9) == 0)
                     {
                     ds_list_replace(new_list,temppos+2,1);
                     continue;
@@ -72,8 +69,8 @@ with(controller)
                 
             length = point_distance( ds_list_find_value(new_list,temppos)
                                     ,ds_list_find_value(new_list,temppos+1)
-                                    ,ds_list_find_value(new_list,temppos+6)
-                                    ,ds_list_find_value(new_list,temppos+7));
+                                    ,ds_list_find_value(new_list,temppos+4)
+                                    ,ds_list_find_value(new_list,temppos+5));
             
             if (length < 600*phi) continue;
             
@@ -81,23 +78,19 @@ with(controller)
             stepscount = round(steps-1);
             tempx0 = ds_list_find_value(new_list,temppos);
             tempy0 = ds_list_find_value(new_list,temppos+1);
-            tempvectx = (ds_list_find_value(new_list,temppos+6)-tempx0)/steps;
-            tempvecty = (ds_list_find_value(new_list,temppos+7)-tempy0)/steps;
-            tempblank = ds_list_find_value(new_list,temppos+8);
-            tempc1 = ds_list_find_value(new_list,temppos+9);
-            tempc2 = ds_list_find_value(new_list,temppos+10);
-            tempc3 = ds_list_find_value(new_list,temppos+11);  
+            tempvectx = (ds_list_find_value(new_list,temppos+4)-tempx0)/steps;
+            tempvecty = (ds_list_find_value(new_list,temppos+5)-tempy0)/steps;
+            tempblank = ds_list_find_value(new_list,temppos+6);
+            tempc = ds_list_find_value(new_list,temppos+7);
                    
             repeat(floor(stepscount))
                 {
                 newx = tempx0+tempvectx*(stepscount);
                 newy = tempy0+tempvecty*(stepscount);
-                ds_list_insert(new_list,temppos+6,tempc3);
-                ds_list_insert(new_list,temppos+6,tempc2);
-                ds_list_insert(new_list,temppos+6,tempc1);
-                ds_list_insert(new_list,temppos+6,tempblank);
-                ds_list_insert(new_list,temppos+6,newy);
-                ds_list_insert(new_list,temppos+6,newx);
+                ds_list_insert(new_list,temppos+4,tempc);
+                ds_list_insert(new_list,temppos+4,tempblank);
+                ds_list_insert(new_list,temppos+4,newy);
+                ds_list_insert(new_list,temppos+4,newx);
                 j++;
                 checkpoints++;
                 stepscount--;

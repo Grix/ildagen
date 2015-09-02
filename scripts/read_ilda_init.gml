@@ -3,12 +3,10 @@
 //return 1 if successful
 
 filename = argument0;
-if (filename != "")
+if (filename != "") and (!is_undefined(filename)) and (is_string(filename))
     {
-    if (FS_file_exists(FStemp+filename_name(filename)))
-        FS_file_delete(FStemp+filename_name(filename));
-    FS_file_copy(filename,FStemp+filename_name(filename));
-    ild_file = buffer_load("temp\"+filename_name(filename));
+    ild_file = buffer_load(filename);
+    file_size = buffer_get_size(ild_file);
     }
 else
     return 0;

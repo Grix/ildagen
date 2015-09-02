@@ -76,11 +76,11 @@ ini_close();
 
 //interpolate
 new_list_parse = frame_list_parse;
-checkpoints = ((ds_list_size(new_list_parse)-20)/6);
+checkpoints = ((ds_list_size(new_list_parse)-20)/4);
 
 for (j = 0; j < (checkpoints-1);j++)
     {
-    temppos = 20+j*6;
+    temppos = 20+j*4;
     
     //if  (ds_list_find_value(new_list_parse,temppos+8) == 1)
     //    continue;
