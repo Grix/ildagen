@@ -4,6 +4,7 @@ frame_surf_refresh = 1;
 parsingaudio = 0;
 ds_list_destroy(audio_list);
 audio_list = ds_list_create();
+ds_list_clear(marker_list);
 
 //todo free memory better:
 for (u = 0; u < ds_list_size(undo_list); u++)

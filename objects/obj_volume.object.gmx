@@ -54,7 +54,7 @@ moving = 0;
     seqcontrol.volume += (mouse_x-mouse_xprevious)/1.28;
     if (seqcontrol.volume  &lt; 0) seqcontrol.volume = 0;
     if (seqcontrol.volume &gt; 100) seqcontrol.volume = 100;
-    FMODGroupSetVolume(1,seqcontrol.volume/100);
+    FMODInstanceSetVolume(seqcontrol.songinstance,seqcontrol.volume/100);
     }
     
 mouse_xprevious = mouse_x;

@@ -127,7 +127,7 @@ if (songload)
             length = songlength/1000*projectfps;
             }
         FMODSoundSetGroup(song, 1);
-        FMODGroupSetVolume(1,seqcontrol.volume/100);
+        FMODInstanceSetVolume(seqcontrol.songinstance,seqcontrol.volume/100);
         
         parseinstance = FMODSoundPlay(song,0);
         FMODInstanceSetMuted(parseinstance,1);

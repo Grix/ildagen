@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="31" name="datafiles">
+  <datafiles number="35" name="datafiles">
     <datafile>
       <name>help.pdf</name>
       <exists>-1</exists>
@@ -41,7 +41,7 @@
     <datafile>
       <name>fmodex.dll</name>
       <exists>-1</exists>
-      <size>370688</size>
+      <size>1263616</size>
       <exportAction>2</exportAction>
       <exportDir></exportDir>
       <overwrite>0</overwrite>
@@ -50,7 +50,7 @@
       <store>0</store>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>1048640</CopyToMask>
+          <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
       <filename>fmodex.dll</filename>
@@ -286,9 +286,6 @@
         <script>scripts\FMODInstanceGetLoopCount.gml</script>
         <script>scripts\FMODInstanceSet3dConeOrientation.gml</script>
         <script>scripts\FMODInstanceSet3dPosition.gml</script>
-        <script>scripts\FMODInstanceFadeVolume.gml</script>
-        <script>scripts\FMODInstanceFadeFrequency.gml</script>
-        <script>scripts\FMODInstanceFadePan.gml</script>
         <script>scripts\FMODInstanceSet3dMinMaxDistance.gml</script>
         <script>scripts\FMODInstanceSet3dDopplerMax.gml</script>
         <script>scripts\FMODInstanceSet3dCone.gml</script>
@@ -308,55 +305,11 @@
         <script>scripts\FMODInstanceGetPitch.gml</script>
         <script>scripts\FMODInstanceSetPitch.gml</script>
       </scripts>
-      <scripts name="Groupings">
-        <script>scripts\FMODAllStop.gml</script>
-        <script>scripts\FMODGroupStop.gml</script>
-        <script>scripts\FMODMasterSetVolume.gml</script>
-        <script>scripts\FMODGroupSetVolume.gml</script>
-        <script>scripts\FMODGroupGetVolume.gml</script>
-        <script>scripts\FMODGroupSetPitch.gml</script>
-        <script>scripts\FMODGroupGetPitch.gml</script>
-        <script>scripts\FMODGroupSetPaused.gml</script>
-        <script>scripts\FMODGroupGetPaused.gml</script>
-        <script>scripts\FMODGroupSetMuted.gml</script>
-        <script>scripts\FMODGroupGetMuted.gml</script>
-        <script>scripts\FMODGroupSetFrequency.gml</script>
-        <script>scripts\FMODGroupSetPan.gml</script>
-        <script>scripts\FMODGroupFadeVolume.gml</script>
-        <script>scripts\FMODGroupFadePitch.gml</script>
-        <script>scripts\FMODGroupFadePan.gml</script>
-        <script>scripts\FMODGroupGetWaveSnapshot.gml</script>
-        <script>scripts\FMODGroupGetSpectrumSnapshot.gml</script>
-        <script>scripts\FMODGroupGetWaveSnapshot2.gml</script>
-        <script>scripts\FMODGroupGetSpectrumSnapshot2.gml</script>
-      </scripts>
-      <scripts name="Listener">
-        <script>scripts\FMODListenerSetNumber.gml</script>
-        <script>scripts\FMODListenerSet3dPosition.gml</script>
-        <script>scripts\FMODListenerSet3dPositionEx.gml</script>
-        <script>scripts\FMODListenerHearsDistanceOnly.gml</script>
-        <script>scripts\FMODSetDopplerFPS.gml</script>
-        <script>scripts\FMODSetWorldScale.gml</script>
-      </scripts>
       <scripts name="Password">
         <script>scripts\FMODSetPassword.gml</script>
       </scripts>
-      <scripts name="Blockers">
-        <script>scripts\FMODBlockersInit.gml</script>
-        <script>scripts\FMODBlockersFree.gml</script>
-        <script>scripts\FMODBlockersAddGMObjects.gml</script>
-        <script>scripts\FMODBlockerAdd.gml</script>
-        <script>scripts\FMODBlockerSet3dPosition.gml</script>
-        <script>scripts\FMODBlockerSet3dOrientation.gml</script>
-        <script>scripts\FMODBlockerSet3dScale.gml</script>
-        <script>scripts\FMODBlockerSetEnabled.gml</script>
-        <script>scripts\FMODBlockerGetEnabled.gml</script>
-        <script>scripts\FMODBlockerGetStrength.gml</script>
-        <script>scripts\FMODBlockerSetStrength.gml</script>
-      </scripts>
       <scripts name="DynaEffects">
         <script>scripts\FMODInstanceAddEffect.gml</script>
-        <script>scripts\FMODGroupAddEffect.gml</script>
         <script>scripts\FMODEffectFree.gml</script>
         <script>scripts\FMODEffectGetNumParams.gml</script>
         <script>scripts\FMODEffectGetParamValue.gml</script>
@@ -400,20 +353,6 @@
         <script>scripts\FMODUpdateTakeOverDone.gml</script>
         <script>scripts\FMODSpectrumSetSnapshotType.gml</script>
         <script>scripts\FMODSnapShotToDsList.gml</script>
-      </scripts>
-      <scripts name="webstream">
-        <script>scripts\FMODSoundAddAsyncStream.gml</script>
-        <script>scripts\FMODSoundAsyncReady.gml</script>
-        <script>scripts\FMODInstanceAsyncOK.gml</script>
-        <script>scripts\FMODServerError.gml</script>
-        <script>scripts\FMODGetTagData.gml</script>
-        <script>scripts\FMODGetTagName.gml</script>
-        <script>scripts\FMODInstanceGetNextTag.gml</script>
-      </scripts>
-      <scripts name="Mic">
-        <script>scripts\FMODCreateSoundFromMicInput.gml</script>
-        <script>scripts\FMODMicStart.gml</script>
-        <script>scripts\FMODMicStop.gml</script>
       </scripts>
     </scripts>
     <scripts name="MATH_LOGICAL_PARSER">
@@ -1116,12 +1055,6 @@
       <object>objects\obj_load</object>
       <object>objects\obj_import</object>
       <object>objects\obj_help</object>
-    </objects>
-    <objects name="GMFMODSimple">
-      <object>objects\FMODFaderObj</object>
-      <object>objects\FMODPanFaderObj</object>
-      <object>objects\FMODFreqFaderObj</object>
-      <object>objects\FMODPitchFaderObj</object>
     </objects>
   </objects>
   <rooms name="rooms">

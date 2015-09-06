@@ -18,7 +18,7 @@ if (length < songlength/1000*projectfps)
     length = songlength/1000*projectfps;
     endframe = length;
     }
-FMODSoundSetGroup(song, 1);
+//FMODSoundSetGroup(song, 1);
 
 ds_list_clear(audio_list);
 parseinstance = FMODSoundPlay(song,0);
@@ -33,4 +33,4 @@ songinstance = FMODSoundPlay(song,1);
 
 set_audio_speed();
 
-FMODGroupSetVolume(1,seqcontrol.volume/100);
+FMODInstanceSetVolume(seqcontrol.songinstance,seqcontrol.volume/100);

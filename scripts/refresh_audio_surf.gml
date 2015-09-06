@@ -86,7 +86,7 @@ surface_set_target(audio_surf);
     draw_rectangle_colour(scrollbarx+1,lbsh+17,scrollbarx+1+scrollbarw,lbsh,c_ltgray,c_ltgray,c_gray,c_gray,0);
     draw_rectangle_colour(tlw-16,tls+(layerbarx*layerbarw/lbh)-138,tlw,tls+(layerbarx*layerbarw/lbh)+layerbarw-138,c_ltgray,c_gray,c_gray,c_ltgray,0);
     draw_set_colour(c_black);
-        draw_rectangle(0,lbsh+17,tlw,lbsh,1);
+        draw_rectangle(0,lbsh+17,tlw+4,lbsh,1);
         draw_rectangle(tlw-16,tls-138,tlw,lbsh+17,1);
     
     //timeline 
