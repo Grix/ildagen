@@ -33,6 +33,7 @@ layer = ds_list_create();
 ds_list_add(layer_list,layer);
 surface_list = ds_list_create();
 somaster_list = ds_list_create();
+somoving_list = ds_list_create();
 undo_list = ds_list_create();
 audio_list = ds_list_create();
 effect_list = ds_list_create();
@@ -83,6 +84,8 @@ dialog = "";
 drawcursorx = 0;
 drawcursory = 0;
 moving_object = 0;
+moving_object_flag = 0;
+
 startframe = 0;
 endframe = 800;
 startframex = -1;
@@ -680,7 +683,7 @@ UnloadFMOD();
             <kind>1</kind>
             <string>if (room != rm_seq) exit;
 
-if ((alarm[0] == 1)) or (playing and (alarm[0] mod 2) == 1) or (moving_object) or (scroll_moving)
+if ((alarm[0] == 1)) or (playing and (alarm[0] mod 2) == 1) or (moving_object) or (moving_object_flag) or (scroll_moving)
     {
     refresh_audio_surf();
     }

@@ -61,7 +61,7 @@ surface_set_target(audio_surf);
                     linex = framestartx+k*maxframes*tlwdivtlzoom;
                     draw_line(linex,ypos,linex,ypos+48);
                     }
-                if (selectedlayer == i) and (selectedx == -objectlist)
+                if (ds_list_find_index(somaster_list,objectlist) != -1)
                     {
                     draw_set_colour(c_gold);
                     draw_set_alpha(0.3);
