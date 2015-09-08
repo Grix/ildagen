@@ -10,17 +10,17 @@ with (seqcontrol)
         {
         //undo create object (delete)
         undolisttemp = real(string_digits(undo));
-        finallayer = ds_list_find_value(undolisttemp,0);
         objectlist = ds_list_find_value(undolisttemp,1);
-        if (!ds_exists(finallayer,ds_type_list)) or (!ds_exists(objectlist,ds_type_list))
+        if (!ds_exists(objectlist,ds_type_list))
             {
             ds_list_destroy(undolisttemp);
             exit;
             }
-        selectedlayer = ds_list_find_index(layer_list,finallayer);
         
-        selectedx = -objectlist;
+        ds_list_clear(somaster_list);
+        ds_list_add(somaster_list,objectlist);
         seq_delete_object_noundo();
+        ds_list_destroy(undolisttemp);
         }
     if (string_char_at(undo,0) == 'd')
         {

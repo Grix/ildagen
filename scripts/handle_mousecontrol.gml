@@ -527,7 +527,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 {
                 selectedlayer = i;
                 selectedx = floatingcursorx;
-                //ds_list_clear(somaster_list);
+                ds_list_clear(somaster_list);
                 dropdown_layer();
                 }
             }

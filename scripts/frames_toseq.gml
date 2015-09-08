@@ -6,7 +6,7 @@ if (os_browser != browser_not_a_browser)
     }
 
 
-if (seqcontrol.selectedlayer = -1)
+if (seqcontrol.selectedlayer = -1) or (ds_list_empty(seqcontrol.layer_list))
     {
     show_message_async("No timeline position marked, enter timeline mode and select a position first");
     exit;
@@ -73,7 +73,7 @@ with (seqcontrol)
     {
     selectedlayerlist = ds_list_find_value(layer_list,selectedlayer);
         
-    if (selectedx >= 0)
+    if (ds_list_empty(somaster_list) or (ds_list_size(somaster_list) > 1))
         {
         objectlist = ds_list_create();
         ds_list_add(objectlist,selectedx);
@@ -88,11 +88,10 @@ with (seqcontrol)
         
         infolisttemp = info;
         selectedx += controller.maxframes;
-        show_debug_message("new");
         }
     else
         {
-        objectlist = abs(selectedx);
+        objectlist = ds_list_find_value(somaster_list,0);
         //if buffer exist
         buffer_delete(ds_list_find_value(objectlist,1));
         ds_list_replace(objectlist,1,controller.save_buffer);

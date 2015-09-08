@@ -1,5 +1,5 @@
 //load frames file for sequencer object
-if (selectedlayer == -1) or (selectedx < 0)
+if (selectedlayer == -1) or (!ds_list_empty(somaster_list)) or (ds_list_empty(layer_list))
     {
     show_message_async("No timeline position marked, select a position first");
     exit;
@@ -198,24 +198,6 @@ if (selectedx >= 0)
     
     infolisttemp = info;
     selectedx += tempmaxframes;
-    }
-else
-    {
-    objectlist = abs(selectedx);
-    //if buffer exist
-    buffer_delete(ds_list_find_value(objectlist,1));
-    ds_list_replace(objectlist,1,save_buffer);
-    
-    var infolist = ds_list_find_value(objectlist,2);
-    ds_list_replace(infolist,0,tempmaxframes-1);
-    if (surface_exists(ds_list_find_value(infolist,1)))
-        surface_free(ds_list_find_value(infolist,1));
-    ds_list_replace(infolist,1,make_screenshot(save_buffer));
-    ds_list_replace(infolist,2,tempmaxframes);
-    
-    ds_list_add(selectedlayerlist,objectlist);
-    
-    infolisttemp = infolist;
     }
     
 undolisttemp = ds_list_create();

@@ -46,8 +46,8 @@ frame_surf = surface_create(512,512);
 frame3d_surf = surface_create(512,512);
 frame_surf_large = surface_create(1024,1024);
 frame3d_surf_large = surface_create(1024,1024);
-copy_list = -1;
-copy_buffer = -1;
+copy_list = ds_list_create();
+copy_buffer = ds_list_create();
 
 project_dir = "";
 project_loaded = 0;
@@ -61,7 +61,7 @@ draw_cursorline = 0;
 doubleclick = 0;    
 frameprev = -1;
 viewmode = 1;
-selectedlayer = -1;
+selectedlayer = 0;
 selectedx = 0;
 song = 0;
 songlength = 0;
@@ -353,7 +353,7 @@ if (keyboard_check(vk_control))
     //CTRL+~
     if (keyboard_check_pressed(ord('C')))
         {
-        if (selectedlayer &gt;= 0) and (selectedx &lt;= 0)
+        if (!ds_list_empty(somaster_list))
             {
             //COPY
             seq_copy_object();
@@ -361,7 +361,7 @@ if (keyboard_check(vk_control))
         }
     else if (keyboard_check_pressed(ord('X')))
         {
-        if (selectedlayer &gt;= 0) and (selectedx &lt;= 0)
+        if (!ds_list_empty(somaster_list))
             {
             //COPY
             seq_cut_object();
@@ -436,7 +436,7 @@ else if (keyboard_check_pressed(ord("0")))
 
 else if (keyboard_check_pressed(vk_delete))
     {
-    if (selectedlayer &gt;= 0) and (selectedx &lt;= 0)
+    if (!ds_list_empty(somaster_list))
         {
         seq_delete_object();
         }

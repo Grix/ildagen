@@ -1,11 +1,10 @@
 if (os_browser != browser_not_a_browser)
     {
-    show_message_async("Sorry, this timeline is not available in the web version yet");
+    show_message_async("Sorry, the timeline is not available in the web version yet");
     exit;
     }
 
-layer = ds_list_find_value(layer_list,selectedlayer);
-controller.load_buffer = ds_list_find_value(abs(selectedx),1);
+controller.load_buffer = ds_list_find_value(ds_list_find_value(somaster_list,0),1);
 
 with (controller)
     {
