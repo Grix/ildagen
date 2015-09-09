@@ -541,7 +541,7 @@ if !(mouseonsomelayer)
         {
         //mouse over layer area
         controller.tooltip = "Click to set playback position.";
-        if  mouse_check_button_pressed(mb_left)
+        if  mouse_check_button(mb_left)
             {
             tlpos = round(tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
             if (song)
