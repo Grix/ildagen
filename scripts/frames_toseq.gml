@@ -86,6 +86,8 @@ with (seqcontrol)
         ds_list_add(objectlist,info);
         ds_list_add(selectedlayerlist,objectlist);
         
+        ds_list_add(somaster_list,objectlist);
+        
         infolisttemp = info;
         selectedx += controller.maxframes;
         }

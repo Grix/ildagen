@@ -1165,7 +1165,19 @@ if (new_id == getint)
                 file = http_get_file("https://github.com/Grix/ildagen/raw/master/LasershowGen-"+versionnew+"-Installer.exe","temp/update.exe");
                 show_message_async("Download started, installation will start shortly..");
                 break;
-                }      
+                }    
+            case "maxdist":
+              {
+              opt_maxdist = ds_map_find_value(async_load, "value");
+              
+              break;
+              }
+            case "maxdwell":
+              {
+              opt_maxdwell = ds_map_find_value(async_load, "value");
+              
+              break;
+              }  
             
             case "wavet":
               {

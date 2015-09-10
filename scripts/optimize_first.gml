@@ -44,7 +44,7 @@ for (trav_dist = trav/2;trav_dist >= -opt_dist; trav_dist += trav;)
     maxpoints++;
     }
     
-for (m = 0;m < opt_maxdwell;m++)
+for (m = 0;m < controller.opt_maxdwell;m++)
     {
     xp = xpe;
     yp = ype;

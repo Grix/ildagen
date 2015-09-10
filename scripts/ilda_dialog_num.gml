@@ -1,3 +1,4 @@
+///ilda_dialog_num(id, message, default)
 if (controller.dialog_open) exit;
 with (controller)
     {

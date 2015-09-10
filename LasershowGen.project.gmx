@@ -765,6 +765,8 @@
           <script>scripts\dd_ilda_togglefullscreen.gml</script>
           <script>scripts\dd_ilda_viewtimeline.gml</script>
           <script>scripts\dd_ilda_vieweditor.gml</script>
+          <script>scripts\dd_ilda_maxdist.gml</script>
+          <script>scripts\dd_ilda_maxdwell.gml</script>
         </scripts>
         <script>scripts\dropdown_ed.gml</script>
         <script>scripts\dd_ed_custom.gml</script>

@@ -11,7 +11,7 @@ if (opt_dist < controller.opt_maxdist)
 opt_vectorx = (xpe-xpeprev)/opt_dist;
 opt_vectory = (ype-ypeprev)/opt_dist;
 
-for (m = 0;m < opt_maxdwell;m++)
+for (m = 0;m < controller.opt_maxdwell;m++)
     {
     xp = xpeprev;
     yp = ypeprev;
@@ -70,7 +70,7 @@ for (trav_dist = trav/2;opt_dist >= -trav_dist; trav_dist += trav)
     maxpoints++;
     }
     
-for (m = 0;m < opt_maxdwell;m++)
+for (m = 0;m < controller.opt_maxdwell;m++)
     {
     xp = xpe;
     yp = ype;

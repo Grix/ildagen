@@ -546,19 +546,23 @@ if (new_id == getint)
           {
           case "objectduration":
             {
-            if (selectedlayer == -1) or (selectedx &gt;= 0)
+            if ds_list_empty(somaster_list)
                 exit;
             
+            objectlist = ds_list_find_value(somaster_list,0);
+            infolisttomove = ds_list_find_value(objectlist,2);
             newduration = round(ds_map_find_value(async_load, "value"));
             if (newduration &lt; 1) newduration = 1;
             newduration--;
             
             ds_list_replace(infolisttomove,0,newduration);
             
-            if (ds_exists(undolisttemp,ds_type_list))
+            //todo: check for collisions
+            
+            /*if (ds_exists(undolisttemp,ds_type_list))
                 {
                 ds_list_add(undo_list,"r"+string(undolisttemp));
-                }
+                }*/
             
             break;
             }
@@ -594,16 +598,23 @@ if (new_id == getint)
             {
             layer = layertodelete;
             selectedlayer = ds_list_find_index(layer_list,layer);
+            if (selectedlayer == -1)
+                exit;
             num_objects = ds_list_size(layer);
+            ds_list_clear(somaster_list);
             repeat (num_objects)   
                 {
-                selectedx = -ds_list_find_value(layer,0);
+                ds_list_add(somaster_list,ds_list_find_value(layer,0));
                 seq_delete_object_noundo();
                 }
             ds_list_destroy(layer);
             ds_list_delete(layer_list,selectedlayer);
             
-            selectedlayer = -1;
+            if (ds_list_empty(layer_list))
+                ds_list_add(layer_list,ds_list_create());
+            
+            selectedlayer = 0;
+            selectedx = 0;
             
             break;
             }  

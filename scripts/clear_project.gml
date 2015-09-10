@@ -23,18 +23,19 @@ if (song)
     buffer_delete(song_buffer);
     }
     
-selectedlayer = 0;
 repeat (ds_list_size(layer_list))   
     {
     layer = ds_list_find_value(layer_list,0);
     num_objects = ds_list_size(layer);
     repeat (num_objects)   
         {
-        selectedx = -ds_list_find_value(layer,0);
+        ds_list_add(somaster_list,ds_list_find_value(layer,0));
         seq_delete_object_noundo();
         }
     ds_list_destroy(layer);
     ds_list_delete(layer_list,0);
     }
     
-selectedlayer = -1;
+ds_list_add(layer_list,ds_list_create());
+selectedx = 0;
+selectedlayer = 0;

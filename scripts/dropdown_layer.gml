@@ -12,7 +12,7 @@ with (ddobj)
     ds_list_add(scr_list,seq_paste_object);
     ds_list_add(scr_list,seq_fromilda);
     ds_list_add(scr_list,layer_delete);
-    ds_list_add(hl_list,(seqcontrol.copy_list != -1));
+    ds_list_add(hl_list,ds_list_size(seqcontrol.copy_list));
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
     }

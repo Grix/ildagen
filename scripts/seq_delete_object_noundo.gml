@@ -24,5 +24,5 @@ for (k = 0; k < ds_list_size(somaster_list); k++)
         }
     }
     
-
+ds_list_clear(somaster_list);
 frame_surf_refresh = 1;

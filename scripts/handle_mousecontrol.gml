@@ -180,6 +180,11 @@ else if (moving_object == 2)
                         //collision:
                         loop = 1;
                         templength = tempxstart2-tempxstart-1;
+                        if (templength < 1) 
+                            {
+                            templength = round(ds_list_find_value(infolisttomove,0));
+                            loop = 0;
+                            }
                         }
                     }
                 }

@@ -75,6 +75,6 @@ with (seqcontrol)
         }
     
     frame_surf_refresh = 1;
-    selectedlayer = -1;
-    selectedx = 1;
+    selectedlayer = 0;
+    selectedx = 0;
     }

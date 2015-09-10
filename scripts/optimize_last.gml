@@ -5,7 +5,7 @@ opt_dist = point_distance($ffff/2,$ffff/2,xpe,ype);
 opt_vectorx = (xpeprev-$ffff/2)/opt_dist;
 opt_vectory = (ypeprev-$ffff/2)/opt_dist;
 
-for (m = 0;m < opt_maxdwell; m++)
+for (m = 0;m < controller.opt_maxdwell; m++)
     {
     xp = xpe;
     yp = ype;
