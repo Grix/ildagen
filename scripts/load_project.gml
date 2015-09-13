@@ -4,7 +4,7 @@ if (file_loc == "") or is_undefined(file_loc)
     exit;
     
 clear_project();
-    
+
 load_buffer = buffer_load(file_loc);
     
 idbyte = buffer_read(load_buffer,buffer_u8);

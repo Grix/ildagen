@@ -93,7 +93,7 @@ else if (room = rm_seq)
             {
             image_index = 1;
             controller.tooltip = "Click here to open the full manual. Keyboard controls:##"+
-            "Mouse)    Select object or time on timeline#"+
+            "Mouse)    Select object or time on timeline (Ctrl to select multiple)#"+
             "Left/Right Arrows)    Cycle between frames#"+
             "Space)    Play/Pause#"+
             "Tab)    Enter frame editor mode#"+

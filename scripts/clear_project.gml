@@ -35,7 +35,8 @@ repeat (ds_list_size(layer_list))
     ds_list_destroy(layer);
     ds_list_delete(layer_list,0);
     }
+
+ds_list_clear(somaster_list);
     
-ds_list_add(layer_list,ds_list_create());
 selectedx = 0;
 selectedlayer = 0;

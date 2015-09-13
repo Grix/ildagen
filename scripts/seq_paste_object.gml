@@ -39,7 +39,7 @@ for (i = 0; i < ds_list_size(copy_list); i++)
     ds_list_add(undolisttemp,new_objectlist);
     ds_list_add(undo_list,"c"+string(undolisttemp));
     
-    ds_list_add(somaster_list,new_objectlist);
+    //ds_list_add(somaster_list,new_objectlist);
     
     if (i == 0)
         selectedxbump = (ds_list_find_value(copy_list_new,0)+1);
