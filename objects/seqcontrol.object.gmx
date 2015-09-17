@@ -328,7 +328,7 @@ if (playing == 1)
             set_audio_speed();
             }
         }
-    if (scroll_moving != 1) &amp;&amp; (song) &amp;&amp; (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-tlpos) &gt; 35)
+    if (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-tlpos) &gt; 32) and (scroll_moving != 1) and (song)
         {
         FMODInstanceSetPosition(songinstance,(tlpos-10)/FMODSoundGetLength(song));
         }
@@ -726,7 +726,7 @@ if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
     //timeline cursor
     draw_line(cursorlinexdraw,136,cursorlinexdraw,136+tlh);
     draw_line(cursorlinexdraw,tls-1,cursorlinexdraw,lbsh+137);
-    if (cursorlinexdraw &gt; (tlw/2)) &amp;&amp; (playing) &amp;&amp; (!scroll_moving)
+    if (cursorlinexdraw &gt; (tlw/2)) and (playing) and (!scroll_moving) and (!mouse_check_button(mb_any))
         {
         tlx = cursorlinex-(tlw/2)*tlzoom/tlw;
             if ((tlx+tlzoom) &gt; length) length = tlx+tlzoom;

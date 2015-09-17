@@ -550,7 +550,12 @@ if !(mouseonsomelayer)
             {
             tlpos = round(tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
             if (song)
-                FMODInstanceSetPosition(songinstance,(tlpos-10)/FMODSoundGetLength(song));
+                {
+                if ((tlpos-10)/FMODSoundGetLength(song)) == clamp((tlpos-10)/FMODSoundGetLength(song),0,1)
+                    FMODInstanceSetPosition(songinstance,clamp((tlpos-10)/FMODSoundGetLength(song),0,1));
+                else
+                    FMODInstanceSetPaused(songinstance,1);
+                }
             }
         }
     }
