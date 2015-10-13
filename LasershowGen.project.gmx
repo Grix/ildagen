@@ -236,6 +236,7 @@
     <sprite>sprites\spr_rotate</sprite>
     <sprite>sprites\spr_colorblendmode_preview</sprite>
     <sprite>sprites\spr_blankingblendmode_preview</sprite>
+    <sprite>sprites\spr_playcontrols</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_guide</background>
@@ -1070,6 +1071,7 @@
         <object>objects\obj_save</object>
         <object>objects\obj_totimeline</object>
       </objects>
+      <object>objects\obj_playcontrols</object>
       <object>objects\obj_toseq</object>
       <object>objects\obj_load</object>
       <object>objects\obj_import</object>

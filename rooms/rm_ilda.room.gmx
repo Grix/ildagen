@@ -126,7 +126,8 @@
     <instance objName="obj_anirepselect" x="536" y="630" name="inst_65CC8375" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_hershey" x="564" y="92" name="inst_0D63D06D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_blankblendmode" x="364" y="580" name="inst_D8EDDA3F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_playbackspeed" x="176" y="580" name="inst_122A0D60" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_playbackspeed" x="88" y="592" name="inst_122A0D60" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_playcontrols" x="20" y="592" name="inst_D0412145" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
