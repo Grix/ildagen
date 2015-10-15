@@ -273,7 +273,7 @@ if (mouse_x > tlw)
 or (mouse_y < 132)
     exit;  
     
-if (mouse_wheel_up())
+if (mouse_wheel_up() or keyboard_check_pressed(vk_f7))
     {
     tlxtemp = tlx+mouse_x/tlw*tlzoom;
     tlzoom *= 0.8;
@@ -281,7 +281,7 @@ if (mouse_wheel_up())
         tlzoom = 20;
     tlx = tlxtemp-mouse_x/tlw*tlzoom;
     }
-else if (mouse_wheel_down())
+else if (mouse_wheel_down() or keyboard_check_pressed(vk_f8))
     {
     tlxtemp = tlx+mouse_x/tlw*tlzoom;
     tlzoom *= 1.2;
@@ -296,7 +296,7 @@ if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw))
 && (mouse_y == clamp(mouse_y,lbsh+138,lbsh+16+138))
     {
     mouseonsomelayer = 1;
-    controller.tooltip = "Drag to scroll the timeline. Hold and scroll the mouse wheel to zoom";
+    controller.tooltip = "Drag to scroll the timeline. Use the mouse wheel or [F7]/[F8] to zoom";
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
         {
         scroll_moving = 1;

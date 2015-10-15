@@ -106,9 +106,10 @@ else if (room = rm_seq)
             "Ctrl+X)    Cut selected objects#"+
             "Ctrl+V)    Paste#"+
             "0)    Jump to first frame#"+
-            "Mouse wheel)    Scroll/Zoom (where applicable)##"+
+            "Mouse wheel or F7/F8)    Scroll/Zoom (where applicable)##"+
             "M)    Reset window size#"+
-            "F11)    Toggle fullscreen";
+            "F11)    Toggle fullscreen#"+
+            "F1)    Show manual";
             } 
     else image_index = 0;
     }
