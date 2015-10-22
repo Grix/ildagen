@@ -111,12 +111,14 @@ if (songload)
     song_buffer = buffer_create(songfile_size,buffer_fixed,1);
     buffer_copy(load_buffer,buffer_tell(load_buffer),songfile_size,song_buffer,0);
     buffer_seek(load_buffer,buffer_seek_relative,songfile_size);
-    buffer_save(song_buffer,"temp\"+songfile);
-        
+    temprandomstring = string(irandom(1000000));
+    buffer_save(song_buffer,"temp/tempaudio"+temprandomstring+filename_ext(songfile));
     songinstance = 0;
-    song = FMODSoundAdd(controller.FStemp+songfile,0,0);
+    song = FMODSoundAdd(controller.FStemp+"tempaudio"+temprandomstring+filename_ext(songfile),0,0);
+   
     if (!song) 
         {
+        show_debug_message(FMODGetLastError())
         show_message_async("Failed to load audio: "+FMODErrorStr(FMODGetLastError()));
         }
     else

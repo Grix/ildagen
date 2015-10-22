@@ -148,6 +148,7 @@ sgriddouble = 0;
 rgriddouble = 0;
 guidelineshow = 0;
 guidelinedouble = 0;
+sgridnum = 16;
 
 mouse_yprevious = mouse_y;
 mouse_xprevious = mouse_x;
@@ -609,7 +610,10 @@ else
 if (keyboard_check(ord('S'))) or (sgridshow == 1)
     {
     with (obj_cursor)
-        move_snap(32,32);
+        {
+        if (x &lt; 512) and (y &lt; 512)
+            move_snap(512/sgridsize,512/sgridsize);
+        }
     }
     
 if (playing == 1)
@@ -1444,8 +1448,7 @@ if (new_id == getint)
               ds_list_add(undo_list,"d"+string(dotmultiply))
             
               dotmultiply = ds_map_find_value(async_load, "value");
-              if (dotmultiply &lt; 1) dotmultiply = 1;
-              if (dotmultiply &gt; 32) dotmultiply = 32;
+              dotmultiply = clamp(dotmultiply,1,500);
               
               break;
               }
@@ -1923,12 +1926,7 @@ else if (objmoving == 4)
     }
 draw_set_color(c_white);
     
-draw_set_alpha(1);
-
-if (keyboard_check(ord('A')) or (guidelineshow == 1))
-    {
-    draw_guidelines();
-    }
+draw_set_alpha(0.7);
    
 //grids 
 if (keyboard_check(ord('S')) or (sgridshow == 1))
@@ -1954,6 +1952,12 @@ if (keyboard_check(ord('R')) or (rgridshow == 1))
     draw_surface(radialgrid_surf,0,0);
     }
     
+if (keyboard_check(ord('A')) or (guidelineshow == 1))
+    {
+    draw_guidelines();
+    }
+    
+draw_set_alpha(1);
 
 //selected elements
 draw_set_color(c_aqua);

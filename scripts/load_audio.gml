@@ -7,6 +7,12 @@ songfile = songfile_loc;
 song_buffer = buffer_load(songfile_loc);
 songfile_name = filename_name(songfile);
 song = FMODSoundAdd(songfile_loc,0,0);
+if (!song and (FMODGetLastError() == 25))
+    {
+    temprandomstring = string(irandom(1000000));
+    buffer_save(song_buffer,"temp/tempaudio"+temprandomstring+filename_ext(songfile));
+    song = FMODSoundAdd(controller.FStemp+"tempaudio"+temprandomstring+filename_ext(songfile),0,0);
+    }
 if (!song)
     {
     show_message_async("Failed to load audio: "+FMODErrorStr(FMODGetLastError()));
