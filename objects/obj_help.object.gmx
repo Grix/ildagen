@@ -70,6 +70,7 @@
             "Ctrl+Alt)    Snap mouse to starting position of last element for chaining##"+
             "A)    Show symmetry/alignment guidelines of elements#"+
             "S)    Show/Snap to square grid (Double click to toggle)#"+
+            "S+Up/Down Key)    Resize square grid#"+
             "R)    Show radial grid (Double click to toggle)#"+
             "Z)    Zoom in around the cursor#"+
             "E)    Clone color from background image#"+

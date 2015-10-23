@@ -91,15 +91,6 @@ parser_cb = ML_InitParserScience(varmap);
     
 alarm[3] = 120;
 
-radialgrid_surf = surface_create(512,512);
-surface_set_target(radialgrid_surf);
-    draw_radialgrid();
-surface_reset_target();
-squaregrid_surf = surface_create(512,512);
-surface_set_target(squaregrid_surf);
-    draw_grid();
-surface_reset_target();
-
 el_list = ds_list_create();
 undo_list = ds_list_create();
 frame_surf = surface_create(512,512);
@@ -279,6 +270,15 @@ menu_width[5] = string_width("   Options   ");
 menu_width_start[6] = menu_width_start[5]+menu_width[5];
 menu_width[6] = string_width("   About   ");
 menu_width_start[7] = menu_width_start[6]+menu_width[6];
+
+radialgrid_surf = surface_create(512,512);
+surface_set_target(radialgrid_surf);
+    draw_radialgrid();
+surface_reset_target();
+squaregrid_surf = surface_create(512,512);
+surface_set_target(squaregrid_surf);
+    draw_grid();
+surface_reset_target();
 
 if (os_browser == browser_not_a_browser)
     {
@@ -612,7 +612,7 @@ if (keyboard_check(ord('S'))) or (sgridshow == 1)
     with (obj_cursor)
         {
         if (x &lt; 512) and (y &lt; 512)
-            move_snap(512/sgridsize,512/sgridsize);
+            move_snap(512/controller.sgridnum,512/controller.sgridnum);
         }
     }
     
@@ -797,6 +797,19 @@ if (keyboard_check(ord('S')) or (sgridshow == 1))
         alarm[2] = 30;
         sgriddouble = 1;
         }
+    tooltip = "Double press S to toggle persisent square grid.#Press the up/down keys while holding S to resize the grid";
+    if (keyboard_check_pressed(vk_up))
+        {
+        controller.sgridnum -= 1;
+        if (controller.sgridnum &lt; 1)
+            controller.sgridnum = 1;
+        square_grid_refresh();
+        }
+    if (keyboard_check_pressed(vk_down))
+        {
+        controller.sgridnum += 1;
+        square_grid_refresh();
+        }
     } 
 if (keyboard_check(ord('R')) or (rgridshow == 1))
     {
@@ -807,13 +820,14 @@ if (keyboard_check(ord('R')) or (rgridshow == 1))
         alarm[1] = 30;
         rgriddouble = 1;
         }
+    tooltip = "Double press R to toggle persisent radial grid.";
     }
 
 if (keyboard_check_pressed(vk_tab))
     {
     if (os_browser != browser_not_a_browser)
         {
-        show_message_async("Sorry, this timeline is not available in the web version yet");
+        show_message_async("Sorry, the timeline is not available in the web version yet");
         exit;
         }
     ilda_cancel();
