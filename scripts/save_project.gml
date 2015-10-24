@@ -18,10 +18,7 @@ buffer_write(save_buffer,buffer_u8,song); //audio enabled
 buffer_write(save_buffer,buffer_u8,parsingaudio); //audio still parsing
 buffer_write(save_buffer,buffer_u32,startframe);
 buffer_write(save_buffer,buffer_u32,endframe);
-buffer_write(save_buffer,buffer_u8,0);
-buffer_write(save_buffer,buffer_u8,0);
-buffer_write(save_buffer,buffer_u8,0);
-buffer_write(save_buffer,buffer_u8,0);
+buffer_write(save_buffer,buffer_u32,audioshift);
 buffer_write(save_buffer,buffer_u8,0);
 buffer_write(save_buffer,buffer_u8,0);
 buffer_write(save_buffer,buffer_u8,0);

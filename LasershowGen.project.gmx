@@ -989,6 +989,7 @@
         <object>objects\obj_largepreview</object>
         <object>objects\obj_clearmarkers</object>
         <object>objects\obj_playbackspeed</object>
+        <object>objects\obj_audioshift</object>
         <object>objects\obj_volume</object>
       </objects>
       <objects name="ilda">

@@ -19,6 +19,7 @@ songload = buffer_read(load_buffer,buffer_u8);
 parsingaudioload = buffer_read(load_buffer,buffer_u8);
 startframe = buffer_read(load_buffer,buffer_u32);
 endframe = buffer_read(load_buffer,buffer_u32);
+audioshift = buffer_read(load_buffer,buffer_u32);
 length = endframe+50;
 buffer_seek(load_buffer,buffer_seek_start,50);
 

@@ -55,7 +55,7 @@
     <instance objName="obj_import" x="1008" y="580" name="inst_6C0F2C34" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_load" x="1008" y="508" name="inst_D488A866" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_help" x="700" y="84" name="inst_7C60627E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_playbackspeed" x="928" y="324" name="inst_281043B7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_playbackspeed" x="928" y="328" name="inst_281043B7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_saveproject" x="928" y="620" name="inst_7BF5C18C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_loadproject" x="928" y="580" name="inst_29A80009" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_sendtoeditor" x="992" y="468" name="inst_20DF2270" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -67,6 +67,7 @@
     <instance objName="obj_largepreview" x="624" y="12" name="inst_1E56ABDC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_volume" x="804" y="52" name="inst_FBE74879" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_playcontrols" x="928" y="356" name="inst_4659A8D3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_audioshift" x="928" y="300" name="inst_C30F113E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

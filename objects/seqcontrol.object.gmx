@@ -85,6 +85,7 @@ drawcursorx = 0;
 drawcursory = 0;
 moving_object = 0;
 moving_object_flag = 0;
+audioshift = 0;
 
 startframe = 0;
 endframe = 800;
@@ -328,9 +329,9 @@ if (playing == 1)
             set_audio_speed();
             }
         }
-    if (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-tlpos) &gt; 32) and (scroll_moving != 1) and (song)
+    if (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-(tlpos+audioshift)) &gt; 32) and (scroll_moving != 1) and (song)
         {
-        FMODInstanceSetPosition(songinstance,(tlpos-10)/FMODSoundGetLength(song));
+        FMODInstanceSetPosition(songinstance,(tlpos+audioshift)/FMODSoundGetLength(song));
         }
     }
     
@@ -392,7 +393,7 @@ else if (keyboard_check_pressed(vk_space))
         {
         if (playing)
             {
-            FMODInstanceSetPosition(songinstance,tlpos/FMODSoundGetLength(song));
+            FMODInstanceSetPosition(songinstance,(tlpos+audioshift)/FMODSoundGetLength(song));
             FMODInstanceSetPaused(songinstance,0);
             }
         else
@@ -570,6 +571,12 @@ if (new_id == getint)
             {
             projectfps = clamp(ds_map_find_value(async_load, "value"),1,999);
             controller.projectfps = projectfps;
+            
+            break;
+            }
+          case "audioshift":
+            {
+            audioshift = ds_map_find_value(async_load, "value");
             
             break;
             }

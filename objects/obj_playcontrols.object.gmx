@@ -48,7 +48,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room = rm_ilda)
+            <string>if !((mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))) exit;
+
+if (room = rm_ilda)
     {
     switch (floor( (mouse_x-x)/20))
         {
@@ -101,7 +103,7 @@ else
                 seqcontrol.playing = 1;
                 if (seqcontrol.song)
                     {
-                    FMODInstanceSetPosition(seqcontrol.songinstance,seqcontrol.tlpos/FMODSoundGetLength(seqcontrol.song));
+                    FMODInstanceSetPosition(seqcontrol.songinstance,(seqcontrol.tlpos+seqcontrol.audioshift)/FMODSoundGetLength(seqcontrol.song));
                     FMODInstanceSetPaused(seqcontrol.songinstance,0);
                     }
                 }
