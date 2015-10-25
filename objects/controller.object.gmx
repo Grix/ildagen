@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.0.7";
-versiondate = "2015-09-17";
+            <string>version = "1.0.8";
+versiondate = "2015-10-25";
 
 //setup file handling system
 FStemp = game_save_id+"temp\";
