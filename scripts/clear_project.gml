@@ -26,12 +26,13 @@ if (song)
 repeat (ds_list_size(layer_list))   
     {
     layer = ds_list_find_value(layer_list,0);
-    num_objects = ds_list_size(layer);
+    num_objects = ds_list_size(layer)-1;
     repeat (num_objects)   
         {
-        ds_list_add(somaster_list,ds_list_find_value(layer,0));
+        ds_list_add(somaster_list,ds_list_find_value(layer,1));
         seq_delete_object_noundo();
         }
+    //TODO: Clean up envelope layer
     ds_list_destroy(layer);
     ds_list_delete(layer_list,0);
     }

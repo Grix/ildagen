@@ -29,6 +29,7 @@ if (idbyte == 101)
     for (j = 0; j < maxlayers;j++)
         {
         layertemp = ds_list_create();
+        ds_list_add(layertemp,ds_list_create());
         ds_list_add(layer_list,layertemp);
         
         numofobjects = buffer_read(load_buffer,buffer_u32);
@@ -60,6 +61,7 @@ else if (idbyte == 100) //old, need to remake buffers
     for (j = 0; j < maxlayers;j++)
         {
         layertemp = ds_list_create();
+        ds_list_add(layertemp,ds_list_create());
         ds_list_add(layer_list,layertemp);
         
         numofobjects = buffer_read(load_buffer,buffer_u32);

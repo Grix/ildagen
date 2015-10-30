@@ -20,7 +20,7 @@ framehr = 0;
 /*with (seqcontrol)
     {
     layer = ds_list_find_value(layer_list,selectedlayer);
-    for (j = 0; j < ds_list_size(layer); j += 3)
+    for (j = 1; j < ds_list_size(layer); j += 3)
         {
         infolist = ds_list_find_value(layer,j+2);
         frametime = ds_list_find_value(layer,j);

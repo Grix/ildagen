@@ -24,7 +24,7 @@ correctframe = round(tlpos/1000*projectfps);
 for (j = 0; j < ds_list_size(layer_list); j++)
     {
     layer = ds_list_find_value(layer_list, j);
-    for (m = 0; m < ds_list_size(layer); m++)
+    for (m = 1; m < ds_list_size(layer); m++)
         {
         objectlist = ds_list_find_value(layer,m);
         

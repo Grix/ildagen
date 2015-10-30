@@ -62,7 +62,7 @@ for (j = startframe; j < endframe;j++)
     for (k = 0; k < ds_list_size(layer_list); k++)
         {
         layer = ds_list_find_value(layer_list, k);
-        for (m = 0; m < ds_list_size(layer); m++)
+        for (m = 1; m < ds_list_size(layer); m++)
             {
             objectlist = ds_list_find_value(layer,m);
             

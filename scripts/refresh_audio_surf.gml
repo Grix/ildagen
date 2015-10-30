@@ -15,12 +15,11 @@ surface_set_target(audio_surf);
     draw_set_alpha(1);
     draw_set_colour(c_black);
     tempstarty = tlh+16-layerbarx;
-    ypos = tempstarty-48;
+    ypos = tempstarty;
     for (i = 0; i <= ds_list_size(layer_list);i++)
         {
-        ypos += 48;
-        if (i < floor(layerbarx/48))
-            continue;
+        //if (i < floor(layerbarx/48))
+        //    continue;
         
         if (i == ds_list_size(layer_list))
             {
@@ -31,9 +30,10 @@ surface_set_target(audio_surf);
             }
                         
         draw_rectangle_colour(-1,ypos,tlw-16,ypos+48,c_white,c_white,c_silver,c_silver,0);
+        draw_rectangle(-1,ypos,tlw-16,ypos+48,1);
         
         layer = ds_list_find_value(layer_list, i);
-        for (j = 0; j < ds_list_size(layer); j++)
+        for (j = 1; j < ds_list_size(layer); j++)
             {
             objectlist = ds_list_find_value(layer,j);
             
@@ -71,12 +71,29 @@ surface_set_target(audio_surf);
                     }
                 }
             }
-        
-        draw_rectangle(-1,ypos,tlw-16,ypos+48,1);
+            
         draw_sprite(spr_deletelayer,
                         (mouse_x == clamp(mouse_x,tlw-56,tlw-24)) && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
                         tlw-56,ypos+8);
-        }
+        draw_sprite(spr_addenvelope,
+                        (mouse_x == clamp(mouse_x,tlw-96,tlw-64)) && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
+                        tlw-96,ypos+8);
+                        
+        ypos += 48;
+        
+        //envelopes
+        envelope_list = ds_list_find_value(layer, 0);
+        for (j = 0; j < ds_list_size(envelope_list); j++)
+            {
+            envelope = ds_list_find_value(envelope_list,j);
+            type = ds_list_find_value(envelope,0);
+            
+            draw_rectangle_colour(-1,ypos,tlw-16,ypos+64,c_silver,c_silver,c_gray,c_gray,0);
+            draw_rectangle(-1,ypos,tlw-16,ypos+64,1);
+            ypos += 64;
+            }
+        
+    }
     
     //scroll
     draw_set_alpha(1);

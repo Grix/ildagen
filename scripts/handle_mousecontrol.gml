@@ -385,21 +385,26 @@ for (i = 0; i < ds_list_size(marker_list); i++)
 //layers
 tempstarty = tls-layerbarx;
 
-ypos = tempstarty-48;
+ypos = tempstarty;
 for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < floor((layerbarx+lbh)/48); i++)
     { 
-    ypos += 48;
-    
     if (i < floor(layerbarx/48))
+        {
+        ypos += 48;
         continue;
-        
+        }
+    
+    layer = ds_list_find_value(layer_list, i);    
+    
     mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+48))
     if (mouseonlayer)
         {
-        mouseover = (mouse_x == clamp(mouse_x,tlw-56,tlw-24)) && (mouse_y == clamp(mouse_y,ypos+8,ypos+40))
+        mouseover_layer = (mouse_x == clamp(mouse_x,tlw-56,tlw-24)) && (mouse_y == clamp(mouse_y,ypos+8,ypos+40));
+        mouseover_envelope = !mouseover_layer and (mouse_x == clamp(mouse_x,tlw-96,tlw-64)) && (mouse_y == clamp(mouse_y,ypos+8,ypos+40));
+        
         if (i == ds_list_size(layer_list))
             {
-            if (mouseover) 
+            if (mouseover_layer) 
                 {
                 mouseonsomelayer = 1;
                 controller.tooltip = "Click to create a new layer";
@@ -407,15 +412,17 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                     {
                     newlayer = ds_list_create();
                     ds_list_add(layer_list,newlayer);
+                    ds_list_add(newlayer,ds_list_create());
                     }
                 }
             else
                 draw_mouseline = 1;
+            ypos += 48;
             break;
             }
             
         mouseonsomelayer = 1;
-        if (mouseover) 
+        if (mouseover_layer)
             {
             controller.tooltip = "Click to delete this layer and all its content";
             if  mouse_check_button_pressed(mb_left) 
@@ -424,11 +431,23 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 seq_dialog_yesno("layerdelete","Are you sure you want to delete this layer? (Cannot be undone)");
                 }
             }
+        else if (mouseover_envelope) 
+            {
+            mouseonsomelayer = 1;
+            controller.tooltip = "Click to add an envelope (effect) for this layer.";
+            if  mouse_check_button_pressed(mb_left)
+                {
+                layer = ds_list_find_value(layer_list, i);
+                envelope = ds_list_create();
+                ds_list_add(ds_list_find_value(layer,0),envelope);
+                ds_list_add(envelope,"x");
+                ds_list_add(envelope,ds_list_create());
+                }
+            }
         else
             {
             //mouse on layer but not button
-            layer = ds_list_find_value(layer_list, i);
-            for (m = 0; m < ds_list_size(layer); m++)
+            for (m = 1; m < ds_list_size(layer); m++)
                 {
                 objectlist = ds_list_find_value(layer,m);
                 
@@ -512,6 +531,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                         ds_list_insert(somaster_list,0,objectlist);
                         dropdown_seqobject();
                         }
+                    ypos += 48;
                     exit;
                     }
                 }
@@ -536,6 +556,33 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 dropdown_layer();
                 }
             }
+        }
+    ypos += 48;
+    
+    //envelope
+    envelope_list = ds_list_find_value(layer, 0);
+    for (j = 0; j < ds_list_size(envelope_list); j++)
+        {
+        envelope = ds_list_find_value(envelope_list,j);
+        type = ds_list_find_value(envelope,0);
+        
+        mouseonenvelope = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+64))
+        if (mouseonenvelope)
+            {
+            //delete button
+            mouseover_layer = (mouse_x == clamp(mouse_x,tlw-96,tlw-64)) && (mouse_y == clamp(mouse_y,ypos+8,ypos+40));
+            if (mouseover_layer) 
+                {
+                mouseonsomelayer = 1;
+                controller.tooltip = "Click to delete this envelope and its data.";
+                if  mouse_check_button_pressed(mb_left) 
+                    {
+                    envelopetodelete = envelope;
+                    seq_dialog_yesno("envelopedelete","Are you sure you want to delete this envelope? (Cannot be undone)");
+                    }
+                }
+            }
+        ypos += 64;
         }
     }
     

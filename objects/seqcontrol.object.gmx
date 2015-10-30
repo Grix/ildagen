@@ -31,6 +31,7 @@ alarm[4] = 600;
 layer_list = ds_list_create();
 layer = ds_list_create();
 ds_list_add(layer_list,layer);
+ds_list_add(layer,ds_list_create()); //envelope list
 surface_list = ds_list_create();
 somaster_list = ds_list_create();
 somoving_list = ds_list_create();
@@ -88,7 +89,7 @@ moving_object_flag = 0;
 audioshift = 0;
 
 startframe = 0;
-endframe = 800;
+endframe = 700;
 startframex = -1;
 endframex = -1;
 largepreview = 0;
@@ -607,13 +608,14 @@ if (new_id == getint)
             selectedlayer = ds_list_find_index(layer_list,layer);
             if (selectedlayer == -1)
                 exit;
-            num_objects = ds_list_size(layer);
+            num_objects = ds_list_size(layer)-1;
             ds_list_clear(somaster_list);
             repeat (num_objects)   
                 {
-                ds_list_add(somaster_list,ds_list_find_value(layer,0));
+                ds_list_add(somaster_list,ds_list_find_value(layer,1));
                 seq_delete_object_noundo();
                 }
+            //TODO: Clean up envelope layer
             ds_list_destroy(layer);
             ds_list_delete(layer_list,selectedlayer);
             

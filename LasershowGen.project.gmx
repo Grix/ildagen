@@ -198,6 +198,7 @@
     <sprites name="seq">
       <sprite>sprites\spr_addaudio</sprite>
       <sprite>sprites\spr_deletelayer</sprite>
+      <sprite>sprites\spr_addenvelope</sprite>
       <sprite>sprites\spr_addlayer</sprite>
       <sprite>sprites\spr_saveproject</sprite>
       <sprite>sprites\spr_loadproject</sprite>

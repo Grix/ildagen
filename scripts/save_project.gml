@@ -32,7 +32,7 @@ for (i = 0; i < ds_list_size(layer_list); i++)
     {
     layer = ds_list_find_value(layer_list,i);
     buffer_write(save_buffer,buffer_u32,ds_list_size(layer));
-    for (j = 0; j < ds_list_size(layer); j++)
+    for (j = 1; j < ds_list_size(layer); j++)
         {
         objectlist = ds_list_find_value(layer,j);
         tempframe = ds_list_find_value(objectlist,0);
