@@ -2,10 +2,10 @@
 <object>
   <spriteName>spr_resettrans</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>-1</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_button_parent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -77,11 +77,8 @@ if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible) exit;
-
-with (controller)
+            <string>with (controller)
     {
-    
     for (c = 0; c &lt; ds_list_size(semaster_list); c++)
         {
         selectedelement = ds_list_find_value(semaster_list,c);

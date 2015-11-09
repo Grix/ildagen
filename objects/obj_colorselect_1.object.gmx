@@ -210,8 +210,7 @@ mouse_yprevious = mouse_y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_alpha(1);
-
+            <string>//draw_enable_alphablend(0);
 draw_self();
 if (moving)
     {

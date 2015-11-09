@@ -5,17 +5,19 @@ if (!surface_exists(audio_surf))
     
 surface_set_target(audio_surf);
 
-    tlwdivtlzoom = tlw/tlzoom;   
+    var tlwdivtlzoom = tlw/tlzoom;   
 
     draw_clear_alpha(c_white,0);
+    draw_set_alpha(1);
     draw_set_font(fnt_small);
+    draw_enable_alphablend(0);
     
     //layers
     //NB: layerbarx is an Y value
-    draw_set_alpha(1);
+    
     draw_set_colour(c_black);
-    tempstarty = tlh+16-layerbarx;
-    ypos = tempstarty;
+    var tempstarty = tlh+16-layerbarx;
+    var ypos = tempstarty;
     for (i = 0; i <= ds_list_size(layer_list);i++)
         {
         //if (i < floor(layerbarx/48))
@@ -64,9 +66,11 @@ surface_set_target(audio_surf);
                 if (ds_list_find_index(somaster_list,objectlist) != -1)
                     {
                     draw_set_colour(c_gold);
+                    draw_enable_alphablend(1);
                     draw_set_alpha(0.3);
                         draw_rectangle(framestartx,ypos,frameendx,ypos+48,0);
                     draw_set_alpha(1);
+                    draw_enable_alphablend(0);
                     draw_set_colour(c_black);
                     }
                 }
@@ -87,67 +91,55 @@ surface_set_target(audio_surf);
             {
             envelope = ds_list_find_value(envelope_list,j);
             type = ds_list_find_value(envelope,0);
-            
-            draw_rectangle_colour(-1,ypos,tlw-16,ypos+64,c_silver,c_silver,c_gray,c_gray,0);
+            draw_set_colour(c_white);
+            draw_rectangle(-1,ypos,tlw-16,ypos+64,0);
+            draw_set_colour(c_black);
             draw_rectangle(-1,ypos,tlw-16,ypos+64,1);
             ypos += 64;
             }
-        
     }
+    draw_enable_alphablend(1);
     
-    //scroll
-    draw_set_alpha(1);
     draw_set_colour(c_white);
-        draw_rectangle(0,lbsh+17,tlw,lbsh,0);
-        draw_rectangle(tlw-16,tls-138,tlw,lbsh+17,0);
-    draw_rectangle_colour(scrollbarx+1,lbsh+17,scrollbarx+1+scrollbarw,lbsh,c_ltgray,c_ltgray,c_gray,c_gray,0);
-    draw_rectangle_colour(tlw-16,tls+(layerbarx*layerbarw/lbh)-138,tlw,tls+(layerbarx*layerbarw/lbh)+layerbarw-138,c_ltgray,c_gray,c_gray,c_ltgray,0);
-    draw_set_colour(c_black);
-        draw_rectangle(0,lbsh+17,tlw+4,lbsh,1);
-        draw_rectangle(tlw-16,tls-138,tlw,lbsh+17,1);
-    
-    //timeline 
-    draw_set_color(c_white);
-        draw_rectangle(0,0,tlw,tlh+16,0);
-    draw_set_color(c_black);
-        draw_line(0,tlh,tlw,tlh);
-        draw_line(0,tlh+16,tlw,tlh+16);
-        
-    drawtime = ceil(tlx/projectfps);
+    draw_set_blend_mode(bm_subtract);
+    draw_rectangle(-1,-1,tlw+16,tlh+16,0);
+    draw_set_blend_mode(bm_normal);
+       
+    var drawtime = ceil(tlx/projectfps);
     if (tlwdivtlzoom > 0.3) modulus = 5;
     else if (tlwdivtlzoom > 0.05) modulus = 25;
     else modulus = 60;
     
-    draw_set_alpha(0.2);
+    draw_set_colour(c_ltgray);
+    draw_enable_alphablend(0);
     while (1)
         {
-        tempx = (drawtime*projectfps-tlx)*tlwdivtlzoom;
+        var tempx = (drawtime*projectfps-tlx)*tlwdivtlzoom;
         if (tempx > tlw)
             break;
 
         if ((drawtime mod modulus) == 0)
             {
             //draw timestamp
-            draw_set_alpha(0.5);
-                draw_line(tempx,0,tempx,tlh);
-            draw_set_alpha(0.8);
+            draw_set_colour(c_gray);
+                draw_line(tempx,0,tempx,tlh-1);
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);
+            draw_set_colour(c_dkgray);
             draw_text(tempx,tlh+9,string_replace(string_format(floor(drawtime/60),2,0)," ","0")+
                                 ":"+string_replace(string_format(drawtime %60,2,0)," ","0"));
             draw_set_halign(fa_left);
             draw_set_valign(fa_top);
-            draw_set_alpha(0.2);
+            draw_set_colour(c_ltgray);
             }
         else
             {
             if ((drawtime % (modulus/5)) == 0)
-                draw_line(tempx,0,tempx,tlh);
+                draw_line(tempx,0,tempx,tlh-1);
             }
         drawtime++;
         }
-        
-    draw_set_alpha(1);
+    
     
     //start and end frame lines
     startframex = (startframe-tlx)*tlwdivtlzoom;
@@ -169,34 +161,37 @@ surface_set_target(audio_surf);
         draw_set_font(fnt_bold);
         draw_text(endframex-25,lbsh-20,"End");
         }
-        
+    draw_enable_alphablend(1);   
+    
     //audio   
     if (song)
         {
-        draw_set_alpha(0.6);
+        draw_set_alpha(0.7);
         for (u=0; u <= tlw; u++)
             {
-            nearesti = round((tlx+u*tlzoom/tlw)/projectfps*60)*3;
+            var nearesti = round((tlx+u*tlzoom/tlw)/projectfps*60)*3;
             
             if (nearesti > ds_list_size(audio_list)-3)
                 break;
                 
-            v = ds_list_find_value(audio_list,nearesti);
+            var v_tlhalf = tlhalf;
+            var v_tlthird = tlthird;
+                
+            var v = ds_list_find_value(audio_list,nearesti);
             draw_set_color(c_green);
-            draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);
+            draw_line(u,v_tlhalf+v*v_tlthird,u,v_tlhalf-v*v_tlthird);
             
             v = ds_list_find_value(audio_list,nearesti+1);
             draw_set_color(c_red);
-            draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);
+            draw_line(u,v_tlhalf+v*v_tlthird,u,v_tlhalf-v*v_tlthird);
             
             v = ds_list_find_value(audio_list,nearesti+2);
             draw_set_color(c_blue);
-            draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);    
+            draw_line(u,v_tlhalf+v*tlthird,u,v_tlhalf-v*v_tlthird);    
             }
         }
         
     //markers
-    draw_set_alpha(0.7);
     draw_set_colour(c_fuchsia);
     for (i = 0; i < ds_list_size(marker_list); i++)
         {
@@ -207,15 +202,29 @@ surface_set_target(audio_surf);
             draw_rectangle(markerpostemp,tlh+17,markerpostemp+1,lbsh,0);
             }
         }
-
-    draw_set_alpha(0.3);
+        
+    //scope fog
+    draw_set_alpha(0.6);
     draw_set_colour(c_black);
     draw_rectangle(0,0,clamp(startframex,0,tlw+1),lbsh,0);
     draw_rectangle(clamp(endframex,0,tlw+1),0,tlw+1,lbsh,0);
     
-    draw_set_alpha(1);
-    draw_set_colour(c_white);
+    //scroll
+    var scrollx_x1 = scrollbarx+1;
+    var scrollx_x2 = scrollx_x1+scrollbarw;
+    var scrollx_y1 = lbsh+17;
+    var scrolly_x1 = tlw-16;
+    var scrolly_y1 = tls+(layerbarx*layerbarw/lbh)-138;
+    var scrolly_y2 = scrolly_y1+layerbarw;
+    draw_rectangle_colour(scrollx_x1,scrollx_y1,scrollx_x2,lbsh,c_ltgray,c_ltgray,c_gray,c_gray,0);
+    draw_rectangle_colour(scrolly_x1,scrolly_y1,tlw,scrolly_y2,c_ltgray,c_gray,c_gray,c_ltgray,0);
+    draw_set_colour(c_black);
+    draw_rectangle(scrollx_x1,scrollx_y1,scrollx_x2,lbsh,1);
+    draw_rectangle(scrolly_x1,scrolly_y1,tlw,scrolly_y2,0);
+    
+    //draw_set_alpha(1);
+    //draw_set_colour(c_white);
         
 surface_reset_target();
-draw_set_color(c_white);
+//draw_set_color(c_white);
 draw_set_font(fnt_tooltip);

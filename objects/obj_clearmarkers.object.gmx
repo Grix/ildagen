@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-1</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>self</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -50,7 +50,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+            <string>visible = !ds_list_empty(seqcontrol.marker_list);
+if (!visible) exit;
+
+if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     image_index = 1;
     controller.tooltip = "Clears all the markers from the timeline";
@@ -78,8 +81,7 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (ds_list_empty(seqcontrol.marker_list))
-    exit;
+            <string>if (!visible) exit;
 
 ds_list_add(seqcontrol.undo_list,"l"+string(seqcontrol.marker_list));
 seqcontrol.marker_list = ds_list_create();

@@ -362,6 +362,7 @@ draw_cursorline = 0;
 //markers
 for (i = 0; i < ds_list_size(marker_list); i++)
     {
+    var tlwdivtlzoom = tlw/tlzoom;   
     var markerpostemp = (ds_list_find_value(marker_list,i)-tlx)*tlwdivtlzoom;
     if (mouse_x == clamp(mouse_x,markerpostemp-2,markerpostemp+2))                         
         {
@@ -383,9 +384,9 @@ for (i = 0; i < ds_list_size(marker_list); i++)
     }
 
 //layers
-tempstarty = tls-layerbarx;
+var tempstarty = tls-layerbarx;
 
-ypos = tempstarty;
+var ypos = tempstarty;
 for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < floor((layerbarx+lbh)/48); i++)
     { 
     if (i < floor(layerbarx/48))

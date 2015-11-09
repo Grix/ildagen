@@ -110,8 +110,8 @@ ilda_dialog_string("func3","Enter function for BLUE channel",controller.colorfun
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_colour(c_dkgray);
-draw_self();
+            <string>draw_self();
+draw_set_colour(c_dkgray);
 draw_text(x+48,y+4,controller.colorfunc_string_3);
 </string>
           </argument>

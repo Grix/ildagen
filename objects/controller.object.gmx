@@ -28,6 +28,9 @@
             <string>version = "1.0.8";
 versiondate = "2015-10-25";
 
+if (debug_mode)
+    show_debug_overlay(1);
+
 //setup file handling system
 FStemp = game_save_id+"temp\";
 if (directory_exists("temp"))
@@ -1811,9 +1814,7 @@ frame_surf_refresh = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(oDropDown)) exit;
-
-if (tooltip != "")
+            <string>if (tooltip != "")
     {
     draw_set_alpha(0.7);
     draw_set_color(c_black);
@@ -1823,7 +1824,6 @@ if (tooltip != "")
     draw_text(5,5,tooltip);
     tooltip = "";
     }
-
 </string>
           </argument>
         </arguments>
@@ -2114,6 +2114,12 @@ if (mouse_y &gt; view_yview[3])
     }
 draw_set_colour(c_white);
 
+draw_enable_alphablend(0);
+with (obj_button_parent)
+    {
+    draw_self();
+    }
+draw_enable_alphablend(1);
 </string>
           </argument>
         </arguments>

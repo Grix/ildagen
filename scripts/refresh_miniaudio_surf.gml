@@ -17,10 +17,10 @@ surface_set_target(miniaudio_surf);
         else
             tlx = ds_list_find_value(abs(seqcontrol.selectedx),0);
         projectfps = seqcontrol.projectfps;;
-        drawtime = ceil(tlx/projectfps);
+        var drawtime = ceil(tlx/projectfps);
         tlzoom = maxframes;
-        modulus = ceil(maxframes/90)*0.2;
-        templine = 0;
+        var modulus = ceil(maxframes/90)*0.2;
+        var templine = 0;
         for (u=0; u <= tlw; u++)
             {
             temptime = u/tlw*(maxframes-1)/projectfps;
@@ -58,11 +58,11 @@ else
     if (seqcontrol.song)
         {
         draw_set_alpha(0.5);
-        tlhalf = (tlh-13)/2;
-        tlthird = (tlh-13)/3;
+        var tlhalf = (tlh-13)/2;
+        var tlthird = (tlh-13)/3;
         for (u=0; u <= tlw; u++)
             {
-            nearesti = round((tlx+u*tlzoom/tlw)/projectfps*60)*3;
+            var nearesti = round((tlx+u*tlzoom/tlw)/projectfps*60)*3;
             
             if (nearesti > ds_list_size(seqcontrol.audio_list)-3)
                 break;
