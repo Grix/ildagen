@@ -83,7 +83,7 @@ if (moving_object == 1)
                     loopcount--;
                     loop = 0;
                     tempxend = tempxstart + ds_list_find_value(ds_list_find_value(objecttomove,2),0);
-                    for ( u = 0; u < ds_list_size(layertomove); u++)
+                    for ( u = 1; u < ds_list_size(layertomove); u++)
                         {
                         if (ds_list_find_value(layertomove,u) == objecttomove) 
                             continue;
@@ -164,7 +164,7 @@ else if (moving_object == 2)
                     loopcount--;
                     loop = 0;
                     tempxend = tempxstart + templength;
-                    for ( u = 0; u < ds_list_size(layertomove); u++)
+                    for ( u = 1; u < ds_list_size(layertomove); u++)
                         {
                         if (ds_list_find_value(layertomove,u) == objecttomove) 
                             continue;

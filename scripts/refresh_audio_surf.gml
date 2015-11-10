@@ -83,6 +83,15 @@ surface_set_target(audio_surf);
                         (mouse_x == clamp(mouse_x,tlw-96,tlw-64)) && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
                         tlw-96,ypos+8);
                         
+        if (selectedlayer == i)
+            {
+            draw_set_colour(180);
+            var drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
+            if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
+                draw_line(drawcursorxcorrected,clamp(ypos,tlh+16,lbh+16),drawcursorxcorrected,ypos+48);
+            draw_set_colour(c_black);
+            }
+                        
         ypos += 48;
         
         //envelopes
@@ -98,6 +107,7 @@ surface_set_target(audio_surf);
             ypos += 64;
             }
     }
+    
     draw_enable_alphablend(1);
     
     draw_set_colour(c_white);
@@ -208,7 +218,9 @@ surface_set_target(audio_surf);
     draw_set_colour(c_black);
     draw_rectangle(0,0,clamp(startframex,0,tlw+1),lbsh,0);
     draw_rectangle(clamp(endframex,0,tlw+1),0,tlw+1,lbsh,0);
+    draw_set_alpha(1);
     
+    draw_enable_alphablend(0);
     //scroll
     var scrollx_x1 = scrollbarx+1;
     var scrollx_x2 = scrollx_x1+scrollbarw;
@@ -216,11 +228,13 @@ surface_set_target(audio_surf);
     var scrolly_x1 = tlw-16;
     var scrolly_y1 = tls+(layerbarx*layerbarw/lbh)-138;
     var scrolly_y2 = scrolly_y1+layerbarw;
-    draw_rectangle_colour(scrollx_x1,scrollx_y1,scrollx_x2,lbsh,c_ltgray,c_ltgray,c_gray,c_gray,0);
-    draw_rectangle_colour(scrolly_x1,scrolly_y1,tlw,scrolly_y2,c_ltgray,c_gray,c_gray,c_ltgray,0);
+    draw_set_colour(c_gray);
+    draw_rectangle(scrollx_x1,scrollx_y1,scrollx_x2,lbsh,0);
+    draw_rectangle(scrolly_x1,scrolly_y1,tlw,scrolly_y2,0);
     draw_set_colour(c_black);
     draw_rectangle(scrollx_x1,scrollx_y1,scrollx_x2,lbsh,1);
-    draw_rectangle(scrolly_x1,scrolly_y1,tlw,scrolly_y2,0);
+    draw_rectangle(scrolly_x1,scrolly_y1,tlw,scrolly_y2,1);
+    draw_enable_alphablend(1);
     
     //draw_set_alpha(1);
     //draw_set_colour(c_white);

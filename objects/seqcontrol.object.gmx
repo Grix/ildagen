@@ -721,10 +721,14 @@ if (frame_surf_refresh == 1) or !surface_exists(frame_surf) or !surface_exists(f
         
     frame_surf_refresh = 0;
     }
-draw_set_alpha(1);
     
 if (surface_exists(audio_surf))
     draw_surface_part(audio_surf,0,0,tlw+1,lbsh+17,0,137);
+    
+draw_enable_alphablend(0);
+with (obj_button_parent)
+    draw_self();
+draw_enable_alphablend(1);
     
 draw_set_color(c_black);
 draw_set_alpha(0.8);
@@ -739,19 +743,6 @@ if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
         {
         tlx = cursorlinex-(tlw/2)*tlzoom/tlw;
             if ((tlx+tlzoom) &gt; length) length = tlx+tlzoom;
-        }
-    }
-
-if (selectedlayer != -1) and (selectedx &gt;= 0)
-    {
-    //selected position line
-    draw_set_colour(180);
-    drawcursorycorrected = tls+selectedlayer*48-layerbarx-1;
-    if (drawcursorycorrected+48 &gt; tls-1) and (drawcursorycorrected &lt; lbsh+138)
-        {
-        drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
-        if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
-            draw_line(drawcursorxcorrected,clamp(drawcursorycorrected,tls-1,lbsh+16+138),drawcursorxcorrected,drawcursorycorrected+48);
         }
     }
     
@@ -845,11 +836,6 @@ if (mouse_y &gt; view_yview[3])
     draw_set_alpha(1);
     }
 draw_set_colour(c_white);
-
-draw_enable_alphablend(0);
-with (obj_button_parent)
-    draw_self();
-draw_enable_alphablend(1);
 </string>
           </argument>
         </arguments>
