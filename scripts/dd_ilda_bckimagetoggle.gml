@@ -10,7 +10,6 @@ bckimage = !bckimage;
 if (bckimage)
     {
     bckfile = get_open_filename("Image files|*.png;*.jpg;*.gif","");
-    show_debug_message(bckfile);
     if (bckfile != "")
         {
         bck_bckimage = sprite_add(bckfile,1,0,0,0,0);

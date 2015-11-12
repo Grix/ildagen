@@ -80,7 +80,6 @@ for (u = 0; u < listsize; u++)
         nyp = ds_list_find_value(new_list,20+(u+1)*6+1);
         
         draw_line(xo+ xp,yo+ yp,xo+ nxp,yo+ nyp);
-        show_debug_message(xo+xp)
         }
     }
     

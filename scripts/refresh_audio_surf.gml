@@ -76,11 +76,12 @@ surface_set_target(audio_surf);
                 }
             }
             
+        var mouse_on_button_ver = (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40));
         draw_sprite(spr_deletelayer,
-                        (mouse_x == clamp(mouse_x,tlw-56,tlw-24)) && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
+                        mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)),
                         tlw-56,ypos+8);
         draw_sprite(spr_addenvelope,
-                        (mouse_x == clamp(mouse_x,tlw-96,tlw-64)) && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
+                        mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64)),
                         tlw-96,ypos+8);
                         
         if (selectedlayer == i)
@@ -88,7 +89,7 @@ surface_set_target(audio_surf);
             draw_set_colour(180);
             var drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
             if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
-                draw_line(drawcursorxcorrected,clamp(ypos,tlh+16,lbh+16),drawcursorxcorrected,ypos+48);
+                draw_line(drawcursorxcorrected,ypos,drawcursorxcorrected,ypos+48);
             draw_set_colour(c_black);
             }
                         
@@ -104,6 +105,10 @@ surface_set_target(audio_surf);
             draw_rectangle(-1,ypos,tlw-16,ypos+64,0);
             draw_set_colour(c_black);
             draw_rectangle(-1,ypos,tlw-16,ypos+64,1);
+            mouse_on_button_ver = (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40));
+            draw_sprite(spr_deletelayer,
+                        mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)),
+                        tlw-56,ypos+8);
             ypos += 64;
             }
     }
@@ -113,6 +118,7 @@ surface_set_target(audio_surf);
     draw_set_colour(c_white);
     draw_set_blend_mode(bm_subtract);
     draw_rectangle(-1,-1,tlw+16,tlh+16,0);
+    draw_rectangle(-1,lbh+tlh+16,tlw+16,lbh+tlh+33,0);
     draw_set_blend_mode(bm_normal);
        
     var drawtime = ceil(tlx/projectfps);

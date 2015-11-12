@@ -256,7 +256,6 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                     ds_list_insert(new_list,temppos+4,tempblank);
                     ds_list_insert(new_list,temppos+4,newy);
                     ds_list_insert(new_list,temppos+4,newx);
-                    //show_debug_message(newx);
                     j++;
                     checkpoints++;
                     stepscount--;

@@ -561,18 +561,22 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
     ypos += 48;
     
     //envelope
+    if (i == ds_list_size(layer_list)) 
+        break;
+    
     envelope_list = ds_list_find_value(layer, 0);
     for (j = 0; j < ds_list_size(envelope_list); j++)
         {
         envelope = ds_list_find_value(envelope_list,j);
         type = ds_list_find_value(envelope,0);
         
-        mouseonenvelope = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+64))
+        mouseonenvelope = (mouse_x == clamp(mouse_x,0,tlw-16)) and (mouse_y == clamp(mouse_y,ypos,ypos+64))
         if (mouseonenvelope)
             {
+            log("on envelope")
             //delete button
-            mouseover_layer = (mouse_x == clamp(mouse_x,tlw-96,tlw-64)) && (mouse_y == clamp(mouse_y,ypos+8,ypos+40));
-            if (mouseover_layer) 
+            var mouseover_delete = (mouse_x == clamp(mouse_x,tlw-56,tlw-24)) and (mouse_y == clamp(mouse_y,ypos+8,ypos+40));
+            if (mouseover_delete) 
                 {
                 mouseonsomelayer = 1;
                 controller.tooltip = "Click to delete this envelope and its data.";
