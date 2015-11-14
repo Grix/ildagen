@@ -18,79 +18,80 @@ surface_set_target(audio_surf);
     draw_set_colour(c_black);
     var tempstarty = tlh+16-layerbarx;
     var ypos = tempstarty;
+    var mouseoverlayerbutton_hor = (mouse_x == clamp(mouse_x,tlw-56,tlw-24));
     for (i = 0; i <= ds_list_size(layer_list);i++)
         {
-        //if (i < floor(layerbarx/48))
-        //    continue;
-        
-        if (i == ds_list_size(layer_list))
-            {
-            draw_sprite(spr_addlayer,
-                        (mouse_x == clamp(mouse_x,tlw-56,tlw-24)) && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
-                        tlw-56,ypos+8);
-            break;
-            }
-                        
-        draw_rectangle_colour(-1,ypos,tlw-16,ypos+48,c_white,c_white,c_silver,c_silver,0);
-        draw_rectangle(-1,ypos,tlw-16,ypos+48,1);
-        
         layer = ds_list_find_value(layer_list, i);
-        for (j = 1; j < ds_list_size(layer); j++)
+        if (ypos > tlh+16-48) and (ypos < lbsh)
             {
-            objectlist = ds_list_find_value(layer,j);
-            
-            frametime = ds_list_find_value(objectlist,0);
-            infolist = ds_list_find_value(objectlist,2);
-            duration = ds_list_find_value(infolist,0);
-            
-            if (frametime < tlx+tlzoom) and (frametime+duration > tlx)
+            if (i == ds_list_size(layer_list))
                 {
-                //draw object on timeline
-                framestartx = (frametime-tlx)*tlwdivtlzoom;
-                frameendx = (frametime-tlx+duration+1)*tlwdivtlzoom;
-                draw_set_colour(c_dkgray);
-                    draw_rectangle(framestartx,ypos,frameendx,ypos+48,0);
-                draw_set_colour(c_green);
-                    draw_rectangle(framestartx,ypos,frameendx,ypos+48,1);
-                draw_set_colour(c_white);
-                if (!surface_exists(ds_list_find_value(infolist,1)))
-                    ds_list_replace(infolist,1,make_screenshot(ds_list_find_value(objectlist,1)));
-                draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp((duration+1)*tlwdivtlzoom,0,32)-1,32,framestartx+1,ypos+8);
-                maxframes = ds_list_find_value(infolist,2);
-                draw_set_colour(c_black);
-                for (k = 1; k <= duration/maxframes; k++)
+                draw_sprite(spr_addlayer,
+                            mouseoverlayerbutton_hor && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
+                            tlw-56,ypos+8);
+                break;
+                }
+                            
+            draw_rectangle_colour(-1,ypos,tlw-16,ypos+48,c_white,c_white,c_silver,c_silver,0);
+            draw_rectangle(-1,ypos,tlw-16,ypos+48,1);
+            
+            for (j = 1; j < ds_list_size(layer); j++)
+                {
+                objectlist = ds_list_find_value(layer,j);
+                
+                frametime = ds_list_find_value(objectlist,0);
+                infolist = ds_list_find_value(objectlist,2);
+                duration = ds_list_find_value(infolist,0);
+                
+                if (frametime < tlx+tlzoom) and (frametime+duration > tlx)
                     {
-                    linex = framestartx+k*maxframes*tlwdivtlzoom;
-                    draw_line(linex,ypos,linex,ypos+48);
-                    }
-                if (ds_list_find_index(somaster_list,objectlist) != -1)
-                    {
-                    draw_set_colour(c_gold);
-                    draw_enable_alphablend(1);
-                    draw_set_alpha(0.3);
+                    //draw object on timeline
+                    framestartx = (frametime-tlx)*tlwdivtlzoom;
+                    frameendx = (frametime-tlx+duration+1)*tlwdivtlzoom;
+                    draw_set_colour(c_dkgray);
                         draw_rectangle(framestartx,ypos,frameendx,ypos+48,0);
-                    draw_set_alpha(1);
-                    draw_enable_alphablend(0);
+                    draw_set_colour(c_green);
+                        draw_rectangle(framestartx,ypos,frameendx,ypos+48,1);
+                    draw_set_colour(c_white);
+                    if (!surface_exists(ds_list_find_value(infolist,1)))
+                        ds_list_replace(infolist,1,make_screenshot(ds_list_find_value(objectlist,1)));
+                    draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp((duration+1)*tlwdivtlzoom,0,32)-1,32,framestartx+1,ypos+8);
+                    maxframes = ds_list_find_value(infolist,2);
                     draw_set_colour(c_black);
+                    for (k = 1; k <= duration/maxframes; k++)
+                        {
+                        linex = framestartx+k*maxframes*tlwdivtlzoom;
+                        draw_line(linex,ypos,linex,ypos+48);
+                        }
+                    if (ds_list_find_index(somaster_list,objectlist) != -1)
+                        {
+                        draw_set_colour(c_gold);
+                        draw_enable_alphablend(1);
+                        draw_set_alpha(0.3);
+                            draw_rectangle(framestartx,ypos,frameendx,ypos+48,0);
+                        draw_set_alpha(1);
+                        draw_enable_alphablend(0);
+                        draw_set_colour(c_black);
+                        }
                     }
                 }
-            }
-            
-        var mouse_on_button_ver = (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40));
-        draw_sprite(spr_deletelayer,
-                        mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)),
-                        tlw-56,ypos+8);
-        draw_sprite(spr_addenvelope,
-                        mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64)),
-                        tlw-96,ypos+8);
-                        
-        if (selectedlayer == i)
-            {
-            draw_set_colour(180);
-            var drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
-            if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
-                draw_line(drawcursorxcorrected,ypos,drawcursorxcorrected,ypos+48);
-            draw_set_colour(c_black);
+                
+            var mouse_on_button_ver = (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40));
+            draw_sprite(spr_deletelayer,
+                            mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)),
+                            tlw-56,ypos+8);
+            draw_sprite(spr_addenvelope,
+                            mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64)),
+                            tlw-96,ypos+8);
+                            
+            if (selectedlayer == i)
+                {
+                draw_set_colour(180);
+                var drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
+                if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
+                    draw_line(drawcursorxcorrected,ypos,drawcursorxcorrected,ypos+48);
+                draw_set_colour(c_black);
+                }
             }
                         
         ypos += 48;
@@ -99,16 +100,22 @@ surface_set_target(audio_surf);
         envelope_list = ds_list_find_value(layer, 0);
         for (j = 0; j < ds_list_size(envelope_list); j++)
             {
-            envelope = ds_list_find_value(envelope_list,j);
-            type = ds_list_find_value(envelope,0);
-            draw_set_colour(c_white);
-            draw_rectangle(-1,ypos,tlw-16,ypos+64,0);
-            draw_set_colour(c_black);
-            draw_rectangle(-1,ypos,tlw-16,ypos+64,1);
-            mouse_on_button_ver = (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40));
-            draw_sprite(spr_deletelayer,
-                        mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)),
-                        tlw-56,ypos+8);
+            if (ypos > tlh+16-64) and (ypos < lbsh)
+                {
+                envelope = ds_list_find_value(envelope_list,j);
+                type = ds_list_find_value(envelope,0);
+                draw_set_colour(c_white);
+                draw_rectangle(-1,ypos,tlw-16,ypos+64,0);
+                draw_set_colour(c_black);
+                draw_rectangle(-1,ypos,tlw-16,ypos+64,1);
+                mouse_on_button_ver = (mouse_y == clamp(mouse_y,138+8+ypos,138+40+ypos));
+                draw_sprite(spr_deletelayer,
+                            mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)),
+                            tlw-56,ypos+8);
+                draw_sprite(spr_menu,
+                            mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64)),
+                            tlw-96,ypos+8);
+                }
             ypos += 64;
             }
     }

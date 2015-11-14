@@ -389,175 +389,174 @@ var tempstarty = tls-layerbarx;
 var ypos = tempstarty;
 for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < floor((layerbarx+lbh)/48); i++)
     { 
-    if (i < floor(layerbarx/48))
+    layer = ds_list_find_value(layer_list, i); 
+    if (ypos > tlh+16-48+138) and (ypos < lbsh+138)
         {
-        ypos += 48;
-        continue;
-        }
-    
-    layer = ds_list_find_value(layer_list, i);    
-    
-    mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+48))
-    if (mouseonlayer)
-        {
-        mouseover_layer = (mouse_x == clamp(mouse_x,tlw-56,tlw-24)) && (mouse_y == clamp(mouse_y,ypos+8,ypos+40));
-        mouseover_envelope = !mouseover_layer and (mouse_x == clamp(mouse_x,tlw-96,tlw-64)) && (mouse_y == clamp(mouse_y,ypos+8,ypos+40));
-        
-        if (i == ds_list_size(layer_list))
+        mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+48))
+        if (mouseonlayer)
             {
-            if (mouseover_layer) 
+            var mouseoverlayerbuttons_ver = (mouse_y == clamp(mouse_y,ypos+8,ypos+40));
+            var mouseover_layer = (mouseoverlayerbuttons_ver  and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)));
+            var mouseover_envelope = !mouseover_layer and mouseoverlayerbuttons_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64));
+            
+            if (i == ds_list_size(layer_list))
+                {
+                if (mouseover_layer) 
+                    {
+                    mouseonsomelayer = 1;
+                    controller.tooltip = "Click to create a new layer";
+                    if  mouse_check_button_pressed(mb_left)
+                        {
+                        newlayer = ds_list_create();
+                        ds_list_add(layer_list,newlayer);
+                        ds_list_add(newlayer,ds_list_create());
+                        }
+                    }
+                else
+                    draw_mouseline = 1;
+                ypos += 48;
+                break;
+                }
+                
+            mouseonsomelayer = 1;
+            if (mouseover_layer)
+                {
+                controller.tooltip = "Click to delete this layer and all its content";
+                if  mouse_check_button_pressed(mb_left) 
+                    {
+                    layertodelete = ds_list_find_value(layer_list,i);
+                    seq_dialog_yesno("layerdelete","Are you sure you want to delete this layer? (Cannot be undone)");
+                    }
+                }
+            else if (mouseover_envelope) 
                 {
                 mouseonsomelayer = 1;
-                controller.tooltip = "Click to create a new layer";
+                controller.tooltip = "Click to add an envelope (effect) for this layer.";
                 if  mouse_check_button_pressed(mb_left)
                     {
-                    newlayer = ds_list_create();
-                    ds_list_add(layer_list,newlayer);
-                    ds_list_add(newlayer,ds_list_create());
+                    layer = ds_list_find_value(layer_list, i);
+                    envelope = ds_list_create();
+                    ds_list_add(ds_list_find_value(layer,0),envelope);
+                    ds_list_add(envelope,"x");
+                    ds_list_add(envelope,ds_list_create());
                     }
                 }
             else
-                draw_mouseline = 1;
-            ypos += 48;
-            break;
-            }
-            
-        mouseonsomelayer = 1;
-        if (mouseover_layer)
-            {
-            controller.tooltip = "Click to delete this layer and all its content";
-            if  mouse_check_button_pressed(mb_left) 
                 {
-                layertodelete = ds_list_find_value(layer_list,i);
-                seq_dialog_yesno("layerdelete","Are you sure you want to delete this layer? (Cannot be undone)");
-                }
-            }
-        else if (mouseover_envelope) 
-            {
-            mouseonsomelayer = 1;
-            controller.tooltip = "Click to add an envelope (effect) for this layer.";
-            if  mouse_check_button_pressed(mb_left)
-                {
-                layer = ds_list_find_value(layer_list, i);
-                envelope = ds_list_create();
-                ds_list_add(ds_list_find_value(layer,0),envelope);
-                ds_list_add(envelope,"x");
-                ds_list_add(envelope,ds_list_create());
-                }
-            }
-        else
-            {
-            //mouse on layer but not button
-            for (m = 1; m < ds_list_size(layer); m++)
-                {
-                objectlist = ds_list_find_value(layer,m);
-                
-                infolist =  ds_list_find_value(objectlist,2);
-                frametime = ds_list_find_value(objectlist,0);
-                object_length = ds_list_find_value(infolist,0);
-                correctframe = round(tlx+mouse_x/tlw*tlzoom);
-                draw_mouseline = 1;
-                
-                
-                if (correctframe == clamp(correctframe, frametime-2, frametime+object_length+1))
+                //mouse on layer but not button
+                for (m = 1; m < ds_list_size(layer); m++)
                     {
-                    //mouse over object
-                    controller.tooltip = "Click to select this object. [Ctrl]+Click to select multiple objects.#Drag to move object. Drag the far edge to adjust duration.#Double-click to edit frames#Right click for more actions";
-                    if  mouse_check_button_pressed(mb_left)
+                    objectlist = ds_list_find_value(layer,m);
+                    
+                    infolist =  ds_list_find_value(objectlist,2);
+                    frametime = ds_list_find_value(objectlist,0);
+                    object_length = ds_list_find_value(infolist,0);
+                    correctframe = round(tlx+mouse_x/tlw*tlzoom);
+                    draw_mouseline = 1;
+                    
+                    
+                    if (correctframe == clamp(correctframe, frametime-2, frametime+object_length+1))
                         {
-                        if (keyboard_check(vk_control))
+                        //mouse over object
+                        controller.tooltip = "Click to select this object. [Ctrl]+Click to select multiple objects.#Drag to move object. Drag the far edge to adjust duration.#Double-click to edit frames#Right click for more actions";
+                        if  mouse_check_button_pressed(mb_left)
                             {
-                            if (ds_list_find_index(somaster_list,objectlist) != -1)
+                            if (keyboard_check(vk_control))
                                 {
-                                ds_list_delete(somaster_list,ds_list_find_index(somaster_list,objectlist));
-                                }
-                            ds_list_insert(somaster_list,0,objectlist);
-                            ds_list_copy(somoving_list,somaster_list);
-                            }
-                        else
-                            {
-                            if (ds_list_find_index(somaster_list,objectlist) != -1)
-                                {
+                                if (ds_list_find_index(somaster_list,objectlist) != -1)
+                                    {
+                                    ds_list_delete(somaster_list,ds_list_find_index(somaster_list,objectlist));
+                                    }
+                                ds_list_insert(somaster_list,0,objectlist);
                                 ds_list_copy(somoving_list,somaster_list);
                                 }
                             else
                                 {
-                                ds_list_clear(somoving_list);
-                                ds_list_insert(somoving_list,0,objectlist);
+                                if (ds_list_find_index(somaster_list,objectlist) != -1)
+                                    {
+                                    ds_list_copy(somoving_list,somaster_list);
+                                    }
+                                else
+                                    {
+                                    ds_list_clear(somoving_list);
+                                    ds_list_insert(somoving_list,0,objectlist);
+                                    }
+                                ds_list_clear(somaster_list);
+                                ds_list_insert(somaster_list,0,objectlist);
                                 }
-                            ds_list_clear(somaster_list);
-                            ds_list_insert(somaster_list,0,objectlist);
-                            }
-                        
-                        if (doubleclick)
-                            {
-                            //edit object
-                            seq_dialog_yesno("fromseq","You are about to open these frames in the editor mode. This will discard any unsaved changes in the editor. Continue? (Cannot be undone)");
-                            }
-                        else
-                            {
-                            if (mouse_x > ((frametime-tlx)/tlzoom*tlw)+object_length/tlzoom*tlw-2)
+                            
+                            if (doubleclick)
                                 {
-                                //resize object
-                                moving_object_flag = 2;
-                               
-                                //undolisttemp = ds_list_create();
-                                //ds_list_add(undolisttemp,infolisttomove);
-                                //ds_list_add(undolisttemp,object_length);
-                                
-                                mousexprev = mouse_x;
+                                //edit object
+                                seq_dialog_yesno("fromseq","You are about to open these frames in the editor mode. This will discard any unsaved changes in the editor. Continue? (Cannot be undone)");
                                 }
                             else
                                 {
-                                //drag object
-                                moving_object_flag = 1;
-                                
-                                /*undolisttemp = ds_list_create();
-                                ds_list_add(undolisttemp,layertomove);
-                                ds_list_add(undolisttemp,objecttomove);
-                                ds_list_add(undolisttemp,frametime);*/
-                                
-                                mousexprev = mouse_x;
-                                mouseyprev = mouse_y;
+                                if (mouse_x > ((frametime-tlx)/tlzoom*tlw)+object_length/tlzoom*tlw-2)
+                                    {
+                                    //resize object
+                                    moving_object_flag = 2;
+                                   
+                                    //undolisttemp = ds_list_create();
+                                    //ds_list_add(undolisttemp,infolisttomove);
+                                    //ds_list_add(undolisttemp,object_length);
+                                    
+                                    mousexprev = mouse_x;
+                                    }
+                                else
+                                    {
+                                    //drag object
+                                    moving_object_flag = 1;
+                                    
+                                    /*undolisttemp = ds_list_create();
+                                    ds_list_add(undolisttemp,layertomove);
+                                    ds_list_add(undolisttemp,objecttomove);
+                                    ds_list_add(undolisttemp,frametime);*/
+                                    
+                                    mousexprev = mouse_x;
+                                    mouseyprev = mouse_y;
+                                    }
                                 }
                             }
+                        else if mouse_check_button_pressed(mb_right)
+                            {
+                            //right clicked on object
+                            if (!keyboard_check(vk_control))
+                                ds_list_clear(somaster_list);
+                            if (ds_list_find_index(somaster_list,objectlist) != -1)
+                                ds_list_delete(somaster_list,ds_list_find_index(somaster_list,objectlist));
+                            ds_list_insert(somaster_list,0,objectlist);
+                            dropdown_seqobject();
+                            }
+                        ypos += 48;
+                        exit;
                         }
-                    else if mouse_check_button_pressed(mb_right)
-                        {
-                        //right clicked on object
-                        if (!keyboard_check(vk_control))
-                            ds_list_clear(somaster_list);
-                        if (ds_list_find_index(somaster_list,objectlist) != -1)
-                            ds_list_delete(somaster_list,ds_list_find_index(somaster_list,objectlist));
-                        ds_list_insert(somaster_list,0,objectlist);
-                        dropdown_seqobject();
-                        }
-                    ypos += 48;
-                    exit;
+                    }
+                    
+                controller.tooltip = "Click to select this layer position#Right click for more options";
+                floatingcursorx = round(tlx+mouse_x/tlw*tlzoom);
+                floatingcursory = ypos-1;
+                draw_cursorline = 1;
+                draw_mouseline = 1;
+                
+                if  mouse_check_button_pressed(mb_left)
+                    {
+                    selectedlayer = i;
+                    selectedx = floatingcursorx;
+                    ds_list_clear(somaster_list);
+                    }
+                else if  mouse_check_button_pressed(mb_right)
+                    {
+                    selectedlayer = i;
+                    selectedx = floatingcursorx;
+                    ds_list_clear(somaster_list);
+                    dropdown_layer();
                     }
                 }
-                
-            controller.tooltip = "Click to select this layer position#Right click for more options";
-            floatingcursorx = round(tlx+mouse_x/tlw*tlzoom);
-            floatingcursory = ypos-1;
-            draw_cursorline = 1;
-            draw_mouseline = 1;
-            
-            if  mouse_check_button_pressed(mb_left)
-                {
-                selectedlayer = i;
-                selectedx = floatingcursorx;
-                ds_list_clear(somaster_list);
-                }
-            else if  mouse_check_button_pressed(mb_right)
-                {
-                selectedlayer = i;
-                selectedx = floatingcursorx;
-                ds_list_clear(somaster_list);
-                dropdown_layer();
-                }
             }
+            
         }
+        
     ypos += 48;
     
     //envelope
@@ -567,25 +566,40 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
     envelope_list = ds_list_find_value(layer, 0);
     for (j = 0; j < ds_list_size(envelope_list); j++)
         {
-        envelope = ds_list_find_value(envelope_list,j);
-        type = ds_list_find_value(envelope,0);
-        
-        mouseonenvelope = (mouse_x == clamp(mouse_x,0,tlw-16)) and (mouse_y == clamp(mouse_y,ypos,ypos+64))
-        if (mouseonenvelope)
+        if (ypos > tlh+16-64+138) and (ypos < lbsh+138)
             {
-            log("on envelope")
-            //delete button
-            var mouseover_delete = (mouse_x == clamp(mouse_x,tlw-56,tlw-24)) and (mouse_y == clamp(mouse_y,ypos+8,ypos+40));
-            if (mouseover_delete) 
+            envelope = ds_list_find_value(envelope_list,j);
+            type = ds_list_find_value(envelope,0);
+            
+            mouseonenvelope = (mouse_x == clamp(mouse_x,0,tlw-16)) and (mouse_y == clamp(mouse_y,ypos,ypos+64));
+            if (mouseonenvelope)
                 {
-                mouseonsomelayer = 1;
-                controller.tooltip = "Click to delete this envelope and its data.";
-                if  mouse_check_button_pressed(mb_left) 
+                var mouseoverlayerbuttons_ver = (mouse_y == clamp(mouse_y,ypos+8,ypos+40));
+                var mouseover_delete = (mouseoverlayerbuttons_ver  and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)));
+                var mouseover_menu = (!mouseover_delete and mouseoverlayerbuttons_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64)));
+            
+                if (mouseover_delete) 
                     {
-                    envelopetodelete = envelope;
-                    seq_dialog_yesno("envelopedelete","Are you sure you want to delete this envelope? (Cannot be undone)");
+                    mouseonsomelayer = 1;
+                    controller.tooltip = "Click to delete this envelope and its data.";
+                    if  mouse_check_button_pressed(mb_left) 
+                        {
+                        selectedenvelope = envelope;
+                        seq_dialog_yesno("envelopedelete","Are you sure you want to delete this envelope? (Cannot be undone)");
+                        }
+                    }
+                else if (mouseover_menu)
+                    {
+                    mouseonsomelayer = 1;
+                    selectedenvelope = envelope;
+                    controller.tooltip = "Click to change settings of this envelope.";
+                    if  mouse_check_button_pressed(mb_left) 
+                        {
+                        dropdown_envelope_menu();
+                        }
                     }
                 }
+                
             }
         ypos += 64;
         }

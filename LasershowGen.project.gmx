@@ -200,6 +200,7 @@
       <sprite>sprites\spr_deletelayer</sprite>
       <sprite>sprites\spr_addenvelope</sprite>
       <sprite>sprites\spr_addlayer</sprite>
+      <sprite>sprites\spr_menu</sprite>
       <sprite>sprites\spr_saveproject</sprite>
       <sprite>sprites\spr_loadproject</sprite>
       <sprite>sprites\spr_addmarker</sprite>
@@ -844,6 +845,8 @@
         </scripts>
         <script>scripts\dropdown_seqobject.gml</script>
         <script>scripts\dropdown_layer.gml</script>
+        <script>scripts\dropdown_envelope_menu.gml</script>
+        <script>scripts\dropdown_envelope_type.gml</script>
         <script>scripts\seq_fromilda.gml</script>
         <script>scripts\dd_seq_object_duration.gml</script>
       </scripts>
