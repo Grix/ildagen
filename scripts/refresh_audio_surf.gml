@@ -21,7 +21,17 @@ surface_set_target(audio_surf);
     var mouseoverlayerbutton_hor = (mouse_x == clamp(mouse_x,tlw-56,tlw-24));
     for (i = 0; i <= ds_list_size(layer_list);i++)
         {
+        if (i == ds_list_size(layer_list))
+            {
+            if (ypos > tlh+16-48) and (ypos < lbsh)
+                draw_sprite(spr_addlayer,
+                            mouseoverlayerbutton_hor && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
+                            tlw-56,ypos+8);
+            break;
+            }
+            
         layer = ds_list_find_value(layer_list, i);
+        
         if (ypos > tlh+16-48) and (ypos < lbsh)
             {
             if (i == ds_list_size(layer_list))
@@ -29,6 +39,7 @@ surface_set_target(audio_surf);
                 draw_sprite(spr_addlayer,
                             mouseoverlayerbutton_hor && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
                             tlw-56,ypos+8);
+                log(i)
                 break;
                 }
                             

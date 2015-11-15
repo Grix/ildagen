@@ -268,10 +268,12 @@ else if (scroll_moving == 2)
         
     exit;
     }
-    
+
 if (mouse_x > tlw) 
 or (mouse_y < 132)
-    exit;  
+or (controller.dialog_open)
+or (controller.menu_open)
+    exit;
     
 if (mouse_wheel_up() or keyboard_check_pressed(vk_f7))
     {
@@ -388,8 +390,7 @@ var tempstarty = tls-layerbarx;
 
 var ypos = tempstarty;
 for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < floor((layerbarx+lbh)/48); i++)
-    { 
-    layer = ds_list_find_value(layer_list, i); 
+    {
     if (ypos > tlh+16-48+138) and (ypos < lbsh+138)
         {
         mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+48))
@@ -418,6 +419,8 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 break;
                 }
                 
+            layer = ds_list_find_value(layer_list, i); 
+            
             mouseonsomelayer = 1;
             if (mouseover_layer)
                 {

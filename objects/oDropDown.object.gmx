@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>rdy = 0;
+            <string>if (controller.dialog_open) instance_destroy();
+controller.menu_open = 1;
+
+rdy = 0;
 selected = noone;
 
 with (oDropDown)
@@ -92,6 +95,9 @@ ds_list_destroy(scr_list);
 ds_list_destroy(hl_list);
 ds_list_destroy(sep_list);
 instance_activate_all();
+
+if (instance_number(oDropDown) &lt;= 1)
+controller.alarm[6] = 2;
 </string>
           </argument>
         </arguments>
