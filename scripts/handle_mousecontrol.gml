@@ -391,6 +391,9 @@ var tempstarty = tls-layerbarx;
 var ypos = tempstarty;
 for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < floor((layerbarx+lbh)/48); i++)
     {
+    if (i != ds_list_size(layer_list))
+        layer = ds_list_find_value(layer_list, i); 
+    
     if (ypos > tlh+16-48+138) and (ypos < lbsh+138)
         {
         mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+48))
@@ -398,7 +401,6 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
             {
             var mouseoverlayerbuttons_ver = (mouse_y == clamp(mouse_y,ypos+8,ypos+40));
             var mouseover_layer = (mouseoverlayerbuttons_ver  and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)));
-            var mouseover_envelope = !mouseover_layer and mouseoverlayerbuttons_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64));
             
             if (i == ds_list_size(layer_list))
                 {
@@ -419,7 +421,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 break;
                 }
                 
-            layer = ds_list_find_value(layer_list, i); 
+            var mouseover_envelope = !mouseover_layer and mouseoverlayerbuttons_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64));
             
             mouseonsomelayer = 1;
             if (mouseover_layer)
@@ -571,15 +573,16 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
         {
         if (ypos > tlh+16-64+138) and (ypos < lbsh+138)
             {
+            //log(i);
             envelope = ds_list_find_value(envelope_list,j);
             type = ds_list_find_value(envelope,0);
             
-            mouseonenvelope = (mouse_x == clamp(mouse_x,0,tlw-16)) and (mouse_y == clamp(mouse_y,ypos,ypos+64));
+            mouseonenvelope = (mouse_y == clamp(mouse_y,ypos,ypos+64)) and (mouse_x == clamp(mouse_x,0,tlw-16));
             if (mouseonenvelope)
                 {
                 var mouseoverlayerbuttons_ver = (mouse_y == clamp(mouse_y,ypos+8,ypos+40));
-                var mouseover_delete = (mouseoverlayerbuttons_ver  and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)));
-                var mouseover_menu = (!mouseover_delete and mouseoverlayerbuttons_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64)));
+                var mouseover_delete = mouseoverlayerbuttons_ver  and (mouse_x == clamp(mouse_x,tlw-56,tlw-24));
+                var mouseover_menu = !mouseover_delete and mouseoverlayerbuttons_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64));
             
                 if (mouseover_delete) 
                     {
@@ -588,6 +591,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                     if  mouse_check_button_pressed(mb_left) 
                         {
                         selectedenvelope = envelope;
+                        env_list_to_delete = envelope_list;
                         seq_dialog_yesno("envelopedelete","Are you sure you want to delete this envelope? (Cannot be undone)");
                         }
                     }

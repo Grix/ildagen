@@ -602,6 +602,20 @@ if (new_id == getint)
             break;
             }
             
+          case "envelopedelete":
+            {
+            selectedenvelope_index = ds_list_find_index(env_list_to_delete,selectedenvelope);
+            if (selectedenvelope_index == -1) 
+                exit;
+            
+            ds_list_destroy(ds_list_find_value(selectedenvelope,1));
+            ds_list_destroy(ds_list_find_value(selectedenvelope,2));
+            ds_list_destroy(selectedenvelope);
+            ds_list_delete(env_list_to_delete,selectedenvelope_index);
+            
+            break;
+            }
+            
           case "layerdelete":
             {
             layer = layertodelete;
@@ -619,8 +633,10 @@ if (new_id == getint)
             ds_list_destroy(layer);
             ds_list_delete(layer_list,selectedlayer);
             
-            if (ds_list_empty(layer_list))
+            /*if (ds_list_empty(layer_list))  
+                {
                 ds_list_add(layer_list,ds_list_create());
+                }*/
             
             selectedlayer = 0;
             selectedx = 0;

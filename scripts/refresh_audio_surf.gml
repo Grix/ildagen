@@ -39,7 +39,6 @@ surface_set_target(audio_surf);
                 draw_sprite(spr_addlayer,
                             mouseoverlayerbutton_hor && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
                             tlw-56,ypos+8);
-                log(i)
                 break;
                 }
                             
