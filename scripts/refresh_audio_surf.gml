@@ -25,7 +25,7 @@ surface_set_target(audio_surf);
             {
             if (ypos > tlh+16-48) and (ypos < lbsh)
                 draw_sprite(spr_addlayer,
-                            mouseoverlayerbutton_hor && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
+                            mouseoverlayerbutton_hor and (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
                             tlw-56,ypos+8);
             break;
             }
@@ -37,7 +37,7 @@ surface_set_target(audio_surf);
             if (i == ds_list_size(layer_list))
                 {
                 draw_sprite(spr_addlayer,
-                            mouseoverlayerbutton_hor && (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
+                            mouseoverlayerbutton_hor and (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
                             tlw-56,ypos+8);
                 break;
                 }
@@ -116,8 +116,14 @@ surface_set_target(audio_surf);
                 type = ds_list_find_value(envelope,0);
                 draw_set_colour(c_white);
                 draw_rectangle(-1,ypos,tlw-16,ypos+64,0);
+                draw_set_colour(c_ltgray);
+                draw_line(-1,ypos+32,tlw-100,ypos+32);
                 draw_set_colour(c_black);
                 draw_rectangle(-1,ypos,tlw-16,ypos+64,1);
+                draw_enable_alphablend(1);
+                var typedraw = ds_map_find_value(env_type_map,type);
+                draw_text(tlw-96, ypos+45, "Type: "+typedraw);
+                draw_enable_alphablend(0);
                 mouse_on_button_ver = (mouse_y == clamp(mouse_y,138+8+ypos,138+40+ypos));
                 draw_sprite(spr_deletelayer,
                             mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)),

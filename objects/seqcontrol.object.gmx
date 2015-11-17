@@ -49,6 +49,7 @@ frame_surf_large = surface_create(1024,1024);
 frame3d_surf_large = surface_create(1024,1024);
 copy_list = ds_list_create();
 copy_buffer = ds_list_create();
+env_type_map = ds_map_create();
 
 project_dir = "";
 project_loaded = 0;
@@ -111,6 +112,16 @@ c_gold = make_colour_rgb(255,220,0);
 playing = 0;
 pos = 0;
 deltatime = 0;
+
+ds_map_add(env_type_map,"x","X");
+ds_map_add(env_type_map,"y","Y");
+ds_map_add(env_type_map,"size","Size");
+ds_map_add(env_type_map,"rotabs","Rotation");
+ds_map_add(env_type_map,"a","Intensity");
+ds_map_add(env_type_map,"hue","Hue");
+ds_map_add(env_type_map,"r","Red");
+ds_map_add(env_type_map,"g","Green");
+ds_map_add(env_type_map,"b","Blue");
 
 LoadFMOD();
 
@@ -608,8 +619,8 @@ if (new_id == getint)
             if (selectedenvelope_index == -1) 
                 exit;
             
-            ds_list_destroy(ds_list_find_value(selectedenvelope,1));
-            ds_list_destroy(ds_list_find_value(selectedenvelope,2));
+            //ds_list_destroy(ds_list_find_value(selectedenvelope,1));
+            //ds_list_destroy(ds_list_find_value(selectedenvelope,2));
             ds_list_destroy(selectedenvelope);
             ds_list_delete(env_list_to_delete,selectedenvelope_index);
             

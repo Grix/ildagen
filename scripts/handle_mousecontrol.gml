@@ -391,8 +391,7 @@ var tempstarty = tls-layerbarx;
 var ypos = tempstarty;
 for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < floor((layerbarx+lbh)/48); i++)
     {
-    if (i != ds_list_size(layer_list))
-        layer = ds_list_find_value(layer_list, i); 
+    layer = ds_list_find_value(layer_list, i); 
     
     if (ypos > tlh+16-48+138) and (ypos < lbsh+138)
         {
@@ -443,6 +442,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                     envelope = ds_list_create();
                     ds_list_add(ds_list_find_value(layer,0),envelope);
                     ds_list_add(envelope,"x");
+                    ds_list_add(envelope,ds_list_create());
                     ds_list_add(envelope,ds_list_create());
                     }
                 }
@@ -553,6 +553,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 else if  mouse_check_button_pressed(mb_right)
                     {
                     selectedlayer = i;
+                    selectedlayer_list = layer;
                     selectedx = floatingcursorx;
                     ds_list_clear(somaster_list);
                     dropdown_layer();

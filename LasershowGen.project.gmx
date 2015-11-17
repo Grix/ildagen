@@ -858,6 +858,7 @@
         <script>scripts\dd_seq_envtype_rotabs.gml</script>
         <script>scripts\seq_fromilda.gml</script>
         <script>scripts\dd_seq_object_duration.gml</script>
+        <script>scripts\dd_seq_add_envelope.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">
