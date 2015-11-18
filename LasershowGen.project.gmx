@@ -859,6 +859,8 @@
         <script>scripts\seq_fromilda.gml</script>
         <script>scripts\dd_seq_object_duration.gml</script>
         <script>scripts\dd_seq_add_envelope.gml</script>
+        <script>scripts\dd_seq_env_disable.gml</script>
+        <script>scripts\dd_seq_env_clear.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">
@@ -984,6 +986,7 @@
     <script>scripts\log.gml</script>
     <script>scripts\list_documentation.gml</script>
   </scripts>
+  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
     <font>fonts\fnt_bold</font>

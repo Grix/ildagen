@@ -73,6 +73,27 @@ with (seqcontrol)
         ds_list_destroy(marker_list);
         marker_list = undolisttemp;
         }
+    else if (string_char_at(undo,0) == 'e')
+        {
+        //undo envelope data clear
+        undolisttemp = real(string_digits(undo));
+        if (!ds_exists(ds_list_find_value(undolisttemp,2),ds_type_list))
+            {
+            ds_list_destroy( ds_list_find_value(undolisttemp,0) );
+            ds_list_destroy( ds_list_find_value(undolisttemp,1) );
+            ds_list_destroy( undolisttemp);
+            }
+        else
+            {
+            var t_selectedenvelope = ds_list_find_value(undolisttemp,2);
+            ds_list_destroy( ds_list_find_value(t_selectedenvelope,1) );
+            ds_list_destroy( ds_list_find_value(t_selectedenvelope,2) );
+            ds_list_replace( t_selectedenvelope,1,ds_list_find_value(undolisttemp,0) );
+            ds_list_replace( t_selectedenvelope,2,ds_list_find_value(undolisttemp,1) );
+            ds_list_destroy( undolisttemp );
+            }
+            
+        }
     
     frame_surf_refresh = 1;
     selectedlayer = 0;

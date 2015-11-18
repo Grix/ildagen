@@ -120,6 +120,65 @@ surface_set_target(audio_surf);
                 draw_line(-1,ypos+32,tlw-100,ypos+32);
                 draw_set_colour(c_black);
                 draw_rectangle(-1,ypos,tlw-16,ypos+64,1);
+                
+                //drawing envelope data
+                var time_list = ds_list_find_value(envelope,1);
+                var data_list = ds_list_find_value(envelope,2);
+                if (ds_list_size(time_list))
+                    {
+                    draw_set_colour(c_green);
+                    var t_i = 1;
+                    var t_timelistsize = ds_list_size(time_list);
+                    var t_index = floor(t_timelistsize/2);
+                    var t_lower;
+                    var t_muchlower;
+                    //binary search algo (kinda)
+                    while (1)
+                        {
+                        if (t_index == ds_list_size(time_list)-1) or (t_index == 0);
+                            break;
+                        t_i++;
+                        t_lower = (ds_list_find_value(time_list,t_index) < tlx);
+                        t_muchlower = (ds_list_find_value(time_list,t_index+1) < tlx);
+                        if (t_lower)
+                            {
+                            if (!t_muchlower)
+                                break;
+                            else    
+                                {
+                                t_index += t_timelistsize/t_i;
+                                continue;
+                                }
+                            }
+                        else
+                            {
+                            t_index -= t_timelistsize/t_i;
+                            continue;
+                            }
+                        }
+                    //draw graph
+                    var t_x = ds_list_find_value(time_list,t_index)-tlx;
+                    var default_value = 32;
+                    while (t_x < tlx+tlzoom)
+                        {
+                        t_x = ds_list_find_value(time_list,t_index)-tlx;
+                        if (t_index == ds_list_size(time_list)-1)
+                            {
+                            draw_line(  t_x,
+                                    ds_list_find_value(data_list,t_index),
+                                    1000,
+                                    default_value);
+                            break;
+                            }
+                        draw_line(  t_x,
+                                    ds_list_find_value(data_list,t_index),
+                                    tlx-ds_list_find_value(time_list,t_index+1),
+                                    ds_list_find_value(data_list,t_index+1));
+                        t_index++;
+                        }
+                    draw_set_colour(c_black);
+                    }
+                
                 draw_enable_alphablend(1);
                 var typedraw = ds_map_find_value(env_type_map,type);
                 draw_text(tlw-96, ypos+45, "Type: "+typedraw);
