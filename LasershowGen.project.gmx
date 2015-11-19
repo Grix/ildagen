@@ -986,7 +986,6 @@
     <script>scripts\log.gml</script>
     <script>scripts\list_documentation.gml</script>
   </scripts>
-  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
     <font>fonts\fnt_bold</font>

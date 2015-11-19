@@ -9,4 +9,6 @@ layer_list
                 type
                 env_time_list
                 env_data_list
+                disabled
+                hidden
         layer elements...

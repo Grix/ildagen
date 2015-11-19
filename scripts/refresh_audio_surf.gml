@@ -124,60 +124,56 @@ surface_set_target(audio_surf);
                 //drawing envelope data
                 var time_list = ds_list_find_value(envelope,1);
                 var data_list = ds_list_find_value(envelope,2);
+                var default_value = ypos+32;
+                draw_set_colour(c_green);
                 if (ds_list_size(time_list))
                     {
-                    draw_set_colour(c_green);
-                    var t_i = 1;
-                    var t_timelistsize = ds_list_size(time_list);
-                    var t_index = floor(t_timelistsize/2);
-                    var t_lower;
-                    var t_muchlower;
-                    //binary search algo (kinda)
-                    while (1)
+                    //binary search algo (kinda), set t_index to the list index just before visible
+                    var imin = 0;
+                    var imax = ds_list_size(time_list)-1;
+                    var imid;
+                    while (imin <= imax)
                         {
-                        if (t_index == ds_list_size(time_list)-1) or (t_index == 0);
-                            break;
-                        t_i++;
-                        t_lower = (ds_list_find_value(time_list,t_index) < tlx);
-                        t_muchlower = (ds_list_find_value(time_list,t_index+1) < tlx);
-                        if (t_lower)
+                        imid = floor(mean(imin,imax));
+                        if (ds_list_find_value(time_list,imid) <= tlx)
                             {
-                            if (!t_muchlower)
+                            if (ds_list_find_value(time_list,imid+1) > tlx)
                                 break;
-                            else    
-                                {
-                                t_index += t_timelistsize/t_i;
-                                continue;
-                                }
+                            else
+                                imin = imid+1;
                             }
                         else
-                            {
-                            t_index -= t_timelistsize/t_i;
-                            continue;
-                            }
+                            imax = imid-1;
                         }
+                    var t_index = imid;
                     //draw graph
-                    var t_x = ds_list_find_value(time_list,t_index)-tlx;
-                    var default_value = 32;
-                    while (t_x < tlx+tlzoom)
+                    while ((tlx-ds_list_find_value(time_list,t_index)) < tlx+tlzoom)
                         {
-                        t_x = ds_list_find_value(time_list,t_index)-tlx;
-                        if (t_index == ds_list_size(time_list)-1)
+                        if (t_index == 0)
+                            draw_line(  -1,
+                                        default_value,
+                                        tlx-ds_list_find_value(time_list,t_index),
+                                        ypos+ds_list_find_value(data_list,t_index));
+                        else if (t_index == ds_list_size(time_list)-1)
                             {
-                            draw_line(  t_x,
-                                    ds_list_find_value(data_list,t_index),
-                                    1000,
-                                    default_value);
+                            draw_line(  tlx-ds_list_find_value(time_list,t_index),
+                                        ypos+ds_list_find_value(data_list,t_index),
+                                        default_value,
+                                        tlw);
                             break;
                             }
-                        draw_line(  t_x,
-                                    ds_list_find_value(data_list,t_index),
+                        draw_line(  tlx-ds_list_find_value(time_list,t_index),
+                                    ypos+ds_list_find_value(data_list,t_index),
                                     tlx-ds_list_find_value(time_list,t_index+1),
-                                    ds_list_find_value(data_list,t_index+1));
+                                    ypos+ds_list_find_value(data_list,t_index+1));
                         t_index++;
                         }
-                    draw_set_colour(c_black);
                     }
+                else
+                    {
+                    draw_line(-1,default_value,tlw,default_value);
+                    }
+                draw_set_colour(c_black);
                 
                 draw_enable_alphablend(1);
                 var typedraw = ds_map_find_value(env_type_map,type);
@@ -187,9 +183,9 @@ surface_set_target(audio_surf);
                 draw_sprite(spr_deletelayer,
                             mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)),
                             tlw-56,ypos+8);
-                draw_sprite(spr_menu,
+                /*draw_sprite(spr_menu,
                             mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64)),
-                            tlw-96,ypos+8);
+                            tlw-96,ypos+8);*/
                 }
             ypos += 64;
             }
