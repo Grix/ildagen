@@ -631,13 +631,14 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                             {
                             for (u = 0; u < ds_list_size(time_list); u++)
                                 {
-                                if (ds_list_find_value(time_list,u) >= t_xpos)
+                                if (ds_list_find_value(time_list,u) > t_xpos)
                                     {
                                     break;
                                     }
                                 }
                             ds_list_insert(time_list,u,t_xpos);
                             ds_list_insert(data_list,u,t_ypos);
+                            log(u)
                             }
                         }
                     else if  mouse_check_button_pressed(mb_right) 

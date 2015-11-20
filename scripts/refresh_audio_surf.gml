@@ -117,7 +117,7 @@ surface_set_target(audio_surf);
                 draw_set_colour(c_white);
                 draw_rectangle(-1,ypos,tlw-16,ypos+64,0);
                 draw_set_colour(c_ltgray);
-                draw_line(-1,ypos+32,tlw-100,ypos+32);
+                draw_line(-1,ypos+32,tlw-60,ypos+32);
                 draw_set_colour(c_black);
                 draw_rectangle(-1,ypos,tlw-16,ypos+64,1);
                 
@@ -128,7 +128,7 @@ surface_set_target(audio_surf);
                 draw_set_colour(c_green);
                 if (ds_list_size(time_list))
                     {
-                    //binary search algo (kinda), set t_index to the list index just before visible
+                    //binary search algo (kinda), set t_index to the list index just before visible area
                     var imin = 0;
                     var imax = ds_list_size(time_list)-1;
                     var imid;
@@ -147,25 +147,36 @@ surface_set_target(audio_surf);
                         }
                     var t_index = imid;
                     //draw graph
-                    while ((tlx-ds_list_find_value(time_list,t_index)) < tlx+tlzoom)
+                    while ((tlx-ds_list_find_value(time_list,t_index)) < tlzoom)
                         {
-                        if (t_index == 0)
-                            draw_line(  -1,
-                                        default_value,
-                                        tlx-ds_list_find_value(time_list,t_index),
-                                        ypos+ds_list_find_value(data_list,t_index));
-                        else if (t_index == ds_list_size(time_list)-1)
+                        if (t_index == ds_list_size(time_list)-1)
                             {
-                            draw_line(  tlx-ds_list_find_value(time_list,t_index),
+                            if (t_index == 0)
+                                {
+                                draw_line(  -1,
+                                            ypos+ds_list_find_value(data_list,t_index),
+                                            tlw,
+                                            ypos+ds_list_find_value(data_list,t_index));
+                                break;
+                                }
+                            draw_line(  (ds_list_find_value(time_list,t_index)-tlx)*tlwdivtlzoom,
                                         ypos+ds_list_find_value(data_list,t_index),
-                                        default_value,
-                                        tlw);
+                                        tlw,
+                                        ypos+ds_list_find_value(data_list,t_index));
                             break;
                             }
-                        draw_line(  tlx-ds_list_find_value(time_list,t_index),
+                        else if (t_index == 0)
+                            draw_line(  -1,
+                                        ypos+ds_list_find_value(data_list,t_index),
+                                        (ds_list_find_value(time_list,t_index)-tlx)*tlwdivtlzoom,
+                                        ypos+ds_list_find_value(data_list,t_index));
+                        draw_line(  (ds_list_find_value(time_list,t_index)-tlx)*tlwdivtlzoom,
                                     ypos+ds_list_find_value(data_list,t_index),
-                                    tlx-ds_list_find_value(time_list,t_index+1),
+                                    (ds_list_find_value(time_list,t_index+1)-tlx)*tlwdivtlzoom,
                                     ypos+ds_list_find_value(data_list,t_index+1));
+                        /*log(t_index);
+                        log("1 "+string((ds_list_find_value(time_list,t_index)-tlx)*tlwdivtlzoom));
+                        log("2 "+string((ds_list_find_value(time_list,t_index+1)-tlx)*tlwdivtlzoom));*/
                         t_index++;
                         }
                     }
