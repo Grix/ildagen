@@ -122,8 +122,8 @@ surface_set_target(audio_surf);
                 draw_rectangle(-1,ypos,tlw-16,ypos+64,1);
                 
                 //drawing envelope data
-                var time_list = ds_list_find_value(envelope,1);
-                var data_list = ds_list_find_value(envelope,2);
+                time_list = ds_list_find_value(envelope,1);
+                data_list = ds_list_find_value(envelope,2);
                 var default_value = ypos+32;
                 draw_set_colour(c_green);
                 if (ds_list_size(time_list))
@@ -146,37 +146,31 @@ surface_set_target(audio_surf);
                             imax = imid-1;
                         }
                     var t_index = imid;
-                    //draw graph
-                    while ((tlx-ds_list_find_value(time_list,t_index)) < tlzoom)
+                    var t_env_y;
+                    var t_env_x;
+                    //draw envelope graph
+                    while ( (ds_list_find_value(time_list,t_index)-tlx) < tlzoom)
                         {
+                        t_env_y = ypos+ds_list_find_value(data_list,t_index);
+                        t_env_x = (ds_list_find_value(time_list,t_index)-tlx)*tlwdivtlzoom;
                         if (t_index == ds_list_size(time_list)-1)
                             {
                             if (t_index == 0)
                                 {
-                                draw_line(  -1,
-                                            ypos+ds_list_find_value(data_list,t_index),
-                                            tlw,
-                                            ypos+ds_list_find_value(data_list,t_index));
+                                draw_line( -1, t_env_y, tlw, t_env_y);
+                                draw_rectangle( t_env_x-1,t_env_y-1,t_env_x+1,t_env_y+1,0);
                                 break;
                                 }
-                            draw_line(  (ds_list_find_value(time_list,t_index)-tlx)*tlwdivtlzoom,
-                                        ypos+ds_list_find_value(data_list,t_index),
-                                        tlw,
-                                        ypos+ds_list_find_value(data_list,t_index));
+                            draw_line(  t_env_x,t_env_y,tlw, t_env_y);
+                            draw_rectangle( t_env_x-1,t_env_y-1,t_env_x+1,t_env_y+1,0);
                             break;
                             }
                         else if (t_index == 0)
-                            draw_line(  -1,
-                                        ypos+ds_list_find_value(data_list,t_index),
-                                        (ds_list_find_value(time_list,t_index)-tlx)*tlwdivtlzoom,
-                                        ypos+ds_list_find_value(data_list,t_index));
-                        draw_line(  (ds_list_find_value(time_list,t_index)-tlx)*tlwdivtlzoom,
-                                    ypos+ds_list_find_value(data_list,t_index),
+                            draw_line(  -1, t_env_y, t_env_x, t_env_y);
+                        draw_line(  t_env_x, t_env_y,
                                     (ds_list_find_value(time_list,t_index+1)-tlx)*tlwdivtlzoom,
                                     ypos+ds_list_find_value(data_list,t_index+1));
-                        /*log(t_index);
-                        log("1 "+string((ds_list_find_value(time_list,t_index)-tlx)*tlwdivtlzoom));
-                        log("2 "+string((ds_list_find_value(time_list,t_index+1)-tlx)*tlwdivtlzoom));*/
+                        draw_rectangle( t_env_x-1,t_env_y-1,t_env_x+1,t_env_y+1,0);
                         t_index++;
                         }
                     }
