@@ -178,11 +178,25 @@ surface_set_target(audio_surf);
                     {
                     draw_line(-1,default_value,tlw,default_value);
                     }
+                if (moving_object == 6) and (envelopetoedit == envelope)
+                        {
+                        draw_set_colour(c_green);
+                        draw_line(mousexprev,mouseyprev-138,mouse_x,mouse_y-138);
+                        }
+                    
                 draw_set_colour(c_black);
                 
                 draw_enable_alphablend(1);
-                var typedraw = ds_map_find_value(env_type_map,type);
-                draw_text(tlw-96, ypos+45, "Type: "+typedraw);
+                    var typedraw = ds_map_find_value(env_type_map,type);
+                    draw_text(tlw-96, ypos+45, "Type: "+typedraw);
+                    if (moving_object == 7) and (envelopetoedit == envelope)
+                        {
+                        draw_set_colour(c_red);
+                        draw_set_alpha(0.3);
+                        draw_rectangle(mousexprev,ypos,mouse_x,ypos+64,0);
+                        draw_set_colour(c_black);
+                        draw_set_alpha(1);
+                        }
                 draw_enable_alphablend(0);
                 mouse_on_button_ver = (mouse_y == clamp(mouse_y,138+8+ypos,138+40+ypos));
                 draw_sprite(spr_deletelayer,

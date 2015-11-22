@@ -241,12 +241,12 @@ else if (moving_object == 6)
     
     time_list = ds_list_find_value(envelopetoedit,1);
     data_list = ds_list_find_value(envelopetoedit,2);
-    var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
-    var t_ypos = mouse_y-ypos_env;
     var insertedthisstep = 0;
     
     if ( point_distance(mousexprev,mouseyprev,mouse_x,mouse_y) >= 8)
         {
+        var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
+        var t_ypos = clamp(mouse_y-ypos_env,0,64);
         //adding point
         for (u = 0; u < ds_list_size(time_list); u++)
             {
@@ -295,6 +295,8 @@ else if (moving_object == 6)
         }
     if (mouse_check_button_released(mb_left))
         {
+        var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
+        var t_ypos = clamp(mouse_y-ypos_env,0,64);
         if (!insertedthisstep)
             {
             for (u = 0; u < ds_list_size(time_list); u++)
@@ -307,6 +309,62 @@ else if (moving_object == 6)
             ds_list_insert(time_list,u,t_xpos);
             ds_list_insert(data_list,u,t_ypos);
             }
+        if (xposprev < t_xpos)
+            for (u = 0; u < ds_list_size(time_list); u++)
+                {
+                var t_xpos_loop = ds_list_find_value(time_list,u);
+                if (t_xpos_loop == clamp(t_xpos_loop, xposprev+1, t_xpos-1))
+                    {
+                    ds_list_delete(data_list,u);
+                    ds_list_delete(time_list,u);
+                    u--;
+                    }
+                }
+        else
+            for (u = 0; u < ds_list_size(time_list); u++)
+                {
+                var t_xpos_loop = ds_list_find_value(time_list,u);
+                if (t_xpos_loop == clamp(t_xpos_loop, t_xpos+1, xposprev-1))
+                    {
+                    ds_list_delete(data_list,u);
+                    ds_list_delete(time_list,u);
+                    u--;
+                    }
+                }
+        moving_object = 0;
+        }
+    exit;
+    }
+else if (moving_object == 7)
+    {
+    //deleting points from envelope
+    if (mouse_check_button_released(mb_left))
+        {
+        time_list = ds_list_find_value(envelopetoedit,1);
+        data_list = ds_list_find_value(envelopetoedit,2);
+        var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
+        if (xposprev < t_xpos)
+            for (u = 0; u < ds_list_size(time_list); u++)
+                {
+                var t_xpos_loop = ds_list_find_value(time_list,u);
+                if (t_xpos_loop == clamp(t_xpos_loop, xposprev+1, t_xpos-1))
+                    {
+                    ds_list_delete(data_list,u);
+                    ds_list_delete(time_list,u);
+                    u--;
+                    }
+                }
+        else
+            for (u = 0; u < ds_list_size(time_list); u++)
+                {
+                var t_xpos_loop = ds_list_find_value(time_list,u);
+                if (t_xpos_loop == clamp(t_xpos_loop, t_xpos+1, xposprev-1))
+                    {
+                    ds_list_delete(data_list,u);
+                    ds_list_delete(time_list,u);
+                    u--;
+                    }
+                }
         moving_object = 0;
         }
     exit;
@@ -636,6 +694,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                     ds_list_clear(somaster_list);
                     dropdown_layer();
                     }
+                exit;
                 }
             }
             
@@ -673,37 +732,36 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                     }
                 else
                     {
-                    controller.tooltip = "Click to place a point on the envelope graph.#Click an existing point to modify or delete it.#Right click for menu.";
+                    controller.tooltip = "Click or drag the mouse to place points on the envelope graph.#Hold [D] and drag the mouse to delete points.#Right click for menu.";
                     if  mouse_check_button_pressed(mb_left) 
                         {
                         //adding/modifying/deleting point
                         time_list = ds_list_find_value(envelope,1);
                         data_list = ds_list_find_value(envelope,2);
                         var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
+                        
+                        if (keyboard_check(ord('D')))
+                            {
+                            //entering deletion mode, drag mouse to cover area
+                            moving_object = 7;
+                            xposprev = t_xpos;
+                            mousexprev = mouse_x;
+                            envelopetoedit = envelope;
+                            exit;
+                            }
                         var t_ypos = mouse_y-ypos;
                         
                         //todo bubble sort like in drawing for extra performance?
-                        var t_ind = -1;
+                        
                         for (u = 0; u < ds_list_size(time_list); u++)
                             {
-                            //if mouse over existing point..
-                            }
-                        if (t_ind != -1)
-                            {
-                            //del
-                            }
-                        else
-                            {
-                            for (u = 0; u < ds_list_size(time_list); u++)
+                            if (ds_list_find_value(time_list,u) > t_xpos)
                                 {
-                                if (ds_list_find_value(time_list,u) > t_xpos)
-                                    {
-                                    break;
-                                    }
+                                break;
                                 }
-                            ds_list_insert(time_list,u,t_xpos);
-                            ds_list_insert(data_list,u,t_ypos);
                             }
+                        ds_list_insert(time_list,u,t_xpos);
+                        ds_list_insert(data_list,u,t_ypos);
                         xposprev = t_xpos;
                         yposprev = t_ypos;
                         mousexprev = mouse_x;
@@ -714,9 +772,11 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                         }
                     else if  mouse_check_button_pressed(mb_right) 
                         {
+                        selectedenvelope = envelope;
                         dropdown_envelope_menu();
                         }
                     }
+                exit;
                 }
                 
             }

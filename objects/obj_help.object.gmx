@@ -100,7 +100,8 @@ else if (room = rm_seq)
             "Tab)    Enter frame editor mode#"+
             "I)    Send frames from editor mode to timeline mode#"+
             "L)    Insert marker on timeline#"+
-            "P)    Toggle 3D frame previewing##"+
+            "P)    Toggle 3D frame previewing#"+
+            "D)    Hold to delete points in envelopes when dragging mouse##"+
             "Delete)    Delete selected object#"+
             "Ctrl+Z)    Undo#"+
             "Ctrl+C)    Copy selected objects#"+
