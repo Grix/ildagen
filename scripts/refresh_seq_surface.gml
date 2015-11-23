@@ -57,11 +57,89 @@ for (j = 0; j < ds_list_size(layer_list); j++)
             for (u = 0; u < ds_list_size(envelope_list); u++)
                 {
                 envelope = ds_list_find_value(envelope_list,u);
-                type = ds_list_find_value(envelope,0);
+                time_list = ds_list_find_value(envelope,1);
                 
+                if (ds_list_empty(time_list))
+                    continue;
+                    
+                data_list = ds_list_find_value(envelope,2); 
+                
+                //binary search algo, set t_index to the current cursor pos
+                var imin = 0;
+                var imax = ds_list_size(time_list)-1;
+                var imid;
+                while (imin <= imax)
+                    {
+                    imid = floor(mean(imin,imax));
+                    if (ds_list_find_value(time_list,imid) <= correctframe)
+                        {
+                        var valnext = ds_list_find_value(time_list,imid+1);
+                        if (is_undefined(valnext)) or (valnext >= correctframe)
+                            break;
+                        else
+                            imin = imid+1;
+                        }
+                    else
+                        imax = imid-1;
+                    }
+                var t_index = imid;
+                
+                //interpolate
+                var raw_data_value;
+                if (t_index == ds_list_size(data_list)-1) or ( (t_index == 0) and (ds_list_find_value(time_list,t_index) >= correctframe) )
+                    raw_data_value = ds_list_find_value(data_list,t_index);
+                else
+                    raw_data_value = lerp(  ds_list_find_value(data_list,t_index),
+                                            ds_list_find_value(data_list,t_index+1),
+                                            1-(ds_list_find_value(time_list,t_index+1)-correctframe)/
+                                            (ds_list_find_value(time_list,t_index+1)-ds_list_find_value(time_list,t_index)));
+                    
+                //get value    
+                type = ds_list_find_value(envelope,0);
                 if (type == "x")
                     {
-                    
+                    var env_xtrans = 1;
+                    var env_xtrans_val = (raw_data_value-32)*1024;
+                    }
+                else if (type == "y")
+                    {
+                    var env_ytrans = 1;
+                    var env_ytrans_val = (raw_data_value-32)*1024;
+                    }
+                else if (type == "size")
+                    {
+                    var env_size = 1;
+                    var env_size_val = raw_data_value/32;
+                    }
+                else if (type == "rotabs")
+                    {
+                    var env_rotabs = 1;
+                    var env_rotabs_val = (raw_data_value-32)/64*pi*2;
+                    }
+                else if (type == "a")
+                    {
+                    var env_a = 1;
+                    var env_a_val = raw_data_value/64;
+                    }
+                else if (type == "hue")
+                    {
+                    var env_rotabs = 1;
+                    var env_rotabs_val = (raw_data_value-32)/64*255;
+                    }
+                else if (type == "r")
+                    {
+                    var env_r = 1;
+                    var env_r_val = raw_data_value/64;
+                    }
+                else if (type == "g")
+                    {
+                    var env_g = 1;
+                    var env_g_val = raw_data_value/64;
+                    }
+                else if (type == "b")
+                    {
+                    var env_b = 1;
+                    var env_b_val = raw_data_value/64;
                     }
                 }
             }
@@ -112,6 +190,17 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 yp = buffer_read(el_buffer,buffer_f32);
                 bl = buffer_read(el_buffer,buffer_bool);
                 cl = buffer_read(el_buffer,buffer_u32);
+                
+                //apply envelope transforms
+                if (env_xtrans)
+                    {
+                    xo += env_xtrans_val/480;
+                    log(xo)
+                    }
+                if (env_ytrans)
+                    {
+                    yo += env_xtrans_val/480;
+                    }
                 
                 surface_set_target(frame_surf);
                 repeat (repeatnum)

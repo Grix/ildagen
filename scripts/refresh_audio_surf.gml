@@ -128,7 +128,7 @@ surface_set_target(audio_surf);
                 draw_set_colour(c_green);
                 if (ds_list_size(time_list))
                     {
-                    //binary search algo (kinda), set t_index to the list index just before visible area
+                    //binary search algo, set t_index to the list index just before visible area
                     var imin = 0;
                     var imax = ds_list_size(time_list)-1;
                     var imid;
@@ -137,7 +137,8 @@ surface_set_target(audio_surf);
                         imid = floor(mean(imin,imax));
                         if (ds_list_find_value(time_list,imid) <= tlx)
                             {
-                            if (ds_list_find_value(time_list,imid+1) > tlx)
+                            var valnext = ds_list_find_value(time_list,imid+1);
+                            if (is_undefined(valnext)) or (valnext > tlx)
                                 break;
                             else
                                 imin = imid+1;
