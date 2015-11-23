@@ -64,110 +64,102 @@ for (j = 0; j < ds_list_size(layer_list); j++)
             
         buffer_maxelements = buffer_read(el_buffer,buffer_u32);
         
-        //make into lists
+        draw_set_alpha(1);
+        
+        //actual elements
         for (i = 0; i < buffer_maxelements;i++)
             {
             numofinds = buffer_read(el_buffer,buffer_u32);
-            ind_list = ds_list_create();
-            ds_list_add(el_list,ind_list);
-            for (u = 0; u < 10; u++)
-                {
-                ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
-                }
-            for (u = 10; u < 20; u++)
-                {
-                ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
-                }
-            for (u = 20; u < numofinds; u += 4)
-                {
-                ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
-                ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
-                ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
-                ds_list_add(ind_list,buffer_read(el_buffer,buffer_u32));
-                }
-            }
-            
-        draw_set_alpha(1);
-        
-        //parse lists and draw
-        for (i = 0;i < ds_list_size(el_list);i++)
-            {
-            new_list = ds_list_find_value(el_list,i);
-            
-            if (ds_list_size(new_list) < 15)
-                {
-                ds_list_delete(el_list,i);
-                ds_list_sort(el_list,0);
-                continue;
-                }
-            xo = ds_list_find_value(new_list,0)/110;
-            yo = ds_list_find_value(new_list,1)/110;    
-            listsize = (((ds_list_size(new_list)-20)/4)-1);
+            var repeatnum = (numofinds-20)/4-1;
+            var buffer_start_pos = buffer_tell(el_buffer);
             
             //2d
             if (viewmode != 1)
                 {
+                xo = buffer_read(el_buffer,buffer_f32)/110;
+                yo = buffer_read(el_buffer,buffer_f32)/110;  
+                buffer_seek(el_buffer,buffer_seek_relative,42);
+                
+                xp = buffer_read(el_buffer,buffer_f32);
+                yp = buffer_read(el_buffer,buffer_f32);
+                bl = buffer_read(el_buffer,buffer_bool);
+                cl = buffer_read(el_buffer,buffer_u32);
+                
                 surface_set_target(frame_surf_large);
-                for (u = 0; u < listsize; u++)
+                repeat (repeatnum)
                     {
-                    nextpos = 20+(u+1)*4;
-                    nbl = ds_list_find_value(new_list,nextpos+2);
+                    //log(buffer_tell(el_buffer))
+                    xpp = xp;
+                    ypp = yp;
+                    blp = bl;
                     
-                    if (nbl == 0)
+                    xp = buffer_read(el_buffer,buffer_f32);
+                    yp = buffer_read(el_buffer,buffer_f32);
+                    bl = buffer_read(el_buffer,buffer_bool);
+                    c = buffer_read(el_buffer,buffer_u32);
+                    if (!bl)
                         {
-                        xp = ds_list_find_value(new_list,nextpos-4);
-                        yp = ds_list_find_value(new_list,nextpos-3);
-                        
-                        nxp = ds_list_find_value(new_list,nextpos);
-                        nyp = ds_list_find_value(new_list,nextpos+1);
-                        
-                        draw_set_color(ds_list_find_value(new_list,nextpos+3));
-                        if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-2))
+                        draw_set_color(c);
+                        if ((xp == xpp) and (yp == ypp) and !blp)
                             {
                             draw_point(xo+xp/110,yo+yp/110);
                             }
                         else
-                            draw_line(xo+ xp/110,yo+ yp/110,xo+ nxp/110,yo+ nyp/110);
+                            draw_line(xo+ xpp/110,yo+ ypp/110,xo+ xp/110,yo+ yp/110);
                         }
                     }
                 surface_reset_target();
                 }
-            
+                
             //3d
             if (viewmode != 0)
                 {
-                surface_set_target(frame3d_surf_large);
+                buffer_seek(el_buffer,buffer_seek_start,buffer_start_pos);
+                
+                xo = 187+buffer_read(el_buffer,buffer_f32)/110;
+                yo = buffer_read(el_buffer,buffer_f32)/110;  
+                buffer_seek(el_buffer,buffer_seek_relative,42);
+                
+                xp = buffer_read(el_buffer,buffer_f32);
+                yp = buffer_read(el_buffer,buffer_f32);
+                bl = buffer_read(el_buffer,buffer_bool);
+                cl = buffer_read(el_buffer,buffer_u32);
+                
                 draw_set_blend_mode(bm_add);
                 draw_set_alpha(0.8);
+                surface_set_target(frame3d_surf_large);
                 
-                for (u = 0; u < listsize; u++)
+                repeat (repeatnum)
                     {
-                    nextpos = 20+(u+1)*4;
+                    //log(buffer_tell(el_buffer))
+                    xpp = xp;
+                    ypp = yp;
+                    blp = bl;
                     
-                    if (ds_list_find_value(new_list,nextpos+2) == 0)
+                    xp = buffer_read(el_buffer,buffer_f32);
+                    yp = buffer_read(el_buffer,buffer_f32);
+                    bl = buffer_read(el_buffer,buffer_bool);
+                    c = buffer_read(el_buffer,buffer_u32);
+                    
+                    if (!bl)
                         {
-                        xp = ds_list_find_value(new_list,nextpos-4);
-                        yp = ds_list_find_value(new_list,nextpos-3);
-                        
-                        nxp = ds_list_find_value(new_list,nextpos);
-                        nyp = ds_list_find_value(new_list,nextpos+1);
-                        nb = ds_list_find_value(new_list,nextpos+3);
-                        
                         pdir = point_direction(300,300,xo+ xp/110,yo+ yp/110);
-                        npdir = point_direction(300,300,xo+ nxp/110,yo+ nyp/110);
-                        xxp = 300+cos(degtorad(-pdir))*500;
-                        yyp = 300+sin(degtorad(-pdir))*500;
-                        nxxp = 300+cos(degtorad(-npdir))*500;
-                        nyyp = 300+sin(degtorad(-npdir))*500;
+                        xxp = 300+cos(degtorad(-pdir))*600;
+                        yyp = 300+sin(degtorad(-pdir))*600;
                         
-                        if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-2))
+                        if (xpp == xp) and (ypp == yp) and !(blp)
                             {
                             draw_set_alpha(0.9);
-                            draw_line_colour(300,300,xxp,yyp,ds_list_find_value(new_list,nextpos+3),c_black);
+                            draw_line_colour(300,300,xxp,yyp,c,c_black);
                             draw_set_alpha(0.8);
                             }
                         else
-                            draw_triangle_colour(300,300,xxp,yyp,nxxp,nyyp,ds_list_find_value(new_list,nextpos+3),c_black,c_black,0);
+                            {
+                            pdir_p = point_direction(300,300,xo+ xpp/110,yo+ ypp/110);
+                            xxp_p = 300+cos(degtorad(-pdir_p))*600;
+                            yyp_p = 300+sin(degtorad(-pdir_p))*600;
+                            draw_triangle_colour(300,300,xxp_p,yyp_p,xxp,yyp,c,c_black,c_black,0);
+                            }
                         }
                     }
                 draw_set_blend_mode(bm_normal);
@@ -175,13 +167,6 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 surface_reset_target();  
                 }
             }
-        
-        //cleanup
-        for (i = 0;i < ds_list_size(el_list);i++)
-            {
-            ds_list_destroy(ds_list_find_value(el_list,i));
-            }
-        ds_list_destroy(el_list);
         }
     }
 

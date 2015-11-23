@@ -23,7 +23,9 @@ correctframe = round(tlpos/1000*projectfps);
 //check which should be drawn
 for (j = 0; j < ds_list_size(layer_list); j++)
     {
+    var env_dataset = 0;
     layer = ds_list_find_value(layer_list, j);
+    
     for (m = 1; m < ds_list_size(layer); m++)
         {
         objectlist = ds_list_find_value(layer,m);
@@ -36,6 +38,34 @@ for (j = 0; j < ds_list_size(layer_list); j++)
         if (correctframe != clamp(correctframe, frametime, frametime+object_length))
             continue;
         
+        //envelope transforms
+        if (!env_dataset)
+            {
+            env_dataset = 1;
+            
+            var env_xtrans = 0;
+            var env_ytrans = 0;
+            var env_size = 0;
+            var env_rotabs = 0;
+            var env_a = 0;
+            var env_hue = 0;
+            var env_r = 0;
+            var env_g = 0;
+            var env_b = 0;
+            
+            envelope_list = ds_list_find_value(layer,0);
+            for (u = 0; u < ds_list_size(envelope_list); u++)
+                {
+                envelope = ds_list_find_value(envelope_list,u);
+                type = ds_list_find_value(envelope,0);
+                
+                if (type == "x")
+                    {
+                    
+                    }
+                }
+            }
+        
         //draw object
         el_buffer = ds_list_find_value(objectlist,1);
         fetchedframe = (correctframe-frametime) mod object_maxframes;
@@ -43,13 +73,11 @@ for (j = 0; j < ds_list_size(layer_list); j++)
         buffer_ver = buffer_read(el_buffer,buffer_u8);
         if (buffer_ver != 52)
             {
-            show_message_async("Error: Unexpected byte. Things might get ugly. Contact developer.");
+            show_message_async("Error: Unexpected version id reading buffer in refresh_seq_surface: "+string(buffer_ver)+". Things might get ugly. Contact developer.");
             surface_reset_target();
             exit;
             }
         buffer_maxframes = buffer_read(el_buffer,buffer_u32);
-        
-        el_list = ds_list_create(); 
         
         //skip to correct frame
         for (i = 0; i < fetchedframe;i++)
@@ -64,109 +92,102 @@ for (j = 0; j < ds_list_size(layer_list); j++)
             
         buffer_maxelements = buffer_read(el_buffer,buffer_u32);
         
-        //make into lists
+        draw_set_alpha(1);
+        
+        //actual elements
         for (i = 0; i < buffer_maxelements;i++)
             {
             numofinds = buffer_read(el_buffer,buffer_u32);
-            ind_list = ds_list_create();
-            ds_list_add(el_list,ind_list);
-            for (u = 0; u < 10; u++)
-                {
-                ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
-                }
-            for (u = 10; u < 20; u++)
-                {
-                ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
-                }
-            for (u = 20; u < numofinds; u += 4)
-                {
-                ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
-                ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
-                ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
-                ds_list_add(ind_list,buffer_read(el_buffer,buffer_u32));
-                }
-            }
-            
-        draw_set_alpha(1);
-        
-        //parse lists and draw
-        for (i = 0;i < ds_list_size(el_list);i++)
-            {
-            new_list = ds_list_find_value(el_list,i);
-            
-            if (ds_list_size(new_list) < 15)
-                {
-                ds_list_delete(el_list,i);
-                ds_list_sort(el_list,0);
-                continue;
-                }
-            xo = 187+ds_list_find_value(new_list,0)/409;
-            yo = ds_list_find_value(new_list,1)/409;    
-            listsize = (((ds_list_size(new_list)-20)/4)-1);
+            var repeatnum = (numofinds-20)/4-1;
+            var buffer_start_pos = buffer_tell(el_buffer);
             
             //2d
             if (viewmode != 1)
                 {
+                xo = 187+buffer_read(el_buffer,buffer_f32)/480;
+                yo = buffer_read(el_buffer,buffer_f32)/480;  
+                buffer_seek(el_buffer,buffer_seek_relative,42);
+                
+                xp = buffer_read(el_buffer,buffer_f32);
+                yp = buffer_read(el_buffer,buffer_f32);
+                bl = buffer_read(el_buffer,buffer_bool);
+                cl = buffer_read(el_buffer,buffer_u32);
+                
                 surface_set_target(frame_surf);
-                for (u = 0; u < listsize; u++)
+                repeat (repeatnum)
                     {
-                    nextpos = 20+(u+1)*4;
-                    nbl = ds_list_find_value(new_list,nextpos+2);
+                    //log(buffer_tell(el_buffer))
+                    xpp = xp;
+                    ypp = yp;
+                    blp = bl;
                     
-                    if (nbl == 0)
+                    xp = buffer_read(el_buffer,buffer_f32);
+                    yp = buffer_read(el_buffer,buffer_f32);
+                    bl = buffer_read(el_buffer,buffer_bool);
+                    c = buffer_read(el_buffer,buffer_u32);
+                    if (!bl)
                         {
-                        xp = ds_list_find_value(new_list,nextpos-4);
-                        yp = ds_list_find_value(new_list,nextpos-3);
-                        
-                        nxp = ds_list_find_value(new_list,nextpos);
-                        nyp = ds_list_find_value(new_list,nextpos+1);
-                        
-                        draw_set_color(ds_list_find_value(new_list,nextpos+3));
-                        if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-2))
+                        draw_set_color(c);
+                        if ((xp == xpp) and (yp == ypp) and !blp)
                             {
-                            draw_point(xo+xp/409,yo+yp/409);
+                            draw_point(xo+xp/480,yo+yp/480);
                             }
                         else
-                            draw_line(xo+ xp/409,yo+ yp/409,xo+ nxp/409,yo+ nyp/409);
+                            draw_line(xo+ xpp/480,yo+ ypp/480,xo+ xp/480,yo+ yp/480);
                         }
                     }
                 surface_reset_target();
                 }
-            
+                
             //3d
             if (viewmode != 0)
                 {
-                surface_set_target(frame3d_surf);
+                buffer_seek(el_buffer,buffer_seek_start,buffer_start_pos);
+                
+                xo = 187+buffer_read(el_buffer,buffer_f32)/480;
+                yo = buffer_read(el_buffer,buffer_f32)/480;  
+                buffer_seek(el_buffer,buffer_seek_relative,42);
+                
+                xp = buffer_read(el_buffer,buffer_f32);
+                yp = buffer_read(el_buffer,buffer_f32);
+                bl = buffer_read(el_buffer,buffer_bool);
+                cl = buffer_read(el_buffer,buffer_u32);
+                
                 draw_set_blend_mode(bm_add);
                 draw_set_alpha(0.8);
+                surface_set_target(frame3d_surf);
                 
-                for (u = 0; u < listsize; u++)
+                repeat (repeatnum)
                     {
-                    nextpos = 20+(u+1)*4;
+                    //log(buffer_tell(el_buffer))
+                    xpp = xp;
+                    ypp = yp;
+                    blp = bl;
                     
-                    if (ds_list_find_value(new_list,nextpos+2) == 0)
+                    xp = buffer_read(el_buffer,buffer_f32);
+                    yp = buffer_read(el_buffer,buffer_f32);
+                    bl = buffer_read(el_buffer,buffer_bool);
+                    c = buffer_read(el_buffer,buffer_u32);
+                    
+                    if (!bl)
                         {
-                        xp = ds_list_find_value(new_list,nextpos-4);
-                        yp = ds_list_find_value(new_list,nextpos-3);
+                        pdir = point_direction(256,68,xo+ xp/480,yo+ yp/480);
+                        xxp = 256+cos(degtorad(-pdir))*512;
+                        yyp = 68+sin(degtorad(-pdir))*512;
                         
-                        nxp = ds_list_find_value(new_list,nextpos);
-                        nyp = ds_list_find_value(new_list,nextpos+1);
-                        
-                        pdir = point_direction(256,68,xo+ xp/409,yo+ yp/409);
-                        npdir = point_direction(256,68,xo+ nxp/409,yo+ nyp/409);
-                        xxp = 256+cos(degtorad(-pdir))*400;
-                        yyp = 68+sin(degtorad(-pdir))*200;
-                        nxxp = 256+cos(degtorad(-npdir))*400;
-                        nyyp = 68+sin(degtorad(-npdir))*200;
-                        
-                        if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-2))
+                        if (xpp == xp) and (ypp == yp) and !(blp)
                             {
                             draw_set_alpha(0.9);
-                            draw_line_colour(256,68,xxp,yyp,ds_list_find_value(new_list,nextpos+3),c_black);
+                            draw_line_colour(256,68,xxp,yyp,c,c_black);
                             draw_set_alpha(0.8);
                             }
                         else
-                            draw_triangle_colour(256,68,xxp,yyp,nxxp,nyyp,ds_list_find_value(new_list,nextpos+3),c_black,c_black,0);
+                            {
+                            pdir_p = point_direction(256,68,xo+ xpp/480,yo+ ypp/480);
+                            xxp_p = 256+cos(degtorad(-pdir_p))*512;
+                            yyp_p = 68+sin(degtorad(-pdir_p))*512;
+                            draw_triangle_colour(256,68,xxp_p,yyp_p,xxp,yyp,c,c_black,c_black,0);
+                            }
                         }
                     }
                 draw_set_blend_mode(bm_normal);
@@ -174,13 +195,6 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 surface_reset_target();  
                 }
             }
-        
-        //cleanup
-        for (i = 0;i < ds_list_size(el_list);i++)
-            {
-            ds_list_destroy(ds_list_find_value(el_list,i));
-            }
-        ds_list_destroy(el_list);
         }
     }
 
