@@ -243,7 +243,7 @@ else if (moving_object == 6)
     data_list = ds_list_find_value(envelopetoedit,2);
     var insertedthisstep = 0;
     
-    if ( point_distance(mousexprev,mouseyprev,mouse_x,mouse_y) >= 8)
+    if ( point_distance(mousexprev,mouseyprev,mouse_x,mouse_y) >= 6)
         {
         var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
         var t_ypos = clamp(mouse_y-ypos_env,0,64);

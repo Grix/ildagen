@@ -123,23 +123,23 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                     }
                 else if (type == "hue")
                     {
-                    var env_rotabs = 1;
-                    var env_rotabs_val = (raw_data_value-32)/64*255;
+                    var env_hue = 1;
+                    var env_hue_val = (raw_data_value-32)/64*255;
                     }
                 else if (type == "r")
                     {
                     var env_r = 1;
-                    var env_r_val = raw_data_value/64;
+                    var env_r_val = 1-raw_data_value/64;
                     }
                 else if (type == "g")
                     {
                     var env_g = 1;
-                    var env_g_val = raw_data_value/64;
+                    var env_g_val = 1-raw_data_value/64;
                     }
                 else if (type == "b")
                     {
                     var env_b = 1;
-                    var env_b_val = raw_data_value/64;
+                    var env_b_val = 1-raw_data_value/64;
                     }
                 }
             }
@@ -195,11 +195,10 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 if (env_xtrans)
                     {
                     xo += env_xtrans_val/480;
-                    log(xo)
                     }
                 if (env_ytrans)
                     {
-                    yo += env_xtrans_val/480;
+                    yo += env_ytrans_val/480;
                     }
                 
                 surface_set_target(frame_surf);
@@ -214,6 +213,29 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                     yp = buffer_read(el_buffer,buffer_f32);
                     bl = buffer_read(el_buffer,buffer_bool);
                     c = buffer_read(el_buffer,buffer_u32);
+                    
+                    //apply envelope transforms
+                    if (env_hue)
+                        {
+                        c = make_colour_hsv((colour_get_hue(c)+env_hue_val) mod 255,colour_get_saturation(c),colour_get_value(c));
+                        }
+                    if (env_a)
+                        {
+                        c = merge_colour(c,c_black,env_a_val);
+                        }
+                    if (env_r)
+                        {
+                        c = make_colour_rgb(colour_get_red(c)*env_r_val,colour_get_green(c),colour_get_blue(c));
+                        }
+                    if (env_g)
+                        {
+                        c = make_colour_rgb(colour_get_red(c),colour_get_green(c)*env_g_val,colour_get_blue(c));
+                        }
+                    if (env_b)
+                        {
+                        c = make_colour_rgb(colour_get_red(c),colour_get_green(c),colour_get_blue(c)*env_b_val);
+                        }
+                    
                     if (!bl)
                         {
                         draw_set_color(c);

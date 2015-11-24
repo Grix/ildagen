@@ -1,5 +1,6 @@
 //reapplies the object properties
 
+//create more frames if only one and animation is on
 if (maxframes == 1) and (anienable)
     {
     maxframes = 32;
