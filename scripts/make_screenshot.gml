@@ -18,79 +18,54 @@ surface_set_target(temp_surf);
 draw_clear(c_black);
 
 draw_set_alpha(1);
+draw_enable_alphablend(0);
 
 el_list = ds_list_create(); 
 
 for (i = 0; i < buffer_maxelements;i++)
     {
     numofinds = buffer_read(el_buffer,buffer_u32);
-    ind_list = ds_list_create();
-    ds_list_add(el_list,ind_list);
-    for (u = 0; u < 10; u++)
-        {
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
-        }
-    for (u = 10; u < 20; u++)
-        {
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
-        }
-    for (u = 20; u < numofinds; u += 4)
-        {
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_u32));
-        }
-    }
-
-for (i = 0;i < ds_list_size(el_list);i++)
-    {
-    new_list = ds_list_find_value(el_list,i);
+    var repeatnum = (numofinds-20)/4-1;
+    var buffer_start_pos = buffer_tell(el_buffer);
     
-    if (ds_list_size(new_list) < 15)
-        {
-        ds_list_delete(el_list,i);
-        ds_list_sort(el_list,0);
-        continue;
-        }
-    
-    xo = ds_list_find_value(new_list,0)/$ffff*32;
-    yo = ds_list_find_value(new_list,1)/$ffff*32;
-    
-    //TODO if just one
-    
-    for (u = 0; u < (((ds_list_size(new_list)-20)/4)-1); u++)
-        {
-        currentpos = 20+u*4;
-        nextpos = 20+(u+1)*4;
+    //2d
+    xo = buffer_read(el_buffer,buffer_f32)/2048;
+    yo = buffer_read(el_buffer,buffer_f32)/2048;  
+    buffer_seek(el_buffer,buffer_seek_relative,42);
         
-        if (ds_list_find_value(new_list,nextpos+2) == 0)
+    xp = buffer_read(el_buffer,buffer_f32);
+    yp = buffer_read(el_buffer,buffer_f32);
+    bl = buffer_read(el_buffer,buffer_bool);
+    c = buffer_read(el_buffer,buffer_u32);
+    
+    repeat (repeatnum)
+        {
+        //log(buffer_tell(el_buffer))
+        xpp = xp;
+        ypp = yp;
+        blp = bl;
+        
+        xp = buffer_read(el_buffer,buffer_f32);
+        yp = buffer_read(el_buffer,buffer_f32);
+        bl = buffer_read(el_buffer,buffer_bool);
+        c = buffer_read(el_buffer,buffer_u32);
+        
+        if (!bl)
             {
-            xp = ds_list_find_value(new_list,currentpos+0);
-            yp = ds_list_find_value(new_list,currentpos+1);
-            
-            nxp = ds_list_find_value(new_list,nextpos+0);
-            nyp = ds_list_find_value(new_list,nextpos+1);
-            
-            draw_set_color(ds_list_find_value(new_list,nextpos+3));
-            if (xp == nxp) && (yp == nyp)
+            draw_set_color(c);
+            if ((xp == xpp) and (yp == ypp) and !blp)
                 {
-                draw_point(xo+xp/$ffff*32,yo+yp/$ffff*32);
+                draw_point(xo+xp/2048,yo+yp/2048);
                 }
             else
-                draw_line(xo+ xp/$ffff*32,yo+ yp/$ffff*32,xo+ nxp/$ffff*32,yo+ nyp/$ffff*32);
+                draw_line(xo+ xpp/2048,yo+ ypp/2048,xo+ xp/2048,yo+ yp/2048);
             }
-        
         }
+        
     }
-
+    
+draw_enable_alphablend(1);
 surface_reset_target();
-
-for (i = 0;i < ds_list_size(el_list);i++)
-    {
-    ds_list_destroy(ds_list_find_value(el_list,i));
-    }
-ds_list_destroy(el_list);
 
 return temp_surf;
     

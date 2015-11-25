@@ -43,105 +43,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
             {
             env_dataset = 1;
             
-            var env_xtrans = 0;
-            var env_ytrans = 0;
-            var env_size = 0;
-            var env_rotabs = 0;
-            var env_a = 0;
-            var env_hue = 0;
-            var env_r = 0;
-            var env_g = 0;
-            var env_b = 0;
-            
-            envelope_list = ds_list_find_value(layer,0);
-            for (u = 0; u < ds_list_size(envelope_list); u++)
-                {
-                envelope = ds_list_find_value(envelope_list,u);
-                time_list = ds_list_find_value(envelope,1);
-                
-                if (ds_list_empty(time_list))
-                    continue;
-                    
-                data_list = ds_list_find_value(envelope,2); 
-                
-                //binary search algo, set t_index to the current cursor pos
-                var imin = 0;
-                var imax = ds_list_size(time_list)-1;
-                var imid;
-                while (imin <= imax)
-                    {
-                    imid = floor(mean(imin,imax));
-                    if (ds_list_find_value(time_list,imid) <= correctframe)
-                        {
-                        var valnext = ds_list_find_value(time_list,imid+1);
-                        if (is_undefined(valnext)) or (valnext >= correctframe)
-                            break;
-                        else
-                            imin = imid+1;
-                        }
-                    else
-                        imax = imid-1;
-                    }
-                var t_index = imid;
-                
-                //interpolate
-                var raw_data_value;
-                if (t_index == ds_list_size(data_list)-1) or ( (t_index == 0) and (ds_list_find_value(time_list,t_index) >= correctframe) )
-                    raw_data_value = ds_list_find_value(data_list,t_index);
-                else
-                    raw_data_value = lerp(  ds_list_find_value(data_list,t_index),
-                                            ds_list_find_value(data_list,t_index+1),
-                                            1-(ds_list_find_value(time_list,t_index+1)-correctframe)/
-                                            (ds_list_find_value(time_list,t_index+1)-ds_list_find_value(time_list,t_index)));
-                    
-                //get value    
-                type = ds_list_find_value(envelope,0);
-                if (type == "x")
-                    {
-                    var env_xtrans = 1;
-                    var env_xtrans_val = (raw_data_value-32)*1024;
-                    }
-                else if (type == "y")
-                    {
-                    var env_ytrans = 1;
-                    var env_ytrans_val = (raw_data_value-32)*1024;
-                    }
-                else if (type == "size")
-                    {
-                    var env_size = 1;
-                    var env_size_val = raw_data_value/32;
-                    }
-                else if (type == "rotabs")
-                    {
-                    var env_rotabs = 1;
-                    var env_rotabs_val = (raw_data_value-32)/64*pi*2;
-                    }
-                else if (type == "a")
-                    {
-                    var env_a = 1;
-                    var env_a_val = raw_data_value/64;
-                    }
-                else if (type == "hue")
-                    {
-                    var env_hue = 1;
-                    var env_hue_val = (raw_data_value-32)/64*255;
-                    }
-                else if (type == "r")
-                    {
-                    var env_r = 1;
-                    var env_r_val = 1-raw_data_value/64;
-                    }
-                else if (type == "g")
-                    {
-                    var env_g = 1;
-                    var env_g_val = 1-raw_data_value/64;
-                    }
-                else if (type == "b")
-                    {
-                    var env_b = 1;
-                    var env_b_val = 1-raw_data_value/64;
-                    }
-                }
+            ready_envelope_applying(ds_list_find_value(layer,0));
             }
         
         //draw object
@@ -180,28 +82,24 @@ for (j = 0; j < ds_list_size(layer_list); j++)
             var buffer_start_pos = buffer_tell(el_buffer);
             
             //2d
+            draw_enable_alphablend(0);
             if (viewmode != 1)
                 {
                 xo = 187+buffer_read(el_buffer,buffer_f32)/480;
                 yo = buffer_read(el_buffer,buffer_f32)/480;  
                 buffer_seek(el_buffer,buffer_seek_relative,42);
                 
+                apply_envelope_frame(480);
+                    
                 xp = buffer_read(el_buffer,buffer_f32);
                 yp = buffer_read(el_buffer,buffer_f32);
                 bl = buffer_read(el_buffer,buffer_bool);
-                cl = buffer_read(el_buffer,buffer_u32);
+                c = buffer_read(el_buffer,buffer_u32);
                 
-                //apply envelope transforms
-                if (env_xtrans)
-                    {
-                    xo += env_xtrans_val/480;
-                    }
-                if (env_ytrans)
-                    {
-                    yo += env_ytrans_val/480;
-                    }
+                apply_envelope_point();
                 
                 surface_set_target(frame_surf);
+                
                 repeat (repeatnum)
                     {
                     //log(buffer_tell(el_buffer))
@@ -214,27 +112,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                     bl = buffer_read(el_buffer,buffer_bool);
                     c = buffer_read(el_buffer,buffer_u32);
                     
-                    //apply envelope transforms
-                    if (env_hue)
-                        {
-                        c = make_colour_hsv((colour_get_hue(c)+env_hue_val) mod 255,colour_get_saturation(c),colour_get_value(c));
-                        }
-                    if (env_a)
-                        {
-                        c = merge_colour(c,c_black,env_a_val);
-                        }
-                    if (env_r)
-                        {
-                        c = make_colour_rgb(colour_get_red(c)*env_r_val,colour_get_green(c),colour_get_blue(c));
-                        }
-                    if (env_g)
-                        {
-                        c = make_colour_rgb(colour_get_red(c),colour_get_green(c)*env_g_val,colour_get_blue(c));
-                        }
-                    if (env_b)
-                        {
-                        c = make_colour_rgb(colour_get_red(c),colour_get_green(c),colour_get_blue(c)*env_b_val);
-                        }
+                    apply_envelope_point();
                     
                     if (!bl)
                         {
@@ -247,8 +125,10 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                             draw_line(xo+ xpp/480,yo+ ypp/480,xo+ xp/480,yo+ yp/480);
                         }
                     }
+                
                 surface_reset_target();
                 }
+            draw_enable_alphablend(1);
                 
             //3d
             if (viewmode != 0)
@@ -259,18 +139,21 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 yo = buffer_read(el_buffer,buffer_f32)/480;  
                 buffer_seek(el_buffer,buffer_seek_relative,42);
                 
+                apply_envelope_frame(480);
+                
                 xp = buffer_read(el_buffer,buffer_f32);
                 yp = buffer_read(el_buffer,buffer_f32);
                 bl = buffer_read(el_buffer,buffer_bool);
-                cl = buffer_read(el_buffer,buffer_u32);
+                c = buffer_read(el_buffer,buffer_u32);
+                
+                apply_envelope_point();
                 
                 draw_set_blend_mode(bm_add);
-                draw_set_alpha(0.8);
+                draw_set_alpha(0.7);
                 surface_set_target(frame3d_surf);
                 
                 repeat (repeatnum)
                     {
-                    //log(buffer_tell(el_buffer))
                     xpp = xp;
                     ypp = yp;
                     blp = bl;
@@ -279,6 +162,8 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                     yp = buffer_read(el_buffer,buffer_f32);
                     bl = buffer_read(el_buffer,buffer_bool);
                     c = buffer_read(el_buffer,buffer_u32);
+                    
+                    apply_envelope_point();
                     
                     if (!bl)
                         {
@@ -290,7 +175,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                             {
                             draw_set_alpha(0.9);
                             draw_line_colour(256,68,xxp,yyp,c,c_black);
-                            draw_set_alpha(0.8);
+                            draw_set_alpha(0.7);
                             }
                         else
                             {

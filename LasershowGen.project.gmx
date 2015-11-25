@@ -903,6 +903,9 @@
       <script>scripts\seq_copy_object.gml</script>
       <script>scripts\seq_edit_object.gml</script>
       <script>scripts\add_marker.gml</script>
+      <script>scripts\apply_envelope_point.gml</script>
+      <script>scripts\apply_envelope_frame.gml</script>
+      <script>scripts\ready_envelope_applying.gml</script>
     </scripts>
     <scripts name="ilda">
       <script>scripts\draw_grid.gml</script>
