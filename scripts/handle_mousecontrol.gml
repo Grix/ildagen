@@ -1,10 +1,6 @@
 //all the interaction with the timeline
     
 mouseonsomelayer = 0;
-scrollbarw = clamp(((tlzoom+18)/length)*tlw-18,32,tlw-18);
-if (length != tlzoom)
-    scrollbarx = (tlw-18-scrollbarw)*(tlx)/(length-tlzoom);
-layerbarw = clamp(lbh/(ds_list_size(layer_list)*48+lbh)*(lbh-1),32,lbh-1);
 
 if (moving_object == 1)
     {
@@ -391,7 +387,7 @@ else if (scroll_moving == 2)
     {
     layerbarx += (mouse_y-mouseyprev)*lbh/layerbarw;//*(length/tlw);
     if (layerbarx < 0) layerbarx = 0;
-    if ((layerbarx/48) > ds_list_size(layer_list)) layerbarx = (ds_list_size(layer_list))*48;
+    if ((layerbarx) > ypos_perm) layerbarx = ypos_perm;
     
     mouseyprev = mouse_y;
     
@@ -425,11 +421,14 @@ else if (mouse_wheel_down() or keyboard_check_pressed(vk_f8))
     tlx = tlxtemp-mouse_x/tlw*tlzoom;
     if (tlx < 0) 
         tlx = 0;
-    }  
+    }
+
     
 //horizontal scroll
+var scrollypos = tls+(layerbarx*layerbarw/lbh);
+
 if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw)) 
-&& (mouse_y == clamp(mouse_y,lbsh+138,lbsh+16+138))
+and (mouse_y == clamp(mouse_y,lbsh+138,lbsh+16+138))
     {
     mouseonsomelayer = 1;
     controller.tooltip = "Drag to scroll the timeline. Use the mouse wheel or [F7]/[F8] to zoom";
@@ -440,8 +439,8 @@ if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw))
         }
     }
 //vertical scroll
-else if (mouse_y == clamp(mouse_y,tls+layerbarx,tls+layerbarx+layerbarw)) 
-&& (mouse_x == clamp(mouse_x,tlw-16,tlw))
+else if (mouse_y == clamp(mouse_y,scrollypos,scrollypos+layerbarw)) 
+    and (mouse_x == clamp(mouse_x,tlw-16,tlw))
     {
     mouseonsomelayer = 1;
     controller.tooltip = "Drag to scroll the layer list.";
@@ -453,6 +452,7 @@ else if (mouse_y == clamp(mouse_y,tls+layerbarx,tls+layerbarx+layerbarw))
     }
     
 if (mouse_y > lbsh+136) 
+or (mouse_x > tlw-16) 
     exit;
     
 if (moving_object_flag)

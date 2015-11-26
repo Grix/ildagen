@@ -18,6 +18,7 @@ surface_set_target(audio_surf);
     draw_set_colour(c_black);
     var tempstarty = tlh+16-layerbarx;
     var ypos = tempstarty;
+    ypos_perm = 0;
     var mouseoverlayerbutton_hor = (mouse_x == clamp(mouse_x,tlw-56,tlw-24));
     for (i = 0; i <= ds_list_size(layer_list);i++)
         {
@@ -27,6 +28,7 @@ surface_set_target(audio_surf);
                 draw_sprite(spr_addlayer,
                             mouseoverlayerbutton_hor and (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
                             tlw-56,ypos+8);
+            ypos_perm += 48;
             break;
             }
             
@@ -39,6 +41,7 @@ surface_set_target(audio_surf);
                 draw_sprite(spr_addlayer,
                             mouseoverlayerbutton_hor and (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
                             tlw-56,ypos+8);
+                ypos_perm += 48;
                 break;
                 }
                             
@@ -106,6 +109,7 @@ surface_set_target(audio_surf);
             }
                         
         ypos += 48;
+        ypos_perm += 48;
         
         //envelopes
         envelope_list = ds_list_find_value(layer, 0);
@@ -211,8 +215,14 @@ surface_set_target(audio_surf);
                             tlw-56,ypos+8);
                 }
             ypos += 64;
+            ypos_perm += 64;
             }
     }
+    
+    scrollbarw = clamp(((tlzoom+18)/length)*tlw-18,32,tlw-18);
+    if (length != tlzoom)
+        scrollbarx = (tlw-18-scrollbarw)*(tlx)/(length-tlzoom);
+    layerbarw = clamp(lbh/(ypos_perm+lbh)*(lbh-1),32,lbh-1);
     
     draw_enable_alphablend(1);
     
