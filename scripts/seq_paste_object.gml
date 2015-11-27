@@ -43,7 +43,8 @@ for (i = 0; i < ds_list_size(copy_list); i++)
     
     if (i == 0)
         selectedxbump = (ds_list_find_value(copy_list_new,0)+1);
+    
+    selectedx += selectedxbump;
     }
     
-selectedx += selectedxbump;
 frame_surf_refresh = 1;

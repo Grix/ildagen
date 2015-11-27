@@ -8,7 +8,7 @@ clear_project();
 load_buffer = buffer_load(file_loc);
     
 idbyte = buffer_read(load_buffer,buffer_u8);
-if (idbyte != 100) and (idbyte != 101)
+if (idbyte != 100) and (idbyte != 101) and (idbyte != 102)
     {
     show_message_async("Unexpected ID byte, is this a valid LasershowGen project file?");
     exit;
@@ -23,13 +23,14 @@ audioshift = buffer_read(load_buffer,buffer_u32);
 length = endframe+50;
 buffer_seek(load_buffer,buffer_seek_start,50);
 
-if (idbyte == 101)
+if (idbyte == 101) or (idbyte == 102)
     {
     maxlayers = buffer_read(load_buffer,buffer_u32);
     for (j = 0; j < maxlayers;j++)
         {
-        layertemp = ds_list_create();
-        ds_list_add(layertemp,ds_list_create());
+        var layertemp = ds_list_create();
+        var t_env_list = ds_list_create()
+        ds_list_add(layertemp,t_env_list);
         ds_list_add(layer_list,layertemp);
         
         numofobjects = buffer_read(load_buffer,buffer_u32);
@@ -52,7 +53,34 @@ if (idbyte == 101)
             
             ds_list_add(layertemp,objectlist);
             }
-        numofparameters = buffer_read(load_buffer,buffer_u32);
+        numofenvelopes = buffer_read(load_buffer,buffer_u32);
+        repeat (numofenvelopes)
+            {
+            var t_env = ds_list_create();
+            ds_list_add(t_env_list,t_env);
+            
+            ds_list_add(t_env,buffer_read(load_buffer,buffer_string));
+            
+            var t_time_list_size = buffer_read(load_buffer,buffer_u32);
+            var t_time_list = ds_list_create();
+            ds_list_add(t_env,t_time_list);
+            repeat (t_time_list_size)
+                {
+                ds_list_add(t_time_list,buffer_read(load_buffer,buffer_u32));
+                }
+            var t_data_list_size = buffer_read(load_buffer,buffer_u32);
+            var t_data_list = ds_list_create();
+            ds_list_add(t_env,t_data_list);
+            repeat (t_data_list_size)
+                ds_list_add(t_data_list,buffer_read(load_buffer,buffer_u8));
+                
+            ds_list_add(t_env,buffer_read(load_buffer,buffer_u8));
+            ds_list_add(t_env,buffer_read(load_buffer,buffer_u8));
+            
+            //reserved space
+            repeat (5)
+                buffer_read(load_buffer,buffer_u8);
+            }
         }
     }
 else if (idbyte == 100) //old, need to remake buffers
@@ -150,24 +178,23 @@ if (songload)
         
         set_audio_speed();
         }
-    }
-    
-
-    
-//audio data
-if (!parsingaudioload)
-    {
-    parsinglistsize = buffer_read(load_buffer,buffer_u32);
-    for (i = 0; i < parsinglistsize; i++)
+        
+    //audio data
+    if (!parsingaudioload)
         {
-        ds_list_add(audio_list,buffer_read(load_buffer,buffer_f32));
+        parsinglistsize = buffer_read(load_buffer,buffer_u32);
+        for (i = 0; i < parsinglistsize; i++)
+            {
+            ds_list_add(audio_list,buffer_read(load_buffer,buffer_f32));
+            }
         }
     }
+    
 //markers
 parsinglistsize = buffer_read(load_buffer,buffer_u32);
-    for (i = 0; i < parsinglistsize; i++)
-        {
-        ds_list_add(marker_list,buffer_read(load_buffer,buffer_u32));
-        }
+for (i = 0; i < parsinglistsize; i++)
+    {
+    ds_list_add(marker_list,buffer_read(load_buffer,buffer_u32));
+    }
     
 buffer_delete(load_buffer);

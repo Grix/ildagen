@@ -1,3 +1,5 @@
+exit;
+//todo fix maybe? sandboxed so doesn't work
 if (is_undefined(parameter_string(1))) exit;
 temp = 0;
 for (i = 1; i <= parameter_count(); i++)

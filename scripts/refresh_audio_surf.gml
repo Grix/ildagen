@@ -163,11 +163,11 @@ surface_set_target(audio_surf);
                             {
                             if (t_index == 0)
                                 {
-                                draw_line( -1, t_env_y, tlw, t_env_y);
+                                draw_line( -1, t_env_y, tlw-16, t_env_y);
                                 draw_rectangle( t_env_x-1,t_env_y-1,t_env_x+1,t_env_y+1,0);
                                 break;
                                 }
-                            draw_line(  t_env_x,t_env_y,tlw, t_env_y);
+                            draw_line(  t_env_x,t_env_y,tlw-16, t_env_y);
                             draw_rectangle( t_env_x-1,t_env_y-1,t_env_x+1,t_env_y+1,0);
                             break;
                             }
@@ -182,7 +182,7 @@ surface_set_target(audio_surf);
                     }
                 else
                     {
-                    draw_line(-1,default_value,tlw,default_value);
+                    draw_line(-1,default_value,tlw-16,default_value);
                     }
                 if (moving_object == 6) and (envelopetoedit == envelope)
                         {
@@ -228,8 +228,8 @@ surface_set_target(audio_surf);
     
     draw_set_colour(c_white);
     draw_set_blend_mode(bm_subtract);
-    draw_rectangle(-1,-1,tlw+16,tlh+16,0);
-    draw_rectangle(-1,lbh+tlh+16,tlw+16,lbh+tlh+33,0);
+    draw_rectangle(-1,-1,tlw,tlh+16,0);
+    draw_rectangle(-1,lbh+tlh+16,tlw,lbh+tlh+33,0);
     draw_set_blend_mode(bm_normal);
        
     var drawtime = ceil(tlx/projectfps);

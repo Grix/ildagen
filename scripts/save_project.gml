@@ -12,7 +12,7 @@ if (file_loc == "")
     
 length = ceil(length);
     
-buffer_write(save_buffer,buffer_u8,101); //version / ID
+buffer_write(save_buffer,buffer_u8,102); //version / ID
 buffer_write(save_buffer,buffer_u8,projectfps); //fps
 buffer_write(save_buffer,buffer_u8,song); //audio enabled
 buffer_write(save_buffer,buffer_u8,parsingaudio); //audio still parsing
@@ -25,13 +25,13 @@ buffer_write(save_buffer,buffer_u8,0);
 buffer_write(save_buffer,buffer_u8,0);
 repeat (30)
     buffer_write(save_buffer,buffer_u8,0);
-buffer_write(save_buffer,buffer_s32,ds_list_size(layer_list)); //pos 50
+buffer_write(save_buffer,buffer_u32,ds_list_size(layer_list)); //pos 50
 
-
+//saving layer info
 for (i = 0; i < ds_list_size(layer_list); i++)
     {
     layer = ds_list_find_value(layer_list,i);
-    buffer_write(save_buffer,buffer_u32,ds_list_size(layer));
+    buffer_write(save_buffer,buffer_u32,ds_list_size(layer)-1);
     for (j = 1; j < ds_list_size(layer); j++)
         {
         objectlist = ds_list_find_value(layer,j);
@@ -45,9 +45,39 @@ for (i = 0; i < ds_list_size(layer_list); i++)
         buffer_write(save_buffer,buffer_u32,ds_list_find_value(tempinfolist,0));
         buffer_write(save_buffer,buffer_u32,ds_list_find_value(tempinfolist,2));
         }
-    buffer_write(save_buffer,buffer_u32,0);
+        
+    //saving envelope info
+    var t_env_list = ds_list_find_value(layer,0);
+    buffer_write(save_buffer,buffer_u32,ds_list_size(t_env_list));
+    for (k = 0; k < ds_list_size(t_env_list); k++)
+        {
+        var t_env = ds_list_find_value(t_env_list,k);
+        buffer_write(save_buffer,buffer_string,ds_list_find_value(t_env,0));
+        
+        var t_time_list = ds_list_find_value(t_env,1);
+        parsinglistsize = ds_list_size(t_time_list);
+        buffer_write(save_buffer,buffer_u32,parsinglistsize);
+        for (u = 0; u < parsinglistsize; u++)
+            {
+            buffer_write(save_buffer,buffer_u32,ds_list_find_value(t_time_list,u));
+            }
+        var t_data_list = ds_list_find_value(t_env,2);
+        parsinglistsize = ds_list_size(t_data_list);
+        buffer_write(save_buffer,buffer_u32,parsinglistsize);
+        for (u = 0; u < parsinglistsize; u++)
+            {
+            buffer_write(save_buffer,buffer_u8,ds_list_find_value(t_data_list,u));
+            }
+            
+        buffer_write(save_buffer,buffer_u8,ds_list_find_value(t_env,3));
+        buffer_write(save_buffer,buffer_u8,ds_list_find_value(t_env,4));
+        //reserved:
+        repeat (5)
+            buffer_write(save_buffer,buffer_u8,0);
+        }
     }
 
+//saving audio data
 if (song)
     {
     buffer_write(save_buffer,buffer_string,songfile_name);
@@ -67,6 +97,7 @@ if (song)
         }
     }
     
+//saving markers
 buffer_write(save_buffer,buffer_u32,ds_list_size(marker_list));
 parsinglistsize = ds_list_size(marker_list);
 for (i = 0; i < parsinglistsize; i++)
