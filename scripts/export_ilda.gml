@@ -91,7 +91,7 @@ for (j = 0; j < maxframes;j++)
         
         listsize = ((ds_list_size(list_id)-20)/4);
         
-        var blankprev = 0;
+        blankprev = 0;
         for (u = 0; u < listsize; u++)
             {
             currentpos = 20+u*4;
@@ -114,6 +114,7 @@ for (j = 0; j < maxframes;j++)
             //adjusting values for writing to buffer
             xpe = xp;
             ype = yp;
+            
             xp -= $8000;
             yp -= $8000;
             xpa[0] = xp & 255;

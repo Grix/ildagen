@@ -40,7 +40,6 @@ for (i = 0; i < buffer_maxelements;i++)
     
     repeat (repeatnum)
         {
-        //log(buffer_tell(el_buffer))
         xpp = xp;
         ypp = yp;
         blp = bl;

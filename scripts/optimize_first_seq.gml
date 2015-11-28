@@ -1,33 +1,34 @@
-optimize_middle3();
+optimize_middle3_seq();
     
-xo = ds_list_find_value(ds_list_find_value(el_list,0),0);
-yo = ds_list_find_value(ds_list_find_value(el_list,0),1);
-xpe = xo+ds_list_find_value(ds_list_find_value(el_list,0),20);
-ype = $ffff-(yo+ds_list_find_value(ds_list_find_value(el_list,0),21));
+xpe = xo+xp;
+ype = $ffff-(yo+yp);
 
 opt_dist = point_distance($ffff/2,$ffff/2,xpe,ype);
 opt_vectorx = ($ffff/2-xpe)/opt_dist;
 opt_vectory = ($ffff/2-ype)/opt_dist;
 
+var t_xp = xp;
+var t_yp = yp;
+
 trav = -controller.opt_maxdist;    
 for (trav_dist = trav/2;trav_dist >= -opt_dist; trav_dist += trav;)
     {
-    xp = $ffff/2+opt_vectorx*trav_dist;
-    yp = $ffff/2+opt_vectory*trav_dist;
+    t_xp = $ffff/2+opt_vectorx*trav_dist;
+    t_yp = $ffff/2+opt_vectory*trav_dist;
     
-    if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
+    if ((t_yp > (512*128)) or (t_yp < 0) or (t_xp > (512*128)) or (t_xp < 0))
         {
         continue;
         }
     
-    xp -= $8000;
-    yp -= $8000;
-    xpa[0] = xp & 255;
-    xp = xp >> 8;
-    xpa[1] = xp & 255;
-    ypa[0] = yp & 255;
-    yp = yp >> 8;
-    ypa[1] = yp & 255;
+    t_xp -= $8000;
+    t_yp -= $8000;
+    xpa[0] = t_xp & 255;
+    t_xp = t_xp >> 8;
+    xpa[1] = t_xp & 255;
+    ypa[0] = t_yp & 255;
+    t_yp = t_yp >> 8;
+    ypa[1] = t_yp & 255;
 
     
     //writing point
@@ -42,19 +43,19 @@ for (trav_dist = trav/2;trav_dist >= -opt_dist; trav_dist += trav;)
     maxpoints++;
     }
     
-for (m = 0;m < controller.opt_maxdwell;m++)
+for (m = 0; m < controller.opt_maxdwell; m++)
     {
-    xp = xpe;
-    yp = ype;
+    t_xp = xpe;
+    t_yp = ype;
     
-    xp -= $8000;
-    yp -= $8000;
-    xpa[0] = xp & 255;
-    xp = xp >> 8;
-    xpa[1] = xp & 255;
-    ypa[0] = yp & 255;
-    yp = yp >> 8;
-    ypa[1] = yp & 255;
+    t_xp -= $8000;
+    t_yp -= $8000;
+    xpa[0] = t_xp & 255;
+    t_xp = t_xp >> 8;
+    xpa[1] = t_xp & 255;
+    ypa[0] = t_yp & 255;
+    t_yp = t_yp >> 8;
+    ypa[1] = t_yp & 255;
     
     //writing point
     buffer_write(ilda_buffer,buffer_u8,xpa[1]);

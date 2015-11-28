@@ -55,12 +55,12 @@ for (u = 0; u < ds_list_size(t_envelope_list); u++)
     if (type == "x")
         {
         env_xtrans = 1;
-        env_xtrans_val = (raw_data_value-32)*1024;
+        env_xtrans_val = -(raw_data_value-32)*1024;
         }
     else if (type == "y")
         {
         env_ytrans = 1;
-        env_ytrans_val = (raw_data_value-32)*1024;
+        env_ytrans_val = -(raw_data_value-32)*1024;
         }
     else if (type == "size")
         {

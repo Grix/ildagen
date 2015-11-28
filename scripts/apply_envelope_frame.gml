@@ -6,5 +6,5 @@ if (env_xtrans)
     }
 if (env_ytrans)
     {
-    yo -= env_ytrans_val/argument0;
+    yo += env_ytrans_val/argument0;
     }

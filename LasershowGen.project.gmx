@@ -107,23 +107,6 @@
       <filename>hershey.ini</filename>
     </datafile>
     <datafile>
-      <name>msvcr120.dll</name>
-      <exists>-1</exists>
-      <size>963232</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>1048640</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>msvcr120.dll</filename>
-    </datafile>
-    <datafile>
       <name>LaserBoy_2015_11_21.zip</name>
       <exists>-1</exists>
       <size>4712207</size>
@@ -968,9 +951,12 @@
       <script>scripts\frames_toseq_importedilda.gml</script>
       <script>scripts\frames_fromseq.gml</script>
       <script>scripts\optimize_middle3.gml</script>
+      <script>scripts\optimize_middle3_seq.gml</script>
       <script>scripts\optimize_last.gml</script>
       <script>scripts\optimize_first.gml</script>
+      <script>scripts\optimize_first_seq.gml</script>
       <script>scripts\optimize_between.gml</script>
+      <script>scripts\optimize_between_seq.gml</script>
       <script>scripts\optimize_arb.gml</script>
       <script>scripts\read_hershey_ini.gml</script>
       <script>scripts\read_hershey_index_ini.gml</script>
