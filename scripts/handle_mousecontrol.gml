@@ -572,14 +572,8 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 controller.tooltip = "Click to add an envelope (effect) for this layer.";
                 if  mouse_check_button_pressed(mb_left)
                     {
-                    layer = ds_list_find_value(layer_list, i);
-                    envelope = ds_list_create();
-                    ds_list_add(ds_list_find_value(layer,0),envelope);
-                    ds_list_add(envelope,"x");
-                    ds_list_add(envelope,ds_list_create());
-                    ds_list_add(envelope,ds_list_create());
-                    ds_list_add(envelope,0);
-                    ds_list_add(envelope,0);
+                    layertoedit = ds_list_find_value(layer_list, i);
+                    dropdown_envelope_create();
                     }
                 }
             else

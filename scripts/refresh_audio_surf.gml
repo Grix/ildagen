@@ -130,6 +130,8 @@ surface_set_target(audio_surf);
                 time_list = ds_list_find_value(envelope,1);
                 data_list = ds_list_find_value(envelope,2);
                 var default_value = ypos+32;
+                if (type != "x") and (type != "y") and (type != "hue")
+                    default_value = ypos+1;
                 draw_set_colour(c_green);
                 if (ds_list_size(time_list))
                     {

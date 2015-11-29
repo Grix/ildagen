@@ -620,8 +620,8 @@ if (new_id == getint)
             if (selectedenvelope_index == -1) 
                 exit;
             
-            //ds_list_destroy(ds_list_find_value(selectedenvelope,1));
-            //ds_list_destroy(ds_list_find_value(selectedenvelope,2));
+            ds_list_destroy(ds_list_find_value(selectedenvelope,1));
+            ds_list_destroy(ds_list_find_value(selectedenvelope,2));
             ds_list_destroy(selectedenvelope);
             ds_list_delete(env_list_to_delete,selectedenvelope_index);
             
@@ -641,14 +641,19 @@ if (new_id == getint)
                 ds_list_add(somaster_list,ds_list_find_value(layer,1));
                 seq_delete_object_noundo();
                 }
-            //TODO: Clean up envelope layer
+            envelope_list = ds_list_find_value(layer,0);
+            num_objects = ds_list_size(envelope_list);
+            repeat (num_objects)   
+                {
+                envelope = ds_list_find_value(envelope_list,0);
+                ds_list_destroy(ds_list_find_value(envelope,1));
+                ds_list_destroy(ds_list_find_value(envelope,2));
+                ds_list_destroy(envelope);
+                ds_list_delete(envelope_list,0);
+                }
+            ds_list_destroy(envelope_list);
             ds_list_destroy(layer);
             ds_list_delete(layer_list,selectedlayer);
-            
-            /*if (ds_list_empty(layer_list))  
-                {
-                ds_list_add(layer_list,ds_list_create());
-                }*/
             
             selectedlayer = 0;
             selectedx = 0;

@@ -830,20 +830,30 @@
         <script>scripts\dropdown_layer.gml</script>
         <script>scripts\dropdown_envelope_menu.gml</script>
         <script>scripts\dropdown_envelope_type.gml</script>
-        <script>scripts\dd_seq_envtype_x.gml</script>
-        <script>scripts\dd_seq_envtype_y.gml</script>
-        <script>scripts\dd_seq_envtype_size.gml</script>
-        <script>scripts\dd_seq_envtype_a.gml</script>
-        <script>scripts\dd_seq_envtype_hue.gml</script>
-        <script>scripts\dd_seq_envtype_r.gml</script>
-        <script>scripts\dd_seq_envtype_g.gml</script>
-        <script>scripts\dd_seq_envtype_b.gml</script>
-        <script>scripts\dd_seq_envtype_rotabs.gml</script>
+        <script>scripts\dropdown_envelope_create.gml</script>
         <script>scripts\seq_fromilda.gml</script>
         <script>scripts\dd_seq_object_duration.gml</script>
         <script>scripts\dd_seq_add_envelope.gml</script>
         <script>scripts\dd_seq_env_disable.gml</script>
         <script>scripts\dd_seq_env_clear.gml</script>
+        <scripts name="envelopetypes">
+          <script>scripts\dd_seq_envtype_x.gml</script>
+          <script>scripts\dd_seq_envtype_y.gml</script>
+          <script>scripts\dd_seq_envtype_hue.gml</script>
+          <script>scripts\dd_seq_envtype_a.gml</script>
+          <script>scripts\dd_seq_envtype_r.gml</script>
+          <script>scripts\dd_seq_envtype_g.gml</script>
+          <script>scripts\dd_seq_envtype_b.gml</script>
+          <script>scripts\dd_seq_envtype_size.gml</script>
+          <script>scripts\dd_seq_envtype_rotabs.gml</script>
+          <script>scripts\dd_seq_envtype_x_create.gml</script>
+          <script>scripts\dd_seq_envtype_y_create.gml</script>
+          <script>scripts\dd_seq_envtype_hue_create.gml</script>
+          <script>scripts\dd_seq_envtype_a_create.gml</script>
+          <script>scripts\dd_seq_envtype_r_create.gml</script>
+          <script>scripts\dd_seq_envtype_g_create.gml</script>
+          <script>scripts\dd_seq_envtype_b_create.gml</script>
+        </scripts>
       </scripts>
     </scripts>
     <scripts name="createobject">
