@@ -14,9 +14,10 @@ var t_envelope_list = argument0;
 for (u = 0; u < ds_list_size(t_envelope_list); u++)
     {
     envelope = ds_list_find_value(t_envelope_list,u);
+    disabled = ds_list_find_value(envelope,3);
     time_list = ds_list_find_value(envelope,1);
     
-    if (ds_list_empty(time_list))
+    if (ds_list_empty(time_list)) or (disabled)
         continue;
         
     data_list = ds_list_find_value(envelope,2); 

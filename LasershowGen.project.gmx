@@ -835,6 +835,7 @@
         <script>scripts\dd_seq_object_duration.gml</script>
         <script>scripts\dd_seq_add_envelope.gml</script>
         <script>scripts\dd_seq_env_disable.gml</script>
+        <script>scripts\dd_seq_env_delete.gml</script>
         <script>scripts\dd_seq_env_clear.gml</script>
         <scripts name="envelopetypes">
           <script>scripts\dd_seq_envtype_x.gml</script>

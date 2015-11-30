@@ -119,7 +119,12 @@ surface_set_target(audio_surf);
                 {
                 envelope = ds_list_find_value(envelope_list,j);
                 type = ds_list_find_value(envelope,0);
-                draw_set_colour(c_white);
+                disabled = ds_list_find_value(envelope,3);
+                hidden = ds_list_find_value(envelope,4);
+                if (!disabled)
+                    draw_set_colour(c_white);
+                else
+                    draw_set_colour(c_gray);
                 draw_rectangle(-1,ypos,tlw-16,ypos+64,0);
                 draw_set_colour(c_ltgray);
                 draw_line(-1,ypos+32,tlw-60,ypos+32);
@@ -193,15 +198,16 @@ surface_set_target(audio_surf);
                         }
                     
                 var typedraw = ds_map_find_value(env_type_map,type);
-                var t_stringlengthx = tlw-84+string_width(typedraw);
+                var t_stringlength = string_width(typedraw)+5;
+                var t_stringx = tlw-25-t_stringlength-5;
                 draw_set_colour($eeeeee);
-                draw_rectangle(tlw-96,ypos+42,t_stringlengthx,ypos+60,0);
+                draw_rectangle(t_stringx,ypos+42,t_stringx+t_stringlength+5,ypos+60,0);
                 draw_set_colour($bbbbbb);
-                draw_rectangle(tlw-96,ypos+42,t_stringlengthx,ypos+60,1);
+                draw_rectangle(t_stringx,ypos+42,t_stringx+t_stringlength+5,ypos+60,1);
                         
                 draw_set_colour(c_black);
                 draw_enable_alphablend(1);
-                    draw_text(tlw-90, ypos+45, typedraw);
+                    draw_text(t_stringx+5, ypos+45, typedraw);
                     if (moving_object == 7) and (envelopetoedit == envelope)
                         {
                         draw_set_colour(c_red);
@@ -343,7 +349,7 @@ surface_set_target(audio_surf);
     
     draw_enable_alphablend(0);
     //scroll
-    var scrollx_x1 = scrollbarx+1;
+    var scrollx_x1 = scrollbarx;
     var scrollx_x2 = scrollx_x1+scrollbarw;
     var scrollx_y1 = lbsh+17;
     var scrolly_x1 = tlw-16;

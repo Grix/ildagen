@@ -767,6 +767,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                     else if  mouse_check_button_pressed(mb_right) 
                         {
                         selectedenvelope = envelope;
+                        env_list_to_delete = envelope_list;
                         dropdown_envelope_menu();
                         }
                     }
