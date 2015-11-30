@@ -707,6 +707,29 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
             {
             envelope = ds_list_find_value(envelope_list,j);
             type = ds_list_find_value(envelope,0);
+            hidden = ds_list_find_value(envelope,4);
+            if (hidden)
+                {
+                mouseonenvelope = (mouse_y == clamp(mouse_y,ypos,ypos+16)) and (mouse_x == clamp(mouse_x,0,tlw-16));
+                if (mouseonenvelope)
+                    {
+                    mouseonsomelayer = 1;
+                    controller.tooltip = "Click to restore full view of this envelope.";
+                    if  mouse_check_button_pressed(mb_left) 
+                        {
+                        ds_list_replace(envelope,4,0);
+                        exit;
+                        }
+                    else if  mouse_check_button_pressed(mb_right) 
+                        {
+                        selectedenvelope = envelope;
+                        env_list_to_delete = envelope_list;
+                        dropdown_envelope_menu();
+                        }
+                    }
+                ypos+=16;
+                continue;
+                }
             
             mouseonenvelope = (mouse_y == clamp(mouse_y,ypos,ypos+64)) and (mouse_x == clamp(mouse_x,0,tlw-16));
             if (mouseonenvelope)

@@ -125,18 +125,44 @@ surface_set_target(audio_surf);
                     draw_set_colour(c_white);
                 else
                     draw_set_colour(c_gray);
-                draw_rectangle(-1,ypos,tlw-16,ypos+64,0);
-                draw_set_colour(c_ltgray);
-                draw_line(-1,ypos+32,tlw-60,ypos+32);
-                draw_set_colour(c_black);
-                draw_rectangle(-1,ypos,tlw-16,ypos+64,1);
+                if (!hidden)
+                    {
+                    draw_rectangle(-1,ypos,tlw-16,ypos+64,0);
+                    draw_set_colour(c_ltgray);
+                    draw_line(-1,ypos+32,tlw-60,ypos+32);
+                    draw_set_colour(c_black);
+                    draw_rectangle(-1,ypos,tlw-16,ypos+64,1);
+                    }
+                else
+                    {
+                    draw_rectangle(-1,ypos,tlw-16,ypos+16,0);
+                    draw_set_colour(c_black);
+                    draw_rectangle(-1,ypos,tlw-16,ypos+16,1);
+                    
+                    var typedraw = ds_map_find_value(env_type_map,type);
+                    var t_stringlength = string_width(typedraw)+5;
+                    var t_stringx = tlw-25-t_stringlength-5;
+                    draw_set_colour($eeeeee);
+                    draw_rectangle(t_stringx,ypos+1,t_stringx+t_stringlength+5,ypos+15,0);
+                    draw_set_colour($bbbbbb);
+                    draw_rectangle(t_stringx,ypos+1,t_stringx+t_stringlength+5,ypos+15,1);
+                            
+                    draw_set_colour(c_black);
+                    draw_enable_alphablend(1);
+                    draw_text(t_stringx+5, ypos+2, typedraw);
+                    draw_enable_alphablend(0);
+                    
+                    ypos += 16;
+                    ypos_perm += 16;
+                    continue;
+                    }
                 
                 //drawing envelope data
                 time_list = ds_list_find_value(envelope,1);
                 data_list = ds_list_find_value(envelope,2);
                 var default_value = ypos+32;
                 if (type != "x") and (type != "y") and (type != "hue")
-                    default_value = ypos+1;
+                    default_value = ypos;
                 draw_set_colour(c_green);
                 if (ds_list_size(time_list))
                     {
