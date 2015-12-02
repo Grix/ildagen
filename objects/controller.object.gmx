@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.1.0";
-versiondate = "2015-11-30";
+            <string>version = "1.1.0hf1";
+versiondate = "2015-12-02";
 
 if (debug_mode)
     show_debug_overlay(1);
@@ -1587,14 +1587,6 @@ if (new_id == getint)
               
               if (maxframes &lt; 1) maxframes = 1;
               else if (maxframes &gt; $ffff) maxframes = $ffff;
-              
-              if (scopeflag) or (scope_end &gt;= maxframes) 
-                  scope_end = maxframes-1;
-              
-              if (scope_start &gt;= scope_end)
-                  scope_start = scope_end-1;
-                  
-              if (scope_start &lt; 0) scope_start = 0;
               
               if (ds_list_size(frame_list) &lt; maxframes)
                   repeat (maxframes - ds_list_size(frame_list))
