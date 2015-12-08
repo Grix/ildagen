@@ -127,6 +127,7 @@
   <NewExtensions>
     <extension index="0">extensions\filesaver</extension>
     <extension index="1">extensions\GMopen</extension>
+    <extension index="2">extensions\Color Difference Using CIE94</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -802,6 +803,8 @@
         <script>scripts\dd_text_font.gml</script>
         <script>scripts\dropdown_export.gml</script>
         <script>scripts\dd_export_opt.gml</script>
+        <script>scripts\dd_export_format5.gml</script>
+        <script>scripts\dd_export_format0.gml</script>
         <script>scripts\dd_export_min.gml</script>
         <script>scripts\dropdown_info.gml</script>
         <script>scripts\dropdown_object.gml</script>
@@ -977,6 +980,7 @@
     <script>scripts\update_check.gml</script>
     <script>scripts\update_check_verbose.gml</script>
     <script>scripts\parse_parameter.gml</script>
+    <script>scripts\colors_compare_cie94.gml</script>
     <script>scripts\verify_serial.gml</script>
     <script>scripts\seq_dialog_yesno.gml</script>
     <script>scripts\seq_dialog_num.gml</script>

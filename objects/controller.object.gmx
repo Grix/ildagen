@@ -163,6 +163,8 @@ viewmode = 0;
 selectedelement = -1;
 selectedelementlist = 0;
 exp_optimize = 1;
+exp_format = 5;
+opt_warning_flag = 0;
 getint = -1;
 getstr = -1;
 dialog = "";
@@ -191,6 +193,10 @@ reap_blank = 1;
 reap_removeoverlap = 0;
 reap_trans = 1;
 reap_interpolate = 1;
+rectxmax = 0;
+rectxmin = 0;
+rectymax = 0;
+rectymin = 0;
 
 colormode = "solid";
 colormode2 = 0;
@@ -316,6 +322,12 @@ if (os_browser == browser_not_a_browser)
             <string>///reset menu_open
 
 menu_open = 0;
+
+if (!opt_warning_flag) and (!exp_optimize)
+    {
+    opt_warning_flag = 1;
+    show_message_async("NB: Files exported raw are not optimized and are meant only for simulation or to be optimized in third party programs. Attempting to play an unoptimized file directly on a projector can damage the scanners.");
+    }
 </string>
           </argument>
         </arguments>
@@ -1180,7 +1192,7 @@ else if (placing == "curve")
 dialog_open = 0;
 
 //Get integer
-var new_id = ds_map_find_value(async_load, "id");
+new_id = ds_map_find_value(async_load, "id");
 if (new_id == getint)
     {
     if (dialog == "update")

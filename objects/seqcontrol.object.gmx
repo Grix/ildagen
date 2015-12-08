@@ -550,7 +550,7 @@ if (mouse_y &gt; view_yview[3])
           <argument>
             <kind>1</kind>
             <string>//Get integer
-var new_id = ds_map_find_value(async_load, "id");
+new_id = ds_map_find_value(async_load, "id");
 controller.dialog_open = 0;
 if (new_id == getint)
     { 

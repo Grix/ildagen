@@ -91,20 +91,29 @@ else
         i++;
         
         //color lookup
-        color = clamp(get_byte(),0,ds_list_size(pal_list)/3);
-        i++;     
-            
-        if (color == 64)
+        color = get_byte();
+        i++;
+        
+        //rgb
+        if (3*color+3 > ds_list_size(pal_list)) or (color < 0)
+            {
+            if (color == 64)
+                color_res = 0;
+            else
+                color_res = c_white;
+            }
+        else
+            color_res = make_colour_rgb(ds_list_find_value(pal_list,3*color),
+                                        ds_list_find_value(pal_list,3*color+1),
+                                        ds_list_find_value(pal_list,3*color+2));
+        if (color_res == 0)
             {
             blank = 1;
             }
             
         ds_list_add(frame_list_parse,blank);
         
-        //rgb
-        ds_list_add(frame_list_parse,make_colour_rgb(ds_list_find_value(pal_list,3*color+2),
-                                                    ds_list_find_value(pal_list,3*color+1),
-                                                    ds_list_find_value(pal_list,3*color)));
+        ds_list_add(frame_list_parse,color_res);
         }
     }
     
