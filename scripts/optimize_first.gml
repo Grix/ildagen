@@ -35,10 +35,19 @@ for (trav_dist = trav/2;trav_dist >= -opt_dist; trav_dist += trav;)
     buffer_write(ilda_buffer,buffer_u8,xpa[0]);
     buffer_write(ilda_buffer,buffer_u8,ypa[1]);
     buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-    buffer_write(ilda_buffer,buffer_u8,$40);
-    buffer_write(ilda_buffer,buffer_u8,0);
-    buffer_write(ilda_buffer,buffer_u8,0);
-    buffer_write(ilda_buffer,buffer_u8,0);
+    if (exp_format == 5)
+        {
+        buffer_write(ilda_buffer,buffer_u8,$40);
+        buffer_write(ilda_buffer,buffer_u8,0);
+        buffer_write(ilda_buffer,buffer_u8,0);
+        buffer_write(ilda_buffer,buffer_u8,0);
+        }
+    else
+        {
+        buffer_write(ilda_buffer,buffer_u16,0);
+        buffer_write(ilda_buffer,buffer_u8,$40);
+        buffer_write(ilda_buffer,buffer_u8,0);
+        }
     maxpoints++;
     }
     
@@ -61,9 +70,18 @@ for (m = 0;m < controller.opt_maxdwell;m++)
     buffer_write(ilda_buffer,buffer_u8,xpa[0]);
     buffer_write(ilda_buffer,buffer_u8,ypa[1]);
     buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-    buffer_write(ilda_buffer,buffer_u8,$40);
-    buffer_write(ilda_buffer,buffer_u8,0);
-    buffer_write(ilda_buffer,buffer_u8,0);
-    buffer_write(ilda_buffer,buffer_u8,0);
+    if (exp_format == 5)
+        {
+        buffer_write(ilda_buffer,buffer_u8,$40);
+        buffer_write(ilda_buffer,buffer_u8,0);
+        buffer_write(ilda_buffer,buffer_u8,0);
+        buffer_write(ilda_buffer,buffer_u8,0);
+        }
+    else
+        {
+        buffer_write(ilda_buffer,buffer_u16,0);
+        buffer_write(ilda_buffer,buffer_u8,$40);
+        buffer_write(ilda_buffer,buffer_u8,0);
+        }
     maxpoints++;
     }

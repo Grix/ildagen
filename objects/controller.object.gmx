@@ -28,6 +28,8 @@
             <string>version = "1.1.0hf1";
 versiondate = "2015-12-02";
 
+colors_compare_cie94(7864575,255);
+
 if (debug_mode)
     show_debug_overlay(1);
 
@@ -1165,6 +1167,43 @@ else if (placing == "curve")
         }
     }
     
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="72">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*if (ds_map_find_value(async_load, "id") == saveid)
+    {
+    if (savetype == "ilda")
+        {
+        if ds_map_find_value(async_load, "status") == false
+            {
+            show_message_async("Failed to export ILDA file. Try another location.");
+            }
+        else
+            {
+            show_message_async("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));
+            buffer_delete(ilda_buffer);
+            }
+        }
+    }
 </string>
           </argument>
         </arguments>
