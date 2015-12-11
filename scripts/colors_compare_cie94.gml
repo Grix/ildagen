@@ -17,8 +17,6 @@ https://en.wikipedia.org/wiki/Color_difference
 
 // INITIALISE EVERYTHING
 
-log(argument0);log(argument1);log("---");
-
 if is_undefined(argument0) return 0;
 if !is_real(argument0) return 0;
 if is_undefined(argument1) return 0;
@@ -156,15 +154,15 @@ var chqB2 = 200 * (chqY2 - chqZ2);
 // FINALLY, RUN THE COLOR COMPARISON USING CIE94
 
 var chqDeltaL = chqL1 - chqL2;
-var chqC1 = sqrt(power(chqA1,2)+power(chqB1,2));
-var chqC2 = sqrt(power(chqA2,2)+power(chqB2,2));
+var chqC1 = sqrt(abs(power(chqA1,2)+power(chqB1,2)));
+var chqC2 = sqrt(abs(power(chqA2,2)+power(chqB2,2)));
 var chqCAB = chqC1 - chqC2;
-var chqHAB = sqrt(power(chqA1 - chqA2,2)+power(chqB1 - chqB2,2)-power(chqCAB,2));
+var chqHAB = sqrt(abs(power(chqA1 - chqA2,2)+power(chqB1 - chqB2,2)-power(chqCAB,2)));
 
 var chqEquation1 = power(chqDeltaL,2);
 var chqEquation2 = power(chqCAB/(1+(0.045*chqC1)),2);
 var chqEquation3 = power(chqHAB/(1+(0.015*chqC1)),2);
 
-chqSimilarity = sqrt(chqEquation1 + chqEquation2 + chqEquation3);
+chqSimilarity = sqrt(abs(chqEquation1 + chqEquation2 + chqEquation3));
 
 return chqSimilarity;

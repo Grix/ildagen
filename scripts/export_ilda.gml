@@ -119,14 +119,16 @@ for (j = 0; j < maxframes;j++)
             if (exp_format == 0)
                 {
                 if (c_compareprev = c)
-                    c_n = c_compareprev_n;
+                    c = c_compareprev_n;
                 else
                     {
                     diff_best = 200;
                     var t_diff;
-                    for (n = 0; n < ds_list_size(pal_list); n++)
+                    var t_pal_c;
+                    for (n = 0; n < round(ds_list_size(pal_list)/3); n++)
                         {
-                        t_diff = colors_compare_cie94(c, pal_list[| n]);
+                        t_pal_c = make_colour_rgb(pal_list[| n*3], pal_list[| n*3+1], pal_list[| n*3+2]);
+                        t_diff = colors_compare_cie94(c, t_pal_c);
                         if (t_diff < 3)
                             {
                             c_n = n;
@@ -139,6 +141,8 @@ for (j = 0; j < maxframes;j++)
                             }
                         }
                     c_compareprev = c;
+                    c = c_n;
+                    c_compareprev_n = c;
                     }
                 }
             
