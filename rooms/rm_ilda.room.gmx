@@ -104,7 +104,7 @@
     <instance objName="obj_colorcopytoani" x="976" y="312" name="inst_FB5573EC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_colorcopyfromani" x="1012" y="312" name="inst_C64BAA3A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_import" x="1016" y="580" name="inst_7A4C3450" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_reapply" x="280" y="620" name="inst_EE9E3A75" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_reapply_blank" x="280" y="580" name="inst_EE9E3A75" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_shake" x="780" y="580" name="inst_533CCD04" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_scope" x="176" y="620" name="inst_2B6D16DD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_text" x="564" y="60" name="inst_CEB5228B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -128,6 +128,7 @@
     <instance objName="obj_blankblendmode" x="364" y="580" name="inst_D8EDDA3F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_playbackspeed" x="88" y="592" name="inst_122A0D60" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_playcontrols" x="20" y="592" name="inst_D0412145" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_reapply_color" x="280" y="620" name="inst_72CF1946" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

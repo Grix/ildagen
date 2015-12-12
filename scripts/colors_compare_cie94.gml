@@ -17,12 +17,8 @@ https://en.wikipedia.org/wiki/Color_difference
 
 // INITIALISE EVERYTHING
 
-if is_undefined(argument0) return 0;
-if !is_real(argument0) return 0;
-if is_undefined(argument1) return 0;
-if !is_real(argument1) return 0;
-var chqColorA = round(clamp(argument0,0,$ffffff));
-var chqColorB = round(clamp(argument1,0,$ffffff));
+var chqColorA = argument0;
+var chqColorB = argument1;
 var chqSimilarity = -1;
 var chqR1 = color_get_red(chqColorA);
 var chqG1 = color_get_green(chqColorA);
@@ -154,15 +150,15 @@ var chqB2 = 200 * (chqY2 - chqZ2);
 // FINALLY, RUN THE COLOR COMPARISON USING CIE94
 
 var chqDeltaL = chqL1 - chqL2;
-var chqC1 = sqrt(abs(power(chqA1,2)+power(chqB1,2)));
-var chqC2 = sqrt(abs(power(chqA2,2)+power(chqB2,2)));
+var chqC1 = sqrt(max(power(chqA1,2)+power(chqB1,2),0));
+var chqC2 = sqrt(max(power(chqA2,2)+power(chqB2,2),0));
 var chqCAB = chqC1 - chqC2;
-var chqHAB = sqrt(abs(power(chqA1 - chqA2,2)+power(chqB1 - chqB2,2)-power(chqCAB,2)));
+var chqHAB = sqrt(max(power(chqA1 - chqA2,2)+power(chqB1 - chqB2,2)-power(chqCAB,2),0));
 
 var chqEquation1 = power(chqDeltaL,2);
 var chqEquation2 = power(chqCAB/(1+(0.045*chqC1)),2);
 var chqEquation3 = power(chqHAB/(1+(0.015*chqC1)),2);
 
-chqSimilarity = sqrt(abs(chqEquation1 + chqEquation2 + chqEquation3));
+chqSimilarity = sqrt(max(chqEquation1 + chqEquation2 + chqEquation3,0));
 
 return chqSimilarity;

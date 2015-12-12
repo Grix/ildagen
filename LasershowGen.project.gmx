@@ -202,7 +202,8 @@
     <sprite>sprites\spr_resettrans</sprite>
     <sprite>sprites\spr_scope</sprite>
     <sprite>sprites\spr_shaking</sprite>
-    <sprite>sprites\spr_reapply</sprite>
+    <sprite>sprites\spr_reapply_color</sprite>
+    <sprite>sprites\spr_reapply_blank</sprite>
     <sprite>sprites\spr_anitocol</sprite>
     <sprite>sprites\spr_coltoani</sprite>
     <sprite>sprites\spr_help</sprite>
@@ -1093,7 +1094,8 @@
           <object>objects\obj_funcpointselect</object>
         </objects>
         <object>objects\obj_scope</object>
-        <object>objects\obj_reapply</object>
+        <object>objects\obj_reapply_blank</object>
+        <object>objects\obj_reapply_color</object>
         <object>objects\obj_export</object>
         <object>objects\obj_save</object>
         <object>objects\obj_totimeline</object>
