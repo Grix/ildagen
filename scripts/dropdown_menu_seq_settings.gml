@@ -1,7 +1,7 @@
 ddobj = instance_create(seqcontrol.menu_width_start[5],0,oDropDown);
 with (ddobj)
     {
-    num = 5;
+    num = 7;
     event_user(1);
     ds_list_add(desc_list,"Toggle update check at startup");
     ds_list_add(sep_list,0);
@@ -15,6 +15,14 @@ with (ddobj)
     ds_list_add(scr_list,dd_export_min);
     ds_list_add(hl_list,controller.exp_optimize);
     ds_list_add(hl_list,!controller.exp_optimize);
+    ds_list_add(desc_list,"Format 5 ILDA output");
+    ds_list_add(sep_list,1);
+    ds_list_add(scr_list,dd_export_format5);
+    ds_list_add(hl_list,(controller.exp_format == 5));
+    ds_list_add(desc_list,"Legacy Format 0 ILDA output");
+    ds_list_add(sep_list,0);
+    ds_list_add(scr_list,dd_export_format0);
+    ds_list_add(hl_list,(controller.exp_format == 0));
     ds_list_add(desc_list,"Set max travel distance");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,dd_ilda_maxdist);

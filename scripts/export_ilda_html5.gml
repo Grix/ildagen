@@ -11,10 +11,12 @@ maxframesa[0] = maxframespost & 255;
 maxframespost = maxframespost >> 8;
 maxframesa[1] = maxframespost & 255;
 
+c_n = 0;
+c_map = ds_map_create();
+
 for (j = 0; j < maxframes;j++)
     {
     el_list = ds_list_find_value(frame_list,j);
-    ds_list_sort(el_list,0);
     
     framepost = j;
     framea[0] = framepost & 255;
@@ -28,7 +30,7 @@ for (j = 0; j < maxframes;j++)
     buffer_write(ilda_buffer,buffer_u8,$0);
     buffer_write(ilda_buffer,buffer_u8,$0);
     buffer_write(ilda_buffer,buffer_u8,$0);
-    buffer_write(ilda_buffer,buffer_u8,$5);
+    buffer_write(ilda_buffer,buffer_u8,exp_format);
     buffer_write(ilda_buffer,buffer_u8,ord('L')); //name
     buffer_write(ilda_buffer,buffer_u8,ord('S'));
     buffer_write(ilda_buffer,buffer_u8,ord('G'));
@@ -107,10 +109,43 @@ for (j = 0; j < maxframes;j++)
             c = ds_list_find_value(list_id,currentpos+3);
             if (is_undefined(c)) and (bl)
                 c = c_black;
+                
+            //find closest palette color
+            //TODO fix, doesn't work
+            if (exp_format == 0)
+                {
+                var t_c_mapvalue = c_map[? c];
+                if (!is_undefined(t_c_mapvalue))
+                    c = t_c_mapvalue;
+                else
+                    {
+                    diff_best = 200;
+                    var t_diff;
+                    var t_pal_c;
+                    for (n = 0; n < round(ds_list_size(pal_list)/3); n++)
+                        {
+                        t_pal_c = make_colour_rgb(pal_list[| n*3], pal_list[| n*3+1], pal_list[| n*3+2]);
+                        t_diff = colors_compare_cie94(c, t_pal_c);
+                        if (t_diff < 3)
+                            {
+                            c_n = n;
+                            break;
+                            }
+                        else if (t_diff < diff_best)
+                            {
+                            c_n = n;
+                            diff_best = t_diff;
+                            }
+                        }
+                    c_map[? c] = c_n;
+                    c = c_n;
+                    }
+                }
             
             //adjusting values for writing to buffer
             xpe = xp;
             ype = yp;
+            
             xp -= $8000;
             yp -= $8000;
             xpa[0] = xp & 255;
@@ -129,10 +164,19 @@ for (j = 0; j < maxframes;j++)
                     buffer_write(ilda_buffer,buffer_u8,xpa[0]);
                     buffer_write(ilda_buffer,buffer_u8,ypa[1]);
                     buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-                    buffer_write(ilda_buffer,buffer_u8,bl);
-                    buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
-                    buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
-                    buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
+                    if (exp_format == 5)
+                        {
+                        buffer_write(ilda_buffer,buffer_u8,bl);
+                        buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
+                        buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
+                        buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
+                        }
+                    else
+                        {
+                        buffer_write(ilda_buffer,buffer_u16,0);
+                        buffer_write(ilda_buffer,buffer_u8,bl);
+                        buffer_write(ilda_buffer,buffer_u8,c);
+                        }
                     maxpoints++;
                     }
                 blankprev = bl;
@@ -168,12 +212,22 @@ for (j = 0; j < maxframes;j++)
                 buffer_write(ilda_buffer,buffer_u8,xpa[0]);
                 buffer_write(ilda_buffer,buffer_u8,ypa[1]);
                 buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-                buffer_write(ilda_buffer,buffer_u8,blank);
-                buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
-                buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
-                buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
+                if (exp_format == 5)
+                    {
+                    buffer_write(ilda_buffer,buffer_u8,blank);
+                    buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
+                    buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
+                    buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
+                    }
+                else
+                    {
+                    buffer_write(ilda_buffer,buffer_u16,0);
+                    buffer_write(ilda_buffer,buffer_u8,blank);
+                    buffer_write(ilda_buffer,buffer_u8,c);
+                    }
                 maxpoints++;
                 }
+            
             }
             
         //optimize between elements
@@ -199,7 +253,6 @@ for (j = 0; j < maxframes;j++)
     maxpointstot += maxpointspre;
     maxpoints = 0;
     }
-    
 
 //null header
 buffer_write(ilda_buffer,buffer_u8,$49); //ILDA0005
@@ -209,7 +262,7 @@ buffer_write(ilda_buffer,buffer_u8,$41);
 buffer_write(ilda_buffer,buffer_u8,$0);
 buffer_write(ilda_buffer,buffer_u8,$0);
 buffer_write(ilda_buffer,buffer_u8,$0);
-buffer_write(ilda_buffer,buffer_u8,$5);
+buffer_write(ilda_buffer,buffer_u8,exp_format);
 buffer_write(ilda_buffer,buffer_u8,ord('L')); //name
 buffer_write(ilda_buffer,buffer_u8,ord('S'));
 buffer_write(ilda_buffer,buffer_u8,ord('G'));
@@ -231,6 +284,8 @@ buffer_write(ilda_buffer,buffer_u16,0); //frame
 buffer_write(ilda_buffer,buffer_u16,0); //maxframes
 buffer_write(ilda_buffer,buffer_u8,0); //scanner
 buffer_write(ilda_buffer,buffer_u8,0); //0
+
+ds_map_destroy(c_map);
 
 //remove excess size
 buffersize = buffer_tell(ilda_buffer);

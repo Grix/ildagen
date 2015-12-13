@@ -1,3 +1,12 @@
+if (os_browser != browser_not_a_browser)
+    {
+    pal_list = ds_list_create();
+    ini_open("palette.ini");
+    ds_list_read(pal_list,ini_read_string("palette","palette",""));
+    ini_close();
+    exit;
+    }
+    
 if (!file_exists("palette.txt"))
     {
     show_message_async("Color palette file missing. Try reinstalling the program.");

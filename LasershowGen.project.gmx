@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="37" name="datafiles">
+  <datafiles number="38" name="datafiles">
     <datafile>
       <name>help.pdf</name>
       <exists>-1</exists>
@@ -122,6 +122,23 @@
         </Config>
       </ConfigOptions>
       <filename>LaserBoy_2015_11_21.zip</filename>
+    </datafile>
+    <datafile>
+      <name>palette.ini</name>
+      <exists>-1</exists>
+      <size>4647</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>32</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>palette.ini</filename>
     </datafile>
   </datafiles>
   <NewExtensions>

@@ -15,6 +15,10 @@ maxframesa[0] = maxframespost & 255;
 maxframespost = maxframespost >> 8;
 maxframesa[1] = maxframespost & 255;
 
+c_n = 0;
+c_map = ds_map_create();
+var env_dataset = 0;
+
 for (j = startframe; j < endframe;j++)
     {
     correctframe = j;
@@ -30,7 +34,7 @@ for (j = startframe; j < endframe;j++)
     buffer_write(ilda_buffer,buffer_u8,$0);
     buffer_write(ilda_buffer,buffer_u8,$0);
     buffer_write(ilda_buffer,buffer_u8,$0);
-    buffer_write(ilda_buffer,buffer_u8,$5);
+    buffer_write(ilda_buffer,buffer_u8,controller.exp_format);
     buffer_write(ilda_buffer,buffer_u8,ord('L')); //name
     buffer_write(ilda_buffer,buffer_u8,ord('S'));
     buffer_write(ilda_buffer,buffer_u8,ord('G'));
@@ -57,11 +61,12 @@ for (j = startframe; j < endframe;j++)
     buffer_write(ilda_buffer,buffer_u8,0); //0
         
     el_list = ds_list_create(); 
+    var env_dataset = 0;
     
     //check which should be drawn
     for (k = 0; k < ds_list_size(layer_list); k++)
         {
-        var env_dataset = 0;
+        env_dataset = 0;
         
         layer = ds_list_find_value(layer_list, k);
         for (m = 1; m < ds_list_size(layer); m++)
@@ -180,7 +185,6 @@ for (j = startframe; j < endframe;j++)
         
         }
     
-    //write to ilda buffer
     if (!ds_list_size(el_list)) 
         {
         optimize_middle3();
@@ -215,11 +219,11 @@ for (j = startframe; j < endframe;j++)
         
         listsize = ((ds_list_size(list_id)-20)/4);
         
-        var blankprev = 0;
+        blankprev = 0;
         for (u = 0; u < listsize; u++)
             {
-            //getting values from element list
             currentpos = 20+u*4;
+            //getting values from element list
             
             bl = ds_list_find_value(list_id,currentpos+2);
             
@@ -235,11 +239,41 @@ for (j = startframe; j < endframe;j++)
             if (is_undefined(c)) and (bl)
                 c = c_black;
                 
-            
+            //find closest palette color
+            if (controller.exp_format == 0)
+                {
+                var t_c_mapvalue = c_map[? c];
+                if (!is_undefined(t_c_mapvalue))
+                    c = t_c_mapvalue;
+                else
+                    {
+                    diff_best = 200;
+                    var t_diff;
+                    var t_pal_c;
+                    for (n = 0; n < round(ds_list_size(controller.pal_list)/3); n++)
+                        {
+                        t_pal_c = make_colour_rgb(controller.pal_list[| n*3], controller.pal_list[| n*3+1], controller.pal_list[| n*3+2]);
+                        t_diff = colors_compare_cie94(c, t_pal_c);
+                        if (t_diff < 3)
+                            {
+                            c_n = n;
+                            break;
+                            }
+                        else if (t_diff < diff_best)
+                            {
+                            c_n = n;
+                            diff_best = t_diff;
+                            }
+                        }
+                    c_map[? c] = c_n;
+                    c = c_n;
+                    }
+                }
             
             //adjusting values for writing to buffer
             xpe = xp;
             ype = yp;
+            
             xp -= $8000;
             yp -= $8000;
             xpa[0] = xp & 255;
@@ -258,10 +292,19 @@ for (j = startframe; j < endframe;j++)
                     buffer_write(ilda_buffer,buffer_u8,xpa[0]);
                     buffer_write(ilda_buffer,buffer_u8,ypa[1]);
                     buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-                    buffer_write(ilda_buffer,buffer_u8,bl);
-                    buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
-                    buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
-                    buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
+                    if (controller.exp_format == 5)
+                        {
+                        buffer_write(ilda_buffer,buffer_u8,bl);
+                        buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
+                        buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
+                        buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
+                        }
+                    else
+                        {
+                        buffer_write(ilda_buffer,buffer_u16,0);
+                        buffer_write(ilda_buffer,buffer_u8,bl);
+                        buffer_write(ilda_buffer,buffer_u8,c);
+                        }
                     maxpoints++;
                     }
                 blankprev = bl;
@@ -290,17 +333,26 @@ for (j = startframe; j < endframe;j++)
                 }
             
             
-            if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,20+(u+1)*4+2))) or (controller.exp_optimize == 1)
+            if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,20+(u+1)*4+2))) or (exp_optimize == 1)
                 {
                 //writing point
                 buffer_write(ilda_buffer,buffer_u8,xpa[1]);
                 buffer_write(ilda_buffer,buffer_u8,xpa[0]);
                 buffer_write(ilda_buffer,buffer_u8,ypa[1]);
                 buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-                buffer_write(ilda_buffer,buffer_u8,blank);
-                buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
-                buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
-                buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
+                if (controller.exp_format == 5)
+                    {
+                    buffer_write(ilda_buffer,buffer_u8,blank);
+                    buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
+                    buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
+                    buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
+                    }
+                else
+                    {
+                    buffer_write(ilda_buffer,buffer_u16,0);
+                    buffer_write(ilda_buffer,buffer_u8,blank);
+                    buffer_write(ilda_buffer,buffer_u8,c);
+                    }
                 maxpoints++;
                 }
             
@@ -319,23 +371,22 @@ for (j = startframe; j < endframe;j++)
         optimize_last();
         }
         
-        
+    //update maxpoints
+    maxpointspre = maxpoints;
+    maxpointsa[0] = maxpointspre & 255;
+    maxpointspre = maxpointspre >> 8;
+    maxpointsa[1] = maxpointspre & 255;
+    buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
+    buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
+    maxpointstot += maxpointspre;
+    maxpoints = 0;
+       
     //cleanup
     for (i = 0;i < ds_list_size(el_list);i++)
         {
         ds_list_destroy(ds_list_find_value(el_list,i));
         }
     ds_list_destroy(el_list);  
-      
-    //update maxpoints
-    maxpointspre = maxpoints;
-    maxpointsa[0] = maxpoints & 255;
-    maxpoints = maxpoints >> 8;
-    maxpointsa[1] = maxpoints & 255;
-    buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
-    buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
-    maxpointstot += maxpointspre;
-    maxpoints = 0;
     }
     
 
@@ -347,7 +398,7 @@ buffer_write(ilda_buffer,buffer_u8,$41);
 buffer_write(ilda_buffer,buffer_u8,$0);
 buffer_write(ilda_buffer,buffer_u8,$0);
 buffer_write(ilda_buffer,buffer_u8,$0);
-buffer_write(ilda_buffer,buffer_u8,$5);
+buffer_write(ilda_buffer,buffer_u8,controller.exp_format);
 buffer_write(ilda_buffer,buffer_u8,ord('L')); //name
 buffer_write(ilda_buffer,buffer_u8,ord('S'));
 buffer_write(ilda_buffer,buffer_u8,ord('G'));
@@ -370,11 +421,13 @@ buffer_write(ilda_buffer,buffer_u16,0); //maxframes
 buffer_write(ilda_buffer,buffer_u8,0); //scanner
 buffer_write(ilda_buffer,buffer_u8,0); //0
 
+ds_map_destroy(c_map);
+
 //remove excess size
 buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
 
 //export
 buffer_save(ilda_buffer,file_loc);
-show_message_async("ILDA file exported to "+string(file_loc));
+show_message_async("ILDA file (format "+string(controller.exp_format)+") exported to "+string(file_loc));
 
 buffer_delete(ilda_buffer);

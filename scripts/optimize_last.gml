@@ -5,26 +5,25 @@ opt_dist = point_distance($ffff/2,$ffff/2,xpe,ype);
 opt_vectorx = (xpeprev-$ffff/2)/opt_dist;
 opt_vectory = (ypeprev-$ffff/2)/opt_dist;
 
+xp = xpe;
+yp = ype;
+
+xp -= $8000;
+yp -= $8000;
+xpa[0] = xp & 255;
+xp = xp >> 8;
+xpa[1] = xp & 255;
+ypa[0] = yp & 255;
+yp = yp >> 8;
+ypa[1] = yp & 255;
 for (m = 0;m < controller.opt_maxdwell; m++)
     {
-    xp = xpe;
-    yp = ype;
-    
-    xp -= $8000;
-    yp -= $8000;
-    xpa[0] = xp & 255;
-    xp = xp >> 8;
-    xpa[1] = xp & 255;
-    ypa[0] = yp & 255;
-    yp = yp >> 8;
-    ypa[1] = yp & 255;
-    
     //writing point
     buffer_write(ilda_buffer,buffer_u8,xpa[1]);
     buffer_write(ilda_buffer,buffer_u8,xpa[0]);
     buffer_write(ilda_buffer,buffer_u8,ypa[1]);
     buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-    if (exp_format == 5)
+    if (controller.exp_format == 5)
         {
         buffer_write(ilda_buffer,buffer_u8,$40);
         buffer_write(ilda_buffer,buffer_u8,0);
@@ -65,7 +64,7 @@ for (trav_dist = trav/2;trav_dist >= -opt_dist; trav_dist += trav;)
     buffer_write(ilda_buffer,buffer_u8,xpa[0]);
     buffer_write(ilda_buffer,buffer_u8,ypa[1]);
     buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-    if (exp_format == 5)
+    if (controller.exp_format == 5)
         {
         buffer_write(ilda_buffer,buffer_u8,$40);
         buffer_write(ilda_buffer,buffer_u8,0);

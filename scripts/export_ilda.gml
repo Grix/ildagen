@@ -14,14 +14,12 @@ maxframesa[0] = maxframespost & 255;
 maxframespost = maxframespost >> 8;
 maxframesa[1] = maxframespost & 255;
 
-c_compareprev = c_red;
-c_compareprev_n = 0;
 c_n = 0;
+c_map = ds_map_create();
 
 for (j = 0; j < maxframes;j++)
     {
     el_list = ds_list_find_value(frame_list,j);
-    ds_list_sort(el_list,0);
     
     framepost = j;
     framea[0] = framepost & 255;
@@ -118,8 +116,9 @@ for (j = 0; j < maxframes;j++)
             //find closest palette color
             if (exp_format == 0)
                 {
-                if (c_compareprev = c)
-                    c = c_compareprev_n;
+                var t_c_mapvalue = c_map[? c];
+                if (!is_undefined(t_c_mapvalue))
+                    c = t_c_mapvalue;
                 else
                     {
                     diff_best = 200;
@@ -140,9 +139,8 @@ for (j = 0; j < maxframes;j++)
                             diff_best = t_diff;
                             }
                         }
-                    c_compareprev = c;
+                    c_map[? c] = c_n;
                     c = c_n;
-                    c_compareprev_n = c;
                     }
                 }
             
@@ -289,6 +287,8 @@ buffer_write(ilda_buffer,buffer_u16,0); //frame
 buffer_write(ilda_buffer,buffer_u16,0); //maxframes
 buffer_write(ilda_buffer,buffer_u8,0); //scanner
 buffer_write(ilda_buffer,buffer_u8,0); //0
+
+ds_map_destroy(c_map);
 
 buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
 

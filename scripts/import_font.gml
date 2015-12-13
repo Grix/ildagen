@@ -72,9 +72,9 @@ with(controller)
                                     ,ds_list_find_value(new_list,temppos+4)
                                     ,ds_list_find_value(new_list,temppos+5));
             
-            if (length < 600*phi) continue;
+            if (length < 800*phi) continue;
             
-            steps = length / 600;
+            steps = length / 800;
             stepscount = round(steps-1);
             tempx0 = ds_list_find_value(new_list,temppos);
             tempy0 = ds_list_find_value(new_list,temppos+1);
