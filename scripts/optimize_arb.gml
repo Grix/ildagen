@@ -1,50 +1,16 @@
+///optimize_arg(xfirst,yfirst,xlast,ylast,color)
+
 xpeprev = argument0;
 ypeprev = argument1;
 
 xpe = argument2;
 ype = argument3;
+color = argument5;
+
 opt_dist = point_distance(xpeprev,ypeprev,xpe,ype);
-
-if (opt_dist < controller.opt_maxdist)
-    return 1;
     
-opt_vectorx = (xpe-xpeprev)/opt_dist;
-opt_vectory = (ype-ypeprev)/opt_dist;
-
-for (m = 0;m < controller.opt_maxdwell;m++)
-    {
-    xp = xpeprev;
-    yp = ypeprev;
-    
-    xp -= $8000;
-    yp -= $8000;
-    xpa[0] = xp & 255;
-    xp = xp >> 8;
-    xpa[1] = xp & 255;
-    ypa[0] = yp & 255;
-    yp = yp >> 8;
-    ypa[1] = yp & 255;
-    
-    //writing point
-    buffer_write(ilda_buffer,buffer_u8,xpa[1]);
-    buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-    buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-    buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-    if (exp_format == 5)
-        {
-        buffer_write(ilda_buffer,buffer_u8,$40);
-        buffer_write(ilda_buffer,buffer_u8,0);
-        buffer_write(ilda_buffer,buffer_u8,0);
-        buffer_write(ilda_buffer,buffer_u8,0);
-        }
-    else
-        {
-        buffer_write(ilda_buffer,buffer_u16,0);
-        buffer_write(ilda_buffer,buffer_u8,$40);
-        buffer_write(ilda_buffer,buffer_u8,0);
-        }
-    maxpoints++;
-    }
+opt_vectorx = (xpe-xpeprev)/200;
+opt_vectory = (ype-ypeprev)/200;
 
 trav = -controller.opt_maxdist;
     
@@ -74,51 +40,17 @@ for (trav_dist = trav/2;opt_dist >= -trav_dist; trav_dist += trav)
     buffer_write(ilda_buffer,buffer_u8,ypa[0]);
     if (exp_format == 5)
         {
-        buffer_write(ilda_buffer,buffer_u8,$40);
-        buffer_write(ilda_buffer,buffer_u8,0);
-        buffer_write(ilda_buffer,buffer_u8,0);
-        buffer_write(ilda_buffer,buffer_u8,0);
+        buffer_write(ilda_buffer,buffer_u8,bl);
+        buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
+        buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
+        buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
         }
     else
         {
         buffer_write(ilda_buffer,buffer_u16,0);
         buffer_write(ilda_buffer,buffer_u8,$40);
-        buffer_write(ilda_buffer,buffer_u8,0);
+        buffer_write(ilda_buffer,buffer_u8,color);
         }
     maxpoints++;
     }
-    
-for (m = 0;m < controller.opt_maxdwell;m++)
-    {
-    xp = xpe;
-    yp = ype;
-    
-    xp -= $8000;
-    yp -= $8000;
-    xpa[0] = xp & 255;
-    xp = xp >> 8;
-    xpa[1] = xp & 255;
-    ypa[0] = yp & 255;
-    yp = yp >> 8;
-    ypa[1] = yp & 255;
-    
-    //writing point
-    buffer_write(ilda_buffer,buffer_u8,xpa[1]);
-    buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-    buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-    buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-    if (exp_format == 5)
-        {
-        buffer_write(ilda_buffer,buffer_u8,$40);
-        buffer_write(ilda_buffer,buffer_u8,0);
-        buffer_write(ilda_buffer,buffer_u8,0);
-        buffer_write(ilda_buffer,buffer_u8,0);
-        }
-    else
-        {
-        buffer_write(ilda_buffer,buffer_u16,0);
-        buffer_write(ilda_buffer,buffer_u8,$40);
-        buffer_write(ilda_buffer,buffer_u8,0);
-        }
-    maxpoints++;
-    }
+

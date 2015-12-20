@@ -173,6 +173,7 @@ scroll = 0;
 
 opt_maxdist = 2500;
 opt_maxdwell = 3;
+opt_scanspeed = 20000;
 
 placing = "line";
 startpos[1] = 0;

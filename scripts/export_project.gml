@@ -285,7 +285,7 @@ for (j = startframe; j < endframe;j++)
             
             if (controller.exp_optimize == 1) and (bl != blankprev)
                 {
-                repeat (2)
+                repeat (controller.opt_maxdwell)
                     {
                     //writing point
                     buffer_write(ilda_buffer,buffer_u8,xpa[1]);
