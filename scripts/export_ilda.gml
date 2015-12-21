@@ -6,6 +6,8 @@ if (file_loc == "")
     exit;
 ilda_buffer = buffer_create(1,buffer_grow,1);    
     
+log("----")
+log(get_timer())
 maxpoints = 0;
 maxpointstot = 0;
 
@@ -20,9 +22,6 @@ c_map = ds_map_create();
 for (j = 0; j < maxframes;j++)
     {
     el_list = ds_list_find_value(frame_list,j);
-    
-    maxpoints_0 = 0;
-    lit_length = 0;
     
     framepost = j;
     framea[0] = framepost & 255;
@@ -130,6 +129,8 @@ buffer_write(ilda_buffer,buffer_u8,0); //0
 ds_map_destroy(c_map);
 
 buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
+
+log(get_timer())
 
 //export
 buffer_save(ilda_buffer,file_loc);

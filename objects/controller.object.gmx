@@ -171,8 +171,8 @@ dialog = "";
 selecting = 0;
 scroll = 0;
 
-opt_maxdist = 2500;
-opt_maxdwell = 3;
+opt_maxdist = 1500;
+opt_maxdwell = 4;
 opt_scanspeed = 20000;
 
 placing = "line";
@@ -217,7 +217,7 @@ blank_dc = 0.5;
 blank_freq = 4;
 enddots = 0;
 makedot = 0;
-dotmultiply = 15;
+dotmultiply = 20;
 blank_offset = 0;
 blank_blendmode = 1; //0 replace, 1 and, 2 or, 3 xor
 
@@ -1171,43 +1171,6 @@ else if (placing == "curve")
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="72">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/*if (ds_map_find_value(async_load, "id") == saveid)
-    {
-    if (savetype == "ilda")
-        {
-        if ds_map_find_value(async_load, "status") == false
-            {
-            show_message_async("Failed to export ILDA file. Try another location.");
-            }
-        else
-            {
-            show_message_async("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));
-            buffer_delete(ilda_buffer);
-            }
-        }
-    }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="7" enumb="63">
       <action>
         <libid>1</libid>
@@ -1275,7 +1238,12 @@ if (new_id == getint)
               
               break;
               }  
-            
+            case "scanspeed":
+              {
+              opt_scanspeed = ds_map_find_value(async_load, "value");
+              
+              break;
+              }
             case "wavet":
               {
               wave_period = ds_map_find_value(async_load, "value");
@@ -2120,6 +2088,7 @@ draw_set_alpha(0.8);
 draw_set_font(fnt_tooltip);
 draw_set_color(c_ltgray);
 draw_text(12,495,"Frame: "+string(frame+1)+"/"+string(maxframes));
+draw_set_color(c_dkgray);
 draw_text(440,495,"Points: "+string(framepoints));
 if (!anienable) and (maxframes &lt; 2)
     draw_set_color(c_dkgray);

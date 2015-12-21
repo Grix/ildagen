@@ -6,6 +6,7 @@ for (i = 0; i < ds_list_size(list_raw); i += 4)
     //writing point
     xp = list_raw[| i];
     yp = list_raw[| i+1];
+    bl = list_raw[| i+2];
     
     xp -= $8000;
     yp -= $8000;
@@ -23,13 +24,13 @@ for (i = 0; i < ds_list_size(list_raw); i += 4)
     if (bl)
         {
         blank = $40;
-        if (i == maxpoints-4)
+        if (i == ds_list_size(list_raw)-4)
             blank = $C0;
         }
     else
         {
         blank = $0;
-        if (i == maxpoints-4)
+        if (i == ds_list_size(list_raw)-4)
             blank = $80;
         }
     

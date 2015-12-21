@@ -1,7 +1,7 @@
 ddobj = instance_create(controller.menu_width_start[5],0,oDropDown);
 with (ddobj)
     {
-    num = 9;
+    num = 10;
     event_user(1);
     ds_list_add(desc_list,"Toggle update check at startup");
     ds_list_add(sep_list,0);
@@ -30,6 +30,10 @@ with (ddobj)
     ds_list_add(desc_list,"Set max dwell");
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,dd_ilda_maxdwell);
+    ds_list_add(hl_list,1);
+    ds_list_add(desc_list,"Set scanning speed");
+    ds_list_add(sep_list,0);
+    ds_list_add(scr_list,dd_ilda_scanspeed);
     ds_list_add(hl_list,1);
     ds_list_add(desc_list,"Onion skinning settings...");
     ds_list_add(sep_list,1);
