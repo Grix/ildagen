@@ -972,14 +972,15 @@
         <script>scripts\import_font.gml</script>
       </scripts>
       <scripts name="exportilda">
+        <script>scripts\export_makeframe_pass_list.gml</script>
+        <script>scripts\export_makeframe_pass_int.gml</script>
+        <script>scripts\export_framelist_to_buffer.gml</script>
         <script>scripts\export_project.gml</script>
-        <script>scripts\export_makeframe_pass1.gml</script>
-        <script>scripts\export_makeframe_pass2.gml</script>
         <script>scripts\export_ilda.gml</script>
         <script>scripts\export_ilda_html5.gml</script>
         <script>scripts\optimize_middle3_seq.gml</script>
         <script>scripts\optimize_last.gml</script>
-        <script>scripts\optimize_middle3.gml</script>
+        <script>scripts\optimize_middle.gml</script>
         <script>scripts\optimize_first.gml</script>
         <script>scripts\optimize_first_list.gml</script>
         <script>scripts\optimize_between.gml</script>

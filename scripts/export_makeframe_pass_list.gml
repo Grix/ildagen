@@ -30,7 +30,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
         yp = $ffff-(yo+ds_list_find_value(list_id,currentpos+1));
         if (bl != 0)
             {
-            if (yp > ($ffff)) or (yp < 0) or (xp > ($ffff)) or (xp < 0)
+            if (yp > $ffff) or (yp < 0) or (xp > $ffff) or (xp < 0)
                 {
                 bl = 1;
                 }
@@ -50,60 +50,64 @@ for (i = 0;i < ds_list_size(el_list);i++)
                         ds_list_add(list_raw,1);
                         ds_list_add(list_raw,0);
                         }
+                    xp_prev = xp;
+                    yp_prev = yp;
                     }
-                xp_prev = xp;
-                yp_prev = yp;
-                bl_prev = bl;
                 }
+            bl_prev = 1;
             continue;
             }
-        else if (bl_prev)
+        else 
             {
-            if (controller.exp_optimize)
+            c = ds_list_find_value(list_id,currentpos+3);
+            if (bl_prev)
                 {
-                //interpolate blanking
-                opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
-                opt_vectorx = (xp_prev-xp)/opt_dist;
-                opt_vectory = (yp_prev-yp)/opt_dist;
-                trav = -controller.opt_maxdist;
-                for (trav_dist = trav/2;trav_dist >= -opt_dist; trav_dist += trav;)
+                if (controller.exp_optimize)
                     {
-                    xp_now = xp_prev+opt_vectorx*trav_dist;
-                    yp_now = yp_prev+opt_vectory*trav_dist;
-                    
-                    ds_list_add(list_raw,xp_now);
-                    ds_list_add(list_raw,yp_now);
-                    ds_list_add(list_raw,1);
-                    ds_list_add(list_raw,0);
+                    //interpolate blanking
+                    opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
+                    opt_vectorx = (xp_prev-xp)/opt_dist;
+                    opt_vectory = (yp_prev-yp)/opt_dist;
+                    trav = -controller.opt_maxdist;
+                    for (trav_dist = trav/2;trav_dist >= -opt_dist; trav_dist += trav;)
+                        {
+                        xp_now = xp_prev+opt_vectorx*trav_dist;
+                        yp_now = yp_prev+opt_vectory*trav_dist;
+                        
+                        ds_list_add(list_raw,xp_now);
+                        ds_list_add(list_raw,yp_now);
+                        ds_list_add(list_raw,1);
+                        ds_list_add(list_raw,0);
+                        }
+                    }
+                ds_list_add(list_raw,xp);
+                ds_list_add(list_raw,yp);
+                ds_list_add(list_raw,1);
+                ds_list_add(list_raw,0);
+                if (controller.exp_optimize)
+                    {
+                    repeat (controller.opt_maxdwell-1)
+                        {
+                        //dwell on blanking end
+                        ds_list_add(list_raw,xp);
+                        ds_list_add(list_raw,yp);
+                        ds_list_add(list_raw,bl);
+                        ds_list_add(list_raw,c);
+                        }
                     }
                 }
-            ds_list_add(list_raw,xp);
-            ds_list_add(list_raw,yp);
-            ds_list_add(list_raw,1);
-            ds_list_add(list_raw,0);
-            if (controller.exp_optimize)
+            else if (controller.exp_optimize)
                 {
-                repeat (controller.opt_maxdwell-1)
-                    {
-                    //dwell on blanking end
-                    ds_list_add(list_raw,xp);
-                    ds_list_add(list_raw,yp);
-                    ds_list_add(list_raw,bl);
-                    ds_list_add(list_raw,c);
-                    }
+                vector_length = point_distance(xp,yp,xp_prev,yp_prev);
+                lit_length += vector_length;
+                if (vector_length != 0)
+                    maxpoints_0++;
                 }
             }
-        
-        if (controller.exp_optimize)
-            lit_length += point_distance(xp,yp,xp_prev,yp_prev);
-        
-        c = ds_list_find_value(list_id,currentpos+3);
-        if (is_undefined(c))
-            c = 0; //black
             
         xp_prev = xp;
         yp_prev = yp;
-        bl_prev = bl;
+        bl_prev = 0;
             
         //writing point
         ds_list_add(list_raw,xp);
@@ -111,6 +115,23 @@ for (i = 0;i < ds_list_size(el_list);i++)
         ds_list_add(list_raw,bl);
         ds_list_add(list_raw,c);
         }
+    if (controller.exp_optimize)
+        {
+        if (bl_prev == 0)
+            {
+            repeat (controller.opt_maxdwell)
+                {
+                //dwell on blanking start
+                ds_list_add(list_raw,xp);
+                ds_list_add(list_raw,yp);
+                ds_list_add(list_raw,1);
+                ds_list_add(list_raw,0);
+                }
+            xp_prev = xp;
+            yp_prev = yp;
+            }
+        }
+    bl_prev = 1;
     }
     
 if (controller.exp_optimize)

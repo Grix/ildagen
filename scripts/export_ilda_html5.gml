@@ -58,7 +58,7 @@ for (j = 0; j < maxframes;j++)
     
     if (!ds_list_size(el_list)) 
         {
-        optimize_middle3();
+        optimize_middle();
         //update maxpoints
         maxpointspre = maxpoints;
         maxpointsa[0] = maxpoints & 255;

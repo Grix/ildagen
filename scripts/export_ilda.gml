@@ -16,13 +16,12 @@ maxframesa[1] = maxframespost & 255;
 
 c_n = 0;
 c_map = ds_map_create();
-var t_diff;
-var t_pal_c;
 
 for (j = 0; j < maxframes;j++)
     {
     el_list = ds_list_find_value(frame_list,j);
     
+    maxpoints_0 = 0;
     lit_length = 0;
     
     framepost = j;
@@ -65,9 +64,9 @@ for (j = 0; j < maxframes;j++)
     
     if (!ds_list_size(el_list)) 
         {
-        optimize_middle3();
+        optimize_middle();
         //update maxpoints
-        maxpointspre = maxpoints;
+        maxpointspre = maxpointswanted;
         maxpointsa[0] = maxpoints & 255;
         maxpoints = maxpoints >> 8;
         maxpointsa[1] = maxpoints & 255;
@@ -78,10 +77,12 @@ for (j = 0; j < maxframes;j++)
         continue;
         }
     
-    export_makeframe_pass1();
+    export_makeframe_pass_list();
     
     if (controller.exp_optimize)
-        export_makeframe_pass2();
+        export_makeframe_pass_int();
+        
+    export_framelist_to_buffer();
         
     //update maxpoints
     maxpointspre = maxpoints;

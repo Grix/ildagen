@@ -1,4 +1,4 @@
-optimize_middle3();
+optimize_middle();
     
 list_id = ds_list_find_value(el_list,0);
 xo = ds_list_find_value(list_id,0);
