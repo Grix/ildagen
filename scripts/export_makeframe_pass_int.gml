@@ -1,7 +1,50 @@
 var t_dist, t_xp, t_yp, t_xpn, t_ypn, t_c, t_vectorx, t_vectory;
 var t_totalrem = 0;
 maxpointswanted = floor(controller.opt_scanspeed/controller.projectfps)-maxpoints_static; 
-lengthwanted = lit_length/maxpointswanted;
+lengthwanted = abs(lit_length/maxpointswanted);
+
+controller.opt_warning_flag = 0;
+
+//TODO fix this shit: reducing points when there is also lit segments
+/*if (lengthwanted > controller.opt_maxdist)
+    {
+    if (ds_list_size(list_points) != 0)
+        {
+        var t_subfromeach = abs(ceil((maxpointswanted/ds_list_size(list_points))/2));
+        if (t_subfromeach+2 > controller.dotmultiply)
+            {
+            if (controller.opt_warning_flag != 1)
+                {
+                show_message_async("Failed to optimize the file based on the selected scanning speed and FPS. Please reduce the complexity of frame ["+string(j)+"] or use the exported file at your own risk");
+                controller.opt_warning_flag = 1;
+                }
+            while (t_subfromeach+2 > controller.dotmultiply)
+                {
+                t_subfromeach--;
+                }
+            }
+        for (i = ds_list_size(list_points)-1; i >= 0; i--)
+            {
+            repeat (t_subfromeach)
+                {
+                repeat (4)
+                    ds_list_delete(list_raw,list_points[| i]+4);
+                maxpoints_static--;
+                }
+            }
+        maxpointswanted = floor(controller.opt_scanspeed/controller.projectfps)-maxpoints_static; 
+        lengthwanted = abs(lit_length/maxpointswanted);
+        }
+    }*/
+    
+if (lengthwanted > controller.opt_maxdist)
+    {
+    if (controller.opt_warning_flag != 1)
+        {
+        show_message_async("Failed to optimize the file based on the selected scanning speed and FPS. Please reduce the complexity of frame [ "+string(j)+" ] or use the exported file at your own risk");
+        controller.opt_warning_flag = 1;
+        }
+    }
 
 if (lit_length == 0)
     {
@@ -94,7 +137,7 @@ else
                 }
             }
         maxpointswanted = floor(controller.opt_scanspeed/controller.projectfps)-maxpoints_static; 
-        lengthwanted = lit_length/maxpointswanted;
+        lengthwanted = abs(lit_length/maxpointswanted);
         }
     
     //adding or reducing points to get uniform vector lengths
@@ -145,11 +188,11 @@ else
                 t_dist -= lengthwanted;
                 }
             steps = t_dist/lengthwanted;
-            stepscount = floor(steps);
+            stepscount = floor(steps)+1;
             t_vectorx = (t_xpn-t_xp)/steps;
             t_vectory = (t_ypn-t_yp)/steps;
             t_c = list_raw[| i+7];
-            for (u = 0; u < stepscount; u++)
+            for (u = 1; u < stepscount; u++)
                 {
                 ds_list_insert(list_raw,i+4,t_c);
                 ds_list_insert(list_raw,i+4,0);
@@ -164,10 +207,20 @@ else
     
 ds_list_destroy(list_points);
     
-while (ds_list_size(list_raw)/4 < floor(controller.opt_scanspeed/controller.projectfps))
+if (ds_list_size(list_raw)/4-1 > floor(controller.opt_scanspeed/controller.projectfps))
+    {
+    if (controller.opt_warning_flag != 1)
+        {
+        show_message_async("Failed to optimize the file based on the selected scanning speed and FPS. Please reduce the complexity of frame [ "+string(j)+" ] or use the exported file at your own risk");
+        controller.opt_warning_flag = 1;
+        }
+    }
+else while (ds_list_size(list_raw)/4 < floor(controller.opt_scanspeed/controller.projectfps))
     {
     ds_list_add(list_raw,$8000);
     ds_list_add(list_raw,$8000);
     ds_list_add(list_raw,1);
     ds_list_add(list_raw,0);
     }
+    
+controller.opt_warning_flag = 0;

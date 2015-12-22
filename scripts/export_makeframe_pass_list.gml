@@ -1,16 +1,14 @@
 list_id = ds_list_find_value(el_list,i);
 
-xo = ds_list_find_value(list_id,0);
-yo = ds_list_find_value(list_id,1);
-
 list_points = ds_list_create();
 list_raw = ds_list_create();
-    
-//middle
+
+//start from middle
 xp_prev = $8000;
 yp_prev = $8000;
 bl_prev = 1;
 
+outside_flag = 0;
 lit_length = 0;
 maxpoints_static = 5;
 new_point = 1;
@@ -35,14 +33,34 @@ for (i = 0;i < ds_list_size(el_list);i++)
         bl = ds_list_find_value(list_id,currentpos+2);
         xp = xo+ds_list_find_value(list_id,currentpos+0);
         yp = $ffff-(yo+ds_list_find_value(list_id,currentpos+1));
-        if (bl != 0)
+        
+        //check if outside bounds
+        if (bl == 0)
             {
             if (yp > $ffff) or (yp < 0) or (xp > $ffff) or (xp < 0)
                 {
-                bl = 1;
+                if (controller.exp_optimize)
+                    {
+                    if (outside_flag == 0)
+                        {
+                        outside_flag = 1;
+                        repeat (controller.opt_maxdwell)
+                            {
+                            //dwell on blanking start
+                            ds_list_add(list_raw,xp_prev);
+                            ds_list_add(list_raw,yp_prev);
+                            ds_list_add(list_raw,1);
+                            ds_list_add(list_raw,0);
+                            }
+                        maxpoints_static++;
+                        }
+                    }
+                bl_prev = 1;
+                continue;
                 }
             }
-            
+        outside_flag = 0; 
+        
         if (bl)
             {
             if (controller.exp_optimize)
@@ -52,8 +70,8 @@ for (i = 0;i < ds_list_size(el_list);i++)
                     repeat (controller.opt_maxdwell)
                         {
                         //dwell on blanking start
-                        ds_list_add(list_raw,xp);
-                        ds_list_add(list_raw,yp);
+                        ds_list_add(list_raw,xp_prev);
+                        ds_list_add(list_raw,yp_prev);
                         ds_list_add(list_raw,1);
                         ds_list_add(list_raw,0);
                         maxpoints_static++;
