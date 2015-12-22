@@ -1,8 +1,10 @@
 list_id = ds_list_find_value(el_list,i);
-list_raw = ds_list_create();
 
 xo = ds_list_find_value(list_id,0);
 yo = ds_list_find_value(list_id,1);
+
+list_points = ds_list_create();
+list_raw = ds_list_create();
     
 //middle
 xp_prev = $8000;
@@ -10,7 +12,8 @@ yp_prev = $8000;
 bl_prev = 1;
 
 lit_length = 0;
-maxpoints_static = 2;
+maxpoints_static = 5;
+new_point = 1;
 
 for (i = 0;i < ds_list_size(el_list);i++)
     {
@@ -74,6 +77,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
                     opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
                     if (opt_dist > 10)
                         {
+                        new_point = 1;
                         opt_vectorx = (xp_prev-xp)/opt_dist;
                         opt_vectory = (yp_prev-yp)/opt_dist;
                         trav = -controller.opt_maxdist;
@@ -87,6 +91,14 @@ for (i = 0;i < ds_list_size(el_list);i++)
                             ds_list_add(list_raw,1);
                             ds_list_add(list_raw,0);
                             maxpoints_static++;
+                            }
+                        }
+                    else
+                        {
+                        if (new_point == 1)
+                            {
+                            ds_list_add(list_points,ds_list_size(list_raw)-4);
+                            new_point = 0;
                             }
                         }
                     }
@@ -112,9 +124,19 @@ for (i = 0;i < ds_list_size(el_list);i++)
                 {
                 vector_length = point_distance(xp,yp,xp_prev,yp_prev);
                 if (vector_length == 0)
+                    {
                     maxpoints_static++;
+                    if (new_point == 1)
+                        {
+                        ds_list_add(list_points,ds_list_size(list_raw)-4);
+                        new_point = 0;
+                        }
+                    }
                 else
+                    {
+                    new_point = 1;
                     lit_length += vector_length;
+                    }
                 }
             }
             
