@@ -79,3 +79,5 @@ for (i = 0; i < ds_list_size(list_raw); i += 4)
         }
     maxpoints++;
     }
+    
+ds_list_destroy(list_raw);

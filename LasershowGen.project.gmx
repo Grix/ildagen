@@ -974,6 +974,8 @@
       </scripts>
       <scripts name="exportilda">
         <script>scripts\export_makeframe_pass_list.gml</script>
+        <script>scripts\pass_list_pol_asc.gml</script>
+        <script>scripts\pass_list_pol_desc.gml</script>
         <script>scripts\export_makeframe_pass_int.gml</script>
         <script>scripts\export_framelist_to_buffer.gml</script>
         <script>scripts\export_project.gml</script>
@@ -1000,7 +1002,6 @@
       <script>scripts\read_hershey_index_ini.gml</script>
       <script>scripts\read_hershey_createini.gml</script>
     </scripts>
-    <script>scripts\rearrange_elements.gml</script>
     <script>scripts\update_check.gml</script>
     <script>scripts\update_check_verbose.gml</script>
     <script>scripts\parse_parameter.gml</script>
