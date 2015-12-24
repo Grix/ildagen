@@ -3,6 +3,8 @@ placing_status = 0;
 
 ilda_buffer = buffer_create(1,buffer_grow,1);
 
+log("----")
+log(get_timer())
 maxpoints = 0;
 maxpointstot = 0;
 
@@ -60,7 +62,7 @@ for (j = 0; j < maxframes;j++)
         {
         optimize_middle();
         //update maxpoints
-        maxpointspre = maxpoints;
+        maxpointspre = maxpointswanted;
         maxpointsa[0] = maxpoints & 255;
         maxpoints = maxpoints >> 8;
         maxpointsa[1] = maxpoints & 255;
@@ -71,177 +73,12 @@ for (j = 0; j < maxframes;j++)
         continue;
         }
     
-    //optimize first
-    if (exp_optimize == 1)
-        {
-        optimize_first();
-        }
+    export_makeframe_pass_list();
     
-    for (i = 0;i < ds_list_size(el_list);i++)
-        {
-        list_id = ds_list_find_value(el_list,i);
+    if (controller.exp_optimize)
+        export_makeframe_pass_int();
         
-        xo = ds_list_find_value(list_id,0);
-        yo = ds_list_find_value(list_id,1);
-        
-        blanktemp = 0;
-        
-        //TODO if just one
-        
-        listsize = ((ds_list_size(list_id)-20)/4);
-        
-        blankprev = 0;
-        for (u = 0; u < listsize; u++)
-            {
-            currentpos = 20+u*4;
-            //getting values from element list
-            
-            bl = ds_list_find_value(list_id,currentpos+2);
-            
-            xp = xo+ds_list_find_value(list_id,currentpos+0);
-            yp = $ffff-(yo+ds_list_find_value(list_id,currentpos+1));
-            if ((yp > (512*128)) or (yp < 0) or (xp > (512*128)) or (xp < 0))
-                {
-                blanktemp = 1;
-                continue;
-                }
-            
-            c = ds_list_find_value(list_id,currentpos+3);
-            if (is_undefined(c)) and (bl)
-                c = c_black;
-                
-            //find closest palette color
-            //TODO fix, doesn't work
-            if (exp_format == 0)
-                {
-                var t_c_mapvalue = c_map[? c];
-                if (!is_undefined(t_c_mapvalue))
-                    c = t_c_mapvalue;
-                else
-                    {
-                    diff_best = 200;
-                    var t_diff;
-                    var t_pal_c;
-                    for (n = 0; n < round(ds_list_size(pal_list)/3); n++)
-                        {
-                        t_pal_c = make_colour_rgb(pal_list[| n*3], pal_list[| n*3+1], pal_list[| n*3+2]);
-                        t_diff = colors_compare_cie94(c, t_pal_c);
-                        if (t_diff < 3)
-                            {
-                            c_n = n;
-                            break;
-                            }
-                        else if (t_diff < diff_best)
-                            {
-                            c_n = n;
-                            diff_best = t_diff;
-                            }
-                        }
-                    c_map[? c] = c_n;
-                    c = c_n;
-                    }
-                }
-            
-            //adjusting values for writing to buffer
-            xpe = xp;
-            ype = yp;
-            
-            xp -= $8000;
-            yp -= $8000;
-            xpa[0] = xp & 255;
-            xp = xp >> 8;
-            xpa[1] = xp & 255;
-            ypa[0] = yp & 255;
-            yp = yp >> 8;
-            ypa[1] = yp & 255;
-            
-            if (exp_optimize == 1) and (bl != blankprev)
-                {
-                repeat (controller.opt_maxdwell)
-                    {
-                    //writing point
-                    buffer_write(ilda_buffer,buffer_u8,xpa[1]);
-                    buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-                    buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-                    buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-                    if (exp_format == 5)
-                        {
-                        buffer_write(ilda_buffer,buffer_u8,bl);
-                        buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
-                        buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
-                        buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
-                        }
-                    else
-                        {
-                        buffer_write(ilda_buffer,buffer_u16,0);
-                        buffer_write(ilda_buffer,buffer_u8,bl);
-                        buffer_write(ilda_buffer,buffer_u8,c);
-                        }
-                    maxpoints++;
-                    }
-                blankprev = bl;
-                }
-            
-            if (u = 0)
-                blank = $40;
-            else if (bl)
-                {
-                blank = $40;
-                if (u == (ds_list_size(list_id)-20)/4-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
-                    blank = $C0;
-                }
-            else
-                {
-                blank = $0;
-                if (u == (ds_list_size(list_id)-20)/4-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
-                    blank = $80;
-                }
-            if (blanktemp == 1)
-                {
-                blank = $40;
-                blanktemp = 0;
-                if (u == (ds_list_size(list_id)-20)/4-1) and (list_id = ds_list_find_value(el_list,ds_list_size(el_list)-1))
-                    blank = $C0;
-                }
-            
-            
-            if !(((blank) and (blank != $80)) and (u != listsize-1) and (ds_list_find_value(list_id,20+(u+1)*4+2))) or (exp_optimize == 1)
-                {
-                //writing point
-                buffer_write(ilda_buffer,buffer_u8,xpa[1]);
-                buffer_write(ilda_buffer,buffer_u8,xpa[0]);
-                buffer_write(ilda_buffer,buffer_u8,ypa[1]);
-                buffer_write(ilda_buffer,buffer_u8,ypa[0]);
-                if (exp_format == 5)
-                    {
-                    buffer_write(ilda_buffer,buffer_u8,blank);
-                    buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
-                    buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
-                    buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
-                    }
-                else
-                    {
-                    buffer_write(ilda_buffer,buffer_u16,0);
-                    buffer_write(ilda_buffer,buffer_u8,blank);
-                    buffer_write(ilda_buffer,buffer_u8,c);
-                    }
-                maxpoints++;
-                }
-            
-            }
-            
-        //optimize between elements
-        if (exp_optimize == 1) and (i != ds_list_size(el_list)-1)
-            {
-            optimize_between();
-            }
-        }
-        
-    //optimize last
-    if (exp_optimize == 1)
-        {
-        optimize_last();
-        }
+    export_framelist_to_buffer();
         
     //update maxpoints
     maxpointspre = maxpoints;
@@ -253,6 +90,7 @@ for (j = 0; j < maxframes;j++)
     maxpointstot += maxpointspre;
     maxpoints = 0;
     }
+    
 
 //null header
 buffer_write(ilda_buffer,buffer_u8,$49); //ILDA0005
