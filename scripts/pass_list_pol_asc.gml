@@ -15,7 +15,7 @@ repeat (listsize)
     //check if outside bounds
     if (bl == 0)
         {
-        if (yp > $ffff) or (yp < 0) or (xp > $ffff) or (xp < 0)
+        if (yp >= $fffd) or (yp <= 2) or (xp >= $fffd) or (xp <= 2)
             {
             if (controller.exp_optimize)
                 {
@@ -29,8 +29,8 @@ repeat (listsize)
                         ds_list_add(list_raw,yp_prev);
                         ds_list_add(list_raw,1);
                         ds_list_add(list_raw,0);
+                        maxpoints_static++;
                         }
-                    maxpoints_static++;
                     }
                 }
             bl_prev = 1;

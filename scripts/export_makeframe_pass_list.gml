@@ -13,7 +13,7 @@ bl_prev = 1;
 
 outside_flag = 0;
 lit_length = 0;
-maxpoints_static = 5;
+maxpoints_static = 3;
 new_point = 1;
 
 t_pol = 0;
@@ -24,7 +24,7 @@ var t_found = 0;
 //checking best element order
 if (controller.exp_optimize == 1)
     {
-    do
+    while (ds_list_size(order_list) < ds_list_size(el_list))
         {
         t_lowestdist = $fffff;
         for (i = 0;i < ds_list_size(el_list);i++)
@@ -84,7 +84,6 @@ if (controller.exp_optimize == 1)
         ds_list_add(order_list,t_order);
         ds_list_add(polarity_list,t_pol);
         }
-    until (ds_list_size(order_list) == ds_list_size(el_list));
     }
         
 xp_prev = $8000;
@@ -126,7 +125,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
     bl_prev = 1;
     }
     
-if (controller.exp_optimize)
+if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
     {
     //back to middle
     xp = $8000;

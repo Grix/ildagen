@@ -54,9 +54,9 @@ if (is_string(resolution))
     {
     autoresflag = 1;
     if ((placing == "line") && (blankmode == "solid") && (colormode == "solid"))
-        resolution = controller.opt_maxdist;
+        resolution = 1500;
     else
-        resolution = 1300;
+        resolution = 1000;
         
     if (colormode != "solid") or (blankmode != "solid")
         resolution = 500;

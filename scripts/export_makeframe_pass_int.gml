@@ -3,8 +3,6 @@ var t_totalrem = 0;
 maxpointswanted = floor(controller.opt_scanspeed/controller.projectfps)-maxpoints_static; 
 lengthwanted = abs(lit_length/maxpointswanted);
 
-controller.opt_warning_flag = 0;
-
 //TODO fix this shit: reducing points when there is also lit segments
 /*if (lengthwanted > controller.opt_maxdist)
     {
@@ -46,7 +44,7 @@ if (lengthwanted > controller.opt_maxdist)
         }
     }
 
-if (lit_length == 0)
+if (lit_length == 0) and ds_list_size(list_points)
     {
     //adjust existing points
     if (maxpointswanted < 0)
@@ -75,7 +73,7 @@ if (lit_length == 0)
                 }
             }
         }
-    else
+    else 
         {
         var t_addtoeach = floor(maxpointswanted/ds_list_size(list_points));
         for (i = ds_list_size(list_points)-1; i >= 0; i--)
@@ -205,10 +203,18 @@ else
         }
     }
     
-ds_list_destroy(list_points);
-    
+//final removal or adding of ending points to match perfectly
 if (ds_list_size(list_raw)/4-1 > floor(controller.opt_scanspeed/controller.projectfps))
     {
+    while ( ds_list_size(list_raw)/4-1 > floor(controller.opt_scanspeed/controller.projectfps)) and 
+            (list_raw[| ds_list_size(list_raw)-4] == $8000) and  
+            (list_raw[| ds_list_size(list_raw)-3] == $8000) and 
+            (list_raw[| ds_list_size(list_raw)-2] == 1)
+        {
+        maxpoints_static--;
+        repeat (4)
+            ds_list_delete(list_raw,ds_list_size(list_raw)-1);
+        }
     if (controller.opt_warning_flag != 1)
         {
         show_message_async("Failed to optimize the file based on the selected scanning speed and FPS. Please reduce the complexity of frame [ "+string(j)+" ] or use the exported file at your own risk");
@@ -222,5 +228,4 @@ else while (ds_list_size(list_raw)/4 < floor(controller.opt_scanspeed/controller
     ds_list_add(list_raw,1);
     ds_list_add(list_raw,0);
     }
-    
-controller.opt_warning_flag = 0;
+

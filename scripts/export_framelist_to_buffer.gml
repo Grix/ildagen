@@ -1,7 +1,8 @@
-maxpoints = 0;
+maxpoints = ds_list_size(list_raw)/4;
 var t_diff, t_pal_c, t_c_mapvalue;
+var t_list_raw_size = ds_list_size(list_raw)-4;
 
-for (i = 0; i < ds_list_size(list_raw); i += 4)
+for (i = 0; i <= t_list_raw_size; i += 4)
     {
     //writing point
     xp = list_raw[| i];
@@ -23,15 +24,17 @@ for (i = 0; i < ds_list_size(list_raw); i += 4)
     
     if (bl)
         {
-        blank = $40;
-        if (i == ds_list_size(list_raw)-4)
+        if (i == t_list_raw_size)
             blank = $C0;
+        else
+            blank = $40;
         }
     else
         {
-        blank = $0;
-        if (i == ds_list_size(list_raw)-4)
+        if (i == t_list_raw_size)
             blank = $80;
+        else
+            blank = $0;
         }
     
     c = list_raw[| i+3];
@@ -46,8 +49,8 @@ for (i = 0; i < ds_list_size(list_raw); i += 4)
     else
         {
         //find closest palette color
-        if (controller.exp_format == 0)
-            {
+        //if (controller.exp_format == 0)
+        //    {
             t_c_mapvalue = c_map[? c];
             if (!is_undefined(t_c_mapvalue))
                 c = t_c_mapvalue;
@@ -72,12 +75,12 @@ for (i = 0; i < ds_list_size(list_raw); i += 4)
                 c_map[? c] = c_n;
                 c = c_n;
                 }
-            }
+        //    }
         buffer_write(ilda_buffer,buffer_u16,0);
         buffer_write(ilda_buffer,buffer_u8,blank);
         buffer_write(ilda_buffer,buffer_u8,c);
         }
-    maxpoints++;
     }
     
 ds_list_destroy(list_raw);
+ds_list_destroy(list_points);

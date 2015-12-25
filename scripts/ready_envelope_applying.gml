@@ -43,7 +43,7 @@ for (u = 0; u < ds_list_size(t_envelope_list); u++)
     var t_index = imid;
     
     //interpolate
-    if (t_index == ds_list_size(data_list)-1) or ( (t_index == 0) and (ds_list_find_value(time_list,t_index) >= correctframe) )
+    if (t_index == ds_list_size(data_list)-1) or ( (t_index == 0) and (ds_list_find_value(time_list,t_index) >= correctframe) ) or (time_list[| t_index+1] == time_list[| t_index])
         raw_data_value = ds_list_find_value(data_list,t_index);
     else
         raw_data_value = lerp(  ds_list_find_value(data_list,t_index),

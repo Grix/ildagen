@@ -19,6 +19,8 @@ c_n = 0;
 c_map = ds_map_create();
 var env_dataset = 0;
 
+controller.opt_warning_flag = 0;
+
 for (j = startframe; j < endframe;j++)
     {
     correctframe = j;
@@ -61,7 +63,6 @@ for (j = startframe; j < endframe;j++)
     buffer_write(ilda_buffer,buffer_u8,0); //0
         
     el_list = ds_list_create(); 
-    var env_dataset = 0;
     
     //check which should be drawn
     for (k = 0; k < ds_list_size(layer_list); k++)
@@ -189,14 +190,12 @@ for (j = startframe; j < endframe;j++)
         {
         optimize_middle();
         //update maxpoints
-        maxpointspre = maxpointswanted;
+        maxpoints = maxpointswanted;
         maxpointsa[0] = maxpoints & 255;
         maxpoints = maxpoints >> 8;
         maxpointsa[1] = maxpoints & 255;
         buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
         buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
-        maxpointstot += maxpointspre;
-        maxpoints = 0;
         continue;
         }
     
@@ -208,14 +207,11 @@ for (j = startframe; j < endframe;j++)
     export_framelist_to_buffer();
         
     //update maxpoints
-    maxpointspre = maxpoints;
-    maxpointsa[0] = maxpointspre & 255;
-    maxpointspre = maxpointspre >> 8;
-    maxpointsa[1] = maxpointspre & 255;
+    maxpointsa[0] = maxpoints & 255;
+    maxpoints = maxpoints >> 8;
+    maxpointsa[1] = maxpoints & 255;
     buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
     buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
-    maxpointstot += maxpointspre;
-    maxpoints = 0;
        
     //cleanup
     for (i = 0;i < ds_list_size(el_list);i++)

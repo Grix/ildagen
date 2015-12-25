@@ -16,6 +16,8 @@ maxframesa[0] = maxframespost & 255;
 maxframespost = maxframespost >> 8;
 maxframesa[1] = maxframespost & 255;
 
+controller.opt_warning_flag = 0;
+
 c_n = 0;
 c_map = ds_map_create();
 
@@ -65,14 +67,12 @@ for (j = 0; j < maxframes;j++)
         {
         optimize_middle();
         //update maxpoints
-        maxpointspre = maxpointswanted;
+        maxpoints = maxpointswanted;
         maxpointsa[0] = maxpoints & 255;
         maxpoints = maxpoints >> 8;
         maxpointsa[1] = maxpoints & 255;
         buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
         buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
-        maxpointstot += maxpointspre;
-        maxpoints = 0;
         continue;
         }
     
@@ -84,14 +84,11 @@ for (j = 0; j < maxframes;j++)
     export_framelist_to_buffer();
         
     //update maxpoints
-    maxpointspre = maxpoints;
-    maxpointsa[0] = maxpointspre & 255;
-    maxpointspre = maxpointspre >> 8;
-    maxpointsa[1] = maxpointspre & 255;
+    maxpointsa[0] = maxpoints & 255;
+    maxpoints = maxpoints >> 8;
+    maxpointsa[1] = maxpoints & 255;
     buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
     buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
-    maxpointstot += maxpointspre;
-    maxpoints = 0;
     }
     
 
