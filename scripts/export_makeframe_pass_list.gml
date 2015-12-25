@@ -41,6 +41,12 @@ if (controller.exp_optimize == 1)
             currentpos = 20;
             while (ds_list_find_value(list_id,currentpos+2))
                 currentpos += 4;
+                
+            if (is_undefined(list_id[| currentpos]))
+                {
+                ds_list_delete(el_list,i);
+                continue;
+                }
             
             xp = xo+ds_list_find_value(list_id,currentpos+0);
             yp = $ffff-(yo+ds_list_find_value(list_id,currentpos+1));
@@ -79,11 +85,19 @@ if (controller.exp_optimize == 1)
                 t_tempyp_prev = yp;
                 }
             }
-        xp_prev = t_tempxp_prev;
-        yp_prev = t_tempyp_prev;
-        ds_list_add(order_list,t_order);
-        ds_list_add(polarity_list,t_pol);
+        if (ds_list_size(el_list))
+            {
+            xp_prev = t_tempxp_prev;
+            yp_prev = t_tempyp_prev;
+            ds_list_add(order_list,t_order);
+            ds_list_add(polarity_list,t_pol);
+            }
         }
+    }
+    
+if (ds_list_size(el_list) == 0)
+    {
+    return 0;
     }
         
 xp_prev = $8000;
@@ -159,3 +173,5 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
     
 ds_list_destroy(order_list);
 ds_list_destroy(polarity_list);
+
+return 1;

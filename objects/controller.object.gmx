@@ -135,6 +135,9 @@ hershey_selected = 0;
 dialog_open = 0;
 regflag = 0;
 menu_open = 0;
+updateget = -1;
+updatenotes = -1;
+file = -1;
 
 redraw = 0;
 sgridshow = 0;
@@ -1764,7 +1767,7 @@ update_anicolors();
             <string>//if (!updatecheckenabled)
 //    exit;
     
-if ds_map_find_value(async_load, "id") == updateget
+if (ds_map_find_value(async_load, "id") == updateget)
     {
     if ds_map_find_value(async_load, "status") == 0
        {
@@ -1772,7 +1775,7 @@ if ds_map_find_value(async_load, "id") == updateget
        show_debug_message("Checking version")
        if (versionnew != version)
             {
-            ilda_dialog_yesno("updatefound","New version available: "+versionnew+"##Would you like to download and install the update?");
+            ilda_dialog_yesno("updatefound","New version available: "+versionnew+"##Release notes:#"+releasenotes+"##Would you like to download and install the update?");
             }
        else if (update_verbose == 1)
             {
@@ -1780,7 +1783,15 @@ if ds_map_find_value(async_load, "id") == updateget
             }
        }
     }
-else if ds_map_find_value(async_load, "id") == file
+else if (ds_map_find_value(async_load, "id") == updatenotes)
+    {
+    if ds_map_find_value(async_load, "status") == 0
+       {
+       releasenotes = ds_map_find_value(async_load, "result");
+       updateget = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/version.txt");
+       }
+    }
+else if (ds_map_find_value(async_load, "id") == file)
     {
      if ds_map_find_value(async_load, "status") == 0
         {

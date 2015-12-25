@@ -1,4 +1,7 @@
-maxpointswanted = floor((1/controller.projectfps)*controller.opt_scanspeed); 
+if (controller.exp_optimize == 0)
+    maxpointswanted = 1;
+else
+    maxpointswanted = floor((1/controller.projectfps)*controller.opt_scanspeed); 
 
 xp = $8000;
 yp = $8000;

@@ -11,7 +11,7 @@ if (file_exists(ini_filename))
     ini_close();
     if (updatecheckenabled)
         {
-        updateget = http_get("http://github.com/Grix/ildagen/raw/master/version.txt");
+        updatenotes = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/versionnotes.txt");
         }
     }
 else

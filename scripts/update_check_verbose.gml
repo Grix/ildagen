@@ -5,5 +5,5 @@ updatereceived = 0;
 
 with (controller)   
     {
-    updateget = http_get("http://github.com/Grix/ildagen/raw/master/version.txt");
+    updatenotes = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/versionnotes.txt");
     }

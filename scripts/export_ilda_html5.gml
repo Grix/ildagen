@@ -73,7 +73,18 @@ for (j = 0; j < maxframes;j++)
         continue;
         }
     
-    export_makeframe_pass_list();
+    if (export_makeframe_pass_list() == 0)
+        {
+        optimize_middle();
+        //update maxpoints
+        maxpoints = maxpointswanted;
+        maxpointsa[0] = maxpoints & 255;
+        maxpoints = maxpoints >> 8;
+        maxpointsa[1] = maxpoints & 255;
+        buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
+        buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
+        continue;
+        }
     
     if (controller.exp_optimize)
         export_makeframe_pass_int();

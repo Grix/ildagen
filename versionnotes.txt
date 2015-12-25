@@ -1,1 +1,2 @@
 - Better scanning optimization
+- Bug fixes
