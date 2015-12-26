@@ -980,6 +980,7 @@
         <script>scripts\export_framelist_to_buffer.gml</script>
         <script>scripts\export_project.gml</script>
         <script>scripts\export_ilda.gml</script>
+        <script>scripts\export_ilda_work.gml</script>
         <script>scripts\export_ilda_html5.gml</script>
         <script>scripts\optimize_middle3_seq.gml</script>
         <script>scripts\optimize_last.gml</script>
@@ -1027,6 +1028,7 @@
     <object>objects\oDropDown</object>
     <object>objects\obj_cursor</object>
     <object>objects\obj_button_parent</object>
+    <object>objects\obj_loadingbar</object>
     <objects name="buttons">
       <objects name="seq">
         <object>objects\obj_saveproject</object>
@@ -1134,6 +1136,7 @@
   <rooms name="rooms">
     <room>rooms\rm_ilda</room>
     <room>rooms\rm_seq</room>
+    <room>rooms\rm_loading</room>
   </rooms>
   <constants number="2">
     <constant name="GM_build_date">41913.9170528472</constant>
