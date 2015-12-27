@@ -174,9 +174,13 @@ dialog = "";
 selecting = 0;
 scroll = 0;
 
+global.loading_gotoroom = rm_seq;
 global.loading_exportproject = 0;
 global.loading_exportilda = 0;
 global.loading_exportildahtml5 = 0;
+global.loading_saveproject = 0;
+global.loading_loadproject = 0;
+global.loading_importilda = 0;
 
 opt_maxdist = 1500;
 opt_maxdwell = 4;
@@ -571,6 +575,8 @@ scroll = 1;
     {
     if (global.loading_exportilda == 1)
         export_ilda_work();
+    else if (global.loading_exportildahtml5 == 1)
+        export_ilda_html5_work();
     }
 
 if (room != rm_ilda) exit;
@@ -1849,6 +1855,7 @@ else if (ds_map_find_value(async_load, "id") == file)
             <kind>1</kind>
             <string>refresh_miniaudio_flag = 1;
 frame_surf_refresh = 1;
+menu_open = 0;
 </string>
           </argument>
         </arguments>

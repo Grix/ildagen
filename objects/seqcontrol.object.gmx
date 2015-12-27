@@ -322,7 +322,17 @@ alarm[1] = 13;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (parsingaudio == 1) refresh_audio();
+            <string>if (room == rm_loading)
+    {
+    if (global.loading_exportproject == 1)
+        export_project_work();
+    else if (global.loading_saveproject == 1)
+        save_project_work();
+    else if (global.loading_loadproject == 1)
+        load_project_work();
+    }
+
+if (parsingaudio == 1) refresh_audio();
 
 if (room != rm_seq) exit;
 
@@ -685,7 +695,10 @@ if (new_id == getint)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room == rm_seq) frame_surf_refresh = 1;
+            <string>if (room == rm_seq) 
+    {
+    frame_surf_refresh = 1;
+    }
 </string>
           </argument>
         </arguments>

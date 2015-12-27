@@ -90,7 +90,9 @@ bak_alpha = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (controller.dialog_open)
+            <string>controller.dialog_open = 0;
+
+if (controller.dialog_open)
     exit;
 
 ds_list_destroy(desc_list);

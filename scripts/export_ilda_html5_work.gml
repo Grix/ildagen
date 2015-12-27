@@ -84,7 +84,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
     maxpointsa[1] = maxpoints & 255;
     buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
     buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
-
+    maxpoints = 0;
     }
     
 
@@ -121,13 +121,24 @@ buffer_write(ilda_buffer,buffer_u8,0); //0
 
 ds_map_destroy(c_map);
 
-buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
+//remove excess size
+buffersize = buffer_tell(ilda_buffer);
 
-//export
-buffer_save(ilda_buffer,file_loc);
+filesaver_clearArray();
 
-show_message_async("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));
+error = 0;
+for (i = 0;i < buffersize;i++)
+    {
+    if (!filesaver_toArray(i,buffer_peek(ilda_buffer,i,buffer_u8)))
+        {
+        if (!error) show_message_async("Error filling file with data, may not save correctly!");
+        error = 1;
+        }
+    }
+    
+filesaver_save(file_loc);
+    
 buffer_delete(ilda_buffer);
 
-global.loading_exportilda = 0;
+global.loading_exportildahtml5 = 0;
 room_goto(rm_ilda);

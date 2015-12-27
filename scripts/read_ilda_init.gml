@@ -11,6 +11,15 @@ if (filename != "") and (!is_undefined(filename)) and (is_string(filename))
 else
     return 0;
     
+global.loadingtimeprev = get_timer();
+
+global.loading_loadproject = 1;
+global.gotoroom = room;
+
+global.loading_start = 0;
+global.loading_end = maxlayers;
+global.loading_current = global.loading_start;
+    
 i = 0;
 if !is_wrong($49)
     return 0;i++;
@@ -40,6 +49,6 @@ read_ilda_frame();
 
 read_ilda_work();
 
-buffer_delete(ild_file);
+room_goto(rm_loading);
 
 return 1;

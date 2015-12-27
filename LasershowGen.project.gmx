@@ -979,9 +979,11 @@
         <script>scripts\export_makeframe_pass_int.gml</script>
         <script>scripts\export_framelist_to_buffer.gml</script>
         <script>scripts\export_project.gml</script>
+        <script>scripts\export_project_work.gml</script>
         <script>scripts\export_ilda.gml</script>
         <script>scripts\export_ilda_work.gml</script>
         <script>scripts\export_ilda_html5.gml</script>
+        <script>scripts\export_ilda_html5_work.gml</script>
         <script>scripts\optimize_middle3_seq.gml</script>
         <script>scripts\optimize_last.gml</script>
         <script>scripts\optimize_middle.gml</script>
@@ -993,7 +995,9 @@
       <script>scripts\load_frames.gml</script>
       <script>scripts\load_frames_seq.gml</script>
       <script>scripts\load_project.gml</script>
+      <script>scripts\load_project_work.gml</script>
       <script>scripts\save_project.gml</script>
+      <script>scripts\save_project_work.gml</script>
       <script>scripts\save_frames.gml</script>
       <script>scripts\save_frames_html5.gml</script>
       <script>scripts\frames_toseq.gml</script>

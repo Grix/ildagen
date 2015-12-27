@@ -10,3 +10,5 @@ while (1)
         }
     read_ilda_frame();
     }
+    
+buffer_delete(ild_file);
