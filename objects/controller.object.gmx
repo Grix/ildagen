@@ -174,13 +174,14 @@ dialog = "";
 selecting = 0;
 scroll = 0;
 
-global.loading_gotoroom = rm_seq;
 global.loading_exportproject = 0;
 global.loading_exportilda = 0;
 global.loading_exportildahtml5 = 0;
 global.loading_saveproject = 0;
 global.loading_loadproject = 0;
 global.loading_importilda = 0;
+global.loading_importfont = 0;
+global.loading_importildaseq = 0;
 
 opt_maxdist = 1500;
 opt_maxdwell = 4;
@@ -577,6 +578,20 @@ scroll = 1;
         export_ilda_work();
     else if (global.loading_exportildahtml5 == 1)
         export_ilda_html5_work();
+    else if (global.loading_importilda == 1)
+        {
+        if (global.loading_current &lt; global.loading_end)
+            read_ilda_work();
+        else
+            import_ilda_end();
+        }
+    else if (global.loading_importfont == 1)
+        {
+        if (global.loading_current &lt; global.loading_end)
+            read_ilda_work();
+        else
+            import_font_end();
+        }
     }
 
 if (room != rm_ilda) exit;
@@ -1856,6 +1871,7 @@ else if (ds_map_find_value(async_load, "id") == file)
             <string>refresh_miniaudio_flag = 1;
 frame_surf_refresh = 1;
 menu_open = 0;
+dialog_open = 0;
 </string>
           </argument>
         </arguments>

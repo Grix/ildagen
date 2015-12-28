@@ -1,14 +1,22 @@
 //works its way through an ilda file
-
-while (1)
+with (controller)
     {
-    action = read_ilda_header();
-    if (action == 1)
+    while (1)
         {
-        el_id++;
-        exit;
+        if (read_ilda_header())
+            {
+            el_id++;
+            global.loading_current = global.loading_end;
+            exit;
+            }
+        read_ilda_frame();
+        
+        if (get_timer()-global.loadingtimeprev >= 100000)
+            {
+            global.loading_current = frame_number;
+            global.loadingtimeprev = get_timer();
+            break;
+            }
         }
-    read_ilda_frame();
     }
-    
-buffer_delete(ild_file);
+

@@ -6,6 +6,5 @@ if (os_browser != browser_not_a_browser)
     
 with (controller)
     {
-    ilda_cancel();
-    import_ilda(get_open_filename_ext("ILDA files|*.ild","","","Select ILDA file"));
+    import_ildaseq(get_open_filename_ext("ILDA files|*.ild","","","Select ILDA file"));
     }

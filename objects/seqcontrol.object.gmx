@@ -330,6 +330,14 @@ alarm[1] = 13;
         save_project_work();
     else if (global.loading_loadproject == 1)
         load_project_work();
+    else if (global.loading_importildaseq == 1)
+        {
+        
+        if (global.loading_current &lt; global.loading_end)
+            read_ilda_work();
+        else
+            import_ildaseq_end();
+        }
     }
 
 if (parsingaudio == 1) refresh_audio();

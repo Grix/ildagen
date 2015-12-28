@@ -970,7 +970,11 @@
         <script>scripts\init_palette.gml</script>
         <script>scripts\read_ilda_init.gml</script>
         <script>scripts\import_ilda.gml</script>
+        <script>scripts\import_ilda_end.gml</script>
+        <script>scripts\import_ildaseq.gml</script>
+        <script>scripts\import_ildaseq_end.gml</script>
         <script>scripts\import_font.gml</script>
+        <script>scripts\import_font_end.gml</script>
       </scripts>
       <scripts name="exportilda">
         <script>scripts\export_makeframe_pass_list.gml</script>

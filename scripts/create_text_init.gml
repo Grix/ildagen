@@ -1,8 +1,8 @@
 //get and check data
 if (ds_list_empty(font_list))
     {
-    if (!import_font())
-        return 0;
+    show_message_async("Please import a LaserBoy font file first");
+    import_font();
     }
-
-ilda_dialog_string("text","Enter text","");
+else
+    ilda_dialog_string("text","Enter text","");
