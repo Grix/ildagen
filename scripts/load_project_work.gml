@@ -192,5 +192,5 @@ for (i = 0; i < parsinglistsize; i++)
     
 buffer_delete(load_buffer);
 
-global.loading_loadbuffer = 0;
+global.loading_loadproject = 0;
 room_goto(rm_seq);

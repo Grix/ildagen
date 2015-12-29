@@ -1,14 +1,16 @@
 //exports project into an ilda file
-ilda_cancel();
+playing = 0;
+if (song)
+    {
+    FMODInstanceSetPaused(songinstance,1);
+    }
 
 file_loc = get_save_filename_ext("*.ild","example.ild","","Select ILDA file location");
 if (file_loc == "")
     exit;
 ilda_buffer = buffer_create(1,buffer_grow,1);
-
+log(0)
 global.loadingtimeprev = get_timer();
-
-global.loading_exportproject = 1;
 
 global.loading_start = startframe;
 global.loading_current = global.loading_start;
@@ -28,5 +30,6 @@ c_map = ds_map_create();
 var env_dataset = 0;
 
 controller.opt_warning_flag = 0;
-
+log(1)
+global.loading_exportproject = 1;
 room_goto(rm_loading);

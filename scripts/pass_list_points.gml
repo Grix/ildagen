@@ -1,16 +1,26 @@
 listsize = ((ds_list_size(list_id)-20)/4);
 
-currentpos = ds_list_size(list_id);
+if (polarity_list[| i] == 0)
+    {
+    currentpos = 16;
+    currentposadjust = 4;
+    }
+else
+    {
+    currentpos = ds_list_size(list_id);
+    currentposadjust = -4;
+    }
 maxpoints_static++;
 
-repeat (listsize)
+var t_i;
+for (t_i = 0; t_i < listsize; t_i++)
     {
-    currentpos -= 4;
+    currentpos += currentposadjust;
     //getting values from element list
     
-    bl = ds_list_find_value(list_id,currentpos+2);
-    xp = xo+ds_list_find_value(list_id,currentpos+0);
+    xp = xo+ds_list_find_value(list_id,currentpos);
     yp = $ffff-(yo+ds_list_find_value(list_id,currentpos+1));
+    bl = ds_list_find_value(list_id,currentpos+2);
     
     //check if outside bounds
     if (bl == 0)

@@ -11,8 +11,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
     framepost = j-startframe;
     framea[0] = framepost & 255;
     framepost = framepost >> 8;
-    framea[1] = framepost & 255;   
-    
+    framea[1] = framepost & 255; 
     buffer_write(ilda_buffer,buffer_u8,$49); //ILDA0005
     buffer_write(ilda_buffer,buffer_u8,$4C);
     buffer_write(ilda_buffer,buffer_u8,$44);
@@ -47,7 +46,6 @@ for (j = global.loading_current; j < global.loading_end;j++)
     buffer_write(ilda_buffer,buffer_u8,0); //0
         
     el_list = ds_list_create(); 
-    
     //check which should be drawn
     for (k = 0; k < ds_list_size(layer_list); k++)
         {
@@ -83,6 +81,8 @@ for (j = global.loading_current; j < global.loading_end;j++)
                 {
                 show_message_async("Error: Unexpected idbyte in buffer for export_project. Things might get ugly. Contact developer.");
                 surface_reset_target();
+                global.loading_exportproject = 0;
+                room_goto(rm_seq);
                 exit;
                 }
             buffer_maxframes = buffer_read(el_buffer,buffer_u32);
@@ -167,7 +167,6 @@ for (j = global.loading_current; j < global.loading_end;j++)
                 }
                     
             }
-        
         }
     
     if (!ds_list_size(el_list)) 
@@ -182,7 +181,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
         buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
         continue;
         }
-    
+        
     if (export_makeframe_pass_list() == 0)
         {
         optimize_middle();
@@ -195,12 +194,12 @@ for (j = global.loading_current; j < global.loading_end;j++)
         buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
         continue;
         }
-    
+        
     if (controller.exp_optimize)
         export_makeframe_pass_int();
         
     export_framelist_to_buffer();
-        
+    
     //update maxpoints
     maxpointsa[0] = maxpoints & 255;
     maxpoints = maxpoints >> 8;
@@ -213,7 +212,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
         {
         ds_list_destroy(ds_list_find_value(el_list,i));
         }
-    ds_list_destroy(el_list);  
+    ds_list_destroy(el_list);
     }
     
 

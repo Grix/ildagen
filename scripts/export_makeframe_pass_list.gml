@@ -94,7 +94,7 @@ if (controller.exp_optimize == 1)
             }
         }
     }
-    
+
 if (ds_list_size(el_list) == 0)
     {
     return 0;
@@ -106,18 +106,15 @@ yp_prev = $8000;
 //parse elements
 for (i = 0;i < ds_list_size(el_list);i++)
     {
+
     if (controller.exp_optimize == 1)
         list_id = ds_list_find_value(el_list,order_list[| i]);
     else list_id = ds_list_find_value(el_list,i); 
-    
+
     xo = ds_list_find_value(list_id,0);
     yo = ds_list_find_value(list_id,1);
-    
-    //point loop ascending or descending:
-    if (polarity_list[| i] == 0)
-        pass_list_pol_asc();
-    else
-        pass_list_pol_desc();
+       
+    pass_list_points();
         
     if (controller.exp_optimize)
         {
@@ -138,7 +135,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
         }
     bl_prev = 1;
     }
-    
+
 if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
     {
     //back to middle
@@ -170,7 +167,7 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
         maxpoints_static++;
         }
     }
-    
+
 ds_list_destroy(order_list);
 ds_list_destroy(polarity_list);
 

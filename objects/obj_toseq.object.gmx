@@ -91,7 +91,7 @@ with (controller)
         exit;
         }    
     
-    if (seqcontrol.selectedx &lt;= 0)
+    if (ds_list_size(seqcontrol.somaster_list) == 1)
         {
         ilda_dialog_yesno("toseqreplace","This will replace the selected timeline object with these frames. Continue? (Cannot be undone)");
         }
@@ -135,7 +135,7 @@ with (controller)
         exit;
         }    
     
-    if (seqcontrol.selectedx &lt;= 0)
+    if (ds_list_size(seqcontrol.somaster_list) == 1)
         {
         ilda_dialog_yesno("toseqreplace","This will replace the selected timeline object with these frames. Continue? (Cannot be undone)");
         }

@@ -978,8 +978,7 @@
       </scripts>
       <scripts name="exportilda">
         <script>scripts\export_makeframe_pass_list.gml</script>
-        <script>scripts\pass_list_pol_asc.gml</script>
-        <script>scripts\pass_list_pol_desc.gml</script>
+        <script>scripts\pass_list_points.gml</script>
         <script>scripts\export_makeframe_pass_int.gml</script>
         <script>scripts\export_framelist_to_buffer.gml</script>
         <script>scripts\export_project.gml</script>

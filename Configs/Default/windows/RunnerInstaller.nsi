@@ -11,7 +11,7 @@
 !include "FileAssociation.nsh"
 
 !ifndef FULL_VERSION
-!define FULL_VERSION      "1.0.0.0"
+!define FULL_VERSION      "1.2.0.0"
 !endif
 !ifndef SOURCE_DIR
 !define SOURCE_DIR        "C:\source\temp\InstallerTest\runner"
