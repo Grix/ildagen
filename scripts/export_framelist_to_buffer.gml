@@ -51,29 +51,35 @@ for (i = 0; i <= t_list_raw_size; i += 4)
         //find closest palette color
         //if (controller.exp_format == 0)
         //    {
-            t_c_mapvalue = c_map[? c];
-            if (!is_undefined(t_c_mapvalue))
-                c = t_c_mapvalue;
+            if (bl)
+                c = 63;
             else
                 {
-                diff_best = 200;
-                for (n = 0; n < round(ds_list_size(controller.pal_list)/3); n++)
+                t_c_mapvalue = ds_map_find_value(c_map,c);
+                //TODO: this doesnt work in HTML5
+                if (!is_undefined(t_c_mapvalue))
+                    c = t_c_mapvalue;
+                else
                     {
-                    t_pal_c = make_colour_rgb(controller.pal_list[| n*3], controller.pal_list[| n*3+1], controller.pal_list[| n*3+2]);
-                    t_diff = colors_compare_cie94(c, t_pal_c);
-                    if (t_diff < 3)
+                    diff_best = 200;
+                    for (n = 0; n < round(ds_list_size(controller.pal_list)/3); n++)
                         {
-                        c_n = n;
-                        break;
+                        t_pal_c = make_colour_rgb(controller.pal_list[| n*3], controller.pal_list[| n*3+1], controller.pal_list[| n*3+2]);
+                        t_diff = colors_compare_cie94(c, t_pal_c);
+                        if (t_diff < 3)
+                            {
+                            c_n = n;
+                            break;
+                            }
+                        else if (t_diff < diff_best)
+                            {
+                            c_n = n;
+                            diff_best = t_diff;
+                            }
                         }
-                    else if (t_diff < diff_best)
-                        {
-                        c_n = n;
-                        diff_best = t_diff;
-                        }
+                    c_map[? c] = c_n;
+                    c = c_n;
                     }
-                c_map[? c] = c_n;
-                c = c_n;
                 }
         //    }
         buffer_write(ilda_buffer,buffer_u16,0);

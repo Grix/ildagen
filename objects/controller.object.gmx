@@ -303,9 +303,10 @@ surface_set_target(squaregrid_surf);
     draw_grid();
 surface_reset_target();
 
+init_palette();
+
 if (os_browser == browser_not_a_browser)
     {
-    init_palette();
     update_check();
     parse_parameter();
     }

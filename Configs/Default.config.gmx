@@ -466,7 +466,7 @@
     <option_version_build>0</option_version_build>
     <option_version_company>Gitle Mikkelsen</option_version_company>
     <option_version_copyright></option_version_copyright>
-    <option_version_description>Laser show file editor</option_version_description>
+    <option_version_description>LasershowGen</option_version_description>
     <option_version_major>1</option_version_major>
     <option_version_minor>2</option_version_minor>
     <option_version_product>LasershowGen</option_version_product>
@@ -543,7 +543,7 @@
     <option_windows_company_info>Gitle Mikkelsen</option_windows_company_info>
     <option_windows_copyright_info></option_windows_copyright_info>
     <option_windows_create_textures_on_demand>True</option_windows_create_textures_on_demand>
-    <option_windows_description_info>Laser show file editor</option_windows_description_info>
+    <option_windows_description_info>LasershowGen</option_windows_description_info>
     <option_windows_enable_steam>0</option_windows_enable_steam>
     <option_windows_game_icon>Configs\Default\windows\runner_icon.ico</option_windows_game_icon>
     <option_windows_license>Configs\Default\windows\License.txt</option_windows_license>

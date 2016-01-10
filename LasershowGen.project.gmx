@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="38" name="datafiles">
+  <datafiles number="39" name="datafiles">
     <datafile>
       <name>help.pdf</name>
       <exists>-1</exists>
@@ -126,7 +126,7 @@
     <datafile>
       <name>palette.ini</name>
       <exists>-1</exists>
-      <size>4647</size>
+      <size>3217</size>
       <exportAction>2</exportAction>
       <exportDir></exportDir>
       <overwrite>0</overwrite>
@@ -135,7 +135,7 @@
       <store>0</store>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>32</CopyToMask>
+          <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
       <filename>palette.ini</filename>

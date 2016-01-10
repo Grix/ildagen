@@ -5,7 +5,7 @@ ypeprev = argument1;
 
 xpe = argument2;
 ype = argument3;
-color = argument5;
+color = argument4;
 
 opt_dist = point_distance(xpeprev,ypeprev,xpe,ype);
     
