@@ -55,10 +55,8 @@ for (i = 0; i <= t_list_raw_size; i += 4)
                 c = 63;
             else
                 {
-                t_c_mapvalue = ds_map_find_value(c_map,c);
-                //TODO: this doesnt work in HTML5
-                if (!is_undefined(t_c_mapvalue))
-                    c = t_c_mapvalue;
+                if (ds_map_exists(c_map, c))
+                    c = c_map[? c];
                 else
                     {
                     diff_best = 200;

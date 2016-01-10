@@ -10,9 +10,8 @@ c = ds_list_find_value(list_id,23);
 //find closest palette color
 if (controller.exp_format == 0)
     {
-    var t_c_mapvalue = c_map[? c];
-    if (!is_undefined(t_c_mapvalue))
-        c = t_c_mapvalue;
+    if (ds_map_exists(c_map, c))
+        c = c_map[? c];
     else
         {
         diff_best = 200;
