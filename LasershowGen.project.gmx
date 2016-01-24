@@ -246,6 +246,7 @@
   <backgrounds name="background">
     <background>background\bck_guide</background>
     <background>background\bck_seq</background>
+    <background>background\bck_options</background>
     <background>background\bck_hershey1</background>
     <background>background\bck_hershey2</background>
     <background>background\bck_hershey3</background>
@@ -1143,6 +1144,7 @@
   <rooms name="rooms">
     <room>rooms\rm_ilda</room>
     <room>rooms\rm_seq</room>
+    <room>rooms\rm_options</room>
     <room>rooms\rm_loading</room>
   </rooms>
   <constants number="2">
