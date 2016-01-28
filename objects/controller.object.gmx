@@ -594,15 +594,10 @@ scroll = 1;
             import_font_end();
         }
     }
-
-if (room != rm_ilda) exit;
-
-if (placing = "hershey")
-    hershey_handle_scroll();
-
+    
 with (obj_cursor)
     {
-    if (keyboard_check(ord('Z')) and !keyboard_check(vk_control))
+    if (room == rm_ilda) and (keyboard_check(ord('Z')) and !keyboard_check(vk_control))
         {
         image_index = 8;
         x = clamp(mouse_x,0,view_wview[0]-128);
@@ -614,6 +609,11 @@ with (obj_cursor)
         y = mouse_y;
         }
     }
+
+if (room != rm_ilda) exit;
+
+if (placing = "hershey")
+    hershey_handle_scroll();
     
 if (keyboard_check_pressed(vk_space))
     {

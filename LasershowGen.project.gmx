@@ -829,6 +829,7 @@
         <script>scripts\dropdown_info.gml</script>
         <script>scripts\dropdown_object.gml</script>
         <script>scripts\dropdown_empty.gml</script>
+        <script>scripts\dd_goto_options.gml</script>
       </scripts>
       <scripts name="dd_seq">
         <scripts name="menu">
@@ -1033,6 +1034,7 @@
   <objects name="objects">
     <object>objects\controller</object>
     <object>objects\seqcontrol</object>
+    <object>objects\settingscontrol</object>
     <object>objects\oDropDown</object>
     <object>objects\obj_cursor</object>
     <object>objects\obj_button_parent</object>

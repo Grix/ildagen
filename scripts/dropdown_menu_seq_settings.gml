@@ -1,4 +1,6 @@
-ddobj = instance_create(seqcontrol.menu_width_start[5],0,oDropDown);
+room_goto(rm_options);
+
+/*ddobj = instance_create(seqcontrol.menu_width_start[5],0,oDropDown);
 with (ddobj)
     {
     num = 8;

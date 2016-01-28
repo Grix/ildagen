@@ -371,12 +371,6 @@ if (frameprev != round(tlpos/1000*projectfps))
     frame_surf_refresh = 1;
     frameprev = round(tlpos/1000*projectfps);
     }
-
-with (obj_cursor)
-    {
-    x = mouse_x;
-    y = mouse_y;
-    }
     
 if (controller.dialog_open) exit;
     
