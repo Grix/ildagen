@@ -276,6 +276,7 @@ instance_deactivate_region(x1,ty1,total_width,total_height,1,1);
 instance_activate_object(controller);
 instance_activate_object(obj_cursor);
 instance_activate_object(seqcontrol);
+instance_activate_object(settingscontrol);
 
 alarm[0] = 2;
 </string>
@@ -301,17 +302,22 @@ alarm[0] = 2;
           <argument>
             <kind>1</kind>
             <string>///Override me for each option
-if (room = rm_ilda)
+if (room == rm_ilda)
     {
     with (controller) 
         script_execute(ds_list_find_value(oDropDown.scr_list,oDropDown.selected));
     }
-else if (room = rm_seq)
+else if (room == rm_seq)
     {
     with (seqcontrol) 
         script_execute(ds_list_find_value(oDropDown.scr_list,oDropDown.selected));
     }
-
+else
+    {
+    with (controller) 
+        script_execute(ds_list_find_value(oDropDown.scr_list,oDropDown.selected));
+    }
+    
 instance_destroy();
 </string>
           </argument>

@@ -224,6 +224,7 @@
     <sprite>sprites\spr_anitocol</sprite>
     <sprite>sprites\spr_coltoani</sprite>
     <sprite>sprites\spr_help</sprite>
+    <sprite>sprites\spr_options</sprite>
     <sprite>sprites\spr_b_enddots</sprite>
     <sprite>sprites\spr_onionskin</sprite>
     <sprite>sprites\spr_colorblendmode</sprite>
@@ -833,8 +834,8 @@
       </scripts>
       <scripts name="dd_seq">
         <scripts name="menu">
-          <script>scripts\dropdown_menu_seq_file.gml</script>
           <script>scripts\dropdown_menu_seq_properties.gml</script>
+          <script>scripts\dropdown_menu_seq_file.gml</script>
           <script>scripts\dropdown_menu_seq_edit.gml</script>
           <script>scripts\dropdown_menu_seq_tools.gml</script>
           <script>scripts\dropdown_menu_seq_settings.gml</script>
@@ -880,6 +881,11 @@
           <script>scripts\dd_seq_envtype_g_create.gml</script>
           <script>scripts\dd_seq_envtype_b_create.gml</script>
         </scripts>
+      </scripts>
+      <scripts name="dd_options">
+        <script>scripts\dropdown_menu_set_properties.gml</script>
+        <script>scripts\dropdown_menu_set_view.gml</script>
+        <script>scripts\dropdown_menu_set_about.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">
@@ -1141,6 +1147,7 @@
       <object>objects\obj_load</object>
       <object>objects\obj_import</object>
       <object>objects\obj_help</object>
+      <object>objects\obj_options</object>
     </objects>
   </objects>
   <rooms name="rooms">

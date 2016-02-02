@@ -77,6 +77,7 @@
     <option_android_set_device_id></option_android_set_device_id>
     <option_android_splash_png>Configs\Default\android\splash.png</option_android_splash_png>
     <option_android_splash_time>0</option_android_splash_time>
+    <option_android_support_lib_version>23.1.1</option_android_support_lib_version>
     <option_android_target_sdk_version>16</option_android_target_sdk_version>
     <option_android_texture_page>1024</option_android_texture_page>
     <option_android_use_test_ads>0</option_android_use_test_ads>
@@ -144,6 +145,7 @@
     <option_androidfire_small_icon_png>Configs\Default\amazonfire\icons\small_icon.png</option_androidfire_small_icon_png>
     <option_androidfire_splash_png>Configs\Default\amazonfire\splash.png</option_androidfire_splash_png>
     <option_androidfire_splash_time>0</option_androidfire_splash_time>
+    <option_androidfire_support_lib_version>23.1.1</option_androidfire_support_lib_version>
     <option_androidfire_target_sdk_version>23</option_androidfire_target_sdk_version>
     <option_androidfire_texture_page>1024</option_androidfire_texture_page>
     <option_androidfire_use_test_ads>false</option_androidfire_use_test_ads>
@@ -204,6 +206,7 @@
     <option_androidtv_set_device_id></option_androidtv_set_device_id>
     <option_androidtv_small_icon_png>Configs\Default\androidtv\icons\small_icon.png</option_androidtv_small_icon_png>
     <option_androidtv_splash_png>Configs\Default\androidtv\splash.png</option_androidtv_splash_png>
+    <option_androidtv_support_lib_version>23.1.1</option_androidtv_support_lib_version>
     <option_androidtv_texture_page>1024</option_androidtv_texture_page>
     <option_androidtv_use_test_ads>false</option_androidtv_use_test_ads>
     <option_argumenterrors>True</option_argumenterrors>
@@ -365,6 +368,7 @@
     <option_mac_scale>-1</option_mac_scale>
     <option_mac_screenkey>-1</option_mac_screenkey>
     <option_mac_showcursor>-1</option_mac_showcursor>
+    <option_mac_signing_identity>Developer ID Application:</option_mac_signing_identity>
     <option_mac_sizeable>0</option_mac_sizeable>
     <option_mac_splash_png>Configs\Default\mac\splash.png</option_mac_splash_png>
     <option_mac_steam_app_id>0</option_mac_steam_app_id>

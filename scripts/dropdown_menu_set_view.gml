@@ -1,4 +1,4 @@
-ddobj = instance_create(controller.menu_width_start[5],0,oDropDown);
+ddobj = instance_create(settingscontrol.menu_width_start[1],0,oDropDown);
 with (ddobj)
     {
     num = 4;
@@ -15,8 +15,8 @@ with (ddobj)
     ds_list_add(scr_list,dd_ilda_viewtimeline);
     ds_list_add(scr_list,dd_ilda_togglefullscreen);
     ds_list_add(scr_list,dd_ilda_resetwindow);
-    ds_list_add(hl_list,(room == rm_ilda));
-    ds_list_add(hl_list,(room == rm_seq));
+    ds_list_add(hl_list,1);
+    ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
     }
