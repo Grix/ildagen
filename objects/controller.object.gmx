@@ -29,7 +29,9 @@
 versiondate = "2015-12-29";
 
 if (debug_mode)
+    {
     show_debug_overlay(1);
+    }
 
 //setup file handling system
 FStemp = game_save_id+"temp\";
@@ -186,6 +188,8 @@ global.loading_importildaseq = 0;
 opt_maxdist = 1500;
 opt_maxdwell = 4;
 opt_scanspeed = 20000;
+projector = 0;
+projector_name = "default";
 
 placing = "line";
 startpos[1] = 0;
@@ -309,6 +313,7 @@ if (os_browser == browser_not_a_browser)
     {
     update_check();
     parse_parameter();
+    load_settings();
     }
 
 </string>
@@ -2115,10 +2120,12 @@ if !(ds_list_empty(semaster_list))//(selectedelement != -1)
         draw_line(xpnew2,ypnew2,xpnew4,ypnew4);
         draw_line(xpnew4,ypnew4,xpnew1,ypnew1);
     
-        //draw_set_alpha(0.6);
-            //draw_arrow(mean(rectxmin,rectxmax),mean(rectymin,rectymax),mean(xpnew1,xpnew2),mean(ypnew1,ypnew2),12);
-            //draw_arrow(mean(xpnew1,xpnew2),mean(ypnew1,ypnew2),mean(xpnew1,xpnew2)+sin(rot_r)*48,mean(ypnew1,ypnew2)-cos(rot_r)*48,9);
-        //draw_set_alpha(1);
+        if (objmoving == 1)
+            {
+            draw_set_alpha(0.4);
+                draw_arrow(mean(rectxmin,rectxmax),mean(rectymin,rectymax),mean(xpnew1,xpnew2),mean(ypnew1,ypnew2),12);
+            draw_set_alpha(1);
+            }
         }
     
     }

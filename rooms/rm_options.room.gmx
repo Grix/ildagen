@@ -52,6 +52,11 @@
   </views>
   <instances>
     <instance objName="settingscontrol" x="84" y="100" name="inst_FAA9ACF8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_comingsoon" x="320" y="516" name="inst_DDB49A37" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_comingsoon" x="880" y="164" name="inst_2767496C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_help" x="784" y="620" name="inst_0638FDBE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_totimeline" x="1000" y="620" name="inst_2A0D74B9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_openeditor" x="1000" y="580" name="inst_C21DC968" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

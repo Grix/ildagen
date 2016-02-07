@@ -1,3 +1,5 @@
+gml_pragma("forceinline");
+
 ///apply_envelope_frame(scale factor)
 //apply envelope transforms to frame data
 if (env_xtrans)

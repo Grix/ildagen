@@ -48,7 +48,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>visible = !seqcontrol.largepreview;
+            <string>visible = !seqcontrol.largepreview &amp;&amp; (room != rm_options);
 
 if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {

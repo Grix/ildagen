@@ -146,6 +146,13 @@ if (mouse_y &gt; view_yview[3])
         }
     draw_set_alpha(1);
     }
+    
+draw_enable_alphablend(0);
+with (obj_button_parent)
+    {
+    draw_self();
+    }
+draw_enable_alphablend(1);
 </string>
           </argument>
         </arguments>

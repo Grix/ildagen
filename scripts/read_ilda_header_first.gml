@@ -4,7 +4,7 @@ if !is_wrong($4C) return 1;
 i += 6; //7
 byte = get_byte();
 if (byte == 4 or byte == 5 or byte == 1 or byte == 0) { format = byte; }
-else {log("We don't support this format yet, try converting to ILDA format 0, 1, 4 or 5."); format=5; errorflag=1; return 0;}
+else {show_message_async("We don't support this format yet, try converting to ILDA format 0, 1, 4 or 5."); format=5; errorflag=1; return 0;}
 i+=17;
 /*repeat(8) //8
     {

@@ -1,3 +1,5 @@
+gml_pragma("forceinline");
+
 //apply envelope transforms to point data
 if (env_hue)
     {

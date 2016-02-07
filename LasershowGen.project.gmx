@@ -243,6 +243,7 @@
     <sprite>sprites\spr_blankingblendmode_preview</sprite>
     <sprite>sprites\spr_playcontrols</sprite>
     <sprite>sprites\spr_blank</sprite>
+    <sprite>sprites\spr_comingsoon</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_guide</background>
@@ -1031,6 +1032,7 @@
     <script>scripts\url_open_new.gml</script>
     <script>scripts\log.gml</script>
     <script>scripts\doc_list.gml</script>
+    <script>scripts\load_settings.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
@@ -1141,6 +1143,9 @@
         <object>objects\obj_export</object>
         <object>objects\obj_save</object>
         <object>objects\obj_totimeline</object>
+      </objects>
+      <objects name="settings">
+        <object>objects\obj_comingsoon</object>
       </objects>
       <object>objects\obj_playcontrols</object>
       <object>objects\obj_toseq</object>
