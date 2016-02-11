@@ -1,6 +1,12 @@
 //exports every element into an ilda file
 ilda_cancel();
 
+//for DAC buffer output only, COMMENT OUT
+/*file_loc_test = get_save_filename_ext("*.ild","example.ild","","Select buf loc");
+dac_buffer = buffer_create(1,buffer_grow,1);
+dac_string = "{ ";*/
+
+
 file_loc = get_save_filename_ext("*.ild","example.ild","","Select ILDA file location");
 if (file_loc == "")
     exit;

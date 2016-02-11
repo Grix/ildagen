@@ -1146,6 +1146,10 @@
       </objects>
       <objects name="settings">
         <object>objects\obj_comingsoon</object>
+        <object>objects\obj_optimize</object>
+        <object>objects\obj_scanrate</object>
+        <object>objects\obj_maxdwell</object>
+        <object>objects\obj_maxtravel</object>
       </objects>
       <object>objects\obj_playcontrols</object>
       <object>objects\obj_toseq</object>

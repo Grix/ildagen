@@ -126,6 +126,10 @@ buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
 //export
 buffer_save(ilda_buffer,file_loc);
 
+//for DAC buffer only, COMMENT OUT
+/*buffer_write(dac_buffer, buffer_string, dac_string);
+buffer_save(dac_buffer,file_loc_test);*/
+
 show_message_async("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));
 buffer_delete(ilda_buffer);
 

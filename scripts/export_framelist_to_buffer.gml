@@ -9,6 +9,12 @@ for (i = 0; i <= t_list_raw_size; i += 4)
     yp = list_raw[| i+1];
     bl = list_raw[| i+2];
     
+    //for DAC buffer only, COMMENT OUT
+    /*dac_string += string((xp*0xFFF/0xFFFF >> 4))+","+string((xp*0xFFF/0xFFFF & 0xF) + (yp*0xFFF/0xFFFF >> 8))+","+string((yp*0xFFF/0xFFFF & 0xFF))+",";
+    buffer_write(dac_buffer,buffer_u8, (xp >> 4) );
+    buffer_write(dac_buffer,buffer_u8, ((xp & 0xF) << 8) + (yp >> 8) );
+    buffer_write(dac_buffer,buffer_u8, (yp & 0xFF) );*/
+    
     xp -= $8000;
     yp -= $8000;
     xpa[0] = xp & 255;
@@ -38,6 +44,17 @@ for (i = 0; i <= t_list_raw_size; i += 4)
         }
     
     c = list_raw[| i+3];
+    
+    //for DAC buffer only, COMMENT OUT
+    /*if (!bl)
+        dac_string += string(colour_get_red(c))+","+string(colour_get_green(c))+","+string(colour_get_blue(c))+","+string(255)+",";
+    else
+        dac_string += string(0)+","+string(0)+","+string(0)+","+string(0)+",";
+    
+    buffer_write(dac_buffer,buffer_u8, colour_get_red(c) );
+    buffer_write(dac_buffer,buffer_u8, colour_get_green(c) );
+    buffer_write(dac_buffer,buffer_u8, colour_get_blue(c) );
+    buffer_write(dac_buffer,buffer_u8, 255 );*/
     
     if (controller.exp_format == 5)
         {
