@@ -234,6 +234,7 @@
     <sprite>sprites\spr_colortselect</sprite>
     <sprite>sprites\spr_anifunc</sprite>
     <sprite>sprites\spr_absrel</sprite>
+    <sprite>sprites\spr_format</sprite>
     <sprite>sprites\spr_rgbhsv</sprite>
     <sprite>sprites\spr_cursor</sprite>
     <sprite>sprites\spr_anchor</sprite>
@@ -1143,12 +1144,14 @@
         <object>objects\obj_export</object>
         <object>objects\obj_save</object>
         <object>objects\obj_totimeline</object>
+        <object>objects\obj_onionskin</object>
       </objects>
       <objects name="settings">
         <object>objects\obj_comingsoon</object>
         <object>objects\obj_optimize</object>
         <object>objects\obj_scanrate</object>
         <object>objects\obj_maxdwell</object>
+        <object>objects\obj_format</object>
         <object>objects\obj_maxtravel</object>
       </objects>
       <object>objects\obj_playcontrols</object>
