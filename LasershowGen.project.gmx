@@ -225,6 +225,7 @@
     <sprite>sprites\spr_coltoani</sprite>
     <sprite>sprites\spr_help</sprite>
     <sprite>sprites\spr_options</sprite>
+    <sprite>sprites\spr_grid</sprite>
     <sprite>sprites\spr_b_enddots</sprite>
     <sprite>sprites\spr_onionskin</sprite>
     <sprite>sprites\spr_colorblendmode</sprite>
@@ -1145,6 +1146,7 @@
         <object>objects\obj_save</object>
         <object>objects\obj_totimeline</object>
         <object>objects\obj_onionskin</object>
+        <object>objects\obj_grid</object>
       </objects>
       <objects name="settings">
         <object>objects\obj_comingsoon</object>
