@@ -10,8 +10,8 @@ for (i = 0; i <= t_list_raw_size; i += 4)
     bl = list_raw[| i+2];
     
     //for DAC buffer only, COMMENT OUT
-    /*dac_string += string((xp*0xFFF/0xFFFF >> 4))+","+string((xp*0xFFF/0xFFFF & 0xF) + (yp*0xFFF/0xFFFF >> 8))+","+string((yp*0xFFF/0xFFFF & 0xFF))+",";
-    buffer_write(dac_buffer,buffer_u8, (xp >> 4) );
+    //dac_string += string(int64(xp * $fff / $ffff) >> 4)+","+string((int64(int64(xp*$fff / $ffff) & $f) << 4) + (int64(yp*$fff / $ffff) >> 8))+","+string((int64(yp*$fff / $ffff) & $ff))+",";
+    /*buffer_write(dac_buffer,buffer_u8, (xp >> 4) );
     buffer_write(dac_buffer,buffer_u8, ((xp & 0xF) << 8) + (yp >> 8) );
     buffer_write(dac_buffer,buffer_u8, (yp & 0xFF) );*/
     
@@ -49,9 +49,9 @@ for (i = 0; i <= t_list_raw_size; i += 4)
     /*if (!bl)
         dac_string += string(colour_get_red(c))+","+string(colour_get_green(c))+","+string(colour_get_blue(c))+","+string(255)+",";
     else
-        dac_string += string(0)+","+string(0)+","+string(0)+","+string(0)+",";
+        dac_string += string(0)+","+string(0)+","+string(0)+","+string(0)+",";*/
     
-    buffer_write(dac_buffer,buffer_u8, colour_get_red(c) );
+    /*buffer_write(dac_buffer,buffer_u8, colour_get_red(c) );
     buffer_write(dac_buffer,buffer_u8, colour_get_green(c) );
     buffer_write(dac_buffer,buffer_u8, colour_get_blue(c) );
     buffer_write(dac_buffer,buffer_u8, 255 );*/

@@ -128,6 +128,7 @@ buffer_save(ilda_buffer,file_loc);
 
 //for DAC buffer only, COMMENT OUT
 /*buffer_write(dac_buffer, buffer_string, dac_string);
+buffer_resize(dac_buffer,buffer_tell(dac_buffer));
 buffer_save(dac_buffer,file_loc_test);*/
 
 show_message_async("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));

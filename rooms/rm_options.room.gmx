@@ -62,6 +62,8 @@
     <instance objName="obj_maxtravel" x="16" y="172" name="inst_76C97D3C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_optimize" x="88" y="48" name="inst_0FEA302D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_format" x="16" y="344" name="inst_51B228BD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_autoupdate" x="836" y="436" name="inst_9CFAF05F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_update" x="1016" y="436" name="inst_9B34E8B1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

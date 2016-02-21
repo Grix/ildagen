@@ -5,5 +5,6 @@ updatereceived = 0;
 
 with (controller)   
     {
+    update_verbose = 1;
     updatenotes = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/versionnotes.txt");
     }
