@@ -247,6 +247,7 @@
     <sprite>sprites\spr_playcontrols</sprite>
     <sprite>sprites\spr_blank</sprite>
     <sprite>sprites\spr_comingsoon</sprite>
+    <sprite>sprites\spr_preset</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_guide</background>
@@ -890,6 +891,7 @@
         <script>scripts\dropdown_menu_set_properties.gml</script>
         <script>scripts\dropdown_menu_set_view.gml</script>
         <script>scripts\dropdown_menu_set_about.gml</script>
+        <script>scripts\dropdown_settingpreset.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">
@@ -1154,6 +1156,7 @@
         <object>objects\obj_optimize</object>
         <object>objects\obj_autoupdate</object>
         <object>objects\obj_update</object>
+        <object>objects\obj_preset</object>
         <object>objects\obj_scanrate</object>
         <object>objects\obj_maxdwell</object>
         <object>objects\obj_format</object>

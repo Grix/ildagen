@@ -5,7 +5,7 @@ ini_open("settings.ini");
         ini_write_real("projector_0","scanrate",20000);
         ini_write_real("projector_0","maxdist",1500);
         ini_write_real("projector_0","maxdwell",4);
-        ini_write_real("projector_0","name","default");
+        ini_write_string("projector_0","name","default");
         ini_write_real("main","projector",0);
         }
     else
@@ -28,6 +28,4 @@ ini_open("settings.ini");
             }
         }
         
-        
-    
 ini_close();
