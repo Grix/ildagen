@@ -315,7 +315,7 @@ else if (room == rm_seq)
 else
     {
     with (controller) 
-        script_execute(ds_list_find_value(oDropDown.scr_list,oDropDown.selected));
+        script_execute(ds_list_find_value(oDropDown.scr_list,oDropDown.selected),oDropDown.selected);
     }
     
 instance_destroy();

@@ -1684,6 +1684,32 @@ else if (new_id == getstr)
           {
           switch (dialog)
             {
+            case ("preset_create"):
+                {
+                ini_open("settings.ini");
+                num = 0;
+                while (ini_section_exists("projector_"+string(num)))
+                    {
+                    num++;
+                    }
+                ini_write_real("main","projector",num);
+                projector = num;
+                ini_write_string("projector_"+string(num),"name",ds_map_find_value(async_load, "result"));
+                save_settings();
+                ini_close();
+                break;
+                }
+            case ("preset_rename"):
+                {
+                ini_open("settings.ini");
+                if (ini_section_exists("projector_"+string(projector)))
+                    {
+                    ini_write_string("projector_"+string(projector),"name",ds_map_find_value(async_load, "result"));
+                    save_settings();
+                    }
+                ini_close();
+                break;
+                }
             case ("funcx"):
                 {
                 shapefunc_string_x = ds_map_find_value(async_load, "result");

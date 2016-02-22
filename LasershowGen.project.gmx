@@ -892,6 +892,8 @@
         <script>scripts\dropdown_menu_set_view.gml</script>
         <script>scripts\dropdown_menu_set_about.gml</script>
         <script>scripts\dropdown_settingpreset.gml</script>
+        <script>scripts\preset_load.gml</script>
+        <script>scripts\preset_create.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">
@@ -1037,6 +1039,7 @@
     <script>scripts\url_open_new.gml</script>
     <script>scripts\log.gml</script>
     <script>scripts\doc_list.gml</script>
+    <script>scripts\save_settings.gml</script>
     <script>scripts\load_settings.gml</script>
   </scripts>
   <fonts name="fonts">
