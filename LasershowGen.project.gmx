@@ -894,6 +894,7 @@
         <script>scripts\dropdown_settingpreset.gml</script>
         <script>scripts\preset_load.gml</script>
         <script>scripts\preset_create.gml</script>
+        <script>scripts\preset_delete.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">

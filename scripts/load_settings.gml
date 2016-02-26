@@ -2,6 +2,7 @@ ini_open("settings.ini");
 
     if (!ini_key_exists("main","projector"))
         {
+        projector = 0;
         ini_write_real("projector_0","scanrate",20000);
         ini_write_real("projector_0","maxdist",1500);
         ini_write_real("projector_0","maxdwell",4);
@@ -27,5 +28,10 @@ ini_open("settings.ini");
             ini_write_real(t_projectorstring, "maxdwell", 4);
             }
         }
+        
+if (room == rm_options)
+    {
+    obj_preset.preset_name = ini_read_string("projector_"+string(projector),"name","name_error");
+    }
         
 ini_close();

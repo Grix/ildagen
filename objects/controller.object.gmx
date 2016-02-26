@@ -1245,6 +1245,48 @@ if (new_id == getint)
         {
         switch (dialog)
             {
+            case "preset_delete":
+                {
+                ini_open("settings.ini");
+                
+                var t_currentprojectorstring = "projector_"+string(projector);
+                var t_proj_i = projector;
+                while (ini_section_exists("projector_"+string(t_proj_i)))
+                    {
+                    t_proj_i++;
+                    }
+                t_proj_i--;
+                    
+                if (t_proj_i == projector)
+                    {
+                    if (t_proj_i == 0)
+                        {
+                        ini_section_delete(t_currentprojectorstring);
+                        ini_key_delete("main","projector");
+                        }
+                    else
+                        {
+                        ini_section_delete("projector_"+string(projector));
+                        ini_write_real("main","projector",projector-1);
+                        }
+                    }
+                else
+                    {
+                    var t_projectorstring = "projector_"+string(t_proj_i);
+                    ini_write_string(t_currentprojectorstring, "name", ini_read_string(t_projectorstring,"name","error_name"));
+                    ini_write_real(t_currentprojectorstring, "scanrate", ini_read_real(t_projectorstring,"scanrate",20000));
+                    ini_write_real(t_currentprojectorstring, "maxdwell", ini_read_real(t_projectorstring,"maxdwell",4));
+                    ini_write_real(t_currentprojectorstring, "maxdist", ini_read_real(t_projectorstring,"maxdist",1500));
+                    ini_section_delete(t_projectorstring);
+                    ini_write_real("main","projector",projector);
+                    }
+                ini_close(); 
+                   
+                load_settings();
+                
+                break;
+                }
+            
             case "toseqreplace":
                 {
                 frames_toseq();
@@ -1255,7 +1297,7 @@ if (new_id == getint)
             case "updatefound":
                 {
                 file = http_get_file("https://github.com/Grix/ildagen/raw/master/LasershowGen-"+versionnew+"-Installer.exe","temp/update.exe");
-                show_message_async("Download started, installation will start shortly..");
+                show_message_async("Download started, program will exit and installation start shortly..");
                 break;
                 }    
             case "maxdist":
@@ -1695,8 +1737,8 @@ else if (new_id == getstr)
                 ini_write_real("main","projector",num);
                 projector = num;
                 ini_write_string("projector_"+string(num),"name",ds_map_find_value(async_load, "result"));
-                save_settings();
                 ini_close();
+                save_settings();
                 break;
                 }
             case ("preset_rename"):
@@ -1705,9 +1747,9 @@ else if (new_id == getstr)
                 if (ini_section_exists("projector_"+string(projector)))
                     {
                     ini_write_string("projector_"+string(projector),"name",ds_map_find_value(async_load, "result"));
-                    save_settings();
                     }
                 ini_close();
+                save_settings();
                 break;
                 }
             case ("funcx"):

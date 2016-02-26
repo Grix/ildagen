@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-2</depth>
   <persistent>0</persistent>
-  <parentName>self</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -69,7 +69,7 @@ ini_close();
     highlight = 1;
     controller.tooltip = "Choose or create settings preset.";
     
-    if (mouse_check_button(mb_left))
+    if (mouse_check_button_pressed(mb_left))
         {
         dropdown_settingpreset();
         }
