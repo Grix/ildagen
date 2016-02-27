@@ -87,6 +87,8 @@ else
     controller.opt_maxdwell -= 1;
 if (controller.opt_maxdwell &lt; 0)
     controller.opt_maxdwell = 0;
+    
+save_settings();
 </string>
           </argument>
         </arguments>

@@ -87,6 +87,8 @@ else
     controller.opt_scanspeed -= 1000;
 if (controller.opt_scanspeed &lt; 1000)
     controller.opt_scanspeed = 1000;
+    
+save_settings();
 </string>
           </argument>
         </arguments>

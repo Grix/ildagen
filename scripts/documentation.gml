@@ -12,3 +12,10 @@ layer_list
                 disabled
                 hidden
         layer elements...
+        
+        
+settings.ini
+/*  ini_write_real("projector_0","scanrate",20000);
+    ini_write_real("projector_0","maxdist",1500);
+    ini_write_real("projector_0","maxdwell",4);
+    ini_write_string("projector_0","name","default");   */

@@ -1277,6 +1277,8 @@ if (new_id == getint)
                     ini_write_real(t_currentprojectorstring, "scanrate", ini_read_real(t_projectorstring,"scanrate",20000));
                     ini_write_real(t_currentprojectorstring, "maxdwell", ini_read_real(t_projectorstring,"maxdwell",4));
                     ini_write_real(t_currentprojectorstring, "maxdist", ini_read_real(t_projectorstring,"maxdist",1500));
+                    ini_write_real(t_currentprojectorstring, "format", ini_read_real(t_projectorstring,"format",5));
+                    ini_write_real(t_currentprojectorstring, "optimize", ini_read_real(t_projectorstring,"optimize",1));
                     ini_section_delete(t_projectorstring);
                     ini_write_real("main","projector",projector);
                     }
@@ -1303,18 +1305,21 @@ if (new_id == getint)
             case "maxdist":
               {
               opt_maxdist = ds_map_find_value(async_load, "value");
+              save_settings();
               
               break;
               }
             case "maxdwell":
               {
               opt_maxdwell = ds_map_find_value(async_load, "value");
+              save_settings();
               
               break;
               }  
             case "scanspeed":
               {
               opt_scanspeed = ds_map_find_value(async_load, "value");
+              save_settings();
               
               break;
               }

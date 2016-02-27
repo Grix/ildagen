@@ -89,6 +89,8 @@ else
     controller.opt_maxdist -= 100;
 if (controller.opt_maxdist &lt; 100)
     controller.opt_maxdist = 100;
+    
+save_settings();
 </string>
           </argument>
         </arguments>
