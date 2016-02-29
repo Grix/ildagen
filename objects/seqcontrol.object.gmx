@@ -127,7 +127,7 @@ ds_map_add(env_type_map,"b","Blue");
 LoadFMOD();
 
 draw_set_font(fnt_tooltip);
-menu_string = "   File      Properties      Edit      Tools      View      Options      About   ";
+menu_string = "   File      Properties      Edit      Tools      View      Settings      About   ";
 menu_width_start[0] = 0;
 menu_width[0] = string_width("   File   ");
 menu_width_start[1] = menu_width[0];
@@ -139,7 +139,7 @@ menu_width[3] = string_width("   Tools   ");
 menu_width_start[4] = menu_width_start[3]+menu_width[3];
 menu_width[4] = string_width("   View   ");
 menu_width_start[5] = menu_width_start[4]+menu_width[4];
-menu_width[5] = string_width("   Options   ");
+menu_width[5] = string_width("   Settings   ");
 menu_width_start[6] = menu_width_start[5]+menu_width[5];
 menu_width[6] = string_width("   About   ");
 menu_width_start[7] = menu_width_start[6]+menu_width[6];

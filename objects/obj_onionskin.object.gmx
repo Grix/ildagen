@@ -60,7 +60,7 @@
 else if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     image_index = 1;
-    controller.tooltip = "Turn on onion skinning (Superimposing previous frames on top)";
+    controller.tooltip = "Turn on onion skinning (Superimposing previous frames on top)#Right-click for settings.";
     } 
 else image_index = 0;
 </string>
