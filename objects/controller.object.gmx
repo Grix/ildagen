@@ -192,6 +192,8 @@ projector = 0;
 projector_name = "default";
 
 placing = "line";
+placing_select_last = "line";
+object_select_hovering = 0;
 startpos[1] = 0;
 placing_status = 0;
 wave_amp = 10000;
@@ -614,6 +616,8 @@ if (room != rm_ilda) exit;
 if (placing = "hershey")
     hershey_handle_scroll();
     
+object_select_hovering = 0;
+
 if (keyboard_check_pressed(vk_space))
     {
     playing = !playing;
@@ -663,7 +667,7 @@ else if (keyboard_check_pressed(ord("P")))
 else if (keyboard_check_released(vk_f11))
     window_set_fullscreen(!window_get_fullscreen());
     
-else if (keyboard_check(vk_control)) and ds_list_size(el_list)
+else if (keyboard_check(vk_control) or (placing == "select")) and ds_list_size(el_list)
     {
     check_elementselect();
     }
@@ -936,6 +940,7 @@ if (keyboard_check_pressed(vk_tab))
           <argument>
             <kind>1</kind>
             <string>if (room != rm_ilda) exit;
+
 if ((mouse_x &gt; 550) or (mouse_y &gt; 550)) and (placing_status != 2) or (!ds_list_empty(semaster_list) and (
 ((mouse_x == clamp(mouse_x,rectxmin-2,rectxmax+2)) and (mouse_y == clamp(mouse_y,rectymin-2,rectymax+2)))
 or ((mouse_x == clamp(mouse_x,anchorx/$ffff*512-10,anchorx/$ffff*512+10)) and (mouse_y == clamp(mouse_y,anchory/$ffff*512-10,anchory/$ffff*512+10)))
@@ -949,7 +954,7 @@ or ((mouse_x == clamp(mouse_x,rectxmax+2,rectxmax+20)) and (mouse_y == clamp(mou
     exit;
     }
 
-if (placing_status == 1) and (placing != "text")
+if (placing_status == 1) and (placing != "text") and (placing != "select")
     {
     if (placing != "curve")
         create_element();
@@ -1035,7 +1040,7 @@ if (mouse_y &gt; view_yview[3])
     exit;
     }
 
-if (instance_exists(oDropDown)) or (mouse_x &gt; 512) or (mouse_y &gt; 512) or (keyboard_check(vk_control))
+if (instance_exists(oDropDown)) or (mouse_x &gt; 512) or (mouse_y &gt; 512) or (keyboard_check(vk_control) or (placing == "select"))
     exit;
 
 if !ds_list_empty(semaster_list)  and (
@@ -1130,8 +1135,6 @@ else if (placing_status == 2) and (placing == "curve")
 if (mouse_x &gt; 512) or (mouse_y &gt; 512)
     exit;
 
-
-//ds_list_clear(semaster_list);
     
 if (placing == "free")
     {
@@ -2054,8 +2057,8 @@ if (bckimage)
         }
     else bckimage = 0;
     }
-    
-if (tooltip == "Click to select this object")
+
+if (object_select_hovering = 1)
     {
     draw_set_alpha(0.5);
     draw_set_colour(c_teal);
@@ -2063,7 +2066,7 @@ if (tooltip == "Click to select this object")
     draw_set_alpha(1);
     draw_set_colour(c_white);
     }
-else if (tooltip == "Click to deselect this object")
+else if (object_select_hovering = 2)
     {
     draw_set_alpha(0.7);
     draw_set_colour(c_maroon);

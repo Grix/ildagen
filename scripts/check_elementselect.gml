@@ -16,23 +16,27 @@ for (i = 0;i < ds_list_size(el_list); i++)
         if (ds_list_find_index(semaster_list,ds_list_find_value(templist,9)) == -1)
             {
             tooltip = "Click to select this object";
+            object_select_hovering = 1;
         
             if (mouse_check_button_pressed(mb_left))
                 {
                 ds_list_add(semaster_list,ds_list_find_value(templist,9));
-                
                 update_semasterlist_flag = 1;
+                if (placing == "select")
+                    placing = placing_select_last;
                 }
             }
         else
             {
             tooltip = "Click to deselect this object";
+            object_select_hovering = 2;
         
             if (mouse_check_button_pressed(mb_left))
                 {
                 ds_list_delete(semaster_list,ds_list_find_index(semaster_list,ds_list_find_value(templist,9)));
-                
                 update_semasterlist_flag = 1;
+                if (placing == "select")
+                    placing = placing_select_last;
                 }
             }
             
@@ -40,5 +44,7 @@ for (i = 0;i < ds_list_size(el_list); i++)
         }
     }
     
-if (mouse_check_button_pressed(mb_left))
+if (mouse_check_button_pressed(mb_left)) and (placing != "select")
     deselect_object();
+    
+

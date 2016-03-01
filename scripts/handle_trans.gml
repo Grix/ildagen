@@ -69,7 +69,7 @@ else if (objmoving == 4)
         reapply_trans();
         }
     }
-else if !keyboard_check(vk_control)
+else if !(keyboard_check(vk_control)) and (!object_select_hovering)
     {
     if (mouse_x == clamp(mouse_x,anchorx/$ffff*512-10,anchorx/$ffff*512+10)) and (mouse_y == clamp(mouse_y,anchory/$ffff*512-10,anchory/$ffff*512+10))
         {

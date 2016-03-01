@@ -8,6 +8,11 @@ ini_open("settings.ini");
         ini_write_real("projector_0","maxdwell",4);
         ini_write_real("projector_0", "format", 5);
         ini_write_real("projector_0", "optimize", 1);
+        opt_scanspeed = 20000;
+        opt_maxdwell = 4;
+        opt_maxdist = 1500;
+        exp_format = 5;
+        exp_optimize = 1;
         ini_write_string("projector_0","name","default");
         ini_write_real("main","projector",0);
         }

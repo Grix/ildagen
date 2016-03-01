@@ -227,6 +227,7 @@
     <sprite>sprites\spr_help</sprite>
     <sprite>sprites\spr_options</sprite>
     <sprite>sprites\spr_grid</sprite>
+    <sprite>sprites\spr_select</sprite>
     <sprite>sprites\spr_b_enddots</sprite>
     <sprite>sprites\spr_onionskin</sprite>
     <sprite>sprites\spr_colorblendmode</sprite>
@@ -247,7 +248,6 @@
     <sprite>sprites\spr_playcontrols</sprite>
     <sprite>sprites\spr_blank</sprite>
     <sprite>sprites\spr_comingsoon</sprite>
-    <sprite>sprites\spr_preset</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_guide</background>
@@ -1154,6 +1154,7 @@
         <object>objects\obj_totimeline</object>
         <object>objects\obj_onionskin</object>
         <object>objects\obj_grid</object>
+        <object>objects\obj_select</object>
       </objects>
       <objects name="settings">
         <object>objects\obj_comingsoon</object>
