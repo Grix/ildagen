@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.2";
-versiondate = "2015-12-29";
+            <string>version = "1.2.1";
+versiondate = "2016-03-02";
 
 if (debug_mode)
     {
@@ -1880,7 +1880,7 @@ if (ds_map_find_value(async_load, "id") == updateget)
        show_debug_message("Checking version")
        if (versionnew != version)
             {
-            ilda_dialog_yesno("updatefound","New version available: "+versionnew+"##Release notes:#"+releasenotes+"##Would you like to download and install the update?");
+            ilda_dialog_yesno("updatefound","New version available: "+versionnew+"#"+"Would you like to download and install the update?##"+releasenotes+"##");
             }
        else if (update_verbose == 1)
             {

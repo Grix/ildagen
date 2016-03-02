@@ -1042,6 +1042,7 @@
     <script>scripts\documentation.gml</script>
     <script>scripts\save_settings.gml</script>
     <script>scripts\load_settings.gml</script>
+    <script>scripts\blank_script.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
