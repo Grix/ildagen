@@ -1,3 +1,2 @@
 - Better scanning optimization
 - Loading bars
-- Bug fixes
