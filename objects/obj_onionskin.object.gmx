@@ -49,7 +49,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (controller.onion)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (controller.onion)
     {
     image_index = 2;
     if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
@@ -85,7 +87,9 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>dropdown_onion();
+            <string>if (instance_exists(oDropDown))
+    exit;
+dropdown_onion();
 </string>
           </argument>
         </arguments>
@@ -108,7 +112,9 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (controller)
+            <string>if (instance_exists(oDropDown))
+    exit;
+with (controller)
     {
     onion = !onion;
     frame_surf_refresh = 1;

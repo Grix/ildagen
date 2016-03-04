@@ -48,7 +48,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     image_index = 1;
     controller.tooltip = "Loads an LasershowGen frames file";
@@ -76,7 +78,10 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (os_browser != browser_not_a_browser)
+            <string>if (instance_exists(oDropDown))
+    exit;
+
+if (os_browser != browser_not_a_browser)
     {
     show_message_async("Sorry, this feature is not available in the web version yet");
     exit;

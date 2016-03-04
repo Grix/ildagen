@@ -49,7 +49,9 @@ moving = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (moving == 1)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (moving == 1)
     {
     controller.aniwave_amp += (mouse_x-mouse_xprevious)*$ffff/128;
     if (controller.aniwave_amp  &lt; -$ffff/2) controller.aniwave_amp = -$ffff/2;
@@ -111,7 +113,9 @@ if (visible) and (mouse_x &gt; x-sprite_width/2) and (mouse_x &lt; (x+sprite_wid
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible)
     exit;
 
 ilda_dialog_num("aniwaveamp","Enter the animation end wave amplitude",controller.aniwave_amp);
@@ -138,8 +142,10 @@ ilda_dialog_num("aniwaveamp","Enter the animation end wave amplitude",controller
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (visible)
-moving = 1;
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (visible)
+    moving = 1;
 </string>
           </argument>
         </arguments>

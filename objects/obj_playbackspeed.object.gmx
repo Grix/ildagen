@@ -49,7 +49,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     controller.tooltip = "Changes the playback speed";
     } 
@@ -75,7 +77,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (seqcontrol)
+            <string>if (instance_exists(oDropDown))
+    exit;
+with (seqcontrol)
     {
     if (mouse_x &gt; (obj_playbackspeed.x+23))
         playbackspeed *= 1.5;

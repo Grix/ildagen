@@ -49,6 +49,8 @@
           <argument>
             <kind>1</kind>
             <string>if !((mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))) exit;
+if (instance_exists(oDropDown))
+    exit;
 
 if (room = rm_ilda)
     {

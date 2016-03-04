@@ -48,9 +48,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_index = (controller.exp_format == 5);
+            <string>if (instance_exists(oDropDown))
+    exit;
+image_index = (controller.exp_format == 5);
 
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     controller.tooltip = "Set exported ILDA file to modern format 5 or legacy format 0.#Format 0 have limited amount of colors, but some software and SD card players may not support format 5.";
     } 
@@ -76,7 +78,9 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_x &lt; (x+32))
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (mouse_x &lt; (x+32))
     controller.exp_format = 5;
 else
     controller.exp_format = 0;

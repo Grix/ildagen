@@ -54,7 +54,9 @@ if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible) exit;
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible) exit;
 
 dd_ilda_scanspeed();
 </string>
@@ -79,7 +81,9 @@ dd_ilda_scanspeed();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible) exit;
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible) exit;
 
 if (mouse_x &gt; (x+23))
     controller.opt_scanspeed += 1000;

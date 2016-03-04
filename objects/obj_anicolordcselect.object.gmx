@@ -49,7 +49,9 @@ moving = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (moving == 1)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (moving == 1)
     {
     controller.anicolor_dc += (mouse_x-mouse_xprevious)/128;
     if (controller.anicolor_dc  &lt; 0) controller.anicolor_dc = 0;
@@ -109,7 +111,9 @@ if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y+7) a
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible)
     exit;
 
 ilda_dialog_num("anicolordc","Enter the animation end color duty cycle",controller.anicolor_dc);
@@ -136,8 +140,10 @@ ilda_dialog_num("anicolordc","Enter the animation end color duty cycle",controll
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (visible)
-moving = 1;
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (visible)
+    moving = 1;
 </string>
           </argument>
         </arguments>

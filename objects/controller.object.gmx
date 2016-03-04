@@ -233,6 +233,7 @@ blankmode2 = 0;
 blank_period = 8192;
 blank_dc = 0.5;
 blank_freq = 4;
+blank = 0;
 enddots = 0;
 makedot = 0;
 dotmultiply = 20;
@@ -940,6 +941,8 @@ if (keyboard_check_pressed(vk_tab))
           <argument>
             <kind>1</kind>
             <string>if (room != rm_ilda) exit;
+if (instance_exists(oDropDown))
+    exit;
 
 if ((mouse_x &gt; 550) or (mouse_y &gt; 550)) and (placing_status != 2) or (!ds_list_empty(semaster_list) and (
 ((mouse_x == clamp(mouse_x,rectxmin-2,rectxmax+2)) and (mouse_y == clamp(mouse_y,rectymin-2,rectymax+2)))
@@ -1005,7 +1008,7 @@ bez_moving = 0;
           <argument>
             <kind>1</kind>
             <string>if (room != rm_ilda) exit;
-
+    
 //menu
 if (mouse_y &gt; view_yview[3])   
     {
@@ -1133,6 +1136,8 @@ else if (placing_status == 2) and (placing == "curve")
             <kind>1</kind>
             <string>if (room != rm_ilda) exit;
 if (mouse_x &gt; 512) or (mouse_y &gt; 512)
+    exit;
+if (instance_exists(oDropDown))
     exit;
 
     

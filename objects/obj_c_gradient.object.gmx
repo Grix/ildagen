@@ -49,7 +49,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (controller.colormode == "gradient") image_index = 2;
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (controller.colormode == "gradient") image_index = 2;
 else if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     image_index = 1;
 else image_index = 0;
@@ -78,7 +80,9 @@ if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>controller.colormode = "gradient";
+            <string>if (instance_exists(oDropDown))
+    exit;
+controller.colormode = "gradient";
 </string>
           </argument>
         </arguments>

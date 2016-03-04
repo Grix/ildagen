@@ -48,7 +48,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>visible = controller.anienable;
+            <string>if (instance_exists(oDropDown))
+    exit;
+visible = controller.anienable;
 
 if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
@@ -76,7 +78,9 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible)
     exit;
 
 switch (floor( (mouse_x-x)/32.14))

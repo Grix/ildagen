@@ -49,7 +49,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room = rm_ilda)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (room = rm_ilda)
     {
     if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
             {
@@ -149,7 +151,10 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>dd_ilda_help();
+            <string>if (instance_exists(oDropDown))
+    exit;
+
+dd_ilda_help();
 
 </string>
           </argument>

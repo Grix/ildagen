@@ -61,7 +61,9 @@ yplus16 = y+16;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>visible = (controller.colormode != "rainbow");
+            <string>if (instance_exists(oDropDown))
+    exit;
+visible = (controller.colormode != "rainbow");
 
 if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
@@ -139,7 +141,9 @@ mouse_yprevious = mouse_y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible) exit;
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible) exit;
 
 if (mouse_x &lt; (x+14))
     {
@@ -178,7 +182,8 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>if (instance_exists(oDropDown))
+    exit;
 if (!visible) exit;
 
 if (mouse_x &lt; (x+14))

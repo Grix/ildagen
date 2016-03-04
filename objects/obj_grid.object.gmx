@@ -49,7 +49,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (controller.sgridshow)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (controller.sgridshow)
     {
     image_index = 2;
     if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
@@ -107,7 +109,9 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (controller.sgridshow)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (controller.sgridshow)
     {
     controller.sgridshow = 0;
     controller.rgridshow = 1;

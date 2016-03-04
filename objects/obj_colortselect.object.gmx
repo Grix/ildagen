@@ -49,7 +49,9 @@ moving = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (moving == 1)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (moving == 1)
     {
     controller.color_period += (mouse_x-mouse_xprevious)*$8000/128;
     if (controller.color_period  &lt; 1) controller.color_period = 1;
@@ -110,7 +112,9 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible)
     exit;
 
 ilda_dialog_num("colorperiod","Enter the color period",controller.color_period);
@@ -136,7 +140,9 @@ ilda_dialog_num("colorperiod","Enter the color period",controller.color_period);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (visible)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (visible)
 moving = 1;
 </string>
           </argument>

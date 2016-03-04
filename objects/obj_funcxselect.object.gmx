@@ -49,7 +49,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>visible = (controller.placing == "func");
+            <string>if (instance_exists(oDropDown))
+    exit;
+visible = (controller.placing == "func");
 if (!visible) exit;
 if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
@@ -80,7 +82,9 @@ controller.tooltip = "Sets the function for the X coordinate#Value from 0 (left)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible) exit;
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible) exit;
 
 if (is_undefined(controller.shapefunc_string_x)) controller.shapefunc_string_x = "";
 

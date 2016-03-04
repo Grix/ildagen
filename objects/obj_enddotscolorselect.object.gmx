@@ -61,7 +61,9 @@ yplus16 = y+16;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (moving == 1) or ((moving) and keyboard_check(vk_control))
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (moving == 1) or ((moving) and keyboard_check(vk_control))
     {
     red = colour_get_red(controller.enddotscolor);
     red -= (mouse_y-mouse_yprevious)*255/25;
@@ -139,7 +141,9 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible) exit;
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible) exit;
 
 if (mouse_x &lt; (x+14))
     {
@@ -178,7 +182,9 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible)
 exit;
 
 if (mouse_x &lt; (x+14))

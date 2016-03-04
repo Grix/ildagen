@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>visible = controller.exp_optimize;
+            <string>if (instance_exists(oDropDown))
+    exit;
+visible = controller.exp_optimize;
 if (!visible) exit;
 
 if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
@@ -54,7 +56,8 @@ if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>if (instance_exists(oDropDown))
+    exit;
 if (!visible) exit;
 
 dd_ilda_maxdist();
@@ -80,7 +83,8 @@ dd_ilda_maxdist();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>if (instance_exists(oDropDown))
+    exit;
 if (!visible) exit;
 
 if (mouse_x &gt; (x+23))

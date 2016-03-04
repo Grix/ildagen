@@ -373,6 +373,8 @@ if (frameprev != round(tlpos/1000*projectfps))
     }
     
 if (controller.dialog_open) exit;
+if (instance_exists(oDropDown))
+    exit;
     
 if (keyboard_check(vk_control))
     {

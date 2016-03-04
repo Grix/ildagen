@@ -49,7 +49,9 @@ moving = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (moving == 1)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (moving == 1)
     {
     controller.aniblank_offset += (mouse_x-mouse_xprevious)*360/128;
     if (controller.aniblank_offset  &lt; 0) controller.aniblank_offset = 0;
@@ -111,7 +113,9 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible)
     exit;
 
 ilda_dialog_num("aniblankoffset","Enter the animation end blanking offset",controller.aniblank_offset);
@@ -138,8 +142,10 @@ ilda_dialog_num("aniblankoffset","Enter the animation end blanking offset",contr
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (visible)
-moving = 1;
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (visible)
+    moving = 1;
 </string>
           </argument>
         </arguments>

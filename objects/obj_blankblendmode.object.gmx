@@ -49,7 +49,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     controller.tooltip = "Changes the blanking blending mode when reapplying blanking properties to an object.";
     image_index = 1;
@@ -77,7 +79,9 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>controller.blank_blendmode++;
+            <string>if (instance_exists(oDropDown))
+    exit;
+controller.blank_blendmode++;
 if (controller.blank_blendmode &gt;= 4)
     controller.blank_blendmode = 0;
 </string>

@@ -49,7 +49,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>if (instance_exists(oDropDown))
+    exit;
 visible = ((controller.colormode == "rainbow") || (controller.colormode == "gradient") || (controller.colormode == "dash")) &amp;&amp; (controller.colormode2 == 0);
 
 if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
@@ -78,7 +79,9 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible)
     exit;
 
 ilda_dialog_num("colorfreq","Enter the color frequency",controller.color_freq);
@@ -105,7 +108,9 @@ ilda_dialog_num("colorfreq","Enter the color frequency",controller.color_freq);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible)
     exit;
 
 if (mouse_x &gt; (x+23))

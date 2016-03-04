@@ -49,7 +49,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>if (instance_exists(oDropDown))
+    exit;
 visible = (controller.blankmode != "solid") and (controller.blankmode != "func");
 
 image_index = controller.blankmode2;
@@ -80,7 +81,9 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible)
     exit;
 
 if (mouse_x &lt; (x+23*1.5))

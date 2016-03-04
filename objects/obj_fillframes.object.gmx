@@ -49,7 +49,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     //image_index = 1;
     controller.tooltip = "Toggles editing all frames in scope or just current";
@@ -77,7 +79,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>controller.fillframes = !controller.fillframes;
+            <string>if (instance_exists(oDropDown))
+    exit;
+controller.fillframes = !controller.fillframes;
 if (controller.fillframes == 1) image_index = 0;
 else image_index = 1;
 </string>

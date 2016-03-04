@@ -49,7 +49,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (controller.placing == "text") image_index = 2;
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (controller.placing == "text") image_index = 2;
 else if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     image_index = 1;
@@ -80,7 +82,9 @@ controller.tooltip = "Selects text drawing tool#-&gt;Right click for options";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (os_browser != browser_not_a_browser)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (os_browser != browser_not_a_browser)
     {
     show_message_async("Sorry, this feature is not available in the web version yet");
     exit;
@@ -118,7 +122,9 @@ with (controller)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (os_browser != browser_not_a_browser)
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (os_browser != browser_not_a_browser)
     {
     show_message_async("Sorry, this feature is not available in the web version");
     exit;

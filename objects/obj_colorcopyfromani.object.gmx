@@ -48,7 +48,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if visible and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+            <string>if (instance_exists(oDropDown))
+    exit;
+if visible and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     image_index = 1;
     controller.tooltip = "Clones the main colors over to the animation end colors";
@@ -78,7 +80,9 @@ visible = obj_anicolorselect_1.visible;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!visible) exit;
+            <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible) exit;
 
 tempundolist = ds_list_create();
 ds_list_add(tempundolist,controller.enddotscolor);
