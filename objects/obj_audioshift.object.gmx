@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>image_speed = 0;
 
+stringToDraw = "Offset: "+string_format(seqcontrol.audioshift,4,1)+"ms";
 </string>
           </argument>
         </arguments>
@@ -115,6 +116,7 @@ with (seqcontrol)
         FMODInstanceSetPosition(songinstance,(tlpos+audioshift)/FMODSoundGetLength(song));
     }
 
+stringToDraw = "Offset: "+string_format(seqcontrol.audioshift,4,1)+"ms";
 </string>
           </argument>
         </arguments>
@@ -141,7 +143,7 @@ with (seqcontrol)
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x+55,y+3,"Offset: "+string_format(seqcontrol.audioshift,4,1)+"ms");
+draw_text(x+55,y+3,stringToDraw);
 draw_set_color(c_white);
 </string>
           </argument>

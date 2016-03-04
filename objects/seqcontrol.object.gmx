@@ -604,6 +604,7 @@ if (new_id == getint)
           case "audioshift":
             {
             audioshift = ds_map_find_value(async_load, "value");
+            obj_audioshift.stringToDraw = "Offset: "+string_format(seqcontrol.audioshift,4,1)+"ms";
             
             break;
             }

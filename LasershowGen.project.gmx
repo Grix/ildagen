@@ -230,8 +230,6 @@
     <sprite>sprites\spr_select</sprite>
     <sprite>sprites\spr_b_enddots</sprite>
     <sprite>sprites\spr_onionskin</sprite>
-    <sprite>sprites\spr_colorblendmode</sprite>
-    <sprite>sprites\spr_blankingblendmode</sprite>
     <sprite>sprites\spr_bckimage</sprite>
     <sprite>sprites\spr_checkbox</sprite>
     <sprite>sprites\spr_colortselect</sprite>
