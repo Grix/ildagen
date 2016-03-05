@@ -975,15 +975,15 @@
         <script>scripts\get_bytes_signed.gml</script>
         <script>scripts\read_ilda_header_first.gml</script>
         <script>scripts\read_ilda_header.gml</script>
-        <script>scripts\get_bytes.gml</script>
         <script>scripts\read_ilda_frame.gml</script>
+        <script>scripts\read_ilda_work.gml</script>
+        <script>scripts\read_ilda_init.gml</script>
+        <script>scripts\get_bytes.gml</script>
         <script>scripts\get_byte_signed.gml</script>
         <script>scripts\get_byte.gml</script>
         <script>scripts\is_wrong.gml</script>
-        <script>scripts\read_ilda_work.gml</script>
         <script>scripts\parse_word.gml</script>
         <script>scripts\init_palette.gml</script>
-        <script>scripts\read_ilda_init.gml</script>
         <script>scripts\import_ilda.gml</script>
         <script>scripts\import_ilda_end.gml</script>
         <script>scripts\import_ildaseq.gml</script>

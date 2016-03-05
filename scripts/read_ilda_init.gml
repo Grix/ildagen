@@ -35,7 +35,13 @@ format = 0;
     
 ild_list = ds_list_create();
 
-read_ilda_header_first();
+do
+    {
+    if (read_ilda_header_first()) 
+        return 0;
+    }
+until (format != 2)
+
 read_ilda_frame();
 
 return 1;

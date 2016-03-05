@@ -9,7 +9,9 @@ with (controller)
             global.loading_current = global.loading_end;
             exit;
             }
-        read_ilda_frame();
+        
+        if (format != 2)
+            read_ilda_frame();
         
         if (get_timer()-global.loadingtimeprev >= 100000)
             {

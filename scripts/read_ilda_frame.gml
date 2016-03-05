@@ -117,6 +117,7 @@ else
         }
     }
     
+
 ds_list_replace(frame_list_parse,2,ds_list_find_value(frame_list_parse,ds_list_size(frame_list_parse)-6));
 ds_list_replace(frame_list_parse,3,ds_list_find_value(frame_list_parse,ds_list_size(frame_list_parse)-5));
 
@@ -126,3 +127,4 @@ ds_list_replace(frame_list_parse,6,ymin);
 ds_list_replace(frame_list_parse,7,ymax);
 
 ds_list_add(ild_list,frame_list_parse);
+
