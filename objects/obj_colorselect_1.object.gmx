@@ -76,7 +76,7 @@ if (moving == 1) or ((moving) and keyboard_check(vk_control))
     red -= (mouse_y-mouse_yprevious)*255/25;
     if (red &lt; 0) red = 0;
     if (red &gt; 255) red = 255;
-    controller.color1 = make_color_rgb(red,colour_get_green(controller.color1),colour_get_blue(controller.color1));
+    controller.color1 = make_colour_rgb(red,colour_get_green(controller.color1),colour_get_blue(controller.color1));
     }
 if (moving == 2) or ((moving) and keyboard_check(vk_control))
     {
@@ -84,7 +84,7 @@ if (moving == 2) or ((moving) and keyboard_check(vk_control))
     green -= (mouse_y-mouse_yprevious)*255/25;
     if (green &lt; 0) green = 0;
     if (green &gt; 255) green = 255;
-    controller.color1 = make_color_rgb(colour_get_red(controller.color1),green,colour_get_blue(controller.color1));
+    controller.color1 = make_colour_rgb(colour_get_red(controller.color1),green,colour_get_blue(controller.color1));
     }
 if (moving == 3) or ((moving) and keyboard_check(vk_control))
     {
@@ -92,7 +92,7 @@ if (moving == 3) or ((moving) and keyboard_check(vk_control))
     blue -= (mouse_y-mouse_yprevious)*255/25;
     if (blue &lt; 0) blue = 0;
     if (blue &gt; 255) blue = 255;
-    controller.color1 = make_color_rgb(colour_get_red(controller.color1),colour_get_green(controller.color1),blue);
+    controller.color1 = make_colour_rgb(colour_get_red(controller.color1),colour_get_green(controller.color1),blue);
     }
     
 mouse_yprevious = mouse_y;

@@ -1,2 +1,1 @@
-- Refined access to settings and some tools
 - Various bug fixes
