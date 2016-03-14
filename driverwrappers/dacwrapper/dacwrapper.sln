@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dacwrapper", "dacwrapper\dacwrapper.vcxproj", "{01625F4D-C99D-41A9-BCB3-10C8BD176AE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01625F4D-C99D-41A9-BCB3-10C8BD176AE1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{01625F4D-C99D-41A9-BCB3-10C8BD176AE1}.Debug|Win32.Build.0 = Debug|Win32
+		{01625F4D-C99D-41A9-BCB3-10C8BD176AE1}.Release|Win32.ActiveCfg = Release|Win32
+		{01625F4D-C99D-41A9-BCB3-10C8BD176AE1}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
