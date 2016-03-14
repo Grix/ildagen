@@ -28,7 +28,7 @@ public:
 	
 	int Init(UINT8 riyaDeviceNum);
 	int OutputFrame(int scanRate, int bufferSize, int bufferAddress);
-	int SetShutter(bool value);
+	//int SetShutter(bool value); //needed?
 
 	Point frame1[RIYA_BUFFER_SIZE];
 	//Point frame2[RIYA_BUFFER_SIZE];

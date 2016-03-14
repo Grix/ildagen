@@ -16,7 +16,6 @@ Device_RIYA::~Device_RIYA()
 		StopRiyaDevice(riyaDeviceNum);
 		CloseAllRiyaDevices();
 	}
-	
 }
 
 int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
@@ -90,7 +89,6 @@ int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
 	}
 
 
-
 	 //Initialize the RIYA device
 	riyaDeviceNum = pRiyaDeviceNum;
 	InitRiyaDevice(riyaDeviceNum, RIYA_DEVICE_ATTRIBUTES);
@@ -124,10 +122,10 @@ int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
 
 int Device_RIYA::OutputFrame(int scanRate, int bufferSize, int bufferAddress)
 {
-	if (!ready)
+	if ((!ready) || (RiyaReadyForNextFrame(riyaDeviceNum) == 1))
 		return 0;
 
-	pointPeriod = (int)(1.0 / scanRate * 33333333.0);
+	pointPeriod = (int)(1.0 / (double)scanRate * 33333333.3);
 
 	if (TransferFrameToBuffer(	riyaDeviceNum,
 								(UINT8*)bufferAddress,

@@ -28,6 +28,5 @@ GMEXPORT double NewRiyaDevice(double riyaDeviceNum)
 GMEXPORT double RiyaOutputFrame(double deviceId, double scanRate, double bufferSize, double bufferAddress)
 {
 	Device_RIYA* device = (Device_RIYA*)devices[(int)(deviceId + 0.5)];
-	int result = device->OutputFrame((int)(scanRate + 0.5), (int)(bufferSize + 0.5), (int)(bufferAddress + 0.5));
-	return (double)result;
+	return (double)device->OutputFrame((int)(scanRate + 0.5), (int)(bufferSize + 0.5), (int)(bufferAddress + 0.5));
 }
