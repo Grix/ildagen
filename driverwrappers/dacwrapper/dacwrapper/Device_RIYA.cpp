@@ -30,7 +30,7 @@ int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
 	if (!OpenAllRiyaDevices)
 	{
 		//logFile << "Device_RIYA::Open() - Can't load library routine RiOpenDevice!" << endl;
-		return -1;
+		return 0;
 	}
 
 	CloseAllRiyaDevices = (riyaFuncPtr2)GetProcAddress(riyaLibrary, "RiCloseDevices");
@@ -78,13 +78,13 @@ int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
 		if (riyaDevicesNumTotal == 0)
 		{
 			//logFile << "Device_RIYA::Open() - No RIYA devices found!" << endl;
-			return 0;
+			return -1;
 		}
 
 		if (riyaDevicesNumTotal == 255)
 		{
 			//logFile << "Device_RIYA::Open() - No RIYA Drivers found!" << endl;
-			return 0;
+			return -2;
 		}
 	}
 
@@ -110,29 +110,30 @@ int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
 		frame2[i].I = 0;*/
 	}
 
-	TransferFrameToBuffer(	riyaDeviceNum,
-							(UINT8 *)&frame1[0],
-							RIYA_BUFFER_SIZE,
-							pointPeriod,
-							RIYA_FRAME_ATTRIBUTES);
+	if (TransferFrameToBuffer(	riyaDeviceNum,
+								(UINT8 *)&frame1[0],
+								RIYA_BUFFER_SIZE,
+								pointPeriod,
+								RIYA_FRAME_ATTRIBUTES) == 255)
+		return -3;
 
 	ready = true;
 	return 1;
 }
 
-int Device_RIYA::OutputFrame(int scanRate, int bufferSize, int bufferAddress)
+int Device_RIYA::OutputFrame(int scanRate, int bufferSize, UINT8* bufferAddress)
 {
-	if ((!ready) || (RiyaReadyForNextFrame(riyaDeviceNum) == 1))
+	if ((!ready) || (RiyaReadyForNextFrame(riyaDeviceNum) != 1))
 		return 0;
-
-	pointPeriod = (int)(1.0 / (double)scanRate * 33333333.3);
+	
+	pointPeriod = (UINT)(1.0 / (double)scanRate * 33333333.3);
 
 	if (TransferFrameToBuffer(	riyaDeviceNum,
 								(UINT8*)bufferAddress,
-								bufferSize,
+								(UINT)bufferSize,
 								pointPeriod,
 								RIYA_FRAME_ATTRIBUTES) == 255)
-		return 0;
+		return -1;
 
 	return 1;
 }

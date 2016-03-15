@@ -140,45 +140,12 @@
       </ConfigOptions>
       <filename>LaserBoy_2016_02_11.zip</filename>
     </datafile>
-    <datafile>
-      <name>dacwrapper.dll</name>
-      <exists>-1</exists>
-      <size>74240</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>dacwrapper.dll</filename>
-    </datafile>
-    <datafile>
-      <name>RiyaNetServer.dll</name>
-      <exists>-1</exists>
-      <size>474112</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>RiyaNetServer.dll</filename>
-    </datafile>
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\filesaver</extension>
     <extension index="1">extensions\GMopen</extension>
     <extension index="2">extensions\Color Difference Using CIE94</extension>
+    <extension index="3">extensions\dacwrapper</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -1058,9 +1025,6 @@
       <script>scripts\read_hershey_ini.gml</script>
       <script>scripts\read_hershey_index_ini.gml</script>
       <script>scripts\read_hershey_createini.gml</script>
-    </scripts>
-    <scripts name="dacwrapper">
-      <script>scripts\dacwrapper_init.gml</script>
     </scripts>
     <script>scripts\update_check.gml</script>
     <script>scripts\update_check_verbose.gml</script>

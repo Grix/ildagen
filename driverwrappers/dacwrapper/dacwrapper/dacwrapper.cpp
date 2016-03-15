@@ -11,13 +11,19 @@ rev: 2016-03-13
 #define GMEXPORT extern "C" __declspec (dllexport)
 
 void* devices[65535];
-int devicesIndex = 0;
+int devicesIndex = 2;
 
 GMEXPORT double NewRiyaDevice(double riyaDeviceNum)
 {
 	//awful hack due to GM:S only allowing doubles to be passed
 	Device_RIYA* newDevice = new Device_RIYA();
-	newDevice->Init((UINT8)(riyaDeviceNum+0.5));
+	int result = newDevice->Init((UINT8)(riyaDeviceNum + 0.5));
+	if (result <= 0)
+	{
+		//todo cleanup
+		return (double)result;
+	}	
+
 	devices[devicesIndex] = (void*)newDevice;
 	double returnValue = (double)devicesIndex;
 	devicesIndex++;
@@ -25,8 +31,8 @@ GMEXPORT double NewRiyaDevice(double riyaDeviceNum)
 	return returnValue;
 }
 
-GMEXPORT double RiyaOutputFrame(double deviceId, double scanRate, double bufferSize, double bufferAddress)
+GMEXPORT double RiyaOutputFrame(double deviceId, double scanRate, double bufferSize, UINT8* bufferAddress)
 {
 	Device_RIYA* device = (Device_RIYA*)devices[(int)(deviceId + 0.5)];
-	return (double)device->OutputFrame((int)(scanRate + 0.5), (int)(bufferSize + 0.5), (int)(bufferAddress + 0.5));
+	return (double)device->OutputFrame((int)(scanRate + 0.5), (int)(bufferSize + 0.5), bufferAddress);
 }
