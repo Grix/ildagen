@@ -28,20 +28,23 @@
             <string>highlight = 0;
 preset = 0;
 
-ini_open("settings.ini");
+if (ds_list_empty(controller.dac_list) or (controller.dac == -1))
+    with (controller) scan_dacs();
+
+/*ini_open("settings.ini");
 
     projector = ini_read_real("main", "projector", 0);
     var t_projectorstring = "projector_"+string(projector);
     if (ini_section_exists(t_projectorstring))
         {
-        preset_name = ini_read_string(t_projectorstring, "name", "name_error");
+        preset_name = ini_read_string(t_projectorstring, "dac", "name_error");
         }
     else
         {
         preset_name = "name_error";
         }
     
-ini_close();
+ini_close();*/
 </string>
           </argument>
         </arguments>
@@ -66,14 +69,15 @@ ini_close();
             <kind>1</kind>
             <string>if (instance_exists(oDropDown))
     exit;
-if (mouse_x &gt; x+60) and (mouse_x &lt; (x+260)) and (mouse_y &gt; y) and ((mouse_y &lt; y+22))
+    
+if (mouse_x &gt; x+50) and (mouse_x &lt; (x+250)) and (mouse_y &gt; y) and ((mouse_y &lt; y+22))
     {
     highlight = 1;
-    controller.tooltip = "Choose or create settings profile.";
+    controller.tooltip = "Choose DAC/controller to connect to.";
     
     if (mouse_check_button_pressed(mb_left))
         {
-        dropdown_settingpreset();
+        dropdown_dacs();
         }
     } 
 else highlight = 0;
@@ -103,15 +107,15 @@ else highlight = 0;
     {
     draw_set_color(c_gray);
     draw_set_alpha(0.2);
-    draw_rectangle(x+60,y,x+260,y+22,0);
+    draw_rectangle(x+50,y,x+250,y+22,0);
     }
 
 draw_set_color(c_dkgray);
 draw_set_alpha(1);
 draw_set_font(fnt_tooltip);
 
-draw_rectangle(x+60,y,x+260,y+22,1);
-draw_text(x+10,y+5,"Profile:      "+preset_name);
+draw_rectangle(x+50,y,x+250,y+22,1);
+draw_text(x+10,y+5,"DAC:       "+string(controller.dac));
 </string>
           </argument>
         </arguments>

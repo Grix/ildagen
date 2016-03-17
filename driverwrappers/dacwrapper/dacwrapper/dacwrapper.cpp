@@ -20,7 +20,7 @@ GMEXPORT double NewRiyaDevice(double riyaDeviceNum)
 	int result = newDevice->Init((UINT8)(riyaDeviceNum + 0.5));
 	if (result <= 0)
 	{
-		//todo cleanup
+		delete newDevice;
 		return (double)result;
 	}	
 
@@ -35,4 +35,11 @@ GMEXPORT double RiyaOutputFrame(double deviceId, double scanRate, double bufferS
 {
 	Device_RIYA* device = (Device_RIYA*)devices[(int)(deviceId + 0.5)];
 	return (double)device->OutputFrame((int)(scanRate + 0.5), (int)(bufferSize + 0.5), bufferAddress);
+}
+
+GMEXPORT double RiyaClose(double deviceId)
+{
+	Device_RIYA* device = (Device_RIYA*)devices[(int)(deviceId + 0.5)];
+	delete device;
+	return 1.0;
 }

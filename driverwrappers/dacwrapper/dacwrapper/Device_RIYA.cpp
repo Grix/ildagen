@@ -14,14 +14,12 @@ Device_RIYA::~Device_RIYA()
 	if (ready)
 	{
 		StopRiyaDevice(riyaDeviceNum);
-		CloseAllRiyaDevices();
 	}
+		
 }
 
 int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
 {
-	
-
 	HINSTANCE riyaLibrary = LoadLibrary(L"RiyaNetServer.dll");
 
 	// Retrieve a pointer to each of the RIYA library functions,

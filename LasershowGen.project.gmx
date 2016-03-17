@@ -891,9 +891,11 @@
         <script>scripts\dropdown_menu_set_view.gml</script>
         <script>scripts\dropdown_menu_set_about.gml</script>
         <script>scripts\dropdown_settingpreset.gml</script>
+        <script>scripts\dropdown_dacs.gml</script>
         <script>scripts\preset_load.gml</script>
         <script>scripts\preset_create.gml</script>
         <script>scripts\preset_delete.gml</script>
+        <script>scripts\dac_select.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">
@@ -1025,6 +1027,9 @@
       <script>scripts\read_hershey_ini.gml</script>
       <script>scripts\read_hershey_index_ini.gml</script>
       <script>scripts\read_hershey_createini.gml</script>
+    </scripts>
+    <scripts name="dacs">
+      <script>scripts\scan_dacs.gml</script>
     </scripts>
     <script>scripts\update_check.gml</script>
     <script>scripts\update_check_verbose.gml</script>
@@ -1162,6 +1167,7 @@
         <object>objects\obj_autoupdate</object>
         <object>objects\obj_update</object>
         <object>objects\obj_preset</object>
+        <object>objects\obj_dacs</object>
         <object>objects\obj_scanrate</object>
         <object>objects\obj_maxdwell</object>
         <object>objects\obj_format</object>

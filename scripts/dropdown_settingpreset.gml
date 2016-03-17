@@ -1,4 +1,4 @@
-ddobj = instance_create(x,y+20,oDropDown);
+ddobj = instance_create(x+60,y+22,oDropDown);
 with (ddobj)
     {
     ini_open("settings.ini");

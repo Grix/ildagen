@@ -114,9 +114,11 @@ semaster_list = ds_list_create();
 hershey_index_list = ds_list_create();
 hershey_list = -1;
 menu_surf = -1;
+dac_list = ds_list_create();
 
 c_gold = make_colour_rgb(255,220,0);
 
+dac = -1;
 el_id = 0;
 projectfps = 30;
 xdelta[32] = 0;
