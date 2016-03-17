@@ -10,7 +10,7 @@ rev: 2016-03-13
 
 #define GMEXPORT extern "C" __declspec (dllexport)
 
-void* devices[65535];
+void* devices[1000]; //todo used linked list or something instead
 int devicesIndex = 2;
 
 GMEXPORT double NewRiyaDevice(double riyaDeviceNum)
@@ -42,4 +42,10 @@ GMEXPORT double RiyaClose(double deviceId)
 	Device_RIYA* device = (Device_RIYA*)devices[(int)(deviceId + 0.5)];
 	delete device;
 	return 1.0;
+}
+
+GMEXPORT char* RiyaGetDescription(double deviceId)
+{
+	Device_RIYA* device = (Device_RIYA*)devices[(int)(deviceId + 0.5)];
+	return device->GetDescription();
 }

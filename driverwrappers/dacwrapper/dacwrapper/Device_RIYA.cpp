@@ -135,3 +135,15 @@ int Device_RIYA::OutputFrame(int scanRate, int bufferSize, UINT8* bufferAddress)
 
 	return 1;
 }
+
+char* Device_RIYA::GetDescription()
+{
+	char* description = "";
+	if (ready)
+	{
+		DeviceDescription* descriptionStruct = (DeviceDescription*)GetDescriptionStruct(riyaDeviceNum);
+		description = descriptionStruct->Name;
+	}
+
+	return description;
+}
