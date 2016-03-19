@@ -77,6 +77,17 @@
             <arg>2</arg>
           </args>
         </function>
+        <function>
+          <name>dac_riya_get_description</name>
+          <externalName>RiyaGetDescription</externalName>
+          <kind>12</kind>
+          <help>dac_riya_get_description(id)</help>
+          <returnType>1</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
       </functions>
       <constants/>
     </file>

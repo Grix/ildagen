@@ -5,7 +5,7 @@ by Gitle Mikkelsen
 rev: 2016-03-13
 */
 
-#include "windows.h"
+//#include "windows.h"
 #include "Device_RIYA.h"
 
 #define GMEXPORT extern "C" __declspec (dllexport)
@@ -46,6 +46,7 @@ GMEXPORT double RiyaClose(double deviceId)
 
 GMEXPORT char* RiyaGetDescription(double deviceId)
 {
+	//function doesn't work
 	Device_RIYA* device = (Device_RIYA*)devices[(int)(deviceId + 0.5)];
 	return device->GetDescription();
 }

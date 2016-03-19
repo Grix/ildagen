@@ -1,7 +1,7 @@
 //scans for available dacs (and resets all)
 
 //cleanup
-for (i = 0; i > ds_list_size(dac_list); i++)
+for (i = ds_list_size(dac_list)-1; i >= 0; i--)
 {
     var dac = dac_list[| i];
     if (dac[| 1] == 0)
@@ -11,6 +11,8 @@ for (i = 0; i > ds_list_size(dac_list); i++)
     }
 }
 ds_list_clear(dac_list);
+dac = -1;
+dac_string = "[None]";
 
 //RIYA
 for (i = 0; i < 63; i++)
@@ -21,6 +23,7 @@ for (i = 0; i < 63; i++)
         var dac = ds_list_create();
         ds_list_add(dac,result);
         ds_list_add(dac,0);
+        ds_list_add(dac,"RIYA "+string(i));//dac_riya_get_description(result));
         ds_list_add(dac_list,dac);
     }
     else

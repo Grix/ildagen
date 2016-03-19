@@ -28,8 +28,8 @@
             <string>highlight = 0;
 preset = 0;
 
-if (ds_list_empty(controller.dac_list) or (controller.dac == -1))
-    with (controller) scan_dacs();
+//if (ds_list_empty(controller.dac_list) or (controller.dac == -1))
+//    with (controller) scan_dacs();
 
 /*ini_open("settings.ini");
 
@@ -115,7 +115,8 @@ draw_set_alpha(1);
 draw_set_font(fnt_tooltip);
 
 draw_rectangle(x+50,y,x+250,y+22,1);
-draw_text(x+10,y+5,"DAC:       "+string(controller.dac));
+
+draw_text(x+10,y+5,"DAC:       "+string(controller.dac_string));
 </string>
           </argument>
         </arguments>

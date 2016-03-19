@@ -12,9 +12,9 @@ Device_RIYA::Device_RIYA()
 Device_RIYA::~Device_RIYA()
 {
 	if (ready)
-	{
 		StopRiyaDevice(riyaDeviceNum);
-	}
+	if (riyaDeviceNum == 0)
+		CloseAllRiyaDevices();
 		
 }
 
@@ -63,6 +63,13 @@ int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
 	if (TransferFrameToBuffer == NULL)
 	{
 		//logFile << "Device_RIYA::Open() - Can't load library routine RiSetShowCadr!" << endl;
+		return 0;
+	}
+
+	GetDescriptionStruct = (riyaFuncPtr6)GetProcAddress(riyaLibrary, "RI_GetDevDesc");
+	if (GetDescriptionStruct == NULL)
+	{
+		//logFile << "Device_RIYA::Open() - Can't load library routine RI_GetDevDesc!" << endl;
 		return 0;
 	}
 
@@ -138,12 +145,17 @@ int Device_RIYA::OutputFrame(int scanRate, int bufferSize, UINT8* bufferAddress)
 
 char* Device_RIYA::GetDescription()
 {
-	char* description = "";
+	//function doesn't work
 	if (ready)
 	{
-		DeviceDescription* descriptionStruct = (DeviceDescription*)GetDescriptionStruct(riyaDeviceNum);
-		description = descriptionStruct->Name;
+		//DeviceDescription* descriptionStruct = (char*)GetDescriptionStruct(riyaDeviceNum);
+		//return descriptionStruct->Name;
+		char* desc = (char*)GetDescriptionStruct(riyaDeviceNum);
+		if (desc == NULL)
+			return "error";
+		else
+			return desc;
 	}
-
-	return description;
+	else
+		return "error";
 }

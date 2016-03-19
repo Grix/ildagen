@@ -119,6 +119,7 @@ dac_list = ds_list_create();
 c_gold = make_colour_rgb(255,220,0);
 
 dac = -1;
+dac_string = "[None]";
 el_id = 0;
 projectfps = 30;
 xdelta[32] = 0;
@@ -319,6 +320,7 @@ if (os_browser == browser_not_a_browser)
     update_check();
     parse_parameter();
     load_settings();
+    scan_dacs();
     }
 
 </string>
