@@ -19,6 +19,8 @@ dac_list
         id
         type: 0 riya
         description
+        settings map...
+            
         
 settings.ini
 /*  ini_write_real("projector_0","scanrate",20000);

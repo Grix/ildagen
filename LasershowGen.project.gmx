@@ -1030,6 +1030,7 @@
     </scripts>
     <scripts name="dacs">
       <script>scripts\scan_dacs.gml</script>
+      <script>scripts\close_dacs.gml</script>
     </scripts>
     <script>scripts\update_check.gml</script>
     <script>scripts\update_check_verbose.gml</script>

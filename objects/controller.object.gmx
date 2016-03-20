@@ -115,11 +115,14 @@ hershey_index_list = ds_list_create();
 hershey_list = -1;
 menu_surf = -1;
 dac_list = ds_list_create();
+dac_active_list = ds_map_create();
+projector_list = ds_list_create();
 
 c_gold = make_colour_rgb(255,220,0);
 
 dac = -1;
 dac_string = "[None]";
+bufdeleteflag = false;
 el_id = 0;
 projectfps = 30;
 xdelta[32] = 0;
@@ -710,7 +713,9 @@ if (playing == 1)
     if (frame &lt; 1)
         frame = 0;
     if (frame != frameprev)
+        {
         frame_surf_refresh = 1;
+        }
     
     if !ds_list_empty(semaster_list)
         {
@@ -921,6 +926,7 @@ if (keyboard_check_pressed(vk_tab))
         
     room_goto(rm_seq);
     }
+    
 
 </string>
           </argument>
@@ -1954,6 +1960,30 @@ else if (ds_map_find_value(async_load, "id") == file)
 frame_surf_refresh = 1;
 menu_open = 0;
 dialog_open = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>FMODfree();
+close_dacs();
 </string>
           </argument>
         </arguments>
