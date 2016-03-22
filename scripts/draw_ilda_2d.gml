@@ -1,5 +1,13 @@
 //draws the frame surfaces
-if (frame_surf_refresh == 1) or !surface_exists(frame3d_surf) or !surface_exists(frame_surf)
+if (laseron)
+    {
+    draw_set_halign(fa_center);
+    draw_text(256,250,"Laser output active: "+string(dac_string));
+    draw_set_halign(fa_left);
+    exit;
+    }
+    
+if (frame_surf_refresh) or !surface_exists(frame3d_surf) or !surface_exists(frame_surf)
     {
     refresh_surfaces();
     frame_surf_refresh = 0;

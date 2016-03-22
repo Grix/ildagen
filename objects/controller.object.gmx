@@ -115,13 +115,15 @@ hershey_index_list = ds_list_create();
 hershey_list = -1;
 menu_surf = -1;
 dac_list = ds_list_create();
-dac_active_list = ds_map_create();
-projector_list = ds_list_create();
+output_buffer = -1;
 
 c_gold = make_colour_rgb(255,220,0);
 
+output_buffer_ready = false;
 dac = -1;
 dac_string = "[None]";
+laseron = false;
+refresh_laser_flag = false;
 bufdeleteflag = false;
 el_id = 0;
 projectfps = 30;
@@ -242,7 +244,7 @@ blank_freq = 4;
 blank = 0;
 enddots = 0;
 makedot = 0;
-dotmultiply = 20;
+dotmultiply = 12;
 blank_offset = 0;
 blank_blendmode = 1; //0 replace, 1 and, 2 or, 3 xor
 
@@ -767,7 +769,7 @@ if (ds_list_size(el_list) &gt; 0)
     }
     
 if (!surface_exists(frame_surf) || (!surface_exists(frame3d_surf) &amp;&amp; viewmode != 0))
-    frame_surf_refresh = 1;
+    frame_surf_refresh = true;
 
     
 //SELECTED ELEMENT STUFFS
@@ -928,6 +930,41 @@ if (keyboard_check_pressed(vk_tab))
     }
     
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///laser output
+
+if (laseron) &amp;&amp; (ds_exists(dac,ds_type_list))
+{
+    if (!ds_exists(dac,ds_type_list))
+    {
+        show_message_async("Error, DAC data missing");
+        laseron = false;
+        dac = -1;
+        dac_string = "[None]";
+    }
+    output_frame();
+}
 </string>
           </argument>
         </arguments>

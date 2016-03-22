@@ -210,6 +210,7 @@
       <sprite>sprites\spr_largepreview</sprite>
     </sprites>
     <sprite>sprites\spr_update</sprite>
+    <sprite>sprites\spr_laseron</sprite>
     <sprite>sprites\spr_save</sprite>
     <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_load</sprite>
@@ -1031,6 +1032,15 @@
     <scripts name="dacs">
       <script>scripts\scan_dacs.gml</script>
       <script>scripts\close_dacs.gml</script>
+      <script>scripts\dac_send_frame.gml</script>
+      <scripts name="output">
+        <script>scripts\output_frame.gml</script>
+        <script>scripts\optimize_middle_output.gml</script>
+        <script>scripts\output_makeframe_pass_list.gml</script>
+        <script>scripts\output_pass_list_points.gml</script>
+        <script>scripts\output_makeframe_pass_int.gml</script>
+        <script>scripts\output_framelist_to_buffer.gml</script>
+      </scripts>
     </scripts>
     <script>scripts\update_check.gml</script>
     <script>scripts\update_check_verbose.gml</script>
@@ -1178,6 +1188,7 @@
       <object>objects\obj_toseq</object>
       <object>objects\obj_load</object>
       <object>objects\obj_import</object>
+      <object>objects\obj_laseron</object>
       <object>objects\obj_help</object>
       <object>objects\obj_options</object>
     </objects>

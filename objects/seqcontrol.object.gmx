@@ -50,12 +50,16 @@ frame3d_surf_large = surface_create(1024,1024);
 copy_list = ds_list_create();
 copy_buffer = ds_list_create();
 env_type_map = ds_map_create();
+dac_active_list = ds_map_create();
+projector_list = ds_list_create();
 
 project_dir = "";
 project_loaded = 0;
 project_name = "";
 objid = 1;
     
+refresh_laser_flag = 0;
+frame_surf_refresh = 0;
 image_speed = 0;
 draw_mouseline = 0;
 fastload = 1;

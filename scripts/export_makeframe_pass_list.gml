@@ -1,5 +1,3 @@
-list_id = ds_list_find_value(el_list,i);
-
 list_points = ds_list_create();
 list_raw = ds_list_create();
 

@@ -1,3 +1,3 @@
 ds_list_add(controller.undo_list,"d"+string(controller.dotmultiply));
 
-controller.dotmultiply = 20;
+controller.dotmultiply = 12;
