@@ -167,7 +167,7 @@ moving = 1;
           <argument>
             <kind>1</kind>
             <string>draw_self();
-draw_sprite(spr_knob,(moving &gt; 0),x+clamp(controller.color_period,-$8000,$8000)/$8000*128,y+16);
+draw_sprite(spr_knob,(moving &gt; 0),x+floor(clamp(controller.color_period,-$8000,$8000)/$8000*128),y+16);
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);

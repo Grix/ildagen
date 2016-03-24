@@ -6,7 +6,7 @@ if (output_buffer_ready)
     if (output_buffer != -1)
         buffer_delete(output_buffer);
     output_buffer = output_buffer_next;
-    dac_send_frame(dac, output_buffer,output_buffer_next_size);
+    dac_send_frame(dac, output_buffer, output_buffer_next_size);
     output_buffer_ready = false;
 }
 

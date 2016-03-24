@@ -1033,6 +1033,7 @@
       <script>scripts\scan_dacs.gml</script>
       <script>scripts\close_dacs.gml</script>
       <script>scripts\dac_send_frame.gml</script>
+      <script>scripts\dac_blank_and_center.gml</script>
       <scripts name="output">
         <script>scripts\output_frame.gml</script>
         <script>scripts\optimize_middle_output.gml</script>

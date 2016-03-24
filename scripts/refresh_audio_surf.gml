@@ -17,7 +17,7 @@ surface_set_target(audio_surf);
     
     draw_set_colour(c_black);
     var tempstarty = tlh+16-layerbarx;
-    var ypos = tempstarty;
+    var ypos = floor(tempstarty);
     ypos_perm = 0;
     var mouseoverlayerbutton_hor = (mouse_x == clamp(mouse_x,tlw-56,tlw-24));
     for (i = 0; i <= ds_list_size(layer_list);i++)
@@ -59,8 +59,8 @@ surface_set_target(audio_surf);
                 if (frametime < tlx+tlzoom) and (frametime+duration > tlx)
                     {
                     //draw object on timeline
-                    framestartx = (frametime-tlx)*tlwdivtlzoom;
-                    frameendx = (frametime-tlx+duration+1)*tlwdivtlzoom;
+                    framestartx = floor((frametime-tlx)*tlwdivtlzoom);
+                    frameendx = ceil((frametime-tlx+duration+1)*tlwdivtlzoom);
                     draw_set_colour(c_dkgray);
                         draw_rectangle(framestartx,ypos+1,frameendx,ypos+47,0);
                     draw_set_colour(c_green);
@@ -68,13 +68,13 @@ surface_set_target(audio_surf);
                     draw_set_colour(c_white);
                     if (!surface_exists(ds_list_find_value(infolist,1)))
                         ds_list_replace(infolist,1,make_screenshot(ds_list_find_value(objectlist,1)));
-                    draw_surface_part(ds_list_find_value(infolist,1),0,0,clamp((duration+1)*tlwdivtlzoom,0,32)-1,32,framestartx+1,ypos+8);
+                    draw_surface_part(ds_list_find_value(infolist,1),0,0,floor(clamp((duration+1)*tlwdivtlzoom,0,32))-1,32,framestartx+1,ypos+8);
                     maxframes = ds_list_find_value(infolist,2);
                     draw_set_colour(c_black);
                     if (maxframes != 1)
                         for (k = 1; k <= duration/maxframes; k++)
                             {
-                            linex = framestartx+k*maxframes*tlwdivtlzoom;
+                            linex = floor(framestartx+k*maxframes*tlwdivtlzoom);
                             draw_line(linex,ypos,linex,ypos+48);
                             }
                     if (ds_list_find_index(somaster_list,objectlist) != -1)

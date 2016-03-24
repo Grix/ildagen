@@ -90,7 +90,7 @@ bak_alpha = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>controller.menu_open = 0;
+            <string>if (room != rm_seq) controller.menu_open = 0;
 
 if (controller.dialog_open)
     exit;

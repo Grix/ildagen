@@ -116,6 +116,7 @@ hershey_list = -1;
 menu_surf = -1;
 dac_list = ds_list_create();
 output_buffer = -1;
+blank_frame = buffer_create(8, buffer_fixed, 1);
 
 c_gold = make_colour_rgb(255,220,0);
 
@@ -1998,6 +1999,10 @@ else if (ds_map_find_value(async_load, "id") == file)
 frame_surf_refresh = 1;
 menu_open = 0;
 dialog_open = 0;
+playing = 0;
+
+if (laseron)
+    dac_blank_and_center(dac);
 </string>
           </argument>
         </arguments>
@@ -2123,161 +2128,164 @@ if (maxframes &gt; 1)
     }
 draw_set_color(c_white);
 
-if (bckimage)
+if (!laseron)
     {
-    if (!keyboard_check(ord('E')))
-        draw_set_alpha(0.3);
-    if (sprite_exists(bck_bckimage))
+    if (bckimage)
         {
-        draw_sprite_stretched(bck_bckimage,0,bckimage_left,bckimage_top,bckimage_width,bckimage_height);
-        }
-    else bckimage = 0;
-    }
-
-if (object_select_hovering = 1)
-    {
-    draw_set_alpha(0.5);
-    draw_set_colour(c_teal);
-        draw_rectangle(rectxmin2,rectymin2,rectxmax2,rectymax2,1);
-    draw_set_alpha(1);
-    draw_set_colour(c_white);
-    }
-else if (object_select_hovering = 2)
-    {
-    draw_set_alpha(0.7);
-    draw_set_colour(c_maroon);
-        draw_rectangle(rectxmin2,rectymin2,rectxmax2,rectymax2,1);
-    draw_set_alpha(1);
-    draw_set_colour(c_white);
-    }
-
-draw_set_color(c_gray);
-if (objmoving == 3)
-    draw_text(20,20,string_format(anirot,3,2)+" deg");
-else if (objmoving == 1)
-    {
-    draw_text(20,20,"X translation: "+string_format(anixtrans,5,0));
-    draw_text(20,40,"Y translation: "+string_format(aniytrans,5,0));
-    }
-else if (objmoving == 2)
-    {
-    draw_text(20,20,"Anchor X: "+string_format(anchorx,5,0));
-    draw_text(20,40,"Anchor Y: "+string_format(anchory,5,0));
-    }
-else if (objmoving == 4)
-    {
-    draw_text(20,20,"X scale: "+string_format(scalex,2,3));
-    draw_text(20,40,"Y scale: "+string_format(scaley,2,3));
-    }
-draw_set_color(c_white);
-    
-draw_set_alpha(0.7);
-   
-//grids 
-if (keyboard_check(ord('S')) or (sgridshow == 1))
-    {
-    if (!surface_exists(squaregrid_surf))
-        {
-        squaregrid_surf = surface_create(512,512);
-        surface_set_target(squaregrid_surf);
-            draw_grid();
-        surface_reset_target();
-        }
-    draw_surface(squaregrid_surf,0,0);
-    } 
-if (keyboard_check(ord('R')) or (rgridshow == 1))
-    {
-    if (!surface_exists(radialgrid_surf))
-        {
-        radialgrid_surf = surface_create(512,512);
-        surface_set_target(radialgrid_surf);
-            draw_radialgrid();
-        surface_reset_target();
-        }
-    draw_surface(radialgrid_surf,0,0);
-    }
-    
-if (keyboard_check(ord('A')) or (guidelineshow == 1))
-    {
-    draw_guidelines();
-    }
-    
-draw_set_alpha(1);
-
-//selected elements
-draw_set_color(c_aqua);
-if !(ds_list_empty(semaster_list))//(selectedelement != -1)
-    {
-    if (update_semasterlist_flag)
-        update_semasterlist();
-    
-    draw_sprite(spr_anchor,0,anchorx/$ffff*512,anchory/$ffff*512);
-    draw_set_alpha(0.6);
-    draw_sprite(spr_rotate,0,rectxmin,rectymax);
-    draw_sprite(spr_resize,0,rectxmax,rectymax);
-    draw_set_alpha(1);
-    
-    draw_rectangle(rectxmin,rectymin,rectxmax,rectymax,1);
-    
-    if (objmoving == 1) or (objmoving == 3) or (objmoving == 4)
-        {
-        xp1 = rectxmin+anixtrans/$ffff*512;
-        yp1 = rectymin+aniytrans/$ffff*512;
-        xp2 = rectxmax+anixtrans/$ffff*512;
-        yp2 = rectymax+aniytrans/$ffff*512;
-        xp3 = rectxmax+anixtrans/$ffff*512;
-        yp3 = rectymin+aniytrans/$ffff*512;
-        xp4 = rectxmin+anixtrans/$ffff*512;
-        yp4 = rectymax+aniytrans/$ffff*512;
-        rot_r = degtorad(anirot);
-        
-        angle1 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp1,yp1));
-        dist1 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp1,yp1);
-        
-        xpnew1 = anchorx/$ffff*512+cos(rot_r-angle1)*dist1*scalex;
-        ypnew1 = anchory/$ffff*512+sin(rot_r-angle1)*dist1*scaley;
-        
-        angle2 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp2,yp2));
-        dist2 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp2,yp2);
-        
-        xpnew2 = anchorx/$ffff*512+cos(rot_r-angle2)*dist2*scalex;
-        ypnew2 = anchory/$ffff*512+sin(rot_r-angle2)*dist2*scaley;
-
-        angle3 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp3,yp3));
-        dist3 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp3,yp3);
-        
-        xpnew3 = anchorx/$ffff*512+cos(rot_r-angle3)*dist3*scalex;
-        ypnew3 = anchory/$ffff*512+sin(rot_r-angle3)*dist3*scaley;
-        
-        angle4 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp4,yp4));
-        dist4 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp4,yp4);
-        
-        xpnew4 = anchorx/$ffff*512+cos(rot_r-angle4)*dist4*scalex;
-        ypnew4 = anchory/$ffff*512+sin(rot_r-angle4)*dist4*scaley;
-        
-
-        draw_set_color(c_teal);
-        draw_rectangle(xp1,yp1,xp2,yp2,1);
-        
-        draw_line(xpnew1,ypnew1,xpnew3,ypnew3);
-        draw_line(xpnew2,ypnew2,xpnew3,ypnew3);
-        draw_line(xpnew2,ypnew2,xpnew4,ypnew4);
-        draw_line(xpnew4,ypnew4,xpnew1,ypnew1);
-    
-        if (objmoving == 1)
+        if (!keyboard_check(ord('E')))
+            draw_set_alpha(0.3);
+        if (sprite_exists(bck_bckimage))
             {
-            draw_set_alpha(0.4);
-                draw_arrow(mean(rectxmin,rectxmax),mean(rectymin,rectymax),mean(xpnew1,xpnew2),mean(ypnew1,ypnew2),12);
-            draw_set_alpha(1);
+            draw_sprite_stretched(bck_bckimage,0,bckimage_left,bckimage_top,bckimage_width,bckimage_height);
             }
+        else bckimage = 0;
         }
     
-    }
-
-draw_set_color(c_gray);
-
-if (placing_status) or (placing == "text") or (placing == "hershey") 
-    draw_preview_element();
+    if (object_select_hovering = 1)
+        {
+        draw_set_alpha(0.5);
+        draw_set_colour(c_teal);
+            draw_rectangle(rectxmin2,rectymin2,rectxmax2,rectymax2,1);
+        draw_set_alpha(1);
+        draw_set_colour(c_white);
+        }
+    else if (object_select_hovering = 2)
+        {
+        draw_set_alpha(0.7);
+        draw_set_colour(c_maroon);
+            draw_rectangle(rectxmin2,rectymin2,rectxmax2,rectymax2,1);
+        draw_set_alpha(1);
+        draw_set_colour(c_white);
+        }
+    
+    draw_set_color(c_gray);
+    if (objmoving == 3)
+        draw_text(20,20,string_format(anirot,3,2)+" deg");
+    else if (objmoving == 1)
+        {
+        draw_text(20,20,"X translation: "+string_format(anixtrans,5,0));
+        draw_text(20,40,"Y translation: "+string_format(aniytrans,5,0));
+        }
+    else if (objmoving == 2)
+        {
+        draw_text(20,20,"Anchor X: "+string_format(anchorx,5,0));
+        draw_text(20,40,"Anchor Y: "+string_format(anchory,5,0));
+        }
+    else if (objmoving == 4)
+        {
+        draw_text(20,20,"X scale: "+string_format(scalex,2,3));
+        draw_text(20,40,"Y scale: "+string_format(scaley,2,3));
+        }
+    draw_set_color(c_white);
+        
+    draw_set_alpha(0.7);
+       
+    //grids 
+    if (keyboard_check(ord('S')) or (sgridshow == 1))
+        {
+        if (!surface_exists(squaregrid_surf))
+            {
+            squaregrid_surf = surface_create(512,512);
+            surface_set_target(squaregrid_surf);
+                draw_grid();
+            surface_reset_target();
+            }
+        draw_surface(squaregrid_surf,0,0);
+        } 
+    if (keyboard_check(ord('R')) or (rgridshow == 1))
+        {
+        if (!surface_exists(radialgrid_surf))
+            {
+            radialgrid_surf = surface_create(512,512);
+            surface_set_target(radialgrid_surf);
+                draw_radialgrid();
+            surface_reset_target();
+            }
+        draw_surface(radialgrid_surf,0,0);
+        }
+        
+    if (keyboard_check(ord('A')) or (guidelineshow == 1))
+        {
+        draw_guidelines();
+        }
+        
+    draw_set_alpha(1);
+    
+    //selected elements
+    draw_set_color(c_aqua);
+    if !(ds_list_empty(semaster_list))//(selectedelement != -1)
+        {
+        if (update_semasterlist_flag)
+            update_semasterlist();
+        
+        draw_sprite(spr_anchor,0,anchorx/$ffff*512,anchory/$ffff*512);
+        draw_set_alpha(0.6);
+        draw_sprite(spr_rotate,0,rectxmin,rectymax);
+        draw_sprite(spr_resize,0,rectxmax,rectymax);
+        draw_set_alpha(1);
+        
+        draw_rectangle(rectxmin,rectymin,rectxmax,rectymax,1);
+        
+        if (objmoving == 1) or (objmoving == 3) or (objmoving == 4)
+            {
+            xp1 = rectxmin+anixtrans/$ffff*512;
+            yp1 = rectymin+aniytrans/$ffff*512;
+            xp2 = rectxmax+anixtrans/$ffff*512;
+            yp2 = rectymax+aniytrans/$ffff*512;
+            xp3 = rectxmax+anixtrans/$ffff*512;
+            yp3 = rectymin+aniytrans/$ffff*512;
+            xp4 = rectxmin+anixtrans/$ffff*512;
+            yp4 = rectymax+aniytrans/$ffff*512;
+            rot_r = degtorad(anirot);
+            
+            angle1 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp1,yp1));
+            dist1 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp1,yp1);
+            
+            xpnew1 = anchorx/$ffff*512+cos(rot_r-angle1)*dist1*scalex;
+            ypnew1 = anchory/$ffff*512+sin(rot_r-angle1)*dist1*scaley;
+            
+            angle2 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp2,yp2));
+            dist2 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp2,yp2);
+            
+            xpnew2 = anchorx/$ffff*512+cos(rot_r-angle2)*dist2*scalex;
+            ypnew2 = anchory/$ffff*512+sin(rot_r-angle2)*dist2*scaley;
+    
+            angle3 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp3,yp3));
+            dist3 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp3,yp3);
+            
+            xpnew3 = anchorx/$ffff*512+cos(rot_r-angle3)*dist3*scalex;
+            ypnew3 = anchory/$ffff*512+sin(rot_r-angle3)*dist3*scaley;
+            
+            angle4 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp4,yp4));
+            dist4 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp4,yp4);
+            
+            xpnew4 = anchorx/$ffff*512+cos(rot_r-angle4)*dist4*scalex;
+            ypnew4 = anchory/$ffff*512+sin(rot_r-angle4)*dist4*scaley;
+            
+    
+            draw_set_color(c_teal);
+            draw_rectangle(xp1,yp1,xp2,yp2,1);
+            
+            draw_line(xpnew1,ypnew1,xpnew3,ypnew3);
+            draw_line(xpnew2,ypnew2,xpnew3,ypnew3);
+            draw_line(xpnew2,ypnew2,xpnew4,ypnew4);
+            draw_line(xpnew4,ypnew4,xpnew1,ypnew1);
+        
+            if (objmoving == 1)
+                {
+                draw_set_alpha(0.4);
+                    draw_arrow(mean(rectxmin,rectxmax),mean(rectymin,rectymax),mean(xpnew1,xpnew2),mean(ypnew1,ypnew2),12);
+                draw_set_alpha(1);
+                }
+            }
+        
+        }
+    
+    draw_set_color(c_gray);
+    
+    if (placing_status) or (placing == "text") or (placing == "hershey") 
+        draw_preview_element();
+}
 
 //info
 draw_set_alpha(0.8);

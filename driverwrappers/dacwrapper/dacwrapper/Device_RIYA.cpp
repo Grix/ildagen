@@ -128,8 +128,20 @@ int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
 
 int Device_RIYA::OutputFrame(int scanRate, int bufferSize, UINT8* bufferAddress)
 {
-	if ((!ready) || (RiyaReadyForNextFrame(riyaDeviceNum) != 1))
+	if (!ready) 
 		return 0;
+
+	bool success = false;
+	for (int i = 0; i < 1000; i++) //timeout safety
+	{
+		if (RiyaReadyForNextFrame(riyaDeviceNum) == 1)
+		{
+			success = true;
+			break;
+		}
+	}
+	if (success = false)
+		return -1;
 	
 	pointPeriod = (UINT)(1.0 / (double)scanRate * 33333333.3);
 
@@ -138,18 +150,15 @@ int Device_RIYA::OutputFrame(int scanRate, int bufferSize, UINT8* bufferAddress)
 								(UINT)bufferSize,
 								pointPeriod,
 								RIYA_FRAME_ATTRIBUTES) == 255)
-		return -1;
+		return -2;
 
 	return 1;
 }
 
 int Device_RIYA::GetID()
 {
-	//function doesn't work
 	if (ready)
-	{
 		return GetIDVersionNumber(riyaDeviceNum);
-	}
 	else
 		return -1;
 }

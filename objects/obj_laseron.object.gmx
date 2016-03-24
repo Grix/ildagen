@@ -101,6 +101,7 @@ if (room = rm_ilda)
         {
             laseron = false;
             frame_surf_refresh = true;
+            dac_blank_and_center(dac);
         }
         else if (ds_exists(dac, ds_type_list))
         {
