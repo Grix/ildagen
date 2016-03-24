@@ -44,9 +44,9 @@ GMEXPORT double RiyaClose(double deviceId)
 	return 1.0;
 }
 
-GMEXPORT char* RiyaGetDescription(double deviceId)
+GMEXPORT double RiyaGetID(double deviceId)
 {
 	//function doesn't work
 	Device_RIYA* device = (Device_RIYA*)devices[(int)(deviceId + 0.5)];
-	return device->GetDescription();
+	return (double)device->GetID();
 }

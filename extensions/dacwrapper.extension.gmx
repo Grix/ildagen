@@ -79,10 +79,10 @@
         </function>
         <function>
           <name>dac_riya_get_description</name>
-          <externalName>RiyaGetDescription</externalName>
+          <externalName>RiyaGetID</externalName>
           <kind>12</kind>
           <help>dac_riya_get_description(id)</help>
-          <returnType>1</returnType>
+          <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
             <arg>2</arg>

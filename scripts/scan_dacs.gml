@@ -27,7 +27,7 @@ for (i = 0; i < 4; i++)
         var newdac = ds_list_create();
         ds_list_add(newdac,result);
         ds_list_add(newdac,0);
-        ds_list_add(newdac,"RIYA "+string(i)); //dac_riya_get_description(result));
+        ds_list_add(newdac,"RIYA "+string(dac_riya_get_description(result)));
         ds_list_add(newdac,ds_map_create());
         ds_list_add(dac_list,newdac);
     }

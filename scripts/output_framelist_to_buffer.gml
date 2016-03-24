@@ -1,4 +1,4 @@
-maxpoints = ds_list_size(list_raw)/4;
+output_buffer_next_size = ds_list_size(list_raw)/4;
 var t_diff, t_pal_c, t_c_mapvalue;
 var t_list_raw_size = ds_list_size(list_raw)-4;
 
@@ -29,9 +29,9 @@ for (i = 0; i <= t_list_raw_size; i += 4)
     
     c = list_raw[| i+3];
     
-    buffer_write(output_buffer_next,buffer_u8,colour_get_blue(c));
-    buffer_write(output_buffer_next,buffer_u8,colour_get_green(c));
     buffer_write(output_buffer_next,buffer_u8,colour_get_red(c));
+    buffer_write(output_buffer_next,buffer_u8,colour_get_green(c));
+    buffer_write(output_buffer_next,buffer_u8,colour_get_blue(c));
     buffer_write(output_buffer_next,buffer_u8,intensity);
     
     }

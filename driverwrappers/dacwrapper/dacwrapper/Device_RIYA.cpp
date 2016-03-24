@@ -66,8 +66,8 @@ int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
 		return 0;
 	}
 
-	GetDescriptionStruct = (riyaFuncPtr6)GetProcAddress(riyaLibrary, "RI_GetDevDesc");
-	if (GetDescriptionStruct == NULL)
+	GetIDVersionNumber = (riyaFuncPtr6)GetProcAddress(riyaLibrary, "GetVersionID");
+	if (GetIDVersionNumber == NULL)
 	{
 		//logFile << "Device_RIYA::Open() - Can't load library routine RI_GetDevDesc!" << endl;
 		return 0;
@@ -143,19 +143,13 @@ int Device_RIYA::OutputFrame(int scanRate, int bufferSize, UINT8* bufferAddress)
 	return 1;
 }
 
-char* Device_RIYA::GetDescription()
+int Device_RIYA::GetID()
 {
 	//function doesn't work
 	if (ready)
 	{
-		//DeviceDescription* descriptionStruct = (char*)GetDescriptionStruct(riyaDeviceNum);
-		//return descriptionStruct->Name;
-		char* desc = (char*)GetDescriptionStruct(riyaDeviceNum);
-		if (desc == NULL)
-			return "error";
-		else
-			return desc;
+		return GetIDVersionNumber(riyaDeviceNum);
 	}
 	else
-		return "error";
+		return -1;
 }

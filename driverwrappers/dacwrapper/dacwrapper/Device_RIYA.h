@@ -29,6 +29,7 @@ public:
 	int Init(UINT8 riyaDeviceNum);
 	int OutputFrame(int scanRate, int bufferSize, UINT8* bufferAddress);
 	char* GetDescription();
+	int GetID();
 	//int SetShutter(bool value); //needed?
 
 	Point frame1[RIYA_BUFFER_SIZE];
@@ -38,27 +39,27 @@ public:
 
 private: 
 	// function pointer for library routine RiOpenDevices
-	typedef unsigned char(*riyaFuncPtr1)();
+	typedef UINT8(*riyaFuncPtr1)();
 
 	// function pointer for library routine RiCloseDevices
 	typedef void(*riyaFuncPtr2)();
 
 	// function pointer for library routine Ri_InitChanal
-	typedef void(*riyaFuncPtr3)(unsigned char,              // card ID
-								unsigned long);             // attribute
+	typedef void(*riyaFuncPtr3)(UINT8,              // card ID
+								ULONG);             // attribute
 
 	// function pointer for library routines Ri_SetIntCh & RiStopShow
-	typedef unsigned char(*riyaFuncPtr4)(unsigned char);    // card ID
-
+	typedef UINT8(*riyaFuncPtr4)(UINT8);    // card ID
+	
 	// function pointer for library routine RiSetShowCadr
-	typedef unsigned char(*riyaFuncPtr5)(	unsigned char,     // card ID
-											unsigned char *,   // data
-											unsigned int,      // size
-											unsigned int,      // output period
-											unsigned char);    // attribute
+	typedef UINT8(*riyaFuncPtr5)(	UINT8,     // card ID
+									UINT8 *,   // data
+									UINT,      // size
+									UINT,      // output period
+									UINT8);    // attribute
 
-	//func ptr for RI_GetDevDesc
-	typedef unsigned long(*riyaFuncPtr6)(unsigned char);
+	//func ptr for GetIDVersionNumber
+	typedef UINT16(*riyaFuncPtr6)(UINT8);
 
 	UINT8 riyaDeviceNum;
 	UINT pointPeriod;
@@ -78,6 +79,6 @@ private:
 	riyaFuncPtr4 RiyaReadyForNextFrame; // library routine Ri_SetIntCh
 	riyaFuncPtr5 TransferFrameToBuffer; // library routine RiSetShowCadr
 	riyaFuncPtr4 StopRiyaDevice;        // library routine RiStopShow
-	riyaFuncPtr6 GetDescriptionStruct;	// RI_GetDevDesc
+	riyaFuncPtr6 GetIDVersionNumber;	// GetVersionID
 };
 

@@ -88,28 +88,31 @@ if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and
             <string>if (instance_exists(oDropDown))
     exit;
 if (os_browser != browser_not_a_browser)
-    {
+{
     show_message_async("Laser output not supported in the web version");
     exit;
-    }
-    
-with (controller)
+}
+   
+if (room = rm_ilda)
+{ 
+    with (controller)
     {
-    if (laseron)
+        if (laseron)
         {
-        laseron = false;
-        frame_surf_refresh = true;
+            laseron = false;
+            frame_surf_refresh = true;
         }
-    else if (ds_exists(dac, ds_type_list))
+        else if (ds_exists(dac, ds_type_list))
         {
-        laseron = true;
-        refresh_laser_flag = true;
+            laseron = true;
+            frame_surf_refresh = true;
         }
-    else
+        else
         {
-        show_message_async("You have not selected a DAC, please go to settings and set up the connection.");
+            show_message_async("You have not selected a DAC, please go to settings and set up the connection.");
         }
     }
+}
 </string>
           </argument>
         </arguments>

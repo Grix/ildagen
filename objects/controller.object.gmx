@@ -120,10 +120,10 @@ output_buffer = -1;
 c_gold = make_colour_rgb(255,220,0);
 
 output_buffer_ready = false;
+output_buffer_next_size = 0;
 dac = -1;
 dac_string = "[None]";
 laseron = false;
-refresh_laser_flag = false;
 bufdeleteflag = false;
 el_id = 0;
 projectfps = 30;
@@ -954,7 +954,7 @@ if (keyboard_check_pressed(vk_tab))
             <kind>1</kind>
             <string>///laser output
 
-if (laseron) &amp;&amp; (ds_exists(dac,ds_type_list))
+if (laseron)
 {
     if (!ds_exists(dac,ds_type_list))
     {
@@ -963,7 +963,8 @@ if (laseron) &amp;&amp; (ds_exists(dac,ds_type_list))
         dac = -1;
         dac_string = "[None]";
     }
-    output_frame();
+    else
+        output_frame();
 }
 </string>
           </argument>
