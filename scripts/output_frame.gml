@@ -8,9 +8,8 @@ if (output_buffer_ready)
     output_buffer = output_buffer_next;
     dac_send_frame(dac, output_buffer, output_buffer_next_size);
     output_buffer_ready = false;
+    frame_surf_refresh = false;
 }
-
-frame_surf_refresh = false;
 
 maxpoints = 0;
 

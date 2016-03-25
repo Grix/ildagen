@@ -99,12 +99,15 @@ for (t_i = 0; t_i < listsize; t_i++)
                     new_point = 0;
                     }
                 }
-            ds_list_add(list_raw,xp);
-            ds_list_add(list_raw,yp);
-            ds_list_add(list_raw,1);
-            ds_list_add(list_raw,0);
-            maxpoints_static++;
-            repeat (controller.opt_maxdwell-1)
+            repeat (round(controller.opt_maxdwell/2))
+                {
+                ds_list_add(list_raw,xp);
+                ds_list_add(list_raw,yp);
+                ds_list_add(list_raw,1);
+                ds_list_add(list_raw,0);
+                maxpoints_static++;
+                }
+            repeat (round(controller.opt_maxdwell/2))
                 {
                 //dwell on blanking end
                 ds_list_add(list_raw,xp);

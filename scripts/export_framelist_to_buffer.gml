@@ -81,17 +81,19 @@ for (i = 0; i <= t_list_raw_size; i += 4)
                         {
                         t_pal_c = make_colour_rgb(controller.pal_list[| n*3], controller.pal_list[| n*3+1], controller.pal_list[| n*3+2]);
                         t_diff = colors_compare_cie94(c, t_pal_c);
-                        if (t_diff < 3)
+                        if (t_diff < diff_best)
                             {
                             c_n = n;
-                            break;
-                            }
-                        else if (t_diff < diff_best)
-                            {
-                            c_n = n;
+                            if (t_diff == 0)
+                                break;
                             diff_best = t_diff;
                             }
                         }
+                    log("---col")
+                    log(c_n)
+                    log(t_pal_c)
+                    log(c)
+                    log(t_diff)
                     c_map[? c] = c_n;
                     c = c_n;
                     }
