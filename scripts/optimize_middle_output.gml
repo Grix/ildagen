@@ -21,10 +21,7 @@ repeat (maxpointswanted)
     //writing point
     buffer_write(ilda_buffer,buffer_u16,xp);
     buffer_write(ilda_buffer,buffer_u16,yp);
-    buffer_write(ilda_buffer,buffer_u8,0);
-    buffer_write(ilda_buffer,buffer_u8,0);
-    buffer_write(ilda_buffer,buffer_u8,0);
-    buffer_write(ilda_buffer,buffer_u8,0);
+    buffer_write(ilda_buffer,buffer_u32,0);
     }
 
 maxpoints = maxpointswanted;

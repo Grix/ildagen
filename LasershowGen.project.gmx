@@ -1059,6 +1059,8 @@
     <script>scripts\save_settings.gml</script>
     <script>scripts\load_settings.gml</script>
     <script>scripts\blank_script.gml</script>
+    <script>scripts\make_color_rgb_fast.gml</script>
+    <script>scripts\colour_get_blue_fast.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>

@@ -16,8 +16,8 @@ var t_i;
 for (t_i = 0; t_i < listsize; t_i++)
     {
     currentpos += currentposadjust;
-    //getting values from element list
     
+    //getting values from element list
     xp = xo+ds_list_find_value(list_id,currentpos);
     yp = $ffff-(yo+ds_list_find_value(list_id,currentpos+1));
     bl = ds_list_find_value(list_id,currentpos+2);
@@ -99,6 +99,7 @@ for (t_i = 0; t_i < listsize; t_i++)
                     new_point = 0;
                     }
                 }
+            //dwell on blanking end
             repeat (round(controller.opt_maxdwell/2))
                 {
                 ds_list_add(list_raw,xp);
@@ -109,7 +110,7 @@ for (t_i = 0; t_i < listsize; t_i++)
                 }
             repeat (round(controller.opt_maxdwell/2))
                 {
-                //dwell on blanking end
+                
                 ds_list_add(list_raw,xp);
                 ds_list_add(list_raw,yp);
                 ds_list_add(list_raw,bl);

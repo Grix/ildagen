@@ -28,6 +28,19 @@
             <string>version = "1.2.2";
 versiondate = "2016-03-06";
 
+//tesing benchmark
+/*time = get_timer();
+log("---")
+repeat (50000)
+    col = colour_get_blue(c_gray);
+log(get_timer()-time);
+time = get_timer();
+repeat (50000)
+    col = c_gray &gt;&gt; 16;
+log(get_timer()-time);
+log(colour_get_blue(c_gray))
+log(c_gray &gt;&gt; 16)*/
+
 if (debug_mode)
     {
     show_debug_overlay(1);
