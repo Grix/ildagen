@@ -28,19 +28,6 @@
             <string>version = "1.2.2";
 versiondate = "2016-03-06";
 
-//tesing benchmark
-/*time = get_timer();
-log("---")
-repeat (50000)
-    col = colour_get_blue(c_gray);
-log(get_timer()-time);
-time = get_timer();
-repeat (50000)
-    col = c_gray &gt;&gt; 16;
-log(get_timer()-time);
-log(colour_get_blue(c_gray))
-log(c_gray &gt;&gt; 16)*/
-
 if (debug_mode)
     {
     show_debug_overlay(1);
@@ -208,8 +195,11 @@ global.loading_importfont = 0;
 global.loading_importildaseq = 0;
 
 opt_maxdist = 1500;
-opt_maxdwell = 4;
+opt_maxdwell = 5;
+opt_maxdwell_blank = 1;
 opt_scanspeed = 30000;
+invert_y = false;
+invert_x = false;
 projector = 0;
 projector_name = "default";
 
@@ -342,6 +332,7 @@ if (os_browser == browser_not_a_browser)
     scan_dacs();
     }
 
+benchmark();
 </string>
           </argument>
         </arguments>
@@ -968,7 +959,7 @@ if (keyboard_check_pressed(vk_tab))
             <kind>1</kind>
             <string>///laser output
 
-if (laseron)
+if (room == rm_ilda) &amp;&amp; (laseron)
 {
     if (!ds_exists(dac,ds_type_list))
     {
@@ -1382,6 +1373,13 @@ if (new_id == getint)
             case "maxdwell":
               {
               opt_maxdwell = ds_map_find_value(async_load, "value");
+              save_settings();
+              
+              break;
+              }  
+            case "maxdwell_blank":
+              {
+              opt_maxdwell_blank = ds_map_find_value(async_load, "value");
               save_settings();
               
               break;
@@ -2014,7 +2012,7 @@ menu_open = 0;
 dialog_open = 0;
 playing = 0;
 
-if (laseron)
+if (room == rm_options) &amp;&amp; (laseron)
     dac_blank_and_center(dac);
 </string>
           </argument>

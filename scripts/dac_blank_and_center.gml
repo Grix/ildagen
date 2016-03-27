@@ -1,5 +1,7 @@
 ///dac_blank_and_center(dac list)
 
+log("blanking");
+
 active_dac = argument0;
 
 if (active_dac[| 1] == 0) //riya

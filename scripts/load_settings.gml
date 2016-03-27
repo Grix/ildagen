@@ -5,14 +5,20 @@ ini_open("settings.ini");
         projector = 0;
         ini_write_real("projector_0","scanrate",20000);
         ini_write_real("projector_0","maxdist",1500);
-        ini_write_real("projector_0","maxdwell",4);
+        ini_write_real("projector_0","maxdwell",5);
+        ini_write_real("projector_0","maxdwell_blank",1);
         ini_write_real("projector_0", "format", 5);
+        ini_write_real("projector_0", "invert_x", false);
+        ini_write_real("projector_0", "invert_y", false);
         ini_write_real("projector_0", "optimize", 1);
         opt_scanspeed = 20000;
         opt_maxdwell = 4;
+        opt_maxdwell_blank = 3;
         opt_maxdist = 1500;
         exp_format = 5;
         exp_optimize = 1;
+        invert_x = false;
+        invert_y = false;
         ini_write_string("projector_0","name","default");
         ini_write_real("main","projector",0);
         }
@@ -24,19 +30,25 @@ ini_open("settings.ini");
             {
             projector_name = ini_read_string(t_projectorstring, "name", "name_error");
             opt_scanspeed = ini_read_real(t_projectorstring, "scanrate", 20000);
-            opt_maxdwell = ini_read_real(t_projectorstring, "maxdwell", 4);
+            opt_maxdwell = ini_read_real(t_projectorstring, "maxdwell", 5);
+            opt_maxdwell_blank = ini_read_real(t_projectorstring, "maxdwell_blank", 1);
             opt_maxdist = ini_read_real(t_projectorstring, "maxdist", 1500);
             exp_format = ini_read_real(t_projectorstring, "format", 5);
             exp_optimize = ini_read_real(t_projectorstring, "optimize", 1);
+            invert_y = ini_read_real(t_projectorstring, "invert_y", false);
+            invert_x = ini_read_real(t_projectorstring, "invert_x", false);
             }
         else
             {
             ini_write_string(t_projectorstring, "name", "name_error");
             ini_write_real(t_projectorstring, "scanrate", 20000);
             ini_write_real(t_projectorstring, "maxdist", 1500);
-            ini_write_real(t_projectorstring, "maxdwell", 4);
+            ini_write_real(t_projectorstring, "maxdwell", 5);
+            ini_write_real(t_projectorstring, "maxdwell_blank", 1);
             ini_write_real(t_projectorstring, "format", 5);
             ini_write_real(t_projectorstring, "optimize", 1);
+            ini_write_real(t_projectorstring, "invert_x", false);
+            ini_write_real(t_projectorstring, "invert_y", false);
             }
         }
         

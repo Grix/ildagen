@@ -100,7 +100,7 @@ for (t_i = 0; t_i < listsize; t_i++)
                     }
                 }
             //dwell on blanking end
-            repeat (round(controller.opt_maxdwell/2))
+            repeat (controller.opt_maxdwell)
                 {
                 ds_list_add(list_raw,xp);
                 ds_list_add(list_raw,yp);
@@ -108,7 +108,7 @@ for (t_i = 0; t_i < listsize; t_i++)
                 ds_list_add(list_raw,0);
                 maxpoints_static++;
                 }
-            repeat (round(controller.opt_maxdwell/2))
+            repeat (controller.opt_maxdwell_blank)
                 {
                 
                 ds_list_add(list_raw,xp);

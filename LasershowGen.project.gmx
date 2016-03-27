@@ -798,6 +798,7 @@
           <script>scripts\dd_ilda_maxdist.gml</script>
           <script>scripts\dd_ilda_scanspeed.gml</script>
           <script>scripts\dd_ilda_maxdwell.gml</script>
+          <script>scripts\dd_ilda_maxdwell_blank.gml</script>
         </scripts>
         <script>scripts\dropdown_ed.gml</script>
         <script>scripts\dd_ed_custom.gml</script>
@@ -1059,8 +1060,7 @@
     <script>scripts\save_settings.gml</script>
     <script>scripts\load_settings.gml</script>
     <script>scripts\blank_script.gml</script>
-    <script>scripts\make_color_rgb_fast.gml</script>
-    <script>scripts\colour_get_blue_fast.gml</script>
+    <script>scripts\benchmark.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
@@ -1179,11 +1179,14 @@
         <object>objects\obj_comingsoon</object>
         <object>objects\obj_optimize</object>
         <object>objects\obj_autoupdate</object>
+        <object>objects\obj_inverty</object>
+        <object>objects\obj_invertx</object>
         <object>objects\obj_update</object>
         <object>objects\obj_preset</object>
         <object>objects\obj_dacs</object>
         <object>objects\obj_scanrate</object>
         <object>objects\obj_maxdwell</object>
+        <object>objects\obj_maxdwell_blank</object>
         <object>objects\obj_format</object>
         <object>objects\obj_maxtravel</object>
       </objects>

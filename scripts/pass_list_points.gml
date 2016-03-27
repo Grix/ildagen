@@ -114,10 +114,17 @@ for (t_i = 0; t_i < listsize; t_i++)
             ds_list_add(list_raw,0);
             if (controller.exp_optimize)
                 {
-                maxpoints_static++;
-                repeat (controller.opt_maxdwell-1)
+                //dwell on blanking end
+                repeat (controller.opt_maxdwell)
                     {
-                    //dwell on blanking end
+                    ds_list_add(list_raw,xp);
+                    ds_list_add(list_raw,yp);
+                    ds_list_add(list_raw,1);
+                    ds_list_add(list_raw,0);
+                    maxpoints_static++;
+                    }
+                repeat (controller.opt_maxdwell_blank)
+                    {
                     ds_list_add(list_raw,xp);
                     ds_list_add(list_raw,yp);
                     ds_list_add(list_raw,bl);

@@ -12,7 +12,8 @@ layer_list
                 disabled
                 hidden
         layer elements...
-        
+
+CONTROLLER
         
 dac_list
     dac...
@@ -23,7 +24,11 @@ dac_list
             
         
 settings.ini
-/*  ini_write_real("projector_0","scanrate",20000);
-    ini_write_real("projector_0","maxdist",1500);
-    ini_write_real("projector_0","maxdwell",4);
-    ini_write_string("projector_0","name","default");   */
+    ini_write_real(t_projectorstring, "scanrate", opt_scanspeed);
+    ini_write_real(t_projectorstring, "maxdist", opt_maxdist);
+    ini_write_real(t_projectorstring, "maxdwell", opt_maxdwell);
+    ini_write_real(t_projectorstring, "maxdwell_blank", opt_maxdwell_blank);
+    ini_write_real(t_projectorstring, "format", exp_format);
+    ini_write_real(t_projectorstring, "optimize", exp_optimize);
+    
+*/
