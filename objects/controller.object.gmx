@@ -331,8 +331,6 @@ if (os_browser == browser_not_a_browser)
     load_settings();
     scan_dacs();
     }
-
-benchmark();
 </string>
           </argument>
         </arguments>

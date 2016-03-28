@@ -100,14 +100,16 @@ if (ds_list_size(el_list) == 0)
         
 xp_prev = $8000;
 yp_prev = $8000;
+xp_prev_prev = $8001;
+yp_prev_prev = $8001;
 
 //parse elements
 for (i = 0;i < ds_list_size(el_list);i++)
     {
-
-    if (controller.exp_optimize == 1)
+    if (controller.exp_optimize)
         list_id = ds_list_find_value(el_list,order_list[| i]);
-    else list_id = ds_list_find_value(el_list,i); 
+    else 
+        list_id = ds_list_find_value(el_list,i); 
 
     xo = ds_list_find_value(list_id,0);
     yo = ds_list_find_value(list_id,1);
@@ -118,15 +120,8 @@ for (i = 0;i < ds_list_size(el_list);i++)
         {
         if (bl_prev == 0)
             {
-            repeat (controller.opt_maxdwell)
-                {
-                //dwell on blanking start
-                ds_list_add(list_raw,xp);
-                ds_list_add(list_raw,yp);
-                ds_list_add(list_raw,1);
-                ds_list_add(list_raw,0);
-                maxpoints_static++;
-                }
+            xp_prev_prev = xp_prev;
+            yp_prev_prev = yp_prev;
             xp_prev = xp;
             yp_prev = yp;
             }
