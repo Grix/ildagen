@@ -54,7 +54,7 @@ for (t_i = 0; t_i < listsize; t_i++)
         c = ds_list_find_value(list_id,currentpos+3);
         if (bl_prev)
             {
-            //blanking
+            //BLANKING
             maxpoints_static++;
             if (controller.exp_optimize)
                 {
@@ -93,31 +93,33 @@ for (t_i = 0; t_i < listsize; t_i++)
                 //travel first and second half of segment
                 var t_step_dist_x = 0;
                 var t_step_dist_y = 0;
+                var t_xp_now = xp_prev;
+                var t_yp_now = yp_prev;
                 
-                for (i = 0; i < t_n; i++)
+                for (j = 0; j < t_n; j++)
                     {
                     t_step_dist_x += t_trav_dist_x;
                     t_step_dist_y += t_trav_dist_y;
                     
-                    xp_now = xp_prev + t_step_dist_x;
-                    yp_now = yp_prev + t_step_dist_y;
+                    t_xp_now += t_step_dist_x;
+                    t_yp_now += t_step_dist_y;
                     
-                    ds_list_add(list_raw,xp_now);
-                    ds_list_add(list_raw,yp_now);
+                    ds_list_add(list_raw,t_xp_now);
+                    ds_list_add(list_raw,t_yp_now);
                     ds_list_add(list_raw,1);
                     ds_list_add(list_raw,0);
                     maxpoints_static++;
                     }
-                for (i = 1; i < t_n; i++)
+                for (j = 1; j < t_n; j++)
                     {
                     t_step_dist_x -= t_trav_dist_x;
                     t_step_dist_y -= t_trav_dist_y;
                     
-                    xp_now = xp_prev + t_step_dist_x;
-                    yp_now = yp_prev + t_step_dist_y;
+                    t_xp_now += t_step_dist_x;
+                    t_yp_now += t_step_dist_y;
                     
-                    ds_list_add(list_raw,xp_now);
-                    ds_list_add(list_raw,yp_now);
+                    ds_list_add(list_raw,t_xp_now);
+                    ds_list_add(list_raw,t_yp_now);
                     ds_list_add(list_raw,1);
                     ds_list_add(list_raw,0);
                     maxpoints_static++;
@@ -128,17 +130,7 @@ for (t_i = 0; t_i < listsize; t_i++)
                     ds_list_add(list_points,ds_list_size(list_raw)-4);
                     new_point = 0;
                     }
-                }
-            else
-                {
-                ds_list_add(list_raw,xp);
-                ds_list_add(list_raw,yp);
-                ds_list_add(list_raw,1);
-                ds_list_add(list_raw,0);
-                }
-                
-            if (controller.exp_optimize)
-                {
+                    
                 //dwell on blanking end
                 repeat (controller.opt_maxdwell)
                     {
@@ -157,6 +149,14 @@ for (t_i = 0; t_i < listsize; t_i++)
                     maxpoints_static++;
                     }
                 }
+            else
+                {
+                ds_list_add(list_raw,xp);
+                ds_list_add(list_raw,yp);
+                ds_list_add(list_raw,1);
+                ds_list_add(list_raw,0);
+                }
+                
             }
         else if (controller.exp_optimize)
             {
