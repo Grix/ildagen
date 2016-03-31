@@ -8,6 +8,7 @@ polarity_list = ds_list_create();
 xp_prev = $8000;
 yp_prev = $8000;
 bl_prev = 1;
+c_prev = 0;
 
 outside_flag = 0;
 lit_length = 0;
@@ -143,16 +144,16 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
             //dwell on blanking start
             repeat (controller.opt_maxdwell_blank)
                 {
-                ds_list_add(list_raw,xp);
-                ds_list_add(list_raw,yp);
+                ds_list_add(list_raw,xp_prev);
+                ds_list_add(list_raw,yp_prev);
                 ds_list_add(list_raw,0);
                 ds_list_add(list_raw,c_prev);
                 maxpoints_static++;
                 }
             repeat ( max(controller.opt_maxdwell_blank, controller.opt_maxdwell - controller.opt_maxdwell_blank) )
                 {
-                ds_list_add(list_raw,xp);
-                ds_list_add(list_raw,yp);
+                ds_list_add(list_raw,xp_prev);
+                ds_list_add(list_raw,yp_prev);
                 ds_list_add(list_raw,1);
                 ds_list_add(list_raw,0);
                 maxpoints_static++;
@@ -163,16 +164,16 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
             //dwell on blanking start
             repeat (controller.opt_maxdwell_blank)
                 {
-                ds_list_add(list_raw,xp);
-                ds_list_add(list_raw,yp);
+                ds_list_add(list_raw,xp_prev);
+                ds_list_add(list_raw,yp_prev);
                 ds_list_add(list_raw,0);
                 ds_list_add(list_raw,c_prev);
                 maxpoints_static++;
                 }
             repeat ( max(controller.opt_maxdwell_blank, controller.opt_maxdwell - controller.opt_maxdwell_blank) )
                 {
-                ds_list_add(list_raw,xp);
-                ds_list_add(list_raw,yp);
+                ds_list_add(list_raw,xp_prev);
+                ds_list_add(list_raw,yp_prev);
                 ds_list_add(list_raw,1);
                 ds_list_add(list_raw,0);
                 maxpoints_static++;

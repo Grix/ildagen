@@ -1,5 +1,5 @@
 //tesing benchmark
-buf = buffer_create(40000,buffer_fixed,1);
+/*buf = buffer_create(40000,buffer_fixed,1);
 time = get_timer();
 log("---")
 repeat (3000)
@@ -7,7 +7,7 @@ repeat (3000)
     buf = time;
     time = buf;
     }
-log(get_timer()-time);
+log(get_timer()-time);*/
 /*time = get_timer();
 repeat (10000)
     {

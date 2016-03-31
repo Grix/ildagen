@@ -1,6 +1,7 @@
 var t_dist, t_xp, t_yp, t_xpn, t_ypn, t_c, t_vectorx, t_vectory;
 var t_totalrem = 0;
-maxpointswanted = floor(controller.opt_scanspeed/controller.projectfps)-maxpoints_static; 
+var t_totalpointswanted = floor(controller.opt_scanspeed/controller.projectfps);
+maxpointswanted = t_totalpointswanted-maxpoints_static; 
 lengthwanted = abs(lit_length/maxpointswanted);
 
 //TODO fix this shit: reducing points when there is also lit segments
@@ -30,7 +31,7 @@ lengthwanted = abs(lit_length/maxpointswanted);
                 maxpoints_static--;
                 }
             }
-        maxpointswanted = floor(controller.opt_scanspeed/controller.projectfps)-maxpoints_static; 
+        maxpointswanted = t_totalpointswanted-maxpoints_static; 
         lengthwanted = abs(lit_length/maxpointswanted);
         }
     }*/
@@ -44,7 +45,7 @@ if (lengthwanted > controller.opt_maxdist)
         }
     }
 
-if (lit_length == 0) and ds_list_size(list_points)
+if (lit_length == 0) and (ds_list_size(list_points))
     {
     //adjust existing points
     if (maxpointswanted < 0)
@@ -134,7 +135,7 @@ else
                 maxpoints_static--;
                 }
             }
-        maxpointswanted = floor(controller.opt_scanspeed/controller.projectfps)-maxpoints_static; 
+        maxpointswanted = t_totalpointswanted-maxpoints_static; 
         lengthwanted = abs(lit_length/maxpointswanted);
         }
     
@@ -204,16 +205,16 @@ else
     }
     
 //final removal or adding of ending points to match perfectly
-if (ds_list_size(list_raw)/4-1 > floor(controller.opt_scanspeed/controller.projectfps))
+if (ds_list_size(list_raw)/4-1 > t_totalpointswanted)
     {
-    while ( ds_list_size(list_raw)/4-1 > floor(controller.opt_scanspeed/controller.projectfps)) and 
-            (list_raw[| ds_list_size(list_raw)-4] == $8000) and  
-            (list_raw[| ds_list_size(list_raw)-3] == $8000) and 
-            (list_raw[| ds_list_size(list_raw)-2] == 1)
+    while ( ds_list_size(list_raw)/4-1 > t_totalpointswanted) and 
+            (list_raw[| 0] == $8000) and  
+            (list_raw[| 1] == $8000) and 
+            (list_raw[| 2] == 1)
         {
         maxpoints_static--;
         repeat (4)
-            ds_list_delete(list_raw,ds_list_size(list_raw)-1);
+            ds_list_delete(list_raw,0);
         }
     if (controller.opt_warning_flag != 1)
         {
@@ -221,11 +222,11 @@ if (ds_list_size(list_raw)/4-1 > floor(controller.opt_scanspeed/controller.proje
         controller.opt_warning_flag = 1;
         }
     }
-else while (ds_list_size(list_raw)/4 < floor(controller.opt_scanspeed/controller.projectfps))
+else while (ds_list_size(list_raw)/4 < t_totalpointswanted)
     {
-    ds_list_add(list_raw,$8000);
-    ds_list_add(list_raw,$8000);
-    ds_list_add(list_raw,1);
-    ds_list_add(list_raw,0);
+    ds_list_insert(list_raw,0,0);
+    ds_list_insert(list_raw,0,1);
+    ds_list_insert(list_raw,0,$8000);
+    ds_list_insert(list_raw,0,$8000);
     }
 
