@@ -175,7 +175,7 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
         var t_xp_now = xp_prev;
         var t_yp_now = yp_prev;
         
-        for (j = 0; j < t_n; j++)
+        for (k = 0; k < t_n; k++)
             {
             t_step_dist_x += t_trav_dist_x;
             t_step_dist_y += t_trav_dist_y;
@@ -189,7 +189,7 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
             ds_list_add(list_raw,0);
             maxpoints_static++;
             }
-        for (j = 1; j < t_n; j++)
+        for (k = 1; k < t_n; k++)
             {
             t_step_dist_x -= t_trav_dist_x;
             t_step_dist_y -= t_trav_dist_y;

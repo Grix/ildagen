@@ -17,8 +17,12 @@ https://en.wikipedia.org/wiki/Color_difference
 
 // INITIALISE EVERYTHING
 
+
 var chqColorA = argument0;
 var chqColorB = argument1;
+
+if (chqColorA == chqColorB) return 0;
+
 var chqSimilarity = -1;
 var chqR1 = color_get_red(chqColorA);
 var chqG1 = color_get_green(chqColorA);

@@ -89,11 +89,6 @@ for (i = 0; i <= t_list_raw_size; i += 4)
                             diff_best = t_diff;
                             }
                         }
-                    log("---col")
-                    log(c_n)
-                    log(t_pal_c)
-                    log(c)
-                    log(t_diff)
                     c_map[? c] = c_n;
                     c = c_n;
                     }

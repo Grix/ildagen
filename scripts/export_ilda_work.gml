@@ -1,12 +1,6 @@
 for (j = global.loading_current; j < global.loading_end;j++)
     {
-    if (get_timer()-global.loadingtimeprev >= 100000)
-        {
-        global.loading_current = j;
-        global.loadingtimeprev = get_timer();
-        return 0;
-        }
-        
+    log(j)
     el_list = ds_list_find_value(frame_list,j);
     
     framepost = j;
@@ -84,6 +78,14 @@ for (j = global.loading_current; j < global.loading_end;j++)
     maxpointsa[1] = maxpoints & 255;
     buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
     buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
+    
+    if (get_timer()-global.loadingtimeprev >= 100000)
+        {
+        j++;
+        global.loading_current = j;
+        global.loadingtimeprev = get_timer();
+        return 0;
+        }
 
     }
     

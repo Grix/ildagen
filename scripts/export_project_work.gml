@@ -1,11 +1,5 @@
 for (j = global.loading_current; j < global.loading_end;j++)
     {
-    if (get_timer()-global.loadingtimeprev >= 100000)
-        {
-        global.loading_current = j;
-        global.loadingtimeprev = get_timer();
-        return 0;
-        }
         
     correctframe = j;
     framepost = j-startframe;
@@ -213,6 +207,14 @@ for (j = global.loading_current; j < global.loading_end;j++)
         ds_list_destroy(ds_list_find_value(el_list,i));
         }
     ds_list_destroy(el_list);
+    
+    if (get_timer()-global.loadingtimeprev >= 100000)
+        {
+        j++;
+        global.loading_current = j;
+        global.loadingtimeprev = get_timer();
+        return 0;
+        }
     }
     
 
