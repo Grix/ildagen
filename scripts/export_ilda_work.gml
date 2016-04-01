@@ -1,6 +1,5 @@
 for (j = global.loading_current; j < global.loading_end;j++)
     {
-    log(j)
     el_list = ds_list_find_value(frame_list,j);
     
     framepost = j;

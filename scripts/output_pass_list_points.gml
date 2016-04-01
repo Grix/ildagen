@@ -12,8 +12,6 @@ else
     }
 maxpoints_static++;
 
-var t_xpprevprev = $8000;
-var t_ypprevprev = $8000;
 var t_i;
 for (t_i = 0; t_i < listsize; t_i++)
     {
@@ -38,11 +36,6 @@ for (t_i = 0; t_i < listsize; t_i++)
     
     if (bl)
         {
-        if (bl_prev == 0)
-            {
-            xp_prev = xp;
-            yp_prev = yp;
-            }
         bl_prev = 1;
         continue;
         }
@@ -53,30 +46,70 @@ for (t_i = 0; t_i < listsize; t_i++)
             {
             //BLANKING
             maxpoints_static++;
+        
             opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
-            if (opt_dist < 10)
+            if (opt_dist < 10) //connecting segments
                 {
-                repeat (controller.opt_maxdwell)
+                //dwell on blanking start
+                repeat (controller.opt_maxdwell_blank)
                     {
-                    //dwell on start
                     ds_list_add(list_raw,xp_prev);
                     ds_list_add(list_raw,yp_prev);
+                    ds_list_add(list_raw,0);
+                    ds_list_add(list_raw,c_prev);
+                    maxpoints_static++;
+                    }
+                repeat (controller.opt_maxdwell - controller.opt_maxdwell_blank*2 )
+                    {
+                    ds_list_add(list_raw,xp_prev);
+                    ds_list_add(list_raw,yp);
+                    ds_list_add(list_raw,1);
+                    ds_list_add(list_raw,0);
+                    maxpoints_static++;
+                    }
+                repeat (controller.opt_maxdwell_blank)
+                    {
+                    ds_list_add(list_raw,xp);
+                    ds_list_add(list_raw,yp);
                     ds_list_add(list_raw,0);
                     ds_list_add(list_raw,c);
                     maxpoints_static++;
                     }
                 }
-            else
+            else //not connecting segments
                 {
-                repeat (controller.opt_maxdwell)
+                //dwell on blanking start
+                if (c_prev != c_black)
                     {
-                    //dwell on start
+                    repeat (controller.opt_maxdwell_blank)
+                        {
+                        ds_list_add(list_raw,xp_prev);
+                        ds_list_add(list_raw,yp_prev);
+                        ds_list_add(list_raw,0);
+                        ds_list_add(list_raw,c_prev);
+                        maxpoints_static++;
+                        }
+                    }
+                else
+                    {
+                    repeat (controller.opt_maxdwell_blank)
+                        {
+                        ds_list_add(list_raw,xp_prev);
+                        ds_list_add(list_raw,yp_prev);
+                        ds_list_add(list_raw,1);
+                        ds_list_add(list_raw,0);
+                        maxpoints_static++;
+                        }
+                    }
+                repeat ( max(controller.opt_maxdwell_blank, controller.opt_maxdwell - controller.opt_maxdwell_blank) )
+                    {
                     ds_list_add(list_raw,xp_prev);
                     ds_list_add(list_raw,yp_prev);
                     ds_list_add(list_raw,1);
                     ds_list_add(list_raw,0);
                     maxpoints_static++;
                     }
+                
                 new_point = 1;
                 
                 //travel
@@ -135,14 +168,8 @@ for (t_i = 0; t_i < listsize; t_i++)
                     maxpoints_static++;
                     }
                     
-                if (new_point == 1)
-                    {
-                    ds_list_add(list_points,ds_list_size(list_raw)-4);
-                    new_point = 0;
-                    }
-                    
                 //dwell on blanking end
-                repeat (controller.opt_maxdwell)
+                repeat ( max(controller.opt_maxdwell_blank, controller.opt_maxdwell - controller.opt_maxdwell_blank) )
                     {
                     ds_list_add(list_raw,xp);
                     ds_list_add(list_raw,yp);
@@ -154,10 +181,11 @@ for (t_i = 0; t_i < listsize; t_i++)
                     {
                     ds_list_add(list_raw,xp);
                     ds_list_add(list_raw,yp);
-                    ds_list_add(list_raw,bl);
+                    ds_list_add(list_raw,0);
                     ds_list_add(list_raw,c);
                     maxpoints_static++;
                     }
+                
                 }
             }
         else

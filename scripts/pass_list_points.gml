@@ -36,16 +36,6 @@ for (t_i = 0; t_i < listsize; t_i++)
     
     if (bl)
         {
-        if (controller.exp_optimize)
-            {
-            if (bl_prev == 0)
-                {
-                //xp_prev_prev = xp_prev;
-                //yp_prev_prev = yp_prev;
-                xp_prev = xp;
-                yp_prev = yp;
-                }
-            }
         bl_prev = 1;
         continue;
         }
@@ -91,13 +81,27 @@ for (t_i = 0; t_i < listsize; t_i++)
                 else //not connecting segments
                     {
                     //dwell on blanking start
-                    repeat (controller.opt_maxdwell_blank) //todo NOT if start of frame
+                    if (c_prev != c_black)
                         {
-                        ds_list_add(list_raw,xp_prev);
-                        ds_list_add(list_raw,yp_prev);
-                        ds_list_add(list_raw,0);
-                        ds_list_add(list_raw,c_prev);
-                        maxpoints_static++;
+                        repeat (controller.opt_maxdwell_blank)
+                            {
+                            ds_list_add(list_raw,xp_prev);
+                            ds_list_add(list_raw,yp_prev);
+                            ds_list_add(list_raw,0);
+                            ds_list_add(list_raw,c_prev);
+                            maxpoints_static++;
+                            }
+                        }
+                    else
+                        {
+                        repeat (controller.opt_maxdwell_blank)
+                            {
+                            ds_list_add(list_raw,xp_prev);
+                            ds_list_add(list_raw,yp_prev);
+                            ds_list_add(list_raw,1);
+                            ds_list_add(list_raw,0);
+                            maxpoints_static++;
+                            }
                         }
                     repeat ( max(controller.opt_maxdwell_blank, controller.opt_maxdwell - controller.opt_maxdwell_blank) )
                         {
@@ -164,12 +168,6 @@ for (t_i = 0; t_i < listsize; t_i++)
                         ds_list_add(list_raw,1);
                         ds_list_add(list_raw,0);
                         maxpoints_static++;
-                        }
-                        
-                    if (new_point == 1)
-                        {
-                        ds_list_add(list_points,ds_list_size(list_raw)-4);
-                        new_point = 0;
                         }
                         
                     //dwell on blanking end

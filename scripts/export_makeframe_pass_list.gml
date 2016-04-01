@@ -236,12 +236,6 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
                 ds_list_add(list_raw,0);
                 maxpoints_static++;
                 }
-                
-            if (new_point == 1)
-                {
-                ds_list_add(list_points,ds_list_size(list_raw)-4);
-                new_point = 0;
-                }
             }
         }
     else
