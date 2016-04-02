@@ -12,14 +12,22 @@ else
         var t_pos_scale = 1;
         var t_fullrange = $FFFF;
     }
+    
+var t_blankshift = controller.opt_blankshift*4;
 
 for (i = 0; i <= t_list_raw_size; i += 4)
     {
     //writing point
+    
     xp = list_raw[| i];
     yp = list_raw[| i+1];
-    bl = list_raw[| i+2];
-    c = list_raw[| i+3];
+    bl = list_raw[| i+t_blankshift+2];
+    c = list_raw[| i+t_blankshift+3];
+    if (is_undefined(c))
+        {
+        c = 0;
+        bl = 1;
+        }
     
     
     //x

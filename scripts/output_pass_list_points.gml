@@ -12,6 +12,8 @@ else
     }
 maxpoints_static++;
 
+var t_maxdwell_blank_points = controller.opt_maxdwell_blank; //round(1/controller.opt_scanspeed*1000/controller.opt_maxdwell_blank)
+
 var t_i;
 for (t_i = 0; t_i < listsize; t_i++)
     {
@@ -51,7 +53,7 @@ for (t_i = 0; t_i < listsize; t_i++)
             if (opt_dist < 10) //connecting segments
                 {
                 //dwell on blanking start
-                repeat (controller.opt_maxdwell_blank)
+                repeat (t_maxdwell_blank_points)
                     {
                     ds_list_add(list_raw,xp_prev);
                     ds_list_add(list_raw,yp_prev);
@@ -59,7 +61,7 @@ for (t_i = 0; t_i < listsize; t_i++)
                     ds_list_add(list_raw,c_prev);
                     maxpoints_static++;
                     }
-                repeat (controller.opt_maxdwell - controller.opt_maxdwell_blank*2 )
+                repeat (controller.opt_maxdwell - t_maxdwell_blank_points*2 )
                     {
                     ds_list_add(list_raw,xp_prev);
                     ds_list_add(list_raw,yp);
@@ -67,7 +69,7 @@ for (t_i = 0; t_i < listsize; t_i++)
                     ds_list_add(list_raw,0);
                     maxpoints_static++;
                     }
-                repeat (controller.opt_maxdwell_blank)
+                repeat (t_maxdwell_blank_points)
                     {
                     ds_list_add(list_raw,xp);
                     ds_list_add(list_raw,yp);
@@ -81,7 +83,7 @@ for (t_i = 0; t_i < listsize; t_i++)
                 //dwell on blanking start
                 if (c_prev != c_black)
                     {
-                    repeat (controller.opt_maxdwell_blank)
+                    repeat (t_maxdwell_blank_points)
                         {
                         ds_list_add(list_raw,xp_prev);
                         ds_list_add(list_raw,yp_prev);
@@ -92,7 +94,7 @@ for (t_i = 0; t_i < listsize; t_i++)
                     }
                 else
                     {
-                    repeat (controller.opt_maxdwell_blank)
+                    repeat (t_maxdwell_blank_points)
                         {
                         ds_list_add(list_raw,xp_prev);
                         ds_list_add(list_raw,yp_prev);
@@ -101,7 +103,7 @@ for (t_i = 0; t_i < listsize; t_i++)
                         maxpoints_static++;
                         }
                     }
-                repeat ( max(controller.opt_maxdwell_blank, controller.opt_maxdwell - controller.opt_maxdwell_blank) )
+                repeat ( max(t_maxdwell_blank_points, controller.opt_maxdwell - t_maxdwell_blank_points) )
                     {
                     ds_list_add(list_raw,xp_prev);
                     ds_list_add(list_raw,yp_prev);
@@ -169,7 +171,7 @@ for (t_i = 0; t_i < listsize; t_i++)
                     }
                     
                 //dwell on blanking end
-                repeat ( max(controller.opt_maxdwell_blank, controller.opt_maxdwell - controller.opt_maxdwell_blank) )
+                repeat ( max(t_maxdwell_blank_points, controller.opt_maxdwell - t_maxdwell_blank_points) )
                     {
                     ds_list_add(list_raw,xp);
                     ds_list_add(list_raw,yp);
@@ -177,7 +179,7 @@ for (t_i = 0; t_i < listsize; t_i++)
                     ds_list_add(list_raw,0);
                     maxpoints_static++;
                     }
-                repeat (controller.opt_maxdwell_blank)
+                repeat (t_maxdwell_blank_points)
                     {
                     ds_list_add(list_raw,xp);
                     ds_list_add(list_raw,yp);

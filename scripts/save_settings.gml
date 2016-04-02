@@ -8,6 +8,7 @@ with (controller)
     ini_write_real(t_projectorstring, "maxdist", opt_maxdist);
     ini_write_real(t_projectorstring, "maxdwell", opt_maxdwell);
     ini_write_real(t_projectorstring, "maxdwell_blank", opt_maxdwell_blank);
+    ini_write_real(t_projectorstring, "blankshift", opt_blankshift);
     ini_write_real(t_projectorstring, "format", exp_format);
     ini_write_real(t_projectorstring, "optimize", exp_optimize);
     ini_write_real(t_projectorstring, "invert_y", invert_y);

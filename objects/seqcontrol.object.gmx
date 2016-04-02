@@ -603,7 +603,9 @@ if (new_id == getint)
             {
             projectfps = clamp(ds_map_find_value(async_load, "value"),1,999);
             controller.projectfps = projectfps;
-            
+            room_speed = projectfps;
+            while (room_speed &lt; 60)
+                room_speed += projectfps;
             break;
             }
           case "audioshift":

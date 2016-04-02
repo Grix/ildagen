@@ -1181,6 +1181,7 @@
         <object>objects\obj_scanrate</object>
         <object>objects\obj_maxdwell</object>
         <object>objects\obj_maxdwell_blank</object>
+        <object>objects\obj_blankshift</object>
         <object>objects\obj_format</object>
         <object>objects\obj_maxtravel</object>
       </objects>

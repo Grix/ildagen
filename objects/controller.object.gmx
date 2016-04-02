@@ -120,11 +120,14 @@ blank_frame = buffer_create(8, buffer_fixed, 1);
 
 c_gold = make_colour_rgb(255,220,0);
 
+frameskip = 0;
+frameskip_time = 0;
 output_buffer_ready = false;
 output_buffer_next_size = 0;
 dac = -1;
 dac_string = "[None]";
 laseron = false;
+laseronfirst = false;
 bufdeleteflag = false;
 el_id = 0;
 projectfps = 30;
@@ -197,6 +200,7 @@ global.loading_importildaseq = 0;
 opt_maxdist = 1500;
 opt_maxdwell = 5;
 opt_maxdwell_blank = 1;
+opt_blankshift = 0;
 opt_scanspeed = 30000;
 invert_y = false;
 invert_x = false;
@@ -708,30 +712,6 @@ if (keyboard_check(ord('S'))) or (sgridshow == 1)
             move_snap(512/controller.sgridnum,512/controller.sgridnum);
         }
     }
-    
-if (playing == 1)
-    {
-    framehr += delta_time/1000000*seqcontrol.projectfps*seqcontrol.playbackspeed;
-    if (framehr &gt; maxframes-0.5)
-        framehr-= maxframes;
-    frame = round(framehr);
-    if (frame &lt; 1)
-        frame = 0;
-    if (frame != frameprev)
-        {
-        frame_surf_refresh = 1;
-        }
-    
-    if !ds_list_empty(semaster_list)
-        {
-        update_semasterlist_flag = 1;
-        }
-        
-    if (frameprev != 0) and (frame == 0) and (seqcontrol.song)
-        {
-        FMODInstanceSetPosition(seqcontrol.songinstance,tlx/seqcontrol.projectfps*1000/FMODSoundGetLength(seqcontrol.song));
-        }
-    }
 
 if (ds_list_size(el_list) &gt; 0)
     {
@@ -955,7 +935,30 @@ if (keyboard_check_pressed(vk_tab))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///laser output
+            <string>///timing and laser output
+if (playing == 1)
+    {
+    framehr += delta_time/1000000*seqcontrol.projectfps*seqcontrol.playbackspeed;
+    if (framehr &gt; maxframes-0.5)
+        framehr-= maxframes;
+    frame = round(framehr);
+    if (frame &lt; 1)
+        frame = 0;
+    if (frame != frameprev)
+        {
+        frame_surf_refresh = 1;
+        }
+    
+    if !ds_list_empty(semaster_list)
+        {
+        update_semasterlist_flag = 1;
+        }
+        
+    if (frameprev != 0) and (frame == 0) and (seqcontrol.song)
+        {
+        FMODInstanceSetPosition(seqcontrol.songinstance,tlx/seqcontrol.projectfps*1000/FMODSoundGetLength(seqcontrol.song));
+        }
+    }
 
 if (room == rm_ilda) &amp;&amp; (laseron)
 {
@@ -1369,6 +1372,13 @@ if (new_id == getint)
               
               break;
               }
+            case "blankshift":
+              {
+              opt_blankshift = ds_map_find_value(async_load, "value");
+              save_settings();
+              
+              break;
+              }
             case "maxdwell":
               {
               opt_maxdwell = ds_map_find_value(async_load, "value");
@@ -1719,6 +1729,9 @@ if (new_id == getint)
               {
               seqcontrol.projectfps = clamp(ds_map_find_value(async_load, "value"),1,999);
               projectfps = seqcontrol.projectfps;
+              room_speed = projectfps;
+              while (room_speed &lt; 60)
+                room_speed += projectfps;
               refresh_miniaudio_flag = 1;
               
               break;
@@ -2011,8 +2024,21 @@ menu_open = 0;
 dialog_open = 0;
 playing = 0;
 
-if (room == rm_options) &amp;&amp; (laseron)
-    dac_blank_and_center(dac);
+if (room == rm_options)
+    {
+    if (laseron)
+        {
+        dac_blank_and_center(dac);
+        laseronfirst = true;
+        }
+    }
+
+if (room != rm_loading)
+    {
+    room_speed = seqcontrol.projectfps;
+    while (room_speed &lt; 60)
+    room_speed += seqcontrol.projectfps;
+    }
 </string>
           </argument>
         </arguments>
