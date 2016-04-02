@@ -1,7 +1,7 @@
 output_buffer_next_size = ds_list_size(list_raw)/4;
 var t_list_raw_size = ds_list_size(list_raw)-4;
 
-if (dac[| 1] == 0)
+if (controller.dac[| 1] == 0)
     {
         //riya, 12bit
         var t_pos_scale = $FFF/$FFFF;
@@ -22,7 +22,7 @@ for (i = 0; i <= t_list_raw_size; i += 4)
     xp = list_raw[| i];
     yp = list_raw[| i+1];
     bl = list_raw[| i+t_blankshift+2];
-    c = list_raw[| i+t_blankshift+3];
+    c  = list_raw[| i+t_blankshift+3];
     if (is_undefined(c))
         {
         c = 0;
@@ -31,12 +31,12 @@ for (i = 0; i <= t_list_raw_size; i += 4)
     
     
     //x
-    if (invert_x)
+    if (controller.invert_x)
         buffer_write(output_buffer_next,buffer_u16,t_fullrange-xp*t_pos_scale);
     else
         buffer_write(output_buffer_next,buffer_u16,xp*t_pos_scale);
     //y
-    if (invert_y)
+    if (controller.invert_y)
         buffer_write(output_buffer_next,buffer_u16,t_fullrange-yp*t_pos_scale);
     else
         buffer_write(output_buffer_next,buffer_u16,yp*t_pos_scale);

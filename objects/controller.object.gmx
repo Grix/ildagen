@@ -936,6 +936,8 @@ if (keyboard_check_pressed(vk_tab))
           <argument>
             <kind>1</kind>
             <string>///timing and laser output
+if (room != rm_ilda) exit;
+
 if (playing == 1)
     {
     framehr += delta_time/1000000*seqcontrol.projectfps*seqcontrol.playbackspeed;
@@ -960,7 +962,7 @@ if (playing == 1)
         }
     }
 
-if (room == rm_ilda) &amp;&amp; (laseron)
+if (laseron)
 {
     if (!ds_exists(dac,ds_type_list))
     {
@@ -2020,6 +2022,7 @@ else if (ds_map_find_value(async_load, "id") == file)
             <kind>1</kind>
             <string>refresh_miniaudio_flag = 1;
 frame_surf_refresh = 1;
+laseronfirst = true;
 menu_open = 0;
 dialog_open = 0;
 playing = 0;

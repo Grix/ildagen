@@ -1031,6 +1031,7 @@
       <script>scripts\dac_blank_and_center.gml</script>
       <scripts name="output">
         <script>scripts\output_frame.gml</script>
+        <script>scripts\output_frame_seq.gml</script>
         <script>scripts\optimize_middle_output.gml</script>
         <script>scripts\output_makeframe_pass_list.gml</script>
         <script>scripts\output_pass_list_points.gml</script>

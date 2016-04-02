@@ -87,8 +87,6 @@ if (mouse_x &gt; (x+23))
     controller.opt_blankshift += 1;
 else
     controller.opt_blankshift -= 1;
-if (controller.opt_blankshift &lt; 0)
-    controller.opt_blankshift = 0;
     
 save_settings();
 </string>

@@ -4,5 +4,5 @@ active_dac = argument0;
 
 if (active_dac[| 1] == 0) //riya
 {
-    log(dac_riya_outputframe(active_dac[| 0], opt_scanspeed, argument2, buffer_get_address(argument1)));
+    log(dac_riya_outputframe(active_dac[| 0], controller.opt_scanspeed, argument2, buffer_get_address(argument1)));
 }

@@ -115,6 +115,28 @@ if (room = rm_ilda)
         }
     }
 }
+else if (room = rm_seq)
+{ 
+    with (seqcontrol)
+    {
+        if (controller.laseron)
+        {
+            controller.laseron = false;
+            frame_surf_refresh = true;
+            dac_blank_and_center(controller.dac);
+        }
+        else if (ds_exists(controller.dac, ds_type_list))
+        {
+            controller.laseron = true;
+            laseronfirst = true;
+            frame_surf_refresh = true;
+        }
+        else
+        {
+            show_message_async("You have not selected a DAC, please go to settings and set up the connection.");
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

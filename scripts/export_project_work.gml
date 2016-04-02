@@ -74,7 +74,6 @@ for (j = global.loading_current; j < global.loading_end;j++)
             if (buffer_ver != 52)
                 {
                 show_message_async("Error: Unexpected idbyte in buffer for export_project. Things might get ugly. Contact developer.");
-                surface_reset_target();
                 global.loading_exportproject = 0;
                 room_goto(rm_seq);
                 exit;

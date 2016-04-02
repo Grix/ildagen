@@ -1,4 +1,14 @@
 //refreshes the laser show preview surface in the sequencer mode room
+if (controller.laseron)
+    {
+    draw_set_color(c_white);
+    draw_set_alpha(1);
+    draw_set_halign(fa_center);
+    draw_text(100,100,"Laser output active: "+string(controller.dac_string));
+    draw_set_halign(fa_left);
+    exit;
+    }
+
 if (!surface_exists(frame_surf))
     frame_surf = surface_create(512,512);
 if (!surface_exists(frame3d_surf))

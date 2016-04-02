@@ -52,13 +52,12 @@ copy_buffer = ds_list_create();
 env_type_map = ds_map_create();
 dac_active_list = ds_map_create();
 projector_list = ds_list_create();
-
-project_dir = "";
-project_loaded = 0;
-project_name = "";
-objid = 1;
+output_buffer = -1;
+blank_frame = buffer_create(8, buffer_fixed, 1);
     
-refresh_laser_flag = 0;
+output_buffer_ready = false;
+output_buffer_next_size = 0;
+laseronfirst = false;
 frame_surf_refresh = 0;
 image_speed = 0;
 draw_mouseline = 0;
@@ -347,35 +346,9 @@ alarm[1] = 13;
 
 if (parsingaudio == 1) refresh_audio();
 
-if (room != rm_seq) exit;
-
 if (song) FMODUpdate();
 
-if (playing == 1)
-    {
-    tlpos += delta_time/1000*playbackspeed;
-    if (tlpos &gt; length/projectfps*1000) 
-        {
-        playing = 0;
-        tlpos = 0;
-        if (song)
-            {
-            FMODInstanceStop(songinstance);
-            songinstance = FMODSoundPlay(song,1);
-            set_audio_speed();
-            }
-        }
-    if (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-(tlpos+audioshift)) &gt; 32) and (scroll_moving != 1) and (song)
-        {
-        FMODInstanceSetPosition(songinstance,(tlpos+audioshift)/FMODSoundGetLength(song));
-        }
-    }
-    
-if (frameprev != round(tlpos/1000*projectfps))
-    {
-    frame_surf_refresh = 1;
-    frameprev = round(tlpos/1000*projectfps);
-    }
+if (room != rm_seq) exit;
     
 if (controller.dialog_open) exit;
 if (instance_exists(oDropDown))
@@ -486,6 +459,70 @@ else if (keyboard_check_pressed(ord('M')))
     
 handle_mousecontrol();
 
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///timing and laser output
+if (room != rm_seq) exit;
+
+if (playing == 1)
+    {
+    tlpos += delta_time/1000*playbackspeed;
+    if (tlpos &gt; length/projectfps*1000) 
+        {
+        playing = 0;
+        tlpos = 0;
+        if (song)
+            {
+            FMODInstanceStop(songinstance);
+            songinstance = FMODSoundPlay(song,1);
+            set_audio_speed();
+            }
+        }
+    if (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-(tlpos+audioshift)) &gt; 32) and (scroll_moving != 1) and (song)
+        {
+        FMODInstanceSetPosition(songinstance,(tlpos+audioshift)/FMODSoundGetLength(song));
+        }
+    }
+
+if (frameprev != round(tlpos/1000*projectfps))
+    {
+    frame_surf_refresh = 1;
+    frameprev = round(tlpos/1000*projectfps);
+    }
+    
+if (controller.laseron)
+{
+    if (!ds_exists(controller.dac,ds_type_list))
+    {
+        show_message_async("Error, DAC data missing");
+        controller.laseron = false;
+        controller.dac = -1;
+        controller.dac_string = "[None]";
+    }
+    else
+        output_frame_seq();
+}
 
 </string>
           </argument>
@@ -710,6 +747,7 @@ if (new_id == getint)
             <string>if (room == rm_seq) 
     {
     frame_surf_refresh = 1;
+    laseronfirst = true;
     }
 </string>
           </argument>

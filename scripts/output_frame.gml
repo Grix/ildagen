@@ -29,11 +29,13 @@ else
     {
         optimize_middle_output();
     }
+    else
+    {
+        output_makeframe_pass_int();
+        
+        output_framelist_to_buffer();
+    }
 }
-
-output_makeframe_pass_int();
-    
-output_framelist_to_buffer();
 
 if (laseronfirst)
 {

@@ -2,12 +2,20 @@ maxpoints = ds_list_size(list_raw)/4;
 var t_diff, t_pal_c, t_c_mapvalue;
 var t_list_raw_size = ds_list_size(list_raw)-4;
 
+var t_blankshift = controller.opt_blankshift*4;
+
 for (i = 0; i <= t_list_raw_size; i += 4)
     {
     //writing point
     xp = list_raw[| i];
     yp = list_raw[| i+1];
-    bl = list_raw[| i+2];
+    bl = list_raw[| i+t_blankshift+2];
+    c  = list_raw[| i+t_blankshift+3];
+    if (is_undefined(c))
+        {
+        c = 0;
+        bl = 1;
+        }
     
     //for DAC buffer only, COMMENT OUT
     //dac_string += string(int64(xp * $fff / $ffff) >> 4)+","+string((int64(int64(xp*$fff / $ffff) & $f) << 4) + (int64(yp*$fff / $ffff) >> 8))+","+string((int64(yp*$fff / $ffff) & $ff))+",";
@@ -42,8 +50,6 @@ for (i = 0; i <= t_list_raw_size; i += 4)
         else
             blank = $0;
         }
-    
-    c = list_raw[| i+3];
     
     //for DAC buffer only, COMMENT OUT
     /*if (!bl)
