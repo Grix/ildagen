@@ -37,7 +37,7 @@
       <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>17593242079470</CopyToMask>
+          <CopyToMask>1048640</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>
@@ -101,7 +101,7 @@
       <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
+          <CopyToMask>1048640</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>

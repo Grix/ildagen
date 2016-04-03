@@ -503,7 +503,16 @@ if (playing == 1)
         {
         FMODInstanceSetPosition(songinstance,(tlpos+audioshift)/FMODSoundGetLength(song));
         }
+    var t_minroomspeed = max(projectfps,25)
     }
+else
+    {
+    var t_minroomspeed = 60
+    }
+    
+room_speed = projectfps;
+while (room_speed &lt; t_minroomspeed)
+    room_speed += projectfps;
 
 if (frameprev != round(tlpos/1000*projectfps))
     {
@@ -640,9 +649,6 @@ if (new_id == getint)
             {
             projectfps = clamp(ds_map_find_value(async_load, "value"),1,999);
             controller.projectfps = projectfps;
-            room_speed = projectfps;
-            while (room_speed &lt; 60)
-                room_speed += projectfps;
             break;
             }
           case "audioshift":

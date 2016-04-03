@@ -108,9 +108,9 @@ seq_dialog_num("audioshift","Enter the audio offset in milliseconds",seqcontrol.
 with (seqcontrol)
     {
     if (mouse_x &gt; (obj_audioshift.x+23))
-        audioshift += 1/room_speed*1000;
+        audioshift += 10;
     else
-        audioshift -= 1/room_speed*1000;
+        audioshift -= 10;
     
     if (song)
         FMODInstanceSetPosition(songinstance,(tlpos+audioshift)/FMODSoundGetLength(song));

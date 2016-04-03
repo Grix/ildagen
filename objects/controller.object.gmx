@@ -938,6 +938,7 @@ if (keyboard_check_pressed(vk_tab))
             <string>///timing and laser output
 if (room != rm_ilda) exit;
 
+
 if (playing == 1)
     {
     framehr += delta_time/1000000*seqcontrol.projectfps*seqcontrol.playbackspeed;
@@ -960,7 +961,17 @@ if (playing == 1)
         {
         FMODInstanceSetPosition(seqcontrol.songinstance,tlx/seqcontrol.projectfps*1000/FMODSoundGetLength(seqcontrol.song));
         }
+        
+    var t_minroomspeed = max(projectfps,25);
     }
+else
+    {
+    var t_minroomspeed = 60
+    }
+    
+room_speed = projectfps;
+while (room_speed &lt; t_minroomspeed)
+    room_speed += projectfps;
 
 if (laseron)
 {
@@ -1731,9 +1742,6 @@ if (new_id == getint)
               {
               seqcontrol.projectfps = clamp(ds_map_find_value(async_load, "value"),1,999);
               projectfps = seqcontrol.projectfps;
-              room_speed = projectfps;
-              while (room_speed &lt; 60)
-                room_speed += projectfps;
               refresh_miniaudio_flag = 1;
               
               break;
@@ -2034,13 +2042,6 @@ if (room == rm_options)
         dac_blank_and_center(dac);
         laseronfirst = true;
         }
-    }
-
-if (room != rm_loading)
-    {
-    room_speed = seqcontrol.projectfps;
-    while (room_speed &lt; 60)
-    room_speed += seqcontrol.projectfps;
     }
 </string>
           </argument>

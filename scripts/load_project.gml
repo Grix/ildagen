@@ -15,9 +15,6 @@ if (idbyte != 100) and (idbyte != 101) and (idbyte != 102)
     }
     
 projectfps = buffer_read(load_buffer,buffer_u8);
-room_speed = projectfps;
-while (room_speed < 60)
-room_speed += projectfps;
 songload = buffer_read(load_buffer,buffer_u8);
 parsingaudioload = buffer_read(load_buffer,buffer_u8);
 startframe = buffer_read(load_buffer,buffer_u32);

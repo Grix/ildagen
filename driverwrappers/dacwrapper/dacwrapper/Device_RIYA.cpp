@@ -2,6 +2,7 @@
 
 #include "Device_RIYA.h"
 #include "windows.h"
+#include <thread>
 
 Device_RIYA::Device_RIYA()
 {
@@ -126,31 +127,29 @@ int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
 	return 1;
 }
 
+void Device_RIYA::outputPointThreaded(int scanRate, int bufferSize, UINT8* bufferAddress)
+{
+	while (RiyaReadyForNextFrame(riyaDeviceNum) == 0);
+
+	pointPeriod = (UINT)(1.0 / (double)scanRate * 33333333.3);
+
+	TransferFrameToBuffer(	riyaDeviceNum,
+							(UINT8*)bufferAddress,
+							(UINT)bufferSize,
+							pointPeriod,
+							RIYA_FRAME_ATTRIBUTES);
+}
+
 int Device_RIYA::OutputFrame(int scanRate, int bufferSize, UINT8* bufferAddress)
 {
 	if (!ready) 
 		return 0;
-
-	bool success = false;
-	for (int i = 0; i < 1000; i++) //timeout safety
-	{
-		if (RiyaReadyForNextFrame(riyaDeviceNum) == 1)
-		{
-			success = true;
-			break;
-		}
-	}
-	if (success = false)
-		return -1;
 	
-	pointPeriod = (UINT)(1.0 / (double)scanRate * 33333333.3);
+	std::thread outputThread (&Device_RIYA::outputPointThreaded,	this,	scanRate,
+																			bufferSize,
+																			bufferAddress);
 
-	if (TransferFrameToBuffer(	riyaDeviceNum,
-								(UINT8*)bufferAddress,
-								(UINT)bufferSize,
-								pointPeriod,
-								RIYA_FRAME_ATTRIBUTES) == 255)
-		return -2;
+	outputThread.detach();
 
 	return 1;
 }

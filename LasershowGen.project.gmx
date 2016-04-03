@@ -1050,10 +1050,10 @@
     <script>scripts\ilda_dialog_num.gml</script>
     <script>scripts\ilda_dialog_string.gml</script>
     <script>scripts\url_open_new.gml</script>
+    <script>scripts\load_settings.gml</script>
+    <script>scripts\save_settings.gml</script>
     <script>scripts\log.gml</script>
     <script>scripts\documentation.gml</script>
-    <script>scripts\save_settings.gml</script>
-    <script>scripts\load_settings.gml</script>
     <script>scripts\blank_script.gml</script>
     <script>scripts\benchmark.gml</script>
   </scripts>

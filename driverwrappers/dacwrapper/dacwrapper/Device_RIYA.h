@@ -73,6 +73,8 @@ private:
 		bool Pres;      // Show if Device present in current configuration should be always TRUE
 	};
 
+	void outputPointThreaded(int scanRate, int bufferSize, UINT8* bufferAddress);
+
 	riyaFuncPtr1 OpenAllRiyaDevices;    // library routine RiOpenDevices
 	riyaFuncPtr2 CloseAllRiyaDevices;   // library routine RiCloseDevices
 	riyaFuncPtr3 InitRiyaDevice;        // library routine Ri_InitChanal
