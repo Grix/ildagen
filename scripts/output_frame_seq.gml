@@ -142,7 +142,7 @@ for (k = 0; k < ds_list_size(layer_list); k++)
         }
     }
 
-if (!ds_list_size(el_list)) 
+if (ds_list_size(el_list) == 0) 
 {
     optimize_middle_output();
 }

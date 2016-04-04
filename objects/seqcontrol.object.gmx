@@ -350,7 +350,6 @@ if (song) FMODUpdate();
 
 if (room != rm_seq) exit;
     
-if (controller.dialog_open) exit;
 if (instance_exists(oDropDown))
     exit;
     
@@ -617,6 +616,8 @@ if (mouse_y &gt; view_yview[3])
             <string>//Get integer
 new_id = ds_map_find_value(async_load, "id");
 controller.dialog_open = 0;
+controller.menu_open = 0;
+
 if (new_id == getint)
     { 
     if ds_map_find_value(async_load, "status")

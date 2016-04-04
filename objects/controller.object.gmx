@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.2.2";
-versiondate = "2016-03-06";
+            <string>version = "1.2.3";
+versiondate = "2016-04-04";
 
 if (debug_mode)
     {
@@ -630,6 +630,8 @@ with (obj_cursor)
 
 if (room != rm_ilda) exit;
 
+el_list = frame_list[| frame];
+
 if (placing = "hershey")
     hershey_handle_scroll();
     
@@ -944,7 +946,7 @@ if (playing == 1)
     framehr += delta_time/1000000*seqcontrol.projectfps*seqcontrol.playbackspeed;
     if (framehr &gt; maxframes-0.5)
         framehr-= maxframes;
-    frame = round(framehr);
+    frame = clamp(round(framehr),0,maxframes-1);
     if (frame &lt; 1)
         frame = 0;
     if (frame != frameprev)
@@ -975,6 +977,8 @@ while (room_speed &lt; t_minroomspeed)
 
 if (laseron)
 {
+    log(delta_time/1000);
+    
     if (!ds_exists(dac,ds_type_list))
     {
         show_message_async("Error, DAC data missing");

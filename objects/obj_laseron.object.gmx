@@ -92,6 +92,9 @@ if (os_browser != browser_not_a_browser)
     show_message_async("Laser output not supported in the web version");
     exit;
 }
+
+if (!verify_serial())
+    exit;
    
 if (room = rm_ilda)
 { 

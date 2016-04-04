@@ -14,12 +14,18 @@ if (output_buffer_ready)
 maxpoints = 0;
 
 if (laseronfirst)
-    el_list = ds_list_find_value(frame_list,frame);
+    el_list = frame_list[| frame];
 else
-    el_list = ds_list_find_value(frame_list,(frame+1) % (maxframes));
+    el_list = frame_list[| ((frame+1) % (maxframes))];
+if (is_undefined(el_list))
+    {
+    log("undef");
+    exit;
+    }    
+
 output_buffer_next = buffer_create(26664,buffer_fixed,1);
 
-if (!ds_list_size(el_list)) 
+if (ds_list_size(el_list) == 0) 
 {
     optimize_middle_output();
 }

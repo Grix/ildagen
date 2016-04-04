@@ -1,1 +1,3 @@
+- Improved optimization
+- Preliminary support for direct playback via DACs
 - Various bug fixes

@@ -77,7 +77,13 @@ if (mouse_x &gt; x+50) and (mouse_x &lt; (x+250)) and (mouse_y &gt; y) and ((mou
     
     if (mouse_check_button_pressed(mb_left))
         {
-        dropdown_dacs();
+        if (os_browser != browser_not_a_browser)
+            {
+            show_message_async("Sorry, connecting to DACs is not available in the web version");
+            exit;
+            }
+        else
+            dropdown_dacs();
         }
     } 
 else highlight = 0;
