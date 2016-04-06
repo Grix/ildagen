@@ -204,6 +204,7 @@ opt_blankshift = 0;
 opt_scanspeed = 30000;
 invert_y = false;
 invert_x = false;
+colorscale = c_white;
 projector = 0;
 projector_name = "default";
 
@@ -977,8 +978,6 @@ while (room_speed &lt; t_minroomspeed)
 
 if (laseron)
 {
-    log(delta_time/1000);
-    
     if (!ds_exists(dac,ds_type_list))
     {
         show_message_async("Error, DAC data missing");
