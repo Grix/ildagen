@@ -1,8 +1,11 @@
 songinstance = 0;
 if (song) FMODSoundFree(song);
 songfile_loc = get_open_filename_ext("","","","Select audio file");
-if (is_undefined(songfile_loc) or (songfile_loc == "")) 
+if !string_length(songfile_loc) 
+    {
+    log("cancel");
     exit;
+    }
 songfile = songfile_loc;
 song_buffer = buffer_load(songfile_loc);
 songfile_name = filename_name(songfile);

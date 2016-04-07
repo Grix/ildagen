@@ -2,7 +2,7 @@
 placing_status = 0;
 
 file_loc = get_save_filename_ext("*.igf","example.igf","","Select LasershowGen frames file location");
-if (file_loc == "")
+if !string_length(file_loc) 
     exit;
     
 save_buffer = buffer_create(1,buffer_grow,1);

@@ -3,7 +3,7 @@
 //return 1 if successful
 
 filename = argument0;
-if (filename != "") and (!is_undefined(filename)) and (is_string(filename))
+if string_length(filename)
     {
     ild_file = buffer_load(filename);
     file_size = buffer_get_size(ild_file);

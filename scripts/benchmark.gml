@@ -13,3 +13,12 @@ repeat (10000)
     {
     }
 log(get_timer()-time);*/
+
+//file = 0;
+
+/*file = get_open_filename_ext("","","","he");
+
+if !string_length(file) 
+    log("cancel");
+else log("loaded");
+log(file)*/

@@ -12,7 +12,7 @@ with (seqcontrol)
     }
 
 file_loc = argument0;
-if (file_loc == "") or is_undefined(file_loc)
+if !string_length(file_loc) 
     exit;
 
 load_buffer = buffer_load(file_loc);

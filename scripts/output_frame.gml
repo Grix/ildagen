@@ -23,6 +23,8 @@ if (is_undefined(el_list))
     exit;
     }    
 
+log(get_timer()-time);
+time = get_timer();
 log(frame);
 
 output_buffer_next = buffer_create(26664,buffer_fixed,1);

@@ -1,6 +1,6 @@
 //loads project igp file
 file_loc = argument0;
-if (file_loc == "") or is_undefined(file_loc)
+if !string_length(file_loc) 
     exit;
     
 clear_project();

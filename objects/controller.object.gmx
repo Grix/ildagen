@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.2.3";
-versiondate = "2016-04-04";
+            <string>version = "1.2.3hf1";
+versiondate = "2016-04-07";
 
 if (debug_mode)
     {
@@ -120,8 +120,7 @@ blank_frame = buffer_create(8, buffer_fixed, 1);
 
 c_gold = make_colour_rgb(255,220,0);
 
-frameskip = 0;
-frameskip_time = 0;
+time = 0;
 output_buffer_ready = false;
 output_buffer_next_size = 0;
 dac = -1;

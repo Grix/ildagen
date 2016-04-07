@@ -10,7 +10,7 @@ bckimage = !bckimage;
 if (bckimage)
     {
     bckfile = get_open_filename("Image files|*.png;*.jpg;*.gif","");
-    if (bckfile != "")
+    if string_length(bckfile) 
         {
         bck_bckimage = sprite_add(bckfile,1,0,0,0,0);
         if (sprite_get_width(bck_bckimage) > sprite_get_height(bck_bckimage))

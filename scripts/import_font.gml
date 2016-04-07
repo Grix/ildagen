@@ -4,7 +4,7 @@ ilda_cancel();
 with(controller)
     {
     filename = get_open_filename_ext("ILDA font file|*.ild|All files|*","",program_directory,"Select ILDA font file")
-    if (filename != "") and (!is_undefined(filename)) and (is_string(filename))
+    if string_length(filename)
         {
         ild_file = buffer_load(filename);
         file_size = buffer_get_size(ild_file);
