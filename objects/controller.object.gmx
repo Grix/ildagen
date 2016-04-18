@@ -951,6 +951,7 @@ if (playing == 1)
         frame = 0;
     if (frame != frameprev)
         {
+        log("framesurfref lit");
         frame_surf_refresh = 1;
         }
     

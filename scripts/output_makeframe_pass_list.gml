@@ -42,7 +42,7 @@ while (ds_list_size(order_list) < ds_list_size(el_list))
         if (is_undefined(list_id[| currentpos]))
             {
             ds_list_delete(el_list,i);
-            log("undef pass int")
+            log("empty")
             continue;
             }
         
