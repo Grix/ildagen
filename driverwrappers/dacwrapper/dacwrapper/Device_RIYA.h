@@ -6,10 +6,11 @@
 
 class Device_RIYA
 {
-
-#define RIYA_BUFFER_SIZE		0x1000
-#define RIYA_DEVICE_ATTRIBUTES	0x10 //8byte point structure, synced frames
-#define RIYA_FRAME_ATTRIBUTES	0x1E
+		
+#define RIYA_BUFFER_SIZE				0x1000
+#define RIYA_DEVICE_ATTRIBUTES			0x10 //8byte point structure, synced frames
+#define RIYA_FRAME_ATTRIBUTES_SYNC		0x1E
+#define RIYA_FRAME_ATTRIBUTES_NOSYNC	0x1C
 
 public:
 

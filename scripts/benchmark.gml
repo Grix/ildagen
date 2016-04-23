@@ -14,11 +14,8 @@ repeat (10000)
     }
 log(get_timer()-time);*/
 
-//file = 0;
+arr[2] = "hey";
 
-/*file = get_open_filename_ext("","","","he");
+var a = arr;
 
-if !string_length(file) 
-    log("cancel");
-else log("loaded");
-log(file)*/
+log(a[2]);

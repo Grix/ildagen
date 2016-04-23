@@ -120,7 +120,7 @@ int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
 								(UINT8 *)&frame1[0],
 								RIYA_BUFFER_SIZE,
 								pointPeriod,
-								RIYA_FRAME_ATTRIBUTES) == 255)
+								RIYA_FRAME_ATTRIBUTES_NOSYNC) == 255)
 		return -3;
 
 	ready = true;
@@ -137,7 +137,7 @@ void Device_RIYA::outputPointThreaded(int scanRate, int bufferSize, UINT8* buffe
 							(UINT8*)bufferAddress,
 							(UINT)bufferSize,
 							pointPeriod,
-							RIYA_FRAME_ATTRIBUTES);
+							RIYA_FRAME_ATTRIBUTES_SYNC);
 }
 
 int Device_RIYA::OutputFrame(int scanRate, int bufferSize, UINT8* bufferAddress)

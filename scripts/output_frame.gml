@@ -3,10 +3,11 @@ if (!frame_surf_refresh)
     
 if (output_buffer_ready)
 {
-    if (output_buffer != -1)
-        buffer_delete(output_buffer);
+    if (buffer_to_delete != -1)
+        buffer_delete(buffer_to_delete);
+    buffer_to_delete = output_buffer;
     output_buffer = output_buffer_next;
-    dac_send_frame(dac, output_buffer, output_buffer_next_size);
+    dac_send_frame(dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps);
     output_buffer_ready = false;
     frame_surf_refresh = false;
 }
@@ -23,9 +24,9 @@ if (is_undefined(el_list))
     exit;
     }    
 
-log(get_timer()-time);
+/*log(get_timer()-time);
 time = get_timer();
-log(frame);
+log(frame);*/
 
 output_buffer_next = buffer_create(26664,buffer_fixed,1);
 
@@ -49,10 +50,11 @@ else
 
 if (laseronfirst)
 {
-    if (output_buffer != -1)
-        buffer_delete(output_buffer);
+    if (buffer_to_delete != -1)
+        buffer_delete(buffer_to_delete);
+    buffer_to_delete = output_buffer;
     output_buffer = output_buffer_next;
-    dac_send_frame(dac, output_buffer, output_buffer_next_size);
+    dac_send_frame(dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps);
     output_buffer_ready = false;
     frame_surf_refresh = false;
 }

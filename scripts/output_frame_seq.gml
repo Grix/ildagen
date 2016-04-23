@@ -4,10 +4,11 @@ if (!frame_surf_refresh)
 
 if (output_buffer_ready)
 {
-    if (output_buffer != -1)
-        buffer_delete(output_buffer);
+    if (buffer_to_delete != -1)
+        buffer_delete(buffer_to_delete);
+    buffer_to_delete = output_buffer;
     output_buffer = output_buffer_next;
-    dac_send_frame(controller.dac, output_buffer, output_buffer_next_size);
+    dac_send_frame(controller.dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps);
     output_buffer_ready = false;
     frame_surf_refresh = false;
 }
@@ -169,10 +170,11 @@ ds_list_destroy(el_list);
 
 if (laseronfirst)
 {
-    if (output_buffer != -1)
-        buffer_delete(output_buffer);
+    if (buffer_to_delete != -1)
+        buffer_delete(buffer_to_delete);
+    buffer_to_delete = output_buffer;
     output_buffer = output_buffer_next;
-    dac_send_frame(controller.dac, output_buffer, output_buffer_next_size);
+    dac_send_frame(controller.dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps);
     output_buffer_ready = false;
     frame_surf_refresh = false;
 }

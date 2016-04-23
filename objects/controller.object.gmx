@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.2.3hf1";
+            <string>version = "1.2.3hf2";
 versiondate = "2016-04-07";
 
 if (debug_mode)
@@ -116,6 +116,7 @@ hershey_list = -1;
 menu_surf = -1;
 dac_list = ds_list_create();
 output_buffer = -1;
+buffer_to_delete = -1;
 blank_frame = buffer_create(8, buffer_fixed, 1);
 
 c_gold = make_colour_rgb(255,220,0);
@@ -951,7 +952,6 @@ if (playing == 1)
         frame = 0;
     if (frame != frameprev)
         {
-        log("framesurfref lit");
         frame_surf_refresh = 1;
         }
     
