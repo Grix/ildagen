@@ -1,9 +1,9 @@
 output_buffer_next_size = ds_list_size(list_raw)/4;
 var t_list_raw_size = ds_list_size(list_raw)-4;
 
-if (controller.dac[| 1] == 0)
+if (controller.dac[| 1] == 0) || (controller.dac[| 1] == 1)
     {
-        //riya, 12bit
+        //riya, lasdac: 12bit xy
         var t_pos_scale = $FFF/$FFFF;
         var t_fullrange = $FFF;
     }

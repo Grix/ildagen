@@ -1,9 +1,9 @@
 maxpointswanted = floor((1/controller.projectfps)*controller.opt_scanspeed); 
 output_buffer_next_size = maxpointswanted;
 
-if (controller.dac[| 1] == 0)
+if (controller.dac[| 1] == 0) || (controller.dac[| 1] == 1)
 {
-    //riya, 12bit
+    //riya, lasdac: 12bit
     xp = $800;
     yp = $800;
 }

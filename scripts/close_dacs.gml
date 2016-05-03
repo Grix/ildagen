@@ -8,4 +8,9 @@ for (i = ds_list_size(dac_list)-1; i >= 0; i--)
         //RIYA
         dac_riya_close(daclist[| 0]);
     }
+    else if (daclist[| 1] == 1)
+    {
+        //RIYA
+        dac_lasdac_close(daclist[| 0]);
+    }
 }
