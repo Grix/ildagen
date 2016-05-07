@@ -14,7 +14,7 @@ class Device_RIYA
 
 public:
 
-	struct Point
+	typedef struct
 	{
 		UINT16 X;
 		UINT16 Y;
@@ -22,7 +22,7 @@ public:
 		UINT8  G;
 		UINT8  B;
 		UINT8  I;
-	};
+	}Point;
 
 	Device_RIYA();
 	~Device_RIYA();

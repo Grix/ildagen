@@ -48,7 +48,7 @@ for (i = 0; i < 4; i++)
 
 //lasdac
 var result = dac_lasdac_newdevice();
-if (result = -1)
+if (result > 0)
 {
     var newdac = ds_list_create();
     ds_list_add(newdac,result);
@@ -57,4 +57,6 @@ if (result = -1)
     ds_list_add(newdac,ds_map_create());
     ds_list_add(dac_list,newdac);
 }
+log("---dac scan result");
+log(result);
 

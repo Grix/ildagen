@@ -10,7 +10,9 @@ Device_LASDAC::Device_LASDAC()
 Device_LASDAC::~Device_LASDAC()
 {
 	if (ready)
+	{
 		CloseLasdacDevice();
+	}
 }
 
 int Device_LASDAC::Init()
@@ -22,27 +24,42 @@ int Device_LASDAC::Init()
 	OpenLasdacDevice = (lasdacFuncPtr0)GetProcAddress(lasdacLibrary, "open_device");
 	if (!OpenLasdacDevice)
 	{
-		return 0;
+		FreeLibrary(lasdacLibrary);
+		return -1;
 	}
 
 	CloseLasdacDevice = (lasdacFuncPtr0)GetProcAddress(lasdacLibrary, "close_device");
 	if (!CloseLasdacDevice)
 	{
-		return 0;
+		FreeLibrary(lasdacLibrary);
+		return -2;
 	}
 
 	SendLasdacFrame = (lasdacFuncPtr1)GetProcAddress(lasdacLibrary, "send_frame");
 	if (!SendLasdacFrame)
 	{
-		return 0;
+		FreeLibrary(lasdacLibrary);
+		return -3;
+	}
+
+	int openResult = OpenLasdacDevice();
+	if (openResult != 0)
+	{
+		CloseLasdacDevice();
+		FreeLibrary(lasdacLibrary);
+		return (-3 + openResult);
 	}
 
 	ready = true;
+	
+	//Point* blankPoint = new Point[2];
+	//blankPoint[0] = { 0x800, 0x800, 0, 0, 0, 0 };
+	//OutputFrame(0, 10000, 1, (UINT8*)&blankPoint);
 
 	return 1;
 }
 
-void Device_LASDAC::OutputFrameThreaded(UINT8 flags, UINT16 speed, UINT16 num, Point* buffer)
+void Device_LASDAC::OutputFrameThreaded(UINT8 flags, UINT16 speed, UINT16 num, UINT8* buffer)
 {
 	SendLasdacFrame(flags, speed, num, buffer);
 }
@@ -55,7 +72,7 @@ int Device_LASDAC::OutputFrame(UINT8 flags, UINT16 speed, UINT16 num, UINT8* buf
 	std::thread outputThread(&Device_LASDAC::OutputFrameThreaded, this, flags,
 		speed,
 		num,
-		(Point*)buffer);
+		buffer);
 
 	outputThread.detach();
 

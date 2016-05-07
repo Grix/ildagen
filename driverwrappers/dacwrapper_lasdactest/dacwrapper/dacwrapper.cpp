@@ -73,7 +73,7 @@ GMEXPORT double NewLasdacDevice(void)
 GMEXPORT double LasdacOutputFrame(double deviceId, double speed, double num, UINT8* buffer)
 {
 	Device_LASDAC* device = (Device_LASDAC*)devices[(int)(deviceId + 0.5)];
-	return (double)device->OutputFrame(0x02, (int)(speed + 0.5), (int)(num + 0.5), buffer);
+	return (double)device->OutputFrame(0, (UINT16)(speed + 0.5), (UINT16)(num + 0.5), buffer);
 }
 
 GMEXPORT double LasdacClose(double deviceId)

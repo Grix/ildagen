@@ -8,5 +8,5 @@ if (active_dac[| 1] == 0) //riya
 }
 else if (active_dac[| 1] == 1) //lasdac
 {
-    dac_lasdac_outputframe(active_dac[| 0], argument3, argument2, buffer_get_address(argument1));
+    log(dac_lasdac_outputframe(active_dac[| 0], argument3, argument2, buffer_get_address(argument1)));
 }

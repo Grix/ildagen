@@ -117,7 +117,7 @@ menu_surf = -1;
 dac_list = ds_list_create();
 output_buffer = -1;
 buffer_to_delete = -1;
-blank_frame = buffer_create(8, buffer_fixed, 1);
+blank_frame = buffer_create(16, buffer_fixed, 1);
 
 c_gold = make_colour_rgb(255,220,0);
 

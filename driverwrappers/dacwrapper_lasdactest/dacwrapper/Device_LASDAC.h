@@ -6,16 +6,6 @@ class Device_LASDAC
 {
 public:
 
-	struct Point
-	{
-		UINT16 X;
-		UINT16 Y;
-		UINT8  R;
-		UINT8  G;
-		UINT8  B;
-		UINT8  I;
-	};
-
 	Device_LASDAC();
 	~Device_LASDAC();
 
@@ -28,7 +18,7 @@ private:
 	typedef int(*lasdacFuncPtr0)();
 
 	// function pointer for library routine send_frame
-	typedef int(*lasdacFuncPtr1)(UINT8, UINT16, UINT16, Point*);
+	typedef int(*lasdacFuncPtr1)(UINT8, UINT16, UINT16, UINT8*);
 
 	lasdacFuncPtr0 OpenLasdacDevice;
 	lasdacFuncPtr1 SendLasdacFrame;
@@ -36,6 +26,6 @@ private:
 
 	bool ready;
 
-	void OutputFrameThreaded(UINT8 flags, UINT16 speed, UINT16 num, Point* buffer);
+	void OutputFrameThreaded(UINT8 flags, UINT16 speed, UINT16 num, UINT8* buffer);
 };
 

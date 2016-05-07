@@ -14,8 +14,3 @@ repeat (10000)
     }
 log(get_timer()-time);*/
 
-arr[2] = "hey";
-
-var a = arr;
-
-log(a[2]);
