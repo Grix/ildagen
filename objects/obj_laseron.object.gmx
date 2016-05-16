@@ -92,9 +92,6 @@ if (os_browser != browser_not_a_browser)
     show_message_async("Laser output not supported in the web version");
     exit;
 }
-
-if (!verify_serial())
-    exit;
    
 if (room = rm_ilda)
 { 
@@ -120,6 +117,8 @@ if (room = rm_ilda)
 }
 else if (room = rm_seq)
 { 
+    if (!verify_serial())
+        exit;
     with (seqcontrol)
     {
         if (controller.laseron)
@@ -137,6 +136,40 @@ else if (room = rm_seq)
         else
         {
             show_message_async("You have not selected a DAC, please go to settings and set up the connection.");
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (room == rm_seq)
+{
+    if (!verify_serial())
+    {
+        if (controller.laseron)
+        {
+            dac_blank_and_center(controller.dac);
+            controller.laseron = false;
+            controller.laseronfirst = false;
         }
     }
 }

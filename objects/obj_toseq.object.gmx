@@ -78,8 +78,11 @@ else image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//show_message_async("Timeline mode coming soon!");/*
+            <string>
 if (instance_exists(oDropDown))
+    exit;
+    
+if (!verify_serial())
     exit;
 if (os_browser != browser_not_a_browser)
     {
@@ -124,7 +127,10 @@ with (controller)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//show_message_async("Timeline mode coming soon!");/*
+            <string>
+if (!verify_serial())
+    exit;
+
 if (os_browser != browser_not_a_browser)
     {
     show_message_async("Sorry, the timeline mode is not available in the web version yet");

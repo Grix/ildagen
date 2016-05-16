@@ -93,6 +93,8 @@ if (room == rm_ilda)
     }
 else if (room == rm_seq)
     {
+    if (!verify_serial())
+        exit;
     with (seqcontrol)
         load_frames_seq(get_open_filename_ext("LasershowGen frames|*.igf","","","Select LasershowGen frames file"));
     }

@@ -139,9 +139,6 @@ with (controller)
     ds_list_clear(bez_list);
     }
 
-if (!verify_serial())
-    exit;
-
 with (controller) 
     {
     if (os_browser == browser_not_a_browser)

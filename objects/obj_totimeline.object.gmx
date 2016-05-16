@@ -80,6 +80,7 @@ else image_index = 0;
             <kind>1</kind>
             <string>if (instance_exists(oDropDown))
     exit;
+
 with (controller)
     {
     if (os_browser != browser_not_a_browser)

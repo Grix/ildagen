@@ -121,7 +121,6 @@ blank_frame = buffer_create(16, buffer_fixed, 1);
 
 c_gold = make_colour_rgb(255,220,0);
 
-time = 0;
 output_buffer_ready = false;
 output_buffer_next_size = 0;
 dac = -1;
@@ -147,7 +146,7 @@ hershey_scrollx = 0;
 hershey_scrollh = 4930;
 hershey_selected = 0;
 dialog_open = 0;
-regflag = 0;
+regflag = false;
 menu_open = 0;
 updateget = -1;
 updatenotes = -1;
@@ -1919,14 +1918,10 @@ else if (new_id == getstr)
             case ("serial"):
                 {
                 serial = ds_map_find_value(async_load, "result");
-                with (obj_export)
-                    {
-                    controller.serialfile = file_text_open_write("serial");
-                    file_text_write_string(controller.serialfile,string_lettersdigits(controller.serial));
-                    file_text_close(controller.serialfile);
-                    verify_serial();
-                    //show_message_async("Registered successfully");
-                    }
+                controller.serialfile = file_text_open_write("serial");
+                file_text_write_string(controller.serialfile,string_lettersdigits(controller.serial));
+                file_text_close(controller.serialfile);
+                verify_serial();
                 break;
                 }
             }

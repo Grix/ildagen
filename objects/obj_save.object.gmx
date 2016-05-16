@@ -113,9 +113,6 @@ with (controller)
     ds_list_clear(bez_list);
     }
 
-if (!verify_serial())
-    exit;
-
 with (controller) 
     {
     if (os_browser == browser_not_a_browser)
@@ -149,9 +146,6 @@ with (controller)
     exit;
 
 if (controller.maxframes == 1) and !ds_list_size(controller.el_list)
-    exit;
-    
-if (!verify_serial())
     exit;
     
 with (controller)
