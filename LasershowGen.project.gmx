@@ -248,6 +248,7 @@
     <sprite>sprites\spr_playcontrols</sprite>
     <sprite>sprites\spr_blank</sprite>
     <sprite>sprites\spr_comingsoon</sprite>
+    <sprite>sprites\spr_ad1</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_guide</background>
@@ -1070,6 +1071,7 @@
     <object>objects\obj_cursor</object>
     <object>objects\obj_button_parent</object>
     <object>objects\obj_loadingbar</object>
+    <object>objects\obj_ad</object>
     <objects name="buttons">
       <objects name="seq">
         <object>objects\obj_saveproject</object>
