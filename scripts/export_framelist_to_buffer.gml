@@ -4,11 +4,22 @@ var t_list_raw_size = ds_list_size(list_raw)-4;
 
 var t_blankshift = controller.opt_blankshift*4;
 
+var t_red_scale = controller.red_scale;
+var t_green_scale = controller.green_scale;
+var t_blue_scale = controller.blue_scale;
+
 for (i = 0; i <= t_list_raw_size; i += 4)
     {
     //writing point
-    xp = list_raw[| i];
-    yp = list_raw[| i+1];
+    if (controller.invert_x)
+        xp = $FFFF - list_raw[| i];
+    else
+        xp = list_raw[| i];
+    if (controller.invert_y)
+        yp = $FFFF - list_raw[| i+1];
+    else
+        yp = list_raw[| i+1];
+        
     bl = list_raw[| i+t_blankshift+2];
     c  = list_raw[| i+t_blankshift+3];
     if (is_undefined(c))
@@ -65,9 +76,9 @@ for (i = 0; i <= t_list_raw_size; i += 4)
     if (controller.exp_format == 5)
         {
         buffer_write(ilda_buffer,buffer_u8,blank);
-        buffer_write(ilda_buffer,buffer_u8,colour_get_blue(c));
-        buffer_write(ilda_buffer,buffer_u8,colour_get_green(c));
-        buffer_write(ilda_buffer,buffer_u8,colour_get_red(c));
+        buffer_write(ilda_buffer,buffer_u8,(c >> 16) * t_blue_scale);
+        buffer_write(ilda_buffer,buffer_u8,((c >> 8) & $FF) * t_green_scale);
+        buffer_write(ilda_buffer,buffer_u8,(c & $FF) * t_red_scale);
         }
     else
         {

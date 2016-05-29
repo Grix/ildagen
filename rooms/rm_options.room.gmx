@@ -69,6 +69,7 @@
     <instance objName="obj_invertx" x="252" y="140" name="inst_81971AD6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_maxdwell_blank" x="16" y="172" name="inst_C943470E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_blankshift" x="16" y="204" name="inst_3EC33475" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_colorscale" x="244" y="176" name="inst_A4AEEF27" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

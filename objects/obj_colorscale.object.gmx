@@ -28,7 +28,9 @@
             <string>image_speed = 0;
 moving = 0;
 
-activecolor = controller.colorscale;
+activecolor = make_colour_rgb(  controller.red_scale*255,
+                                controller.green_scale*255,
+                                controller.blue_scale*255);
 redy = y+23-(colour_get_red(activecolor)/255*23);
 greeny = y+23-(colour_get_green(activecolor)/255*23);
 bluey = y+23-(colour_get_blue(activecolor)/255*23);
@@ -63,36 +65,35 @@ yplus16 = y+16;
             <kind>1</kind>
             <string>if (instance_exists(oDropDown))
     exit;
-visible = (controller.colormode != "rainbow");
 
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
-    controller.tooltip = "Changes primary color (Sliders represent red, green and blue)#-&gt;Right click to enter a precise value";
+    controller.tooltip = "Changes color balance of output#-&gt;Right click to enter a precise value";
     } 
 
 if (moving == 1) or ((moving) and keyboard_check(vk_control))
     {
-    red = colour_get_red(controller.color1);
+    red = controller.red_scale * 255;
     red -= (mouse_y-mouse_yprevious)*255/25;
     if (red &lt; 0) red = 0;
     if (red &gt; 255) red = 255;
-    controller.color1 = make_colour_rgb(red,colour_get_green(controller.color1),colour_get_blue(controller.color1));
+    controller.red_scale = red/255;
     }
 if (moving == 2) or ((moving) and keyboard_check(vk_control))
     {
-    green = colour_get_green(controller.color1);
+    green = controller.green_scale * 255;
     green -= (mouse_y-mouse_yprevious)*255/25;
     if (green &lt; 0) green = 0;
     if (green &gt; 255) green = 255;
-    controller.color1 = make_colour_rgb(colour_get_red(controller.color1),green,colour_get_blue(controller.color1));
+    controller.green_scale = green/255;
     }
 if (moving == 3) or ((moving) and keyboard_check(vk_control))
     {
-    blue = colour_get_blue(controller.color1);
+    blue = controller.blue_scale * 255;
     blue -= (mouse_y-mouse_yprevious)*255/25;
     if (blue &lt; 0) blue = 0;
     if (blue &gt; 255) blue = 255;
-    controller.color1 = make_colour_rgb(colour_get_red(controller.color1),colour_get_green(controller.color1),blue);
+    controller.blue_scale = blue/255;
     }
     
 mouse_yprevious = mouse_y;
@@ -118,7 +119,10 @@ mouse_yprevious = mouse_y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>moving = 0;
+            <string>if (moving)
+    save_settings();
+
+moving = 0;
 </string>
           </argument>
         </arguments>
@@ -143,22 +147,20 @@ mouse_yprevious = mouse_y;
             <kind>1</kind>
             <string>if (instance_exists(oDropDown))
     exit;
-if (!visible) exit;
 
 if (mouse_x &lt; (x+14))
     {
-    ilda_dialog_num("c1r","Enter value for RED from 0 to 255",colour_get_red(controller.color1));
+    ilda_dialog_num("red_scale","Enter value for RED from 0 to 100",controller.red_scale * 100);
     
     }
 else if (mouse_x &gt; (x+30))
     {
-    ilda_dialog_num("c1b","Enter value for BLUE from 0 to 255",colour_get_blue(controller.color1));
+    ilda_dialog_num("blue_scale","Enter value for BLUE from 0 to 100",controller.blue_scale * 100);
    
     }
 else 
     {
-    ilda_dialog_num("c1g","Enter value for GREEN from 0 to 255",colour_get_green(controller.color1));
-   
+    ilda_dialog_num("green_scale","Enter value for GREEN from 0 to 100",controller.green_scale * 100);
     }
 </string>
           </argument>
@@ -184,7 +186,6 @@ else
             <kind>1</kind>
             <string>if (instance_exists(oDropDown))
     exit;
-if (!visible) exit;
 
 if (mouse_x &lt; (x+14))
     moving = 1;
@@ -215,11 +216,13 @@ mouse_yprevious = mouse_y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//draw_enable_alphablend(0);
+            <string>
 draw_self();
 if (moving)
     {
-    activecolor = controller.color1;
+    activecolor = make_colour_rgb(  controller.red_scale*255,
+                                    controller.green_scale*255,
+                                    controller.blue_scale*255);
     redy = y+23-(colour_get_red(activecolor)/255*23);
     greeny = y+23-(colour_get_green(activecolor)/255*23);
     bluey = y+23-(colour_get_blue(activecolor)/255*23);
@@ -227,13 +230,6 @@ if (moving)
 draw_sprite(spr_colorselect_red,(moving == 1),redx,redy);
 draw_sprite(spr_colorselect_green,(moving == 2),greenx,greeny);
 draw_sprite(spr_colorselect_blue,(moving == 3),bluex,bluey);
-
-draw_set_circle_precision(8);
-draw_set_colour(activecolor);
-    draw_circle(x+70,y+16,10,0);
-draw_set_color(c_black);
-    draw_circle(x+70,y+16,10,1);
-draw_set_circle_precision(24);
 </string>
           </argument>
         </arguments>

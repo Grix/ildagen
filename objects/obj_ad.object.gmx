@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ad = choose(spr_ad1);
+            <string>if (verify_serial(1))
+    instance_destroy();
+
+ad = choose(spr_ad1);
 
 alarm[0] = 2;
 </string>

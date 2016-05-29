@@ -204,9 +204,11 @@ opt_blankshift = 0;
 opt_scanspeed = 30000;
 invert_y = false;
 invert_x = false;
-colorscale = c_white;
 projector = 0;
 projector_name = "default";
+red_scale = 1;
+blue_scale = 1;
+green_scale = 1;
 
 placing = "line";
 placing_select_last = "line";
@@ -1360,6 +1362,11 @@ if (new_id == getint)
                     ini_write_real(t_currentprojectorstring, "maxdist", ini_read_real(t_projectorstring,"maxdist",1500));
                     ini_write_real(t_currentprojectorstring, "format", ini_read_real(t_projectorstring,"format",5));
                     ini_write_real(t_currentprojectorstring, "optimize", ini_read_real(t_projectorstring,"optimize",1));
+                    ini_write_real(t_projectorstring, "invert_y", ini_read_real(t_projectorstring,"invert_y",false));
+                    ini_write_real(t_projectorstring, "invert_x", ini_read_real(t_projectorstring,"invert_x",false));
+                    ini_write_real(t_projectorstring, "red_scale", ini_read_real(t_projectorstring,"red_scale",1));
+                    ini_write_real(t_projectorstring, "green_scale", ini_read_real(t_projectorstring,"green_scale",1));
+                    ini_write_real(t_projectorstring, "blue_scale", ini_read_real(t_projectorstring,"blue_scale",1));
                     ini_section_delete(t_projectorstring);
                     ini_write_real("main","projector",projector);
                     }
@@ -1563,6 +1570,27 @@ if (new_id == getint)
               {
               color2 = make_colour_rgb(colour_get_red(color2),colour_get_green(color2),clamp(ds_map_find_value(async_load, "value"),0,255));
               
+              break;
+              }
+            case "red_scale":
+              {
+              red_scale = clamp(ds_map_find_value(async_load, "value")/100,0,1);
+              update_colors_scalesettings();
+              save_settings();
+              break;
+              }
+            case "green_scale":
+              {
+              green_scale = clamp(ds_map_find_value(async_load, "value")/100,0,1);
+              update_colors_scalesettings();
+              save_settings();
+              break;
+              }
+            case "blue_scale":
+              {
+              blue_scale = clamp(ds_map_find_value(async_load, "value")/100,0,1);
+              update_colors_scalesettings();
+              save_settings();
               break;
               }
             case "anirep":

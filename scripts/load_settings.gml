@@ -12,6 +12,9 @@ ini_open("settings.ini");
         ini_write_real("projector_0", "invert_x", false);
         ini_write_real("projector_0", "invert_y", false);
         ini_write_real("projector_0", "optimize", 1);
+        ini_write_real("projector_0", "red_scale", 1);
+        ini_write_real("projector_0", "green_scale", 1);
+        ini_write_real("projector_0", "blue_scale", 1);
         opt_scanspeed = 20000;
         opt_maxdwell = 4;
         opt_maxdwell_blank = 1;
@@ -21,6 +24,9 @@ ini_open("settings.ini");
         exp_optimize = 1;
         invert_x = false;
         invert_y = false;
+        red_scale = 1;
+        green_scale = 1;
+        blue_scale = 1;
         ini_write_string("projector_0","name","default");
         ini_write_real("main","projector",0);
         }
@@ -40,6 +46,9 @@ ini_open("settings.ini");
             exp_optimize = ini_read_real(t_projectorstring, "optimize", 1);
             invert_y = ini_read_real(t_projectorstring, "invert_y", false);
             invert_x = ini_read_real(t_projectorstring, "invert_x", false);
+            red_scale = ini_read_real(t_projectorstring, "red_scale", 1);
+            green_scale = ini_read_real(t_projectorstring, "green_scale", 1);
+            blue_scale = ini_read_real(t_projectorstring, "blue_scale", 1);
             }
         else
             {
@@ -53,12 +62,15 @@ ini_open("settings.ini");
             ini_write_real(t_projectorstring, "optimize", 1);
             ini_write_real(t_projectorstring, "invert_x", false);
             ini_write_real(t_projectorstring, "invert_y", false);
+            ini_write_real(t_projectorstring, "red_scale", 1);
+            ini_write_real(t_projectorstring, "green_scale", 1);
+            ini_write_real(t_projectorstring, "blue_scale", 1);
             }
         }
         
-if (room == rm_options)
-    {
-    obj_preset.preset_name = ini_read_string("projector_"+string(projector),"name","name_error");
-    }
+    if (room == rm_options)
+        {
+        obj_preset.preset_name = ini_read_string("projector_"+string(projector),"name","name_error");
+        }
         
 ini_close();

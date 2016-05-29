@@ -97,6 +97,8 @@ if (room = rm_ilda)
 { 
     with (controller)
     {
+        ds_list_clear(semaster_list);
+        
         if (laseron)
         {
             laseron = false;
