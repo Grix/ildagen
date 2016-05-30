@@ -27,9 +27,10 @@
             <kind>1</kind>
             <string>if (instance_exists(oDropDown))
     exit;
+    
 if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
-    controller.tooltip = "Changes the blanking offset in points. Right click to set custom amount.";
+    controller.tooltip = "Changes the GREEN color offset in points. Right click to set custom amount.";
     } 
 </string>
           </argument>
@@ -56,7 +57,7 @@ if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and
             <string>if (instance_exists(oDropDown))
     exit;
     
-ilda_dialog_num("blankshift","Enter the blanking offset in points:",controller.opt_blankshift);
+ilda_dialog_num("greenshift","Enter the GREEN color offset in points:",controller.opt_greenshift);
 </string>
           </argument>
         </arguments>
@@ -83,9 +84,9 @@ ilda_dialog_num("blankshift","Enter the blanking offset in points:",controller.o
     exit;
 
 if (mouse_x &gt; (x+23))
-    controller.opt_blankshift += 1;
+    controller.opt_greenshift += 1;
 else
-    controller.opt_blankshift -= 1;
+    controller.opt_greenshift -= 1;
     
 save_settings();
 </string>
@@ -114,7 +115,7 @@ save_settings();
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x+60,y+3,"Blanking shift: "+string(controller.opt_blankshift));
+draw_text(x+60,y+3,"Green color shift: "+string(controller.opt_greenshift));
 draw_set_color(c_white);
 </string>
           </argument>

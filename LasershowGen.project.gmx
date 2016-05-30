@@ -1187,6 +1187,9 @@
         <object>objects\obj_maxdwell</object>
         <object>objects\obj_maxdwell_blank</object>
         <object>objects\obj_blankshift</object>
+        <object>objects\obj_redshift</object>
+        <object>objects\obj_greenshift</object>
+        <object>objects\obj_blueshift</object>
         <object>objects\obj_format</object>
         <object>objects\obj_maxtravel</object>
       </objects>

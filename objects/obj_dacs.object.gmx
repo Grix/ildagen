@@ -73,13 +73,13 @@ ini_close();*/
 if (mouse_x &gt; x+50) and (mouse_x &lt; (x+250)) and (mouse_y &gt; y) and ((mouse_y &lt; y+22))
     {
     highlight = 1;
-    controller.tooltip = "Choose DAC/controller to connect to.";
+    controller.tooltip = "Choose DAC/controller to connect and output to.";
     
     if (mouse_check_button_pressed(mb_left))
         {
         if (os_browser != browser_not_a_browser)
             {
-            show_message_async("Sorry, connecting to DACs is not available in the web version");
+            show_message_async("Sorry, DAC output is not available in the web version");
             exit;
             }
         else

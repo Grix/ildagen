@@ -223,9 +223,9 @@ if (moving)
     activecolor = make_colour_rgb(  controller.red_scale*255,
                                     controller.green_scale*255,
                                     controller.blue_scale*255);
-    redy = y+23-(colour_get_red(activecolor)/255*23);
-    greeny = y+23-(colour_get_green(activecolor)/255*23);
-    bluey = y+23-(colour_get_blue(activecolor)/255*23);
+    redy = round(y+23-(colour_get_red(activecolor)/255*23));
+    greeny = round(y+23-(colour_get_green(activecolor)/255*23));
+    bluey = round(y+23-(colour_get_blue(activecolor)/255*23));
     }
 draw_sprite(spr_colorselect_red,(moving == 1),redx,redy);
 draw_sprite(spr_colorselect_green,(moving == 2),greenx,greeny);

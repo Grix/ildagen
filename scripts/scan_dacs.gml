@@ -23,6 +23,7 @@ for (i = ds_list_size(dac_list)-1; i >= 0; i--)
             ds_list_destroy(newdac);
     }
 }
+laseron = false;
 ds_list_clear(dac_list);
 dac = -1;
 dac_string = "[None]";

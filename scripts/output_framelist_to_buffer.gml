@@ -18,42 +18,41 @@ else
     }
     
 var t_blankshift = controller.opt_blankshift*4;
+var t_redshift = controller.opt_redshift*4;
+var t_greenshift = controller.opt_greenshift*4;
+var t_blueshift = controller.opt_blueshift*4;
+var t_bl;
 
 for (i = 0; i <= t_list_raw_size; i += 4)
-    {
+{
     //writing point
     
     if (controller.invert_x)
-        xp = $FFFF - list_raw[| i];
+        buffer_write(output_buffer_next,buffer_u16, ($FFFF - list_raw[| i]) >> t_scaleshift);
     else
-        xp = list_raw[| i];
+        buffer_write(output_buffer_next,buffer_u16, (list_raw[| i]) >> t_scaleshift);
     if (controller.invert_y)
-        yp = $FFFF - list_raw[| i+1];
+        buffer_write(output_buffer_next,buffer_u16, ($FFFF - list_raw[| i+1]) >> t_scaleshift);
     else
-        yp = list_raw[| i+1];
+        buffer_write(output_buffer_next,buffer_u16, (list_raw[| i+1]) >> t_scaleshift);
         
-    bl = list_raw[| i+t_blankshift+2];
-    c  = list_raw[| i+t_blankshift+3];
-    if (is_undefined(c))
-        {
-        c = 0;
-        bl = 1;
-        }
-    
-    buffer_write(output_buffer_next,buffer_u16, xp >> t_scaleshift); //x
-    buffer_write(output_buffer_next,buffer_u16, yp >> t_scaleshift); //y
-        
-    buffer_write(output_buffer_next,buffer_u8,(c & $FF) * t_red_scale);             //red
-    buffer_write(output_buffer_next,buffer_u8,((c >> 8) & $FF) * t_green_scale);    //green
-    buffer_write(output_buffer_next,buffer_u8,(c >> 16) * t_blue_scale);            //blue
-    
-    //intensity
-    if (bl)
-        buffer_write(output_buffer_next,buffer_u8,0); 
-    else
-        buffer_write(output_buffer_next,buffer_u8,255);
-        
+    t_bl = list_raw[| i+t_blankshift+2];
+    if (is_undefined(bl))
+    {
+        buffer_write(output_buffer_next,buffer_u32,0);
     }
+    else
+    {
+        buffer_write(output_buffer_next,buffer_u8,(list_raw[| i+t_redshift+3] & $FF) * t_red_scale);            //red
+        buffer_write(output_buffer_next,buffer_u8,((list_raw[| i+t_greenshift+3] >> 8) & $FF) * t_green_scale); //green
+        buffer_write(output_buffer_next,buffer_u8,(list_raw[| i+t_blueshift+3] >> 16) * t_blue_scale);          //blue
+        //intensity
+        if (t_bl)
+            buffer_write(output_buffer_next,buffer_u8,0); 
+        else
+            buffer_write(output_buffer_next,buffer_u8,255);
+    }
+}
     
 ds_list_destroy(list_raw);
 ds_list_destroy(list_points);
