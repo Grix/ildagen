@@ -28,9 +28,9 @@
             <string>image_speed = 0;
 moving = 0;
 
-activecolor = make_colour_rgb(  controller.red_scale*255,
-                                controller.green_scale*255,
-                                controller.blue_scale*255);
+activecolor = make_colour_rgb(  controller.red_scale_lower*255,
+                                controller.green_scale_lower*255,
+                                controller.blue_scale_lower*255);
 redy = y+23-(colour_get_red(activecolor)/255*23);
 greeny = y+23-(colour_get_green(activecolor)/255*23);
 bluey = y+23-(colour_get_blue(activecolor)/255*23);
@@ -68,32 +68,32 @@ yplus16 = y+16;
 
 if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
-    controller.tooltip = "Changes color balance of output#-&gt;Right click to enter a precise value";
+    controller.tooltip = "Changes lower bound of colors in output, use to increase analog modulation accuracy.#-&gt;Right click to enter a precise value.";
     } 
 
 if (moving == 1) or ((moving) and keyboard_check(vk_control))
     {
-    red = controller.red_scale * 255;
+    red = controller.red_scale_lower * 255;
     red -= (mouse_y-mouse_yprevious)*255/25;
     if (red &lt; 0) red = 0;
     if (red &gt; 255) red = 255;
-    controller.red_scale = red/255;
+    controller.red_scale_lower = red/255;
     }
 if (moving == 2) or ((moving) and keyboard_check(vk_control))
     {
-    green = controller.green_scale * 255;
+    green = controller.green_scale_lower * 255;
     green -= (mouse_y-mouse_yprevious)*255/25;
     if (green &lt; 0) green = 0;
     if (green &gt; 255) green = 255;
-    controller.green_scale = green/255;
+    controller.green_scale_lower = green/255;
     }
 if (moving == 3) or ((moving) and keyboard_check(vk_control))
     {
-    blue = controller.blue_scale * 255;
+    blue = controller.blue_scale_lower * 255;
     blue -= (mouse_y-mouse_yprevious)*255/25;
     if (blue &lt; 0) blue = 0;
     if (blue &gt; 255) blue = 255;
-    controller.blue_scale = blue/255;
+    controller.blue_scale_lower = blue/255;
     }
     
 mouse_yprevious = mouse_y;
@@ -150,17 +150,17 @@ moving = 0;
 
 if (mouse_x &lt; (x+14))
     {
-    ilda_dialog_num("red_scale","Enter value for RED from 0 to 100",controller.red_scale * 100);
+    ilda_dialog_num("red_scale_lower","Enter value for RED from 0 to 100",controller.red_scale_lower * 100);
     
     }
 else if (mouse_x &gt; (x+30))
     {
-    ilda_dialog_num("blue_scale","Enter value for BLUE from 0 to 100",controller.blue_scale * 100);
+    ilda_dialog_num("blue_scale_lower","Enter value for BLUE from 0 to 100",controller.blue_scale_lower * 100);
    
     }
 else 
     {
-    ilda_dialog_num("green_scale","Enter value for GREEN from 0 to 100",controller.green_scale * 100);
+    ilda_dialog_num("green_scale_lower","Enter value for GREEN from 0 to 100",controller.green_scale_lower * 100);
     }
 </string>
           </argument>
@@ -220,9 +220,9 @@ mouse_yprevious = mouse_y;
 draw_self();
 if (moving)
     {
-    activecolor = make_colour_rgb(  controller.red_scale*255,
-                                    controller.green_scale*255,
-                                    controller.blue_scale*255);
+    activecolor = make_colour_rgb(  controller.red_scale_lower*255,
+                                    controller.green_scale_lower*255,
+                                    controller.blue_scale_lower*255);
     redy = round(y+23-(colour_get_red(activecolor)/255*23));
     greeny = round(y+23-(colour_get_green(activecolor)/255*23));
     bluey = round(y+23-(colour_get_blue(activecolor)/255*23));
@@ -230,6 +230,9 @@ if (moving)
 draw_sprite(spr_colorselect_red,(moving == 1),redx,redy);
 draw_sprite(spr_colorselect_green,(moving == 2),greenx,greeny);
 draw_sprite(spr_colorselect_blue,(moving == 3),bluex,bluey);
+
+draw_set_colour(c_black);
+draw_text(x+70,y+6,"Color scaling#lower bounds");
 </string>
           </argument>
         </arguments>

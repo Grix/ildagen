@@ -212,6 +212,9 @@ projector_name = "default";
 red_scale = 1;
 blue_scale = 1;
 green_scale = 1;
+red_scale_lower = 0;
+blue_scale_lower = 0;
+green_scale_lower = 0;
 
 placing = "line";
 placing_select_last = "line";
@@ -1374,6 +1377,9 @@ if (new_id == getint)
                     ini_write_real(t_currentprojectorstring, "red_scale", ini_read_real(t_projectorstring,"red_scale",1));
                     ini_write_real(t_currentprojectorstring, "green_scale", ini_read_real(t_projectorstring,"green_scale",1));
                     ini_write_real(t_currentprojectorstring, "blue_scale", ini_read_real(t_projectorstring,"blue_scale",1));
+                    ini_write_real(t_currentprojectorstring, "red_scale_lower", ini_read_real(t_projectorstring,"red_scale_lower",0));
+                    ini_write_real(t_currentprojectorstring, "green_scale_lower", ini_read_real(t_projectorstring,"green_scale_lower",0));
+                    ini_write_real(t_currentprojectorstring, "blue_scale_lower", ini_read_real(t_projectorstring,"blue_scale_lower",0));
                     ini_section_delete(t_projectorstring);
                     ini_write_real("main","projector",projector);
                     }
@@ -1596,6 +1602,27 @@ if (new_id == getint)
             case "blue_scale":
               {
               blue_scale = clamp(ds_map_find_value(async_load, "value")/100,0,1);
+              update_colors_scalesettings();
+              save_settings();
+              break;
+              }
+            case "red_scale_lower":
+              {
+              red_scale_lower = clamp(ds_map_find_value(async_load, "value")/100,0,1);
+              update_colors_scalesettings();
+              save_settings();
+              break;
+              }
+            case "green_scale_lower":
+              {
+              green_scale_lower = clamp(ds_map_find_value(async_load, "value")/100,0,1);
+              update_colors_scalesettings();
+              save_settings();
+              break;
+              }
+            case "blue_scale_lower":
+              {
+              blue_scale_lower = clamp(ds_map_find_value(async_load, "value")/100,0,1);
               update_colors_scalesettings();
               save_settings();
               break;

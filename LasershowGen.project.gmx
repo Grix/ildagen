@@ -1182,7 +1182,8 @@
         <object>objects\obj_update</object>
         <object>objects\obj_preset</object>
         <object>objects\obj_dacs</object>
-        <object>objects\obj_colorscale</object>
+        <object>objects\obj_colorupperscale</object>
+        <object>objects\obj_colorlowerscale</object>
         <object>objects\obj_scanrate</object>
         <object>objects\obj_maxdwell</object>
         <object>objects\obj_maxdwell_blank</object>

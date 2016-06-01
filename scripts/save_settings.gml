@@ -19,6 +19,9 @@ with (controller)
     ini_write_real(t_projectorstring, "red_scale", red_scale);
     ini_write_real(t_projectorstring, "green_scale", green_scale);
     ini_write_real(t_projectorstring, "blue_scale", blue_scale);
+    ini_write_real(t_projectorstring, "red_scale_lower", red_scale_lower);
+    ini_write_real(t_projectorstring, "green_scale_lower", green_scale_lower);
+    ini_write_real(t_projectorstring, "blue_scale_lower", blue_scale_lower);
     
     if (room == rm_options)
         {

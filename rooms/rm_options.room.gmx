@@ -69,10 +69,11 @@
     <instance objName="obj_invertx" x="16" y="276" name="inst_81971AD6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_maxdwell_blank" x="16" y="172" name="inst_C943470E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_blankshift" x="248" y="192" name="inst_3EC33475" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_colorscale" x="244" y="108" name="inst_A4AEEF27" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_colorupperscale" x="244" y="60" name="inst_A4AEEF27" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_redshift" x="248" y="224" name="inst_7D536BD7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_greenshift" x="248" y="256" name="inst_7F121BB4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_blueshift" x="248" y="288" name="inst_1F039BD9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_colorlowerscale" x="244" y="112" name="inst_90576422" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
