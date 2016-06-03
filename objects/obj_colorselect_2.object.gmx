@@ -118,7 +118,11 @@ visible = ((controller.colormode == "gradient") || (controller.colormode == "das
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>moving = 0;
+            <string>if (moving)
+{
+    moving = 0;
+    update_colors();
+}
 </string>
           </argument>
         </arguments>

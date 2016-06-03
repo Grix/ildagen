@@ -1041,11 +1041,11 @@
         <script>scripts\output_framelist_to_buffer.gml</script>
       </scripts>
     </scripts>
-    <script>scripts\update_colors_scalesettings.gml</script>
     <script>scripts\update_check.gml</script>
     <script>scripts\update_check_verbose.gml</script>
     <script>scripts\parse_parameter.gml</script>
     <script>scripts\colors_compare_cie94.gml</script>
+    <script>scripts\update_colors_scalesettings.gml</script>
     <script>scripts\verify_serial.gml</script>
     <script>scripts\seq_dialog_yesno.gml</script>
     <script>scripts\seq_dialog_num.gml</script>

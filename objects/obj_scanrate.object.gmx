@@ -29,7 +29,7 @@
     exit;
 if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
-    controller.tooltip = "Changes projector scan rate (in points per second). Right click to set custom amount.";
+    controller.tooltip = "Changes DAC scan rate (in points per second). Right click to set custom amount.";
     } 
 </string>
           </argument>

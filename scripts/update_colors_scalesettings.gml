@@ -1,10 +1,11 @@
 with (obj_colorscale)
     {
-    redy_upper = y+51-controller.red_scale*51;
-    greeny_upper = y+51-controller.green_scale*51;
-    bluey_upper = y+51-controller.blue_scale*51;
+    redy_upper = round(y+52-controller.red_scale*52);
+    greeny_upper = round(y+52-controller.green_scale*52);
+    bluey_upper = round(y+52-controller.blue_scale*52);
     
-    redy_lower = y+51-controller.red_scale_lower*51;
-    greeny_lower = y+51-controller.green_scale_lower*51;
-    bluey_lower = y+51-controller.blue_scale_lower*51;
+    redy_lower = round(y+52-controller.red_scale_lower*52);
+    greeny_lower = round(y+52-controller.green_scale_lower*52);
+    bluey_lower = round(y+52-controller.blue_scale_lower*52);
+    
     }

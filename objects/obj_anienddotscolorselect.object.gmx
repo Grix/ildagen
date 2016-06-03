@@ -119,7 +119,11 @@ if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>moving = 0;
+            <string>if (moving)
+{
+    moving = 0;
+    update_anicolors();
+}
 </string>
           </argument>
         </arguments>

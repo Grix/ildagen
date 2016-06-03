@@ -28,13 +28,13 @@
             <string>image_speed = 0;
 moving = 0;
 
-redy_upper = y+51-controller.red_scale*51;
-greeny_upper = y+51-controller.green_scale*51;
-bluey_upper = y+51-controller.blue_scale*51;
+redy_upper = y+52-controller.red_scale*52;
+greeny_upper = y+52-controller.green_scale*52;
+bluey_upper = y+52-controller.blue_scale*52;
 
-redy_lower = y+51-controller.red_scale_lower*51;
-greeny_lower = y+51-controller.green_scale_lower*51;
-bluey_lower = y+51-controller.blue_scale_lower*51;
+redy_lower = y+52-controller.red_scale_lower*52;
+greeny_lower = y+52-controller.green_scale_lower*52;
+bluey_lower = y+52-controller.blue_scale_lower*52;
 
 redx = x;
 greenx = x+16;
@@ -75,7 +75,7 @@ if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and
 if (moving == 1) or ((moving &lt; 4) and (moving &gt; 0) and keyboard_check(vk_control))
     {
     red = controller.red_scale * 255;
-    red -= (mouse_y-mouse_yprevious)*255/51;
+    red -= (mouse_y-mouse_yprevious)*255/52;
     if (red &lt; 0) red = 0;
     if (red &gt; 255) red = 255;
     controller.red_scale = red/255;
@@ -83,7 +83,7 @@ if (moving == 1) or ((moving &lt; 4) and (moving &gt; 0) and keyboard_check(vk_c
 if (moving == 2) or ((moving &lt; 4) and (moving &gt; 0) and keyboard_check(vk_control))
     {
     green = controller.green_scale * 255;
-    green -= (mouse_y-mouse_yprevious)*255/51;
+    green -= (mouse_y-mouse_yprevious)*255/52;
     if (green &lt; 0) green = 0;
     if (green &gt; 255) green = 255;
     controller.green_scale = green/255;
@@ -91,7 +91,7 @@ if (moving == 2) or ((moving &lt; 4) and (moving &gt; 0) and keyboard_check(vk_c
 if (moving == 3) or ((moving &lt; 4) and (moving &gt; 0) and keyboard_check(vk_control))
     {
     blue = controller.blue_scale * 255;
-    blue -= (mouse_y-mouse_yprevious)*255/51;
+    blue -= (mouse_y-mouse_yprevious)*255/52;
     if (blue &lt; 0) blue = 0;
     if (blue &gt; 255) blue = 255;
     controller.blue_scale = blue/255;
@@ -99,7 +99,7 @@ if (moving == 3) or ((moving &lt; 4) and (moving &gt; 0) and keyboard_check(vk_c
 if (moving == 4) or ((moving &gt; 3) and keyboard_check(vk_control))
     {
     red = controller.red_scale_lower * 255;
-    red -= (mouse_y-mouse_yprevious)*255/51;
+    red -= (mouse_y-mouse_yprevious)*255/52;
     if (red &lt; 0) red = 0;
     if (red &gt; 255) red = 255;
     controller.red_scale_lower = red/255;
@@ -107,7 +107,7 @@ if (moving == 4) or ((moving &gt; 3) and keyboard_check(vk_control))
 if (moving == 5) or ((moving &gt; 3) and keyboard_check(vk_control))
     {
     green = controller.green_scale_lower * 255;
-    green -= (mouse_y-mouse_yprevious)*255/51;
+    green -= (mouse_y-mouse_yprevious)*255/52;
     if (green &lt; 0) green = 0;
     if (green &gt; 255) green = 255;
     controller.green_scale_lower = green/255;
@@ -115,7 +115,7 @@ if (moving == 5) or ((moving &gt; 3) and keyboard_check(vk_control))
 if (moving == 6) or ((moving &gt; 3) and keyboard_check(vk_control))
     {
     blue = controller.blue_scale_lower * 255;
-    blue -= (mouse_y-mouse_yprevious)*255/51;
+    blue -= (mouse_y-mouse_yprevious)*255/52;
     if (blue &lt; 0) blue = 0;
     if (blue &gt; 255) blue = 255;
     controller.blue_scale_lower = blue/255;
@@ -146,8 +146,14 @@ mouse_yprevious = mouse_y;
             <kind>1</kind>
             <string>if (moving)
 {
-    //TODO update points so value doesn't glitch 
-    //slightly when moving the mouse while releasing
+    redy_upper = y+52-controller.red_scale*52;
+    greeny_upper = y+52-controller.green_scale*52;
+    bluey_upper = y+52-controller.blue_scale*52;
+    
+    redy_lower = y+52-controller.red_scale_lower*52;
+    greeny_lower = y+52-controller.green_scale_lower*52;
+    bluey_lower = y+52-controller.blue_scale_lower*52;
+    
     save_settings();
 }    
 
@@ -279,13 +285,13 @@ mouse_yprevious = mouse_y;
 draw_self();
 if (moving)
     {
-    redy_upper = y+51-controller.red_scale*51;
-    greeny_upper = y+51-controller.green_scale*51;
-    bluey_upper = y+51-controller.blue_scale*51;
+    redy_upper = y+52-controller.red_scale*52;
+    greeny_upper = y+52-controller.green_scale*52;
+    bluey_upper = y+52-controller.blue_scale*52;
     
-    redy_lower = y+51-controller.red_scale_lower*51;
-    greeny_lower = y+51-controller.green_scale_lower*51;
-    bluey_lower = y+51-controller.blue_scale_lower*51;
+    redy_lower = y+52-controller.red_scale_lower*52;
+    greeny_lower = y+52-controller.green_scale_lower*52;
+    bluey_lower = y+52-controller.blue_scale_lower*52;
     }
 draw_sprite(spr_colorselect_red,(moving == 1),redx,redy_upper);
 draw_sprite(spr_colorselect_green,(moving == 2),greenx,greeny_upper);
@@ -294,14 +300,14 @@ draw_sprite(spr_colorselect_red,(moving == 4),redx,redy_lower);
 draw_sprite(spr_colorselect_green,(moving == 5),greenx,greeny_lower);
 draw_sprite(spr_colorselect_blue,(moving == 6),bluex,bluey_lower);
 
-draw_set_colour(c_black);
-draw_text(x+70,y+6,"Color range bounds");
+draw_set_colour(c_dkgray);
+draw_text(x+60,y+25,"Color range");
 
-draw_rectangle(redx+7,y+1,redx+9,redy_upper+1,0);
+draw_rectangle(redx+7,y+2,redx+9,redy_upper+1,0);
 draw_rectangle(redx+7,redy_lower+9,redx+9,y+60,0);
-draw_rectangle(greenx+7,y+1,greenx+9,greeny_upper+1,0);
+draw_rectangle(greenx+7,y+2,greenx+9,greeny_upper+1,0);
 draw_rectangle(greenx+7,greeny_lower+9,greenx+9,y+60,0);
-draw_rectangle(bluex+7,y+1,bluex+9,bluey_upper+1,0);
+draw_rectangle(bluex+7,y+2,bluex+9,bluey_upper+1,0);
 draw_rectangle(bluex+7,bluey_lower+9,bluex+9,y+60,0);
 </string>
           </argument>
