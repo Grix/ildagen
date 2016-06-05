@@ -42,7 +42,8 @@ else
     }
     else
     {
-        output_makeframe_pass_int();
+        if (controller.exp_optimize)
+            output_makeframe_pass_int();
         
         output_framelist_to_buffer();
     }

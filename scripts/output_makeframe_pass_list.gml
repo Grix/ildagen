@@ -21,74 +21,77 @@ var t_lowestdist, t_dist, t_tempxp_prev_other, t_tempyp_prev_other, t_tempxp_pre
 var t_found = 0;
 
 //checking best element order
-while (ds_list_size(order_list) < ds_list_size(el_list))
+if (controller.exp_optimize)
     {
-    t_lowestdist = $fffff;
-    for (i = 0;i < ds_list_size(el_list);i++)
+    while (ds_list_size(order_list) < ds_list_size(el_list))
         {
-        if (ds_list_find_index(order_list,i) != -1)
-            continue;
+        t_lowestdist = $fffff;
+        for (i = 0;i < ds_list_size(el_list);i++)
+            {
+            if (ds_list_find_index(order_list,i) != -1)
+                continue;
+                
+            list_id = ds_list_find_value(el_list,i);
             
-        list_id = ds_list_find_value(el_list,i);
-        
-        xo = ds_list_find_value(list_id,0);
-        yo = ds_list_find_value(list_id,1);
-        t_found = 0;
-        
-        currentpos = 20;
-        while (ds_list_find_value(list_id,currentpos+2))
-            currentpos += 4;
+            xo = ds_list_find_value(list_id,0);
+            yo = ds_list_find_value(list_id,1);
+            t_found = 0;
             
-        if (is_undefined(list_id[| currentpos]))
-            {
-            ds_list_delete(el_list,i);
-            log("empty")
-            continue;
+            currentpos = 20;
+            while (ds_list_find_value(list_id,currentpos+2))
+                currentpos += 4;
+                
+            if (is_undefined(list_id[| currentpos]))
+                {
+                ds_list_delete(el_list,i);
+                log("empty")
+                continue;
+                }
+            
+            xp = xo+ds_list_find_value(list_id,currentpos+0);
+            yp = $ffff-(yo+ds_list_find_value(list_id,currentpos+1));
+            t_tempxp_prev_other = xp;
+            t_tempyp_prev_other = yp;
+            
+            t_dist = point_distance(xp_prev,yp_prev,xp,yp);
+            if (t_dist < t_lowestdist)
+                {
+                t_lowestdist = t_dist;
+                t_order = i;
+                t_pol = 0;
+                t_found = 1;
+                }
+            
+            currentpos = ds_list_size(list_id)-4;
+            while (ds_list_find_value(list_id,currentpos+2))
+                currentpos -= 4;
+            
+            xp = xo+ds_list_find_value(list_id,currentpos+0);
+            yp = $ffff-(yo+ds_list_find_value(list_id,currentpos+1));
+            
+            t_dist = point_distance(xp_prev,yp_prev,xp,yp);
+            if (t_dist < t_lowestdist)
+                {
+                t_lowestdist = t_dist;
+                t_order = i;
+                t_pol = 1;
+                t_tempxp_prev = t_tempxp_prev_other;
+                t_tempyp_prev = t_tempxp_prev_other;
+                }
+            
+            if (t_found = 1)
+                {
+                t_tempxp_prev = xp;
+                t_tempyp_prev = yp;
+                }
             }
-        
-        xp = xo+ds_list_find_value(list_id,currentpos+0);
-        yp = $ffff-(yo+ds_list_find_value(list_id,currentpos+1));
-        t_tempxp_prev_other = xp;
-        t_tempyp_prev_other = yp;
-        
-        t_dist = point_distance(xp_prev,yp_prev,xp,yp);
-        if (t_dist < t_lowestdist)
+        if (ds_list_size(el_list))
             {
-            t_lowestdist = t_dist;
-            t_order = i;
-            t_pol = 0;
-            t_found = 1;
+            xp_prev = t_tempxp_prev;
+            yp_prev = t_tempyp_prev;
+            ds_list_add(order_list,t_order);
+            ds_list_add(polarity_list,t_pol);
             }
-        
-        currentpos = ds_list_size(list_id)-4;
-        while (ds_list_find_value(list_id,currentpos+2))
-            currentpos -= 4;
-        
-        xp = xo+ds_list_find_value(list_id,currentpos+0);
-        yp = $ffff-(yo+ds_list_find_value(list_id,currentpos+1));
-        
-        t_dist = point_distance(xp_prev,yp_prev,xp,yp);
-        if (t_dist < t_lowestdist)
-            {
-            t_lowestdist = t_dist;
-            t_order = i;
-            t_pol = 1;
-            t_tempxp_prev = t_tempxp_prev_other;
-            t_tempyp_prev = t_tempxp_prev_other;
-            }
-        
-        if (t_found = 1)
-            {
-            t_tempxp_prev = xp;
-            t_tempyp_prev = yp;
-            }
-        }
-    if (ds_list_size(el_list))
-        {
-        xp_prev = t_tempxp_prev;
-        yp_prev = t_tempyp_prev;
-        ds_list_add(order_list,t_order);
-        ds_list_add(polarity_list,t_pol);
         }
     }
 
@@ -110,7 +113,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
     xo = ds_list_find_value(list_id,0);
     yo = ds_list_find_value(list_id,1);
        
-    output_pass_list_points();
+    pass_list_points();
         
     if (bl_prev == 0)
         {
