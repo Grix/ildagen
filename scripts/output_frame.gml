@@ -36,7 +36,7 @@ if (ds_list_size(el_list) == 0)
 }
 else
 {
-    if (output_makeframe_pass_list() == 0)
+    if (export_makeframe_pass_list() == 0)
     {
         optimize_middle_output();
     }

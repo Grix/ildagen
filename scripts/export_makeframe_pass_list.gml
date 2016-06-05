@@ -21,7 +21,7 @@ var t_lowestdist, t_dist, t_tempxp_prev_other, t_tempyp_prev_other, t_tempxp_pre
 var t_found = 0;
 
 //checking best element order
-if (controller.exp_optimize == 1)
+if (controller.exp_optimize)
     {
     while (ds_list_size(order_list) < ds_list_size(el_list))
         {
