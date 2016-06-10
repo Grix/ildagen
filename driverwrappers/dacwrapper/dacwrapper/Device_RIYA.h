@@ -13,30 +13,12 @@ class Device_RIYA
 #define RIYA_FRAME_ATTRIBUTES_NOSYNC	0x1C
 
 public:
-
-	struct Point
-	{
-		UINT16 X;
-		UINT16 Y;
-		UINT8  R;
-		UINT8  G;
-		UINT8  B;
-		UINT8  I;
-	};
-
 	Device_RIYA();
 	~Device_RIYA();
 	
 	int Init(UINT8 riyaDeviceNum);
 	int OutputFrame(int scanRate, int bufferSize, UINT8* bufferAddress);
-	char* GetDescription();
 	int GetID();
-	//int SetShutter(bool value); //needed?
-
-	Point frame1[RIYA_BUFFER_SIZE];
-	//Point frame2[RIYA_BUFFER_SIZE];
-
-	//Point *frameAddress;
 
 private: 
 	// function pointer for library routine RiOpenDevices
@@ -66,15 +48,7 @@ private:
 	UINT pointPeriod;
 	bool ready;
 
-	struct DeviceDescription
-	{
-		char* Name; // name of device Local-N for local or CompName-N for remote
-		char ONum;   // order number of device for use 
-		UINT16 IDD;      // Version and Serial number for current device
-		bool Pres;      // Show if Device present in current configuration should be always TRUE
-	};
-
-	void outputPointThreaded(int scanRate, int bufferSize, UINT8* bufferAddress);
+	void outputFrameThreaded(int scanRate, int bufferSize, UINT8* bufferAddress);
 
 	riyaFuncPtr1 OpenAllRiyaDevices;    // library routine RiOpenDevices
 	riyaFuncPtr2 CloseAllRiyaDevices;   // library routine RiCloseDevices

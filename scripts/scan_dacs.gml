@@ -1,9 +1,10 @@
 //scans for available dacs (and resets all)
+log("---dac scan result");
 
 //cleanup
-for (i = ds_list_size(dac_list)-1; i >= 0; i--)
+for (i = ds_list_size(controller.dac_list)-1; i >= 0; i--)
 {
-    var newdac = dac_list[| i];
+    var newdac = controller.dac_list[| i];
     if (newdac[| 1] == 0)
     {
         //RIYA
@@ -23,10 +24,10 @@ for (i = ds_list_size(dac_list)-1; i >= 0; i--)
             ds_list_destroy(newdac);
     }
 }
-laseron = false;
-ds_list_clear(dac_list);
-dac = -1;
-dac_string = "[None]";
+controller.laseron = false;
+ds_list_clear(controller.dac_list);
+controller.dac = -1;
+controller.dac_string = "[None]";
 
 //RIYA
 for (i = 0; i < 4; i++)
@@ -39,7 +40,8 @@ for (i = 0; i < 4; i++)
         ds_list_add(newdac,0);
         ds_list_add(newdac,"RIYA "+string(dac_riya_get_description(result)));
         ds_list_add(newdac,ds_map_create());
-        ds_list_add(dac_list,newdac);
+        ds_list_add(controller.dac_list,newdac);
+        log("riya");
     }
     else
     {   
@@ -56,8 +58,8 @@ if (result > 0)
     ds_list_add(newdac,1);
     ds_list_add(newdac,"LASDAC");
     ds_list_add(newdac,ds_map_create());
-    ds_list_add(dac_list,newdac);
+    ds_list_add(controller.dac_list,newdac);
+    log("lasdac");
 }
-log("---dac scan result");
-log(result);
+
 

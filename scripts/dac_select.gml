@@ -7,4 +7,5 @@ with (controller)
         return 0;
     }
     dac_string = dac[| 2];
+    laseron = false;
 }

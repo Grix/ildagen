@@ -51,10 +51,6 @@ int Device_LASDAC::Init()
 	}
 
 	ready = true;
-	
-	//Point* blankPoint = new Point[2];
-	//blankPoint[0] = { 0x800, 0x800, 0, 0, 0, 0 };
-	//OutputFrame(0, 10000, 1, (UINT8*)&blankPoint);
 
 	return 1;
 }

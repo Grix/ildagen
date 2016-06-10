@@ -21,9 +21,21 @@
     <ClCompile Include="Device_RIYA.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Device_LASDAC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Device_Etherdream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device_RIYA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Device_LASDAC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Device_Etherdream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

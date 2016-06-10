@@ -16,7 +16,6 @@ Device_RIYA::~Device_RIYA()
 		StopRiyaDevice(riyaDeviceNum);
 	if (riyaDeviceNum == 0)
 		CloseAllRiyaDevices();
-		
 }
 
 int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
@@ -99,35 +98,11 @@ int Device_RIYA::Init(UINT8 pRiyaDeviceNum)
 	riyaDeviceNum = pRiyaDeviceNum;
 	InitRiyaDevice(riyaDeviceNum, RIYA_DEVICE_ATTRIBUTES);
 
-	//clear buffer, blank output
-	for (int i = 0; i < RIYA_BUFFER_SIZE; i++)
-	{ 
-		frame1[i].X = 0x0800;
-		frame1[i].Y = 0x0800;
-		frame1[i].R = 0;
-		frame1[i].G = 0;
-		frame1[i].B = 0;
-		frame1[i].I = 0;
-		/*frame2[i].X = 0x0800;
-		frame2[i].Y = 0x0800;
-		frame2[i].R = 0;
-		frame2[i].G = 0;
-		frame2[i].B = 0;
-		frame2[i].I = 0;*/
-	}
-
-	if (TransferFrameToBuffer(	riyaDeviceNum,
-								(UINT8 *)&frame1[0],
-								RIYA_BUFFER_SIZE,
-								pointPeriod,
-								RIYA_FRAME_ATTRIBUTES_NOSYNC) == 255)
-		return -3;
-
 	ready = true;
 	return 1;
 }
 
-void Device_RIYA::outputPointThreaded(int scanRate, int bufferSize, UINT8* bufferAddress)
+void Device_RIYA::outputFrameThreaded(int scanRate, int bufferSize, UINT8* bufferAddress)
 {
 	while (RiyaReadyForNextFrame(riyaDeviceNum) == 0);
 
@@ -145,7 +120,7 @@ int Device_RIYA::OutputFrame(int scanRate, int bufferSize, UINT8* bufferAddress)
 	if (!ready) 
 		return 0;
 	
-	std::thread outputThread (&Device_RIYA::outputPointThreaded,	this,	scanRate,
+	std::thread outputThread (&Device_RIYA::outputFrameThreaded,	this,	scanRate,
 																			bufferSize,
 																			bufferAddress);
 
