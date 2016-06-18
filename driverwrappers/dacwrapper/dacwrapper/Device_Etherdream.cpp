@@ -11,44 +11,118 @@ Device_Etherdream::Device_Etherdream()
 
 Device_Etherdream::~Device_Etherdream()
 {
+	if (ready)
+	{
+		CloseAll();
+	}
 }
 
 int Device_Etherdream::Init()
 {
-	HINSTANCE etherdreamLibrary = LoadLibrary(L"Etherdream.dll");
+	etherdreamLibrary = LoadLibrary(L"Etherdream.dll");
 
-	// Retrieve a pointer to each of the lasdac library functions,
-	// and check to make sure that the pointer is valid...
-	/*OpenLasdacDevice = (lasdacFuncPtr0)GetProcAddress(lasdacLibrary, "open_device");
-	if (!OpenLasdacDevice)
+	// Retrieve a pointer to each of the library functions, and check to make sure that the pointer is valid...
+
+	EtherDreamGetCardNum = (etherdreamFuncPtr0)GetProcAddress(etherdreamLibrary, "EtherDreamGetCardNum");
+	if (!EtherDreamGetCardNum)
 	{
-		FreeLibrary(lasdacLibrary);
+		FreeLibrary(etherdreamLibrary);
 		return -1;
 	}
 
-	CloseLasdacDevice = (lasdacFuncPtr0)GetProcAddress(lasdacLibrary, "close_device");
-	if (!CloseLasdacDevice)
+	EtherDreamGetDeviceName = (etherdreamFuncPtr1)GetProcAddress(etherdreamLibrary, "EtherDreamGetDeviceName");
+	if (!EtherDreamGetDeviceName)
 	{
-		FreeLibrary(lasdacLibrary);
-		return -2;
+		FreeLibrary(etherdreamLibrary);
+		return -1;
 	}
 
-	SendLasdacFrame = (lasdacFuncPtr1)GetProcAddress(lasdacLibrary, "send_frame");
-	if (!SendLasdacFrame)
+	EtherDreamOpenDevice = (etherdreamFuncPtr2)GetProcAddress(etherdreamLibrary, "EtherDreamOpenDevice");
+	if (!EtherDreamOpenDevice)
 	{
-		FreeLibrary(lasdacLibrary);
-		return -3;
+		FreeLibrary(etherdreamLibrary);
+		return -1;
 	}
 
-	int openResult = OpenLasdacDevice();
-	if (openResult != 0)
+	EtherDreamStop = (etherdreamFuncPtr2)GetProcAddress(etherdreamLibrary, "EtherDreamStop");
+	if (!EtherDreamStop)
 	{
-		CloseLasdacDevice();
-		FreeLibrary(lasdacLibrary);
-		return (-3 + openResult);
-	}*/
+		FreeLibrary(etherdreamLibrary);
+		return -1;
+	}
+
+	EtherDreamCloseDevice = (etherdreamFuncPtr2)GetProcAddress(etherdreamLibrary, "EtherDreamCloseDevice");
+	if (!EtherDreamCloseDevice)
+	{
+		FreeLibrary(etherdreamLibrary);
+		return -1;
+	}
+
+	EtherDreamWriteFrame = (etherdreamFuncPtr3)GetProcAddress(etherdreamLibrary, "EtherDreamWriteFrame");
+	if (!EtherDreamWriteFrame)
+	{
+		FreeLibrary(etherdreamLibrary);
+		return -1;
+	}
+
+	EtherDreamClose = (etherdreamFuncPtr4)GetProcAddress(etherdreamLibrary, "EtherDreamClose");
+	if (!EtherDreamClose)
+	{
+		FreeLibrary(etherdreamLibrary);
+		return -1;
+	}
+
+	int openResult = EtherDreamGetCardNum();
+	if (openResult <= 0)
+	{
+		EtherDreamClose();
+		FreeLibrary(etherdreamLibrary);
+		return (-2);
+	}
 
 	ready = true;
 
-	return 1;
+	return openResult;
+}
+
+bool Device_Etherdream::OpenDevice(int cardNum)
+{
+	if (!ready) return false;
+
+	const int cardNumConst = cardNum;
+	return EtherDreamOpenDevice(&cardNumConst);
+}
+
+bool Device_Etherdream::CloseDevice(int cardNum)
+{
+	if (!ready) return false;
+
+	const int cardNumConst = cardNum;
+	return EtherDreamCloseDevice(&cardNumConst);
+}
+
+bool Device_Etherdream::CloseAll()
+{
+	if (!ready) return false;
+
+	EtherDreamClose();
+	FreeLibrary(etherdreamLibrary);
+
+	return true;
+}
+
+bool Device_Etherdream::Stop(int cardNum)
+{
+	if (!ready) return false;
+
+	const int cardNumConst = cardNum;
+	return EtherDreamStop(&cardNumConst);
+}
+
+int Device_Etherdream::OutputFrame(int cardNum, const EAD_Pnt_s* data, int Bytes, UINT16 PPS)
+{
+	if (!ready) return -1;
+
+	const int cardNumConst = cardNum;
+	return (int)EtherDreamWriteFrame(&cardNumConst, data, Bytes, PPS, -1);
 }

@@ -69,17 +69,20 @@ else if (string_char_at(undo,0) == 'k')
     for (u = 0;u < ds_list_size(tempundolist);u++)
         {
         list = ds_list_find_value(tempundolist,u);
-        tempid = ds_list_find_value(list,9);
-        frame = ds_list_find_value(list,ds_list_size(list)-1);
-        ds_list_delete(list,ds_list_size(list)-1);
-        el_list = ds_list_find_value(controller.frame_list,frame);
-        for (i = 0;i < ds_list_size(el_list);i++)
+        if (ds_exists(list,ds_type_list))
             {
-            if (ds_list_find_value(ds_list_find_value(el_list,i),9) == tempid)
+            tempid = ds_list_find_value(list,9);
+            frame = ds_list_find_value(list,ds_list_size(list)-1);
+            ds_list_delete(list,ds_list_size(list)-1);
+            el_list = ds_list_find_value(controller.frame_list,controller.frame);
+            for (i = 0;i < ds_list_size(el_list);i++)
                 {
-                oldlist = ds_list_find_value(el_list,i);
-                ds_list_destroy(oldlist);
-                ds_list_replace(el_list,i,list);
+                if (ds_list_find_value(ds_list_find_value(el_list,i),9) == tempid)
+                    {
+                    oldlist = ds_list_find_value(el_list,i);
+                    ds_list_destroy(oldlist);
+                    ds_list_replace(el_list,i,list);
+                    }
                 }
             }
         }
@@ -94,11 +97,14 @@ else if (string_char_at(undo,0) == 'l')
     for (u = 0;u < ds_list_size(tempundolist);u++)
         {
         list = ds_list_find_value(tempundolist,u);
-        tempid = ds_list_find_value(list,9);
-        frame = ds_list_find_value(list,ds_list_size(list)-1);
-        ds_list_delete(list,ds_list_size(list)-1);
-        el_list = ds_list_find_value(controller.frame_list,frame);
-        ds_list_add(el_list,list);
+        if (ds_exists(list,ds_type_list))
+            {
+            tempid = ds_list_find_value(list,9);
+            frame = ds_list_find_value(list,ds_list_size(list)-1);
+            ds_list_delete(list,ds_list_size(list)-1);
+            el_list = ds_list_find_value(controller.frame_list,frame);
+            ds_list_add(el_list,list);
+            }
         }
     ds_list_destroy(tempundolist);
     }

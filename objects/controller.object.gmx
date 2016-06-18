@@ -115,9 +115,13 @@ hershey_index_list = ds_list_create();
 hershey_list = -1;
 menu_surf = -1;
 dac_list = ds_list_create();
-output_buffer = -1;
-buffer_to_delete = -1;
 blank_frame = buffer_create(16, buffer_fixed, 1);
+frame1 = buffer_create(48000,buffer_fixed,2);
+frame2 = buffer_create(48000,buffer_fixed,2);
+frame3 = buffer_create(48000,buffer_fixed,2);
+output_buffer = frame2;
+output_buffer_next = frame1;
+buffer_unused = frame3;
 
 c_gold = make_colour_rgb(255,220,0);
 
@@ -489,7 +493,8 @@ while (ds_list_size(undo_list) &gt; 100)
         for (u = 0;u &lt; ds_list_size(tempundolist)-1;u++)
             {
             list = ds_list_find_value(tempundolist,u);
-            ds_list_destroy(list);
+            if (ds_exists(list,ds_type_list))
+                ds_list_destroy(list);
             }
         ds_list_destroy(tempundolist);
         }
@@ -502,7 +507,8 @@ while (ds_list_size(undo_list) &gt; 100)
         for (u = 0;u &lt; ds_list_size(tempundolist)-1;u++)
             {
             list = ds_list_find_value(tempundolist,u);
-            ds_list_destroy(list);
+            if (ds_exists(list,ds_type_list))
+                ds_list_destroy(list);
             }
         ds_list_destroy(tempundolist);
         }

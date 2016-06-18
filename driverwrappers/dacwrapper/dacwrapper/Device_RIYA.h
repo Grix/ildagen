@@ -21,6 +21,9 @@ public:
 	int GetID();
 
 private: 
+
+	HINSTANCE riyaLibrary = LoadLibrary(L"RiyaNetServer.dll");
+
 	// function pointer for library routine RiOpenDevices
 	typedef UINT8(*riyaFuncPtr1)();
 

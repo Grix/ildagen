@@ -19,11 +19,12 @@ t_pol = 0;
 t_order = 0;
 var t_lowestdist, t_dist, t_tempxp_prev_other, t_tempyp_prev_other, t_tempxp_prev, t_tempyp_prev;
 var t_found = 0;
+var t_list_empties = ds_list_create(); //todo implement
 
 //checking best element order
 if (controller.exp_optimize)
     {
-    while (ds_list_size(order_list) < ds_list_size(el_list))
+    while (ds_list_size(order_list) < (ds_list_size(el_list)-t_empty_lists))
         {
         t_lowestdist = $fffff;
         for (i = 0;i < ds_list_size(el_list);i++)
@@ -43,7 +44,9 @@ if (controller.exp_optimize)
                 
             if (is_undefined(list_id[| currentpos]))
                 {
-                ds_list_delete(el_list,i);
+                //ds_list_delete(el_list,i);
+                //cause of bug? Why was it even there?
+                t_empty_lists++;
                 continue;
                 }
             

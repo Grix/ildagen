@@ -2,7 +2,13 @@ var t_dist, t_xp, t_yp, t_xpn, t_ypn, t_c, t_vectorx, t_vectory;
 var t_totalrem = 0;
 var t_totalpointswanted = floor(controller.opt_scanspeed/controller.projectfps);
 maxpointswanted = t_totalpointswanted-maxpoints_static; 
+if (maxpointswanted == 0) 
+    maxpointswanted = 1;
 lengthwanted = abs(lit_length/maxpointswanted);
+if (lengthwanted == 0) 
+    {
+    lengthwanted = 0.001;
+    }
 
 //TODO fix this shit: reducing points when there is also lit segments
 /*if (lengthwanted > controller.opt_maxdist)

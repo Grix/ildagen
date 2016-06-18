@@ -85,6 +85,7 @@
     <ClCompile Include="Device_RIYA.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dacwrapper.h" />
     <ClInclude Include="Device_Etherdream.h" />
     <ClInclude Include="Device_LASDAC.h" />
     <ClInclude Include="Device_RIYA.h" />

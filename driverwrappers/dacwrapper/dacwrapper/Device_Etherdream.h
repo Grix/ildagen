@@ -8,12 +8,7 @@ public:
 	Device_Etherdream();
 	~Device_Etherdream();
 
-	int Init();
-	int OutputFrame();
-
-private:
-
-	struct EAD_Pnt_s {
+	typedef struct {
 		INT16 X;
 		INT16 Y;
 		INT16 R;
@@ -22,7 +17,18 @@ private:
 		INT16 I;
 		INT16 AL;
 		INT16 AR;
-	};
+	}EAD_Pnt_s;
+
+	int Init();
+	bool OpenDevice(int cardNum);
+	bool CloseDevice(int cardNum);
+	bool Stop(int cardNum);
+	bool CloseAll();
+	int OutputFrame(int cardNum, const EAD_Pnt_s* data, int Bytes, UINT16 PPS);
+
+private:
+
+	HINSTANCE etherdreamLibrary;
 
 	//pointer for EtherDreamGetCardNum()
 	typedef int(*etherdreamFuncPtr0)();
@@ -34,7 +40,7 @@ private:
 	typedef bool(*etherdreamFuncPtr2)(const int *CardNum);
 
 	//pointer for EtherDreamWriteFrame()
-	typedef bool(*etherdreamFuncPtr3)(const int *CardNum, const struct EAD_Pnt_s* data, int Bytes, UINT16 PPS, UINT16 Reps);
+	typedef bool(*etherdreamFuncPtr3)(const int *CardNum, const EAD_Pnt_s* data, int Bytes, UINT16 PPS, UINT16 Reps);
 
 	//pointer for EtherDreamClose()
 	typedef bool(*etherdreamFuncPtr4)();
