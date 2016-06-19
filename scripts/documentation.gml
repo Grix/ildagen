@@ -17,8 +17,7 @@ CONTROLLER
         
 dac_list
     dac...
-        id
-        type: 0 riya, 1 lasdac
+        num
         description
         settings map...
             

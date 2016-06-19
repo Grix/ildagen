@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="42" name="datafiles">
+  <datafiles number="43" name="datafiles">
     <datafile>
       <name>help.pdf</name>
       <exists>-1</exists>
@@ -124,9 +124,9 @@
       <filename>palette.ini</filename>
     </datafile>
     <datafile>
-      <name>LaserBoy_2016_02_11.zip</name>
+      <name>LaserBoy_2016_03_15.zip</name>
       <exists>-1</exists>
-      <size>4720612</size>
+      <size>4721280</size>
       <exportAction>2</exportAction>
       <exportDir></exportDir>
       <overwrite>0</overwrite>
@@ -135,10 +135,10 @@
       <store>0</store>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
+          <CopyToMask>17592940089550</CopyToMask>
         </Config>
       </ConfigOptions>
-      <filename>LaserBoy_2016_02_11.zip</filename>
+      <filename>LaserBoy_2016_03_15.zip</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -899,7 +899,6 @@
         <script>scripts\preset_load.gml</script>
         <script>scripts\preset_create.gml</script>
         <script>scripts\preset_delete.gml</script>
-        <script>scripts\dac_select.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">
@@ -1027,6 +1026,7 @@
       <script>scripts\read_hershey_createini.gml</script>
     </scripts>
     <scripts name="dacs">
+      <script>scripts\dac_select.gml</script>
       <script>scripts\scan_dacs.gml</script>
       <script>scripts\close_dacs.gml</script>
       <script>scripts\dac_send_frame.gml</script>
@@ -1035,7 +1035,6 @@
         <script>scripts\output_frame.gml</script>
         <script>scripts\output_frame_seq.gml</script>
         <script>scripts\optimize_middle_output.gml</script>
-        <script>scripts\output_makeframe_pass_list.gml</script>
         <script>scripts\output_pass_list_points.gml</script>
         <script>scripts\output_makeframe_pass_int.gml</script>
         <script>scripts\output_framelist_to_buffer.gml</script>

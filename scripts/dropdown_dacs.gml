@@ -5,7 +5,7 @@ with (ddobj)
     for (i = 0; i < ds_list_size(controller.dac_list); i++)
         {
         var dac = controller.dac_list[| i];
-        ds_list_add(desc_list,string(dac[| 2]));
+        ds_list_add(desc_list,string(dac[| 1]));
         ds_list_add(sep_list,0);
         ds_list_add(scr_list,dac_select);
         ds_list_add(hl_list,(controller.dac == dac));

@@ -20,11 +20,19 @@ Device_Etherdream::~Device_Etherdream()
 int Device_Etherdream::Init()
 {
 	etherdreamLibrary = LoadLibrary(L"Etherdream.dll");
+	if (etherdreamLibrary == NULL) return -1;
 
 	// Retrieve a pointer to each of the library functions, and check to make sure that the pointer is valid...
 
 	EtherDreamGetCardNum = (etherdreamFuncPtr0)GetProcAddress(etherdreamLibrary, "EtherDreamGetCardNum");
 	if (!EtherDreamGetCardNum)
+	{
+		FreeLibrary(etherdreamLibrary);
+		return -1;
+	}
+
+	EzAudDacGetCardNum = (etherdreamFuncPtr0)GetProcAddress(etherdreamLibrary, "EzAudDacGetCardNum");
+	if (!EzAudDacGetCardNum)
 	{
 		FreeLibrary(etherdreamLibrary);
 		return -1;
@@ -77,7 +85,7 @@ int Device_Etherdream::Init()
 	{
 		EtherDreamClose();
 		FreeLibrary(etherdreamLibrary);
-		return (-2);
+		return openResult;
 	}
 
 	ready = true;
@@ -89,16 +97,14 @@ bool Device_Etherdream::OpenDevice(int cardNum)
 {
 	if (!ready) return false;
 
-	const int cardNumConst = cardNum;
-	return EtherDreamOpenDevice(&cardNumConst);
+	return EtherDreamOpenDevice(&cardNum);
 }
 
 bool Device_Etherdream::CloseDevice(int cardNum)
 {
 	if (!ready) return false;
 
-	const int cardNumConst = cardNum;
-	return EtherDreamCloseDevice(&cardNumConst);
+	return EtherDreamCloseDevice(&cardNum);
 }
 
 bool Device_Etherdream::CloseAll()
@@ -115,14 +121,12 @@ bool Device_Etherdream::Stop(int cardNum)
 {
 	if (!ready) return false;
 
-	const int cardNumConst = cardNum;
-	return EtherDreamStop(&cardNumConst);
+	return EtherDreamStop(&cardNum);
 }
 
-int Device_Etherdream::OutputFrame(int cardNum, const EAD_Pnt_s* data, int Bytes, UINT16 PPS)
+bool Device_Etherdream::OutputFrame(int cardNum, const EAD_Pnt_s* data, int Bytes, UINT16 PPS)
 {
-	if (!ready) return -1;
+	if (!ready) return false;
 
-	const int cardNumConst = cardNum;
-	return (int)EtherDreamWriteFrame(&cardNumConst, data, Bytes, PPS, -1);
+	return EtherDreamWriteFrame(&cardNum, data, Bytes, PPS, -1);
 }

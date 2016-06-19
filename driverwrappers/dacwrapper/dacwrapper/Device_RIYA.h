@@ -16,9 +16,20 @@ public:
 	Device_RIYA();
 	~Device_RIYA();
 	
-	int Init(UINT8 riyaDeviceNum);
-	int OutputFrame(int scanRate, int bufferSize, UINT8* bufferAddress);
-	int GetID();
+	int Init();
+	bool OutputFrame(int cardNum, int scanRate, int bufferSize, UINT8* bufferAddress);
+	bool OpenDevice(int cardNum);
+	bool Stop(int cardNum);
+	bool CloseAll();
+
+	typedef struct {
+		UINT16 X;
+		UINT16 Y;
+		UINT8 R;
+		UINT8 G;
+		UINT8 B;
+		UINT8 I;
+	}Riya_Point;
 
 private: 
 
@@ -47,11 +58,8 @@ private:
 	//func ptr for GetIDVersionNumber
 	typedef UINT16(*riyaFuncPtr6)(UINT8);
 
-	UINT8 riyaDeviceNum;
 	UINT pointPeriod;
 	bool ready;
-
-	void outputFrameThreaded(int scanRate, int bufferSize, UINT8* bufferAddress);
 
 	riyaFuncPtr1 OpenAllRiyaDevices;    // library routine RiOpenDevices
 	riyaFuncPtr2 CloseAllRiyaDevices;   // library routine RiCloseDevices

@@ -16,20 +16,18 @@ rev: 2016-03-13
 //must be called before anything else
 GMEXPORT double InitDacwrapper()
 {
-	if (initialized)
-	{
-		delete etherDreamDevice;
-		delete riyaDevice; 
-		delete lasdacDevice;
-	}
+	FreeDacwrapper();
 
 	etherDreamDevice = new Device_Etherdream();
 	riyaDevice = new Device_RIYA();
 	lasdacDevice = new Device_LASDAC();
+	
+	etherdreamBuffer = new Device_Etherdream::EAD_Pnt_s[4000];
+	etherdreamBuffer2 = new Device_Etherdream::EAD_Pnt_s[4000];
+	riyaBuffer = new Device_RIYA::Riya_Point[4000];
+	riyaBuffer2 = new Device_RIYA::Riya_Point[4000];
+	
 	initialized = true;
-
-	etherdreamBuffer = (Device_Etherdream::EAD_Pnt_s*)malloc(4000 * sizeof(Device_Etherdream::EAD_Pnt_s));
-	etherdreamBuffer2 = (Device_Etherdream::EAD_Pnt_s*)malloc(4000 * sizeof(Device_Etherdream::EAD_Pnt_s));
 
 	return 1.0;
 }
@@ -49,6 +47,13 @@ GMEXPORT double ScanDevices()
 		dacs[numDevices++] = { 1, i, ("Etherdream " +std::to_string(i)).c_str() };
 	}
 
+	riyaDevice->CloseAll();
+	int numRiyas = riyaDevice->Init();
+	for (int i = 0; i < numRiyas; i++)
+	{
+		//todo open to verify and get desc
+		dacs[numDevices++] = { 2, i, ("RIYA " + std::to_string(i)).c_str() };
+	}
 
 	return (double)numDevices;
 }
@@ -65,9 +70,11 @@ GMEXPORT double DeviceOpen(double doubleNum)
 	if (dacType == 1)		//EtherDream
 		return (double)etherDreamDevice->OpenDevice(cardNum);
 	else if (dacType == 2)	//RIYA
-		return -1.0; //todo
+		return (double)riyaDevice->OpenDevice(cardNum);
 	else if (dacType == 3)	//Helios
 		return -1.0; //todo
+	else
+		return -1.0;
 }
 
 //prepares buffer and outputs frame to specified device
@@ -111,6 +118,24 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 		etherdreamBuffer = etherdreamBuffer2;
 		etherdreamBuffer2 = etherdreamBufferPrev;
 	}
+	else if (dacType == 2)	//RIYA
+	{
+		for (int i = 0; i < frameSize; i++)
+		{
+			int currentPos = i * 6;
+			riyaBuffer[i].X = bufferAddress[currentPos + 0] >> 4;
+			riyaBuffer[i].Y = bufferAddress[currentPos + 1] >> 4;
+			riyaBuffer[i].R = (UINT8)bufferAddress[currentPos + 2];
+			riyaBuffer[i].G = (UINT8)bufferAddress[currentPos + 3];
+			riyaBuffer[i].B = (UINT8)bufferAddress[currentPos + 4];
+			riyaBuffer[i].I = (UINT8)bufferAddress[currentPos + 5];
+		}
+		riyaDevice->OutputFrame(cardNum, scanRate, frameSize, (UINT8*)riyaBuffer);
+
+		Device_RIYA::Riya_Point* riyaBufferPrev = riyaBuffer;
+		riyaBuffer = riyaBuffer2;
+		riyaBuffer2 = riyaBufferPrev;
+	}
 }
 
 GMEXPORT double FreeDacwrapper()
@@ -120,76 +145,10 @@ GMEXPORT double FreeDacwrapper()
 	delete etherDreamDevice;
 	delete riyaDevice;
 	delete lasdacDevice;
+	delete etherdreamBuffer;
+	delete etherdreamBuffer2;
+	delete riyaBuffer;
+	delete riyaBuffer2;
 
 	return 1.0;
 }
-
-
-//GMEXPORT double NewRiyaDevice(double riyaDeviceNum)
-//{
-//	//awful hack due to GM:S only allowing doubles to be passed
-//	Device_RIYA* newDevice = new Device_RIYA();
-//	int result = newDevice->Init((UINT8)(riyaDeviceNum + 0.5));
-//	if (result <= 0)
-//	{
-//		delete newDevice;
-//		return (double)result;
-//	}	
-//
-//	devices[devicesIndex] = (void*)newDevice;
-//	double returnValue = (double)devicesIndex;
-//	devicesIndex++;
-//
-//	return returnValue;
-//}
-//
-//GMEXPORT double RiyaOutputFrame(double deviceId, double scanRate, double bufferSize, UINT8* bufferAddress)
-//{
-//	Device_RIYA* device = (Device_RIYA*)devices[(int)(deviceId + 0.5)];
-//	return (double)device->OutputFrame((int)(scanRate + 0.5), (int)(bufferSize + 0.5), bufferAddress);
-//}
-//
-//GMEXPORT double RiyaClose(double deviceId)
-//{
-//	Device_RIYA* device = (Device_RIYA*)devices[(int)(deviceId + 0.5)];
-//	delete device;
-//	return 1.0;
-//}
-//
-//GMEXPORT double RiyaGetID(double deviceId)
-//{
-//	//function doesn't work
-//	Device_RIYA* device = (Device_RIYA*)devices[(int)(deviceId + 0.5)];
-//	return (double)device->GetID();
-//}
-//
-//GMEXPORT double NewLasdacDevice(void)
-//{
-//	//awful hack due to GM:S only allowing doubles to be passed
-//	Device_LASDAC* newDevice = new Device_LASDAC();
-//	int result = newDevice->Init();
-//	if (result <= 0)
-//	{
-//		delete newDevice;
-//		return (double)result;
-//	}
-//
-//	devices[devicesIndex] = (void*)newDevice;
-//	double returnValue = (double)devicesIndex;
-//	devicesIndex++;
-//
-//	return returnValue;
-//}
-//
-//GMEXPORT double LasdacOutputFrame(double deviceId, double speed, double num, UINT8* buffer)
-//{
-//	Device_LASDAC* device = (Device_LASDAC*)devices[(int)(deviceId + 0.5)];
-//	return (double)device->OutputFrame(0, (UINT16)(speed + 0.5), (UINT16)(num + 0.5), buffer);
-//}
-//
-//GMEXPORT double LasdacClose(double deviceId)
-//{
-//	Device_LASDAC* device = (Device_LASDAC*)devices[(int)(deviceId + 0.5)];
-//	delete device;
-//	return 1.0;
-//}

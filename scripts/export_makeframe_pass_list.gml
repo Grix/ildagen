@@ -24,7 +24,7 @@ var t_list_empties = ds_list_create(); //todo implement
 //checking best element order
 if (controller.exp_optimize)
     {
-    while (ds_list_size(order_list) < (ds_list_size(el_list)-t_empty_lists))
+    while (ds_list_size(order_list) < (ds_list_size(el_list)))
         {
         t_lowestdist = $fffff;
         for (i = 0;i < ds_list_size(el_list);i++)
@@ -44,9 +44,9 @@ if (controller.exp_optimize)
                 
             if (is_undefined(list_id[| currentpos]))
                 {
-                //ds_list_delete(el_list,i);
+                ds_list_delete(el_list,i);
                 //cause of bug? Why was it even there?
-                t_empty_lists++;
+                //t_empty_lists++;
                 continue;
                 }
             

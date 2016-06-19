@@ -22,6 +22,8 @@ DAC dacs[32];
 
 Device_Etherdream::EAD_Pnt_s* etherdreamBuffer;
 Device_Etherdream::EAD_Pnt_s* etherdreamBuffer2;
+Device_RIYA::Riya_Point* riyaBuffer;
+Device_RIYA::Riya_Point* riyaBuffer2;
 
 GMEXPORT double InitDacwrapper();
 GMEXPORT double FreeDacwrapper();
