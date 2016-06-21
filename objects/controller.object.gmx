@@ -115,13 +115,9 @@ hershey_index_list = ds_list_create();
 hershey_list = -1;
 menu_surf = -1;
 dac_list = ds_list_create();
-blank_frame = buffer_create(16, buffer_fixed, 1);
-frame1 = buffer_create(48000,buffer_fixed,2);
-frame2 = buffer_create(48000,buffer_fixed,2);
-frame3 = buffer_create(48000,buffer_fixed,2);
-output_buffer = frame2;
-output_buffer_next = frame1;
-buffer_unused = frame3;
+blank_frame = buffer_create(24, buffer_fixed, 2);
+output_buffer = buffer_create(48000,buffer_fixed,2);
+output_buffer2 = buffer_create(48000,buffer_fixed,2);
 
 c_gold = make_colour_rgb(255,220,0);
 
@@ -131,7 +127,6 @@ dac = -1;
 dac_string = "[None]";
 laseron = false;
 laseronfirst = false;
-bufdeleteflag = false;
 el_id = 0;
 projectfps = 30;
 xdelta[32] = 0;
@@ -2099,6 +2094,7 @@ else if (ds_map_find_value(async_load, "id") == file)
             <kind>1</kind>
             <string>refresh_miniaudio_flag = 1;
 frame_surf_refresh = 1;
+laseron = false;
 laseronfirst = true;
 menu_open = 0;
 dialog_open = 0;

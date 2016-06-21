@@ -110,7 +110,8 @@ bool Device_RIYA::OutputFrame(int cardNum, int scanRate, int bufferSize, UINT8* 
 {
 	if (!ready) return false;
 	
-	while (RiyaReadyForNextFrame((UINT8)cardNum) == 0);
+	//while (RiyaReadyForNextFrame((UINT8)cardNum) == 0);
+	RiyaReadyForNextFrame((UINT8)cardNum);
 
 	pointPeriod = (UINT)(1.0 / (double)scanRate * 33333333.3);
 

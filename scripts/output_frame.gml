@@ -4,14 +4,14 @@ if (!frame_surf_refresh)
 
 if (output_buffer_ready) || (laseronfirst && output_buffer_ready)
 {
-    dac_send_frame(dac, output_buffer_next, output_buffer_next_size, output_buffer_next_size*projectfps);
+    dac_send_frame(dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps);
     output_buffer_ready = false;
     frame_surf_refresh = false;
     
     var t_output_buffer_prev = output_buffer;
-    output_buffer = ouput_buffer_next;
-    output_buffer_next = buffer_unused;
-    buffer_unused = t_output_buffer_prev;
+    output_buffer = output_buffer2;
+    output_buffer2 = t_output_buffer_prev;
+    buffer_seek(output_buffer, buffer_seek_start, 0);
     
     laseronfirst = false;
 }

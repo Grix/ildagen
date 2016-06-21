@@ -21,29 +21,29 @@ if (controller.exp_optimize)
         //writing point
         
         if (controller.invert_x)
-            buffer_write(output_buffer_next,buffer_u16, ($FFFF - list_raw[| i]));
+            buffer_write(output_buffer,buffer_u16, ($FFFF - list_raw[| i]));
         else
-            buffer_write(output_buffer_next,buffer_u16, (list_raw[| i]));
+            buffer_write(output_buffer,buffer_u16, (list_raw[| i]));
         if (controller.invert_y)
-            buffer_write(output_buffer_next,buffer_u16, ($FFFF - list_raw[| i+1]));
+            buffer_write(output_buffer,buffer_u16, ($FFFF - list_raw[| i+1]));
         else
-            buffer_write(output_buffer_next,buffer_u16, (list_raw[| i+1]));
+            buffer_write(output_buffer,buffer_u16, (list_raw[| i+1]));
             
         t_bl = list_raw[| i+t_blankshift+2];
         if (is_undefined(bl))
         {
-            buffer_write(output_buffer_next,buffer_u32,0);
-            buffer_write(output_buffer_next,buffer_u32,0);
+            buffer_write(output_buffer,buffer_u32,0);
+            buffer_write(output_buffer,buffer_u32,0);
         }
         else
         {
-            buffer_write(output_buffer_next,buffer_u16,t_red_lowerbound + (list_raw[| i+t_redshift+3] & $FF) * t_red_scale);
-            buffer_write(output_buffer_next,buffer_u16,t_green_lowerbound + ((list_raw[| i+t_greenshift+3] >> 8) & $FF) * t_green_scale);
-            buffer_write(output_buffer_next,buffer_u16,t_blue_lowerbound + (list_raw[| i+t_blueshift+3] >> 16) * t_blue_scale);
+            buffer_write(output_buffer,buffer_u16,t_red_lowerbound + (list_raw[| i+t_redshift+3] & $FF) * t_red_scale);
+            buffer_write(output_buffer,buffer_u16,t_green_lowerbound + ((list_raw[| i+t_greenshift+3] >> 8) & $FF) * t_green_scale);
+            buffer_write(output_buffer,buffer_u16,t_blue_lowerbound + (list_raw[| i+t_blueshift+3] >> 16) * t_blue_scale);
             if (t_bl)
-                buffer_write(output_buffer_next,buffer_u16,0); 
+                buffer_write(output_buffer,buffer_u16,0); 
             else
-                buffer_write(output_buffer_next,buffer_u16,255);
+                buffer_write(output_buffer,buffer_u16,255);
         }
     }
 }
@@ -55,24 +55,24 @@ else //not optimized
     {
         //writing point
         
-        buffer_write(output_buffer_next,buffer_u16, (list_raw[| i]));
-        buffer_write(output_buffer_next,buffer_u16, (list_raw[| i+1]));
+        buffer_write(output_buffer,buffer_u16, (list_raw[| i]));
+        buffer_write(output_buffer,buffer_u16, (list_raw[| i+1]));
             
         t_bl = list_raw[| i+2];
         if (is_undefined(bl))
         {
-            buffer_write(output_buffer_next,buffer_u32,0);
-            buffer_write(output_buffer_next,buffer_u32,0);
+            buffer_write(output_buffer,buffer_u32,0);
+            buffer_write(output_buffer,buffer_u32,0);
         }
         else
         {
-            buffer_write(output_buffer_next,buffer_u16,(list_raw[| i+3] & $FF));
-            buffer_write(output_buffer_next,buffer_u16,(list_raw[| i+3] >> 8) & $FF);
-            buffer_write(output_buffer_next,buffer_u16,(list_raw[| i+3] >> 16));
+            buffer_write(output_buffer,buffer_u16,(list_raw[| i+3] & $FF));
+            buffer_write(output_buffer,buffer_u16,(list_raw[| i+3] >> 8) & $FF);
+            buffer_write(output_buffer,buffer_u16,(list_raw[| i+3] >> 16));
             if (t_bl)
-                buffer_write(output_buffer_next,buffer_u16,0); 
+                buffer_write(output_buffer,buffer_u16,0); 
             else
-                buffer_write(output_buffer_next,buffer_u16,255);
+                buffer_write(output_buffer,buffer_u16,255);
         }
     }
 }

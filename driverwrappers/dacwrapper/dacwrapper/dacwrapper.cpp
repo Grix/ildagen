@@ -103,12 +103,12 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 		for (int i = 0; i < frameSize; i++)
 		{
 			int currentPos = i * 6;
-			etherdreamBuffer[i].X = bufferAddress[currentPos + 0] - 32768;
-			etherdreamBuffer[i].Y = bufferAddress[currentPos + 1] - 32768;
-			etherdreamBuffer[i].R = bufferAddress[currentPos + 2] * 256;
-			etherdreamBuffer[i].G = bufferAddress[currentPos + 3] * 256;
-			etherdreamBuffer[i].B = bufferAddress[currentPos + 4] * 256;
-			etherdreamBuffer[i].I = bufferAddress[currentPos + 5] * 256;
+			etherdreamBuffer[i].X = bufferAddress[currentPos + 0] - 0x8000;
+			etherdreamBuffer[i].Y = bufferAddress[currentPos + 1] - 0x8000;
+			etherdreamBuffer[i].R = bufferAddress[currentPos + 2] << 7;
+			etherdreamBuffer[i].G = bufferAddress[currentPos + 3] << 7;
+			etherdreamBuffer[i].B = bufferAddress[currentPos + 4] << 7;
+			etherdreamBuffer[i].I = bufferAddress[currentPos + 5] << 7;
 			etherdreamBuffer[i].AL = 0;
 			etherdreamBuffer[i].AR = 0;
 		}
