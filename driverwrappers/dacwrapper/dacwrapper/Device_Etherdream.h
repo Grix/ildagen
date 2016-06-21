@@ -25,6 +25,7 @@ public:
 	bool Stop(int cardNum);
 	bool CloseAll();
 	bool OutputFrame(int cardNum, const EAD_Pnt_s* data, int Bytes, UINT16 PPS);
+	void GetName(int cardNum, char* name);
 
 private:
 

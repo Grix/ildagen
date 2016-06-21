@@ -2092,22 +2092,16 @@ else if (ds_map_find_value(async_load, "id") == file)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>refresh_miniaudio_flag = 1;
+            <string>if (laseron)
+    dac_blank_and_center(dac);
+
+refresh_miniaudio_flag = 1;
 frame_surf_refresh = 1;
 laseron = false;
 laseronfirst = true;
 menu_open = 0;
 dialog_open = 0;
 playing = 0;
-
-if (room == rm_options)
-    {
-    if (laseron)
-        {
-        dac_blank_and_center(dac);
-        laseronfirst = true;
-        }
-    }
 </string>
           </argument>
         </arguments>

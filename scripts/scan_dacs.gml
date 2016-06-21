@@ -12,7 +12,7 @@ for (i = 0; i < numofdacs; i++)
 {
     var newdac = ds_list_create();
     ds_list_add(newdac,i);
-    ds_list_add(newdac,"DAC");
+    ds_list_add(newdac,dacwrapper_getname(i));
     ds_list_add(newdac,ds_map_create());
     ds_list_add(controller.dac_list,newdac);
 }

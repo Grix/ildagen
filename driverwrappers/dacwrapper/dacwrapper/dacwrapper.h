@@ -15,7 +15,7 @@ int numDevices = 0;
 typedef struct {
 	int type;	//1: Etherdream, 2: RIYA, 3: Helios
 	int cardNum;
-	const char* desc;
+	char* desc;
 }DAC;
 
 DAC dacs[32];
@@ -30,7 +30,9 @@ GMEXPORT double FreeDacwrapper();
 GMEXPORT double ScanDevices();
 GMEXPORT double OpenDevice(double dacNum);
 GMEXPORT double OutputFrame(double dacNum, double scanRate, double bufferSize, UINT16* bufferAddress);
-GMEXPORT void OutputFrameThreaded(double dacNum, double scanRate, double bufferSize, UINT16* bufferAddress);
+void OutputFrameThreaded(double dacNum, double scanRate, double bufferSize, UINT16* bufferAddress);
+GMEXPORT double Stop(double dacNum);
+GMEXPORT char* GetName(double dacNum);
 //GMEXPORT double UpdateSettings(UINT8* bufferAddress);
 
 

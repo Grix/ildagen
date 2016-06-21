@@ -21,6 +21,7 @@ public:
 	bool OpenDevice(int cardNum);
 	bool Stop(int cardNum);
 	bool CloseAll();
+	void GetName(int cardNum, char* name);
 
 	typedef struct {
 		UINT16 X;

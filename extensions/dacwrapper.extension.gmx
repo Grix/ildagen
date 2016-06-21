@@ -142,6 +142,28 @@
             <arg>2</arg>
           </args>
         </function>
+        <function>
+          <name>dacwrapper_stop</name>
+          <externalName>Stop</externalName>
+          <kind>12</kind>
+          <help>dacwrapper_stop(num)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>dacwrapper_getname</name>
+          <externalName>GetName</externalName>
+          <kind>12</kind>
+          <help>dacwrapper_getname(num)</help>
+          <returnType>1</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
       </functions>
       <constants/>
     </file>

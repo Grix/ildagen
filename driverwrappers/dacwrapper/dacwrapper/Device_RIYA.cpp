@@ -3,6 +3,7 @@
 #include "Device_RIYA.h"
 #include "windows.h"
 #include <thread>
+#include <string>
 
 Device_RIYA::Device_RIYA()
 {
@@ -141,4 +142,16 @@ bool Device_RIYA::CloseAll()
 	FreeLibrary(riyaLibrary);
 
 	return true;
+}
+
+void Device_RIYA::GetName(int cardNum, char* name)
+{
+	if (!ready) name = "RIYA";
+
+	char riya[16] = "RIYA ";
+	char id[8];
+	_itoa_s(GetIDVersionNumber(cardNum), id, 10);
+
+	strcat_s(riya, id);
+	strcpy_s(name, 32, riya);
 }

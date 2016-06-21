@@ -43,16 +43,18 @@ GMEXPORT double ScanDevices()
 	int numEtherdreams = etherDreamDevice->Init();
 	for (int i = 0; i < numEtherdreams; i++)
 	{
-		//todo open to verify and get desc
-		dacs[numDevices++] = { 1, i, ("Etherdream " +std::to_string(i)).c_str() };
+		char* name = new char[32];
+		etherDreamDevice->GetName(i, name);
+		dacs[numDevices++] = { 1, i, name };
 	}
 
 	riyaDevice->CloseAll();
 	int numRiyas = riyaDevice->Init();
 	for (int i = 0; i < numRiyas; i++)
 	{
-		//todo open to verify and get desc
-		dacs[numDevices++] = { 2, i, ("RIYA " + std::to_string(i)).c_str() };
+		char* name = new char[32];
+		riyaDevice->GetName(i, name);
+		dacs[numDevices++] = { 2, i, name };
 	}
 
 	return (double)numDevices;
@@ -151,4 +153,32 @@ GMEXPORT double FreeDacwrapper()
 	delete riyaBuffer2;
 
 	return 1.0;
+}
+
+//stop playback
+GMEXPORT double Stop(double doubleNum)
+{
+	if (!initialized) return -1.0;
+	int num = (int)(doubleNum + 0.5); //dac number
+
+	int dacType = dacs[num].type;
+	int cardNum = dacs[num].cardNum;
+
+	if (dacType == 1)		//EtherDream
+		return (double)etherDreamDevice->Stop(cardNum);
+	else if (dacType == 2)	//RIYA
+		return (double)riyaDevice->Stop(cardNum);
+	else if (dacType == 3)	//Helios
+		return -1.0; //todo
+	else
+		return -1.0;
+}
+
+//get descriptive name of specific dac
+GMEXPORT char* GetName(double doubleNum)
+{
+	if (!initialized) return "error";
+	int num = (int)(doubleNum + 0.5); //dac number
+
+	return dacs[num].desc;
 }

@@ -130,3 +130,10 @@ bool Device_Etherdream::OutputFrame(int cardNum, const EAD_Pnt_s* data, int Byte
 
 	return EtherDreamWriteFrame(&cardNum, data, Bytes, PPS, -1);
 }
+
+void Device_Etherdream::GetName(int cardNum, char* name)
+{
+	if (!ready) name = "Etherdream";
+
+	EtherDreamGetDeviceName(&cardNum, name, 32);
+}
