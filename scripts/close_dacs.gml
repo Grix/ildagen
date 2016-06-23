@@ -1,6 +1,7 @@
 //cleanup
-for (i = ds_list_size(dac_list)-1; i >= 0; i--)
+for (i = 0; i < ds_list_size(dac_list); i++)
 {
     var daclist = dac_list[| i];
-    dac_blank_and_center(daclist);
+    if (ds_exists(daclist, ds_type_list))
+        dac_blank_and_center(daclist);
 }

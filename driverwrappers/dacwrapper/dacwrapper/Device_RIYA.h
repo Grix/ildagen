@@ -59,9 +59,6 @@ private:
 	//func ptr for GetIDVersionNumber
 	typedef UINT16(*riyaFuncPtr6)(UINT8);
 
-	UINT pointPeriod;
-	bool ready;
-
 	riyaFuncPtr1 OpenAllRiyaDevices;    // library routine RiOpenDevices
 	riyaFuncPtr2 CloseAllRiyaDevices;   // library routine RiCloseDevices
 	riyaFuncPtr3 InitRiyaDevice;        // library routine Ri_InitChanal
@@ -69,5 +66,9 @@ private:
 	riyaFuncPtr5 TransferFrameToBuffer; // library routine RiSetShowCadr
 	riyaFuncPtr4 StopRiyaDevice;        // library routine RiStopShow
 	riyaFuncPtr6 GetIDVersionNumber;	// GetVersionID
+
+	UINT pointPeriod;
+	bool ready;
+	int frameNum[4];
 };
 

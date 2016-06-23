@@ -11,11 +11,9 @@ else if (byte == 2)
     i+=17; //24
     bytes = get_bytes();
     i+=8;
-    log("bytes "+string(bytes))
     repeat(bytes)
         i+=3;
     show_message_async("Palette detected but parsing is not supported yet, using default palette.");
-    log(i)
     return 0;
     }
 else {show_message_async("We don't support this format yet, try converting to ILDA format 0, 1, 4 or 5."); format=5; errorflag=1; return 1;}
@@ -30,8 +28,6 @@ repeat(8) //16
     author+= chr(get_byte());
     i++
     }*/
-    
-log(i)
 
 bytes = get_bytes(); //24
 if (bytes != 0)

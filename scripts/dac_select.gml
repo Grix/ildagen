@@ -9,7 +9,6 @@ with (controller)
     }
     
     var t_result = dacwrapper_opendevice(dac[| 0]);
-    log(t_result);
     if (!t_result)
     {
         dac = -1;

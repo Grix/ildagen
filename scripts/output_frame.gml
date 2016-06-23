@@ -1,23 +1,24 @@
 if ((!frame_surf_refresh) && (!laseronfirst))
     exit;
-    
 
 if (output_buffer_ready)
 {
     dac_send_frame(dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps);
-    output_buffer_ready = false;
     frame_surf_refresh = false;
+    output_buffer_ready = false;
+    laseronfirst = false;
     
     var t_output_buffer_prev = output_buffer;
     output_buffer = output_buffer2;
-    output_buffer2 = t_output_buffer_prev;
+    output_buffer2 = t_output_buffer_prev
     
-    laseronfirst = false;
+    if (!playing)
+        return 1;;
 }
 
 maxpoints = 0;
 
-if (laseronfirst)
+if (!playing)
     el_list = frame_list[| frame];
 else
     el_list = frame_list[| ((frame+1) % (maxframes))];
@@ -26,10 +27,6 @@ if (is_undefined(el_list))
     log("undef");
     exit;
     }    
-
-/*log(get_timer()-time);
-time = get_timer();
-log(frame);*/
 
 buffer_seek(output_buffer, buffer_seek_start, 0);
 
@@ -53,4 +50,6 @@ else
 }
 
 output_buffer_ready = true;
+
+return 1;
 

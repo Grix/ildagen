@@ -1,17 +1,15 @@
-﻿Build started 2016-06-10 16:49.51.
+﻿Build started 2016-06-22 18:21.10.
      1>Project "C:\Libraries\Dev\ildagen.gmx\driverwrappers\dacwrapper\dacwrapper\dacwrapper.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D DACWRAPPER_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Device_Etherdream.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D DACWRAPPER_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Device_Etherdream.cpp Device_LASDAC.cpp Device_RIYA.cpp dacwrapper.cpp
+         dacwrapper.cpp
+         Device_RIYA.cpp
+         Device_LASDAC.cpp
          Device_Etherdream.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Libraries\Dev\ildagen.gmx\driverwrappers\dacwrapper\Debug\dacwrapper.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Libraries\Dev\ildagen.gmx\driverwrappers\dacwrapper\Debug\dacwrapper.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Libraries\Dev\ildagen.gmx\driverwrappers\dacwrapper\Debug\dacwrapper.lib" /MACHINE:X86 /DLL Debug\dacwrapper.obj
-         Debug\Device_Etherdream.obj
-         Debug\Device_LASDAC.obj
-         Debug\Device_RIYA.obj
-            Creating library C:\Libraries\Dev\ildagen.gmx\driverwrappers\dacwrapper\Debug\dacwrapper.lib and object C:\Libraries\Dev\ildagen.gmx\driverwrappers\dacwrapper\Debug\dacwrapper.exp
-         dacwrapper.vcxproj -> C:\Libraries\Dev\ildagen.gmx\driverwrappers\dacwrapper\Debug\dacwrapper.dll
-     1>Done Building Project "C:\Libraries\Dev\ildagen.gmx\driverwrappers\dacwrapper\dacwrapper\dacwrapper.vcxproj" (Build target(s)).
+         Generating Code...
+     1>c:\libraries\dev\ildagen.gmx\driverwrappers\dacwrapper\dacwrapper\dacwrapper.cpp(141): error C4716: 'OutputFrame' : must return a value
+     1>Done Building Project "C:\Libraries\Dev\ildagen.gmx\driverwrappers\dacwrapper\dacwrapper\dacwrapper.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:00.81
+Time Elapsed 00:00:02.50

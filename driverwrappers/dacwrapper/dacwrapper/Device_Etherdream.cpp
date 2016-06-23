@@ -31,13 +31,6 @@ int Device_Etherdream::Init()
 		return -1;
 	}
 
-	EzAudDacGetCardNum = (etherdreamFuncPtr0)GetProcAddress(etherdreamLibrary, "EzAudDacGetCardNum");
-	if (!EzAudDacGetCardNum)
-	{
-		FreeLibrary(etherdreamLibrary);
-		return -1;
-	}
-
 	EtherDreamGetDeviceName = (etherdreamFuncPtr1)GetProcAddress(etherdreamLibrary, "EtherDreamGetDeviceName");
 	if (!EtherDreamGetDeviceName)
 	{
@@ -80,6 +73,13 @@ int Device_Etherdream::Init()
 		return -1;
 	}
 
+	EtherDreamGetStatus = (etherdreamFuncPtr5)GetProcAddress(etherdreamLibrary, "EtherDreamGetStatus");
+	if (!EtherDreamGetStatus)
+	{
+		FreeLibrary(etherdreamLibrary);
+		return -1;
+	}
+
 	int openResult = EtherDreamGetCardNum();
 	if (openResult <= 0)
 	{
@@ -96,6 +96,8 @@ int Device_Etherdream::Init()
 bool Device_Etherdream::OpenDevice(int cardNum)
 {
 	if (!ready) return false;
+
+	frameNum[cardNum] = 0;
 
 	return EtherDreamOpenDevice(&cardNum);
 }
@@ -128,7 +130,19 @@ bool Device_Etherdream::OutputFrame(int cardNum, const EAD_Pnt_s* data, int Byte
 {
 	if (!ready) return false;
 
-	return EtherDreamWriteFrame(&cardNum, data, Bytes, PPS, -1);
+	int thisFrameNum = ++frameNum[cardNum];
+
+	for (int i = 0; i < 16; i++)
+	{
+		if (frameNum[cardNum] > thisFrameNum) //if never frame is waiting to be transfered, cancel this one
+			break;
+		else if (EtherDreamGetStatus(&cardNum) == 1)
+		{
+			return EtherDreamWriteFrame(&cardNum, data, Bytes, PPS, -1);
+		}
+	}
+
+	return false;
 }
 
 void Device_Etherdream::GetName(int cardNum, char* name)

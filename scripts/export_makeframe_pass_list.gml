@@ -19,12 +19,12 @@ t_pol = 0;
 t_order = 0;
 var t_lowestdist, t_dist, t_tempxp_prev_other, t_tempyp_prev_other, t_tempxp_prev, t_tempyp_prev;
 var t_found = 0;
-var t_list_empties = ds_list_create(); //todo implement
+var t_list_empties = ds_list_create();
 
 //checking best element order
 if (controller.exp_optimize)
     {
-    while (ds_list_size(order_list) < (ds_list_size(el_list)))
+    while (ds_list_size(order_list) < (ds_list_size(el_list)-ds_list_size(t_list_empties)))
         {
         t_lowestdist = $fffff;
         for (i = 0;i < ds_list_size(el_list);i++)
@@ -33,6 +33,9 @@ if (controller.exp_optimize)
                 continue;
                 
             list_id = ds_list_find_value(el_list,i);
+            
+            if (ds_list_find_index(t_list_empties, list_id) != -1)
+                continue;
             
             xo = ds_list_find_value(list_id,0);
             yo = ds_list_find_value(list_id,1);
@@ -44,9 +47,7 @@ if (controller.exp_optimize)
                 
             if (is_undefined(list_id[| currentpos]))
                 {
-                ds_list_delete(el_list,i);
-                //cause of bug? Why was it even there?
-                //t_empty_lists++;
+                ds_list_add(t_list_empties, list_id);
                 continue;
                 }
             
@@ -87,7 +88,7 @@ if (controller.exp_optimize)
                 t_tempyp_prev = yp;
                 }
             }
-        if (ds_list_size(el_list))
+        if ((ds_list_size(el_list)-ds_list_size(t_list_empties)) > 0)
             {
             xp_prev = t_tempxp_prev;
             yp_prev = t_tempyp_prev;
@@ -97,7 +98,7 @@ if (controller.exp_optimize)
         }
     }
 
-if (ds_list_size(el_list) == 0)
+if ((ds_list_size(el_list)-ds_list_size(t_list_empties)) <= 0)
     {
     return 0;
     }
@@ -111,7 +112,11 @@ yp_prev_prev = $8001;
 for (i = 0;i < ds_list_size(el_list);i++)
     {
     if (controller.exp_optimize)
+        {
         list_id = ds_list_find_value(el_list,order_list[| i]);
+        if (ds_list_find_index(t_list_empties, list_id) != -1)
+            continue;
+        }
     else 
         list_id = ds_list_find_value(el_list,i); 
 
@@ -252,5 +257,6 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
 
 ds_list_destroy(order_list);
 ds_list_destroy(polarity_list);
+ds_list_destroy(t_list_empties);
 
 return 1;

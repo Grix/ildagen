@@ -109,7 +109,6 @@ if (room = rm_ilda)
         {
             laseron = true;
             laseronfirst = true;
-            frame_surf_refresh = true;
         }
         else
         {

@@ -46,6 +46,9 @@ private:
 	//pointer for EtherDreamClose()
 	typedef bool(__stdcall *etherdreamFuncPtr4)();
 
+	//pointer for EtherDreamGetStatus()
+	typedef int(__stdcall *etherdreamFuncPtr5)(const int* CardNum);
+
 	etherdreamFuncPtr0 EtherDreamGetCardNum;
 	etherdreamFuncPtr1 EtherDreamGetDeviceName;
 	etherdreamFuncPtr2 EtherDreamOpenDevice;
@@ -53,9 +56,10 @@ private:
 	etherdreamFuncPtr2 EtherDreamCloseDevice;
 	etherdreamFuncPtr3 EtherDreamWriteFrame;
 	etherdreamFuncPtr4 EtherDreamClose;
-	etherdreamFuncPtr0 EzAudDacGetCardNum;
+	etherdreamFuncPtr5 EtherDreamGetStatus;
 
 	bool ready;
+	int frameNum[4];
 
 	void OutputFrameThreaded();
 };
