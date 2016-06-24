@@ -120,57 +120,24 @@ else if (room = rm_seq)
 { 
     if (!verify_serial())
         exit;
-    with (seqcontrol)
+        
+    with (controller)
     {
-        if (controller.laseron)
+        if (laseron)
         {
-            controller.laseron = false;
-            frame_surf_refresh = true;
-            dac_blank_and_center(controller.dac);
+            laseron = false;
+            seqcontrol.frame_surf_refresh = true;
+            dac_blank_and_center(dac);
         }
-        else if (ds_exists(controller.dac, ds_type_list))
+        else if (ds_exists(dac, ds_type_list))
         {
-            controller.laseron = true;
+            laseron = true;
             laseronfirst = true;
-            frame_surf_refresh = true;
+            seqcontrol.frame_surf_refresh = true;
         }
         else
         {
             show_message_async("You have not selected a DAC, please go to settings and set up the connection.");
-        }
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="4">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (room == rm_seq)
-{
-    if (!verify_serial())
-    {
-        if (controller.laseron)
-        {
-            dac_blank_and_center(controller.dac);
-            controller.laseron = false;
-            controller.laseronfirst = false;
         }
     }
 }

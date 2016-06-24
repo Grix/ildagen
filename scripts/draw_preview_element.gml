@@ -1,5 +1,7 @@
 //draws a preview of the element under construction
 
+draw_set_color(c_gray);
+
 if (placing == "font")
     exit;
 
@@ -94,9 +96,23 @@ else if (placing == "free")
 else if (placing == "curve")
     {
     if (placing_status == 1)
+        {
         draw_line(startpos[0],startpos[1],endx,endy);
+        }
     else
         {
+        if  (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3)) < 7) or
+        (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5)) < 7) or
+        (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1)) < 7) or
+        (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7)) < 7)
+            {
+            tooltip = "Click and drag to adjust curve."
+            }
+        else
+            {
+            tooltip = "Click and drag the green points to adjust curve. Press [Enter] to finalize curve."; 
+            }
+        
         if (bez_moving)
             {
             bezier_coeffs(ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1),ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3),ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5),ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7));
@@ -116,12 +132,11 @@ else if (placing == "curve")
             }
         
         draw_set_color(c_green);
-        draw_rectangle(ds_list_find_value(bez_list,0)-1,ds_list_find_value(bez_list,1)-1,ds_list_find_value(bez_list,0)+1,ds_list_find_value(bez_list,1)+1,0);
+        draw_rectangle(ds_list_find_value(bez_list,0)-2,ds_list_find_value(bez_list,1)-2,ds_list_find_value(bez_list,0)+2,ds_list_find_value(bez_list,1)+2,0);
         draw_rectangle(ds_list_find_value(bez_list,2)-2,ds_list_find_value(bez_list,3)-2,ds_list_find_value(bez_list,2)+2,ds_list_find_value(bez_list,3)+2,0);
         draw_rectangle(ds_list_find_value(bez_list,4)-2,ds_list_find_value(bez_list,5)-2,ds_list_find_value(bez_list,4)+2,ds_list_find_value(bez_list,5)+2,0);
-        draw_rectangle(ds_list_find_value(bez_list,6)-1,ds_list_find_value(bez_list,7)-1,ds_list_find_value(bez_list,6)+1,ds_list_find_value(bez_list,7)+1,0);
+        draw_rectangle(ds_list_find_value(bez_list,6)-2,ds_list_find_value(bez_list,7)-2,ds_list_find_value(bez_list,6)+2,ds_list_find_value(bez_list,7)+2,0); 
         draw_line(ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1),ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3));
         draw_line(ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5),ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7));
-        draw_set_color(c_dkgray);
         }
     }

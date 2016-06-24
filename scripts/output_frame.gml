@@ -10,10 +10,10 @@ if (output_buffer_ready)
     
     var t_output_buffer_prev = output_buffer;
     output_buffer = output_buffer2;
-    output_buffer2 = t_output_buffer_prev
+    output_buffer2 = t_output_buffer_prev;
     
     if (!playing)
-        return 1;;
+        return 1;
 }
 
 maxpoints = 0;

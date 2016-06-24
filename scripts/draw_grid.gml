@@ -1,5 +1,5 @@
 draw_clear_alpha(c_black,0);
-draw_set_color(c_dkgray);
+draw_set_color(c_gray);
 draw_set_blend_mode(bm_add);
 
 posincrement = 512/sgridnum;

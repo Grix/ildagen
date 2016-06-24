@@ -109,16 +109,20 @@ xp_prev_prev = $8001;
 yp_prev_prev = $8001;
 
 //parse elements
-for (i = 0;i < ds_list_size(el_list);i++)
+if (controller.exp_optimize)
+    var t_numofelems = ds_list_size(order_list);
+else 
+    var t_numofelems = ds_list_size(el_list);
+    
+for (i = 0; i < t_numofelems; i++)
     {
     if (controller.exp_optimize)
-        {
         list_id = ds_list_find_value(el_list,order_list[| i]);
-        if (ds_list_find_index(t_list_empties, list_id) != -1)
-            continue;
-        }
     else 
         list_id = ds_list_find_value(el_list,i); 
+        
+    if (is_undefined(list_id))
+        continue;
 
     xo = ds_list_find_value(list_id,0);
     yo = ds_list_find_value(list_id,1);

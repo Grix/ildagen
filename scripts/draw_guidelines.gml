@@ -1,4 +1,4 @@
-draw_set_color(c_dkgray);
+draw_set_color(c_gray);
 for (i = 0; i < ds_list_size(el_list);i++)
     {
     listtemp = ds_list_find_value(el_list,i);

@@ -1,26 +1,29 @@
-if (!frame_surf_refresh)
+if ((!frame_surf_refresh) && (!controller.laseronfirst))
     exit;
-    
 
 if (output_buffer_ready)
 {
-    if (buffer_to_delete != -1)
-        buffer_delete(buffer_to_delete);
-    buffer_to_delete = output_buffer;
-    output_buffer = output_buffer_next;
     dac_send_frame(controller.dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps);
-    output_buffer_ready = false;
     frame_surf_refresh = false;
+    output_buffer_ready = false;
+    controller.laseronfirst = false;
+    
+    var t_output_buffer_prev = output_buffer;
+    output_buffer = output_buffer2;
+    output_buffer2 = t_output_buffer_prev;
+    
+    if (!playing)
+        return 1;
 }
 
 maxpoints = 0;
 
-if (laseronfirst)
+if (!playing)
     correctframe = round(tlpos/1000*projectfps);
 else
     correctframe = round(tlpos/1000*projectfps)+1;
     
-output_buffer_next = buffer_create(26664,buffer_fixed,1);
+buffer_seek(output_buffer, buffer_seek_start, 0);
 
 el_list = ds_list_create(); 
 //check which should be drawn
@@ -169,15 +172,4 @@ for (i = 0;i < ds_list_size(el_list);i++)
     }
 ds_list_destroy(el_list);
 
-if (laseronfirst)
-{
-    if (buffer_to_delete != -1)
-        buffer_delete(buffer_to_delete);
-    buffer_to_delete = output_buffer;
-    output_buffer = output_buffer_next;
-    dac_send_frame(controller.dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps);
-    output_buffer_ready = false;
-    frame_surf_refresh = false;
-}
-else
-    output_buffer_ready = true;
+output_buffer_ready = true;

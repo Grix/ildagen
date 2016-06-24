@@ -52,13 +52,11 @@ copy_buffer = ds_list_create();
 env_type_map = ds_map_create();
 dac_active_list = ds_map_create();
 projector_list = ds_list_create();
-output_buffer = -1;
-buffer_to_delete = -1;
-blank_frame = buffer_create(16, buffer_fixed, 1);
-    
+output_buffer = buffer_create(48000,buffer_fixed,2);
+output_buffer2 = buffer_create(48000,buffer_fixed,2);
+
 output_buffer_ready = false;
 output_buffer_next_size = 0;
-laseronfirst = false;
 frame_surf_refresh = 0;
 image_speed = 0;
 draw_mouseline = 0;
@@ -735,59 +733,6 @@ if (new_id == getint)
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="4">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (room == rm_seq) 
-    {
-    frame_surf_refresh = 1;
-    laseronfirst = true;
-    }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="3">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//to free the system
-FMODfree();
-UnloadFMOD();
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -816,14 +761,15 @@ draw_set_color(c_white);
 draw_set_alpha(1);
     
 //draws laser preview
-if (frame_surf_refresh == 1) or !surface_exists(frame_surf) or !surface_exists(frame_surf_large) or !surface_exists(frame3d_surf_large) or !surface_exists(frame3d_surf)
+if  (!controller.laseron) and 
+    ((frame_surf_refresh == 1) or !surface_exists(frame_surf) or !surface_exists(frame_surf_large) or !surface_exists(frame3d_surf_large) or !surface_exists(frame3d_surf))
     {
     if (largepreview)
         refresh_seq_surface_large();
     else
         refresh_seq_surface();
         
-    frame_surf_refresh = 0;
+    frame_surf_refresh = false;
     }
     
 if (surface_exists(audio_surf))
@@ -867,7 +813,16 @@ if (draw_cursorline = 1)
     }
     
 draw_set_alpha(1);
-if (largepreview)
+    
+if (controller.laseron)
+    {
+    draw_set_color(c_white);
+    draw_set_alpha(1);
+    draw_set_halign(fa_center);
+    draw_text(256,70,"Laser output active: "+string(controller.dac_string));
+    draw_set_halign(fa_left);
+    }
+else if (largepreview)
     {
     draw_set_colour(c_black);
     draw_rectangle(89,49,691,651,0);

@@ -115,7 +115,6 @@ hershey_index_list = ds_list_create();
 hershey_list = -1;
 menu_surf = -1;
 dac_list = ds_list_create();
-blank_frame = buffer_create(24, buffer_fixed, 2);
 output_buffer = buffer_create(48000,buffer_fixed,2);
 output_buffer2 = buffer_create(48000,buffer_fixed,2);
 
@@ -2098,10 +2097,11 @@ else if (ds_map_find_value(async_load, "id") == file)
 refresh_miniaudio_flag = 1;
 frame_surf_refresh = 1;
 laseron = false;
-laseronfirst = true;
 menu_open = 0;
 dialog_open = 0;
 playing = 0;
+seqcontrol.frame_surf_refresh = true;
+output_buffer_ready = false;
 </string>
           </argument>
         </arguments>
@@ -2125,6 +2125,7 @@ playing = 0;
           <argument>
             <kind>1</kind>
             <string>FMODfree();
+UnloadFMOD();
 close_dacs();
 </string>
           </argument>
@@ -2184,9 +2185,9 @@ close_dacs();
 
 if (placing = "hershey")
     {
-    draw_background_part(bck_hershey1,0,clamp(hershey_scrollx,0,2048),420,120,650,30);
-    draw_background_part(bck_hershey2,0,clamp(hershey_scrollx-2048,0,2048),420,120-clamp(2048-hershey_scrollx,0,120),650,30+clamp(2048-hershey_scrollx,0,120));
     draw_background_part(bck_hershey3,0,clamp(hershey_scrollx-4096,0,2048),420,120-clamp(4096-hershey_scrollx,0,120),650,30+clamp(4096-hershey_scrollx,0,120));
+    draw_background_part(bck_hershey2,0,clamp(hershey_scrollx-2048,0,2048),420,120-clamp(2048-hershey_scrollx,0,120),650,30+clamp(2048-hershey_scrollx,0,120));
+    draw_background_part(bck_hershey1,0,clamp(hershey_scrollx,0,2048),420,120,650,30);
     
     draw_set_alpha(1);
     draw_set_colour(c_white);
@@ -2379,8 +2380,6 @@ if (!laseron)
             }
         
         }
-    
-    draw_set_color(c_gray);
     
     if (placing_status) or (placing == "text") or (placing == "hershey") 
         draw_preview_element();
