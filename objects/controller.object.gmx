@@ -150,6 +150,7 @@ updateget = -1;
 updatenotes = -1;
 file = -1;
 show_ad = true;
+show_tooltip = true;
 
 redraw = 0;
 sgridshow = 0;
@@ -1380,6 +1381,7 @@ if (new_id == getint)
                     ini_write_real(t_currentprojectorstring, "red_scale_lower", ini_read_real(t_projectorstring,"red_scale_lower",0));
                     ini_write_real(t_currentprojectorstring, "green_scale_lower", ini_read_real(t_projectorstring,"green_scale_lower",0));
                     ini_write_real(t_currentprojectorstring, "blue_scale_lower", ini_read_real(t_projectorstring,"blue_scale_lower",0));
+                    ini_write_real(t_currentprojectorstring, "show_tooltip", ini_read_real(t_projectorstring,"show_tooltip",1));
                     ini_section_delete(t_projectorstring);
                     ini_write_real("main","projector",projector);
                     }
@@ -2150,15 +2152,18 @@ close_dacs();
           <argument>
             <kind>1</kind>
             <string>if (tooltip != "")
+{
+    if (show_tooltip)
     {
-    draw_set_alpha(0.8);
-    draw_set_color(c_black);
-    draw_rectangle(0,0,string_width(tooltip)+20,string_height(tooltip)+10,0);
-    draw_set_color(c_white);
-    draw_set_alpha(1);
-    draw_text(5,5,tooltip);
-    tooltip = "";
+        draw_set_alpha(0.8);
+        draw_set_color(c_black);
+        draw_rectangle(0,0,string_width(tooltip)+20,string_height(tooltip)+10,0);
+        draw_set_color(c_white);
+        draw_set_alpha(1);
+        draw_text(5,5,tooltip);
     }
+    tooltip = "";
+}
 </string>
           </argument>
         </arguments>

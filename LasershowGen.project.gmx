@@ -1179,6 +1179,7 @@
         <object>objects\obj_autoupdate</object>
         <object>objects\obj_inverty</object>
         <object>objects\obj_invertx</object>
+        <object>objects\obj_tooltip</object>
         <object>objects\obj_update</object>
         <object>objects\obj_preset</object>
         <object>objects\obj_dacs</object>

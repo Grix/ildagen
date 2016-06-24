@@ -21,6 +21,7 @@ ini_open("settings.ini");
         ini_write_real("projector_0", "red_scale_lower", 0);
         ini_write_real("projector_0", "green_scale_lower", 0);
         ini_write_real("projector_0", "blue_scale_lower", 0);
+        ini_write_real("projector_0", "show_tooltip", 1);
         opt_scanspeed = 20000;
         opt_maxdwell = 4;
         opt_maxdwell_blank = 1;
@@ -39,6 +40,7 @@ ini_open("settings.ini");
         red_scale_lower = 0;
         green_scale_lower = 0;
         blue_scale_lower = 0;
+        show_tooltip = 1;
         ini_write_string("projector_0","name","default");
         ini_write_real("main","projector",0);
         }
@@ -67,6 +69,7 @@ ini_open("settings.ini");
             red_scale_lower = ini_read_real(t_projectorstring, "red_scale_lower", 0);
             green_scale_lower = ini_read_real(t_projectorstring, "green_scale_lower", 0);
             blue_scale_lower = ini_read_real(t_projectorstring, "blue_scale_lower", 0);
+            show_tooltip = ini_read_real(t_projectorstring, "show_tooltip", 1);
             }
         else
             {
@@ -89,6 +92,7 @@ ini_open("settings.ini");
             ini_write_real(t_projectorstring, "red_scale_lower", 0);
             ini_write_real(t_projectorstring, "green_scale_lower", 0);
             ini_write_real(t_projectorstring, "blue_scale_lower", 0);
+            ini_write_real(t_projectorstring, "show_tooltip", 1);
             }
         }
         

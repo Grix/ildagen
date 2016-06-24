@@ -26,14 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>image_speed = 0;
-ini_filename = "settings.ini";
-if (file_exists(ini_filename))
-    {
-    ini_open(ini_filename);
-    updatecheckenabled = ini_read_real("main","updatecheck",0);
-    ini_close();
-    }
-image_index = updatecheckenabled;
 </string>
           </argument>
         </arguments>
@@ -61,8 +53,9 @@ image_index = updatecheckenabled;
 if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
     {
     //image_index = 1;
-    controller.tooltip = "Enable automatic update checking at program startup. Requires internet.";
+    controller.tooltip = "Turn on or off this text.";
     } 
+image_index = controller.show_tooltip;
 </string>
           </argument>
         </arguments>
@@ -87,15 +80,10 @@ if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and
             <kind>1</kind>
             <string>if (instance_exists(oDropDown))
     exit;
-if (file_exists(ini_filename))
-    {
-    ini_open(ini_filename);
-    updatecheckenabled = ini_read_real("main","updatecheck",0);
-    updatecheckenabled = !updatecheckenabled;
-    ini_write_real("main","updatecheck",updatecheckenabled);
-    ini_close();
-    }
-image_index = updatecheckenabled;
+
+controller.show_tooltip = !controller.show_tooltip;
+
+save_settings();
 </string>
           </argument>
         </arguments>
@@ -122,7 +110,7 @@ image_index = updatecheckenabled;
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x+22,y+2,"Automatically check for updates");
+draw_text(x+22,y+2,"Show tooltip");
 draw_set_color(c_white);
 </string>
           </argument>
