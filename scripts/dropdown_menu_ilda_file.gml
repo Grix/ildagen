@@ -1,7 +1,7 @@
 ddobj = instance_create(controller.menu_width_start[0],0,oDropDown);
 with (ddobj)
     {
-    num = 6;
+    num = 7;
     event_user(1);
     ds_list_add(desc_list,"New (Clear)");
     ds_list_add(desc_list,"Save frames");
@@ -26,5 +26,9 @@ with (ddobj)
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
-    ds_list_add(hl_list,1);//(seqcontrol.selectedlayer != -1));
+    ds_list_add(hl_list,1);
+    ds_list_add(desc_list,"Exit");
+    ds_list_add(sep_list,1);
+    ds_list_add(scr_list,exit_confirm);
+    ds_list_add(hl_list,1);
     }

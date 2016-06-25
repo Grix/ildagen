@@ -1,15 +1,17 @@
 //exports every element into an ilda file
+
 ilda_cancel();
-
-//for DAC buffer output only, COMMENT OUT
-/*file_loc_test = get_save_filename_ext("*.ild","example.ild","","Select buf loc");
-dac_buffer = buffer_create(1,buffer_grow,1);
-dac_string = "{ ";*/
-
 
 file_loc = get_save_filename_ext("*.ild","example.ild","","Select ILDA file location");
 if !string_length(file_loc)
     exit;
+    
+if (!verify_numexports())
+{   
+    show_message_async("You have unfortunately used up all 10 free exports per day. Try again tomorrow or buy LasershowGen Full");
+    exit;
+}
+
 ilda_buffer = buffer_create(1,buffer_grow,1);    
     
 global.loadingtimeprev = get_timer();

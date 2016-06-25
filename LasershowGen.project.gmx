@@ -146,6 +146,7 @@
     <extension index="1">extensions\GMopen</extension>
     <extension index="2">extensions\Color Difference Using CIE94</extension>
     <extension index="3">extensions\dacwrapper</extension>
+    <extension index="4">extensions\exPatchWindowClose</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -1058,6 +1059,8 @@
     <script>scripts\documentation.gml</script>
     <script>scripts\blank_script.gml</script>
     <script>scripts\benchmark.gml</script>
+    <script>scripts\exit_confirm.gml</script>
+    <script>scripts\verify_numexports.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>

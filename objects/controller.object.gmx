@@ -345,6 +345,9 @@ if (os_browser == browser_not_a_browser)
     }
     
 instance_create(floor((view_wview[0]-700)/2), floor((view_hview[0]-420)/2), obj_ad);
+
+ex_patch_window_close_capture(1);
+
 </string>
           </argument>
         </arguments>
@@ -603,7 +606,10 @@ scroll = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room == rm_loading)
+            <string>if (ex_patch_window_close_event())
+    exit_confirm();
+    
+if (room == rm_loading)
     {
     if (global.loading_exportilda == 1)
         export_ilda_work();
@@ -926,7 +932,6 @@ if (keyboard_check_pressed(vk_tab))
     room_goto(rm_seq);
     }
     
-
 </string>
           </argument>
         </arguments>
@@ -1335,6 +1340,11 @@ if (new_id == getint)
         {
         switch (dialog)
             {
+            case "exit":
+                {
+                game_end();
+                break;
+                }
             case "preset_delete":
                 {
                 ini_open("settings.ini");
