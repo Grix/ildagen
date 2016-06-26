@@ -1,1 +1,2 @@
-- Bugfixes related to DAC playback
+- Support for Ether Dream DAC, more optimization settings
+- Many bugfixes and improvements
