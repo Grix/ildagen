@@ -1,3 +1,6 @@
+if (!ds_list_size(controller.dac_list))
+    scan_dacs();
+
 ddobj = instance_create(x+50,y+22,oDropDown);
 with (ddobj)
     {

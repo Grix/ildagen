@@ -1,7 +1,7 @@
 //some code borrowed from LFI player https://sourceforge.net/projects/lfiplayer3d/
 
 #include "Device_RIYA.h"
-#include "windows.h"
+#include <windows.h>
 #include <thread>
 #include <string>
 
@@ -14,14 +14,14 @@ Device_RIYA::Device_RIYA()
 Device_RIYA::~Device_RIYA()
 {
 	if (ready)
-	{
-		CloseAllRiyaDevices();
-		FreeLibrary(riyaLibrary);
-	}
+		CloseAll();
 }
 
 int Device_RIYA::Init()
 {
+	if (ready)
+		CloseAll();
+
 	riyaLibrary = LoadLibrary(L"RiyaNetServer.dll");
 	if (riyaLibrary == NULL) return -1;
 
@@ -124,7 +124,7 @@ bool Device_RIYA::OutputFrame(int cardNum, int scanRate, int bufferSize, UINT8* 
 
 	for (int i = 0; i < 16; i++)
 	{
-		if (frameNum[cardNum] > thisFrameNum) //if never frame is waiting to be transfered, cancel this one
+		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;
 		else if (RiyaReadyForNextFrame((UINT8)cardNum))
 		{
@@ -163,5 +163,5 @@ void Device_RIYA::GetName(int cardNum, char* name)
 	_itoa_s(GetIDVersionNumber(cardNum), id, 10);
 
 	strcat_s(riya, id);
-	strcpy_s(name, 32, riya);
+	strcpy_s(name, 64, riya);
 }

@@ -341,7 +341,6 @@ if (os_browser == browser_not_a_browser)
     update_check();
     parse_parameter();
     load_settings();
-    scan_dacs();
     }
     
 instance_create(floor((view_wview[0]-700)/2), floor((view_hview[0]-420)/2), obj_ad);

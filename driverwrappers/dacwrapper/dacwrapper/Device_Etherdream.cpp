@@ -1,5 +1,5 @@
 #include "Device_Etherdream.h"
-#include "windows.h"
+#include <windows.h>
 #include <thread>
 
 
@@ -12,13 +12,14 @@ Device_Etherdream::Device_Etherdream()
 Device_Etherdream::~Device_Etherdream()
 {
 	if (ready)
-	{
 		CloseAll();
-	}
 }
 
 int Device_Etherdream::Init()
 {
+	if (ready)
+		CloseAll();
+
 	etherdreamLibrary = LoadLibrary(L"Etherdream.dll");
 	if (etherdreamLibrary == NULL) return -1;
 
@@ -134,7 +135,7 @@ bool Device_Etherdream::OutputFrame(int cardNum, const EAD_Pnt_s* data, int Byte
 
 	for (int i = 0; i < 16; i++)
 	{
-		if (frameNum[cardNum] > thisFrameNum) //if never frame is waiting to be transfered, cancel this one
+		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;
 		else if (EtherDreamGetStatus(&cardNum) == 1)
 		{
@@ -149,5 +150,5 @@ void Device_Etherdream::GetName(int cardNum, char* name)
 {
 	if (!ready) name = "Etherdream";
 
-	EtherDreamGetDeviceName(&cardNum, name, 32);
+	EtherDreamGetDeviceName(&cardNum, name, 64);
 }

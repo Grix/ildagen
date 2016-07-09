@@ -3,12 +3,17 @@
 #include "Device_RIYA.h"
 #include "Device_LASDAC.h"
 #include "Device_Etherdream.h"
+#include "Device_OLSC.h"
+#include <string>
+#include <thread>
 
 #define GMEXPORT extern "C" __declspec (dllexport)
 
 Device_Etherdream* etherDreamDevice;
 Device_RIYA* riyaDevice;
 Device_LASDAC* lasdacDevice;
+Device_OLSC* olscDevice;
+
 bool initialized = false;
 int numDevices = 0;
 
@@ -24,6 +29,8 @@ Device_Etherdream::EAD_Pnt_s* etherdreamBuffer;
 Device_Etherdream::EAD_Pnt_s* etherdreamBuffer2;
 Device_RIYA::Riya_Point* riyaBuffer;
 Device_RIYA::Riya_Point* riyaBuffer2;
+Device_OLSC::OLSC_Point* olscBuffer;
+Device_OLSC::OLSC_Point* olscBuffer2;
 
 GMEXPORT double InitDacwrapper();
 GMEXPORT double FreeDacwrapper();

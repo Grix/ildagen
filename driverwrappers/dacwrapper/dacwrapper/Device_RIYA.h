@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "windows.h"
+#include <windows.h>
 
 class Device_RIYA
 {
@@ -15,13 +15,6 @@ class Device_RIYA
 public:
 	Device_RIYA();
 	~Device_RIYA();
-	
-	int Init();
-	bool OutputFrame(int cardNum, int scanRate, int bufferSize, UINT8* bufferAddress);
-	bool OpenDevice(int cardNum);
-	bool Stop(int cardNum);
-	bool CloseAll();
-	void GetName(int cardNum, char* name);
 
 	typedef struct {
 		UINT16 X;
@@ -31,10 +24,17 @@ public:
 		UINT8 B;
 		UINT8 I;
 	}Riya_Point;
+	
+	int Init();
+	bool OutputFrame(int cardNum, int scanRate, int bufferSize, UINT8* bufferAddress);
+	bool OpenDevice(int cardNum);
+	bool Stop(int cardNum);
+	bool CloseAll();
+	void GetName(int cardNum, char* name);
 
 private: 
 
-	HINSTANCE riyaLibrary = LoadLibrary(L"RiyaNetServer.dll");
+	HINSTANCE riyaLibrary;
 
 	// function pointer for library routine RiOpenDevices
 	typedef UINT8(*riyaFuncPtr1)();

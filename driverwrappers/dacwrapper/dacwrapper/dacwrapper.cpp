@@ -2,16 +2,10 @@
 wrapper for dac libraries,
 used in LasershowGen, license: https://raw.githubusercontent.com/Grix/ildagen/master/LICENSE
 by Gitle Mikkelsen
-rev: 2016-03-13
 */
 
 //#include "windows.h"
 #include "dacwrapper.h"
-#include "Device_RIYA.h"
-#include "Device_LASDAC.h"
-#include "Device_Etherdream.h"
-#include <string>
-#include <thread>
 
 //must be called before anything else
 GMEXPORT double InitDacwrapper()
@@ -21,11 +15,14 @@ GMEXPORT double InitDacwrapper()
 	etherDreamDevice = new Device_Etherdream();
 	riyaDevice = new Device_RIYA();
 	lasdacDevice = new Device_LASDAC();
+	olscDevice = new Device_OLSC();
 	
 	etherdreamBuffer = new Device_Etherdream::EAD_Pnt_s[4000];
 	etherdreamBuffer2 = new Device_Etherdream::EAD_Pnt_s[4000];
 	riyaBuffer = new Device_RIYA::Riya_Point[4000];
 	riyaBuffer2 = new Device_RIYA::Riya_Point[4000];
+	olscBuffer = new Device_OLSC::OLSC_Point[4000];
+	olscBuffer2 = new Device_OLSC::OLSC_Point[4000];
 	
 	initialized = true;
 
@@ -43,7 +40,7 @@ GMEXPORT double ScanDevices()
 	int numEtherdreams = etherDreamDevice->Init();
 	for (int i = 0; i < numEtherdreams; i++)
 	{
-		char* name = new char[32];
+		char* name = new char[64];
 		etherDreamDevice->GetName(i, name);
 		dacs[numDevices++] = { 1, i, name };
 	}
@@ -52,9 +49,18 @@ GMEXPORT double ScanDevices()
 	int numRiyas = riyaDevice->Init();
 	for (int i = 0; i < numRiyas; i++)
 	{
-		char* name = new char[32];
+		char* name = new char[64];
 		riyaDevice->GetName(i, name);
 		dacs[numDevices++] = { 2, i, name };
+	}
+
+	olscDevice->CloseAll();
+	int numOLSC = olscDevice->Init();
+	for (int i = 0; i < numOLSC; i++)
+	{
+		char* name = new char[64];
+		olscDevice->GetName(i, name);
+		dacs[numDevices++] = { 3, i, name };
 	}
 
 	return (double)numDevices;
@@ -73,8 +79,8 @@ GMEXPORT double DeviceOpen(double doubleNum)
 		return (double)etherDreamDevice->OpenDevice(cardNum);
 	else if (dacType == 2)	//RIYA
 		return (double)riyaDevice->OpenDevice(cardNum);
-	else if (dacType == 3)	//Helios
-		return -1.0; //todo
+	else if (dacType == 3)	//OLSC
+		return (double)olscDevice->OpenDevice(cardNum);
 	else
 		return -1.0;
 }
@@ -140,8 +146,25 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 		riyaBuffer = riyaBuffer2;
 		riyaBuffer2 = riyaBufferPrev;
 	}
+	else if (dacType == 3)	//OLSC
+	{
+		for (int i = 0; i < frameSize; i++)
+		{
+			int currentPos = i * 6;
+			olscBuffer[i].x = bufferAddress[currentPos + 0];
+			olscBuffer[i].y = bufferAddress[currentPos + 1];
+			olscBuffer[i].r = bufferAddress[currentPos + 2];
+			olscBuffer[i].g = bufferAddress[currentPos + 3];
+			olscBuffer[i].b = bufferAddress[currentPos + 4];
+			olscBuffer[i].i = bufferAddress[currentPos + 5];
+		}
+		olscDevice->OutputFrame(cardNum, scanRate, frameSize, olscBuffer);
 
-	//return 1.0;
+		Device_OLSC::OLSC_Point* olscBufferPrev = olscBuffer;
+		olscBuffer = olscBuffer2;
+		olscBuffer2 = olscBufferPrev;
+	}
+
 }
 
 GMEXPORT double FreeDacwrapper()
@@ -151,10 +174,13 @@ GMEXPORT double FreeDacwrapper()
 	delete etherDreamDevice;
 	delete riyaDevice;
 	delete lasdacDevice;
+	delete olscDevice;
 	delete etherdreamBuffer;
 	delete etherdreamBuffer2;
 	delete riyaBuffer;
 	delete riyaBuffer2;
+	delete olscBuffer;
+	delete olscBuffer2;
 
 	return 1.0;
 }
@@ -172,8 +198,8 @@ GMEXPORT double Stop(double doubleNum)
 		return (double)etherDreamDevice->Stop(cardNum);
 	else if (dacType == 2)	//RIYA
 		return (double)riyaDevice->Stop(cardNum);
-	else if (dacType == 3)	//Helios
-		return -1.0; //todo
+	else if (dacType == 3)	//OLSC
+		return (double)olscDevice->Stop(cardNum);
 	else
 		return -1.0;
 }

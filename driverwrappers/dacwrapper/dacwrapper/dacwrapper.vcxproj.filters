@@ -27,6 +27,9 @@
     <ClCompile Include="Device_Etherdream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Device_OLSC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device_RIYA.h">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dacwrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Device_OLSC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
