@@ -14,15 +14,17 @@ GMEXPORT double InitDacwrapper()
 
 	etherDreamDevice = new Device_Etherdream();
 	riyaDevice = new Device_RIYA();
-	lasdacDevice = new Device_LASDAC();
+	heliosDevice = new Device_Helios();
 	olscDevice = new Device_OLSC();
 	
-	etherdreamBuffer = new Device_Etherdream::EAD_Pnt_s[4000];
-	etherdreamBuffer2 = new Device_Etherdream::EAD_Pnt_s[4000];
-	riyaBuffer = new Device_RIYA::Riya_Point[4000];
-	riyaBuffer2 = new Device_RIYA::Riya_Point[4000];
-	olscBuffer = new Device_OLSC::OLSC_Point[4000];
-	olscBuffer2 = new Device_OLSC::OLSC_Point[4000];
+	etherdreamBuffer = new Device_Etherdream::EAD_Pnt_s[0x1000];
+	etherdreamBuffer2 = new Device_Etherdream::EAD_Pnt_s[0x1000];
+	riyaBuffer = new Device_RIYA::Riya_Point[0x1000];
+	riyaBuffer2 = new Device_RIYA::Riya_Point[0x1000];
+	olscBuffer = new Device_OLSC::OLSC_Point[0x1000];
+	olscBuffer2 = new Device_OLSC::OLSC_Point[0x1000];
+	heliosBuffer = new Device_Helios::HeliosPoint[0x1000];
+	heliosBuffer2 = new Device_Helios::HeliosPoint[0x1000];
 	
 	initialized = true;
 
@@ -63,6 +65,15 @@ GMEXPORT double ScanDevices()
 		dacs[numDevices++] = { 3, i, name };
 	}
 
+	heliosDevice->CloseAll();
+	int numHelios = heliosDevice->Init();
+	for (int i = 0; i < numHelios; i++)
+	{
+		char* name = new char[64];
+		heliosDevice->GetName(i, name);
+		dacs[numDevices++] = { 4, i, name };
+	}
+
 	return (double)numDevices;
 }
 
@@ -81,12 +92,14 @@ GMEXPORT double DeviceOpen(double doubleNum)
 		return (double)riyaDevice->OpenDevice(cardNum);
 	else if (dacType == 3)	//OLSC
 		return (double)olscDevice->OpenDevice(cardNum);
+	else if (dacType == 4)	//Helios
+		return (double)heliosDevice->OpenDevice(cardNum);
 	else
 		return -1.0;
 }
 
 //prepares buffer and outputs frame to specified device
-GMEXPORT double OutputFrame(double num,  double scanRate, double frameSize, UINT16* bufferAddress)
+GMEXPORT double OutputFrame(double num,  double scanRate, double frameSize, uint16_t* bufferAddress)
 {
 	if (!initialized) return -1.0;
 
@@ -97,7 +110,7 @@ GMEXPORT double OutputFrame(double num,  double scanRate, double frameSize, UINT
 }
 
 //threaded subfunction of outputframe
-void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleFrameSize, UINT16* bufferAddress)
+void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleFrameSize, uint16_t* bufferAddress)
 {
 	//if (!initialized) return -1.0;
 
@@ -135,12 +148,12 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 			int currentPos = i * 6;
 			riyaBuffer[i].X = bufferAddress[currentPos + 0] >> 4;
 			riyaBuffer[i].Y = bufferAddress[currentPos + 1] >> 4;
-			riyaBuffer[i].R = (UINT8)bufferAddress[currentPos + 2];
-			riyaBuffer[i].G = (UINT8)bufferAddress[currentPos + 3];
-			riyaBuffer[i].B = (UINT8)bufferAddress[currentPos + 4];
-			riyaBuffer[i].I = (UINT8)bufferAddress[currentPos + 5];
+			riyaBuffer[i].R = (uint8_t)bufferAddress[currentPos + 2];
+			riyaBuffer[i].G = (uint8_t)bufferAddress[currentPos + 3];
+			riyaBuffer[i].B = (uint8_t)bufferAddress[currentPos + 4];
+			riyaBuffer[i].I = (uint8_t)bufferAddress[currentPos + 5];
 		}
-		riyaDevice->OutputFrame(cardNum, scanRate, frameSize, (UINT8*)riyaBuffer);
+		riyaDevice->OutputFrame(cardNum, scanRate, frameSize, (uint8_t*)riyaBuffer);
 
 		Device_RIYA::Riya_Point* riyaBufferPrev = riyaBuffer;
 		riyaBuffer = riyaBuffer2;
@@ -164,6 +177,24 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 		olscBuffer = olscBuffer2;
 		olscBuffer2 = olscBufferPrev;
 	}
+	else if (dacType == 4)	//Helios
+	{
+		for (int i = 0; i < frameSize; i++)
+		{
+			int currentPos = i * 6;
+			heliosBuffer[i].x = bufferAddress[currentPos + 0] >> 4;
+			heliosBuffer[i].y = bufferAddress[currentPos + 1] >> 4;
+			heliosBuffer[i].r = (uint8_t)bufferAddress[currentPos + 2];
+			heliosBuffer[i].g = (uint8_t)bufferAddress[currentPos + 3];
+			heliosBuffer[i].b = (uint8_t)bufferAddress[currentPos + 4];
+			heliosBuffer[i].i = (uint8_t)bufferAddress[currentPos + 5];
+		}
+		heliosDevice->OutputFrame(cardNum, scanRate, frameSize, heliosBuffer);
+
+		Device_Helios::HeliosPoint* heliosBufferPrev = heliosBuffer;
+		heliosBuffer = heliosBuffer2;
+		heliosBuffer2 = heliosBufferPrev;
+	}
 
 }
 
@@ -173,7 +204,7 @@ GMEXPORT double FreeDacwrapper()
 
 	delete etherDreamDevice;
 	delete riyaDevice;
-	delete lasdacDevice;
+	delete heliosDevice;
 	delete olscDevice;
 	delete etherdreamBuffer;
 	delete etherdreamBuffer2;
@@ -181,6 +212,8 @@ GMEXPORT double FreeDacwrapper()
 	delete riyaBuffer2;
 	delete olscBuffer;
 	delete olscBuffer2;
+	delete heliosBuffer;
+	delete heliosBuffer2;
 
 	return 1.0;
 }
@@ -200,6 +233,8 @@ GMEXPORT double Stop(double doubleNum)
 		return (double)riyaDevice->Stop(cardNum);
 	else if (dacType == 3)	//OLSC
 		return (double)olscDevice->Stop(cardNum);
+	else if (dacType == 4)	//Helios
+		return (double)heliosDevice->Stop(cardNum);
 	else
 		return -1.0;
 }

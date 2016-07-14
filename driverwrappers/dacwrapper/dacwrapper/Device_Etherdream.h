@@ -1,6 +1,7 @@
 #pragma once
 
 #include <windows.h>
+#include <stdint.h>
 
 class Device_Etherdream
 {
@@ -9,14 +10,14 @@ public:
 	~Device_Etherdream();
 
 	typedef struct {
-		INT16 X;
-		INT16 Y;
-		INT16 R;
-		INT16 G;
-		INT16 B;
-		INT16 I;
-		INT16 AL;
-		INT16 AR;
+		int16_t X;
+		int16_t Y;
+		int16_t R;
+		int16_t G;
+		int16_t B;
+		int16_t I;
+		int16_t AL;
+		int16_t AR;
 	}EAD_Pnt_s;
 
 	int Init();
@@ -24,7 +25,7 @@ public:
 	bool CloseDevice(int cardNum);
 	bool Stop(int cardNum);
 	bool CloseAll();
-	bool OutputFrame(int cardNum, const EAD_Pnt_s* data, int Bytes, UINT16 PPS);
+	bool OutputFrame(int cardNum, const EAD_Pnt_s* data, int Bytes, uint16_t PPS);
 	void GetName(int cardNum, char* name);
 
 private:
@@ -41,7 +42,7 @@ private:
 	typedef bool(__stdcall *etherdreamFuncPtr2)(const int* CardNum);
 
 	//pointer for EtherDreamWriteFrame()
-	typedef bool(__stdcall *etherdreamFuncPtr3)(const int* CardNum, const EAD_Pnt_s* data, int Bytes, UINT16 PPS, UINT16 Reps);
+	typedef bool(__stdcall *etherdreamFuncPtr3)(const int* CardNum, const EAD_Pnt_s* data, int Bytes, uint16_t PPS, uint16_t Reps);
 
 	//pointer for EtherDreamClose()
 	typedef bool(__stdcall *etherdreamFuncPtr4)();
@@ -59,7 +60,7 @@ private:
 	etherdreamFuncPtr5 EtherDreamGetStatus;
 
 	bool ready;
-	int frameNum[4];
+	int frameNum[16];
 
 	void OutputFrameThreaded();
 };

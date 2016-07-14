@@ -3,6 +3,7 @@
 #pragma once
 
 #include <windows.h>
+#include <stdint.h>
 
 class Device_RIYA
 {
@@ -17,16 +18,16 @@ public:
 	~Device_RIYA();
 
 	typedef struct {
-		UINT16 X;
-		UINT16 Y;
-		UINT8 R;
-		UINT8 G;
-		UINT8 B;
-		UINT8 I;
+		uint16_t X;
+		uint16_t Y;
+		uint8_t R;
+		uint8_t G;
+		uint8_t B;
+		uint8_t I;
 	}Riya_Point;
 	
 	int Init();
-	bool OutputFrame(int cardNum, int scanRate, int bufferSize, UINT8* bufferAddress);
+	bool OutputFrame(int cardNum, int scanRate, int bufferSize, uint8_t* bufferAddress);
 	bool OpenDevice(int cardNum);
 	bool Stop(int cardNum);
 	bool CloseAll();
@@ -37,27 +38,27 @@ private:
 	HINSTANCE riyaLibrary;
 
 	// function pointer for library routine RiOpenDevices
-	typedef UINT8(*riyaFuncPtr1)();
+	typedef uint8_t(*riyaFuncPtr1)();
 
 	// function pointer for library routine RiCloseDevices
 	typedef void(*riyaFuncPtr2)();
 
 	// function pointer for library routine Ri_InitChanal
-	typedef void(*riyaFuncPtr3)(UINT8,              // card ID
+	typedef void(*riyaFuncPtr3)(uint8_t,              // card ID
 								ULONG);             // attribute
 
 	// function pointer for library routines Ri_SetIntCh & RiStopShow
-	typedef UINT8(*riyaFuncPtr4)(UINT8);    // card ID
+	typedef uint8_t(*riyaFuncPtr4)(uint8_t);    // card ID
 	
 	// function pointer for library routine RiSetShowCadr
-	typedef UINT8(*riyaFuncPtr5)(	UINT8,     // card ID
-									UINT8 *,   // data
+	typedef uint8_t(*riyaFuncPtr5)(	uint8_t,     // card ID
+									uint8_t *,   // data
 									UINT,      // size
 									UINT,      // output period
-									UINT8);    // attribute
+									uint8_t);    // attribute
 
 	//func ptr for GetIDVersionNumber
-	typedef UINT16(*riyaFuncPtr6)(UINT8);
+	typedef uint16_t(*riyaFuncPtr6)(uint8_t);
 
 	riyaFuncPtr1 OpenAllRiyaDevices;    // library routine RiOpenDevices
 	riyaFuncPtr2 CloseAllRiyaDevices;   // library routine RiCloseDevices
@@ -69,6 +70,6 @@ private:
 
 	UINT pointPeriod;
 	bool ready;
-	int frameNum[4];
+	int frameNum[16];
 };
 

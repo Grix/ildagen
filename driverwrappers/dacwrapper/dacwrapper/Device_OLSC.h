@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Windows.h>
+#include <stdint.h>
 
 class Device_OLSC
 {
@@ -10,12 +11,12 @@ public:
 
 	typedef struct
 	{
-		INT16 x;
-		INT16 y;
-		INT16 r;
-		INT16 g;
-		INT16 b;
-		INT16 i;
+		uint16_t x;
+		uint16_t y;
+		uint16_t r;
+		uint16_t g;
+		uint16_t b;
+		uint16_t i;
 	}OLSC_Point;
 
 	int Init();
@@ -52,6 +53,6 @@ private:
 	OLSCFuncPtr4 OLSC_GetStatus;
 
 	bool ready;
-	int frameNum[8];
+	int frameNum[16];
 };
 

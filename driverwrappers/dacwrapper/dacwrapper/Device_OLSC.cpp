@@ -115,6 +115,7 @@ bool Device_OLSC::CloseAll()
 
 	OLSC_Shutdown();
 	FreeLibrary(OLSCLibrary);
+	ready = false;
 
 	return true;
 }

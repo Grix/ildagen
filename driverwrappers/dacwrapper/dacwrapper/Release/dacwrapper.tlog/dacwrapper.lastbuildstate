@@ -1,2 +1,2 @@
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v120:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit
-Release|Win32|C:\Libraries\Dev\ildagen.gmx\driverwrappers\dacwrapper\|
+Release|Win32|C:\GitHub\ildagen\driverwrappers\dacwrapper\|

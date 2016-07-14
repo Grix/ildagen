@@ -116,6 +116,7 @@ bool Device_Etherdream::CloseAll()
 
 	EtherDreamClose();
 	FreeLibrary(etherdreamLibrary);
+	ready = false;
 
 	return true;
 }
@@ -127,7 +128,7 @@ bool Device_Etherdream::Stop(int cardNum)
 	return EtherDreamStop(&cardNum);
 }
 
-bool Device_Etherdream::OutputFrame(int cardNum, const EAD_Pnt_s* data, int Bytes, UINT16 PPS)
+bool Device_Etherdream::OutputFrame(int cardNum, const EAD_Pnt_s* data, int Bytes, uint16_t PPS)
 {
 	if (!ready) return false;
 

@@ -13,17 +13,15 @@ Device_RIYA::Device_RIYA()
 
 Device_RIYA::~Device_RIYA()
 {
-	if (ready)
-		CloseAll();
+	CloseAll();
 }
 
 int Device_RIYA::Init()
 {
-	if (ready)
-		CloseAll();
+	CloseAll();
 
 	riyaLibrary = LoadLibrary(L"RiyaNetServer.dll");
-	if (riyaLibrary == NULL) return -1;
+	if (riyaLibrary == NULL) return -2;
 
 	// Retrieve a pointer to each of the RIYA library functions,
 	// and check to make sure that the pointer is valid...
@@ -76,8 +74,8 @@ int Device_RIYA::Init()
 		return -1;
 	}
 
-	UINT8 riyaDevicesNumTotal = OpenAllRiyaDevices();
-	//logFile << "Device_RIYA::Open() - Device count = " << (M_UINT16)riyaDevicesNum << endl;
+	uint8_t riyaDevicesNumTotal = OpenAllRiyaDevices();
+	//logFile << "Device_RIYA::Open() - Device count = " << (M_uint16_t)riyaDevicesNum << endl;
 
 	if (riyaDevicesNumTotal == 0)
 	{
@@ -101,12 +99,12 @@ bool Device_RIYA::OpenDevice(int cardNum)
 {
 	if (!ready) return false;
 
-	InitRiyaDevice((UINT8)cardNum, RIYA_DEVICE_ATTRIBUTES);
+	InitRiyaDevice((uint8_t)cardNum, RIYA_DEVICE_ATTRIBUTES);
 
 	pointPeriod = (UINT)(1.0 / 20000.0 * 33333333.3);
 
 	Riya_Point blankPoint[1] = { 0x800, 0x800, 0, 0, 0, 0 };
-	TransferFrameToBuffer((UINT8)cardNum, (UINT8*)&blankPoint, 1, pointPeriod, RIYA_FRAME_ATTRIBUTES_NOSYNC);
+	TransferFrameToBuffer((uint8_t)cardNum, (uint8_t*)&blankPoint, 1, pointPeriod, RIYA_FRAME_ATTRIBUTES_NOSYNC);
 
 	frameNum[cardNum] = 0;
 
@@ -114,7 +112,7 @@ bool Device_RIYA::OpenDevice(int cardNum)
 }
 
 
-bool Device_RIYA::OutputFrame(int cardNum, int scanRate, int bufferSize, UINT8* bufferAddress)
+bool Device_RIYA::OutputFrame(int cardNum, int scanRate, int bufferSize, uint8_t* bufferAddress)
 {
 	if (!ready) return false;
 	
@@ -126,9 +124,9 @@ bool Device_RIYA::OutputFrame(int cardNum, int scanRate, int bufferSize, UINT8* 
 	{
 		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;
-		else if (RiyaReadyForNextFrame((UINT8)cardNum))
+		else if (RiyaReadyForNextFrame((uint8_t)cardNum))
 		{
-			return (TransferFrameToBuffer((UINT8)cardNum, (UINT8*)bufferAddress, (UINT)bufferSize, pointPeriod, RIYA_FRAME_ATTRIBUTES_SYNC) == 0);
+			return (TransferFrameToBuffer((uint8_t)cardNum, (uint8_t*)bufferAddress, (UINT)bufferSize, pointPeriod, RIYA_FRAME_ATTRIBUTES_SYNC) == 0);
 		}
 	}
 
@@ -139,7 +137,7 @@ bool Device_RIYA::Stop(int cardNum)
 {
 	if (!ready) return false;
 
-	StopRiyaDevice((UINT8)cardNum);
+	StopRiyaDevice((uint8_t)cardNum);
 
 	return true;
 }
@@ -150,6 +148,7 @@ bool Device_RIYA::CloseAll()
 
 	CloseAllRiyaDevices();
 	FreeLibrary(riyaLibrary);
+	ready = false;
 
 	return true;
 }
