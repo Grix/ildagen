@@ -199,5 +199,85 @@
       <functions/>
       <constants/>
     </file>
+    <file>
+      <filename>EasyLase.dll</filename>
+      <origname>extensions\EasyLase.dll</origname>
+      <init></init>
+      <final></final>
+      <kind>1</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>17592738762820</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles/>
+      <functions/>
+      <constants/>
+    </file>
+    <file>
+      <filename>EzAudDac.dll</filename>
+      <origname>extensions\EzAudDac.dll</origname>
+      <init></init>
+      <final></final>
+      <kind>1</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>17592738762820</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles/>
+      <functions/>
+      <constants/>
+    </file>
+    <file>
+      <filename>EzAudDac.ini</filename>
+      <origname>extensions\EzAudDac.ini</origname>
+      <init></init>
+      <final></final>
+      <kind>4</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>17592738762820</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles/>
+      <functions/>
+      <constants/>
+    </file>
+    <file>
+      <filename>OLSC_EasyLase.dll</filename>
+      <origname>extensions\OLSC_EasyLase.dll</origname>
+      <init></init>
+      <final></final>
+      <kind>1</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>17592738762820</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles/>
+      <functions/>
+      <constants/>
+    </file>
+    <file>
+      <filename>OLSC_EzAudDac.dll</filename>
+      <origname>extensions\OLSC_EzAudDac.dll</origname>
+      <init></init>
+      <final></final>
+      <kind>1</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>17592738762820</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles/>
+      <functions/>
+      <constants/>
+    </file>
   </files>
 </extension>

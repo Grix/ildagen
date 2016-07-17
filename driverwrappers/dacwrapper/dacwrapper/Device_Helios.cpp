@@ -106,7 +106,7 @@ bool Device_Helios::Stop(int cardNum)
 {
 	if (!ready) return false;
 
-	return _Stop(cardNum);
+	return (_Stop(cardNum) == 1);
 
 	return true;
 }

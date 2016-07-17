@@ -1046,7 +1046,6 @@
     <script>scripts\parse_parameter.gml</script>
     <script>scripts\colors_compare_cie94.gml</script>
     <script>scripts\update_colors_scalesettings.gml</script>
-    <script>scripts\verify_serial.gml</script>
     <script>scripts\seq_dialog_yesno.gml</script>
     <script>scripts\seq_dialog_num.gml</script>
     <script>scripts\ilda_dialog_yesno.gml</script>
@@ -1060,6 +1059,7 @@
     <script>scripts\blank_script.gml</script>
     <script>scripts\benchmark.gml</script>
     <script>scripts\exit_confirm.gml</script>
+    <script>scripts\verify_serial.gml</script>
     <script>scripts\verify_numexports.gml</script>
   </scripts>
   <fonts name="fonts">

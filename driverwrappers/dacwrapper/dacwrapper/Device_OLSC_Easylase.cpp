@@ -1,22 +1,22 @@
-#include "Device_OLSC.h"
+#include "Device_OLSC_Easylase.h"
 
 
-Device_OLSC::Device_OLSC()
+Device_OLSC_Easylase::Device_OLSC_Easylase()
 {
 	ready = false;
 }
 
 
-Device_OLSC::~Device_OLSC()
+Device_OLSC_Easylase::~Device_OLSC_Easylase()
 {
 }
 
-int Device_OLSC::Init()
+int Device_OLSC_Easylase::Init()
 {
 	if (ready)
 		CloseAll();
 
-	OLSCLibrary = LoadLibrary(L"OLSC.dll");
+	OLSCLibrary = LoadLibrary(L"OLSC_Easylase.dll");
 	if (OLSCLibrary == NULL) return -2;
 
 	OLSC_Initialize = (OLSCFuncPtr1)GetProcAddress(OLSCLibrary, "OLSC_Initialize");
@@ -68,12 +68,12 @@ int Device_OLSC::Init()
 		FreeLibrary(OLSCLibrary);
 		return openResult;
 	}
-	
+
 	ready = true;
 	return openResult;
 }
 
-bool Device_OLSC::OutputFrame(int cardNum, int scanRate, int bufferSize, OLSC_Point* bufferAddress)
+bool Device_OLSC_Easylase::OutputFrame(int cardNum, int scanRate, int bufferSize, OLSC_Point* bufferAddress)
 {
 	if (!ready)
 		return false;
@@ -87,7 +87,7 @@ bool Device_OLSC::OutputFrame(int cardNum, int scanRate, int bufferSize, OLSC_Po
 		else
 		{
 			DWORD status;
-			if ( (OLSC_GetStatus(cardNum, status) & 1) == 0) //if ready
+			if ((OLSC_GetStatus(cardNum, status) & 1) == 0) //if ready
 			{
 				return (OLSC_WriteFrameEx(cardNum, scanRate, bufferSize, bufferAddress) == 1);
 			}
@@ -97,17 +97,17 @@ bool Device_OLSC::OutputFrame(int cardNum, int scanRate, int bufferSize, OLSC_Po
 	return false;
 }
 
-bool Device_OLSC::OpenDevice(int cardNum)
+bool Device_OLSC_Easylase::OpenDevice(int cardNum)
 {
 	if (!ready)
 		return false;
 
 	//no individual open device functions for OLSC
 
-	return true; 
+	return true;
 }
 
-bool Device_OLSC::Stop(int cardNum)
+bool Device_OLSC_Easylase::Stop(int cardNum)
 {
 	if (!ready)
 		return false;
@@ -115,7 +115,7 @@ bool Device_OLSC::Stop(int cardNum)
 	return (OLSC_Pause(cardNum) == 1);
 }
 
-bool Device_OLSC::CloseAll()
+bool Device_OLSC_Easylase::CloseAll()
 {
 	if (!ready)
 		return false;
@@ -127,11 +127,11 @@ bool Device_OLSC::CloseAll()
 	return true;
 }
 
-void Device_OLSC::GetName(int cardNum, char* name)
+void Device_OLSC_Easylase::GetName(int cardNum, char* name)
 {
-	if (!ready) name = "OLSC";
+	if (!ready) name = "Easylase";
 
-	OLSC_GetInterfaceName(name+2);
+	OLSC_GetInterfaceName(name + 2);
 	name[0] = (char)(cardNum + 48); //ascii numbers start at 48
 	name[1] = ' ';
 	name[63] = '\0';

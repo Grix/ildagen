@@ -4,6 +4,8 @@
 #include "Device_Etherdream.h"
 #include "Device_OLSC.h"
 #include "Device_Helios.h"
+#include "Device_OLSC_Easylase.h"
+#include "Device_OLSC_EzAudDac.h"
 #include <string>
 #include <thread>
 
@@ -13,12 +15,14 @@ Device_Etherdream* etherDreamDevice;
 Device_RIYA* riyaDevice;
 Device_OLSC* olscDevice;
 Device_Helios* heliosDevice;
+Device_OLSC_Easylase* olscEasylaseDevice;
+Device_OLSC_EzAudDac* olscEzAudDacDevice;
 
 bool initialized = false;
 int numDevices = 0;
 
 typedef struct {
-	int type;	//1: Etherdream, 2: RIYA, 3: OLSC, 4: Helios
+	int type;	//1: Etherdream, 2: RIYA, 3: OLSC, 4: Helios, 5: OLSC_Easylase, 6: OLSC_EzAudDac
 	int cardNum;
 	char* desc;
 }DAC;
@@ -33,6 +37,10 @@ Device_OLSC::OLSC_Point* olscBuffer;
 Device_OLSC::OLSC_Point* olscBuffer2;
 Device_Helios::HeliosPoint* heliosBuffer;
 Device_Helios::HeliosPoint* heliosBuffer2;
+Device_OLSC_Easylase::OLSC_Point* olscEasylaseBuffer;
+Device_OLSC_Easylase::OLSC_Point* olscEasylaseBuffer2;
+Device_OLSC_EzAudDac::OLSC_Point* olscEzAudDacBuffer;
+Device_OLSC_EzAudDac::OLSC_Point* olscEzAudDacBuffer2;
 
 GMEXPORT double InitDacwrapper();
 GMEXPORT double FreeDacwrapper();

@@ -1,2 +1,1 @@
-- Support for Ether Dream DAC, more optimization settings
-- Many bugfixes and improvements
+- Support for OLSC DAC API (OLSD, Easylase, EZAuDAC)

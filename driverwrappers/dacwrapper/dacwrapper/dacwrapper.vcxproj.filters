@@ -30,6 +30,12 @@
     <ClCompile Include="Device_Helios.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Device_OLSC_Easylase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Device_OLSC_EzAudDac.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device_RIYA.h">
@@ -45,6 +51,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Device_Helios.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Device_OLSC_Easylase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Device_OLSC_EzAudDac.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

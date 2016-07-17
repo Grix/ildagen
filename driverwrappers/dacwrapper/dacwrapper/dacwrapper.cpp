@@ -16,7 +16,10 @@ GMEXPORT double InitDacwrapper()
 	riyaDevice = new Device_RIYA();
 	heliosDevice = new Device_Helios();
 	olscDevice = new Device_OLSC();
+	olscEasylaseDevice = new Device_OLSC_Easylase();
+	olscEzAudDacDevice = new Device_OLSC_EzAudDac();
 	
+	//todo make buffers for each device instead of globally, doink
 	etherdreamBuffer = new Device_Etherdream::EAD_Pnt_s[0x1000];
 	etherdreamBuffer2 = new Device_Etherdream::EAD_Pnt_s[0x1000];
 	riyaBuffer = new Device_RIYA::Riya_Point[0x1000];
@@ -25,6 +28,8 @@ GMEXPORT double InitDacwrapper()
 	olscBuffer2 = new Device_OLSC::OLSC_Point[0x1000];
 	heliosBuffer = new Device_Helios::HeliosPoint[0x1000];
 	heliosBuffer2 = new Device_Helios::HeliosPoint[0x1000];
+	olscEasylaseBuffer = new Device_OLSC_Easylase::OLSC_Point[0x1000];
+	olscEasylaseBuffer2 = new Device_OLSC_Easylase::OLSC_Point[0x1000];
 	
 	initialized = true;
 
@@ -65,6 +70,24 @@ GMEXPORT double ScanDevices()
 		dacs[numDevices++] = { 3, i, name };
 	}
 
+	olscEasylaseDevice->CloseAll();
+	int numOLSCEasylase = olscEasylaseDevice->Init();
+	for (int i = 0; i < numOLSCEasylase; i++)
+	{
+		char* name = new char[64];
+		olscEasylaseDevice->GetName(i, name);
+		dacs[numDevices++] = { 5, i, name };
+	}
+
+	olscEzAudDacDevice->CloseAll();
+	int numOLSCEzAudDac = olscEzAudDacDevice->Init();
+	for (int i = 0; i < numOLSCEzAudDac; i++)
+	{
+		char* name = new char[64];
+		olscEzAudDacDevice->GetName(i, name);
+		dacs[numDevices++] = { 6, i, name };
+	}
+
 	heliosDevice->CloseAll();
 	int numHelios = heliosDevice->Init();
 	for (int i = 0; i < numHelios; i++)
@@ -94,6 +117,10 @@ GMEXPORT double DeviceOpen(double doubleNum)
 		return (double)olscDevice->OpenDevice(cardNum);
 	else if (dacType == 4)	//Helios
 		return (double)heliosDevice->OpenDevice(cardNum);
+	else if (dacType == 5)	//OLSC_Easylase
+		return (double)olscEasylaseDevice->OpenDevice(cardNum);
+	else if (dacType == 6)	//OLSC_EzAudDac
+		return (double)olscEzAudDacDevice->OpenDevice(cardNum);
 	else
 		return -1.0;
 }
@@ -112,8 +139,6 @@ GMEXPORT double OutputFrame(double num,  double scanRate, double frameSize, uint
 //threaded subfunction of outputframe
 void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleFrameSize, uint16_t* bufferAddress)
 {
-	//if (!initialized) return -1.0;
-
 	int num = (int)(doubleNum + 0.5); //type of dac
 	int scanRate = (int)(doubleScanRate + 0.5); //in pps
 	int frameSize = (int)(doubleFrameSize + 0.5); //in points
@@ -177,6 +202,42 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 		olscBuffer = olscBuffer2;
 		olscBuffer2 = olscBufferPrev;
 	}
+	else if (dacType == 5)	//OLSC_Easylase
+	{
+		for (int i = 0; i < frameSize; i++)
+		{
+			int currentPos = i * 6;
+			olscEasylaseBuffer[i].x = bufferAddress[currentPos + 0];
+			olscEasylaseBuffer[i].y = bufferAddress[currentPos + 1];
+			olscEasylaseBuffer[i].r = bufferAddress[currentPos + 2];
+			olscEasylaseBuffer[i].g = bufferAddress[currentPos + 3];
+			olscEasylaseBuffer[i].b = bufferAddress[currentPos + 4];
+			olscEasylaseBuffer[i].i = bufferAddress[currentPos + 5];
+		}
+		olscEasylaseDevice->OutputFrame(cardNum, scanRate, frameSize, olscEasylaseBuffer);
+
+		Device_OLSC_Easylase::OLSC_Point* olscEasylaseBufferPrev = olscEasylaseBuffer;
+		olscEasylaseBuffer = olscEasylaseBuffer2;
+		olscEasylaseBuffer2 = olscEasylaseBufferPrev;
+	}
+	else if (dacType == 6)	//OLSC_EzAudDac
+	{
+		for (int i = 0; i < frameSize; i++)
+		{
+			int currentPos = i * 6;
+			olscEzAudDacBuffer[i].x = bufferAddress[currentPos + 0];
+			olscEzAudDacBuffer[i].y = bufferAddress[currentPos + 1];
+			olscEzAudDacBuffer[i].r = bufferAddress[currentPos + 2];
+			olscEzAudDacBuffer[i].g = bufferAddress[currentPos + 3];
+			olscEzAudDacBuffer[i].b = bufferAddress[currentPos + 4];
+			olscEzAudDacBuffer[i].i = bufferAddress[currentPos + 5];
+		}
+		olscEzAudDacDevice->OutputFrame(cardNum, scanRate, frameSize, olscEzAudDacBuffer);
+
+		Device_OLSC_EzAudDac::OLSC_Point* olscEzAudDacBufferPrev = olscEzAudDacBuffer;
+		olscEzAudDacBuffer = olscEzAudDacBuffer2;
+		olscEzAudDacBuffer2 = olscEzAudDacBufferPrev;
+	}
 	else if (dacType == 4)	//Helios
 	{
 		for (int i = 0; i < frameSize; i++)
@@ -212,6 +273,10 @@ GMEXPORT double FreeDacwrapper()
 	delete riyaBuffer2;
 	delete olscBuffer;
 	delete olscBuffer2;
+	delete olscEzAudDacBuffer;
+	delete olscEzAudDacBuffer2;
+	delete olscEasylaseBuffer;
+	delete olscEasylaseBuffer2;
 	delete heliosBuffer;
 	delete heliosBuffer2;
 
@@ -233,6 +298,10 @@ GMEXPORT double Stop(double doubleNum)
 		return (double)riyaDevice->Stop(cardNum);
 	else if (dacType == 3)	//OLSC
 		return (double)olscDevice->Stop(cardNum);
+	else if (dacType == 5)	//OLSC_Easylase
+		return (double)olscEasylaseDevice->Stop(cardNum);
+	else if (dacType == 6)	//OLSC_EzAudDac
+		return (double)olscEzAudDacDevice->Stop(cardNum);
 	else if (dacType == 4)	//Helios
 		return (double)heliosDevice->Stop(cardNum);
 	else
