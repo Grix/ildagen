@@ -279,5 +279,21 @@
       <functions/>
       <constants/>
     </file>
+    <file>
+      <filename>HeliosLaserDAC.dll</filename>
+      <origname>extensions\HeliosLaserDAC.dll</origname>
+      <init></init>
+      <final></final>
+      <kind>1</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>17592738762820</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles/>
+      <functions/>
+      <constants/>
+    </file>
   </files>
 </extension>

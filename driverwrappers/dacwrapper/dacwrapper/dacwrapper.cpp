@@ -43,7 +43,6 @@ GMEXPORT double ScanDevices()
 
 	numDevices = 0;
 
-	etherDreamDevice->CloseAll();
 	int numEtherdreams = etherDreamDevice->Init();
 	for (int i = 0; i < numEtherdreams; i++)
 	{
@@ -52,16 +51,6 @@ GMEXPORT double ScanDevices()
 		dacs[numDevices++] = { 1, i, name };
 	}
 
-	riyaDevice->CloseAll();
-	int numRiyas = riyaDevice->Init();
-	for (int i = 0; i < numRiyas; i++)
-	{
-		char* name = new char[64];
-		riyaDevice->GetName(i, name);
-		dacs[numDevices++] = { 2, i, name };
-	}
-
-	olscDevice->CloseAll();
 	int numOLSC = olscDevice->Init();
 	for (int i = 0; i < numOLSC; i++)
 	{
@@ -70,7 +59,6 @@ GMEXPORT double ScanDevices()
 		dacs[numDevices++] = { 3, i, name };
 	}
 
-	olscEasylaseDevice->CloseAll();
 	int numOLSCEasylase = olscEasylaseDevice->Init();
 	for (int i = 0; i < numOLSCEasylase; i++)
 	{
@@ -79,7 +67,6 @@ GMEXPORT double ScanDevices()
 		dacs[numDevices++] = { 5, i, name };
 	}
 
-	olscEzAudDacDevice->CloseAll();
 	int numOLSCEzAudDac = olscEzAudDacDevice->Init();
 	for (int i = 0; i < numOLSCEzAudDac; i++)
 	{
@@ -88,13 +75,20 @@ GMEXPORT double ScanDevices()
 		dacs[numDevices++] = { 6, i, name };
 	}
 
-	heliosDevice->CloseAll();
 	int numHelios = heliosDevice->Init();
 	for (int i = 0; i < numHelios; i++)
 	{
 		char* name = new char[64];
 		heliosDevice->GetName(i, name);
 		dacs[numDevices++] = { 4, i, name };
+	}
+
+	int numRiyas = riyaDevice->Init();
+	for (int i = 0; i < numRiyas; i++)
+	{
+		char* name = new char[64];
+		riyaDevice->GetName(i, name);
+		dacs[numDevices++] = { 2, i, name };
 	}
 
 	return (double)numDevices;

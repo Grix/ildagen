@@ -9,12 +9,12 @@ Device_OLSC::Device_OLSC()
 
 Device_OLSC::~Device_OLSC()
 {
+	CloseAll();
 }
 
 int Device_OLSC::Init()
 {
-	if (ready)
-		CloseAll();
+	CloseAll();
 
 	OLSCLibrary = LoadLibrary(L"OLSC.dll");
 	if (OLSCLibrary == NULL) return -2;

@@ -11,14 +11,12 @@ Device_Etherdream::Device_Etherdream()
 
 Device_Etherdream::~Device_Etherdream()
 {
-	if (ready)
-		CloseAll();
+	CloseAll();
 }
 
 int Device_Etherdream::Init()
 {
-	if (ready)
-		CloseAll();
+	CloseAll();
 
 	etherdreamLibrary = LoadLibrary(L"Etherdream.dll");
 	if (etherdreamLibrary == NULL) return -1;

@@ -9,12 +9,12 @@ Device_OLSC_EzAudDac::Device_OLSC_EzAudDac()
 
 Device_OLSC_EzAudDac::~Device_OLSC_EzAudDac()
 {
+	CloseAll();
 }
 
 int Device_OLSC_EzAudDac::Init()
 {
-	if (ready)
-		CloseAll();
+	CloseAll();
 
 	OLSCLibrary = LoadLibrary(L"OLSC_EzAudDac.dll");
 	if (OLSCLibrary == NULL) return -2;

@@ -61,13 +61,13 @@ int Device_Helios::Init()
 		return -1;
 	}
 
-	_Stop = (heliosFuncPtr5)GetProcAddress(heliosLibrary, "Stop");
+	_Stop = (heliosFuncPtr1)GetProcAddress(heliosLibrary, "Stop");
 	if (!_Stop)
 	{
 		FreeLibrary(heliosLibrary);
 		return -1;
 	}
-
+	
 	ready = true;
 	int result = _OpenDevices();
 
@@ -87,7 +87,7 @@ bool Device_Helios::OutputFrame(int cardNum, int rate, int frameSize, HeliosPoin
 	{
 		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;
-		else if (_GetStatus(cardNum) & 1)
+		if (_GetStatus(cardNum) == 1)
 		{
 			return (_WriteFrame(cardNum, rate, 0, bufferAddress, frameSize) == 1);
 		}

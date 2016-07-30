@@ -9,12 +9,12 @@ Device_OLSC_Easylase::Device_OLSC_Easylase()
 
 Device_OLSC_Easylase::~Device_OLSC_Easylase()
 {
+	CloseAll();
 }
 
 int Device_OLSC_Easylase::Init()
 {
-	if (ready)
-		CloseAll();
+	CloseAll();
 
 	OLSCLibrary = LoadLibrary(L"OLSC_Easylase.dll");
 	if (OLSCLibrary == NULL) return -2;
