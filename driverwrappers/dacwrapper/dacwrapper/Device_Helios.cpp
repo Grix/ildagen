@@ -87,7 +87,7 @@ bool Device_Helios::OutputFrame(int cardNum, int rate, int frameSize, HeliosPoin
 	{
 		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;
-		if (_GetStatus(cardNum) == 1)
+		else if (_GetStatus(cardNum) == 1)
 		{
 			return (_WriteFrame(cardNum, rate, 0, bufferAddress, frameSize) == 1);
 		}
