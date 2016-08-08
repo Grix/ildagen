@@ -83,6 +83,9 @@ bool Device_Helios::OutputFrame(int cardNum, int rate, int frameSize, HeliosPoin
 
 	int thisFrameNum = ++frameNum[cardNum];
 
+	//lock frame buffer
+	//std::lock_guard<std::mutex> lock(frameMutex[dacNum]);
+
 	for (int i = 0; i < 16; i++)
 	{
 		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one

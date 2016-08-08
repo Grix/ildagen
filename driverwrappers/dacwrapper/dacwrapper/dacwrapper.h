@@ -8,8 +8,10 @@
 #include "Device_OLSC_EzAudDac.h"
 #include <string>
 #include <thread>
+#include <mutex>
 
 #define GMEXPORT extern "C" __declspec (dllexport)
+#define MAX_FRAME_SIZE 0x1000
 
 Device_Etherdream* etherDreamDevice;
 Device_RIYA* riyaDevice;
@@ -28,19 +30,7 @@ typedef struct {
 }DAC;
 
 DAC dacs[32];
-
-Device_Etherdream::EAD_Pnt_s* etherdreamBuffer;
-Device_Etherdream::EAD_Pnt_s* etherdreamBuffer2;
-Device_RIYA::Riya_Point* riyaBuffer;
-Device_RIYA::Riya_Point* riyaBuffer2;
-Device_OLSC::OLSC_Point* olscBuffer;
-Device_OLSC::OLSC_Point* olscBuffer2;
-Device_Helios::HeliosPoint* heliosBuffer;
-Device_Helios::HeliosPoint* heliosBuffer2;
-Device_OLSC_Easylase::OLSC_Point* olscEasylaseBuffer;
-Device_OLSC_Easylase::OLSC_Point* olscEasylaseBuffer2;
-Device_OLSC_EzAudDac::OLSC_Point* olscEzAudDacBuffer;
-Device_OLSC_EzAudDac::OLSC_Point* olscEzAudDacBuffer2;
+std::mutex dacMutex[32];
 
 GMEXPORT double InitDacwrapper();
 GMEXPORT double FreeDacwrapper();

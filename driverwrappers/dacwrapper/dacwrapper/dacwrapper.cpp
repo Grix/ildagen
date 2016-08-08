@@ -4,7 +4,6 @@ used in LasershowGen, license: https://raw.githubusercontent.com/Grix/ildagen/ma
 by Gitle Mikkelsen
 */
 
-//#include "windows.h"
 #include "dacwrapper.h"
 
 //must be called before anything else
@@ -18,18 +17,6 @@ GMEXPORT double InitDacwrapper()
 	olscDevice = new Device_OLSC();
 	olscEasylaseDevice = new Device_OLSC_Easylase();
 	olscEzAudDacDevice = new Device_OLSC_EzAudDac();
-	
-	//todo make buffers for each device instead of globally, doink
-	etherdreamBuffer = new Device_Etherdream::EAD_Pnt_s[0x1000];
-	etherdreamBuffer2 = new Device_Etherdream::EAD_Pnt_s[0x1000];
-	riyaBuffer = new Device_RIYA::Riya_Point[0x1000];
-	riyaBuffer2 = new Device_RIYA::Riya_Point[0x1000];
-	olscBuffer = new Device_OLSC::OLSC_Point[0x1000];
-	olscBuffer2 = new Device_OLSC::OLSC_Point[0x1000];
-	heliosBuffer = new Device_Helios::HeliosPoint[0x1000];
-	heliosBuffer2 = new Device_Helios::HeliosPoint[0x1000];
-	olscEasylaseBuffer = new Device_OLSC_Easylase::OLSC_Point[0x1000];
-	olscEasylaseBuffer2 = new Device_OLSC_Easylase::OLSC_Point[0x1000];
 	
 	initialized = true;
 
@@ -133,122 +120,113 @@ GMEXPORT double OutputFrame(double num,  double scanRate, double frameSize, uint
 //threaded subfunction of outputframe
 void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleFrameSize, uint16_t* bufferAddress)
 {
-	int num = (int)(doubleNum + 0.5); //type of dac
+	int num = (int)(doubleNum + 0.5); //dac index
+	if ((num >= numDevices) || (num < 0))
+		return;
 	int scanRate = (int)(doubleScanRate + 0.5); //in pps
+	if ((false) || (scanRate < 0))
+		return;
 	int frameSize = (int)(doubleFrameSize + 0.5); //in points
+	if (frameSize > MAX_FRAME_SIZE)
+		return;
+
+	std::lock_guard<std::mutex> lock(dacMutex[num]);
 
 	int dacType = dacs[num].type;
 	int cardNum = dacs[num].cardNum;
 
 	if (dacType == 1)	//EtherDream
 	{
+		int currentPos = 0;
+		Device_Etherdream::EAD_Pnt_s etherdreamBuffer[MAX_FRAME_SIZE];
 		for (int i = 0; i < frameSize; i++)
 		{
-			int currentPos = i * 6;
-			etherdreamBuffer[i].X = bufferAddress[currentPos + 0] - 0x8000;
-			etherdreamBuffer[i].Y = bufferAddress[currentPos + 1] - 0x8000;
-			etherdreamBuffer[i].R = bufferAddress[currentPos + 2] << 7;
-			etherdreamBuffer[i].G = bufferAddress[currentPos + 3] << 7;
-			etherdreamBuffer[i].B = bufferAddress[currentPos + 4] << 7;
-			etherdreamBuffer[i].I = bufferAddress[currentPos + 5] << 7;
+			etherdreamBuffer[i].X = bufferAddress[currentPos++] - 0x8000;
+			etherdreamBuffer[i].Y = bufferAddress[currentPos++] - 0x8000;
+			etherdreamBuffer[i].R = bufferAddress[currentPos++] << 7;
+			etherdreamBuffer[i].G = bufferAddress[currentPos++] << 7;
+			etherdreamBuffer[i].B = bufferAddress[currentPos++] << 7;
+			etherdreamBuffer[i].I = bufferAddress[currentPos++] << 7;
 			etherdreamBuffer[i].AL = 0;
 			etherdreamBuffer[i].AR = 0;
 		}
-		etherDreamDevice->OutputFrame(cardNum, etherdreamBuffer, frameSize*sizeof(Device_Etherdream::EAD_Pnt_s), scanRate);
-
-		Device_Etherdream::EAD_Pnt_s* etherdreamBufferPrev = etherdreamBuffer;
-		etherdreamBuffer = etherdreamBuffer2;
-		etherdreamBuffer2 = etherdreamBufferPrev;
+		etherDreamDevice->OutputFrame(cardNum, &etherdreamBuffer[0], frameSize*sizeof(Device_Etherdream::EAD_Pnt_s), scanRate);
 	}
 	else if (dacType == 2)	//RIYA
 	{
+		int currentPos = 0;
+		Device_RIYA::Riya_Point riyaBuffer[MAX_FRAME_SIZE];
 		for (int i = 0; i < frameSize; i++)
 		{
-			int currentPos = i * 6;
-			riyaBuffer[i].X = bufferAddress[currentPos + 0] >> 4;
-			riyaBuffer[i].Y = bufferAddress[currentPos + 1] >> 4;
-			riyaBuffer[i].R = (uint8_t)bufferAddress[currentPos + 2];
-			riyaBuffer[i].G = (uint8_t)bufferAddress[currentPos + 3];
-			riyaBuffer[i].B = (uint8_t)bufferAddress[currentPos + 4];
-			riyaBuffer[i].I = (uint8_t)bufferAddress[currentPos + 5];
+			riyaBuffer[i].X = bufferAddress[currentPos++] >> 4;
+			riyaBuffer[i].Y = bufferAddress[currentPos++] >> 4;
+			riyaBuffer[i].R = (uint8_t)bufferAddress[currentPos++];
+			riyaBuffer[i].G = (uint8_t)bufferAddress[currentPos++];
+			riyaBuffer[i].B = (uint8_t)bufferAddress[currentPos++];
+			riyaBuffer[i].I = (uint8_t)bufferAddress[currentPos++];
 		}
-		riyaDevice->OutputFrame(cardNum, scanRate, frameSize, (uint8_t*)riyaBuffer);
-
-		Device_RIYA::Riya_Point* riyaBufferPrev = riyaBuffer;
-		riyaBuffer = riyaBuffer2;
-		riyaBuffer2 = riyaBufferPrev;
+		riyaDevice->OutputFrame(cardNum, scanRate, frameSize, (uint8_t*)&riyaBuffer[0]);
 	}
 	else if (dacType == 3)	//OLSC
 	{
+		int currentPos = 0;
+		Device_OLSC::OLSC_Point olscBuffer[MAX_FRAME_SIZE];
 		for (int i = 0; i < frameSize; i++)
 		{
-			int currentPos = i * 6;
-			olscBuffer[i].x = bufferAddress[currentPos + 0];
-			olscBuffer[i].y = bufferAddress[currentPos + 1];
-			olscBuffer[i].r = bufferAddress[currentPos + 2];
-			olscBuffer[i].g = bufferAddress[currentPos + 3];
-			olscBuffer[i].b = bufferAddress[currentPos + 4];
-			olscBuffer[i].i = bufferAddress[currentPos + 5];
+			olscBuffer[i].x = bufferAddress[currentPos++];
+			olscBuffer[i].y = bufferAddress[currentPos++];
+			olscBuffer[i].r = bufferAddress[currentPos++];
+			olscBuffer[i].g = bufferAddress[currentPos++];
+			olscBuffer[i].b = bufferAddress[currentPos++];
+			olscBuffer[i].i = bufferAddress[currentPos++];
 		}
-		olscDevice->OutputFrame(cardNum, scanRate, frameSize, olscBuffer);
+		olscDevice->OutputFrame(cardNum, scanRate, frameSize, &olscBuffer[0]);
 
-		Device_OLSC::OLSC_Point* olscBufferPrev = olscBuffer;
-		olscBuffer = olscBuffer2;
-		olscBuffer2 = olscBufferPrev;
 	}
 	else if (dacType == 5)	//OLSC_Easylase
 	{
+		int currentPos = 0;
+		Device_OLSC_Easylase::OLSC_Point olscEasylaseBuffer[MAX_FRAME_SIZE];
 		for (int i = 0; i < frameSize; i++)
 		{
-			int currentPos = i * 6;
-			olscEasylaseBuffer[i].x = bufferAddress[currentPos + 0];
-			olscEasylaseBuffer[i].y = bufferAddress[currentPos + 1];
-			olscEasylaseBuffer[i].r = bufferAddress[currentPos + 2];
-			olscEasylaseBuffer[i].g = bufferAddress[currentPos + 3];
-			olscEasylaseBuffer[i].b = bufferAddress[currentPos + 4];
-			olscEasylaseBuffer[i].i = bufferAddress[currentPos + 5];
+			olscEasylaseBuffer[i].x = bufferAddress[currentPos++];
+			olscEasylaseBuffer[i].y = bufferAddress[currentPos++];
+			olscEasylaseBuffer[i].r = bufferAddress[currentPos++];
+			olscEasylaseBuffer[i].g = bufferAddress[currentPos++];
+			olscEasylaseBuffer[i].b = bufferAddress[currentPos++];
+			olscEasylaseBuffer[i].i = bufferAddress[currentPos++];
 		}
-		olscEasylaseDevice->OutputFrame(cardNum, scanRate, frameSize, olscEasylaseBuffer);
-
-		Device_OLSC_Easylase::OLSC_Point* olscEasylaseBufferPrev = olscEasylaseBuffer;
-		olscEasylaseBuffer = olscEasylaseBuffer2;
-		olscEasylaseBuffer2 = olscEasylaseBufferPrev;
+		olscEasylaseDevice->OutputFrame(cardNum, scanRate, frameSize, &olscEasylaseBuffer[0]);
 	}
 	else if (dacType == 6)	//OLSC_EzAudDac
 	{
+		int currentPos = 0;
+		Device_OLSC_EzAudDac::OLSC_Point olscEzAudDacBuffer[MAX_FRAME_SIZE];
 		for (int i = 0; i < frameSize; i++)
 		{
-			int currentPos = i * 6;
-			olscEzAudDacBuffer[i].x = bufferAddress[currentPos + 0];
-			olscEzAudDacBuffer[i].y = bufferAddress[currentPos + 1];
-			olscEzAudDacBuffer[i].r = bufferAddress[currentPos + 2];
-			olscEzAudDacBuffer[i].g = bufferAddress[currentPos + 3];
-			olscEzAudDacBuffer[i].b = bufferAddress[currentPos + 4];
-			olscEzAudDacBuffer[i].i = bufferAddress[currentPos + 5];
+			olscEzAudDacBuffer[i].x = bufferAddress[currentPos++];
+			olscEzAudDacBuffer[i].y = bufferAddress[currentPos++];
+			olscEzAudDacBuffer[i].r = bufferAddress[currentPos++];
+			olscEzAudDacBuffer[i].g = bufferAddress[currentPos++];
+			olscEzAudDacBuffer[i].b = bufferAddress[currentPos++];
+			olscEzAudDacBuffer[i].i = bufferAddress[currentPos++];
 		}
-		olscEzAudDacDevice->OutputFrame(cardNum, scanRate, frameSize, olscEzAudDacBuffer);
-
-		Device_OLSC_EzAudDac::OLSC_Point* olscEzAudDacBufferPrev = olscEzAudDacBuffer;
-		olscEzAudDacBuffer = olscEzAudDacBuffer2;
-		olscEzAudDacBuffer2 = olscEzAudDacBufferPrev;
+		olscEzAudDacDevice->OutputFrame(cardNum, scanRate, frameSize, &olscEzAudDacBuffer[0]);
 	}
 	else if (dacType == 4)	//Helios
 	{
+		int currentPos = 0;
+		Device_Helios::HeliosPoint heliosBuffer[MAX_FRAME_SIZE];
 		for (int i = 0; i < frameSize; i++)
 		{
-			int currentPos = i * 6;
-			heliosBuffer[i].x = bufferAddress[currentPos + 0] >> 4;
-			heliosBuffer[i].y = bufferAddress[currentPos + 1] >> 4;
-			heliosBuffer[i].r = (uint8_t)bufferAddress[currentPos + 2];
-			heliosBuffer[i].g = (uint8_t)bufferAddress[currentPos + 3];
-			heliosBuffer[i].b = (uint8_t)bufferAddress[currentPos + 4];
-			heliosBuffer[i].i = (uint8_t)bufferAddress[currentPos + 5];
+			heliosBuffer[i].x = bufferAddress[currentPos++] >> 4;
+			heliosBuffer[i].y = bufferAddress[currentPos++] >> 4;
+			heliosBuffer[i].r = (uint8_t)bufferAddress[currentPos++];
+			heliosBuffer[i].g = (uint8_t)bufferAddress[currentPos++];
+			heliosBuffer[i].b = (uint8_t)bufferAddress[currentPos++];
+			heliosBuffer[i].i = (uint8_t)bufferAddress[currentPos++];
 		}
-		heliosDevice->OutputFrame(cardNum, scanRate, frameSize, heliosBuffer);
-
-		Device_Helios::HeliosPoint* heliosBufferPrev = heliosBuffer;
-		heliosBuffer = heliosBuffer2;
-		heliosBuffer2 = heliosBufferPrev;
+		heliosDevice->OutputFrame(cardNum, scanRate, frameSize, &heliosBuffer[0]);
 	}
 
 }
@@ -261,18 +239,8 @@ GMEXPORT double FreeDacwrapper()
 	delete riyaDevice;
 	delete heliosDevice;
 	delete olscDevice;
-	delete etherdreamBuffer;
-	delete etherdreamBuffer2;
-	delete riyaBuffer;
-	delete riyaBuffer2;
-	delete olscBuffer;
-	delete olscBuffer2;
-	delete olscEzAudDacBuffer;
-	delete olscEzAudDacBuffer2;
-	delete olscEasylaseBuffer;
-	delete olscEasylaseBuffer2;
-	delete heliosBuffer;
-	delete heliosBuffer2;
+	delete olscEzAudDacDevice;
+	delete olscEasylaseDevice;
 
 	return 1.0;
 }
