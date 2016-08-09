@@ -677,7 +677,7 @@ else if (keyboard_check_pressed(vk_backspace))
 else if (keyboard_check_pressed(ord('M')))
     {
     window_set_fullscreen(0);
-    window_set_size(1100,693);
+    window_set_size(room_width,room_height);
     }
     
 else if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('Z')))

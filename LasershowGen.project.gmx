@@ -164,10 +164,12 @@
       <sprite>sprites\spr_colorselect</sprite>
       <sprite>sprites\spr_longcolorselect</sprite>
       <sprite>sprites\spr_anicolorselect</sprite>
-      <sprite>sprites\spr_blankperiodselect</sprite>
-      <sprite>sprites\spr_aniblankperiodselect</sprite>
-      <sprite>sprites\spr_waveampselect</sprite>
-      <sprite>sprites\spr_aniwaveampselect</sprite>
+      <sprite>sprites\spr_longslider</sprite>
+      <sprite>sprites\spr_longsliderani</sprite>
+      <sprite>sprites\spr_shortslider</sprite>
+      <sprite>sprites\spr_shortsliderani</sprite>
+      <sprite>sprites\spr_longslidercentered</sprite>
+      <sprite>sprites\spr_longslidercenteredani</sprite>
     </sprites>
     <sprites name="selectors">
       <sprite>sprites\spr_m_line</sprite>
@@ -253,7 +255,7 @@
     <sprite>sprites\spr_ad1</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\bck_guide</background>
+    <background>background\bck_ilda</background>
     <background>background\bck_seq</background>
     <background>background\bck_options</background>
     <background>background\bck_hershey1</background>

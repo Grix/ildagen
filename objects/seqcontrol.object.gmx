@@ -98,10 +98,10 @@ startframex = -1;
 endframex = -1;
 largepreview = 0;
 
-tlw = 897;
+tlw = 982;
 tlh = 128;
 tls = tlh+138+16; //start of layer area, seen from outside surface
-lbh = 670-32-tlh-138;
+lbh = 705-32-tlh-138;
 lbsh = tlh+16+lbh; //start of bottom scrollbar
 phi = 1.618;
 tlzoom = tlw;
