@@ -261,6 +261,7 @@
     <background>background\bck_hershey1</background>
     <background>background\bck_hershey2</background>
     <background>background\bck_hershey3</background>
+    <background>background\bck_texttiles</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -1177,6 +1178,8 @@
         <object>objects\obj_onionskin</object>
         <object>objects\obj_grid</object>
         <object>objects\obj_select</object>
+        <object>objects\obj_colorselectparent</object>
+        <object>objects\obj_colorselectparentani</object>
       </objects>
       <objects name="settings">
         <object>objects\obj_comingsoon</object>

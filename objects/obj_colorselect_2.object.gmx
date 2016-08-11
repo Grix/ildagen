@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-1</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_colorselectparent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -63,66 +63,56 @@ yplus16 = y+16;
             <kind>1</kind>
             <string>if (instance_exists(oDropDown))
     exit;
-if (moving == 1) or ((moving) and keyboard_check(vk_control))
-    {
-    red = colour_get_red(controller.color2);
-    red -= (mouse_y-mouse_yprevious)*255/25;
-    if (red &lt; 0) red = 0;
-    if (red &gt; 255) red = 255;
-    controller.color2 = make_colour_rgb(red,colour_get_green(controller.color2),colour_get_blue(controller.color2));
-    }
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
-    {
-    controller.tooltip = "Changes secondary color (Sliders represent red, green and blue)#-&gt;Right click to enter a precise value";
-    } 
-
-if (moving == 2) or ((moving) and keyboard_check(vk_control))
-    {
-    green = colour_get_green(controller.color2);
-    green -= (mouse_y-mouse_yprevious)*255/25;
-    if (green &lt; 0) green = 0;
-    if (green &gt; 255) green = 255;
-    controller.color2 = make_colour_rgb(colour_get_red(controller.color2),green,colour_get_blue(controller.color2));
-    }
-if (moving == 3) or ((moving) and keyboard_check(vk_control))
-    {
-    blue = colour_get_blue(controller.color2);
-    blue -= (mouse_y-mouse_yprevious)*255/25;
-    if (blue &lt; 0) blue = 0;
-    if (blue &gt; 255) blue = 255;
-    controller.color2 = make_colour_rgb(colour_get_red(controller.color2),colour_get_green(controller.color2),blue);
-    }
     
-mouse_yprevious = mouse_y;
-
 visible = ((controller.colormode == "gradient") || (controller.colormode == "dash") || (controller.colormode == "func"));
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="56">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (moving)
+if (!visible)
+    exit;
+    
+if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
 {
+    controller.tooltip = "Changes secondary color (Sliders represent red, green and blue)#-&gt;Right click to enter a precise value";
+} 
+    
+if (moving == 4)
+{
+    tempundolist = ds_list_create();
+    ds_list_add(tempundolist,controller.enddotscolor);
+    ds_list_add(tempundolist,controller.color2);
+    ds_list_add(tempundolist,controller.color1);
+    ds_list_add(controller.undo_list,"b"+string(tempundolist));
+    controller.color2 = draw_getpixel(obj_cursor.x,obj_cursor.y+view_hview[3]);
     moving = 0;
     update_colors();
 }
+else
+    {
+    if (moving == 1) or ((moving) and keyboard_check(vk_control))
+        {
+        red = colour_get_red(controller.color2);
+        red -= (mouse_y-mouse_yprevious)*255/25;
+        if (red &lt; 0) red = 0;
+        if (red &gt; 255) red = 255;
+        controller.color2 = make_colour_rgb(red,colour_get_green(controller.color2),colour_get_blue(controller.color2));
+        }
+    if (moving == 2) or ((moving) and keyboard_check(vk_control))
+        {
+        green = colour_get_green(controller.color2);
+        green -= (mouse_y-mouse_yprevious)*255/25;
+        if (green &lt; 0) green = 0;
+        if (green &gt; 255) green = 255;
+        controller.color2 = make_colour_rgb(colour_get_red(controller.color2),green,colour_get_blue(controller.color2));
+        }
+    if (moving == 3) or ((moving) and keyboard_check(vk_control))
+        {
+        blue = colour_get_blue(controller.color2);
+        blue -= (mouse_y-mouse_yprevious)*255/25;
+        if (blue &lt; 0) blue = 0;
+        if (blue &gt; 255) blue = 255;
+        controller.color2 = make_colour_rgb(colour_get_red(controller.color2),colour_get_green(controller.color2),blue);
+        }
+    }
+    
+mouse_yprevious = mouse_y;
 </string>
           </argument>
         </arguments>
@@ -169,40 +159,6 @@ else
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="4">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (instance_exists(oDropDown))
-    exit;
-if (!visible)
-    exit;
-
-if (mouse_x &lt; (x+16))
-    moving = 1;
-else if (mouse_x &gt; (x+32))
-    moving = 3;
-else moving = 2;
-
-mouse_yprevious = mouse_y;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -232,12 +188,10 @@ draw_sprite(spr_colorselect_red,(moving == 1),redx,redy);
 draw_sprite(spr_colorselect_green,(moving == 2),greenx,greeny);
 draw_sprite(spr_colorselect_blue,(moving == 3),bluex,bluey);
 
-draw_set_circle_precision(8);
 draw_set_colour(activecolor);
-    draw_circle(x+70,y+16,10,0);
+    draw_rectangle(x+5,y-30,x+42,y-11,0);
 draw_set_color(c_black);
-    draw_circle(x+70,y+16,10,1);
-draw_set_circle_precision(24);
+    draw_rectangle(x+5,y-30,x+42,y-11,1);
 </string>
           </argument>
         </arguments>
