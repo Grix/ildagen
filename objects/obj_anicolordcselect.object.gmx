@@ -58,11 +58,13 @@ if (moving == 1)
     if (controller.anicolor_dc &gt; 1) controller.anicolor_dc = 1;
     }
     
+visible = (controller.colormode == "dash") and (controller.anienable);
+if (!visible) 
+    exit;
+
 mouse_xprevious = mouse_x;
 
-visible = (controller.colormode == "dash") and (controller.anienable);
-if (!visible) exit;
-if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y+7) and ((mouse_y &lt; y+25))
+if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
     controller.tooltip = "Changes the ratio of the primary/secondary color at the end of animation";
     } 

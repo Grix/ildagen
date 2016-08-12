@@ -60,8 +60,10 @@ if (moving == 1)
 mouse_xprevious = mouse_x;
 
 visible = (controller.placing == "func");
+if (!visible)
+    exit;
 
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y+7) and ((mouse_y &lt; y+25))
+if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
     controller.tooltip = "Changes the number of points to calculate along the functions";
     } 

@@ -53,6 +53,8 @@
     exit;
 visible = (controller.colormode == "rainbow") || (controller.colormode == "gradient") || (controller.colormode == "dash") || (controller.colormode == "func");
 
+if (!visible) exit;
+
 if (controller.colormode == "func")
     sprite_index = spr_rgbhsv;
 else
@@ -60,7 +62,7 @@ else
 
 image_index = controller.colormode2;
 
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
     controller.tooltip = "Toggles absolute or relative color cycle length";
     } 

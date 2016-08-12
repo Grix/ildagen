@@ -57,13 +57,14 @@ if (moving == 1)
     if (controller.color_period  &lt; 1) controller.color_period = 1;
     if (controller.color_period &gt; $8000) controller.color_period = $8000;
     }
-    
-mouse_xprevious = mouse_x;
-
 
 visible = ((controller.colormode == "rainbow") || (controller.colormode == "gradient") || (controller.colormode == "dash")) &amp;&amp; (controller.colormode2 == 1);
+if (!visible)
+    exit;
 
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y+7) and ((mouse_y &lt; y+25))
+mouse_xprevious = mouse_x;
+
+if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
     controller.tooltip = "Changes the length between color changes";
     } 

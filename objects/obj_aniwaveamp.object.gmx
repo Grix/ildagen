@@ -58,13 +58,14 @@ if (moving == 1)
     if (controller.aniwave_amp &gt; $ffff/2) controller.aniwave_amp = $ffff/2;
     if (keyboard_check(vk_control)) controller.aniwave_amp = 0;
     }
+
+visible = (controller.placing == "wave") and (controller.anienable);
+if (!visible)
+    exit;
     
 mouse_xprevious = mouse_x;
 
-
-visible = (controller.placing == "wave") and (controller.anienable);
-
-if (visible) and (mouse_x &gt; x-sprite_width/2) and (mouse_x &lt; (x+sprite_width/2)) and (mouse_y &gt; y+7) and ((mouse_y &lt; y+25))
+if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
     controller.tooltip = "Changes wave height at the end of the animation.";
     } 

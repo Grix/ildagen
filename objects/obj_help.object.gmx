@@ -53,73 +53,73 @@
     exit;
 if (room = rm_ilda)
     {
-    if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
-            {
-            image_index = 1;
-            controller.tooltip = "Click here to open the full manual. Keyboard controls:##"+
-            "Mouse)    Select drawing tool and draw#"+
-            "Enter)    Remake selected object, or finalize curve#"+
-            "Left/Right Arrows)    Cycle between frames#"+
-            "Space)    Play/Pause#"+
-            "Ctrl+Mouse)    Select object#"+
-            "Tab)    Enter timeline mode#"+
-            "I)    Send frames from editor mode to timeline mode#"+
-            "Delete)    Delete selected object#"+
-            "P)    Toggle 3D frame previewing#"+
-            "Shift)    Force horizontal or vertical lines when drawing#"+
-            "Q)    Snap cursor to the nearest tip of object#"+
-            "Alt)    Snap mouse to ending position of last element for chaining#"+
-            "Ctrl+Alt)    Snap mouse to starting position of last element for chaining##"+
-            "A)    Show symmetry/alignment guidelines of elements#"+
-            "S)    Show/Snap to square grid (Double click to toggle)#"+
-            "S+Up/Down Key)    Resize square grid#"+
-            "R)    Show radial grid (Double click to toggle)#"+
-            "Z)    Zoom in around the cursor#"+
-            "E)    Clone color from background image#"+
-            "Ctrl)    Move all color sliders, or center symmetric sliders#"+
-            "Ctrl+Z)    Undo#"+
-            "Ctrl+C)    Copy selected objects#"+
-            "Ctrl+X)    Cut selected objects#"+
-            "Ctrl+V)    Paste#"+
-            "Backspace)    Cancel object placing and selection#"+
-            "0)    Jump to first frame#"+
-            "Mouse wheel)    Adjust wave amplitude#"+
-            "Ctrl+Mouse wheel)    Adjust wave frequency##"+
-            "M)    Reset window size#"+
-            "F11)    Toggle fullscreen";
-            } 
+    if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
+        {
+        image_index = 1;
+        controller.tooltip = "Click here to open the full manual. Keyboard controls:##"+
+        "Mouse)    Select drawing tool and draw#"+
+        "Enter)    Remake selected object, or finalize curve#"+
+        "Left/Right Arrows)    Cycle between frames#"+
+        "Space)    Play/Pause#"+
+        "Ctrl+Mouse)    Select object#"+
+        "Tab)    Enter timeline mode#"+
+        "I)    Send frames from editor mode to timeline mode#"+
+        "Delete)    Delete selected object#"+
+        "P)    Toggle 3D frame previewing#"+
+        "Shift)    Force horizontal or vertical lines when drawing#"+
+        "Q)    Snap cursor to the nearest tip of object#"+
+        "Alt)    Snap mouse to ending position of last element for chaining#"+
+        "Ctrl+Alt)    Snap mouse to starting position of last element for chaining##"+
+        "A)    Show symmetry/alignment guidelines of elements#"+
+        "S)    Show/Snap to square grid (Double click to toggle)#"+
+        "S+Up/Down Key)    Resize square grid#"+
+        "R)    Show radial grid (Double click to toggle)#"+
+        "Z)    Zoom in around the cursor#"+
+        "E)    Clone color from background image#"+
+        "Ctrl)    Move all color sliders, or center symmetric sliders#"+
+        "Ctrl+Z)    Undo#"+
+        "Ctrl+C)    Copy selected objects#"+
+        "Ctrl+X)    Cut selected objects#"+
+        "Ctrl+V)    Paste#"+
+        "Backspace)    Cancel object placing and selection#"+
+        "0)    Jump to first frame#"+
+        "Mouse wheel)    Adjust wave amplitude#"+
+        "Ctrl+Mouse wheel)    Adjust wave frequency##"+
+        "M)    Reset window size#"+
+        "F11)    Toggle fullscreen";
+        } 
     else image_index = 0;
     }
 else if (room = rm_seq)
     {
-    if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
-            {
-            image_index = 1;
-            controller.tooltip = "Click here to open the full manual. Keyboard controls:##"+
-            "Mouse)    Select object or time on timeline (Ctrl to select multiple)#"+
-            "Left/Right Arrows)    Cycle between frames#"+
-            "Space)    Play/Pause#"+
-            "Tab)    Enter frame editor mode#"+
-            "I)    Send frames from editor mode to timeline mode#"+
-            "L)    Insert marker on timeline#"+
-            "P)    Toggle 3D frame previewing#"+
-            "D)    Hold to delete points in envelopes when dragging mouse##"+
-            "Delete)    Delete selected object#"+
-            "Ctrl+Z)    Undo#"+
-            "Ctrl+C)    Copy selected objects#"+
-            "Ctrl+X)    Cut selected objects#"+
-            "Ctrl+V)    Paste#"+
-            "0)    Jump to first frame#"+
-            "Mouse wheel or F7/F8)    Scroll/Zoom (where applicable)##"+
-            "M)    Reset window size#"+
-            "F11)    Toggle fullscreen#"+
-            "F1)    Show manual";
-            } 
+    if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
+        {
+        image_index = 1;
+        controller.tooltip = "Click here to open the full manual. Keyboard controls:##"+
+        "Mouse)    Select object or time on timeline (Ctrl to select multiple)#"+
+        "Left/Right Arrows)    Cycle between frames#"+
+        "Space)    Play/Pause#"+
+        "Tab)    Enter frame editor mode#"+
+        "I)    Send frames from editor mode to timeline mode#"+
+        "L)    Insert marker on timeline#"+
+        "P)    Toggle 3D frame previewing#"+
+        "D)    Hold to delete points in envelopes when dragging mouse##"+
+        "Delete)    Delete selected object#"+
+        "Ctrl+Z)    Undo#"+
+        "Ctrl+C)    Copy selected objects#"+
+        "Ctrl+X)    Cut selected objects#"+
+        "Ctrl+V)    Paste#"+
+        "0)    Jump to first frame#"+
+        "Mouse wheel or F7/F8)    Scroll/Zoom (where applicable)##"+
+        "M)    Reset window size#"+
+        "F11)    Toggle fullscreen#"+
+        "F1)    Show manual";
+        } 
     else image_index = 0;
     }
 else
     {
-    if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+    if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
         {
         controller.tooltip = "Click here to open the full manual.";
         image_index = 1;

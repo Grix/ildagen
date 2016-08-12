@@ -52,21 +52,23 @@ moving = 0;
             <string>if (instance_exists(oDropDown))
     exit;
 if (moving == 1)
-    {
+{
     seqcontrol.volume += (mouse_x-mouse_xprevious)/1.28;
     if (seqcontrol.volume  &lt; 0) seqcontrol.volume = 0;
     if (seqcontrol.volume &gt; 100) seqcontrol.volume = 100;
     FMODInstanceSetVolume(seqcontrol.songinstance,seqcontrol.volume/100);
-    }
+}
+    
+visible = seqcontrol.song;
+if (!visible)
+    exit;
     
 mouse_xprevious = mouse_x;
 
-visible = seqcontrol.song;
-
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y+7) and ((mouse_y &lt; y+25))
-    {
+if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
+{
     controller.tooltip = "Changes the audio volume.";
-    }
+}
 </string>
           </argument>
         </arguments>

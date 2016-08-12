@@ -53,12 +53,15 @@
     exit;
 visible = controller.anienable;
 if (!visible) exit;
-if (controller.shaking) image_index = 2;
-else if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
-    image_index = 1;
-else image_index = 0;
 
-if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+if (controller.shaking) 
+    image_index = 2;
+else if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
+    image_index = 1;
+else 
+    image_index = 0;
+
+if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     controller.tooltip = "Toggles shaking effect#Right click for options";
 </string>
           </argument>

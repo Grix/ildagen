@@ -58,12 +58,13 @@ if (moving == 1)
     if (controller.anicolor_offset &gt; 360) controller.anicolor_offset = 360;
     }
     
-mouse_xprevious = mouse_x;
-
-
 visible = (controller.colormode != "solid") and (controller.anienable)  and (controller.colormode != "func");
-
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y+7) and ((mouse_y &lt; y+25))
+if (!visible)
+    exit;
+    
+mouse_xprevious = mouse_x;    
+    
+if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
     controller.tooltip = "Changes the periodic offset of the coloring at the end of the animation";
     } 

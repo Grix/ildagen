@@ -52,12 +52,13 @@
             <string>if (instance_exists(oDropDown))
     exit;
 if (controller.colormode == "dash") image_index = 2;
-else if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+else if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
     image_index = 1;
     } 
-else image_index = 0;
-if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+else 
+    image_index = 0;
+if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     controller.tooltip = "Selects dashed color mode";
 </string>
           </argument>

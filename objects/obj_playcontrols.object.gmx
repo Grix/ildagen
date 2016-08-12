@@ -48,7 +48,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if !((mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))) exit;
+            <string>if !((mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))) exit;
 if (instance_exists(oDropDown))
     exit;
 

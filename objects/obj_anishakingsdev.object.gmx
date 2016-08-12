@@ -57,12 +57,14 @@ if (moving == 1)
     if (controller.anishaking_sdev  &lt; 0) controller.anishaking_sdev = 0;
     if (controller.anishaking_sdev &gt; 50) controller.anishaking_sdev = 50;
     }
-    
-mouse_xprevious = mouse_x;
 
 visible = (controller.shaking) and (controller.anienable);
+if (!visible)
+    exit;
 
-if (visible) and (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y+7) and ((mouse_y &lt; y+25))
+mouse_xprevious = mouse_x;
+
+if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
     controller.tooltip = "Changes the intensity of the shaking at the end of the animation";
     } 

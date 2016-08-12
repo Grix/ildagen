@@ -51,7 +51,7 @@
             <kind>1</kind>
             <string>if (instance_exists(oDropDown))
     exit;
-if (mouse_x &gt; x) and (mouse_x &lt; (x+sprite_width)) and (mouse_y &gt; y) and ((mouse_y &lt; y+sprite_height))
+if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
     image_index = 1;
     controller.tooltip = "Edit/Reapply the object's blanking#Right click for settings#(Keyboard shortcut, for both color and blanking: Enter)";
