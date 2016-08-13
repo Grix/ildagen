@@ -608,6 +608,14 @@ scroll = 1;
             <string>if (ex_patch_window_close_event())
     exit_confirm();
     
+if (keyboard_check_pressed(ord('M')))
+    {
+    window_set_fullscreen(0);
+    window_set_size(room_width,room_height);
+    }
+else if (keyboard_check_released(vk_f11))
+    window_set_fullscreen(!window_get_fullscreen());
+    
 if (room == rm_loading)
     {
     if (global.loading_exportilda == 1)
@@ -674,12 +682,6 @@ else if (keyboard_check_pressed(vk_backspace))
     deselect_object();
     }
     
-else if (keyboard_check_pressed(ord('M')))
-    {
-    window_set_fullscreen(0);
-    window_set_size(room_width,room_height);
-    }
-    
 else if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('Z')))
     {
     undo_ilda();
@@ -699,9 +701,6 @@ else if (keyboard_check_pressed(ord("P")))
         viewmode = 0;
     frame_surf_refresh = 1;
     }
-        
-else if (keyboard_check_released(vk_f11))
-    window_set_fullscreen(!window_get_fullscreen());
     
 else if (keyboard_check(vk_control) or (placing == "select")) and ds_list_size(el_list)
     {
@@ -1318,7 +1317,7 @@ dialog_open = 0;
 new_id = ds_map_find_value(async_load, "id");
 if (new_id == getint)
     {
-    if (dialog == "update")
+    /*if (dialog == "update")
         {
         updatecheckenabled = ds_map_find_value(async_load, "status");
         ini_filename = "settings.ini";
@@ -1329,7 +1328,7 @@ if (new_id == getint)
             {
             updateget = http_get("http://github.com/Grix/ildagen/raw/master/version.txt");
             }
-        }  
+        }  */
 
     if ds_map_find_value(async_load, "status")
         {

@@ -16,5 +16,14 @@ if (file_exists(ini_filename))
     }
 else
     {
-    ilda_dialog_yesno("update","Would you like to enable automatic checking for updates? (Requires internet connection)");
+    //ilda_dialog_yesno("update","Would you like to enable automatic checking for updates? (Requires internet connection)");
+    updatecheckenabled = true;
+    ini_filename = "settings.ini";
+    ini_open(ini_filename);
+    ini_write_real("main","updatecheck",updatecheckenabled);
+    ini_close();
+    if (updatecheckenabled)
+        {
+        updateget = http_get("http://github.com/Grix/ildagen/raw/master/version.txt");
+        }
     }

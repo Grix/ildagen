@@ -70,7 +70,7 @@ selectedx = 0;
 song = 0;
 songlength = 0;
 volume = 100;
-length = 1100;
+length = 1300;
 projectfps = 30;
 tooltip = "";
 tlpos = 0;
@@ -93,7 +93,7 @@ audioshift = 0;
 ypos_perm = 48;
 
 startframe = 0;
-endframe = 900;
+endframe = 1200;
 startframex = -1;
 endframex = -1;
 largepreview = 0;
@@ -445,15 +445,6 @@ else if (keyboard_check_pressed(vk_delete))
         seq_delete_object();
         }
     }
-    
-else if (keyboard_check_released(vk_f11))
-    window_set_fullscreen(!window_get_fullscreen())
-    
-else if (keyboard_check_pressed(ord('M')))
-    {
-    window_set_fullscreen(0);
-    window_set_size(1100,693);
-    }   
     
 handle_mousecontrol();
 

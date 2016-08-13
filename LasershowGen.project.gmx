@@ -215,14 +215,14 @@
     </sprites>
     <sprite>sprites\spr_update</sprite>
     <sprite>sprites\spr_laseron</sprite>
-    <sprite>sprites\spr_save</sprite>
     <sprite>sprites\spr_export</sprite>
+    <sprite>sprites\spr_import</sprite>
+    <sprite>sprites\spr_save</sprite>
     <sprite>sprites\spr_load</sprite>
-    <sprite>sprites\spr_totimeline</sprite>
     <sprite>sprites\spr_toseq</sprite>
     <sprite>sprites\spr_toilda</sprite>
+    <sprite>sprites\spr_timelinemode</sprite>
     <sprite>sprites\spr_editormode</sprite>
-    <sprite>sprites\spr_import</sprite>
     <sprite>sprites\spr_resettrans</sprite>
     <sprite>sprites\spr_scope</sprite>
     <sprite>sprites\spr_shaking</sprite>
