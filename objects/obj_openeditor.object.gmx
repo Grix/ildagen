@@ -50,16 +50,17 @@
             <kind>1</kind>
             <string>if (instance_exists(oDropDown))
     exit;
-visible = !seqcontrol.largepreview &amp;&amp; (room != rm_options);
+visible = !seqcontrol.largepreview || (room == rm_options);
 if (!visible)
     exit;
 
 if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
-    {
+{
     image_index = 1;
     controller.tooltip = "Enter frame editor mode (Shortcut: Tab)";
-    } 
-else image_index = 0;
+} 
+else 
+    image_index = 0;
 </string>
           </argument>
         </arguments>

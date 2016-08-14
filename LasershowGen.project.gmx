@@ -238,7 +238,7 @@
     <sprite>sprites\spr_onionskin</sprite>
     <sprite>sprites\spr_bckimage</sprite>
     <sprite>sprites\spr_checkbox</sprite>
-    <sprite>sprites\spr_colortselect</sprite>
+    <sprite>sprites\spr_plusminusbutton</sprite>
     <sprite>sprites\spr_anifunc</sprite>
     <sprite>sprites\spr_absrel</sprite>
     <sprite>sprites\spr_format</sprite>
