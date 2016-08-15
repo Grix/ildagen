@@ -6,7 +6,7 @@
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
-  <bboxmode>0</bboxmode>
+  <bboxmode>1</bboxmode>
   <bbox_left>0</bbox_left>
   <bbox_right>31</bbox_right>
   <bbox_top>0</bbox_top>
@@ -20,7 +20,8 @@
   <width>32</width>
   <height>32</height>
   <frames>
-    <frame index="0">images\spr_menu_0.png</frame>
-    <frame index="1">images\spr_menu_1.png</frame>
+    <frame index="0">images\spr_mute_0.png</frame>
+    <frame index="1">images\spr_mute_1.png</frame>
+    <frame index="2">images\spr_mute_2.png</frame>
   </frames>
 </sprite>

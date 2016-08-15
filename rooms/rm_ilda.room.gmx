@@ -134,6 +134,7 @@
     <instance objName="obj_grid" x="460" y="576" name="inst_F77B98EA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_select" x="460" y="652" name="inst_AB09063D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_laseron" x="340" y="652" name="inst_8F1DE40F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_mute" x="224" y="652" name="inst_95D5AB7A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bck_texttiles" x="996" y="180" w="128" h="16" xo="0" yo="0" id="10000001" name="inst_6D80A96A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

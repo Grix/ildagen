@@ -65,11 +65,12 @@
     <instance objName="obj_clearmarkers" x="1044" y="172" name="inst_692C7040" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_openeditor" x="572" y="84" name="inst_44790796" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_largepreview" x="620" y="12" name="inst_1E56ABDC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_volume" x="1008" y="52" name="inst_FBE74879" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_volume" x="1048" y="44" name="inst_FBE74879" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_playcontrols" x="1004" y="356" name="inst_4659A8D3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_audioshift" x="1004" y="300" name="inst_C30F113E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_options" x="728" y="84" name="inst_2CE93BB1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_laseron" x="796" y="84" name="inst_3D8DFAD4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_mute" x="1004" y="44" name="inst_8FC2D984" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

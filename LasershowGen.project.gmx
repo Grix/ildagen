@@ -192,21 +192,20 @@
     <sprites name="func">
       <sprite>sprites\spr_funcx</sprite>
       <sprite>sprites\spr_funcy</sprite>
-      <sprite>sprites\spr_funcv</sprite>
-      <sprite>sprites\spr_funcs</sprite>
-      <sprite>sprites\spr_funcblank</sprite>
-      <sprite>sprites\spr_funcb</sprite>
-      <sprite>sprites\spr_funcg</sprite>
       <sprite>sprites\spr_funch</sprite>
-      <sprite>sprites\spr_funcselect</sprite>
+      <sprite>sprites\spr_funcs</sprite>
+      <sprite>sprites\spr_funcv</sprite>
       <sprite>sprites\spr_funcr</sprite>
+      <sprite>sprites\spr_funcg</sprite>
+      <sprite>sprites\spr_funcb</sprite>
+      <sprite>sprites\spr_funcblank</sprite>
+      <sprite>sprites\spr_funcselect</sprite>
     </sprites>
     <sprites name="seq">
       <sprite>sprites\spr_addaudio</sprite>
       <sprite>sprites\spr_deletelayer</sprite>
       <sprite>sprites\spr_addenvelope</sprite>
       <sprite>sprites\spr_addlayer</sprite>
-      <sprite>sprites\spr_menu</sprite>
       <sprite>sprites\spr_saveproject</sprite>
       <sprite>sprites\spr_loadproject</sprite>
       <sprite>sprites\spr_addmarker</sprite>
@@ -237,6 +236,7 @@
     <sprite>sprites\spr_b_enddots</sprite>
     <sprite>sprites\spr_onionskin</sprite>
     <sprite>sprites\spr_bckimage</sprite>
+    <sprite>sprites\spr_mute</sprite>
     <sprite>sprites\spr_checkbox</sprite>
     <sprite>sprites\spr_plusminusbutton</sprite>
     <sprite>sprites\spr_anifunc</sprite>
@@ -1044,6 +1044,7 @@
         <script>scripts\output_framelist_to_buffer.gml</script>
       </scripts>
     </scripts>
+    <script>scripts\mute.gml</script>
     <script>scripts\update_check.gml</script>
     <script>scripts\update_check_verbose.gml</script>
     <script>scripts\parse_parameter.gml</script>
@@ -1209,6 +1210,7 @@
       <object>objects\obj_laseron</object>
       <object>objects\obj_help</object>
       <object>objects\obj_options</object>
+      <object>objects\obj_mute</object>
     </objects>
   </objects>
   <rooms name="rooms">
