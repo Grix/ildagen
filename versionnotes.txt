@@ -1,1 +1,2 @@
-- Support for OLSC DAC API (OLSD, Easylase, EZAuDAC)
+- Improved GUI design
+- Bugfixes

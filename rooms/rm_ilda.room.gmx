@@ -53,10 +53,10 @@
   <instances>
     <instance objName="controller" x="0" y="0" name="inst_7D52FDBF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="seqcontrol" x="24" y="0" name="inst_8B0B4A91" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_funcrselect" x="644" y="200" name="inst_4C3581C3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_funcgselect" x="644" y="232" name="inst_2EA520AC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_funcbselect" x="644" y="266" name="inst_514D039C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_funcblank" x="644" y="372" name="inst_CE038DD5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_funcrselect" x="644" y="222" name="inst_4C3581C3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_funcgselect" x="644" y="250" name="inst_2EA520AC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_funcbselect" x="644" y="278" name="inst_514D039C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_funcblank" x="644" y="396" name="inst_CE038DD5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_s_line" x="532" y="28" name="inst_E4137209" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_export" x="1212" y="652" name="inst_2854033D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_colorselect_1" x="996" y="240" name="inst_A3F77788" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -112,7 +112,7 @@
     <instance objName="obj_aniwaveamp" x="708" y="76" name="inst_FC5D7F0A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_funcpointselect" x="644" y="20" name="inst_63239A0B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_funcxselect" x="644" y="72" name="inst_3D5638CE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_funcyselect" x="644" y="108" name="inst_7C769331" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_funcyselect" x="644" y="102" name="inst_7C769331" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_c_func" x="564" y="200" name="inst_90D8F13B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_b_func" x="564" y="372" name="inst_7B42C762" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_cursor" x="100" y="28" name="inst_21FB3F94" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

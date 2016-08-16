@@ -142,7 +142,13 @@ else
                 }
             }
         maxpointswanted = t_totalpointswanted-maxpoints_static; 
+        if (maxpointswanted == 0) 
+            maxpointswanted = 1;
         lengthwanted = abs(lit_length/maxpointswanted);
+        if (lengthwanted == 0) 
+            {
+            lengthwanted = 0.001;
+            }
         }
     
     //adding or reducing points to get uniform vector lengths
