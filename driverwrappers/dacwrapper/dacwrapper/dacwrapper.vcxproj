@@ -82,6 +82,7 @@
     <ClCompile Include="dacwrapper.cpp" />
     <ClCompile Include="Device_Etherdream.cpp" />
     <ClCompile Include="Device_Helios.cpp" />
+    <ClCompile Include="Device_LaserDock.cpp" />
     <ClCompile Include="Device_OLSC.cpp" />
     <ClCompile Include="Device_OLSC_Easylase.cpp" />
     <ClCompile Include="Device_OLSC_EzAudDac.cpp" />
@@ -91,6 +92,7 @@
     <ClInclude Include="dacwrapper.h" />
     <ClInclude Include="Device_Etherdream.h" />
     <ClInclude Include="Device_Helios.h" />
+    <ClInclude Include="Device_LaserDock.h" />
     <ClInclude Include="Device_OLSC.h" />
     <ClInclude Include="Device_OLSC_Easylase.h" />
     <ClInclude Include="Device_OLSC_EzAudDac.h" />

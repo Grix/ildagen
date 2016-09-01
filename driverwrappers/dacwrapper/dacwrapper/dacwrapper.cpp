@@ -17,6 +17,7 @@ GMEXPORT double InitDacwrapper()
 	olscDevice = new Device_OLSC();
 	olscEasylaseDevice = new Device_OLSC_Easylase();
 	olscEzAudDacDevice = new Device_OLSC_EzAudDac();
+	laserDockDevice = new Device_LaserDock();
 	
 	initialized = true;
 
@@ -77,6 +78,13 @@ GMEXPORT double ScanDevices()
 		riyaDevice->GetName(i, name);
 		dacs[numDevices++] = { 2, i, name };
 	}
+	int numLaserDocks = laserDockDevice->Init();
+	if (numLaserDocks == 1)
+	{
+		char* name = new char[64];
+		laserDockDevice->GetName(name);
+		dacs[numDevices++] = { 7, 0, name };
+	}
 
 	return (double)numDevices;
 }
@@ -102,6 +110,8 @@ GMEXPORT double DeviceOpen(double doubleNum)
 		return (double)olscEasylaseDevice->OpenDevice(cardNum);
 	else if (dacType == 6)	//OLSC_EzAudDac
 		return (double)olscEzAudDacDevice->OpenDevice(cardNum);
+	else if (dacType == 7)	//LaserDock
+		return (double)laserDockDevice->OpenDevice();
 	else
 		return -1.0;
 }
@@ -228,6 +238,22 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 		}
 		heliosDevice->OutputFrame(cardNum, scanRate, frameSize, &heliosBuffer[0]);
 	}
+	else if (dacType == 7)	//LaserDock
+	{
+		int currentPos = 0;
+		Device_LaserDock::LaserDockPoint laserDockBuffer[MAX_FRAME_SIZE];
+		for (int i = 0; i < frameSize; i++)
+		{
+			laserDockBuffer[i].x = bufferAddress[currentPos++] >> 4;
+			laserDockBuffer[i].y = bufferAddress[currentPos++] >> 4;
+			uint8_t r = (uint8_t)bufferAddress[currentPos++];
+			uint8_t g = (uint8_t)bufferAddress[currentPos++];
+			laserDockBuffer[i].rg = ((r << 8) | g);
+			laserDockBuffer[i].b = (uint8_t)bufferAddress[currentPos++] << 8;
+			currentPos++;
+		}
+		laserDockDevice->OutputFrame(scanRate, frameSize, &laserDockBuffer[0]);
+	}
 
 }
 
@@ -241,6 +267,7 @@ GMEXPORT double FreeDacwrapper()
 	delete olscDevice;
 	delete olscEzAudDacDevice;
 	delete olscEasylaseDevice;
+	delete laserDockDevice;
 
 	return 1.0;
 }
@@ -266,6 +293,8 @@ GMEXPORT double Stop(double doubleNum)
 		return (double)olscEzAudDacDevice->Stop(cardNum);
 	else if (dacType == 4)	//Helios
 		return (double)heliosDevice->Stop(cardNum);
+	else if (dacType == 7)	//Helios
+		return (double)laserDockDevice->Stop();
 	else
 		return -1.0;
 }

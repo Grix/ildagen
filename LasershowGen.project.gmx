@@ -284,14 +284,8 @@
         <script>scripts\FMODSoundGetMaxDist.gml</script>
         <script>scripts\FMODSoundSetEffects.gml</script>
         <script>scripts\FMODSoundAddEffect.gml</script>
-        <script>scripts\FMODSoundSet3dMinMaxDistance.gml</script>
-        <script>scripts\FMODSoundSet3dDopplerMax.gml</script>
-        <script>scripts\FMODSoundSet3dCone.gml</script>
         <script>scripts\FMODSoundGetNumChannels.gml</script>
         <script>scripts\FMODSoundGetLength.gml</script>
-        <script>scripts\FMODSoundSetLoopCount.gml</script>
-        <script>scripts\FMODSoundGetLoopCount.gml</script>
-        <script>scripts\FMODSoundSetLoopPoints.gml</script>
         <script>scripts\FMODSoundGetMusicNumChannels.gml</script>
         <script>scripts\FMODSoundGetMusicChannelVolume.gml</script>
         <script>scripts\FMODSoundSetMusicChannelVolume.gml</script>
@@ -320,29 +314,16 @@
         <script>scripts\FMODInstanceGetPan.gml</script>
         <script>scripts\FMODInstanceSetLoopCount.gml</script>
         <script>scripts\FMODInstanceGetLoopCount.gml</script>
-        <script>scripts\FMODInstanceSet3dConeOrientation.gml</script>
-        <script>scripts\FMODInstanceSet3dPosition.gml</script>
-        <script>scripts\FMODInstanceSet3dMinMaxDistance.gml</script>
-        <script>scripts\FMODInstanceSet3dDopplerMax.gml</script>
-        <script>scripts\FMODInstanceSet3dCone.gml</script>
         <script>scripts\FMODInstanceGetMaxDist.gml</script>
         <script>scripts\FMODInstanceGetWaveSnapshot.gml</script>
         <script>scripts\FMODInstanceGetSpectrumSnapshot.gml</script>
         <script>scripts\FMODInstanceGetWaveSnapshot2.gml</script>
         <script>scripts\FMODInstanceGetSpectrumSnapshot2.gml</script>
         <script>scripts\FMODInstanceSoundGetLength.gml</script>
-        <script>scripts\FMODInstanceSetLoopPoints.gml</script>
         <script>scripts\FMODInstanceGetAudibility.gml</script>
         <script>scripts\FMODInstanceSetSpeakerMix.gml</script>
-        <script>scripts\FMODInstanceSet3DPanLevel.gml</script>
-        <script>scripts\FMODInstanceGet3DPanLevel.gml</script>
-        <script>scripts\FMODInstanceSet3DSpread.gml</script>
-        <script>scripts\FMODInstanceGet3DSpread.gml</script>
         <script>scripts\FMODInstanceGetPitch.gml</script>
         <script>scripts\FMODInstanceSetPitch.gml</script>
-      </scripts>
-      <scripts name="Password">
-        <script>scripts\FMODSetPassword.gml</script>
       </scripts>
       <scripts name="DynaEffects">
         <script>scripts\FMODInstanceAddEffect.gml</script>
@@ -374,7 +355,6 @@
         <script>scripts\FMODGetNumInstances.gml</script>
         <script>scripts\FMODSoundIsStreamed.gml</script>
         <script>scripts\FMODSoundInstanciate.gml</script>
-        <script>scripts\FMODSoundIs3d.gml</script>
         <script>scripts\FMODErrorStr.gml</script>
         <script>scripts\FMODGetLastError.gml</script>
       </scripts>

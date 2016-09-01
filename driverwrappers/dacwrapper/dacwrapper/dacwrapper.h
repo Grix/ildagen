@@ -6,6 +6,7 @@
 #include "Device_Helios.h"
 #include "Device_OLSC_Easylase.h"
 #include "Device_OLSC_EzAudDac.h"
+#include "Device_LaserDock.h"
 #include <string>
 #include <thread>
 #include <mutex>
@@ -19,6 +20,7 @@ Device_OLSC* olscDevice;
 Device_Helios* heliosDevice;
 Device_OLSC_Easylase* olscEasylaseDevice;
 Device_OLSC_EzAudDac* olscEzAudDacDevice;
+Device_LaserDock* laserDockDevice;
 
 bool initialized = false;
 int numDevices = 0;

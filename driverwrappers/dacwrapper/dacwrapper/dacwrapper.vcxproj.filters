@@ -36,6 +36,9 @@
     <ClCompile Include="Device_OLSC_EzAudDac.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Device_LaserDock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device_RIYA.h">
@@ -57,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Device_OLSC_EzAudDac.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Device_LaserDock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
