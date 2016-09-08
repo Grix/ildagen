@@ -1,16 +1,26 @@
 //tesing benchmark
-/*buf = buffer_create(40000,buffer_fixed,1);
-time = get_timer();
 log("---")
-repeat (3000)
+var t_point = 0;
+var t_pointcopy = 0;
+time = get_timer();
+repeat (1000)
     {
-    buf = time;
-    time = buf;
+    t_point = ds_list_create();
+    ds_list_add(t_point,100);
+    ds_list_add(t_point,100);
+    ds_list_add(t_point,100);
+    ds_list_add(t_point,100);
     }
-log(get_timer()-time);*/
-/*time = get_timer();
-repeat (10000)
+time = get_timer()-time;
+log(time);
+time2 = get_timer();
+repeat (1000)
     {
+    t_point = ds_list_create();
+    ds_list_add(t_point,100);
+    ds_list_add(t_point,100);
+    ds_list_add(t_point,100);
+    ds_list_add(t_point,100);
+    ds_list_destroy(t_point);
     }
-log(get_timer()-time);*/
-
+log(get_timer()-time2 - time);

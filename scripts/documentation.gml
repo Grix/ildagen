@@ -20,6 +20,25 @@ dac_list
         num
         description
         settings map...
+        
+frame_list
+    frame...
+        el_list
+            origo_x
+            origo_y
+            end_x
+            end_y
+            xmin
+            xmax
+            ymin
+            ymax
+            ..pos 9: el_id
+            ..pos 20: points
+                x
+                y
+                blank
+                c
+        
             
         
 settings.ini

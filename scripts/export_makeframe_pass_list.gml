@@ -100,6 +100,9 @@ if (controller.exp_optimize)
 
 if ((ds_list_size(el_list)-ds_list_size(t_list_empties)) <= 0)
     {
+    ds_list_destroy(order_list);
+    ds_list_destroy(polarity_list);
+    ds_list_destroy(t_list_empties);
     return 0;
     }
         
@@ -151,23 +154,27 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
     if (controller.exp_optimize)
         {
         opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
-        if (opt_dist < 10) //connecting segments
+        if (opt_dist < 200) //connecting segments
             {
             //dwell on blanking start
             repeat (controller.opt_maxdwell_blank)
                 {
-                ds_list_add(list_raw,xp_prev);
-                ds_list_add(list_raw,yp_prev);
-                ds_list_add(list_raw,0);
-                ds_list_add(list_raw,c_prev);
+                pointlist = ds_list_create();
+                ds_list_add(pointlist, xp_prev);
+                ds_list_add(pointlist, yp_prev);
+                ds_list_add(pointlist, 0);
+                ds_list_add(pointlist, c_prev);
+                ds_list_add(list_raw, pointlist);
                 maxpoints_static++;
                 }
             repeat ( max(controller.opt_maxdwell_blank, controller.opt_maxdwell - controller.opt_maxdwell_blank) )
                 {
-                ds_list_add(list_raw,xp_prev);
-                ds_list_add(list_raw,yp_prev);
-                ds_list_add(list_raw,1);
-                ds_list_add(list_raw,0);
+                pointlist = ds_list_create();
+                ds_list_add(pointlist, xp_prev);
+                ds_list_add(pointlist, yp_prev);
+                ds_list_add(pointlist, 1);
+                ds_list_add(pointlist, 0);
+                ds_list_add(list_raw, pointlist);
                 maxpoints_static++;
                 }
             }
@@ -176,18 +183,22 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
             //dwell on blanking start
             repeat (controller.opt_maxdwell_blank)
                 {
-                ds_list_add(list_raw,xp_prev);
-                ds_list_add(list_raw,yp_prev);
-                ds_list_add(list_raw,0);
-                ds_list_add(list_raw,c_prev);
+                pointlist = ds_list_create();
+                ds_list_add(pointlist, xp_prev);
+                ds_list_add(pointlist, yp_prev);
+                ds_list_add(pointlist, 0);
+                ds_list_add(pointlist, c_prev);
+                ds_list_add(list_raw, pointlist);
                 maxpoints_static++;
                 }
             repeat ( max(controller.opt_maxdwell_blank, controller.opt_maxdwell - controller.opt_maxdwell_blank) )
                 {
-                ds_list_add(list_raw,xp_prev);
-                ds_list_add(list_raw,yp_prev);
-                ds_list_add(list_raw,1);
-                ds_list_add(list_raw,0);
+                pointlist = ds_list_create();
+                ds_list_add(pointlist, xp_prev);
+                ds_list_add(pointlist, yp_prev);
+                ds_list_add(pointlist, 1);
+                ds_list_add(pointlist, 0);
+                ds_list_add(list_raw, pointlist);
                 maxpoints_static++;
                 }
             
@@ -228,10 +239,12 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
                 t_xp_now += t_step_dist_x;
                 t_yp_now += t_step_dist_y;
                 
-                ds_list_add(list_raw,t_xp_now);
-                ds_list_add(list_raw,t_yp_now);
-                ds_list_add(list_raw,1);
-                ds_list_add(list_raw,0);
+                pointlist = ds_list_create();
+                ds_list_add(pointlist, t_xp_now);
+                ds_list_add(pointlist, t_yp_now);
+                ds_list_add(pointlist, 1);
+                ds_list_add(pointlist, 0);
+                ds_list_add(list_raw, pointlist);
                 maxpoints_static++;
                 }
             for (k = 1; k < t_n; k++)
@@ -242,20 +255,24 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
                 t_xp_now += t_step_dist_x;
                 t_yp_now += t_step_dist_y;
                 
-                ds_list_add(list_raw,t_xp_now);
-                ds_list_add(list_raw,t_yp_now);
-                ds_list_add(list_raw,1);
-                ds_list_add(list_raw,0);
+                pointlist = ds_list_create();
+                ds_list_add(pointlist, t_xp_now);
+                ds_list_add(pointlist, t_yp_now);
+                ds_list_add(pointlist, 1);
+                ds_list_add(pointlist, 0);
+                ds_list_add(list_raw, pointlist);
                 maxpoints_static++;
                 }
             }
         }
     else
         {
-        ds_list_add(list_raw,xp);
-        ds_list_add(list_raw,yp);
-        ds_list_add(list_raw,1);
-        ds_list_add(list_raw,0);
+        pointlist = ds_list_create();
+        ds_list_add(pointlist, xp);
+        ds_list_add(pointlist, yp);
+        ds_list_add(pointlist, 1);
+        ds_list_add(pointlist, 0);
+        ds_list_add(list_raw, pointlist);
         }
     }
 

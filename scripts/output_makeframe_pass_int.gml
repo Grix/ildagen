@@ -1,4 +1,4 @@
-var t_dist, t_xp, t_yp, t_xpn, t_ypn, t_c, t_vectorx, t_vectory;
+var t_dist, t_xp, t_yp, t_xpn, t_ypn, t_c, t_vectorx, t_vectory, t_curpointlist, t_nextpointlist, t_nextnextpointlist;
 var t_totalrem = 0;
 var t_totalpointswanted = floor(controller.opt_scanspeed/controller.projectfps);
 maxpointswanted = t_totalpointswanted-maxpoints_static; 
@@ -6,152 +6,153 @@ if (maxpointswanted == 0)
     maxpointswanted = 1;
 lengthwanted = abs(lit_length/maxpointswanted);
 if (lengthwanted == 0) 
-    {
+{
     lengthwanted = 0.001;
-    }
+}
 
 //TODO fix this shit: reducing points when there is also lit segments
 /*if (lengthwanted > controller.opt_maxdist)
-    {
+{
     if (ds_list_size(list_points) != 0)
-        {
+    {
         var t_subfromeach = abs(ceil((maxpointswanted/ds_list_size(list_points))/2));
         if (t_subfromeach+2 > controller.dotmultiply)
-            {
+        {
             if (controller.opt_warning_flag != 1)
-                {
-                 controller.opt_warning_flag = 1;
-                }
-            while (t_subfromeach+2 > controller.dotmultiply)
-                {
-                t_subfromeach--;
-                }
-            }
-        for (i = ds_list_size(list_points)-1; i >= 0; i--)
             {
+                 controller.opt_warning_flag = 1;
+            }
+            while (t_subfromeach+2 > controller.dotmultiply)
+            {
+                t_subfromeach--;
+            }
+        }
+        for (i = ds_list_size(list_points)-1; i >= 0; i--)
+        {
             repeat (t_subfromeach)
-                {
+            {
                 repeat (4)
                     ds_list_delete(list_raw,list_points[| i]+4);
                 maxpoints_static--;
-                }
             }
+        }
         maxpointswanted = t_totalpointswanted-maxpoints_static; 
         lengthwanted = abs(lit_length/maxpointswanted);
-        }
-    }*/
+    }
+}*/
     
 if (lengthwanted > controller.opt_maxdist)
-    {
+{
     if (controller.opt_warning_flag != 1)
-        {
-        controller.opt_warning_flag = 1;
-        }
-    }
-
-if (lit_length == 0) and ds_list_size(list_points)
     {
+        controller.opt_warning_flag = 1;
+    }
+}
+
+if ((lit_length == 0) && ds_list_size(list_points))
+{
     //adjust existing points
     if (maxpointswanted < 0)
-        {
+    {
         //delete points to attempt to get below the limit
         var t_subfromeach = abs(ceil(maxpointswanted/ds_list_size(list_points)))+1;
         if (t_subfromeach+2 > controller.dotmultiply)
-            {
+        {
             if (controller.opt_warning_flag != 1)
-                {
-                controller.opt_warning_flag = 1;
-                }
-            while (t_subfromeach+2 > controller.dotmultiply)
-                {
-                t_subfromeach--;
-                }
-            }
-            
-        for (i = ds_list_size(list_points)-1; i >= 0; i--)
             {
-            repeat (t_subfromeach)
-                {
-                repeat (4)
-                    ds_list_delete(list_raw,list_points[| i]+4);
-                }
+                controller.opt_warning_flag = 1;
+            }
+            while (t_subfromeach+2 > controller.dotmultiply)
+            {
+                t_subfromeach--;
             }
         }
-    else 
-        {
-        var t_addtoeach = floor(maxpointswanted/ds_list_size(list_points));
+            
         for (i = ds_list_size(list_points)-1; i >= 0; i--)
+        {
+            repeat (t_subfromeach)
             {
-            t_xp = list_raw[| list_points[| i]];
-            t_yp = list_raw[| list_points[| i]+1];
-            t_c = list_raw[| list_points[| i]+3];
-            repeat (t_addtoeach)
-                {
-                ds_list_insert(list_raw,list_points[| i],t_c);
-                ds_list_insert(list_raw,list_points[| i],0);
-                ds_list_insert(list_raw,list_points[| i],t_yp);
-                ds_list_insert(list_raw,list_points[| i],t_xp);
-                }
+                ds_list_delete(list_raw,list_points[| i]);
+                maxpoints_static--;
             }
         }
     }
-else
+    else 
     {
-    if (maxpointswanted < 0)
+        var t_addtoeach = floor(maxpointswanted/ds_list_size(list_points));
+        for (i = ds_list_size(list_points)-1; i >= 0; i--)
         {
+            t_curpointlist = list_raw[| list_points[| i]];
+            repeat (t_addtoeach)
+            {
+                pointlist = ds_list_create();
+                ds_list_add(pointlist, t_curpointlist[| 0]);
+                ds_list_add(pointlist, t_curpointlist[| 1]);
+                ds_list_add(pointlist, 0);
+                ds_list_add(pointlist, t_curpointlist[| 3]);
+                ds_list_insert(list_raw, list_points[| i], pointlist);
+            }
+        }
+    }
+}
+else
+{
+    if (maxpointswanted < 0)
+    {
         //delete points to attempt to get below the limit
         //todo check for actual number of points instead of using dotmultiply variable
         if (ds_list_size(list_points) == 0)
-            {
+        {
             if (controller.opt_warning_flag != 1)
-                {
-                controller.opt_warning_flag = 1;
-                }
-            }
-        else
             {
+                controller.opt_warning_flag = 1;
+            }
+        }
+        else
+        {
             var t_subfromeach = abs(ceil(maxpointswanted/ds_list_size(list_points)));
             if (t_subfromeach+2 > controller.dotmultiply)
-                {
+            {
                 if (controller.opt_warning_flag != 1)
-                    {
-                    controller.opt_warning_flag = 1;
-                    }
-                }
-            else
                 {
-                while (t_subfromeach+2 < controller.dotmultiply)
-                    {
-                    t_subfromeach++;
-                    }
+                    controller.opt_warning_flag = 1;
                 }
             }
+            else
+            {
+                while (t_subfromeach+2 < controller.dotmultiply)
+                {
+                    t_subfromeach++;
+                }
+            }
+        }
             
         for (i = ds_list_size(list_points)-1; i >= 0; i--)
-            {
+        {
             repeat (t_subfromeach)
-                {
-                repeat (4)
-                    ds_list_delete(list_raw,list_points[| i]+4);
+            {
+                ds_list_delete(list_raw,list_points[| i]);
                 maxpoints_static--;
-                }
             }
+        }
         maxpointswanted = t_totalpointswanted-maxpoints_static; 
         if (maxpointswanted == 0) 
             maxpointswanted = 1;
         lengthwanted = abs(max(1,lit_length)/maxpointswanted);
-        }
+    }
     
     //adding or reducing points to get uniform vector lengths
-    for (i = 0; i < ds_list_size(list_raw)-8; i += 4)
-        {
-        if (list_raw[| i+2] == 1) or (list_raw[| i+6] == 1) 
+    for (i = 0; i < ds_list_size(list_raw)-3; i++)
+    {
+        t_curpointlist = list_raw[| i];
+        t_nextpointlist = list_raw[| i+1];
+        if ((t_curpointlist[| 2] == 1) || (t_nextpointlist[| 2] == 1))
             continue;
             
-        t_xp = list_raw[| i];
-        t_yp = list_raw[| i+1];
-        t_xpn = list_raw[| i+4];
-        t_ypn = list_raw[| i+5];
+        t_xp = t_curpointlist[| 0];
+        t_yp = t_curpointlist[| 1];
+        t_xpn = t_nextpointlist[| 0];
+        t_ypn = t_nextpointlist[| 1];
         
         t_dist = point_distance(t_xp,t_yp,t_xpn,t_ypn);
         
@@ -159,76 +160,75 @@ else
             continue;
             
         if (t_dist < lengthwanted)
-            {
+        {
             //delete point
-            if (i > ds_list_size(list_raw)-8)
-                continue;
-                
-            if (list_raw[| i+6] == 1)
-                {
-                t_totalrem -= t_dist;
-                continue;
-                }
-                
-            if (point_distance(t_xpn, t_ypn, list_raw[| i+8], list_raw[| i+9]) == 0)
-                {
-                t_totalrem -= t_dist;
-                continue;
-                }
-                
-            repeat (4)
-                ds_list_delete(list_raw,i+4);
-            i -= 4;
-            }
-        else
+            if (t_nextpointlist[| 2] == 1)
             {
+                t_totalrem -= t_dist;
+                continue;
+            }
+            
+            t_nextnextpointlist = list_raw[| i+2];
+                
+            if ( (t_xpn == t_nextnextpointlist[| 0]) && (t_ypn == t_nextnextpointlist[| 1]) )
+            {
+                t_totalrem -= t_dist;
+                continue;
+            }
+                
+            ds_list_delete(list_raw,i+1);
+            i--;
+        }
+        else
+        {
             //add points
             t_totalrem += lengthwanted - (t_dist mod lengthwanted);
             if (t_totalrem > lengthwanted)
-                {
+            {
                 t_totalrem -= lengthwanted;
                 t_dist -= lengthwanted;
-                }
+            }
             steps = t_dist/lengthwanted;
             stepscount = floor(steps)+1;
             t_vectorx = (t_xpn-t_xp)/steps;
             t_vectory = (t_ypn-t_yp)/steps;
-            t_c = list_raw[| i+7];
+            t_c = t_nextpointlist[| 3];
             for (u = 1; u < stepscount; u++)
-                {
-                ds_list_insert(list_raw,i+4,t_c);
-                ds_list_insert(list_raw,i+4,0);
-                ds_list_insert(list_raw,i+4,t_yp+t_vectory*u);
-                ds_list_insert(list_raw,i+4,t_xp+t_vectorx*u);
-                i += 4;
-                }
+            {
+                pointlist = ds_list_create();
+                ds_list_add(pointlist, t_xp+t_vectorx*u);
+                ds_list_add(pointlist, t_yp+t_vectory*u);
+                ds_list_add(pointlist, 0);
+                ds_list_add(pointlist, t_c);
+                ds_list_insert(list_raw,i+1,pointlist);
+                i++;
             }
-            
         }
+            
     }
+}
     
 //final removal or adding of ending points to match perfectly
-if (ds_list_size(list_raw)/4-1 > t_totalpointswanted)
-    {
-    while ( ds_list_size(list_raw)/4-1 > t_totalpointswanted) and 
-            (list_raw[| 0] == $8000) and  
-            (list_raw[| 1] == $8000) and 
-            (list_raw[| 2] == 1)
-        {
-        maxpoints_static--;
-        repeat (4)
-            ds_list_delete(list_raw,0);
-        }
+while (ds_list_size(list_raw) > t_totalpointswanted)
+{
+    t_curpointlist = list_raw[| ds_list_size(list_raw)-1];
+    if (t_curpointlist[| 0] != $8000)
+        break;
+        
+    ds_list_delete(list_raw,ds_list_size(list_raw)-1);
+    
     if (controller.opt_warning_flag != 1)
-        {
-        controller.opt_warning_flag = 1;
-        }
-    }
-else while (ds_list_size(list_raw)/4 < t_totalpointswanted)
     {
-    ds_list_insert(list_raw,0,0);
-    ds_list_insert(list_raw,0,1);
-    ds_list_insert(list_raw,0,$8000);
-    ds_list_insert(list_raw,0,$8000);
+        controller.opt_warning_flag = 1;
     }
+}
+while (ds_list_size(list_raw) < t_totalpointswanted)
+{
+    pointlist = ds_list_create();
+    ds_list_add(pointlist, $8000);
+    ds_list_add(pointlist, $8000);
+    ds_list_add(pointlist, 1);
+    ds_list_add(pointlist, 0);
+    ds_list_add(list_raw,pointlist);
+}
 
