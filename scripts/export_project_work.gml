@@ -1,5 +1,5 @@
 for (j = global.loading_current; j < global.loading_end;j++)
-    {
+{
         
     correctframe = j;
     framepost = j-startframe;
@@ -42,12 +42,12 @@ for (j = global.loading_current; j < global.loading_end;j++)
     el_list = ds_list_create(); 
     //check which should be drawn
     for (k = 0; k < ds_list_size(layer_list); k++)
-        {
+    {
         env_dataset = 0;
         
         layer = ds_list_find_value(layer_list, k);
         for (m = 1; m < ds_list_size(layer); m++)
-            {
+        {
             objectlist = ds_list_find_value(layer,m);
             
             infolist =  ds_list_find_value(objectlist,2);
@@ -60,11 +60,11 @@ for (j = global.loading_current; j < global.loading_end;j++)
                 
             //envelope transforms
             if (!env_dataset)
-                {
+            {
                 env_dataset = 1;
                 
                 ready_envelope_applying(ds_list_find_value(layer,0));
-                }
+            }
             
             //yup, draw object
             el_buffer = ds_list_find_value(objectlist,1);
@@ -72,98 +72,98 @@ for (j = global.loading_current; j < global.loading_end;j++)
             buffer_seek(el_buffer,buffer_seek_start,0);
             buffer_ver = buffer_read(el_buffer,buffer_u8);
             if (buffer_ver != 52)
-                {
-                show_message_async("Error: Unexpected idbyte in buffer for export_project. Things might get ugly. Contact developer.");
+            {
+                show_message_async("Error: Unexpected idbyte in buffer for export_project_work(). Things might get ugly. Contact developer.");
                 global.loading_exportproject = 0;
                 room_goto(rm_seq);
                 exit;
-                }
+            }
             buffer_maxframes = buffer_read(el_buffer,buffer_u32);
             
             //skip to correct frame
             for (i = 0; i < fetchedframe;i++)
-                {
+            {
                 numofel = buffer_read(el_buffer,buffer_u32);
                 for (u = 0; u < numofel; u++)
-                    {
+                {
                     numofdata = buffer_read(el_buffer,buffer_u32)-20;
                     buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*3.25);
-                    }
                 }
+            }
                 
             buffer_maxelements = buffer_read(el_buffer,buffer_u32);
             
             //make into lists
             for (i = 0; i < buffer_maxelements;i++)
-                {
+            {
                 numofinds = buffer_read(el_buffer,buffer_u32);
                 ind_list = ds_list_create();
                 ds_list_add(el_list,ind_list);
                 for (u = 0; u < 10; u++)
-                    {
+                {
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
-                    }
+                }
                 //envelope transforms
                 if (env_xtrans)
-                    {
+                {
                     ds_list_replace(ind_list,0,ds_list_find_value(ind_list,0) + env_xtrans_val);
-                    }
+                }
                 if (env_ytrans)
-                    {
+                {
                     ds_list_replace(ind_list,1,ds_list_find_value(ind_list,1) + env_ytrans_val);
-                    }
+                }
                 for (u = 10; u < 20; u++)
-                    {
+                {
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
-                    }
+                }
                 for (u = 20; u < numofinds; u += 4)
-                    {
+                {
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_u32));
                     //apply envelope transforms to point data
                     if (env_hue)
-                        {
+                    {
                         c = ds_list_find_value(ind_list,ds_list_size(ind_list)-1);
                         ds_list_replace(ind_list,ds_list_size(ind_list)-1,make_colour_hsv(  (colour_get_hue(c)+env_hue_val) mod 255,
                                                                                             colour_get_saturation(c),
                                                                                             colour_get_value(c)));
-                        }
+                    }
                     if (env_a)
-                        {
+                    {
                         c = ds_list_find_value(ind_list,ds_list_size(ind_list)-1);
                         ds_list_replace(ind_list,ds_list_size(ind_list)-1,merge_colour(c,c_black,env_a_val));
-                        }
+                    }
                     if (env_r)
-                        {
+                    {
                         c = ds_list_find_value(ind_list,ds_list_size(ind_list)-1);
                         ds_list_replace(ind_list,ds_list_size(ind_list)-1,make_colour_rgb(  colour_get_red(c)*env_r_val,
                                                                                             colour_get_green(c),
                                                                                             colour_get_blue(c)));
-                        }
+                    }
                     if (env_g)
-                        {
+                    {
                         c = ds_list_find_value(ind_list,ds_list_size(ind_list)-1);
                         ds_list_replace(ind_list,ds_list_size(ind_list)-1,make_colour_rgb(  colour_get_red(c),
                                                                                             colour_get_green(c)*env_g_val,
                                                                                             colour_get_blue(c)));
-                        }
+                    }
                     if (env_b)
-                        {
+                    {
                         c = ds_list_find_value(ind_list,ds_list_size(ind_list)-1);
                         ds_list_replace(ind_list,ds_list_size(ind_list)-1,make_colour_rgb(  colour_get_red(c),
                                                                                             colour_get_green(c),
                                                                                             colour_get_blue(c)*env_b_val));
-                        }
                     }
                 }
-                    
             }
+                    
         }
+    }
     
     if (!ds_list_size(el_list)) 
-        {
+    {
         optimize_middle();
         //update maxpoints
         maxpoints = maxpointswanted;
@@ -173,10 +173,10 @@ for (j = global.loading_current; j < global.loading_end;j++)
         buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
         buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
         continue;
-        }
+    }
         
-    if (export_makeframe_pass_list() == 0)
-        {
+    if (makeframe_pass_list() == 0)
+    {
         optimize_middle();
         //update maxpoints
         maxpoints = maxpointswanted;
@@ -186,10 +186,10 @@ for (j = global.loading_current; j < global.loading_end;j++)
         buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
         buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
         continue;
-        }
+    }
         
     if (controller.exp_optimize)
-        export_makeframe_pass_int();
+        makeframe_pass_int();
         
     export_framelist_to_buffer();
     
@@ -202,19 +202,19 @@ for (j = global.loading_current; j < global.loading_end;j++)
        
     //cleanup
     for (i = 0;i < ds_list_size(el_list);i++)
-        {
+    {
         ds_list_destroy(ds_list_find_value(el_list,i));
-        }
+    }
     ds_list_destroy(el_list);
     
-    if (get_timer()-global.loadingtimeprev >= 100000)
-        {
+    if (get_timer()-global.loadingtimeprev >= 30000)
+    {
         j++;
         global.loading_current = j;
         global.loadingtimeprev = get_timer();
         return 0;
-        }
     }
+}
     
 
 //null header

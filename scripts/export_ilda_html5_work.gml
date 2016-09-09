@@ -53,7 +53,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
         continue;
         }
     
-    if (export_makeframe_pass_list() == 0)
+    if (makeframe_pass_list() == 0)
         {
         optimize_middle();
         //update maxpoints
@@ -67,7 +67,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
         }
     
     if (controller.exp_optimize)
-        export_makeframe_pass_int();
+        makeframe_pass_int();
         
     export_framelist_to_buffer();
         
@@ -79,7 +79,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
     buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
     maxpoints = 0;
     
-    if (get_timer()-global.loadingtimeprev >= 100000)
+    if (get_timer()-global.loadingtimeprev >= 30000)
         {
         j++;
         global.loading_current = j;

@@ -1,5 +1,5 @@
 //reads a hershey font file
-if (ds_exists(hershey_list,ds_type_list))
+/*if (ds_exists(hershey_list,ds_type_list))
     exit;
 hershey_list = ds_list_create();
 ds_list_clear(hershey_index_list);
@@ -52,7 +52,7 @@ for (i = 0; i < 2352; i++)
             ds_list_add(frame_list_parse,255);
             }
         }
-    else*/ repeat(maxglyphpoints-1)
+    else*/ /*repeat(maxglyphpoints-1)
         {
         nextcharx = ord(string_char_at(hershey_string,j));
         j++;
@@ -79,4 +79,4 @@ for (i = 0; i < 2352; i++)
 ini_close();
 
 font_type = 1;
-return 1;
+return 1;*/

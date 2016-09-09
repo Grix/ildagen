@@ -1,5 +1,5 @@
 for (j = global.loading_current; j < global.loading_end;j++)
-    {
+{
     el_list = ds_list_find_value(frame_list,j);
     
     framepost = j;
@@ -41,7 +41,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
     buffer_write(ilda_buffer,buffer_u8,0); //0
     
     if (!ds_list_size(el_list)) 
-        {
+    {
         optimize_middle();
         //update maxpoints
         maxpoints = maxpointswanted;
@@ -51,10 +51,10 @@ for (j = global.loading_current; j < global.loading_end;j++)
         buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
         buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
         continue;
-        }
+    }
     
-    if (export_makeframe_pass_list() == 0)
-        {
+    if (makeframe_pass_list() == 0)
+    {
         optimize_middle();
         //update maxpoints
         maxpoints = maxpointswanted;
@@ -64,10 +64,10 @@ for (j = global.loading_current; j < global.loading_end;j++)
         buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
         buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
         continue;
-        }
+    }
     
     if (controller.exp_optimize)
-        export_makeframe_pass_int();
+        makeframe_pass_int();
         
     export_framelist_to_buffer();
         
@@ -78,15 +78,15 @@ for (j = global.loading_current; j < global.loading_end;j++)
     buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
     buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
     
-    if (get_timer()-global.loadingtimeprev >= 100000)
-        {
+    if (get_timer()-global.loadingtimeprev >= 30000)
+    {
         j++;
         global.loading_current = j;
         global.loadingtimeprev = get_timer();
         return 0;
-        }
-
     }
+
+}
     
 
 //null header
@@ -126,11 +126,6 @@ buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
 
 //export
 buffer_save(ilda_buffer,file_loc);
-
-//for DAC buffer only, COMMENT OUT
-/*buffer_write(dac_buffer, buffer_string, dac_string);
-buffer_resize(dac_buffer,buffer_tell(dac_buffer));
-buffer_save(dac_buffer,file_loc_test);*/
 
 show_message_async("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));
 buffer_delete(ilda_buffer);

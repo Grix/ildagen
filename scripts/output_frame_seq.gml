@@ -152,14 +152,14 @@ if (ds_list_size(el_list) == 0)
 }
 else
 {
-    if (export_makeframe_pass_list() == 0)
+    if (makeframe_pass_list() == 0)
     {
         optimize_middle_output();
     }
     else
     {
         if (controller.exp_optimize)
-            output_makeframe_pass_int();
+            makeframe_pass_int();
         
         output_framelist_to_buffer();
     }

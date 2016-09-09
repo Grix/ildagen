@@ -1,6 +1,7 @@
 output_buffer_next_size = ds_list_size(list_raw);
 var t_list_raw_size = ds_list_size(list_raw)-1;
 
+
 if (controller.exp_optimize)
 {
     var t_red_lowerbound = round(controller.red_scale_lower*255);

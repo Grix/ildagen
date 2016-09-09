@@ -1,5 +1,5 @@
 //reads a hershey font file
-if (ds_exists(hershey_list,ds_type_list))
+/*if (ds_exists(hershey_list,ds_type_list))
     exit;
 hershey_list = ds_list_create();
 ds_list_clear(hershey_index_list);
@@ -43,4 +43,4 @@ file_bin_close(hershey_file);
 ini_close();
 
 font_type = 1;
-return 1;
+return 1;*/

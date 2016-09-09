@@ -1,6 +1,6 @@
 for (i = global.loading_current; i < global.loading_end;i++)
     {
-    if (get_timer()-global.loadingtimeprev >= 100000)
+    if (get_timer()-global.loadingtimeprev >= 30000)
         {
         global.loading_current = i;
         global.loadingtimeprev = get_timer();

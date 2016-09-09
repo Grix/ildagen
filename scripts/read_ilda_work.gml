@@ -13,7 +13,7 @@ with (controller)
         if (format != 2)
             read_ilda_frame();
         
-        if (get_timer()-global.loadingtimeprev >= 100000)
+        if (get_timer()-global.loadingtimeprev >= 30000)
             {
             global.loading_current = frame_number;
             global.loadingtimeprev = get_timer();

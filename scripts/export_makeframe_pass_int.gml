@@ -42,7 +42,7 @@ if (lengthwanted == 0)
         }
     }*/
     
-if (lengthwanted > controller.opt_maxdist)
+/*if (lengthwanted > controller.opt_maxdist)
     {
     if (controller.opt_warning_flag != 1)
         {
@@ -241,4 +241,4 @@ else while (ds_list_size(list_raw)/4 < t_totalpointswanted)
     ds_list_insert(list_raw,0,$8000);
     ds_list_insert(list_raw,0,$8000);
     }
-
+*/
