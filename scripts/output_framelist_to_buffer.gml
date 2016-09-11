@@ -1,4 +1,4 @@
-output_buffer_next_size = ds_list_size(list_raw);
+/*output_buffer_next_size = ds_list_size(list_raw);
 var t_list_raw_size = ds_list_size(list_raw)-1;
 
 
@@ -87,4 +87,4 @@ else //not optimized
 for (i = 0; i <= t_list_raw_size; i++)
     ds_list_destroy(list_raw[| i]);
 ds_list_destroy(list_raw);
-ds_list_destroy(list_points);
+ds_list_destroy(list_points);*/

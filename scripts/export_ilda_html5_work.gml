@@ -42,7 +42,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
     
     if (!ds_list_size(el_list)) 
         {
-        optimize_middle();
+        optimize_middle_export();
         //update maxpoints
         maxpoints = maxpointswanted;
         maxpointsa[0] = maxpoints & 255;
@@ -53,7 +53,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
         continue;
         }
     
-    if (makeframe_pass_list() == 0)
+    /*if (makeframe_pass_list() == 0)
         {
         optimize_middle();
         //update maxpoints
@@ -69,7 +69,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
     if (controller.exp_optimize)
         makeframe_pass_int();
         
-    export_framelist_to_buffer();
+    export_framelist_to_buffer();*/
         
     //update maxpoints
     maxpointsa[0] = maxpoints & 255;

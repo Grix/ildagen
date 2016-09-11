@@ -1,6 +1,6 @@
-maxpoints = ds_list_size(list_raw);
-var t_diff, t_pal_c, t_c_mapvalue, t_bl;
-var t_list_raw_size = ds_list_size(list_raw)-1;
+maxpoints = ds_list_size(list_raw)/4;
+var t_diff, t_pal_c, t_c_mapvalue;
+var t_list_raw_size = ds_list_size(list_raw)-4;
 
 if (controller.exp_optimize)
 {
@@ -10,24 +10,30 @@ if (controller.exp_optimize)
     var t_red_scale = controller.red_scale*(255-t_red_lowerbound)/255;
     var t_green_scale = controller.green_scale*(255-t_green_lowerbound)/255;
     var t_blue_scale = controller.blue_scale*(255-t_blue_lowerbound)/255;
-    var red_pointlist, green_pointlist, blue_pointlist, blank_pointlist;
     
-    safe_bottom_boundary = abs(min(controller.opt_redshift,controller.opt_greenshift,controller.opt_blueshift,controller.opt_blankshift));
-    safe_top_boundary = t_list_raw_size-max(controller.opt_redshift,controller.opt_greenshift,controller.opt_blueshift,controller.opt_blankshift);
+    var t_blankshift = controller.opt_blankshift*4;
+    var t_redshift = controller.opt_redshift*4;
+    var t_greenshift = controller.opt_greenshift*4;
+    var t_blueshift = controller.opt_blueshift*4;
     
-    for (i = 0; i <= t_list_raw_size; i++)
+    safe_bottom_boundary = abs(min(controller.opt_redshift,controller.opt_greenshift,controller.opt_blueshift,controller.opt_blankshift))*4;
+    safe_top_boundary = t_list_raw_size-max(controller.opt_redshift,controller.opt_greenshift,controller.opt_blueshift,controller.opt_blankshift)*4;
+}
+var t_bl;
+
+if (controller.exp_optimize)
+{
+    for (i = 0; i <= t_list_raw_size; i += 4)
     {
-        pos_pointlist = list_raw[| i];
-        
         //writing point
         if (controller.invert_x)
-            xp = $FFFF - pos_pointlist[| 0];
+            xp = $FFFF - list_raw[| i];
         else
-            xp = pos_pointlist[| 0];
+            xp = list_raw[| i];
         if (controller.invert_y)
-            yp = $FFFF - pos_pointlist[| 1];
+            yp = $FFFF - list_raw[| i+1];
         else
-            yp = pos_pointlist[| 1];
+            yp = list_raw[| i+1];
             
         if ((i < safe_bottom_boundary) || (i > safe_top_boundary))
         {
@@ -38,15 +44,10 @@ if (controller.exp_optimize)
         }    
         else
         {
-            red_pointlist = list_raw[| i+controller.opt_redshift];
-            green_pointlist = list_raw[| i+controller.opt_greenshift];
-            blue_pointlist = list_raw[| i+controller.opt_blueshift];
-            blank_pointlist = list_raw[| i+controller.opt_blankshift];
-            
-            cr = t_red_lowerbound + (red_pointlist[| 3] & $FF) * t_red_scale;
-            cg = t_green_lowerbound + ((green_pointlist[| 3] >> 8) & $FF) * t_green_scale;
-            cb = t_blue_lowerbound + (blue_pointlist[| 3] >> 16) * t_blue_scale;
-            bl = blank_pointlist[| 2];
+            cr = t_red_lowerbound + (list_raw[| i+t_redshift+3] & $FF) * t_red_scale;
+            cg = t_green_lowerbound + ((list_raw[| i+t_greenshift+3] >> 8) & $FF) * t_green_scale;
+            cb = t_blue_lowerbound + (list_raw[| i+t_blueshift+3] >> 16) * t_blue_scale;
+            bl = list_raw[| i+t_blankshift+2]
         }
         
         xp -= $8000;
@@ -87,35 +88,32 @@ if (controller.exp_optimize)
         else
         {
             //find closest palette color
-            //if (controller.exp_format == 0)
-            //{
-                if (bl)
-                    c = 63;
+            if (bl)
+                c = 63;
+            else
+            {
+                c = make_colour_rgb(cr,cg,cb);
+                if (ds_map_exists(c_map, c))
+                    c = c_map[? c];
                 else
                 {
-                    c = make_colour_rgb(cr,cg,cb);
-                    if (ds_map_exists(c_map, c))
-                        c = c_map[? c];
-                    else
+                    diff_best = 200;
+                    for (n = 0; n < round(ds_list_size(controller.pal_list)/3); n++)
                     {
-                        diff_best = 200;
-                        for (n = 0; n < round(ds_list_size(controller.pal_list)/3); n++)
+                        t_pal_c = make_colour_rgb(controller.pal_list[| n*3], controller.pal_list[| n*3+1], controller.pal_list[| n*3+2]);
+                        t_diff = colors_compare_cie94(c, t_pal_c);
+                        if (t_diff < diff_best)
                         {
-                            t_pal_c = make_colour_rgb(controller.pal_list[| n*3], controller.pal_list[| n*3+1], controller.pal_list[| n*3+2]);
-                            t_diff = colors_compare_cie94(c, t_pal_c);
-                            if (t_diff < diff_best)
-                            {
-                                c_n = n;
-                                if (t_diff == 0)
-                                    break;
-                                diff_best = t_diff;
-                            }
+                            c_n = n;
+                            if (t_diff == 0)
+                                break;
+                            diff_best = t_diff;
                         }
-                        c_map[? c] = c_n;
-                        c = c_n;
                     }
+                    c_map[? c] = c_n;
+                    c = c_n;
                 }
-            //}
+            }
             buffer_write(ilda_buffer,buffer_u16,0);
             buffer_write(ilda_buffer,buffer_u8,blank);
             buffer_write(ilda_buffer,buffer_u8,c);
@@ -124,21 +122,13 @@ if (controller.exp_optimize)
 }
 else //not optimized
 {
-    for (i = 0; i <= t_list_raw_size; i++)
+    for (i = 0; i <= t_list_raw_size; i += 4)
     {
-        pos_pointlist = list_raw[| i];
-        
         //writing point
-        if (controller.invert_x)
-            xp = ($FFFF - pos_pointlist[| 0]);
-        else
-            xp = pos_pointlist[| 0];
-        if (controller.invert_y)
-            yp = ($FFFF - pos_pointlist[| 1]);
-        else    
-            yp = pos_pointlist[| 1];
+        xp = list_raw[| i];
+        yp = list_raw[| i+1];
             
-        t_bl = pos_pointlist[| 2];
+        t_bl = list_raw[| i+2];
         if (is_undefined(t_bl))
         {
             c = 0;
@@ -146,7 +136,7 @@ else //not optimized
         }
         else
         {
-            c = pos_pointlist[| 3];
+            c = list_raw[| i+3];
             bl = t_bl;
         }
         
@@ -188,42 +178,38 @@ else //not optimized
         else
         {
             //find closest palette color
-            //if (controller.exp_format == 0)
-            //{
-                if (bl)
-                    c = 63;
+            if (bl)
+                c = 63;
+            else
+            {
+                if (ds_map_exists(c_map, c))
+                    c = c_map[? c];
                 else
                 {
-                    if (ds_map_exists(c_map, c))
-                        c = c_map[? c];
-                    else
+                    diff_best = 200;
+                    for (n = 0; n < round(ds_list_size(controller.pal_list)/3); n++)
                     {
-                        diff_best = 200;
-                        for (n = 0; n < round(ds_list_size(controller.pal_list)/3); n++)
+                        t_pal_c = make_colour_rgb(controller.pal_list[| n*3], controller.pal_list[| n*3+1], controller.pal_list[| n*3+2]);
+                        t_diff = colors_compare_cie94(c, t_pal_c);
+                        if (t_diff < diff_best)
                         {
-                            t_pal_c = make_colour_rgb(controller.pal_list[| n*3], controller.pal_list[| n*3+1], controller.pal_list[| n*3+2]);
-                            t_diff = colors_compare_cie94(c, t_pal_c);
-                            if (t_diff < diff_best)
-                            {
-                                c_n = n;
-                                if (t_diff == 0)
-                                    break;
-                                diff_best = t_diff;
-                            }
+                            c_n = n;
+                            if (t_diff == 0)
+                                break;
+                            diff_best = t_diff;
                         }
-                        c_map[? c] = c_n;
-                        c = c_n;
                     }
+                    c_map[? c] = c_n;
+                    c = c_n;
                 }
-            //}
+            }
             buffer_write(ilda_buffer,buffer_u16,0);
             buffer_write(ilda_buffer,buffer_u8,blank);
             buffer_write(ilda_buffer,buffer_u8,c);
         }
     }
 }
-
-for (i = 0; i <= t_list_raw_size; i++)
-    ds_list_destroy(list_raw[| i]);
+    
 ds_list_destroy(list_raw);
-ds_list_destroy(list_points);
+ds_list_destroy(list_dots);
+
