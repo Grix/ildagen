@@ -989,17 +989,6 @@
         <script>scripts\export_ilda_html5.gml</script>
         <script>scripts\export_ilda_html5_work.gml</script>
       </scripts>
-      <scripts name="output">
-        <script>scripts\optimize_middle_output.gml</script>
-        <script>scripts\optimize_middle_export.gml</script>
-        <script>scripts\prepare_output.gml</script>
-        <script>scripts\prepare_output_points.gml</script>
-        <script>scripts\make_frame_export.gml</script>
-        <script>scripts\export_makeframe_pass_int.gml</script>
-        <script>scripts\output_framelist_to_buffer.gml</script>
-        <script>scripts\export_framelist_to_buffer.gml</script>
-        <script>scripts\write_point_export.gml</script>
-      </scripts>
       <script>scripts\load_frames.gml</script>
       <script>scripts\load_frames_seq.gml</script>
       <script>scripts\load_project.gml</script>
@@ -1021,10 +1010,18 @@
       <script>scripts\close_dacs.gml</script>
       <script>scripts\dac_send_frame.gml</script>
       <script>scripts\dac_blank_and_center.gml</script>
-      <scripts name="output">
-        <script>scripts\output_frame.gml</script>
-        <script>scripts\output_frame_seq.gml</script>
-      </scripts>
+      <script>scripts\output_frame.gml</script>
+      <script>scripts\output_frame_seq.gml</script>
+    </scripts>
+    <scripts name="output">
+      <script>scripts\optimize_middle_output.gml</script>
+      <script>scripts\optimize_middle_export.gml</script>
+      <script>scripts\prepare_output.gml</script>
+      <script>scripts\prepare_output_points.gml</script>
+      <script>scripts\make_frame_export.gml</script>
+      <script>scripts\export_makeframe_pass_int.gml</script>
+      <script>scripts\output_framelist_to_buffer.gml</script>
+      <script>scripts\export_framelist_to_buffer.gml</script>
     </scripts>
     <script>scripts\mute.gml</script>
     <script>scripts\update_check.gml</script>

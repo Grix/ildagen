@@ -19,10 +19,10 @@ new_dot = 1;
 if (lit_length > 0)
 {
     var t_dotstodelete = 0;
-    while ((t_litpointswanted < controller.opt_maxdist) && (maxpoints_dots != 0) && (smallestdotsize > 3))
+    while ((t_lengthwanted < controller.opt_maxdist) && (maxpoints_dots != 0) && (smallestdotsize > 3))
     {
         t_dotstodelete++;
-        t_litpointswanted += ds_list_size(list_dots);
+        t_litpointswanted += num_dots;
         if (t_litpointswanted == 0) 
             t_litpointswanted = 1;
         t_lengthwanted = abs(lit_length/t_litpointswanted);
@@ -31,7 +31,7 @@ if (lit_length > 0)
 }
 else
 {
-    var t_dotstoadd = floor(t_litpointswanted/ds_list_size(list_dots));
+    var t_dotstoadd = floor(t_litpointswanted/num_dots);
 }
 
 if (t_lengthwanted == 0) 
@@ -82,6 +82,7 @@ for (i = 0; i < t_numofelems; i++)
         if (bl)
         {
             bl_prev = 1;
+            new_dot = 1;
             continue;
         }
         else 
@@ -230,35 +231,36 @@ for (i = 0; i < t_numofelems; i++)
                 opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
                 if (opt_dist == 0)
                 {
-                    if (new_dot == 1)
-                    {   
-                        if (lit_length == 0)
+                    //dot, adjust intensity if necessary
+                    if (lit_length == 0)
+                    {
+                        if (t_dotstoadd < 0)
                         {
-                            if (t_dotstoadd < 0)
-                            {
-                                currentpos += currentposadjust*abs(0-t_dotstoadd);
-                                t_i += abs(0-t_dotstoadd);
-                            }
-                            else
-                            {
-                                repeat (t_dotstoadd)
-                                {
-                                ds_list_add(list_raw,xp);
-                                ds_list_add(list_raw,yp);
-                                ds_list_add(list_raw,bl);
-                                ds_list_add(list_raw,c);
-                                }
-                            }
+                            currentpos += currentposadjust*abs(0-t_dotstoadd);
+                            t_i += abs(0-t_dotstoadd);
                         }
                         else
                         {
-                            currentpos += currentposadjust*abs(t_dotstodelete);
-                            t_i += abs(0-t_dotstoadd);
+                            if (new_dot == 1)
+                            { 
+                                repeat (t_dotstoadd)
+                                {
+                                    ds_list_add(list_raw,xp);
+                                    ds_list_add(list_raw,yp);
+                                    ds_list_add(list_raw,bl);
+                                    ds_list_add(list_raw,c);
+                                }
+                            }
                         }
-                            
-                        new_dot = 0;
+                    }
+                    else
+                    {
+                        currentpos += currentposadjust*abs(t_dotstodelete);
+                        t_i += abs(t_dotstodelete);
                     }
                 }
+                else
+                    new_dot = 1;
             }
         }
         

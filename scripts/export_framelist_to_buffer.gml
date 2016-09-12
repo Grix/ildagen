@@ -211,5 +211,4 @@ else //not optimized
 }
     
 ds_list_destroy(list_raw);
-ds_list_destroy(list_dots);
 

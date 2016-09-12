@@ -29,24 +29,29 @@
 versiondate = "2016-08-16";
 
 if (debug_mode)
-    {
+{
     show_debug_overlay(1);
-    }
+    gml_release_mode(false);
+}
+else
+{
+    gml_release_mode(true);
+}
 
 //setup file handling system
 FStemp = game_save_id+"temp\";
 if (directory_exists("temp"))
-    {
+{
     while (1)
-        {
+    {
         file = file_find_first("temp\*", 0);
         show_debug_message(file)
         if (file == "") or is_undefined(file) or !is_string(file)
             break;
         if (!file_delete("temp\"+file))
             break;
-        }
     }
+}
 else
     directory_create("temp");
 
@@ -337,11 +342,11 @@ surface_reset_target();
 init_palette();
 
 if (os_browser == browser_not_a_browser)
-    {
+{
     update_check();
     parse_parameter();
     load_settings();
-    }
+}
     
 instance_create(floor((view_wview[0]-700)/2), floor((view_hview[0]-420)/2), obj_ad);
 
@@ -2109,6 +2114,15 @@ dialog_open = 0;
 playing = 0;
 seqcontrol.frame_surf_refresh = true;
 output_buffer_ready = false;
+
+if (room == rm_ilda)
+    window_set_caption("LasershowGen - Editor Mode");
+else if (room == rm_seq)
+    window_set_caption("LasershowGen - Timeline Mode");
+else if (room == rm_options)
+    window_set_caption("LasershowGen - Settings");
+else if (room == rm_loading)
+    window_set_caption("LasershowGen - Working...");
 </string>
           </argument>
         </arguments>

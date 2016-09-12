@@ -75,6 +75,14 @@ for (t_i = 0; t_i < listsize; t_i++)
                                         +  2*max(controller.opt_maxdwell_blank, t_true_dwell - controller.opt_maxdwell_blank)
                                         +  (t_n + t_n) );
             }
+            
+            if (!new_dot)
+            {
+                new_dot = 1;
+                if (currentdotsize < smallestdotsize)
+                    smallestdotsize = currentdotsize;
+                currentdotsize = 0;
+            }
         }
     }
     else if (controller.exp_optimize)
@@ -86,7 +94,7 @@ for (t_i = 0; t_i < listsize; t_i++)
             currentdotsize++;
             if (new_dot == 1)
             {   
-                ds_list_add(list_dots,0); //TODO save location
+                num_dots++;
                 new_dot = 0;
             }
         }

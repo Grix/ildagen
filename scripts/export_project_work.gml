@@ -175,9 +175,9 @@ for (j = global.loading_current; j < global.loading_end;j++)
         continue;
     }
         
-    /*if (makeframe_pass_list() == 0)
+    if (prepare_output() == 0)
     {
-        optimize_middle();
+        optimize_middle_export();
         //update maxpoints
         maxpoints = maxpointswanted;
         maxpointsa[0] = maxpoints & 255;
@@ -188,10 +188,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
         continue;
     }
         
-    if (controller.exp_optimize)
-        makeframe_pass_int();
-        
-    export_framelist_to_buffer();*/
+    make_frame_export();
     
     //update maxpoints
     maxpointsa[0] = maxpoints & 255;
@@ -207,7 +204,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
     }
     ds_list_destroy(el_list);
     
-    if (get_timer()-global.loadingtimeprev >= 30000)
+    if (get_timer()-global.loadingtimeprev >= 100000)
     {
         j++;
         global.loading_current = j;
@@ -215,7 +212,6 @@ for (j = global.loading_current; j < global.loading_end;j++)
         return 0;
     }
 }
-    
 
 //null header
 buffer_write(ilda_buffer,buffer_u8,$49); //ILDA0005

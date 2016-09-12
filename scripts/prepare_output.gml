@@ -1,4 +1,3 @@
-list_dots = ds_list_create();
 list_raw = ds_list_create();
 
 order_list = ds_list_create();
@@ -16,6 +15,7 @@ maxpoints_static = 0;
 maxpoints_dots = 0;
 smallestdotsize = 0;
 currentdotsize = 0;
+num_dots = 0;
 
 a_ballistic = controller.opt_maxdist; //ballistic scanner acceleration
 
