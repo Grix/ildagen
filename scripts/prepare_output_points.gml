@@ -40,15 +40,16 @@ for (t_i = 0; t_i < listsize; t_i++)
     
     //c = ds_list_find_value(list_id,currentpos+3);
     
-    if (bl_prev)
+    if (controller.exp_optimize)
     {
-        //todo maybe add reference to current position so we don't 
-        //have to parse through all blanked points when writing
-    
-        //BLANKING
-        if (controller.exp_optimize)
+        opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
+        
+        if (bl_prev)
         {
-            opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
+            //todo maybe add reference to current position so we don't 
+            //have to parse through all blanked points when writing
+        
+            //BLANKING
             var t_true_dwell = controller.opt_maxdwell; //todo calculate from angles
             
             if (opt_dist < 200) //connecting segments
@@ -75,39 +76,27 @@ for (t_i = 0; t_i < listsize; t_i++)
                                         +  2*max(controller.opt_maxdwell_blank, t_true_dwell - controller.opt_maxdwell_blank)
                                         +  (t_n + t_n) );
             }
-            
-            if (!new_dot)
-            {
-                new_dot = 1;
-                if (currentdotsize < smallestdotsize)
-                    smallestdotsize = currentdotsize;
-                currentdotsize = 0;
-            }
         }
-    }
-    else if (controller.exp_optimize)
-    {
-        opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
+        else
+            lit_length+= opt_dist;
+        
         if (opt_dist == 0)
         {
             maxpoints_dots++;
             currentdotsize++;
-            if (new_dot == 1)
-            {   
-                num_dots++;
-                new_dot = 0;
-            }
+            new_dot = 1;
         }
         else
         {
-            if (!new_dot)
+            if ((new_dot) && (currentdotsize > 1))
             {
-                new_dot = 1;
+                num_dots++;
+                maxpoints_dots++;
                 if (currentdotsize < smallestdotsize)
                     smallestdotsize = currentdotsize;
                 currentdotsize = 0;
             }
-            lit_length += opt_dist;
+            new_dot = 0;
         }
     }
     
@@ -117,3 +106,16 @@ for (t_i = 0; t_i < listsize; t_i++)
     //c_prev = c;
     bl_prev = 0;
 }
+
+if ((new_dot) && (currentdotsize > 1))
+{
+    num_dots++;
+    maxpoints_dots++;
+    if (currentdotsize < smallestdotsize)
+        smallestdotsize = currentdotsize;
+    currentdotsize = 0;
+}
+
+
+
+

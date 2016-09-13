@@ -13,7 +13,7 @@ new_dot = 1;
 lit_length = 0;
 maxpoints_static = 0;
 maxpoints_dots = 0;
-smallestdotsize = 0;
+smallestdotsize = 100000;
 currentdotsize = 0;
 num_dots = 0;
 

@@ -34,7 +34,7 @@ int Device_LaserDock::Init()
 		return -1;
 	}
 
-	_free = (laserDockFuncPtr0)GetProcAddress(laserDockLibrary, "free");
+	_free = (laserDockFuncPtr0)GetProcAddress(laserDockLibrary, "freeAll");
 	if (!_free)
 	{
 		FreeLibrary(laserDockLibrary);

@@ -14,12 +14,20 @@ bl_prev = 1;
 c_prev = 0;
 new_dot = 1;
 
+log("----OUTPUT");
+log("litlength "+string(lit_length));
+log("smallestdot "+string(smallestdotsize));
+log("maxpointstattic "+string(maxpoints_static));
+log("litpointswanted "+string(t_litpointswanted));
+log("maxdots "+string(maxpoints_dots));
+log("numdots "+string(num_dots));
+
 //if too many dots in frame, first attempt to shrink overlapping ones
 
 if (lit_length > 0)
 {
     var t_dotstodelete = 0;
-    while ((t_lengthwanted < controller.opt_maxdist) && (maxpoints_dots != 0) && (smallestdotsize > 3))
+    while ((t_lengthwanted > controller.opt_maxdist) && (maxpoints_dots != 0) && (smallestdotsize > 3))
     {
         t_dotstodelete++;
         t_litpointswanted += num_dots;
@@ -28,16 +36,21 @@ if (lit_length > 0)
         t_lengthwanted = abs(lit_length/t_litpointswanted);
         smallestdotsize--;
     }
+    log("dotstodel "+string(t_dotstodelete));
 }
 else
 {
-    var t_dotstoadd = floor(t_litpointswanted/num_dots);
+    var t_dotstoadd = floor((t_litpointswanted+maxpoints_dots)/num_dots);
+    log("dotstoadd "+string(t_dotstoadd));
 }
 
 if (t_lengthwanted == 0) 
 {
     t_lengthwanted = 0.0001; //to avoid dividing by zero
 }
+
+log("length "+string(t_lengthwanted));
+
 
 //parse elements
 if (controller.exp_optimize)
@@ -145,7 +158,7 @@ for (i = 0; i < t_numofelems; i++)
                             ds_list_add(list_raw,0);
                         }
                         
-                        new_point = 1;
+                        new_dot = 1;
                         
                         //travel
                         opt_vectorx = (xp_prev-xp)/opt_dist;
@@ -241,7 +254,7 @@ for (i = 0; i < t_numofelems; i++)
                         }
                         else
                         {
-                            if (new_dot == 1)
+                            if (new_dot)
                             { 
                                 repeat (t_dotstoadd)
                                 {
@@ -250,13 +263,20 @@ for (i = 0; i < t_numofelems; i++)
                                     ds_list_add(list_raw,bl);
                                     ds_list_add(list_raw,c);
                                 }
+                            new_dot = 0;
+                            currentpos += currentposadjust*smallestdotsize; //save some time by jumping
+                            t_i += smallestdotsize;
                             }
                         }
                     }
                     else
                     {
-                        currentpos += currentposadjust*abs(t_dotstodelete);
-                        t_i += abs(t_dotstodelete);
+                        if (new_dot)
+                        {
+                            new_dot = 0;
+                            currentpos += currentposadjust*t_dotstodelete;
+                            t_i += t_dotstodelete;
+                        }
                     }
                 }
                 else
@@ -379,8 +399,6 @@ if (controller.exp_optimize)
             ds_list_add(list_raw,1);
             ds_list_add(list_raw,0);
         }
-        
-        new_point = 1;
         
         //travel
         opt_vectorx = (xp_prev-xp)/opt_dist;
