@@ -1040,6 +1040,7 @@
     <script>scripts\documentation.gml</script>
     <script>scripts\blank_script.gml</script>
     <script>scripts\exit_confirm.gml</script>
+    <script>scripts\telem.gml</script>
     <script>scripts\benchmark.gml</script>
     <script>scripts\verify_serial.gml</script>
     <script>scripts\verify_numexports.gml</script>

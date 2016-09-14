@@ -14,16 +14,7 @@ bl_prev = 1;
 c_prev = 0;
 new_dot = 1;
 
-log("----OUTPUT");
-log("litlength "+string(lit_length));
-log("smallestdot "+string(smallestdotsize));
-log("maxpointstattic "+string(maxpoints_static));
-log("litpointswanted "+string(t_litpointswanted));
-log("maxdots "+string(maxpoints_dots));
-log("numdots "+string(num_dots));
-
 //if too many dots in frame, first attempt to shrink overlapping ones
-
 if (lit_length > 0)
 {
     var t_dotstodelete = 0;
@@ -36,20 +27,16 @@ if (lit_length > 0)
         t_lengthwanted = abs(lit_length/t_litpointswanted);
         smallestdotsize--;
     }
-    log("dotstodel "+string(t_dotstodelete));
 }
 else
 {
     var t_dotstoadd = floor((t_litpointswanted+maxpoints_dots)/num_dots);
-    log("dotstoadd "+string(t_dotstoadd));
 }
 
 if (t_lengthwanted == 0) 
 {
     t_lengthwanted = 0.0001; //to avoid dividing by zero
 }
-
-log("length "+string(t_lengthwanted));
 
 
 //parse elements

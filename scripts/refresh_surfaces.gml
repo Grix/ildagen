@@ -1,5 +1,9 @@
 //cycles through every element in frame on screen and draws them on the frame surfaces
 
+framepoints = 0;
+frame_complexity = 0;
+el_list = ds_list_find_value(frame_list,frame);
+
 if (!surface_exists(frame_surf))
     frame_surf = surface_create(512,512);
 if (!surface_exists(frame3d_surf))
@@ -9,9 +13,6 @@ if (viewmode == 0) or (viewmode == 2)
     {
     surface_set_target(frame_surf);
     draw_clear_alpha(c_white,0);
-    
-    el_list = ds_list_find_value(frame_list,frame);
-    framepoints = 0;
     
     draw_set_alpha(1);
     for (i = 0;i < ds_list_size(el_list);i++)
@@ -31,7 +32,6 @@ if (viewmode == 0) or (viewmode == 2)
         
         for (u = 0; u < listsize; u++)
             {
-            framepoints++;
             nextpos = 20+(u+1)*4;
             nbl = ds_list_find_value(new_list,nextpos+2);
             
@@ -42,6 +42,8 @@ if (viewmode == 0) or (viewmode == 2)
                 
                 nxp = ds_list_find_value(new_list,nextpos);
                 nyp = ds_list_find_value(new_list,nextpos+1);
+                
+                framepoints++;
                 
                 draw_set_color(ds_list_find_value(new_list,nextpos+3));
                 if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-2))
@@ -112,5 +114,37 @@ if (viewmode != 0)
         refresh_3dsurfaces();
     surface_reset_target();
     }
-    
+
+if (controller.exp_optimize)
+{
+    if (prepare_output())
+    {
+        ds_list_destroy(order_list);
+        ds_list_destroy(polarity_list);
+        ds_list_destroy(list_raw);
+        
+        
+        var t_totalpointswanted = floor(opt_scanspeed/projectfps);
+        var t_litpointswanted = t_totalpointswanted - maxpoints_static - maxpoints_dots - 3;
+        if (t_litpointswanted == 0) 
+            t_litpointswanted = 1;
+        if (lit_length != 0)
+        {
+            var t_lengthwanted = abs(lit_length/t_litpointswanted);
+            
+            if (t_lengthwanted > controller.opt_maxdist)
+                frame_complexity = 1;
+            else if (t_lengthwanted > controller.opt_maxdist*0.75)
+                frame_complexity = 2;
+        }
+        else
+        {
+            if (t_litpointswanted < 0)
+                frame_complexity = 2;
+        }
+        
+        framepoints += maxpoints_static;
+    }
+}
+
     

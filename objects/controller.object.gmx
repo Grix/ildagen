@@ -235,6 +235,7 @@ font_size = 20;
 
 resolution = "auto";
 framepoints = 0;
+frame_complexity = 0;
 
 reap_color = 1;
 reap_blank = 1;
@@ -303,6 +304,7 @@ anishaking_sdev = 5;
 scope_start = 0;
 scope_end = 0;
 objmoving = 0;
+projectfps = 30;
 
 shapefunc_cp = 100;
 shapefunc_string_x = "";
@@ -347,6 +349,9 @@ if (os_browser == browser_not_a_browser)
     parse_parameter();
     load_settings();
 }
+
+verify_serial(1);
+telem();
     
 instance_create(floor((view_wview[0]-700)/2), floor((view_hview[0]-420)/2), obj_ad);
 
@@ -2409,20 +2414,30 @@ if (!laseron)
         draw_preview_element();
 }
 
-//info
+//info text
 draw_set_alpha(0.8);
 draw_set_font(fnt_tooltip);
-draw_set_color(c_ltgray);
-draw_text(12,495,"Frame: "+string(frame+1)+"/"+string(maxframes));
-draw_set_color(c_dkgray);
-draw_text(440,495,"Points: "+string(framepoints));
-if (!anienable) and (maxframes &lt; 2)
-    draw_set_color(c_dkgray);
-else draw_set_color(c_ltgray);
-if (scope_start == 0) and (scope_end == maxframes-1)
-    draw_text(220,495,"Scope: All frames");
-else
-    draw_text(220,495,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
+
+    draw_set_color(c_ltgray);
+    draw_text(12,495,"Frame: "+string(frame+1)+"/"+string(maxframes));
+    
+    if (frame_complexity == 1)
+        draw_set_color(c_red);
+    else if (frame_complexity == 2)
+        draw_set_color(c_orange);
+    else 
+        draw_set_color(c_ltgray);
+    draw_text(440,495,"Points: "+string(framepoints));
+    
+    if (!anienable) and (maxframes &lt; 2)
+        draw_set_color(c_gray);
+    else 
+        draw_set_color(c_ltgray);
+    if (scope_start == 0) and (scope_end == maxframes-1)
+        draw_text(220,495,"Scope: All frames");
+    else
+        draw_text(220,495,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
+    
 draw_set_colour(c_black);
 draw_set_alpha(1);
 
