@@ -466,5 +466,3 @@ if (controller.exp_optimize)
         ds_list_add(list_raw,0);
         }
 }
-
-export_framelist_to_buffer();

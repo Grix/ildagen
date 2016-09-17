@@ -1,6 +1,5 @@
 maxpointswanted = floor((1/controller.projectfps)*controller.opt_scanspeed); 
 output_buffer_next_size = maxpointswanted;
-
     
 repeat (maxpointswanted)
     {

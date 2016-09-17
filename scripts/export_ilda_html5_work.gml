@@ -66,7 +66,8 @@ for (j = global.loading_current; j < global.loading_end;j++)
         continue;
         }
     
-    make_frame_export();
+    make_frame();
+    export_framelist_to_buffer();
         
     //update maxpoints
     maxpointsa[0] = maxpoints & 255;

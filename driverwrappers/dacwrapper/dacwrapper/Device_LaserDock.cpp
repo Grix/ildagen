@@ -79,7 +79,7 @@ bool Device_LaserDock::OutputFrame(int rate, int frameSize, LaserDockPoint* buff
 bool Device_LaserDock::OpenDevice()
 {
 	if (!ready) return false;
-	
+
 	return true; //don't need to to anything
 }
 

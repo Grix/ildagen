@@ -171,9 +171,9 @@ else //not optimized
         if (controller.exp_format == 5)
         {
             buffer_write(ilda_buffer,buffer_u8,blank);
-            buffer_write(ilda_buffer,buffer_u8,(c >> 16));
-            buffer_write(ilda_buffer,buffer_u8,((c >> 8) & $FF));
-            buffer_write(ilda_buffer,buffer_u8,(c & $FF));
+            buffer_write(ilda_buffer,buffer_u8,t_red_lowerbound + (c & $FF) * t_red_scale);
+            buffer_write(ilda_buffer,buffer_u8,t_green_lowerbound + ((c >> 8) & $FF) * t_green_scale);
+            buffer_write(ilda_buffer,buffer_u8,t_blue_lowerbound + (c >> 16) * t_blue_scale);
         }
         else
         {
@@ -182,6 +182,10 @@ else //not optimized
                 c = 63;
             else
             {
+                cr = t_red_lowerbound + (c & $FF) * t_red_scale;
+                cg = t_green_lowerbound + ((c >> 8) & $FF) * t_green_scale;
+                cb = t_blue_lowerbound + (c >> 16) * t_blue_scale;
+                c = make_colour_rgb(cr,cg,cb);
                 if (ds_map_exists(c_map, c))
                     c = c_map[? c];
                 else

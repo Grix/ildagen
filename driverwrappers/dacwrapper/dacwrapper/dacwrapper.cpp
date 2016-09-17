@@ -255,7 +255,7 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 			laserDockBuffer[i].y = bufferAddress[currentPos++] >> 4;
 			uint16_t* r = bufferAddress + currentPos++;
 			uint16_t* g = bufferAddress + currentPos++;
-			laserDockBuffer[i].rg = (((uint8_t)*r << 8) | (uint8_t)*g);
+			laserDockBuffer[i].rg = (((uint8_t)*g << 8) | (uint8_t)*r);
 			laserDockBuffer[i].b = (uint8_t)bufferAddress[currentPos++];// << 8;
 			currentPos++;
 		}
