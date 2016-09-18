@@ -6,6 +6,8 @@ polarity_list = ds_list_create();
 //start from middle
 xp_prev = $8000;
 yp_prev = $8000;
+xp_prev_prev = $8000;
+yp_prev_prev = $8000;
 bl_prev = 1;
 c_prev = 0;
 new_dot = 1;
@@ -134,14 +136,14 @@ for (i = 0; i < t_numofelems; i++)
        
     prepare_output_points();
         
-    if (controller.exp_optimize)
+    /*if (controller.exp_optimize)
     {
         if (bl_prev == 0)
         {
             xp_prev = xp;
             yp_prev = yp;
         }
-    }
+    }*/
     bl_prev = 1;
 }
 
@@ -155,15 +157,29 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
     if (controller.exp_optimize)
     {
         opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
-        var t_true_dwell = controller.opt_maxdwell; //todo calculate from angles
+        
         
         if (opt_dist < 200) //connecting segments
         {
+            var t_true_dwell = controller.opt_maxdwell;
             maxpoints_static += (   (controller.opt_maxdwell_blank)
                                     +  abs(t_true_dwell - controller.opt_maxdwell_blank) );
         }
         else
         {
+            if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
+            {
+                t_true_dwell_rising = round(controller.opt_maxdwell*0.2);
+            }
+            else
+            {
+                angle_blank = point_direction(xp,yp, xp_prev,yp_prev);
+                angle_prev = point_direction(xp_prev_prev,yp_prev_prev, xp_prev,yp_prev);
+        
+                t_true_dwell_rising =  round(controller.opt_maxdwell * 
+                                        (1- abs(angle_difference( angle_prev, angle_blank ))/180));
+            }       
+                     
             var t_trav_dist = a_ballistic;
             var t_n = 1;
             var t_quantumsteps = 0;
@@ -178,7 +194,7 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
             }
                  
             maxpoints_static += (   (controller.opt_maxdwell_blank) 
-                                    +  max(controller.opt_maxdwell_blank, t_true_dwell - controller.opt_maxdwell_blank)
+                                    +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
                                     +  (t_n + t_n) );
         }
     }
@@ -187,3 +203,4 @@ if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
 ds_list_destroy(t_list_empties);
 
 return 1;
+

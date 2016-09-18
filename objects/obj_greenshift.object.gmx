@@ -48,7 +48,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(oDropDown))
+            <string>visible = controller.exp_optimize;
+if (!visible)
+    exit;
+if (instance_exists(oDropDown))
     exit;
     
 if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
@@ -86,6 +89,8 @@ else
             <kind>1</kind>
             <string>if (instance_exists(oDropDown))
     exit;
+if (!visible)
+    exit;
     
 ilda_dialog_num("greenshift","Enter the GREEN color offset in points:",controller.opt_greenshift);
 </string>
@@ -111,6 +116,8 @@ ilda_dialog_num("greenshift","Enter the GREEN color offset in points:",controlle
           <argument>
             <kind>1</kind>
             <string>if (instance_exists(oDropDown))
+    exit;
+if (!visible)
     exit;
 
 if (mouse_x &gt; (x+23))

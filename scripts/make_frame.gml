@@ -1,4 +1,4 @@
-var t_vectorx, t_vectory;
+var t_vectorx, t_vectory, t_true_dwell_falling, t_true_dwell_rising;
 
 var t_totalrem = 0;
 var t_totalpointswanted = floor(controller.opt_scanspeed/controller.projectfps);
@@ -10,6 +10,8 @@ var t_lengthwanted = abs(lit_length/t_litpointswanted);
 
 xp_prev = $8000;
 yp_prev = $8000;
+xp_prev_prev = $8000;
+yp_prev_prev = $8000;
 bl_prev = 1;
 c_prev = 0;
 new_dot = 1;
@@ -100,10 +102,25 @@ for (i = 0; i < t_numofelems; i++)
                 if (controller.exp_optimize)
                 {
                     opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
-                    var t_true_dwell = controller.opt_maxdwell; //todo calculate from angles
                     
                     if (opt_dist < 200) //connecting segments
                     {
+                        var t_nextpos = currentpos+currentposadjust;
+                        if (!is_undefined(list_id[| t_nextpos ]))
+                        {
+                            xpn = xo + list_id[| t_nextpos ];
+                            ypn = $ffff - (yo + list_id[| t_nextpos+1 ]);
+                            
+                            angle_next = point_direction(xpn,ypn, xp,yp);
+                            angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
+                        
+                            t_true_dwell_falling =  round(controller.opt_maxdwell * 
+                                                    (1- abs(angle_difference( angle_prev, angle_next ))/180));
+                        }
+                        else
+                            t_true_dwell_falling = controller.opt_maxdwell;
+                            
+                                                
                         //dwell on blanking start
                         repeat (controller.opt_maxdwell_blank)
                         {
@@ -112,7 +129,7 @@ for (i = 0; i < t_numofelems; i++)
                             ds_list_add(list_raw,0);
                             ds_list_add(list_raw,c_prev);
                         }
-                        repeat (t_true_dwell - controller.opt_maxdwell_blank*2 )
+                        repeat (t_true_dwell_falling - controller.opt_maxdwell_blank*2 )
                         {
                             ds_list_add(list_raw,xp_prev);
                             ds_list_add(list_raw,yp);
@@ -129,6 +146,42 @@ for (i = 0; i < t_numofelems; i++)
                     }
                     else //not connecting segments
                     {
+                        angle_blank = point_direction(xp,yp, xp_prev,yp_prev);
+                        var t_nextpos = currentpos+currentposadjust;
+                        if (!is_undefined(list_id[| t_nextpos ]))
+                        {
+                            xpn = xo + list_id[| t_nextpos ];
+                            ypn = $ffff - (yo + list_id[| t_nextpos+1 ]);
+                            
+                            if ((xpn == xp) && (ypn == yp))
+                            {
+                                t_true_dwell_falling = round(controller.opt_maxdwell*0.2);
+                            }
+                            else
+                            {
+                                angle_next = point_direction(xp,yp, xpn,ypn);
+                                
+                                t_true_dwell_falling =  round(controller.opt_maxdwell * 
+                                                        (1- abs(angle_difference( angle_blank, angle_next ))/180));
+                            }
+                        }
+                        else
+                        {   
+                            t_true_dwell_falling = controller.opt_maxdwell; //for worst case scenario
+                        }
+                        
+                        if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
+                        {
+                            t_true_dwell_rising = round(controller.opt_maxdwell*0.2);
+                        }
+                        else
+                        {
+                            angle_prev = point_direction(xp_prev_prev,yp_prev_prev, xp_prev,yp_prev);
+                    
+                            t_true_dwell_rising =  round(controller.opt_maxdwell * 
+                                                    (1- abs(angle_difference( angle_prev, angle_blank ))/180));
+                        }
+                    
                         //dwell on blanking start
                         repeat (controller.opt_maxdwell_blank)
                         {
@@ -137,7 +190,7 @@ for (i = 0; i < t_numofelems; i++)
                             ds_list_add(list_raw,0);
                             ds_list_add(list_raw,c_prev);
                         }
-                        repeat ( max(controller.opt_maxdwell_blank, t_true_dwell - controller.opt_maxdwell_blank) )
+                        repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank) )
                         {
                             ds_list_add(list_raw,xp_prev);
                             ds_list_add(list_raw,yp_prev);
@@ -201,7 +254,7 @@ for (i = 0; i < t_numofelems; i++)
                             ds_list_add(list_raw,0);
                         }
                         
-                        repeat ( max(controller.opt_maxdwell_blank, t_true_dwell - controller.opt_maxdwell_blank) )
+                        repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank) )
                         {
                             ds_list_add(list_raw,xp);
                             ds_list_add(list_raw,yp);
@@ -323,21 +376,22 @@ for (i = 0; i < t_numofelems; i++)
         ds_list_add(list_raw,bl);
         ds_list_add(list_raw,c);
         
+        bl_prev = 0;
+        xp_prev_prev = xp_prev;
+        yp_prev_prev = yp_prev;
         xp_prev = xp;
         yp_prev = yp;
         c_prev = c;
-        bl_prev = 0;
     }
-    
         
-    if (controller.exp_optimize)
+    /*if (controller.exp_optimize)
     {
         if (bl_prev == 0)
         {
             xp_prev = xp;
             yp_prev = yp;
         }
-    }
+    }*/
     bl_prev = 1;
 }
 
@@ -349,10 +403,11 @@ if (controller.exp_optimize)
     
     //BLANKING
     opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
-    var t_true_dwell = controller.opt_maxdwell; //todo calculate from angles
     
     if (opt_dist < 200) //connecting segments
     {
+        t_true_dwell_falling = controller.opt_maxdwell; //worst case
+                                
         //dwell on blanking start
         repeat (controller.opt_maxdwell_blank)
         {
@@ -361,7 +416,7 @@ if (controller.exp_optimize)
             ds_list_add(list_raw,0);
             ds_list_add(list_raw,c_prev);
         }
-        repeat (t_true_dwell - controller.opt_maxdwell_blank )
+        repeat (t_true_dwell_falling - controller.opt_maxdwell_blank )
         {
             ds_list_add(list_raw,xp_prev);
             ds_list_add(list_raw,yp_prev);
@@ -371,6 +426,19 @@ if (controller.exp_optimize)
     }
     else //not connecting segments
     {
+        if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
+        {
+            t_true_dwell_rising = round(controller.opt_maxdwell*0.2);
+        }
+        else
+        {
+            angle_blank = point_direction(xp,yp, xp_prev,yp_prev);
+            angle_prev = point_direction(xp_prev_prev,yp_prev_prev, xp_prev,yp_prev);
+    
+            t_true_dwell_rising =  round(controller.opt_maxdwell * 
+                                    (1- abs(angle_difference( angle_prev, angle_blank ))/180));
+        }
+        
         //dwell on blanking start
         repeat (controller.opt_maxdwell_blank)
         {
@@ -379,7 +447,7 @@ if (controller.exp_optimize)
             ds_list_add(list_raw,0);
             ds_list_add(list_raw,c_prev);
         }
-        repeat ( max(controller.opt_maxdwell_blank, t_true_dwell - controller.opt_maxdwell_blank) )
+        repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank) )
         {
             ds_list_add(list_raw,xp_prev);
             ds_list_add(list_raw,yp_prev);

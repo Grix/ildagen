@@ -219,6 +219,7 @@ green_scale = 1;
 red_scale_lower = 0;
 blue_scale_lower = 0;
 green_scale_lower = 0;
+angle_prev = 0;
 
 placing = "line";
 placing_select_last = "line";
@@ -964,7 +965,14 @@ if (keyboard_check_pressed(vk_tab))
 if (room != rm_ilda) exit;
 
 if (playing == 1)
+{
+    if (maxframes &lt;= 1)
     {
+        playing = 0;
+        if (seqcontrol.song)
+            FMODInstanceSetPaused(seqcontrol.songinstance,1);
+    }
+        
     framehr += delta_time/1000000*seqcontrol.projectfps*seqcontrol.playbackspeed;
     if (framehr &gt; maxframes-0.5)
         framehr-= maxframes;
@@ -972,27 +980,27 @@ if (playing == 1)
     if (frame &lt; 1)
         frame = 0;
     if (frame != frameprev)
-        {
+    {
         frame_surf_refresh = 1;
-        }
+    }
     
     if !ds_list_empty(semaster_list)
-        {
+    {
         update_semasterlist_flag = 1;
-        }
+    }
         
     if (frameprev != 0) and (frame == 0) and (seqcontrol.song)
-        {
+    {
         FMODInstanceSetPosition(seqcontrol.songinstance,tlx/seqcontrol.projectfps*1000/FMODSoundGetLength(seqcontrol.song));
-        }
+    }
         
     var t_minroomspeed = max(projectfps,25);
-    }
+}
 else
-    {
-    var t_minroomspeed = 60
-    }
-    
+{
+    var t_minroomspeed = 60;
+}
+
 room_speed = projectfps;
 while (room_speed &lt; t_minroomspeed)
     room_speed += projectfps;

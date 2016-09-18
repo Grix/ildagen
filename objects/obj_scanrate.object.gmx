@@ -48,7 +48,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(oDropDown))
+            <string>visible = controller.exp_optimize;
+if (!visible)
+    exit;
+
+if (instance_exists(oDropDown))
     exit;
 if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
@@ -85,7 +89,8 @@ else
             <kind>1</kind>
             <string>if (instance_exists(oDropDown))
     exit;
-if (!visible) exit;
+if (!visible) 
+    exit;
 
 dd_ilda_scanspeed();
 </string>
@@ -110,7 +115,9 @@ dd_ilda_scanspeed();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(oDropDown))
+            <string>if (!visible) 
+    exit;
+if (instance_exists(oDropDown))
     exit;
 
 if (mouse_x &gt; (x+23))
@@ -147,7 +154,7 @@ save_settings();
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x+60,y+3,"Scan rate: "+string(controller.opt_scanspeed));
+draw_text(x+60,y+3,"Sampling rate: "+string(controller.opt_scanspeed));
 draw_set_color(c_white);
 </string>
           </argument>

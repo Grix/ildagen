@@ -1,4 +1,5 @@
 listsize = ((ds_list_size(list_id)-20)/4);
+var t_true_dwell_falling, t_true_dwell_rising;
 
 if (polarity_list[| i] == 0)
 {
@@ -50,15 +51,65 @@ for (t_i = 0; t_i < listsize; t_i++)
             //have to parse through all blanked points when writing
         
             //BLANKING
-            var t_true_dwell = controller.opt_maxdwell; //todo calculate from angles
             
             if (opt_dist < 200) //connecting segments
             {
+                var t_nextpos = currentpos+currentposadjust;
+                if (!is_undefined(list_id[| t_nextpos ]))
+                {
+                    xpn = xo + list_id[| t_nextpos ];
+                    ypn = $ffff - (yo + list_id[| t_nextpos+1 ]);
+                    
+                    angle_next = point_direction(xpn,ypn, xp,yp);
+                    angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
+                
+                    t_true_dwell_falling =  round(controller.opt_maxdwell * 
+                                            (1- abs(angle_difference( angle_prev, angle_next ))/180));
+                }
+                else
+                    t_true_dwell_falling = controller.opt_maxdwell;
+                    
                 maxpoints_static += ( (controller.opt_maxdwell_blank)*2
-                                       + abs(t_true_dwell - controller.opt_maxdwell_blank*2) );
+                                       + abs(t_true_dwell_falling - controller.opt_maxdwell_blank*2) );
             }
-            else
+            else //not connecting segments
             {
+                angle_blank = point_direction(xp,yp, xp_prev,yp_prev);
+                var t_nextpos = currentpos+currentposadjust;
+                if (!is_undefined(list_id[| t_nextpos ]))
+                {
+                    xpn = xo + list_id[| t_nextpos ];
+                    ypn = $ffff - (yo + list_id[| t_nextpos+1 ]);
+                    
+                    if ((xpn == xp) && (ypn == yp))
+                    {
+                        t_true_dwell_falling = round(controller.opt_maxdwell*0.2);
+                    }
+                    else
+                    {
+                        angle_next = point_direction(xp,yp, xpn,ypn);
+                        
+                        t_true_dwell_falling =  round(controller.opt_maxdwell * 
+                                                (1- abs(angle_difference( angle_blank, angle_next ))/180));
+                    }
+                }
+                else
+                {   
+                    t_true_dwell_falling = controller.opt_maxdwell; //for worst case scenario
+                }
+                
+                if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
+                {
+                    t_true_dwell_rising = round(controller.opt_maxdwell*0.2);
+                }
+                else
+                {
+                    angle_prev = point_direction(xp_prev_prev,yp_prev_prev, xp_prev,yp_prev);
+            
+                    t_true_dwell_rising =  round(controller.opt_maxdwell * 
+                                            (1- abs(angle_difference( angle_prev, angle_blank ))/180));
+                }
+            
                 var t_trav_dist = a_ballistic;
                 var t_n = 1;
                 var t_quantumsteps = 0;
@@ -73,7 +124,8 @@ for (t_i = 0; t_i < listsize; t_i++)
                 }
                      
                 maxpoints_static += (   2*(controller.opt_maxdwell_blank) 
-                                        +  2*max(controller.opt_maxdwell_blank, t_true_dwell - controller.opt_maxdwell_blank)
+                                        +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
+                                        +  max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank)
                                         +  (t_n + t_n) );
             }
         }
@@ -100,7 +152,8 @@ for (t_i = 0; t_i < listsize; t_i++)
         }
     }
     
-        
+    xp_prev_prev = xp_prev;
+    yp_prev_prev = yp_prev;
     xp_prev = xp;
     yp_prev = yp;
     //c_prev = c;
@@ -115,7 +168,6 @@ if ((new_dot) && (currentdotsize > 1))
         smallestdotsize = currentdotsize;
     currentdotsize = 0;
 }
-
 
 
 

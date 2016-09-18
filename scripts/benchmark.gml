@@ -5,12 +5,11 @@ time = get_timer();
 i = 0;
 x = 0;
 y = 0;
-repeat (10000)
+repeat (1000)
     {
     x++;
     y++;
-    if(mouse_x >= bbox_left && mouse_y >= bbox_top && mouse_x < bbox_right && mouse_y < bbox_bottom)
-        i++;
+    i = point_direction(x,y,xprevious,yprevious);
     }
 log(get_timer()-time);
 time2 = get_timer();
