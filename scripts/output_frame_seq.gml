@@ -1,4 +1,4 @@
-if ((!frame_surf_refresh) && (!controller.laseronfirst))
+if (((!frame_surf_refresh) && (!controller.laseronfirst)) && (controller.dac_string != "LaserDock"))
     exit;
 
 if (output_buffer_ready)

@@ -205,7 +205,7 @@ for (i = 0; i < t_numofelems; i++)
                         opt_vectory = (yp_prev-yp)/opt_dist;
                         
                         //find number of steps and step size
-                        var t_trav_dist = a_ballistic; //todo calculate for angle
+                        var t_trav_dist = a_ballistic;
                         var t_n = 1;
                         var t_quantumsteps = 0;
                         var t_totaldist = 0;
@@ -460,7 +460,7 @@ if (controller.exp_optimize)
         opt_vectory = (yp_prev-yp)/opt_dist;
         
         //find number of steps and step size
-        var t_trav_dist = a_ballistic; //todo calculate for angle
+        var t_trav_dist = a_ballistic;
         var t_n = 1;
         var t_quantumsteps = 0;
         var t_totaldist = 0;

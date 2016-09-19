@@ -68,58 +68,58 @@ yplus16 = y+16;
     exit;
 
 if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
-    {
+{
     controller.tooltip = "Changes the bounds of colors in output, use to adjust white balance and accuracy of gradients.#-&gt;Right click on a knob to enter precise values.";
-    } 
+} 
 
 if (moving == 1) or ((moving &lt; 4) and (moving &gt; 0) and keyboard_check(vk_control))
-    {
+{
     red = controller.red_scale * 255;
     red -= (mouse_y-mouse_yprevious)*255/52;
     if (red &lt; 0) red = 0;
     if (red &gt; 255) red = 255;
     controller.red_scale = red/255;
-    }
+}
 if (moving == 2) or ((moving &lt; 4) and (moving &gt; 0) and keyboard_check(vk_control))
-    {
+{
     green = controller.green_scale * 255;
     green -= (mouse_y-mouse_yprevious)*255/52;
     if (green &lt; 0) green = 0;
     if (green &gt; 255) green = 255;
     controller.green_scale = green/255;
-    }
+}
 if (moving == 3) or ((moving &lt; 4) and (moving &gt; 0) and keyboard_check(vk_control))
-    {
+{
     blue = controller.blue_scale * 255;
     blue -= (mouse_y-mouse_yprevious)*255/52;
     if (blue &lt; 0) blue = 0;
     if (blue &gt; 255) blue = 255;
     controller.blue_scale = blue/255;
-    }
+}
 if (moving == 4) or ((moving &gt; 3) and keyboard_check(vk_control))
-    {
+{
     red = controller.red_scale_lower * 255;
     red -= (mouse_y-mouse_yprevious)*255/52;
     if (red &lt; 0) red = 0;
     if (red &gt; 255) red = 255;
     controller.red_scale_lower = red/255;
-    }
+}
 if (moving == 5) or ((moving &gt; 3) and keyboard_check(vk_control))
-    {
+{
     green = controller.green_scale_lower * 255;
     green -= (mouse_y-mouse_yprevious)*255/52;
     if (green &lt; 0) green = 0;
     if (green &gt; 255) green = 255;
     controller.green_scale_lower = green/255;
-    }
+}
 if (moving == 6) or ((moving &gt; 3) and keyboard_check(vk_control))
-    {
+{
     blue = controller.blue_scale_lower * 255;
     blue -= (mouse_y-mouse_yprevious)*255/52;
     if (blue &lt; 0) blue = 0;
     if (blue &gt; 255) blue = 255;
     controller.blue_scale_lower = blue/255;
-    }
+}
     
 mouse_yprevious = mouse_y;
 </string>

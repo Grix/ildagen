@@ -2,15 +2,15 @@ maxpoints = ds_list_size(list_raw)/4;
 var t_diff, t_pal_c, t_c_mapvalue;
 var t_list_raw_size = ds_list_size(list_raw)-4;
 
+var t_red_lowerbound = round(controller.red_scale_lower*255);
+var t_green_lowerbound = round(controller.green_scale_lower*255);
+var t_blue_lowerbound = round(controller.blue_scale_lower*255);
+var t_red_scale = controller.red_scale*(255-t_red_lowerbound)/255;
+var t_green_scale = controller.green_scale*(255-t_green_lowerbound)/255;
+var t_blue_scale = controller.blue_scale*(255-t_blue_lowerbound)/255;
+
 if (controller.exp_optimize)
 {
-    var t_red_lowerbound = round(controller.red_scale_lower*255);
-    var t_green_lowerbound = round(controller.green_scale_lower*255);
-    var t_blue_lowerbound = round(controller.blue_scale_lower*255);
-    var t_red_scale = controller.red_scale*(255-t_red_lowerbound)/255;
-    var t_green_scale = controller.green_scale*(255-t_green_lowerbound)/255;
-    var t_blue_scale = controller.blue_scale*(255-t_blue_lowerbound)/255;
-    
     var t_blankshift = controller.opt_blankshift*4;
     var t_redshift = controller.opt_redshift*4;
     var t_greenshift = controller.opt_greenshift*4;

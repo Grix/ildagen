@@ -1,2 +1,2 @@
-- Improved GUI design
-- Bugfixes
+- Better and faster scanning optimization
+- Support for LaserDock output

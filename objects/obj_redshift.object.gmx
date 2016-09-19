@@ -56,7 +56,7 @@ if (instance_exists(oDropDown))
     
 if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
-    controller.tooltip = "Changes the RED color offset in points. Right click to set custom amount.";
+    controller.tooltip = "Changes the RED color offset in points. Right click to set custom amount.#Hold Ctrl and click to change all offsets at once.";
     
     if ((mouse_x - bbox_left) &gt; 24)
         image_index = 1;
@@ -120,11 +120,31 @@ ilda_dialog_num("redshift","Enter the RED color offset in points:",controller.op
 if (!visible)
     exit;
 
-if (mouse_x &gt; (x+23))
-    controller.opt_redshift += 1;
+if (keyboard_check(vk_control))
+{
+    if (mouse_x &gt; (x+23))
+    {
+        controller.opt_blankshift += 1;
+        controller.opt_greenshift += 1;
+        controller.opt_blueshift += 1;
+        controller.opt_redshift += 1;
+    }
+    else
+    {
+        controller.opt_blankshift -= 1;
+        controller.opt_greenshift -= 1;
+        controller.opt_blueshift -= 1;
+        controller.opt_redshift -= 1;
+    }
+}
 else
-    controller.opt_redshift -= 1;
-    
+{
+    if (mouse_x &gt; (x+23))
+        controller.opt_redshift += 1;
+    else
+        controller.opt_redshift -= 1;
+}
+        
 save_settings();
 </string>
           </argument>
