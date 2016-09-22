@@ -2,7 +2,7 @@ if (idbyte == 101) or (idbyte == 102)
     {
     for (j = global.loading_current; j < global.loading_end;j++)
         {
-        if (get_timer()-global.loadingtimeprev >= 30000)
+        if (get_timer()-global.loadingtimeprev >= 100000)
             {
             global.loading_current = j;
             global.loadingtimeprev = get_timer();
@@ -68,7 +68,7 @@ else if (idbyte == 100) //old, need to remake buffers
     {
     for (j = global.loading_current; j < global.loading_end;j++)
         {
-        if (get_timer()-global.loadingtimeprev >= 30000)
+        if (get_timer()-global.loadingtimeprev >= 100000)
             {
             global.loading_current = j;
             global.loadingtimeprev = get_timer();
@@ -120,7 +120,7 @@ else if (idbyte == 100) //old, need to remake buffers
         }
     }
     
-if (get_timer()-global.loadingtimeprev >= 30000)
+if (get_timer()-global.loadingtimeprev >= 100000)
     {
     global.loading_current = j;
     global.loadingtimeprev = get_timer();
