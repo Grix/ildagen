@@ -1,5 +1,6 @@
 with(controller)
     {
+    log("Ilda import end");
     buffer_delete(ild_file);
     
     ildlistsize = ds_list_size(ild_list);

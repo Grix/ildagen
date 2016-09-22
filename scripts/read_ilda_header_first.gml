@@ -5,7 +5,7 @@ i += 6; //7
 byte = get_byte();
 if (byte == 4 or byte == 5 or byte == 1 or byte == 0) { format = byte; }
 else if (byte == 2)
-    {
+{
     //palette
     format = 2;
     i+=17; //24
@@ -15,8 +15,14 @@ else if (byte == 2)
         i+=3;
     show_message_async("Palette detected but parsing is not supported yet, using default palette.");
     return 0;
-    }
-else {show_message_async("We don't support this format yet, try converting to ILDA format 0, 1, 4 or 5."); format=5; errorflag=1; return 1;}
+}
+else 
+{
+    show_message_async("We don't support this format yet, try converting to ILDA format 0, 1, 4 or 5."); 
+    format=5; 
+    errorflag=1; 
+    return 1;
+}
 i+=17;
 /*repeat(8) //8
     {
@@ -31,10 +37,10 @@ repeat(8) //16
 
 bytes = get_bytes(); //24
 if (bytes != 0)
-    {
+{
     frame_list_parse = ds_list_create();
     maxpoints = bytes;
-    }
+}
 else
     return 1;
     

@@ -7,7 +7,7 @@ with(controller)
     
     global.loading_importildaseq = 1;
     global.loading_start = 0;
-    global.loading_end = maxframes_parse;
+    global.loading_end = file_size;
     global.loading_current = global.loading_start;
     }
 room_goto(rm_loading);

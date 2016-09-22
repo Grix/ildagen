@@ -3,11 +3,11 @@
 //return 1 if successful
 
 filename = argument0;
-if string_length(filename)
-    {
+if (string_length(filename))
+{
     ild_file = buffer_load(filename);
     file_size = buffer_get_size(ild_file);
-    }
+}
 else
     return 0;
     
@@ -36,10 +36,10 @@ format = 0;
 ild_list = ds_list_create();
 
 do
-    {
+{
     if (read_ilda_header_first()) 
         return 0;
-    }
+}
 until (format != 2)
 
 read_ilda_frame();
