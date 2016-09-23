@@ -1,2 +1,1 @@
-- Better and faster scanning optimization
-- Support for LaserDock output
+- Fixed bugs related to importing ILD files

@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.4.0";
-versiondate = "2016-09-19";
+            <string>version = "1.4.1";
+versiondate = "2016-09-23";
 
 if (debug_mode)
 {
