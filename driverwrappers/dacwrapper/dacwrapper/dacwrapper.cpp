@@ -32,7 +32,7 @@ GMEXPORT double ScanDevices()
 	numDevices = 0;
 
 	int numEtherdreams = etherDreamDevice->Init();
-	printf("Found %d Etherdreams\n", numEtherdreams);
+	fprintf(stderr, "Found %d Etherdreams\n", numEtherdreams);
 	for (int i = 0; i < numEtherdreams; i++)
 	{
 		char* name = new char[64];
@@ -41,7 +41,7 @@ GMEXPORT double ScanDevices()
 	}
 
 	int numOLSC = olscDevice->Init();
-	printf("Found %d OLSC\n", numOLSC);
+	fprintf(stderr, "Found %d OLSC\n", numOLSC);
 	for (int i = 0; i < numOLSC; i++)
 	{
 		char* name = new char[64];
@@ -50,7 +50,7 @@ GMEXPORT double ScanDevices()
 	}
 
 	int numOLSCEasylase = olscEasylaseDevice->Init();
-	printf("Found %d Easylase\n", numOLSCEasylase);
+	fprintf(stderr, "Found %d Easylase\n", numOLSCEasylase);
 	for (int i = 0; i < numOLSCEasylase; i++)
 	{
 		char* name = new char[64];
@@ -59,7 +59,7 @@ GMEXPORT double ScanDevices()
 	}
 
 	int numOLSCEzAudDac = olscEzAudDacDevice->Init();
-	printf("Found %d EZAud\n", numOLSCEzAudDac);
+	fprintf(stderr, "Found %d EZAud\n", numOLSCEzAudDac);
 	for (int i = 0; i < numOLSCEzAudDac; i++)
 	{
 		char* name = new char[64];
@@ -68,7 +68,7 @@ GMEXPORT double ScanDevices()
 	}
 
 	int numHelios = heliosDevice->Init();
-	printf("Found %d Helios\n", numHelios);
+	fprintf(stderr, "Found %d Helios\n", numHelios);
 	for (int i = 0; i < numHelios; i++)
 	{
 		char* name = new char[64];
@@ -77,7 +77,7 @@ GMEXPORT double ScanDevices()
 	}
 
 	int numRiyas = riyaDevice->Init();
-	printf("Found %d Riyas\n", numRiyas);
+	fprintf(stderr, "Found %d Riyas\n", numRiyas);
 	for (int i = 0; i < numRiyas; i++)
 	{
 		char* name = new char[64];
@@ -85,7 +85,7 @@ GMEXPORT double ScanDevices()
 		dacs[numDevices++] = { 2, i, name };
 	}
 	int numLaserDocks = laserDockDevice->Init();
-	printf("Found %d LaserDocks\n", numLaserDocks);
+	fprintf(stderr,"Found %d LaserDocks\n", numLaserDocks);
 	if (numLaserDocks == 1)
 	{
 		char* name = new char[64];

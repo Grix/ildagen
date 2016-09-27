@@ -68,7 +68,7 @@ int Device_OLSC::Init()
 		FreeLibrary(OLSCLibrary);
 		return openResult;
 	}
-	
+
 	ready = true;
 	return openResult;
 }
@@ -87,8 +87,10 @@ bool Device_OLSC::OutputFrame(int cardNum, int scanRate, int bufferSize, OLSC_Po
 		else
 		{
 			DWORD status;
-			if ( (OLSC_GetStatus(cardNum, status) & 1) == 0) //if ready
+			if ( (OLSC_GetStatus(cardNum, status)) == 1)
 			{
+				if ((status & 1) != 0) //if ready
+					continue;
 				return (OLSC_WriteFrameEx(cardNum, scanRate, bufferSize, bufferAddress) == 1);
 			}
 		}

@@ -874,6 +874,7 @@
           <script>scripts\dd_seq_envtype_r_create.gml</script>
           <script>scripts\dd_seq_envtype_g_create.gml</script>
           <script>scripts\dd_seq_envtype_b_create.gml</script>
+          <script>scripts\dd_seq_envtype_rotabs_create.gml</script>
         </scripts>
       </scripts>
       <scripts name="dd_options">
@@ -927,9 +928,9 @@
       <script>scripts\seq_copy_object.gml</script>
       <script>scripts\seq_edit_object.gml</script>
       <script>scripts\add_marker.gml</script>
+      <script>scripts\ready_envelope_applying.gml</script>
       <script>scripts\apply_envelope_point.gml</script>
       <script>scripts\apply_envelope_frame.gml</script>
-      <script>scripts\ready_envelope_applying.gml</script>
     </scripts>
     <scripts name="ilda">
       <script>scripts\draw_grid.gml</script>

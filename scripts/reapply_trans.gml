@@ -2,43 +2,43 @@
 
 //create more frames if only one and animation is on
 if (maxframes == 1) and (anienable)
-    {
+{
     maxframes = 32;
     scope_end = 31;
     refresh_miniaudio_flag = 1;
     
     if (ds_list_size(frame_list) < maxframes)
         repeat (maxframes - ds_list_size(frame_list))
-            {
+        {
             templist = ds_list_create();
             if (fillframes)
-                {
+            {
                 tempelcount = ds_list_size(ds_list_find_value(frame_list,ds_list_size(frame_list)-1));
                 for (u = 0;u < tempelcount;u++)
-                    {
+                {
                     tempellist = ds_list_create();
                     ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(frame_list,ds_list_size(frame_list)-1),u));
                     ds_list_add(templist,tempellist);
-                    }
                 }
-            ds_list_add(frame_list,templist);
             }
-    }
+            ds_list_add(frame_list,templist);
+        }
+}
 
 for (c = 0; c < ds_list_size(semaster_list); c++)
-    {
+{
     selectedelement = ds_list_find_value(semaster_list,c);
     
     //find elements
     temp_undof_list = ds_list_create();
     temp_frame_list = ds_list_create();
     for (i = scope_start;i <= scope_end;i++)
-        {
+    {
         el_list_temp = ds_list_find_value(frame_list,i);
         for (u = 0;u < ds_list_size(el_list_temp);u++)
-            {
+        {
             if (ds_list_find_value(ds_list_find_value(el_list_temp,u),9) == selectedelement)
-                {
+            {
                 if (ds_list_empty(temp_frame_list))
                     startframe = i;
                 ds_list_add(temp_frame_list,ds_list_find_value(el_list_temp,u))
@@ -46,16 +46,16 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
                 ds_list_copy(temp_undo_list,ds_list_find_value(el_list_temp,u));
                 ds_list_add(temp_undo_list,i);
                 ds_list_add(temp_undof_list,temp_undo_list);
-                }
             }
         }
+    }
     
     ds_list_add(undo_list,"k"+string(temp_undof_list));
     
     
     //walk through frames
     for (i = 0;i < ds_list_size(temp_frame_list);i++)
-        {
+    {
         new_list = ds_list_find_value(temp_frame_list,i);
         checkpoints = ((ds_list_size(new_list)-20)/4);
         
@@ -65,7 +65,7 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
         endy = ds_list_find_value(new_list,3);
         
         if (anienable == 0) or (ds_list_size(temp_frame_list) == 1)
-            {
+        {
             endx_r = endx+anixtrans;
             endy_r = endy+aniytrans;
             startposx_r = startpos[0]+anixtrans;
@@ -73,42 +73,42 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
             rot_r = degtorad(anirot);
             scalex_r = scalex;
             scaley_r = scaley;
-            }
+        }
         else
-            {
+        {
             t = i/(ds_list_size(temp_frame_list));
             t = (t*anirep)%1;
             if (anifunc = "tri")
-                {
+            {
                 t *= 2;
                 if (t > 1)
                     t = 1-(t%1);
-                }
+            }
             else if (anifunc = "sine")
-                {
+            {
                 t = cos(t*pi*2);
                 t *= -1;
                 t += 1;
                 t /= 2;
-                }
+            }
             else if (anifunc = "easeout")
-                {
+            {
                 t = sin(t*pi/2);
-                }
+            }
             else if (anifunc = "easein")
-                {
+            {
                 t = 1-sin(t*pi/2+pi/2);
-                }
+            }
             else if (anifunc = "bounce")
-                {
+            {
                 t = sin(t*pi);
-                }
+            }
             else if (anifunc = "easeinout")
-                {
+            {
                 t = sin(t*pi-pi/2);
                 t += 1;
                 t /= 2;
-                }
+            }
                 
             endx_r = lerp(endx,endx+anixtrans,t);
             endy_r = lerp(endy,endy+aniytrans,t);
@@ -117,7 +117,7 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
             rot_r = degtorad(lerp(0,anirot,t));
             scalex_r = lerp(1,scalex,t);
             scaley_r = lerp(1,scaley,t);
-            }
+        }
             
         xmax = -$ffff;
         xmin = $ffff;
@@ -126,7 +126,7 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
             
         //walk through points
         for (j = 0; j < checkpoints;j++)
-            {
+        {
             listpos = 20+j*4;
             
             xp = startpos[0]+ds_list_find_value(new_list,listpos);
@@ -149,7 +149,7 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
                ymax = ypnew;
             if (ypnew < ymin)
                ymin = ypnew;
-            }
+        }
             
         /*angle = degtorad(point_direction(anchorx,anchory,startposx_r,startposy_r));
         dist = point_distance(anchorx,anchory,startposx_r,startposy_r);
@@ -175,8 +175,8 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
         ds_list_replace(new_list,5,xmax/$ffff*512);
         ds_list_replace(new_list,6,ymin/$ffff*512);
         ds_list_replace(new_list,7,ymax/$ffff*512);    
-        }
     }
+}
 
 frame_surf_refresh = 1;
 update_semasterlist_flag = 1;

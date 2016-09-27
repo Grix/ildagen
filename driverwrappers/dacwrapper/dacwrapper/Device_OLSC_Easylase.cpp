@@ -87,8 +87,10 @@ bool Device_OLSC_Easylase::OutputFrame(int cardNum, int scanRate, int bufferSize
 		else
 		{
 			DWORD status;
-			if ((OLSC_GetStatus(cardNum, status) & 1) == 0) //if ready
+			if ((OLSC_GetStatus(cardNum, status)) == 1)
 			{
+				if ((status & 1) != 0) //if ready
+					continue;
 				return (OLSC_WriteFrameEx(cardNum, scanRate, bufferSize, bufferAddress) == 1);
 			}
 		}
