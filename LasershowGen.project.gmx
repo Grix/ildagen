@@ -255,6 +255,7 @@
     <sprite>sprites\spr_blank</sprite>
     <sprite>sprites\spr_comingsoon</sprite>
     <sprite>sprites\spr_ad1</sprite>
+    <sprite>sprites\spr_laserareasettings</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_ilda</background>
@@ -1185,6 +1186,7 @@
         <object>objects\obj_blueshift</object>
         <object>objects\obj_maxscanningspeed</object>
         <object>objects\obj_format</object>
+        <object>objects\obj_blindzone</object>
       </objects>
       <object>objects\obj_fps</object>
       <object>objects\obj_playcontrols</object>

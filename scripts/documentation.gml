@@ -20,6 +20,13 @@ dac_list
         num
         description
         settings map...
+    
+blindzone_list
+    start x
+    end x
+    start y
+    end y
+    ..x4 for each
         
 frame_list
     frame...

@@ -58,6 +58,8 @@ menu_width_start[3] = menu_width_start[2]+menu_width[2];
             <kind>1</kind>
             <string>if (keyboard_check_pressed(vk_tab))
     room_goto(rm_ilda);
+    
+
 </string>
           </argument>
         </arguments>
@@ -119,7 +121,9 @@ if (mouse_y &gt; view_yview[3])
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//menu
+            <string>
+
+//menu
 draw_set_colour(c_black);
 draw_set_alpha(1);
 draw_text(0,view_yview[3]+4,menu_string);

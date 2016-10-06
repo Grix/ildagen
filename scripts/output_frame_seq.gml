@@ -140,6 +140,10 @@ for (k = 0; k < ds_list_size(layer_list); k++)
                     xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
                     yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
                 }
+                ds_list_add(ind_list,xp);
+                ds_list_add(ind_list,yp);
+                ds_list_add(ind_list,bl);
+                ds_list_add(ind_list,c);
             }
         }
                 
@@ -153,14 +157,14 @@ if (ds_list_size(el_list) == 0)
 else
 {
     if (!prepare_output())
-{
+    {
         optimize_middle_output();
-}
+    }
     else
-{
+    {
         make_frame();
         output_framelist_to_buffer();
-}
+    }
 }
 
 //cleanup

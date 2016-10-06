@@ -86,7 +86,7 @@ bool Device_Helios::OutputFrame(int cardNum, int rate, int frameSize, HeliosPoin
 	for (int i = 0; i < 16; i++)
 	{
 		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
-			break;
+			break; //CURRENTLY UNUSED BECAUSE OF MUTEX
 		else if (_GetStatus(cardNum) == 1)
 		{
 			return (_WriteFrame(cardNum, rate, 0, bufferAddress, frameSize) == 1);
@@ -105,10 +105,14 @@ bool Device_Helios::OpenDevice(int cardNum)
 bool Device_Helios::Stop(int cardNum)
 {
 	if (!ready) return false;
+	
+	for (int i = 0; i < 20; i++)
+	{
+		if (_Stop(cardNum) == 1)
+			return true;
+	}
 
-	return (_Stop(cardNum) == 1);
-
-	return true;
+	return false;
 }
 
 bool Device_Helios::CloseAll()

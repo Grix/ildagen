@@ -118,6 +118,7 @@ if (moving_object == 1)
 else if (moving_object == 2)
     {
     //resizing object on timeline
+    controller.scrollcursor_flag = 1;
     for (i = 0; i < ds_list_size(somaster_list); i++)
         {
         objecttomove = ds_list_find_value(somaster_list,i);
@@ -197,6 +198,7 @@ else if (moving_object == 2)
 else if (moving_object == 3)
     {
     //moving startframe
+    controller.scrollcursor_flag = 1;
     startframe += (mouse_x-mousexprev)*tlzoom/tlw;
     if (startframe < 0) startframe = 0;
     mousexprev = mouse_x;
@@ -210,6 +212,7 @@ else if (moving_object == 3)
 else if (moving_object == 4)
     {
     //moving endframe
+    controller.scrollcursor_flag = 1;
     endframe += (mouse_x-mousexprev)*tlzoom/tlw;
     mousexprev = mouse_x;
     if (mouse_check_button_released(mb_left))
@@ -222,6 +225,7 @@ else if (moving_object == 4)
 else if (moving_object == 5)
     {
     //moving marker
+    controller.scrollcursor_flag = 1;
     ds_list_replace(marker_list,markertomove,max(1,ds_list_find_value(marker_list,markertomove)+(mouse_x-mousexprev)*tlzoom/tlw));
     mousexprev = mouse_x;
     if (mouse_check_button_released(mb_left))
@@ -398,7 +402,9 @@ else if (scroll_moving == 2)
         
     exit;
     }
-
+    
+controller.scrollcursor_flag = 0;
+    
 if (mouse_x > tlw) 
 or (mouse_y < 132)
 or (controller.dialog_open)
@@ -473,6 +479,7 @@ if (moving_object_flag)
 //startframe
 if (mouse_x == clamp(mouse_x,startframex-2,startframex+2))                         
     {
+    controller.scrollcursor_flag = 1;
     controller.tooltip = "Drag to adjust the start of the project";
     if (mouse_check_button_pressed(mb_left))
         {
@@ -484,6 +491,7 @@ if (mouse_x == clamp(mouse_x,startframex-2,startframex+2))
 //endframe
 else if (mouse_x == clamp(mouse_x,endframex-2,endframex+2))                         
     {
+    controller.scrollcursor_flag = 1;
     controller.tooltip = "Drag to adjust the end of the project";
     if (mouse_check_button_pressed(mb_left))
         {
@@ -503,6 +511,7 @@ for (i = 0; i < ds_list_size(marker_list); i++)
     if (mouse_x == clamp(mouse_x,markerpostemp-2,markerpostemp+2))                         
         {
         mouseonsomelayer = 1;
+        controller.scrollcursor_flag = 1;
         controller.tooltip = "Drag to adjust the marker. Ctrl+Click to delete marker.";
         if (mouse_check_button_pressed(mb_left))
             {
@@ -594,6 +603,8 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                         {
                         //mouse over object
                         controller.tooltip = "Click to select this object. [Ctrl]+Click to select multiple objects.#Drag to move object. Drag the far edge to adjust duration.#Double-click to edit frames#Right click for more actions";
+                        if (mouse_x > ((frametime-tlx)/tlzoom*tlw)+object_length/tlzoom*tlw-3)
+                            controller.scrollcursor_flag = 1;
                         if  mouse_check_button_pressed(mb_left)
                             {
                             if (keyboard_check(vk_control))
@@ -627,9 +638,10 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                                 }
                             else
                                 {
-                                if (mouse_x > ((frametime-tlx)/tlzoom*tlw)+object_length/tlzoom*tlw-2)
+                                if (mouse_x > ((frametime-tlx)/tlzoom*tlw)+object_length/tlzoom*tlw-3)
                                     {
                                     //resize object
+                                    
                                     moving_object_flag = 2;
                                    
                                     //undolisttemp = ds_list_create();
