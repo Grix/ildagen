@@ -6,10 +6,10 @@ el_buffer = argument0;
 buffer_seek(el_buffer,buffer_seek_start,0);
 buffer_ver = buffer_read(el_buffer,buffer_u8);
 if (buffer_ver != 52)
-    {
+{
     show_message_async("Error: Unexpected ID byte in make_screenshot. Things might get ugly. Contact developer.");
     return temp_surf;
-    }
+}
 buffer_maxframes = buffer_read(el_buffer,buffer_u32);
 buffer_maxelements = buffer_read(el_buffer,buffer_u32);
 
@@ -23,7 +23,7 @@ draw_enable_alphablend(0);
 el_list = ds_list_create(); 
 
 for (i = 0; i < buffer_maxelements;i++)
-    {
+{
     numofinds = buffer_read(el_buffer,buffer_u32);
     var repeatnum = (numofinds-20)/4-1;
     var buffer_start_pos = buffer_tell(el_buffer);
@@ -39,7 +39,7 @@ for (i = 0; i < buffer_maxelements;i++)
     c = buffer_read(el_buffer,buffer_u32);
     
     repeat (repeatnum)
-        {
+    {
         xpp = xp;
         ypp = yp;
         blp = bl;
@@ -50,18 +50,18 @@ for (i = 0; i < buffer_maxelements;i++)
         c = buffer_read(el_buffer,buffer_u32);
         
         if (!bl)
-            {
+        {
             draw_set_color(c);
             if ((xp == xpp) and (yp == ypp) and !blp)
-                {
-                draw_point(xo+xp/2048,yo+yp/2048);
-                }
-            else
-                draw_line(xo+ xpp/2048,yo+ ypp/2048,xo+ xp/2048,yo+ yp/2048);
+            {
+                draw_point(xo+xp/$FFFF*27, yo+yp/$FFFF*27);
             }
+            else
+                draw_line(xo+xpp/$FFFF*27, yo+ypp/$FFFF*27, xo+xp/$FFFF*27, yo+yp/$FFFF*27);
         }
-        
     }
+        
+}
     
 draw_enable_alphablend(1);
 surface_reset_target();

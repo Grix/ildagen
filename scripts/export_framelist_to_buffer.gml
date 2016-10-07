@@ -9,6 +9,11 @@ var t_red_scale = controller.red_scale*(255-t_red_lowerbound)/255;
 var t_green_scale = controller.green_scale*(255-t_green_lowerbound)/255;
 var t_blue_scale = controller.blue_scale*(255-t_blue_lowerbound)/255;
 
+var t_x_lowerbound = controller.x_scale_start;
+var t_y_lowerbound = $FFFF-controller.y_scale_start;
+var t_x_scale = controller.x_scale_end/$FFFF*($FFFF-t_x_lowerbound)/$FFFF;
+var t_y_scale = controller.y_scale_end/$FFFF*(t_y_lowerbound)/$FFFF;
+
 if (controller.exp_optimize)
 {
     var t_blankshift = controller.opt_blankshift*4;
@@ -27,13 +32,13 @@ if (controller.exp_optimize)
     {
         //writing point
         if (controller.invert_x)
-            xp = $FFFF - list_raw[| i];
+            xp = t_x_lowerbound+($FFFF - list_raw[| i])*t_x_scale;
         else
-            xp = list_raw[| i];
+            xp = t_x_lowerbound+(list_raw[| i])*t_x_scale;
         if (controller.invert_y)
-            yp = $FFFF - list_raw[| i+1];
+            yp = t_y_lowerbound+($FFFF - list_raw[| i+1])*t_y_scale;
         else
-            yp = list_raw[| i+1];
+            yp = t_y_lowerbound+(list_raw[| i+1])*t_y_scale;
             
         if ((i < safe_bottom_boundary) || (i > safe_top_boundary))
         {
@@ -125,8 +130,14 @@ else //not optimized
     for (i = 0; i <= t_list_raw_size; i += 4)
     {
         //writing point
-        xp = list_raw[| i];
-        yp = list_raw[| i+1];
+        if (controller.invert_x)
+            xp = t_x_lowerbound+($FFFF - list_raw[| i])*t_x_scale;
+        else
+            xp = t_x_lowerbound+(list_raw[| i])*t_x_scale;
+        if (controller.invert_y)
+            yp = t_y_lowerbound+($FFFF - list_raw[| i+1])*t_y_scale;
+        else
+            yp = t_y_lowerbound+(list_raw[| i+1])*t_y_scale;
             
         t_bl = list_raw[| i+2];
         if (is_undefined(t_bl))

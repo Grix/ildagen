@@ -121,11 +121,11 @@ if (!visible)
     exit;
 
 if (mouse_x &gt; (x+23))
-    controller.opt_maxdist += 100;
+    controller.opt_maxdist += 50;
 else
-    controller.opt_maxdist -= 100;
-if (controller.opt_maxdist &lt; 100)
-    controller.opt_maxdist = 100;
+    controller.opt_maxdist -= 50;
+if (controller.opt_maxdist &lt; 50)
+    controller.opt_maxdist = 50;
     
 save_settings();
 </string>

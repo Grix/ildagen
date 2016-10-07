@@ -1184,7 +1184,7 @@
         <object>objects\obj_redshift</object>
         <object>objects\obj_greenshift</object>
         <object>objects\obj_blueshift</object>
-        <object>objects\obj_maxscanningspeed</object>
+        <object>objects\obj_samplingrate</object>
         <object>objects\obj_format</object>
         <object>objects\obj_blindzone</object>
       </objects>

@@ -58,7 +58,7 @@
     <instance objName="obj_openeditor" x="1196" y="612" name="inst_C21DC968" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_scanrate" x="264" y="116" name="inst_9BFFF8C4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_maxdwell" x="264" y="144" name="inst_84D10FCD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_maxscanningspeed" x="264" y="200" name="inst_76C97D3C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_samplingrate" x="264" y="200" name="inst_76C97D3C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_optimize" x="316" y="60" name="inst_0FEA302D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_format" x="32" y="332" name="inst_51B228BD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_autoupdate" x="792" y="496" name="inst_9CFAF05F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

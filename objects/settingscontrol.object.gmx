@@ -60,6 +60,15 @@ menu_width_start[3] = menu_width_start[2]+menu_width[2];
     room_goto(rm_ilda);
     
 
+if (keyboard_check_pressed(vk_escape))
+{
+    if (controller.laseron)
+    {
+        controller.laseron = false;
+        frame_surf_refresh = true;
+        dac_blank_and_center(controller.dac);
+    }
+}
 </string>
           </argument>
         </arguments>

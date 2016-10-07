@@ -8,6 +8,11 @@ var t_red_scale = controller.red_scale*(255-t_red_lowerbound)/255;
 var t_green_scale = controller.green_scale*(255-t_green_lowerbound)/255;
 var t_blue_scale = controller.blue_scale*(255-t_blue_lowerbound)/255;
 
+var t_x_lowerbound = controller.x_scale_start;
+var t_y_lowerbound = $FFFF-controller.y_scale_start;
+var t_x_scale = controller.x_scale_end/$FFFF*($FFFF-t_x_lowerbound)/$FFFF;
+var t_y_scale = controller.y_scale_end/$FFFF*(t_y_lowerbound)/$FFFF;
+
 if (controller.exp_optimize)
 {
     safe_bottom_boundary = abs(min(controller.opt_redshift,controller.opt_greenshift,controller.opt_blueshift,controller.opt_blankshift));
@@ -23,13 +28,13 @@ if (controller.exp_optimize)
         //writing point
         
         if (controller.invert_x)
-            buffer_write(output_buffer,buffer_u16, ($FFFF - list_raw[| i]));
+            buffer_write(output_buffer,buffer_u16, t_x_lowerbound+($FFFF - list_raw[| i])*t_x_scale);
         else
-            buffer_write(output_buffer,buffer_u16, (list_raw[| i]));
+            buffer_write(output_buffer,buffer_u16, t_x_lowerbound+(list_raw[| i])*t_x_scale);
         if (controller.invert_y)
-            buffer_write(output_buffer,buffer_u16, ($FFFF - list_raw[| i+1]));
+            buffer_write(output_buffer,buffer_u16, t_y_lowerbound+($FFFF - list_raw[| i+1])*t_y_scale);
         else
-            buffer_write(output_buffer,buffer_u16, (list_raw[| i+1]));
+            buffer_write(output_buffer,buffer_u16, t_y_lowerbound+(list_raw[| i+1])*t_y_scale);
             
         if ((i < safe_bottom_boundary) || (i > safe_top_boundary))
         {
@@ -55,13 +60,13 @@ else //not optimized
         //writing point
         
         if (controller.invert_x)
-            buffer_write(output_buffer,buffer_u16, ($FFFF - list_raw[| i]));
+            buffer_write(output_buffer,buffer_u16, t_x_lowerbound+($FFFF - list_raw[| i])*t_x_scale);
         else
-            buffer_write(output_buffer,buffer_u16, (list_raw[| i]));
+            buffer_write(output_buffer,buffer_u16, t_x_lowerbound+(list_raw[| i])*t_x_scale);
         if (controller.invert_y)
-            buffer_write(output_buffer,buffer_u16, ($FFFF - list_raw[| i+1]));
+            buffer_write(output_buffer,buffer_u16, t_y_lowerbound+($FFFF - list_raw[| i+1])*t_y_scale);
         else
-            buffer_write(output_buffer,buffer_u16, (list_raw[| i+1]));
+            buffer_write(output_buffer,buffer_u16, t_y_lowerbound+(list_raw[| i+1])*t_y_scale);
         
         buffer_write(output_buffer,buffer_u16,t_red_lowerbound + (list_raw[| i+3] & $FF) * t_red_scale);
         buffer_write(output_buffer,buffer_u16,t_green_lowerbound + ((list_raw[| i+3] >> 8) & $FF) * t_green_scale);

@@ -81,6 +81,7 @@ if (room = rm_ilda)
         "Ctrl+C)    Copy selected objects#"+
         "Ctrl+X)    Cut selected objects#"+
         "Ctrl+V)    Paste#"+
+        "Esc)    Stop laser DAC output#"+
         "Backspace)    Cancel object placing and selection#"+
         "0)    Jump to first frame#"+
         "Mouse wheel)    Adjust wave amplitude#"+
@@ -109,6 +110,7 @@ else if (room = rm_seq)
         "Ctrl+C)    Copy selected objects#"+
         "Ctrl+X)    Cut selected objects#"+
         "Ctrl+V)    Paste#"+
+        "Esc)    Stop laser DAC output#"+
         "0)    Jump to first frame#"+
         "Mouse wheel or F7/F8)    Scroll/Zoom (where applicable)##"+
         "M)    Reset window size#"+
