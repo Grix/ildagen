@@ -1010,17 +1010,9 @@ if (playing == 1)
     {
         FMODInstanceSetPosition(seqcontrol.songinstance,tlx/seqcontrol.projectfps*1000/FMODSoundGetLength(seqcontrol.song));
     }
-        
-    var t_minroomspeed = max(projectfps,25);
-}
-else
-{
-    var t_minroomspeed = 60;
 }
 
-room_speed = projectfps;
-while (room_speed &lt; t_minroomspeed)
-    room_speed += projectfps;
+minroomspeed = 60;
 
 if (laseron)
 {
@@ -1034,6 +1026,10 @@ if (laseron)
     else
         output_frame();
 }
+
+room_speed = projectfps;
+while (room_speed &lt; minroomspeed)
+    room_speed += projectfps;
 </string>
           </argument>
         </arguments>

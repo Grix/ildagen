@@ -486,40 +486,33 @@ handle_mousecontrol();
 if (room != rm_seq) exit;
 
 if (playing == 1)
-    {
+{
     tlpos += delta_time/1000*playbackspeed;
     if (tlpos &gt; length/projectfps*1000) 
-        {
+    {
         playing = 0;
         tlpos = 0;
         if (song)
-            {
+        {
             FMODInstanceStop(songinstance);
             songinstance = FMODSoundPlay(song,1);
             set_audio_speed();
-            }
         }
+    }
     if (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-(tlpos+audioshift)) &gt; 32) and (scroll_moving != 1) and (song)
-        {
-        FMODInstanceSetPosition(songinstance,(tlpos+audioshift)/FMODSoundGetLength(song));
-        }
-    var t_minroomspeed = max(projectfps,25)
-    }
-else
     {
-    var t_minroomspeed = 60
+        FMODInstanceSetPosition(songinstance,(tlpos+audioshift)/FMODSoundGetLength(song));
     }
-    
-room_speed = projectfps;
-while (room_speed &lt; t_minroomspeed)
-    room_speed += projectfps;
+}
 
 if (frameprev != round(tlpos/1000*projectfps))
-    {
+{
     frame_surf_refresh = 1;
     frameprev = round(tlpos/1000*projectfps);
-    }
+}
     
+minroomspeed = 60; 
+   
 if (controller.laseron)
 {
     if (!ds_exists(controller.dac,ds_type_list))
@@ -533,6 +526,9 @@ if (controller.laseron)
         output_frame_seq();
 }
 
+room_speed = projectfps;
+while (room_speed &lt; minroomspeed)
+    room_speed += projectfps;
 </string>
           </argument>
         </arguments>

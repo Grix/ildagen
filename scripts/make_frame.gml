@@ -8,10 +8,10 @@ if (t_litpointswanted == 0)
     t_litpointswanted = 1;
 var t_lengthwanted = abs(lit_length/t_litpointswanted);
 
-xp_prev = $8000;
-yp_prev = $8000;
-xp_prev_prev = $8000;
-yp_prev_prev = $8000;
+xp_prev = mid_x;
+yp_prev = mid_y;
+xp_prev_prev = mid_x;
+yp_prev_prev = mid_y;
 bl_prev = 1;
 c_prev = 0;
 new_dot = 1;
@@ -39,7 +39,6 @@ if (t_lengthwanted == 0)
 {
     t_lengthwanted = 0.0001; //to avoid dividing by zero
 }
-
 
 //parse elements
 if (controller.exp_optimize)
@@ -89,8 +88,8 @@ for (i = 0; i < t_numofelems; i++)
         }
         else 
         {
-            xp = xo + list_id[| currentpos ];
-            yp = $ffff - (yo + list_id[| currentpos+1 ]);
+            xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
+            yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
                     
             //valid lit point, process it
             
@@ -103,13 +102,13 @@ for (i = 0; i < t_numofelems; i++)
                 {
                     opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
                     
-                    if (opt_dist < 200) //connecting segments
+                    if (opt_dist < 250) //connecting segments
                     {
                         var t_nextpos = currentpos+currentposadjust;
                         if (!is_undefined(list_id[| t_nextpos ]))
                         {
-                            xpn = xo + list_id[| t_nextpos ];
-                            ypn = $ffff - (yo + list_id[| t_nextpos+1 ]);
+                            xpn = x_lowerbound+(xo+list_id[| t_nextpos+0])*x_scale;
+                            ypn = y_lowerbound+($ffff-(yo+list_id[| t_nextpos+1]))*y_scale;
                             
                             angle_next = point_direction(xpn,ypn, xp,yp);
                             angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
@@ -150,8 +149,8 @@ for (i = 0; i < t_numofelems; i++)
                         var t_nextpos = currentpos+currentposadjust;
                         if (!is_undefined(list_id[| t_nextpos ]))
                         {
-                            xpn = xo + list_id[| t_nextpos ];
-                            ypn = $ffff - (yo + list_id[| t_nextpos+1 ]);
+                            xpn = x_lowerbound+(xo+list_id[| t_nextpos+0])*x_scale;
+                            ypn = y_lowerbound+($ffff-(yo+list_id[| t_nextpos+1]))*y_scale;
                             
                             if ((xpn == xp) && (ypn == yp))
                             {
@@ -398,13 +397,13 @@ for (i = 0; i < t_numofelems; i++)
 if (controller.exp_optimize)
 {
     //back to middle
-    xp = $8000;
-    yp = $8000;
+    xp = mid_x;
+    yp = mid_y;
     
     //BLANKING
     opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
     
-    if (opt_dist < 200) //connecting segments
+    if (opt_dist < 250) //connecting segments
     {
         t_true_dwell_falling = controller.opt_maxdwell; //worst case
                                 
@@ -528,8 +527,8 @@ if (controller.exp_optimize)
         }
     else while (ds_list_size(list_raw)/4 < t_totalpointswanted)
         {
-        ds_list_add(list_raw,$8000);
-        ds_list_add(list_raw,$8000);
+        ds_list_add(list_raw,mid_x);
+        ds_list_add(list_raw,mid_y);
         ds_list_add(list_raw,1);
         ds_list_add(list_raw,0);
         }

@@ -26,9 +26,10 @@ for (t_i = 0; t_i < listsize; t_i++)
         bl_prev = 1;
         continue;
     }
+    
     //check if outside bounds
-    xp = xo + list_id[| currentpos ];
-    yp = $ffff - (yo + list_id[| currentpos+1 ]);
+    xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
+    yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
     
     if ((yp >= $fffe) || (yp <= 1) || (xp >= $fffe) || (xp <= 1)) //todo add safety zone check
     {
@@ -52,13 +53,13 @@ for (t_i = 0; t_i < listsize; t_i++)
         
             //BLANKING
             
-            if (opt_dist < 200) //connecting segments
+            if (opt_dist < 250) //connecting segments
             {
                 var t_nextpos = currentpos+currentposadjust;
                 if (!is_undefined(list_id[| t_nextpos ]))
                 {
-                    xpn = xo + list_id[| t_nextpos ];
-                    ypn = $ffff - (yo + list_id[| t_nextpos+1 ]);
+                    xpn = x_lowerbound+(xo+list_id[| t_nextpos+0])*x_scale;
+                    ypn = y_lowerbound+($ffff-(yo+list_id[| t_nextpos+1]))*y_scale;
                     
                     angle_next = point_direction(xpn,ypn, xp,yp);
                     angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
@@ -78,8 +79,8 @@ for (t_i = 0; t_i < listsize; t_i++)
                 var t_nextpos = currentpos+currentposadjust;
                 if (!is_undefined(list_id[| t_nextpos ]))
                 {
-                    xpn = xo + list_id[| t_nextpos ];
-                    ypn = $ffff - (yo + list_id[| t_nextpos+1 ]);
+                    xpn = x_lowerbound+(xo+list_id[| t_nextpos+0])*x_scale;
+                    ypn = y_lowerbound+($ffff-(yo+list_id[| t_nextpos+1]))*y_scale;
                     
                     if ((xpn == xp) && (ypn == yp))
                     {

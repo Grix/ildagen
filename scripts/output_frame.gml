@@ -1,5 +1,4 @@
-if (((!frame_surf_refresh) && (!laseronfirst)) && (dac_string != "LaserDock"))
-    exit;
+minroomspeed = max(projectfps,25);
 
 if (output_buffer_ready)
 {
@@ -11,9 +10,6 @@ if (output_buffer_ready)
     var t_output_buffer_prev = output_buffer;
     output_buffer = output_buffer2;
     output_buffer2 = t_output_buffer_prev;
-    
-    if (!playing)
-        return 1;
 }
 
 maxpoints = 0;
@@ -24,7 +20,7 @@ else
     el_list = frame_list[| ((frame+1) % (maxframes))];
 if (is_undefined(el_list))
     {
-    log("undef");
+    log("undef el_list in output_frame()");
     exit;
     }    
 

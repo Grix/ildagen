@@ -9,11 +9,6 @@ var t_red_scale = controller.red_scale*(255-t_red_lowerbound)/255;
 var t_green_scale = controller.green_scale*(255-t_green_lowerbound)/255;
 var t_blue_scale = controller.blue_scale*(255-t_blue_lowerbound)/255;
 
-var t_x_lowerbound = controller.x_scale_start;
-var t_y_lowerbound = $FFFF-controller.y_scale_start;
-var t_x_scale = controller.x_scale_end/$FFFF*($FFFF-t_x_lowerbound)/$FFFF;
-var t_y_scale = controller.y_scale_end/$FFFF*(t_y_lowerbound)/$FFFF;
-
 if (controller.exp_optimize)
 {
     var t_blankshift = controller.opt_blankshift*4;
@@ -35,6 +30,7 @@ if (controller.exp_optimize)
             xp = t_x_lowerbound+($FFFF - list_raw[| i])*t_x_scale;
         else
             xp = t_x_lowerbound+(list_raw[| i])*t_x_scale;
+            
         if (controller.invert_y)
             yp = t_y_lowerbound+($FFFF - list_raw[| i+1])*t_y_scale;
         else

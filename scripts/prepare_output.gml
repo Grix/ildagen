@@ -3,21 +3,27 @@ list_raw = ds_list_create();
 order_list = ds_list_create();
 polarity_list = ds_list_create();
 
-//start from middle
-xp_prev = $8000;
-yp_prev = $8000;
-xp_prev_prev = $8000;
-yp_prev_prev = $8000;
-bl_prev = 1;
-c_prev = 0;
-new_dot = 1;
-
 lit_length = 0;
 maxpoints_static = 0;
 maxpoints_dots = 0;
 smallestdotsize = 100000;
 currentdotsize = 0;
 num_dots = 0;
+
+x_lowerbound = controller.x_scale_start;
+y_lowerbound = controller.y_scale_start;
+x_scale = controller.x_scale_end/$FFFF*($FFFF-x_lowerbound)/$FFFF;
+y_scale = controller.y_scale_end/$FFFF*($FFFF-y_lowerbound)/$FFFF;
+mid_x = x_lowerbound+$8000*x_scale;
+mid_y = y_lowerbound+$8000*y_scale;
+
+xp_prev = mid_x;
+yp_prev = mid_y;
+xp_prev_prev = mid_x;
+yp_prev_prev = mid_y;
+bl_prev = 1;
+c_prev = 0;
+new_dot = 1;
 
 a_ballistic = controller.opt_maxdist; //ballistic scanner acceleration
 
@@ -57,8 +63,9 @@ if (controller.exp_optimize)
                 continue;
             }
             
-            xp = xo+ds_list_find_value(list_id,currentpos+0);
-            yp = $ffff-(yo+ds_list_find_value(list_id,currentpos+1));
+            xp = xo+list_id[| currentpos+0];
+            yp = yo+list_id[| currentpos+1];
+
             t_tempxp_prev_other = xp;
             t_tempyp_prev_other = yp;
             
@@ -75,8 +82,8 @@ if (controller.exp_optimize)
             while (ds_list_find_value(list_id,currentpos+2))
                 currentpos -= 4;
             
-            xp = xo+ds_list_find_value(list_id,currentpos+0);
-            yp = $ffff-(yo+ds_list_find_value(list_id,currentpos+1));
+            xp = xo+list_id[| currentpos+0];
+            yp = yo+list_id[| currentpos+1];
             
             t_dist = point_distance(xp_prev,yp_prev,xp,yp);
             if (t_dist < t_lowestdist)
@@ -112,8 +119,8 @@ if ((ds_list_size(el_list)-ds_list_size(t_list_empties)) <= 0)
     return 0;
 }
         
-xp_prev = $8000;
-yp_prev = $8000;
+xp_prev = mid_x;
+yp_prev = mid_y;
 
 //parse elements
 if (controller.exp_optimize)
@@ -147,19 +154,18 @@ for (i = 0; i < t_numofelems; i++)
     bl_prev = 1;
 }
 
-if (controller.exp_optimize) and (xp_prev != $8000) and (yp_prev != $8000)
+if (controller.exp_optimize) and (xp_prev != mid_x) and (yp_prev != mid_y)
 {
     //back to middle
-    xp = $8000;
-    yp = $8000;
+    xp = mid_x;
+    yp = mid_y;
     
     //BLANKING
     if (controller.exp_optimize)
     {
         opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
         
-        
-        if (opt_dist < 200) //connecting segments
+        if (opt_dist < 250) //connecting segments
         {
             var t_true_dwell = controller.opt_maxdwell;
             maxpoints_static += (   (controller.opt_maxdwell_blank)
