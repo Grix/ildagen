@@ -2263,8 +2263,7 @@ if (!surface_exists(miniaudio_surf) || refresh_miniaudio_flag)
     refresh_miniaudio_flag = 0;
     }
     
-draw_set_color(c_white);
-    draw_ilda_2d();
+draw_ilda_2d();
     
 draw_set_color(c_white);
 draw_set_alpha(1);

@@ -27,14 +27,14 @@ if (controller.exp_optimize)
     {
         //writing point
         if (controller.invert_x)
-            xp = t_x_lowerbound+($FFFF - list_raw[| i])*t_x_scale;
+            xp = $FFFF - list_raw[| i];
         else
-            xp = t_x_lowerbound+(list_raw[| i])*t_x_scale;
+            xp = list_raw[| i];
             
         if (controller.invert_y)
-            yp = t_y_lowerbound+($FFFF - list_raw[| i+1])*t_y_scale;
+            yp = $FFFF - list_raw[| i+1];
         else
-            yp = t_y_lowerbound+(list_raw[| i+1])*t_y_scale;
+            yp = list_raw[| i+1];
             
         if ((i < safe_bottom_boundary) || (i > safe_top_boundary))
         {
@@ -127,13 +127,14 @@ else //not optimized
     {
         //writing point
         if (controller.invert_x)
-            xp = t_x_lowerbound+($FFFF - list_raw[| i])*t_x_scale;
+            xp = $FFFF - list_raw[| i];
         else
-            xp = t_x_lowerbound+(list_raw[| i])*t_x_scale;
+            xp = list_raw[| i];
+            
         if (controller.invert_y)
-            yp = t_y_lowerbound+($FFFF - list_raw[| i+1])*t_y_scale;
+            yp = $FFFF - list_raw[| i+1];
         else
-            yp = t_y_lowerbound+(list_raw[| i+1])*t_y_scale;
+            yp = list_raw[| i+1];
             
         t_bl = list_raw[| i+2];
         if (is_undefined(t_bl))

@@ -1186,7 +1186,7 @@
         <object>objects\obj_blueshift</object>
         <object>objects\obj_samplingrate</object>
         <object>objects\obj_format</object>
-        <object>objects\obj_blindzone</object>
+        <object>objects\obj_projectionzones</object>
       </objects>
       <object>objects\obj_fps</object>
       <object>objects\obj_playcontrols</object>

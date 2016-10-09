@@ -1,9 +1,9 @@
 //exports project into an ilda file
 playing = 0;
 if (song)
-    {
+{
     FMODInstanceSetPaused(songinstance,1);
-    }
+}
 
 file_loc = get_save_filename_ext("*.ild","example.ild","","Select ILDA file location");
 if !string_length(file_loc)

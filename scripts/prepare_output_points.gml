@@ -30,10 +30,10 @@ for (t_i = 0; t_i < listsize; t_i++)
     //check if outside bounds
     xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
     yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
-    
+   
     if ((yp >= $fffe) || (yp <= 1) || (xp >= $fffe) || (xp <= 1)) //todo add safety zone check
     {
-        list_id[| currentpos+2 ] = 1;
+        //list_id[| currentpos+2 ] = 1;
         bl_prev = 1;
         continue;
     }

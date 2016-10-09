@@ -2,7 +2,7 @@ ddobj = instance_create(mouse_x,mouse_y,oDropDown);
 with (ddobj)
     {
     var t_currenttype = ds_list_find_value(seqcontrol.selectedenvelope,0);
-    num = 8;
+    num = 7;
     event_user(1);
     ds_list_add(desc_list,"X (Horizontal displacement)");
     ds_list_add(desc_list,"Y (Vertical displacement)");

@@ -275,7 +275,7 @@ surface_set_target(audio_surf);
     draw_enable_alphablend(0);
     while (1)
     {
-        var tempx = (drawtime*projectfps-tlx)*tlwdivtlzoom;
+        var tempx = round((drawtime*projectfps-tlx)*tlwdivtlzoom);
         if (tempx > tlw)
             break;
 

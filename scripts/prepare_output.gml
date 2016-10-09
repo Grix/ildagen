@@ -11,9 +11,9 @@ currentdotsize = 0;
 num_dots = 0;
 
 x_lowerbound = controller.x_scale_start;
-y_lowerbound = controller.y_scale_start;
+y_lowerbound = $FFFF-controller.y_scale_end;
 x_scale = controller.x_scale_end/$FFFF*($FFFF-x_lowerbound)/$FFFF;
-y_scale = controller.y_scale_end/$FFFF*($FFFF-y_lowerbound)/$FFFF;
+y_scale = ($FFFF-controller.y_scale_start)/$FFFF*($FFFF-y_lowerbound)/$FFFF;
 mid_x = x_lowerbound+$8000*x_scale;
 mid_y = y_lowerbound+$8000*y_scale;
 
@@ -116,9 +116,10 @@ if ((ds_list_size(el_list)-ds_list_size(t_list_empties)) <= 0)
     ds_list_destroy(order_list);
     ds_list_destroy(polarity_list);
     ds_list_destroy(t_list_empties);
+    ds_list_destroy(list_raw);
     return 0;
 }
-        
+       
 xp_prev = mid_x;
 yp_prev = mid_y;
 
@@ -140,9 +141,9 @@ for (i = 0; i < t_numofelems; i++)
 
     xo = ds_list_find_value(list_id,0);
     yo = ds_list_find_value(list_id,1);
-       
-    prepare_output_points();
         
+    prepare_output_points();
+       
     /*if (controller.exp_optimize)
     {
         if (bl_prev == 0)

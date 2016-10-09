@@ -1,7 +1,7 @@
 ddobj = instance_create(mouse_x,mouse_y,oDropDown);
 with (ddobj)
     {
-    num = 9;
+    num = 8;
     event_user(1);
     ds_list_add(desc_list,"Select type:");
     ds_list_add(sep_list,0);

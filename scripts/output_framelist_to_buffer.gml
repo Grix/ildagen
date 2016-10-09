@@ -26,6 +26,7 @@ if (controller.exp_optimize)
             buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+0]);
         else
             buffer_write(output_buffer,buffer_u16, list_raw[| i+0]);
+            
         if (controller.invert_y)
             buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+1]);
         else
@@ -58,6 +59,7 @@ else //not optimized
             buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+0]);
         else
             buffer_write(output_buffer,buffer_u16, list_raw[| i+0]);
+            
         if (controller.invert_y)
             buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+1]);
         else
