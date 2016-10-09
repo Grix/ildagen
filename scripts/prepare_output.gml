@@ -143,6 +143,8 @@ for (i = 0; i < t_numofelems; i++)
     yo = ds_list_find_value(list_id,1);
         
     prepare_output_points();
+    
+    maxpoints_static++;
        
     /*if (controller.exp_optimize)
     {

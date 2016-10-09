@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>moving = 0;
+blindzonetoedit = 0;
 </string>
           </argument>
         </arguments>
@@ -153,71 +154,280 @@ else if (moving == 5)
         moving = 0;
     }
 }
+else if (moving == 6)
+{
+    //x start blind zone
+    var t_list = controller.blindzone_list;
+    controller.scrollcursor_flag = 1;
+    i = blindzonetoedit;
+    t_list[| i] = t_list[| i]+((mouse_x-mousexprevious)*$ffff/256);
+    if (t_list[| i] &lt; 0)
+        t_list[| i] = 0;
+    if (t_list[| i] &gt; t_list[| i+1]-4096)
+        t_list[| i] = t_list[| i+1]-4096;
+    mousexprevious = mouse_x;
+    mouseyprevious = mouse_y;
+    if (mouse_check_button_released(mb_left))
+    {
+        save_settings();
+        moving = 0;
+    }
+}
+else if (moving == 7)
+{
+    //x end blind zone
+    var t_list = controller.blindzone_list;
+    controller.scrollcursor_flag = 1;
+    i = blindzonetoedit+1;
+    t_list[| i] = t_list[| i]+((mouse_x-mousexprevious)*$ffff/256);
+    if (t_list[| i] &gt; $FFFF)
+        t_list[| i] = $FFFF;
+    if (t_list[| i] &lt; t_list[| i-1]+4096)
+        t_list[| i] = t_list[| i-1]+4096;
+    mousexprevious = mouse_x;
+    mouseyprevious = mouse_y;
+    if (mouse_check_button_released(mb_left))
+    {
+        save_settings();
+        moving = 0;
+    }
+}
+else if (moving == 8)
+{
+    //y start blind zone
+    var t_list = controller.blindzone_list;
+    controller.scrollcursor_flag = 2;
+    i = blindzonetoedit+2;
+    t_list[| i] = t_list[| i]+((mouse_y-mouseyprevious)*$ffff/256);
+    if (t_list[| i] &lt; 0)
+        t_list[| i] = 0;
+    if (t_list[| i] &gt; t_list[| i+1]-4096)
+        t_list[| i] = t_list[| i+1]-4096;
+    mousexprevious = mouse_x;
+    mouseyprevious = mouse_y;
+    if (mouse_check_button_released(mb_left))
+    {
+        save_settings();
+        moving = 0;
+    }
+}
+else if (moving == 9)
+{
+    //y end blind zone
+    var t_list = controller.blindzone_list;
+    controller.scrollcursor_flag = 2;
+    i = blindzonetoedit+3;
+    t_list[| i] = t_list[| i]+((mouse_y-mouseyprevious)*$ffff/256);
+    if (t_list[| i] &gt; $FFFF)
+        t_list[| i] = $FFFF;
+    if (t_list[| i] &lt; t_list[| i-1]+4096)
+        t_list[| i] = t_list[| i-1]+4096;
+    mousexprevious = mouse_x;
+    mouseyprevious = mouse_y;
+    if (mouse_check_button_released(mb_left))
+    {
+        save_settings();
+        moving = 0;
+    }
+}
+else if (moving == 10)
+{
+    //drag whole window blind zone
+    var t_list = controller.blindzone_list;
+    i = blindzonetoedit;
+    t_list[| i+0] = t_list[| i+0]+((mouse_x-mousexprevious)*$ffff/256);
+    t_list[| i+1] = t_list[| i+1]+((mouse_x-mousexprevious)*$ffff/256);
+    t_list[| i+2] = t_list[| i+2]+((mouse_y-mouseyprevious)*$ffff/256);
+    t_list[| i+3] = t_list[| i+3]+((mouse_y-mouseyprevious)*$ffff/256);
+    if (t_list[| i+0] &lt; 0)
+    {
+        t_list[| i+1] += abs(t_list[| i+0]);
+        t_list[| i+0] = 0;
+    }
+    if (t_list[| i+1] &gt; $FFFF)
+    {
+        t_list[| i+0] -= t_list[| i+1]-$FFFF;
+        t_list[| i+1] = $FFFF;
+    }
+    if (t_list[| i+2] &lt; 0)
+    {
+        t_list[| i+3] += abs(t_list[| i+2]);
+        t_list[| i+2] = 0;
+    }
+    if (t_list[| i+3] &gt; $FFFF)
+    {
+        t_list[| i+2] -= t_list[| i+3]-$FFFF;
+        t_list[| i+3] = $FFFF;
+    }
+    mousexprevious = mouse_x;
+    mouseyprevious = mouse_y;
+    if (mouse_check_button_released(mb_left))
+    {
+        save_settings();
+        moving = 0;
+    }
+}
 
 else
 {
-    if ((mouse_x &gt; (x+controller.x_scale_start/$FFFF*256-2)) &amp;&amp;
-        (mouse_y &gt; (y+controller.y_scale_start/$FFFF*256-2)) &amp;&amp; 
-        (mouse_x &lt; (x+controller.x_scale_end/$FFFF*256+2)) &amp;&amp;
-        (mouse_y &lt; (y+controller.y_scale_end/$FFFF*256+2)) )
-    {
-        //within projector size
-        if (mouse_x &lt; (x+controller.x_scale_start/$FFFF*256+5))
-        {   
-            controller.scrollcursor_flag = 1;
-            controller.tooltip = "Drag side to resize projection window";
-            if (mouse_check_button_pressed(mb_left))
-            {
-                mousexprevious = mouse_x;
-                mouseyprevious = mouse_y;
-                moving = 1;
-                exit;
-            }
-        }
-        else if (mouse_x &gt; (x+controller.x_scale_end/$FFFF*256-5))
-        {   
-            controller.scrollcursor_flag = 1;
-            controller.tooltip = "Drag side to resize projection window";
-            if (mouse_check_button_pressed(mb_left))
-            {
-                mousexprevious = mouse_x;
-                mouseyprevious = mouse_y;
-                moving = 2;
-                exit;
-            }
-        }
-        else if (mouse_y &lt; (y+controller.y_scale_start/$FFFF*256+5))
-        {   
-            controller.scrollcursor_flag = 2;
-            controller.tooltip = "Drag side to resize projection window";
-            if (mouse_check_button_pressed(mb_left))
-            {
-                mousexprevious = mouse_x;
-                mouseyprevious = mouse_y;
-                moving = 3;
-                exit;
-            }
-        }
-        else if (mouse_y &gt; (y+controller.y_scale_end/$FFFF*256-5))
-        {   
-            controller.scrollcursor_flag = 2;
-            controller.tooltip = "Drag side to resize projection window";
-            if (mouse_check_button_pressed(mb_left))
-            {
-                mousexprevious = mouse_x;
-                mouseyprevious = mouse_y;
-                moving = 4;
-                exit;
-            }
-        }
-        else
+    var t_withinblindzone = false;
+    var t_list = controller.blindzone_list;
+    for (i = 0; i &lt; ds_list_size(t_list); i+=4)
+    {   
+        if ( (mouse_x &gt; (x+t_list[| i+0]/$FFFF*256-2)) &amp;&amp;
+             (mouse_y &gt; (y+t_list[| i+2]/$FFFF*256-2)) &amp;&amp;
+             (mouse_x &lt; (x+t_list[| i+1]/$FFFF*256+2)) &amp;&amp;
+             (mouse_y &lt; (y+t_list[| i+3]/$FFFF*256+2))  )
         {
-            controller.tooltip = "Drag to move projection window.";
-            if (mouse_check_button_pressed(mb_left))
+            //within blind zone
+            t_withinblindzone = true;
+            if (mouse_x &lt; (x+t_list[| i+0]/$FFFF*256+5))
+            {   
+                controller.scrollcursor_flag = 1;
+                controller.tooltip = "Drag side to resize blind zone";
+                if (mouse_check_button_pressed(mb_left))
+                {
+                    mousexprevious = mouse_x;
+                    mouseyprevious = mouse_y;
+                    moving = 6;
+                    blindzonetoedit = i;
+                }
+                exit;
+            }
+            else if (mouse_x &gt; (x+t_list[| i+1]/$FFFF*256-5))
+            {   
+                controller.scrollcursor_flag = 1;
+                controller.tooltip = "Drag side to resize blind zone";
+                if (mouse_check_button_pressed(mb_left))
+                {
+                    mousexprevious = mouse_x;
+                    mouseyprevious = mouse_y;
+                    moving = 7;
+                    blindzonetoedit = i;
+                }
+                exit;
+            }
+            else if (mouse_y &lt; (y+t_list[| i+2]/$FFFF*256+5))
+            {   
+                controller.scrollcursor_flag = 2;
+                controller.tooltip = "Drag side to resize blind zone";
+                if (mouse_check_button_pressed(mb_left))
+                {
+                    mousexprevious = mouse_x;
+                    mouseyprevious = mouse_y;
+                    moving = 8;
+                    blindzonetoedit = i;
+                }
+                exit;
+            }
+            else if (mouse_y &gt; (y+t_list[| i+3]/$FFFF*256-5))
+            {   
+                controller.scrollcursor_flag = 2;
+                controller.tooltip = "Drag side to resize blind zone";
+                if (mouse_check_button_pressed(mb_left))
+                {
+                    mousexprevious = mouse_x;
+                    mouseyprevious = mouse_y;
+                    moving = 9;
+                    blindzonetoedit = i;
+                    
+                }
+                exit;
+            }
+            else
             {
-                mousexprevious = mouse_x;
-                mouseyprevious = mouse_y;
-                moving = 5;
+                controller.tooltip = "Drag to move this blind zone.#Right click for more options.";
+                if (mouse_check_button_pressed(mb_left))
+                {
+                    mousexprevious = mouse_x;
+                    mouseyprevious = mouse_y;
+                    moving = 10;
+                    blindzonetoedit = i;
+                }
+                if (mouse_check_button_pressed(mb_right))
+                {
+                    blindzonetoedit = i;
+                    dropdown_blindzone();
+                }
+                exit;
+            }
+        }
+                        
+    }
+    
+    if (!t_withinblindzone)
+    {
+        if ((mouse_x &gt; (x+controller.x_scale_start/$FFFF*256-2)) &amp;&amp;
+            (mouse_y &gt; (y+controller.y_scale_start/$FFFF*256-2)) &amp;&amp; 
+            (mouse_x &lt; (x+controller.x_scale_end/$FFFF*256+2)) &amp;&amp;
+            (mouse_y &lt; (y+controller.y_scale_end/$FFFF*256+2)) )
+        {
+            //within projector window
+            if (mouse_x &lt; (x+controller.x_scale_start/$FFFF*256+5))
+            {   
+                controller.scrollcursor_flag = 1;
+                controller.tooltip = "Drag side to resize projection window";
+                if (mouse_check_button_pressed(mb_left))
+                {
+                    mousexprevious = mouse_x;
+                    mouseyprevious = mouse_y;
+                    moving = 1;
+                    
+                }
+                exit;
+            }
+            else if (mouse_x &gt; (x+controller.x_scale_end/$FFFF*256-5))
+            {   
+                controller.scrollcursor_flag = 1;
+                controller.tooltip = "Drag side to resize projection window";
+                if (mouse_check_button_pressed(mb_left))
+                {
+                    mousexprevious = mouse_x;
+                    mouseyprevious = mouse_y;
+                    moving = 2;
+                    
+                }
+                exit;
+            }
+            else if (mouse_y &lt; (y+controller.y_scale_start/$FFFF*256+5))
+            {   
+                controller.scrollcursor_flag = 2;
+                controller.tooltip = "Drag side to resize projection window";
+                if (mouse_check_button_pressed(mb_left))
+                {
+                    mousexprevious = mouse_x;
+                    mouseyprevious = mouse_y;
+                    moving = 3;
+                    
+                }
+                exit;
+            }
+            else if (mouse_y &gt; (y+controller.y_scale_end/$FFFF*256-5))
+            {   
+                controller.scrollcursor_flag = 2;
+                controller.tooltip = "Drag side to resize projection window";
+                if (mouse_check_button_pressed(mb_left))
+                {
+                    mousexprevious = mouse_x;
+                    mouseyprevious = mouse_y;
+                    moving = 4;
+                    
+                }
+                exit;
+            }
+            else
+            {
+                controller.tooltip = "Drag to move projection window.#Right click for more options.";
+                if (mouse_check_button_pressed(mb_left))
+                {
+                    mousexprevious = mouse_x;
+                    mouseyprevious = mouse_y;
+                    moving = 5;
+                }
+                if (mouse_check_button_pressed(mb_right))
+                {
+                    dropdown_projectionwindow();
+                }
                 exit;
             }
         }
@@ -248,7 +458,7 @@ else
             <kind>1</kind>
             <string>draw_self();
 draw_set_colour(c_aqua);
-draw_set_alpha(0.1);
+draw_set_alpha(0.15);
 draw_rectangle( x+controller.x_scale_start/$FFFF*256+1,
                 y+controller.y_scale_start/$FFFF*256+1,
                 x+controller.x_scale_end/$FFFF*256-1,
@@ -263,15 +473,22 @@ draw_rectangle( x+controller.x_scale_start/$FFFF*256,
                 x+controller.x_scale_end/$FFFF*256,
                 y+controller.y_scale_end/$FFFF*256,     1);
 
-draw_set_colour(c_maroon);
+
 var t_list = controller.blindzone_list;
-for (i = 0; i &lt; ds_list_size(controller.blindzone_list); i+=4)
+for (i = ds_list_size(t_list)-4; i &gt;= 0; i-=4)
 {    
-    draw_set_alpha(0.2);
+    draw_set_alpha(1);
+    draw_set_colour(c_black);
     draw_rectangle( x+t_list[| i]/$FFFF*256+1,
                     y+t_list[| i+2]/$FFFF*256+1,
                     x+t_list[| i+1]/$FFFF*256-1,
-                    y+t_list[| i+3]/$FFFF*256-1,     1);
+                    y+t_list[| i+3]/$FFFF*256-1,     0);
+    draw_set_colour(c_red);
+    /*draw_set_alpha(0.2);
+    draw_rectangle( x+t_list[| i]/$FFFF*256+1,
+                    y+t_list[| i+2]/$FFFF*256+1,
+                    x+t_list[| i+1]/$FFFF*256-1,
+                    y+t_list[| i+3]/$FFFF*256-1,     0);*/
     draw_set_alpha(1);
     draw_rectangle( x+t_list[| i]/$FFFF*256+1,
                     y+t_list[| i+2]/$FFFF*256+1,

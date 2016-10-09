@@ -90,6 +90,13 @@ for (i = 0; i < t_numofelems; i++)
         {
             xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
             yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
+            
+            if ((yp >= $fffe) || (yp <= 1) || (xp >= $fffe) || (xp <= 1)) //todo add safety zone check
+            {
+                //list_id[| currentpos+2 ] = 1;
+                bl_prev = 1;
+                continue;
+            }
                     
             //valid lit point, process it
             
@@ -517,19 +524,19 @@ ds_list_destroy(polarity_list);
 if (controller.exp_optimize)
 {
     if (ds_list_size(list_raw)/4-1 > t_totalpointswanted)
-        {
+    {
         if (controller.opt_warning_flag != 1)
-            {
+        {
             //show_message_async("Failed to optimize the file based on the selected scanning speed and FPS. Please reduce the complexity of frame [ "+string(j)+" ] or use the exported file at your own risk");
             controller.opt_warning_flag = 1;
-            }
-        log("Too many points: "+string(ds_list_size(list_raw)/4));
         }
+        //log("Too many points: "+string(ds_list_size(list_raw)/4));
+    }
     else while (ds_list_size(list_raw)/4 < t_totalpointswanted)
-        {
+    {
         ds_list_add(list_raw,mid_x);
         ds_list_add(list_raw,mid_y);
         ds_list_add(list_raw,1);
         ds_list_add(list_raw,0);
-        }
+    }
 }

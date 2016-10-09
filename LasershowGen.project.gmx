@@ -213,6 +213,7 @@
       <sprite>sprites\spr_largepreview</sprite>
     </sprites>
     <sprite>sprites\spr_update</sprite>
+    <sprite>sprites\spr_blindzone</sprite>
     <sprite>sprites\spr_laseron</sprite>
     <sprite>sprites\spr_export</sprite>
     <sprite>sprites\spr_import</sprite>
@@ -884,9 +885,13 @@
         <script>scripts\dropdown_menu_set_about.gml</script>
         <script>scripts\dropdown_settingpreset.gml</script>
         <script>scripts\dropdown_dacs.gml</script>
+        <script>scripts\dropdown_blindzone.gml</script>
+        <script>scripts\dropdown_projectionwindow.gml</script>
         <script>scripts\preset_load.gml</script>
         <script>scripts\preset_create.gml</script>
         <script>scripts\preset_delete.gml</script>
+        <script>scripts\projectionwindow_reset.gml</script>
+        <script>scripts\blindzone_delete.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">
@@ -1174,6 +1179,7 @@
         <object>objects\obj_invertx</object>
         <object>objects\obj_tooltip</object>
         <object>objects\obj_update</object>
+        <object>objects\obj_addblindzone</object>
         <object>objects\obj_preset</object>
         <object>objects\obj_dacs</object>
         <object>objects\obj_colorscale</object>
