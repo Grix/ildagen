@@ -1,5 +1,6 @@
 listsize = ((ds_list_size(list_id)-20)/4);
 var t_true_dwell_falling, t_true_dwell_rising;
+var t_contflag = false;
 
 if (polarity_list[| i] == 0)
 {
@@ -31,10 +32,30 @@ for (t_i = 0; t_i < listsize; t_i++)
     xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
     yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
    
-    if ((yp >= $fffe) || (yp <= 1) || (xp >= $fffe) || (xp <= 1)) //todo add safety zone check
+    if ((yp >= $fffe) || (yp <= 1) || (xp >= $fffe) || (xp <= 1))
     {
         //list_id[| currentpos+2 ] = 1;
         bl_prev = 1;
+        continue;
+    }
+    
+    for (j = 0; j < t_blindzonelistsize; j+= 4)
+    {
+        if ((xp >= controller.blindzone_list[| j+0]) 
+        &&  (xp <= controller.blindzone_list[| j+1])
+        &&  (yp <= $FFFF-controller.blindzone_list[| j+2]) 
+        &&  (yp >= $FFFF-controller.blindzone_list[| j+3]))
+        {
+            //list_id[| currentpos+2 ] = 1;
+            bl_prev = 1;
+            t_contflag = true;
+            continue;
+        }
+    }
+    
+    if (t_contflag)
+    {
+        t_contflag = false;
         continue;
     }
     

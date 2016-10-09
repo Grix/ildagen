@@ -1,4 +1,6 @@
 var t_vectorx, t_vectory, t_true_dwell_falling, t_true_dwell_rising;
+var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
+var t_contflag = false;
 
 var t_totalrem = 0;
 var t_totalpointswanted = floor(controller.opt_scanspeed/controller.projectfps);
@@ -15,6 +17,7 @@ yp_prev_prev = mid_y;
 bl_prev = 1;
 c_prev = 0;
 new_dot = 1;
+
 
 //if too many dots in frame, first attempt to shrink overlapping ones
 if (lit_length > 0)
@@ -95,6 +98,26 @@ for (i = 0; i < t_numofelems; i++)
             {
                 //list_id[| currentpos+2 ] = 1;
                 bl_prev = 1;
+                continue;
+            }
+            
+            for (j = 0; j < t_blindzonelistsize; j+= 4)
+            {
+                if ((xp >= controller.blindzone_list[| j+0]) 
+                &&  (xp <= controller.blindzone_list[| j+1])
+                &&  (yp <= $FFFF-controller.blindzone_list[| j+2]) 
+                &&  (yp >= $FFFF-controller.blindzone_list[| j+3]))
+                {
+                    //list_id[| currentpos+2 ] = 1;
+                    bl_prev = 1;
+                    t_contflag = true;
+                    continue;
+                }
+            }
+            
+            if (t_contflag)
+            {
+                t_contflag = false;
                 continue;
             }
                     
