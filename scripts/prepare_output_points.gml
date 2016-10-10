@@ -1,4 +1,5 @@
 listsize = ((ds_list_size(list_id)-20)/4);
+var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
 var t_true_dwell_falling, t_true_dwell_rising;
 var t_contflag = false;
 

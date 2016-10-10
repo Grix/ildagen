@@ -129,9 +129,9 @@ if (controller.exp_optimize)
         {
             var t_lengthwanted = abs(lit_length/t_litpointswanted);
             
-            if (t_lengthwanted > 1000)//controller.opt_maxdist) TODO create setting
+            if (t_lengthwanted > 2000)//controller.opt_maxdist) TODO create setting
                 frame_complexity = 1;
-            else if (t_lengthwanted > 1000*0.75)
+            else if (t_lengthwanted > 2000*0.5)
                 frame_complexity = 2;
         }
         else

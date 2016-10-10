@@ -1845,7 +1845,7 @@ if (new_id == getint)
               
             case "fps":
               {
-              seqcontrol.projectfps = clamp(ds_map_find_value(async_load, "value"),1,999);
+              seqcontrol.projectfps = clamp(ds_map_find_value(async_load, "value"),1,99);
               projectfps = seqcontrol.projectfps;
               refresh_miniaudio_flag = 1;
               

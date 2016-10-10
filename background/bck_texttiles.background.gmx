@@ -14,6 +14,6 @@
   </TextureGroups>
   <For3D>0</For3D>
   <width>256</width>
-  <height>64</height>
+  <height>96</height>
   <data>images\bck_texttiles.png</data>
 </background>

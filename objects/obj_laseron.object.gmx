@@ -141,6 +141,26 @@ else if (room = rm_seq)
         }
     }
 }
+if (room = rm_options)
+{ 
+    with (controller)
+    {
+        if (laseron)
+        {
+            laseron = false;
+            dac_blank_and_center(dac);
+        }
+        else if (ds_exists(dac, ds_type_list))
+        {
+            laseron = true;
+            laseronfirst = true;
+        }
+        else
+        {
+            show_message_async("You have not selected a DAC, please set up the connection.");
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

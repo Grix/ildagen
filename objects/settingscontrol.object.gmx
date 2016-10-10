@@ -25,7 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(fnt_tooltip);
+            <string>output_buffer = buffer_create(48000,buffer_fixed,2);
+output_buffer2 = buffer_create(48000,buffer_fixed,2);
+
+el_list = -1;
+output_buffer_ready = false;
+output_buffer_next_size = 0;
+
+draw_set_font(fnt_tooltip);
 menu_string = "   Properties      View      About   ";
 menu_width_start[0] = 0;
 menu_width[0] = string_width("   Properties   ");
@@ -34,6 +41,46 @@ menu_width[1] = string_width("   View   ");
 menu_width_start[2] = menu_width_start[1]+menu_width[1];
 menu_width[2] = string_width("   About   ");
 menu_width_start[3] = menu_width_start[2]+menu_width[2];
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>minroomspeed = 60;
+
+if (controller.laseron)
+{
+    if (!ds_exists(controller.dac,ds_type_list))
+    {
+        show_message_async("Error, DAC data missing");
+        controller.laseron = false;
+        controller.dac = -1;
+        controller.dac_string = "[None]";
+    }
+    else
+        output_frame_settings();
+}
+
+room_speed = controller.projectfps;
+while (room_speed &lt; minroomspeed)
+    room_speed += controller.projectfps;
 </string>
           </argument>
         </arguments>
