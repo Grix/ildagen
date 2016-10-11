@@ -101,12 +101,12 @@ for (i = 0; i < t_numofelems; i++)
                 continue;
             }
             
-            for (j = 0; j < t_blindzonelistsize; j+= 4)
+            for (jj = 0; jj < t_blindzonelistsize; jj+= 4)
             {
-                if ((xp >= controller.blindzone_list[| j+0]) 
-                &&  (xp <= controller.blindzone_list[| j+1])
-                &&  (yp <= $FFFF-controller.blindzone_list[| j+2]) 
-                &&  (yp >= $FFFF-controller.blindzone_list[| j+3]))
+                if ((xp >= controller.blindzone_list[| jj+0]) 
+                &&  (xp <= controller.blindzone_list[| jj+1])
+                &&  (yp <= $FFFF-controller.blindzone_list[| jj+2]) 
+                &&  (yp >= $FFFF-controller.blindzone_list[| jj+3]))
                 {
                     //list_id[| currentpos+2 ] = 1;
                     bl_prev = 1;

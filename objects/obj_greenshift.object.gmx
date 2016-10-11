@@ -56,7 +56,7 @@ if (instance_exists(oDropDown))
     
 if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
-    controller.tooltip = "Changes the GREEN color offset in points. Right click to set custom amount.#Hold Ctrl and click to change all offsets at once.";
+    controller.tooltip = "Changes the GREEN color offset in points. Right click to set custom amount.#Hold Ctrl and click to change all offsets at once.#Try setting this to -3 or so if you see trailing on tips of lines.";
     
     if ((mouse_x - bbox_left) &gt; 24)
         image_index = 1;

@@ -1463,6 +1463,27 @@ if (new_id == getint)
               
               break;
               }
+            case "redshift":
+              {
+              opt_redshift = ds_map_find_value(async_load, "value");
+              save_settings();
+              
+              break;
+              }
+            case "greenshift":
+              {
+              opt_greenshift = ds_map_find_value(async_load, "value");
+              save_settings();
+              
+              break;
+              }
+            case "blueshift":
+              {
+              opt_blueshift = ds_map_find_value(async_load, "value");
+              save_settings();
+              
+              break;
+              }
             case "maxdwell":
               {
               opt_maxdwell = ds_map_find_value(async_load, "value");
