@@ -23,6 +23,11 @@ with (controller)
     ini_write_real(t_projectorstring, "green_scale_lower", green_scale_lower);
     ini_write_real(t_projectorstring, "blue_scale_lower", blue_scale_lower);
     ini_write_real(t_projectorstring, "show_tooltip", show_tooltip);
+    ini_write_real(t_projectorstring, "x_scale_start", x_scale_start);
+    ini_write_real(t_projectorstring, "y_scale_start", y_scale_start);
+    ini_write_real(t_projectorstring, "x_scale_end", x_scale_end);
+    ini_write_real(t_projectorstring, "y_scale_end", y_scale_end);
+    ini_write_string(t_projectorstring, "blindzones", ds_list_write(blindzone_list));
     
     if (room == rm_options)
         {

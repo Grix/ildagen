@@ -123,6 +123,9 @@ dac_list = ds_list_create();
 output_buffer = buffer_create(48000,buffer_fixed,2);
 output_buffer2 = buffer_create(48000,buffer_fixed,2);
 blindzone_list = ds_list_create();
+list = ds_list_create();
+emptyliststring = ds_list_write(list);
+ds_list_destroy(list);
 
 c_gold = make_colour_rgb(255,220,0);
 
@@ -1418,6 +1421,11 @@ if (new_id == getint)
                     ini_write_real(t_currentprojectorstring, "green_scale_lower", ini_read_real(t_projectorstring,"green_scale_lower",0));
                     ini_write_real(t_currentprojectorstring, "blue_scale_lower", ini_read_real(t_projectorstring,"blue_scale_lower",0));
                     ini_write_real(t_currentprojectorstring, "show_tooltip", ini_read_real(t_projectorstring,"show_tooltip",1));
+                    ini_write_real(t_currentprojectorstring, "x_scale_start", ini_read_real(t_projectorstring,"x_scale_start",0));
+                    ini_write_real(t_currentprojectorstring, "y_scale_start", ini_read_real(t_projectorstring,"y_scale_start",0));
+                    ini_write_real(t_currentprojectorstring, "x_scale_end", ini_read_real(t_projectorstring,"x_scale_end",$FFFF));
+                    ini_write_real(t_currentprojectorstring, "y_scale_end", ini_read_real(t_projectorstring,"y_scale_end",$FFFF));
+                    ini_write_string(t_currentprojectorstring, "blindzones", ini_read_string(t_projectorstring,"blindzones",emptyliststring));
                     ini_section_delete(t_projectorstring);
                     ini_write_real("main","projector",projector);
                     }
