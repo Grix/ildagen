@@ -10,6 +10,6 @@ with (ddobj)
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,verify_serial);
     ds_list_add(scr_list,update_check_verbose);
-    ds_list_add(hl_list,1);
+    ds_list_add(hl_list,verify_serial(1));
     ds_list_add(hl_list,1);
     }

@@ -48,22 +48,6 @@
       <constants/>
     </file>
     <file>
-      <filename>LasdacDll.dll</filename>
-      <origname>extensions\LasdacDll.dll</origname>
-      <init></init>
-      <final></final>
-      <kind>1</kind>
-      <uncompress>0</uncompress>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>17592940089542</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <ProxyFiles/>
-      <functions/>
-      <constants/>
-    </file>
-    <file>
       <filename>EtherDream.dll</filename>
       <origname>extensions\EtherDream.dll</origname>
       <init></init>
@@ -187,22 +171,6 @@
       <constants/>
     </file>
     <file>
-      <filename>OLSD.dll</filename>
-      <origname>extensions\OLSD.dll</origname>
-      <init></init>
-      <final></final>
-      <kind>1</kind>
-      <uncompress>0</uncompress>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <ProxyFiles/>
-      <functions/>
-      <constants/>
-    </file>
-    <file>
       <filename>EasyLase.dll</filename>
       <origname>extensions\EasyLase.dll</origname>
       <init></init>
@@ -292,6 +260,38 @@
       <ConfigOptions>
         <Config name="Default">
           <CopyToMask>17592736665668</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles/>
+      <functions/>
+      <constants/>
+    </file>
+    <file>
+      <filename>SDL.dll</filename>
+      <origname>extensions\SDL.dll</origname>
+      <init></init>
+      <final></final>
+      <kind>1</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles/>
+      <functions/>
+      <constants/>
+    </file>
+    <file>
+      <filename>ftd2xx.dll</filename>
+      <origname>extensions\ftd2xx.dll</origname>
+      <init></init>
+      <final></final>
+      <kind>1</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>

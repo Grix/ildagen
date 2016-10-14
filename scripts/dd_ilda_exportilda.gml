@@ -1,10 +1,4 @@
-if (controller.maxframes == 1) && !ds_list_size(controller.el_list)
-    exit;
-
 ilda_cancel();
-
-if (!verify_serial())
-    exit;
 
 with (controller) 
     {

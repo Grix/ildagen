@@ -132,9 +132,9 @@ event_user(0);
     exit;
 
 with (seqcontrol) 
-    {
+{
     export_project();
-    }
+}
 </string>
           </argument>
         </arguments>
