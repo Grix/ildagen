@@ -6,7 +6,6 @@
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
-#include "hexDump.h"
 
 namespace {
 
@@ -186,7 +185,6 @@ LaserdockDevice::LaserdockDevice(libusb_device * usbdevice) : d(new LaserdockDev
 }
 
 LaserdockDevice::~LaserdockDevice() {
-	delete d;
 }
 
 bool LaserdockDevice::enable_output() {
@@ -196,6 +194,43 @@ bool LaserdockDevice::enable_output() {
 LaserdockDevice::LaserdockDeviceStatus LaserdockDevice::status() {
 	return d->status;
 }
+
+
+bool LaserdockDevice::usb_send(unsigned char * data, int length){
+	//printf("sending usb, numbytes %d.\n", numbytes);
+
+	int r, actual;
+	r = libusb_bulk_transfer(d->devh_ctl, (1 | LIBUSB_ENDPOINT_OUT), data, length, &actual, 0);
+
+	if (r != 0 || length != actual)
+		return false;
+
+	return true;
+}
+
+
+unsigned char *LaserdockDevice::usb_get(unsigned char * data, int length){
+
+	int r, actual;
+
+	r = libusb_bulk_transfer(d->devh_ctl, (1 | LIBUSB_ENDPOINT_OUT), data, length, &actual, 0);
+	if (r != 0 || actual != length)
+		return NULL;
+
+	unsigned char * response = (unsigned char *)calloc(64, 1);
+
+	r = libusb_bulk_transfer(d->devh_ctl, (1 | LIBUSB_ENDPOINT_IN), response, 64, &actual, 0);
+
+	if (r != 0 || actual != 64 || response[1] != 0)
+	{
+		printf("Read Error: %d, %d\n", r, actual);
+		//free(response);
+		return NULL;
+	}
+
+	return response;
+}
+
 
 bool LaserdockDevice::get_output(bool *enabled) {
 	uint8_t enabled8;
@@ -279,7 +314,7 @@ bool LaserdockDevice::send(unsigned char *data, uint32_t length) {
 	int rv = 0; int transferred = 0;
 	do {
 		rv = libusb_bulk_transfer(d->devh_data, (3 | LIBUSB_ENDPOINT_OUT), (unsigned char*)data, length,
-			&transferred, 0);
+			&transferred, 33);
 		if (rv == LIBUSB_ERROR_TIMEOUT){
 			timeout_strikes--;
 		}
@@ -321,7 +356,6 @@ bool LaserdockDevice::runner_mode_enable(bool v) {
 	uint32_t rlen = 4;
 	uint8_t response[64];
 	bool r = sendraw(d->devh_ctl, request, rlen, response);
-	//hexDump("Response",response, 64);
 	return r;
 }
 
@@ -330,7 +364,6 @@ bool LaserdockDevice::runner_mode_run(bool v) {
 	uint32_t rlen = 4;
 	uint8_t response[64];
 	bool r = sendraw(d->devh_ctl, request, rlen, response);
-	//hexDump("Response",response, 64);
 	return r;
 }
 
@@ -346,12 +379,11 @@ bool LaserdockDevice::runner_mode_load(LaserdockSample *samples, uint16_t positi
 	*cnt = count;
 
 	memcpy(request + 6, samples, sizeof(LaserdockSample) * count);
-	//hexDump("Request",request, 64);
 
 	uint32_t rlen = 64;
 	uint8_t response[64];
 	bool r = sendraw(d->devh_ctl, request, rlen, response);
-	//hexDump("Response",response, 64);
+
 	return r;
 }
 
@@ -366,5 +398,3 @@ uint16_t float_to_laserdock_xy(float var)
 uint16_t laserdock_sample_flip(uint16_t value){
 	return 4095 - value;
 }
-
-

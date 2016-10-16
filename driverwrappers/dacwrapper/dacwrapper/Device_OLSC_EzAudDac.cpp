@@ -54,13 +54,13 @@ int Device_OLSC_EzAudDac::Init()
 		return -1;
 	}
 
-	OLSC_WriteFrameEx = (OLSCFuncPtr3)GetProcAddress(OLSCLibrary, "OLSC_WriteFrameEx");
-	if (!OLSC_WriteFrameEx)
+	OLSC_WriteFrame = (OLSCFuncPtr3)GetProcAddress(OLSCLibrary, "OLSC_WriteFrame");
+	if (!OLSC_WriteFrame)
 	{
 		FreeLibrary(OLSCLibrary);
 		return -1;
 	}
-
+	
 	int openResult = OLSC_Initialize();
 	if (openResult <= 0)
 	{
@@ -91,7 +91,12 @@ bool Device_OLSC_EzAudDac::OutputFrame(int cardNum, int scanRate, int bufferSize
 			{
 				if ((status & 1) != 0) //if ready
 					continue;
-				return (OLSC_WriteFrameEx(cardNum, scanRate, bufferSize, bufferAddress) == 1);
+
+				OLSC_Frame frame;
+				frame.display_speed = scanRate;
+				frame.point_count = bufferSize;
+				frame.points = bufferAddress;
+				return (OLSC_WriteFrame(cardNum, frame) == 1);
 			}
 		}
 	}

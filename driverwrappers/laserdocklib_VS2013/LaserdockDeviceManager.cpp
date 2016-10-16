@@ -58,10 +58,9 @@ namespace {
 struct LaserdockDeviceManagerPrivate {
 
 	std::vector<LaserdockDevice *> devices;
-    std::vector<libusb_device *> usbdevices;
+	std::vector<libusb_device *> usbdevices;
 
-
-    LaserdockDeviceManagerPrivate(LaserdockDeviceManager *q_ptr) :q(q_ptr), devices(), usbdevices() {
+	LaserdockDeviceManagerPrivate(LaserdockDeviceManager *q_ptr) :q(q_ptr), devices(), usbdevices() {
 		this->initialize_usb();
 	};
 
@@ -74,96 +73,97 @@ struct LaserdockDeviceManagerPrivate {
 			return false;
 		}
 
-		//libusb_set_debug(NULL, LIBUSB_LOG_LEVEL_DEBUG);
-
 		return true;
 	}
 
-    bool is_laserdock(libusb_device * device){
-        struct libusb_device_descriptor device_descriptor;
-        int result = libusb_get_device_descriptor(device, &device_descriptor);
+	bool is_laserdock(libusb_device * device){
+		struct libusb_device_descriptor device_descriptor;
+		int result = libusb_get_device_descriptor(device, &device_descriptor);
 
-        if (LASERDOCK_VIN == device_descriptor.idVendor && LASERDOCK_PIN == device_descriptor.idProduct)
-            return true;
+		if (LASERDOCK_VIN == device_descriptor.idVendor && LASERDOCK_PIN == device_descriptor.idProduct)
+			return true;
 
-        return false;
-    }
+		return false;
+	}
 
-    LaserdockDevice * discover_devices(){
-        this->usbdevices.clear();
+	LaserdockDevice * discover_devices(){
+		this->usbdevices.clear();
 
-        libusb_device **list;
-        ssize_t cnt = libusb_get_device_list(NULL, &list);
-        ssize_t i = 0;
+		libusb_device **list;
+		ssize_t cnt = libusb_get_device_list(NULL, &list);
+		ssize_t i = 0;
 
-        int err = 0;
-        if (cnt < 0) {
-            fprintf(stderr, "Error finding USB device\n");
-            libusb_free_device_list(list, 1);
-            return NULL;
-        }
+		int err = 0;
+		if (cnt < 0) {
+			fprintf(stderr, "Error finding USB device\n");
+			libusb_free_device_list(list, 1);
+			return NULL;
+		}
 
-        for (i = 0; i < cnt; i++) {
-            libusb_device *device = list[i];
-            if (is_laserdock(device)) {
-                LaserdockDevice * d = new LaserdockDevice(device);
-                if(d->status() == LaserdockDevice::LaserdockDeviceStatus::INITIALIZED)
-                    this->usbdevices.push_back(device);
-                delete d;
-            }
-        }
+		for (i = 0; i < cnt; i++) {
+			libusb_device *device = list[i];
+			if (is_laserdock(device)) {
+				std::unique_ptr<LaserdockDevice> d(new LaserdockDevice(device));
+				if (d->status() == LaserdockDevice::LaserdockDeviceStatus::INITIALIZED)
+					this->usbdevices.push_back(device);
+			}
+		}
 
-        libusb_free_device_list(list, 1);
-        return NULL;
-    }
+		libusb_free_device_list(list, 1);
+		return NULL;
+	}
 
 	LaserdockDevice * discover_next_available_device() {
-        libusb_device **list;
-        ssize_t cnt = libusb_get_device_list(NULL, &list);
-        ssize_t i = 0;
+		libusb_device **list;
+		ssize_t cnt = libusb_get_device_list(NULL, &list);
+		ssize_t i = 0;
 
-        int err = 0;
-        if (cnt < 0) {
-            fprintf(stderr, "Error finding USB device\n");
-            libusb_free_device_list(list, 1);
-            return NULL;
-        }
+		int err = 0;
+		if (cnt < 0) {
+			fprintf(stderr, "Error finding USB device\n");
+			libusb_free_device_list(list, 1);
+			return NULL;
+		}
 
-        for (i = 0; i < cnt; i++) {
-            libusb_device *device = list[i];
-            if (is_laserdock(device)) {
-                LaserdockDevice * d = new LaserdockDevice(device);
-                if(d->status() == LaserdockDevice::LaserdockDeviceStatus::INITIALIZED)
-                    return d;
-            }
-        }
+		for (i = 0; i < cnt; i++) {
+			libusb_device *device = list[i];
+			if (is_laserdock(device)) {
+				LaserdockDevice * d = new LaserdockDevice(device);
+				if (d->status() == LaserdockDevice::LaserdockDeviceStatus::INITIALIZED)
+					return d;
+			}
+		}
 
-        libusb_free_device_list(list, 1);
-        return NULL;
+		libusb_free_device_list(list, 1);
+		return NULL;
 	}
 
 private:
 	LaserdockDeviceManager * q;
 };
 
-LaserdockDeviceManager::LaserdockDeviceManager() : d(new LaserdockDeviceManagerPrivate(this)) {
+LaserdockDeviceManager::LaserdockDeviceManager()
+	: d(new LaserdockDeviceManagerPrivate(this)) {
 
 }
 
 LaserdockDeviceManager::~LaserdockDeviceManager() {
-	delete d;
 }
 
+LaserdockDeviceManager &LaserdockDeviceManager::getInstance()
+{
+	static LaserdockDeviceManager    instance;
+	return instance;
+}
 
 void LaserdockDeviceManager::list_laserdock_devices() {
 	d->discover_devices();
 
-	for (auto device : d->usbdevices)
-	{
+	for (auto device : d->usbdevices) {
 		print_device(device);
 	}
 }
 
-LaserdockDevice * LaserdockDeviceManager::get_next_available_device() {
-    return d->discover_next_available_device();
+LaserdockDevice *LaserdockDeviceManager::get_next_available_device() {
+	return d->discover_next_available_device();
 }

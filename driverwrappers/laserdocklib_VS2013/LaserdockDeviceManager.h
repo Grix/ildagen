@@ -2,35 +2,28 @@
 // Created by Guoping Huang on 9/6/16.
 //
 
-#ifndef PROJECTTESTUTILITIES_LASERDOCKDEVICEMANAGER_H
-#define PROJECTTESTUTILITIES_LASERDOCKDEVICEMANAGER_H
+#ifndef LASERDOCKLIB_LASERDOCKDEVICEMANAGER_H
+#define LASERDOCKLIB_LASERDOCKDEVICEMANAGER_H
 
+#include <memory>
 
-class LaserdockDeviceManagerPrivate;
 class LaserdockDevice;
+class LaserdockDeviceManagerPrivate;
 
 class LaserdockDeviceManager
 {
 public:
-	static LaserdockDeviceManager& getInstance()
-	{
-		static LaserdockDeviceManager    instance;
-		return instance;
-	}
+	static LaserdockDeviceManager& getInstance();
 
 	void list_laserdock_devices();
-	LaserdockDevice * get_next_available_device();
+	LaserdockDevice *get_next_available_device();
 
 private:
-	LaserdockDeviceManager();
-	LaserdockDeviceManager(LaserdockDeviceManager const&);
-	void operator=(LaserdockDeviceManager const&); 
-	~LaserdockDeviceManager();
+	explicit LaserdockDeviceManager();
+	virtual ~LaserdockDeviceManager();
 
 private:
-    LaserdockDeviceManagerPrivate * d;
-
+	std::unique_ptr<LaserdockDeviceManagerPrivate> d;
 };
 
-
-#endif //PROJECTTESTUTILITIES_LASERDOCKDEVICEMANAGER_H
+#endif //LASERDOCKLIB_LASERDOCKDEVICEMANAGER_H

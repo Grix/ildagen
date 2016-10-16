@@ -91,11 +91,10 @@ bool freeAll()
 {
 	//freeing then reenabling crashes the program, this is a workaround
 
-	/*if (!inited)
+	if (!inited)
 		return false;
 
 	delete laserdockDevice;
-	inited = false;*/
+	inited = false;
 	return true;
-	
 }

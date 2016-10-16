@@ -19,6 +19,13 @@ public:
 		uint16_t i;
 	}OLSC_Point;
 
+	typedef struct
+	{
+		int display_speed;
+		int point_count;
+		OLSC_Point *points;
+	}OLSC_Frame;
+
 	int Init();
 	bool OutputFrame(int cardNum, int scanRate, int bufferSize, OLSC_Point* bufferAddress);
 	bool OpenDevice(int cardNum);
@@ -40,7 +47,7 @@ private:
 	typedef int(__stdcall *OLSCFuncPtr2)(int);
 
 	//OLSC_WriteFrameEx
-	typedef int(__stdcall *OLSCFuncPtr3)(int device_number, int display_speed, int point_count, OLSC_Point*);
+	typedef int(__stdcall *OLSCFuncPtr3)(int device_number, OLSC_Frame);
 
 	//OLSC_GetStatus
 	typedef int(__stdcall *OLSCFuncPtr4)(int, DWORD&);
@@ -49,7 +56,7 @@ private:
 	OLSCFuncPtr1 OLSC_Initialize;
 	OLSCFuncPtr1 OLSC_Shutdown;
 	OLSCFuncPtr2 OLSC_Pause;
-	OLSCFuncPtr3 OLSC_WriteFrameEx;
+	OLSCFuncPtr3 OLSC_WriteFrame;
 	OLSCFuncPtr4 OLSC_GetStatus;
 
 	bool ready;
