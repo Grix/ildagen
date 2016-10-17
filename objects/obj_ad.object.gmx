@@ -27,8 +27,23 @@
             <kind>1</kind>
             <string>if (verify_serial(1))
     instance_destroy();
+    
+md5query = -1;
+adquery = -1;
+ad = choose(spr_ad1, spr_ad2, spr_ad3, spr_ad4);
 
-ad = choose(spr_ad1);
+/*if (!file_exists("ad1.png") || !file_exists("ad2.png") || !file_exists("ad3.png") || !file_exists("ad4.png"))
+{
+    adquery = http_get_file("https://raw.githubusercontent.com/Grix/ildagen/master/ads/ad1.png", "ad1.png");
+    http_get_file("https://raw.githubusercontent.com/Grix/ildagen/master/ads/ad2.png", "ad2.png");
+    http_get_file("https://raw.githubusercontent.com/Grix/ildagen/master/ads/ad3.png", "ad3.png");
+    http_get_file("https://raw.githubusercontent.com/Grix/ildagen/master/ads/ad4.png", "ad4.png");
+    exit;
+}
+else
+{
+    md5query = http_get_file("https://raw.githubusercontent.com/Grix/ildagen/master/ads/md5.ini", "md5.ini");
+}*/
 
 alarm[0] = 2;
 </string>
@@ -55,10 +70,10 @@ alarm[0] = 2;
             <kind>1</kind>
             <string>ddobj = instance_create(0,0,oDropDown);
 with (ddobj)
-    {
+{
     num = 0;
     event_user(1);
-    }
+}
 </string>
           </argument>
         </arguments>
@@ -96,25 +111,66 @@ else if (mouse_x &gt;= x) &amp;&amp; (mouse_x &lt;= (x+700)) &amp;&amp; (mouse_y
     {
         if (ad == spr_ad1)
             url_open_new("http://bitlasers.com/opencart/index.php?route=product/product&amp;product_id=82");
+        else if (ad == spr_ad2)
+            url_open_new("https://www.reddit.com/r/lasershowgen");
+        else if (ad == spr_ad3)
+            url_open_new("http://pages.bitlasers.com/helios/");
+        else if (ad == spr_ad4)
+            url_open_new("http://pages.bitlasers.com/lasershowgen/advertise");
     
-    ddobj = instance_create(0,0,oDropDown);
-    with (ddobj)
+        ddobj = instance_create(0,0,oDropDown);
+        with (ddobj)
         {
-        num = 0;
-        event_user(1);
+            num = 0;
+            event_user(1);
         }
     }
 }
 else if (mouse_check_button_pressed(mb_left))
-    {
+{
     ddobj = instance_create(0,0,oDropDown);
     with (ddobj)
-        {
+    {
         num = 0;
         event_user(1);
+    }
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="62">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*if (ds_map_find_value(async_load, "id") == adquery)
+{
+    if ds_map_find_value(async_load, "status") == 0
+    {
+        if (file_exists("ad1.png"))
+        {
+            ad = sprite_add("ad1.png",1,0,0,0,0);
         }
     }
+}
 
+
+alarm[0] = 2;*/
 </string>
           </argument>
         </arguments>

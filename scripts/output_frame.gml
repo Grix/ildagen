@@ -1,5 +1,6 @@
 minroomspeed = max(projectfps,25);
 
+log("sent");
 if (output_buffer_ready)
 {
     dac_send_frame(dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps);
@@ -11,6 +12,7 @@ if (output_buffer_ready)
     output_buffer = output_buffer2;
     output_buffer2 = t_output_buffer_prev;
 }
+log("sent done")
 
 maxpoints = 0;
 

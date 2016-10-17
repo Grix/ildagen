@@ -272,8 +272,11 @@
     <sprite>sprites\spr_playcontrols</sprite>
     <sprite>sprites\spr_blank</sprite>
     <sprite>sprites\spr_comingsoon</sprite>
-    <sprite>sprites\spr_ad1</sprite>
     <sprite>sprites\spr_laserareasettings</sprite>
+    <sprite>sprites\spr_ad1</sprite>
+    <sprite>sprites\spr_ad2</sprite>
+    <sprite>sprites\spr_ad3</sprite>
+    <sprite>sprites\spr_ad4</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_ilda</background>

@@ -60,6 +60,7 @@ bool sendFrame(uint8_t* data, uint32_t length, uint32_t rate)
 	}
 
 	return laserdockDevice->send(data, length);
+	return true;
 }
 
 bool stop()
