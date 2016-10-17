@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.4.1";
-versiondate = "2016-09-23";
+            <string>version = "1.4.2";
+versiondate = "2016-10-17";
 
 if (debug_mode)
 {
@@ -350,6 +350,8 @@ squaregrid_surf = surface_create(512,512);
 surface_set_target(squaregrid_surf);
     draw_grid();
 surface_reset_target();
+
+randomize();
 
 init_palette();
 

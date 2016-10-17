@@ -1,4 +1,4 @@
-minroomspeed = max(projectfps,25); 
+minroomspeed = max(projectfps,10); 
     
 if (output_buffer_ready)
 {

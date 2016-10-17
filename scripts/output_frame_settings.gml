@@ -1,4 +1,4 @@
-minroomspeed = max(controller.projectfps,25);
+minroomspeed = max(controller.projectfps,10);
 
 if (output_buffer_ready)
 {

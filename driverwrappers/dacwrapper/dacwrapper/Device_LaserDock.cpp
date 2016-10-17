@@ -63,7 +63,7 @@ bool Device_LaserDock::OutputFrame(int rate, int frameSize, LaserDockPoint* buff
 
 	int thisFrameNum = ++frameNum;
 
-	for (int i = 0; i < 16; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		if (frameNum > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;

@@ -116,7 +116,7 @@ else if (mouse_x &gt;= x) &amp;&amp; (mouse_x &lt;= (x+700)) &amp;&amp; (mouse_y
         else if (ad == spr_ad3)
             url_open_new("http://pages.bitlasers.com/helios/");
         else if (ad == spr_ad4)
-            url_open_new("http://pages.bitlasers.com/lasershowgen/advertise");
+            url_open_new("http://pages.bitlasers.com/lasershowgen/advertising");
     
         ddobj = instance_create(0,0,oDropDown);
         with (ddobj)
