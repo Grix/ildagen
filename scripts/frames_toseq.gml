@@ -34,7 +34,7 @@ framehr = 0;
     }
 }*/
 
-save_buffer = buffer_create(1,buffer_grow,1);
+save_buffer = buffer_create(16,buffer_grow,1);
 
 buffer_write(save_buffer,buffer_u8,52);
 buffer_write(save_buffer,buffer_u32,maxframes);

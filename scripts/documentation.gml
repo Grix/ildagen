@@ -12,6 +12,15 @@ layer_list
                 disabled
                 hidden
         layer elements...
+            xpos on timeline
+            frame buffers
+            info list..
+                length
+                screenshot surface
+                maxframes
+                
+somaster_list
+    layer elements.. (see above)
 
 CONTROLLER
         

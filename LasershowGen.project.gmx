@@ -1076,6 +1076,7 @@
     <script>scripts\benchmark.gml</script>
     <script>scripts\verify_serial.gml</script>
     <script>scripts\verify_numexports.gml</script>
+    <script>scripts\split_timelineobject.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>

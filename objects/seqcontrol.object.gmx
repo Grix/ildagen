@@ -327,7 +327,7 @@ alarm[1] = 13;
           <argument>
             <kind>1</kind>
             <string>if (room == rm_loading)
-    {
+{
     if (global.loading_exportproject == 1)
         export_project_work();
     else if (global.loading_saveproject == 1)
@@ -335,14 +335,14 @@ alarm[1] = 13;
     else if (global.loading_loadproject == 1)
         load_project_work();
     else if (global.loading_importildaseq == 1)
-        {
+    {
         
         if (global.loading_current &lt; global.loading_end)
             read_ilda_work();
         else
             import_ildaseq_end();
-        }
     }
+}
 
 if (parsingaudio == 1) refresh_audio();
 
@@ -354,41 +354,47 @@ if (instance_exists(oDropDown))
     exit;
     
 if (keyboard_check(vk_control))
-    {
+{
     //CTRL+~
     if (keyboard_check_pressed(ord('C')))
-        {
+    {
         if (!ds_list_empty(somaster_list))
-            {
+        {
             //COPY
             seq_copy_object();
-            }
         }
+    }
     else if (keyboard_check_pressed(ord('X')))
-        {
+    {
         if (!ds_list_empty(somaster_list))
-            {
+        {
             //COPY
             seq_cut_object();
-            }
         }
+    }
     else if (keyboard_check_pressed(ord('V')))
-        {
+    {
         if (selectedlayer &gt;= 0) and (selectedx &gt;= 0)
-            {
+        {
             //COPY
             seq_paste_object();
-            }
         }
+    }
     else if (keyboard_check_pressed(ord('Z')))
-        {
-        undo_seq();
-        }
-    }
-else if (keyboard_check_pressed(vk_right))
     {
-    tlpos += 1000/projectfps;
+        undo_seq();
     }
+}
+
+else if (keyboard_check_pressed(ord('S')))
+{
+    split_timelineobject();
+}
+
+else if (keyboard_check_pressed(vk_right))
+{
+    tlpos += 1000/projectfps;
+}
     
 else if (keyboard_check_pressed(vk_escape))
 {
@@ -401,61 +407,60 @@ else if (keyboard_check_pressed(vk_escape))
 }
     
 else if (keyboard_check_pressed(vk_space))
-    {
+{
     playing = !playing;
     if (seqcontrol.song)
-        {
+    {
         if (playing)
-            {
+        {
             FMODInstanceSetPosition(songinstance,(tlpos+audioshift)/FMODSoundGetLength(song));
             FMODInstanceSetPaused(songinstance,0);
-            }
+        }
         else
             FMODInstanceSetPaused(songinstance,1);
-        }
     }
+}
     
 else if (keyboard_check_pressed(vk_left)) and (tlpos &gt; projectfps/1000)
-    {
+{
     tlpos -= 1000/projectfps;
-    }
-
+}
 
 else if (keyboard_check_pressed(vk_tab))
-    {
+{
     if (song) FMODInstanceSetPaused(songinstance,1);
     playing = 0;
     room_goto(rm_ilda);
-    }
+}
     
 else if (keyboard_check_pressed(ord("P")))
-    {
+{
     viewmode++;
     if (viewmode &gt; 2)
         viewmode = 0;
     frame_surf_refresh = 1;
-    }
+}
     
 else if (keyboard_check_pressed(ord("0")))
-    {
+{
     tlx = 0;
     playing = 0;
     tlpos = 0;
     if (song)
-        {
+    {
         FMODInstanceStop(songinstance);
         songinstance = FMODSoundPlay(song,1);
         set_audio_speed();
-        }
     }
+}
 
 else if (keyboard_check_pressed(vk_delete))
-    {
+{
     if (!ds_list_empty(somaster_list))
-        {
+    {
         seq_delete_object();
-        }
     }
+}
     
 handle_mousecontrol();
 
@@ -751,9 +756,9 @@ if (new_id == getint)
             <string>if (room != rm_seq) exit;
 
 if ((alarm[0] == 1)) or (playing and (alarm[0] mod 2) == 1) or (moving_object) or (moving_object_flag) or (scroll_moving)
-    {
+{
     refresh_audio_surf();
-    }
+}
     
 draw_set_color(c_white);
 draw_set_alpha(1);
@@ -761,14 +766,14 @@ draw_set_alpha(1);
 //draws laser preview
 if  (!controller.laseron) and 
     ((frame_surf_refresh == 1) or !surface_exists(frame_surf) or !surface_exists(frame_surf_large) or !surface_exists(frame3d_surf_large) or !surface_exists(frame3d_surf))
-    {
+{
     if (largepreview)
         refresh_seq_surface_large();
     else
         refresh_seq_surface();
         
     frame_surf_refresh = false;
-    }
+}
     
 if (surface_exists(audio_surf))
     draw_surface_part(audio_surf,0,0,tlw+1,lbsh+17,0,137);
@@ -783,45 +788,45 @@ draw_set_alpha(0.8);
 cursorlinex = tlpos/1000*projectfps;
 cursorlinexdraw = (cursorlinex-tlx)/tlzoom*tlw;
 if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
-    {
+{
     //timeline cursor
     draw_line(cursorlinexdraw,136,cursorlinexdraw,136+tlh);
     draw_line(cursorlinexdraw,tls-1,cursorlinexdraw,lbsh+137);
     if (cursorlinexdraw &gt; (tlw/2)) and (playing) and (!scroll_moving) and (!mouse_check_button(mb_any))
-        {
+    {
         tlx = cursorlinex-(tlw/2)*tlzoom/tlw;
             if ((tlx+tlzoom) &gt; length) length = tlx+tlzoom;
-        }
     }
+}
     
 draw_set_colour(c_teal);
 
 if (draw_mouseline = 1)
-    {
+{
     draw_set_alpha(0.2);
     draw_line(mouse_x,136,mouse_x,136+tlh);
     draw_line(mouse_x,tls,mouse_x,lbsh+136);
     draw_mouseline = 0;
-    }
+}
 if (draw_cursorline = 1)
-    {
+{
     draw_set_alpha(0.3);
     floatingcursorxcorrected = (floatingcursorx-tlx)/tlzoom*tlw;
     draw_line(floatingcursorxcorrected,floatingcursory,floatingcursorxcorrected,floatingcursory+48);
-    }
+}
     
 draw_set_alpha(1);
     
 if (controller.laseron)
-    {
+{
     draw_set_color(c_white);
     draw_set_alpha(1);
     draw_set_halign(fa_center);
     draw_text(256,70,"Laser output active: "+string(controller.dac_string));
     draw_set_halign(fa_left);
-    }
+}
 else if (largepreview)
-    {
+{
     draw_set_colour(c_black);
     draw_rectangle(89,49,691,651,0);
     draw_set_color(c_white);
@@ -831,67 +836,67 @@ else if (largepreview)
         
     if (viewmode != 1)
         draw_surface_part(frame_surf_large,0,0,600,600,90,50);
-    }
+}
 else
-    {
+{
     if (viewmode != 0)
         draw_surface_part(frame3d_surf,0,0,509,135,0,0);
         
     if (viewmode != 1)
         draw_surface_part(frame_surf,0,0,509,135,0,0);
-    }
+}
     
 //menu
 draw_set_alpha(1);
 draw_set_colour(c_black);
 draw_text(0,view_yview[3]+4,menu_string);
 if (mouse_y &gt; view_yview[3])   
-    {
+{
     draw_set_colour(c_teal);
     if (mouse_x &gt; menu_width_start[0]) and (mouse_x &lt; menu_width_start[1])
-        {
+    {
         draw_rectangle(menu_width_start[0],view_yview[3]+1,menu_width_start[1],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[0],view_yview[3]+1,menu_width_start[1],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[1]) and (mouse_x &lt; menu_width_start[2])
-        {
+    {
         draw_rectangle(menu_width_start[1],view_yview[3]+1,menu_width_start[2],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[1],view_yview[3]+1,menu_width_start[2],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[2]) and (mouse_x &lt; menu_width_start[3])
-        {
+    {
         draw_rectangle(menu_width_start[2],view_yview[3]+1,menu_width_start[3],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[2],view_yview[3]+1,menu_width_start[3],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[3]) and (mouse_x &lt; menu_width_start[4])
-        {
+    {
         draw_rectangle(menu_width_start[3],view_yview[3]+1,menu_width_start[4],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[3],view_yview[3]+1,menu_width_start[4],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[4]) and (mouse_x &lt; menu_width_start[5])
-        {
+    {
         draw_rectangle(menu_width_start[4],view_yview[3]+1,menu_width_start[5],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[4],view_yview[3]+1,menu_width_start[5],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[5]) and (mouse_x &lt; menu_width_start[6])
-        {
+    {
         draw_rectangle(menu_width_start[5],view_yview[3]+1,menu_width_start[6],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[5],view_yview[3]+1,menu_width_start[6],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[6]) and (mouse_x &lt; menu_width_start[7])
-        {
+    {
         draw_rectangle(menu_width_start[6],view_yview[3]+1,menu_width_start[7],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[6],view_yview[3]+1,menu_width_start[7],view_yview[3]+20,0);
-        }
-    draw_set_alpha(1);
     }
+    draw_set_alpha(1);
+}
 draw_set_colour(c_white);
 </string>
           </argument>
