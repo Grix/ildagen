@@ -119,15 +119,18 @@ for (k = 0; k < ds_list_size(layer_list); k++)
                 }
                 if (env_r)
                 {
-                    c = make_colour_rgb((c & $FF)*env_r_val, ((c >> 8) & $FF), (c >> 16)); //todo edit directly
+                    c = (c & $FFFF00) | ((c & $FF)*env_r_val);
+                    //c = make_colour_rgb((c & $FF)*env_r_val, ((c >> 8) & $FF), (c >> 16)); //todo edit directly
                 }
                 if (env_g)
                 {
-                    c = make_colour_rgb((c & $FF), ((c >> 8) & $FF)*env_g_val, (c >> 16));
+                    c = (c & $FF00FF) | (((c >> 8) & $FF)*env_g_val);
+                    //c = make_colour_rgb((c & $FF), ((c >> 8) & $FF)*env_g_val, (c >> 16));
                 }
                 if (env_b)
                 {
-                    c = make_colour_rgb((c & $FF), ((c >> 8) & $FF), (c >> 16)*env_b_val);
+                    c = (c & $00FFFF) | ((c >> 16)*env_b_val);
+                    //c = make_colour_rgb((c & $FF), ((c >> 8) & $FF), (c >> 16)*env_b_val);
                 }
                 if (env_rotabs)
                 {

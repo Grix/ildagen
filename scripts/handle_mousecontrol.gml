@@ -106,8 +106,7 @@ if (moving_object == 1)
                 }
             }
                 
-            //ds_list_add(undolisttemp,layertomove);
-            //ds_list_add(undo_list,"m"+string(undolisttemp));
+            ds_list_add(undo_list,"m"+string(undolisttemp));
             
             ds_list_replace(objecttomove,0,tempxstart);
             moving_object = 0;
@@ -188,7 +187,7 @@ else if (moving_object == 2)
             
             ds_list_replace(infolisttomove,0,templength);
             
-            //ds_list_add(undo_list,"r"+string(undolisttemp));
+            ds_list_add(undo_list,"r"+string(undolisttemp));
             
             moving_object = 0;
         }
@@ -645,9 +644,9 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                                     
                                     moving_object_flag = 2;
                                    
-                                    //undolisttemp = ds_list_create();
-                                    //ds_list_add(undolisttemp,infolisttomove);
-                                    //ds_list_add(undolisttemp,object_length);
+                                    undolisttemp = ds_list_create();
+                                    ds_list_add(undolisttemp,infolist);
+                                    ds_list_add(undolisttemp,object_length);
                                     
                                     mousexprev = mouse_x;
                                 }
@@ -656,10 +655,10 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                                     //drag object
                                     moving_object_flag = 1;
                                     
-                                    /*undolisttemp = ds_list_create();
-                                    ds_list_add(undolisttemp,layertomove);
-                                    ds_list_add(undolisttemp,objecttomove);
-                                    ds_list_add(undolisttemp,frametime);*/
+                                    undolisttemp = ds_list_create();
+                                    ds_list_add(undolisttemp,objectlist);
+                                    ds_list_add(undolisttemp,layer);
+                                    ds_list_add(undolisttemp,frametime);
                                     
                                     mousexprev = mouse_x;
                                     mouseyprev = mouse_y;

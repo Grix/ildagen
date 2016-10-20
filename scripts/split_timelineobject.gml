@@ -100,7 +100,6 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
         ds_list_add(objectlist2, object2);
         ds_list_add(objectlist2, infolist);
         
-        //todo save to undo queue
         for (j = 0; j < ds_list_size(layer_list); j++)
         {
             layer = layer_list[| j];
@@ -111,6 +110,11 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
                     ds_list_delete(layer, ds_list_find_index(layer, objectlist));
                     ds_list_add(layer, objectlist1);
                     ds_list_add(layer, objectlist2);
+                    undolisttemp = ds_list_create();
+                    ds_list_add(undolisttemp, objectlist);
+                    ds_list_add(undolisttemp, objectlist1);
+                    ds_list_add(undolisttemp, objectlist2);
+                    ds_list_add(undo_list, "s"+string(undolisttemp));
                 }
             }
         }
@@ -119,7 +123,7 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
 
 if (!splitted)
 {
-    show_message_async("To split an object, select it, move the playback cursor to the desired split position, then try again.");
+    show_message_async("To split an object, select it and move the playback cursor to the desired split position, then try again.");
 }
 else
     ds_list_clear(somaster_list);

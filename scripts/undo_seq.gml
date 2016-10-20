@@ -1,5 +1,5 @@
 with (seqcontrol)
-    {
+{
     if (ds_list_empty(undo_list))
         exit;
         
@@ -7,95 +7,139 @@ with (seqcontrol)
     ds_list_delete(undo_list,ds_list_size(undo_list)-1);
     
     if (string_char_at(undo,0) == 'c')
-        {
+    {
         //undo create object (delete)
         undolisttemp = real(string_digits(undo));
         objectlist = ds_list_find_value(undolisttemp,1);
         if (!ds_exists(objectlist,ds_type_list))
-            {
+        {
             ds_list_destroy(undolisttemp);
             exit;
-            }
+        }
         
         ds_list_clear(somaster_list);
         ds_list_add(somaster_list,objectlist);
         seq_delete_object_noundo();
         ds_list_destroy(undolisttemp);
-        }
-    if (string_char_at(undo,0) == 'd')
+    }
+    else if (string_char_at(undo,0) == 's')
+    {
+        //undo split
+        undolisttemp = real(string_digits(undo));
+        objectlist = ds_list_find_value(undolisttemp,0);
+        objectlist1 = ds_list_find_value(undolisttemp,1);
+        objectlist2 = ds_list_find_value(undolisttemp,2);
+        if (!ds_exists(objectlist1, ds_type_list) || !ds_exists(objectlist2, ds_type_list) || !ds_exists(objectlist, ds_type_list))
         {
+            ds_list_destroy(undolisttemp);
+            exit;
+        }
+        
+        for (j = 0; j < ds_list_size(layer_list); j++)
+        {
+            layer = layer_list[| j];
+            for (k = 0; k < ds_list_size(layer); k++)
+            {
+                if (ds_list_find_index(layer, objectlist1) != -1)
+                {
+                    ds_list_delete(layer, ds_list_find_index(layer, objectlist1));
+                    ds_list_delete(layer, ds_list_find_index(layer, objectlist2));
+                    ds_list_destroy(objectlist1[| 2]);
+                    ds_list_destroy(objectlist2[| 2]);
+                    ds_list_destroy(objectlist1);
+                    ds_list_destroy(objectlist2);
+                    ds_list_add(layer, objectlist);
+                }
+            }
+        }
+        ds_list_destroy(undolisttemp);
+    }
+    else if (string_char_at(undo,0) == 'd')
+    {
         //undo delete object
         undolisttemp = real(string_digits(undo));
         objectlist = ds_list_find_value(undolisttemp,1);
         layerlisttemp = ds_list_find_value(undolisttemp,0);
         if (!ds_exists(layerlisttemp,ds_type_list))
-            layerlisttemp = ds_list_find_value(layer_list,0);
+        {
+            ds_list_destroy(undolisttemp);
+            exit;
+        }
             
         ds_list_add(layerlisttemp,objectlist);
         ds_list_destroy(undolisttemp);
-        }
+    }
     else if (string_char_at(undo,0) == 'r')
-        {
+    {
         //undo resize object
         undolisttemp = real(string_digits(undo));
-        if (!ds_exists(ds_list_find_value(undolisttemp,0),ds_type_list))
-            {
+        infolist = undolisttemp[| 0];
+        if (!ds_exists(infolist,ds_type_list))
+        {
             ds_list_destroy(undolisttemp);
             exit;
-            }
-        ds_list_replace(ds_list_find_value(undolisttemp,0),0,ds_list_find_value(undolisttemp,1));
-        ds_list_destroy(undolisttemp);
         }
+        ds_list_replace(infolist,0,undolisttemp[| 1]);
+        ds_list_destroy(undolisttemp);
+    }
     else if (string_char_at(undo,0) == 'm')
-        {
+    {
         //undo move object
         undolisttemp = real(string_digits(undo));
-        originallayerlist = ds_list_find_value(undolisttemp,0);
-        objectlist = ds_list_find_value(undolisttemp,1);
-        originalx = ds_list_find_value(undolisttemp,2);
-        finallayerlist = ds_list_find_value(undolisttemp,3);
-        
-        if (!ds_exists(originallayerlist,ds_type_list)) or (!ds_exists(finallayerlist,ds_type_list)) or (!ds_exists(objectlist,ds_type_list))
-            {
+        objectlist = ds_list_find_value(undolisttemp,0);
+        layerlisttemp = ds_list_find_value(undolisttemp,1);
+        frametime = ds_list_find_value(undolisttemp,2);
+        if (!ds_exists(layerlisttemp,ds_type_list) || !ds_exists(objectlist,ds_type_list))
+        {
             ds_list_destroy(undolisttemp);
             exit;
-            }
-        
-        ds_list_replace(objectlist,0,originalx);
-        ds_list_add(originallayerlist,objectlist);
-        ds_list_delete(finallayerlist,ds_list_find_index(finallayerlist,objectlist));
-        ds_list_destroy(undolisttemp);
         }
-    else if (string_char_at(undo,0) == 'l')
+            
+        for (j = 0; j < ds_list_size(layer_list); j++)
         {
+            layer = layer_list[| j];
+            for (k = 0; k < ds_list_size(layer); k++)
+            {
+                if (ds_list_find_index(layer, objectlist) != -1)
+                {
+                    ds_list_delete(layer, ds_list_find_index(layer, objectlist));
+                    ds_list_replace(objectlist, 0, frametime); 
+                    ds_list_add(layerlisttemp, objectlist);
+                }
+            }
+        }
+        ds_list_destroy(undolisttemp);
+    }
+    else if (string_char_at(undo,0) == 'l')
+    {
         //undo marker clear
         undolisttemp = real(string_digits(undo));
         ds_list_destroy(marker_list);
         marker_list = undolisttemp;
-        }
+    }
     else if (string_char_at(undo,0) == 'e')
-        {
+    {
         //undo envelope data clear
         undolisttemp = real(string_digits(undo));
         if (!ds_exists(ds_list_find_value(undolisttemp,2),ds_type_list))
-            {
+        {
             ds_list_destroy( ds_list_find_value(undolisttemp,0) );
             ds_list_destroy( ds_list_find_value(undolisttemp,1) );
             ds_list_destroy( undolisttemp);
-            }
+        }
         else
-            {
+        {
             var t_selectedenvelope = ds_list_find_value(undolisttemp,2);
             ds_list_destroy( ds_list_find_value(t_selectedenvelope,1) );
             ds_list_destroy( ds_list_find_value(t_selectedenvelope,2) );
             ds_list_replace( t_selectedenvelope,1,ds_list_find_value(undolisttemp,0) );
             ds_list_replace( t_selectedenvelope,2,ds_list_find_value(undolisttemp,1) );
             ds_list_destroy( undolisttemp );
-            }
-            
         }
+            
+    }
     
     frame_surf_refresh = 1;
     selectedlayer = 0;
     selectedx = 0;
-    }
+}
