@@ -2,12 +2,12 @@ if !(controller.regflag)
     {
     if file_exists("serial")
         {
-        controller.registeredstring = "Registered. Thank you for purchasing!";
+        controller.registeredstring = "Full Edition. Thank you for purchasing!";
         controller.regflag = 1;
         }
     else
         {
-        controller.registeredstring = "Not Registered. Exporting is disabled.";
+        controller.registeredstring = "Free Edition.";
         controller.regflag = 1;
         }
     }

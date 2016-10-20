@@ -32,6 +32,7 @@ with (seqcontrol)
         if (!ds_exists(objectlist1, ds_type_list) || !ds_exists(objectlist2, ds_type_list) || !ds_exists(objectlist, ds_type_list))
         {
             ds_list_destroy(undolisttemp);
+            ds_list_destroy(objectlist);
             exit;
         }
         

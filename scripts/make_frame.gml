@@ -94,7 +94,7 @@ for (i = 0; i < t_numofelems; i++)
             xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
             yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
             
-            if ((yp >= $fffe) || (yp <= 1) || (xp >= $fffe) || (xp <= 1)) //todo add safety zone check
+            if ((yp >= $fffe) || (yp <= 1) || (xp >= $fffe) || (xp <= 1))
             {
                 //list_id[| currentpos+2 ] = 1;
                 bl_prev = 1;

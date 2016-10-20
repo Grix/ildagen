@@ -9,17 +9,17 @@ if (env_a)
 {
     c = merge_colour(c,c_black,env_a_val);
 }
-if (env_r) //todo optimize color functions (use direct operators)
+if (env_r)
 {
-    c = make_colour_rgb(colour_get_red(c)*env_r_val,colour_get_green(c),colour_get_blue(c));
+    c = (c & $FFFF00) | ((c & $FF)*env_r_val);
 }
 if (env_g)
 {
-    c = make_colour_rgb(colour_get_red(c),colour_get_green(c)*env_g_val,colour_get_blue(c));
+    c = (c & $FF00FF) | ((((c >> 8) & $FF)*env_g_val) << 8);
 }
 if (env_b)
 {
-    c = make_colour_rgb(colour_get_red(c),colour_get_green(c),colour_get_blue(c)*env_b_val);
+    c = (c & $00FFFF) | (((c >> 16)*env_b_val) << 16);
 }
 if (env_rotabs)
 {
