@@ -818,17 +818,18 @@ if !(mouseonsomelayer)
     draw_mouseline = 1;
     if (mouse_y > 132)
     {
-        //mouse over layer area
+        //playback pos
         controller.tooltip = "Click to set playback position.";
         if  mouse_check_button(mb_left)
         {
             tlpos = round(tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
             if (song)
             {
-                //if ((tlpos-10)/FMODSoundGetLength(song)) == clamp(((tlpos+audioshift)-10)/FMODSoundGetLength(song),0,1)
-                    FMODInstanceSetPosition(songinstance,clamp(((tlpos+audioshift)-10)/FMODSoundGetLength(song),0,1));
-                //else
-                //    FMODInstanceSetPaused(songinstance,1);
+                FMODInstanceStop(songinstance);
+                songinstance = FMODSoundPlay(song,1);
+                set_audio_speed();
+                FMODInstanceSetPosition(songinstance,clamp(((tlpos+audioshift)-10)/FMODSoundGetLength(song),0,1));
+                FMODInstanceSetPaused(songinstance,!playing);
             }
         }
     }

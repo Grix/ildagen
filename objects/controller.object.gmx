@@ -2168,8 +2168,15 @@ frame_surf_refresh = 1;
 laseron = false;
 menu_open = 0;
 dialog_open = 0;
-playing = 0;
-seqcontrol.frame_surf_refresh = true;
+playing = false;
+with (seqcontrol)
+{
+    playing = false;
+    frame_surf_refresh = true;
+    output_buffer_ready = false;
+    if (song)
+        FMODInstanceSetPaused(songinstance,1);
+}
 output_buffer_ready = false;
 
 if (room == rm_ilda)

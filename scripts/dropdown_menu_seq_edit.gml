@@ -32,7 +32,7 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,dd_seq_object_duration);
     ds_list_add(hl_list,ds_list_size(seqcontrol.somaster_list));  
-    ds_list_add(desc_list,"Split object");
+    ds_list_add(desc_list,"Split object (S)");
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,split_timelineobject);
     ds_list_add(hl_list,1);

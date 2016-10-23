@@ -27,3 +27,5 @@ if (playbackspeed > 1)
          }
      }
  
+FMODInstanceSetVolume(seqcontrol.songinstance,seqcontrol.volume/100);
+FMODInstanceSetMuted(seqcontrol.songinstance, seqcontrol.muted);

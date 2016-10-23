@@ -577,37 +577,37 @@ alarm[2] = 1;
 
 //menu
 if (mouse_y &gt; view_yview[3])   
-    {
+{
     if (mouse_x &gt; menu_width_start[0]) and (mouse_x &lt; menu_width_start[1])
-        {
+    {
         dropdown_menu_seq_file();
-        }
-    else if (mouse_x &gt; menu_width_start[1]) and (mouse_x &lt; menu_width_start[2])
-        {
-        dropdown_menu_seq_properties();
-        }
-    else if (mouse_x &gt; menu_width_start[2]) and (mouse_x &lt; menu_width_start[3])
-        {
-        dropdown_menu_seq_edit();
-        }
-    else if (mouse_x &gt; menu_width_start[3]) and (mouse_x &lt; menu_width_start[4])
-        {
-        dropdown_menu_seq_tools();
-        }
-    else if (mouse_x &gt; menu_width_start[4]) and (mouse_x &lt; menu_width_start[5])
-        {
-        dropdown_menu_ilda_view();
-        }
-    else if (mouse_x &gt; menu_width_start[5]) and (mouse_x &lt; menu_width_start[6])
-        {
-        dropdown_menu_seq_settings();
-        }
-    else if (mouse_x &gt; menu_width_start[6]) and (mouse_x &lt; menu_width_start[7])
-        {
-        dropdown_menu_ilda_about();
-        }
-    exit;
     }
+    else if (mouse_x &gt; menu_width_start[1]) and (mouse_x &lt; menu_width_start[2])
+    {
+        dropdown_menu_seq_properties();
+    }
+    else if (mouse_x &gt; menu_width_start[2]) and (mouse_x &lt; menu_width_start[3])
+    {
+        dropdown_menu_seq_edit();
+    }
+    else if (mouse_x &gt; menu_width_start[3]) and (mouse_x &lt; menu_width_start[4])
+    {
+        dropdown_menu_seq_tools();
+    }
+    else if (mouse_x &gt; menu_width_start[4]) and (mouse_x &lt; menu_width_start[5])
+    {
+        dropdown_menu_ilda_view();
+    }
+    else if (mouse_x &gt; menu_width_start[5]) and (mouse_x &lt; menu_width_start[6])
+    {
+        dropdown_menu_seq_settings();
+    }
+    else if (mouse_x &gt; menu_width_start[6]) and (mouse_x &lt; menu_width_start[7])
+    {
+        dropdown_menu_ilda_about();
+    }
+    exit;
+}
 </string>
           </argument>
         </arguments>
@@ -752,6 +752,29 @@ if (new_id == getint)
       }
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>playing = 0;
 </string>
           </argument>
         </arguments>

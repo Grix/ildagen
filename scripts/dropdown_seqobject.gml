@@ -23,7 +23,7 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,dd_seq_object_duration);
     ds_list_add(hl_list,1);
-    ds_list_add(desc_list,"Split here");
+    ds_list_add(desc_list,"Split here (S)");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,split_timelineobject_dropdown);
     ds_list_add(hl_list,1);
