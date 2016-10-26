@@ -64,7 +64,7 @@ fastload = 1;
 draw_cursorline = 0;
 doubleclick = 0;    
 frameprev = -1;
-viewmode = 1;
+viewmode = 2;
 selectedlayer = 0;
 selectedx = 0;
 song = 0;
@@ -661,11 +661,6 @@ if (new_id == getint)
             ds_list_replace(infolisttomove,0,newduration);
             
             //todo: check for collisions
-            
-            /*if (ds_exists(undolisttemp,ds_type_list))
-            {
-                ds_list_add(undo_list,"r"+string(undolisttemp));
-            }*/
             
             break;
         }

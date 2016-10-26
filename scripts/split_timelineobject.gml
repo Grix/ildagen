@@ -8,7 +8,7 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
     frametime = ds_list_find_value(objectlist,0);
     object_length = ds_list_find_value(infolist,2);
     
-    if (correctframe == clamp(correctframe, frametime+1, frametime+object_length-1))
+    if ( (correctframe > frametime) && (correctframe < (frametime+object_length)) )
     {
         //split this object
         splitted = true;

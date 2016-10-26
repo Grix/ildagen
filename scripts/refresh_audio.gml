@@ -1,5 +1,3 @@
-//todo: fix to account for different FPSes
-
 numentries = 1024;
     
 FMODUpdate();

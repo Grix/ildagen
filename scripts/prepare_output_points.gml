@@ -78,7 +78,7 @@ for (t_i = 0; t_i < listsize; t_i++)
             if (opt_dist < 250) //connecting segments
             {
                 var t_nextpos = currentpos+currentposadjust;
-                if (!is_undefined(list_id[| t_nextpos ]))
+                if (t_nextpos < ds_list_size(list_id))
                 {
                     xpn = x_lowerbound+(xo+list_id[| t_nextpos+0])*x_scale;
                     ypn = y_lowerbound+($ffff-(yo+list_id[| t_nextpos+1]))*y_scale;
@@ -99,7 +99,7 @@ for (t_i = 0; t_i < listsize; t_i++)
             {
                 angle_blank = point_direction(xp,yp, xp_prev,yp_prev);
                 var t_nextpos = currentpos+currentposadjust;
-                if (!is_undefined(list_id[| t_nextpos ]))
+                if (t_nextpos < ds_list_size(list_id))
                 {
                     xpn = x_lowerbound+(xo+list_id[| t_nextpos+0])*x_scale;
                     ypn = y_lowerbound+($ffff-(yo+list_id[| t_nextpos+1]))*y_scale;

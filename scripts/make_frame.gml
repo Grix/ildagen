@@ -135,7 +135,7 @@ for (i = 0; i < t_numofelems; i++)
                     if (opt_dist < 250) //connecting segments
                     {
                         var t_nextpos = currentpos+currentposadjust;
-                        if (!is_undefined(list_id[| t_nextpos ]))
+                        if (t_nextpos < ds_list_size(list_id))
                         {
                             xpn = x_lowerbound+(xo+list_id[| t_nextpos+0])*x_scale;
                             ypn = y_lowerbound+($ffff-(yo+list_id[| t_nextpos+1]))*y_scale;
@@ -177,7 +177,7 @@ for (i = 0; i < t_numofelems; i++)
                     {
                         angle_blank = point_direction(xp,yp, xp_prev,yp_prev);
                         var t_nextpos = currentpos+currentposadjust;
-                        if (!is_undefined(list_id[| t_nextpos ]))
+                        if (t_nextpos < ds_list_size(list_id))
                         {
                             xpn = x_lowerbound+(xo+list_id[| t_nextpos+0])*x_scale;
                             ypn = y_lowerbound+($ffff-(yo+list_id[| t_nextpos+1]))*y_scale;
@@ -359,21 +359,13 @@ for (i = 0; i < t_numofelems; i++)
             if (opt_dist < t_lengthwanted)
             {
                 //skip point
-            
-                /*if (list_raw[| i+6] == 1)
-                {
-                    t_totalrem -= opt_dist;
-                    continue;
-                }*/
-                    
-                /*if (point_distance(xp, yp, list_raw[| i+8], list_raw[| i+9]) == 0)
-                {
-                    t_totalrem -= opt_dist;
-                    continue;
-                }*/
                 currentpos += currentposadjust;
-                t_i++;
-                continue;
+                if (currentpos < ds_list_size(list_id))
+                {
+                    t_i++;
+                    t_totalrem -= opt_dist;
+                    continue;
+                }
             }
             else
             {
@@ -413,14 +405,6 @@ for (i = 0; i < t_numofelems; i++)
         c_prev = c;
     }
         
-    /*if (controller.exp_optimize)
-    {
-        if (bl_prev == 0)
-        {
-            xp_prev = xp;
-            yp_prev = yp;
-        }
-    }*/
     bl_prev = 1;
 }
 

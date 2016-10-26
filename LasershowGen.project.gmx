@@ -242,6 +242,7 @@
     <sprite>sprites\spr_editormode</sprite>
     <sprite>sprites\spr_resettrans</sprite>
     <sprite>sprites\spr_scope</sprite>
+    <sprite>sprites\spr_projection</sprite>
     <sprite>sprites\spr_length</sprite>
     <sprite>sprites\spr_fps</sprite>
     <sprite>sprites\spr_shaking</sprite>
@@ -958,6 +959,8 @@
       <script>scripts\ready_envelope_applying.gml</script>
       <script>scripts\apply_envelope_point.gml</script>
       <script>scripts\apply_envelope_frame.gml</script>
+      <script>scripts\split_timelineobject.gml</script>
+      <script>scripts\split_timelineobject_dropdown.gml</script>
     </scripts>
     <scripts name="ilda">
       <script>scripts\draw_grid.gml</script>
@@ -1076,8 +1079,6 @@
     <script>scripts\benchmark.gml</script>
     <script>scripts\verify_serial.gml</script>
     <script>scripts\verify_numexports.gml</script>
-    <script>scripts\split_timelineobject.gml</script>
-    <script>scripts\split_timelineobject_dropdown.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_tooltip</font>
@@ -1227,6 +1228,7 @@
       <object>objects\obj_laseron</object>
       <object>objects\obj_help</object>
       <object>objects\obj_options</object>
+      <object>objects\obj_projection</object>
       <object>objects\obj_mute</object>
     </objects>
   </objects>
