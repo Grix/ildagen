@@ -245,6 +245,7 @@
     <sprite>sprites\spr_projection</sprite>
     <sprite>sprites\spr_length</sprite>
     <sprite>sprites\spr_fps</sprite>
+    <sprite>sprites\spr_dacname</sprite>
     <sprite>sprites\spr_shaking</sprite>
     <sprite>sprites\spr_reapply_color</sprite>
     <sprite>sprites\spr_reapply_blank</sprite>
@@ -1208,6 +1209,7 @@
         <object>objects\obj_addblindzone</object>
         <object>objects\obj_preset</object>
         <object>objects\obj_dacs</object>
+        <object>objects\obj_dacname</object>
         <object>objects\obj_colorscale</object>
         <object>objects\obj_scanrate</object>
         <object>objects\obj_maxdwell</object>

@@ -25,7 +25,9 @@ public:
 	bool OpenDevice(int cardNum);
 	bool Stop(int cardNum);
 	bool CloseAll();
-	void GetName(int cardNum, char* name);
+	bool GetName(int cardNum, char* name);
+	bool SetName(int cardNum, char* name);
+	double GetFirmwareVersion(int cardNum);
 
 private:
 
@@ -34,7 +36,7 @@ private:
 	//OpenDevices, CloseDevices
 	typedef int(*heliosFuncPtr0)();
 
-	//GetStatus, Stop
+	//GetStatus, Stop, GetFirmwareVErsion
 	typedef int(*heliosFuncPtr1)(int);
 
 	//WriteFrame
@@ -43,7 +45,7 @@ private:
 	//SetShutter
 	typedef int(*heliosFuncPtr3)(int, bool);
 
-	//GetName
+	//GetName, SetName
 	typedef int(*heliosFuncPtr4)(int, char*);
 
 
@@ -53,7 +55,9 @@ private:
 	heliosFuncPtr2 _WriteFrame;
 	heliosFuncPtr3 _SetShutter;
 	heliosFuncPtr4 _GetName;
+	heliosFuncPtr4 _SetName;
 	heliosFuncPtr1 _Stop;
+	heliosFuncPtr1 _GetFirmwareVersion;
 
 	bool ready;
 	int frameNum[16];

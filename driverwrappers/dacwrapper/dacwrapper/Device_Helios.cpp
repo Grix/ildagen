@@ -60,6 +60,19 @@ int Device_Helios::Init()
 		FreeLibrary(heliosLibrary);
 		return -1;
 	}
+	_SetName = (heliosFuncPtr4)GetProcAddress(heliosLibrary, "SetName");
+	if (!_SetName)
+	{
+		FreeLibrary(heliosLibrary);
+		return -1;
+	}
+
+	_GetFirmwareVersion = (heliosFuncPtr1)GetProcAddress(heliosLibrary, "GetFirmwareVersion");
+	if (!_GetFirmwareVersion)
+	{
+		FreeLibrary(heliosLibrary);
+		return -1;
+	}
 
 	_Stop = (heliosFuncPtr1)GetProcAddress(heliosLibrary, "Stop");
 	if (!_Stop)
@@ -126,7 +139,26 @@ bool Device_Helios::CloseAll()
 	return true;
 }
 
-void Device_Helios::GetName(int cardNum, char* name)
+bool Device_Helios::GetName(int cardNum, char* name)
 {
-	_GetName(cardNum, name);
+	if (!ready)
+		return false;
+
+	return (_GetName(cardNum, name) == 1);
+}
+
+bool Device_Helios::SetName(int cardNum, char* name)
+{
+	if (!ready)
+		return false;
+
+	return (_SetName(cardNum, name) == 1);
+}
+
+double Device_Helios::GetFirmwareVersion(int cardNum)
+{
+	if (!ready)
+		return false;
+
+	return _GetFirmwareVersion(cardNum);
 }

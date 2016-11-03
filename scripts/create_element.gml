@@ -53,7 +53,7 @@ autoresflag = 0;
 if (is_string(resolution))
 {
     autoresflag = 1;
-    resolution = 1000;
+    resolution = 5000;
         
     if (colormode != "solid") or (blankmode != "solid")
         resolution = 500;

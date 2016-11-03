@@ -25,5 +25,6 @@ for (i = 0; i < numofdacs; i++)
     ds_list_add(newdac,i);
     ds_list_add(newdac,dacwrapper_getname(i));
     ds_list_add(newdac,ds_map_create());
+    ds_list_add(newdac,dacwrapper_getfirmware(i));
     ds_list_add(controller.dac_list,newdac);
 }

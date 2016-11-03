@@ -18,12 +18,11 @@ bl_prev = 1;
 c_prev = 0;
 new_dot = 1;
 
-
 //if too many dots in frame, first attempt to shrink overlapping ones
 if (lit_length > 0)
 {
     var t_dotstodelete = 0;
-    while ((t_lengthwanted > controller.opt_maxdist) && (maxpoints_dots != 0) && (smallestdotsize > 3))
+    while ((t_lengthwanted > 1000) && (maxpoints_dots != 0) && (smallestdotsize > 3)) //todo create setting for 1000
     {
         t_dotstodelete++;
         t_litpointswanted += num_dots;
@@ -377,14 +376,14 @@ for (i = 0; i < t_numofelems; i++)
                     opt_dist -= t_lengthwanted;
                 }
                 steps = opt_dist/t_lengthwanted;
-                stepscount = ceil(steps);
-                t_vectorx = (xp-xp_prev)/steps;
-                t_vectory = (yp-yp_prev)/steps;
+                stepscount = round(steps+1);
+                t_vectorx = (xp-xp_prev)/stepscount;
+                t_vectory = (yp-yp_prev)/stepscount;
                 
                 for (u = 1; u < stepscount; u++)
                 {
-                    ds_list_add(list_raw,xp_prev+t_vectorx*u);
-                    ds_list_add(list_raw,yp_prev+t_vectory*u);
+                    ds_list_add(list_raw,xp_prev+t_vectorx*(u));
+                    ds_list_add(list_raw,yp_prev+t_vectory*(u));
                     ds_list_add(list_raw,0);
                     ds_list_add(list_raw,c);
                 }

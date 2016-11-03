@@ -147,7 +147,7 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 	if (frameSize > MAX_FRAME_SIZE)
 		return;
 
-	std::lock_guard<std::mutex> lock(dacMutex[num]);
+	std::lock_guard<std::mutex> lock(dacMutex[num]); //todo clean up superfluous syncing in individual dac classes
 
 	int dacType = dacs[num].type;
 	int cardNum = dacs[num].cardNum;
@@ -300,7 +300,7 @@ GMEXPORT double Stop(double doubleNum)
 		return (double)olscEzAudDacDevice->Stop(cardNum);
 	else if (dacType == 4)	//Helios
 		return (double)heliosDevice->Stop(cardNum);
-	else if (dacType == 7)	//Helios
+	else if (dacType == 7)	//Laserdock
 		return (double)laserDockDevice->Stop();
 	else
 		return -1.0;
@@ -313,4 +313,35 @@ GMEXPORT char* GetName(double doubleNum)
 	int num = (int)(doubleNum + 0.5); //dac number
 
 	return dacs[num].desc;
+}
+
+//set dac name (only for Helios)
+GMEXPORT double SetName(double doubleNum, char* name)
+{
+	if (!initialized) return false;
+	int num = (int)(doubleNum + 0.5); //dac number
+
+	int dacType = dacs[num].type;
+	int cardNum = dacs[num].cardNum;
+	name[30] = '\0'; //name cant be over 31 chars
+
+	if (dacType == 4)	//Helios
+		return (heliosDevice->SetName(cardNum, name) == 1);
+	else
+		return 0;
+}
+
+//Get firmware version (only for Helios)
+GMEXPORT double GetFirmwareVersion(double doubleNum)
+{
+	if (!initialized) return false;
+	int num = (int)(doubleNum + 0.5); //dac number
+
+	int dacType = dacs[num].type;
+	int cardNum = dacs[num].cardNum;
+
+	if (dacType == 4)	//Helios
+		return heliosDevice->GetFirmwareVersion(cardNum);
+	else
+		return -1;
 }

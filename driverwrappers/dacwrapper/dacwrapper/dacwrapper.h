@@ -26,7 +26,7 @@ bool initialized = false;
 int numDevices = 0;
 
 typedef struct {
-	int type;	//1: Etherdream, 2: RIYA, 3: OLSC, 4: Helios, 5: OLSC_Easylase, 6: OLSC_EzAudDac
+	int type;	//1: Etherdream, 2: RIYA, 3: OLSC, 4: Helios, 5: OLSC_Easylase, 6: OLSC_EzAudDac, 7: Laserdock
 	int cardNum;
 	char* desc;
 }DAC;
@@ -42,4 +42,6 @@ GMEXPORT double OutputFrame(double dacNum, double scanRate, double bufferSize, u
 void OutputFrameThreaded(double dacNum, double scanRate, double bufferSize, uint16_t* bufferAddress);
 GMEXPORT double Stop(double dacNum);
 GMEXPORT char* GetName(double dacNum);
+GMEXPORT double SetName(double dacNum, char* name);
+GMEXPORT double GetFirmwareVersion(double dacNum);
 //GMEXPORT double UpdateSettings(uint8_t* bufferAddress);
