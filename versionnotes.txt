@@ -1,3 +1,1 @@
-- Added splitting of timeline object feature
-- Fixed bugs related to Laserdock, Easylase and EzAudDAC support
-- Added projection window and blind zone settings
+- Bugfixes and minor tweaks
