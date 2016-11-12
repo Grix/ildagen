@@ -83,22 +83,22 @@ else image_index = 0;
     exit;
 
 if (os_browser != browser_not_a_browser)
-    {
+{
     show_message_async("Sorry, this feature is not available in the web version yet");
     exit;
-    }
+}
     
 with (controller)
-    {
+{
     if (room == rm_ilda)
         import_ilda(get_open_filename_ext("ILDA files|*.ild","","","Select ILDA file"));
     else if (room == rm_seq)
-        {
+    {
         if (!verify_serial())
             exit;
         import_ildaseq(get_open_filename_ext("ILDA files|*.ild","","","Select ILDA file"));
-        }
     }
+}
 
 </string>
           </argument>

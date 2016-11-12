@@ -102,7 +102,6 @@ with (ddobj)
     controller.tooltip = "Click to close advertisement.";
     if (mouse_check_button_pressed(mb_left))
     {
-        show_message_async("deleted")
         instance_destroy();
     }
 }
@@ -137,6 +136,8 @@ else if (mouse_check_button_pressed(mb_left))
         event_user(1);
     }
 }
+
+
 </string>
           </argument>
         </arguments>
