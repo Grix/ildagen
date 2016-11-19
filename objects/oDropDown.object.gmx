@@ -25,24 +25,25 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (controller.dialog_open) instance_destroy();
+            <string>if (controller.dialog_open) 
+    instance_destroy();
 controller.menu_open = 1;
 
 rdy = 0;
 selected = noone;
 
 with (oDropDown)
-    {
+{
     if (other.id != id)
         instance_destroy();
-    }
+}
 
 with (controller)
-    {
+{
     placing_status = 0;
     ds_list_clear(free_list);
     ds_list_clear(bez_list);
-    }
+}
     
 //items
 desc_list = ds_list_create();

@@ -31,6 +31,7 @@
 md5query = -1;
 adquery = -1;
 ad = choose(spr_ad1, spr_ad2, spr_ad3, spr_ad4);
+highlight_close = false;
 
 //todo?
 /*if (!file_exists("ad1.png") || !file_exists("ad2.png") || !file_exists("ad3.png") || !file_exists("ad4.png"))
@@ -75,6 +76,8 @@ with (ddobj)
     num = 0;
     event_user(1);
 }
+
+
 </string>
           </argument>
         </arguments>
@@ -97,9 +100,12 @@ with (ddobj)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_x &gt;= (x+670)) &amp;&amp; (mouse_x &lt;= (x+700)) &amp;&amp; (mouse_y &gt;= y) &amp;&amp; (mouse_y &lt;= (y+20))
+            <string>highlight_close = false;
+
+if (mouse_x &gt;= (x+670)) &amp;&amp; (mouse_x &lt;= (x+700)) &amp;&amp; (mouse_y &gt;= y) &amp;&amp; (mouse_y &lt;= (y+20))
 {
     controller.tooltip = "Click to close advertisement.";
+    highlight_close = true;
     if (mouse_check_button_pressed(mb_left))
     {
         instance_destroy();
@@ -136,8 +142,6 @@ else if (mouse_check_button_pressed(mb_left))
         event_user(1);
     }
 }
-
-
 </string>
           </argument>
         </arguments>
@@ -173,6 +177,7 @@ else if (mouse_check_button_pressed(mb_left))
 
 
 alarm[0] = 2;*/
+
 </string>
           </argument>
         </arguments>
@@ -195,8 +200,7 @@ alarm[0] = 2;*/
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//show_message_async("HELLO")
-
+            <string>draw_set_alpha(1);
 draw_set_colour(c_white);
     draw_rectangle(x,y,x+700,y+420,0);
 draw_set_colour(c_dkgray);
@@ -206,10 +210,14 @@ draw_set_colour(c_dkgray);
     draw_rectangle(x+670,y,x+700,y+20,1);
     draw_line(x+680,y+5,x+690,y+15);
     draw_line(x+690,y+5,x+680,y+15);
+    if (highlight_close)
+    {
+        draw_set_alpha(0.3);
+        draw_rectangle(x+670,y,x+700,y+20,0);
+        draw_set_alpha(1);
+    }
     
 draw_sprite( ad, 0, x+1,y+21);
-
-
 </string>
           </argument>
         </arguments>

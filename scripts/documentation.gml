@@ -1,5 +1,8 @@
 /*
 
+TODO
+-mouse selectable scope ild
+
 SEQCONTROL
 
 layer_list

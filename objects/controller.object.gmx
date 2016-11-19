@@ -160,6 +160,9 @@ updatenotes = -1;
 file = -1;
 show_ad = true;
 show_tooltip = true;
+framecursor_prev = 0;
+show_framecursor_prev = false;
+scope_moving = false;
 
 redraw = 0;
 sgridshow = 0;
@@ -176,6 +179,8 @@ mouse_xprevious = mouse_x;
 phi = 1.618;
 tlw = 512;
 tlh = 42;
+tlorigo_x = 0;
+tlorigo_y = 515;
 
 tooltip = "";
 bckimage = 0;
@@ -364,8 +369,6 @@ if (os_browser == browser_not_a_browser)
 
 verify_serial(1);
 telem();
-    
-instance_create(floor((view_wview[0]-700)/2), floor((view_hview[0]-420)/2), obj_ad);
 
 ex_patch_window_close_capture(1);
 
@@ -685,6 +688,8 @@ if (placing = "hershey")
     
 object_select_hovering = 0;
 
+check_mouseactions();
+
 if (keyboard_check_pressed(vk_space))
 {
     playing = !playing;
@@ -960,7 +965,6 @@ if (keyboard_check_pressed(vk_tab))
         
     room_goto(rm_seq);
 }
-    
 </string>
           </argument>
         </arguments>
@@ -2282,8 +2286,9 @@ close_dacs();
             <kind>1</kind>
             <string>if (room != rm_ilda) exit;
 
+//hershey symbol selector
 if (placing = "hershey")
-    {
+{
     draw_background_part(bck_hershey3,0,clamp(hershey_scrollx-4096,0,2048),420,120-clamp(4096-hershey_scrollx,0,120),650,30+clamp(4096-hershey_scrollx,0,120));
     draw_background_part(bck_hershey2,0,clamp(hershey_scrollx-2048,0,2048),420,120-clamp(2048-hershey_scrollx,0,120),650,30+clamp(2048-hershey_scrollx,0,120));
     draw_background_part(bck_hershey1,0,clamp(hershey_scrollx,0,2048),420,120,650,30);
@@ -2298,121 +2303,131 @@ if (placing = "hershey")
     
     yo = ceil((hershey_selected+1)/14)*30-30;
     if (yo = clamp(yo,hershey_scrollx-30,hershey_scrollx+120))
-        {
+    {
         draw_set_alpha(0.3)
         draw_set_colour(c_gold);
         xo = (hershey_selected mod 14)*30;
         draw_rectangle(650+xo,max(30+yo-hershey_scrollx,30),680+xo,min(30+yo-hershey_scrollx+30,150),0);
-        }
     }
+}
 
+//mine timeline + cursors
 if (!surface_exists(miniaudio_surf) || refresh_miniaudio_flag)
-    {
+{
     refresh_miniaudio_surf();
     refresh_miniaudio_flag = 0;
-    }
-    
-draw_ilda_2d();
-    
+}
 draw_set_color(c_white);
 draw_set_alpha(1);
 if (surface_exists(miniaudio_surf))
-    draw_surface_part(miniaudio_surf,0,0,tlw,tlh+1,0,515);
+    draw_surface_part(miniaudio_surf,0,0,tlw,tlh+1,tlorigo_x,tlorigo_y);
 if (maxframes &gt; 1)
-    {
+{
     draw_set_color(c_black);
-    cursorlinex = lerp(2,510,frame/(maxframes-1))//framehr/projectfps/1000;//framehr/1000*projectfps;
-    draw_line(cursorlinex,515,cursorlinex,515+tlh-13);
+    cursorlinex = lerp(2,tlw-2,frame/(maxframes-1));
+    draw_line(cursorlinex,tlorigo_y,cursorlinex,tlorigo_y+tlh-13);
+    if (show_framecursor_prev)
+    {
+        draw_set_alpha(0.6);
+        draw_set_color(c_teal);
+        cursorlinex = lerp(2,tlw-2,framecursor_prev/(maxframes-1));
+        draw_line(cursorlinex,tlorigo_y,cursorlinex,tlorigo_y+tlh);
+        draw_set_alpha(1);
     }
+}
 draw_set_color(c_white);
 
+
+//frame box
+draw_ilda_2d();
+
 if (!laseron)
-    {
+{
     if (bckimage)
-        {
+    {
         if (!keyboard_check(ord('E')))
             draw_set_alpha(0.3);
         if (sprite_exists(bck_bckimage))
-            {
+        {
             draw_sprite_stretched(bck_bckimage,0,bckimage_left,bckimage_top,bckimage_width,bckimage_height);
-            }
-        else bckimage = 0;
         }
+        else bckimage = 0;
+    }
     
     if (object_select_hovering = 1)
-        {
+    {
         draw_set_alpha(0.5);
         draw_set_colour(c_teal);
             draw_rectangle(rectxmin2,rectymin2,rectxmax2,rectymax2,1);
         draw_set_alpha(1);
         draw_set_colour(c_white);
-        }
+    }
     else if (object_select_hovering = 2)
-        {
+    {
         draw_set_alpha(0.7);
         draw_set_colour(c_maroon);
             draw_rectangle(rectxmin2,rectymin2,rectxmax2,rectymax2,1);
         draw_set_alpha(1);
         draw_set_colour(c_white);
-        }
+    }
     
     draw_set_color(c_gray);
     if (objmoving == 3)
         draw_text(20,20,string_format(anirot,3,2)+" deg");
     else if (objmoving == 1)
-        {
+    {
         draw_text(20,20,"X translation: "+string_format(anixtrans,5,0));
         draw_text(20,40,"Y translation: "+string_format(aniytrans,5,0));
-        }
+    }
     else if (objmoving == 2)
-        {
+    {
         draw_text(20,20,"Anchor X: "+string_format(anchorx,5,0));
         draw_text(20,40,"Anchor Y: "+string_format(anchory,5,0));
-        }
+    }
     else if (objmoving == 4)
-        {
+    {
         draw_text(20,20,"X scale: "+string_format(scalex,2,3));
         draw_text(20,40,"Y scale: "+string_format(scaley,2,3));
-        }
+    }
     draw_set_color(c_white);
         
     draw_set_alpha(0.7);
        
     //grids 
     if (keyboard_check(ord('S')) or (sgridshow == 1))
-        {
+    {
         if (!surface_exists(squaregrid_surf))
-            {
+        {
             squaregrid_surf = surface_create(512,512);
             surface_set_target(squaregrid_surf);
                 draw_grid();
             surface_reset_target();
-            }
+        }
         draw_surface(squaregrid_surf,0,0);
-        } 
+    } 
     if (keyboard_check(ord('R')) or (rgridshow == 1))
-        {
+    {
         if (!surface_exists(radialgrid_surf))
-            {
+        {
             radialgrid_surf = surface_create(512,512);
             surface_set_target(radialgrid_surf);
                 draw_radialgrid();
             surface_reset_target();
-            }
-        draw_surface(radialgrid_surf,0,0);
         }
+        draw_surface(radialgrid_surf,0,0);
+    }
         
     if (keyboard_check(ord('A')) or (guidelineshow == 1))
-        {
+    {
         draw_guidelines();
-        }
+    }
         
     draw_set_alpha(1);
     
     //selected elements
     draw_set_color(c_aqua);
     if !(ds_list_empty(semaster_list))//(selectedelement != -1)
-        {
+    {
         if (update_semasterlist_flag)
             update_semasterlist();
         
@@ -2425,7 +2440,7 @@ if (!laseron)
         draw_rectangle(rectxmin,rectymin,rectxmax,rectymax,1);
         
         if (objmoving == 1) or (objmoving == 3) or (objmoving == 4)
-            {
+        {
             xp1 = rectxmin+anixtrans/$ffff*512;
             yp1 = rectymin+aniytrans/$ffff*512;
             xp2 = rectxmax+anixtrans/$ffff*512;
@@ -2470,14 +2485,14 @@ if (!laseron)
             draw_line(xpnew4,ypnew4,xpnew1,ypnew1);
         
             if (objmoving == 1)
-                {
+            {
                 draw_set_alpha(0.4);
                     draw_arrow(mean(rectxmin,rectxmax),mean(rectymin,rectymax),mean(xpnew1,xpnew2),mean(ypnew1,ypnew2),12);
                 draw_set_alpha(1);
-                }
             }
-        
         }
+        
+    }
     
     if (placing_status) or (placing == "text") or (placing == "hershey") 
         draw_preview_element();
@@ -2513,59 +2528,59 @@ draw_set_alpha(1);
 //menu
 draw_text(0,view_yview[3]+4,menu_string);
 if (mouse_y &gt; view_yview[3])   
-    {
+{
     draw_set_colour(c_teal);
     if (mouse_x &gt; menu_width_start[0]) and (mouse_x &lt; menu_width_start[1])
-        {
+    {
         draw_rectangle(menu_width_start[0],view_yview[3]+1,menu_width_start[1],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[0],view_yview[3]+1,menu_width_start[1],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[1]) and (mouse_x &lt; menu_width_start[2])
-        {
+    {
         draw_rectangle(menu_width_start[1],view_yview[3]+1,menu_width_start[2],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[1],view_yview[3]+1,menu_width_start[2],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[2]) and (mouse_x &lt; menu_width_start[3])
-        {
+    {
         draw_rectangle(menu_width_start[2],view_yview[3]+1,menu_width_start[3],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[2],view_yview[3]+1,menu_width_start[3],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[3]) and (mouse_x &lt; menu_width_start[4])
-        {
+    {
         draw_rectangle(menu_width_start[3],view_yview[3]+1,menu_width_start[4],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[3],view_yview[3]+1,menu_width_start[4],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[4]) and (mouse_x &lt; menu_width_start[5])
-        {
+    {
         draw_rectangle(menu_width_start[4],view_yview[3]+1,menu_width_start[5],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[4],view_yview[3]+1,menu_width_start[5],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[5]) and (mouse_x &lt; menu_width_start[6])
-        {
+    {
         draw_rectangle(menu_width_start[5],view_yview[3]+1,menu_width_start[6],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[5],view_yview[3]+1,menu_width_start[6],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[6]) and (mouse_x &lt; menu_width_start[7])
-        {
+    {
         draw_rectangle(menu_width_start[6],view_yview[3]+1,menu_width_start[7],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[6],view_yview[3]+1,menu_width_start[7],view_yview[3]+20,0);
-        }
-    draw_set_alpha(1);
     }
+    draw_set_alpha(1);
+}
 draw_set_colour(c_white);
 
 draw_enable_alphablend(0);
 with (obj_button_parent)
-    {
+{
     draw_self();
-    }
+}
 draw_enable_alphablend(1);
 </string>
           </argument>

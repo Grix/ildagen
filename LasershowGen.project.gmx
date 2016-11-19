@@ -993,6 +993,7 @@
       <script>scripts\draw_preview_hershey.gml</script>
       <script>scripts\ilda_cancel.gml</script>
       <script>scripts\square_grid_refresh.gml</script>
+      <script>scripts\check_mouseactions.gml</script>
     </scripts>
     <scripts name="files">
       <scripts name="importilda">
