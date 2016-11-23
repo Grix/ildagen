@@ -359,7 +359,7 @@ for (i = 0; i < t_numofelems; i++)
             {
                 //skip point
                 currentpos += currentposadjust;
-                if (currentpos < ds_list_size(list_id))
+                if (currentpos < ds_list_size(list_id)-1)
                 {
                     t_i++;
                     t_totalrem -= opt_dist;

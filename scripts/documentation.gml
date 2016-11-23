@@ -1,7 +1,9 @@
 /*
 
 TODO
--mouse selectable scope ild
+-find optimization bugs
+-preview blindzones
+-connect segments in optimization
 
 SEQCONTROL
 
