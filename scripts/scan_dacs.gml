@@ -21,6 +21,10 @@ ds_list_clear(controller.dac_list);
 
 for (i = 0; i < numofdacs; i++)
 {
+    var t_result = dacwrapper_opendevice(i);
+    if (!t_result)
+        continue;
+        
     var newdac = ds_list_create();
     ds_list_add(newdac,i);
     ds_list_add(newdac,dacwrapper_getname(i));

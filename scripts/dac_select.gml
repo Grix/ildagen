@@ -7,13 +7,7 @@ with (controller)
         dac = -1;
         return 0;
     }
-    
-    var t_result = dacwrapper_opendevice(dac[| 0]);
-    if (!t_result)
-    {
-        dac = -1;
-        return 0;
-    }
+
     dac_string = dac[| 1];
     laseron = false;
 }

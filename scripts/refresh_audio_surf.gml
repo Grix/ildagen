@@ -369,8 +369,12 @@ surface_set_target(audio_surf);
     draw_set_colour(c_black);
     if (startframex > 0)
         draw_rectangle(0,0,clamp(startframex,0,tlw-16),lbsh,0);
-    if (endframex < tlw-16)
-        draw_rectangle(clamp(endframex,0,tlw-16),0,tlw-16,lbsh,0);
+    if (endframex < tlw)
+    {
+        draw_rectangle(clamp(endframex,tlw-16,tlw),0,tlw,tlh+16,0);
+        if (endframex < tlw-16)
+            draw_rectangle(clamp(endframex,0,tlw-16),0,tlw-16,lbsh,0);
+    }
     draw_set_alpha(1);
     
     draw_enable_alphablend(0);

@@ -8,6 +8,7 @@ if (song)
 file_loc = get_save_filename_ext("*.ild","example.ild","","Select ILDA file location");
 if !string_length(file_loc)
     exit;
+    
 ilda_buffer = buffer_create(1,buffer_grow,1);
 global.loadingtimeprev = get_timer();
 
