@@ -531,7 +531,7 @@ for (i = 0; i < ds_list_size(marker_list); i++)
 var tempstarty = tls-layerbarx;
 
 var ypos = tempstarty;
-for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < floor((layerbarx+lbh)/48); i++)
+for (i = 0; i <= ds_list_size(layer_list); i++)
 {
     layer = ds_list_find_value(layer_list, i); 
     
@@ -553,7 +553,11 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                     {
                         newlayer = ds_list_create();
                         ds_list_add(layer_list,newlayer);
-                        ds_list_add(newlayer,ds_list_create());
+                        ds_list_add(newlayer,ds_list_create()); //envelope list
+                        ds_list_add(newlayer,ds_list_create()); //elements list
+                        ds_list_add(newlayer,0); 
+                        ds_list_add(newlayer,0);
+                        ds_list_add(newlayer,0);
                     }
                 }
                 else
@@ -589,9 +593,10 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
                 //mouse on layer but not button
                 floatingcursorx = round(tlx+mouse_x/tlw*tlzoom);
                 
-                for (m = 1; m < ds_list_size(layer); m++)
+                elementlist = layer[| 1];
+                for (m = 0; m < ds_list_size(elementlist); m++)
                 {
-                    objectlist = ds_list_find_value(layer,m);
+                    objectlist = elementlist[| m];
                     
                     infolist =  ds_list_find_value(objectlist,2);
                     frametime = ds_list_find_value(objectlist,0);
@@ -711,7 +716,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)//( i = floor(layerbarx/48); i < f
     if (i == ds_list_size(layer_list)) 
         break;
     
-    envelope_list = ds_list_find_value(layer, 0);
+    envelope_list = layer[| 0];
     for (j = 0; j < ds_list_size(envelope_list); j++)
     {
         if (ypos > tlh+16-64+138) and (ypos < lbsh+138)

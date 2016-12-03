@@ -32,7 +32,7 @@ surface_set_target(audio_surf);
             break;
         }
             
-        layer = ds_list_find_value(layer_list, i);
+        layer = layer_list[| i];
         
         if (ypos > tlh+16-48) and (ypos < lbsh)
         {
@@ -48,9 +48,10 @@ surface_set_target(audio_surf);
             draw_rectangle_colour(-1,ypos,tlw-16,ypos+48,c_white,c_white,c_silver,c_silver,0);
             draw_rectangle(-1,ypos,tlw-16,ypos+48,1);
             
-            for (j = 1; j < ds_list_size(layer); j++)
+            elementlist = layer[| 1];
+            for (j = 0; j < ds_list_size(elementlist); j++)
             {
-                objectlist = ds_list_find_value(layer,j);
+                objectlist = elementlist[| j];
                 
                 frametime = ds_list_find_value(objectlist,0);
                 infolist = ds_list_find_value(objectlist,2);

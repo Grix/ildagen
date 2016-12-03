@@ -10,7 +10,7 @@ if (!verify_serial())
 
 if (seqcontrol.selectedlayer = -1) or (ds_list_empty(seqcontrol.layer_list))
 {
-    show_message_async("No timeline position marked, enter timeline mode and select a position first");
+    show_message_async("No timeline position marked, enter timeline mode and select a position by clicking on a layer first.");
     exit;
 }
 
@@ -18,7 +18,7 @@ ilda_cancel();
 frame = 0;
 framehr = 0;
     
-//check for overlaps
+//todo check for overlaps
 /*with (seqcontrol)
 {
     layer = ds_list_find_value(layer_list,selectedlayer);
@@ -86,7 +86,7 @@ with (seqcontrol)
         ds_list_add(info,make_screenshot(controller.save_buffer));
         ds_list_add(info,controller.maxframes);
         ds_list_add(objectlist,info);
-        ds_list_add(selectedlayerlist,objectlist);
+        ds_list_add(selectedlayerlist[| 1],objectlist);
         
         ds_list_add(somaster_list,objectlist);
         
@@ -110,7 +110,6 @@ with (seqcontrol)
     }
         
     undolisttemp = ds_list_create();
-    ds_list_add(undolisttemp,selectedlayerlist);
     ds_list_add(undolisttemp,objectlist);
     ds_list_add(undo_list,"c"+string(undolisttemp));
 }

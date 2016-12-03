@@ -27,7 +27,7 @@ if (ds_list_size(copy_list) != 0)
                     copy_buffer_new,
                     0);
         
-        layerlisttemp = ds_list_find_value(layer_list,clamp(selectedlayer+layertemp-layer_ref,0,ds_list_size(layer_list)-1));
+        layerlisttemp = ds_list_find_value(ds_list_find_value(layer_list,clamp(selectedlayer+layertemp-layer_ref,0,ds_list_size(layer_list)-1)), 1);
         new_objectlist = ds_list_create();
         new_pos = selectedx+postemp-pos_ref;
         if (new_pos < 0) new_pos = 0;

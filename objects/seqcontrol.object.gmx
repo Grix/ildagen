@@ -32,6 +32,10 @@ layer_list = ds_list_create();
 layer = ds_list_create();
 ds_list_add(layer_list,layer);
 ds_list_add(layer,ds_list_create()); //envelope list
+ds_list_add(layer,ds_list_create()); //elements list
+ds_list_add(layer,0); 
+ds_list_add(layer,0);
+ds_list_add(layer,0);
 surface_list = ds_list_create();
 somaster_list = ds_list_create();
 somoving_list = ds_list_create();

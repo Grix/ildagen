@@ -1,9 +1,7 @@
 /*
 
 TODO
--find optimization bugs
 -preview blindzones
--connect segments in optimization
 
 SEQCONTROL
 
@@ -16,13 +14,17 @@ layer_list
                 env_data_list
                 disabled
                 hidden
-        layer elements...
-            xpos on timeline
-            frame buffers
-            info list..
-                length
-                screenshot surface
-                maxframes
+        element_list
+            layer elements...
+                xpos on timeline
+                frame buffers
+                info list..
+                    length
+                    screenshot surface
+                    maxframes
+        muted
+        hidden
+        dac_id
                 
 somaster_list
     layer elements.. (see above)

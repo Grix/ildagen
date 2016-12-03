@@ -28,10 +28,11 @@ for (j = 0; j < ds_list_size(layer_list); j++)
     var env_dataset = 0;
     layer = ds_list_find_value(layer_list, j);
     
-    for (m = 1; m < ds_list_size(layer); m++)
+    elementlist = layer[| 1];
+    for (m = 0; m < ds_list_size(elementlist); m++)
     {
-        objectlist = ds_list_find_value(layer,m);
-        
+        objectlist = elementlist[| m];
+
         infolist =  ds_list_find_value(objectlist,2);
         frametime = round(ds_list_find_value(objectlist,0));
         object_length = ds_list_find_value(infolist,0);

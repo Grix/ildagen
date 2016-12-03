@@ -102,7 +102,8 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
         
         for (j = 0; j < ds_list_size(layer_list); j++)
         {
-            layer = layer_list[| j];
+            layertop = layer_list[| j];
+            layer = layertop[| 1];
             for (k = 0; k < ds_list_size(layer); k++)
             {
                 if (ds_list_find_index(layer, objectlist) != -1)
@@ -122,8 +123,6 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
 }
 
 if (!splitted)
-{
     show_message_async("To split an object, select it and move the playback cursor to the desired split position, then try again.");
-}
 else
     ds_list_clear(somaster_list);

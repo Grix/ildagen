@@ -3,7 +3,7 @@ with (ddobj)
     {
     num = 8;
     event_user(1);
-    ds_list_add(desc_list,"Select type:");
+    ds_list_add(desc_list,"Select type for new envelope:");
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,blank_script);//do nothing
     ds_list_add(hl_list,1);
