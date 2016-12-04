@@ -9,10 +9,10 @@ load_buffer = buffer_load(file_loc);
     
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 100) and (idbyte != 101) and (idbyte != 102)
-    {
+{
     show_message_async("Unexpected ID byte, is this a valid LasershowGen project file?");
     exit;
-    }
+}
     
 projectfps = buffer_read(load_buffer,buffer_u8);
 songload = buffer_read(load_buffer,buffer_u8);
@@ -24,13 +24,13 @@ length = endframe+50;
 buffer_seek(load_buffer,buffer_seek_start,50);
 
 if (idbyte == 101) or (idbyte == 102)
-    {
+{
     maxlayers = buffer_read(load_buffer,buffer_u32);
-    }
+}
 else if (idbyte == 100) //old, need to remake buffers
-    {
+{
     maxlayers = buffer_read(load_buffer,buffer_u32);
-    }
+}
     
 global.loadingtimeprev = get_timer();
 

@@ -4,6 +4,7 @@ mouseonsomelayer = 0;
 
 if (moving_object == 1)
 {
+    controller.tooltip = "Drag object to any position on any timeline";
     draw_mouseline = 1;
     mouseyprevflag = 0;
     //currently dragging object on timeline
@@ -12,10 +13,15 @@ if (moving_object == 1)
         objecttomove = ds_list_find_value(somaster_list,i);
         infolisttomove = ds_list_find_value(objecttomove,2);
         layertomove = -1;
+        layertomove_index = -1;
         for (j = 0; j < ds_list_size(layer_list); j++)
         {
-            if (ds_list_find_index(ds_list_find_value(layer_list,j),objecttomove) != -1)
-                layertomove = ds_list_find_value(layer_list,j);
+            elementlist = ds_list_find_value(layer_list[| j], 1);
+            if (ds_list_find_index(elementlist,objecttomove) != -1)
+            {
+                layertomove = elementlist;
+                layertomove_index = j;
+            }
         }
         if (layertomove == -1)
         {
@@ -25,23 +31,23 @@ if (moving_object == 1)
             
         ds_list_replace(objecttomove,0,max(0,ds_list_find_value(objecttomove,0)+(mouse_x-mousexprev)*tlzoom/tlw));
         
-        if (mouse_y > (mouseyprev+48)) and (ds_list_find_index(layer_list,layertomove) < (ds_list_size(layer_list)-1))
+        if (mouse_y > (mouseyprev+48)) and (layertomove_index < (ds_list_size(layer_list)-1))
         {
             //move to lower layer
             mouseyprevflag = 1;
-            var newlayertomove = ds_list_find_value(layer_list,ds_list_find_index(layer_list,layertomove)+1);
-            ds_list_add(newlayertomove,objecttomove);
+            var newlayertomove = ds_list_find_value(layer_list,layertomove_index+1);
+            ds_list_add(newlayertomove[| 1],objecttomove);
             ds_list_delete(layertomove,ds_list_find_index(layertomove,objecttomove));
-            layertomove = newlayertomove;
+            layertomove = newlayertomove[| 1];
         }
-        else if (mouse_y < (mouseyprev-48)) and (ds_list_find_index(layer_list,layertomove) > 0)
+        else if (mouse_y < (mouseyprev-48)) and (layertomove_index > 0)
         {
             //move to above layer
             mouseyprevflag = 1;
-            var newlayertomove = ds_list_find_value(layer_list,ds_list_find_index(layer_list,layertomove)-1);
-            ds_list_add(newlayertomove,objecttomove);
+            var newlayertomove = ds_list_find_value(layer_list,layertomove_index-1);
+            ds_list_add(newlayertomove[| 1],objecttomove);
             ds_list_delete(layertomove,ds_list_find_index(layertomove,objecttomove));
-            layertomove = newlayertomove;
+            layertomove = newlayertomove[| 1];
         }
     }
         
@@ -58,8 +64,11 @@ if (moving_object == 1)
             layertomove = -1;
             for (j = 0; j < ds_list_size(layer_list); j++)
             {
-                if (ds_list_find_index(ds_list_find_value(layer_list,j),objecttomove) != -1)
-                    layertomove = ds_list_find_value(layer_list,j);
+                elementlist = ds_list_find_value(layer_list[| j], 1);
+                if (ds_list_find_index(elementlist,objecttomove) != -1)
+                {
+                    layertomove = elementlist;
+                }
             }
             if (layertomove == -1)
             {
@@ -79,7 +88,7 @@ if (moving_object == 1)
                     loopcount--;
                     loop = 0;
                     tempxend = tempxstart + ds_list_find_value(ds_list_find_value(objecttomove,2),0);
-                    for ( u = 1; u < ds_list_size(layertomove); u++)
+                    for ( u = 0; u < ds_list_size(layertomove); u++)
                     {
                         if (ds_list_find_value(layertomove,u) == objecttomove) 
                             continue;
@@ -138,8 +147,9 @@ else if (moving_object == 2)
             layertomove = -1;
             for (j = 0; j < ds_list_size(layer_list); j++)
             {
-                if (ds_list_find_index(ds_list_find_value(layer_list,j),objecttomove) != -1)
-                    layertomove = ds_list_find_value(layer_list,j);
+                elementlist = ds_list_find_value(layer_list[| j], 1);
+                if (ds_list_find_index(elementlist,objecttomove) != -1)
+                    layertomove = elementlist;
             }
             if (layertomove == -1)
             {
@@ -160,7 +170,7 @@ else if (moving_object == 2)
                     loopcount--;
                     loop = 0;
                     tempxend = tempxstart + templength;
-                    for ( u = 1; u < ds_list_size(layertomove); u++)
+                    for ( u = 0; u < ds_list_size(layertomove); u++)
                     {
                         if (ds_list_find_value(layertomove,u) == objecttomove) 
                             continue;
@@ -603,7 +613,6 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                     object_length = ds_list_find_value(infolist,0);
                     draw_mouseline = 1;
                     
-                    
                     if (floatingcursorx == clamp(floatingcursorx, frametime-2, frametime+object_length+1))
                     {
                         //mouse over object
@@ -662,7 +671,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                                     
                                     undolisttemp = ds_list_create();
                                     ds_list_add(undolisttemp,objectlist);
-                                    ds_list_add(undolisttemp,layer);
+                                    ds_list_add(undolisttemp,elementlist);
                                     ds_list_add(undolisttemp,frametime);
                                     
                                     mousexprev = mouse_x;

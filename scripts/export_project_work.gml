@@ -45,8 +45,8 @@ for (j = global.loading_current; j < global.loading_end;j++)
     {
         env_dataset = 0;
         
-        layer = ds_list_find_value(layer_list, k);
-        for (m = 1; m < ds_list_size(layer); m++)
+        layer = ds_list_find_value(layer_list[| k], 1);
+        for (m = 0; m < ds_list_size(layer); m++)
         {
             objectlist = ds_list_find_value(layer,m);
             
@@ -63,7 +63,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
             {
                 env_dataset = 1;
                 
-                ready_envelope_applying(ds_list_find_value(layer,0));
+                ready_envelope_applying(ds_list_find_value(layer_list[| k], 0));
             }
             
             //yup, draw object

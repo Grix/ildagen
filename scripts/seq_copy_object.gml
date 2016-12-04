@@ -23,7 +23,7 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
     objectlist = ds_list_find_value(somaster_list,i);
     for (c = 0; c < ds_list_size(layer_list); c++)
     {
-        if (ds_list_find_index( ds_list_find_value(ds_list_find_value(layer_list,c),1), objectlist) != -1)    
+        if (ds_list_find_index( ds_list_find_value(layer_list[| c],1), objectlist) != -1)    
         {
             layertemp = c;
             break;
@@ -44,7 +44,6 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
     
     if (i == 0)
     {
-        selectedx = ds_list_find_value( objectlist,0)
-                                        +ds_list_find_value(ds_list_find_value(objectlist,2),0)+1;
+        selectedx = ds_list_find_value( objectlist,0) + ds_list_find_value(ds_list_find_value(objectlist,2),0)+1;
     }
 }
