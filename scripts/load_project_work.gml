@@ -1,4 +1,4 @@
-if (idbyte == 101) or (idbyte == 102)
+if (idbyte == 103) or (idbyte == 101) or (idbyte == 102)
 {
     for (j = global.loading_current; j < global.loading_end;j++)
     {
@@ -10,10 +10,12 @@ if (idbyte == 101) or (idbyte == 102)
         }
             
         var layertemp = ds_list_create();
-        var t_env_list = ds_list_create()
-        ds_list_add(layertemp,t_env_list);
-        ds_list_add(layer_list,layertemp);
+        var t_env_list = ds_list_create();
+        ds_list_add(layertemp, t_env_list);
+        ds_list_add(layertemp, ds_list_create());
+        ds_list_add(layer_list, layertemp);
         
+        //object data
         numofobjects = buffer_read(load_buffer,buffer_u32);
         for (i = 0; i < numofobjects;i++)
         {
@@ -32,8 +34,10 @@ if (idbyte == 101) or (idbyte == 102)
             ds_list_add(objectinfolist,-1);
             ds_list_add(objectinfolist,buffer_read(load_buffer,buffer_u32));
             
-            ds_list_add(layertemp,objectlist);
+            ds_list_add(layertemp[| 1],objectlist);
         }
+        
+        //envelopes
         numofenvelopes = buffer_read(load_buffer,buffer_u32);
         repeat (numofenvelopes)
         {
@@ -62,6 +66,22 @@ if (idbyte == 101) or (idbyte == 102)
             repeat (5)
                 buffer_read(load_buffer,buffer_u8);
         }
+        
+        //layer vars
+        if (idbyte == 103)
+        {
+            ds_list_add(layertemp, buffer_read(load_buffer,buffer_u8)); //muted
+            ds_list_add(layertemp, buffer_read(load_buffer,buffer_u8)); //hidden
+            ds_list_add(layertemp, buffer_read(load_buffer,buffer_string)); //dac_id
+            repeat (64)
+                buffer_read(load_buffer,buffer_u8); //reserved
+        }
+        else
+        {
+            ds_list_add(layertemp, 0);
+            ds_list_add(layertemp, 0);
+            ds_list_add(layertemp, "");
+        }
     }
 }
 else if (idbyte == 100) //old, need to remake buffers
@@ -75,6 +95,7 @@ else if (idbyte == 100) //old, need to remake buffers
             return 0;
         }
         layertemp = ds_list_create();
+        ds_list_add(layertemp,ds_list_create());
         ds_list_add(layertemp,ds_list_create());
         ds_list_add(layer_list,layertemp);
         
@@ -115,8 +136,12 @@ else if (idbyte == 100) //old, need to remake buffers
             ds_list_add(objectinfolist,-1);
             ds_list_add(objectinfolist,buffer_read(load_buffer,buffer_u32));
             
-            ds_list_add(layertemp,objectlist);
+            ds_list_add(layertemp[| 1],objectlist);
         }
+        
+        ds_list_add(layertemp, 0);
+        ds_list_add(layertemp, 0);
+        ds_list_add(layertemp, "");
     }
 }
     
@@ -142,7 +167,6 @@ if (songload)
    
     if (!song) 
     {
-        show_debug_message(FMODGetLastError())
         show_message_async("Failed to load audio: "+FMODErrorStr(FMODGetLastError()));
     }
     else
@@ -168,7 +192,6 @@ if (songload)
     if (song)
     {
         songinstance = FMODSoundPlay(song,1);
-        
         set_audio_speed();
     }
         

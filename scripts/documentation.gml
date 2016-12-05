@@ -24,7 +24,7 @@ layer_list
                     maxframes
         muted
         hidden
-        dac_id
+        dac_id (md5 of name)
                 
 somaster_list
     layer elements.. (see above)

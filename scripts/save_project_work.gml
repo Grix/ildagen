@@ -7,20 +7,21 @@ for (i = global.loading_current; i < global.loading_end;i++)
         return 0;
     }
         
+    //layer objects
     layer = ds_list_find_value(layer_list,i);
-    buffer_write(save_buffer,buffer_u32,ds_list_size(layer)-1);
-    for (j = 1; j < ds_list_size(layer); j++)
+    buffer_write(save_buffer,buffer_u32,ds_list_size(layer[| 1]));
+    for (j = 0; j < ds_list_size(layer[| 1]); j++)
     {
-        objectlist = ds_list_find_value(layer,j);
+        objectlist = ds_list_find_value(layer[| 1],j);
         tempframe = ds_list_find_value(objectlist,0);
         tempbuffer = ds_list_find_value(objectlist,1);
         tempinfolist = ds_list_find_value(objectlist,2);
-        buffer_write(save_buffer,buffer_u32,tempframe);
-        buffer_write(save_buffer,buffer_u32,buffer_get_size(tempbuffer));
-        buffer_copy(tempbuffer,0,buffer_get_size(tempbuffer),save_buffer,buffer_tell(save_buffer));
-        buffer_seek(save_buffer,buffer_seek_relative,buffer_get_size(tempbuffer));
-        buffer_write(save_buffer,buffer_u32,ds_list_find_value(tempinfolist,0));
-        buffer_write(save_buffer,buffer_u32,ds_list_find_value(tempinfolist,2));
+        buffer_write(save_buffer, buffer_u32, tempframe);
+        buffer_write(save_buffer, buffer_u32, buffer_get_size(tempbuffer));
+        buffer_copy(tempbuffer, 0, buffer_get_size(tempbuffer), save_buffer, buffer_tell(save_buffer));
+        buffer_seek(save_buffer, buffer_seek_relative, buffer_get_size(tempbuffer));
+        buffer_write(save_buffer, buffer_u32, ds_list_find_value(tempinfolist,0));
+        buffer_write(save_buffer, buffer_u32, ds_list_find_value(tempinfolist,2));
     }
         
     //saving envelope info
@@ -52,6 +53,13 @@ for (i = global.loading_current; i < global.loading_end;i++)
         repeat (5)
             buffer_write(save_buffer,buffer_u8,0);
     }
+    
+    //layer vars
+    buffer_write(save_buffer,buffer_u8,layer[| 2]); //muted
+    buffer_write(save_buffer,buffer_u8,layer[| 3]); //hidden
+    buffer_write(save_buffer,buffer_string,layer[| 4]); //dac_id
+    repeat (64)
+        buffer_write(save_buffer,buffer_u8,0); //reserved
 }
 
 //saving audio data
@@ -88,7 +96,7 @@ buffer_resize(save_buffer,buffer_tell(save_buffer));
 buffer_save(save_buffer,file_loc);
 //show_message_async("LasershowGen project saved to "+string(file_loc));
 
-for (i = 0; i < 100;i++){}
+for (i = 0; i < 1000;i++){}
 buffer_delete(save_buffer);
 
 global.loading_saveproject = 0;
