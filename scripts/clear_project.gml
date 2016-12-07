@@ -29,7 +29,7 @@ while (ds_list_size(undo_list))
         infolist = ds_list_find_value(objectlist, 2);
         if (surface_exists(ds_list_find_value(infolist,1)))
             surface_free(ds_list_find_value(infolist,1));
-        //if buffer exists
+        if (buffer_exists(ds_list_find_value(objectlist,1)))
             buffer_delete(ds_list_find_value(objectlist,1));
         ds_list_destroy(infolist);
         ds_list_destroy(objectlist);

@@ -1210,6 +1210,7 @@
         <object>objects\obj_addblindzone</object>
         <object>objects\obj_preset</object>
         <object>objects\obj_dacs</object>
+        <object>objects\obj_projectors</object>
         <object>objects\obj_dacname</object>
         <object>objects\obj_colorscale</object>
         <object>objects\obj_scanrate</object>

@@ -564,7 +564,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                         newlayer = ds_list_create();
                         ds_list_add(layer_list,newlayer);
                         ds_list_add(newlayer,ds_list_create()); //envelope list
-                        ds_list_add(newlayer,ds_list_create()); //elements list
+                        ds_list_add(newlayer,ds_list_create()); //objects list
                         ds_list_add(newlayer,0); 
                         ds_list_add(newlayer,0);
                         ds_list_add(newlayer,0);

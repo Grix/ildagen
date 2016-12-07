@@ -54,7 +54,6 @@ frame3d_surf_large = surface_create(1024,1024);
 copy_list = ds_list_create();
 copy_buffer = ds_list_create();
 env_type_map = ds_map_create();
-dac_active_list = ds_map_create();
 projector_list = ds_list_create();
 output_buffer = buffer_create(48000,buffer_fixed,2);
 output_buffer2 = buffer_create(48000,buffer_fixed,2);
@@ -722,11 +721,11 @@ if (new_id == getint)
             selectedlayer = ds_list_find_index(layer_list,layer);
             if (selectedlayer == -1)
                 exit;
-            num_objects = ds_list_size(layer)-1;
+            num_objects = ds_list_size(layer[| 1]);
             ds_list_clear(somaster_list);
             repeat (num_objects)   
             {
-                ds_list_add(somaster_list,ds_list_find_value(layer,1));
+                ds_list_add(somaster_list,ds_list_find_value(layer[| 1],0));
                 seq_delete_object_noundo();
             }
             envelope_list = ds_list_find_value(layer,0);
@@ -740,6 +739,7 @@ if (new_id == getint)
                 ds_list_delete(envelope_list,0);
             }
             ds_list_destroy(envelope_list);
+            ds_list_destroy(layer[| 1]);
             ds_list_destroy(layer);
             ds_list_delete(layer_list,selectedlayer);
             

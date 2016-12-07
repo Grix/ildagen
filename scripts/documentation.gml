@@ -24,7 +24,16 @@ layer_list
                     maxframes
         muted
         hidden
-        dac_id (md5 of name)
+        projector_id
+        
+projector_list
+    projectors...
+        id
+        dac_list
+            dacs...
+                name (md5)
+                inverted x
+                inverted y
                 
 somaster_list
     layer elements.. (see above)
