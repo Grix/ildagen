@@ -28,23 +28,24 @@
             <string>highlight = 0;
 preset = 0;
 
-//if (ds_list_empty(controller.dac_list) or (controller.dac == -1))
-//    with (controller) scan_dacs();
+list_width = 200;
+list_height = 100;
+scrollx = 0;
+scrollw = 32;
+scrollh = 32;
+itemh = 24;
+moving = 0;
 
-/*ini_open("settings.ini");
+surf_daclist = -1;
 
-    projector = ini_read_real("main", "projector", 0);
-    var t_projectorstring = "projector_"+string(projector);
-    if (ini_section_exists(t_projectorstring))
-        {
-        preset_name = ini_read_string(t_projectorstring, "dac", "name_error");
-        }
-    else
-        {
-        preset_name = "name_error";
-        }
-    
-ini_close();*/
+repeat(5)
+{
+dl = ds_list_create();
+ds_list_add(dl,1);
+ds_list_add(dl,"test");
+ds_list_add(dl,1);
+ds_list_add(controller.dac_list,dl);
+}
 </string>
           </argument>
         </arguments>
@@ -67,7 +68,70 @@ ini_close();*/
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(oDropDown))
+            <string>if (moving == 1)
+{
+    scrollx += (mouse_y-mouseyprev)*scrollh/list_height;
+    scrollx = clamp(scrollx,0,scrollh-scrollw);
+    mouseyprev = mouse_y;
+    controller.tooltip = "Drag to scroll the list of DACs.";
+    if (!mouse_check_button(mb_left))
+    {
+        moving = 0;
+    }
+    exit;
+}
+
+if (instance_exists(oDropDown))
+    exit;
+    
+if (scrollh &gt; list_height)
+&amp;&amp; (mouse_y == clamp(mouse_y, y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw), y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw)+scrollw)) 
+&amp;&amp; (mouse_x == clamp(mouse_x, x+list_width, x+list_width+20))
+{
+    controller.tooltip = "Drag to scroll the list of DACs.";
+    if (mouse_check_button_pressed(mb_left))
+    {
+        moving = 1;
+        mouseyprev = mouse_y;
+    }
+    else if (mouse_wheel_up())
+    {
+        scrollx -= itemh;
+        scrollx = clamp(scrollx,0,scrollh-scrollw);
+    }
+    else if (mouse_wheel_down())
+    {
+        scrollx += itemh;
+        scrollx = clamp(scrollx,0,scrollh-scrollw);
+    }
+}
+else if (mouse_y == clamp(mouse_y, y, y+list_height)) 
+    &amp;&amp;  (mouse_x == clamp(mouse_x, x, x+list_width))
+{
+    if (mouse_wheel_up())
+    {
+        scrollx -= itemh;
+        scrollx = clamp(scrollx,0,scrollh-scrollw);
+    }
+    else if (mouse_wheel_down())
+    {
+        scrollx += itemh;
+        scrollx = clamp(scrollx,0,scrollh-scrollw);
+    }
+    
+    var t_dac_mouseover = (scrollx + (mouse_y - y)) div itemh;
+    if (t_dac_mouseover &lt; ds_list_size(controller.dac_list))
+    {
+        tooltip = "Left click to select DAC. Right click for options.";
+        if (mouse_check_button_pressed(mb_left))
+        {
+            dac_select(t_dac_mouseover);
+        }
+    }
+}
+////////////
+/*
+if (instance_exists(oDropDown))
     exit;
     
 if (mouse_x &gt; x+50) and (mouse_x &lt; (x+250)) and (mouse_y &gt; y) and ((mouse_y &lt; y+22))
@@ -88,6 +152,7 @@ if (mouse_x &gt; x+50) and (mouse_x &lt; (x+250)) and (mouse_y &gt; y) and ((mou
 } 
 else 
     highlight = 0;
+    */
 </string>
           </argument>
         </arguments>
@@ -110,26 +175,58 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (highlight)
+            <string>draw_set_alpha(1);
+if (scrollh &gt; list_height)
 {
-    draw_set_color(c_gray);
-    draw_set_alpha(0.2);
-    draw_rectangle(x+50,y,x+250,y+22,0);
+    draw_set_colour(c_white);
+    draw_rectangle(x+list_width,y,x+list_width+20,y+list_height,0);
+    draw_set_colour(c_dkgray);
+    draw_rectangle(x+list_width, y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw), x+list_width+20, y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw)+scrollw, 0);
+    draw_rectangle(x+list_width,y,x+list_width+20,y+list_height,1);
+}
+else
+{
+    scrollx = 0;
+    draw_set_colour(c_dkgray);
+}
+draw_rectangle(x,y,x+list_width,y+list_height,1);
+    
+
+if (!surface_exists(surf_daclist))
+{
+    var t_ypos = 0;
+    surf_daclist = surface_create(512,512);
+    surface_set_target(surf_daclist);
+        draw_clear_alpha(c_white,0);
+        draw_enable_alphablend(false);
+        draw_set_colour(c_black);
+        draw_set_valign(fa_middle);
+        for (i = 0; i &lt; ds_list_size(controller.dac_list); i++)
+        {
+            if (ds_list_find_index(controller.dac_list,controller.dac) == i)
+            {
+                draw_set_color(controller.c_gold);
+                draw_set_alpha(0.4);
+                draw_enable_alphablend(true);
+                draw_rectangle(0,t_ypos+1,list_width,t_ypos+itemh,0);
+                draw_enable_alphablend(false);
+                draw_set_alpha(1);
+                draw_set_colour(c_black);
+                draw_sprite(spr_checkbox,1,5,t_ypos+4);
+                draw_text(35, t_ypos+itemh/2, ds_list_find_value(controller.dac_list[| i], 1));
+            }
+            else
+                draw_text(10, t_ypos+itemh/2, ds_list_find_value(controller.dac_list[| i], 1));
+            t_ypos += itemh;
+            draw_line(0, t_ypos, list_width, t_ypos);
+        }
+        draw_set_valign(fa_top);
+        draw_enable_alphablend(true);
+    surface_reset_target();
+    scrollh = t_ypos;
 }
 
-draw_set_color(c_dkgray);
-draw_set_alpha(1);
-draw_set_font(fnt_tooltip);
-
-draw_rectangle(x+50,y,x+250,y+22,1);
-
-draw_text(x+10,y+5,"DAC:       "+string(controller.dac_string));
-
-if (controller.dac != -1)
-{
-    if (controller.dac[| 3] != -1)
-        draw_text(x+50,y+30,"DAC firmware version: "+string(controller.dac[| 3]));
-}
+draw_surface_part(surf_daclist, 0, round(scrollx), list_width, list_height, x, y);
 </string>
           </argument>
         </arguments>

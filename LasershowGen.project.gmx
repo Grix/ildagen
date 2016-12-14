@@ -275,6 +275,7 @@
     <sprite>sprites\spr_blank</sprite>
     <sprite>sprites\spr_comingsoon</sprite>
     <sprite>sprites\spr_laserareasettings</sprite>
+    <sprite>sprites\spr_dacscan</sprite>
     <sprite>sprites\spr_ad1</sprite>
     <sprite>sprites\spr_ad2</sprite>
     <sprite>sprites\spr_ad3</sprite>
@@ -1042,8 +1043,8 @@
     </scripts>
     <scripts name="dacs">
       <script>scripts\dac_select.gml</script>
-      <script>scripts\scan_dacs.gml</script>
       <script>scripts\close_dacs.gml</script>
+      <script>scripts\scan_dacs.gml</script>
       <script>scripts\dac_send_frame.gml</script>
       <script>scripts\dac_blank_and_center.gml</script>
       <script>scripts\output_frame.gml</script>
@@ -1210,6 +1211,7 @@
         <object>objects\obj_addblindzone</object>
         <object>objects\obj_preset</object>
         <object>objects\obj_dacs</object>
+        <object>objects\obj_dacscan</object>
         <object>objects\obj_projectors</object>
         <object>objects\obj_dacname</object>
         <object>objects\obj_colorscale</object>

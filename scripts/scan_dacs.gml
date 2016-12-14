@@ -1,6 +1,5 @@
 //scans for available dacs (and resets all)
 
-
 controller.laseron = false;
 controller.dac = -1;
 controller.dac_string = "[None]";
@@ -31,4 +30,12 @@ for (i = 0; i < numofdacs; i++)
     ds_list_add(newdac,ds_map_create());
     ds_list_add(newdac,dacwrapper_getfirmware(i));
     ds_list_add(controller.dac_list,newdac);
+}
+
+if (ds_list_size(controller.dac_list) == 1)
+    dac_select(0);
+
+if (room == rm_options)
+{
+    surface_free(obj_dacs.surf_daclist);
 }
