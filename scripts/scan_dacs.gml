@@ -1,5 +1,11 @@
 //scans for available dacs (and resets all)
 
+if (os_browser != browser_not_a_browser)
+{
+    show_message_async("Sorry, DAC connectivity is not available in the web version");
+    exit;
+}
+
 controller.laseron = false;
 controller.dac = -1;
 controller.dac_string = "[None]";

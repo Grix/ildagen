@@ -916,6 +916,10 @@
         <script>scripts\projectionwindow_reset.gml</script>
         <script>scripts\blindzone_delete.gml</script>
         <script>scripts\blindzone_clear.gml</script>
+        <script>scripts\dropdown_dac.gml</script>
+        <script>scripts\dac_rename_dd.gml</script>
+        <script>scripts\dac_select_dd.gml</script>
+        <script>scripts\dac_addtoprojector_dd.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">
@@ -1074,6 +1078,8 @@
     <script>scripts\url_open_new.gml</script>
     <script>scripts\load_settings.gml</script>
     <script>scripts\save_settings.gml</script>
+    <script>scripts\add_projector.gml</script>
+    <script>scripts\projectorlist_update.gml</script>
     <script>scripts\log.gml</script>
     <script>scripts\documentation.gml</script>
     <script>scripts\blank_script.gml</script>
@@ -1212,6 +1218,7 @@
         <object>objects\obj_preset</object>
         <object>objects\obj_dacs</object>
         <object>objects\obj_dacscan</object>
+        <object>objects\obj_addprojector</object>
         <object>objects\obj_projectors</object>
         <object>objects\obj_dacname</object>
         <object>objects\obj_colorscale</object>

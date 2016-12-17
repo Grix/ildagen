@@ -25,10 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>highlight = 0;
-preset = 0;
-
-list_width = 200;
+            <string>list_width = 200;
 list_height = 100;
 scrollx = 0;
 scrollw = 32;
@@ -37,15 +34,6 @@ itemh = 24;
 moving = 0;
 
 surf_daclist = -1;
-
-repeat(5)
-{
-dl = ds_list_create();
-ds_list_add(dl,1);
-ds_list_add(dl,"test");
-ds_list_add(dl,1);
-ds_list_add(controller.dac_list,dl);
-}
 </string>
           </argument>
         </arguments>
@@ -122,37 +110,42 @@ else if (mouse_y == clamp(mouse_y, y, y+list_height))
     var t_dac_mouseover = (scrollx + (mouse_y - y)) div itemh;
     if (t_dac_mouseover &lt; ds_list_size(controller.dac_list))
     {
-        tooltip = "Left click to select DAC. Right click for options.";
+        controller.tooltip = "Left click to select DAC as default. Right click for options.";
         if (mouse_check_button_pressed(mb_left))
         {
             dac_select(t_dac_mouseover);
         }
+        else if (mouse_check_button_pressed(mb_right))
+        {
+            settingscontrol.dactoselect = t_dac_mouseover;
+            dropdown_dac();
+        }
     }
 }
-////////////
-/*
-if (instance_exists(oDropDown))
-    exit;
-    
-if (mouse_x &gt; x+50) and (mouse_x &lt; (x+250)) and (mouse_y &gt; y) and ((mouse_y &lt; y+22))
-{
-    highlight = 1;
-    controller.tooltip = "Choose DAC/controller to connect and output to.";
-    
-    if (mouse_check_button_pressed(mb_left))
-    {
-        if (os_browser != browser_not_a_browser)
-        {
-            show_message_async("Sorry, DAC output is not available in the web version");
-            exit;
-        }
-        else
-            dropdown_dacs();
-    }
-} 
-else 
-    highlight = 0;
-    */
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (surface_exists(surf_daclist))
+    surface_free(surf_daclist);
 </string>
           </argument>
         </arguments>
@@ -217,6 +210,7 @@ if (!surface_exists(surf_daclist))
             }
             else
                 draw_text(10, t_ypos+itemh/2, ds_list_find_value(controller.dac_list[| i], 1));
+            
             t_ypos += itemh;
             draw_line(0, t_ypos, list_width, t_ypos);
         }

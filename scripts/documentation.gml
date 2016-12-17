@@ -29,8 +29,12 @@ layer_list
 projector_list
     projectors...
         id
+        name
+        preset_id (-1 if not set)
+        preset_name 
         dac_list
             dacs...
+                num (-1 if not set)
                 name (md5)
                 inverted x
                 inverted y

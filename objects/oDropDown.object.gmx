@@ -98,6 +98,14 @@ if (controller.dialog_open)
 
 if (instance_number(oDropDown) &lt;= 1)
 controller.alarm[6] = 2;
+
+if (rdy)
+{
+    ds_list_destroy(desc_list);
+    ds_list_destroy(sep_list);
+    ds_list_destroy(scr_list);
+    ds_list_destroy(hl_list);
+}
 </string>
           </argument>
         </arguments>
@@ -292,20 +300,20 @@ alarm[0] = 2;
             <kind>1</kind>
             <string>///Override me for each option
 if (room == rm_ilda)
-    {
+{
     with (controller) 
         script_execute(ds_list_find_value(oDropDown.scr_list,oDropDown.selected));
-    }
+}
 else if (room == rm_seq)
-    {
+{
     with (seqcontrol) 
         script_execute(ds_list_find_value(oDropDown.scr_list,oDropDown.selected));
-    }
+}
 else
-    {
+{
     with (controller) 
         script_execute(ds_list_find_value(oDropDown.scr_list,oDropDown.selected),oDropDown.selected);
-    }
+}
     
 instance_destroy();
 </string>

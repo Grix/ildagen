@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -63,7 +63,10 @@ menu_width_start[3] = menu_width_start[2]+menu_width[2];
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>minroomspeed = 60;
+            <string>if (room != rm_options)
+    exit;
+
+minroomspeed = 60;
 
 if (controller.laseron)
 {
@@ -103,7 +106,10 @@ while (room_speed &lt; minroomspeed)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (keyboard_check_pressed(vk_tab))
+            <string>if (room != rm_options)
+    exit;
+
+if (keyboard_check_pressed(vk_tab))
     room_goto(rm_ilda);
     
 
@@ -138,7 +144,10 @@ if (keyboard_check_pressed(vk_escape))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//menu
+            <string>if (room != rm_options)
+    exit;
+
+//menu
 if (mouse_y &gt; view_yview[3])   
     {
     if (mouse_x &gt; menu_width_start[0]) and (mouse_x &lt; menu_width_start[1])
@@ -177,41 +186,42 @@ if (mouse_y &gt; view_yview[3])
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>if (room != rm_options)
+    exit;
 
 //menu
 draw_set_colour(c_black);
 draw_set_alpha(1);
 draw_text(0,view_yview[3]+4,menu_string);
 if (mouse_y &gt; view_yview[3])   
-    {
+{
     draw_set_colour(c_teal);
     if (mouse_x &gt; menu_width_start[0]) and (mouse_x &lt; menu_width_start[1])
-        {
+    {
         draw_rectangle(menu_width_start[0],view_yview[3]+1,menu_width_start[1],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[0],view_yview[3]+1,menu_width_start[1],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[1]) and (mouse_x &lt; menu_width_start[2])
-        {
+    {
         draw_rectangle(menu_width_start[1],view_yview[3]+1,menu_width_start[2],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[1],view_yview[3]+1,menu_width_start[2],view_yview[3]+20,0);
-        }
+    }
     else if (mouse_x &gt; menu_width_start[2]) and (mouse_x &lt; menu_width_start[3])
-        {
+    {
         draw_rectangle(menu_width_start[2],view_yview[3]+1,menu_width_start[3],view_yview[3]+20,1);
         draw_set_alpha(0.3);
         draw_rectangle(menu_width_start[2],view_yview[3]+1,menu_width_start[3],view_yview[3]+20,0);
-        }
-    draw_set_alpha(1);
     }
+    draw_set_alpha(1);
+}
     
 draw_enable_alphablend(0);
 with (obj_button_parent)
-    {
+{
     draw_self();
-    }
+}
 draw_enable_alphablend(1);
 </string>
           </argument>

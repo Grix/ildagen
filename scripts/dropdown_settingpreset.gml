@@ -1,10 +1,10 @@
 ddobj = instance_create(x+60,y+22,oDropDown);
 with (ddobj)
-    {
+{
     ini_open("settings.ini");
     num = 0;
     while (1)
-        {
+    {
         var t_projectorstring = "projector_"+string(num);
         if (!ini_section_exists(t_projectorstring))
             break;
@@ -14,7 +14,7 @@ with (ddobj)
         ds_list_add(scr_list,preset_load);
         ds_list_add(hl_list,(controller.projector == num));
         num++;
-        }
+    }
     
     ds_list_add(desc_list,"[+] Create new...");
     ds_list_add(sep_list,1);
@@ -27,4 +27,4 @@ with (ddobj)
     ini_close();
     num+=2;
     event_user(1);
-    }
+}

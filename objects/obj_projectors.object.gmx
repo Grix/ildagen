@@ -25,15 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>highlight = 0;
-preset = 0;
-
-list_width = 200;
+            <string>list_width = 250;
 list_height = 100;
 scrollx = 0;
 scrollw = 32;
 scrollh = 32;
+itemh = 24;
 moving = 0;
+
+surf_projectorlist = -1;
 </string>
           </argument>
         </arguments>
@@ -72,7 +72,8 @@ moving = 0;
 if (instance_exists(oDropDown))
     exit;
     
-if (mouse_y == clamp(mouse_y, y+scrollx*list_height/scrollh, y+scrollx*list_height/scrollh+scrollw)) 
+if (scrollh &gt; list_height)
+&amp;&amp; (mouse_y == clamp(mouse_y, y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw), y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw)+scrollw)) 
 &amp;&amp; (mouse_x == clamp(mouse_x, x+list_width, x+list_width+20))
 {
     controller.tooltip = "Drag to scroll the list of projectors.";
@@ -83,34 +84,64 @@ if (mouse_y == clamp(mouse_y, y+scrollx*list_height/scrollh, y+scrollx*list_heig
     }
     else if (mouse_wheel_up())
     {
-        scrollx -= 20;
-        scrollx = clamp(scrollx,0,scrollhmax);
+        scrollx -= itemh;
+        scrollx = clamp(scrollx,0,scrollh-scrollw);
     }
     else if (mouse_wheel_down())
     {
-        scrollx += 20;
-        scrollx = clamp(scrollx,0,scrollhmax);
+        scrollx += itemh;
+        scrollx = clamp(scrollx,0,scrollh-scrollw);
     }
 }
 else if (mouse_y == clamp(mouse_y, y, y+list_height)) 
     &amp;&amp;  (mouse_x == clamp(mouse_x, x, x+list_width))
 {
-    tooltip = "Left click to select projector. Right click for options.";
-    if (mouse_check_button_pressed(mb_left))
+    if (mouse_wheel_up())
     {
-        hershey_selected = floor((scrollx+mouse_y-30)/30);
-    }
-    else if (mouse_wheel_up())
-    {
-        scrollx -= 20;
-        scrollx = clamp(scrollx,0,scrollhmax);
+        scrollx -= itemh;
+        scrollx = clamp(scrollx,0,scrollh-scrollw);
     }
     else if (mouse_wheel_down())
     {
-        scrollx += 20;
-        scrollx = clamp(scrollx,0,scrollhmax);
+        scrollx += itemh;
+        scrollx = clamp(scrollx,0,scrollh-scrollw);
+    }
+    
+    var t_dac_mouseover = (scrollx + (mouse_y - y)) div itemh;
+    if (t_dac_mouseover &lt; ds_list_size(seqcontrol.projector_list))
+    {
+        //todo find actual thing mouse is over
+        controller.tooltip = "Right click projector for options.";
+        if (mouse_check_button_pressed(mb_right))
+        {
+            //dropdown
+        }
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (surface_exists(surf_projectorlist))
+    surface_free(surf_projectorlist);
 </string>
           </argument>
         </arguments>
@@ -134,13 +165,76 @@ else if (mouse_y == clamp(mouse_y, y, y+list_height))
           <argument>
             <kind>1</kind>
             <string>draw_set_alpha(1);
-draw_set_colour(c_white);
-draw_rectangle(x+list_width,y,x+list_width+20,y+list_height,0);
-draw_set_colour(c_dkgray);
+if (scrollh &gt; list_height)
+{
+    draw_set_colour(c_white);
+    draw_rectangle(x+list_width,y,x+list_width+20,y+list_height,0);
+    draw_set_colour(c_dkgray);
+    draw_rectangle(x+list_width, y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw), x+list_width+20, y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw)+scrollw, 0);
+    draw_rectangle(x+list_width,y,x+list_width+20,y+list_height,1);
+}
+else
+{
+    scrollx = 0;
+    draw_set_colour(c_dkgray);
+}
 draw_rectangle(x,y,x+list_width,y+list_height,1);
-draw_rectangle(x+list_width,y,x+list_width+20,y+list_height,1);
-draw_set_colour(c_dkgray);
-draw_rectangle(x+list_width, y+scrollx*list_height/scrollh, x+list_width+20, y+scrollx*list_height/scrollh+scrollw, 0);
+    
+
+if (!surface_exists(surf_projectorlist))
+{
+    var t_ypos = 0;
+    surf_projectorlist = surface_create(512,512);
+    surface_set_target(surf_projectorlist);
+        draw_clear_alpha(c_white,0);
+        draw_enable_alphablend(false);
+        draw_set_colour(c_black);
+        draw_set_valign(fa_middle);
+        for (i = 0; i &lt; ds_list_size(seqcontrol.projector_list); i++)
+        {
+            /*if (ds_list_find_index(seqcontrol.projector_list,controller.dac) == i) &amp;&amp; false
+            {
+                draw_set_color(controller.c_gold);
+                draw_set_alpha(0.4);
+                draw_enable_alphablend(true);
+                draw_rectangle(0,t_ypos+1,list_width,t_ypos+itemh,0);
+                draw_enable_alphablend(false);
+                draw_set_alpha(1);
+                draw_set_colour(c_black);
+                draw_sprite(spr_checkbox,1,5,t_ypos+4);
+                draw_text(35, t_ypos+itemh/2, ds_list_find_value(seqcontrol.projector_list[| i], 1));
+            }
+            else*/
+            if ((ds_list_find_value(seqcontrol.projector_list[| i], 3) == "") || (ds_list_find_value(seqcontrol.projector_list[| i], 2) == -1)) //todo move to when changing
+            {
+                ini_open("settings.ini");
+                    var t_projectorstring = "projector_"+string(ds_list_find_value(seqcontrol.projector_list[| i], 2));
+                    projector_name = ini_read_string(t_projectorstring, "name", "error");
+                        
+                    if (projector_name == "error")
+                    {
+                        ds_list_replace(seqcontrol.projector_list[| i], 2, -1);
+                        ds_list_replace(seqcontrol.projector_list[| i], 3, "DEFAULT");
+                    }
+                    else
+                    {
+                        ds_list_replace(seqcontrol.projector_list[| i], 3, projector_name);
+                    }
+                ini_close();
+            }
+            var t_text = ds_list_find_value(seqcontrol.projector_list[| i], 1) + "   [Profile: "+ds_list_find_value(seqcontrol.projector_list[| i], 3) +"]";
+            draw_text(10, t_ypos+itemh/2, t_text);
+            
+            t_ypos += itemh;
+            draw_line(0, t_ypos, list_width, t_ypos);
+        }
+        draw_set_valign(fa_top);
+        draw_enable_alphablend(true);
+    surface_reset_target();
+    scrollh = t_ypos;
+}
+
+draw_surface_part(surf_projectorlist, 0, round(scrollx), list_width, list_height, x, y);
 </string>
           </argument>
         </arguments>
