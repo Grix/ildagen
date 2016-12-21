@@ -2,10 +2,10 @@
 <object>
   <spriteName>spr_dacscan</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>-2</depth>
   <persistent>0</persistent>
-  <parentName>obj_button_parent</parentName>
+  <parentName>self</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -83,6 +83,40 @@ else image_index = 0;
     exit;
 
 scan_dacs();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+
+if (controller.dac == -1)
+{   
+    draw_set_valign(fa_middle);
+    draw_set_colour(c_maroon);
+    draw_text(x+55, y+16, "[No default DAC selected]");
+    draw_set_valign(fa_top);
+    draw_set_colour(c_black);
+    draw_enable_alphablend(true);
+}
+
 </string>
           </argument>
         </arguments>

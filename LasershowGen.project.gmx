@@ -920,6 +920,10 @@
         <script>scripts\dac_rename_dd.gml</script>
         <script>scripts\dac_select_dd.gml</script>
         <script>scripts\dac_addtoprojector_dd.gml</script>
+        <script>scripts\dropdown_projector.gml</script>
+        <script>scripts\projector_rename.gml</script>
+        <script>scripts\projector_delete.gml</script>
+        <script>scripts\projector_clear_dacs.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">

@@ -45,3 +45,5 @@ if (room == rm_options)
 {
     surface_free(obj_dacs.surf_daclist);
 }
+
+projectorlist_update();

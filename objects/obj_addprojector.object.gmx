@@ -83,7 +83,7 @@ else
             <string>if (instance_exists(oDropDown))
     exit;
 
-add_projector(ds_list_size(seqcontrol.projector_list));
+add_projector(-1);
 </string>
           </argument>
         </arguments>

@@ -7,6 +7,10 @@ ds_list_add(t_projector, "Projector");
 ds_list_add(t_projector, -1);
 ds_list_add(t_projector, "DEFAULT");
 ds_list_add(t_projector, ds_list_create());
-ds_list_add(seqcontrol.projector_list, t_projector);
-if (room == rm_options)
-    surface_free(obj_projectors.surf_projectorlist);
+
+if (argument[0] == -1)
+    ds_list_add(seqcontrol.projector_list, t_projector);
+else if (argument[0] < ds_list_size(seqcontrol.projector_list))
+    ds_list_insert(seqcontrol.projector_list, argument[0], t_projector);
+    
+projectorlist_update();

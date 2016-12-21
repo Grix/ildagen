@@ -34,6 +34,8 @@ itemh = 24;
 moving = 0;
 
 surf_projectorlist = -1;
+
+itempos_list = ds_list_create();
 </string>
           </argument>
         </arguments>
@@ -142,6 +144,8 @@ else if (mouse_y == clamp(mouse_y, y, y+list_height))
             <kind>1</kind>
             <string>if (surface_exists(surf_projectorlist))
     surface_free(surf_projectorlist);
+    
+ds_list_destroy(itempos_list);
 </string>
           </argument>
         </arguments>
@@ -179,10 +183,12 @@ else
     draw_set_colour(c_dkgray);
 }
 draw_rectangle(x,y,x+list_width,y+list_height,1);
-    
+
+var t_plist = seqcontrol.projector_list;
 
 if (!surface_exists(surf_projectorlist))
 {
+    ds_list_clear(itempos_list);
     var t_ypos = 0;
     surf_projectorlist = surface_create(512,512);
     surface_set_target(surf_projectorlist);
@@ -190,9 +196,11 @@ if (!surface_exists(surf_projectorlist))
         draw_enable_alphablend(false);
         draw_set_colour(c_black);
         draw_set_valign(fa_middle);
-        for (i = 0; i &lt; ds_list_size(seqcontrol.projector_list); i++)
+        for (i = 0; i &lt; ds_list_size(t_plist); i++)
         {
-            /*if (ds_list_find_index(seqcontrol.projector_list,controller.dac) == i) &amp;&amp; false
+            var t_thisplist = t_plist[| i];
+            ds_list_add(itempos_list, t_ypos);
+            /*if (ds_list_find_index(t_plist,controller.dac) == i) &amp;&amp; false
             {
                 draw_set_color(controller.c_gold);
                 draw_set_alpha(0.4);
@@ -202,31 +210,37 @@ if (!surface_exists(surf_projectorlist))
                 draw_set_alpha(1);
                 draw_set_colour(c_black);
                 draw_sprite(spr_checkbox,1,5,t_ypos+4);
-                draw_text(35, t_ypos+itemh/2, ds_list_find_value(seqcontrol.projector_list[| i], 1));
+                draw_text(35, t_ypos+itemh/2, ds_list_find_value(t_plist[| i], 1));
             }
             else*/
-            if ((ds_list_find_value(seqcontrol.projector_list[| i], 3) == "") || (ds_list_find_value(seqcontrol.projector_list[| i], 2) == -1)) //todo move to when changing
-            {
-                ini_open("settings.ini");
-                    var t_projectorstring = "projector_"+string(ds_list_find_value(seqcontrol.projector_list[| i], 2));
-                    projector_name = ini_read_string(t_projectorstring, "name", "error");
-                        
-                    if (projector_name == "error")
-                    {
-                        ds_list_replace(seqcontrol.projector_list[| i], 2, -1);
-                        ds_list_replace(seqcontrol.projector_list[| i], 3, "DEFAULT");
-                    }
-                    else
-                    {
-                        ds_list_replace(seqcontrol.projector_list[| i], 3, projector_name);
-                    }
-                ini_close();
-            }
-            var t_text = ds_list_find_value(seqcontrol.projector_list[| i], 1) + "   [Profile: "+ds_list_find_value(seqcontrol.projector_list[| i], 3) +"]";
+            
+            var t_text = t_thisplist[| 1] + "   [Profile: "+t_thisplist[| 3] +"]";
             draw_text(10, t_ypos+itemh/2, t_text);
             
             t_ypos += itemh;
             draw_line(0, t_ypos, list_width, t_ypos);
+            
+            var t_daclist = t_thisplist[| 4];
+            for (j = 0; j &lt; ds_list_size(t_daclist); j++)
+            {   
+                var t_thisdaclist = t_daclist[| j];
+                t_text = "-   " + t_thisdaclist[| 1];
+                if (t_thisdaclist[| 2])
+                    t_text += " [X invert]";
+                if (t_thisdaclist[| 3])
+                    t_text += " [Y invert]";
+                draw_text(20, t_ypos+itemh/2, t_text);
+                t_ypos += itemh;
+                draw_line(0, t_ypos, list_width, t_ypos);
+            }
+            if (ds_list_size(t_daclist) == 0)
+            {
+                draw_set_colour(c_maroon);
+                draw_text(20, t_ypos+itemh/2, "-   [No DACs added]");
+                draw_set_colour(c_black);
+                t_ypos += itemh;
+                draw_line(0, t_ypos, list_width, t_ypos);
+            }
         }
         draw_set_valign(fa_top);
         draw_enable_alphablend(true);

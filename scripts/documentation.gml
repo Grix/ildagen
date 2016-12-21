@@ -34,8 +34,8 @@ projector_list
         preset_name 
         dac_list
             dacs...
-                num (-1 if not set)
-                name (md5)
+                num
+                name
                 inverted x
                 inverted y
                 
