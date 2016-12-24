@@ -30,14 +30,12 @@ projector_list
     projectors...
         id
         name
-        preset_id (-1 if not set)
-        preset_name 
         dac_list
             dacs...
                 num
                 name
-                inverted x
-                inverted y
+                preset_id (-1 if default)
+                preset_name
                 
 somaster_list
     layer elements.. (see above)

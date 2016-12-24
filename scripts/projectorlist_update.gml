@@ -1,37 +1,20 @@
 var t_warn = false;
 var t_plist = seqcontrol.projector_list;
 
+ini_open("settings.ini");
+
 for (i = 0; i < ds_list_size(t_plist); i++)
 {
     var t_thisplist = t_plist[| i];
     
     if (controller.el_id <= t_thisplist[| 0])
         controller.el_id = t_thisplist[| 0]+1;
-        
-    if ((t_thisplist[| 3] == "") || (t_thisplist[| 2] == -1))
-    {
-        ini_open("settings.ini");
-            var t_projectorstring = "projector_"+string(t_thisplist[| 2]);
-            projector_name = ini_read_string(t_projectorstring, "name", "error");
-                
-            if (projector_name == "error")
-            {
-                ds_list_replace(t_thisplist, 2, -1);
-                ds_list_replace(t_thisplist, 3, "DEFAULT");
-            }
-            else
-            {
-                ds_list_replace(t_thisplist, 3, projector_name);
-            }
-        ini_close();
-    }
-    
 
-    var t_daclist = t_thisplist[| 4];
+    var t_daclist = t_thisplist[| 2];
     
-    //check if dac still is connected
     for (j = 0; j < ds_list_size(t_daclist); j++)
     {
+        //check if dac still is connected
         var t_thisdaclist = t_daclist[| j];
         var t_found = -1;
         for (k = 0; k < ds_list_size(controller.dac_list); k++)
@@ -49,14 +32,32 @@ for (i = 0; i < ds_list_size(t_plist); i++)
             ds_list_delete(t_daclist,j);
             j--;
             warn = true;
+            continue;
         }
         else
         {
             t_thisdaclist[| 0] = t_found;
         }
+        
+        //resolve preset errors
+        if ((t_thisdaclist[| 3] == "") || (t_thisdaclist[| 2] == -1))
+        {
+            var t_projectorstring = "projector_"+string(t_thisdaclist[| 2]);
+            projector_name = ini_read_string(t_projectorstring, "name", "error");
+                
+            if (projector_name == "error")
+            {
+                ds_list_replace(t_thisdaclist, 2, -1);
+                ds_list_replace(t_thisdaclist, 3, "DEFAULT");
+            }
+            else
+            {
+                ds_list_replace(t_thisdaclist, 3, projector_name);
+            }
+        }
     }
     
-    //check if dac is duplicate
+    //force same preset for all duplicate dacs
     /*for (j = 0; j < ds_list_size(t_daclist); j++)
     {
         var t_thisdaclist = t_daclist[| j];
@@ -90,3 +91,5 @@ for (i = 0; i < ds_list_size(t_plist); i++)
 
 if (room == rm_options)
     surface_free(obj_projectors.surf_projectorlist);
+    
+ini_close();

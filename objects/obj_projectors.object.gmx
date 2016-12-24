@@ -109,15 +109,41 @@ else if (mouse_y == clamp(mouse_y, y, y+list_height))
         scrollx = clamp(scrollx,0,scrollh-scrollw);
     }
     
-    var t_dac_mouseover = (scrollx + (mouse_y - y)) div itemh;
-    if (t_dac_mouseover &lt; ds_list_size(seqcontrol.projector_list))
+    var t_item_mouseover = (scrollx + (mouse_y - y)) div itemh;
+    var t_item = -1;
+    for (i = 0; i &lt; ds_list_size(seqcontrol.projector_list); i++)
     {
-        //todo find actual thing mouse is over
-        controller.tooltip = "Right click projector for options.";
-        if (mouse_check_button_pressed(mb_right))
+        t_item++;
+        if (t_item == t_item_mouseover)
         {
-            //dropdown
+            //mouse over projector i
+            controller.tooltip = "Right click projector for options.";
+            if (mouse_check_button_pressed(mb_right))
+            {
+                settingscontrol.projectortoselect = i;
+                dropdown_projector();
+            }
+            exit;
         }
+        var t_thisplist = seqcontrol.projector_list[| i];
+        for (j = 0; j &lt; ds_list_size(t_thisplist[| 2]); j++)
+        {
+            t_item++;
+            if (t_item == t_item_mouseover)
+            {
+                //mouse over dac j in projector i
+                controller.tooltip = "Right click the DACs in the projector configuration for options.";
+                if (mouse_check_button_pressed(mb_right))
+                {
+                    settingscontrol.projectortoselect = i;
+                    settingscontrol.dactoselect = j;
+                    dropdown_projector_dac();
+                }
+                exit;
+            }
+        }
+        if (ds_list_size(t_thisplist[| 2]) == 0)
+            t_item++;
     }
 }
 </string>
@@ -214,21 +240,17 @@ if (!surface_exists(surf_projectorlist))
             }
             else*/
             
-            var t_text = t_thisplist[| 1] + "   [Profile: "+t_thisplist[| 3] +"]";
+            var t_text = t_thisplist[| 1];
             draw_text(10, t_ypos+itemh/2, t_text);
             
             t_ypos += itemh;
             draw_line(0, t_ypos, list_width, t_ypos);
             
-            var t_daclist = t_thisplist[| 4];
+            var t_daclist = t_thisplist[| 2];
             for (j = 0; j &lt; ds_list_size(t_daclist); j++)
             {   
                 var t_thisdaclist = t_daclist[| j];
-                t_text = "-   " + t_thisdaclist[| 1];
-                if (t_thisdaclist[| 2])
-                    t_text += " [X invert]";
-                if (t_thisdaclist[| 3])
-                    t_text += " [Y invert]";
+                t_text = "-   " + t_thisdaclist[| 1] + "   [Profile: "+t_thisdaclist[| 3] +"]";
                 draw_text(20, t_ypos+itemh/2, t_text);
                 t_ypos += itemh;
                 draw_line(0, t_ypos, list_width, t_ypos);
