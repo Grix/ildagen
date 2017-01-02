@@ -1,4 +1,4 @@
-var t_thisdaclist = ds_list_find_value(seqcontrol.projector_list[| settingscontrol.projectortoselect], 2);
+var t_thisdaclist = ds_list_find_value(seqcontrol.layer_list[| settingscontrol.projectortoselect], 5);
 ds_list_delete(t_thisdaclist, settingscontrol.dactoselect);
 
 projectorlist_update();

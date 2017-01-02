@@ -80,7 +80,6 @@
     <instance objName="obj_projectors" x="292" y="544" name="inst_FF15C4C4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_dacscan" x="32" y="500" name="inst_6E55220E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_dacs" x="32" y="544" name="inst_71ABB47D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_addprojector" x="292" y="500" name="inst_78F4615D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bck_texttiles" x="484" y="36" w="256" h="16" xo="0" yo="48" id="10000004" name="inst_E5A68B08" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

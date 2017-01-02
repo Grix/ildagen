@@ -2,6 +2,11 @@
 
 TODO
 -preview blindzones
+-fix desync in audio analysis when switching rooms
+
+SETTINGSCONTROL
+
+
 
 SEQCONTROL
 
@@ -24,11 +29,6 @@ layer_list
                     maxframes
         muted
         hidden
-        projector_id
-        
-projector_list
-    projectors...
-        id
         name
         dac_list
             dacs...
@@ -41,7 +41,11 @@ somaster_list
     layer elements.. (see above)
 
 CONTROLLER
-        
+
+profile_list
+    profiles...
+        look in load_settings for all settings in map      
+          
 dac_list
     dac...
         num
@@ -73,9 +77,5 @@ frame_list
                 blank
                 c
         
-            
-        
-settings.ini
-    look in load_settings for all settings saved
     
 */

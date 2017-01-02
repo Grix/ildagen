@@ -35,7 +35,9 @@ ds_list_add(layer,ds_list_create()); //envelope list
 ds_list_add(layer,ds_list_create()); //elements list
 ds_list_add(layer,0); 
 ds_list_add(layer,0);
-ds_list_add(layer,0);
+ds_list_add(layer,"Layer 1");
+ds_list_add(layer,ds_list_create()); //dac list
+
 surface_list = ds_list_create();
 somaster_list = ds_list_create();
 somoving_list = ds_list_create();
@@ -46,7 +48,6 @@ ilda_list = ds_list_create();
 buffer_list = ds_list_create();
 marker_list = ds_list_create();
 audio_surf = surface_create(1024,1024);
-audio_surf = surface_create(1024,1024);
 frame_surf = surface_create(512,512);
 frame3d_surf = surface_create(512,512);
 frame_surf_large = surface_create(1024,1024);
@@ -54,7 +55,6 @@ frame3d_surf_large = surface_create(1024,1024);
 copy_list = ds_list_create();
 copy_buffer = ds_list_create();
 env_type_map = ds_map_create();
-projector_list = ds_list_create();
 output_buffer = buffer_create(48000,buffer_fixed,2);
 output_buffer2 = buffer_create(48000,buffer_fixed,2);
 
@@ -644,7 +644,7 @@ if (new_id == getint)
    {
       switch (dialog)
       {
-          case "objectduration":
+        case "objectduration":
         {
             if ds_list_empty(somaster_list)
                 exit;
@@ -667,41 +667,41 @@ if (new_id == getint)
             
             break;
         }
-          case "fps":
+        case "fps":
         {
             projectfps = clamp(ds_map_find_value(async_load, "value"),1,999);
             controller.projectfps = projectfps;
             break;
         }
-          case "audioshift":
+        case "audioshift":
         {
             audioshift = ds_map_find_value(async_load, "value");
             obj_audioshift.stringToDraw = "Offset: "+string_format(seqcontrol.audioshift,4,1)+"ms";
             
             break;
         }
-          case "projectclear":
+        case "projectclear":
         {
             if (ds_map_find_value(async_load, "value"))
                 clear_project();
             
             break;
         }
-          case "loadproject":
+        case "loadproject":
         {
             load_project(get_open_filename_ext("LasershowGen project|*.igp","","","Select LasershowGen project file"));
           
             break;
         }
           
-          case "fromseq":
+        case "fromseq":
         {
             frames_fromseq();
             
             break;
         }
             
-          case "envelopedelete":
+        case "envelopedelete":
         {
             selectedenvelope_index = ds_list_find_index(env_list_to_delete,selectedenvelope);
             if (selectedenvelope_index == -1) 
@@ -715,7 +715,7 @@ if (new_id == getint)
             break;
         }
             
-          case "layerdelete":
+        case "layerdelete":
         {
             layer = layertodelete;
             selectedlayer = ds_list_find_index(layer_list,layer);
@@ -728,6 +728,8 @@ if (new_id == getint)
                 ds_list_add(somaster_list,ds_list_find_value(layer[| 1],0));
                 seq_delete_object_noundo();
             }
+            ds_list_destroy(layer[| 1]);
+            
             envelope_list = ds_list_find_value(layer,0);
             num_objects = ds_list_size(envelope_list);
             repeat (num_objects)   
@@ -739,7 +741,13 @@ if (new_id == getint)
                 ds_list_delete(envelope_list,0);
             }
             ds_list_destroy(envelope_list);
-            ds_list_destroy(layer[| 1]);
+            
+            var t_dac_list = ds_list_find_value(layer,5);
+            num_objects = ds_list_size(t_dac_list);
+            repeat (num_objects)  
+                ds_list_destroy(ds_list_find_value(t_dac_list,0));
+            ds_list_destroy(t_dac_list);
+            
             ds_list_destroy(layer);
             ds_list_delete(layer_list,selectedlayer);
             

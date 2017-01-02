@@ -19,13 +19,6 @@ if (viewmode == 0) or (viewmode == 2)
     {
         new_list = ds_list_find_value(el_list,i);
         
-        /*if (ds_list_size(new_list) < 15)
-        {
-            ds_list_delete(el_list,i);
-            ds_list_sort(el_list,0);
-            continue;
-        }*/ //todo what the fuck is this
-        
         xo = ds_list_find_value(new_list,0)/128;
         yo = ds_list_find_value(new_list,1)/128;
         listsize = (((ds_list_size(new_list)-20)/4)-1);
@@ -113,6 +106,7 @@ if (viewmode != 0)
     surface_reset_target();
 }
 
+//find point count
 if (controller.exp_optimize)
 {
     if (prepare_output())

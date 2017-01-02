@@ -921,8 +921,7 @@
         <script>scripts\dac_select_dd.gml</script>
         <script>scripts\dac_addtoprojector_dd.gml</script>
         <script>scripts\dropdown_projector.gml</script>
-        <script>scripts\projector_rename.gml</script>
-        <script>scripts\projector_delete.gml</script>
+        <script>scripts\projector_add_dac_dd.gml</script>
         <script>scripts\projector_clear_dacs.gml</script>
         <script>scripts\dropdown_projector_dac.gml</script>
         <script>scripts\projector_remove_dac.gml</script>
@@ -1084,7 +1083,6 @@
     <script>scripts\url_open_new.gml</script>
     <script>scripts\load_settings.gml</script>
     <script>scripts\save_settings.gml</script>
-    <script>scripts\add_projector.gml</script>
     <script>scripts\projectorlist_update.gml</script>
     <script>scripts\log.gml</script>
     <script>scripts\documentation.gml</script>
@@ -1224,7 +1222,6 @@
         <object>objects\obj_preset</object>
         <object>objects\obj_dacs</object>
         <object>objects\obj_dacscan</object>
-        <object>objects\obj_addprojector</object>
         <object>objects\obj_projectors</object>
         <object>objects\obj_dacname</object>
         <object>objects\obj_colorscale</object>

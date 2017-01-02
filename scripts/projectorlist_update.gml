@@ -1,16 +1,13 @@
 var t_warn = false;
-var t_plist = seqcontrol.projector_list;
+var t_plist = seqcontrol.layer_list;
 
 ini_open("settings.ini");
 
 for (i = 0; i < ds_list_size(t_plist); i++)
 {
     var t_thisplist = t_plist[| i];
-    
-    if (controller.el_id <= t_thisplist[| 0])
-        controller.el_id = t_thisplist[| 0]+1;
 
-    var t_daclist = t_thisplist[| 2];
+    var t_daclist = t_thisplist[| 5];
     
     for (j = 0; j < ds_list_size(t_daclist); j++)
     {

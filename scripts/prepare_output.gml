@@ -131,14 +131,6 @@ for (i = 0; i < t_numofelems; i++)
     
     maxpoints_static++;
        
-    /*if (controller.exp_optimize)
-    {
-        if (bl_prev == 0)
-        {
-            xp_prev = xp;
-            yp_prev = yp;
-        }
-    }*/
     bl_prev = 1;
 }
 

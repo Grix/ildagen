@@ -6,7 +6,7 @@ draw_set_blend_mode(bm_add);
 draw_set_alpha(0.8);
 draw_set_colour(c_white);
 for (i = 0;i < ds_list_size(el_list);i++)
-    {
+{
     new_list = ds_list_find_value(el_list,i);
     
     xo = ds_list_find_value(new_list,0)/128;
@@ -14,12 +14,15 @@ for (i = 0;i < ds_list_size(el_list);i++)
     listsize = (((ds_list_size(new_list)-20)/4)-1);
     
     for (u = 0; u < listsize; u++)
-        {
+    {
         nextpos = 20+(u+1)*4;
         nbl = ds_list_find_value(new_list,nextpos+2);
         
         if (nbl == 0)
-            {
+        {
+            if (viewmode == 1)
+                framepoints++;
+            
             xp = ds_list_find_value(new_list,nextpos-4);
             yp = ds_list_find_value(new_list,nextpos-3);
             
@@ -34,16 +37,16 @@ for (i = 0;i < ds_list_size(el_list);i++)
             nyyp = 256+sin(degtorad(-npdir))*400;
             
             if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-2))
-                {
+            {
                 draw_set_alpha(0.9);
                 draw_line_colour(256,256,xxp,yyp,ds_list_find_value(new_list,nextpos+3),c_black);
                 draw_set_alpha(0.8);
-                }
+            }
             else
                 draw_triangle_colour(256,256,xxp,yyp,nxxp,nyyp,ds_list_find_value(new_list,nextpos+3),c_black,c_black,0);
-            }
         }
     }
+}
 draw_set_blend_mode(bm_normal);
 draw_set_colour(c_black);
 draw_set_alpha(1);

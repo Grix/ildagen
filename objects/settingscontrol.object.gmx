@@ -41,6 +41,8 @@ menu_width[1] = string_width("   View   ");
 menu_width_start[2] = menu_width_start[1]+menu_width[1];
 menu_width[2] = string_width("   About   ");
 menu_width_start[3] = menu_width_start[2]+menu_width[2];
+
+
 </string>
           </argument>
         </arguments>

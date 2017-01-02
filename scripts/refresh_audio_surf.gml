@@ -30,7 +30,7 @@ surface_set_target(audio_surf);
                             tlw-56,ypos+8);
             ypos_perm += 48;
             break;
-        }
+        } //todo is this a duplicate, see below?
             
         layer = layer_list[| i];
         
@@ -98,6 +98,19 @@ surface_set_target(audio_surf);
             draw_sprite(spr_addenvelope,
                             mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64)),
                             tlw-96,ypos+8);
+                            
+            var t_name = layer[| 4];
+            var t_stringlength = string_width(t_name)+5;
+            var t_stringx = tlw-96-t_stringlength-5;
+            draw_set_colour($eeeeee);
+            draw_rectangle(t_stringx,ypos+1,t_stringx+t_stringlength+5,ypos+15,0);
+            draw_set_colour($bbbbbb);
+            draw_rectangle(t_stringx,ypos+1,t_stringx+t_stringlength+5,ypos+15,1);
+                    
+            draw_set_colour(c_black);
+            draw_enable_alphablend(1);
+            draw_text(t_stringx+5, ypos+2, t_name);
+            draw_enable_alphablend(0);
                             
             if (selectedlayer == i)
             {

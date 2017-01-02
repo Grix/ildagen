@@ -1,5 +1,5 @@
-var t_projector = argument[0] - 2;
-var t_dac = settingscontrol.dactoselect;
+var t_projector = settingscontrol.projectortoselect;
+var t_dac = argument[0] - 1;
 
 var t_daclist = ds_list_create();
 ds_list_add(t_daclist, t_dac);

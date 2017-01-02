@@ -4,19 +4,26 @@ ddobj = instance_create(mouse_x,mouse_y,oDropDown);
 
 with (ddobj)
 {
-    num = 3;
+    num = 1;
     ds_list_add(desc_list,"Remove all DACs");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,projector_clear_dacs);
-    ds_list_add(hl_list,(ds_list_size(ds_list_find_value(seqcontrol.projector_list[| settingscontrol.projectortoselect], 2)) != 0));
-    ds_list_add(desc_list,"Rename Projector");
+    ds_list_add(hl_list,(ds_list_size(ds_list_find_value(seqcontrol.layer_list[| settingscontrol.projectortoselect], 5)) != 0));
+    /*ds_list_add(desc_list,"Rename Layer");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,projector_rename);
-    ds_list_add(hl_list,1);
-    ds_list_add(desc_list,"Delete Projector");
-    ds_list_add(sep_list,0);
-    ds_list_add(scr_list,projector_delete);
-    ds_list_add(hl_list,1);
+    ds_list_add(hl_list,1);*/ //todo
+    
+    //NB!! change index in projector_add_dac_dd if you add more dropdown options
+    for (i = 0; i < ds_list_size(controller.dac_list); i++)
+    {
+        ds_list_add(desc_list,"Add DAC: ["+ds_list_find_value(controller.dac_list[| i], 1)+"]");
+        ds_list_add(sep_list,(i == 0));
+        ds_list_add(scr_list,projector_add_dac_dd);
+        ds_list_add(hl_list,1);
+        num++;
+    }
+    
     event_user(1);
 }
 

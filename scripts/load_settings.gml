@@ -1,126 +1,101 @@
-ini_open("settings.ini");
-
-    if (!ini_key_exists("main","projector"))
-    {
-        projector = 0;
-        ini_write_real("projector_0", "scanrate", 20000);
-        ini_write_real("projector_0", "maxdist", 300);
-        ini_write_real("projector_0", "maxdwell", 6);
-        ini_write_real("projector_0", "maxdwell_blank", 1);
-        ini_write_real("projector_0", "blankshift", 0);
-        ini_write_real("projector_0", "redshift", 0);
-        ini_write_real("projector_0", "greenshift", 0);
-        ini_write_real("projector_0", "blueshift", 0);
-        ini_write_real("projector_0", "format", 5);
-        ini_write_real("projector_0", "invert_x", false);
-        ini_write_real("projector_0", "invert_y", false);
-        ini_write_real("projector_0", "optimize", 1);
-        ini_write_real("projector_0", "red_scale", 1);
-        ini_write_real("projector_0", "green_scale", 1);
-        ini_write_real("projector_0", "blue_scale", 1);
-        ini_write_real("projector_0", "red_scale_lower", 0);
-        ini_write_real("projector_0", "green_scale_lower", 0);
-        ini_write_real("projector_0", "blue_scale_lower", 0);
-        ini_write_real("projector_0", "show_tooltip", 1);
-        ini_write_real("projector_0", "x_scale_start", 0);
-        ini_write_real("projector_0", "y_scale_start", 0);
-        ini_write_real("projector_0", "x_scale_end", $FFFF);
-        ini_write_real("projector_0", "y_scale_end", $FFFF);
-        ini_write_string("projector_0", "blindzones", emptyliststring);
-        opt_scanspeed = 20000;
-        opt_maxdwell = 6;
-        opt_maxdwell_blank = 1;
-        opt_blankshift = 0;
-        opt_redshift = 0;
-        opt_greenshift = 0;
-        opt_blueshift = 0;
-        opt_maxdist = 300;
-        exp_format = 5;
-        exp_optimize = 1;
-        invert_x = false;
-        invert_y = false;
-        red_scale = 1;
-        green_scale = 1;
-        blue_scale = 1;
-        red_scale_lower = 0;
-        green_scale_lower = 0;
-        blue_scale_lower = 0;
-        show_tooltip = 1;
-        x_scale_start = 0;
-        x_scale_end = $FFFF;
-        y_scale_start = 0;
-        y_scale_end = $FFFF;
-        ds_list_clear(blindzone_list);
-        ini_write_string("projector_0","name","default");
-        ini_write_real("main","projector",0);
-    }
-    else
-    {
-        projector = ini_read_real("main", "projector", 0);
+with (controller)
+{
+    
+    ini_open("settings.ini");
+        
+        //build map of profiles
+        while (1)
+        {
+            var t_projectorstring = "projector_"+string(num);
+            if (!ini_section_exists(t_projectorstring))
+                break;
+                
+            var t_profilemap = ds_map_create();
+            ds_map_add(t_profilemap, "name", ini_read_string(t_projectorstring, "name", "name_error"));
+            ds_map_add(t_profilemap, "scanrate", ini_read_real(t_projectorstring, "scanrate", 20000));
+            ds_map_add(t_profilemap, "maxdwell", ini_read_real(t_projectorstring, "maxdwell", 6));
+            ds_map_add(t_profilemap, "maxdwell_blank", ini_read_real(t_projectorstring, "maxdwell_blank", 1));
+            ds_map_add(t_profilemap, "blankshift", ini_read_real(t_projectorstring, "blankshift", 0));
+            ds_map_add(t_profilemap, "redshift", ini_read_real(t_projectorstring, "redshift", 0));
+            ds_map_add(t_profilemap, "greenshift", ini_read_real(t_projectorstring, "greenshift", 0));
+            ds_map_add(t_profilemap, "blueshift", ini_read_real(t_projectorstring, "blueshift", 0));
+            ds_map_add(t_profilemap, "maxdist", ini_read_real(t_projectorstring, "maxdist", 300));
+            ds_map_add(t_profilemap, "format", ini_read_real(t_projectorstring, "format", 5));
+            ds_map_add(t_profilemap, "optimize", ini_read_real(t_projectorstring, "optimize", 1));
+            ds_map_add(t_profilemap, "invert_y", ini_read_real(t_projectorstring, "invert_y", false));
+            ds_map_add(t_profilemap, "invert_x", ini_read_real(t_projectorstring, "invert_x", false));
+            ds_map_add(t_profilemap, "red_scale", ini_read_real(t_projectorstring, "red_scale", 1));
+            ds_map_add(t_profilemap, "green_scale", ini_read_real(t_projectorstring, "green_scale", 1));
+            ds_map_add(t_profilemap, "blue_scale", ini_read_real(t_projectorstring, "blue_scale", 1));
+            ds_map_add(t_profilemap, "red_scale_lower", ini_read_real(t_projectorstring, "red_scale_lower", 0));
+            ds_map_add(t_profilemap, "green_scale_lower", ini_read_real(t_projectorstring, "green_scale_lower", 0));
+            ds_map_add(t_profilemap, "blue_scale_lower", ini_read_real(t_projectorstring, "blue_scale_lower", 0));
+            ds_map_add(t_profilemap, "x_scale_start", ini_read_real(t_projectorstring, "x_scale_start", 0));
+            ds_map_add(t_profilemap, "y_scale_start", ini_read_real(t_projectorstring, "y_scale_start", 0));
+            ds_map_add(t_profilemap, "x_scale_end", ini_read_real(t_projectorstring, "x_scale_end", $FFFF));
+            ds_map_add(t_profilemap, "y_scale_end", ini_read_real(t_projectorstring, "y_scale_end", $FFFF));
+            ds_map_add(t_profilemap, "blindzones", ini_read_string(t_projectorstring, "blindzones", emptyliststring));
+            
+            num++;
+        }
+    
+        if (!ini_section_exists("projector_0"))
+        {
+            ini_write_string("projector_0", "name", "default");
+            ini_write_real("projector_0", "scanrate", 20000);
+            ini_write_real("projector_0", "maxdist", 300);
+            ini_write_real("projector_0", "maxdwell", 6);
+            ini_write_real("projector_0", "maxdwell_blank", 1);
+            ini_write_real("projector_0", "blankshift", 0);
+            ini_write_real("projector_0", "redshift", 0);
+            ini_write_real("projector_0", "greenshift", 0);
+            ini_write_real("projector_0", "blueshift", 0);
+            ini_write_real("projector_0", "format", 5);
+            ini_write_real("projector_0", "invert_x", false);
+            ini_write_real("projector_0", "invert_y", false);
+            ini_write_real("projector_0", "optimize", 1);
+            ini_write_real("projector_0", "red_scale", 1);
+            ini_write_real("projector_0", "green_scale", 1);
+            ini_write_real("projector_0", "blue_scale", 1);
+            ini_write_real("projector_0", "red_scale_lower", 0);
+            ini_write_real("projector_0", "green_scale_lower", 0);
+            ini_write_real("projector_0", "blue_scale_lower", 0);
+            ini_write_real("projector_0", "x_scale_start", 0);
+            ini_write_real("projector_0", "y_scale_start", 0);
+            ini_write_real("projector_0", "x_scale_end", $FFFF);
+            ini_write_real("projector_0", "y_scale_end", $FFFF);
+            ini_write_string("projector_0", "blindzones", emptyliststring);
+        }
+        
+        if (ini_read_real("main", "projector", 0) > num)
+            projector = 0;
+            
+        show_tooltip = ini_read_real("main", "show_tooltip", 1);
+            
         var t_projectorstring = "projector_"+string(projector);
-        if (ini_section_exists(t_projectorstring))
-        {
-            projector_name = ini_read_string(t_projectorstring, "name", "name_error");
-            opt_scanspeed = ini_read_real(t_projectorstring, "scanrate", 20000);
-            opt_maxdwell = ini_read_real(t_projectorstring, "maxdwell", 6);
-            opt_maxdwell_blank = ini_read_real(t_projectorstring, "maxdwell_blank", 1);
-            opt_blankshift = ini_read_real(t_projectorstring, "blankshift", 0);
-            opt_redshift = ini_read_real(t_projectorstring, "redshift", 0);
-            opt_greenshift = ini_read_real(t_projectorstring, "greenshift", 0);
-            opt_blueshift = ini_read_real(t_projectorstring, "blueshift", 0);
-            opt_maxdist = ini_read_real(t_projectorstring, "maxdist", 300);
-            exp_format = ini_read_real(t_projectorstring, "format", 5);
-            exp_optimize = ini_read_real(t_projectorstring, "optimize", 1);
-            invert_y = ini_read_real(t_projectorstring, "invert_y", false);
-            invert_x = ini_read_real(t_projectorstring, "invert_x", false);
-            red_scale = ini_read_real(t_projectorstring, "red_scale", 1);
-            green_scale = ini_read_real(t_projectorstring, "green_scale", 1);
-            blue_scale = ini_read_real(t_projectorstring, "blue_scale", 1);
-            red_scale_lower = ini_read_real(t_projectorstring, "red_scale_lower", 0);
-            green_scale_lower = ini_read_real(t_projectorstring, "green_scale_lower", 0);
-            blue_scale_lower = ini_read_real(t_projectorstring, "blue_scale_lower", 0);
-            show_tooltip = ini_read_real(t_projectorstring, "show_tooltip", 1);
-            x_scale_start = ini_read_real(t_projectorstring, "x_scale_start", 0);
-            y_scale_start = ini_read_real(t_projectorstring, "y_scale_start", 0);
-            x_scale_end = ini_read_real(t_projectorstring, "x_scale_end", $FFFF);
-            y_scale_end = ini_read_real(t_projectorstring, "y_scale_end", $FFFF);
-            ds_list_read(blindzone_list, ini_read_string(t_projectorstring, "blindzones", emptyliststring));
-        }
-        else
-        {
-            ini_write_string(t_projectorstring, "name", "name_error");
-            ini_write_real(t_projectorstring, "scanrate", 20000);
-            ini_write_real(t_projectorstring, "maxdist", 300);
-            ini_write_real(t_projectorstring, "maxdwell", 6);
-            ini_write_real(t_projectorstring, "maxdwell_blank", 1);
-            ini_write_real(t_projectorstring, "blankshift", 0);
-            ini_write_real(t_projectorstring, "redshift", 0);
-            ini_write_real(t_projectorstring, "greenshift", 0);
-            ini_write_real(t_projectorstring, "blueshift", 0);
-            ini_write_real(t_projectorstring, "format", 5);
-            ini_write_real(t_projectorstring, "optimize", 1);
-            ini_write_real(t_projectorstring, "invert_x", false);
-            ini_write_real(t_projectorstring, "invert_y", false);
-            ini_write_real(t_projectorstring, "red_scale", 1);
-            ini_write_real(t_projectorstring, "green_scale", 1);
-            ini_write_real(t_projectorstring, "blue_scale", 1);
-            ini_write_real(t_projectorstring, "red_scale_lower", 0);
-            ini_write_real(t_projectorstring, "green_scale_lower", 0);
-            ini_write_real(t_projectorstring, "blue_scale_lower", 0);
-            ini_write_real(t_projectorstring, "show_tooltip", 1);
-            ini_write_real(t_projectorstring, "x_scale_start", 0);
-            ini_write_real(t_projectorstring, "y_scale_start", 0);
-            ini_write_real(t_projectorstring, "x_scale_end", $FFFF);
-            ini_write_real(t_projectorstring, "y_scale_end", $FFFF);
-            ini_write_string(t_projectorstring, "blindzones", emptyliststring);
-        }
-    }
+        opt_scanspeed = ini_read_real(t_projectorstring, "scanrate", 20000);
+        opt_maxdwell = ini_read_real(t_projectorstring, "maxdwell", 6);
+        opt_maxdwell_blank = ini_read_real(t_projectorstring, "maxdwell_blank", 1);
+        opt_blankshift = ini_read_real(t_projectorstring, "blankshift", 0);
+        opt_redshift = ini_read_real(t_projectorstring, "redshift", 0);
+        opt_greenshift = ini_read_real(t_projectorstring, "greenshift", 0);
+        opt_blueshift = ini_read_real(t_projectorstring, "blueshift", 0);
+        opt_maxdist = ini_read_real(t_projectorstring, "maxdist", 300);
+        exp_format = ini_read_real(t_projectorstring, "format", 5);
+        exp_optimize = ini_read_real(t_projectorstring, "optimize", 1);
+        invert_x = ini_read_real(t_projectorstring, "invert_y", false);
+        invert_y = ini_read_real(t_projectorstring, "invert_x", false);
+        red_scale = ini_read_real(t_projectorstring, "red_scale", 1);
+        green_scale = ini_read_real(t_projectorstring, "green_scale", 1);
+        blue_scale = ini_read_real(t_projectorstring, "blue_scale", 1);
+        red_scale_lower = ini_read_real(t_projectorstring, "red_scale_lower", 0);
+        green_scale_lower = ini_read_real(t_projectorstring, "green_scale_lower", 0);
+        blue_scale_lower = ini_read_real(t_projectorstring, "blue_scale_lower", 0);
+        x_scale_start = ini_read_real(t_projectorstring, "x_scale_start", 0);
+        x_scale_end = ini_read_real(t_projectorstring, "x_scale_end", $FFFF);
+        y_scale_start = ini_read_real(t_projectorstring, "y_scale_start", 0);
+        y_scale_end = ini_read_real(t_projectorstring, "y_scale_end", $FFFF);
+        ds_list_read(blindzone_list, ini_read_string(t_projectorstring, "blindzones", emptyliststring));
         
-    if (room == rm_options)
-    {
-        obj_preset.preset_name = ini_read_string("projector_"+string(projector),"name","name_error");
-    }
-        
-ini_close();
-
-update_colors_scalesettings();
+    ini_close();
+}
