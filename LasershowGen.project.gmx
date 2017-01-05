@@ -906,13 +906,14 @@
         <script>scripts\dropdown_menu_set_properties.gml</script>
         <script>scripts\dropdown_menu_set_view.gml</script>
         <script>scripts\dropdown_menu_set_about.gml</script>
-        <script>scripts\dropdown_settingpreset.gml</script>
         <script>scripts\dropdown_dacs.gml</script>
         <script>scripts\dropdown_blindzone.gml</script>
         <script>scripts\dropdown_projectionwindow.gml</script>
-        <script>scripts\preset_load.gml</script>
+        <script>scripts\dropdown_profile.gml</script>
         <script>scripts\preset_create.gml</script>
         <script>scripts\preset_delete.gml</script>
+        <script>scripts\preset_rename.gml</script>
+        <script>scripts\preset_select.gml</script>
         <script>scripts\projectionwindow_reset.gml</script>
         <script>scripts\blindzone_delete.gml</script>
         <script>scripts\blindzone_clear.gml</script>
@@ -1083,6 +1084,8 @@
     <script>scripts\url_open_new.gml</script>
     <script>scripts\load_settings.gml</script>
     <script>scripts\save_settings.gml</script>
+    <script>scripts\load_profile.gml</script>
+    <script>scripts\save_profile.gml</script>
     <script>scripts\projectorlist_update.gml</script>
     <script>scripts\log.gml</script>
     <script>scripts\documentation.gml</script>
@@ -1219,7 +1222,7 @@
         <object>objects\obj_tooltip</object>
         <object>objects\obj_update</object>
         <object>objects\obj_addblindzone</object>
-        <object>objects\obj_preset</object>
+        <object>objects\obj_profiles</object>
         <object>objects\obj_dacs</object>
         <object>objects\obj_dacscan</object>
         <object>objects\obj_projectors</object>

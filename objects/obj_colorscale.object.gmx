@@ -76,48 +76,42 @@ if (moving == 1) or ((moving &lt; 4) and (moving &gt; 0) and keyboard_check(vk_c
 {
     red = controller.red_scale * 255;
     red -= (mouse_y-mouse_yprevious)*255/52;
-    if (red &lt; 0) red = 0;
-    if (red &gt; 255) red = 255;
+    red = clamp(red, (controller.red_scale_lower*255), 255);
     controller.red_scale = red/255;
 }
 if (moving == 2) or ((moving &lt; 4) and (moving &gt; 0) and keyboard_check(vk_control))
 {
     green = controller.green_scale * 255;
     green -= (mouse_y-mouse_yprevious)*255/52;
-    if (green &lt; 0) green = 0;
-    if (green &gt; 255) green = 255;
+    green = clamp(green, (controller.green_scale_lower*255), 255);
     controller.green_scale = green/255;
 }
 if (moving == 3) or ((moving &lt; 4) and (moving &gt; 0) and keyboard_check(vk_control))
 {
     blue = controller.blue_scale * 255;
     blue -= (mouse_y-mouse_yprevious)*255/52;
-    if (blue &lt; 0) blue = 0;
-    if (blue &gt; 255) blue = 255;
+    blue = clamp(blue, (controller.blue_scale_lower*255), 255);
     controller.blue_scale = blue/255;
 }
 if (moving == 4) or ((moving &gt; 3) and keyboard_check(vk_control))
 {
     red = controller.red_scale_lower * 255;
     red -= (mouse_y-mouse_yprevious)*255/52;
-    if (red &lt; 0) red = 0;
-    if (red &gt; 255) red = 255;
+    red = clamp(red, 0, (controller.red_scale*255));
     controller.red_scale_lower = red/255;
 }
 if (moving == 5) or ((moving &gt; 3) and keyboard_check(vk_control))
 {
     green = controller.green_scale_lower * 255;
     green -= (mouse_y-mouse_yprevious)*255/52;
-    if (green &lt; 0) green = 0;
-    if (green &gt; 255) green = 255;
+    green = clamp(green, 0, (controller.green_scale*255));
     controller.green_scale_lower = green/255;
 }
 if (moving == 6) or ((moving &gt; 3) and keyboard_check(vk_control))
 {
     blue = controller.blue_scale_lower * 255;
     blue -= (mouse_y-mouse_yprevious)*255/52;
-    if (blue &lt; 0) blue = 0;
-    if (blue &gt; 255) blue = 255;
+    blue = clamp(blue, 0, (controller.blue_scale*255));
     controller.blue_scale_lower = blue/255;
 }
     
@@ -154,7 +148,7 @@ mouse_yprevious = mouse_y;
     greeny_lower = y+52-controller.green_scale_lower*52;
     bluey_lower = y+52-controller.blue_scale_lower*52;
     
-    save_settings();
+    save_profile();
 }    
 
 
@@ -284,7 +278,7 @@ mouse_yprevious = mouse_y;
             <string>
 draw_self();
 if (moving)
-    {
+{
     redy_upper = y+52-controller.red_scale*52;
     greeny_upper = y+52-controller.green_scale*52;
     bluey_upper = y+52-controller.blue_scale*52;
@@ -292,13 +286,13 @@ if (moving)
     redy_lower = y+52-controller.red_scale_lower*52;
     greeny_lower = y+52-controller.green_scale_lower*52;
     bluey_lower = y+52-controller.blue_scale_lower*52;
-    }
-draw_sprite(spr_colorselect_red,(moving == 1),redx,redy_upper);
-draw_sprite(spr_colorselect_green,(moving == 2),greenx,greeny_upper);
-draw_sprite(spr_colorselect_blue,(moving == 3),bluex,bluey_upper);
+}
 draw_sprite(spr_colorselect_red,(moving == 4),redx,redy_lower);
 draw_sprite(spr_colorselect_green,(moving == 5),greenx,greeny_lower);
 draw_sprite(spr_colorselect_blue,(moving == 6),bluex,bluey_lower);
+draw_sprite(spr_colorselect_red,(moving == 1),redx,redy_upper);
+draw_sprite(spr_colorselect_green,(moving == 2),greenx,greeny_upper);
+draw_sprite(spr_colorselect_blue,(moving == 3),bluex,bluey_upper);
 
 draw_set_colour(c_dkgray);
 draw_text(x+60,y+25,"Color range");

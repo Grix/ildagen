@@ -83,7 +83,7 @@ image_index = controller.show_tooltip;
 
 controller.show_tooltip = !controller.show_tooltip;
 
-save_settings();
+save_profile();
 </string>
           </argument>
         </arguments>

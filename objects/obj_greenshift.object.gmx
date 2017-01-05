@@ -145,7 +145,7 @@ else
         controller.opt_greenshift -= 1;
 }        
 
-save_settings();
+save_profile();
 </string>
           </argument>
         </arguments>

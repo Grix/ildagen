@@ -145,7 +145,7 @@ else
         controller.opt_redshift -= 1;
 }
         
-save_settings();
+save_profile();
 </string>
           </argument>
         </arguments>

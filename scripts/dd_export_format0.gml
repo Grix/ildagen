@@ -1,3 +1,3 @@
 controller.exp_format = 0;
 
-save_settings();
+save_profile();

@@ -127,7 +127,7 @@ else
 if (controller.opt_maxdist &lt; 50)
     controller.opt_maxdist = 50;
     
-save_settings();
+save_profile();
 </string>
           </argument>
         </arguments>

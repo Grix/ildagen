@@ -125,7 +125,7 @@ else
 if (controller.opt_maxdwell &lt; 0)
     controller.opt_maxdwell = 0;
     
-save_settings();
+save_profile();
 </string>
           </argument>
         </arguments>

@@ -127,7 +127,7 @@ else
 controller.opt_scanspeed = clamp(controller.opt_scanspeed,1000,100000);
 
     
-save_settings();
+save_profile();
 </string>
           </argument>
         </arguments>

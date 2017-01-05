@@ -85,7 +85,7 @@ if (mouse_x &lt; (x+32))
 else
     controller.exp_format = 0;
 
-save_settings();
+save_profile();
 </string>
           </argument>
         </arguments>

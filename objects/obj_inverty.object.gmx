@@ -83,7 +83,7 @@ image_index = controller.invert_y;
 
 controller.invert_y = !controller.invert_y;
 
-save_settings();
+save_profile();
 </string>
           </argument>
         </arguments>

@@ -1,3 +1,5 @@
+save_profile();
+
 with (controller)
 {
     ini_open("settings.ini");
@@ -5,12 +7,12 @@ with (controller)
         ini_write_real("main","projector",projector);
         ini_write_real("main","show_tooltip",show_tooltip);
         
-        for (i = 0; i < ds_list_size(profile_map); i++)
+        for (i = 0; i < ds_list_size(profile_list); i++)
         {
             var t_projectorstring = "projector_"+string(i);
             var t_profilemap = profile_list[| i];
             
-            ini_write_real(t_projectorstring, "name", t_profilemap[? "name"]);
+            ini_write_string(t_projectorstring, "name", t_profilemap[? "name"]);
             ini_write_real(t_projectorstring, "scanrate", t_profilemap[? "scanrate"]);
             ini_write_real(t_projectorstring, "maxdist", t_profilemap[? "maxdist"]);
             ini_write_real(t_projectorstring, "maxdwell", t_profilemap[? "maxdwell"]);
@@ -37,9 +39,7 @@ with (controller)
         }
         
         if (room == rm_options)
-        {
-            obj_preset.preset_name = ds_map_find_value(profile_list[| projector], "name");
-        }
+            obj_profiles.preset_name = ds_map_find_value(profile_list[| projector], "name");
     
     ini_close();
 }

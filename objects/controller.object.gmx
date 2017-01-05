@@ -373,7 +373,6 @@ telem();
 
 ex_patch_window_close_capture(1);
 
-
 </string>
           </argument>
         </arguments>
@@ -1383,65 +1382,27 @@ if (new_id == getint)
             }
             case "preset_delete":
             {
-                //TODO
+                ds_map_destroy(profile_list[| profiletoselect]);
+                ds_list_delete(profile_list, profiletoselect);
+                log(profiletoselect)
                 
-                /*ini_open("settings.ini");
+                if (ds_list_size(profile_list) == 0)
+                {
+                    ini_open("settings.ini");
+                        ini_section_delete("projector_0");
+                    ini_close();
+                    load_settings();
+                }
                 
-                var t_currentprojectorstring = "projector_"+string(projector);
-                var t_proj_i = projector;
-                while (ini_section_exists("projector_"+string(t_proj_i)))
+                if (projector &gt;= profiletoselect) 
                 {
-                    t_proj_i++;
+                    projector = 0;
+                    load_profile();
                 }
-                t_proj_i--;
-                    
-                if (t_proj_i == projector)
-                {
-                    if (t_proj_i == 0)
-                    {
-                        ini_section_delete(t_currentprojectorstring);
-                        ini_key_delete("main","projector");
-                    }
-                    else
-                    {
-                        ini_section_delete("projector_"+string(projector));
-                        ini_write_real("main","projector",projector-1);
-                    }
-                }
-                else
-                {
-                    var t_projectorstring = "projector_"+string(t_proj_i);
-                    ini_write_string(t_currentprojectorstring, "name", ini_read_string(t_projectorstring,"name","error_name"));
-                    ini_write_real(t_currentprojectorstring, "scanrate", ini_read_real(t_projectorstring,"scanrate",20000));
-                    ini_write_real(t_currentprojectorstring, "maxdwell", ini_read_real(t_projectorstring,"maxdwell",4));
-                    ini_write_real(t_currentprojectorstring, "maxdist", ini_read_real(t_projectorstring,"maxdist",1500));
-                    ini_write_real(t_currentprojectorstring, "format", ini_read_real(t_projectorstring,"format",5));
-                    ini_write_real(t_currentprojectorstring, "optimize", ini_read_real(t_projectorstring,"optimize",1));
-                    ini_write_real(t_currentprojectorstring, "blankshift", ini_read_real(t_projectorstring,"opt_blankshift",0));
-                    ini_write_real(t_currentprojectorstring, "redshift", ini_read_real(t_projectorstring,"opt_redshift",0));
-                    ini_write_real(t_currentprojectorstring, "greenshift", ini_read_real(t_projectorstring,"opt_greenshift",0));
-                    ini_write_real(t_currentprojectorstring, "blueshift", ini_read_real(t_projectorstring,"opt_blueshift",0));
-                    ini_write_real(t_currentprojectorstring, "invert_y", ini_read_real(t_projectorstring,"invert_y",false));
-                    ini_write_real(t_currentprojectorstring, "invert_x", ini_read_real(t_projectorstring,"invert_x",false));
-                    ini_write_real(t_currentprojectorstring, "red_scale", ini_read_real(t_projectorstring,"red_scale",1));
-                    ini_write_real(t_currentprojectorstring, "green_scale", ini_read_real(t_projectorstring,"green_scale",1));
-                    ini_write_real(t_currentprojectorstring, "blue_scale", ini_read_real(t_projectorstring,"blue_scale",1));
-                    ini_write_real(t_currentprojectorstring, "red_scale_lower", ini_read_real(t_projectorstring,"red_scale_lower",0));
-                    ini_write_real(t_currentprojectorstring, "green_scale_lower", ini_read_real(t_projectorstring,"green_scale_lower",0));
-                    ini_write_real(t_currentprojectorstring, "blue_scale_lower", ini_read_real(t_projectorstring,"blue_scale_lower",0));
-                    ini_write_real(t_currentprojectorstring, "show_tooltip", ini_read_real(t_projectorstring,"show_tooltip",1));
-                    ini_write_real(t_currentprojectorstring, "x_scale_start", ini_read_real(t_projectorstring,"x_scale_start",0));
-                    ini_write_real(t_currentprojectorstring, "y_scale_start", ini_read_real(t_projectorstring,"y_scale_start",0));
-                    ini_write_real(t_currentprojectorstring, "x_scale_end", ini_read_real(t_projectorstring,"x_scale_end",$FFFF));
-                    ini_write_real(t_currentprojectorstring, "y_scale_end", ini_read_real(t_projectorstring,"y_scale_end",$FFFF));
-                    ini_write_string(t_currentprojectorstring, "blindzones", ini_read_string(t_projectorstring,"blindzones",emptyliststring));
-                    ini_section_delete(t_projectorstring);
-                    ini_write_real("main","projector",projector);
-                }
-                ini_close(); 
-                   
-                load_settings();*/
                 
+                with (obj_profiles)
+                    surface_free(surf_profilelist);
+                        
                 break;
             }
             
@@ -1461,56 +1422,56 @@ if (new_id == getint)
             case "maxdist":
           {
               opt_maxdist = ds_map_find_value(async_load, "value");
-              save_settings();
+              save_profile();
               
               break;
           }
             case "blankshift":
           {
               opt_blankshift = ds_map_find_value(async_load, "value");
-              save_settings();
+              save_profile();
               
               break;
           }
             case "redshift":
           {
               opt_redshift = ds_map_find_value(async_load, "value");
-              save_settings();
+              save_profile();
               
               break;
           }
             case "greenshift":
           {
               opt_greenshift = ds_map_find_value(async_load, "value");
-              save_settings();
+              save_profile();
               
               break;
           }
             case "blueshift":
           {
               opt_blueshift = ds_map_find_value(async_load, "value");
-              save_settings();
+              save_profile();
               
               break;
           }
             case "maxdwell":
           {
               opt_maxdwell = ds_map_find_value(async_load, "value");
-              save_settings();
+              save_profile();
               
               break;
           }  
             case "maxdwell_blank":
           {
               opt_maxdwell_blank = ds_map_find_value(async_load, "value");
-              save_settings();
+              save_profile();
               
               break;
           }  
             case "scanspeed":
           {
               opt_scanspeed = ds_map_find_value(async_load, "value");
-              save_settings();
+              save_profile();
               
               break;
           }
@@ -1665,42 +1626,42 @@ if (new_id == getint)
           {
               red_scale = clamp(ds_map_find_value(async_load, "value")/100,0,1);
               update_colors_scalesettings();
-              save_settings();
+              save_profile();
               break;
           }
             case "green_scale":
           {
               green_scale = clamp(ds_map_find_value(async_load, "value")/100,0,1);
               update_colors_scalesettings();
-              save_settings();
+              save_profile();
               break;
           }
             case "blue_scale":
           {
               blue_scale = clamp(ds_map_find_value(async_load, "value")/100,0,1);
               update_colors_scalesettings();
-              save_settings();
+              save_profile();
               break;
           }
             case "red_scale_lower":
           {
               red_scale_lower = clamp(ds_map_find_value(async_load, "value")/100,0,1);
               update_colors_scalesettings();
-              save_settings();
+              save_profile();
               break;
           }
             case "green_scale_lower":
           {
               green_scale_lower = clamp(ds_map_find_value(async_load, "value")/100,0,1);
               update_colors_scalesettings();
-              save_settings();
+              save_profile();
               break;
           }
             case "blue_scale_lower":
           {
               blue_scale_lower = clamp(ds_map_find_value(async_load, "value")/100,0,1);
               update_colors_scalesettings();
-              save_settings();
+              save_profile();
               break;
           }
             case "anirep":
@@ -1965,28 +1926,22 @@ else if (new_id == getstr)
         {
             case ("preset_create"):
             {
-                ini_open("settings.ini");
-                num = 0;
-                while (ini_section_exists("projector_"+string(num)))
-                {
-                    num++;
-                }
-                ini_write_real("main","projector",num);
-                projector = num;
-                ini_write_string("projector_"+string(num),"name",ds_map_find_value(async_load, "result"));
-                ini_close();
-                save_settings();
+                var t_newmap = ds_map_create();
+                ds_map_copy(t_newmap, profile_list[| 0]);
+                t_newmap[? "name"] = ds_map_find_value(async_load, "result");
+                ds_list_add(profile_list, t_newmap);
+                with (obj_profiles)
+                    surface_free(surf_profilelist);
                 break;
             }
             case ("preset_rename"):
             {
-                ini_open("settings.ini");
-                if (ini_section_exists("projector_"+string(projector)))
-                {
-                    ini_write_string("projector_"+string(projector),"name",ds_map_find_value(async_load, "result"));
-                }
-                ini_close();
-                save_settings();
+                var t_map = profile_list[| profiletoselect];
+                t_map[? "name"] = ds_map_find_value(async_load, "result");
+
+                with (obj_profiles)
+                    surface_free(surf_profilelist);
+                    
                 break;
             }
             case ("funcx"):
@@ -2227,7 +2182,8 @@ else if (room == rm_loading)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>FMODfree();
+            <string>save_settings();
+FMODfree();
 UnloadFMOD();
 close_dacs();
 </string>

@@ -1,1 +1,1 @@
-ilda_dialog_yesno("preset_delete","Are you sure you wish to delete the current settings preset?");
+ilda_dialog_yesno("preset_delete","Are you sure you wish to delete this settings profile? (Cannot be undone)");

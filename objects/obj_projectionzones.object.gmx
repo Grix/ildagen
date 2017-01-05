@@ -64,7 +64,7 @@ if (moving == 1)
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
     {
-        save_settings();
+        save_profile();
         moving = 0;
     }
 }
@@ -81,7 +81,7 @@ else if (moving == 2)
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
     {
-        save_settings();
+        save_profile();
         moving = 0;
     }
 }
@@ -98,7 +98,7 @@ else if (moving == 3)
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
     {
-        save_settings();
+        save_profile();
         moving = 0;
     }
 }
@@ -115,7 +115,7 @@ else if (moving == 4)
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
     {
-        save_settings();
+        save_profile();
         moving = 0;
     }
 }
@@ -150,7 +150,7 @@ else if (moving == 5)
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
     {
-        save_settings();
+        save_profile();
         moving = 0;
     }
 }
@@ -169,7 +169,7 @@ else if (moving == 6)
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
     {
-        save_settings();
+        save_profile();
         moving = 0;
     }
 }
@@ -188,7 +188,7 @@ else if (moving == 7)
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
     {
-        save_settings();
+        save_profile();
         moving = 0;
     }
 }
@@ -207,7 +207,7 @@ else if (moving == 8)
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
     {
-        save_settings();
+        save_profile();
         moving = 0;
     }
 }
@@ -226,7 +226,7 @@ else if (moving == 9)
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
     {
-        save_settings();
+        save_profile();
         moving = 0;
     }
 }
@@ -263,7 +263,7 @@ else if (moving == 10)
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
     {
-        save_settings();
+        save_profile();
         moving = 0;
     }
 }
