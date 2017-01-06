@@ -1,8 +1,6 @@
 var t_warn = false;
 var t_plist = seqcontrol.layer_list;
 
-ini_open("settings.ini");
-
 for (i = 0; i < ds_list_size(t_plist); i++)
 {
     var t_thisplist = t_plist[| i];
@@ -28,7 +26,7 @@ for (i = 0; i < ds_list_size(t_plist); i++)
             ds_list_destroy(t_thisdaclist);
             ds_list_delete(t_daclist,j);
             j--;
-            warn = true;
+            t_warn = true;
             continue;
         }
         else
@@ -36,21 +34,18 @@ for (i = 0; i < ds_list_size(t_plist); i++)
             t_thisdaclist[| 0] = t_found;
         }
         
-        //resolve preset errors
-        if ((t_thisdaclist[| 3] == "") || (t_thisdaclist[| 2] == -1))
+        //resolve profiles
+        var t_profileindex = t_thisdaclist[| 2];
+        var t_profilemap = ds_list_find_value(controller.profile_list, t_profileindex);
+            
+        if (is_undefined(t_profilemap))
         {
-            var t_projectorstring = "projector_"+string(t_thisdaclist[| 2]);
-            projector_name = ini_read_string(t_projectorstring, "name", "error");
-                
-            if (projector_name == "error")
-            {
-                ds_list_replace(t_thisdaclist, 2, -1);
-                ds_list_replace(t_thisdaclist, 3, "DEFAULT");
-            }
-            else
-            {
-                ds_list_replace(t_thisdaclist, 3, projector_name);
-            }
+            ds_list_replace(t_thisdaclist, 2, -1);
+            ds_list_replace(t_thisdaclist, 3, "DEFAULT");
+        }
+        else
+        {
+            ds_list_replace(t_thisdaclist, 3, ds_map_find_value(t_profilemap, "name"));
         }
     }
     
@@ -74,19 +69,18 @@ for (i = 0; i < ds_list_size(t_plist); i++)
                     ds_list_destroy(t_thisdaclist2);
                     ds_list_delete(t_daclist,k);
                     k--;
-                    warn = true;
+                    t_warn = true;
                 }
             }
         }
     }*/
 }
 
-/*if (warn)
+/*if (t_warn)
 {
     show_message_async("Warning: One or more DACs have been removed from their timeline projector configuration due to being disconnected or referenced multiple times.");
 }*/
 
 if (room == rm_options)
     surface_free(obj_projectors.surf_projectorlist);
-    
-ini_close();
+

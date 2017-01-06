@@ -43,5 +43,3 @@ if (ds_list_size(controller.dac_list) == 1)
 
 if (room == rm_options)
     surface_free(obj_dacs.surf_daclist);
-
-projectorlist_update();

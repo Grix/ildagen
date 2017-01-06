@@ -926,6 +926,7 @@
         <script>scripts\projector_clear_dacs.gml</script>
         <script>scripts\dropdown_projector_dac.gml</script>
         <script>scripts\projector_remove_dac.gml</script>
+        <script>scripts\projector_dac_setprofile_dd.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">

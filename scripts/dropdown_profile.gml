@@ -17,7 +17,7 @@ with (ddobj)
         ds_list_add(hl_list,1);
         num++;
         ds_list_add(desc_list,"[-] Delete profile");
-        ds_list_add(sep_list,1);
+        ds_list_add(sep_list,0);
         ds_list_add(scr_list,preset_delete);
         ds_list_add(hl_list,1);
         num++;
