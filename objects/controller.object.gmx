@@ -120,8 +120,6 @@ hershey_index_list = ds_list_create();
 hershey_list = -1;
 menu_surf = -1;
 dac_list = ds_list_create();
-output_buffer = buffer_create(48000,buffer_fixed,2);
-output_buffer2 = buffer_create(48000,buffer_fixed,2);
 blindzone_list = ds_list_create();
 profile_list = ds_list_create();
 list = ds_list_create();
@@ -130,10 +128,7 @@ ds_list_destroy(list);
 
 c_gold = make_colour_rgb(255,220,0);
 
-output_buffer_ready = false;
-output_buffer_next_size = 0;
 dac = -1;
-dac_string = "[None]";
 laseron = false;
 laseronfirst = false;
 el_id = 2;
@@ -1030,7 +1025,6 @@ if (laseron)
         show_message_async("Error, DAC data missing");
         laseron = false;
         dac = -1;
-        dac_string = "[None]";
     }
     else
         output_frame();
@@ -2027,7 +2021,6 @@ else if (new_id == getstr)
                 else
                 {
                     dac[| 1] = ds_map_find_value(async_load, "result");
-                    dac_string = dac[| 1];
                 }
                 break;
             }

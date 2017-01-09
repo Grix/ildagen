@@ -1,8 +1,20 @@
+///output_frame_seq(daclist)
+
+var t_dac = argument[0];
+var t_dac_index = ds_list_find_index(controller.dac_list, t_dac);
+if (t_dac_index == -1)
+    exit;
+    
+output_buffer = t_dac[| 4];
+output_buffer2 = t_dac[| 5];
+output_buffer_ready = t_dac[| 6];
+output_buffer_next_size = t_dac[| 7];
+
 minroomspeed = max(projectfps,10); 
     
 if (output_buffer_ready)
 {
-    dac_send_frame(controller.dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps);
+    dac_send_frame(t_dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps);
     frame_surf_refresh = false;
     output_buffer_ready = false;
     controller.laseronfirst = false;
@@ -25,8 +37,21 @@ el_list = ds_list_create();
 //check which should be drawn
 for (k = 0; k < ds_list_size(layer_list); k++)
 {
-    env_dataset = 0;
+    var t_found = false;
+    var t_daclist = ds_list_find_value(layer_list[| k], 5);
+    if (ds_list_size(t_daclist) == 0)
+        t_found = true;
+    for (m = 0; m < ds_list_size(t_daclist); m++)
+    {
+        var t_thisdac = t_daclist[| m];
+        if (t_thisdac[| 0] == t_dac_index)
+            t_found = true;
+    }
     
+    if (t_found == false)
+        continue;
+    
+    env_dataset = 0;
     layer = ds_list_find_value(layer_list[| k], 1);
     for (m = 0; m < ds_list_size(layer); m++)
     {
@@ -56,6 +81,10 @@ for (k = 0; k < ds_list_size(layer_list); k++)
         if (buffer_ver != 52)
         {
             show_message_async("Error: Unexpected idbyte in buffer for export_project. Things might get ugly. Contact developer.");
+            t_dac[| 4] = output_buffer;
+            t_dac[| 5] = output_buffer2;
+            t_dac[| 6] = output_buffer_ready;
+            t_dac[| 7] = output_buffer_next_size;
             exit;
         }
         buffer_maxframes = buffer_read(el_buffer,buffer_u32);
@@ -146,6 +175,11 @@ for (k = 0; k < ds_list_size(layer_list); k++)
     }
 }
 
+if (t_dac[| 2] == -1)
+    load_profile_temp(controller.projector);
+else
+    load_profile_temp(t_dac[| 2]);
+
 if (ds_list_size(el_list) == 0) 
 {
     optimize_middle_output();
@@ -171,3 +205,8 @@ for (i = 0;i < ds_list_size(el_list);i++)
 ds_list_destroy(el_list);
 
 output_buffer_ready = true;
+
+t_dac[| 4] = output_buffer;
+t_dac[| 5] = output_buffer2;
+t_dac[| 6] = output_buffer_ready;
+t_dac[| 7] = output_buffer_next_size;

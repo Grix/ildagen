@@ -55,11 +55,7 @@ frame3d_surf_large = surface_create(1024,1024);
 copy_list = ds_list_create();
 copy_buffer = ds_list_create();
 env_type_map = ds_map_create();
-output_buffer = buffer_create(48000,buffer_fixed,2);
-output_buffer2 = buffer_create(48000,buffer_fixed,2);
 
-output_buffer_ready = false;
-output_buffer_next_size = 0;
 frame_surf_refresh = 0;
 image_speed = 0;
 draw_mouseline = 0;
@@ -538,15 +534,14 @@ minroomspeed = 60;
    
 if (controller.laseron)
 {
-    if (!ds_exists(controller.dac,ds_type_list))
+    if (!ds_exists(controller.dac,ds_type_list)) //todo fix for dac list
     {
         show_message_async("Error, DAC data missing");
         controller.laseron = false;
         controller.dac = -1;
-        controller.dac_string = "[None]";
     }
     else
-        output_frame_seq();
+        output_frame_seq_all();
 }
 
 room_speed = projectfps;
@@ -873,7 +868,7 @@ if (controller.laseron)
     draw_set_color(c_white);
     draw_set_alpha(1);
     draw_set_halign(fa_center);
-    draw_text(256,70,"Laser output active: "+string(controller.dac_string));
+    draw_text(256,70,"Laser output active: "+string(controller.dac[| 1]));
     draw_set_halign(fa_left);
 }
 else if (largepreview)

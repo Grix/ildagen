@@ -61,7 +61,7 @@ surf_projectorlist = -1;
     scrollx += (mouse_y-mouseyprev)*scrollh/list_height;
     scrollx = clamp(scrollx,0,scrollh-scrollw);
     mouseyprev = mouse_y;
-    controller.tooltip = "Drag to scroll the list of projectors.";
+    controller.tooltip = "Drag to scroll the list of timeline layers.";
     if (!mouse_check_button(mb_left))
     {
         moving = 0;
@@ -76,7 +76,7 @@ if (scrollh &gt; list_height)
 &amp;&amp; (mouse_y == clamp(mouse_y, y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw), y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw)+scrollw)) 
 &amp;&amp; (mouse_x == clamp(mouse_x, x+list_width, x+list_width+20))
 {
-    controller.tooltip = "Drag to scroll the list of projectors.";
+    controller.tooltip = "Drag to scroll the list of timeline layers.";
     if (mouse_check_button_pressed(mb_left))
     {
         moving = 1;
@@ -115,7 +115,7 @@ else if (mouse_y == clamp(mouse_y, y, y+list_height))
         if (t_item == t_item_mouseover)
         {
             //mouse over projector i
-            controller.tooltip = "Right click projector for options.";
+            controller.tooltip = "Right click timeline layer for options.";
             if (mouse_check_button_pressed(mb_right))
             {
                 settingscontrol.projectortoselect = i;
@@ -130,7 +130,7 @@ else if (mouse_y == clamp(mouse_y, y, y+list_height))
             if (t_item == t_item_mouseover)
             {
                 //mouse over dac j in projector i
-                controller.tooltip = "Right click the DACs in the projector configuration for options.";
+                controller.tooltip = "Right click the DACs in the timeline layer list for options.";
                 if (mouse_check_button_pressed(mb_right))
                 {
                     settingscontrol.projectortoselect = i;
@@ -244,8 +244,15 @@ if (!surface_exists(surf_projectorlist))
             var t_daclist = t_thisplist[| 5];
             for (j = 0; j &lt; ds_list_size(t_daclist); j++)
             {   
-                var t_thisdaclist = t_daclist[| j];
-                t_text = "-   " + t_thisdaclist[| 1] + "   [Profile: "+t_thisdaclist[| 3] +"]";
+                var t_thisdaclist = ds_list_find_value(controller.dac_list, ds_list_find_value(t_daclist[| j], 0));
+                if (t_thisdaclist[| 2] != -1)
+                {
+                    var t_profilemap = ds_list_find_value(controller.profile_list, t_thisdaclist[| 2]);
+                    t_text = "-   " + t_thisdaclist[| 1] + "   [Profile: "+t_profilemap[? "name"] +"]";
+                }
+                else
+                    t_text = "-   " + t_thisdaclist[| 1];
+                    
                 draw_text(20, t_ypos+itemh/2, t_text);
                 t_ypos += itemh;
                 draw_line(0, t_ypos, list_width, t_ypos);
@@ -253,7 +260,7 @@ if (!surface_exists(surf_projectorlist))
             if (ds_list_size(t_daclist) == 0)
             {
                 draw_set_colour(c_maroon);
-                draw_text(20, t_ypos+itemh/2, "-   [No DACs added]");
+                draw_text(20, t_ypos+itemh/2, "-   [Default DAC]");
                 draw_set_colour(c_black);
                 t_ypos += itemh;
                 draw_line(0, t_ypos, list_width, t_ypos);

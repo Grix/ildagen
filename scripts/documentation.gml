@@ -32,10 +32,9 @@ layer_list
         name
         dac_list
             dacs...
-                num
+                num (index in dac_list)
                 name
-                preset_id (-1 if default)
-                preset_name
+                profile name
                 
 somaster_list
     layer elements.. (see above)
@@ -43,14 +42,19 @@ somaster_list
 CONTROLLER
 
 profile_list
-    profiles...
+    profiles... (default is controller.projector - index)
         look in load_settings for all settings in map      
           
 dac_list
-    dac...
-        num
+    dac... (default is controller.dac - not index, list itself)
+        num (index in dacwrapper)
         description
-        settings map...
+        profile num (-1 if default)
+        firmware (-1 if n/a)
+        output_buffer
+        output_buffer2
+        output_buffer_ready
+        output_buffer_next_size
     
 blindzone_list
     start x
