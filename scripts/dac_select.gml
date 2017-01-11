@@ -1,7 +1,11 @@
 ///dac_select(id in list)
 with (controller)
 {
-    dac = dac_list[| argument0];
+    if (laseron)
+        dac_blank_and_center(dac);
+    
+    var t_newdac = argument[0];
+    dac = dac_list[| t_newdac];
     
     if (!ds_exists(dac,ds_type_list))
     {

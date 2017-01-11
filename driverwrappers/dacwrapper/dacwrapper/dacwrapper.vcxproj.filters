@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Laserdock">
+      <UniqueIdentifier>{d4471af4-0ee1-425f-a8ed-f73b88e79b8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Laserdock">
+      <UniqueIdentifier>{6f871570-d2f4-470f-b477-41af01254cc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helios">
+      <UniqueIdentifier>{c3e5a3e5-a09b-4a26-ac97-5976962a0690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helios">
+      <UniqueIdentifier>{bcf067eb-3947-4fe7-ad67-e43096a78b65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dacwrapper.cpp">
@@ -39,6 +51,24 @@
     <ClCompile Include="Device_LaserDock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LaserdockDevice.cpp">
+      <Filter>Source Files\Laserdock</Filter>
+    </ClCompile>
+    <ClCompile Include="LaserdockDevice_desktop.cpp">
+      <Filter>Source Files\Laserdock</Filter>
+    </ClCompile>
+    <ClCompile Include="LaserdockDeviceManager.cpp">
+      <Filter>Source Files\Laserdock</Filter>
+    </ClCompile>
+    <ClCompile Include="LaserdockDeviceManager_desktop.cpp">
+      <Filter>Source Files\Laserdock</Filter>
+    </ClCompile>
+    <ClCompile Include="HeliosDacClass.cpp">
+      <Filter>Source Files\Helios</Filter>
+    </ClCompile>
+    <ClCompile Include="HeliosDac.cpp">
+      <Filter>Source Files\Helios</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device_RIYA.h">
@@ -64,6 +94,27 @@
     </ClInclude>
     <ClInclude Include="Device_LaserDock.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\GitHub\helios_dac\sdk\libusb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LaserdockDevice.h">
+      <Filter>Header Files\Laserdock</Filter>
+    </ClInclude>
+    <ClInclude Include="LaserdockDevice_p.h">
+      <Filter>Header Files\Laserdock</Filter>
+    </ClInclude>
+    <ClInclude Include="LaserdockDeviceManager.h">
+      <Filter>Header Files\Laserdock</Filter>
+    </ClInclude>
+    <ClInclude Include="LaserdockDeviceManager_p.h">
+      <Filter>Header Files\Laserdock</Filter>
+    </ClInclude>
+    <ClInclude Include="HeliosDac.h">
+      <Filter>Header Files\Helios</Filter>
+    </ClInclude>
+    <ClInclude Include="HeliosDacClass.h">
+      <Filter>Header Files\Helios</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

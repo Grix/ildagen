@@ -1,5 +1,8 @@
 ///dac_blank_and_center(dac list)
-if (!ds_exists(argument0, ds_type_list))
+
+var t_dac = argument[0];
+
+if (!ds_exists(t_dac, ds_type_list))
     exit;
     
-dacwrapper_stop(argument0[| 0]);
+dacwrapper_stop(t_dac[| 0]);

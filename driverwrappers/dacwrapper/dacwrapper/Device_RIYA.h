@@ -70,6 +70,7 @@ private:
 
 	UINT pointPeriod;
 	bool ready;
+	bool stopped[16];
 	int frameNum[16];
 };
 

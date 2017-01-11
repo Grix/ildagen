@@ -16,73 +16,10 @@ int Device_Helios::Init()
 {
 	CloseAll();
 
-	heliosLibrary = LoadLibrary(L"HeliosLaserDAC.dll");
-	if (heliosLibrary == NULL) return -2;
-
-	_OpenDevices = (heliosFuncPtr0)GetProcAddress(heliosLibrary, "OpenDevices");
-	if (!_OpenDevices)
-	{
-		FreeLibrary(heliosLibrary);
-		return -1;
-	}
-
-	_CloseDevices = (heliosFuncPtr0)GetProcAddress(heliosLibrary, "CloseDevices");
-	if (!_CloseDevices)
-	{
-		FreeLibrary(heliosLibrary);
-		return -1;
-	}
-
-	_GetStatus = (heliosFuncPtr1)GetProcAddress(heliosLibrary, "GetStatus");
-	if (!_GetStatus)
-	{
-		FreeLibrary(heliosLibrary);
-		return -1;
-	}
-
-	_WriteFrame = (heliosFuncPtr2)GetProcAddress(heliosLibrary, "WriteFrame");
-	if (!_WriteFrame)
-	{
-		FreeLibrary(heliosLibrary);
-		return -1;
-	}
-
-	_SetShutter = (heliosFuncPtr3)GetProcAddress(heliosLibrary, "SetShutter");
-	if (!_SetShutter)
-	{
-		FreeLibrary(heliosLibrary);
-		return -1;
-	}
-
-	_GetName = (heliosFuncPtr4)GetProcAddress(heliosLibrary, "GetName");
-	if (!_GetName)
-	{
-		FreeLibrary(heliosLibrary);
-		return -1;
-	}
-	_SetName = (heliosFuncPtr4)GetProcAddress(heliosLibrary, "SetName");
-	if (!_SetName)
-	{
-		FreeLibrary(heliosLibrary);
-		return -1;
-	}
-
-	_GetFirmwareVersion = (heliosFuncPtr1)GetProcAddress(heliosLibrary, "GetFirmwareVersion");
-	if (!_GetFirmwareVersion)
-	{
-		FreeLibrary(heliosLibrary);
-		return -1;
-	}
-
-	_Stop = (heliosFuncPtr1)GetProcAddress(heliosLibrary, "Stop");
-	if (!_Stop)
-	{
-		FreeLibrary(heliosLibrary);
-		return -1;
-	}
+	heliosDevice = new HeliosDacClass;
 	
 	ready = true;
-	int result = _OpenDevices();
+	int result = heliosDevice->OpenDevices();
 
 	if (result <= 0)
 		CloseAll();
@@ -90,7 +27,7 @@ int Device_Helios::Init()
 	return result;
 }
 
-bool Device_Helios::OutputFrame(int cardNum, int rate, int frameSize, HeliosPoint* bufferAddress)
+bool Device_Helios::OutputFrame(int cardNum, int rate, int frameSize, HeliosDacClass::HeliosPoint* bufferAddress)
 {
 	if (!ready) return false;
 
@@ -100,9 +37,9 @@ bool Device_Helios::OutputFrame(int cardNum, int rate, int frameSize, HeliosPoin
 	{
 		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break; //CURRENTLY UNUSED BECAUSE OF MUTEX
-		else if (_GetStatus(cardNum) == 1)
+		else if (heliosDevice->GetStatus(cardNum) == 1)
 		{
-			return (_WriteFrame(cardNum, rate, 0, bufferAddress, frameSize) == 1);
+			return (heliosDevice->WriteFrame(cardNum, rate, 0, bufferAddress, frameSize) == 1);
 		}
 	}
 
@@ -121,7 +58,7 @@ bool Device_Helios::Stop(int cardNum)
 	
 	for (int i = 0; i < 20; i++)
 	{
-		if (_Stop(cardNum) == 1)
+		if (heliosDevice->Stop(cardNum) == 1)
 			return true;
 	}
 
@@ -133,8 +70,7 @@ bool Device_Helios::CloseAll()
 	if (!ready)
 		return false;
 
-	_CloseDevices();
-	FreeLibrary(heliosLibrary);
+	delete heliosDevice;
 	ready = false;
 	return true;
 }
@@ -144,7 +80,7 @@ bool Device_Helios::GetName(int cardNum, char* name)
 	if (!ready)
 		return false;
 
-	return (_GetName(cardNum, name) == 1);
+	return (heliosDevice->GetName(cardNum, name) == 1);
 }
 
 bool Device_Helios::SetName(int cardNum, char* name)
@@ -152,7 +88,7 @@ bool Device_Helios::SetName(int cardNum, char* name)
 	if (!ready)
 		return false;
 
-	return (_SetName(cardNum, name) == 1);
+	return (heliosDevice->SetName(cardNum, name) == 1);
 }
 
 double Device_Helios::GetFirmwareVersion(int cardNum)
@@ -160,5 +96,5 @@ double Device_Helios::GetFirmwareVersion(int cardNum)
 	if (!ready)
 		return false;
 
-	return _GetFirmwareVersion(cardNum);
+	return heliosDevice->GetFirmwareVersion(cardNum);
 }

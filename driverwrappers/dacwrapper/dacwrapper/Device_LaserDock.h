@@ -1,7 +1,9 @@
 #pragma once
 
-#include <Windows.h>
-#include <stdint.h>
+#include "LaserdockDeviceManager.h"
+#include "LaserdockDevice.h"
+
+#define LASERDOCK_MAX_DEVICES 8
 
 class Device_LaserDock
 {
@@ -19,27 +21,34 @@ public:
 	} LaserDockPoint;
 
 	int Init();
-	bool OutputFrame(int rate, int frameSize, LaserDockPoint* bufferAddress);
-	bool OpenDevice();
-	bool Stop();
+	bool OutputFrame(int devNum, int rate, int frameSize, LaserDockPoint* bufferAddress);
+	bool OpenDevice(int cardNum);
+	bool Stop(int devNum);
 	bool CloseAll();
-	void GetName(char* name);
+	void GetName(int devNum, char* name);
 
 private:
 
-	HINSTANCE laserDockLibrary;
+	std::vector<std::unique_ptr<LaserdockDevice> > laserdockDevices;
+	LaserdockDeviceManager* laserdockDeviceManager;
+	bool inited;
+	int previousRate[LASERDOCK_MAX_DEVICES];
+	bool outputEnabled[LASERDOCK_MAX_DEVICES];
 
-	//initialize, stop, free
-	typedef bool(*laserDockFuncPtr0)();
+	//opens connection, call before any other function
+	int _Initialize();
 
-	//sendFrame
-	typedef bool(*laserDockFuncPtr1)(uint8_t* data, uint32_t length, uint32_t rate);
+	//send frame to dac (updating rate etc is handled in the function). 
+	//Data buffer struct can be found in LaserdockDevice.h.
+	//Length is number of points
+	//Rate is points per second
+	bool _SendFrame(int devNum, uint8_t* data, uint32_t length, uint32_t rate);
 
+	//stop output until sendFrame is called again
+	bool _Stop(int devNum);
 
-	laserDockFuncPtr0 _initialize;
-	laserDockFuncPtr0 _stop;
-	laserDockFuncPtr0 _free;
-	laserDockFuncPtr1 _sendFrame;
+	//close connection and free resources
+	bool _FreeAll();
 
 	bool ready;
 	int frameNum;

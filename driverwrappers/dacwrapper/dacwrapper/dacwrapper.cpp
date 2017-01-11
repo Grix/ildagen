@@ -86,11 +86,11 @@ GMEXPORT double ScanDevices()
 	}
 	int numLaserDocks = laserDockDevice->Init();
 	fprintf(stderr,"Found %d LaserDocks\n", numLaserDocks);
-	if (numLaserDocks == 1)
+	for (int i = 0; i < numLaserDocks; i++)
 	{
 		char* name = new char[64];
-		laserDockDevice->GetName(name);
-		dacs[numDevices++] = { 7, 0, name };
+		laserDockDevice->GetName(i, name);
+		dacs[numDevices++] = { 7, i, name };
 	}
 
 	return (double)numDevices;
@@ -118,7 +118,7 @@ GMEXPORT double DeviceOpen(double doubleNum)
 	else if (dacType == 6)	//OLSC_EzAudDac
 		return (double)olscEzAudDacDevice->OpenDevice(cardNum);
 	else if (dacType == 7)	//LaserDock
-		return (double)laserDockDevice->OpenDevice();
+		return (double)laserDockDevice->OpenDevice(cardNum);
 	else
 		return -1.0;
 }
@@ -233,7 +233,7 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 	else if (dacType == 4)	//Helios
 	{
 		int currentPos = 0;
-		Device_Helios::HeliosPoint heliosBuffer[MAX_FRAME_SIZE];
+		HeliosDacClass::HeliosPoint heliosBuffer[MAX_FRAME_SIZE];
 		for (int i = 0; i < frameSize; i++)
 		{
 			heliosBuffer[i].x = bufferAddress[currentPos++] >> 4;
@@ -259,7 +259,7 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 			laserDockBuffer[i].b = (uint8_t)bufferAddress[currentPos++];// << 8;
 			currentPos++;
 		}
-		laserDockDevice->OutputFrame(scanRate, frameSize*8, &laserDockBuffer[0]);
+		laserDockDevice->OutputFrame(cardNum, scanRate, frameSize * 8, &laserDockBuffer[0]);
 	}
 
 }
@@ -301,7 +301,7 @@ GMEXPORT double Stop(double doubleNum)
 	else if (dacType == 4)	//Helios
 		return (double)heliosDevice->Stop(cardNum);
 	else if (dacType == 7)	//Laserdock
-		return (double)laserDockDevice->Stop();
+		return (double)laserDockDevice->Stop(cardNum);
 	else
 		return -1.0;
 }

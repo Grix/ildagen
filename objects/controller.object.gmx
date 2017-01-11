@@ -128,6 +128,7 @@ ds_list_destroy(list);
 
 c_gold = make_colour_rgb(255,220,0);
 
+adclosed = false;
 dac = -1;
 laseron = false;
 laseronfirst = false;

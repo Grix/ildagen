@@ -14,7 +14,7 @@
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more delibusb.htails.
+ * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
@@ -84,7 +84,7 @@ typedef unsigned __int32  uint32_t;
 #endif /* __GNUC__ */
 
 /** \def LIBUSB_CALL
- * \ingroup libusb_misc
+ * \ingroup misc
  * libusb's Windows calling convention.
  *
  * Under Windows, the selection of available compilers and configurations
@@ -122,7 +122,7 @@ typedef unsigned __int32  uint32_t;
 #endif
 
 /** \def LIBUSB_API_VERSION
- * \ingroup libusb_misc
+ * \ingroup misc
  * libusb's API version.
  *
  * Since version 1.0.13, to help with feature detection, libusb defines
@@ -141,7 +141,7 @@ typedef unsigned __int32  uint32_t;
  * Internally, LIBUSB_API_VERSION is defined as follows:
  * (libusb major << 24) | (libusb minor << 16) | (16 bit incremental)
  */
-#define LIBUSB_API_VERSION 0x01000105
+#define LIBUSB_API_VERSION 0x01000104
 
 /* The following is kept for compatibility, but will be deprecated in the future */
 #define LIBUSBX_API_VERSION LIBUSB_API_VERSION
@@ -151,7 +151,7 @@ extern "C" {
 #endif
 
 /**
- * \ingroup libusb_misc
+ * \ingroup misc
  * Convert a 16-bit value from host-endian to little-endian format. On
  * little endian systems, this function does nothing. On big endian systems,
  * the bytes are swapped.
@@ -170,7 +170,7 @@ static inline uint16_t libusb_cpu_to_le16(const uint16_t x)
 }
 
 /** \def libusb_le16_to_cpu
- * \ingroup libusb_misc
+ * \ingroup misc
  * Convert a 16-bit value from little-endian to host-endian format. On
  * little endian systems, this function does nothing. On big endian systems,
  * the bytes are swapped.
@@ -181,7 +181,7 @@ static inline uint16_t libusb_cpu_to_le16(const uint16_t x)
 
 /* standard USB stuff */
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * Device and/or Interface Class codes */
 enum libusb_class_code {
 	/** In the context of a \ref libusb_device_descriptor "device descriptor",
@@ -243,7 +243,7 @@ enum libusb_class_code {
 	LIBUSB_CLASS_VENDOR_SPEC = 0xff
 };
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * Descriptor types as defined by the USB specification. */
 enum libusb_descriptor_type {
 	/** Device descriptor. See libusb_device_descriptor. */
@@ -311,7 +311,7 @@ enum libusb_descriptor_type {
 #define LIBUSB_ENDPOINT_ADDRESS_MASK	0x0f    /* in bEndpointAddress */
 #define LIBUSB_ENDPOINT_DIR_MASK		0x80
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * Endpoint direction. Values for bit 7 of the
  * \ref libusb_endpoint_descriptor::bEndpointAddress "endpoint address" scheme.
  */
@@ -325,7 +325,7 @@ enum libusb_endpoint_direction {
 
 #define LIBUSB_TRANSFER_TYPE_MASK			0x03    /* in bmAttributes */
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * Endpoint transfer type. Values for bits 0:1 of the
  * \ref libusb_endpoint_descriptor::bmAttributes "endpoint attributes" field.
  */
@@ -346,7 +346,7 @@ enum libusb_transfer_type {
 	LIBUSB_TRANSFER_TYPE_BULK_STREAM = 4,
 };
 
-/** \ingroup libusb_misc
+/** \ingroup misc
  * Standard requests, as defined in table 9-5 of the USB 3.0 specifications */
 enum libusb_standard_request {
 	/** Request status of the specific recipient */
@@ -394,7 +394,7 @@ enum libusb_standard_request {
 	LIBUSB_SET_ISOCH_DELAY = 0x31,
 };
 
-/** \ingroup libusb_misc
+/** \ingroup misc
  * Request type bits of the
  * \ref libusb_control_setup::bmRequestType "bmRequestType" field in control
  * transfers. */
@@ -412,7 +412,7 @@ enum libusb_request_type {
 	LIBUSB_REQUEST_TYPE_RESERVED = (0x03 << 5)
 };
 
-/** \ingroup libusb_misc
+/** \ingroup misc
  * Recipient bits of the
  * \ref libusb_control_setup::bmRequestType "bmRequestType" field in control
  * transfers. Values 4 through 31 are reserved. */
@@ -432,7 +432,7 @@ enum libusb_request_recipient {
 
 #define LIBUSB_ISO_SYNC_TYPE_MASK		0x0C
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * Synchronization type for isochronous endpoints. Values for bits 2:3 of the
  * \ref libusb_endpoint_descriptor::bmAttributes "bmAttributes" field in
  * libusb_endpoint_descriptor.
@@ -453,7 +453,7 @@ enum libusb_iso_sync_type {
 
 #define LIBUSB_ISO_USAGE_TYPE_MASK 0x30
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * Usage type for isochronous endpoints. Values for bits 4:5 of the
  * \ref libusb_endpoint_descriptor::bmAttributes "bmAttributes" field in
  * libusb_endpoint_descriptor.
@@ -469,7 +469,7 @@ enum libusb_iso_usage_type {
 	LIBUSB_ISO_USAGE_TYPE_IMPLICIT = 2,
 };
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * A structure representing the standard USB device descriptor. This
  * descriptor is documented in section 9.6.1 of the USB 3.0 specification.
  * All multiple-byte fields are represented in host-endian format.
@@ -523,7 +523,7 @@ struct libusb_device_descriptor {
 	uint8_t  bNumConfigurations;
 };
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * A structure representing the standard USB endpoint descriptor. This
  * descriptor is documented in section 9.6.6 of the USB 3.0 specification.
  * All multiple-byte fields are represented in host-endian format.
@@ -573,7 +573,7 @@ struct libusb_endpoint_descriptor {
 	int extra_length;
 };
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * A structure representing the standard USB interface descriptor. This
  * descriptor is documented in section 9.6.5 of the USB 3.0 specification.
  * All multiple-byte fields are represented in host-endian format.
@@ -623,7 +623,7 @@ struct libusb_interface_descriptor {
 	int extra_length;
 };
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * A collection of alternate settings for a particular USB interface.
  */
 struct libusb_interface {
@@ -635,7 +635,7 @@ struct libusb_interface {
 	int num_altsetting;
 };
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * A structure representing the standard USB configuration descriptor. This
  * descriptor is documented in section 9.6.3 of the USB 3.0 specification.
  * All multiple-byte fields are represented in host-endian format.
@@ -682,7 +682,7 @@ struct libusb_config_descriptor {
 	int extra_length;
 };
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * A structure representing the superspeed endpoint companion
  * descriptor. This descriptor is documented in section 9.6.7 of
  * the USB 3.0 specification. All multiple-byte fields are represented in
@@ -700,7 +700,7 @@ struct libusb_ss_endpoint_companion_descriptor {
 
 
 	/** The maximum number of packets the endpoint can send or
-	 *  receive as part of a burst. */
+	 *  recieve as part of a burst. */
 	uint8_t  bMaxBurst;
 
 	/** In bulk EP:	bits 4:0 represents the	maximum	number of
@@ -714,7 +714,7 @@ struct libusb_ss_endpoint_companion_descriptor {
 	uint16_t wBytesPerInterval;
 };
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * A generic representation of a BOS Device Capability descriptor. It is
  * advised to check bDevCapabilityType and call the matching
  * libusb_get_*_descriptor function to get a structure fully matching the type.
@@ -738,7 +738,7 @@ struct libusb_bos_dev_capability_descriptor {
 	;
 };
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * A structure representing the Binary Device Object Store (BOS) descriptor.
  * This descriptor is documented in section 9.6.2 of the USB 3.0 specification.
  * All multiple-byte fields are represented in host-endian format.
@@ -769,7 +769,7 @@ struct libusb_bos_descriptor {
 	;
 };
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * A structure representing the USB 2.0 Extension descriptor
  * This descriptor is documented in section 9.6.2.1 of the USB 3.0 specification.
  * All multiple-byte fields are represented in host-endian format.
@@ -795,7 +795,7 @@ struct libusb_usb_2_0_extension_descriptor {
 	uint32_t  bmAttributes;
 };
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * A structure representing the SuperSpeed USB Device Capability descriptor
  * This descriptor is documented in section 9.6.2.2 of the USB 3.0 specification.
  * All multiple-byte fields are represented in host-endian format.
@@ -837,7 +837,7 @@ struct libusb_ss_usb_device_capability_descriptor {
 	uint16_t bU2DevExitLat;
 };
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * A structure representing the Container ID descriptor.
  * This descriptor is documented in section 9.6.2.3 of the USB 3.0 specification.
  * All multiple-byte fields, except UUIDs, are represented in host-endian format.
@@ -863,7 +863,7 @@ struct libusb_container_id_descriptor {
 	uint8_t  ContainerID[16];
 };
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Setup packet for control transfers. */
 struct libusb_control_setup {
 	/** Request type. Bits 0:4 determine recipient, see
@@ -899,7 +899,7 @@ struct libusb_context;
 struct libusb_device;
 struct libusb_device_handle;
 
-/** \ingroup libusb_lib
+/** \ingroup lib
  * Structure providing the version of the libusb runtime
  */
 struct libusb_version {
@@ -922,7 +922,7 @@ struct libusb_version {
 	const char* describe;
 };
 
-/** \ingroup libusb_lib
+/** \ingroup lib
  * Structure representing a libusb session. The concept of individual libusb
  * sessions allows for your program to use two libraries (or dynamically
  * load two modules) which both independently use libusb. This will prevent
@@ -937,11 +937,11 @@ struct libusb_version {
  * every function call where a context is required. The default context
  * will be used.
  *
- * For more information, see \ref libusb_contexts.
+ * For more information, see \ref contexts.
  */
 typedef struct libusb_context libusb_context;
 
-/** \ingroup libusb_dev
+/** \ingroup dev
  * Structure representing a USB device detected on the system. This is an
  * opaque type for which you are only ever provided with a pointer, usually
  * originating from libusb_get_device_list().
@@ -959,7 +959,7 @@ typedef struct libusb_context libusb_context;
 typedef struct libusb_device libusb_device;
 
 
-/** \ingroup libusb_dev
+/** \ingroup dev
  * Structure representing a handle on a USB device. This is an opaque type for
  * which you are only ever provided with a pointer, usually originating from
  * libusb_open().
@@ -969,7 +969,7 @@ typedef struct libusb_device libusb_device;
  */
 typedef struct libusb_device_handle libusb_device_handle;
 
-/** \ingroup libusb_dev
+/** \ingroup dev
  * Speed codes. Indicates the speed at which the device is operating.
  */
 enum libusb_speed {
@@ -989,7 +989,7 @@ enum libusb_speed {
 	LIBUSB_SPEED_SUPER = 4,
 };
 
-/** \ingroup libusb_dev
+/** \ingroup dev
  * Supported speeds (wSpeedSupported) bitfield. Indicates what
  * speeds the device supports.
  */
@@ -1007,7 +1007,7 @@ enum libusb_supported_speed {
 	LIBUSB_SUPER_SPEED_OPERATION = 8,
 };
 
-/** \ingroup libusb_dev
+/** \ingroup dev
  * Masks for the bits of the
  * \ref libusb_usb_2_0_extension_descriptor::bmAttributes "bmAttributes" field
  * of the USB 2.0 Extension descriptor.
@@ -1017,7 +1017,7 @@ enum libusb_usb_2_0_extension_attributes {
 	LIBUSB_BM_LPM_SUPPORT = 2,
 };
 
-/** \ingroup libusb_dev
+/** \ingroup dev
  * Masks for the bits of the
  * \ref libusb_ss_usb_device_capability_descriptor::bmAttributes "bmAttributes" field
  * field of the SuperSpeed USB Device Capability descriptor.
@@ -1027,7 +1027,7 @@ enum libusb_ss_usb_device_capability_attributes {
 	LIBUSB_BM_LTM_SUPPORT = 2,
 };
 
-/** \ingroup libusb_dev
+/** \ingroup dev
  * USB capability types
  */
 enum libusb_bos_type {
@@ -1044,7 +1044,7 @@ enum libusb_bos_type {
 	LIBUSB_BT_CONTAINER_ID				= 4,
 };
 
-/** \ingroup libusb_misc
+/** \ingroup misc
  * Error codes. Most libusb functions return 0 on success or one of these
  * codes on failure.
  * You can call libusb_error_name() to retrieve a string representation of an
@@ -1101,7 +1101,7 @@ enum libusb_error {
 /* Total number of error codes in enum libusb_error */
 #define LIBUSB_ERROR_COUNT 14
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Transfer status codes */
 enum libusb_transfer_status {
 	/** Transfer completed without error. Note that this does not indicate
@@ -1131,7 +1131,7 @@ enum libusb_transfer_status {
 	   when adding new status codes here. */
 };
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * libusb_transfer.flags values */
 enum libusb_transfer_flags {
 	/** Report short frames as errors */
@@ -1172,7 +1172,7 @@ enum libusb_transfer_flags {
 	LIBUSB_TRANSFER_ADD_ZERO_PACKET = 1 << 3,
 };
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Isochronous packet descriptor. */
 struct libusb_iso_packet_descriptor {
 	/** Length of data to request in this packet */
@@ -1187,18 +1187,18 @@ struct libusb_iso_packet_descriptor {
 
 struct libusb_transfer;
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Asynchronous transfer callback function type. When submitting asynchronous
  * transfers, you pass a pointer to a callback function of this type via the
  * \ref libusb_transfer::callback "callback" member of the libusb_transfer
  * structure. libusb will call this function later, when the transfer has
- * completed or failed. See \ref libusb_asyncio for more information.
+ * completed or failed. See \ref asyncio for more information.
  * \param transfer The libusb_transfer struct the callback function is being
  * notified about.
  */
 typedef void (LIBUSB_CALL *libusb_transfer_cb_fn)(struct libusb_transfer *transfer);
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * The generic USB transfer structure. The user populates this structure and
  * then submits it in order to request a transfer. After the transfer has
  * completed, the library populates the transfer with the results and passes
@@ -1262,7 +1262,7 @@ struct libusb_transfer {
 	;
 };
 
-/** \ingroup libusb_misc
+/** \ingroup misc
  * Capabilities supported by an instance of libusb on the current running
  * platform. Test if the loaded library supports a given capability by calling
  * \ref libusb_has_capability().
@@ -1282,7 +1282,7 @@ enum libusb_capability {
 	LIBUSB_CAP_SUPPORTS_DETACH_KERNEL_DRIVER = 0x0101
 };
 
-/** \ingroup libusb_lib
+/** \ingroup lib
  *  Log message levels.
  *  - LIBUSB_LOG_LEVEL_NONE (0)    : no messages ever printed by the library (default)
  *  - LIBUSB_LOG_LEVEL_ERROR (1)   : error messages are printed to stderr
@@ -1334,7 +1334,7 @@ int LIBUSB_CALL libusb_get_ss_endpoint_companion_descriptor(
 	struct libusb_ss_endpoint_companion_descriptor **ep_comp);
 void LIBUSB_CALL libusb_free_ss_endpoint_companion_descriptor(
 	struct libusb_ss_endpoint_companion_descriptor *ep_comp);
-int LIBUSB_CALL libusb_get_bos_descriptor(libusb_device_handle *dev_handle,
+int LIBUSB_CALL libusb_get_bos_descriptor(libusb_device_handle *handle,
 	struct libusb_bos_descriptor **bos);
 void LIBUSB_CALL libusb_free_bos_descriptor(struct libusb_bos_descriptor *bos);
 int LIBUSB_CALL libusb_get_usb_2_0_extension_descriptor(
@@ -1367,43 +1367,43 @@ int LIBUSB_CALL libusb_get_max_packet_size(libusb_device *dev,
 int LIBUSB_CALL libusb_get_max_iso_packet_size(libusb_device *dev,
 	unsigned char endpoint);
 
-int LIBUSB_CALL libusb_open(libusb_device *dev, libusb_device_handle **dev_handle);
+int LIBUSB_CALL libusb_open(libusb_device *dev, libusb_device_handle **handle);
 void LIBUSB_CALL libusb_close(libusb_device_handle *dev_handle);
 libusb_device * LIBUSB_CALL libusb_get_device(libusb_device_handle *dev_handle);
 
-int LIBUSB_CALL libusb_set_configuration(libusb_device_handle *dev_handle,
+int LIBUSB_CALL libusb_set_configuration(libusb_device_handle *dev,
 	int configuration);
-int LIBUSB_CALL libusb_claim_interface(libusb_device_handle *dev_handle,
+int LIBUSB_CALL libusb_claim_interface(libusb_device_handle *dev,
 	int interface_number);
-int LIBUSB_CALL libusb_release_interface(libusb_device_handle *dev_handle,
+int LIBUSB_CALL libusb_release_interface(libusb_device_handle *dev,
 	int interface_number);
 
 libusb_device_handle * LIBUSB_CALL libusb_open_device_with_vid_pid(
 	libusb_context *ctx, uint16_t vendor_id, uint16_t product_id);
 
-int LIBUSB_CALL libusb_set_interface_alt_setting(libusb_device_handle *dev_handle,
+int LIBUSB_CALL libusb_set_interface_alt_setting(libusb_device_handle *dev,
 	int interface_number, int alternate_setting);
-int LIBUSB_CALL libusb_clear_halt(libusb_device_handle *dev_handle,
+int LIBUSB_CALL libusb_clear_halt(libusb_device_handle *dev,
 	unsigned char endpoint);
-int LIBUSB_CALL libusb_reset_device(libusb_device_handle *dev_handle);
+int LIBUSB_CALL libusb_reset_device(libusb_device_handle *dev);
 
-int LIBUSB_CALL libusb_alloc_streams(libusb_device_handle *dev_handle,
+int LIBUSB_CALL libusb_alloc_streams(libusb_device_handle *dev,
 	uint32_t num_streams, unsigned char *endpoints, int num_endpoints);
-int LIBUSB_CALL libusb_free_streams(libusb_device_handle *dev_handle,
+int LIBUSB_CALL libusb_free_streams(libusb_device_handle *dev,
 	unsigned char *endpoints, int num_endpoints);
 
-int LIBUSB_CALL libusb_kernel_driver_active(libusb_device_handle *dev_handle,
+int LIBUSB_CALL libusb_kernel_driver_active(libusb_device_handle *dev,
 	int interface_number);
-int LIBUSB_CALL libusb_detach_kernel_driver(libusb_device_handle *dev_handle,
+int LIBUSB_CALL libusb_detach_kernel_driver(libusb_device_handle *dev,
 	int interface_number);
-int LIBUSB_CALL libusb_attach_kernel_driver(libusb_device_handle *dev_handle,
+int LIBUSB_CALL libusb_attach_kernel_driver(libusb_device_handle *dev,
 	int interface_number);
 int LIBUSB_CALL libusb_set_auto_detach_kernel_driver(
-	libusb_device_handle *dev_handle, int enable);
+	libusb_device_handle *dev, int enable);
 
 /* async I/O */
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Get the data section of a control transfer. This convenience function is here
  * to remind you that the data does not start until 8 bytes into the actual
  * buffer, as the setup packet comes first.
@@ -1421,7 +1421,7 @@ static inline unsigned char *libusb_control_transfer_get_data(
 	return transfer->buffer + LIBUSB_CONTROL_SETUP_SIZE;
 }
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Get the control setup packet of a control transfer. This convenience
  * function is here to remind you that the control setup occupies the first
  * 8 bytes of the transfer data buffer.
@@ -1439,7 +1439,7 @@ static inline struct libusb_control_setup *libusb_control_transfer_get_setup(
 	return (struct libusb_control_setup *)(void *) transfer->buffer;
 }
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Helper function to populate the setup packet (first 8 bytes of the data
  * buffer) for a control transfer. The wIndex, wValue and wLength values should
  * be given in host-endian byte order.
@@ -1483,7 +1483,7 @@ void LIBUSB_CALL libusb_transfer_set_stream_id(
 uint32_t LIBUSB_CALL libusb_transfer_get_stream_id(
 	struct libusb_transfer *transfer);
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Helper function to populate the required \ref libusb_transfer fields
  * for a control transfer.
  *
@@ -1529,7 +1529,7 @@ static inline void libusb_fill_control_transfer(
 	transfer->callback = callback;
 }
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Helper function to populate the required \ref libusb_transfer fields
  * for a bulk transfer.
  *
@@ -1557,7 +1557,7 @@ static inline void libusb_fill_bulk_transfer(struct libusb_transfer *transfer,
 	transfer->callback = callback;
 }
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Helper function to populate the required \ref libusb_transfer fields
  * for a bulk transfer using bulk streams.
  *
@@ -1585,7 +1585,7 @@ static inline void libusb_fill_bulk_stream_transfer(
 	libusb_transfer_set_stream_id(transfer, stream_id);
 }
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Helper function to populate the required \ref libusb_transfer fields
  * for an interrupt transfer.
  *
@@ -1613,7 +1613,7 @@ static inline void libusb_fill_interrupt_transfer(
 	transfer->callback = callback;
 }
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Helper function to populate the required \ref libusb_transfer fields
  * for an isochronous transfer.
  *
@@ -1643,7 +1643,7 @@ static inline void libusb_fill_iso_transfer(struct libusb_transfer *transfer,
 	transfer->callback = callback;
 }
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Convenience function to set the length of all packets in an isochronous
  * transfer, based on the num_iso_packets field in the transfer structure.
  *
@@ -1659,7 +1659,7 @@ static inline void libusb_set_iso_packet_lengths(
 		transfer->iso_packet_desc[i].length = length;
 }
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Convenience function to locate the position of an isochronous packet
  * within the buffer of an isochronous transfer.
  *
@@ -1698,7 +1698,7 @@ static inline unsigned char *libusb_get_iso_packet_buffer(
 	return transfer->buffer + offset;
 }
 
-/** \ingroup libusb_asyncio
+/** \ingroup asyncio
  * Convenience function to locate the position of an isochronous packet
  * within the buffer of an isochronous transfer, for transfers where each
  * packet is of identical size.
@@ -1749,33 +1749,33 @@ int LIBUSB_CALL libusb_interrupt_transfer(libusb_device_handle *dev_handle,
 	unsigned char endpoint, unsigned char *data, int length,
 	int *actual_length, unsigned int timeout);
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * Retrieve a descriptor from the default control pipe.
  * This is a convenience function which formulates the appropriate control
  * message to retrieve the descriptor.
  *
- * \param dev_handle a device handle
+ * \param dev a device handle
  * \param desc_type the descriptor type, see \ref libusb_descriptor_type
  * \param desc_index the index of the descriptor to retrieve
  * \param data output buffer for descriptor
  * \param length size of data buffer
  * \returns number of bytes returned in data, or LIBUSB_ERROR code on failure
  */
-static inline int libusb_get_descriptor(libusb_device_handle *dev_handle,
+static inline int libusb_get_descriptor(libusb_device_handle *dev,
 	uint8_t desc_type, uint8_t desc_index, unsigned char *data, int length)
 {
-	return libusb_control_transfer(dev_handle, LIBUSB_ENDPOINT_IN,
+	return libusb_control_transfer(dev, LIBUSB_ENDPOINT_IN,
 		LIBUSB_REQUEST_GET_DESCRIPTOR, (uint16_t) ((desc_type << 8) | desc_index),
 		0, data, (uint16_t) length, 1000);
 }
 
-/** \ingroup libusb_desc
+/** \ingroup desc
  * Retrieve a descriptor from a device.
  * This is a convenience function which formulates the appropriate control
  * message to retrieve the descriptor. The string returned is Unicode, as
  * detailed in the USB specifications.
  *
- * \param dev_handle a device handle
+ * \param dev a device handle
  * \param desc_index the index of the descriptor to retrieve
  * \param langid the language ID for the string descriptor
  * \param data output buffer for descriptor
@@ -1783,15 +1783,15 @@ static inline int libusb_get_descriptor(libusb_device_handle *dev_handle,
  * \returns number of bytes returned in data, or LIBUSB_ERROR code on failure
  * \see libusb_get_string_descriptor_ascii()
  */
-static inline int libusb_get_string_descriptor(libusb_device_handle *dev_handle,
+static inline int libusb_get_string_descriptor(libusb_device_handle *dev,
 	uint8_t desc_index, uint16_t langid, unsigned char *data, int length)
 {
-	return libusb_control_transfer(dev_handle, LIBUSB_ENDPOINT_IN,
+	return libusb_control_transfer(dev, LIBUSB_ENDPOINT_IN,
 		LIBUSB_REQUEST_GET_DESCRIPTOR, (uint16_t)((LIBUSB_DT_STRING << 8) | desc_index),
 		langid, data, (uint16_t) length, 1000);
 }
 
-int LIBUSB_CALL libusb_get_string_descriptor_ascii(libusb_device_handle *dev_handle,
+int LIBUSB_CALL libusb_get_string_descriptor_ascii(libusb_device_handle *dev,
 	uint8_t desc_index, unsigned char *data, int length);
 
 /* polling and timeouts */
@@ -1801,7 +1801,6 @@ void LIBUSB_CALL libusb_lock_events(libusb_context *ctx);
 void LIBUSB_CALL libusb_unlock_events(libusb_context *ctx);
 int LIBUSB_CALL libusb_event_handling_ok(libusb_context *ctx);
 int LIBUSB_CALL libusb_event_handler_active(libusb_context *ctx);
-void LIBUSB_CALL libusb_interrupt_event_handler(libusb_context *ctx);
 void LIBUSB_CALL libusb_lock_event_waiters(libusb_context *ctx);
 void LIBUSB_CALL libusb_unlock_event_waiters(libusb_context *ctx);
 int LIBUSB_CALL libusb_wait_for_event(libusb_context *ctx, struct timeval *tv);
@@ -1818,7 +1817,7 @@ int LIBUSB_CALL libusb_pollfds_handle_timeouts(libusb_context *ctx);
 int LIBUSB_CALL libusb_get_next_timeout(libusb_context *ctx,
 	struct timeval *tv);
 
-/** \ingroup libusb_poll
+/** \ingroup poll
  * File descriptor for polling
  */
 struct libusb_pollfd {
@@ -1832,7 +1831,7 @@ struct libusb_pollfd {
 	short events;
 };
 
-/** \ingroup libusb_poll
+/** \ingroup poll
  * Callback function, invoked when a new file descriptor should be added
  * to the set of file descriptors monitored for events.
  * \param fd the new file descriptor
@@ -1845,7 +1844,7 @@ struct libusb_pollfd {
 typedef void (LIBUSB_CALL *libusb_pollfd_added_cb)(int fd, short events,
 	void *user_data);
 
-/** \ingroup libusb_poll
+/** \ingroup poll
  * Callback function, invoked when a file descriptor should be removed from
  * the set of file descriptors being monitored for events. After returning
  * from this callback, do not use that file descriptor again.
@@ -1863,7 +1862,7 @@ void LIBUSB_CALL libusb_set_pollfd_notifiers(libusb_context *ctx,
 	libusb_pollfd_added_cb added_cb, libusb_pollfd_removed_cb removed_cb,
 	void *user_data);
 
-/** \ingroup libusb_hotplug
+/** \ingroup hotplug
  * Callback handle.
  *
  * Callbacks handles are generated by libusb_hotplug_register_callback()
@@ -1873,11 +1872,11 @@ void LIBUSB_CALL libusb_set_pollfd_notifiers(libusb_context *ctx,
  *
  * Since version 1.0.16, \ref LIBUSB_API_VERSION >= 0x01000102
  *
- * For more information, see \ref libusb_hotplug.
+ * For more information, see \ref hotplug.
  */
 typedef int libusb_hotplug_callback_handle;
 
-/** \ingroup libusb_hotplug
+/** \ingroup hotplug
  *
  * Since version 1.0.16, \ref LIBUSB_API_VERSION >= 0x01000102
  *
@@ -1890,7 +1889,7 @@ typedef enum {
 	LIBUSB_HOTPLUG_ENUMERATE = 1<<0,
 } libusb_hotplug_flag;
 
-/** \ingroup libusb_hotplug
+/** \ingroup hotplug
  *
  * Since version 1.0.16, \ref LIBUSB_API_VERSION >= 0x01000102
  *
@@ -1905,11 +1904,11 @@ typedef enum {
 	LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT    = 0x02,
 } libusb_hotplug_event;
 
-/** \ingroup libusb_hotplug
+/** \ingroup hotplug
  * Wildcard matching for hotplug events */
 #define LIBUSB_HOTPLUG_MATCH_ANY -1
 
-/** \ingroup libusb_hotplug
+/** \ingroup hotplug
  * Hotplug callback function type. When requesting hotplug event notifications,
  * you pass a pointer to a callback function of this type.
  *
@@ -1917,7 +1916,7 @@ typedef enum {
  * recommended the callback do minimal processing before returning.
  *
  * libusb will call this function later, when a matching event had happened on
- * a matching device. See \ref libusb_hotplug for more information.
+ * a matching device. See \ref hotplug for more information.
  *
  * It is safe to call either libusb_hotplug_register_callback() or
  * libusb_hotplug_deregister_callback() from within a callback function.
@@ -1936,7 +1935,7 @@ typedef int (LIBUSB_CALL *libusb_hotplug_callback_fn)(libusb_context *ctx,
 						libusb_hotplug_event event,
 						void *user_data);
 
-/** \ingroup libusb_hotplug
+/** \ingroup hotplug
  * Register a hotplug callback function
  *
  * Register a callback with the libusb_context. The callback will fire
@@ -1967,7 +1966,7 @@ typedef int (LIBUSB_CALL *libusb_hotplug_callback_fn)(libusb_context *ctx,
  * \param[in] dev_class the device class to match or \ref LIBUSB_HOTPLUG_MATCH_ANY
  * \param[in] cb_fn the function to be invoked on a matching event/device
  * \param[in] user_data user data to pass to the callback function
- * \param[out] callback_handle pointer to store the handle of the allocated callback (can be NULL)
+ * \param[out] handle pointer to store the handle of the allocated callback (can be NULL)
  * \returns LIBUSB_SUCCESS on success LIBUSB_ERROR code on failure
  */
 int LIBUSB_CALL libusb_hotplug_register_callback(libusb_context *ctx,
@@ -1977,9 +1976,9 @@ int LIBUSB_CALL libusb_hotplug_register_callback(libusb_context *ctx,
 						int dev_class,
 						libusb_hotplug_callback_fn cb_fn,
 						void *user_data,
-						libusb_hotplug_callback_handle *callback_handle);
+						libusb_hotplug_callback_handle *handle);
 
-/** \ingroup libusb_hotplug
+/** \ingroup hotplug
  * Deregisters a hotplug callback.
  *
  * Deregister a callback from a libusb_context. This function is safe to call from within
@@ -1988,10 +1987,10 @@ int LIBUSB_CALL libusb_hotplug_register_callback(libusb_context *ctx,
  * Since version 1.0.16, \ref LIBUSB_API_VERSION >= 0x01000102
  *
  * \param[in] ctx context this callback is registered with
- * \param[in] callback_handle the handle of the callback to deregister
+ * \param[in] handle the handle of the callback to deregister
  */
 void LIBUSB_CALL libusb_hotplug_deregister_callback(libusb_context *ctx,
-						libusb_hotplug_callback_handle callback_handle);
+						libusb_hotplug_callback_handle handle);
 
 #ifdef __cplusplus
 }

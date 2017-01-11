@@ -108,6 +108,8 @@ bool Device_RIYA::OpenDevice(int cardNum)
 
 	frameNum[cardNum] = 0;
 
+	stopped[cardNum] = false;
+
 	return true;
 }
 
@@ -115,6 +117,9 @@ bool Device_RIYA::OpenDevice(int cardNum)
 bool Device_RIYA::OutputFrame(int cardNum, int scanRate, int bufferSize, uint8_t* bufferAddress)
 {
 	if (!ready) return false;
+
+	if (stopped[cardNum])
+		OpenDevice(cardNum);
 	
 	pointPeriod = (UINT)(1.0 / (double)scanRate * 33333333.3);
 
@@ -138,6 +143,7 @@ bool Device_RIYA::Stop(int cardNum)
 	if (!ready) return false;
 
 	StopRiyaDevice((uint8_t)cardNum);
+	stopped[cardNum] = true;
 
 	return true;
 }
