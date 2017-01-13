@@ -1,7 +1,7 @@
 //converts newly imported ilda in ild_list to sequencer object
 if (seqcontrol.selectedlayer = -1) or (!ds_list_empty(seqcontrol.somaster_list)) or (ds_list_empty(seqcontrol.layer_list))
 {
-    show_message_async("No timeline position marked, select a position by clicking on a layer first");
+    show_message_new("No timeline position marked, select a position by clicking on a layer first");
     exit;
 }
     

@@ -55,14 +55,14 @@ if (instance_exists(oDropDown))
     exit;
     
 if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
-    {
-    controller.tooltip = "Changes the INTENSITY / blanking color offset in points. Right click to set custom amount.#Hold Ctrl and click to change all offsets at once.#Try setting this to -3 or so if you see trailing on tips of lines.";
+{
+    controller.tooltip = "Changes the INTENSITY / blanking offset in points. Right click to set custom amount.#Hold Ctrl and click to change all offsets at once.#Try setting this to around -3 or so if you see trailing on edges of lines.";
     
     if ((mouse_x - bbox_left) &gt; 24)
         image_index = 1;
     else
         image_index = 2;
-    } 
+} 
 else
     image_index = 0;
 </string>
@@ -172,7 +172,7 @@ save_profile();
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x+60,y+3,"Blanking shift: "+string(controller.opt_blankshift));
+draw_text(x+60,y+3,"Intensity shift: "+string(controller.opt_blankshift));
 draw_set_color(c_white);
 </string>
           </argument>

@@ -8,7 +8,7 @@ if !string_length(file_loc)
     
 if (!verify_numexports())
 {   
-    show_message_async("You have unfortunately used up all 10 free exports per day. Try again tomorrow or buy LasershowGen Full");
+    show_message_new("You have unfortunately used up all 10 free exports per day. Try again tomorrow or buy LasershowGen Full");
     exit;
 }
 

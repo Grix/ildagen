@@ -69,7 +69,7 @@ if (controller.laseron)
 {
     if (!ds_exists(controller.dac,ds_type_list))
     {
-        show_message_async("Error, DAC data missing");
+        show_message_new("Error, DAC data missing");
         controller.laseron = false;
         controller.dac = -1;
     }

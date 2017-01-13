@@ -1,5 +1,5 @@
 for (j = global.loading_current; j < global.loading_end;j++)
-    {   
+{   
     el_list = ds_list_find_value(frame_list,j);
     
     framepost = j;
@@ -41,7 +41,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
     buffer_write(ilda_buffer,buffer_u8,0); //0
     
     if (!ds_list_size(el_list)) 
-        {
+    {
         optimize_middle_export();
         //update maxpoints
         maxpoints = maxpointswanted;
@@ -51,10 +51,10 @@ for (j = global.loading_current; j < global.loading_end;j++)
         buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
         buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
         continue;
-        }
+    }
     
     if (prepare_output() == 0)
-        {
+    {
         optimize_middle_export();
         //update maxpoints
         maxpoints = maxpointswanted;
@@ -64,7 +64,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
         buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
         buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
         continue;
-        }
+    }
     
     make_frame();
     export_framelist_to_buffer();
@@ -78,13 +78,13 @@ for (j = global.loading_current; j < global.loading_end;j++)
     maxpoints = 0;
     
     if (get_timer()-global.loadingtimeprev >= 100000)
-        {
+    {
         j++;
         global.loading_current = j;
         global.loadingtimeprev = get_timer();
         return 0;
-        }
     }
+}
     
 
 //null header
@@ -127,13 +127,13 @@ filesaver_clearArray();
 
 error = 0;
 for (i = 0;i < buffersize;i++)
-    {
+{
     if (!filesaver_toArray(i,buffer_peek(ilda_buffer,i,buffer_u8)))
-        {
-        if (!error) show_message_async("Error filling file with data, may not save correctly!");
+    {
+        if (!error) show_message_new("Error filling file with data, may not save correctly!");
         error = 1;
-        }
     }
+}
     
 filesaver_save(file_loc);
     

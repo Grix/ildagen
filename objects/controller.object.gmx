@@ -950,7 +950,7 @@ if (keyboard_check_pressed(vk_tab))
 {
     if (os_browser != browser_not_a_browser)
     {
-        show_message_async("Sorry, the timeline is not available in the web version yet");
+        show_message_new("Sorry, the timeline is not available in the web version yet");
         exit;
     }
     ilda_cancel();
@@ -1023,7 +1023,7 @@ if (laseron)
 {
     if (!ds_exists(dac,ds_type_list))
     {
-        show_message_async("Error, DAC data missing");
+        show_message_new("Error, DAC data missing");
         laseron = false;
         dac = -1;
     }
@@ -1411,7 +1411,7 @@ if (new_id == getint)
             case "updatefound":
             {
                 file = http_get_file("https://github.com/Grix/ildagen/raw/master/LasershowGen-"+versionnew+"-Installer.exe","temp/update.exe");
-                show_message_async("Download started, program will exit and installation start shortly..");
+                show_message_new("Download started, program will exit and installation start shortly..");
                 break;
             }    
             case "maxdist":
@@ -2018,7 +2018,7 @@ else if (new_id == getstr)
             case ("dacname"):
             {
                 if (dacwrapper_setname(dac[| 0],ds_map_find_value(async_load, "result")) == 0)
-                    show_message_async("Error: Could not set name. (Only Helios DACs support naming)");
+                    show_message_new("Error: Could not set name. (Only Helios DACs support naming)");
                 else
                 {
                     dac[| 1] = ds_map_find_value(async_load, "result");
@@ -2062,14 +2062,14 @@ if (ds_map_find_value(async_load, "id") == updateget)
     if ds_map_find_value(async_load, "status") == 0
    {
        versionnew = ds_map_find_value(async_load, "result");
-       show_debug_message("Checking version")
+       log("Checking version")
        if (versionnew != version)
         {
             ilda_dialog_yesno("updatefound","New version available: "+versionnew+"#"+"Would you like to download and install the update?##"+releasenotes+"##");
         }
        else if (update_verbose == 1)
         {
-            show_message_async("Current version is up to date.");
+            show_message_new("Current version is up to date.");
         }
    }
 }
@@ -2089,7 +2089,7 @@ else if (ds_map_find_value(async_load, "id") == file)
         {
             if (alarm[4] == -1)
             {
-                show_message_async("Launching installer");
+                show_message_new("Launching installer");
                 url_open_new(FStemp+"update.exe")
                 alarm[4] = 60;
             }
@@ -2098,7 +2098,7 @@ else if (ds_map_find_value(async_load, "id") == file)
         {
             if (updatereceived == 0)
             {
-                show_message_async("Failed to automatically download update. Opening download website..");
+                show_message_new("Failed to automatically download update. Opening download website..");
                 url_open_new("http://bitlasers.com/opencart/index.php?route=product/product&amp;path=67&amp;product_id=82");
                 updatereceived = 1;
             }

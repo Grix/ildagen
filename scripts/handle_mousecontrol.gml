@@ -712,6 +712,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                     selectedlayer = i;
                     selectedlayer_list = layer;
                     selectedx = floatingcursorx;
+                    settingscontrol.projectortoselect = i;
                     ds_list_clear(somaster_list);
                     dropdown_layer();
                 }

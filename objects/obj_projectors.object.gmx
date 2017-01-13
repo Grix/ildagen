@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>list_width = 250;
-list_height = 100;
+list_height = 150;
 scrollx = 0;
 scrollw = 32;
 scrollh = 32;
@@ -248,10 +248,10 @@ if (!surface_exists(surf_projectorlist))
                 if (t_thisdaclist[| 2] != -1)
                 {
                     var t_profilemap = ds_list_find_value(controller.profile_list, t_thisdaclist[| 2]);
-                    t_text = "-   " + t_thisdaclist[| 1] + "   [Profile: "+t_profilemap[? "name"] +"]";
+                    t_text = "-   " + t_thisdaclist[| 1] + "  [Profile: "+t_profilemap[? "name"] +"]";
                 }
                 else
-                    t_text = "-   " + t_thisdaclist[| 1];
+                    t_text = "-   " + t_thisdaclist[| 1] + "  [Default Profile]";
                     
                 draw_text(20, t_ypos+itemh/2, t_text);
                 t_ypos += itemh;
@@ -259,9 +259,7 @@ if (!surface_exists(surf_projectorlist))
             }
             if (ds_list_size(t_daclist) == 0)
             {
-                draw_set_colour(c_maroon);
                 draw_text(20, t_ypos+itemh/2, "-   [Default DAC]");
-                draw_set_colour(c_black);
                 t_ypos += itemh;
                 draw_line(0, t_ypos, list_width, t_ypos);
             }

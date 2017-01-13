@@ -1,7 +1,7 @@
 //sends editor frames to a timeline object
 if (os_browser != browser_not_a_browser)
 {
-    show_message_async("Sorry, the timeline is not available in the web version");
+    show_message_new("Sorry, the timeline is not available in the web version");
     exit;
 }
 
@@ -10,7 +10,7 @@ if (!verify_serial())
 
 if (seqcontrol.selectedlayer = -1) or (ds_list_empty(seqcontrol.layer_list))
 {
-    show_message_async("No timeline position marked, enter timeline mode and select a position by clicking on a layer first.");
+    show_message_new("No timeline position marked, enter timeline mode and select a position by clicking on a layer first.");
     exit;
 }
 

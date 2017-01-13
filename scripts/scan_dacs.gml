@@ -2,7 +2,7 @@
 
 if (os_browser != browser_not_a_browser)
 {
-    show_message_async("Sorry, DAC connectivity is not available in the web version");
+    show_message_new("Sorry, DAC connectivity is not available in the web version");
     exit;
 }
 
@@ -44,8 +44,9 @@ for (i = 0; i < numofdacs; i++)
     ds_list_add(controller.dac_list,newdac);
 }
 
+projectorlist_update();
+
 if (ds_list_size(controller.dac_list) == 1)
     dac_select(0);
 
-if (room == rm_options)
-    surface_free(obj_dacs.surf_daclist);
+

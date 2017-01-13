@@ -94,7 +94,7 @@ buffer_resize(save_buffer,buffer_tell(save_buffer));
 
 //export
 buffer_save(save_buffer,file_loc);
-//show_message_async("LasershowGen project saved to "+string(file_loc));
+//show_message_new("LasershowGen project saved to "+string(file_loc));
 
 for (i = 0; i < 1000;i++){}
 buffer_delete(save_buffer);

@@ -3,7 +3,7 @@ if (os_browser != browser_not_a_browser)
     
 if (os_browser != browser_not_a_browser)
 {
-    show_message_async("Sorry, this feature is not available in the web version yet");
+    show_message_new("Sorry, this feature is not available in the web version yet");
     exit;
 }
 

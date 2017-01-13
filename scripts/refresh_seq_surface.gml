@@ -56,7 +56,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
         buffer_ver = buffer_read(el_buffer,buffer_u8);
         if (buffer_ver != 52)
         {
-            show_message_async("Error: Unexpected version id reading buffer in refresh_seq_surface: "+string(buffer_ver)+". Things might get ugly. Contact developer.");
+            show_message_new("Error: Unexpected version id reading buffer in refresh_seq_surface: "+string(buffer_ver)+". Things might get ugly. Contact developer.");
             surface_reset_target();
             exit;
         }

@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>list_width = 200;
-list_height = 100;
+list_height = 150;
 scrollx = 0;
 scrollw = 32;
 scrollh = 32;

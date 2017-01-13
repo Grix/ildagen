@@ -1,7 +1,7 @@
 //load frames file for sequencer object
 if (selectedlayer == -1) or (!ds_list_empty(somaster_list)) or (ds_list_empty(layer_list))
 {
-    show_message_async("No timeline position marked, select a position first");
+    show_message_new("No timeline position marked, select a position first");
     exit;
 }
     
@@ -20,7 +20,7 @@ buffer_seek(load_buffer,buffer_seek_start,0);
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 0) and (idbyte != 50) and (idbyte != 51) and (idbyte != 52)
 {
-    show_message_async("Unexpected ID byte: "+string(idbyte)+", is this a valid LasershowGen frames file?");
+    show_message_new("Unexpected ID byte: "+string(idbyte)+", is this a valid LasershowGen frames file?");
     exit;
 }
     

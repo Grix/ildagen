@@ -123,6 +123,6 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
 }
 
 if (!splitted)
-    show_message_async("To split an object, select it and move the playback cursor to the desired split position, then try again.");
+    show_message_new("To split an object, select it and move the playback cursor to the desired split position, then try again.");
 else
     ds_list_clear(somaster_list);

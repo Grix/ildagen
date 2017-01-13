@@ -10,7 +10,7 @@ load_buffer = buffer_load(file_loc);
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 103) and (idbyte != 100) and (idbyte != 101) and (idbyte != 102)
 {
-    show_message_async("Unexpected ID byte, is this a valid LasershowGen project file?");
+    show_message_new("Unexpected ID byte, is this a valid LasershowGen project file?");
     exit;
 }
     

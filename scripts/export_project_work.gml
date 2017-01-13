@@ -73,7 +73,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
             buffer_ver = buffer_read(el_buffer,buffer_u8);
             if (buffer_ver != 52)
             {
-                show_message_async("Error: Unexpected idbyte in buffer for export_project_work(). Things might get ugly. Contact developer.");
+                show_message_new("Error: Unexpected idbyte in buffer for export_project_work(). Things might get ugly. Contact developer.");
                 global.loading_exportproject = 0;
                 room_goto(rm_seq);
                 exit;
@@ -252,7 +252,7 @@ buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
 
 //export
 buffer_save(ilda_buffer,file_loc);
-show_message_async("ILDA file (format "+string(controller.exp_format)+") exported to "+string(file_loc));
+show_message_new("ILDA file (format "+string(controller.exp_format)+") exported to "+string(file_loc));
 
 buffer_delete(ilda_buffer);
 

@@ -48,7 +48,7 @@ profile_list
 dac_list
     dac... (default is controller.dac - not index, list itself)
         num (index in dacwrapper)
-        description
+        name
         profile num (-1 if default)
         firmware (-1 if n/a)
         output_buffer

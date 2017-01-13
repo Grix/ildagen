@@ -167,7 +167,7 @@ if (songload)
    
     if (!song) 
     {
-        show_message_async("Failed to load audio: "+FMODErrorStr(FMODGetLastError()));
+        show_message_new("Failed to load audio: "+FMODErrorStr(FMODGetLastError()));
     }
     else
     {

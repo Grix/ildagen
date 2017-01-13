@@ -53,6 +53,28 @@
             <arg>1</arg>
           </args>
         </function>
+        <function>
+          <name>get_color_win</name>
+          <externalName>get_color_win</externalName>
+          <kind>12</kind>
+          <help>get_color_win(default)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>show_message_win</name>
+          <externalName>show_message_win</externalName>
+          <kind>12</kind>
+          <help>show_message_win(message)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
       </functions>
       <constants/>
     </file>

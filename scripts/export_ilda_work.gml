@@ -125,7 +125,7 @@ buffer_resize(ilda_buffer,buffer_tell(ilda_buffer));
 //export
 buffer_save(ilda_buffer,file_loc);
 
-show_message_async("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));
+show_message_new("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));
 buffer_delete(ilda_buffer);
 
 global.loading_exportilda = 0;

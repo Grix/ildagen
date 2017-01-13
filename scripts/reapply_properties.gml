@@ -101,27 +101,27 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
         if (colorfunc_string_1 == "") or is_undefined(colorfunc_string_1) 
         {
             if (colormode2)
-                show_message_async("Please write a function for HUE");
+                show_message_new("Please write a function for HUE");
             else
-                show_message_async("Please write a function for RED");
+                show_message_new("Please write a function for RED");
             frame = framepre;
             return 0;
         }
         if (colorfunc_string_2 == "") or is_undefined(colorfunc_string_2) 
         {
             if (colormode2)
-                show_message_async("Please write a function for SATURATION");
+                show_message_new("Please write a function for SATURATION");
             else
-                show_message_async("Please write a function for GREEN");
+                show_message_new("Please write a function for GREEN");
             frame = framepre;
             return 0;
         }
         if (colorfunc_string_3 == "") or is_undefined(colorfunc_string_3) 
         {
             if (colormode2)
-                show_message_async("Please write a function for VALUE");
+                show_message_new("Please write a function for VALUE");
             else
-                show_message_async("Please write a function for BLUE");
+                show_message_new("Please write a function for BLUE");
             frame = framepre;
             return 0;
         }
@@ -130,9 +130,9 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
     if (!ML_NoException(parser_cb))
     {
         if (colormode2)
-            show_message_async("Error in function for HUE: "+ML_LastExceptionString(parser_cb));
+            show_message_new("Error in function for HUE: "+ML_LastExceptionString(parser_cb));
         else
-            show_message_async("Error in function for RED: "+ML_LastExceptionString(parser_cb));
+            show_message_new("Error in function for RED: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_1);
         ML_ClearExceptions(parser_cb);
         if (placing == "func")
@@ -147,9 +147,9 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
     if (!ML_NoException(parser_cb))
     {
         if (colormode2)
-            show_message_async("Error in function for SATURATION: "+ML_LastExceptionString(parser_cb));
+            show_message_new("Error in function for SATURATION: "+ML_LastExceptionString(parser_cb));
         else
-            show_message_async("Error in function for GREEN: "+ML_LastExceptionString(parser_cb));
+            show_message_new("Error in function for GREEN: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_2);
         ML_CompileCleanup(compiled_1);
         ML_ClearExceptions(parser_cb);
@@ -165,9 +165,9 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
     if (!ML_NoException(parser_cb))
     {
         if (colormode2)
-            show_message_async("Error in function for VALUE: "+ML_LastExceptionString(parser_cb));
+            show_message_new("Error in function for VALUE: "+ML_LastExceptionString(parser_cb));
         else
-            show_message_async("Error in function for BLUE: "+ML_LastExceptionString(parser_cb));
+            show_message_new("Error in function for BLUE: "+ML_LastExceptionString(parser_cb));
         ML_CompileCleanup(compiled_3);
         ML_CompileCleanup(compiled_2);
         ML_CompileCleanup(compiled_1);
@@ -186,7 +186,7 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
     {
         if (blankfunc_string == "") or is_undefined(blankfunc_string) 
         {
-            show_message_async("Please write a function for BLANKING");
+            show_message_new("Please write a function for BLANKING");
             frame = framepre;
             return 0;
         }
@@ -194,7 +194,7 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
         compiled_en = ML_Compile(parser_cb,blankfunc_string);
         if (!ML_NoException(parser_cb))
         {
-            show_message_async("Error in function for BLANKING: "+ML_LastExceptionString(parser_cb));
+            show_message_new("Error in function for BLANKING: "+ML_LastExceptionString(parser_cb));
             ML_CompileCleanup(compiled_en);
             ML_ClearExceptions(parser_cb);
             if (colormode == "func")

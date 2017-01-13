@@ -533,7 +533,7 @@ if (controller.exp_optimize)
     {
         if (controller.opt_warning_flag != 1)
         {
-            //show_message_async("Failed to optimize the file based on the selected scanning speed and FPS. Please reduce the complexity of frame [ "+string(j)+" ] or use the exported file at your own risk");
+            //show_message_new("Failed to optimize the file based on the selected scanning speed and FPS. Please reduce the complexity of frame [ "+string(j)+" ] or use the exported file at your own risk");
             controller.opt_warning_flag = 1;
         }
         //log("Too many points: "+string(ds_list_size(list_raw)/4));

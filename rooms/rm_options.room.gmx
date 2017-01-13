@@ -52,17 +52,17 @@
   </views>
   <instances>
     <instance objName="obj_comingsoon" x="980" y="168" name="inst_2767496C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_help" x="784" y="652" name="inst_0638FDBE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_help" x="1244" y="520" name="inst_0638FDBE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_totimeline" x="1196" y="652" name="inst_2A0D74B9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_openeditor" x="1196" y="612" name="inst_C21DC968" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_scanrate" x="264" y="116" name="inst_9BFFF8C4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_maxdwell" x="264" y="144" name="inst_84D10FCD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_samplingrate" x="264" y="200" name="inst_76C97D3C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_optimize" x="320" y="60" name="inst_0FEA302D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_format" x="528" y="504" name="inst_51B228BD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_autoupdate" x="896" y="620" name="inst_9CFAF05F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_update" x="784" y="612" name="inst_9B34E8B1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_profiles" x="792" y="476" name="inst_8CD2FA60" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_format" x="584" y="492" name="inst_51B228BD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_autoupdate" x="1080" y="460" name="inst_9CFAF05F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_update" x="1212" y="560" name="inst_9B34E8B1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_profiles" x="788" y="492" name="inst_8CD2FA60" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_inverty" x="32" y="156" name="inst_D8336E92" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_invertx" x="32" y="188" name="inst_81971AD6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_maxdwell_blank" x="264" y="172" name="inst_C943470E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -71,21 +71,24 @@
     <instance objName="obj_redshift" x="264" y="252" name="inst_7D536BD7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_greenshift" x="264" y="280" name="inst_7F121BB4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_blueshift" x="264" y="308" name="inst_1F039BD9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_tooltip" x="896" y="660" name="inst_88DB1169" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_tooltip" x="1080" y="488" name="inst_88DB1169" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_fps" x="32" y="228" name="inst_F46706FB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_projectionzones" x="480" y="72" name="inst_D3510EAB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_addblindzone" x="668" y="344" name="inst_630270BC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_addblindzone" x="480" y="340" name="inst_630270BC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_laseron" x="120" y="324" name="inst_ED1C5020" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_dacname" x="92" y="500" name="inst_38E8EE03" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_projectors" x="292" y="544" name="inst_FF15C4C4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_dacscan" x="32" y="500" name="inst_6E55220E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_dacs" x="32" y="544" name="inst_71ABB47D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dacname" x="96" y="652" name="inst_38E8EE03" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_projectors" x="292" y="492" name="inst_FF15C4C4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dacscan" x="36" y="652" name="inst_6E55220E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dacs" x="36" y="492" name="inst_71ABB47D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_addprofile" x="788" y="652" name="inst_2D7577E5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bck_texttiles" x="484" y="36" w="256" h="16" xo="0" yo="48" id="10000004" name="inst_E5A68B08" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bck_texttiles" x="36" y="332" w="256" h="16" xo="0" yo="64" id="10000005" name="inst_2C86CD01" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bck_texttiles" x="20" y="472" w="256" h="16" xo="0" yo="80" id="10000006" name="inst_22B4E606" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bck_texttiles" x="476" y="472" w="256" h="16" xo="0" yo="96" id="10000007" name="inst_091415D5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bck_texttiles" x="580" y="468" w="256" h="16" xo="0" yo="96" id="10000007" name="inst_091415D5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bck_texttiles" x="288" y="468" w="256" h="16" xo="0" yo="112" id="10000008" name="inst_66F75BE4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bck_texttiles" x="788" y="468" w="256" h="16" xo="0" yo="128" id="10000009" name="inst_E56C7CF9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bck_texttiles" x="36" y="468" w="256" h="16" xo="0" yo="80" id="10000010" name="inst_5999F323" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>

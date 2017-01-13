@@ -1,6 +1,6 @@
 var t_warn = false;
-var t_plist = seqcontrol.layer_list;
 
+var t_plist = seqcontrol.layer_list;
 for (i = 0; i < ds_list_size(t_plist); i++)
 {
     var t_thisplist = t_plist[| i];
@@ -38,9 +38,12 @@ for (i = 0; i < ds_list_size(t_plist); i++)
 
 /*if (t_warn)
 {
-    show_message_async("Warning: One or more DACs have been removed from their timeline projector configuration due to being disconnected or referenced multiple times.");
+    show_message_new("Warning: One or more DACs have been removed from their timeline projector configuration due to being disconnected or referenced multiple times.");
 }*/
 
-if (room == rm_options)
-    surface_free(obj_projectors.surf_projectorlist);
+with (obj_projectors)
+{
+    surface_free(surf_projectorlist);
+    surf_projectorlist = -1;
+}
 

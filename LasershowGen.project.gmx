@@ -923,6 +923,7 @@
         <script>scripts\dac_addtoprojector_dd.gml</script>
         <script>scripts\dropdown_projector.gml</script>
         <script>scripts\projector_add_dac_dd.gml</script>
+        <script>scripts\projector_rename.gml</script>
         <script>scripts\projector_clear_dacs.gml</script>
         <script>scripts\dropdown_projector_dac.gml</script>
         <script>scripts\projector_remove_dac.gml</script>
@@ -1072,6 +1073,9 @@
       <script>scripts\output_framelist_to_buffer.gml</script>
       <script>scripts\export_framelist_to_buffer.gml</script>
     </scripts>
+    <scripts name="dialogs">
+      <script>scripts\show_message_new.gml</script>
+    </scripts>
     <script>scripts\mute.gml</script>
     <script>scripts\update_check.gml</script>
     <script>scripts\update_check_verbose.gml</script>
@@ -1080,6 +1084,7 @@
     <script>scripts\update_colors_scalesettings.gml</script>
     <script>scripts\seq_dialog_yesno.gml</script>
     <script>scripts\seq_dialog_num.gml</script>
+    <script>scripts\seq_dialog_string.gml</script>
     <script>scripts\ilda_dialog_yesno.gml</script>
     <script>scripts\ilda_dialog_num.gml</script>
     <script>scripts\ilda_dialog_string.gml</script>
@@ -1226,6 +1231,7 @@
         <object>objects\obj_update</object>
         <object>objects\obj_addblindzone</object>
         <object>objects\obj_profiles</object>
+        <object>objects\obj_addprofile</object>
         <object>objects\obj_dacs</object>
         <object>objects\obj_dacscan</object>
         <object>objects\obj_projectors</object>

@@ -536,7 +536,7 @@ if (controller.laseron)
 {
     if (!ds_exists(controller.dac,ds_type_list)) //todo fix for dac list
     {
-        show_message_async("Error, DAC data missing");
+        show_message_new("Error, DAC data missing, please contact developer");
         controller.laseron = false;
         controller.dac = -1;
     }
@@ -753,6 +753,25 @@ if (new_id == getint)
         }  
       }
     }
+}
+else if (new_id == getstr)
+{
+    if ds_map_find_value(async_load, "status")
+   {
+      if ds_map_find_value(async_load, "result") != ""
+      {
+          switch (dialog)
+        {
+            case ("layer_rename"):
+            {
+                var t_thisprojlist = seqcontrol.layer_list[| settingscontrol.projectortoselect];
+                t_thisprojlist[| 4] = ds_map_find_value(async_load, "result");
+                projectorlist_update();
+                break;
+            }
+        }
+      }
+   }
 }
 </string>
           </argument>

@@ -19,12 +19,12 @@ else if (byte == 2)
     i+=8;
     repeat(bytes)
         i+=3;
-    show_message_async("Custom palette detected but parsing of such is not supported yet, using default palette instead.");
+    show_message_new("Custom palette detected but parsing of such is not supported yet, using default palette instead.");
     return 0;
 }
 else 
 {
-    show_message_async("We don't support this format yet, try converting to ILDA format 0, 1, 4 or 5."); 
+    show_message_new("We don't support this format yet, try converting to ILDA format 0, 1, 4 or 5."); 
     format=5; 
     errorflag=1; 
     return 1;

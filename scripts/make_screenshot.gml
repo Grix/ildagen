@@ -7,7 +7,7 @@ buffer_seek(el_buffer,buffer_seek_start,0);
 buffer_ver = buffer_read(el_buffer,buffer_u8);
 if (buffer_ver != 52)
 {
-    show_message_async("Error: Unexpected ID byte in make_screenshot. Things might get ugly. Contact developer.");
+    show_message_new("Error: Unexpected ID byte in make_screenshot. Things might get ugly. Contact developer.");
     return temp_surf;
 }
 buffer_maxframes = buffer_read(el_buffer,buffer_u32);

@@ -80,7 +80,7 @@ for (k = 0; k < ds_list_size(layer_list); k++)
         buffer_ver = buffer_read(el_buffer,buffer_u8);
         if (buffer_ver != 52)
         {
-            show_message_async("Error: Unexpected idbyte in buffer for export_project. Things might get ugly. Contact developer.");
+            show_message_new("Error: Unexpected idbyte in buffer for export_project. Things might get ugly. Contact developer.");
             t_dac[| 4] = output_buffer;
             t_dac[| 5] = output_buffer2;
             t_dac[| 6] = output_buffer_ready;

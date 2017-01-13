@@ -4,16 +4,15 @@ ddobj = instance_create(mouse_x,mouse_y,oDropDown);
 
 with (ddobj)
 {
-    num = 1;
+    num = 2;
     ds_list_add(desc_list,"Remove all DACs");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,projector_clear_dacs);
     ds_list_add(hl_list,(ds_list_size(ds_list_find_value(seqcontrol.layer_list[| settingscontrol.projectortoselect], 5)) != 0));
-    /*ds_list_add(desc_list,"Rename Layer");
+    ds_list_add(desc_list,"Rename Layer");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,projector_rename);
-    ds_list_add(hl_list,1);*/ //todo
-    //NB!! change index in projector_add_dac_dd if you add more dropdown options
+    ds_list_add(hl_list,1);
     
     for (i = 0; i < ds_list_size(controller.dac_list); i++)
     {
