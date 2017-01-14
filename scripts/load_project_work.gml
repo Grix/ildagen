@@ -72,15 +72,28 @@ if (idbyte == 103) or (idbyte == 101) or (idbyte == 102)
         {
             ds_list_add(layertemp, buffer_read(load_buffer,buffer_u8)); //muted
             ds_list_add(layertemp, buffer_read(load_buffer,buffer_u8)); //hidden
-            ds_list_add(layertemp, buffer_read(load_buffer,buffer_string)); //dac_id
-            repeat (64)
-                buffer_read(load_buffer,buffer_u8); //reserved
+            ds_list_add(layertemp, buffer_read(load_buffer,buffer_string)); //name
+            repeat (16)
+                buffer_read(load_buffer,buffer_u32); //reserved
+                
+            var t_daclist = ds_list_create();
+            ds_list_add(layertemp, t_daclist);
+            numofdacs = buffer_read(load_buffer,buffer_u8);
+            repeat (numofdacs)
+            {
+                var t_thisdaclist = ds_list_create();
+                ds_list_add(t_daclist, t_thisdaclist);
+                ds_list_add(t_thisdaclist, -1);
+                ds_list_add(t_thisdaclist, buffer_read(load_buffer,buffer_string));
+                ds_list_add(t_thisdaclist, buffer_read(load_buffer,buffer_string));
+            }
         }
         else
         {
             ds_list_add(layertemp, 0);
             ds_list_add(layertemp, 0);
-            ds_list_add(layertemp, "");
+            ds_list_add(layertemp, "Layer "+string(j+1));
+            ds_list_add(layertemp, ds_list_create());
         }
     }
 }
@@ -141,7 +154,8 @@ else if (idbyte == 100) //old, need to remake buffers
         
         ds_list_add(layertemp, 0);
         ds_list_add(layertemp, 0);
-        ds_list_add(layertemp, "");
+        ds_list_add(layertemp, "Layer "+string(j+1));
+        ds_list_add(layertemp, ds_list_create());
     }
 }
     
@@ -152,6 +166,7 @@ if (get_timer()-global.loadingtimeprev >= 100000)
     return 0;
 }
     
+log(songload)
 if (songload)
 {
     songfile_name = buffer_read(load_buffer,buffer_string);
@@ -181,11 +196,13 @@ if (songload)
         
         parseinstance = FMODSoundPlay(song,0);
         FMODInstanceSetMuted(parseinstance,1);
-        parsingaudio = parsingaudioload;
+        if (idbyte < 103)
+            parsingaudio = 1;
+        else
+            parsingaudio = parsingaudioload;
     }
     ds_list_clear(audio_list);
-    errorcheck = 0;
-    deltatime = 0;    
+    deltatime = 0;
     playing = 0;
     tlpos = 0;
     
@@ -199,9 +216,19 @@ if (songload)
     if (!parsingaudioload)
     {
         parsinglistsize = buffer_read(load_buffer,buffer_u32);
-        for (i = 0; i < parsinglistsize; i++)
+        if (idbyte >= 103)
         {
-            ds_list_add(audio_list,buffer_read(load_buffer,buffer_f32));
+            for (i = 0; i < parsinglistsize; i++)
+            {
+                ds_list_add(audio_list,buffer_read(load_buffer,buffer_f32));
+            }
+        }
+        else
+        {
+            for (i = 0; i < parsinglistsize; i++)
+            {
+                buffer_read(load_buffer,buffer_f32);
+            }
         }
     }
 }
@@ -215,5 +242,8 @@ for (i = 0; i < parsinglistsize; i++)
     
 buffer_delete(load_buffer);
 
+projectorlist_update();
+
 global.loading_loadproject = 0;
+
 room_goto(rm_seq);

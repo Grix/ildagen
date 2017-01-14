@@ -33,7 +33,6 @@ ds_list_clear(audio_list);
 parseinstance = FMODSoundPlay(song,0);
 FMODInstanceSetMuted(parseinstance,1);
 parsingaudio = 1;
-errorcheck = 0;
 deltatime = 0;    
 playing = 0;
 tlpos = 0;

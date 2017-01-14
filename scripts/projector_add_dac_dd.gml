@@ -15,7 +15,7 @@ for (t_i = 0; t_i < ds_list_size(t_daclist); t_i++)
 
 var t_newdaclist = ds_list_create();
 ds_list_add(t_newdaclist, t_dac);
-ds_list_add(t_newdaclist, ds_list_find_value(controller.dac_list[| t_dac], 1));
+ds_list_add(t_newdaclist, string(ds_list_find_value(controller.dac_list[| t_dac], 1)));
 ds_list_add(t_newdaclist, "");
 ds_list_add(t_daclist, t_newdaclist);
 

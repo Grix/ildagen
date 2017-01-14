@@ -2,15 +2,10 @@ numentries = 1024;
     
 FMODUpdate();
 
-if (errorcheck == 0) and (deltatime > 1000*60*10)
-{
-    errorcheck = 1;
-}
-deltatimeprev = (ds_list_size(audio_list)-1)/3;
 deltatime = FMODInstanceGetPosition(parseinstance)*FMODSoundGetLength(song);
 
-repeatc = (floor(deltatime/1000*60 - ds_list_size(audio_list)/3));
-if (errorcheck) and (repeatc)
+repeatc = (floor(deltatime/1000*60 - (ds_list_size(audio_list))/3));
+if ((repeatc) && !ds_list_empty(audio_list))
 {
     lastw = ds_list_find_value(audio_list,ds_list_size(audio_list)-3);
     lastr = ds_list_find_value(audio_list,ds_list_size(audio_list)-2);
@@ -23,7 +18,7 @@ if (errorcheck) and (repeatc)
     }
 }
 
-if ((deltatime/1000*60 - ds_list_size(audio_list)/3) > 0.5)
+if ((deltatime/1000*60 - ds_list_size(audio_list)/3) > 0)
 {
     FMODInstanceGetWaveSnapshot2(parseinstance,0,numentries);
     w1 = FMODNormalizeWaveData(0,numentries);

@@ -57,9 +57,18 @@ for (i = global.loading_current; i < global.loading_end;i++)
     //layer vars
     buffer_write(save_buffer,buffer_u8,layer[| 2]); //muted
     buffer_write(save_buffer,buffer_u8,layer[| 3]); //hidden
-    buffer_write(save_buffer,buffer_string,layer[| 4]); //dac_id
-    repeat (64)
-        buffer_write(save_buffer,buffer_u8,0); //reserved
+    buffer_write(save_buffer,buffer_string,layer[| 4]); //name
+    repeat (16)
+        buffer_write(save_buffer,buffer_u32,0); //reserved
+    
+    var t_thisdaclist = layer[| 5];
+    buffer_write(save_buffer,buffer_u8,ds_list_size(t_thisdaclist));
+    for (k = 0; k < ds_list_size(t_thisdaclist); k++)
+    {
+        var t_thisdac = t_thisdaclist[| k];
+        buffer_write(save_buffer, buffer_string, string(t_thisdac[| 1])); //dac name
+        buffer_write(save_buffer, buffer_string, string(t_thisdac[| 2])); //profile name
+    }
 }
 
 //saving audio data

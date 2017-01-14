@@ -358,9 +358,11 @@ alarm[1] = 13;
     }
 }
 
-if (parsingaudio == 1) refresh_audio();
+if (parsingaudio == 1) 
+    refresh_audio();
 
-if (song) FMODUpdate();
+if (song) 
+    FMODUpdate();
 
 if (room != rm_seq) exit;
     

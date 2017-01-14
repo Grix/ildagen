@@ -49,8 +49,16 @@ draw_set_alpha(0.3);
 draw_set_color(c_teal);
 if (maxframes > 1)
 {
-    minicursorx1 = lerp(0,512,scope_start/(maxframes-1));
-    minicursorx2 = lerp(0,512,scope_end/(maxframes-1));
+    if (fillframes)
+    {
+        minicursorx1 = lerp(0,512,scope_start/(maxframes-1));
+        minicursorx2 = lerp(0,512,scope_end/(maxframes-1));
+    }
+    else
+    {
+        minicursorx1 = lerp(0,512,frame/(maxframes-1))-1;
+        minicursorx2 = lerp(0,512,frame/(maxframes-1))+1;
+    }
     draw_rectangle(minicursorx1,tlh-13,minicursorx2,tlh+1,0);
 }
 else

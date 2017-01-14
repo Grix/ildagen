@@ -38,6 +38,17 @@ with (controller)
             ini_write_string(t_projectorstring, "blindzones", t_profilemap[? "blindzones"]);
         }
         
+        num = i;
+        while (1)
+        {
+            var t_projectorstring = "projector_"+string(num);
+            if (ini_section_exists(t_projectorstring))
+                ini_section_delete(t_projectorstring);
+            else
+                break;
+            num++;
+        }
+        
         if (room == rm_options)
             obj_profiles.preset_name = ds_map_find_value(profile_list[| projector], "name");
     

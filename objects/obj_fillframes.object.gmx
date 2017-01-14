@@ -52,9 +52,9 @@
             <string>if (instance_exists(oDropDown))
     exit;
 if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
-    {
-    controller.tooltip = "Toggles editing all frames in scope or just current";
-    } 
+{
+    controller.tooltip = "Toggles editing of all frames in scope or just the current one.";
+} 
     
 </string>
           </argument>
@@ -81,8 +81,13 @@ if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox
             <string>if (instance_exists(oDropDown))
     exit;
 controller.fillframes = !controller.fillframes;
-if (controller.fillframes == 1) image_index = 0;
-else image_index = 1;
+
+if (controller.fillframes == 1) 
+    image_index = 0;
+else 
+    image_index = 1;
+    
+controller.refresh_miniaudio_flag = 1;
 </string>
           </argument>
         </arguments>

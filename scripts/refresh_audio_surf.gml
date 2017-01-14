@@ -36,14 +36,14 @@ surface_set_target(audio_surf);
         
         if (ypos > tlh+16-48) and (ypos < lbsh)
         {
-            if (i == ds_list_size(layer_list))
+            /*if (i == ds_list_size(layer_list))
             {
                 draw_sprite(spr_addlayer,
                             mouseoverlayerbutton_hor and (mouse_y == clamp(mouse_y,138+ypos+8,138+ypos+40)),
                             tlw-56,ypos+8);
                 ypos_perm += 48;
                 break;
-            }
+            }*/
                             
             draw_rectangle_colour(-1,ypos,tlw-16,ypos+48,c_white,c_white,c_silver,c_silver,0);
             draw_rectangle(-1,ypos,tlw-16,ypos+48,1);

@@ -49,6 +49,7 @@ if ((mouse_x > tlorigo_x+2) && (mouse_x < tlorigo_x+tlw-2) &&
             {
                 update_semasterlist_flag = 1;
             }
+            refresh_miniaudio_flag = 1;
         }
     }
 }

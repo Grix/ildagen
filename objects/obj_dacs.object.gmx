@@ -121,6 +121,14 @@ else if (mouse_y == clamp(mouse_y, y, y+list_height))
             dropdown_dac();
         }
     }
+    else
+    {
+        controller.tooltip = "Right click for options.";
+        if (mouse_check_button_pressed(mb_right))
+        {
+            dropdown_dacs();
+        }
+    }   
 }
 </string>
           </argument>
