@@ -1,1 +1,2 @@
-- Bugfixes and minor tweaks
+- Support for multi-projector shows in the timeline mode.
+- Many improvements and fixed bugs including: Better scanning optimization, no more inaccurate audio graph in the timeline, and easier selection of scope by using shift+mouse in the editor mode.

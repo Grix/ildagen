@@ -40,7 +40,10 @@ for (k = 0; k < ds_list_size(layer_list); k++)
     var t_found = false;
     var t_daclist = ds_list_find_value(layer_list[| k], 5);
     if (ds_list_size(t_daclist) == 0)
-        t_found = true;
+    {
+        if (ds_exists(controller.dac, ds_type_list))
+            t_found = true;
+    }
     for (m = 0; m < ds_list_size(t_daclist); m++)
     {
         var t_thisdac = t_daclist[| m];

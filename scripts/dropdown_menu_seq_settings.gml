@@ -1,3 +1,7 @@
+ilda_cancel();
+if (seqcontrol.song) 
+    FMODInstanceSetPaused(seqcontrol.songinstance,1);
+seqcontrol.playing = 0;
 room_goto(rm_options);
 
 /*ddobj = instance_create(seqcontrol.menu_width_start[5],0,oDropDown);

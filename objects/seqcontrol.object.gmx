@@ -536,14 +536,7 @@ minroomspeed = 60;
    
 if (controller.laseron)
 {
-    if (!ds_exists(controller.dac,ds_type_list)) //todo fix for dac list
-    {
-        show_message_new("Error, DAC data missing, please contact developer");
-        controller.laseron = false;
-        controller.dac = -1;
-    }
-    else
-        output_frame_seq_all();
+    output_frame_seq_all();
 }
 
 room_speed = projectfps;

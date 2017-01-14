@@ -112,7 +112,7 @@ if (room = rm_ilda)
         }
         else
         {
-            show_message_new("You have not selected a default DAC, please set up the connection.");
+            show_message_new("No DACs found. Please go to settings and set up the connection (Click SCAN).");
             ilda_cancel();
             room_goto(rm_options);
         }
@@ -129,9 +129,9 @@ else if (room = rm_seq)
         {
             laseron = false;
             seqcontrol.frame_surf_refresh = true;
-            dac_blank_and_center(dac);
+            close_dacs();
         }
-        else if (ds_exists(dac, ds_type_list)) //todo check all layers
+        else if (ds_exists(dac, ds_type_list))
         {
             laseron = true;
             laseronfirst = true;
@@ -139,7 +139,7 @@ else if (room = rm_seq)
         }
         else
         {
-            show_message_new("You have not selected a default DAC, please set up the connection.");
+            show_message_new("No DACs found. Please go to settings and set up the connection (Click SCAN).");
             if (seqcontrol.song) 
                 FMODInstanceSetPaused(seqcontrol.songinstance,1);
             seqcontrol.playing = 0;
@@ -163,7 +163,7 @@ if (room = rm_options)
         }
         else
         {
-            show_message_new("You have not selected a default DAC, please set up the connection.");
+            show_message_new("No DACs found. Please go to settings and set up the connection (Click SCAN).");
         }
     }
 }

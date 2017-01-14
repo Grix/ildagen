@@ -46,7 +46,7 @@ for (i = 0; i < numofdacs; i++)
 
 projectorlist_update();
 
-if (ds_list_size(controller.dac_list) == 1)
+if (!ds_list_empty(controller.dac_list))
     dac_select(0);
 
 

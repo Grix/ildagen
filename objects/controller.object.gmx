@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.4.4";
-versiondate = "2016-11-05";
+            <string>version = "1.5.0";
+versiondate = "2017-01-14";
 
 if (debug_mode)
 {
@@ -2110,7 +2110,7 @@ else if (ds_map_find_value(async_load, "id") == file)
             if (updatereceived == 0)
             {
                 show_message_new("Failed to automatically download update. Opening download website..");
-                url_open_new("http://bitlasers.com/opencart/index.php?route=product/product&amp;path=67&amp;product_id=82");
+                url_open_new("http://pages.bitlasers.com/lasershowgen/");
                 updatereceived = 1;
             }
         }
