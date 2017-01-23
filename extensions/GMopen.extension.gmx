@@ -44,7 +44,7 @@
       <functions>
         <function>
           <name>open_in_explorer</name>
-          <externalName>open_in_explorer</externalName>
+          <externalName>OpenInExplorer</externalName>
           <kind>12</kind>
           <help>open_in_explorer(path)</help>
           <returnType>2</returnType>
@@ -55,7 +55,7 @@
         </function>
         <function>
           <name>get_color_win</name>
-          <externalName>get_color_win</externalName>
+          <externalName>GetColor</externalName>
           <kind>12</kind>
           <help>get_color_win(default)</help>
           <returnType>2</returnType>
@@ -66,12 +66,41 @@
         </function>
         <function>
           <name>show_message_win</name>
-          <externalName>show_message_win</externalName>
+          <externalName>ShowMessage</externalName>
           <kind>12</kind>
-          <help>show_message_win(message)</help>
+          <help>show_message_win(message, caption, flags)</help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>3</argCount>
           <args>
+            <arg>1</arg>
+            <arg>1</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>show_question_win</name>
+          <externalName>ShowQuestion</externalName>
+          <kind>12</kind>
+          <help>show_question_win(message, caption, flags)</help>
+          <returnType>2</returnType>
+          <argCount>3</argCount>
+          <args>
+            <arg>1</arg>
+            <arg>1</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>RegisterCallbacks</name>
+          <externalName>RegisterCallbacks</externalName>
+          <kind>12</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>4</argCount>
+          <args>
+            <arg>1</arg>
+            <arg>1</arg>
+            <arg>1</arg>
             <arg>1</arg>
           </args>
         </function>

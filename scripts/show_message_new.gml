@@ -1,6 +1,6 @@
 ///show_message_new(message)
 
 if (os_browser == browser_not_a_browser)
-    show_message_win(argument[0]);
+    show_message_win(argument[0], "LasershowGen", 0);
 else
     show_message_async(argument[0]);

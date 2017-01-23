@@ -32,19 +32,39 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
     //find elements
     temp_undof_list = ds_list_create();
     temp_frame_list = ds_list_create();
-    for (i = scope_start;i <= scope_end;i++)
+    if (fillframes)
     {
-        el_list_temp = ds_list_find_value(frame_list,i);
-        for (u = 0;u < ds_list_size(el_list_temp);u++)
+        for (i = scope_start;i <= scope_end;i++)
+        {
+            el_list_temp = ds_list_find_value(frame_list,i);
+            for (u = 0;u < ds_list_size(el_list_temp);u++)
+            {
+                if (ds_list_find_value(ds_list_find_value(el_list_temp,u),9) == selectedelement)
+                {
+                    if (ds_list_empty(temp_frame_list))
+                        startframe = i;
+                    ds_list_add(temp_frame_list,ds_list_find_value(el_list_temp,u))
+                    temp_undo_list = ds_list_create();
+                    ds_list_copy(temp_undo_list,ds_list_find_value(el_list_temp,u));
+                    ds_list_add(temp_undo_list,i);
+                    ds_list_add(temp_undof_list,temp_undo_list);
+                }
+            }
+        }
+    }
+    else
+    {
+        el_list_temp = ds_list_find_value(frame_list,frame);
+        for (u = 0; u < ds_list_size(el_list_temp); u++)
         {
             if (ds_list_find_value(ds_list_find_value(el_list_temp,u),9) == selectedelement)
             {
                 if (ds_list_empty(temp_frame_list))
-                    startframe = i;
+                    startframe = frame;
                 ds_list_add(temp_frame_list,ds_list_find_value(el_list_temp,u))
                 temp_undo_list = ds_list_create();
                 ds_list_copy(temp_undo_list,ds_list_find_value(el_list_temp,u));
-                ds_list_add(temp_undo_list,i);
+                ds_list_add(temp_undo_list,frame);
                 ds_list_add(temp_undof_list,temp_undo_list);
             }
         }
