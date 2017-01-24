@@ -1077,7 +1077,9 @@
       <script>scripts\show_message_new.gml</script>
       <script>scripts\show_question_new.gml</script>
       <script>scripts\ilda_dialog_yesno.gml</script>
+      <script>scripts\seq_dialog_yesno.gml</script>
       <script>scripts\process_dialog_ilda.gml</script>
+      <script>scripts\process_dialog_seq.gml</script>
     </scripts>
     <script>scripts\mute.gml</script>
     <script>scripts\update_check.gml</script>
@@ -1085,7 +1087,6 @@
     <script>scripts\parse_parameter.gml</script>
     <script>scripts\colors_compare_cie94.gml</script>
     <script>scripts\update_colors_scalesettings.gml</script>
-    <script>scripts\seq_dialog_yesno.gml</script>
     <script>scripts\seq_dialog_num.gml</script>
     <script>scripts\seq_dialog_string.gml</script>
     <script>scripts\ilda_dialog_num.gml</script>
