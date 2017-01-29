@@ -484,7 +484,7 @@ if (new_id == getint)
               
             case "scopestart":
           {
-              scope_start = clamp(ds_map_find_value(argument[0], "value")-1,0,scope_end-1);
+              scope_start = clamp(ds_map_find_value(argument[0], "value")-1,0,scope_end);
               frame = scope_start;
               framehr = scope_start;
               frame_surf_refresh = 1;
@@ -495,7 +495,7 @@ if (new_id == getint)
               
             case "scopeend":
           {
-              scope_end = clamp(ds_map_find_value(argument[0], "value")-1,scope_start+1,maxframes-1);
+              scope_end = clamp(ds_map_find_value(argument[0], "value")-1,scope_start,maxframes-1);
               refresh_miniaudio_flag = 1;
               
               break;
