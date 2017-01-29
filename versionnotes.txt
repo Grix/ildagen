@@ -1,2 +1,6 @@
+v1.5.1
+- Bug fixes
+
+v1.5.0
 - Support for multi-projector shows in the timeline mode.
 - Many improvements and fixed bugs including: Better scanning optimization, no more inaccurate audio graph in the timeline, and easier selection of scope by using shift+mouse in the editor mode.

@@ -11,7 +11,7 @@
 !include "FileAssociation.nsh"
 
 !ifndef FULL_VERSION
-!define FULL_VERSION      "1.2.0.0"
+!define FULL_VERSION      "1.5.1.0"
 !endif
 !ifndef SOURCE_DIR
 !define SOURCE_DIR        "C:\source\temp\InstallerTest\runner"
@@ -29,11 +29,11 @@
 !endif
 
 !ifndef COPYRIGHT_TXT
-!define COPYRIGHT_TXT     "(c)Copyright 2015"
+!define COPYRIGHT_TXT     "(c)Copyright 2016"
 !endif
 
 !ifndef FILE_DESC
-!define FILE_DESC         "LasershowGen by Gitle Mikkelsen/BitLasers.com"
+!define FILE_DESC         "LasershowGen by Gitle Mikkelsen"
 !endif
 
 !ifndef LICENSE_NAME
@@ -135,6 +135,7 @@ Section `${APP_NAME}`
 
   ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igf" "LasershowGen Frames"
   ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igp" "LasershowGen Project"
+  ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".ild" "ILDA Laser Frames"
   
   ; Put file there
   File "${LICENSE_NAME}"

@@ -49,8 +49,7 @@ if (new_id == getint)
         }
         case "projectclear":
         {
-            if (ds_map_find_value(argument[0], "value"))
-                clear_project();
+            clear_project();
             
             break;
         }

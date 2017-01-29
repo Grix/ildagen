@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.5.0";
-versiondate = "2017-01-14";
+            <string>version = "1.5.1";
+versiondate = "2017-01-29";
 
 if (debug_mode)
 {
@@ -41,19 +41,8 @@ else
 //setup file handling system
 FStemp = game_save_id+"temp\";
 if (directory_exists("temp"))
-{
-    while (1)
-    {
-        file = file_find_first("temp\*", 0);
-        show_debug_message(file)
-        if (file == "") or is_undefined(file) or !is_string(file)
-            break;
-        if (!file_delete("temp\"+file))
-            break;
-    }
-}
-else
-    directory_create("temp");
+    directory_destroy("temp");
+directory_create("temp");
 
 //declarations and setup
 math_set_epsilon(0.00001);
