@@ -13,7 +13,7 @@
   <code></code>
   <enableViews>0</enableViews>
   <clearViewBackground>0</clearViewBackground>
-  <clearDisplayBuffer>0</clearDisplayBuffer>
+  <clearDisplayBuffer>-1</clearDisplayBuffer>
   <makerSettings>
     <isSet>-1</isSet>
     <w>1024</w>

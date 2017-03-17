@@ -1,6 +1,8 @@
-exit;
+
+
 //todo fix maybe? sandboxed so doesn't work
-if (is_undefined(parameter_string(1))) exit;
+
+/*if (is_undefined(parameter_string(1))) exit;
 temp = 0;
 for (i = 1; i <= parameter_count(); i++)
     {
@@ -10,7 +12,7 @@ for (i = 1; i <= parameter_count(); i++)
         
     parameter = parameter_string(i);
     
-    if (is_undefined(parameter) or !is_string(parameter) /*or !FS_file_exists(parameter)*/)
+    if (is_undefined(parameter) or !is_string(parameter) )
         continue;
         
     if (filename_ext(parameter) == ".igf")
@@ -28,3 +30,4 @@ for (i = 1; i <= parameter_count(); i++)
         import_ilda(parameter);
         }
     }
+*/

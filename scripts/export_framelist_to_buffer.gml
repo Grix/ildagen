@@ -1,3 +1,6 @@
+if (debug_mode)
+    log("export_framelist_to_buffer");
+
 maxpoints = ds_list_size(list_raw)/4;
 var t_diff, t_pal_c, t_c_mapvalue;
 var t_list_raw_size = ds_list_size(list_raw)-4;

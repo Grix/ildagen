@@ -1,3 +1,6 @@
+if (debug_mode)
+    log("make_frame");
+
 var t_vectorx, t_vectory, t_true_dwell_falling, t_true_dwell_rising;
 var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
 var t_contflag = false;
@@ -47,7 +50,8 @@ if (controller.exp_optimize)
     var t_numofelems = ds_list_size(order_list);
 else 
     var t_numofelems = ds_list_size(el_list);
-    
+  
+
 for (i = 0; i < t_numofelems; i++)
 {
     if (controller.exp_optimize)
@@ -73,6 +77,7 @@ for (i = 0; i < t_numofelems; i++)
     {
         currentpos = ds_list_size(list_id);
         currentposadjust = -4;
+      
     }
     
     var t_i;
@@ -352,7 +357,7 @@ for (i = 0; i < t_numofelems; i++)
             }
         }
         
-        if (!bl_prev && controller.exp_optimize && (opt_dist != 0) )
+        if (!bl_prev && controller.exp_optimize && (opt_dist != 0) && lit_length)
         {
             //INTERPOLATE
             if (opt_dist < t_lengthwanted)
@@ -406,7 +411,7 @@ for (i = 0; i < t_numofelems; i++)
         
     bl_prev = 1;
 }
-
+  
 if (controller.exp_optimize)
 {
     //back to middle
@@ -522,7 +527,7 @@ if (controller.exp_optimize)
         }
     }
 }
-
+  
 ds_list_destroy(order_list);
 ds_list_destroy(polarity_list);
 
@@ -536,7 +541,6 @@ if (controller.exp_optimize)
             //show_message_new("Failed to optimize the file based on the selected scanning speed and FPS. Please reduce the complexity of frame [ "+string(j)+" ] or use the exported file at your own risk");
             controller.opt_warning_flag = 1;
         }
-        //log("Too many points: "+string(ds_list_size(list_raw)/4));
     }
     else while (ds_list_size(list_raw)/4 < t_totalpointswanted)
     {
@@ -546,3 +550,4 @@ if (controller.exp_optimize)
         ds_list_add(list_raw,0);
     }
 }
+  

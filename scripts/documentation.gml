@@ -2,7 +2,6 @@
 
 TODO
 -preview blindzones
--fix desync in audio analysis when switching rooms
 
 SETTINGSCONTROL
 

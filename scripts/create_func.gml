@@ -7,6 +7,8 @@ xmin = $ffff;
 ymax = -$ffff;
 ymin = $ffff;
 
+dotfreq = 1;
+
 if (blankmode == "dot") or (blankmode == "dotsolid")
 {
     if (blankmode2 == 0)
@@ -34,6 +36,8 @@ if (colormode == "dash")
     if (colorfreq < 1)
         colorfreq = 1;
 }
+
+dotdivcurrent = blank_offset_r/pi/2-0.001;
     
 for (n = 0;n <= checkpoints; n++)
 {
@@ -41,7 +45,6 @@ for (n = 0;n <= checkpoints; n++)
     
     //XY
     ML_VM_SetVarReal(parser_shape,"point",n/checkpoints);
-
     
     result_x = ML_Execute(parser_shape,compiled_x);
     if (!ML_ResObj_HasAnswer(result_x))
@@ -102,14 +105,20 @@ for (n = 0;n <= checkpoints; n++)
     }
     else if (blankmode == "dot")
     {
-        if (floor(n-dotfreq+blank_offset_r/pi/2*dotfreq) % floor(dotfreq) == 0)
+        if ( ((n+blank_offset_r/pi/2*dotfreq) div dotfreq) > dotdivcurrent )
+        {
             makedot = 1;
+            dotdivcurrent = ((n+blank_offset_r/pi/2*dotfreq) div dotfreq);
+        }
         blank = 1;
     }
     else if (blankmode == "dotsolid")
     {
-        if (floor(n-dotfreq+blank_offset_r/pi/2*dotfreq) % floor(dotfreq) == 0)
+        if ( ((n+blank_offset_r/pi/2*dotfreq) div dotfreq) > dotdivcurrent )
+        {
             makedot = 1;
+            dotdivcurrent = ((n+blank_offset_r/pi/2*dotfreq) div dotfreq);
+        }
         blank = 0;
     }
     else if (blankmode == "func")
