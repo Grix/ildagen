@@ -62,9 +62,9 @@ if (is_string(resolution))
         resolution = 300;
     
     if (anienable) and (blankmode != "solid") and ((blank_offset != aniblank_offset) or (blank_dc != aniblank_dc))
-        resolution = 250;
+        resolution = 200;
     else if (anienable) and (colormode != "solid") and ((color_offset != anicolor_offset) or (color_dc != anicolor_dc))
-        resolution = 250;
+        resolution = 200;
 }
     
 randomize();

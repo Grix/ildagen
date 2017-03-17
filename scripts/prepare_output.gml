@@ -1,3 +1,6 @@
+if (debug_mode)
+    log("prepare_output");
+
 list_raw = ds_list_create();
 
 order_list = ds_list_create();

@@ -1,3 +1,6 @@
+if (debug_mode)
+    log("output_framelist_to_buffer");
+
 output_buffer_next_size = ds_list_size(list_raw)/4;
 var t_list_raw_size = ds_list_size(list_raw);
 

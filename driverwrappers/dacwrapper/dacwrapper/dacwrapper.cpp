@@ -126,7 +126,8 @@ GMEXPORT double DeviceOpen(double doubleNum)
 //prepares buffer and outputs frame to specified device
 GMEXPORT double OutputFrame(double num,  double scanRate, double frameSize, uint16_t* bufferAddress)
 {
-	if (!initialized) return -1.0;
+	if ((!initialized) || (bufferAddress == NULL))
+		return -1.0;
 
 	std::thread outputThread(OutputFrameThreaded, num, scanRate, frameSize, bufferAddress);
 	outputThread.detach();

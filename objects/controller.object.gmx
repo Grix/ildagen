@@ -40,13 +40,20 @@ else
 
 //setup file handling system
 FStemp = game_save_id+"temp\";
-if (directory_exists("temp"))
-    directory_destroy("temp");
-directory_create("temp");
+if (os_browser == browser_not_a_browser)
+{
+    if (directory_exists("temp"))
+        directory_destroy("temp");
+    directory_create("temp");
+    
+    var t_buf = buffer_create(1,buffer_fast,1);
+    buffer_write(t_buf, buffer_u8, 1);
+    buffer_save(t_buf,"temp\one");
+}
 
 //declarations and setup
-math_set_epsilon(0.00001);
-ds_set_precision(0.00001); 
+//math_set_epsilon(0.00001);
+//ds_set_precision(0.00001); 
 draw_set_circle_precision(24);
 
 varmap = ds_map_create();

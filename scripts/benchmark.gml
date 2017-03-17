@@ -7,11 +7,10 @@ time = get_timer();
 i = 0;
 x = 0;
 y = 0;
-repeat (1000)
+repeat (1000000)
     {
-    x++;
-    y++;
-    i = point_direction(x,y,xprevious,yprevious);
+    if (x > i)
+        log("go");
     }
 log(get_timer()-time);
 time2 = get_timer();
