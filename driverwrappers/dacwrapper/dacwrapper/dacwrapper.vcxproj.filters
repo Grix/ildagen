@@ -63,9 +63,6 @@
     <ClCompile Include="LaserdockDeviceManager_desktop.cpp">
       <Filter>Source Files\Laserdock</Filter>
     </ClCompile>
-    <ClCompile Include="HeliosDacClass.cpp">
-      <Filter>Source Files\Helios</Filter>
-    </ClCompile>
     <ClCompile Include="HeliosDac.cpp">
       <Filter>Source Files\Helios</Filter>
     </ClCompile>
@@ -111,9 +108,6 @@
       <Filter>Header Files\Laserdock</Filter>
     </ClInclude>
     <ClInclude Include="HeliosDac.h">
-      <Filter>Header Files\Helios</Filter>
-    </ClInclude>
-    <ClInclude Include="HeliosDacClass.h">
       <Filter>Header Files\Helios</Filter>
     </ClInclude>
   </ItemGroup>

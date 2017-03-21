@@ -6,7 +6,6 @@ Device_Helios::Device_Helios()
 	ready = false;
 }
 
-
 Device_Helios::~Device_Helios()
 {
 	CloseAll();
@@ -16,7 +15,7 @@ int Device_Helios::Init()
 {
 	CloseAll();
 
-	heliosDevice = new HeliosDacClass;
+	heliosDevice = new HeliosDac;
 	
 	ready = true;
 	int result = heliosDevice->OpenDevices();
@@ -27,20 +26,25 @@ int Device_Helios::Init()
 	return result;
 }
 
-bool Device_Helios::OutputFrame(int cardNum, int rate, int frameSize, HeliosDacClass::HeliosPoint* bufferAddress)
+bool Device_Helios::OutputFrame(int cardNum, int rate, int frameSize, HeliosPoint* bufferAddress)
 {
 	if (!ready) return false;
 
 	int thisFrameNum = ++frameNum[cardNum];
 
-	for (int i = 0; i < 16; i++)
+	for (int i = 0; i < 128; i++)
 	{
 		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break; //CURRENTLY UNUSED BECAUSE OF MUTEX
 		else if (heliosDevice->GetStatus(cardNum) == 1)
 		{
-			return (heliosDevice->WriteFrame(cardNum, rate, 0, bufferAddress, frameSize) == 1);
+			if (heliosDevice->WriteFrame(cardNum, rate, 0, bufferAddress, frameSize) == 1)
+			{
+				while (heliosDevice->GetStatus(cardNum) == 0);
+				return true;
+			}
 		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
 
 	return false;
