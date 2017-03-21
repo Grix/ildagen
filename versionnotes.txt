@@ -1,3 +1,6 @@
+v1.5.2
+- Bug fixes related to densely dotted objects and possible crash on DAC scanning
+
 v1.5.1
 - Bug fixes
 

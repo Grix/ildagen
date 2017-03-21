@@ -89,7 +89,6 @@
     <ClCompile Include="Device_OLSC_EzAudDac.cpp" />
     <ClCompile Include="Device_RIYA.cpp" />
     <ClCompile Include="HeliosDac.cpp" />
-    <ClCompile Include="HeliosDacClass.cpp" />
     <ClCompile Include="LaserdockDevice.cpp" />
     <ClCompile Include="LaserdockDeviceManager.cpp" />
     <ClCompile Include="LaserdockDeviceManager_desktop.cpp" />
@@ -106,7 +105,6 @@
     <ClInclude Include="Device_OLSC_EzAudDac.h" />
     <ClInclude Include="Device_RIYA.h" />
     <ClInclude Include="HeliosDac.h" />
-    <ClInclude Include="HeliosDacClass.h" />
     <ClInclude Include="LaserdockDevice.h" />
     <ClInclude Include="LaserdockDeviceManager.h" />
     <ClInclude Include="LaserdockDeviceManager_p.h" />

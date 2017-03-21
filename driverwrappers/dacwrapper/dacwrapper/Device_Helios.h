@@ -1,7 +1,6 @@
 #pragma once
 
-#include "HeliosDacClass.h"
-#include <stdint.h>
+#include "HeliosDac.h"
 
 class Device_Helios
 {
@@ -11,7 +10,7 @@ public:
 	~Device_Helios();
 
 	int Init();
-	bool OutputFrame(int cardNum, int rate, int frameSize, HeliosDacClass::HeliosPoint* bufferAddress);
+	bool OutputFrame(int cardNum, int rate, int frameSize, HeliosPoint* bufferAddress);
 	bool OpenDevice(int cardNum);
 	bool Stop(int cardNum);
 	bool CloseAll();
@@ -21,7 +20,7 @@ public:
 
 private:
 
-	HeliosDacClass* heliosDevice;
+	HeliosDac* heliosDevice;
 
 	bool ready;
 	int frameNum[16];

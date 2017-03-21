@@ -148,7 +148,7 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 	if (frameSize > MAX_FRAME_SIZE)
 		return;
 
-	std::lock_guard<std::mutex> lock(dacMutex[num]); //todo clean up superfluous syncing in individual dac classes
+	//std::lock_guard<std::mutex> lock(dacMutex[num]); //todo clean up superfluous syncing in individual dac classes
 
 	int dacType = dacs[num].type;
 	int cardNum = dacs[num].cardNum;
@@ -234,7 +234,7 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 	else if (dacType == 4)	//Helios
 	{
 		int currentPos = 0;
-		HeliosDacClass::HeliosPoint heliosBuffer[MAX_FRAME_SIZE];
+		HeliosPoint heliosBuffer[MAX_FRAME_SIZE];
 		for (int i = 0; i < frameSize; i++)
 		{
 			heliosBuffer[i].x = bufferAddress[currentPos++] >> 4;
