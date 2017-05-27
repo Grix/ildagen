@@ -38,7 +38,7 @@ bool Device_Helios::OutputFrame(int cardNum, int rate, int frameSize, HeliosPoin
 			break; //CURRENTLY UNUSED BECAUSE OF MUTEX
 		else if (heliosDevice->GetStatus(cardNum) == 1)
 		{
-			if (heliosDevice->WriteFrame(cardNum, rate, 0, bufferAddress, frameSize) == 1)
+			if (heliosDevice->WriteFrame(cardNum, rate, HELIOS_FLAGS_DEFAULT, bufferAddress, frameSize) == 1)
 			{
 				while (heliosDevice->GetStatus(cardNum) == 0);
 				return true;

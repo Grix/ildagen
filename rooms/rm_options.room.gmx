@@ -75,16 +75,17 @@
     <instance objName="obj_fps" x="32" y="228" name="inst_F46706FB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_projectionzones" x="480" y="72" name="inst_D3510EAB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_addblindzone" x="480" y="340" name="inst_630270BC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_laseron" x="120" y="324" name="inst_ED1C5020" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_laseron" x="119" y="340" name="inst_ED1C5020" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_dacname" x="96" y="652" name="inst_38E8EE03" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_projectors" x="292" y="492" name="inst_FF15C4C4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_dacscan" x="36" y="652" name="inst_6E55220E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_dacs" x="36" y="492" name="inst_71ABB47D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_addprofile" x="788" y="652" name="inst_2D7577E5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_testframe" x="32" y="384" name="inst_3C55ED9B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bck_texttiles" x="484" y="36" w="256" h="16" xo="0" yo="48" id="10000004" name="inst_E5A68B08" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bck_texttiles" x="36" y="332" w="256" h="16" xo="0" yo="64" id="10000005" name="inst_2C86CD01" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bck_texttiles" x="32" y="348" w="256" h="16" xo="0" yo="64" id="10000005" name="inst_2C86CD01" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bck_texttiles" x="580" y="468" w="256" h="16" xo="0" yo="96" id="10000007" name="inst_091415D5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bck_texttiles" x="288" y="468" w="256" h="16" xo="0" yo="112" id="10000008" name="inst_66F75BE4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bck_texttiles" x="788" y="468" w="256" h="16" xo="0" yo="128" id="10000009" name="inst_E56C7CF9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

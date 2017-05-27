@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="44" name="datafiles">
+  <datafiles number="45" name="datafiles">
     <datafile>
       <name>help.pdf</name>
       <exists>-1</exists>
@@ -124,23 +124,6 @@
       <filename>palette.ini</filename>
     </datafile>
     <datafile>
-      <name>LaserBoy_2016_03_15.zip</name>
-      <exists>-1</exists>
-      <size>4721280</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>17592940089550</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>LaserBoy_2016_03_15.zip</filename>
-    </datafile>
-    <datafile>
       <name>lsgtestpattern.igf</name>
       <exists>-1</exists>
       <size>4716</size>
@@ -156,6 +139,23 @@
         </Config>
       </ConfigOptions>
       <filename>lsgtestpattern.igf</filename>
+    </datafile>
+    <datafile>
+      <name>LaserBoy_2017_05_20.zip</name>
+      <exists>-1</exists>
+      <size>4721552</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>1048640</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>LaserBoy_2017_05_20.zip</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -1231,6 +1231,7 @@
         <object>objects\obj_inverty</object>
         <object>objects\obj_invertx</object>
         <object>objects\obj_tooltip</object>
+        <object>objects\obj_testframe</object>
         <object>objects\obj_update</object>
         <object>objects\obj_addblindzone</object>
         <object>objects\obj_profiles</object>

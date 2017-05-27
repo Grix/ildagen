@@ -576,7 +576,7 @@
     <option_winUAP_texture_page>1024</option_winUAP_texture_page>
     <option_winUAP_wide_logo>Configs\Default\WindowsUAP\logos\WideLogo.scale-100.png</option_winUAP_wide_logo>
     <option_windowcolor>clBlack</option_windowcolor>
-    <option_windows_alternate_sync_method>False</option_windows_alternate_sync_method>
+    <option_windows_alternate_sync_method>True</option_windows_alternate_sync_method>
     <option_windows_build_version>0</option_windows_build_version>
     <option_windows_company_info>Gitle Mikkelsen</option_windows_company_info>
     <option_windows_copyright_info>Gitle Mikkelsen</option_windows_copyright_info>
@@ -593,7 +593,7 @@
     <option_windows_runner_finished>Configs\Default\windows\Runner_finish.bmp</option_windows_runner_finished>
     <option_windows_runner_header>Configs\Default\windows\Runner_header.bmp</option_windows_runner_header>
     <option_windows_save_location>1</option_windows_save_location>
-    <option_windows_sleep_margin>3</option_windows_sleep_margin>
+    <option_windows_sleep_margin>5</option_windows_sleep_margin>
     <option_windows_splash_background_colour>#000000</option_windows_splash_background_colour>
     <option_windows_splash_screen>Configs\Default\windows\splash.png</option_windows_splash_screen>
     <option_windows_steam_app_id>0</option_windows_steam_app_id>

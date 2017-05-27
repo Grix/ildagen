@@ -67,14 +67,39 @@ minroomspeed = 60;
 
 if (controller.laseron)
 {
-    if (!ds_exists(controller.dac,ds_type_list))
+    if (controller.preview_testframe == 0)
     {
-        show_message_new("Error, DAC data missing");
-        controller.laseron = false;
-        controller.dac = -1;
+        if (controller.laseron)
+        {
+            if (!ds_exists(controller.dac,ds_type_list))
+            {
+                show_message_new("Error, DAC data missing");
+                controller.laseron = false;
+                controller.dac = -1;
+            }
+            else
+                output_frame_settings();
+        }
     }
-    else
-        output_frame_settings();
+    else if (controller.preview_testframe == 1)
+    {
+        with (controller)
+        {
+            if (!ds_exists(dac,ds_type_list))
+            {
+                show_message_new("Error, DAC data missing");
+                laseron = false;
+                dac = -1;
+            }
+            else
+                output_frame();
+        }
+    }
+    else if (controller.preview_testframe == 2)
+    {
+        with (seqcontrol)
+            output_frame_seq_all();
+    }
 }
 
 room_speed = controller.projectfps;

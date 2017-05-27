@@ -168,7 +168,10 @@ if (visible)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>if (view_current != 0)
+    exit;
+
+draw_self();
 draw_sprite(spr_aniknob,(moving &gt; 0),x+controller.anicolor_dc*2*64,y+16);
 
 draw_set_font(fnt_tooltip);
