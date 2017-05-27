@@ -179,14 +179,17 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>if (view_current != 0)
+    exit;
+
+draw_self();
 if (moving)
-    {
+{
     activecolor = controller.anicolor1;
     redy = round(y+23-(colour_get_red(activecolor)/255*23));
     greeny = round(y+23-(colour_get_green(activecolor)/255*23));
     bluey = round(y+23-(colour_get_blue(activecolor)/255*23));
-    }
+}
 draw_sprite(spr_anicolorselectred,(moving == 1),redx,redy);
 draw_sprite(spr_anicolorselectgreen,(moving == 2),greenx,greeny);
 draw_sprite(spr_anicolorselectblue,(moving == 3),bluex,bluey);

@@ -2,6 +2,7 @@
 
 //show_question_new("Hello.Testing. This is a longer sentence representing a normal message.#Also with a second line.");
 
+
 /*log("---")
 time = get_timer();
 i = 0;

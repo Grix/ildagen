@@ -9,6 +9,7 @@ if (output_buffer_ready)
 {
     dac_send_frame(controller.dac, output_buffer, output_buffer_next_size, output_buffer_next_size*controller.projectfps);
     output_buffer_ready = false;
+    log("yupe");
     laseronfirst = false;
     
     var t_output_buffer_prev = output_buffer;
