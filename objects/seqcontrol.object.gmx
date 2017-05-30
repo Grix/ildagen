@@ -545,6 +545,7 @@ if (controller.laseron)
 room_speed = projectfps;
 while (room_speed &lt; minroomspeed)
     room_speed += projectfps;
+
 </string>
           </argument>
         </arguments>

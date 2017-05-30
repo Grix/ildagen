@@ -92,13 +92,18 @@ if (controller.laseron)
                 dac = -1;
             }
             else
+            {
                 output_frame();
+            }
         }
+        minroomspeed = max(controller.projectfps,10);
     }
     else if (controller.preview_testframe == 2)
     {
         with (seqcontrol)
             output_frame_seq_all();
+            
+        minroomspeed = max(seqcontrol.projectfps,10);
     }
 }
 
