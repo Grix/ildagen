@@ -10,7 +10,6 @@ output_buffer2 = t_dac[| 5];
 output_buffer_ready = t_dac[| 6];
 output_buffer_next_size = t_dac[| 7];
 
-minroomspeed = max(projectfps,10); 
     
 if (output_buffer_ready)
 {
