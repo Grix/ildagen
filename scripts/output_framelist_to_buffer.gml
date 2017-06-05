@@ -1,5 +1,7 @@
 if (debug_mode)
     log("output_framelist_to_buffer");
+    
+//var timerbm = get_timer();
 
 output_buffer_next_size = ds_list_size(list_raw)/4;
 var t_list_raw_size = ds_list_size(list_raw);
@@ -79,4 +81,6 @@ else //not optimized
 }
     
 ds_list_destroy(list_raw);
+
+//log("output_framelist_to_buffer",get_timer() - timerbm);
 
