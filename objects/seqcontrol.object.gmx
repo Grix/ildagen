@@ -509,6 +509,8 @@ handle_mousecontrol();
             <string>///timing and laser output
 if (room != rm_seq) exit;
 
+//var timerbm = get_timer();
+
 if (playing == 1)
 {
     tlpos += delta_time/1000*playbackspeed;
@@ -545,6 +547,8 @@ if (controller.laseron)
 room_speed = projectfps;
 while (room_speed &lt; minroomspeed)
     room_speed += projectfps;
+    
+//log("bm", get_timer() - timerbm);
 
 </string>
           </argument>

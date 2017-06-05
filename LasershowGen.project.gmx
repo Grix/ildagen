@@ -910,6 +910,7 @@
         <script>scripts\dropdown_blindzone.gml</script>
         <script>scripts\dropdown_projectionwindow.gml</script>
         <script>scripts\dropdown_profile.gml</script>
+        <script>scripts\dropdown_testframe.gml</script>
         <script>scripts\preset_create.gml</script>
         <script>scripts\preset_delete.gml</script>
         <script>scripts\preset_rename.gml</script>
@@ -928,6 +929,9 @@
         <script>scripts\dropdown_projector_dac.gml</script>
         <script>scripts\projector_remove_dac.gml</script>
         <script>scripts\projector_dac_setprofile_dd.gml</script>
+        <script>scripts\testframe_usetestframe.gml</script>
+        <script>scripts\testframe_useeditor.gml</script>
+        <script>scripts\testframe_usetimeline.gml</script>
       </scripts>
     </scripts>
     <scripts name="createobject">
@@ -1231,7 +1235,6 @@
         <object>objects\obj_inverty</object>
         <object>objects\obj_invertx</object>
         <object>objects\obj_tooltip</object>
-        <object>objects\obj_testframe</object>
         <object>objects\obj_update</object>
         <object>objects\obj_addblindzone</object>
         <object>objects\obj_profiles</object>
@@ -1251,6 +1254,7 @@
         <object>objects\obj_samplingrate</object>
         <object>objects\obj_format</object>
         <object>objects\obj_projectionzones</object>
+        <object>objects\obj_testframe</object>
       </objects>
       <object>objects\obj_fps</object>
       <object>objects\obj_playcontrols</object>

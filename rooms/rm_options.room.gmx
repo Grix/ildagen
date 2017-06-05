@@ -81,7 +81,7 @@
     <instance objName="obj_dacscan" x="36" y="652" name="inst_6E55220E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_dacs" x="36" y="492" name="inst_71ABB47D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_addprofile" x="788" y="652" name="inst_2D7577E5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_testframe" x="32" y="384" name="inst_3C55ED9B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_testframe" x="24" y="384" name="inst_584ED7A9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bck_texttiles" x="484" y="36" w="256" h="16" xo="0" yo="48" id="10000004" name="inst_E5A68B08" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

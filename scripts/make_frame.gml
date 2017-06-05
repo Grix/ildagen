@@ -1,5 +1,7 @@
 if (debug_mode)
     log("make_frame");
+    
+//var timerbm = get_timer();
 
 var t_vectorx, t_vectory, t_true_dwell_falling, t_true_dwell_rising;
 var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
@@ -551,3 +553,4 @@ if (controller.exp_optimize)
     }
 }
   
+//log("make_frame",get_timer() - timerbm);
