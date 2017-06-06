@@ -74,11 +74,13 @@ frame_list
             ymin
             ymax
             ..pos 9: el_id
-            ..pos 20: points
-                x
-                y
-                blank
-                c
+            is_blindzone
+            ..pos 20: points:
+            x
+            y
+            blank
+            c
+            x4 for each
         
     
 */

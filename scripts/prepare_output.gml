@@ -28,7 +28,7 @@ bl_prev = 1;
 c_prev = 0;
 new_dot = 1;
 
-a_ballistic = controller.opt_maxdist; //ballistic scanner acceleration
+a_ballistic = controller.opt_maxdist; //scanner acceleration
 
 t_pol = 0;
 t_order = 0;

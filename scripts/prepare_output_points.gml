@@ -33,28 +33,37 @@ for (t_i = 0; t_i < listsize; t_i++)
     }
     
     //check if outside bounds
-    xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
-    yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
-   
-    if ((yp >= $fffe) || (yp <= 1) || (xp >= $fffe) || (xp <= 1))
+    if (list_id[| 10] != true)
     {
-        //list_id[| currentpos+2 ] = 1;
-        bl_prev = 1;
-        continue;
-    }
-    
-    for (jj = 0; jj < t_blindzonelistsize; jj+= 4)
-    {
-        if ((xp >= controller.blindzone_list[| jj+0]) 
-        &&  (xp <= controller.blindzone_list[| jj+1])
-        &&  (yp <= $FFFF-controller.blindzone_list[| jj+2]) 
-        &&  (yp >= $FFFF-controller.blindzone_list[| jj+3]))
+        xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
+        yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
+       
+        if ((yp >= $fffe) || (yp <= 1) || (xp >= $fffe) || (xp <= 1))
         {
             //list_id[| currentpos+2 ] = 1;
             bl_prev = 1;
-            t_contflag = true;
             continue;
         }
+        
+        for (jj = 0; jj < t_blindzonelistsize; jj+= 4)
+        {
+            if ((xp > controller.blindzone_list[| jj+0]) 
+            &&  (xp < controller.blindzone_list[| jj+1])
+            &&  (yp < $FFFF-controller.blindzone_list[| jj+2]) 
+            &&  (yp > $FFFF-controller.blindzone_list[| jj+3]))
+            {
+                //list_id[| currentpos+2 ] = 1;
+                bl_prev = 1;
+                t_contflag = true;
+                continue;
+            }
+        }
+    }
+    else
+    {   
+        //is blind zone, no scaling or blanking
+        xp = xo+list_id[| currentpos+0];
+        yp = $ffff-(yo+list_id[| currentpos+1]);
     }
     
     if (t_contflag)
