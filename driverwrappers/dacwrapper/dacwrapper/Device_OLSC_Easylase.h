@@ -2,6 +2,9 @@
 
 #include <Windows.h>
 #include <stdint.h>
+#include <thread>
+#include <chrono>
+#include <mutex>
 
 class Device_OLSC_Easylase
 {
@@ -61,5 +64,6 @@ private:
 
 	bool ready;
 	int frameNum[16];
+	std::mutex frameLock[16];
 };
 

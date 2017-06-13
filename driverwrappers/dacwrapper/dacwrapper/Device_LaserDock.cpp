@@ -29,16 +29,19 @@ bool Device_LaserDock::OutputFrame(int devNum, int rate, int frameSize, LaserDoc
 {
 	if (!ready) return false;
 
-	int thisFrameNum = ++frameNum;
+	int thisFrameNum = ++frameNum[devNum];
+
+	std::lock_guard<std::mutex> lock(frameLock[devNum]);
 
 	for (int i = 0; i < 1; i++)
 	{
-		if (frameNum > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
+		if (frameNum[devNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;
 		else if (_SendFrame(devNum, (uint8_t*)bufferAddress, frameSize, rate))
 		{
 			return true;
 		}
+		//std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
 
 	return false;
@@ -48,7 +51,7 @@ bool Device_LaserDock::OpenDevice(int devNum)
 {
 	if (!ready) return false;
 
-	return true; //don't need to to anything
+	return true;
 }
 
 bool Device_LaserDock::Stop(int devNum)

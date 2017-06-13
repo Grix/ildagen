@@ -2,6 +2,9 @@
 
 #include <windows.h>
 #include <stdint.h>
+#include <thread>
+#include <chrono>
+#include <mutex>
 
 class Device_Etherdream
 {
@@ -61,6 +64,7 @@ private:
 
 	bool ready;
 	int frameNum[16];
+	std::mutex frameLock[16];
 
 	void OutputFrameThreaded();
 };

@@ -1,9 +1,6 @@
 //some code borrowed from LFI player https://sourceforge.net/projects/lfiplayer3d/
 
 #include "Device_RIYA.h"
-#include <windows.h>
-#include <thread>
-#include <string>
 
 Device_RIYA::Device_RIYA()
 {
@@ -125,7 +122,9 @@ bool Device_RIYA::OutputFrame(int cardNum, int scanRate, int bufferSize, uint8_t
 
 	int thisFrameNum = ++frameNum[cardNum];
 
-	for (int i = 0; i < 16; i++)
+	std::lock_guard<std::mutex> lock(frameLock[cardNum]);
+
+	for (int i = 0; i < 1000; i++)
 	{
 		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;
@@ -133,6 +132,7 @@ bool Device_RIYA::OutputFrame(int cardNum, int scanRate, int bufferSize, uint8_t
 		{
 			return (TransferFrameToBuffer((uint8_t)cardNum, (uint8_t*)bufferAddress, (UINT)bufferSize, pointPeriod, RIYA_FRAME_ATTRIBUTES_SYNC) == 0);
 		}
+		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
 
 	return false;
