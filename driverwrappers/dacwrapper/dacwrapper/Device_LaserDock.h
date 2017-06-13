@@ -2,6 +2,9 @@
 
 #include "LaserdockDeviceManager.h"
 #include "LaserdockDevice.h"
+#include <thread>
+#include <chrono>
+#include <mutex>
 
 #define LASERDOCK_MAX_DEVICES 8
 
@@ -51,6 +54,7 @@ private:
 	bool _FreeAll();
 
 	bool ready;
-	int frameNum;
+	int frameNum[LASERDOCK_MAX_DEVICES];
+	std::mutex frameLock[LASERDOCK_MAX_DEVICES];
 };
 

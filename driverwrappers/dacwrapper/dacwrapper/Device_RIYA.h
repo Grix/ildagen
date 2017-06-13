@@ -4,6 +4,10 @@
 
 #include <windows.h>
 #include <stdint.h>
+#include <mutex>
+#include <string>
+#include <chrono>
+#include <thread>
 
 class Device_RIYA
 {
@@ -70,7 +74,8 @@ private:
 
 	UINT pointPeriod;
 	bool ready;
-	bool stopped[16];
 	int frameNum[16];
+	bool stopped[16];
+	std::mutex frameLock[16];
 };
 

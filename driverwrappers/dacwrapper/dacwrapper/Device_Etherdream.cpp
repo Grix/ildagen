@@ -132,7 +132,9 @@ bool Device_Etherdream::OutputFrame(int cardNum, const EAD_Pnt_s* data, int Byte
 
 	int thisFrameNum = ++frameNum[cardNum];
 
-	for (int i = 0; i < 16; i++)
+	std::lock_guard<std::mutex> lock(frameLock[cardNum]);
+
+	for (int i = 0; i < 1000; i++)
 	{
 		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;
@@ -140,6 +142,7 @@ bool Device_Etherdream::OutputFrame(int cardNum, const EAD_Pnt_s* data, int Byte
 		{
 			return EtherDreamWriteFrame(&cardNum, data, Bytes, PPS, -1);
 		}
+		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
 
 	return false;

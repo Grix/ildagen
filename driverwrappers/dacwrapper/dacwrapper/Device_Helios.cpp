@@ -32,19 +32,17 @@ bool Device_Helios::OutputFrame(int cardNum, int rate, int frameSize, HeliosPoin
 
 	int thisFrameNum = ++frameNum[cardNum];
 
-	for (int i = 0; i < 128; i++)
+	std::lock_guard<std::mutex> lock(frameLock[cardNum]);
+
+	for (int i = 0; i < 1000; i++)
 	{
-		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
-			break; //CURRENTLY UNUSED BECAUSE OF MUTEX
+		if ((frameNum[cardNum] > thisFrameNum)) //if newer frame is waiting to be transfered, cancel this one
+			break;
 		else if (heliosDevice->GetStatus(cardNum) == 1)
 		{
-			if (heliosDevice->WriteFrame(cardNum, rate, HELIOS_FLAGS_DEFAULT, bufferAddress, frameSize) == 1)
-			{
-				while (heliosDevice->GetStatus(cardNum) == 0);
-				return true;
-			}
+			return (heliosDevice->WriteFrame(cardNum, rate, HELIOS_FLAGS_DEFAULT, bufferAddress, frameSize) == HELIOS_SUCCESS);
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(1));
+		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
 
 	return false;
@@ -62,6 +60,7 @@ bool Device_Helios::Stop(int cardNum)
 	
 	for (int i = 0; i < 20; i++)
 	{
+		frameNum[cardNum]++;
 		if (heliosDevice->Stop(cardNum) == 1)
 			return true;
 	}

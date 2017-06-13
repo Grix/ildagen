@@ -148,8 +148,6 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 	if (frameSize > MAX_FRAME_SIZE)
 		return;
 
-	//std::lock_guard<std::mutex> lock(dacMutex[num]); //todo clean up superfluous syncing in individual dac classes
-
 	int dacType = dacs[num].type;
 	int cardNum = dacs[num].cardNum;
 
@@ -269,6 +267,7 @@ GMEXPORT double FreeDacwrapper()
 {
 	if (!initialized) return -1.0;
 
+	
 	delete etherDreamDevice;
 	delete riyaDevice;
 	delete heliosDevice;

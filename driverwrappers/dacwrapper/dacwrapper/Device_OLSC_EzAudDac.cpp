@@ -80,7 +80,9 @@ bool Device_OLSC_EzAudDac::OutputFrame(int cardNum, int scanRate, int bufferSize
 
 	int thisFrameNum = ++frameNum[cardNum];
 
-	for (int i = 0; i < 16; i++)
+	std::lock_guard<std::mutex> lock(frameLock[cardNum]);
+
+	for (int i = 0; i < 1000; i++)
 	{
 		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;
@@ -99,6 +101,7 @@ bool Device_OLSC_EzAudDac::OutputFrame(int cardNum, int scanRate, int bufferSize
 				return (OLSC_WriteFrame(cardNum, frame) == 1);
 			}
 		}
+		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
 
 	return false;
