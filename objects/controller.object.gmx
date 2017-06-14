@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "1.5.2";
-versiondate = "2017-03-21";
+            <string>version = "1.5.3";
+versiondate = "2017-06-14";
 
 if (debug_mode)
 {
@@ -1466,7 +1466,7 @@ else if (ds_map_find_value(async_load, "id") == file)
           <argument>
             <kind>1</kind>
             <string>if (laseron)
-    dac_blank_and_center(dac);
+    dac_blank_and_center_all(dac);
 
 refresh_miniaudio_flag = 1;
 frame_surf_refresh = 1;
@@ -1802,6 +1802,11 @@ if (view_current == 0)
         draw_text(12,495,"Frame: "+string(frame+1)+"/"+string(maxframes));
         
         draw_text(12,7,"FPS: "+string(projectfps));
+        if (playing &amp;&amp; (fps != projectfps))
+        {
+            draw_set_color(c_red);
+            draw_text(32,7,"Warning: Dropping frames. Actual FPS: "+string(fps));
+        }
         
         if (frame_complexity == 1)
             draw_set_color(c_red);

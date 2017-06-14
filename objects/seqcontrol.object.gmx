@@ -766,6 +766,15 @@ if (view_current == 0)
     }
         
     draw_set_alpha(1);
+    
+    draw_set_color(c_ltgray);
+    
+    draw_text(12,7,"FPS: "+string(projectfps));
+    if (playing &amp;&amp; (fps != projectfps))
+    {
+        draw_set_color(c_red);
+        draw_text(32,7,"Warning: Dropping frames. Actual FPS: "+string(fps));
+    }
         
     if (controller.laseron)
     {
