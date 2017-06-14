@@ -177,6 +177,11 @@ for (k = 0; k < ds_list_size(layer_list); k++)
     }
 }
 
+if (t_dac[| 2] == -1)
+    load_profile_temp(controller.projector);
+else
+    load_profile_temp(t_dac[| 2]);
+    
 //blindzones preview
 if (room = rm_options)
 {
@@ -210,11 +215,6 @@ if (room = rm_options)
         blindzone_el_lists++;
     }
 }
-
-if (t_dac[| 2] == -1)
-    load_profile_temp(controller.projector);
-else
-    load_profile_temp(t_dac[| 2]);
 
 if (ds_list_size(el_list) == 0) 
 {
