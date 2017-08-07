@@ -6,20 +6,20 @@ var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
 var t_true_dwell_falling, t_true_dwell_rising;
 var t_contflag = false;
 
-if (polarity_list[| i] == 0)
+if (!controller.exp_optimize) || (polarity_list[| i] == 0)
 {
-    currentpos = 16;
+    currentpos = 20;
     currentposadjust = 4;
 }
 else
 {
-    currentpos = ds_list_size(list_id);
+    currentpos = ds_list_size(list_id)-4;
     currentposadjust = -4;
 }
 
 //walk through list to get lit length and static point count
 var t_i;
-for (t_i = 0; t_i < listsize; t_i++)
+for (t_i = 1; t_i < listsize; t_i++)
 {
     currentpos += currentposadjust;
     //getting values from element list
@@ -45,7 +45,7 @@ for (t_i = 0; t_i < listsize; t_i++)
             continue;
         }
         
-        for (jj = 0; jj < t_blindzonelistsize; jj+= 4)
+        for (jj = 0; jj < t_blindzonelistsize; jj += 4)
         {
             if ((xp > controller.blindzone_list[| jj+0]) 
             &&  (xp < controller.blindzone_list[| jj+1])
@@ -54,7 +54,6 @@ for (t_i = 0; t_i < listsize; t_i++)
             {
                 //list_id[| currentpos+2 ] = 1;
                 bl_prev = 1;
-                t_contflag = true;
                 continue;
             }
         }
@@ -66,11 +65,11 @@ for (t_i = 0; t_i < listsize; t_i++)
         yp = $ffff-(yo+list_id[| currentpos+1]);
     }
     
-    if (t_contflag)
+    /*if (t_contflag)
     {
         t_contflag = false;
         continue;
-    }
+    }*/
     
     //valid point, process it
     
@@ -78,7 +77,6 @@ for (t_i = 0; t_i < listsize; t_i++)
     
     if (controller.exp_optimize)
     {
-        opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
         
         if (bl_prev)
         {
@@ -87,50 +85,37 @@ for (t_i = 0; t_i < listsize; t_i++)
         
             //BLANKING
             
+            var t_prevpos = currentpos-currentposadjust;
+            xpp = x_lowerbound+(xo+list_id[| t_prevpos+0])*x_scale;
+            ypp = y_lowerbound+($ffff-(yo+list_id[| t_prevpos+1]))*y_scale;
+            opt_dist = point_distance(xp_prev,yp_prev,xpp,ypp);
+            
             if (opt_dist < 250) //connecting segments
             {
-                var t_nextpos = currentpos+currentposadjust;
-                if (t_nextpos < ds_list_size(list_id))
-                {
-                    xpn = x_lowerbound+(xo+list_id[| t_nextpos+0])*x_scale;
-                    ypn = y_lowerbound+($ffff-(yo+list_id[| t_nextpos+1]))*y_scale;
-                    
-                    angle_next = point_direction(xpn,ypn, xp,yp);
-                    angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
-                
-                    t_true_dwell_falling =  round(controller.opt_maxdwell * 
-                                            (1- abs(angle_difference( angle_prev, angle_next ))/180));
-                }
-                else
-                    t_true_dwell_falling = controller.opt_maxdwell;
+                angle_next = point_direction(xp,yp, xpp,ypp);
+                angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
+            
+                t_true_dwell_falling =  round(controller.opt_maxdwell * 
+                                        (1- abs(angle_difference( angle_prev, angle_next ))/180));
+            
                     
                 maxpoints_static += ( (controller.opt_maxdwell_blank)*2
                                        + abs(t_true_dwell_falling - controller.opt_maxdwell_blank*2) );
             }
             else //not connecting segments
             {
-                angle_blank = point_direction(xp,yp, xp_prev,yp_prev);
-                var t_nextpos = currentpos+currentposadjust;
-                if (t_nextpos < ds_list_size(list_id))
+                angle_blank = point_direction(xpp,ypp, xp_prev,yp_prev);
+                
+                if ((xpp == xp) && (ypp == yp))
                 {
-                    xpn = x_lowerbound+(xo+list_id[| t_nextpos+0])*x_scale;
-                    ypn = y_lowerbound+($ffff-(yo+list_id[| t_nextpos+1]))*y_scale;
-                    
-                    if ((xpn == xp) && (ypn == yp))
-                    {
-                        t_true_dwell_falling = round(controller.opt_maxdwell*0.2);
-                    }
-                    else
-                    {
-                        angle_next = point_direction(xp,yp, xpn,ypn);
-                        
-                        t_true_dwell_falling =  round(controller.opt_maxdwell * 
-                                                (1- abs(angle_difference( angle_blank, angle_next ))/180));
-                    }
+                    t_true_dwell_falling = round(controller.opt_maxdwell*0.2);
                 }
                 else
-                {   
-                    t_true_dwell_falling = controller.opt_maxdwell; //for worst case scenario
+                {
+                    angle_next = point_direction(xpp,ypp, xp,yp);
+                    
+                    t_true_dwell_falling =  round(controller.opt_maxdwell * 
+                                            (1- abs(angle_difference( angle_blank, angle_next ))/180));
                 }
                 
                 if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
@@ -147,12 +132,12 @@ for (t_i = 0; t_i < listsize; t_i++)
             
                 var t_trav_dist = a_ballistic;
                 var t_n = 1;
-                var t_quantumsteps = 0;
+                //var t_quantumsteps = 0;
                 var t_totaldist = 0;
                 while (1)
                 {
                     t_totaldist += (t_n + t_n-1)*t_trav_dist;
-                    t_quantumsteps += (t_n + t_n-1);
+                    //t_quantumsteps += (t_n + t_n-1);
                     if (t_totaldist > opt_dist)
                         break;
                     t_n++;
@@ -161,11 +146,15 @@ for (t_i = 0; t_i < listsize; t_i++)
                 maxpoints_static += (   2*(controller.opt_maxdwell_blank) 
                                         +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
                                         +  max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank)
-                                        +  (t_n + t_n) );
+                                        +  (t_n + t_n - 1) );
             }
+            
+            opt_dist = point_distance(xpp,ypp,xp,yp);
         }
         else
-            lit_length+= opt_dist;
+            opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
+            
+        lit_length += opt_dist;
         
         if (opt_dist == 0)
         {

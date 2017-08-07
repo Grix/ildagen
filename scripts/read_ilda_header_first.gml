@@ -57,17 +57,11 @@ i+=2;
 
 
 
-ds_list_add(frame_list_parse,0);
-ds_list_add(frame_list_parse,0);
-ds_list_add(frame_list_parse,0);
-ds_list_add(frame_list_parse,0);
-ds_list_add(frame_list_parse,0);
-ds_list_add(frame_list_parse,0);
-ds_list_add(frame_list_parse,0);
-ds_list_add(frame_list_parse,0);
-ds_list_add(frame_list_parse,0); 
+repeat (9) ds_list_add(frame_list_parse,0); 
 ds_list_add(frame_list_parse,el_id); //id
-repeat (10) ds_list_add(frame_list_parse,0); 
+ds_list_add(frame_list_parse,0); 
+ds_list_add(frame_list_parse,1); //force polarity
+repeat (8) ds_list_add(frame_list_parse,0); 
 
     
 return 0;

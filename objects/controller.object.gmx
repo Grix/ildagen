@@ -1802,7 +1802,7 @@ if (view_current == 0)
         draw_text(12,495,"Frame: "+string(frame+1)+"/"+string(maxframes));
         
         draw_text(12,7,"FPS: "+string(projectfps));
-        if (playing &amp;&amp; (fps != projectfps))
+        if (playing &amp;&amp; (fps != projectfps) &amp;&amp; laseron)
         {
             draw_set_color(c_red);
             draw_text(32,7,"Warning: Dropping frames. Actual FPS: "+string(fps));

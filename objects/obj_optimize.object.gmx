@@ -52,10 +52,10 @@
             <string>if (instance_exists(oDropDown))
     exit;
 if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
-    {
+{
     //image_index = 1;
     controller.tooltip = "Toggle between optimized and raw output.";
-    } 
+} 
 </string>
           </argument>
         </arguments>

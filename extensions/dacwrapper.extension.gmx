@@ -8,8 +8,6 @@
   <license>Free to use, also for commercial games.</license>
   <description></description>
   <helpfile></helpfile>
-  <androidProps>0</androidProps>
-  <iosProps>0</iosProps>
   <installdir></installdir>
   <classname></classname>
   <androidclassname></androidclassname>
@@ -25,6 +23,11 @@
   <gradleinject></gradleinject>
   <iosSystemFrameworks/>
   <iosThirdPartyFrameworks/>
+  <ConfigOptions>
+    <Config name="Default">
+      <CopyToMask>1048640</CopyToMask>
+    </Config>
+  </ConfigOptions>
   <androidPermissions/>
   <IncludedResources>
     <Resource>Included Files\dacwrapper.dll</Resource>
@@ -72,7 +75,7 @@
       <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>17592736665664</CopyToMask>
+          <CopyToMask>542228544</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>
@@ -126,7 +129,7 @@
             <arg>2</arg>
             <arg>2</arg>
             <arg>2</arg>
-            <arg>2</arg>
+            <arg>1</arg>
           </args>
         </function>
         <function>
@@ -251,38 +254,6 @@
       <ConfigOptions>
         <Config name="Default">
           <CopyToMask>17592738762820</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <ProxyFiles/>
-      <functions/>
-      <constants/>
-    </file>
-    <file>
-      <filename>HeliosLaserDAC.dll</filename>
-      <origname>extensions\HeliosLaserDAC.dll</origname>
-      <init></init>
-      <final></final>
-      <kind>1</kind>
-      <uncompress>0</uncompress>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>17592738762820</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <ProxyFiles/>
-      <functions/>
-      <constants/>
-    </file>
-    <file>
-      <filename>laserdocklib.dll</filename>
-      <origname>extensions\laserdocklib.dll</origname>
-      <init></init>
-      <final></final>
-      <kind>1</kind>
-      <uncompress>0</uncompress>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>17592736665668</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>

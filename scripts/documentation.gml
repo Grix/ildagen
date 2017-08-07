@@ -75,6 +75,7 @@ frame_list
             ymax
             ..pos 9: el_id
             is_blindzone
+            force_pol0
             ..pos 20: points:
             x
             y

@@ -11,7 +11,7 @@
 !include "FileAssociation.nsh"
 
 !ifndef FULL_VERSION
-!define FULL_VERSION      "1.5.1.0"
+!define FULL_VERSION      "1.5.4"
 !endif
 !ifndef SOURCE_DIR
 !define SOURCE_DIR        "C:\source\temp\InstallerTest\runner"
@@ -25,11 +25,11 @@
 !endif
 
 !ifndef COMPANY_NAME
-!define COMPANY_NAME      ""
+!define COMPANY_NAME      "Gitle Mikkelsen"
 !endif
 
 !ifndef COPYRIGHT_TXT
-!define COPYRIGHT_TXT     "(c)Copyright 2016"
+!define COPYRIGHT_TXT     "(c) Copyright 2017"
 !endif
 
 !ifndef FILE_DESC

@@ -4,11 +4,12 @@ xmax = 0;
 xmin = $ffff;
 ymax = 0;
 ymin = $ffff;
+//blankprev = 1;
     
 if (format > 2)
-    {
+{
     repeat(maxpoints)
-        {
+    {
         //x
         bytes = get_bytes_signed();
         if (bytes >= $7FFF)
@@ -42,6 +43,10 @@ if (format > 2)
         
         //blank
         blank = ((get_byte() & $40) > 0);
+        /*if (blank && blankprev)
+        {
+            
+        }*/
         ds_list_add(frame_list_parse,blank);
         i++;
         //rgb//34/5
@@ -49,12 +54,12 @@ if (format > 2)
         cg = get_byte(); i++;
         cr = get_byte(); i++;
         ds_list_add(frame_list_parse,make_colour_rgb(cr,cg,cb));
-        }
     }
+}
 else
-    {
+{
     repeat(maxpoints)
-        {
+    {
         //x
         bytes = get_bytes_signed();
         if (bytes >= $7FFF)
@@ -96,26 +101,26 @@ else
         
         //rgb
         if (3*color+3 > ds_list_size(pal_list)) or (color < 0)
-            {
+        {
             if (color == 64)
                 color_res = 0;
             else
                 color_res = c_white;
-            }
+        }
         else
             color_res = make_colour_rgb(ds_list_find_value(pal_list,3*color),
                                         ds_list_find_value(pal_list,3*color+1),
                                         ds_list_find_value(pal_list,3*color+2));
         if (color_res == 0)
-            {
+        {
             blank = 1;
-            }
+        }
             
         ds_list_add(frame_list_parse,blank);
         
         ds_list_add(frame_list_parse,color_res);
-        }
     }
+}
     
 
 ds_list_replace(frame_list_parse,2,ds_list_find_value(frame_list_parse,ds_list_size(frame_list_parse)-6));

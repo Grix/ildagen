@@ -72,18 +72,18 @@ for (i = 0; i < t_numofelems; i++)
 
     if (polarity_list[| i] == 0)
     {
-        currentpos = 16;
+        currentpos = 20;
         currentposadjust = 4;
     }
     else
     {
-        currentpos = ds_list_size(list_id);
+        currentpos = ds_list_size(list_id)-4;
         currentposadjust = -4;
       
     }
     
     var t_i;
-    for (t_i = 0; t_i < listsize; t_i++)
+    for (t_i = 1; t_i < listsize; t_i++)
     {
         currentpos += currentposadjust;
         
@@ -98,7 +98,7 @@ for (i = 0; i < t_numofelems; i++)
         else 
         {
         
-            if (list_id[| 10] != true)
+            if (list_id[| 10] != true)//if not blind zone
             {
                 xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
                 yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
@@ -110,7 +110,7 @@ for (i = 0; i < t_numofelems; i++)
                     continue;
                 }
                 
-                for (jj = 0; jj < t_blindzonelistsize; jj+= 4)
+                for (jj = 0; jj < t_blindzonelistsize; jj += 4)
                 {
                     if ((xp > controller.blindzone_list[| jj+0]) 
                     &&  (xp < controller.blindzone_list[| jj+1])
@@ -146,25 +146,18 @@ for (i = 0; i < t_numofelems; i++)
                 //BLANKING
                 if (controller.exp_optimize)
                 {
-                    opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
+                    var t_prevpos = currentpos-currentposadjust;
+                    xpp = x_lowerbound+(xo+list_id[| t_prevpos+0])*x_scale;
+                    ypp = y_lowerbound+($ffff-(yo+list_id[| t_prevpos+1]))*y_scale;
+                    opt_dist = point_distance(xp_prev,yp_prev,xpp,ypp);
                     
                     if (opt_dist < 250) //connecting segments
                     {
-                        var t_nextpos = currentpos+currentposadjust;
-                        if (t_nextpos < ds_list_size(list_id))
-                        {
-                            xpn = x_lowerbound+(xo+list_id[| t_nextpos+0])*x_scale;
-                            ypn = y_lowerbound+($ffff-(yo+list_id[| t_nextpos+1]))*y_scale;
-                            
-                            angle_next = point_direction(xpn,ypn, xp,yp);
-                            angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
-                        
-                            t_true_dwell_falling =  round(controller.opt_maxdwell * 
-                                                    (1- abs(angle_difference( angle_prev, angle_next ))/180));
-                        }
-                        else
-                            t_true_dwell_falling = controller.opt_maxdwell;
-                            
+                        angle_next = point_direction(xp,yp, xpp,ypp);
+                        angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
+                    
+                        t_true_dwell_falling =  round(controller.opt_maxdwell * 
+                                                (1- abs(angle_difference( angle_prev, angle_next ))/180));
                                                 
                         //dwell on blanking start
                         repeat (controller.opt_maxdwell_blank)
@@ -191,28 +184,18 @@ for (i = 0; i < t_numofelems; i++)
                     }
                     else //not connecting segments
                     {
-                        angle_blank = point_direction(xp,yp, xp_prev,yp_prev);
-                        var t_nextpos = currentpos+currentposadjust;
-                        if (t_nextpos < ds_list_size(list_id))
+                        angle_blank = point_direction(xpp,ypp, xp_prev,yp_prev);
+                        
+                        if ((xpp == xp) && (ypp == yp))
                         {
-                            xpn = x_lowerbound+(xo+list_id[| t_nextpos+0])*x_scale;
-                            ypn = y_lowerbound+($ffff-(yo+list_id[| t_nextpos+1]))*y_scale;
-                            
-                            if ((xpn == xp) && (ypn == yp))
-                            {
-                                t_true_dwell_falling = round(controller.opt_maxdwell*0.2);
-                            }
-                            else
-                            {
-                                angle_next = point_direction(xp,yp, xpn,ypn);
-                                
-                                t_true_dwell_falling =  round(controller.opt_maxdwell * 
-                                                        (1- abs(angle_difference( angle_blank, angle_next ))/180));
-                            }
+                            t_true_dwell_falling = round(controller.opt_maxdwell*0.2);
                         }
                         else
-                        {   
-                            t_true_dwell_falling = controller.opt_maxdwell; //for worst case scenario
+                        {
+                            angle_next = point_direction(xpp,ypp, xp,yp);
+                            
+                            t_true_dwell_falling =  round(controller.opt_maxdwell * 
+                                                    (1- abs(angle_difference( angle_blank, angle_next ))/180));
                         }
                         
                         if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
@@ -246,8 +229,8 @@ for (i = 0; i < t_numofelems; i++)
                         new_dot = 1;
                         
                         //travel
-                        opt_vectorx = (xp_prev-xp)/opt_dist;
-                        opt_vectory = (yp_prev-yp)/opt_dist;
+                        opt_vectorx = (xp_prev-xpp)/opt_dist;
+                        opt_vectory = (yp_prev-ypp)/opt_dist;
                         
                         //find number of steps and step size
                         var t_trav_dist = a_ballistic;
@@ -263,8 +246,8 @@ for (i = 0; i < t_numofelems; i++)
                             t_n++;
                         }
                         t_trav_dist -= (t_totaldist-opt_dist)/t_quantumsteps;
-                        var t_trav_dist_x = -t_trav_dist*(xp_prev-xp)/opt_dist;
-                        var t_trav_dist_y = -t_trav_dist*(yp_prev-yp)/opt_dist;
+                        var t_trav_dist_x = -t_trav_dist*(xp_prev-xpp)/opt_dist;
+                        var t_trav_dist_y = -t_trav_dist*(yp_prev-ypp)/opt_dist;
                         
                         //travel first and second half of segment
                         var t_step_dist_x = 0;
@@ -301,21 +284,28 @@ for (i = 0; i < t_numofelems; i++)
                         
                         repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank) )
                         {
-                            ds_list_add(list_raw,xp);
-                            ds_list_add(list_raw,yp);
+                            ds_list_add(list_raw,xpp);
+                            ds_list_add(list_raw,ypp);
                             ds_list_add(list_raw,1);
                             ds_list_add(list_raw,0);
                         }
                         repeat (controller.opt_maxdwell_blank)
                         {
-                            ds_list_add(list_raw,xp);
-                            ds_list_add(list_raw,yp);
+                            ds_list_add(list_raw,xpp);
+                            ds_list_add(list_raw,ypp);
                             ds_list_add(list_raw,0);
                             ds_list_add(list_raw,c);
                         }
                         
                     }
+                    bl_prev = 0;
+                    xp_prev_prev = xp_prev;
+                    yp_prev_prev = yp_prev;
+                    xp_prev = xpp;
+                    yp_prev = ypp;
+                    c_prev = c;
                 }
+                
                 else //unoptimized
                 {
                     ds_list_add(list_raw,xp);
@@ -324,7 +314,8 @@ for (i = 0; i < t_numofelems; i++)
                     ds_list_add(list_raw,0);
                 }
             }
-            else if (controller.exp_optimize)
+            
+            if (controller.exp_optimize)
             {
                 opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
                 if (opt_dist == 0)
@@ -367,7 +358,7 @@ for (i = 0; i < t_numofelems; i++)
                 else
                     new_dot = 1;
             }
-        }
+        }//end if !bl
         
         if (!bl_prev && controller.exp_optimize && (opt_dist != 0) && lit_length)
         {
@@ -381,7 +372,7 @@ for (i = 0; i < t_numofelems; i++)
                     t_i++;
                     t_totalrem -= opt_dist;
                     continue;
-                }
+                } //todo draw to the end if skipped?
             }
             else
             {
