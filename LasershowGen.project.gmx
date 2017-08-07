@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="45" name="datafiles">
+  <datafiles number="46" name="datafiles">
     <datafile>
       <name>help.pdf</name>
       <exists>-1</exists>
@@ -141,9 +141,9 @@
       <filename>lsgtestpattern.igf</filename>
     </datafile>
     <datafile>
-      <name>LaserBoy_2017_05_20.zip</name>
+      <name>LaserBoy_2017_07_22.zip</name>
       <exists>-1</exists>
-      <size>4721552</size>
+      <size>4721783</size>
       <exportAction>2</exportAction>
       <exportDir></exportDir>
       <overwrite>0</overwrite>
@@ -155,7 +155,7 @@
           <CopyToMask>1048640</CopyToMask>
         </Config>
       </ConfigOptions>
-      <filename>LaserBoy_2017_05_20.zip</filename>
+      <filename>LaserBoy_2017_07_22.zip</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -1140,6 +1140,7 @@
         <object>objects\obj_playbackspeed</object>
         <object>objects\obj_audioshift</object>
         <object>objects\obj_volume</object>
+        <object>objects\obj_seqloop</object>
       </objects>
       <objects name="ilda">
         <objects name="ani">

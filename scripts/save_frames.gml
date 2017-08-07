@@ -27,7 +27,7 @@ for (j = 0; j < maxframes;j++)
         }
         for (u = 10; u < 20; u++)
         {
-            buffer_write(save_buffer,buffer_bool,0);//ds_list_find_value(ind_list,u));
+            buffer_write(save_buffer,buffer_bool,ds_list_find_value(ind_list,u));
         }
         for (u = 20; u < tempsize; u += 4)
         {

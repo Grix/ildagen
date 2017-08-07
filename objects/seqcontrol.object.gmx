@@ -98,6 +98,7 @@ endframe = 1200;
 startframex = -1;
 endframex = -1;
 largepreview = 0;
+loop = false;
 
 tlw = 982;
 tlh = 128;
@@ -513,11 +514,18 @@ if (room != rm_seq) exit;
 
 if (playing == 1)
 {
+    var t_tlpos_prev = tlpos;
     tlpos += delta_time/1000*playbackspeed;
-    if (tlpos &gt; length/projectfps*1000) 
+    
+    if loop &amp;&amp; (t_tlpos_prev &lt;= endframe/projectfps*1000) &amp;&amp; (tlpos &gt; endframe/projectfps*1000) //if crossed the end marker
     {
-        playing = 0;
-        tlpos = 0;
+        tlpos = startframe/projectfps*1000;
+    }
+    
+    if song &amp;&amp; (t_tlpos_prev &lt;= length/projectfps*1000) &amp;&amp; (tlpos &gt; length/projectfps*1000)
+    {
+        //playing = 0;
+        //tlpos = 0;
         if (song)
         {
             FMODInstanceStop(songinstance);
@@ -525,6 +533,7 @@ if (playing == 1)
             set_audio_speed();
         }
     }
+    
     if (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-(tlpos+audioshift)) &gt; 32) and (scroll_moving != 1) and (song)
     {
         FMODInstanceSetPosition(songinstance,(tlpos+audioshift)/FMODSoundGetLength(song));
@@ -770,7 +779,7 @@ if (view_current == 0)
     draw_set_color(c_ltgray);
     
     draw_text(12,7,"FPS: "+string(projectfps));
-    if (playing &amp;&amp; (fps != projectfps))
+    if (playing &amp;&amp; (fps != projectfps) &amp;&amp; controller.laseron)
     {
         draw_set_color(c_red);
         draw_text(32,7,"Warning: Dropping frames. Actual FPS: "+string(fps));

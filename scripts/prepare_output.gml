@@ -69,18 +69,21 @@ if (controller.exp_optimize)
                 t_lowestdist = t_dist;
             }
             
-            currentpos = ds_list_size(list_id)-4;
-            xp = xo+list_id[| currentpos+0];
-            yp = yo+list_id[| currentpos+1];
-            
-            t_dist = point_distance(xp_prev,yp_prev,xp,yp);
-            if (t_dist < t_lowestdist)
+            if (!list_id[| 11])
             {
-                t_order = i;
-                t_pol = 1;
-                if (t_dist < 250)
-                    break;
-                t_lowestdist = t_dist;
+                currentpos = ds_list_size(list_id)-4;
+                xp = xo+list_id[| currentpos+0];
+                yp = yo+list_id[| currentpos+1];
+                
+                t_dist = point_distance(xp_prev,yp_prev,xp,yp);
+                if (t_dist < t_lowestdist)
+                {
+                    t_order = i;
+                    t_pol = 1;
+                    if (t_dist < 250)
+                        break;
+                    t_lowestdist = t_dist;
+                }
             }
         }
         if ((ds_list_size(el_list)-ds_list_size(t_list_empties)) > 0)

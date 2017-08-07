@@ -228,6 +228,7 @@
     <option_facebook_app_display_name></option_facebook_app_display_name>
     <option_facebook_appid></option_facebook_appid>
     <option_facebook_enable>0</option_facebook_enable>
+    <option_fast_collision_compatibility>False</option_fast_collision_compatibility>
     <option_freeze>false</option_freeze>
     <option_frequency>0</option_frequency>
     <option_frontimage>nil</option_frontimage>
@@ -380,6 +381,7 @@
     <option_mac_splash_png>Configs\Default\mac\splash.png</option_mac_splash_png>
     <option_mac_steam_app_id>0</option_mac_steam_app_id>
     <option_mac_sync>0</option_mac_sync>
+    <option_mac_team_id></option_mac_team_id>
     <option_mac_texture_page>2048</option_mac_texture_page>
     <option_noborder>false</option_noborder>
     <option_nobuttons>false</option_nobuttons>
@@ -500,7 +502,7 @@
     <option_use_fast_collision>True</option_use_fast_collision>
     <option_use_new_audio>True</option_use_new_audio>
     <option_variableerrors>False</option_variableerrors>
-    <option_version>1.5.3</option_version>
+    <option_version>1.5.4</option_version>
     <option_version_build>0</option_version_build>
     <option_version_company>Gitle Mikkelsen</option_version_company>
     <option_version_copyright>Gitle Mikkelsen</option_version_copyright>
@@ -508,7 +510,7 @@
     <option_version_major>1</option_version_major>
     <option_version_minor>5</option_version_minor>
     <option_version_product>LasershowGen</option_version_product>
-    <option_version_release>3</option_version_release>
+    <option_version_release>4</option_version_release>
     <option_win8_advertising_appid></option_win8_advertising_appid>
     <option_win8_advertising_enable>0</option_win8_advertising_enable>
     <option_win8_advertising_key></option_win8_advertising_key>
@@ -536,6 +538,7 @@
     <option_win8_portrait_allowed>-1</option_win8_portrait_allowed>
     <option_win8_portrait_flipped_allowed>-1</option_win8_portrait_flipped_allowed>
     <option_win8_publisher_display_name>YourPublisherName</option_win8_publisher_display_name>
+    <option_win8_publisher_name>CN=YoyoGames</option_win8_publisher_name>
     <option_win8_revision_version>0</option_win8_revision_version>
     <option_win8_scaling_stretch>false</option_win8_scaling_stretch>
     <option_win8_search_capable>0</option_win8_search_capable>
@@ -545,9 +548,11 @@
     <option_win8_store_logo>Configs\Default\Windows8\logos\logo50.png</option_win8_store_logo>
     <option_win8_texture_page>1024</option_win8_texture_page>
     <option_win8_wide_logo>Configs\Default\Windows8\logos\logo310.png</option_win8_wide_logo>
+    <option_winUAP_allowfullscreen>0</option_winUAP_allowfullscreen>
     <option_winUAP_build_version>0</option_winUAP_build_version>
     <option_winUAP_certificate_location>WinUWPRunner_TemporaryKey.pfx</option_winUAP_certificate_location>
     <option_winUAP_display_name>LasershowGen</option_winUAP_display_name>
+    <option_winUAP_fullscreen>0</option_winUAP_fullscreen>
     <option_winUAP_internet_capable>0</option_winUAP_internet_capable>
     <option_winUAP_interpolate>-1</option_winUAP_interpolate>
     <option_winUAP_landscape_allowed>-1</option_winUAP_landscape_allowed>
@@ -565,6 +570,7 @@
     <option_winUAP_portrait_allowed>-1</option_winUAP_portrait_allowed>
     <option_winUAP_portrait_flipped_allowed>-1</option_winUAP_portrait_flipped_allowed>
     <option_winUAP_publisher_display_name>YourPublisherName</option_winUAP_publisher_display_name>
+    <option_winUAP_publisher_name>CN=Sandbox</option_winUAP_publisher_name>
     <option_winUAP_revision_version>0</option_winUAP_revision_version>
     <option_winUAP_scaling_stretch>false</option_winUAP_scaling_stretch>
     <option_winUAP_search_capable>0</option_winUAP_search_capable>
@@ -589,7 +595,7 @@
     <option_windows_major_version>1</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
     <option_windows_product_info>LasershowGen</option_windows_product_info>
-    <option_windows_release_version>3</option_windows_release_version>
+    <option_windows_release_version>4</option_windows_release_version>
     <option_windows_runner_finished>Configs\Default\windows\Runner_finish.bmp</option_windows_runner_finished>
     <option_windows_runner_header>Configs\Default\windows\Runner_header.bmp</option_windows_runner_header>
     <option_windows_save_location>1</option_windows_save_location>

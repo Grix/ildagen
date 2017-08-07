@@ -568,6 +568,7 @@ else
             ds_list_add(new_list,startposy_r*128); //origo y
             ds_list_add(new_list,(endx_r+xdelta[frame])*128); //end x
             ds_list_add(new_list,endy_r*128); //end y
+            
         }    
         else if (placing == "func")
         {
@@ -712,7 +713,8 @@ else
 }
     
 
-if (placing != "text") frame_surf_refresh = 1;
+if (placing != "text") 
+    frame_surf_refresh = 1;
 
 if (autoresflag)
     resolution = "auto";
