@@ -9,6 +9,9 @@ file_loc = get_save_filename_ext("*.ild","example.ild","","Select ILDA file loca
 if !string_length(file_loc)
     exit;
     
+if (filename_ext(file_loc) != ".ild")
+    show_message_new("Warning: Your filename has no .ild extension, and might not be recognized by other software.##It is recommended to save the file again, with a the text .ild at the end of the name.");
+    
 ilda_buffer = buffer_create(1,buffer_grow,1);
 global.loadingtimeprev = get_timer();
 

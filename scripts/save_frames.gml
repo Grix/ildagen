@@ -5,6 +5,9 @@ file_loc = get_save_filename_ext("*.igf","example.igf","","Select LasershowGen f
 if !string_length(file_loc) 
     exit;
     
+if (filename_ext(file_loc) != ".igf")
+    show_message_new("Warning: Your filename has no .igf extension, and might not be recognized by other software.##It is recommended to save the file again, with a the text .igf at the end of the name.");
+    
 save_buffer = buffer_create(1,buffer_grow,1);
 
 buffer_write(save_buffer,buffer_u8,52);
