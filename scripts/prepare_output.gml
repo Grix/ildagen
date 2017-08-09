@@ -187,7 +187,8 @@ if (controller.exp_optimize) and (xp_prev != mid_x) and (yp_prev != mid_y)
                  
             maxpoints_static += (   (controller.opt_maxdwell_blank) 
                                     +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
-                                    +  (t_n + t_n) );
+                                    +  (t_n + t_n) 
+                                    + 1);
         }
     }
 }

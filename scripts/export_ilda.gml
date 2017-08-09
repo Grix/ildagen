@@ -6,6 +6,9 @@ file_loc = get_save_filename_ext("*.ild","example.ild","","Select ILDA file loca
 if !string_length(file_loc)
     exit;
     
+if (filename_ext(file_loc) != ".ild")
+    show_message_new("Warning: Your filename has no .ild extension, and might not be recognized by other software.##It is recommended to save the file again, with a the text .ild at the end of the name.");
+    
 if (!verify_numexports())
 {   
     show_message_new("You have unfortunately used up all 10 free exports per day. Try again tomorrow or buy LasershowGen Full");
