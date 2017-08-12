@@ -11,12 +11,14 @@ if (format > 2)
     repeat(maxpoints)
     {
         //x
-        bytes = get_bytes_signed();
+        byte0 = get_byte();
+        byte1 = buffer_peek(ild_file, i+1, buffer_u8);
+        bytes = ((byte0 << 8) + byte1)-1;
         if (bytes >= $7FFF)
             bytes -= $7FFF;
         else
             bytes += $7FFF;
-        ds_list_add(frame_list_parse,bytes); 
+        ds_list_add(frame_list_parse, bytes); 
             
         //max and min
         if (bytes/128 > xmax)
@@ -26,13 +28,15 @@ if (format > 2)
             
         i+=(2);
         //y
-        bytes = get_bytes_signed();
+        byte0 = get_byte();
+        byte1 = buffer_peek(ild_file, i+1, buffer_u8);
+        bytes = ((byte0 << 8) + byte1)-1;
         if (bytes >= $7FFF)
             bytes -= $7FFF;
         else
             bytes += $7FFF;
         bytes = $ffff-bytes;
-        ds_list_add(frame_list_parse,bytes); 
+        ds_list_add(frame_list_parse, bytes); 
         
         if (bytes/128 > ymax)
             ymax = bytes/128;
@@ -61,12 +65,14 @@ else
     repeat(maxpoints)
     {
         //x
-        bytes = get_bytes_signed();
+        byte0 = get_byte();
+        byte1 = buffer_peek(ild_file, i+1, buffer_u8);
+        bytes = ((byte0 << 8) + byte1)-1;
         if (bytes >= $7FFF)
             bytes -= $7FFF;
         else
             bytes += $7FFF;
-        ds_list_add(frame_list_parse,bytes); 
+        ds_list_add(frame_list_parse, bytes); 
         i+=(2);
         
         //max and min
@@ -77,13 +83,15 @@ else
             
             
         //y
-        bytes = get_bytes_signed();
+        byte0 = get_byte();
+        byte1 = buffer_peek(ild_file, i+1, buffer_u8);
+        bytes = ((byte0 << 8) + byte1)-1;
         if (bytes >= $7FFF)
             bytes -= $7FFF;
         else
             bytes += $7FFF;
         bytes = $ffff-bytes;
-        ds_list_add(frame_list_parse,bytes); 
+        ds_list_add(frame_list_parse, bytes); 
         i+=(2+(format == 0)*2);
         
         if (bytes/128 > ymax)
