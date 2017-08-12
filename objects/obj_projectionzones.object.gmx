@@ -56,13 +56,21 @@ if (moving == 1)
     //x start
     controller.scrollcursor_flag = 1;
     if (keyboard_check(vk_control))
+    {
         controller.x_scale_start += ((mouse_x-mousexprevious)*4);
+        if (controller.x_scale_start &lt; 0)
+            controller.x_scale_start = 0;
+        if (controller.x_scale_start &gt; controller.x_scale_end-1)
+            controller.x_scale_start = controller.x_scale_end-1;
+    }
     else
+    {
         controller.x_scale_start += ((mouse_x-mousexprevious)*$ffff/256);
-    if (controller.x_scale_start &lt; 0)
-        controller.x_scale_start = 0;
-    if (controller.x_scale_start &gt; controller.x_scale_end-4096)
-        controller.x_scale_start = controller.x_scale_end-4096;
+        if (controller.x_scale_start &lt; 0)
+            controller.x_scale_start = 0;
+        if (controller.x_scale_start &gt; controller.x_scale_end-4096)
+            controller.x_scale_start = controller.x_scale_end-4096;
+    }
     mousexprevious = mouse_x;
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -76,13 +84,21 @@ else if (moving == 2)
     //x end
     controller.scrollcursor_flag = 1;
     if (keyboard_check(vk_control))
+    {
         controller.x_scale_end += ((mouse_x-mousexprevious)*4);
+        if (controller.x_scale_end &gt; $FFFF)
+            controller.x_scale_end = $FFFF;
+        if (controller.x_scale_end &lt; controller.x_scale_start+1)
+            controller.x_scale_end = controller.x_scale_start+1;
+    }
     else
+    {
         controller.x_scale_end += ((mouse_x-mousexprevious)*$ffff/256);
-    if (controller.x_scale_end &gt; $FFFF)
-        controller.x_scale_end = $FFFF;
-    if (controller.x_scale_end &lt; controller.x_scale_start+4096)
-        controller.x_scale_end = controller.x_scale_start+4096;
+        if (controller.x_scale_end &gt; $FFFF)
+            controller.x_scale_end = $FFFF;
+        if (controller.x_scale_end &lt; controller.x_scale_start+4096)
+            controller.x_scale_end = controller.x_scale_start+4096;
+    }
     mousexprevious = mouse_x;
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -96,13 +112,21 @@ else if (moving == 3)
     //y start
     controller.scrollcursor_flag = 2;
     if (keyboard_check(vk_control))
+    {
         controller.y_scale_start += ((mouse_y-mouseyprevious)*4);
+        if (controller.y_scale_start &lt; 0)
+            controller.y_scale_start = 0;
+        if (controller.y_scale_start &gt; controller.y_scale_end-4096)
+            controller.y_scale_start = controller.y_scale_end-4096;
+    }
     else
+    {
         controller.y_scale_start += ((mouse_y-mouseyprevious)*$ffff/256);
-    if (controller.y_scale_start &lt; 0)
-        controller.y_scale_start = 0;
-    if (controller.y_scale_start &gt; controller.y_scale_end-4096)
-        controller.y_scale_start = controller.y_scale_end-4096;
+        if (controller.y_scale_start &lt; 0)
+            controller.y_scale_start = 0;
+        if (controller.y_scale_start &gt; controller.y_scale_end-4096)
+            controller.y_scale_start = controller.y_scale_end-4096;
+    }
     mousexprevious = mouse_x;
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -116,13 +140,21 @@ else if (moving == 4)
     //y end
     controller.scrollcursor_flag = 2;
     if (keyboard_check(vk_control))
+    {
         controller.y_scale_end += ((mouse_y-mouseyprevious)*4);
+        if (controller.y_scale_end &gt; $FFFF)
+            controller.y_scale_end = $FFFF;
+        if (controller.y_scale_end &lt; controller.y_scale_start+1)
+            controller.y_scale_end = controller.y_scale_start+1;
+    }
     else
+    {
         controller.y_scale_end += ((mouse_y-mouseyprevious)*$ffff/256);
-    if (controller.y_scale_end &gt; $FFFF)
-        controller.y_scale_end = $FFFF;
-    if (controller.y_scale_end &lt; controller.y_scale_start+4096)
-        controller.y_scale_end = controller.y_scale_start+4096;
+        if (controller.y_scale_end &gt; $FFFF)
+            controller.y_scale_end = $FFFF;
+        if (controller.y_scale_end &lt; controller.y_scale_start+4096)
+            controller.y_scale_end = controller.y_scale_start+4096;
+    }
     mousexprevious = mouse_x;
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -183,13 +215,21 @@ else if (moving == 6)
     controller.scrollcursor_flag = 1;
     i = blindzonetoedit;
     if (keyboard_check(vk_control))
+    {
         t_list[| i] = t_list[| i]+((mouse_x-mousexprevious)*4);
+        if (t_list[| i] &lt; 0)
+            t_list[| i] = 0;
+        if (t_list[| i] &gt; t_list[| i+1]-1)
+            t_list[| i] = t_list[| i+1]-1;
+    }
     else
+    {
         t_list[| i] = t_list[| i]+((mouse_x-mousexprevious)*$ffff/256);
-    if (t_list[| i] &lt; 0)
-        t_list[| i] = 0;
-    if (t_list[| i] &gt; t_list[| i+1]-4096)
-        t_list[| i] = t_list[| i+1]-4096;
+        if (t_list[| i] &lt; 0)
+            t_list[| i] = 0;
+        if (t_list[| i] &gt; t_list[| i+1]-4096)
+            t_list[| i] = t_list[| i+1]-4096;
+    }
     mousexprevious = mouse_x;
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -205,13 +245,21 @@ else if (moving == 7)
     controller.scrollcursor_flag = 1;
     i = blindzonetoedit+1;
     if (keyboard_check(vk_control))
+    {
         t_list[| i] = t_list[| i]+((mouse_x-mousexprevious)*4);
+        if (t_list[| i] &gt; $FFFF)
+            t_list[| i] = $FFFF;
+        if (t_list[| i] &lt; t_list[| i-1]+1)
+            t_list[| i] = t_list[| i-1]+1;
+    }
     else
+    {
         t_list[| i] = t_list[| i]+((mouse_x-mousexprevious)*$ffff/256);
-    if (t_list[| i] &gt; $FFFF)
-        t_list[| i] = $FFFF;
-    if (t_list[| i] &lt; t_list[| i-1]+4096)
-        t_list[| i] = t_list[| i-1]+4096;
+        if (t_list[| i] &gt; $FFFF)
+            t_list[| i] = $FFFF;
+        if (t_list[| i] &lt; t_list[| i-1]+4096)
+            t_list[| i] = t_list[| i-1]+4096;
+    }
     mousexprevious = mouse_x;
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -227,13 +275,21 @@ else if (moving == 8)
     controller.scrollcursor_flag = 2;
     i = blindzonetoedit+2;
     if (keyboard_check(vk_control))
+    {
         t_list[| i] = t_list[| i]+((mouse_y-mouseyprevious)*4);
+        if (t_list[| i] &lt; 0)
+            t_list[| i] = 0;
+        if (t_list[| i] &gt; t_list[| i+1]-1)
+            t_list[| i] = t_list[| i+1]-1;
+    }
     else
+    {
         t_list[| i] = t_list[| i]+((mouse_y-mouseyprevious)*$ffff/256);
-    if (t_list[| i] &lt; 0)
-        t_list[| i] = 0;
-    if (t_list[| i] &gt; t_list[| i+1]-4096)
-        t_list[| i] = t_list[| i+1]-4096;
+        if (t_list[| i] &lt; 0)
+            t_list[| i] = 0;
+        if (t_list[| i] &gt; t_list[| i+1]-4096)
+            t_list[| i] = t_list[| i+1]-4096;
+    }
     mousexprevious = mouse_x;
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -249,13 +305,21 @@ else if (moving == 9)
     controller.scrollcursor_flag = 2;
     i = blindzonetoedit+3;
     if (keyboard_check(vk_control))
+    {
         t_list[| i] = t_list[| i]+((mouse_y-mouseyprevious)*4);
+        if (t_list[| i] &gt; $FFFF)
+            t_list[| i] = $FFFF;
+        if (t_list[| i] &lt; t_list[| i-1]+1)
+            t_list[| i] = t_list[| i-1]+1;
+    }
     else
+    {
         t_list[| i] = t_list[| i]+((mouse_y-mouseyprevious)*$ffff/256);
-    if (t_list[| i] &gt; $FFFF)
-        t_list[| i] = $FFFF;
-    if (t_list[| i] &lt; t_list[| i-1]+4096)
-        t_list[| i] = t_list[| i-1]+4096;
+        if (t_list[| i] &gt; $FFFF)
+            t_list[| i] = $FFFF;
+        if (t_list[| i] &lt; t_list[| i-1]+4096)
+            t_list[| i] = t_list[| i-1]+4096;
+    }
     mousexprevious = mouse_x;
     mouseyprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
