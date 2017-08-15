@@ -52,14 +52,14 @@
             <string>if (instance_exists(oDropDown))
     exit;
 if (room = rm_ilda)
-    {
+{
     if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
-        {
+    {
         image_index = 1;
         controller.tooltip = "Click here to open the full manual. Keyboard controls:##"+
         "Mouse)    Select drawing tool and draw#"+
         "Enter)    Remake selected object, or finalize curve#"+
-        "Left/Right Arrows)    Cycle between frames#"+
+        "Left/Right Arrows)    Go to previous/next frame#"+
         "Space)    Play/Pause#"+
         "Ctrl+Mouse)    Select object#"+
         "Tab)    Enter timeline mode#"+
@@ -76,6 +76,7 @@ if (room = rm_ilda)
         "R)    Show radial grid (Double click to toggle)#"+
         "Z)    Zoom in around the cursor#"+
         "E)    Clone color from background image#"+
+        "H)    Highlight all objects#"+
         "Ctrl)    Move all color sliders, or center symmetric sliders#"+
         "Ctrl+Z)    Undo#"+
         "Ctrl+C)    Copy selected objects#"+
@@ -88,13 +89,13 @@ if (room = rm_ilda)
         "Ctrl+Mouse wheel)    Adjust wave frequency##"+
         "M)    Reset window size#"+
         "F11)    Toggle fullscreen";
-        } 
+    } 
     else image_index = 0;
-    }
+}
 else if (room = rm_seq)
-    {
+{
     if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
-        {
+    {
         image_index = 1;
         controller.tooltip = "Click here to open the full manual. Keyboard controls:##"+
         "Mouse)    Select object or time on timeline (Ctrl to select multiple)#"+
@@ -117,19 +118,19 @@ else if (room = rm_seq)
         "M)    Reset window size#"+
         "F11)    Toggle fullscreen#"+
         "F1)    Show manual";
-        } 
+    } 
     else image_index = 0;
-    }
+}
 else
-    {
+{
     if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
-        {
+    {
         controller.tooltip = "Click here to open the full manual.";
         image_index = 1;
-        }
+    }
     else
         image_index = 0;
-    }
+}
 
 
 </string>

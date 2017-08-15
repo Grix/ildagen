@@ -26,7 +26,7 @@ if (viewmode == 0) or (viewmode == 2)
         for (u = 0; u < listsize; u++)
         {
             nextpos = 20+(u+1)*4;
-            nbl = ds_list_find_value(new_list,nextpos+2);
+            nbl = (ds_list_find_value(new_list,nextpos+2));
             
             if (nbl == 0)
             {
@@ -38,8 +38,12 @@ if (viewmode == 0) or (viewmode == 2)
                 
                 framepoints++;
                 
-                draw_set_color(ds_list_find_value(new_list,nextpos+3));
-                if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-2))
+                if (!highlight)
+                    draw_set_color(ds_list_find_value(new_list,nextpos+3));
+                else
+                    draw_set_color(c_white);
+                    
+                if (abs(xp-nxp) < 256) && (abs(yp-nyp) < 256) && !(ds_list_find_value(new_list,nextpos-2))
                 {
                     draw_rectangle(xo+xp/128-1,yo+yp/128-1,xo+xp/128+1,yo+yp/128+1,0);
                 }
@@ -84,7 +88,7 @@ if (viewmode == 0) or (viewmode == 2)
                     nyp = ds_list_find_value(new_list,nextpos+1);
                     
                     draw_set_color(ds_list_find_value(new_list,nextpos+3));
-                    if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-2))
+                    if (abs(xp-nxp) < 256) && (abs(yp-nyp) < 256) && !(ds_list_find_value(new_list,nextpos-2))
                         draw_rectangle(xo+xp/128-1,yo+yp/128-1,xo+xp/128+1,yo+yp/128+1,0);
                     else
                         draw_line(xo+ xp/128,yo+ yp/128,xo+ nxp/128,yo+ nyp/128);

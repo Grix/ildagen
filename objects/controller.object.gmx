@@ -156,6 +156,7 @@ show_tooltip = true;
 framecursor_prev = 0;
 show_framecursor_prev = false;
 scope_moving = false;
+highlight = false;
 
 sgridshow = 0;
 rgridshow = 0;
@@ -656,7 +657,7 @@ if (room == rm_loading)
     
 with (obj_cursor)
 {
-    if (room == rm_ilda) and (keyboard_check(ord('Z')) and !keyboard_check(vk_control))
+    if (room == rm_ilda) &amp;&amp; (keyboard_check(ord('Z')) &amp;&amp; !keyboard_check(vk_control))
     {
         image_index = 8;
         x = clamp(mouse_x,0,view_wview[0]-128);
@@ -723,6 +724,7 @@ else if (keyboard_check_pressed(ord("P")))
         viewmode = 0;
     frame_surf_refresh = 1;
 }
+
 else if (keyboard_check_pressed(vk_escape))
 {
     ds_list_clear(semaster_list);
@@ -735,18 +737,23 @@ else if (keyboard_check_pressed(vk_escape))
     }
 }
     
-else if (keyboard_check(vk_control) or (placing == "select")) and ds_list_size(el_list)
+else if (keyboard_check(vk_control) || (placing == "select") || (highlight)) &amp;&amp; ds_list_size(el_list)
 {
     check_elementselect();
 }
+
+if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('A')))
+{
+    dd_ilda_selectall();
+}
     
 //PASTE
-if (keyboard_check(vk_control) and keyboard_check_pressed(ord('V')))
+if (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('V')))
 {
     paste_object();
 }
     
-if (keyboard_check(ord('Z')) and !keyboard_check(vk_control))
+if (keyboard_check(ord('Z')) &amp;&amp; !keyboard_check(vk_control))
 {
     view_visible[2] = 1;
     view_xport[2] = clamp(obj_cursor.x-128,0,view_wview[0]-256);
@@ -755,18 +762,19 @@ if (keyboard_check(ord('Z')) and !keyboard_check(vk_control))
 else
     view_visible[2] = 0;
     
-if (keyboard_check(ord('S'))) or (sgridshow == 1)
+if (keyboard_check(ord('S'))) || (sgridshow == 1)
 {
     with (obj_cursor)
     {
-        if (x &lt; 512) and (y &lt; 512)
+        if (x &lt; 512) &amp;&amp; (y &lt; 512)
             move_snap(512/controller.sgridnum,512/controller.sgridnum);
     }
 }
 
 if (ds_list_size(el_list) &gt; 0)
 {
-    if (keyboard_check(vk_alt) and (placing_status == 0))
+
+    if (keyboard_check(vk_alt) &amp;&amp; (placing_status == 0))
     {
         if (keyboard_check(vk_control))
         {
@@ -802,9 +810,10 @@ if (ds_list_size(el_list) &gt; 0)
     }
 }
     
-if (!surface_exists(frame_surf) || (!surface_exists(frame3d_surf) &amp;&amp; viewmode != 0))
+if (!surface_exists(frame_surf) || (!surface_exists(frame3d_surf) &amp;&amp; viewmode != 0) || (highlight != keyboard_check(ord('H'))))
     frame_surf_refresh = true;
 
+highlight = keyboard_check(ord('H'));
     
 //SELECTED ELEMENT STUFFS
 canrightclick = 1;
@@ -831,12 +840,12 @@ if !ds_list_empty(semaster_list)
     }
 }
 
-if (mouse_x == clamp(mouse_x,0,512)) and (mouse_y == clamp(mouse_y,0,512))
-and (mouse_check_button_pressed(mb_right)) and (canrightclick)
+if (mouse_x == clamp(mouse_x,0,512)) &amp;&amp; (mouse_y == clamp(mouse_y,0,512))
+&amp;&amp; (mouse_check_button_pressed(mb_right)) &amp;&amp; (canrightclick)
     dropdown_empty();
     
 //KEYBOARD RIGHT LEFT
-if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
+if (keyboard_check(vk_left)) &amp;&amp; (maxframes &gt; 1) &amp;&amp; (placing_status == 0)
 {
     ds_list_clear(free_list);
     ds_list_clear(bez_list);
@@ -864,7 +873,7 @@ if (keyboard_check(vk_left)) and (maxframes &gt; 1) and (placing_status == 0)
     }
     refresh_miniaudio_flag = 1;
 }
-else if (keyboard_check(vk_right)) and (maxframes &gt; 1) and (placing_status == 0)
+else if (keyboard_check(vk_right)) &amp;&amp; (maxframes &gt; 1) &amp;&amp; (placing_status == 0)
 {
     ds_list_clear(free_list);
     ds_list_clear(bez_list);
@@ -902,7 +911,7 @@ if (frame &gt;= maxframes)
 frameprev = frame;    
 
 //guidelines
-if (keyboard_check(ord('A')) or (guidelineshow == 1))
+if (keyboard_check(ord('A')) || (guidelineshow == 1))
 {
     if  (keyboard_check_pressed(ord('A')))
     {
@@ -914,7 +923,7 @@ if (keyboard_check(ord('A')) or (guidelineshow == 1))
 }
    
 //grids 
-if (keyboard_check(ord('S')) or (sgridshow == 1))
+if (keyboard_check(ord('S')) || (sgridshow == 1))
 {
     if  (keyboard_check_pressed(ord('S')))
     {
@@ -936,7 +945,7 @@ if (keyboard_check(ord('S')) or (sgridshow == 1))
         square_grid_refresh();
     }
 } 
-if (keyboard_check(ord('R')) or (rgridshow == 1))
+if (keyboard_check(ord('R')) || (rgridshow == 1))
 {
     if  (keyboard_check_pressed(ord('R')))
     {
@@ -1690,7 +1699,7 @@ if (view_current == 0)
         draw_set_alpha(0.7);
            
         //grids 
-        if (keyboard_check(ord('S')) or (sgridshow == 1))
+        if (keyboard_check(ord('S')) || (sgridshow == 1))
         {
             if (!surface_exists(squaregrid_surf))
             {
@@ -1701,7 +1710,7 @@ if (view_current == 0)
             }
             draw_surface(squaregrid_surf,0,0);
         } 
-        if (keyboard_check(ord('R')) or (rgridshow == 1))
+        if (keyboard_check(ord('R')) || (rgridshow == 1))
         {
             if (!surface_exists(radialgrid_surf))
             {
@@ -1713,12 +1722,29 @@ if (view_current == 0)
             draw_surface(radialgrid_surf,0,0);
         }
             
-        if (keyboard_check(ord('A')) or (guidelineshow == 1))
+        if ((keyboard_check(ord('A')) &amp;&amp; !keyboard_check(vk_control)) || (guidelineshow == 1))
         {
             draw_guidelines();
         }
-            
+        
         draw_set_alpha(1);
+        draw_set_color(c_gray);
+        if (highlight)
+        {
+            for (u = 0; u &lt; ds_list_size(el_list);u++)
+            {
+                templist = ds_list_find_value(el_list,u);
+                
+                xo = ds_list_find_value(templist,0)/$ffff*512;
+                yo = ds_list_find_value(templist,1)/$ffff*512;
+                
+                xp1 = xo+ds_list_find_value(templist,4);
+                yp1 = yo+ds_list_find_value(templist,6);
+                xp2 = xo+ds_list_find_value(templist,5);
+                yp2 = yo+ds_list_find_value(templist,7);
+                draw_rectangle(xp1,yp1,xp2,yp2,1);
+            }
+        }
         
         //selected elements
         draw_set_color(c_aqua);
@@ -1735,7 +1761,7 @@ if (view_current == 0)
             
             draw_rectangle(rectxmin,rectymin,rectxmax,rectymax,1);
             
-            if (objmoving == 1) or (objmoving == 3) or (objmoving == 4)
+            if (objmoving == 1) || (objmoving == 3) || (objmoving == 4)
             {
                 xp1 = rectxmin+anixtrans/$ffff*512;
                 yp1 = rectymin+aniytrans/$ffff*512;
@@ -1790,7 +1816,7 @@ if (view_current == 0)
             
         }
         
-        if (placing_status) or (placing == "text") or (placing == "hershey") 
+        if (placing_status) || (placing == "text") || (placing == "hershey") 
             draw_preview_element();
     }
     
@@ -1816,11 +1842,11 @@ if (view_current == 0)
             draw_set_color(c_ltgray);
         draw_text(440,495,"Points: "+string(framepoints));
         
-        if (!anienable) and (maxframes &lt; 2)
+        if (!anienable) &amp;&amp; (maxframes &lt; 2)
             draw_set_color(c_gray);
         else 
             draw_set_color(c_ltgray);
-        if (scope_start == 0) and (scope_end == maxframes-1)
+        if (scope_start == 0) &amp;&amp; (scope_end == maxframes-1)
             draw_text(220,495,"Scope: All frames");
         else
             draw_text(220,495,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
@@ -1845,43 +1871,43 @@ else if (view_current == 3)
     if (mouse_y &gt; view_yview[3])   
     {
         draw_set_colour(c_teal);
-        if (mouse_x &gt; menu_width_start[0]) and (mouse_x &lt; menu_width_start[1])
+        if (mouse_x &gt; menu_width_start[0]) &amp;&amp; (mouse_x &lt; menu_width_start[1])
         {
             draw_rectangle(menu_width_start[0],view_yview[3]+1,menu_width_start[1],view_yview[3]+20,1);
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[0],view_yview[3]+1,menu_width_start[1],view_yview[3]+20,0);
         }
-        else if (mouse_x &gt; menu_width_start[1]) and (mouse_x &lt; menu_width_start[2])
+        else if (mouse_x &gt; menu_width_start[1]) &amp;&amp; (mouse_x &lt; menu_width_start[2])
         {
             draw_rectangle(menu_width_start[1],view_yview[3]+1,menu_width_start[2],view_yview[3]+20,1);
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[1],view_yview[3]+1,menu_width_start[2],view_yview[3]+20,0);
         }
-        else if (mouse_x &gt; menu_width_start[2]) and (mouse_x &lt; menu_width_start[3])
+        else if (mouse_x &gt; menu_width_start[2]) &amp;&amp; (mouse_x &lt; menu_width_start[3])
         {
             draw_rectangle(menu_width_start[2],view_yview[3]+1,menu_width_start[3],view_yview[3]+20,1);
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[2],view_yview[3]+1,menu_width_start[3],view_yview[3]+20,0);
         }
-        else if (mouse_x &gt; menu_width_start[3]) and (mouse_x &lt; menu_width_start[4])
+        else if (mouse_x &gt; menu_width_start[3]) &amp;&amp; (mouse_x &lt; menu_width_start[4])
         {
             draw_rectangle(menu_width_start[3],view_yview[3]+1,menu_width_start[4],view_yview[3]+20,1);
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[3],view_yview[3]+1,menu_width_start[4],view_yview[3]+20,0);
         }
-        else if (mouse_x &gt; menu_width_start[4]) and (mouse_x &lt; menu_width_start[5])
+        else if (mouse_x &gt; menu_width_start[4]) &amp;&amp; (mouse_x &lt; menu_width_start[5])
         {
             draw_rectangle(menu_width_start[4],view_yview[3]+1,menu_width_start[5],view_yview[3]+20,1);
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[4],view_yview[3]+1,menu_width_start[5],view_yview[3]+20,0);
         }
-        else if (mouse_x &gt; menu_width_start[5]) and (mouse_x &lt; menu_width_start[6])
+        else if (mouse_x &gt; menu_width_start[5]) &amp;&amp; (mouse_x &lt; menu_width_start[6])
         {
             draw_rectangle(menu_width_start[5],view_yview[3]+1,menu_width_start[6],view_yview[3]+20,1);
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[5],view_yview[3]+1,menu_width_start[6],view_yview[3]+20,0);
         }
-        else if (mouse_x &gt; menu_width_start[6]) and (mouse_x &lt; menu_width_start[7])
+        else if (mouse_x &gt; menu_width_start[6]) &amp;&amp; (mouse_x &lt; menu_width_start[7])
         {
             draw_rectangle(menu_width_start[6],view_yview[3]+1,menu_width_start[7],view_yview[3]+20,1);
             draw_set_alpha(0.3);
