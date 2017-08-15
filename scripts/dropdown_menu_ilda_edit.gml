@@ -23,7 +23,7 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,delete_object);
     ds_list_add(hl_list,!ds_list_empty(controller.semaster_list));
-    ds_list_add(desc_list,"Select all");
+    ds_list_add(desc_list,"Select all (Ctrl+A)");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,dd_ilda_selectall);
     ds_list_add(hl_list,!ds_list_empty(controller.el_list));
