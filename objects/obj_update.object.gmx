@@ -54,7 +54,7 @@
 if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
     image_index = 1;
-    controller.tooltip = "Check for new updates for LasershowGen. (Requires internet)";
+    controller.tooltip = "Check for new updates for LaserShowGen. (Requires internet)";
     } 
 else image_index = 0;
 </string>

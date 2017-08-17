@@ -1075,6 +1075,9 @@
       <script>scripts\prepare_output.gml</script>
       <script>scripts\prepare_output_points.gml</script>
       <script>scripts\make_frame.gml</script>
+      <script>scripts\prepare_output_onlyblank.gml</script>
+      <script>scripts\prepare_output_points_onlyblank.gml</script>
+      <script>scripts\makeframe_onlyblank.gml</script>
       <script>scripts\output_framelist_to_buffer.gml</script>
       <script>scripts\export_framelist_to_buffer.gml</script>
     </scripts>
@@ -1233,6 +1236,7 @@
       <objects name="settings">
         <object>objects\obj_comingsoon</object>
         <object>objects\obj_optimize</object>
+        <object>objects\obj_onlyblanking</object>
         <object>objects\obj_autoupdate</object>
         <object>objects\obj_inverty</object>
         <object>objects\obj_invertx</object>

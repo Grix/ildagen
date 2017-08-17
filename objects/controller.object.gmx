@@ -203,6 +203,7 @@ global.loading_importilda = 0;
 global.loading_importfont = 0;
 global.loading_importildaseq = 0;
 
+opt_onlyblanking = false;
 opt_maxdist = 300;
 opt_maxdwell = 5;
 opt_maxdwell_blank = 1;
@@ -1494,13 +1495,13 @@ with (seqcontrol)
 output_buffer_ready = false;
 
 if (room == rm_ilda)
-    window_set_caption("LasershowGen - Editor Mode");
+    window_set_caption("LaserShowGen - Editor Mode");
 else if (room == rm_seq)
-    window_set_caption("LasershowGen - Timeline Mode");
+    window_set_caption("LaserShowGen - Timeline Mode");
 else if (room == rm_options)
-    window_set_caption("LasershowGen - Settings");
+    window_set_caption("LaserShowGen - Settings");
 else if (room == rm_loading)
-    window_set_caption("LasershowGen - Working...");
+    window_set_caption("LaserShowGen - Working...");
 </string>
           </argument>
         </arguments>

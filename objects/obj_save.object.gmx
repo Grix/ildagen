@@ -53,7 +53,7 @@
 if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
     image_index = 1;
-    controller.tooltip = "Saves the LasershowGen frames file";
+    controller.tooltip = "Saves the LaserShowGen frames file";
     } 
 else image_index = 0;
 </string>
@@ -118,7 +118,7 @@ with (controller)
     if (os_browser == browser_not_a_browser)
         save_frames();
     else 
-        ilda_dialog_string("saveframes","Enter the name of the LasershowGen frames IGF file","example.igf");
+        ilda_dialog_string("saveframes","Enter the name of the LaserShowGen frames IGF file","example.igf");
     }
 </string>
           </argument>
@@ -161,7 +161,7 @@ with (controller)
     if (os_browser == browser_not_a_browser)
         save_frames();
     else 
-        ilda_dialog_string("saveframes","Enter the name of the LasershowGen frames IGF file","example.igf");
+        ilda_dialog_string("saveframes","Enter the name of the LaserShowGen frames IGF file","example.igf");
     }
 </string>
           </argument>

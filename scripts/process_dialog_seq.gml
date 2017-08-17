@@ -55,7 +55,7 @@ if (new_id == getint)
         }
         case "loadproject":
         {
-            load_project(get_open_filename_ext("LasershowGen project|*.igp","","","Select LasershowGen project file"));
+            load_project(get_open_filename_ext("LaserShowGen project|*.igp","","","Select LaserShowGen project file"));
           
             break;
         }

@@ -103,7 +103,7 @@ buffer_resize(save_buffer,buffer_tell(save_buffer));
 
 //export
 buffer_save(save_buffer,file_loc);
-//show_message_new("LasershowGen project saved to "+string(file_loc));
+//show_message_new("LaserShowGen project saved to "+string(file_loc));
 //todo why above comment
 
 for (i = 0; i < 1000;i++){}

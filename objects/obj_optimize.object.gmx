@@ -82,6 +82,9 @@ if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox
     exit;
 controller.exp_optimize = !controller.exp_optimize;
 
+if (!controller.exp_optimize)
+    controller.opt_onlyblanking = false;
+
 if (!controller.opt_warning_flag) and (!controller.exp_optimize)
 {
     controller.opt_warning_flag = 1;

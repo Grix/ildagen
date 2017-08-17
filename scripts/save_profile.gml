@@ -11,6 +11,7 @@ with (controller)
     t_profilemap[? "maxdist"] = opt_maxdist;
     t_profilemap[? "format"] = exp_format;
     t_profilemap[? "optimize"] = exp_optimize;
+    t_profilemap[? "onlyblanking"] = opt_onlyblanking;
     t_profilemap[? "invert_y"] = invert_x;
     t_profilemap[? "invert_x"] = invert_y;
     t_profilemap[? "red_scale"] = red_scale;

@@ -119,7 +119,6 @@ for (i = 0; i < t_numofelems; i++)
                     {
                         //list_id[| currentpos+2 ] = 1;
                         bl_prev = 1;
-                        t_contflag = true;
                         continue;
                     }
                 }
@@ -129,12 +128,6 @@ for (i = 0; i < t_numofelems; i++)
                 //is blind zone, no scaling or blanking
                 xp = xo+list_id[| currentpos+0];
                 yp = $ffff-(yo+list_id[| currentpos+1]);
-            }
-            
-            if (t_contflag)
-            {
-                t_contflag = false;
-                continue;
             }
                     
             //valid lit point, process it

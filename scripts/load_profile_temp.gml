@@ -14,6 +14,7 @@ with (controller)
     opt_maxdist = t_profilemap[? "maxdist"];
     exp_format = t_profilemap[? "format"];
     exp_optimize = t_profilemap[? "optimize"];
+    opt_onlyblanking = t_profilemap[? "onlyblanking"];
     invert_x = t_profilemap[? "invert_y"];
     invert_y = t_profilemap[? "invert_x"];
     red_scale = t_profilemap[? "red_scale"];
@@ -27,4 +28,7 @@ with (controller)
     y_scale_start = t_profilemap[? "y_scale_start"];
     y_scale_end = t_profilemap[? "y_scale_end"];
     ds_list_read(blindzone_list, t_profilemap[? "blindzones"]);
+    
+    if (!exp_optimize)
+        opt_onlyblanking = false;
 }

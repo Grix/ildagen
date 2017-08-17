@@ -9,7 +9,7 @@ with (ddobj)
     ds_list_add(desc_list,"Load project");
     ds_list_add(desc_list,"Export project as ILDA file");
     ds_list_add(desc_list,"Import ILDA file to timeline");
-    ds_list_add(desc_list,"Import LasershowGen frames file to timeline");
+    ds_list_add(desc_list,"Import LaserShowGen frames file to timeline");
     ds_list_add(desc_list,"Send frames from editor mode to timeline");
     ds_list_add(sep_list,0);
     ds_list_add(sep_list,1);

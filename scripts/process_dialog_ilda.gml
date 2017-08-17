@@ -74,7 +74,7 @@ if (new_id == getint)
           
             case "updatefound":
             {
-                file = http_get_file("https://github.com/Grix/ildagen/raw/master/LasershowGen-"+versionnew+"-Installer.exe","temp/update.exe");
+                file = http_get_file("https://github.com/Grix/ildagen/raw/master/LaserShowGen-"+versionnew+"-Installer.exe","temp/update.exe");
                 show_message_new("Download started, program will exit and installation start shortly..");
                 break;
             }    
@@ -430,7 +430,7 @@ if (new_id == getint)
               
             case "loadfile":
           {
-              load_frames(get_open_filename_ext("LasershowGen frames|*.igf","","","Select LasershowGen frames file"));
+              load_frames(get_open_filename_ext("LaserShowGen frames|*.igf","","","Select LaserShowGen frames file"));
               
               break;
           }
