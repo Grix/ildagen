@@ -8,4 +8,4 @@ if (os_browser != browser_not_a_browser)
 }
 
 with (seqcontrol)
-    load_frames_seq(get_open_filename_ext("LasershowGen frames|*.igf","","","Select LasershowGen frames file"));
+    load_frames_seq(get_open_filename_ext("LaserShowGen frames|*.igf","","","Select LaserShowGen frames file"));

@@ -66,11 +66,11 @@
     <instance objName="obj_inverty" x="32" y="156" name="inst_D8336E92" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_invertx" x="32" y="188" name="inst_81971AD6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_maxdwell_blank" x="264" y="172" name="inst_C943470E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_blankshift" x="264" y="336" name="inst_3EC33475" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_blankshift" x="264" y="352" name="inst_3EC33475" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_colorscale" x="28" y="56" name="inst_A4AEEF27" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_redshift" x="264" y="252" name="inst_7D536BD7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_greenshift" x="264" y="280" name="inst_7F121BB4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_blueshift" x="264" y="308" name="inst_1F039BD9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_redshift" x="264" y="268" name="inst_7D536BD7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_greenshift" x="264" y="296" name="inst_7F121BB4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_blueshift" x="264" y="324" name="inst_1F039BD9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_tooltip" x="1260" y="504" name="inst_88DB1169" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_fps" x="32" y="228" name="inst_F46706FB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_projectionzones" x="480" y="72" name="inst_D3510EAB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -82,6 +82,7 @@
     <instance objName="obj_dacs" x="36" y="492" name="inst_71ABB47D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_addprofile" x="788" y="652" name="inst_2D7577E5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_testframe" x="24" y="384" name="inst_584ED7A9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_onlyblanking" x="264" y="236" name="inst_249C4A91" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bck_texttiles" x="484" y="36" w="256" h="16" xo="0" yo="48" id="10000004" name="inst_E5A68B08" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

@@ -17,6 +17,7 @@ with (controller)
             ini_write_real("projector_0", "invert_x", false);
             ini_write_real("projector_0", "invert_y", false);
             ini_write_real("projector_0", "optimize", 1);
+            ini_write_real("projector_0", "onlyblanking", false);
             ini_write_real("projector_0", "red_scale", 1);
             ini_write_real("projector_0", "green_scale", 1);
             ini_write_real("projector_0", "blue_scale", 1);
@@ -50,6 +51,7 @@ with (controller)
             ds_map_add(t_profilemap, "maxdist", ini_read_real(t_projectorstring, "maxdist", 300));
             ds_map_add(t_profilemap, "format", ini_read_real(t_projectorstring, "format", 5));
             ds_map_add(t_profilemap, "optimize", ini_read_real(t_projectorstring, "optimize", 1));
+            ds_map_add(t_profilemap, "onlyblanking", ini_read_real(t_projectorstring, "onlyblanking", false));
             ds_map_add(t_profilemap, "invert_y", ini_read_real(t_projectorstring, "invert_y", false));
             ds_map_add(t_profilemap, "invert_x", ini_read_real(t_projectorstring, "invert_x", false));
             ds_map_add(t_profilemap, "red_scale", ini_read_real(t_projectorstring, "red_scale", 1));

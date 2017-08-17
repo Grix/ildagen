@@ -65,15 +65,7 @@ for (t_i = 1; t_i < listsize; t_i++)
         yp = $ffff-(yo+list_id[| currentpos+1]);
     }
     
-    /*if (t_contflag)
-    {
-        t_contflag = false;
-        continue;
-    }*/
-    
     //valid point, process it
-    
-    //c = ds_list_find_value(list_id,currentpos+3);
     
     if (controller.exp_optimize)
     {

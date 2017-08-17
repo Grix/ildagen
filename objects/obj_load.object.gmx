@@ -53,7 +53,7 @@
 if (mouse_x &gt; bbox_left) and (mouse_x &lt; bbox_right) and (mouse_y &gt; bbox_top) and ((mouse_y &lt; bbox_bottom))
     {
     image_index = 1;
-    controller.tooltip = "Loads a LasershowGen frames file";
+    controller.tooltip = "Loads a LaserShowGen frames file";
     } 
 else image_index = 0;
 </string>
@@ -96,7 +96,7 @@ else if (room == rm_seq)
     if (!verify_serial())
         exit;
     with (seqcontrol)
-        load_frames_seq(get_open_filename_ext("LasershowGen frames|*.igf","","","Select LasershowGen frames file"));
+        load_frames_seq(get_open_filename_ext("LaserShowGen frames|*.igf","","","Select LaserShowGen frames file"));
 }
 </string>
           </argument>
