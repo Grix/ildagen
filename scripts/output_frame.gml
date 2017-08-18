@@ -87,14 +87,44 @@ if (ds_list_size(el_list) == 0)
 }
 else
 {
-    if (!prepare_output())
+    if (controller.exp_optimize)
     {
-        optimize_middle_output();
+        if (controller.opt_onlyblanking)
+        {
+            if (!prepare_output_onlyblank())
+            {
+                optimize_middle_output();
+            }
+            else
+            {
+                make_frame_onlyblank();
+                output_framelist_to_buffer();
+            }
+        }
+        else
+        {
+            if (!prepare_output())
+            {
+                optimize_middle_output();
+            }
+            else
+            {
+                make_frame();
+                output_framelist_to_buffer();
+            }
+        }
     }
     else
     {
-        make_frame();
-        output_framelist_to_buffer();
+        if (!prepare_output())
+        {
+            optimize_middle_output();
+        }
+        else
+        {
+            make_frame();
+            output_framelist_to_buffer();
+        }
     }
 }
 

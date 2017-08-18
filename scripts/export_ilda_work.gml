@@ -53,21 +53,64 @@ for (j = global.loading_current; j < global.loading_end;j++)
         continue;
     }
     
-    if (prepare_output() == 0)
+    if (controller.exp_optimize)
     {
-        optimize_middle_export();
-        //update maxpoints
-        maxpoints = maxpointswanted;
-        maxpointsa[0] = maxpoints & 255;
-        maxpoints = maxpoints >> 8;
-        maxpointsa[1] = maxpoints & 255;
-        buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
-        buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
-        continue;
+        if (controller.opt_onlyblanking)
+        {
+            if (prepare_output_onlyblank() == 0)
+            {
+                optimize_middle_export();
+                //update maxpoints
+                maxpoints = maxpointswanted;
+                maxpointsa[0] = maxpoints & 255;
+                maxpoints = maxpoints >> 8;
+                maxpointsa[1] = maxpoints & 255;
+                buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
+                buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
+                continue;
+            }
+            
+            make_frame_onlyblank();
+        }
+        else
+        {
+            if (prepare_output() == 0)
+            {
+                optimize_middle_export();
+                //update maxpoints
+                maxpoints = maxpointswanted;
+                maxpointsa[0] = maxpoints & 255;
+                maxpoints = maxpoints >> 8;
+                maxpointsa[1] = maxpoints & 255;
+                buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
+                buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
+                continue;
+            }
+            
+            make_frame();
+        }
+        
+        export_framelist_to_buffer();
+    }
+    else
+    {
+        if (prepare_output() == 0)
+        {
+            optimize_middle_export();
+            //update maxpoints
+            maxpoints = maxpointswanted;
+            maxpointsa[0] = maxpoints & 255;
+            maxpoints = maxpoints >> 8;
+            maxpointsa[1] = maxpoints & 255;
+            buffer_poke(ilda_buffer,maxpointspos,buffer_u8,maxpointsa[1]);
+            buffer_poke(ilda_buffer,maxpointspos+1,buffer_u8,maxpointsa[0]);
+            continue;
+        }
+        
+        make_frame();
+        export_framelist_to_buffer();
     }
     
-    make_frame();
-    export_framelist_to_buffer();
         
     //update maxpoints
     maxpointsa[0] = maxpoints & 255;

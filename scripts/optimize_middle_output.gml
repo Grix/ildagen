@@ -9,10 +9,10 @@ mid_x = x_lowerbound+$8000*x_scale;
 mid_y = y_lowerbound+$8000*y_scale;
 
 repeat (maxpointswanted)
-    {
+{
     //writing point
     buffer_write(output_buffer,buffer_u16,mid_x);
     buffer_write(output_buffer,buffer_u16,mid_y);
     buffer_write(output_buffer,buffer_u32,0);
     buffer_write(output_buffer,buffer_u32,0);
-    }
+}

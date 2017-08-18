@@ -7,14 +7,6 @@ var t_vectorx, t_vectory, t_true_dwell_falling, t_true_dwell_rising;
 var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
 var t_contflag = false;
 
-var t_totalrem = 0;
-var t_totalpointswanted = floor(controller.opt_scanspeed/controller.projectfps);
-var t_litpointswanted = t_totalpointswanted - maxpoints_static - maxpoints_dots - 3;
-
-if (t_litpointswanted == 0) 
-    t_litpointswanted = 1;
-var t_lengthwanted = abs(lit_length/t_litpointswanted);
-
 xp_prev = mid_x;
 yp_prev = mid_y;
 xp_prev_prev = mid_x;
@@ -22,11 +14,6 @@ yp_prev_prev = mid_y;
 bl_prev = 1;
 c_prev = 0;
 new_dot = 1;
-
-if (t_lengthwanted == 0) 
-{
-    t_lengthwanted = 0.0001; //to avoid dividing by zero
-}
 
 //parse elements
 var t_numofelems = ds_list_size(order_list);
@@ -65,6 +52,13 @@ for (i = 0; i < t_numofelems; i++)
         
         if (bl)
         {
+            xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
+            yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
+            c = list_id[| currentpos+3 ];
+            ds_list_add(list_raw,xp);
+            ds_list_add(list_raw,yp);
+            ds_list_add(list_raw,bl);
+            ds_list_add(list_raw,c);
             continue;
         }
         else 
@@ -267,7 +261,7 @@ for (i = 0; i < t_numofelems; i++)
                 xp_prev = xpp;
                 yp_prev = ypp;
                 c_prev = c;
-            }
+            }//end if !bl_prev
             
         }//end if !bl
         
