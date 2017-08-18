@@ -6,7 +6,6 @@ list_raw = ds_list_create();
 order_list = ds_list_create();
 polarity_list = ds_list_create();
 
-lit_length = 0;
 maxpoints_static = 0;
 maxpoints_dots = 0;
 smallestdotsize = 100000;
