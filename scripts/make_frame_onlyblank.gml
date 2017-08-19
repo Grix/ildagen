@@ -183,8 +183,6 @@ for (i = 0; i < t_numofelems; i++)
                         ds_list_add(list_raw,0);
                     }
                     
-                    new_dot = 1;
-                    
                     //travel
                     opt_vectorx = (xp_prev-xpp)/opt_dist;
                     opt_vectory = (yp_prev-ypp)/opt_dist;

@@ -47,8 +47,6 @@ if (controller.exp_optimize)
         
         make_frame();
     }
-    
-    export_framelist_to_buffer();
 }
 else
 {
@@ -66,8 +64,9 @@ else
     }
     
     make_frame_unopt();
-    export_framelist_to_buffer();
 }
+
+export_framelist_to_buffer();
 
 //update maxpoints
 maxpointsa[0] = maxpoints & 255;
