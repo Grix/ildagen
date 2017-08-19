@@ -37,68 +37,65 @@ var t_found = 0;
 var t_list_empties = ds_list_create();
 
 //checking best element order
-if (controller.exp_optimize)
+while (ds_list_size(order_list) < (ds_list_size(el_list)-ds_list_size(t_list_empties)))
 {
-    while (ds_list_size(order_list) < (ds_list_size(el_list)-ds_list_size(t_list_empties)))
+    t_lowestdist = $fffff;
+    for (i = 0; i < ds_list_size(el_list); i++)
     {
-        t_lowestdist = $fffff;
-        for (i = 0; i < ds_list_size(el_list); i++)
+        if (ds_list_find_index(order_list,i) != -1)
+            continue;
+            
+        list_id = el_list[| i];
+        
+        if (ds_list_find_index(t_list_empties, list_id) != -1)
+            continue;
+        
+        xo = list_id[| 0];
+        yo = list_id[| 1];
+        t_found = 0;
+        
+        xp = xo+list_id[| 20];
+        yp = yo+list_id[| 21];
+        
+        t_dist = point_distance(xp_prev,yp_prev,xp,yp);
+        if (t_dist < t_lowestdist)
         {
-            if (ds_list_find_index(order_list,i) != -1)
-                continue;
-                
-            list_id = el_list[| i];
-            
-            if (ds_list_find_index(t_list_empties, list_id) != -1)
-                continue;
-            
-            xo = list_id[| 0];
-            yo = list_id[| 1];
-            t_found = 0;
-            
-            xp = xo+list_id[| 20];
-            yp = yo+list_id[| 21];
+            t_order = i;
+            t_pol = 0;
+            if (t_dist < 250)
+                break;
+            t_lowestdist = t_dist;
+        }
+        
+        if (!list_id[| 11])
+        {
+            currentpos = ds_list_size(list_id)-4;
+            xp = xo+list_id[| currentpos+0];
+            yp = yo+list_id[| currentpos+1];
             
             t_dist = point_distance(xp_prev,yp_prev,xp,yp);
             if (t_dist < t_lowestdist)
             {
                 t_order = i;
-                t_pol = 0;
+                t_pol = 1;
                 if (t_dist < 250)
                     break;
                 t_lowestdist = t_dist;
             }
+        }
+    }
+    if ((ds_list_size(el_list)-ds_list_size(t_list_empties)) > 0)
+    {
+        list_id = el_list[| t_order];
+        if (t_pol)
+            currentpos = 20;
+        else
+            currentpos = ds_list_size(list_id)-4;
             
-            if (!list_id[| 11])
-            {
-                currentpos = ds_list_size(list_id)-4;
-                xp = xo+list_id[| currentpos+0];
-                yp = yo+list_id[| currentpos+1];
-                
-                t_dist = point_distance(xp_prev,yp_prev,xp,yp);
-                if (t_dist < t_lowestdist)
-                {
-                    t_order = i;
-                    t_pol = 1;
-                    if (t_dist < 250)
-                        break;
-                    t_lowestdist = t_dist;
-                }
-            }
-        }
-        if ((ds_list_size(el_list)-ds_list_size(t_list_empties)) > 0)
-        {
-            list_id = el_list[| t_order];
-            if (t_pol)
-                currentpos = 20;
-            else
-                currentpos = ds_list_size(list_id)-4;
-                
-            xp_prev = list_id[| 0]+list_id[| currentpos+0];
-            yp_prev = list_id[| 1]+list_id[| currentpos+1];
-            ds_list_add(order_list,t_order);
-            ds_list_add(polarity_list,t_pol);
-        }
+        xp_prev = list_id[| 0]+list_id[| currentpos+0];
+        yp_prev = list_id[| 1]+list_id[| currentpos+1];
+        ds_list_add(order_list,t_order);
+        ds_list_add(polarity_list,t_pol);
     }
 }
 
@@ -115,17 +112,12 @@ xp_prev = mid_x;
 yp_prev = mid_y;
 
 //parse elements
-if (controller.exp_optimize)
-    var t_numofelems = ds_list_size(order_list);
-else 
-    var t_numofelems = ds_list_size(el_list);
+
+var t_numofelems = ds_list_size(order_list);
     
 for (i = 0; i < t_numofelems; i++)
 {
-    if (controller.exp_optimize)
-        list_id = ds_list_find_value(el_list,order_list[| i]);
-    else 
-        list_id = ds_list_find_value(el_list,i); 
+    list_id = ds_list_find_value(el_list,order_list[| i]);
         
     if (is_undefined(list_id))
         continue;
@@ -140,56 +132,53 @@ for (i = 0; i < t_numofelems; i++)
     bl_prev = 1;
 }
 
-if (controller.exp_optimize) and (xp_prev != mid_x) and (yp_prev != mid_y)
+if (xp_prev != mid_x) and (yp_prev != mid_y)
 {
     //back to middle
     xp = mid_x;
     yp = mid_y;
     
     //BLANKING
-    if (controller.exp_optimize)
+    opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
+    
+    if (opt_dist < 250) //connecting segments
     {
-        opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
-        
-        if (opt_dist < 250) //connecting segments
+        var t_true_dwell = controller.opt_maxdwell;
+        maxpoints_static += (   (controller.opt_maxdwell_blank)
+                                +  abs(t_true_dwell - controller.opt_maxdwell_blank) );
+    }
+    else
+    {
+        if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
         {
-            var t_true_dwell = controller.opt_maxdwell;
-            maxpoints_static += (   (controller.opt_maxdwell_blank)
-                                    +  abs(t_true_dwell - controller.opt_maxdwell_blank) );
+            t_true_dwell_rising = round(controller.opt_maxdwell*0.2);
         }
         else
         {
-            if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
-            {
-                t_true_dwell_rising = round(controller.opt_maxdwell*0.2);
-            }
-            else
-            {
-                angle_blank = point_direction(xp,yp, xp_prev,yp_prev);
-                angle_prev = point_direction(xp_prev_prev,yp_prev_prev, xp_prev,yp_prev);
-        
-                t_true_dwell_rising =  round(controller.opt_maxdwell * 
-                                        (1- abs(angle_difference( angle_prev, angle_blank ))/180));
-            }       
-                     
-            var t_trav_dist = a_ballistic;
-            var t_n = 1;
-            var t_quantumsteps = 0;
-            var t_totaldist = 0;
-            while (1)
-            {
-                t_totaldist += (t_n + t_n-1)*t_trav_dist;
-                t_quantumsteps += (t_n + t_n-1);
-                if (t_totaldist > opt_dist)
-                    break;
-                t_n++;
-            }
+            angle_blank = point_direction(xp,yp, xp_prev,yp_prev);
+            angle_prev = point_direction(xp_prev_prev,yp_prev_prev, xp_prev,yp_prev);
+    
+            t_true_dwell_rising =  round(controller.opt_maxdwell * 
+                                    (1- abs(angle_difference( angle_prev, angle_blank ))/180));
+        }       
                  
-            maxpoints_static += (   (controller.opt_maxdwell_blank) 
-                                    +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
-                                    +  (t_n + t_n) 
-                                    + 1);
+        var t_trav_dist = a_ballistic;
+        var t_n = 1;
+        var t_quantumsteps = 0;
+        var t_totaldist = 0;
+        while (1)
+        {
+            t_totaldist += (t_n + t_n-1)*t_trav_dist;
+            t_quantumsteps += (t_n + t_n-1);
+            if (t_totaldist > opt_dist)
+                break;
+            t_n++;
         }
+             
+        maxpoints_static += (   (controller.opt_maxdwell_blank) 
+                                +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
+                                +  (t_n + t_n) 
+                                + 1);
     }
 }
 

@@ -216,22 +216,7 @@ if (room = rm_options)
     }
 }
 
-if (ds_list_size(el_list) == 0) 
-{
-    optimize_middle_output();
-}
-else
-{
-    if (!prepare_output())
-    {
-        optimize_middle_output();
-    }
-    else
-    {
-        make_frame();
-        output_framelist_to_buffer();
-    }
-}
+assemble_frame_dac();
 
 if (room = rm_options)
 {
