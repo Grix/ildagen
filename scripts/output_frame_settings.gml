@@ -50,25 +50,7 @@ for (i = 0; i < ds_list_size(controller.blindzone_list); i += 4)
     blindzone_el_lists++;
 }
 
-
-buffer_seek(output_buffer, buffer_seek_start, 0);
-
-if (ds_list_size(el_list) == 0) 
-{
-    optimize_middle_output();
-}
-else
-{
-    if (!prepare_output())
-    {
-        optimize_middle_output();
-    }
-    else
-    {
-        make_frame();
-        output_framelist_to_buffer();
-    }
-}
+assemble_frame_dac();
 
 output_buffer_ready = true;
 

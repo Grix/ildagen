@@ -6,7 +6,7 @@ var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
 var t_true_dwell_falling, t_true_dwell_rising;
 var t_contflag = false;
 
-if (!controller.exp_optimize) || (polarity_list[| i] == 0)
+if (polarity_list[| i] == 0)
 {
     currentpos = 20;
     currentposadjust = 4;
@@ -67,105 +67,101 @@ for (t_i = 1; t_i < listsize; t_i++)
     
     //valid point, process it
     
-    if (controller.exp_optimize)
+    if (bl_prev)
     {
+        //todo maybe add reference to current position so we don't 
+        //have to parse through all blanked points when writing
+    
+        //BLANKING
         
-        if (bl_prev)
+        var t_prevpos = currentpos-currentposadjust;
+        xpp = x_lowerbound+(xo+list_id[| t_prevpos+0])*x_scale;
+        ypp = y_lowerbound+($ffff-(yo+list_id[| t_prevpos+1]))*y_scale;
+        opt_dist = point_distance(xp_prev,yp_prev,xpp,ypp);
+        
+        if (opt_dist < 250) //connecting segments
         {
-            //todo maybe add reference to current position so we don't 
-            //have to parse through all blanked points when writing
+            angle_next = point_direction(xp,yp, xpp,ypp);
+            angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
         
-            //BLANKING
+            t_true_dwell_falling =  round(controller.opt_maxdwell * 
+                                    (1- abs(angle_difference( angle_prev, angle_next ))/180));
+        
+                
+            maxpoints_static += ( (controller.opt_maxdwell_blank)*2
+                                   + abs(t_true_dwell_falling - controller.opt_maxdwell_blank*2) );
+        }
+        else //not connecting segments
+        {
+            angle_blank = point_direction(xpp,ypp, xp_prev,yp_prev);
             
-            var t_prevpos = currentpos-currentposadjust;
-            xpp = x_lowerbound+(xo+list_id[| t_prevpos+0])*x_scale;
-            ypp = y_lowerbound+($ffff-(yo+list_id[| t_prevpos+1]))*y_scale;
-            opt_dist = point_distance(xp_prev,yp_prev,xpp,ypp);
-            
-            if (opt_dist < 250) //connecting segments
+            if ((xpp == xp) && (ypp == yp))
             {
-                angle_next = point_direction(xp,yp, xpp,ypp);
-                angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
-            
+                t_true_dwell_falling = round(controller.opt_maxdwell*0.2);
+            }
+            else
+            {
+                angle_next = point_direction(xpp,ypp, xp,yp);
+                
                 t_true_dwell_falling =  round(controller.opt_maxdwell * 
-                                        (1- abs(angle_difference( angle_prev, angle_next ))/180));
-            
-                    
-                maxpoints_static += ( (controller.opt_maxdwell_blank)*2
-                                       + abs(t_true_dwell_falling - controller.opt_maxdwell_blank*2) );
+                                        (1- abs(angle_difference( angle_blank, angle_next ))/180));
             }
-            else //not connecting segments
+            
+            if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
             {
-                angle_blank = point_direction(xpp,ypp, xp_prev,yp_prev);
-                
-                if ((xpp == xp) && (ypp == yp))
-                {
-                    t_true_dwell_falling = round(controller.opt_maxdwell*0.2);
-                }
-                else
-                {
-                    angle_next = point_direction(xpp,ypp, xp,yp);
-                    
-                    t_true_dwell_falling =  round(controller.opt_maxdwell * 
-                                            (1- abs(angle_difference( angle_blank, angle_next ))/180));
-                }
-                
-                if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
-                {
-                    t_true_dwell_rising = round(controller.opt_maxdwell*0.2);
-                }
-                else
-                {
-                    angle_prev = point_direction(xp_prev_prev,yp_prev_prev, xp_prev,yp_prev);
-            
-                    t_true_dwell_rising =  round(controller.opt_maxdwell * 
-                                            (1- abs(angle_difference( angle_prev, angle_blank ))/180));
-                }
-            
-                var t_trav_dist = a_ballistic;
-                var t_n = 1;
-                //var t_quantumsteps = 0;
-                var t_totaldist = 0;
-                while (1)
-                {
-                    t_totaldist += (t_n + t_n-1)*t_trav_dist;
-                    //t_quantumsteps += (t_n + t_n-1);
-                    if (t_totaldist > opt_dist)
-                        break;
-                    t_n++;
-                }
-                     
-                maxpoints_static += (   2*(controller.opt_maxdwell_blank) 
-                                        +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
-                                        +  max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank)
-                                        +  (t_n + t_n - 1) );
+                t_true_dwell_rising = round(controller.opt_maxdwell*0.2);
             }
-            
-            opt_dist = point_distance(xpp,ypp,xp,yp);
-        }
-        else
-            opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
-            
-        lit_length += opt_dist;
+            else
+            {
+                angle_prev = point_direction(xp_prev_prev,yp_prev_prev, xp_prev,yp_prev);
         
-        if (opt_dist == 0)
-        {
-            maxpoints_dots++;
-            currentdotsize++;
-            new_dot = 1;
-        }
-        else
-        {
-            if ((new_dot) && (currentdotsize > 1))
-            {
-                num_dots++;
-                maxpoints_dots++;
-                if (currentdotsize < smallestdotsize)
-                    smallestdotsize = currentdotsize;
-                currentdotsize = 0;
+                t_true_dwell_rising =  round(controller.opt_maxdwell * 
+                                        (1- abs(angle_difference( angle_prev, angle_blank ))/180));
             }
-            new_dot = 0;
+        
+            var t_trav_dist = a_ballistic;
+            var t_n = 1;
+            //var t_quantumsteps = 0;
+            var t_totaldist = 0;
+            while (1)
+            {
+                t_totaldist += (t_n + t_n-1)*t_trav_dist;
+                //t_quantumsteps += (t_n + t_n-1);
+                if (t_totaldist > opt_dist)
+                    break;
+                t_n++;
+            }
+                 
+            maxpoints_static += (   2*(controller.opt_maxdwell_blank) 
+                                    +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
+                                    +  max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank)
+                                    +  (t_n + t_n - 1) );
         }
+        
+        opt_dist = point_distance(xpp,ypp,xp,yp);
+    }
+    else
+        opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
+        
+    lit_length += opt_dist;
+    
+    if (opt_dist == 0)
+    {
+        maxpoints_dots++;
+        currentdotsize++;
+        new_dot = 1;
+    }
+    else
+    {
+        if ((new_dot) && (currentdotsize > 1))
+        {
+            num_dots++;
+            maxpoints_dots++;
+            if (currentdotsize < smallestdotsize)
+                smallestdotsize = currentdotsize;
+            currentdotsize = 0;
+        }
+        new_dot = 0;
     }
     
     xp_prev_prev = xp_prev;
