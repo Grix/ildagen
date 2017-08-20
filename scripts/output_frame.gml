@@ -1,4 +1,4 @@
-minroomspeed = max(projectfps,10);
+minroomspeed = max(projectfps,7.5);
 
 output_buffer = controller.dac[| 4];
 output_buffer2 = controller.dac[| 5];
@@ -8,9 +8,9 @@ output_buffer_next_size = controller.dac[| 7];
 if (output_buffer_ready)
 {
     if (debug_mode)
-        log("outputted frame ", dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps);
+        log("outputted frame ", dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps/fpsmultiplier, fpsmultiplier, delta_time/1000);
         
-    dac_send_frame(dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps);
+    dac_send_frame(dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps/fpsmultiplier);
     frame_surf_refresh = false;
     output_buffer_ready = false;
     laseronfirst = false;
@@ -82,6 +82,7 @@ if (is_undefined(el_list))
 assemble_frame_dac();
 
 output_buffer_ready = true;
+fpsmultiplier = max(round((output_buffer_next_size*projectfps)/opt_scanspeed), 1);
 
 controller.dac[| 4] = output_buffer;
 controller.dac[| 5] = output_buffer2;

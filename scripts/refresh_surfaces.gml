@@ -111,6 +111,7 @@ if (viewmode != 0)
 }
 
 //find point count
+//todo for unopt etc
 if (controller.exp_optimize)
 {
     if (prepare_output())
