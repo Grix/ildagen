@@ -313,6 +313,7 @@ scope_start = 0;
 scope_end = 0;
 objmoving = 0;
 projectfps = 30;
+fpsmultiplier = 1;
 
 shapefunc_cp = 100;
 shapefunc_string_x = "";
@@ -1041,10 +1042,14 @@ if (laseron)
     else
         output_frame();
 }
+else 
+    fpsmultiplier = 1;
 
-room_speed = projectfps;
+room_speed = projectfps/fpsmultiplier;
 while (room_speed &lt; minroomspeed)
-    room_speed += projectfps;
+    room_speed += projectfps/fpsmultiplier;
+    
+log(room_speed);
 </string>
           </argument>
         </arguments>

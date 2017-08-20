@@ -42,6 +42,7 @@ else
             make_frame_unopt();
         }
     }
+    output_framelist_to_buffer();
 }
 
-output_framelist_to_buffer();
+

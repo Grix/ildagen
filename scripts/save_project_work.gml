@@ -103,10 +103,13 @@ buffer_resize(save_buffer,buffer_tell(save_buffer));
 
 //export
 buffer_save(save_buffer,file_loc);
-//show_message_new("LaserShowGen project saved to "+string(file_loc));
-//todo why above comment
 
-for (i = 0; i < 1000;i++){}
+var t_time = get_timer();
+while ((get_timer() - t_time) > 4095)
+    j = 0;
+    
+show_message_new("LaserShowGen project saved to "+string(file_loc));
+
 buffer_delete(save_buffer);
 
 global.loading_saveproject = 0;
