@@ -27,12 +27,12 @@ for (i = 0; i < t_numofelems; i++)
 
     if (polarity_list[| i] == 0)
     {
-        currentpos = 20;
+        currentpos = 16;
         currentposadjust = 4;
     }
     else
     {
-        currentpos = ds_list_size(list_id)-4;
+        currentpos = ds_list_size(list_id);
         currentposadjust = -4;
       
     }
@@ -49,7 +49,7 @@ for (i = 0; i < t_numofelems; i++)
             xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
             yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
             
-            if ((yp >= $fffe) || (yp <= 1) || (xp >= $fffe) || (xp <= 1))
+            if ((yp > $ffff) || (yp < 0) || (xp > $ffff) || (xp < 0))
             {
                 bl = 1;
             }
@@ -87,7 +87,7 @@ for (i = 0; i < t_numofelems; i++)
         //normal point, writing
         ds_list_add(list_raw,xp);
         ds_list_add(list_raw,yp);
-        ds_list_add(list_raw,bl);
+        ds_list_add(list_raw,0);
         ds_list_add(list_raw,c);
     }
         

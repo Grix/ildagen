@@ -13,7 +13,6 @@ xp_prev_prev = mid_x;
 yp_prev_prev = mid_y;
 bl_prev = 1;
 c_prev = 0;
-new_dot = 1;
 
 //parse elements
 var t_numofelems = ds_list_size(order_list);
@@ -54,11 +53,10 @@ for (i = 0; i < t_numofelems; i++)
         {
             xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
             yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
-            c = list_id[| currentpos+3 ];
             ds_list_add(list_raw,xp);
             ds_list_add(list_raw,yp);
-            ds_list_add(list_raw,bl);
-            ds_list_add(list_raw,c);
+            ds_list_add(list_raw,1);
+            ds_list_add(list_raw,0);
             continue;
         }
         else 
@@ -69,7 +67,7 @@ for (i = 0; i < t_numofelems; i++)
                 xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
                 yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
                 
-                if ((yp >= $fffe) || (yp <= 1) || (xp >= $fffe) || (xp <= 1))
+                if ((yp > $ffff) || (yp < 0) || (xp > $ffff) || (xp < 0))
                 {
                     //list_id[| currentpos+2 ] = 1;
                     bl_prev = 1;

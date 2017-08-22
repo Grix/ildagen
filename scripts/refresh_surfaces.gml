@@ -111,36 +111,42 @@ if (viewmode != 0)
 }
 
 //find point count
-//todo for unopt etc
 if (controller.exp_optimize)
 {
-    if (prepare_output())
+    if (!controller.opt_onlyblanking)
     {
-        ds_list_destroy(order_list);
-        ds_list_destroy(polarity_list);
-        ds_list_destroy(list_raw);
-        
-        var t_totalpointswanted = floor(opt_scanspeed/projectfps);
-        var t_litpointswanted = t_totalpointswanted - maxpoints_static - maxpoints_dots - 3;
-        if (t_litpointswanted == 0) 
-            t_litpointswanted = 1;
-        if (lit_length != 0)
+        if (prepare_output())
         {
-            var t_lengthwanted = abs(lit_length/t_litpointswanted);
+            ds_list_destroy(order_list);
+            ds_list_destroy(polarity_list);
+            ds_list_destroy(list_raw);
             
-            if (t_lengthwanted > 2000)//controller.opt_maxdist) TODO create setting
-                frame_complexity = 1;
-            else if (t_lengthwanted > 2000*0.5)
-                frame_complexity = 2;
+            var t_totalpointswanted = floor(opt_scanspeed/projectfps);
+            var t_litpointswanted = t_totalpointswanted - maxpoints_static - maxpoints_dots - 3;
+            if (t_litpointswanted == 0) 
+                t_litpointswanted = 1;
+            if (lit_length != 0)
+            {
+                var t_lengthwanted = abs(lit_length/t_litpointswanted);
+                
+                if (t_lengthwanted > 2000)//controller.opt_maxdist) TODO create setting
+                    frame_complexity = 1;
+                else if (t_lengthwanted > 2000*0.5)
+                    frame_complexity = 2;
+            }
+            else
+            {
+                if (t_litpointswanted < 0)
+                    frame_complexity = 2;
+            }
+            
+            framepoints += maxpoints_static;
         }
-        else
-        {
-            if (t_litpointswanted < 0)
-                frame_complexity = 2;
-        }
-        
-        framepoints += maxpoints_static;
     }
+    else
+        prepare_output_onlyblank();
 }
+else
+    prepare_output_unopt();
 
     

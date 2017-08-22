@@ -82,7 +82,6 @@ if (is_undefined(el_list))
 assemble_frame_dac();
 
 output_buffer_ready = true;
-fpsmultiplier = max(round((output_buffer_next_size*projectfps)/opt_scanspeed), 1);
 
 controller.dac[| 4] = output_buffer;
 controller.dac[| 5] = output_buffer2;
