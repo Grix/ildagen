@@ -1,7 +1,9 @@
 /*
 
 TODO
--preview blindzones
+- double check and fix maxpoints_static calculation
+- fmodgms
+- LIVE mode
 
 SETTINGSCONTROL
 

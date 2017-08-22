@@ -143,7 +143,7 @@ else //not optimized
         if (is_undefined(t_bl))
         {
             c = 0;
-            bl = 0;
+            bl = 1;
         }
         else
         {
@@ -182,9 +182,9 @@ else //not optimized
         if (controller.exp_format == 5)
         {
             buffer_write(ilda_buffer,buffer_u8,blank);
-            buffer_write(ilda_buffer,buffer_u8,t_red_lowerbound + (c & $FF) * t_red_scale);
-            buffer_write(ilda_buffer,buffer_u8,t_green_lowerbound + ((c >> 8) & $FF) * t_green_scale);
             buffer_write(ilda_buffer,buffer_u8,t_blue_lowerbound + (c >> 16) * t_blue_scale);
+            buffer_write(ilda_buffer,buffer_u8,t_green_lowerbound + ((c >> 8) & $FF) * t_green_scale);
+            buffer_write(ilda_buffer,buffer_u8,t_red_lowerbound + (c & $FF) * t_red_scale);
         }
         else
         {

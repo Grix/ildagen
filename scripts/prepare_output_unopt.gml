@@ -3,6 +3,8 @@ if (debug_mode)
 
 list_raw = ds_list_create();
 
+maxpoints_static = 0;
+
 order_list = ds_list_create();
 polarity_list = ds_list_create();
 
