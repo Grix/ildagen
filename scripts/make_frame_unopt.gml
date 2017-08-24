@@ -38,7 +38,7 @@ for (i = 0; i < t_numofelems; i++)
     }
     
     var t_i;
-    for (t_i = 1; t_i < listsize; t_i++)
+    for (t_i = 0; t_i < listsize; t_i++)
     {
         currentpos += currentposadjust;
         
@@ -49,7 +49,7 @@ for (i = 0; i < t_numofelems; i++)
             xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
             yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
             
-            if ((yp > $ffff) || (yp < 0) || (xp > $ffff) || (xp < 0))
+            if ((yp >= $ffff) || (yp <= 0) || (xp >= $ffff) || (xp <= 0))
             {
                 bl = 1;
             }
