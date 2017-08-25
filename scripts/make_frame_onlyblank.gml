@@ -88,28 +88,29 @@ for (i = 0; i < t_numofelems; i++)
         else
             c = list_id[| currentpos+3 ];
         
-        /*if (bl)
-        {
-            xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
-            yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
-            ds_list_add(list_raw,xp);
-            ds_list_add(list_raw,yp);
-            ds_list_add(list_raw,1);
-            ds_list_add(list_raw,0);
-            xp_prev_prev = xp_prev;
-            yp_prev_prev = yp_prev;
-            xp_prev = xp;
-            yp_prev = yp;
-            c_prev = 0;
-            continue;
-        }*/
-        
         if (bl_prev)
         {
             //BLANKING
             var t_prevpos = currentpos-currentposadjust;
             xpp = x_lowerbound+(xo+list_id[| t_prevpos+0])*x_scale;
             ypp = y_lowerbound+($ffff-(yo+list_id[| t_prevpos+1]))*y_scale;
+            
+            if ((ypp >= $ffff) || (ypp <= 0) || (xpp >= $ffff) || (xpp <= 0))
+            {
+                continue;
+            }
+            
+            for (jj = 0; jj < t_blindzonelistsize; jj += 4)
+            {
+                if ((xpp > controller.blindzone_list[| jj+0]) 
+                &&  (xpp < controller.blindzone_list[| jj+1])
+                &&  (ypp < $FFFF-controller.blindzone_list[| jj+2]) 
+                &&  (ypp > $FFFF-controller.blindzone_list[| jj+3]))
+                {
+                    continue;
+                }
+            }
+            
             opt_dist = point_distance(xp_prev,yp_prev,xpp,ypp);
             
             if (opt_dist < 250) //connecting segments

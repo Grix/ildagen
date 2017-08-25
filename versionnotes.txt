@@ -1,10 +1,11 @@
+v1.5.5
+- Optimization mode for keeping existing points
+(Good for playback of imported pre-optimized ILD files)
+- Various bug fixes, especially for unoptimizized output
+- Other new minor features and fixes
+
 v1.5.4
 - More accurate output, especially for imported ILD files
 - Ability to loop timeline playback
 - Fix broken fullscreen after recent Windows update
 - More minor bug fixes and improvements
-
-v1.5.3
-- Ability to preview frames from editor or timeline mode while in settings mode, for easier adjustment
-- Optimizations and bug fixes for Helios DAC output
-

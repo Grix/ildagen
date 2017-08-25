@@ -134,6 +134,23 @@ for (i = 0; i < t_numofelems; i++)
                 var t_prevpos = currentpos-currentposadjust;
                 xpp = x_lowerbound+(xo+list_id[| t_prevpos+0])*x_scale;
                 ypp = y_lowerbound+($ffff-(yo+list_id[| t_prevpos+1]))*y_scale;
+                
+                if ((ypp >= $ffff) || (ypp <= 0) || (xpp >= $ffff) || (xpp <= 0))
+                {
+                    continue;
+                }
+                
+                for (jj = 0; jj < t_blindzonelistsize; jj += 4)
+                {
+                    if ((xpp > controller.blindzone_list[| jj+0]) 
+                    &&  (xpp < controller.blindzone_list[| jj+1])
+                    &&  (ypp < $FFFF-controller.blindzone_list[| jj+2]) 
+                    &&  (ypp > $FFFF-controller.blindzone_list[| jj+3]))
+                    {
+                        continue;
+                    }
+                }
+            
                 opt_dist = point_distance(xp_prev,yp_prev,xpp,ypp);
                 
                 if (opt_dist < 250) //connecting segments

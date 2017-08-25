@@ -1135,21 +1135,6 @@
     <object>objects\obj_loadingbar</object>
     <object>objects\obj_ad</object>
     <objects name="buttons">
-      <objects name="seq">
-        <object>objects\obj_saveproject</object>
-        <object>objects\obj_exportproject</object>
-        <object>objects\obj_loadproject</object>
-        <object>objects\obj_sendtoeditor</object>
-        <object>objects\obj_openeditor</object>
-        <object>objects\obj_loadaudio</object>
-        <object>objects\obj_addmarker</object>
-        <object>objects\obj_largepreview</object>
-        <object>objects\obj_clearmarkers</object>
-        <object>objects\obj_playbackspeed</object>
-        <object>objects\obj_audioshift</object>
-        <object>objects\obj_volume</object>
-        <object>objects\obj_seqloop</object>
-      </objects>
       <objects name="ilda">
         <objects name="ani">
           <object>objects\obj_anienable</object>
@@ -1237,6 +1222,21 @@
         <object>objects\obj_select</object>
         <object>objects\obj_colorselectparent</object>
         <object>objects\obj_colorselectparentani</object>
+      </objects>
+      <objects name="seq">
+        <object>objects\obj_saveproject</object>
+        <object>objects\obj_exportproject</object>
+        <object>objects\obj_loadproject</object>
+        <object>objects\obj_sendtoeditor</object>
+        <object>objects\obj_openeditor</object>
+        <object>objects\obj_loadaudio</object>
+        <object>objects\obj_addmarker</object>
+        <object>objects\obj_largepreview</object>
+        <object>objects\obj_clearmarkers</object>
+        <object>objects\obj_playbackspeed</object>
+        <object>objects\obj_audioshift</object>
+        <object>objects\obj_volume</object>
+        <object>objects\obj_seqloop</object>
       </objects>
       <objects name="settings">
         <object>objects\obj_comingsoon</object>
