@@ -17,12 +17,14 @@ if (idbyte == 103) or (idbyte == 101) or (idbyte == 102)
         
         //object data
         numofobjects = buffer_read(load_buffer,buffer_u32);
+        log("20", buffer_tell(load_buffer),numofobjects);                                    ///////////////////////////
         for (i = 0; i < numofobjects;i++)
         {
             objectlist = ds_list_create();
             ds_list_add(objectlist,buffer_read(load_buffer,buffer_u32));
             
             objectbuffersize = buffer_read(load_buffer,buffer_u32);
+            log("27", buffer_tell(load_buffer),objectbuffersize);                                    ///////////////////////////
             objectbuffer = buffer_create(objectbuffersize,buffer_fixed,1);
             ds_list_add(objectlist,objectbuffer);
             buffer_copy(load_buffer,buffer_tell(load_buffer),objectbuffersize,objectbuffer,0);
@@ -39,6 +41,7 @@ if (idbyte == 103) or (idbyte == 101) or (idbyte == 102)
         
         //envelopes
         numofenvelopes = buffer_read(load_buffer,buffer_u32);
+        log("43", buffer_tell(load_buffer),numofenvelopes);                                    ///////////////////////////
         repeat (numofenvelopes)
         {
             var t_env = ds_list_create();
@@ -47,6 +50,7 @@ if (idbyte == 103) or (idbyte == 101) or (idbyte == 102)
             ds_list_add(t_env,buffer_read(load_buffer,buffer_string));
             
             var t_time_list_size = buffer_read(load_buffer,buffer_u32);
+            log("53", buffer_tell(load_buffer),t_time_list_size);                                    ///////////////////////////
             var t_time_list = ds_list_create();
             ds_list_add(t_env,t_time_list);
             repeat (t_time_list_size)
@@ -79,6 +83,7 @@ if (idbyte == 103) or (idbyte == 101) or (idbyte == 102)
             var t_daclist = ds_list_create();
             ds_list_add(layertemp, t_daclist);
             numofdacs = buffer_read(load_buffer,buffer_u8);
+            log("82", buffer_tell(load_buffer),numofdacs);                                    ///////////////////////////
             repeat (numofdacs)
             {
                 var t_thisdaclist = ds_list_create();
@@ -113,12 +118,14 @@ else if (idbyte == 100) //old, need to remake buffers
         ds_list_add(layer_list,layertemp);
         
         numofobjects = buffer_read(load_buffer,buffer_u32);
+        log("117", buffer_tell(load_buffer),numofobjects);                                    ///////////////////////////
         for (i = 0; i < numofobjects;i++)
         {
             objectlist = ds_list_create();
             ds_list_add(objectlist,buffer_read(load_buffer,buffer_u32));
             
             objectbuffersize = buffer_read(load_buffer,buffer_u32);
+            log("127", buffer_tell(load_buffer),objectbuffersize);                   /////////////////////////// 
             objectbuffer = buffer_create(objectbuffersize,buffer_fixed,1);
             buffer_copy(load_buffer,buffer_tell(load_buffer),objectbuffersize,objectbuffer,0);
             buffer_seek(load_buffer,buffer_seek_relative,objectbuffersize);
@@ -165,8 +172,10 @@ if (get_timer()-global.loadingtimeprev >= 100000)
     global.loadingtimeprev = get_timer();
     return 0;
 }
+ 
+if (debug_mode)   
+    log("songload", songload)
     
-log(songload)
 if (songload)
 {
     songfile_name = buffer_read(load_buffer,buffer_string);
@@ -216,6 +225,7 @@ if (songload)
     if (!parsingaudioload)
     {
         parsinglistsize = buffer_read(load_buffer,buffer_u32);
+        log("222",buffer_tell(load_buffer),parsinglistsize);                                    ///////////////////////////
         if (idbyte >= 103)
         {
             for (i = 0; i < parsinglistsize; i++)

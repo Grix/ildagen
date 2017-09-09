@@ -25,7 +25,7 @@ global.loading_current = global.loading_start;
     
 buffer_write(save_buffer,buffer_u8,103); //version / ID
 buffer_write(save_buffer,buffer_u8,projectfps); //fps
-buffer_write(save_buffer,buffer_u8,song); //audio enabled
+buffer_write(save_buffer,buffer_u8,(song > 0)); //audio enabled
 buffer_write(save_buffer,buffer_u8,parsingaudio); //audio still parsing
 buffer_write(save_buffer,buffer_u32,startframe);
 buffer_write(save_buffer,buffer_u32,endframe);
