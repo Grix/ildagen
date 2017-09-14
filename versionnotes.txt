@@ -1,3 +1,6 @@
+v1.5.6
+- Fix bug sometimes corrupting a saved timeline project file
+
 v1.5.5
 - Optimization mode for keeping existing points
 (Good for playback of imported pre-optimized ILD files)
@@ -6,6 +9,4 @@ v1.5.5
 
 v1.5.4
 - More accurate output, especially for imported ILD files
-- Ability to loop timeline playback
-- Fix broken fullscreen after recent Windows update
-- More minor bug fixes and improvements
+- ...
