@@ -12,8 +12,8 @@ with (seqcontrol)
     playing = false;
     frame_surf_refresh = true;
     output_buffer_ready = false;
-    if (song)
-        FMODInstanceSetPaused(songinstance,1);
+    if (song != 0)
+        FMODGMS_Chan_PauseChannel(songinstance);
 }
 output_buffer_ready = false;
 

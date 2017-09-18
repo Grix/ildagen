@@ -5,7 +5,7 @@ if (os_browser != browser_not_a_browser)
     exit;
 }
 
-if (!verify_serial())
+if (!verify_serial(true))
     exit;
 
 if (seqcontrol.selectedlayer = -1) or (ds_list_empty(seqcontrol.layer_list))
@@ -116,7 +116,8 @@ with (seqcontrol)
     
 with (seqcontrol)
 {
-    if (song) FMODInstanceSetPaused(songinstance,1);
+    if (song != 0) 
+		FMODGMS_Chan_PauseChannel(songinstance);
     playing = 0;
 }
     

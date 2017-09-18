@@ -6,8 +6,8 @@ if (playing == 1)
     if (maxframes <= 1)
     {
         playing = 0;
-        if (seqcontrol.song)
-            FMODInstanceSetPaused(seqcontrol.songinstance,1);
+        if (seqcontrol.song != 0)
+            FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
     }
         
     framehr += delta_time/1000000*seqcontrol.projectfps*seqcontrol.playbackspeed;
@@ -28,7 +28,7 @@ if (playing == 1)
         
     if (frameprev != 0) and (frame == 0) and (seqcontrol.song)
     {
-        FMODInstanceSetPosition(seqcontrol.songinstance,tlx/seqcontrol.projectfps*1000/FMODSoundGetLength(seqcontrol.song));
+        FMODGMS_Chan_Set_Position(seqcontrol.songinstance,tlx/seqcontrol.projectfps*1000/FMODGMS_Snd_Get_Length(seqcontrol.song));
     }
 }
 

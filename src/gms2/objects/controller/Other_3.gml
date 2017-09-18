@@ -1,5 +1,4 @@
 save_settings();
-FMODfree();
-UnloadFMOD();
+FMODGMS_Sys_Close();
 close_dacs();
 

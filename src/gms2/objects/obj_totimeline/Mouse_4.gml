@@ -16,8 +16,8 @@ with (controller)
     frame = 0;
     framehr = 0;
     if (seqcontrol.song)
-        FMODInstanceSetPaused(seqcontrol.songinstance,1);
-        
+        FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
+		
     room_goto(rm_seq);
 }
 

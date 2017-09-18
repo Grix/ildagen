@@ -7,6 +7,6 @@ frame_surf_refresh = 1;
 ds_list_clear(semaster_list);
 update_semasterlist_flag = 1;
 
-if (seqcontrol.song)
-    FMODInstanceSetPaused(seqcontrol.songinstance,1);
+if (seqcontrol.song != 0)
+    FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
 

@@ -1,8 +1,8 @@
-if (!verify_serial())
+if (!verify_serial(true))
     exit;
 
 with (seqcontrol) 
-    {
+{
     save_project();
-    }
+}
 

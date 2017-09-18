@@ -20,8 +20,8 @@ if (room = rm_ilda)
                 controller.playing = 1;
                 if (seqcontrol.song)
                 {
-                    FMODInstanceSetPosition(seqcontrol.songinstance,(controller.tlx+controller.framehr)/seqcontrol.projectfps*1000/FMODSoundGetLength(seqcontrol.song));
-                    FMODInstanceSetPaused(seqcontrol.songinstance,0);
+                    FMODGMS_Chan_Set_Position(seqcontrol.songinstance,(controller.tlx+controller.framehr)/seqcontrol.projectfps*1000/FMODGMS_Snd_Get_Length(seqcontrol.song));
+                    FMODGMS_Chan_ResumeChannel(seqcontrol.songinstance);
                 }
             }
             break;
@@ -33,7 +33,7 @@ if (room = rm_ilda)
             if (mouse_check_button_pressed(mb_left))
             {
                 controller.playing = 0;
-                FMODInstanceSetPaused(seqcontrol.songinstance,1);
+                FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
             }
             break;
         }
@@ -64,8 +64,8 @@ else
                 seqcontrol.playing = 1;
                 if (seqcontrol.song)
                 {
-                    FMODInstanceSetPosition(seqcontrol.songinstance,(seqcontrol.tlpos+seqcontrol.audioshift)/FMODSoundGetLength(seqcontrol.song));
-                    FMODInstanceSetPaused(seqcontrol.songinstance,0);
+                    FMODGMS_Chan_Set_Position(seqcontrol.songinstance,(seqcontrol.tlpos+seqcontrol.audioshift)/FMODGMS_Snd_Get_Length(seqcontrol.song));
+                    FMODGMS_Chan_ResumeChannel(seqcontrol.songinstance);
                 }
             }
             break;
@@ -77,7 +77,7 @@ else
             if (mouse_check_button_pressed(mb_left))
             {
                 seqcontrol.playing = 0;
-                FMODInstanceSetPaused(seqcontrol.songinstance,1);
+                FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
             }
             break;
         }
@@ -94,8 +94,8 @@ else
                     tlpos = 0;
                     if (song)
                     {
-                        FMODInstanceStop(songinstance);
-                        songinstance = FMODSoundPlay(song,1);
+                        FMODGMS_Chan_StopChannel(songinstance);
+                        songinstance = FMODGMS_Snd_PlaySound(song, play_sndchannel);
                         set_audio_speed();
                     }
                 }

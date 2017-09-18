@@ -1,6 +1,6 @@
 numentries = 1024;
-    
-FMODUpdate();
+
+FMODGMS_Sys_Update();
 
 deltatime = FMODInstanceGetPosition(parseinstance)*FMODSoundGetLength(song);
 

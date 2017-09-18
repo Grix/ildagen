@@ -64,11 +64,11 @@ if (keyboard_check_pressed(vk_space))
     {
         if (playing)
         {
-            FMODInstanceSetPosition(seqcontrol.songinstance,(tlx+framehr)/seqcontrol.projectfps*1000/FMODSoundGetLength(seqcontrol.song));
-            FMODInstanceSetPaused(seqcontrol.songinstance,0);
+            FMODGMS_Chan_Set_Position(seqcontrol.songinstance,(tlx+framehr)/seqcontrol.projectfps*1000/FMODGMS_Snd_Get_Length(seqcontrol.song));
+            FMODGMS_Chan_ResumeChannel(seqcontrol.songinstance);
         }
         else
-            FMODInstanceSetPaused(seqcontrol.songinstance,1);
+            FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
     }
     
     if (!playing)
@@ -342,8 +342,8 @@ if (keyboard_check_pressed(vk_tab))
     ilda_cancel();
     frame = 0;
     framehr = 0;
-    if (seqcontrol.song)
-        FMODInstanceSetPaused(seqcontrol.songinstance,1);
+    if (seqcontrol.song != 0)
+        FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
         
     room_goto(rm_seq);
 }

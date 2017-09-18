@@ -842,11 +842,12 @@ if !(mouseonsomelayer)
             tlpos = round(tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
             if (song)
             {
-                FMODInstanceStop(songinstance);
-                songinstance = FMODSoundPlay(song,1);
+                FMODGMS_Chan_StopChannel(songinstance);
+                songinstance = FMODGMS_Snd_PlaySound(song, play_sndchannel);
                 set_audio_speed();
-                FMODInstanceSetPosition(songinstance,clamp(((tlpos+audioshift)-10)/FMODSoundGetLength(song),0,1));
-                FMODInstanceSetPaused(songinstance,!playing);
+                FMODGMS_Chan_Set_Position(songinstance,clamp(((tlpos+audioshift)-10)/FMODGMS_Snd_Get_Length(song),0,1));
+                if (!playing)
+					FMODGMS_Chan_PauseChannel(songinstance);
             }
         }
     }

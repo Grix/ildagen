@@ -1,4 +1,4 @@
-if (verify_serial(1)) || (controller.adclosed)
+if (verify_serial(false)) || (controller.adclosed)
     instance_destroy();
     
 md5query = -1;
@@ -22,5 +22,3 @@ else
 
 alarm[0] = 2;
 
-/* */
-/*  */
