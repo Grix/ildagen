@@ -20,7 +20,7 @@ if (parsingaudio == 1)
     refresh_audio();
 
 if (song) 
-    FMODUpdate();
+    FMODGMS_Sys_Update();
 
 if (room != rm_seq) exit;
     
@@ -31,7 +31,7 @@ if (instance_exists(oDropDown))
     
 if (keyboard_check(vk_control))
 {
-    //CTRL+~
+    //CTRL+*
     if (keyboard_check_pressed(ord("C")))
     {
         if (!ds_list_empty(somaster_list))
@@ -89,11 +89,11 @@ else if (keyboard_check_pressed(vk_space))
     {
         if (playing)
         {
-            FMODInstanceSetPosition(songinstance,(tlpos+audioshift)/FMODSoundGetLength(song));
-            FMODInstanceSetPaused(songinstance,0);
+            FMODGMS_Chan_Set_Position(songinstance,(tlpos+audioshift)/FMODGMS_Snd_Get_Length(song));
+            FMODGMS_Chan_ResumeChannel(songinstance);
         }
         else
-            FMODInstanceSetPaused(songinstance,1);
+            FMODGMS_Chan_PauseChannel(songinstance);
     }
 }
     
@@ -104,7 +104,8 @@ else if (keyboard_check_pressed(vk_left)) and (tlpos > projectfps/1000)
 
 else if (keyboard_check_pressed(vk_tab))
 {
-    if (song) FMODInstanceSetPaused(songinstance,1);
+    if (song) 
+		FMODGMS_Chan_PauseChannel(songinstance);
     playing = 0;
     room_goto(rm_ilda);
 }
@@ -124,8 +125,8 @@ else if (keyboard_check_pressed(ord("0")))
     tlpos = 0;
     if (song)
     {
-        FMODInstanceStop(songinstance);
-        songinstance = FMODSoundPlay(song,1);
+        FMODGMS_Chan_StopChannel(songinstance);
+        songinstance = FMODGMS_Snd_PlaySound(song, play_sndchannel);
         set_audio_speed();
     }
 }

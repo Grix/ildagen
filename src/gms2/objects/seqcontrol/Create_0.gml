@@ -101,7 +101,7 @@ ds_map_add(env_type_map,"r","Red");
 ds_map_add(env_type_map,"g","Green");
 ds_map_add(env_type_map,"b","Blue");
 
-LoadFMOD();
+FMODGMS_Sys_Create();
 benchmark();
 
 draw_set_font(fnt_tooltip);

@@ -1,6 +1,6 @@
 ilda_cancel();
 if (seqcontrol.song) 
-    FMODInstanceSetPaused(seqcontrol.songinstance,1);
+    FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
 seqcontrol.playing = 0;
 room_goto(rm_options);
 

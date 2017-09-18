@@ -13,7 +13,7 @@ with (controller)
         import_ilda(get_open_filename_ext("ILDA files|*.ild","","","Select ILDA file"));
     else if (room == rm_seq)
     {
-        if (!verify_serial())
+        if (!verify_serial(true))
             exit;
         import_ildaseq(get_open_filename_ext("ILDA files|*.ild","","","Select ILDA file"));
     }

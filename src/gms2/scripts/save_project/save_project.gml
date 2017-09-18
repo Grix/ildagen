@@ -2,7 +2,7 @@
 
 playing = 0;
 if (song)
-    FMODInstanceSetPaused(songinstance,1);
+	FMODGMS_Chan_PauseChannel(songinstance);
     
 save_buffer = buffer_create(1,buffer_grow,1);
 

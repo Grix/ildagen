@@ -7,7 +7,8 @@ if (seqcontrol.selectedlayer = -1) or (!ds_list_empty(seqcontrol.somaster_list))
     
 with (seqcontrol)
 {
-    if (song) FMODInstanceSetPaused(songinstance,1);
+    if (song)
+		FMODGMS_Chan_PauseChannel(songinstance);
     playing = 0;
 }
     

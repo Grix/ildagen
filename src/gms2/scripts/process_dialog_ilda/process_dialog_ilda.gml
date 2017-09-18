@@ -678,7 +678,7 @@ else if (new_id == getstr)
                 controller.serialfile = file_text_open_write("serial");
                 file_text_write_string(controller.serialfile,string_lettersdigits(controller.serial));
                 file_text_close(controller.serialfile);
-                verify_serial();
+                verify_serial(true);
                 break;
             }
             case ("dacname"):

@@ -334,7 +334,7 @@ if (os_browser == browser_not_a_browser)
     load_settings();
 }
 
-verify_serial(1);
+verify_serial(false);
 telem();
 
 ex_patch_window_close_capture(1);

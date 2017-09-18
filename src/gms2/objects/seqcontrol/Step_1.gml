@@ -19,15 +19,15 @@ if (playing == 1)
         //tlpos = 0;
         if (song)
         {
-            FMODInstanceStop(songinstance);
-            songinstance = FMODSoundPlay(song,1);
+            FMODGMS_Chan_StopChannel(songinstance);
+			songinstance = FMODGMS_Snd_PlaySound(song, play_sndchannel);
             set_audio_speed();
         }
     }
     
-    if (abs(FMODInstanceGetPosition(songinstance)*FMODSoundGetLength(song)-(tlpos+audioshift)) > 32) and (scroll_moving != 1) and (song)
+    if (abs(FMODGMS_Chan_Get_Position(songinstance)*FMODGMS_Snd_Get_Length(song)-(tlpos+audioshift)) > 32) and (scroll_moving != 1) and (song != 0)
     {
-        FMODInstanceSetPosition(songinstance,(tlpos+audioshift)/FMODSoundGetLength(song));
+        FMODGMS_Chan_Set_Position(songinstance,(tlpos+audioshift)/FMODGMS_Snd_Get_Length(song));
     }
 }
 

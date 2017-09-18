@@ -33,7 +33,7 @@ if (room = rm_ilda)
 }
 else if (room = rm_seq)
 { 
-    if (!verify_serial())
+    if (!verify_serial(true))
         exit;
         
     with (controller)
@@ -54,7 +54,7 @@ else if (room = rm_seq)
         {
             show_message_new("No DACs found. Please go to settings and set up the connection (Click SCAN).");
             if (seqcontrol.song) 
-                FMODInstanceSetPaused(seqcontrol.songinstance,1);
+                FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
             seqcontrol.playing = 0;
             room_goto(rm_options);
         }

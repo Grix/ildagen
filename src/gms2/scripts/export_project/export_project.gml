@@ -2,7 +2,7 @@
 playing = 0;
 if (song)
 {
-    FMODInstanceSetPaused(songinstance,1);
+    FMODGMS_Chan_PauseChannel(songinstance);
 }
 
 file_loc = get_save_filename_ext("*.ild","example.ild","","Select ILDA file location");

@@ -1,5 +1,5 @@
 
-if (!verify_serial())
+if (!verify_serial(true))
     exit;
 
 if (os_browser != browser_not_a_browser)

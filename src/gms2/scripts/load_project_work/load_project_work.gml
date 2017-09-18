@@ -177,24 +177,21 @@ if (songload)
     temprandomstring = string(irandom(1000000));
     buffer_save(song_buffer,"temp/tempaudio"+temprandomstring+filename_ext(songfile));
     songinstance = 0;
-    song = FMODSoundAdd(controller.FStemp+"tempaudio"+temprandomstring+filename_ext(songfile),0,0);
+	song = FMODGMS_Snd_LoadStream(controller.FStemp+"tempaudio"+temprandomstring+filename_ext(songfile));
    
     if (!song) 
     {
-        show_message_new("Failed to load audio: "+FMODErrorStr(FMODGetLastError()));
+        show_message_new("Failed to load audio: "+FMODGMS_Util_GetErrorMessage());
     }
     else
     {
-        songlength = FMODSoundGetLength(song);
+        songlength = FMODGMS_Snd_Get_Length(song);
         if (length < songlength/1000*projectfps)
         {
             length = songlength/1000*projectfps;
         }
-        FMODSoundSetGroup(song, 1);
-        FMODInstanceSetVolume(seqcontrol.songinstance,seqcontrol.volume/100);
         
-        parseinstance = FMODSoundPlay(song,0);
-        FMODInstanceSetMuted(parseinstance,1);
+        parseinstance = FMODGMS_Snd_PlaySound(song, parse_sndchannel); //todo create this channel
         if (idbyte < 103)
             parsingaudio = 1;
         else
@@ -207,7 +204,8 @@ if (songload)
     
     if (song)
     {
-        songinstance = FMODSoundPlay(song,1);
+        songinstance = FMODGMS_Snd_PlaySound(song, play_sndchannel); //todo create this channel
+		FMODGMS_Chan_PauseChannel(play_sndchannel);
         set_audio_speed();
     }
         

@@ -65,8 +65,8 @@ undo_list = ds_list_create();
 
 if (song)
 {
-    FMODInstanceStop(songinstance);
-    FMODSoundFree(song);
+    FMODGMS_Chan_StopChannel(songinstance);
+    FMODGMS_Snd_Unload(song);
     song = 0;
     buffer_delete(song_buffer);
 }
