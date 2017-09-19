@@ -54,7 +54,6 @@ layerbarx = 0;
 layerbarw = 0;
 scroll_moving = 0;
 playbackspeed = 1;
-songinstance = 0;
 getint = -1;
 getstr = -1;
 dialog = "";

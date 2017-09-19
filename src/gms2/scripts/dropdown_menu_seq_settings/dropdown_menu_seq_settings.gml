@@ -1,10 +1,10 @@
 ilda_cancel();
-if (seqcontrol.song) 
-    FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
+if (seqcontrol.song != 0) 
+    FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
 seqcontrol.playing = 0;
 room_goto(rm_options);
 
-/*ddobj = instance_create(seqcontrol.menu_width_start[5],0,oDropDown);
+/*ddobj = instance_create_layer(seqcontrol.menu_width_start[5],0,"foreground",oDropDown);
 with (ddobj)
     {
     num = 8;

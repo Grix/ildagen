@@ -1,6 +1,6 @@
 //exports project into an ilda file
 playing = 0;
-if (song)
+if (song != 0)
 {
     FMODGMS_Chan_PauseChannel(songinstance);
 }

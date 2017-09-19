@@ -1,4 +1,4 @@
-ddobj = instance_create(obj_testframe.x+58,obj_testframe.y,oDropDown);
+ddobj = instance_create_layer(obj_testframe.x+58,obj_testframe.y,"foreground",oDropDown);
 with (ddobj)
 {
     num = 3;

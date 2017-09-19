@@ -60,15 +60,15 @@ check_mouseactions();
 if (keyboard_check_pressed(vk_space))
 {
     playing = !playing;
-    if (seqcontrol.song)
+    if (seqcontrol.song != 0)
     {
         if (playing)
         {
-            FMODGMS_Chan_Set_Position(seqcontrol.songinstance,(tlx+framehr)/seqcontrol.projectfps*1000/FMODGMS_Snd_Get_Length(seqcontrol.song));
-            FMODGMS_Chan_ResumeChannel(seqcontrol.songinstance);
+            FMODGMS_Chan_Set_Position(seqcontrol.play_sndchannel,(tlx+framehr)/seqcontrol.projectfps*1000/FMODGMS_Snd_Get_Length(seqcontrol.song));
+            FMODGMS_Chan_ResumeChannel(seqcontrol.play_sndchannel);
         }
         else
-            FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
+            FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
     }
     
     if (!playing)
@@ -343,7 +343,7 @@ if (keyboard_check_pressed(vk_tab))
     frame = 0;
     framehr = 0;
     if (seqcontrol.song != 0)
-        FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
+        FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
         
     room_goto(rm_seq);
 }

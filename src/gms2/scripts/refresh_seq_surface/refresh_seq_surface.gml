@@ -85,7 +85,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
             var buffer_start_pos = buffer_tell(el_buffer);
             
             //2d
-            draw_enable_alphablend(0);
+            gpu_set_blendenable(0);
             if (viewmode != 1)
             {
                 xo = 187+buffer_read(el_buffer,buffer_f32)/$FFFF*134;
@@ -130,7 +130,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 
                 surface_reset_target();
             }
-            draw_enable_alphablend(1);
+            gpu_set_blendenable(1);
                 
             //3d
             if (viewmode != 0)
@@ -150,7 +150,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 
                 apply_envelope_point();
                 
-                draw_set_blend_mode(bm_add);
+                gpu_set_blendmode(bm_add);
                 draw_set_alpha(0.7);
                 surface_set_target(frame3d_surf);
                 
@@ -188,7 +188,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                         }
                     }
                 }
-                draw_set_blend_mode(bm_normal);
+                gpu_set_blendmode(bm_normal);
                 draw_set_alpha(1);
                 surface_reset_target();  
             }
@@ -198,4 +198,4 @@ for (j = 0; j < ds_list_size(layer_list); j++)
 
   
 draw_set_alpha(1);
-draw_set_blend_mode(bm_normal);
+gpu_set_blendmode(bm_normal);

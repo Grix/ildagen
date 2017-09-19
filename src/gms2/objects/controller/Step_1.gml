@@ -7,7 +7,7 @@ if (playing == 1)
     {
         playing = 0;
         if (seqcontrol.song != 0)
-            FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
+            FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
     }
         
     framehr += delta_time/1000000*seqcontrol.projectfps*seqcontrol.playbackspeed;
@@ -26,9 +26,9 @@ if (playing == 1)
         update_semasterlist_flag = 1;
     }
         
-    if (frameprev != 0) and (frame == 0) and (seqcontrol.song)
+    if (frameprev != 0) and (frame == 0) and (seqcontrol.song != 0)
     {
-        FMODGMS_Chan_Set_Position(seqcontrol.songinstance,tlx/seqcontrol.projectfps*1000/FMODGMS_Snd_Get_Length(seqcontrol.song));
+        FMODGMS_Chan_Set_Position(seqcontrol.play_sndchannel,tlx/seqcontrol.projectfps*1000/FMODGMS_Snd_Get_Length(seqcontrol.song));
     }
 }
 

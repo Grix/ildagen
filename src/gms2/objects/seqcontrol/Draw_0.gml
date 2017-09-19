@@ -26,10 +26,10 @@ if (view_current == 0)
     if (surface_exists(audio_surf))
         draw_surface_part(audio_surf,0,0,tlw+1,lbsh+17,0,137);
         
-    draw_enable_alphablend(0);
+    gpu_set_blendenable(0);
     with (obj_button_parent)
         draw_self();
-    draw_enable_alphablend(1);
+    gpu_set_blendenable(1);
         
     draw_set_color(c_black);
     draw_set_alpha(0.8);

@@ -85,15 +85,15 @@ else if (keyboard_check_pressed(vk_escape))
 else if (keyboard_check_pressed(vk_space))
 {
     playing = !playing;
-    if (seqcontrol.song)
+    if (seqcontrol.song != 0)
     {
         if (playing)
         {
-            FMODGMS_Chan_Set_Position(songinstance,(tlpos+audioshift)/FMODGMS_Snd_Get_Length(song));
-            FMODGMS_Chan_ResumeChannel(songinstance);
+            FMODGMS_Chan_Set_Position(play_sndchannel,(tlpos+audioshift)/FMODGMS_Snd_Get_Length(song));
+            FMODGMS_Chan_ResumeChannel(play_sndchannel);
         }
         else
-            FMODGMS_Chan_PauseChannel(songinstance);
+            FMODGMS_Chan_PauseChannel(play_sndchannel);
     }
 }
     
@@ -104,8 +104,8 @@ else if (keyboard_check_pressed(vk_left)) and (tlpos > projectfps/1000)
 
 else if (keyboard_check_pressed(vk_tab))
 {
-    if (song) 
-		FMODGMS_Chan_PauseChannel(songinstance);
+    if (song != 0) 
+		FMODGMS_Chan_PauseChannel(play_sndchannel);
     playing = 0;
     room_goto(rm_ilda);
 }
@@ -123,10 +123,10 @@ else if (keyboard_check_pressed(ord("0")))
     tlx = 0;
     playing = 0;
     tlpos = 0;
-    if (song)
+    if (song != 0)
     {
-        FMODGMS_Chan_StopChannel(songinstance);
-        songinstance = FMODGMS_Snd_PlaySound(song, play_sndchannel);
+        FMODGMS_Chan_StopChannel(play_sndchannel);
+        FMODGMS_Snd_PlaySound(song, play_sndchannel);
         set_audio_speed();
     }
 }

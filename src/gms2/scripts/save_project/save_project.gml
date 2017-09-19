@@ -1,8 +1,8 @@
 //exports project into igp file
 
 playing = 0;
-if (song)
-	FMODGMS_Chan_PauseChannel(songinstance);
+if (song != 0)
+	FMODGMS_Chan_PauseChannel(play_sndchannel);
     
 save_buffer = buffer_create(1,buffer_grow,1);
 

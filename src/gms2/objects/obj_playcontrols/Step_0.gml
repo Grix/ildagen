@@ -18,10 +18,10 @@ if (room = rm_ilda)
             if (mouse_check_button_pressed(mb_left))
             {
                 controller.playing = 1;
-                if (seqcontrol.song)
+                if (seqcontrol.song != 0)
                 {
-                    FMODGMS_Chan_Set_Position(seqcontrol.songinstance,(controller.tlx+controller.framehr)/seqcontrol.projectfps*1000/FMODGMS_Snd_Get_Length(seqcontrol.song));
-                    FMODGMS_Chan_ResumeChannel(seqcontrol.songinstance);
+                    FMODGMS_Chan_Set_Position(seqcontrol.play_sndchannel,(controller.tlx+controller.framehr)/seqcontrol.projectfps*1000/FMODGMS_Snd_Get_Length(seqcontrol.song));
+                    FMODGMS_Chan_ResumeChannel(seqcontrol.play_sndchannel);
                 }
             }
             break;
@@ -33,7 +33,8 @@ if (room = rm_ilda)
             if (mouse_check_button_pressed(mb_left))
             {
                 controller.playing = 0;
-                FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
+				if (seqcontrol.song != 0)
+					FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
             }
             break;
         }
@@ -62,10 +63,10 @@ else
             if (mouse_check_button_pressed(mb_left))
             {
                 seqcontrol.playing = 1;
-                if (seqcontrol.song)
+                if (seqcontrol.song != 0)
                 {
-                    FMODGMS_Chan_Set_Position(seqcontrol.songinstance,(seqcontrol.tlpos+seqcontrol.audioshift)/FMODGMS_Snd_Get_Length(seqcontrol.song));
-                    FMODGMS_Chan_ResumeChannel(seqcontrol.songinstance);
+                    FMODGMS_Chan_Set_Position(seqcontrol.play_sndchannel,(seqcontrol.tlpos+seqcontrol.audioshift)/FMODGMS_Snd_Get_Length(seqcontrol.song));
+                    FMODGMS_Chan_ResumeChannel(seqcontrol.play_sndchannel);
                 }
             }
             break;
@@ -77,7 +78,8 @@ else
             if (mouse_check_button_pressed(mb_left))
             {
                 seqcontrol.playing = 0;
-                FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
+				if (seqcontrol.song != 0)
+					FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
             }
             break;
         }
@@ -92,10 +94,10 @@ else
                     tlx = 0;
                     playing = 0;
                     tlpos = 0;
-                    if (song)
+                    if (song != 0)
                     {
-                        FMODGMS_Chan_StopChannel(songinstance);
-                        songinstance = FMODGMS_Snd_PlaySound(song, play_sndchannel);
+                        FMODGMS_Chan_StopChannel(play_sndchannel);
+                        FMODGMS_Snd_PlaySound(song, play_sndchannel);
                         set_audio_speed();
                     }
                 }

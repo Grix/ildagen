@@ -2,7 +2,7 @@ draw_clear_alpha(c_black,1);
 
 el_list = ds_list_find_value(frame_list,frame);
 
-draw_set_blend_mode(bm_add);
+gpu_set_blendmode(bm_add);
 draw_set_alpha(0.8);
 draw_set_colour(c_white);
 for (i = 0;i < ds_list_size(el_list);i++)
@@ -47,6 +47,6 @@ for (i = 0;i < ds_list_size(el_list);i++)
         }
     }
 }
-draw_set_blend_mode(bm_normal);
+gpu_set_blendmode(bm_normal);
 draw_set_colour(c_black);
 draw_set_alpha(1);

@@ -1,6 +1,6 @@
-ddobj = instance_create(controller.menu_width_start[4],0,oDropDown);
+ddobj = instance_create_layer(controller.menu_width_start[4],0,"foreground",oDropDown);
 with (ddobj)
-    {
+{
     num = 4;
     event_user(1);
     ds_list_add(desc_list,"Editor Mode (Tab)");
@@ -19,4 +19,4 @@ with (ddobj)
     ds_list_add(hl_list,(room == rm_seq));
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
-    }
+}

@@ -1,4 +1,4 @@
-ddobj = instance_create(controller.menu_width_start[6],0,oDropDown);
+ddobj = instance_create_layer(controller.menu_width_start[6],0,"foreground",oDropDown);
 with (ddobj)
 {
     num = 5;

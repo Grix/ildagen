@@ -1,6 +1,6 @@
-ddobj = instance_create(seqcontrol.menu_width_start[2],0,oDropDown);
+ddobj = instance_create_layer(seqcontrol.menu_width_start[2],0,"foreground",oDropDown);
 with (ddobj)
-    {
+{
     num = 9;
     total_width = 230;
     event_user(1);
@@ -40,5 +40,4 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,dd_seq_deselect);
     ds_list_add(hl_list,ds_list_size(seqcontrol.somaster_list));
- 
-    }
+}

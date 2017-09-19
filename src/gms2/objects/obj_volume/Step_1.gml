@@ -5,10 +5,10 @@ if (moving == 1)
     seqcontrol.volume += (mouse_x-mouse_xprevious)/1.28;
     if (seqcontrol.volume  < 0) seqcontrol.volume = 0;
     if (seqcontrol.volume > 100) seqcontrol.volume = 100;
-    FMODGMS_Chan_Set_Volume(seqcontrol.songinstance,seqcontrol.volume/100);
+    FMODGMS_Chan_Set_Volume(seqcontrol.play_sndchannel,seqcontrol.volume/100);
 }
     
-visible = seqcontrol.song;
+visible = (seqcontrol.song != 0);
 if (!visible)
     exit;
     

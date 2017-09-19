@@ -77,6 +77,7 @@ with (controller)
     ds_map_destroy(el_idmap);
 }
 
-if (song) FMODInstanceSetPaused(songinstance,1);
+if (song != 0) 
+	FMODGMS_Chan_PauseChannel(play_sndchannel);
 playing = 0;
 room_goto(rm_ilda);

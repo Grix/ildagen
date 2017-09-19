@@ -1,6 +1,6 @@
-ddobj = instance_create(controller.menu_width_start[3],0,oDropDown);
+ddobj = instance_create_layer(controller.menu_width_start[3],0,"foreground",oDropDown);
 with (ddobj)
-    {
+{
     num = 5;
     event_user(1);
     ds_list_add(desc_list,"Toggle square grid (S)");
@@ -23,4 +23,4 @@ with (ddobj)
     ds_list_add(hl_list,controller.onion);
     ds_list_add(hl_list,controller.guidelineshow);
     ds_list_add(hl_list,controller.bckimage);
-    }
+}

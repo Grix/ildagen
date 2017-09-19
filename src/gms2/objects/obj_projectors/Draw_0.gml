@@ -22,7 +22,7 @@ if (!surface_exists(surf_projectorlist))
     surf_projectorlist = surface_create(512,512);
     surface_set_target(surf_projectorlist);
         draw_clear_alpha(c_white,0);
-        draw_enable_alphablend(false);
+        gpu_set_blendenable(false);
         draw_set_colour(c_black);
         draw_set_valign(fa_middle);
         for (i = 0; i < ds_list_size(t_plist); i++)
@@ -32,9 +32,9 @@ if (!surface_exists(surf_projectorlist))
             {
                 draw_set_color(controller.c_gold);
                 draw_set_alpha(0.4);
-                draw_enable_alphablend(true);
+                gpu_set_blendenable(true);
                 draw_rectangle(0,t_ypos+1,list_width,t_ypos+itemh,0);
-                draw_enable_alphablend(false);
+                gpu_set_blendenable(false);
                 draw_set_alpha(1);
                 draw_set_colour(c_black);
                 draw_sprite(spr_checkbox,1,5,t_ypos+4);
@@ -72,7 +72,7 @@ if (!surface_exists(surf_projectorlist))
             }
         }
         draw_set_valign(fa_top);
-        draw_enable_alphablend(true);
+        gpu_set_blendenable(true);
     surface_reset_target();
     scrollh = t_ypos;
 }

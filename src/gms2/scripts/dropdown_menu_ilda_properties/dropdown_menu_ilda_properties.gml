@@ -1,6 +1,6 @@
-ddobj = instance_create(controller.menu_width_start[1],0,oDropDown);
+ddobj = instance_create_layer(controller.menu_width_start[1],0,"foreground",oDropDown);
 with (ddobj)
-    {
+{
     num = 3;
     event_user(1);
     ds_list_add(desc_list,"Change number of frames");
@@ -15,4 +15,4 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,dd_goto_options);
     ds_list_add(hl_list,1);
-    }
+}
