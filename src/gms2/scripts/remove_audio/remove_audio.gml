@@ -1,5 +1,4 @@
-songinstance = 0;
-if (song) 
+if (song != 0) 
 {
     FMODGMS_Snd_Unload(song);
     buffer_delete(song_buffer);

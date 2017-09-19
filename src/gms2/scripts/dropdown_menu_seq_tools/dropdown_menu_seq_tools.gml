@@ -1,6 +1,6 @@
-ddobj = instance_create(seqcontrol.menu_width_start[3],0,oDropDown);
+ddobj = instance_create_layer(seqcontrol.menu_width_start[3],0,"foreground",oDropDown);
 with (ddobj)
-    {
+{
     num = 4;
     event_user(1);
     ds_list_add(desc_list,"Insert timeline marker");
@@ -19,4 +19,4 @@ with (ddobj)
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,remove_audio);
     ds_list_add(hl_list,1);
-    }
+}

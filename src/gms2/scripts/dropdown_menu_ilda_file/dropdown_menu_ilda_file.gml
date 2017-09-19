@@ -1,6 +1,6 @@
-ddobj = instance_create(controller.menu_width_start[0],0,oDropDown);
+ddobj = instance_create_layer(controller.menu_width_start[0],0,"foreground",oDropDown);
 with (ddobj)
-    {
+{
     num = 7;
     event_user(1);
     ds_list_add(desc_list,"New (Clear)");
@@ -31,4 +31,4 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,exit_confirm);
     ds_list_add(hl_list,1);
-    }
+}

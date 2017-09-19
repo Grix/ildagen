@@ -15,8 +15,8 @@ with (controller)
     playing = 0;
     frame = 0;
     framehr = 0;
-    if (seqcontrol.song)
-        FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
+    if (seqcontrol.song != 0)
+        FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
 		
     room_goto(rm_seq);
 }

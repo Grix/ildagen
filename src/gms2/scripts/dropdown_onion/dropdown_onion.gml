@@ -1,6 +1,6 @@
-ddobj = instance_create(mouse_x,mouse_y,oDropDown);
+ddobj = instance_create_layer(mouse_x,mouse_y,"foreground",oDropDown);
 with (ddobj)
-    {
+{
     num = 3;
     event_user(1);
     ds_list_add(desc_list,"Set number of previewed frames");
@@ -15,5 +15,5 @@ with (ddobj)
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
-    }
+}
     

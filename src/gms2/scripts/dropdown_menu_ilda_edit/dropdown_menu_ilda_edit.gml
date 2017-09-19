@@ -1,6 +1,6 @@
-ddobj = instance_create(controller.menu_width_start[2],0,oDropDown);
+ddobj = instance_create_layer(controller.menu_width_start[2],0,"foreground",oDropDown);
 with (ddobj)
-    {
+{
     num = 7;
     event_user(1);
     ds_list_add(desc_list,"Undo (Ctrl+Z)");
@@ -31,4 +31,4 @@ with (ddobj)
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,deselect_object);
     ds_list_add(hl_list,!ds_list_empty(controller.semaster_list));
-    }
+}

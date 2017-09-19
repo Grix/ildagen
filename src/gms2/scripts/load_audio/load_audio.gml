@@ -1,5 +1,4 @@
-songinstance = 0;
-if (song) 
+if (song != 0) 
 	FMODGMS_Snd_Unload(song);
 songfile_loc = get_open_filename_ext("","","","Select audio file");
 if !string_length(songfile_loc) 

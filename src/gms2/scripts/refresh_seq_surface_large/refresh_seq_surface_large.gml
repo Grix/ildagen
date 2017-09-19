@@ -147,7 +147,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 
                 apply_envelope_point();
                 
-                draw_set_blend_mode(bm_add);
+                gpu_set_blendmode(bm_add);
                 draw_set_alpha(0.7);
                 surface_set_target(frame3d_surf_large);
                 
@@ -185,7 +185,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                         }
                     }
                 }
-                draw_set_blend_mode(bm_normal);
+                gpu_set_blendmode(bm_normal);
                 draw_set_alpha(1);
                 surface_reset_target();  
             }
@@ -195,4 +195,4 @@ for (j = 0; j < ds_list_size(layer_list); j++)
 
   
 draw_set_alpha(1);
-draw_set_blend_mode(bm_normal);
+gpu_set_blendmode(bm_normal);

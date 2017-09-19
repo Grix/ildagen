@@ -20,7 +20,7 @@ surface_set_target(temp_surf);
 draw_clear(c_black);
 
 draw_set_alpha(1);
-draw_enable_alphablend(0);
+gpu_set_blendenable(0);
 
 el_list = ds_list_create(); 
 
@@ -65,7 +65,7 @@ for (i = 0; i < buffer_maxelements;i++)
         
 }
     
-draw_enable_alphablend(1);
+gpu_set_blendenable(1);
 surface_reset_target();
 
 return temp_surf;

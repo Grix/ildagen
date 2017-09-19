@@ -13,21 +13,19 @@ if (playing == 1)
         tlpos = startframe/projectfps*1000;
     }
     
-    if song && (t_tlpos_prev <= length/projectfps*1000) && (tlpos > length/projectfps*1000)
+    if (song != 0) && (t_tlpos_prev <= length/projectfps*1000) && (tlpos > length/projectfps*1000)
     {
         //playing = 0;
         //tlpos = 0;
-        if (song)
-        {
-            FMODGMS_Chan_StopChannel(songinstance);
-			songinstance = FMODGMS_Snd_PlaySound(song, play_sndchannel);
-            set_audio_speed();
-        }
+        FMODGMS_Chan_StopChannel(play_sndchannel);
+		FMODGMS_Snd_PlaySound(song, play_sndchannel);
+		FMODGMS_Chan_PauseChannel(play_sndchannel);
+        set_audio_speed();
     }
     
-    if (abs(FMODGMS_Chan_Get_Position(songinstance)*FMODGMS_Snd_Get_Length(song)-(tlpos+audioshift)) > 32) and (scroll_moving != 1) and (song != 0)
+    if (abs(FMODGMS_Chan_Get_Position(play_sndchannel)*FMODGMS_Snd_Get_Length(song)-(tlpos+audioshift)) > 32) and (scroll_moving != 1) and (song != 0)
     {
-        FMODGMS_Chan_Set_Position(songinstance,(tlpos+audioshift)/FMODGMS_Snd_Get_Length(song));
+        FMODGMS_Chan_Set_Position(play_sndchannel,(tlpos+audioshift)/FMODGMS_Snd_Get_Length(song));
     }
 }
 

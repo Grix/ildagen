@@ -53,8 +53,8 @@ else if (room = rm_seq)
         else
         {
             show_message_new("No DACs found. Please go to settings and set up the connection (Click SCAN).");
-            if (seqcontrol.song) 
-                FMODGMS_Chan_PauseChannel(seqcontrol.songinstance);
+            if (seqcontrol.song != 0) 
+                FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
             seqcontrol.playing = 0;
             room_goto(rm_options);
         }

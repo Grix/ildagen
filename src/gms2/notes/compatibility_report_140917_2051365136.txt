@@ -1760,8 +1760,8 @@ macOS icon ${options_dir}\mac\icons\icon512.png written out as 32-bit.
 Windows NSIS Installer Script has been set to default due to changes in GameMaker Studio 2.
 game speed set to 60
 added compatibility script background/draw_background_part.gml
-added compatibility script draw/draw_enable_alphablend.gml
-added compatibility script draw/draw_set_blend_mode.gml
+added compatibility script draw/gpu_set_blendenable.gml
+added compatibility script draw/gpu_set_blendmode.gml
 added compatibility script instance/instance_create.gml
 added compatibility script object/object_get_depth.gml
 added compatibility script view/__view_get.gml

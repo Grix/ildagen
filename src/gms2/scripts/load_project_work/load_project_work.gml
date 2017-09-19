@@ -176,7 +176,6 @@ if (songload)
     buffer_seek(load_buffer,buffer_seek_relative,songfile_size);
     temprandomstring = string(irandom(1000000));
     buffer_save(song_buffer,"temp/tempaudio"+temprandomstring+filename_ext(songfile));
-    songinstance = 0;
 	song = FMODGMS_Snd_LoadStream(controller.FStemp+"tempaudio"+temprandomstring+filename_ext(songfile));
    
     if (!song) 
@@ -202,9 +201,9 @@ if (songload)
     playing = 0;
     tlpos = 0;
     
-    if (song)
+    if (song != 0)
     {
-        songinstance = FMODGMS_Snd_PlaySound(song, play_sndchannel); //todo create this channel
+        FMODGMS_Snd_PlaySound(song, play_sndchannel); //todo create this channel
 		FMODGMS_Chan_PauseChannel(play_sndchannel);
         set_audio_speed();
     }

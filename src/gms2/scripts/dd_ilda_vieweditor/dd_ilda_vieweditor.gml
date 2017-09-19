@@ -1,7 +1,7 @@
 with (seqcontrol)
 {
-    if (song) 
-        FMODGMS_Chan_PauseChannel(songinstance);
+    if (song != 0) 
+        FMODGMS_Chan_PauseChannel(play_sndchannel);
     playing = 0;
     room_goto(rm_ilda);
 }

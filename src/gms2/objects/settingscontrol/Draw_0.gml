@@ -40,10 +40,10 @@ if (mouse_y > __view_get( e__VW.YView, 3 ))
     draw_set_alpha(1);
 }
     
-draw_enable_alphablend(0);
+gpu_set_blendenable(0);
 with (obj_button_parent)
 {
     draw_self();
 }
-draw_enable_alphablend(1);
+gpu_set_blendenable(1);
 

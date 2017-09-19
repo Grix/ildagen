@@ -10,7 +10,7 @@ surface_set_target(audio_surf);
     draw_clear_alpha(c_white,0);
     draw_set_alpha(1);
     draw_set_font(fnt_small);
-    draw_enable_alphablend(0);
+    gpu_set_blendenable(0);
     
     //layers
     //NB: layerbarx is an Y value
@@ -73,11 +73,11 @@ surface_set_target(audio_surf);
                     if (ds_list_find_index(somaster_list,objectlist) != -1)
                     {
                         draw_set_colour(c_gold);
-                        draw_enable_alphablend(1);
+                        gpu_set_blendenable(1);
                         draw_set_alpha(0.3);
                             draw_rectangle(framestartx,ypos+1,frameendx,ypos+47,0);
                         draw_set_alpha(1);
-                        draw_enable_alphablend(0);
+                        gpu_set_blendenable(0);
                         draw_set_colour(c_black);
                     }
                 }
@@ -100,9 +100,9 @@ surface_set_target(audio_surf);
             draw_rectangle(t_stringx,ypos+3,t_stringx+t_stringlength+5,ypos+17,1);
                     
             draw_set_colour(c_black);
-            draw_enable_alphablend(1);
+            gpu_set_blendenable(1);
             draw_text(t_stringx+5, ypos+4, string_hash_to_newline(t_name));
-            draw_enable_alphablend(0);
+            gpu_set_blendenable(0);
                             
             if (selectedlayer == i)
             {
@@ -154,9 +154,9 @@ surface_set_target(audio_surf);
                     draw_rectangle(t_stringx,ypos+1,t_stringx+t_stringlength+5,ypos+15,1);
                             
                     draw_set_colour(c_black);
-                    draw_enable_alphablend(1);
+                    gpu_set_blendenable(1);
                     draw_text(t_stringx+5, ypos+2, string_hash_to_newline(typedraw));
-                    draw_enable_alphablend(0);
+                    gpu_set_blendenable(0);
                     
                     ypos += 16;
                     ypos_perm += 16;
@@ -238,7 +238,7 @@ surface_set_target(audio_surf);
                 draw_rectangle(t_stringx,ypos+42,t_stringx+t_stringlength+5,ypos+60,1);
                         
                 draw_set_colour(c_black);
-                draw_enable_alphablend(1);
+                gpu_set_blendenable(1);
                     draw_text(t_stringx+5, ypos+45, string_hash_to_newline(typedraw));
                     if (moving_object == 7) and (envelopetoedit == envelope)
                     {
@@ -248,7 +248,7 @@ surface_set_target(audio_surf);
                         draw_set_colour(c_black);
                         draw_set_alpha(1);
                     }
-                draw_enable_alphablend(0);
+                gpu_set_blendenable(0);
                 mouse_on_button_ver = (mouse_y == clamp(mouse_y,138+8+ypos,138+40+ypos));
                 draw_sprite(spr_deletelayer,
                             mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)),
@@ -264,13 +264,13 @@ surface_set_target(audio_surf);
         scrollbarx = (tlw-18-scrollbarw)*(tlx)/(length-tlzoom);
     layerbarw = clamp(lbh/(ypos_perm+lbh)*(lbh-1),32,lbh-1);
     
-    draw_enable_alphablend(1);
+    gpu_set_blendenable(1);
     
     draw_set_colour(c_white);
-    draw_set_blend_mode(bm_subtract);
+    gpu_set_blendmode(bm_subtract);
     draw_rectangle(-1,-1,tlw,tlh+16,0);
     draw_rectangle(-1,lbh+tlh+16,tlw,lbh+tlh+33,0);
-    draw_set_blend_mode(bm_normal);
+    gpu_set_blendmode(bm_normal);
        
     var drawtime = ceil(tlx/projectfps);
     if (tlwdivtlzoom > 0.3) modulus = 5;
@@ -278,7 +278,7 @@ surface_set_target(audio_surf);
     else modulus = 60;
     
     draw_set_colour(c_ltgray);
-    draw_enable_alphablend(0);
+    gpu_set_blendenable(0);
     while (1)
     {
         var tempx = round((drawtime*projectfps-tlx)*tlwdivtlzoom);
@@ -328,7 +328,7 @@ surface_set_target(audio_surf);
         draw_set_font(fnt_bold);
         draw_text(endframex-25,lbsh-20,string_hash_to_newline("End"));
     }
-    draw_enable_alphablend(1);   
+    gpu_set_blendenable(1);   
     
     //audio   
     if (song)
@@ -383,7 +383,7 @@ surface_set_target(audio_surf);
     }
     draw_set_alpha(1);
     
-    draw_enable_alphablend(0);
+    gpu_set_blendenable(0);
     //scroll
     var scrollx_x1 = scrollbarx;
     var scrollx_x2 = scrollx_x1+scrollbarw;
@@ -397,7 +397,7 @@ surface_set_target(audio_surf);
     draw_set_colour(c_black);
     draw_rectangle(scrollx_x1,scrollx_y1,scrollx_x2,lbsh,1);
     draw_rectangle(scrolly_x1,scrolly_y1,tlw,scrolly_y2,1);
-    draw_enable_alphablend(1);
+    gpu_set_blendenable(1);
     
     //draw_set_alpha(1);
     //draw_set_colour(c_white);

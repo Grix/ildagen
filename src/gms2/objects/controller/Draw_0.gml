@@ -5,9 +5,9 @@ if (view_current == 0)
     //hershey symbol selector
     if (placing = "hershey")
     {
-        draw_background_part(bck_hershey3,0,clamp(hershey_scrollx-4096,0,2048),420,120-clamp(4096-hershey_scrollx,0,120),650,30+clamp(4096-hershey_scrollx,0,120));
-        draw_background_part(bck_hershey2,0,clamp(hershey_scrollx-2048,0,2048),420,120-clamp(2048-hershey_scrollx,0,120),650,30+clamp(2048-hershey_scrollx,0,120));
-        draw_background_part(bck_hershey1,0,clamp(hershey_scrollx,0,2048),420,120,650,30);
+        draw_sprite_part(bck_hershey3,0,0,clamp(hershey_scrollx-4096,0,2048),420,120-clamp(4096-hershey_scrollx,0,120),650,30+clamp(4096-hershey_scrollx,0,120));
+        draw_sprite_part(bck_hershey2,0,0,clamp(hershey_scrollx-2048,0,2048),420,120-clamp(2048-hershey_scrollx,0,120),650,30+clamp(2048-hershey_scrollx,0,120));
+        draw_sprite_part(bck_hershey1,0,0,clamp(hershey_scrollx,0,2048),420,120,650,30);
         
         draw_set_alpha(1);
         draw_set_colour(c_white);
@@ -265,12 +265,12 @@ if (view_current == 0)
     draw_set_colour(c_black);
     draw_set_alpha(1);
     
-    draw_enable_alphablend(0);
+    gpu_set_blendenable(0);
     with (obj_button_parent)
     {
         draw_self();
     }
-    draw_enable_alphablend(1);
+    gpu_set_blendenable(1);
 }
 else if (view_current == 3)
 {
