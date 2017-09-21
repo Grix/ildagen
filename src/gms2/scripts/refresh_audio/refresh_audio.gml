@@ -1,8 +1,8 @@
 numentries = 1024;
-
+//todo
 FMODGMS_Sys_Update();
 
-deltatime = FMODInstanceGetPosition(parseinstance)*FMODSoundGetLength(song);
+deltatime = FMODGMS_Chan_Get_Position(parse_sndchannel)*FMODGMS_Snd_Get_Length(song);
 
 repeatc = (floor(deltatime/1000*60 - (ds_list_size(audio_list))/3));
 if ((repeatc) && !ds_list_empty(audio_list))
@@ -20,12 +20,9 @@ if ((repeatc) && !ds_list_empty(audio_list))
 
 if ((deltatime/1000*60 - ds_list_size(audio_list)/3) > 0)
 {
-    FMODInstanceGetWaveSnapshot2(parseinstance,0,numentries);
-    w1 = FMODNormalizeWaveData(0,numentries);
-    FMODInstanceGetWaveSnapshot2(parseinstance,1,numentries);
-    w2 = FMODNormalizeWaveData(0,numentries);
-    w = (w1+w2)/2;
+	w = FMODGMS_Chan_Get_Level(parse_sndchannel);
     ds_list_add(audio_list,ln(1+clamp(w*1.5,0,3.4)));
+	
     FMODSpectrumSetSnapshotType(2);
     FMODInstanceGetSpectrumSnapshot2(parseinstance,0,numentries);
     s1 = FMODNormalizeSpectrumData(0,5);

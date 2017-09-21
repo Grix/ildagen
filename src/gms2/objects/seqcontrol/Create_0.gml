@@ -101,6 +101,10 @@ ds_map_add(env_type_map,"g","Green");
 ds_map_add(env_type_map,"b","Blue");
 
 FMODGMS_Sys_Create();
+play_sndchannel = FMODGMS_Chan_CreateChannel();
+parse_sndchannel = FMODGMS_Chan_CreateChannel();
+FMODGMS_Chan_Set_Mute(parse_sndchannel, true);
+
 benchmark();
 
 draw_set_font(fnt_tooltip);

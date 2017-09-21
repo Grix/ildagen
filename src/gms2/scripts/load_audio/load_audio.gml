@@ -35,4 +35,4 @@ deltatime = 0;
 playing = 0;
 tlpos = 0;
 
-set_audio_speed();
+apply_audio_settings();

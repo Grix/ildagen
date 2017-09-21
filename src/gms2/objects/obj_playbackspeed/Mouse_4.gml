@@ -1,7 +1,7 @@
 if (instance_exists(oDropDown))
     exit;
 with (seqcontrol)
-    {
+{
     if (mouse_x > (obj_playbackspeed.x+23))
         playbackspeed *= 1.5;
     else
@@ -11,8 +11,8 @@ with (seqcontrol)
     if (playbackspeed > 3.376)
         playbackspeed = 3.375;
     
-    set_audio_speed();
-    }
+    apply_audio_settings();
+}
     
 stringToDraw = "Speed: "+string(round(seqcontrol.playbackspeed*100))+"%";
 

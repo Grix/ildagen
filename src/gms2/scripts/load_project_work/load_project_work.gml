@@ -204,8 +204,7 @@ if (songload)
     if (song != 0)
     {
         FMODGMS_Snd_PlaySound(song, play_sndchannel); //todo create this channel
-		FMODGMS_Chan_PauseChannel(play_sndchannel);
-        set_audio_speed();
+        apply_audio_settings();
     }
         
     //audio data

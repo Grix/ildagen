@@ -2202,7 +2202,7 @@
             "Key": "433de39d-c313-4092-9083-7f27d15b064f",
             "Value": {
                 "id": "9fcad0f6-2058-4370-83a7-6183bd8661ff",
-                "resourcePath": "scripts\\set_audio_speed\\set_audio_speed.yy",
+                "resourcePath": "scripts\\apply_audio_settings\\apply_audio_settings.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8281,6 +8281,14 @@
         "f864dd5f-a122-40d4-b27c-b4afa59cd21b",
         "1a1e52fe-c49c-4591-ba2a-418851eaa1d7",
         "b0db8a03-93a4-432b-bd1a-45368a652051",
+        "d58e17b1-4e96-440b-890a-fa595a53793e",
+        "8efcb20b-7108-4238-9752-5ce73f2e8092",
+        "bab99d90-a417-4fc2-a63e-2462612ca165",
+        "67976e5f-99a0-41fb-9b59-673ab291e4e2",
+        "88fae1cc-90d8-4321-a850-8b987b303543",
+        "67d2c3b3-a470-48eb-8410-a6db6d519265",
+        "21fd3037-7149-433f-a706-4d0fcc69f021",
+        "e314cff8-32bd-4cf5-942f-2b46341a3da9",
         "1c80e47a-b481-4e25-a4ab-b86569a0513b",
         "0c3136b5-c07a-49e4-b734-9b64469c57e9",
         "6e71eaa5-9d14-44e3-b96e-67060e9b3656",
@@ -8591,15 +8599,7 @@
         "0f493bf8-f1dc-4806-a320-5e0e61f17637",
         "aacbc5c4-9a04-47cf-bf80-8bca7a29e481",
         "a4da6f21-1da4-416b-b964-6d5efcd43acd",
-        "bd822e39-4154-4ae4-90c3-728aa0271c17",
-        "d58e17b1-4e96-440b-890a-fa595a53793e",
-        "8efcb20b-7108-4238-9752-5ce73f2e8092",
-        "bab99d90-a417-4fc2-a63e-2462612ca165",
-        "67976e5f-99a0-41fb-9b59-673ab291e4e2",
-        "88fae1cc-90d8-4321-a850-8b987b303543",
-        "67d2c3b3-a470-48eb-8410-a6db6d519265",
-        "21fd3037-7149-433f-a706-4d0fcc69f021",
-        "e314cff8-32bd-4cf5-942f-2b46341a3da9"
+        "bd822e39-4154-4ae4-90c3-728aa0271c17"
     ],
     "tutorial": ""
 }

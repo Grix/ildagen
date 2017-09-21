@@ -844,10 +844,8 @@ if !(mouseonsomelayer)
             {
                 FMODGMS_Chan_StopChannel(play_sndchannel);
                 FMODGMS_Snd_PlaySound(song, play_sndchannel);
-                set_audio_speed();
+                apply_audio_settings();
                 FMODGMS_Chan_Set_Position(play_sndchannel,clamp(((tlpos+audioshift)-10)/FMODGMS_Snd_Get_Length(song),0,1));
-                if (!playing)
-					FMODGMS_Chan_PauseChannel(play_sndchannel);
             }
         }
     }
