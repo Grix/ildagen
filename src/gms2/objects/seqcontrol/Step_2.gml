@@ -127,7 +127,7 @@ else if (keyboard_check_pressed(ord("0")))
     {
         FMODGMS_Chan_StopChannel(play_sndchannel);
         FMODGMS_Snd_PlaySound(song, play_sndchannel);
-        set_audio_speed();
+        apply_audio_settings();
     }
 }
 

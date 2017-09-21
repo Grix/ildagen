@@ -19,8 +19,7 @@ if (playing == 1)
         //tlpos = 0;
         FMODGMS_Chan_StopChannel(play_sndchannel);
 		FMODGMS_Snd_PlaySound(song, play_sndchannel);
-		FMODGMS_Chan_PauseChannel(play_sndchannel);
-        set_audio_speed();
+        apply_audio_settings();
     }
     
     if (abs(FMODGMS_Chan_Get_Position(play_sndchannel)*FMODGMS_Snd_Get_Length(song)-(tlpos+audioshift)) > 32) and (scroll_moving != 1) and (song != 0)
