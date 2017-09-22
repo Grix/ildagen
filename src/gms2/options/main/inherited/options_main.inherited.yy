@@ -1,7 +1,8 @@
 1.0.0←ed6a955d-5826-4f98-a450-10b414266c27←ed6a955d-5826-4f98-a450-10b414266c27|{
     "option_author": "Gitle Mikkelsen",
     "option_gameguid": "{62473780-C74E-47E2-A7EF-4EF7A79A4438}",
-    "option_game_speed": 60
+    "option_game_speed": 60,
+    "option_lastchanged": "22 September 2017 15:31:07"
 }←be5f1418-b31b-48af-a023-f04cdf6e5121|{
     "textureGroups": {
         "Additions": [

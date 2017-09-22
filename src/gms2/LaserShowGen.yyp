@@ -6911,6 +6911,14 @@
             }
         },
         {
+            "Key": "df17ab19-08e2-4976-ab1e-f50818d04b27",
+            "Value": {
+                "id": "7a2d4867-399b-448d-a4c2-a00ba0eb1669",
+                "resourcePath": "objects\\obj_keeppolarity\\obj_keeppolarity.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "df21efb3-85be-4d10-ad92-ef5e8bdbe7e5",
             "Value": {
                 "id": "eb9941a8-37dd-4a81-a47a-9eb233697a4e",
