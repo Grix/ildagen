@@ -1,4 +1,4 @@
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
 controller.blank_blendmode++;
 if (controller.blank_blendmode >= 4)

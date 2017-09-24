@@ -2,7 +2,7 @@
     "id": "989c76db-6eb7-436c-b8bf-62d3c47e3814",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "oDropDown",
+    "name": "obj_dropdown",
     "eventList": [
         {
             "id": "f4494578-899c-4ed6-9126-c1cff8573735",

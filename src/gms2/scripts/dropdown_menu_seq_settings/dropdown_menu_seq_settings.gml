@@ -4,7 +4,7 @@ if (seqcontrol.song != 0)
 seqcontrol.playing = 0;
 room_goto(rm_options);
 
-/*ddobj = instance_create_layer(seqcontrol.menu_width_start[5],0,"foreground",oDropDown);
+/*ddobj = instance_create_layer(seqcontrol.menu_width_start[5],0,"foreground",obj_dropdown);
 with (ddobj)
     {
     num = 8;

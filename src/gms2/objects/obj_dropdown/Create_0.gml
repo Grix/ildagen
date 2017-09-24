@@ -5,7 +5,7 @@ controller.menu_open = 1;
 rdy = 0;
 selected = noone;
 
-with (oDropDown)
+with (obj_dropdown)
 {
     if (other.id != id)
         instance_destroy();

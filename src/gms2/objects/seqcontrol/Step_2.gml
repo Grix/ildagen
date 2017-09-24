@@ -26,7 +26,7 @@ if (room != rm_seq) exit;
     
 drawn = false;
 
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
     
 if (keyboard_check(vk_control))

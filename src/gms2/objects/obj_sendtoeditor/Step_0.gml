@@ -1,4 +1,4 @@
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
 visible = (ds_list_size(seqcontrol.somaster_list) == 1)
 if (!visible) 

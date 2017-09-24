@@ -1,4 +1,4 @@
-ddobj = instance_create_layer(mouse_x,mouse_y,"foreground",oDropDown);
+ddobj = instance_create_layer(mouse_x,mouse_y,"foreground",obj_dropdown);
 
 //projectortoselect is id in list of right clicked proj
 

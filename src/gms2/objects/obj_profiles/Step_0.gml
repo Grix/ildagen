@@ -11,7 +11,7 @@ if (moving == 1)
     exit;
 }
 
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
     
 if (scrollh > list_height)

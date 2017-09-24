@@ -1,4 +1,4 @@
-ddobj = instance_create_layer(seqcontrol.menu_width_start[3],0,"foreground",oDropDown);
+ddobj = instance_create_layer(seqcontrol.menu_width_start[3],0,"foreground",obj_dropdown);
 with (ddobj)
 {
     num = 4;

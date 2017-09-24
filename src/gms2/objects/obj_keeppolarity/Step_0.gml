@@ -1,16 +1,16 @@
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
 	
-visible = !ds_list_empty(controller.selectedelementlist);
+visible = !ds_list_empty(controller.semaster_list);
 	
 if (!visible)
 	exit;
 	
 var i;
 image_index = 0;
-for (i = 0; i < ds_list_size(controller.selectedelementlist); i++)
+for (i = 0; i < ds_list_size(controller.semaster_list); i++)
 {
-	if (ds_list_find_value(controller.selectedelementlist[| i], 11) == true)
+	if (ds_list_find_value(controller.semaster_list[| i], 11) == true)
 	{
 		if (image_index == 1)
 		{

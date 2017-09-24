@@ -24,7 +24,7 @@ else if (mouse_x >= x) && (mouse_x <= (x+700)) && (mouse_y >= (y+20)) && (mouse_
         else if (ad == spr_ad4)
             url_open_new("http://pages.bitlasers.com/lasershowgen/advertising");
     
-        ddobj = instance_create_layer(0,0,"foreground",oDropDown);
+        ddobj = instance_create_layer(0,0,"foreground",obj_dropdown);
         with (ddobj)
         {
             num = 0;
@@ -34,7 +34,7 @@ else if (mouse_x >= x) && (mouse_x <= (x+700)) && (mouse_y >= (y+20)) && (mouse_
 }
 else if (mouse_check_button_pressed(mb_left))
 {
-    ddobj = instance_create_layer(0,0,"foreground",oDropDown);
+    ddobj = instance_create_layer(0,0,"foreground",obj_dropdown);
     with (ddobj)
     {
         num = 0;

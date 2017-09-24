@@ -1,4 +1,4 @@
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
 visible = (controller.blankmode != "solid") && (controller.blankmode2 == 0) and (controller.blankmode != "func");
 if (!visible)
