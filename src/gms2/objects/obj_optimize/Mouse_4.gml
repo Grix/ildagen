@@ -1,4 +1,4 @@
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
 controller.exp_optimize = !controller.exp_optimize;
 

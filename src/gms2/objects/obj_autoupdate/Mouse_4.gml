@@ -1,4 +1,4 @@
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
 if (file_exists(ini_filename))
     {

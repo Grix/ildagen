@@ -190,7 +190,7 @@ if (songload)
             length = songlength/1000*projectfps;
         }
         
-        parseinstance = FMODGMS_Snd_PlaySound(song, parse_sndchannel); //todo create this channel
+        FMODGMS_Snd_PlaySound(song, parse_sndchannel); //todo create this channel
         if (idbyte < 103)
             parsingaudio = 1;
         else

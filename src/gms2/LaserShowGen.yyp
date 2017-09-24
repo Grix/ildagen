@@ -2359,14 +2359,6 @@
             }
         },
         {
-            "Key": "491aa636-2328-48ca-96e9-7c48a205ee41",
-            "Value": {
-                "id": "13ae7e67-25c7-4bf5-bd3b-cb1dfba1e637",
-                "resourcePath": "views\\491aa636-2328-48ca-96e9-7c48a205ee41.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
             "Key": "4957ce29-5f6c-4dc3-9924-7c5ab01b7b2a",
             "Value": {
                 "id": "089f5c81-1000-4823-bc7e-462ac9a2728d",
@@ -4343,6 +4335,14 @@
             }
         },
         {
+            "Key": "8ae5ca3a-69b1-4630-b7ef-46123827f34a",
+            "Value": {
+                "id": "f6d4c608-7421-416c-a2c0-16691d3707d5",
+                "resourcePath": "sprites\\bck_bar\\bck_bar.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "8b866dea-d928-4ad5-920b-3916176e8dc1",
             "Value": {
                 "id": "bc43b1cd-68d4-4a6b-b2d4-2e1ce3b65622",
@@ -4751,6 +4751,14 @@
             }
         },
         {
+            "Key": "967e0636-7b8e-431e-945b-1d0675896a16",
+            "Value": {
+                "id": "58771cf5-a319-43b5-90a3-a4d54b6d7b51",
+                "resourcePath": "sprites\\bkg_gradient\\bkg_gradient.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "96a8df0f-6546-4986-95b9-0809070416bb",
             "Value": {
                 "id": "16c64be5-0c28-4521-a3bc-509c1ad1abbc",
@@ -4786,7 +4794,7 @@
             "Key": "989c76db-6eb7-436c-b8bf-62d3c47e3814",
             "Value": {
                 "id": "da6151f3-98a8-4b9f-b7ce-3b6f6ed75277",
-                "resourcePath": "objects\\oDropDown\\oDropDown.yy",
+                "resourcePath": "objects\\obj_dropdown\\obj_dropdown.yy",
                 "resourceType": "GMObject"
             }
         },

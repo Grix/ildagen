@@ -1,4 +1,4 @@
-version = "1.5.6";
+ version = "1.5.6";
 versiondate = "2017-09-14";
 
 if (debug_mode)
@@ -157,7 +157,6 @@ onion_alpha = 0.8;
 scroll = 0;
 viewmode = 0;
 selectedelement = -1;
-selectedelementlist = 0;
 exp_optimize = 1;
 exp_format = 5;
 opt_warning_flag = 0;

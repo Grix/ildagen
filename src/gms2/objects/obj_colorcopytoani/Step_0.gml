@@ -1,4 +1,4 @@
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
     
 visible = obj_anicolorselect_1.visible;

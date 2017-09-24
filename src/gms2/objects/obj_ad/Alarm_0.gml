@@ -1,4 +1,4 @@
-ddobj = instance_create_layer(0,0,"foreground",oDropDown);
+ddobj = instance_create_layer(0,0,"foreground",obj_dropdown);
 with (ddobj)
 {
     num = 0;

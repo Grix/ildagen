@@ -85,7 +85,7 @@ frame_list
             c
             x4 for each
         
-selectedelementlist
+semaster_list
 	el_lists.. (see above)
     
 */

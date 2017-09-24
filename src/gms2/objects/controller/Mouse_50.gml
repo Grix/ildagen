@@ -1,7 +1,7 @@
 if (room != rm_ilda) exit;
 if (mouse_x > 512) or (mouse_y > 512)
     exit;
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
 
     

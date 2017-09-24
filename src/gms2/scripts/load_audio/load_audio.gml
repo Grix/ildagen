@@ -29,7 +29,7 @@ if (length < songlength/1000*projectfps)
 }
 
 ds_list_clear(audio_list);
-parseinstance = FMODGMS_Snd_PlaySound(song, parse_sndchannel);
+FMODGMS_Snd_PlaySound(song, parse_sndchannel);
 parsingaudio = 1;
 deltatime = 0;    
 playing = 0;

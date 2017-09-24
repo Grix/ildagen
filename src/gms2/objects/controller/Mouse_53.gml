@@ -34,7 +34,7 @@ if (mouse_y > __view_get( e__VW.YView, 3 ))
     exit;
     }
 
-if (instance_exists(oDropDown)) or (mouse_x > 512) or (mouse_y > 512) or (keyboard_check(vk_control) or (placing == "select"))
+if (instance_exists(obj_dropdown)) or (mouse_x > 512) or (mouse_y > 512) or (keyboard_check(vk_control) or (placing == "select"))
     exit;
 
 if !ds_list_empty(semaster_list)  and (

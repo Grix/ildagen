@@ -1,5 +1,5 @@
 if (room != rm_ilda) exit;
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
 
 if ((mouse_x > 550) or (mouse_y > 550)) and (placing_status != 2) or (!ds_list_empty(semaster_list) and (

@@ -1,4 +1,4 @@
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
 visible = !ds_list_empty(seqcontrol.marker_list);
 if (!visible) 

@@ -1,4 +1,4 @@
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
 with (controller)
 {
@@ -101,13 +101,13 @@ with (controller)
             if (selectedelement = ds_list_find_value(ds_list_find_value(el_list,i),9))
             {
                 sefound = 1;
-                selectedelementlist = ds_list_find_value(el_list,i);
-                xo = ds_list_find_value(selectedelementlist,0)/$ffff*512;
-                yo = ds_list_find_value(selectedelementlist,1)/$ffff*512;
-                rectxmin = round(xo + (ds_list_find_value(selectedelementlist,4)));
-                rectymin = round(yo + (ds_list_find_value(selectedelementlist,6)));
-                rectxmax = round(xo + (ds_list_find_value(selectedelementlist,5)));
-                rectymax = round(yo + (ds_list_find_value(selectedelementlist,7)));
+                var t_list = ds_list_find_value(el_list,i);
+                xo = ds_list_find_value(t_list,0)/$ffff*512;
+                yo = ds_list_find_value(t_list,1)/$ffff*512;
+                rectxmin = round(xo + (ds_list_find_value(t_list,4)));
+                rectymin = round(yo + (ds_list_find_value(t_list,6)));
+                rectxmax = round(xo + (ds_list_find_value(t_list,5)));
+                rectymax = round(yo + (ds_list_find_value(t_list,7)));
             }
         }
     }

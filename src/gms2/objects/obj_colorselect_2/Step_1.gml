@@ -1,4 +1,4 @@
-if (instance_exists(oDropDown))
+if (instance_exists(obj_dropdown))
     exit;
     
 visible = ((controller.colormode == "gradient") || (controller.colormode == "dash") || (controller.colormode == "func"));
