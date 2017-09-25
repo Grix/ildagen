@@ -1,1773 +1,0 @@
-Converting GML script : MACRO: GM_version
-Converted string : line 1 : '0.9.3.0' -> "0.9.3.0"
-
-Converting GML script : ${project_dir}\scripts\FMODSoundAdd\FMODSoundAdd.gml
-Converted description : /// @description export double FMODSoundAdd(LPCSTR soundfile, double threed, double streamed)/// @function export double FMODSoundAdd
-/// @param LPCSTR soundfile
-/// @param  double threed
-/// @param  double streamed
-
-Converting GML script : ${project_dir}\scripts\LoadFMOD\LoadFMOD.gml
-Converted string : line 9 : 'GMFMODSimple.dll' -> "GMFMODSimple.dll"
-
-Converting GML script : ${project_dir}\scripts\FMODSoundPlay\FMODSoundPlay.gml
-Converted description : /// @description export double FMODSoundPlay(double sound, double paused)/// @function export double FMODSoundPlay
-/// @param double sound
-/// @param  double paused
-
-Converting GML script : ${project_dir}\scripts\ML_Initialize\ML_Initialize.gml
-Converted description : /// @description ML_Initialize()/// @function ML_Initialize
-
-Converting GML script : ${project_dir}\scripts\ML_ResObj_HasAnswer\ML_ResObj_HasAnswer.gml
-Converted description : /// @description  ML_ResObj_HasAnswer(result)/// @function  ML_ResObj_HasAnswer
-/// @param result
-
-Converting GML script : ${project_dir}\scripts\ML_GetFinalAnswer\ML_GetFinalAnswer.gml
-Converted description : /// @description ML_GetFinalAnswer(parser)/// @function ML_GetFinalAnswer
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_ResObj_GetFinalAnswer\ML_ResObj_GetFinalAnswer.gml
-Converted description : /// @description ML_ResObj_GetFinalAnswer(result)/// @function ML_ResObj_GetFinalAnswer
-/// @param result
-
-Converting GML script : ${project_dir}\scripts\ML_GetAnswerNum\ML_GetAnswerNum.gml
-Converted description : /// @description ML_GetAnswerNum(parser)/// @function ML_GetAnswerNum
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_HasAnswer\ML_HasAnswer.gml
-Converted description : /// @description  ML_HasAnswer(parser)/// @function  ML_HasAnswer
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_GetAnswerType\ML_GetAnswerType.gml
-Converted description : /// @description ML_GetAnswerType(parser, answer_ind)/// @function ML_GetAnswerType
-/// @param parser
-/// @param  answer_ind
-
-Converting GML script : ${project_dir}\scripts\ML_ResObj_GetAnswerNum\ML_ResObj_GetAnswerNum.gml
-Converted description : /// @description ML_ResObj_GetAnswerNum(result)/// @function ML_ResObj_GetAnswerNum
-/// @param result
-
-Converting GML script : ${project_dir}\scripts\ML_ResObj_Cleanup\ML_ResObj_Cleanup.gml
-Converted description : /// @description ML_ResObj_Cleanup(result)/// @function ML_ResObj_Cleanup
-/// @param result
-
-Converting GML script : ${project_dir}\scripts\ML_Interpret\ML_Interpret.gml
-Converted description : /// @description  ML_Interpret(parser, string)/// @function  ML_Interpret
-/// @param parser
-/// @param  string
-
-Converting GML script : ${project_dir}\scripts\ML_GetExprString\ML_GetExprString.gml
-Converted description : /// @description ML_GetExprString(parser)/// @function ML_GetExprString
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_ResObj_GetAnswerType\ML_ResObj_GetAnswerType.gml
-Converted description : /// @description ML_ResObj_GetAnswerType(result, answer_ind)/// @function ML_ResObj_GetAnswerType
-/// @param result
-/// @param  answer_ind
-
-Converting GML script : ${project_dir}\scripts\ML_ResObj_GetCalculated\ML_ResObj_GetCalculated.gml
-Converted description : /// @description ML_ResObj_GetCalculated(result)/// @function ML_ResObj_GetCalculated
-/// @param result
-
-Converting GML script : ${project_dir}\scripts\ML_Compile\ML_Compile.gml
-Converted description : /// @description ML_Compile(parser, expression)/// @function ML_Compile
-/// @param parser
-/// @param  expression
-
-Converting GML script : ${project_dir}\scripts\ML_CompileEncode\ML_CompileEncode.gml
-Converted description : /// @description ML_CompileEncode(buffer, compile, offset)/// @function ML_CompileEncode
-/// @param buffer
-/// @param  compile
-/// @param  offset
-
-Converting GML script : ${project_dir}\scripts\_ML_EC_DataInBuff\_ML_EC_DataInBuff.gml
-Converted description : /// @description _ML_EC_DataInBuff(buff, data, type)/// @function _ML_EC_DataInBuff
-/// @param buff
-/// @param  data
-/// @param  type
-
-Converting GML script : ${project_dir}\scripts\ML_CompileDecode\ML_CompileDecode.gml
-Converted description : /// @description ML_CompileDecode(buffer, offset)/// @function ML_CompileDecode
-/// @param buffer
-/// @param  offset
-
-Converting GML script : ${project_dir}\scripts\ML_Execute\ML_Execute.gml
-Converted description : /// @description ML_Execute(parser, compile)/// @function ML_Execute
-/// @param parser
-/// @param  compile
-
-Converting GML script : ${project_dir}\scripts\ML_Calculate\ML_Calculate.gml
-Converted description : /// @description ML_Calculate(parser)/// @function ML_Calculate
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\_ML_BD_DecodePriority\_ML_BD_DecodePriority.gml
-Converted description : /// @description _ML_BD_DecodePriority(grid, buffer)/// @function _ML_BD_DecodePriority
-/// @param grid
-/// @param  buffer
-
-Converting GML script : ${project_dir}\scripts\_ML_BD_DecodeMap\_ML_BD_DecodeMap.gml
-Converted description : /// @description _ML_BD_DecodeMap(map, buffer)/// @function _ML_BD_DecodeMap
-/// @param map
-/// @param  buffer
-
-Converting GML script : ${project_dir}\scripts\_ML_BD_DecodeStack\_ML_BD_DecodeStack.gml
-Converted description : /// @description  _ML_BD_DecodeStack(grid, buffer)/// @function  _ML_BD_DecodeStack
-/// @param grid
-/// @param  buffer
-
-Converting GML script : ${project_dir}\scripts\_ML_BD_DecodeGrid\_ML_BD_DecodeGrid.gml
-Converted description : /// @description _ML_BD_DecodeGrid(grid, buffer)/// @function _ML_BD_DecodeGrid
-/// @param grid
-/// @param  buffer
-
-Converting GML script : ${project_dir}\scripts\ML_GetAnswer\ML_GetAnswer.gml
-Converted description : /// @description ML_GetAnswer(parser, answer_ind)/// @function ML_GetAnswer
-/// @param parser
-/// @param  answer_ind
-
-Converting GML script : ${project_dir}\scripts\ML_NoException_CurParser\ML_NoException_CurParser.gml
-Converted description : /// @description ML_NoException_CurParser()/// @function ML_NoException_CurParser
-
-Converting GML script : ${project_dir}\scripts\_ML_BD_DecodeQueue\_ML_BD_DecodeQueue.gml
-Converted description : /// @description _ML_BD_DecodeQueue(grid, buffer)/// @function _ML_BD_DecodeQueue
-/// @param grid
-/// @param  buffer
-
-Converting GML script : ${project_dir}\scripts\ML_LastException_CurParser\ML_LastException_CurParser.gml
-Converted description : /// @description ML_LastException_CurParser()/// @function ML_LastException_CurParser
-
-Converting GML script : ${project_dir}\scripts\ML_LastExceptionString_CurParser\ML_LastExceptionString_CurParser.gml
-Converted description : /// @description ML_LastExceptionString_CurParser(parser)/// @function ML_LastExceptionString_CurParser
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_LastExceptionPosition_CurParser\ML_LastExceptionPosition_CurParser.gml
-Converted description : /// @description ML_LastExceptionPosition_CurParser()/// @function ML_LastExceptionPosition_CurParser
-
-Converting GML script : ${project_dir}\scripts\_ML_Interpret_Detail\_ML_Interpret_Detail.gml
-Converted description : /// @description  _ML_Interpret_Detail(parser, string, resobj)/// @function  _ML_Interpret_Detail
-/// @param parser
-/// @param  string
-/// @param  resobj
-
-Converting GML script : ${project_dir}\scripts\ML_ResObj_GetAnswer\ML_ResObj_GetAnswer.gml
-Converted description : /// @description ML_ResObj_GetAnswer(result, answer_ind)/// @function ML_ResObj_GetAnswer
-/// @param result
-/// @param  answer_ind
-
-Converting GML script : ${project_dir}\scripts\ML_ClearExceptions_CurParser\ML_ClearExceptions_CurParser.gml
-Converted description : /// @description ML_ClearExceptions_CurParser()/// @function ML_ClearExceptions_CurParser
-
-Converting GML script : ${project_dir}\scripts\ML_LastException\ML_LastException.gml
-Converted description : /// @description ML_LastException(parser)/// @function ML_LastException
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_ClearExceptions\ML_ClearExceptions.gml
-Converted description : /// @description ML_ClearExceptions(parser)/// @function ML_ClearExceptions
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_LastExceptionString\ML_LastExceptionString.gml
-Converted description : /// @description ML_LastExceptionString(parser)/// @function ML_LastExceptionString
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\_ML_BD_DecodeList\_ML_BD_DecodeList.gml
-Converted description : /// @description _ML_BD_DecodeList(list, buffer)/// @function _ML_BD_DecodeList
-/// @param list
-/// @param  buffer
-
-Converting GML script : ${project_dir}\scripts\_ML_EC_RPNtoBuff\_ML_EC_RPNtoBuff.gml
-Converted description : /// @description _ML_EC_RPNtoBuff(buffer, queue_source)/// @function _ML_EC_RPNtoBuff
-/// @param buffer
-/// @param  queue_source
-
-Converting GML script : ${project_dir}\scripts\ML_RaiseException\ML_RaiseException.gml
-Converted description : /// @description ML_RaiseException(parser, Exception, position, [string])/// @function ML_RaiseException
-/// @param parser
-/// @param  Exception
-/// @param  position
-/// @param  [string]
-
-Converting GML script : ${project_dir}\scripts\ML_CompileCleanup\ML_CompileCleanup.gml
-Converted description : /// @description ML_CompileCleanup(Compile)/// @function ML_CompileCleanup
-/// @param Compile
-
-Converting GML script : ${project_dir}\scripts\ML_InitParserEmpty\ML_InitParserEmpty.gml
-Converted description : /// @description ML_InitParserEmpty(VarMap)/// @function ML_InitParserEmpty
-/// @param VarMap
-
-Converting GML script : ${project_dir}\scripts\_ML_AddFunctionSig\_ML_AddFunctionSig.gml
-Converted description : /// @description  _ML_AddFunctionSig(script, return)/// @function  _ML_AddFunctionSig
-/// @param script
-/// @param  return
-
-Converting GML script : ${project_dir}\scripts\_ML_NewFunction\_ML_NewFunction.gml
-Converted description : /// @description  _ML_NewFunction(function_string,script,returntype, arglist)/// @function  _ML_NewFunction
-/// @param function_string
-/// @param script
-/// @param returntype
-/// @param  arglist
-
-Converting GML script : ${project_dir}\scripts\ML_DestroyParser\ML_DestroyParser.gml
-Converted description : /// @description ML_DestroyParser(parser)/// @function ML_DestroyParser
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_RemFunctionStr\ML_RemFunctionStr.gml
-Converted description : /// @description ML_RemFunctionStr(parser, function_string)/// @function ML_RemFunctionStr
-/// @param parser
-/// @param  function_string
-
-Converting GML script : ${project_dir}\scripts\_ML_BD_GetData\_ML_BD_GetData.gml
-Converted description : /// @description _ML_BD_GetData(buffer, type)/// @function _ML_BD_GetData
-/// @param buffer
-/// @param  type
-
-Converting GML script : ${project_dir}\scripts\ML_NoException\ML_NoException.gml
-Converted description : /// @description ML_NoException(parser)/// @function ML_NoException
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_RaiseException_CurParser\ML_RaiseException_CurParser.gml
-Converted description : /// @description ML_RaiseException_CurParser(Exception, position, [string])/// @function ML_RaiseException_CurParser
-/// @param Exception
-/// @param  position
-/// @param  [string]
-
-Converting GML script : ${project_dir}\scripts\ML_AddBinaryOper\ML_AddBinaryOper.gml
-Converted description : /// @description ML_AddBinaryOper(parser, operator, precedence, script, returntype, lhstype, rhstype[, assoc])/// @function ML_AddBinaryOper
-/// @param parser
-/// @param  operator
-/// @param  precedence
-/// @param  script
-/// @param  returntype
-/// @param  lhstype
-/// @param  rhstype[
-/// @param  assoc]
-
-Converting GML script : ${project_dir}\scripts\_ML_NewBinaryOper\_ML_NewBinaryOper.gml
-Converted description : /// @description  _ML_NewBinaryOper(operator,precedence,script,returntype, lhstype, rhstype, assoc)/// @function  _ML_NewBinaryOper
-/// @param operator
-/// @param precedence
-/// @param script
-/// @param returntype
-/// @param  lhstype
-/// @param  rhstype
-/// @param  assoc
-
-Converting GML script : ${project_dir}\scripts\ML_RemBinaryOper\ML_RemBinaryOper.gml
-Converted description : /// @description ML_RemBinaryOper(parser, index)/// @function ML_RemBinaryOper
-/// @param parser
-/// @param  index
-
-Converting GML script : ${project_dir}\scripts\ML_LastExceptionPosition\ML_LastExceptionPosition.gml
-Converted description : /// @description ML_LastExceptionPosition(parser)/// @function ML_LastExceptionPosition
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\_ML_AddBinarySig\_ML_AddBinarySig.gml
-Converted description : /// @description _ML_AddBinarySig(script, retval)/// @function _ML_AddBinarySig
-/// @param script
-/// @param  retval
-
-Converting GML script : ${project_dir}\scripts\_ML_NewUnaryOper\_ML_NewUnaryOper.gml
-Converted description : /// @description  _ML_NewUnaryOper(operator, precedence,script,returntype, lhstype, affix)/// @function  _ML_NewUnaryOper
-/// @param operator
-/// @param  precedence
-/// @param script
-/// @param returntype
-/// @param  lhstype
-/// @param  affix
-
-Converting GML script : ${project_dir}\scripts\_ML_AddUnarySig\_ML_AddUnarySig.gml
-Converted description : /// @description _ML_AddUnarySig(script, retval)/// @function _ML_AddUnarySig
-/// @param script
-/// @param  retval
-
-Converting GML script : ${project_dir}\scripts\ML_RemUnaryOperStr\ML_RemUnaryOperStr.gml
-Converted description : /// @description ML_RemUnaryOperStr(parser, Unary operator string)/// @function ML_RemUnaryOperStr
-/// @param parser
-/// @param  Unary operator string
-
-Converting GML script : ${project_dir}\scripts\ML_ClearUnaryOper\ML_ClearUnaryOper.gml
-Converted description : /// @description ML_ClearUnaryOper(parser)/// @function ML_ClearUnaryOper
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_ClearBinaryOper\ML_ClearBinaryOper.gml
-Converted description : /// @description ML_ClearBinaryOper(parser)/// @function ML_ClearBinaryOper
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\_ML_AddAssignSig\_ML_AddAssignSig.gml
-Converted description : /// @description _ML_AddAssignSig(script, retval)/// @function _ML_AddAssignSig
-/// @param script
-/// @param  retval
-
-Converting GML script : ${project_dir}\scripts\ML_RemBinaryOperStr\ML_RemBinaryOperStr.gml
-Converted description : /// @description ML_RemBinaryOperStr(parser, Binary operator string)/// @function ML_RemBinaryOperStr
-/// @param parser
-/// @param  Binary operator string
-
-Converting GML script : ${project_dir}\scripts\_ML_NewAssignOper\_ML_NewAssignOper.gml
-Converted description : /// @description   _ML_NewAssignOper(operator, precedence, script,returntype, lhstype, rhstype, assoc)/// @function   _ML_NewAssignOper
-/// @param operator
-/// @param  precedence
-/// @param  script
-/// @param returntype
-/// @param  lhstype
-/// @param  rhstype
-/// @param  assoc
-
-Converting GML script : ${project_dir}\scripts\ML_RemAssignOper\ML_RemAssignOper.gml
-Converted description : /// @description ML_RemAssignOper(parser, index)/// @function ML_RemAssignOper
-/// @param parser
-/// @param  index
-
-Converting GML script : ${project_dir}\scripts\ML_AddUnaryOper\ML_AddUnaryOper.gml
-Converted description : /// @description ML_AddUnaryOper(parser, operator, precedence,script,returntype, valtype,[ affix])/// @function ML_AddUnaryOper
-/// @param parser
-/// @param  operator
-/// @param  precedence
-/// @param script
-/// @param returntype
-/// @param  valtype
-/// @param [ affix]
-
-Converting GML script : ${project_dir}\scripts\ML_RemUnaryOper\ML_RemUnaryOper.gml
-Converted description : /// @description ML_RemUnaryOper(parser, index)/// @function ML_RemUnaryOper
-/// @param parser
-/// @param  index
-
-Converting GML script : ${project_dir}\scripts\_ML_NewTernaryOper\_ML_NewTernaryOper.gml
-Converted description : /// @description    _ML_NewTernaryOper(operator1, operator2,precedence,script,returntype, lhstype, mhstype, rhstype, assoc)/// @function    _ML_NewTernaryOper
-/// @param operator1
-/// @param  operator2
-/// @param precedence
-/// @param script
-/// @param returntype
-/// @param  lhstype
-/// @param  mhstype
-/// @param  rhstype
-/// @param  assoc
-
-Converting GML script : ${project_dir}\scripts\ML_RemAssignOperStr\ML_RemAssignOperStr.gml
-Converted description : /// @description ML_RemAssignOperStr(parser, Assign operator string)/// @function ML_RemAssignOperStr
-/// @param parser
-/// @param  Assign operator string
-
-Converting GML script : ${project_dir}\scripts\ML_AddAssignOper\ML_AddAssignOper.gml
-Converted description : /// @description ML_AddAssignOper(parser, operator, precedence, script, returntype, lhstype, rhstype[, assoc])/// @function ML_AddAssignOper
-/// @param parser
-/// @param  operator
-/// @param  precedence
-/// @param  script
-/// @param  returntype
-/// @param  lhstype
-/// @param  rhstype[
-/// @param  assoc]
-
-Converting GML script : ${project_dir}\scripts\ML_ClearFunction\ML_ClearFunction.gml
-Converted description : /// @description ML_ClearFunction(parser)/// @function ML_ClearFunction
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_RemFunction\ML_RemFunction.gml
-Converted description : /// @description ML_RemFunction(parser, index)/// @function ML_RemFunction
-/// @param parser
-/// @param  index
-
-Converting GML script : ${project_dir}\scripts\ML_AddTernaryOper\ML_AddTernaryOper.gml
-Converted description : /// @description ML_AddTernaryOper(parser, operator1, operator2, precedence, script, returntype, lhstype, mhstype, rhstype[, assoc])/// @function ML_AddTernaryOper
-/// @param parser
-/// @param  operator1
-/// @param  operator2
-/// @param  precedence
-/// @param  script
-/// @param  returntype
-/// @param  lhstype
-/// @param  mhstype
-/// @param  rhstype[
-/// @param  assoc]
-
-Converting GML script : ${project_dir}\scripts\_ML_AddTernarySig\_ML_AddTernarySig.gml
-Converted description : /// @description _ML_AddTernarySig(script, retval)/// @function _ML_AddTernarySig
-/// @param script
-/// @param  retval
-
-Converting GML script : ${project_dir}\scripts\_ML_OpAddRoots\_ML_OpAddRoots.gml
-Converted description : /// @description  _ML_OpAddRoots(parser, string)/// @function  _ML_OpAddRoots
-/// @param parser
-/// @param  string
-
-Converting GML script : ${project_dir}\scripts\ML_AddFunction\ML_AddFunction.gml
-Converted description : /// @description ML_AddFunction(parser, functionstring,scriptid,returntype, [type_arg1, type_arg2 ... type_argN])/// @function ML_AddFunction
-/// @param parser
-/// @param  functionstring
-/// @param scriptid
-/// @param returntype
-/// @param  [type_arg1
-/// @param  type_arg2 ... type_argN]
-
-Converting GML script : ${project_dir}\scripts\ML_AddFunctionArgList\ML_AddFunctionArgList.gml
-Converted description : /// @description ML_AddFunctionArgList(parser, functionstring,scriptid,returntype, argtypelist)/// @function ML_AddFunctionArgList
-/// @param parser
-/// @param  functionstring
-/// @param scriptid
-/// @param returntype
-/// @param  argtypelist
-
-Converting GML script : ${project_dir}\scripts\ML_ClearAssignOper\ML_ClearAssignOper.gml
-Converted description : /// @description ML_ClearAssignOper(parser)/// @function ML_ClearAssignOper
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_RemVariableStr\ML_RemVariableStr.gml
-Converted description : /// @description ML_RemVariableStr(parser, VarString) /// @function ML_RemVariableStr
-/// @param parser
-/// @param  VarString
-
-Converting GML script : ${project_dir}\scripts\ML_ClearVariable\ML_ClearVariable.gml
-Converted description : /// @description ML_ClearVariable(parser) /// @function ML_ClearVariable
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_VM_Set\ML_VM_Set.gml
-Converted description : /// @description ML_VM_Set(parser, VarMap, [CreateNewVars] )/// @function ML_VM_Set
-/// @param parser
-/// @param  VarMap
-/// @param  [CreateNewVars]
-
-Converting GML script : ${project_dir}\scripts\ML_VM_VarExists\ML_VM_VarExists.gml
-Converted description : /// @description  ML_VM_VarExists(parser, varstring)/// @function  ML_VM_VarExists
-/// @param parser
-/// @param  varstring
-
-Converting GML script : ${project_dir}\scripts\ML_RemVariable\ML_RemVariable.gml
-Converted description : /// @description ML_RemVariable(parser, index) destroys variable - DOES NOT DESTROY IN MAP WITH VALUES/// @function ML_RemVariable
-/// @param parser
-/// @param  index
-
-Converting GML script : ${project_dir}\scripts\ML_VM_Get\ML_VM_Get.gml
-Converted description : /// @description ML_VM_Get(parser)/// @function ML_VM_Get
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\ML_VM_HasNoPVar\ML_VM_HasNoPVar.gml
-Converted description : /// @description ML_VM_HasNoPVar(parser, key)/// @function ML_VM_HasNoPVar
-/// @param parser
-/// @param  key
-
-Converting GML script : ${project_dir}\scripts\ML_ClearTernaryOper\ML_ClearTernaryOper.gml
-Converted description : /// @description ML_ClearTernaryOper(parser)/// @function ML_ClearTernaryOper
-/// @param parser
-
-Converting GML script : ${project_dir}\scripts\_ML_TernaryAddSecond\_ML_TernaryAddSecond.gml
-Converted description : /// @description  _ML_TernaryAddSecond(parser, oper_2_string, ternary_id)/// @function  _ML_TernaryAddSecond
-/// @param parser
-/// @param  oper_2_string
-/// @param  ternary_id
-
-Converting GML script : ${project_dir}\scripts\ML_VM_GetVar\ML_VM_GetVar.gml
-Converted description : /// @description ML_VM_GetVar(parser, key)/// @function ML_VM_GetVar
-/// @param parser
-/// @param  key
-
-Converting GML script : ${project_dir}\scripts\ML_RemTernaryOper\ML_RemTernaryOper.gml
-Converted description : /// @description ML_RemTernaryOper(parser, index);/// @function ML_RemTernaryOper
-/// @param parser
-/// @param  index
-
-Converting GML script : ${project_dir}\scripts\ML_VM_GetPVarList\ML_VM_GetPVarList.gml
-Converted description : /// @description ML_VM_GetPVarList(parser, key)/// @function ML_VM_GetPVarList
-/// @param parser
-/// @param  key
-
-Converting GML script : ${project_dir}\scripts\ML_VM_SetVarReal\ML_VM_SetVarReal.gml
-Converted description : /// @description ML_VM_SetVarReal(parser, key, value)/// @function ML_VM_SetVarReal
-/// @param parser
-/// @param  key
-/// @param  value
-
-Converting GML script : ${project_dir}\scripts\ML_SetExpression\ML_SetExpression.gml
-Converted description : /// @description ML_SetExpression(parser, expression)/// @function ML_SetExpression
-/// @param parser
-/// @param  expression
-
-Converting GML script : ${project_dir}\scripts\ML_VM_SetVar\ML_VM_SetVar.gml
-Converted description : /// @description ML_VM_SetVar(parser, key, value)/// @function ML_VM_SetVar
-/// @param parser
-/// @param  key
-/// @param  value
-
-Converting GML script : ${project_dir}\scripts\ML_RemTernaryOperStr\ML_RemTernaryOperStr.gml
-Converted description : /// @description ML_RemTernaryOperStr(parser, Ternary operator string)/// @function ML_RemTernaryOperStr
-/// @param parser
-/// @param  Ternary operator string
-
-Converting GML script : ${project_dir}\scripts\ML_VM_RemVar\ML_VM_RemVar.gml
-Converted description : /// @description ML_VM_RemVar(parser, key)/// @function ML_VM_RemVar
-/// @param parser
-/// @param  key
-
-Converting GML script : ${project_dir}\scripts\ML_VM_GetVarReal\ML_VM_GetVarReal.gml
-Converted description : /// @description ML_VM_GetVarReal(parser, key)/// @function ML_VM_GetVarReal
-/// @param parser
-/// @param  key
-
-Converting GML script : ${project_dir}\scripts\_ML_OpRemRoots\_ML_OpRemRoots.gml
-Converted description : /// @description  _ML_OpRemRoots(parser, string)/// @function  _ML_OpRemRoots
-/// @param parser
-/// @param  string
-
-Converting GML script : ${project_dir}\scripts\ML_AddVariable\ML_AddVariable.gml
-Converted description : /// @description ML_AddVariable(parser, varstring,[value, type, readonly = true])/// @function ML_AddVariable
-/// @param parser
-/// @param  varstring
-/// @param [value
-/// @param  type
-/// @param  readonly = true]
-
-Converting GML script : ${project_dir}\scripts\ML_VM_SetVarString\ML_VM_SetVarString.gml
-Converted description : /// @description ML_VM_SetVarString(parser, key, value)/// @function ML_VM_SetVarString
-/// @param parser
-/// @param  key
-/// @param  value
-
-Converting GML script : ${project_dir}\scripts\ML_VM_GetVarString\ML_VM_GetVarString.gml
-Converted description : /// @description ML_VM_GetVarString(parser, key)/// @function ML_VM_GetVarString
-/// @param parser
-/// @param  key
-
-Converting GML script : ${project_dir}\scripts\ML_InitParserMath\ML_InitParserMath.gml
-Converted description : /// @description ML_InitParserMath(VarMap)/// @function ML_InitParserMath
-/// @param VarMap
-
-Converting GML script : ${project_dir}\scripts\ML_InitParserCS\ML_InitParserCS.gml
-Converted description : /// @description ML_InitParserCS(VarMap)/// @function ML_InitParserCS
-/// @param VarMap
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_Print\_ML_LEX_Print.gml
-Converted description : /// @description _ML_LEX_Print(char)/// @function _ML_LEX_Print
-/// @param char
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_Space\_ML_LEX_Space.gml
-Converted description : /// @description _ML_LEX_Space(char)/// @function _ML_LEX_Space
-/// @param char
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_Punct\_ML_LEX_Punct.gml
-Converted description : /// @description _ML_LEX_Punct(char)/// @function _ML_LEX_Punct
-/// @param char
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_Word\_ML_LEX_Word.gml
-Converted description : /// @description _ML_LEX_Word(char)/// @function _ML_LEX_Word
-/// @param char
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_Graph\_ML_LEX_Graph.gml
-Converted description : /// @description _ML_LEX_Graph(char)/// @function _ML_LEX_Graph
-/// @param char
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_Xdigit\_ML_LEX_Xdigit.gml
-Converted description : /// @description _ML_LEX_Xdigit(char)/// @function _ML_LEX_Xdigit
-/// @param char
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_Upper\_ML_LEX_Upper.gml
-Converted description : /// @description _ML_LEX_Upper(char)/// @function _ML_LEX_Upper
-/// @param char
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_Cntrl\_ML_LEX_Cntrl.gml
-Converted description : /// @description _ML_LEX_Cntrl(char)/// @function _ML_LEX_Cntrl
-/// @param char
-
-Converting GML script : ${project_dir}\scripts\ML_InitParserScience\ML_InitParserScience.gml
-Converted description : /// @description ML_InitParserScience(VarMap)/// @function ML_InitParserScience
-/// @param VarMap
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_IsTernOper\_ML_LEX_IsTernOper.gml
-Converted description : /// @description _ML_LEX_IsTernOper(parser, token, previoustoken)/// @function _ML_LEX_IsTernOper
-/// @param parser
-/// @param  token
-/// @param  previoustoken
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_Blank\_ML_LEX_Blank.gml
-Converted description : /// @description _ML_LEX_Blank(char)/// @function _ML_LEX_Blank
-/// @param char
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_IsAssignoper\_ML_LEX_IsAssignoper.gml
-Converted description : /// @description _ML_LEX_IsAssignoper(parser, token, prevtok)/// @function _ML_LEX_IsAssignoper
-/// @param parser
-/// @param  token
-/// @param  prevtok
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_Digit\_ML_LEX_Digit.gml
-Converted description : /// @description _ML_LEX_Digit(char)/// @function _ML_LEX_Digit
-/// @param char
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_IsTernOper2\_ML_LEX_IsTernOper2.gml
-Converted description : /// @description _ML_LEX_IsTernOper2(parser, token, previoustoken)/// @function _ML_LEX_IsTernOper2
-/// @param parser
-/// @param  token
-/// @param  previoustoken
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_Alnum\_ML_LEX_Alnum.gml
-Converted description : /// @description _ML_LEX_Alnum(char)/// @function _ML_LEX_Alnum
-/// @param char
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_IsBinoper\_ML_LEX_IsBinoper.gml
-Converted description : /// @description _ML_LEX_IsBinoper(parser, token, prevtok)/// @function _ML_LEX_IsBinoper
-/// @param parser
-/// @param  token
-/// @param  prevtok
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_IsVariable\_ML_LEX_IsVariable.gml
-Converted description : /// @description _ML_LEX_IsVariable(parser, token, prevtok)/// @function _ML_LEX_IsVariable
-/// @param parser
-/// @param  token
-/// @param  prevtok
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_IsFunction\_ML_LEX_IsFunction.gml
-Converted description : /// @description _ML_LEX_IsFunction(parser, token, prevtok)/// @function _ML_LEX_IsFunction
-/// @param parser
-/// @param  token
-/// @param  prevtok
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_TokenSetType\_ML_LEX_TokenSetType.gml
-Converted description : /// @description _ML_LEX_TokenSetType(parser, token, type)/// @function _ML_LEX_TokenSetType
-/// @param parser
-/// @param  token
-/// @param  type
-Converted string : line 40 : '"' -> "\""
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_TokenAdd\_ML_LEX_TokenAdd.gml
-Converted description : /// @description _ML_LEX_TokenAdd(list, string, position)/// @function _ML_LEX_TokenAdd
-/// @param list
-/// @param  string
-/// @param  position
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_Alpha\_ML_LEX_Alpha.gml
-Converted description : /// @description _ML_LEX_Alpha(char)/// @function _ML_LEX_Alpha
-/// @param char
-
-Converting GML script : ${project_dir}\scripts\_ML_FirstStringPos2\_ML_FirstStringPos2.gml
-Converted description : /// @description  _ML_FirstStringPos2(str, token1, token2)/// @function  _ML_FirstStringPos2
-/// @param str
-/// @param  token1
-/// @param  token2
-
-Converting GML script : ${project_dir}\scripts\_ML_FirstStringPos\_ML_FirstStringPos.gml
-Converted description : /// @description  _ML_FirstStringPos(str, token1,token2,...,token16)/// @function  _ML_FirstStringPos
-/// @param str
-/// @param  token1
-/// @param token2
-/// @param ...
-/// @param token16
-
-Converting GML script : ${project_dir}\scripts\_ML_FirstStringPos1\_ML_FirstStringPos1.gml
-Converted description : /// @description  _ML_FirstStringPos1(str, token1)/// @function  _ML_FirstStringPos1
-/// @param str
-/// @param  token1
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_HandleValue\_ML_SY_HandleValue.gml
-Converted description : /// @description _ML_SY_HandleValue(token, exprqueue)/// @function _ML_SY_HandleValue
-/// @param token
-/// @param  exprqueue
-
-Converting GML script : ${project_dir}\scripts\_ML_FirstStringPos3\_ML_FirstStringPos3.gml
-Converted description : /// @description  _ML_FirstStringPos3(str, token1, token2, token3)/// @function  _ML_FirstStringPos3
-/// @param str
-/// @param  token1
-/// @param  token2
-/// @param  token3
-
-Converting GML script : ${project_dir}\scripts\_ML_LexicalAnalysis\_ML_LexicalAnalysis.gml
-Converted description : /// @description _ML_LexicalAnalysis(parser, tokenlist, string)/// @function _ML_LexicalAnalysis
-/// @param parser
-/// @param  tokenlist
-/// @param  string
-Converted string : line 29 : '"' -> "\""
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_Lower\_ML_LEX_Lower.gml
-Converted description : /// @description _ML_LEX_Lower(char)/// @function _ML_LEX_Lower
-/// @param char
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_HandleRightPar\_ML_SY_HandleRightPar.gml
-Converted description : /// @description _ML_SY_HandleRightPar(parser, token, output, stack, argcount, stackofoutputs, stackofstacks,  level);/// @function _ML_SY_HandleRightPar
-/// @param parser
-/// @param  token
-/// @param  output
-/// @param  stack
-/// @param  argcount
-/// @param  stackofoutputs
-/// @param  stackofstacks
-/// @param   level
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_HandleOperator\_ML_SY_HandleOperator.gml
-Converted description : /// @description _ML_SY_HandleOperator(parser, token, output, stack)/// @function _ML_SY_HandleOperator
-/// @param parser
-/// @param  token
-/// @param  output
-/// @param  stack
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_HandleFunction\_ML_SY_HandleFunction.gml
-Converted description : /// @description _ML_SY_HandleFunction(token, functionstack)/// @function _ML_SY_HandleFunction
-/// @param token
-/// @param  functionstack
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_HandleExprTerminator\_ML_SY_HandleExprTerminator.gml
-Converted description : /// @description _ML_SY_HandleExprTerminator(parser, token, output, stack)/// @function _ML_SY_HandleExprTerminator
-/// @param parser
-/// @param  token
-/// @param  output
-/// @param  stack
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_HandleArgSep\_ML_SY_HandleArgSep.gml
-Converted description : /// @description _ML_SY_HandleArgSep(parser, token, output, stack);/// @function _ML_SY_HandleArgSep
-/// @param parser
-/// @param  token
-/// @param  output
-/// @param  stack
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_TokenIsOperator\_ML_SY_TokenIsOperator.gml
-Converted description : /// @description _ML_SY_TokenIsOperator(tok)/// @function _ML_SY_TokenIsOperator
-/// @param tok
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_QueueAppendQueue\_ML_SY_QueueAppendQueue.gml
-Converted description : /// @description _ML_SY_QueueAppendQueue(q1, q2);/// @function _ML_SY_QueueAppendQueue
-/// @param q1
-/// @param  q2
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_ListAppendList\_ML_SY_ListAppendList.gml
-Converted description : /// @description _ML_SY_ListAppendList(q1, q2);/// @function _ML_SY_ListAppendList
-/// @param q1
-/// @param  q2
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_HandleTernary2\_ML_SY_HandleTernary2.gml
-Converted description : /// @description _ML_SY_HandleTernary2(parser, token, output, stack);/// @function _ML_SY_HandleTernary2
-/// @param parser
-/// @param  token
-/// @param  output
-/// @param  stack
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_OperatorActBefore\_ML_SY_OperatorActBefore.gml
-Converted description : /// @description _ML_SY_OperatorActBefore(o1, o2)/// @function _ML_SY_OperatorActBefore
-/// @param o1
-/// @param  o2
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_TernaryIsMatchingToken\_ML_SY_TernaryIsMatchingToken.gml
-Converted description : /// @description  _ML_SY_TernaryIsMatchingToken(token1, map)/// @function  _ML_SY_TernaryIsMatchingToken
-/// @param token1
-/// @param  map
-
-Converting GML script : ${project_dir}\scripts\_ML_PARSE_AssignFlat\_ML_PARSE_AssignFlat.gml
-Converted description : /// @description _ML_PARSE_AssignFlat(parser, token, args, temptokens)/// @function _ML_PARSE_AssignFlat
-/// @param parser
-/// @param  token
-/// @param  args
-/// @param  temptokens
-
-Converting GML script : ${project_dir}\scripts\_ML_ShuntingYard\_ML_ShuntingYard.gml
-Converted description : /// @description _ML_ShuntingYard(parser, tokens, rpn)/// @function _ML_ShuntingYard
-/// @param parser
-/// @param  tokens
-/// @param  rpn
-
-Converting GML script : ${project_dir}\scripts\_ML_PARSE_Binary\_ML_PARSE_Binary.gml
-Converted description : /// @description  _ML_PARSE_Binary(parser, tok, argstack)/// @function  _ML_PARSE_Binary
-/// @param parser
-/// @param  tok
-/// @param  argstack
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_IsUnoper\_ML_LEX_IsUnoper.gml
-Converted description : /// @description _ML_LEX_IsUnoper(parser, token, prevtok)/// @function _ML_LEX_IsUnoper
-/// @param parser
-/// @param  token
-/// @param  prevtok
-
-Converting GML script : ${project_dir}\scripts\_ML_PARSE_Assign\_ML_PARSE_Assign.gml
-Converted description : /// @description _ML_PARSE_Assign(parser, token, args)/// @function _ML_PARSE_Assign
-/// @param parser
-/// @param  token
-/// @param  args
-
-Converting GML script : ${project_dir}\scripts\_ML_PARSE_Ternary\_ML_PARSE_Ternary.gml
-Converted description : /// @description  _ML_PARSE_Ternary(parser, tok, argstack)/// @function  _ML_PARSE_Ternary
-/// @param parser
-/// @param  tok
-/// @param  argstack
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_HandleLeftPar\_ML_SY_HandleLeftPar.gml
-Converted description : /// @description _ML_SY_HandleLeftPar(token, functionstack)/// @function _ML_SY_HandleLeftPar
-/// @param token
-/// @param  functionstack
-
-Converting GML script : ${project_dir}\scripts\_ML_LEX_IsValue\_ML_LEX_IsValue.gml
-Converted description : /// @description _ML_LEX_IsValue(token, prevtok)/// @function _ML_LEX_IsValue
-/// @param token
-/// @param  prevtok
-Converted string : line 15 : '"' -> "\""
-
-Converting GML script : ${project_dir}\scripts\_ML_ParseCompiled\_ML_ParseCompiled.gml
-Converted description : /// @description _ML_ParseCompiled(parser, ReversePolishQueue, ResultObject)/// @function _ML_ParseCompiled
-/// @param parser
-/// @param  ReversePolishQueue
-/// @param  ResultObject
-
-Converting GML script : ${project_dir}\scripts\_ML_PARSE_Unary\_ML_PARSE_Unary.gml
-Converted description : /// @description _ML_PARSE_Unary(parser, token, argstack)/// @function _ML_PARSE_Unary
-/// @param parser
-/// @param  token
-/// @param  argstack
-
-Converting GML script : ${project_dir}\scripts\_ML_SY_HandleEOL\_ML_SY_HandleEOL.gml
-Converted description : /// @description _ML_SY_HandleEOL(parser, token, output, stack);/// @function _ML_SY_HandleEOL
-/// @param parser
-/// @param  token
-/// @param  output
-/// @param  stack
-
-Converting GML script : ${project_dir}\scripts\_ML_PARSECOMP_EvalToken\_ML_PARSECOMP_EvalToken.gml
-Converted description : /// @description _ML_PARSECOMP_EvalToken(parser, argTypeStack, token, temptokens)/// @function _ML_PARSECOMP_EvalToken
-/// @param parser
-/// @param  argTypeStack
-/// @param  token
-/// @param  temptokens
-
-Converting GML script : ${project_dir}\scripts\_ML_COMP_RemoveExtraTokens\_ML_COMP_RemoveExtraTokens.gml
-Converted description : /// @description _ML_COMP_RemoveExtraTokens(tokenList, importantTokenMap)/// @function _ML_COMP_RemoveExtraTokens
-/// @param tokenList
-/// @param  importantTokenMap
-
-Converting GML script : ${project_dir}\scripts\_ML_PARSE_Value\_ML_PARSE_Value.gml
-Converted description : /// @description _ML_PARSE_Value(token, argstack)/// @function _ML_PARSE_Value
-/// @param token
-/// @param  argstack
-
-Converting GML script : ${project_dir}\scripts\_ML_COMP_Unary\_ML_COMP_Unary.gml
-Converted description : /// @description _ML_COMP_Unary( token, argstack)/// @function _ML_COMP_Unary
-/// @param  token
-/// @param  argstack
-
-Converting GML script : ${project_dir}\scripts\_ML_COMP_Binary\_ML_COMP_Binary.gml
-Converted description : /// @description _ML_COMP_Binary( token, argstack)/// @function _ML_COMP_Binary
-/// @param  token
-/// @param  argstack
-
-Converting GML script : ${project_dir}\scripts\_ML_PARSE_EvalLine\_ML_PARSE_EvalLine.gml
-Converted description : /// @description _ML_PARSE_EvalLine(parser, rpn, resultObject)/// @function _ML_PARSE_EvalLine
-/// @param parser
-/// @param  rpn
-/// @param  resultObject
-
-Converting GML script : ${project_dir}\scripts\_ML_PARSE_EvalToken\_ML_PARSE_EvalToken.gml
-Converted description : /// @description _ML_PARSE_EvalToken(parser, argTypeStack, token)/// @function _ML_PARSE_EvalToken
-/// @param parser
-/// @param  argTypeStack
-/// @param  token
-
-Converting GML script : ${project_dir}\scripts\_ML_COMP_Assign\_ML_COMP_Assign.gml
-Converted description : /// @description _ML_COMP_Assign(token, args)/// @function _ML_COMP_Assign
-/// @param token
-/// @param  args
-
-Converting GML script : ${project_dir}\scripts\_ML_PARSE_FuncFlat\_ML_PARSE_FuncFlat.gml
-Converted description : /// @description _ML_PARSE_FuncFlat(parser, token, args, temptokens)/// @function _ML_PARSE_FuncFlat
-/// @param parser
-/// @param  token
-/// @param  args
-/// @param  temptokens
-
-Converting GML script : ${project_dir}\scripts\_ML_COMP_EvalToken\_ML_COMP_EvalToken.gml
-Converted description : /// @description _ML_COMP_EvalToken(parser, argTypeStack, token)/// @function _ML_COMP_EvalToken
-/// @param parser
-/// @param  argTypeStack
-/// @param  token
-
-Converting GML script : ${project_dir}\scripts\_ML_COMP_EvalLine\_ML_COMP_EvalLine.gml
-Converted description : /// @description _ML_COMP_EvalLine(parser, ReversePolishQueue,  newRPN, importantTokenList)/// @function _ML_COMP_EvalLine
-/// @param parser
-/// @param  ReversePolishQueue
-/// @param   newRPN
-/// @param  importantTokenList
-
-Converting GML script : ${project_dir}\scripts\_ML_PARSECOMP_EvalLine\_ML_PARSECOMP_EvalLine.gml
-Converted description : /// @description _ML_PARSECOMP_EvalLine(parser, rpn, resultObject)/// @function _ML_PARSECOMP_EvalLine
-/// @param parser
-/// @param  rpn
-/// @param  resultObject
-
-Converting GML script : ${project_dir}\scripts\_ML_Parse\_ML_Parse.gml
-Converted description : /// @description _ML_Parse(parser, ReversePolishQueue, ResultObject)/// @function _ML_Parse
-/// @param parser
-/// @param  ReversePolishQueue
-/// @param  ResultObject
-
-Converting GML script : ${project_dir}\scripts\_ML_TokCleanUp\_ML_TokCleanUp.gml
-Converted description : /// @description _ML_TokCleanUp(tokenlist)/// @function _ML_TokCleanUp
-/// @param tokenlist
-
-Converting GML script : ${project_dir}\scripts\_ML_Li_GetName\_ML_Li_GetName.gml
-Converted description : /// @description _ML_Li_GetName(index)/// @function _ML_Li_GetName
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiVar_GetReadonly\_ML_LiVar_GetReadonly.gml
-Converted description : /// @description _ML_LiVar_GetReadonly(index)/// @function _ML_LiVar_GetReadonly
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_PARSE_Function\_ML_PARSE_Function.gml
-Converted description : /// @description _ML_PARSE_Function(parser, token, args)/// @function _ML_PARSE_Function
-/// @param parser
-/// @param  token
-/// @param  args
-
-Converting GML script : ${project_dir}\scripts\_ML_LiVar_Destroy\_ML_LiVar_Destroy.gml
-Converted description : /// @description _ML_LiVar_Destroy(index)/// @function _ML_LiVar_Destroy
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiVar_GetType\_ML_LiVar_GetType.gml
-Converted description : /// @description _ML_LiVar_GetType(index)/// @function _ML_LiVar_GetType
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiF_GetFuncs\_ML_LiF_GetFuncs.gml
-Converted description : /// @description _ML_LiF_GetFuncs(index)/// @function _ML_LiF_GetFuncs
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiF_Destroy\_ML_LiF_Destroy.gml
-Converted description : /// @description _ML_LiF_Destroy(index)/// @function _ML_LiF_Destroy
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_COMP_Variable\_ML_COMP_Variable.gml
-Converted description : /// @description _ML_COMP_Variable( token, argstack)/// @function _ML_COMP_Variable
-/// @param  token
-/// @param  argstack
-
-Converting GML script : ${project_dir}\scripts\_ML_LiF_Create\_ML_LiF_Create.gml
-Converted description : /// @description _ML_LiF_Create(name)/// @function _ML_LiF_Create
-/// @param name
-
-Converting GML script : ${project_dir}\scripts\_ML_COMP_Value\_ML_COMP_Value.gml
-Converted description : /// @description _ML_COMP_Value( token, argstack)/// @function _ML_COMP_Value
-/// @param  token
-/// @param  argstack
-
-Converting GML script : ${project_dir}\scripts\_ML_LiF_AddSig\_ML_LiF_AddSig.gml
-Converted description : /// @description _ML_LiF_AddSig(operator_id, argstring, actual_functor)/// @function _ML_LiF_AddSig
-/// @param operator_id
-/// @param  argstring
-/// @param  actual_functor
-
-Converting GML script : ${project_dir}\scripts\_ML_LiOp_GetAssoc\_ML_LiOp_GetAssoc.gml
-Converted description : /// @description _ML_LiOp_GetAssoc(index)/// @function _ML_LiOp_GetAssoc
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiBOp_Destroy\_ML_LiBOp_Destroy.gml
-Converted description : /// @description _ML_LiBOp_Destroy(index)/// @function _ML_LiBOp_Destroy
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiBOp_Create\_ML_LiBOp_Create.gml
-Converted description : /// @description _ML_LiBOp_Create(name, precedence, associativity)/// @function _ML_LiBOp_Create
-/// @param name
-/// @param  precedence
-/// @param  associativity
-
-Converting GML script : ${project_dir}\scripts\_ML_LiUOp_Create\_ML_LiUOp_Create.gml
-Converted description : /// @description _ML_LiUOp_Create(name, precedence, associativity, affix)/// @function _ML_LiUOp_Create
-/// @param name
-/// @param  precedence
-/// @param  associativity
-/// @param  affix
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTOp_Destroy\_ML_LiTOp_Destroy.gml
-Converted description : /// @description _ML_LiTOp_Destroy(index)/// @function _ML_LiTOp_Destroy
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_COMP_Ternary\_ML_COMP_Ternary.gml
-Converted description : /// @description  _ML_COMP_Ternary(tok, argstack)/// @function  _ML_COMP_Ternary
-/// @param tok
-/// @param  argstack
-
-Converting GML script : ${project_dir}\scripts\_ML_COMP_Function\_ML_COMP_Function.gml
-Converted description : /// @description _ML_COMP_Function( token, argstack)/// @function _ML_COMP_Function
-/// @param  token
-/// @param  argstack
-
-Converting GML script : ${project_dir}\scripts\_ML_COMP_EvalAll\_ML_COMP_EvalAll.gml
-Converted description : /// @description _ML_COMP_EvalAll(parser, ReversePolishQueue, OutFuncList, OutTokList)/// @function _ML_COMP_EvalAll
-/// @param parser
-/// @param  ReversePolishQueue
-/// @param  OutFuncList
-/// @param  OutTokList
-
-Converting GML script : ${project_dir}\scripts\_ML_LiVar_Create\_ML_LiVar_Create.gml
-Converted description : /// @description _ML_LiVar_Create(string, type, readonly)/// @function _ML_LiVar_Create
-/// @param string
-/// @param  type
-/// @param  readonly
-
-Converting GML script : ${project_dir}\scripts\_ML_LiAOp_Destroy\_ML_LiAOp_Destroy.gml
-Converted description : /// @description _ML_LiAOp_Destroy(index)/// @function _ML_LiAOp_Destroy
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiF_GetFunc\_ML_LiF_GetFunc.gml
-Converted description : /// @description _ML_LiF_GetFunc(baseopid, signature_string)/// @function _ML_LiF_GetFunc
-/// @param baseopid
-/// @param  signature_string
-
-Converting GML script : ${project_dir}\scripts\_ML_LiOp_GetPrec\_ML_LiOp_GetPrec.gml
-Converted description : /// @description _ML_LiOp_GetPrec(index)/// @function _ML_LiOp_GetPrec
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTOp_Create\_ML_LiTOp_Create.gml
-Converted description : /// @description _ML_LiTOp_Create(name_P1, name_P2, precedence, associativity)/// @function _ML_LiTOp_Create
-/// @param name_P1
-/// @param  name_P2
-/// @param  precedence
-/// @param  associativity
-
-Converting GML script : ${project_dir}\scripts\_ML_LiS_GetScript\_ML_LiS_GetScript.gml
-Converted description : /// @description _ML_LiS_GetScript(index)/// @function _ML_LiS_GetScript
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiS_GetRettype\_ML_LiS_GetRettype.gml
-Converted description : /// @description _ML_LiS_GetRettype(index)/// @function _ML_LiS_GetRettype
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiS_Create\_ML_LiS_Create.gml
-Converted description : /// @description _ML_LiS_Create(script, rettype);/// @function _ML_LiS_Create
-/// @param script
-/// @param  rettype
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTok_GetPos\_ML_LiTok_GetPos.gml
-Converted description : /// @description _ML_LiTok_GetPos(index)/// @function _ML_LiTok_GetPos
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTok_GetType\_ML_LiTok_GetType.gml
-Converted description : /// @description _ML_LiTok_GetType(index)/// @function _ML_LiTok_GetType
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiAOp_Create\_ML_LiAOp_Create.gml
-Converted description : /// @description _ML_LiAOp_Create(name, precedence, associativity)/// @function _ML_LiAOp_Create
-/// @param name
-/// @param  precedence
-/// @param  associativity
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTok_Destroy\_ML_LiTok_Destroy.gml
-Converted description : /// @description _ML_LiTok_Destroy(index)/// @function _ML_LiTok_Destroy
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiS_Destroy\_ML_LiS_Destroy.gml
-Converted description : /// @description _ML_LiS_Destroy(index)/// @function _ML_LiS_Destroy
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiUOp_Destroy\_ML_LiUOp_Destroy.gml
-Converted description : /// @description _ML_LiUOp_Destroy(index)/// @function _ML_LiUOp_Destroy
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTok_SetType\_ML_LiTok_SetType.gml
-Converted description : /// @description _ML_LiTok_SetType(index, type)/// @function _ML_LiTok_SetType
-/// @param index
-/// @param  type
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTok_GetVal\_ML_LiTok_GetVal.gml
-Converted description : /// @description _ML_LiTok_GetVal(index)/// @function _ML_LiTok_GetVal
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTok_SetString\_ML_LiTok_SetString.gml
-Converted description : /// @description _ML_LiTok_SetString(index, str)/// @function _ML_LiTok_SetString
-/// @param index
-/// @param  str
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTok_GetArgcount\_ML_LiTok_GetArgcount.gml
-Converted description : /// @description _ML_LiTok_GetArgcount(index)/// @function _ML_LiTok_GetArgcount
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTok_ToBuff\_ML_LiTok_ToBuff.gml
-Converted description : /// @description _ML_LiTok_ToBuff(buffer, tok);/// @function _ML_LiTok_ToBuff
-/// @param buffer
-/// @param  tok
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTok_FromBuff\_ML_LiTok_FromBuff.gml
-Converted description : /// @description _ML_LiTok_FromBuff(tok, buffer);/// @function _ML_LiTok_FromBuff
-/// @param tok
-/// @param  buffer
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTok_SetArgcount\_ML_LiTok_SetArgcount.gml
-Converted description : /// @description _ML_LiTok_SetArgcount(index, argc)/// @function _ML_LiTok_SetArgcount
-/// @param index
-/// @param  argc
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTok_SetOperator\_ML_LiTok_SetOperator.gml
-Converted description : /// @description _ML_LiTok_SetOperator(index, Op)/// @function _ML_LiTok_SetOperator
-/// @param index
-/// @param  Op
-
-Converting GML script : ${project_dir}\scripts\_ML_LiUOp_GetAffix\_ML_LiUOp_GetAffix.gml
-Converted description : /// @description _ML_LiUOp_GetAffix(index)/// @function _ML_LiUOp_GetAffix
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetOperatorRoots\_ML_LiP_GetOperatorRoots.gml
-Converted description : /// @description _ML_LiP_GetOperatorRoots(index)/// @function _ML_LiP_GetOperatorRoots
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetResultObject\_ML_LiP_GetResultObject.gml
-Converted description : /// @description _ML_LiP_GetResultObject(index)/// @function _ML_LiP_GetResultObject
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_Destroy\_ML_LiP_Destroy.gml
-Converted description : /// @description _ML_LiP_Destroy(ind);/// @function _ML_LiP_Destroy
-/// @param ind
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetUnOpsTable\_ML_LiP_GetUnOpsTable.gml
-Converted description : /// @description _ML_LiP_GetUnOpsTable(index)/// @function _ML_LiP_GetUnOpsTable
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetTernOpsTable\_ML_LiP_GetTernOpsTable.gml
-Converted description : /// @description _ML_LiP_GetTernOpsTable(index)/// @function _ML_LiP_GetTernOpsTable
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_Create\_ML_LiP_Create.gml
-Converted description : /// @description _ML_LiP_Create(expression, variable_map)/// @function _ML_LiP_Create
-/// @param expression
-/// @param  variable_map
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetFunctionTable\_ML_LiP_GetFunctionTable.gml
-Converted description : /// @description _ML_LiP_GetFunctionTable(index)/// @function _ML_LiP_GetFunctionTable
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetVariableTable\_ML_LiP_GetVariableTable.gml
-Converted description : /// @description _ML_LiP_GetVariableTable(index)/// @function _ML_LiP_GetVariableTable
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetFunctionString\_ML_LiP_GetFunctionString.gml
-Converted description : /// @description _ML_LiP_GetFunctionString(index)/// @function _ML_LiP_GetFunctionString
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetTernOps2Table\_ML_LiP_GetTernOps2Table.gml
-Converted description : /// @description _ML_LiP_GetTernOps2Table(index)/// @function _ML_LiP_GetTernOps2Table
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTok_GetOperator\_ML_LiTok_GetOperator.gml
-Converted description : /// @description _ML_LiTok_GetOperator(index)/// @function _ML_LiTok_GetOperator
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTOp_GetFirstName\_ML_LiTOp_GetFirstName.gml
-Converted description : /// @description _ML_LiTOp_GetFirstName(index)/// @function _ML_LiTOp_GetFirstName
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetErrorPos\_ML_LiP_GetErrorPos.gml
-Converted description : /// @description _ML_LiP_GetErrorPos(index)/// @function _ML_LiP_GetErrorPos
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_SetErrorFlags\_ML_LiP_SetErrorFlags.gml
-Converted description : /// @description _ML_LiP_SetErrorFlags(index, flag)/// @function _ML_LiP_SetErrorFlags
-/// @param index
-/// @param  flag
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_SetVarMap\_ML_LiP_SetVarMap.gml
-Converted description : /// @description _ML_LiP_SetVarMap(index, map)/// @function _ML_LiP_SetVarMap
-/// @param index
-/// @param  map
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_SetErrorPos\_ML_LiP_SetErrorPos.gml
-Converted description : /// @description _ML_LiP_SetErrorPos(index, position)/// @function _ML_LiP_SetErrorPos
-/// @param index
-/// @param  position
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_SetErrorString\_ML_LiP_SetErrorString.gml
-Converted description : /// @description _ML_LiP_SetErrorString(index, string)/// @function _ML_LiP_SetErrorString
-/// @param index
-/// @param  string
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTOp_GetSecondName\_ML_LiTOp_GetSecondName.gml
-Converted description : /// @description _ML_LiTOp_GetSecondName(index)/// @function _ML_LiTOp_GetSecondName
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_GetType\_ML_LiRO_GetType.gml
-Converted description : /// @description _ML_LiRO_GetType(ind, n);/// @function _ML_LiRO_GetType
-/// @param ind
-/// @param  n
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_Get\_ML_LiRO_Get.gml
-Converted description : /// @description _ML_LiRO_Get(ind, n);/// @function _ML_LiRO_Get
-/// @param ind
-/// @param  n
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_Destroy\_ML_LiRO_Destroy.gml
-Converted description : /// @description _ML_LiRO_Destroy(ind);/// @function _ML_LiRO_Destroy
-/// @param ind
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_Clear\_ML_LiRO_Clear.gml
-Converted description : /// @description _ML_LiRO_Clear(ind);/// @function _ML_LiRO_Clear
-/// @param ind
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_Create\_ML_LiRO_Create.gml
-Converted description : /// @description _ML_LiRO_Create()/// @function _ML_LiRO_Create
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_Add\_ML_LiRO_Add.gml
-Converted description : /// @description _ML_LiRO_Add(ind, answer, type)/// @function _ML_LiRO_Add
-/// @param ind
-/// @param  answer
-/// @param  type
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_Size\_ML_LiRO_Size.gml
-Converted description : /// @description _ML_LiRO_Size(ind);/// @function _ML_LiRO_Size
-/// @param ind
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_AddToken\_ML_LiRO_AddToken.gml
-Converted description : /// @description _ML_LiRO_AddToken(res_obj, token, )/// @function _ML_LiRO_AddToken
-/// @param res_obj
-/// @param  token
-/// @param
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_GetAllType\_ML_LiRO_GetAllType.gml
-Converted description : /// @description _ML_LiRO_GetAllType(index)/// @function _ML_LiRO_GetAllType
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_GetFinal\_ML_LiRO_GetFinal.gml
-Converted description : /// @description _ML_LiRO_GetFinal(index)/// @function _ML_LiRO_GetFinal
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetAssignOpsTable\_ML_LiP_GetAssignOpsTable.gml
-Converted description : /// @description _ML_LiP_GetAssignOpsTable(index)/// @function _ML_LiP_GetAssignOpsTable
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_SetFinal\_ML_LiRO_SetFinal.gml
-Converted description : /// @description _ML_LiRO_SetFinal(index, answer)/// @function _ML_LiRO_SetFinal
-/// @param index
-/// @param  answer
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_SetCalculated\_ML_LiRO_SetCalculated.gml
-Converted description : /// @description _ML_LiRO_SetCalculated(index, calc)/// @function _ML_LiRO_SetCalculated
-/// @param index
-/// @param  calc
-
-Converting GML script : ${project_dir}\scripts\_ML_LiTok_Create\_ML_LiTok_Create.gml
-Converted description : /// @description _ML_LiTok_Create( string, pos)/// @function _ML_LiTok_Create
-/// @param  string
-/// @param  pos
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetVarMap\_ML_LiP_GetVarMap.gml
-Converted description : /// @description _ML_LiP_GetVarMap(index)/// @function _ML_LiP_GetVarMap
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetBinOpsTable\_ML_LiP_GetBinOpsTable.gml
-Converted description : /// @description _ML_LiP_GetBinOpsTable(index)/// @function _ML_LiP_GetBinOpsTable
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetErrorString\_ML_LiP_GetErrorString.gml
-Converted description : /// @description _ML_LiP_GetErrorString(index)/// @function _ML_LiP_GetErrorString
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_GetErrorFlags\_ML_LiP_GetErrorFlags.gml
-Converted description : /// @description _ML_LiP_GetErrorFlags(index)/// @function _ML_LiP_GetErrorFlags
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiP_SetFunctionString\_ML_LiP_SetFunctionString.gml
-Converted description : /// @description _ML_LiP_SetFunctionString(index, string)/// @function _ML_LiP_SetFunctionString
-/// @param index
-/// @param  string
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_GetCalculated\_ML_LiRO_GetCalculated.gml
-Converted description : /// @description _ML_LiRO_GetCalculated(index)/// @function _ML_LiRO_GetCalculated
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\_ML_LiRO_GetAll\_ML_LiRO_GetAll.gml
-Converted description : /// @description _ML_LiRO_GetAll(index)/// @function _ML_LiRO_GetAll
-/// @param index
-
-Converting GML script : ${project_dir}\scripts\dd_seq_add_envelope\dd_seq_add_envelope.gml
-Error : variable "layer" has same name as a built-in (function, constant or variable), it must be renamed to function correctly
-
-Converting GML script : ${project_dir}\scripts\refresh_seq_surface_large\refresh_seq_surface_large.gml
-Error : variable "layer" has same name as a built-in (function, constant or variable), it must be renamed to function correctly
-
-Converting GML script : ${project_dir}\scripts\clear_project\clear_project.gml
-Error : variable "layer" has same name as a built-in (function, constant or variable), it must be renamed to function correctly
-Converted string : line 14 : 'c' -> "c"
-Converted string : line 22 : 'd' -> "d"
-Converted string : line 38 : 'r' -> "r"
-Converted string : line 46 : 'm' -> "m"
-Converted string : line 54 : 'l' -> "l"
-
-Converting GML script : ${project_dir}\scripts\undo_seq\undo_seq.gml
-Error : variable "layer" has same name as a built-in (function, constant or variable), it must be renamed to function correctly
-Converted string : line 9 : 'c' -> "c"
-Converted string : line 25 : 's' -> "s"
-Converted string : line 56 : 'd' -> "d"
-Converted string : line 71 : 'r' -> "r"
-Converted string : line 84 : 'm' -> "m"
-Converted string : line 110 : 'l' -> "l"
-Converted string : line 117 : 'e' -> "e"
-
-Converting GML script : ${project_dir}\scripts\refresh_audio_surf\refresh_audio_surf.gml
-Error : variable "layer" has same name as a built-in (function, constant or variable), it must be renamed to function correctly
-
-Converting GML script : ${project_dir}\scripts\refresh_seq_surface\refresh_seq_surface.gml
-Error : variable "layer" has same name as a built-in (function, constant or variable), it must be renamed to function correctly
-
-Converting GML script : ${project_dir}\scripts\make_screenshot\make_screenshot.gml
-Converted description : /// @description make_screenshot(buffer)/// @function make_screenshot
-/// @param buffer
-
-Converting GML script : ${project_dir}\scripts\add_marker\add_marker.gml
-Converted description : /// @description add_marker(position in frames)/// @function add_marker
-/// @param position in frames
-
-Converting GML script : ${project_dir}\scripts\ready_envelope_applying\ready_envelope_applying.gml
-Converted description : /// @description ready_envelope_applying(envelope_list)/// @function ready_envelope_applying
-/// @param envelope_list
-
-Converting GML script : ${project_dir}\scripts\handle_mousecontrol\handle_mousecontrol.gml
-Error : variable "layer" has same name as a built-in (function, constant or variable), it must be renamed to function correctly
-Converted string : line 788 : 'D' -> "D"
-
-Converting GML script : ${project_dir}\scripts\random_gaussian\random_gaussian.gml
-Converted description : /// @description random_gaussian(mean,standard deviation)/// @function random_gaussian
-/// @param mean
-/// @param standard deviation
-
-Converting GML script : ${project_dir}\scripts\split_timelineobject\split_timelineobject.gml
-Error : variable "layer" has same name as a built-in (function, constant or variable), it must be renamed to function correctly
-
-Converting GML script : ${project_dir}\scripts\clear_all\clear_all.gml
-Converted string : line 30 : 'a' -> "a"
-Converted string : line 34 : 'r' -> "r"
-Converted string : line 38 : 'd' -> "d"
-Converted string : line 42 : 'v' -> "v"
-Converted string : line 48 : 'b' -> "b"
-Converted string : line 54 : 'k' -> "k"
-Converted string : line 67 : 'l' -> "l"
-
-Converting GML script : ${project_dir}\scripts\dist_triangular\dist_triangular.gml
-Converted description : /// @description dist_triangular(min,mean,max,probability)/// @function dist_triangular
-/// @param min
-/// @param mean
-/// @param max
-/// @param probability
-
-Converting GML script : ${project_dir}\scripts\undo_ilda\undo_ilda.gml
-Converted string : line 25 : 'a' -> "a"
-Converted string : line 30 : 'r' -> "r"
-Converted string : line 37 : 'd' -> "d"
-Converted string : line 41 : 'v' -> "v"
-Converted string : line 52 : 'b' -> "b"
-Converted string : line 63 : 'k' -> "k"
-Converted string : line 94 : 'l' -> "l"
-
-Converting GML script : ${project_dir}\scripts\export_ilda_html5_work\export_ilda_html5_work.gml
-Converted string : line 18 : 'L' -> "L"
-Converted string : line 19 : 'S' -> "S"
-Converted string : line 20 : 'G' -> "G"
-Converted string : line 21 : 'e' -> "e"
-Converted string : line 22 : 'n' -> "n"
-Converted string : line 23 : ' ' -> " "
-Converted string : line 24 : ' ' -> " "
-Converted string : line 25 : ' ' -> " "
-Converted string : line 26 : 'G' -> "G"
-Converted string : line 27 : 'i' -> "i"
-Converted string : line 28 : 't' -> "t"
-Converted string : line 29 : 'l' -> "l"
-Converted string : line 30 : 'e' -> "e"
-Converted string : line 31 : ' ' -> " "
-Converted string : line 32 : 'M' -> "M"
-Converted string : line 33 : ' ' -> " "
-Converted string : line 64 : 'L' -> "L"
-Converted string : line 65 : 'S' -> "S"
-Converted string : line 66 : 'G' -> "G"
-Converted string : line 67 : 'e' -> "e"
-Converted string : line 68 : 'n' -> "n"
-Converted string : line 69 : ' ' -> " "
-Converted string : line 70 : ' ' -> " "
-Converted string : line 71 : ' ' -> " "
-Converted string : line 72 : 'G' -> "G"
-Converted string : line 73 : 'i' -> "i"
-Converted string : line 74 : 't' -> "t"
-Converted string : line 75 : 'l' -> "l"
-Converted string : line 76 : 'e' -> "e"
-Converted string : line 77 : ' ' -> " "
-Converted string : line 78 : 'M' -> "M"
-Converted string : line 79 : ' ' -> " "
-
-Converting GML script : ${project_dir}\scripts\export_ilda_work\export_ilda_work.gml
-Converted string : line 18 : 'L' -> "L"
-Converted string : line 19 : 'S' -> "S"
-Converted string : line 20 : 'G' -> "G"
-Converted string : line 21 : 'e' -> "e"
-Converted string : line 22 : 'n' -> "n"
-Converted string : line 23 : ' ' -> " "
-Converted string : line 24 : ' ' -> " "
-Converted string : line 25 : ' ' -> " "
-Converted string : line 26 : 'G' -> "G"
-Converted string : line 27 : 'i' -> "i"
-Converted string : line 28 : 't' -> "t"
-Converted string : line 29 : 'l' -> "l"
-Converted string : line 30 : 'e' -> "e"
-Converted string : line 31 : ' ' -> " "
-Converted string : line 32 : 'M' -> "M"
-Converted string : line 33 : ' ' -> " "
-Converted string : line 65 : 'L' -> "L"
-Converted string : line 66 : 'S' -> "S"
-Converted string : line 67 : 'G' -> "G"
-Converted string : line 68 : 'e' -> "e"
-Converted string : line 69 : 'n' -> "n"
-Converted string : line 70 : ' ' -> " "
-Converted string : line 71 : ' ' -> " "
-Converted string : line 72 : ' ' -> " "
-Converted string : line 73 : 'G' -> "G"
-Converted string : line 74 : 'i' -> "i"
-Converted string : line 75 : 't' -> "t"
-Converted string : line 76 : 'l' -> "l"
-Converted string : line 77 : 'e' -> "e"
-Converted string : line 78 : ' ' -> " "
-Converted string : line 79 : 'M' -> "M"
-Converted string : line 80 : ' ' -> " "
-
-Converting GML script : ${project_dir}\scripts\export_project_work\export_project_work.gml
-Error : variable "layer" has same name as a built-in (function, constant or variable), it must be renamed to function correctly
-Converted string : line 17 : 'L' -> "L"
-Converted string : line 18 : 'S' -> "S"
-Converted string : line 19 : 'G' -> "G"
-Converted string : line 20 : 'e' -> "e"
-Converted string : line 21 : 'n' -> "n"
-Converted string : line 22 : ' ' -> " "
-Converted string : line 23 : ' ' -> " "
-Converted string : line 24 : ' ' -> " "
-Converted string : line 25 : 'G' -> "G"
-Converted string : line 26 : 'i' -> "i"
-Converted string : line 27 : 't' -> "t"
-Converted string : line 28 : 'l' -> "l"
-Converted string : line 29 : 'e' -> "e"
-Converted string : line 30 : ' ' -> " "
-Converted string : line 31 : 'M' -> "M"
-Converted string : line 32 : ' ' -> " "
-Converted string : line 193 : 'L' -> "L"
-Converted string : line 194 : 'S' -> "S"
-Converted string : line 195 : 'G' -> "G"
-Converted string : line 196 : 'e' -> "e"
-Converted string : line 197 : 'n' -> "n"
-Converted string : line 198 : ' ' -> " "
-Converted string : line 199 : ' ' -> " "
-Converted string : line 200 : ' ' -> " "
-Converted string : line 201 : 'G' -> "G"
-Converted string : line 202 : 'i' -> "i"
-Converted string : line 203 : 't' -> "t"
-Converted string : line 204 : 'l' -> "l"
-Converted string : line 205 : 'e' -> "e"
-Converted string : line 206 : ' ' -> " "
-Converted string : line 207 : 'M' -> "M"
-Converted string : line 208 : ' ' -> " "
-
-Converting GML script : ${project_dir}\scripts\dac_blank_and_center_all\dac_blank_and_center_all.gml
-Converted description : /// @description dac_blank_and_center_all()/// @function dac_blank_and_center_all
-
-Converting GML script : ${project_dir}\scripts\save_project_work\save_project_work.gml
-Error : variable "layer" has same name as a built-in (function, constant or variable), it must be renamed to function correctly
-
-Converting GML script : ${project_dir}\scripts\dac_blank_and_center\dac_blank_and_center.gml
-Converted description : /// @description dac_blank_and_center(dac list)/// @function dac_blank_and_center
-/// @param dac list
-
-Converting GML script : ${project_dir}\scripts\dac_select\dac_select.gml
-Converted description : /// @description dac_select(id in list)/// @function dac_select
-/// @param id in list
-
-Converting GML script : ${project_dir}\scripts\dac_send_frame\dac_send_frame.gml
-Converted description : /// @description dac_send_frame(dac_list, buffer, size, rate)/// @function dac_send_frame
-/// @param dac_list
-/// @param  buffer
-/// @param  size
-/// @param  rate
-
-Converting GML script : ${project_dir}\scripts\output_frame_seq\output_frame_seq.gml
-Error : variable "layer" has same name as a built-in (function, constant or variable), it must be renamed to function correctly
-Converted description : /// @description output_frame_seq(daclist)/// @function output_frame_seq
-/// @param daclist
-
-Converting GML script : ${project_dir}\scripts\output_frame_seq_all\output_frame_seq_all.gml
-Converted description : /// @description output_frame_seq_all()/// @function output_frame_seq_all
-
-Converting GML script : ${project_dir}\scripts\show_question_new\show_question_new.gml
-Converted description : /// @description show_question_new(message)/// @function show_question_new
-/// @param message
-
-Converting GML script : ${project_dir}\scripts\ilda_dialog_yesno\ilda_dialog_yesno.gml
-Converted description : /// @description ilda_dialog_yesno(id,msg)/// @function ilda_dialog_yesno
-/// @param id
-/// @param msg
-
-Converting GML script : ${project_dir}\scripts\seq_dialog_yesno\seq_dialog_yesno.gml
-Converted description : /// @description seq_dialog_yesno(id, question string)/// @function seq_dialog_yesno
-/// @param id
-/// @param  question string
-
-Converting GML script : ${project_dir}\scripts\process_dialog_seq\process_dialog_seq.gml
-Error : variable "layer" has same name as a built-in (function, constant or variable), it must be renamed to function correctly
-Converted description : /// @description process_dialog_seq(map)/// @function process_dialog_seq
-/// @param map
-
-Converting GML script : ${project_dir}\scripts\seq_dialog_num\seq_dialog_num.gml
-Converted description : /// @description seq_dialog_num(id, string, default)/// @function seq_dialog_num
-/// @param id
-/// @param  string
-/// @param  default
-
-Converting GML script : ${project_dir}\scripts\process_dialog_ilda\process_dialog_ilda.gml
-Converted description : /// @description process_dialog_ilda(map)/// @function process_dialog_ilda
-/// @param map
-
-Converting GML script : ${project_dir}\scripts\seq_dialog_string\seq_dialog_string.gml
-Converted description : /// @description seq_dialog_string(id, msg, default)/// @function seq_dialog_string
-/// @param id
-/// @param  msg
-/// @param  default
-
-Converting GML script : ${project_dir}\scripts\ilda_dialog_num\ilda_dialog_num.gml
-Converted description : /// @description ilda_dialog_num(id, message, default)/// @function ilda_dialog_num
-/// @param id
-/// @param  message
-/// @param  default
-
-Converting GML script : ${project_dir}\scripts\colors_compare_cie94\colors_compare_cie94.gml
-Converted description : /// @description  colors_compare_cie94( color_one, color_two );/// @function  colors_compare_cie94
-/// @param  color_one
-/// @param  color_two
-
-Converting GML script : ${project_dir}\scripts\ilda_dialog_string\ilda_dialog_string.gml
-Converted description : /// @description ilda_dialog_string(id, msg, default)/// @function ilda_dialog_string
-/// @param id
-/// @param  msg
-/// @param  default
-
-Converting GML script : ${project_dir}\scripts\load_profile\load_profile.gml
-Converted description : /// @description load_profile([dont update caches])/// @function load_profile
-/// @param [dont update caches]
-
-Converting GML script : ${project_dir}\scripts\load_profile_temp\load_profile_temp.gml
-Converted description : /// @description load_profile_temp(projector)/// @function load_profile_temp
-/// @param projector
-
-Converting GML script : ${project_dir}\scripts\log\log.gml
-Converted description : /// @description log(str)/// @function log
-/// @param str
-
-Converting GML script : ${project_dir}\scripts\show_message_new\show_message_new.gml
-Converted description : /// @description show_message_new(message)/// @function show_message_new
-/// @param message
-
-Font fnt_bold has been converted to font family Arial (Bold). Font has been regenerated, small inconsistencies may occur.
-Font fnt_small has been converted to font family Arial (Regular). Font has been regenerated, small inconsistencies may occur.
-Font fnt_tooltip has been converted to font family Arial (Regular). Font has been regenerated, small inconsistencies may occur.
-Converting GML script : ${project_dir}\objects\seqcontrol\Create_0.gml
-Error : variable "layer" has same name as a built-in (function, constant or variable), it must be renamed to function correctly
-
-Converting GML script : ${project_dir}\objects\seqcontrol\Alarm_4.gml
-Converted description : /// @description clean undo
-Converted string : line 11 : 'c' -> "c"
-Converted string : line 19 : 's' -> "s"
-Converted string : line 26 : 'd' -> "d"
-Converted string : line 42 : 'r' -> "r"
-Converted string : line 50 : 'm' -> "m"
-Converted string : line 58 : 'l' -> "l"
-Converted string : line 66 : 'e' -> "e"
-
-Converting GML script : ${project_dir}\objects\seqcontrol\Step_2.gml
-Converted string : line 35 : 'C' -> "C"
-Converted string : line 43 : 'X' -> "X"
-Converted string : line 51 : 'V' -> "V"
-Converted string : line 59 : 'Z' -> "Z"
-Converted string : line 65 : 'S' -> "S"
-
-Converting GML script : ${project_dir}\objects\seqcontrol\Step_1.gml
-Converted description : /// @description timing and laser output
-
-Converting GML script : ${project_dir}\objects\seqcontrol\Mouse_53.gml
-Converted builtin : line 6 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-
-Converting GML script : ${project_dir}\objects\seqcontrol\Draw_0.gml
-Converted builtin : line 112 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 113 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 118 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 118 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 120 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 120 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 124 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 124 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 126 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 126 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 130 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 130 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 132 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 132 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 136 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 136 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 138 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 138 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 142 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 142 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 144 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 144 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 148 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 148 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 150 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 150 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 154 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 154 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 156 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 156 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-
-Converting GML script : ${project_dir}\objects\obj_anienddotscolorselect\Step_1.gml
-Converted builtin : line 20 : view_hview[3] -> __view_get( e__VW.HView, 3 )
-
-Converting GML script : ${project_dir}\objects\controller\Create_0.gml
-Converted string : line 15 : "temp\" -> "temp\\"
-Converted string : line 24 : "temp\one" -> "temp\\one"
-
-Converting GML script : ${project_dir}\objects\controller\Alarm_6.gml
-Converted description : /// @description reset menu_open
-
-Converting GML script : ${project_dir}\objects\controller\Alarm_4.gml
-Converted description : /// @description game end
-
-Converting GML script : ${project_dir}\objects\controller\Alarm_3.gml
-Converted description : /// @description clean undo
-Converted string : line 15 : 'a' -> "a"
-Converted string : line 19 : 'r' -> "r"
-Converted string : line 23 : 'd' -> "d"
-Converted string : line 27 : 'v' -> "v"
-Converted string : line 33 : 'b' -> "b"
-Converted string : line 39 : 'k' -> "k"
-Converted string : line 53 : 'l' -> "l"
-
-Converting GML script : ${project_dir}\objects\controller\Step_2.gml
-Converted builtin : line 39 : view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin : line 135 : view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin : line 40 : view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin : line 136 : view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin : line 134 : view_visible[2] = 1 -> __view_set( e__VW.Visible, 2, 1 )
-Converted builtin : line 139 : view_visible[2] = 0 -> __view_set( e__VW.Visible, 2, 0 )
-Converted string : line 4 : 'M' -> "M"
-Converted string : line 36 : 'Z' -> "Z"
-Converted string : line 83 : 'Z' -> "Z"
-Converted string : line 121 : 'A' -> "A"
-Converted string : line 127 : 'V' -> "V"
-Converted string : line 132 : 'Z' -> "Z"
-Converted string : line 141 : 'S' -> "S"
-Converted string : line 166 : 'Q' -> "Q"
-Converted string : line 189 : 'H' -> "H"
-Converted string : line 192 : 'H' -> "H"
-Converted string : line 201 : 'C' -> "C"
-Converted string : line 207 : 'X' -> "X"
-Converted string : line 290 : 'A' -> "A"
-Converted string : line 292 : 'A' -> "A"
-Converted string : line 302 : 'S' -> "S"
-Converted string : line 304 : 'S' -> "S"
-Converted string : line 324 : 'R' -> "R"
-Converted string : line 326 : 'R' -> "R"
-Converted builtin : line 135 : view_xport[2] = clamp(obj_cursor.x-128,0,__view_get( e__VW.WView, 0 )-256 -> __view_set( e__VW.XPort, 2, clamp(obj_cursor.x-128,0,__view_get( e__VW.WView, 0 )-256 )
-Converted builtin : line 136 : view_yport[2] = clamp(obj_cursor.y-128,0,__view_get( e__VW.HView, 0 )-256 -> __view_set( e__VW.YPort, 2, clamp(obj_cursor.y-128,0,__view_get( e__VW.HView, 0 )-256 )
-
-Converting GML script : ${project_dir}\objects\controller\Step_1.gml
-Converted description : /// @description timing and laser output
-
-Converting GML script : ${project_dir}\objects\controller\Mouse_53.gml
-Converted builtin : line 4 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted string : line 50 : 'E' -> "E"
-
-Converting GML script : ${project_dir}\objects\controller\Draw_0.gml
-Converted builtin : line 281 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 282 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 287 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 287 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 289 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 289 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 293 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 293 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 295 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 295 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 299 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 299 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 301 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 301 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 305 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 305 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 307 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 307 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 311 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 311 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 313 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 313 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 317 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 317 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 319 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 319 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 323 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 323 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 325 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 325 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted string : line 64 : 'E' -> "E"
-Converted string : line 113 : 'S' -> "S"
-Converted string : line 124 : 'R' -> "R"
-Converted string : line 136 : 'A' -> "A"
-
-Converting GML script : ${project_dir}\objects\obj_cursor\Draw_0.gml
-Converted string : line 38 : 'E' -> "E"
-
-Converting GML script : ${project_dir}\objects\settingscontrol\Mouse_53.gml
-Converted builtin : line 5 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-
-Converting GML script : ${project_dir}\objects\settingscontrol\Draw_0.gml
-Converted builtin : line 18 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 19 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 24 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 24 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 26 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 26 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 30 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 30 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 32 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 32 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 36 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 36 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 38 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-Converted builtin : line 38 : view_yview[3] -> __view_get( e__VW.YView, 3 )
-
-Converting GML script : ${project_dir}\objects\obj_dropdown\Mouse_54.gml
-Converted description : /// @description Only allow one box
-
-Converting GML script : ${project_dir}\objects\obj_dropdown\Mouse_53.gml
-Converted description : /// @description Remove if not clicked
-
-Converting GML script : ${project_dir}\objects\obj_dropdown\Other_11.gml
-Converted builtin : line 11 : view_xview -> __view_get( e__VW.XView, 0 )
-Converted builtin : line 13 : view_xview -> __view_get( e__VW.XView, 0 )
-Converted builtin : line 15 : view_xview -> __view_get( e__VW.XView, 0 )
-Converted builtin : line 17 : view_xview -> __view_get( e__VW.XView, 0 )
-Converted builtin : line 20 : view_yview -> __view_get( e__VW.YView, 0 )
-Converted builtin : line 22 : view_yview -> __view_get( e__VW.YView, 0 )
-Converted builtin : line 24 : view_yview -> __view_get( e__VW.YView, 0 )
-Converted builtin : line 17 : view_wview -> __view_get( e__VW.WView, 0 )
-Converted builtin : line 15 : view_wport -> __view_get( e__VW.WPort, 0 )
-Converted builtin : line 24 : view_hport -> __view_get( e__VW.HPort, 0 )
-Converted description : /// @description Built in variables, do not change
-
-Converting GML script : ${project_dir}\objects\obj_dropdown\Other_10.gml
-Converted description : /// @description Override me for each option
-
-Converting GML script : ${project_dir}\objects\obj_anicolorselect_2\Step_1.gml
-Converted builtin : line 20 : view_hview[3] -> __view_get( e__VW.HView, 3 )
-
-Converting GML script : ${project_dir}\objects\obj_anicolorselect_1\Step_1.gml
-Converted builtin : line 20 : view_hview[3] -> __view_get( e__VW.HView, 3 )
-
-Converting GML script : ${project_dir}\objects\obj_colorselect_2\Step_1.gml
-Converted builtin : line 20 : view_hview[3] -> __view_get( e__VW.HView, 3 )
-
-Converting GML script : ${project_dir}\objects\obj_enddotscolorselect\Step_1.gml
-Converted builtin : line 19 : view_hview[3] -> __view_get( e__VW.HView, 3 )
-
-Converting GML script : ${project_dir}\objects\obj_colorselect_1\Step_1.gml
-Converted builtin : line 19 : view_hview[3] -> __view_get( e__VW.HView, 3 )
-
-macOS icon ${options_dir}\mac\icons\icon512.png written out as 32-bit.
-Windows NSIS Installer Script has been set to default due to changes in GameMaker Studio 2.
-game speed set to 60
-added compatibility script background/draw_background_part.gml
-added compatibility script draw/gpu_set_blendenable.gml
-added compatibility script draw/gpu_set_blendmode.gml
-added compatibility script instance/instance_create.gml
-added compatibility script object/object_get_depth.gml
-added compatibility script view/__view_get.gml
-added compatibility script view/__view_set.gml
-added compatibility script view/__view_set_internal.gml
-added compatibility script background/__init_background.gml
-added compatibility script view/__init_view.gml
-added compatibility script __init_global.gml
-added compatibility script __global_object_depths.gml

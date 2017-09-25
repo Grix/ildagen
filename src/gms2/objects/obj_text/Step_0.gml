@@ -8,5 +8,5 @@ else if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top
     } 
 else image_index = 0;
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
-    controller.tooltip = "Selects text drawing tool#->Right click for options";
+    controller.tooltip = "Selects text drawing tool\n->Right click for options";
 

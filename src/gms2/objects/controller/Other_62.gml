@@ -9,7 +9,7 @@ if (ds_map_find_value(async_load, "id") == updateget)
        log("Checking version")
        if (versionnew != version)
         {
-            ilda_dialog_yesno("updatefound","New version available: "+versionnew+"#"+"Would you like to download and install the update?##"+releasenotes+"##");
+            ilda_dialog_yesno("updatefound","New version available: "+versionnew+"\n"+"Would you like to download and install the update?\n\n"+releasenotes+"\n\n");
         }
        else if (update_verbose == 1)
         {

@@ -341,7 +341,7 @@ else
             if (mouse_x < (x+t_list[| i+0]/$FFFF*256+5))
             {   
                 controller.scrollcursor_flag = 1;
-                controller.tooltip = "Drag side to resize blind zone.#Hold CTRL to drag more slowly.";
+                controller.tooltip = "Drag side to resize blind zone.\nHold CTRL to drag more slowly.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mousexprevious = mouse_x;
@@ -354,7 +354,7 @@ else
             else if (mouse_x > (x+t_list[| i+1]/$FFFF*256-5))
             {   
                 controller.scrollcursor_flag = 1;
-                controller.tooltip = "Drag side to resize blind zone.#Hold CTRL to drag more slowly.";
+                controller.tooltip = "Drag side to resize blind zone.\nHold CTRL to drag more slowly.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mousexprevious = mouse_x;
@@ -367,7 +367,7 @@ else
             else if (mouse_y < (y+t_list[| i+2]/$FFFF*256+5))
             {   
                 controller.scrollcursor_flag = 2;
-                controller.tooltip = "Drag side to resize blind zone.#Hold CTRL to drag more slowly.";
+                controller.tooltip = "Drag side to resize blind zone.\nHold CTRL to drag more slowly.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mousexprevious = mouse_x;
@@ -380,7 +380,7 @@ else
             else if (mouse_y > (y+t_list[| i+3]/$FFFF*256-5))
             {   
                 controller.scrollcursor_flag = 2;
-                controller.tooltip = "Drag side to resize blind zone.#Hold CTRL to drag more slowly.";
+                controller.tooltip = "Drag side to resize blind zone.\nHold CTRL to drag more slowly.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mousexprevious = mouse_x;
@@ -393,7 +393,7 @@ else
             }
             else
             {
-                controller.tooltip = "Drag to move this blind zone.#Hold CTRL to drag more slowly.#Right click for more options.";
+                controller.tooltip = "Drag to move this blind zone.\nHold CTRL to drag more slowly.\nRight click for more options.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mousexprevious = mouse_x;
@@ -423,7 +423,7 @@ else
             if (mouse_x < (x+controller.x_scale_start/$FFFF*256+5))
             {   
                 controller.scrollcursor_flag = 1;
-                controller.tooltip = "Drag side to resize projection window.#Hold CTRL to drag more slowly.";
+                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mousexprevious = mouse_x;
@@ -436,7 +436,7 @@ else
             else if (mouse_x > (x+controller.x_scale_end/$FFFF*256-5))
             {   
                 controller.scrollcursor_flag = 1;
-                controller.tooltip = "Drag side to resize projection window.#Hold CTRL to drag more slowly.";
+                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mousexprevious = mouse_x;
@@ -449,7 +449,7 @@ else
             else if (mouse_y < (y+controller.y_scale_start/$FFFF*256+5))
             {   
                 controller.scrollcursor_flag = 2;
-                controller.tooltip = "Drag side to resize projection window.#Hold CTRL to drag more slowly.";
+                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mousexprevious = mouse_x;
@@ -462,7 +462,7 @@ else
             else if (mouse_y > (y+controller.y_scale_end/$FFFF*256-5))
             {   
                 controller.scrollcursor_flag = 2;
-                controller.tooltip = "Drag side to resize projection window.#Hold CTRL to drag more slowly.";
+                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mousexprevious = mouse_x;
@@ -474,7 +474,7 @@ else
             }
             else
             {
-                controller.tooltip = "Drag to move projection window.#Hold CTRL to drag more slowly.#Right click for more options.";
+                controller.tooltip = "Drag to move projection window.\nHold CTRL to drag more slowly.\nRight click for more options.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mousexprevious = mouse_x;

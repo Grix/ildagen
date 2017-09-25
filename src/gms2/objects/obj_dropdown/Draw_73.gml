@@ -28,7 +28,7 @@ for(var i = 0; i < num; i++)
         draw_set_color(text_color);
     else
         draw_set_color(c_white);
-    draw_text(x1+item_padding, y1+item_padding-2, string_hash_to_newline(ds_list_find_value(desc_list,i)));
+    draw_text(x1+item_padding, y1+item_padding-2, ds_list_find_value(desc_list,i));
     
     if(i == selected)
     {

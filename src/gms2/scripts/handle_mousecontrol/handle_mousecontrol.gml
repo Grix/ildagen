@@ -618,7 +618,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                     if (floatingcursorx == clamp(floatingcursorx, frametime-2, frametime+object_length+1))
                     {
                         //mouse over object
-                        controller.tooltip = "Click to select this object. [Ctrl]+Click to select multiple objects.#Drag to move object. Drag the far edge to adjust duration.#Double-click to edit frames#Right click for more actions";
+                        controller.tooltip = "Click to select this object. [Ctrl]+Click to select multiple objects.\nDrag to move object. Drag the far edge to adjust duration.\nDouble-click to edit frames\nRight click for more actions";
                         if (mouse_x > ((frametime-tlx)/tlzoom*tlw)+object_length/tlzoom*tlw-3)
                             controller.scrollcursor_flag = 1;
                         if  mouse_check_button_pressed(mb_left)
@@ -696,7 +696,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                     }
                 }
                     
-                controller.tooltip = "Click to select this layer position#Right click for more options";
+                controller.tooltip = "Click to select this layer position\nRight click for more options";
                 floatingcursory = ypos-1;
                 draw_cursorline = 1;
                 draw_mouseline = 1;
@@ -777,7 +777,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                 }
                 else
                 {
-                    controller.tooltip = "Click or drag the mouse to place points on the envelope graph.#Hold [D] and drag the mouse to delete points.#Right click for menu.";
+                    controller.tooltip = "Click or drag the mouse to place points on the envelope graph.\nHold [D] and drag the mouse to delete points.\nRight click for menu.";
                     if  mouse_check_button_pressed(mb_left) 
                     {
                         //adding/modifying/deleting point

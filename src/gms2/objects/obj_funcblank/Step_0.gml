@@ -11,5 +11,5 @@ else
     image_index = 0;
     
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
-    controller.tooltip = "Sets the function for the blanking#Value below 1: Blanked";
+    controller.tooltip = "Sets the function for the blanking\nValue below 1: Blanked";
 

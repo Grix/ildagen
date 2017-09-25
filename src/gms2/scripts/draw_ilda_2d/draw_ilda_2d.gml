@@ -4,7 +4,7 @@ if (laseron)
 {
     draw_set_alpha(1);
     draw_set_halign(fa_center);
-    draw_text(256,250,string_hash_to_newline("Laser output active: "+string(dac[| 1])));
+    draw_text(256,250,"Laser output active: "+string(dac[| 1]));
     draw_set_halign(fa_left);
     exit;
 }

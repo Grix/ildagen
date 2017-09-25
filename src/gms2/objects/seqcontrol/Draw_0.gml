@@ -5,7 +5,7 @@ if (view_current == 0)
 {
     if ((alarm[0] == 1)) or (playing and (alarm[0] mod 2) == 1) or (moving_object) or (moving_object_flag) or (scroll_moving)
     {
-        refresh_audio_surf();
+        refresh_timeline_surface();
     }
         
     draw_set_color(c_white);
@@ -68,7 +68,7 @@ if (view_current == 0)
     {
         draw_set_color(c_white);
         draw_set_halign(fa_center);
-        draw_text(256,70,string_hash_to_newline("Laser output active: "+string(controller.dac[| 1])));
+        draw_text(256,70,"Laser output active: "+string(controller.dac[| 1]));
         draw_set_halign(fa_left);
     }
     else if (largepreview)
@@ -95,13 +95,13 @@ if (view_current == 0)
     draw_set_alpha(0.8);
     draw_set_color(c_ltgray);
     
-    draw_text(12,115,string_hash_to_newline("Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1)));
+    draw_text(12,115,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1));
     
-    draw_text(12,7,string_hash_to_newline("FPS: "+string(projectfps)));
+    draw_text(12,7,"FPS: "+string(projectfps));
     if (playing && (fps != projectfps) && controller.laseron)
     {
         draw_set_color(c_red);
-        draw_text(32,7,string_hash_to_newline("Warning: Dropping frames. Actual FPS: "+string(fps)));
+        draw_text(32,7,"Warning: Dropping frames. Actual FPS: "+string(fps));
     }
 }
 else if (view_current == 3)
@@ -109,7 +109,7 @@ else if (view_current == 3)
     //menu
     draw_set_alpha(1);
     draw_set_colour(c_black);
-    draw_text(0,__view_get( e__VW.YView, 3 )+4,string_hash_to_newline(menu_string));
+    draw_text(0,__view_get( e__VW.YView, 3 )+4,menu_string);
     if (mouse_y > __view_get( e__VW.YView, 3 ))   
     {
         draw_set_colour(c_teal);

@@ -73,7 +73,7 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
 {
     if (mouse_x == clamp(mouse_x,anchorx/$ffff*512-10,anchorx/$ffff*512+10)) and (mouse_y == clamp(mouse_y,anchory/$ffff*512-10,anchory/$ffff*512+10))
     {
-        tooltip = "Click and drag to move the rotation anchor point.#Right click to move to center of object."
+        tooltip = "Click and drag to move the rotation anchor point.\nRight click to move to center of object."
         if (mouse_check_button_pressed(mb_left)) 
         {
             objmoving = 2;
@@ -88,7 +88,7 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
     }
     else if (mouse_x == clamp(mouse_x,rectxmin-2,rectxmax+2)) and (mouse_y == clamp(mouse_y,rectymin-2,rectymax+2))
     {
-        tooltip = "Click and drag to move the selected object.#If animation is enabled, the movement will be animated.#Right click for other actions."
+        tooltip = "Click and drag to move the selected object.\nIf animation is enabled, the movement will be animated.\nRight click for other actions."
         if (mouse_check_button_pressed(mb_left)) 
         {
             objmoving = 1;
@@ -107,7 +107,7 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
     }
     else if (mouse_x == clamp(mouse_x,rectxmin-20,rectxmin-2)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20))
     {
-        tooltip = "Click and drag to rotate the selected object around the anchor.#If animation is enabled, the rotation will be animated.#Right click to enter precise rotation amount."
+        tooltip = "Click and drag to rotate the selected object around the anchor.\nIf animation is enabled, the rotation will be animated.\nRight click to enter precise rotation amount."
         if (mouse_check_button_pressed(mb_left)) 
         {
             objmoving = 3;
@@ -129,7 +129,7 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
     }
     else if (mouse_x == clamp(mouse_x,rectxmax+2,rectxmax+20)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20))
     {
-        tooltip = "Click and drag to resize the selected object around the anchor.#Hold Ctrl to resize X and Y the same amount.#Right click to enter precise scaling amount.#If animation is enabled, the change will be animated."
+        tooltip = "Click and drag to resize the selected object around the anchor.\nHold Ctrl to resize X and Y the same amount.\nRight click to enter precise scaling amount.\nIf animation is enabled, the change will be animated."
         if (mouse_check_button_pressed(mb_left)) 
         {
             objmoving = 4;

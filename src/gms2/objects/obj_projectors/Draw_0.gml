@@ -43,7 +43,7 @@ if (!surface_exists(surf_projectorlist))
             else*/
             
             var t_text = t_thisplist[| 4];
-            draw_text(10, t_ypos+itemh/2, string_hash_to_newline(t_text));
+            draw_text(10, t_ypos+itemh/2, t_text);
             
             t_ypos += itemh;
             draw_line(0, t_ypos, list_width, t_ypos);
@@ -60,13 +60,13 @@ if (!surface_exists(surf_projectorlist))
                 else
                     t_text = "-   " + t_thisdaclist[| 1] + "  [Default Profile]";
                     
-                draw_text(20, t_ypos+itemh/2, string_hash_to_newline(t_text));
+                draw_text(20, t_ypos+itemh/2, t_text);
                 t_ypos += itemh;
                 draw_line(0, t_ypos, list_width, t_ypos);
             }
             if (ds_list_size(t_daclist) == 0)
             {
-                draw_text(20, t_ypos+itemh/2, string_hash_to_newline("-   [Default DAC]"));
+                draw_text(20, t_ypos+itemh/2, "-   [Default DAC]");
                 t_ypos += itemh;
                 draw_line(0, t_ypos, list_width, t_ypos);
             }
