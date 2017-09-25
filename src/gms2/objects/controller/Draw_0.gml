@@ -89,21 +89,21 @@ if (view_current == 0)
         
         draw_set_color(c_gray);
         if (objmoving == 3)
-            draw_text(20,20,string_hash_to_newline(string_format(anirot,3,2)+" deg"));
+            draw_text(20,20,string_format(anirot,3,2)+" deg");
         else if (objmoving == 1)
         {
-            draw_text(20,20,string_hash_to_newline("X translation: "+string_format(anixtrans,5,0)));
-            draw_text(20,40,string_hash_to_newline("Y translation: "+string_format(aniytrans,5,0)));
+            draw_text(20,20,"X translation: "+string_format(anixtrans,5,0));
+            draw_text(20,40,"Y translation: "+string_format(aniytrans,5,0));
         }
         else if (objmoving == 2)
         {
-            draw_text(20,20,string_hash_to_newline("Anchor X: "+string_format(anchorx,5,0)));
-            draw_text(20,40,string_hash_to_newline("Anchor Y: "+string_format(anchory,5,0)));
+            draw_text(20,20,"Anchor X: "+string_format(anchorx,5,0));
+            draw_text(20,40,"Anchor Y: "+string_format(anchory,5,0));
         }
         else if (objmoving == 4)
         {
-            draw_text(20,20,string_hash_to_newline("X scale: "+string_format(scalex,2,3)));
-            draw_text(20,40,string_hash_to_newline("Y scale: "+string_format(scaley,2,3)));
+            draw_text(20,20,"X scale: "+string_format(scalex,2,3));
+            draw_text(20,40,"Y scale: "+string_format(scaley,2,3));
         }
         draw_set_color(c_white);
             
@@ -236,13 +236,13 @@ if (view_current == 0)
     draw_set_font(fnt_tooltip);
     
         draw_set_color(c_ltgray);
-        draw_text(12,495,string_hash_to_newline("Frame: "+string(frame+1)+"/"+string(maxframes)));
+        draw_text(12,495,"Frame: "+string(frame+1)+"/"+string(maxframes));
         
-        draw_text(12,7,string_hash_to_newline("FPS: "+string(projectfps)));
+        draw_text(12,7,"FPS: "+string(projectfps));
         if (playing && (fps != projectfps) && laseron)
         {
             draw_set_color(c_red);
-            draw_text(32,7,string_hash_to_newline("Warning: Dropping frames. Actual FPS: "+string(fps)));
+            draw_text(32,7,"Warning: Dropping frames. Actual FPS: "+string(fps));
         }
         
         if (frame_complexity == 1)
@@ -251,16 +251,16 @@ if (view_current == 0)
             draw_set_color(c_orange);
         else 
             draw_set_color(c_ltgray);
-        draw_text(440,495,string_hash_to_newline("Points: "+string(framepoints)));
+        draw_text(440,495,"Points: "+string(framepoints));
         
         if (!anienable) && (maxframes < 2)
             draw_set_color(c_gray);
         else 
             draw_set_color(c_ltgray);
         if (scope_start == 0) && (scope_end == maxframes-1)
-            draw_text(220,495,string_hash_to_newline("Scope: All frames"));
+            draw_text(220,495,"Scope: All frames");
         else
-            draw_text(220,495,string_hash_to_newline("Scope: "+string(scope_start+1)+" - "+string(scope_end+1)));
+            draw_text(220,495,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
             
     draw_set_colour(c_black);
     draw_set_alpha(1);
@@ -278,7 +278,7 @@ else if (view_current == 3)
     draw_set_alpha(1);
     
     //menu
-    draw_text(0,__view_get( e__VW.YView, 3 )+4,string_hash_to_newline(menu_string));
+    draw_text(0,__view_get( e__VW.YView, 3 )+4,menu_string);
     if (mouse_y > __view_get( e__VW.YView, 3 ))   
     {
         draw_set_colour(c_teal);

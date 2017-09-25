@@ -18,7 +18,7 @@ draw_sprite(spr_colorselect_green,(moving == 2),greenx,greeny_upper);
 draw_sprite(spr_colorselect_blue,(moving == 3),bluex,bluey_upper);
 
 draw_set_colour(c_dkgray);
-draw_text(x+60,y+25,string_hash_to_newline("Color range"));
+draw_text(x+60,y+25,"Color range");
 
 draw_rectangle(redx+7,y+2,redx+9,redy_upper+1,0);
 draw_rectangle(redx+7,redy_lower+9,redx+9,y+60,0);

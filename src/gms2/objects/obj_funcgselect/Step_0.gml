@@ -13,5 +13,5 @@ if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and
 else
     image_index = 0;
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and (mouse_y < bbox_bottom)
-    controller.tooltip = "Sets the function for the GREEN channel#Value from 0 to 255";
+    controller.tooltip = "Sets the function for the GREEN channel\nValue from 0 to 255";
 

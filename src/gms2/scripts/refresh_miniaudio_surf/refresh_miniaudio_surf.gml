@@ -35,8 +35,8 @@ surface_set_target(miniaudio_surf);
                 draw_set_alpha(1);
                 draw_set_halign(fa_center);
                 draw_set_valign(fa_center);
-                draw_text(u,tlh-6,  string_hash_to_newline(string_replace(string_format(floor(temptime),2,0)," ","0")+
-                                    "."+string_replace(string_format(frac(temptime)*100,2,0)," ","0")));
+                draw_text(u,tlh-6,  string_replace(string_format(floor(temptime),2,0)," ","0")+
+                                    "."+string_replace(string_format(frac(temptime)*100,2,0)," ","0"));
                 draw_set_halign(fa_left);
                 draw_set_valign(fa_top);
                 draw_set_alpha(0.2);

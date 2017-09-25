@@ -36,10 +36,10 @@ if (!surface_exists(surf_profilelist))
                 draw_set_alpha(1);
                 draw_set_colour(c_black);
                 draw_sprite(spr_checkbox,1,5,t_ypos+4);
-                draw_text(35, t_ypos+itemh/2, string_hash_to_newline(ds_map_find_value(controller.profile_list[| i], "name")));
+                draw_text(35, t_ypos+itemh/2, ds_map_find_value(controller.profile_list[| i], "name"));
             }
             else
-                draw_text(10, t_ypos+itemh/2, string_hash_to_newline(ds_map_find_value(controller.profile_list[| i], "name")));
+                draw_text(10, t_ypos+itemh/2, ds_map_find_value(controller.profile_list[| i], "name"));
             
             t_ypos += itemh;
             draw_line(0, t_ypos, list_width, t_ypos);

@@ -1775,14 +1775,6 @@
             }
         },
         {
-            "Key": "34839ac0-6df9-47ff-99d6-8fa129a4803a",
-            "Value": {
-                "id": "bc578d6b-c81b-48dd-8f42-b07e7363e4e1",
-                "resourcePath": "notes\\compatibility_report_140917_2051365136.yy",
-                "resourceType": "GMNotes"
-            }
-        },
-        {
             "Key": "34d709cf-f0d9-421a-92f6-b9a44c5fb7e0",
             "Value": {
                 "id": "ee7dec2d-04b2-4adf-9b9b-dea7a32ca6a7",
@@ -2607,14 +2599,6 @@
             }
         },
         {
-            "Key": "52dd47d0-babf-4d8e-b501-92cb079fa54f",
-            "Value": {
-                "id": "8eb1572b-997d-4fc3-b2f0-f0bb59a50627",
-                "resourcePath": "notes\\compatibility_report_160917_2147144714.yy",
-                "resourceType": "GMNotes"
-            }
-        },
-        {
             "Key": "53b66bd8-cf5c-4f60-b76b-3c0d8d6fcd05",
             "Value": {
                 "id": "db09b062-df8f-4d88-a71e-49b1270c81d7",
@@ -3202,7 +3186,7 @@
             "Key": "6463fd7d-65ca-4350-af6d-2fb5944e77ab",
             "Value": {
                 "id": "edd47b0d-19c5-41ff-8318-e4e3a63fbb60",
-                "resourcePath": "scripts\\refresh_audio_surf\\refresh_audio_surf.yy",
+                "resourcePath": "scripts\\refresh_timeline_surface\\refresh_timeline_surface.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4796,6 +4780,14 @@
                 "id": "da6151f3-98a8-4b9f-b7ce-3b6f6ed75277",
                 "resourcePath": "objects\\obj_dropdown\\obj_dropdown.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "98ab3746-3e25-4329-8953-35ffa048e330",
+            "Value": {
+                "id": "54566675-b29e-4ba6-b275-9d71a1a3b801",
+                "resourcePath": "notes\\documentation.yy",
+                "resourceType": "GMNotes"
             }
         },
         {
@@ -7695,14 +7687,6 @@
             }
         },
         {
-            "Key": "f8523cf1-8dd5-44e2-ad9c-e502b6f569ba",
-            "Value": {
-                "id": "66f3d147-9a2b-42bf-8f3c-720bda14fe98",
-                "resourcePath": "scripts\\documentation\\documentation.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "f864dd5f-a122-40d4-b27c-b4afa59cd21b",
             "Value": {
                 "id": "a5db5193-4abf-486d-9b83-d8099832037a",
@@ -8608,7 +8592,6 @@
         "2abc59ff-1f00-46da-8ccc-5cbbfff29fe8",
         "63802e31-d372-42c3-ba3d-a92e6b86cc16",
         "61729d43-3da9-49a3-94cf-2bfeff26a4d7",
-        "f8523cf1-8dd5-44e2-ad9c-e502b6f569ba",
         "ada26aee-2383-407d-8c0e-2545a6a3f57e",
         "48a50ba7-6522-4627-bc7a-1664d80b483a",
         "b32a6f5c-65a0-49dd-8399-d7846480d98d",

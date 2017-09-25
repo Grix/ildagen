@@ -5,8 +5,7 @@
     "name": "a57da803-39cc-4fce-932f-4b23af2581c2",
     "children": [
         "e73733fa-63aa-4727-a0e0-054b9809fe6a",
-        "34839ac0-6df9-47ff-99d6-8fa129a4803a",
-        "52dd47d0-babf-4d8e-b501-92cb079fa54f"
+        "98ab3746-3e25-4329-8953-35ffa048e330"
     ],
     "filterType": "GMNotes",
     "folderName": "notes",

@@ -6,7 +6,7 @@ if (controller.sgridshow)
     if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and (mouse_y < bbox_bottom)
         {
         image_index = 3;
-        controller.tooltip = "Show radial grid.##Keyboard shortcuts:#Square grid: S#Radial grid: R#Alignment guidelines: A";
+        controller.tooltip = "Show radial grid.\n\nKeyboard shortcuts:\nSquare grid: S\nRadial grid: R\nAlignment guidelines: A";
         }
     }
 else if (controller.rgridshow)
@@ -15,7 +15,7 @@ else if (controller.rgridshow)
     if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and (mouse_y < bbox_bottom)
         {
         image_index = 5;
-        controller.tooltip = "Show alignment guidelines.##Keyboard shortcuts:#Square grid: S#Radial grid: R#Alignment guidelines: A";
+        controller.tooltip = "Show alignment guidelines.\n\nKeyboard shortcuts:\nSquare grid: S\nRadial grid: R\nAlignment guidelines: A";
         }
     } 
 else if (controller.guidelineshow)
@@ -24,7 +24,7 @@ else if (controller.guidelineshow)
     if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and (mouse_y < bbox_bottom)
         {
         image_index = 7;
-        controller.tooltip = "Turn off grids.##Keyboard shortcuts:#Square grid: S#Radial grid: R#Alignment guidelines: A";
+        controller.tooltip = "Turn off grids.\n\nKeyboard shortcuts:\nSquare grid: S\nRadial grid: R\nAlignment guidelines: A";
         }
     } 
 else
@@ -33,7 +33,7 @@ else
     if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and (mouse_y < bbox_bottom)
         {
         image_index = 1;
-        controller.tooltip = "Show square grid.##Keyboard shortcuts:#Square grid: S#Radial grid: R#Alignment guidelines: A";
+        controller.tooltip = "Show square grid.\n\nKeyboard shortcuts:\nSquare grid: S\nRadial grid: R\nAlignment guidelines: A";
         }
     } 
 

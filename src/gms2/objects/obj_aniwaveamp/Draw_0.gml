@@ -6,7 +6,7 @@ draw_sprite(spr_aniknob,(moving > 0),x+clamp(controller.aniwave_amp,-$ffff/2,$ff
 
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
-draw_text(x+87,y+9,string_hash_to_newline("Amplitude: "+string(round(controller.aniwave_amp))));
+draw_text(x+87,y+9,"Amplitude: "+string(round(controller.aniwave_amp)));
 draw_set_color(c_white);
 
 

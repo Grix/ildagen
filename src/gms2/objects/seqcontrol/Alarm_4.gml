@@ -20,6 +20,8 @@ while (ds_list_size(undo_list) > 20)
     {
         //undo split
         undolisttemp = real(string_digits(undo));
+		if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
         ds_list_destroy(ds_list_find_value(undolisttemp,0));
         ds_list_destroy(undolisttemp);
     }
@@ -67,6 +69,8 @@ while (ds_list_size(undo_list) > 20)
     {
         //undo envelope data clear
         undolisttemp = real(string_digits(undo));
+		if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
         ds_list_destroy( ds_list_find_value(undolisttemp,0) );
         ds_list_destroy( ds_list_find_value(undolisttemp,1) );
         ds_list_destroy( undolisttemp);

@@ -6,7 +6,7 @@ draw_self();
 draw_set_font(fnt_tooltip);
 draw_set_color(c_dkgray);
 draw_set_halign(fa_center);
-draw_text(x+8,y+20,string_hash_to_newline("Enable optimization"));
+draw_text(x+8,y+20,"Enable optimization");
 draw_set_halign(fa_left);
 draw_set_color(c_white);
 

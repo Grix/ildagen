@@ -10,13 +10,14 @@ with (seqcontrol)
     {
         //undo create object (delete)
         undolisttemp = real(string_digits(undo));
+		if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
         objectlist = ds_list_find_value(undolisttemp,0);
         if (!ds_exists(objectlist,ds_type_list))
         {
             ds_list_destroy(undolisttemp);
             exit;
         }
-        
         ds_list_clear(somaster_list);
         ds_list_add(somaster_list,objectlist);
         seq_delete_object_noundo();
@@ -26,6 +27,8 @@ with (seqcontrol)
     {
         //undo split
         undolisttemp = real(string_digits(undo));
+		if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
         objectlist = ds_list_find_value(undolisttemp,0);
         objectlist1 = ds_list_find_value(undolisttemp,1);
         objectlist2 = ds_list_find_value(undolisttemp,2);
@@ -57,6 +60,8 @@ with (seqcontrol)
     {
         //undo delete object
         undolisttemp = real(string_digits(undo));
+		if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
         objectlist = ds_list_find_value(undolisttemp,1);
         layerlisttemp = ds_list_find_value(undolisttemp,0);
         if (!ds_exists(layerlisttemp,ds_type_list))
@@ -72,6 +77,8 @@ with (seqcontrol)
     {
         //undo resize object
         undolisttemp = real(string_digits(undo));
+		if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
         infolist = undolisttemp[| 0];
         if (!ds_exists(infolist,ds_type_list))
         {
@@ -85,6 +92,8 @@ with (seqcontrol)
     {
         //undo move object
         undolisttemp = real(string_digits(undo));
+		if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
         objectlist = ds_list_find_value(undolisttemp,0);
         layerlisttemp = ds_list_find_value(undolisttemp,1);
         frametime = ds_list_find_value(undolisttemp,2);
@@ -111,6 +120,8 @@ with (seqcontrol)
     {
         //undo marker clear
         undolisttemp = real(string_digits(undo));
+		if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
         ds_list_destroy(marker_list);
         marker_list = undolisttemp;
     }
@@ -118,6 +129,8 @@ with (seqcontrol)
     {
         //undo envelope data clear
         undolisttemp = real(string_digits(undo));
+		if (!ds_exists(undolisttemp,ds_type_list))
+            exit;
         if (!ds_exists(ds_list_find_value(undolisttemp,2),ds_type_list))
         {
             ds_list_destroy( ds_list_find_value(undolisttemp,0) );

@@ -44,6 +44,14 @@ surface_set_target(audio_surf);
             for (j = 0; j < ds_list_size(elementlist); j++)
             {
                 objectlist = elementlist[| j];
+				
+				if (!ds_exists(objectlist,ds_type_list))
+				{
+					ds_list_delete(elementlist, j);
+					if (j > 0)
+						j--;
+					continue;
+				}
                 
                 frametime = ds_list_find_value(objectlist,0);
                 infolist = ds_list_find_value(objectlist,2);
@@ -92,7 +100,7 @@ surface_set_target(audio_surf);
                             tlw-96,ypos+8);
                             
             var t_name = _layer[| 4];
-            var t_stringlength = string_width(string_hash_to_newline(t_name))+5;
+            var t_stringlength = string_width(t_name)+5;
             var t_stringx = 5;//tlw-96-t_stringlength-5;
             draw_set_colour($eeeeee);
             draw_rectangle(t_stringx,ypos+3,t_stringx+t_stringlength+5,ypos+17,0);
@@ -101,7 +109,7 @@ surface_set_target(audio_surf);
                     
             draw_set_colour(c_black);
             gpu_set_blendenable(1);
-            draw_text(t_stringx+5, ypos+4, string_hash_to_newline(t_name));
+            draw_text(t_stringx+5, ypos+4, t_name);
             gpu_set_blendenable(0);
                             
             if (selectedlayer == i)
@@ -146,7 +154,7 @@ surface_set_target(audio_surf);
                     draw_rectangle(-1,ypos,tlw-16,ypos+16,1);
                     
                     var typedraw = ds_map_find_value(env_type_map,type);
-                    var t_stringlength = string_width(string_hash_to_newline(typedraw))+5;
+                    var t_stringlength = string_width(typedraw)+5;
                     var t_stringx = tlw-25-t_stringlength-5;
                     draw_set_colour($eeeeee);
                     draw_rectangle(t_stringx,ypos+1,t_stringx+t_stringlength+5,ypos+15,0);
@@ -155,7 +163,7 @@ surface_set_target(audio_surf);
                             
                     draw_set_colour(c_black);
                     gpu_set_blendenable(1);
-                    draw_text(t_stringx+5, ypos+2, string_hash_to_newline(typedraw));
+                    draw_text(t_stringx+5, ypos+2, typedraw);
                     gpu_set_blendenable(0);
                     
                     ypos += 16;
@@ -230,7 +238,7 @@ surface_set_target(audio_surf);
                     }
                     
                 var typedraw = ds_map_find_value(env_type_map,type);
-                var t_stringlength = string_width(string_hash_to_newline(typedraw))+5;
+                var t_stringlength = string_width(typedraw)+5;
                 var t_stringx = tlw-25-t_stringlength-5;
                 draw_set_colour($eeeeee);
                 draw_rectangle(t_stringx,ypos+42,t_stringx+t_stringlength+5,ypos+60,0);
@@ -239,7 +247,7 @@ surface_set_target(audio_surf);
                         
                 draw_set_colour(c_black);
                 gpu_set_blendenable(1);
-                    draw_text(t_stringx+5, ypos+45, string_hash_to_newline(typedraw));
+                    draw_text(t_stringx+5, ypos+45, typedraw);
                     if (moving_object == 7) and (envelopetoedit == envelope)
                     {
                         draw_set_colour(c_red);
@@ -293,8 +301,8 @@ surface_set_target(audio_surf);
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);
             draw_set_colour(c_dkgray);
-            draw_text(tempx,tlh+9,string_hash_to_newline(string_replace(string_format(floor(drawtime/60),2,0)," ","0")+
-                                ":"+string_replace(string_format(drawtime %60,2,0)," ","0")));
+            draw_text(tempx,tlh+9,string_replace(string_format(floor(drawtime/60),2,0)," ","0")+
+                                ":"+string_replace(string_format(drawtime %60,2,0)," ","0"));
             draw_set_halign(fa_left);
             draw_set_valign(fa_top);
             draw_set_colour(c_ltgray);
@@ -316,7 +324,7 @@ surface_set_target(audio_surf);
         draw_rectangle(startframex,0,startframex+1,tlh-1,0);
         draw_rectangle(startframex,tlh+17,startframex+1,lbsh,0);
         draw_set_font(fnt_bold);
-        draw_text(startframex+4,lbsh-20,string_hash_to_newline("Start"));
+        draw_text(startframex+4,lbsh-20,"Start");
     }
 
     endframex = (endframe-tlx)*tlwdivtlzoom;
@@ -326,7 +334,7 @@ surface_set_target(audio_surf);
         draw_rectangle(endframex,0,endframex+1,tlh-1,0);
         draw_rectangle(endframex,tlh+17,endframex+1,lbsh,0);
         draw_set_font(fnt_bold);
-        draw_text(endframex-25,lbsh-20,string_hash_to_newline("End"));
+        draw_text(endframex-25,lbsh-20,"End");
     }
     gpu_set_blendenable(1);   
     

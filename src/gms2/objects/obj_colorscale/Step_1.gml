@@ -3,7 +3,7 @@ if (instance_exists(obj_dropdown))
 
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
 {
-    controller.tooltip = "Changes the bounds of colors in output, use to adjust white balance and accuracy of gradients.#->Right click on a knob to enter precise values.";
+    controller.tooltip = "Changes the bounds of colors in output, use to adjust white balance and accuracy of gradients.\n->Right click on a knob to enter precise values.";
 } 
 
 if (moving == 1) or ((moving < 4) and (moving > 0) and keyboard_check(vk_control))

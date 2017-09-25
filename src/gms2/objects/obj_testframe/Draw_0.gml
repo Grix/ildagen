@@ -10,5 +10,5 @@ draw_set_alpha(1);
 draw_set_font(fnt_tooltip);
 
 draw_rectangle(x+45,y,x+220,y+22,1);
-draw_text(x+10,y+5,string_hash_to_newline("Use:      "+text));
+draw_text(x+10,y+5,"Use:      "+text);
 

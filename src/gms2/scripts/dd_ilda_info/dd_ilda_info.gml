@@ -13,11 +13,11 @@ if !(controller.regflag)
 }
     
 controller.message = 
-"LaserShowGen - ILDA laser frame creation tool#"+
-"Created by Gitle Mikkelsen / Grix / gitlem@gmail.com##"+
-"See manual for list of credits and licenses.##"+
+"LaserShowGen - ILDA laser frame creation tool\n"+
+"Created by Gitle Mikkelsen / Grix / gitlem@gmail.com\n\n"+
+"See manual for list of credits and licenses.\n\n"+
 "Version: "+string(controller.version)+
-"#Released on: "+string(controller.versiondate)+
-"##"+controller.registeredstring;
+"\nReleased on: "+string(controller.versiondate)+
+"\n\n"+controller.registeredstring;
 
 show_message_new(controller.message);

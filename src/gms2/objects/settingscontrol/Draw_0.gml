@@ -4,18 +4,18 @@ if (room != rm_options)
 draw_set_font(fnt_tooltip);
 menu_string = "   Properties      View      About   ";
 menu_width_start[0] = 0;
-menu_width[0] = string_width(string_hash_to_newline("   Properties   "));
+menu_width[0] = string_width("   Properties   ");
 menu_width_start[1] = menu_width[0];
-menu_width[1] = string_width(string_hash_to_newline("   View   "));
+menu_width[1] = string_width("   View   ");
 menu_width_start[2] = menu_width_start[1]+menu_width[1];
-menu_width[2] = string_width(string_hash_to_newline("   About   "));
+menu_width[2] = string_width("   About   ");
 menu_width_start[3] = menu_width_start[2]+menu_width[2];
 
     
 //menu
 draw_set_colour(c_black);
 draw_set_alpha(1);
-draw_text(0, __view_get( e__VW.YView, 3 )+4, string_hash_to_newline(menu_string));
+draw_text(0, __view_get( e__VW.YView, 3 )+4, menu_string);
 if (mouse_y > __view_get( e__VW.YView, 3 ))   
 {
     draw_set_colour(c_teal);
