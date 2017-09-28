@@ -13,6 +13,12 @@ for (i = global.loading_current; i < global.loading_end;i++)
     for (j = 0; j < ds_list_size(_layer[| 1]); j++)
     {
         objectlist = ds_list_find_value(_layer[| 1],j);
+		if (!ds_exists(objectlist, ds_type_list))
+		{
+			ds_list_delete(_layer[| 1], j);
+			j--;
+			continue;
+		}
         tempframe = ds_list_find_value(objectlist,0);
         tempbuffer = ds_list_find_value(objectlist,1);
         tempinfolist = ds_list_find_value(objectlist,2);

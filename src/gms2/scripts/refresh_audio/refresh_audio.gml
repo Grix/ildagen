@@ -1,9 +1,9 @@
 //todo
 FMODGMS_Sys_Update();
 
-deltatime = FMODGMS_Chan_Get_Position(parse_sndchannel)*FMODGMS_Snd_Get_Length(song);
+deltatime = FMODGMS_Util_SamplesToSeconds(FMODGMS_Chan_Get_Position(parse_sndchannel), song_samplerate)*songlength;
 
-var t_repeatc = (floor(deltatime/1000*60 - (ds_list_size(audio_list))/3));
+var t_repeatc = (floor(deltatime*60 - (ds_list_size(audio_list))/3));
 if ((t_repeatc) && !ds_list_empty(audio_list))
 {
     var t_lastw = ds_list_find_value(audio_list,ds_list_size(audio_list)-3);
@@ -17,7 +17,7 @@ if ((t_repeatc) && !ds_list_empty(audio_list))
     }
 }
 
-if ((deltatime/1000*60 - ds_list_size(audio_list)/3) > 0)
+if ((deltatime*60 - ds_list_size(audio_list)/3) > 0)
 {
 	var t_w = FMODGMS_Chan_Get_Level(parse_sndchannel);
     ds_list_add(audio_list,ln(1+clamp(t_w*1.5,0,3.4)));
@@ -36,7 +36,7 @@ if ((deltatime/1000*60 - ds_list_size(audio_list)/3) > 0)
     ds_list_add(audio_list,ln(1+clamp(t_s*8,0,3.4)));
 }
     
-pos = FMODGMS_Chan_Get_Position(parse_sndchannel);
+pos = FMODGMS_Util_SamplesToSeconds(FMODGMS_Chan_Get_Position(parse_sndchannel), song_samplerate)/songlength;
     
 if (pos >= 0.998)
 {

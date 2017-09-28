@@ -64,6 +64,8 @@ moving_object_flag = 0;
 audioshift = 0;
 ypos_perm = 48;
 muted = false;
+songfile_name = "";
+song_samplerate = 0;
 
 startframe = 0;
 endframe = 1200;
@@ -101,6 +103,7 @@ ds_map_add(env_type_map,"g","Green");
 ds_map_add(env_type_map,"b","Blue");
 
 FMODGMS_Sys_Create();
+FMODGMS_Sys_Initialize(2);
 play_sndchannel = FMODGMS_Chan_CreateChannel();
 parse_sndchannel = FMODGMS_Chan_CreateChannel();
 FMODGMS_Chan_Set_Mute(parse_sndchannel, true);

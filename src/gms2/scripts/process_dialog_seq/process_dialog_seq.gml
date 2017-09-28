@@ -19,6 +19,8 @@ if (new_id == getint)
                 exit;
             
             objectlist = ds_list_find_value(somaster_list,0);
+			if (!ds_exists(objectlist, ds_type_list))
+				break;
             infolisttomove = ds_list_find_value(objectlist,2);
             newduration = round(ds_map_find_value(argument[0], "value"));
             if (newduration < 1) 

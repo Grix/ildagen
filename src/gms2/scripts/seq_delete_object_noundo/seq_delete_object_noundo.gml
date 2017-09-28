@@ -7,6 +7,11 @@ for (k = 0; k < ds_list_size(somaster_list); k++)
         if (ds_list_find_index(layerlisttemp,ds_list_find_value(somaster_list,k)) != -1)    
         {
             objectlist = ds_list_find_value(somaster_list,k);
+			if (!ds_exists(objectlist, ds_type_list))
+			{
+				ds_list_delete(somaster_list,k);
+				break;
+			}
             ds_list_delete(layerlisttemp,ds_list_find_index(layerlisttemp,objectlist));
             infolist = objectlist[| 2];
         

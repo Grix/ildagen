@@ -524,11 +524,11 @@ ds_list_destroy(polarity_list);
 //final removal or adding of ending points to match perfectly
 if (ds_list_size(list_raw)/4-1 > t_totalpointswanted)
 {
-    if (controller.opt_warning_flag != 1)
+    /*if (controller.opt_warning_flag != 1)
     {
         //show_message_new("Failed to optimize the file based on the selected scanning speed and FPS. Please reduce the complexity of frame [ "+string(j)+" ] or use the exported file at your own risk");
         controller.opt_warning_flag = 1;
-    }
+    }*/
 }
 else while (ds_list_size(list_raw)/4 < t_totalpointswanted)
 {
