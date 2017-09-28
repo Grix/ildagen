@@ -22,6 +22,4 @@ global.loading_start = 0;
 global.loading_current = global.loading_start;
 global.loading_end = maxframes;
 
-controller.opt_warning_flag = 0;
-
 room_goto(rm_loading);

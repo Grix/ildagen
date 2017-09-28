@@ -32,6 +32,5 @@ c_n = 0;
 c_map = ds_map_create();
 var env_dataset = 0;
 
-controller.opt_warning_flag = 0;
 global.loading_exportproject = 1;
 room_goto(rm_loading);

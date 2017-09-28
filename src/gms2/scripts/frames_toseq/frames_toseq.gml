@@ -96,8 +96,8 @@ with (seqcontrol)
     else
     {
         objectlist = ds_list_find_value(somaster_list,0);
-        //if buffer exist
-        buffer_delete(ds_list_find_value(objectlist,1));
+        if (buffer_exists(ds_list_find_value(objectlist,1)))
+			buffer_delete(ds_list_find_value(objectlist,1));
         ds_list_replace(objectlist,1,controller.save_buffer);
         
         var infolist = ds_list_find_value(objectlist,2);

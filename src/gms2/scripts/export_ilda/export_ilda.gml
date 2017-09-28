@@ -33,8 +33,6 @@ maxframesa[0] = maxframespost & 255;
 maxframespost = maxframespost >> 8;
 maxframesa[1] = maxframespost & 255;
 
-controller.opt_warning_flag = 0;
-
 c_n = 0;
 c_map = ds_map_create();
 

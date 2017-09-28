@@ -17,6 +17,8 @@ with (controller)
     exp_format = t_profilemap[? "format"];
     exp_optimize = t_profilemap[? "optimize"];
     opt_onlyblanking = t_profilemap[? "onlyblanking"];
+	if (exp_optimize || opt_onlyblanking)
+		controller.opt_warning_flag = 1;
     invert_x = t_profilemap[? "invert_y"];
     invert_y = t_profilemap[? "invert_x"];
     red_scale = t_profilemap[? "red_scale"];

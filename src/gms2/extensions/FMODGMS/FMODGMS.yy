@@ -25,7 +25,7 @@
     "androidsourcedir": "",
     "author": "",
     "classname": "",
-    "copyToTargets": -1,
+    "copyToTargets": 70,
     "date": "2017-47-16 09:09:13",
     "description": "",
     "extensionName": "",
@@ -39,14 +39,14 @@
                     "id": "6e2e3ac6-185c-4fa5-968c-0bc42ecfc716",
                     "modelName": "GMProxyFile",
                     "mvc": "1.0",
-                    "TargetMask": 2,
+                    "TargetMask": 1,
                     "proxyName": "libFMODGMS.dylib"
                 },
                 {
                     "id": "aa6069bc-1772-4654-8d2f-b245c8c4e627",
                     "modelName": "GMProxyFile",
                     "mvc": "1.0",
-                    "TargetMask": 134217856,
+                    "TargetMask": 7,
                     "proxyName": "libfmodgms.so"
                 }
             ],
@@ -698,6 +698,238 @@
                     "constantName": "FMODGMS_OUTPUTTYPE_MAX",
                     "hidden": false,
                     "value": "21"
+                },
+                {
+                    "id": "964682c5-c577-49d2-9531-a551efded234",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_DEFAULT",
+                    "hidden": false,
+                    "value": "$00000000"
+                },
+                {
+                    "id": "368234cd-3cc5-4f73-944a-3a49ae97f365",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_LOOP_OFF",
+                    "hidden": false,
+                    "value": "$00000001"
+                },
+                {
+                    "id": "e290a968-0fa2-4059-a378-51365483ce43",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_LOOP_NORMAL",
+                    "hidden": false,
+                    "value": "$00000002"
+                },
+                {
+                    "id": "9480b38c-81be-412b-954f-f437aafefee2",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_LOOP_BIDI",
+                    "hidden": false,
+                    "value": "$00000004"
+                },
+                {
+                    "id": "4e93c80a-3125-43b3-9608-0923fd8af06c",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_2D",
+                    "hidden": false,
+                    "value": "$00000008"
+                },
+                {
+                    "id": "04505453-12f9-40d2-aba0-468ed0b9b65b",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_3D",
+                    "hidden": false,
+                    "value": "$00000010"
+                },
+                {
+                    "id": "f9384f14-d6aa-493e-82de-feee222b2858",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_CREATESTREAM",
+                    "hidden": false,
+                    "value": "$00000080"
+                },
+                {
+                    "id": "68a31f44-cfe8-455a-91fc-ead1d40d8db9",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_CREATESAMPLE",
+                    "hidden": false,
+                    "value": "$00000100"
+                },
+                {
+                    "id": "a9ae5481-257b-48bd-b936-867c836faf3e",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_CREATECOMPRESSEDSAMPLE",
+                    "hidden": false,
+                    "value": "$00000200"
+                },
+                {
+                    "id": "b638a9da-0704-474f-82c7-af7388d81232",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_OPENUSER",
+                    "hidden": false,
+                    "value": "$00000400"
+                },
+                {
+                    "id": "6a5d0e57-5a3f-42cb-bd33-0406ec30c7b5",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_OPENMEMORY",
+                    "hidden": false,
+                    "value": "$00000800"
+                },
+                {
+                    "id": "6e1003e7-18f5-41b2-bff8-739e594a8586",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_OPENMEMORY_POINT",
+                    "hidden": false,
+                    "value": "$10000000"
+                },
+                {
+                    "id": "972594d0-421d-4443-8d9d-80e56ff7253c",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_OPENRAW",
+                    "hidden": false,
+                    "value": "$00001000"
+                },
+                {
+                    "id": "3444f429-ea6a-41b1-b207-398f19380317",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_OPENONLY",
+                    "hidden": false,
+                    "value": "$00002000"
+                },
+                {
+                    "id": "008c829b-3657-4f03-942a-f7e59c39137e",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_ACCURATETIME",
+                    "hidden": false,
+                    "value": "$00004000"
+                },
+                {
+                    "id": "f0906ffe-0698-4b65-837b-c48ab8be2295",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_MPEGSEARCH",
+                    "hidden": false,
+                    "value": "$00008000"
+                },
+                {
+                    "id": "3d279ba6-65b3-49c0-8e1f-7e1d84543f88",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_NONBLOCKING",
+                    "hidden": false,
+                    "value": "$00010000"
+                },
+                {
+                    "id": "cc47192e-018d-443c-a4fb-9dcd0bb287f8",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_UNIQUE",
+                    "hidden": false,
+                    "value": "$00020000"
+                },
+                {
+                    "id": "36781a82-76b3-4f8d-a4ea-af296f59c7b4",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_3D_HEADRELATIVE",
+                    "hidden": false,
+                    "value": "$00040000"
+                },
+                {
+                    "id": "7c59e29b-83ea-4675-bc38-57ea19beff65",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_3D_WORLDRELATIVE",
+                    "hidden": false,
+                    "value": "$00080000"
+                },
+                {
+                    "id": "c813f379-4500-46aa-a278-426d058dd813",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_3D_INVERSEROLLOFF",
+                    "hidden": false,
+                    "value": "$00100000"
+                },
+                {
+                    "id": "a7a22b97-8aaa-407c-a69b-be409e569dd5",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_3D_LINEARSQUAREROLLOFF",
+                    "hidden": false,
+                    "value": "$00200000"
+                },
+                {
+                    "id": "413adf79-47bd-430d-924a-942ff1af9505",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_3D_INVERSETAPEREDROLLOFF",
+                    "hidden": false,
+                    "value": "$00400000"
+                },
+                {
+                    "id": "5bd8af47-9650-415d-986b-17fcbb1786da",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_3D_CUSTOMROLLOFF",
+                    "hidden": false,
+                    "value": "$04000000"
+                },
+                {
+                    "id": "8c53d299-ea30-451d-9ef3-61fd8a065505",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_3D_IGNOREGEOMETRY",
+                    "hidden": false,
+                    "value": "$40000000"
+                },
+                {
+                    "id": "d13c32d8-8cad-42f2-b9cf-3bf40a05eb62",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_IGNORETAGS",
+                    "hidden": false,
+                    "value": "$02000000"
+                },
+                {
+                    "id": "3f3c273b-4ccb-49b8-9ac7-d126cb1f5e8f",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_LOWMEM",
+                    "hidden": false,
+                    "value": "$08000000"
+                },
+                {
+                    "id": "4d731686-78dc-4fd6-9d4a-a08127ae886b",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_LOADSECONDARYRAM",
+                    "hidden": false,
+                    "value": "$20000000"
+                },
+                {
+                    "id": "a46691e8-39ad-4287-bd12-72125a78b1c0",
+                    "modelName": "GMExtensionConstant",
+                    "mvc": "1.0",
+                    "constantName": "FMODGMS_MODE_VIRTUAL_PLAYFROMSTART",
+                    "hidden": false,
+                    "value": "$80000000"
                 }
             ],
             "copyToTargets": 202375362,
@@ -1815,6 +2047,41 @@
                     "kind": 12,
                     "name": "FMODGMS_Sys_Get_NumDSPBuffers",
                     "returnType": 2
+                },
+                {
+                    "id": "b0d6b537-18b3-42be-9d59-e9170154af76",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        2,
+                        2,
+                        2,
+                        1
+                    ],
+                    "externalName": "FMODGMS_Snd_Get_ReadData",
+                    "help": "FMODGMS_Snd_Get_ReadData(index, position, length, buffer)",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "FMODGMS_Snd_Get_ReadData",
+                    "returnType": 2
+                },
+                {
+                    "id": "cec11b67-bca2-443b-b485-15a770d3c8d0",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        1,
+                        2,
+                        1
+                    ],
+                    "externalName": "FMODGMS_Snd_LoadSound_Ext",
+                    "help": "FMODGMS_Snd_LoadSound_Ext(location, mode, exInfo)",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "FMODGMS_Snd_LoadSound_Ext",
+                    "returnType": 2
                 }
             ],
             "init": "",
@@ -1891,7 +2158,9 @@
                 "e8b1eb86-06ce-4767-877e-81668e4d73ea",
                 "397fdf04-3060-4149-b151-acbea8de65ba",
                 "105a0fd0-55bc-4b1b-8c85-0953dd6faf8c",
-                "45206c13-b07d-49c0-b606-2ec94f48ae93"
+                "45206c13-b07d-49c0-b606-2ec94f48ae93",
+                "b0d6b537-18b3-42be-9d59-e9170154af76",
+                "cec11b67-bca2-443b-b485-15a770d3c8d0"
             ],
             "origname": "extensions\\FMODGMS.dll",
             "uncompress": false

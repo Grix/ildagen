@@ -78,7 +78,7 @@ if (moving_object == 1)
             
             frame_surf_refresh = 1;
             tempxstart = round(ds_list_find_value(objecttomove,0));
-            if (!keyboard_check(vk_alt))
+            if (!keyboard_check(vk_control))
             {
                 //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
                 loopcount = 5;
@@ -111,6 +111,11 @@ if (moving_object == 1)
                         {
                             tempxstart = tempxstart2-1-(tempxend-tempxstart);
                         }
+						if (tempxstart < 0)
+						{
+							tempxstart = 0;
+							loop = 0;
+						}
                     }
                 }
             }
@@ -159,7 +164,7 @@ else if (moving_object == 2)
             
             frame_surf_refresh = 1;
             templength = round(ds_list_find_value(infolisttomove,0));
-            if (!keyboard_check(vk_alt))
+            if (!keyboard_check(vk_control))
             {
                 tempxstart = round(ds_list_find_value(objecttomove,0));
                 //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
