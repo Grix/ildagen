@@ -20,7 +20,7 @@ if (room = rm_ilda)
                 controller.playing = 1;
                 if (seqcontrol.song != 0)
                 {
-                    FMODGMS_Chan_Set_Position(seqcontrol.play_sndchannel,(controller.tlx+controller.framehr)/seqcontrol.projectfps*1000/FMODGMS_Snd_Get_Length(seqcontrol.song));
+					fmod_set_pos(seqcontrol.play_sndchannel,clamp((controller.tlx+controller.framehr)/seqcontrol.projectfps*1000, 0, seqcontrol.songlength));
                     FMODGMS_Chan_ResumeChannel(seqcontrol.play_sndchannel);
                 }
             }
@@ -65,7 +65,7 @@ else
                 seqcontrol.playing = 1;
                 if (seqcontrol.song != 0)
                 {
-                    FMODGMS_Chan_Set_Position(seqcontrol.play_sndchannel,(seqcontrol.tlpos+seqcontrol.audioshift)/FMODGMS_Snd_Get_Length(seqcontrol.song));
+                    fmod_set_pos(seqcontrol.play_sndchannel,clamp((seqcontrol.tlpos+seqcontrol.audioshift), 0, seqcontrol.songlength));
                     FMODGMS_Chan_ResumeChannel(seqcontrol.play_sndchannel);
                 }
             }

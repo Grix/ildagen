@@ -89,8 +89,8 @@ else if (keyboard_check_pressed(vk_space))
     {
         if (playing)
         {
-            FMODGMS_Chan_Set_Position(play_sndchannel,(tlpos+audioshift)/FMODGMS_Snd_Get_Length(song));
-            FMODGMS_Chan_ResumeChannel(play_sndchannel);
+			FMODGMS_Chan_ResumeChannel(play_sndchannel);
+            fmod_set_pos(play_sndchannel,clamp(((tlpos+audioshift)-10),0,songlength));
         }
         else
             FMODGMS_Chan_PauseChannel(play_sndchannel);

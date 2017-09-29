@@ -64,8 +64,8 @@ if (keyboard_check_pressed(vk_space))
     {
         if (playing)
         {
-            FMODGMS_Chan_Set_Position(seqcontrol.play_sndchannel,(tlx+framehr)/seqcontrol.projectfps*1000/FMODGMS_Snd_Get_Length(seqcontrol.song));
-            FMODGMS_Chan_ResumeChannel(seqcontrol.play_sndchannel);
+			FMODGMS_Chan_ResumeChannel(seqcontrol.play_sndchannel);
+            fmod_set_pos(seqcontrol.play_sndchannel,clamp((tlx+framehr)/seqcontrol.projectfps*1000, 0, seqcontrol.songlength));
         }
         else
             FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);

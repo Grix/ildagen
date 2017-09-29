@@ -66,6 +66,7 @@ ypos_perm = 48;
 muted = false;
 songfile_name = "";
 song_samplerate = 0;
+song_parse = 0;
 
 startframe = 0;
 endframe = 1200;

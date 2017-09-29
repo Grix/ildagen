@@ -22,9 +22,9 @@ if (playing == 1)
         apply_audio_settings();
     }
     
-    if (abs(FMODGMS_Chan_Get_Position(play_sndchannel)*FMODGMS_Snd_Get_Length(song)-(tlpos+audioshift)) > 32) and (scroll_moving != 1) and (song != 0)
+    if	(abs(fmod_get_pos(play_sndchannel) - (tlpos+audioshift)) > 32) && (scroll_moving != 1) && (song != 0)
     {
-        FMODGMS_Chan_Set_Position(play_sndchannel,(tlpos+audioshift)/FMODGMS_Snd_Get_Length(song));
+        fmod_set_pos(play_sndchannel,(tlpos+audioshift));
     }
 }
 
