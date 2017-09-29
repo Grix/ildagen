@@ -2059,11 +2059,11 @@
                         2,
                         1
                     ],
-                    "externalName": "FMODGMS_Snd_Get_ReadData",
-                    "help": "FMODGMS_Snd_Get_ReadData(index, position, length, buffer)",
+                    "externalName": "FMODGMS_Snd_ReadData",
+                    "help": "FMODGMS_Snd_ReadData(index, position, length, buffer)",
                     "hidden": false,
                     "kind": 1,
-                    "name": "FMODGMS_Snd_Get_ReadData",
+                    "name": "FMODGMS_Snd_ReadData",
                     "returnType": 2
                 },
                 {

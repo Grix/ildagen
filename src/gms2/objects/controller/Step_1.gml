@@ -28,7 +28,7 @@ if (playing == 1)
         
     if (frameprev != 0) and (frame == 0) and (seqcontrol.song != 0)
     {
-        FMODGMS_Chan_Set_Position(seqcontrol.play_sndchannel,tlx/seqcontrol.projectfps*1000/FMODGMS_Snd_Get_Length(seqcontrol.song));
+        fmod_set_pos(seqcontrol.play_sndchannel,clamp(tlx/seqcontrol.projectfps*1000, 0, seqcontrol.songlength));
     }
 }
 

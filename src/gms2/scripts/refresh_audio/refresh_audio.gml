@@ -1,7 +1,8 @@
-//todo
+exit;
+
 FMODGMS_Sys_Update();
 
-deltatime = FMODGMS_Util_SamplesToSeconds(FMODGMS_Chan_Get_Position(parse_sndchannel), song_samplerate)*songlength;
+deltatime = fmod_get_pos(parse_sndchannel);
 
 var t_repeatc = (floor(deltatime*60 - (ds_list_size(audio_list))/3));
 if ((t_repeatc) && !ds_list_empty(audio_list))
@@ -36,7 +37,7 @@ if ((deltatime*60 - ds_list_size(audio_list)/3) > 0)
     ds_list_add(audio_list,ln(1+clamp(t_s*8,0,3.4)));
 }
     
-pos = FMODGMS_Util_SamplesToSeconds(FMODGMS_Chan_Get_Position(parse_sndchannel), song_samplerate)/songlength;
+pos = fmod_get_pos(parse_sndchannel)/songlength;
     
 if (pos >= 0.998)
 {

@@ -8,7 +8,7 @@ with (seqcontrol)
         audioshift -= 10;
     
     if (song != 0)
-        FMODGMS_Chan_Set_Position(play_sndchannel,(tlpos+audioshift)/FMODGMS_Snd_Get_Length(song));
+        fmod_set_pos(play_sndchannel,clamp(((tlpos+audioshift)-10),0,songlength));
 }
 
 stringToDraw = "Offset: "+string_format(seqcontrol.audioshift,4,1)+"ms";

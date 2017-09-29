@@ -4,6 +4,5 @@ if (song != 0)
     buffer_delete(song_buffer);
 }
 song = 0;
-songfile = "";
 ds_list_clear(audio_list);
 parsingaudio = 0;
