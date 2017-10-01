@@ -18,7 +18,7 @@ if (room = rm_ilda)
             if (mouse_check_button_pressed(mb_left))
             {
                 controller.playing = 1;
-                if (seqcontrol.song != 0)
+                if (seqcontrol.song != -1)
                 {
 					fmod_set_pos(seqcontrol.play_sndchannel,clamp((controller.tlx+controller.framehr)/seqcontrol.projectfps*1000, 0, seqcontrol.songlength));
                     FMODGMS_Chan_ResumeChannel(seqcontrol.play_sndchannel);
@@ -33,7 +33,7 @@ if (room = rm_ilda)
             if (mouse_check_button_pressed(mb_left))
             {
                 controller.playing = 0;
-				if (seqcontrol.song != 0)
+				if (seqcontrol.song != -1)
 					FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
             }
             break;
@@ -63,7 +63,7 @@ else
             if (mouse_check_button_pressed(mb_left))
             {
                 seqcontrol.playing = 1;
-                if (seqcontrol.song != 0)
+                if (seqcontrol.song != -1)
                 {
                     fmod_set_pos(seqcontrol.play_sndchannel,clamp((seqcontrol.tlpos+seqcontrol.audioshift), 0, seqcontrol.songlength));
                     FMODGMS_Chan_ResumeChannel(seqcontrol.play_sndchannel);
@@ -78,7 +78,7 @@ else
             if (mouse_check_button_pressed(mb_left))
             {
                 seqcontrol.playing = 0;
-				if (seqcontrol.song != 0)
+				if (seqcontrol.song != -1)
 					FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
             }
             break;
@@ -94,7 +94,7 @@ else
                     tlx = 0;
                     playing = 0;
                     tlpos = 0;
-                    if (song != 0)
+                    if (song != -1)
                     {
                         FMODGMS_Chan_StopChannel(play_sndchannel);
                         FMODGMS_Snd_PlaySound(song, play_sndchannel);

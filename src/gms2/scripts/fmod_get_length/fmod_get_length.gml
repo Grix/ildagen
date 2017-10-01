@@ -1,2 +1,3 @@
 //@param sound
-return FMODGMS_Util_SamplesToSeconds( FMODGMS_Snd_Get_Length(argument[0]), song_samplerate)*1000;
+gml_pragma("forceinline");
+return FMODGMS_Util_SamplesToSeconds( FMODGMS_Snd_Get_Length(argument[0]), seqcontrol.song_samplerate)*1000;

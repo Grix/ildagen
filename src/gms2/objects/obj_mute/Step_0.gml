@@ -1,6 +1,6 @@
 if (instance_exists(obj_dropdown))
     exit;
-visible = (seqcontrol.song > 0);
+visible = (seqcontrol.song != -1);
 if (!visible)
     exit;
     

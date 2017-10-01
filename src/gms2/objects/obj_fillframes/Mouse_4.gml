@@ -7,5 +7,5 @@ if (controller.fillframes == 1)
 else 
     image_index = 1;
     
-controller.refresh_miniaudio_flag = 1;
+controller.refresh_minitimeline_flag = 1;
 

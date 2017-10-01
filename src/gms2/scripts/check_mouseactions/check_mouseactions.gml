@@ -4,7 +4,7 @@ if (maxframes < 2) exit;
 
 if (scope_moving)
 {
-    refresh_miniaudio_flag = true;
+    refresh_minitimeline_flag = true;
     show_framecursor_prev = true;
     framecursor_prev = round(lerp(0,maxframes-1, (mouse_x-tlorigo_x)/(tlw-tlorigo_x)));
     scope_end = framecursor_prev;
@@ -49,7 +49,7 @@ if ((mouse_x > tlorigo_x+2) && (mouse_x < tlorigo_x+tlw-2) &&
             {
                 update_semasterlist_flag = 1;
             }
-            refresh_miniaudio_flag = 1;
+            refresh_minitimeline_flag = 1;
         }
     }
 }

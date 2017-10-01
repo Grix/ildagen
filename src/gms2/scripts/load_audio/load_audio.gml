@@ -14,13 +14,13 @@ song = FMODGMS_Snd_LoadSound_Ext(buffer_get_address(song_buffer),	FMODGMS_MODE_D
 																	FMODGMS_MODE_ACCURATETIME |
 																	FMODGMS_MODE_CREATECOMPRESSEDSAMPLE, 
 																	buffer_get_address(t_exInfo));
-/*song_parse = FMODGMS_Snd_LoadSound_Ext(buffer_get_address(song_buffer),	FMODGMS_MODE_DEFAULT | 
+song_parse = FMODGMS_Snd_LoadSound_Ext(buffer_get_address(song_buffer),	FMODGMS_MODE_DEFAULT | 
 																		FMODGMS_MODE_ACCURATETIME |
-																		FMODGMS_MODE_OPENMEMORY | 
-																		FMODGMS_MODE_CREATECOMPRESSEDSAMPLE |
+																		FMODGMS_MODE_OPENMEMORY_POINT | 
+																		FMODGMS_MODE_CREATESTREAM |
 																		FMODGMS_MODE_OPENONLY, 
 																		buffer_get_address(t_exInfo));
-*/															
+														
 buffer_delete(t_exInfo);
 
 if (song == -1 || song_parse == -1)
@@ -29,8 +29,10 @@ if (song == -1 || song_parse == -1)
     exit;
 }
 
-//parse_audio();
-//FMODGMS_Snd_Unload(song_parse);
+song_samplerate = FMODGMS_Snd_Get_DefaultFrequency(song);
+
+parse_audio();
+FMODGMS_Snd_Unload(song_parse);
 
 songfile_name = FMODGMS_Snd_Get_TagStringFromName(song, "TIT2");
 if (songfile_name == "Tag not found.")
@@ -52,7 +54,6 @@ ds_list_clear(audio_list);
 //FMODGMS_Chan_ResumeChannel(parse_sndchannel);
 //fmod_set_pos(parse_sndchannel, 0);
 FMODGMS_Snd_PlaySound(song, play_sndchannel);
-song_samplerate = FMODGMS_Chan_Get_Frequency(play_sndchannel);
 songlength = fmod_get_length(song);
 if (length < songlength/1000*projectfps)
 {

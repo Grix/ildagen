@@ -1,8 +1,8 @@
 //exports project into an ilda file
 playing = 0;
-if (song != 0)
+if (song != -1)
 {
-    FMODGMS_Chan_PauseChannel(songinstance);
+    FMODGMS_Chan_PauseChannel(play_sndchannel);
 }
 
 file_loc = get_save_filename_ext("*.ild","example.ild","","Select ILDA file location");

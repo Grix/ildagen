@@ -7,7 +7,7 @@ with (seqcontrol)
     else
         audioshift -= 10;
     
-    if (song != 0)
+    if (song != -1)
         fmod_set_pos(play_sndchannel,clamp(((tlpos+audioshift)-10),0,songlength));
 }
 

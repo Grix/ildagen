@@ -4218,7 +4218,7 @@
             "Key": "8736a8c9-f789-4e24-969a-e323e872457f",
             "Value": {
                 "id": "7cf80ca1-e616-4796-8dee-8104bee07141",
-                "resourcePath": "scripts\\refresh_miniaudio_surf\\refresh_miniaudio_surf.yy",
+                "resourcePath": "scripts\\refresh_minitimeline_surf\\refresh_minitimeline_surf.yy",
                 "resourceType": "GMScript"
             }
         },

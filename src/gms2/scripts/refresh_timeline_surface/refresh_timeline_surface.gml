@@ -1,16 +1,16 @@
 //redraws the surface containing the layer list and audio visualization in the timeline mode
 
-if (!surface_exists(audio_surf))
-    audio_surf = surface_create(1024,1024);
+if (!surface_exists(timeline_surf))
+    timeline_surf = surface_create(1024,1024);
     
-surface_set_target(audio_surf);
+surface_set_target(timeline_surf);
 
     var tlwdivtlzoom = tlw/tlzoom;   
 
     draw_clear_alpha(c_white,0);
     draw_set_alpha(1);
     draw_set_font(fnt_small);
-    gpu_set_blendenable(0);
+    gpu_set_blendenable(false);
     
     //layers
     //NB: layerbarx is an Y value
@@ -81,11 +81,11 @@ surface_set_target(audio_surf);
                     if (ds_list_find_index(somaster_list,objectlist) != -1)
                     {
                         draw_set_colour(c_gold);
-                        gpu_set_blendenable(1);
+                        gpu_set_blendenable(true);
                         draw_set_alpha(0.3);
                             draw_rectangle(framestartx,ypos+1,frameendx,ypos+47,0);
                         draw_set_alpha(1);
-                        gpu_set_blendenable(0);
+                        gpu_set_blendenable(false);
                         draw_set_colour(c_black);
                     }
                 }
@@ -108,9 +108,9 @@ surface_set_target(audio_surf);
             draw_rectangle(t_stringx,ypos+3,t_stringx+t_stringlength+5,ypos+17,1);
                     
             draw_set_colour(c_black);
-            gpu_set_blendenable(1);
+            gpu_set_blendenable(true);
             draw_text(t_stringx+5, ypos+4, t_name);
-            gpu_set_blendenable(0);
+            gpu_set_blendenable(false);
                             
             if (selectedlayer == i)
             {
@@ -162,9 +162,9 @@ surface_set_target(audio_surf);
                     draw_rectangle(t_stringx,ypos+1,t_stringx+t_stringlength+5,ypos+15,1);
                             
                     draw_set_colour(c_black);
-                    gpu_set_blendenable(1);
+                    gpu_set_blendenable(true);
                     draw_text(t_stringx+5, ypos+2, typedraw);
-                    gpu_set_blendenable(0);
+                    gpu_set_blendenable(false);
                     
                     ypos += 16;
                     ypos_perm += 16;
@@ -339,7 +339,7 @@ surface_set_target(audio_surf);
     gpu_set_blendenable(1);   
     
     //audio   
-    if (song)
+    if (song != -1)
     {
         draw_set_alpha(0.7);
         for (u=0; u <= tlw; u++)

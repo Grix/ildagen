@@ -490,7 +490,7 @@ if (new_id == getint)
               frame = scope_start;
               framehr = scope_start;
               frame_surf_refresh = 1;
-              refresh_miniaudio_flag = 1;
+              refresh_minitimeline_flag = 1;
               
               break;
           }
@@ -498,7 +498,7 @@ if (new_id == getint)
             case "scopeend":
           {
               scope_end = clamp(ds_map_find_value(argument[0], "value")-1,scope_start,maxframes-1);
-              refresh_miniaudio_flag = 1;
+              refresh_minitimeline_flag = 1;
               
               break;
           }
@@ -507,7 +507,7 @@ if (new_id == getint)
           {
               seqcontrol.projectfps = clamp(ds_map_find_value(argument[0], "value"),1,99);
               projectfps = seqcontrol.projectfps;
-              refresh_miniaudio_flag = 1;
+              refresh_minitimeline_flag = 1;
               
               break;
           }
@@ -529,7 +529,7 @@ if (new_id == getint)
           {
               ds_list_add(undo_list,"a"+string(maxframes))
               
-              refresh_miniaudio_flag = 1;
+              refresh_minitimeline_flag = 1;
               
               scopeflag = 0;
               if (maxframes == (scope_end+1)) scopeflag = 1;

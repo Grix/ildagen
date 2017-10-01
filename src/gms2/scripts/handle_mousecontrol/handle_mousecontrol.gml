@@ -1,6 +1,7 @@
 //all the interaction with the timeline
     
 mouseonsomelayer = 0;
+var t_loop;
 
 if (moving_object == 1)
 {
@@ -82,11 +83,11 @@ if (moving_object == 1)
             {
                 //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
                 loopcount = 5;
-                loop = 1;
-                while (loop and loopcount)
+                t_loop = 1;
+                while (t_loop and loopcount)
                 {
                     loopcount--;
-                    loop = 0;
+                    t_loop = 0;
                     tempxend = tempxstart + ds_list_find_value(ds_list_find_value(objecttomove,2),0);
                     for ( u = 0; u < ds_list_size(layertomove); u++)
                     {
@@ -102,7 +103,7 @@ if (moving_object == 1)
                             continue;
                         
                         //collision:
-                        loop = 1;
+                        t_loop = 1;
                         if (tempxstart2 < tempxstart)
                         {
                             tempxstart = tempxend2+1;
@@ -114,7 +115,7 @@ if (moving_object == 1)
 						if (tempxstart < 0)
 						{
 							tempxstart = 0;
-							loop = 0;
+							t_loop = 0;
 						}
                     }
                 }
@@ -169,11 +170,11 @@ else if (moving_object == 2)
                 tempxstart = round(ds_list_find_value(objecttomove,0));
                 //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
                 loopcount = 5;
-                loop = 1;
-                while (loop and loopcount)
+                t_loop = 1;
+                while (t_loop and loopcount)
                 {
                     loopcount--;
-                    loop = 0;
+                    t_loop = 0;
                     tempxend = tempxstart + templength;
                     for ( u = 0; u < ds_list_size(layertomove); u++)
                     {
@@ -189,12 +190,12 @@ else if (moving_object == 2)
                             continue;
                             
                         //collision:
-                        loop = 1;
+                        t_loop = 1;
                         templength = tempxstart2-tempxstart-1;
                         if (templength < 1) 
                         {
                             templength = round(ds_list_find_value(infolisttomove,0));
-                            loop = 0;
+                            t_loop = 0;
                         }
                     }
                 }
@@ -845,7 +846,7 @@ if !(mouseonsomelayer)
         if  mouse_check_button(mb_left)
         {
             tlpos = round(tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
-            if (song)
+            if (song != -1)
             {
                 FMODGMS_Chan_StopChannel(play_sndchannel);
                 FMODGMS_Snd_PlaySound(song, play_sndchannel);
