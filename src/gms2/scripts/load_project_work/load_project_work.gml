@@ -178,7 +178,7 @@ if (songload)
     buffer_save(song_buffer,"temp/tempaudio"+temprandomstring+filename_ext(songfile));
 	song = FMODGMS_Snd_LoadStream(controller.FStemp+"tempaudio"+temprandomstring+filename_ext(songfile));
    
-    if (!song) 
+    if (song == -1) 
     {
         show_message_new("Failed to load audio: "+FMODGMS_Util_GetErrorMessage());
     }
@@ -201,7 +201,7 @@ if (songload)
     playing = 0;
     tlpos = 0;
     
-    if (song != 0)
+    if (song != -1)
     {
         FMODGMS_Snd_PlaySound(song, play_sndchannel); //todo create this channel
         apply_audio_settings();

@@ -87,7 +87,7 @@ framehr = 0;
 maxframes = 1;
 scope_start = 0;
 scope_end = maxframes-1;
-refresh_miniaudio_flag = 1;
+refresh_minitimeline_flag = 1;
 if (laseron)
 {
     laseron = false;

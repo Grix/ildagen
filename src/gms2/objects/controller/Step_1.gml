@@ -6,7 +6,7 @@ if (playing == 1)
     if (maxframes <= 1)
     {
         playing = 0;
-        if (seqcontrol.song != 0)
+        if (seqcontrol.song != -1)
             FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
     }
         
@@ -26,7 +26,7 @@ if (playing == 1)
         update_semasterlist_flag = 1;
     }
         
-    if (frameprev != 0) and (frame == 0) and (seqcontrol.song != 0)
+    if (frameprev != 0) and (frame == 0) and (seqcontrol.song != -1)
     {
         fmod_set_pos(seqcontrol.play_sndchannel,clamp(tlx/seqcontrol.projectfps*1000, 0, seqcontrol.songlength));
     }

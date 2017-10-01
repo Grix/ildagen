@@ -1,7 +1,7 @@
-if (!surface_exists(miniaudio_surf))
-    miniaudio_surf = surface_create(512,512);
+if (!surface_exists(minitimeline_surf))
+    minitimeline_surf = surface_create(512,512);
     
-surface_set_target(miniaudio_surf);
+surface_set_target(minitimeline_surf);
     
     draw_clear_alpha(c_white,1);
     draw_set_alpha(1);
@@ -65,7 +65,7 @@ else
     draw_rectangle(0,tlh-13,512,tlh+1,0);
          
 //audio  
-if (seqcontrol.song)
+if (seqcontrol.song != -1)
 {
     draw_set_alpha(0.5);
     var tlhalf = (tlh-13)/2;

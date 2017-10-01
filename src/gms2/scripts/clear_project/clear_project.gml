@@ -63,13 +63,7 @@ while (ds_list_size(undo_list))
 ds_list_destroy(undo_list);
 undo_list = ds_list_create();
 
-if (song != 0)
-{
-    FMODGMS_Chan_StopChannel(play_sndchannel);
-    FMODGMS_Snd_Unload(song);
-    song = 0;
-    buffer_delete(song_buffer);
-}
+remove_audio();
     
 repeat (ds_list_size(layer_list))   
 {

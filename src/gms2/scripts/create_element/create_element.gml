@@ -9,7 +9,7 @@ if (maxframes == 1) and (anienable)
     //ds_list_add(controller.undo_list,"a"+string(controller.maxframes))
     maxframes = 32;
     scope_end = 31;
-    refresh_miniaudio_flag = 1;
+    refresh_minitimeline_flag = 1;
     
     if (ds_list_size(frame_list) < maxframes)
         repeat (maxframes - ds_list_size(frame_list))

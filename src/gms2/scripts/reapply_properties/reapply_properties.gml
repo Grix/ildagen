@@ -1,11 +1,12 @@
 //reapplies the object properties
 ilda_cancel();
+var t_loop;
     
 if (maxframes == 1) and (anienable)
 {
     maxframes = 32;
     scope_end = 31;
-    refresh_miniaudio_flag = 1;
+    refresh_minitimeline_flag = 1;
     
     if (ds_list_size(frame_list) < maxframes)
         repeat (maxframes - ds_list_size(frame_list))
@@ -366,8 +367,8 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                 if (dotfreq < 1)
                     dotfreq = 1;
             }
-            loop = (ds_list_find_value(new_list,20+checkpoints*4) == ds_list_find_value(new_list,20)) and 
-                   (ds_list_find_value(new_list,21+checkpoints*4) == ds_list_find_value(new_list,21));
+            var t_loop = (ds_list_find_value(new_list,20+checkpoints*4) == ds_list_find_value(new_list,20)) and 
+						(ds_list_find_value(new_list,21+checkpoints*4) == ds_list_find_value(new_list,21));
         }
             
         if (controller.reap_color)
@@ -492,7 +493,7 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                 if (blankmode == "solid")
                 {
                     blank = 0;
-                    if ((j == 0) or (j == checkpoints-1)) and (enddots) and (loop)
+                    if ((j == 0) or (j == checkpoints-1)) and (enddots) and (t_loop)
                         makedot = 1;
                 }
                 else if (blankmode == "dash")
@@ -502,18 +503,18 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                         blank = 0;
                         blanknew = 0;
                         /*
-                        if (blanknew != blank) and (enddots) and !(((j == 1) or (j == checkpoints-1)) and (!loop))
+                        if (blanknew != blank) and (enddots) and !(((j == 1) or (j == checkpoints-1)) and (!t_loop))
                         {
                             makedot = 2;
                             blanknew = blank;
                         }*/
-                        if ((j == 0) or (j == checkpoints-1)) and (enddots) and (loop)
+                        if ((j == 0) or (j == checkpoints-1)) and (enddots) and (t_loop)
                             makedot = 1;
                     }
                      else if (floor(j+blank_offset_r/pi/2*dotfreq) % round(dotfreq) > blank_dc_r*dotfreq) or (blank_dc_r < 0.02)
                     {
                         blank = 1;
-                        if (blanknew != blank) and (enddots) and !(((j == 0) or (j == checkpoints-1)) and (!loop))
+                        if (blanknew != blank) and (enddots) and !(((j == 0) or (j == checkpoints-1)) and (!t_loop))
                         {
                             makedot = 2;
                             blanknew = blank;
@@ -522,7 +523,7 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                     else 
                     {
                         blank = 0;
-                        if (blanknew != blank) and (enddots) and !(((j == 0) or (j == checkpoints-1)) and (!loop))
+                        if (blanknew != blank) and (enddots) and !(((j == 0) or (j == checkpoints-1)) and (!t_loop))
                         {
                             makedot = 2;
                             blanknew = blank;

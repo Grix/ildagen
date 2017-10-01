@@ -116,7 +116,7 @@ with (seqcontrol)
     
 with (seqcontrol)
 {
-    if (song != 0) 
+    if (song != -1) 
 		FMODGMS_Chan_PauseChannel(play_sndchannel);
     playing = 0;
 }

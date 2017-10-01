@@ -28,15 +28,15 @@ if (view_current == 0)
     }
     
     //mine timeline + cursors
-    if (!surface_exists(miniaudio_surf) || refresh_miniaudio_flag)
+    if (!surface_exists(minitimeline_surf) || refresh_minitimeline_flag)
     {
-        refresh_miniaudio_surf();
-        refresh_miniaudio_flag = 0;
+        refresh_minitimeline_surf();
+        refresh_minitimeline_flag = 0;
     }
     draw_set_color(c_white);
     draw_set_alpha(1);
-    if (surface_exists(miniaudio_surf))
-        draw_surface_part(miniaudio_surf,0,0,tlw,tlh+1,tlorigo_x,tlorigo_y);
+    if (surface_exists(minitimeline_surf))
+        draw_surface_part(minitimeline_surf,0,0,tlw,tlh+1,tlorigo_x,tlorigo_y);
     if (maxframes > 1)
     {
         draw_set_color(c_black);

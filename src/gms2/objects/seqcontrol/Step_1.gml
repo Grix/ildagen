@@ -13,7 +13,7 @@ if (playing == 1)
         tlpos = startframe/projectfps*1000;
     }
     
-    if (song != 0) && (t_tlpos_prev <= length/projectfps*1000) && (tlpos > length/projectfps*1000)
+    if (song != -1) && (t_tlpos_prev <= length/projectfps*1000) && (tlpos > length/projectfps*1000)
     {
         //playing = 0;
         //tlpos = 0;
@@ -22,7 +22,7 @@ if (playing == 1)
         apply_audio_settings();
     }
     
-    if	(abs(fmod_get_pos(play_sndchannel) - (tlpos+audioshift)) > 32) && (scroll_moving != 1) && (song != 0)
+    if (song != -1) && (abs(fmod_get_pos(play_sndchannel) - (tlpos+audioshift)) > 32) && (scroll_moving != 1)
     {
         fmod_set_pos(play_sndchannel,(tlpos+audioshift));
     }

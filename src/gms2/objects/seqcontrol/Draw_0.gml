@@ -3,7 +3,7 @@ if (room != rm_seq)
 
 if (view_current == 0)
 {
-    if ((alarm[0] == 1)) or (playing and (alarm[0] mod 2) == 1) or (moving_object) or (moving_object_flag) or (scroll_moving)
+    if true //|| ((alarm[0] == 1)) or (playing and (alarm[0] mod 2) == 1) or (moving_object) or (moving_object_flag) or (scroll_moving)
     {
         refresh_timeline_surface();
     }
@@ -23,8 +23,8 @@ if (view_current == 0)
         frame_surf_refresh = false;
     }
         
-    if (surface_exists(audio_surf))
-        draw_surface_part(audio_surf,0,0,tlw+1,lbsh+17,0,137);
+    if (surface_exists(timeline_surf))
+        draw_surface_part(timeline_surf,0,0,tlw+1,lbsh+17,0,137);
         
     gpu_set_blendenable(0);
     with (obj_button_parent)
@@ -39,7 +39,7 @@ if (view_current == 0)
     {
         //timeline cursor
         draw_line(cursorlinexdraw,136,cursorlinexdraw,136+tlh);
-        draw_line(cursorlinexdraw,tls-1,cursorlinexdraw,lbsh+137);
+        draw_line(cursorlinexdraw,tls-1,cursorlinexdraw-1,lbsh+137);
         if (cursorlinexdraw > (tlw/2)) and (playing) and (!scroll_moving) and (!mouse_check_button(mb_any))
         {
             tlx = cursorlinex-(tlw/2)*tlzoom/tlw;
@@ -53,7 +53,7 @@ if (view_current == 0)
     {
         draw_set_alpha(0.2);
         draw_line(mouse_x,136,mouse_x,136+tlh);
-        draw_line(mouse_x,tls,mouse_x,lbsh+136);
+        draw_line(mouse_x,tls,mouse_x-1,lbsh+136);
         draw_mouseline = 0;
     }
     if (draw_cursorline = 1)

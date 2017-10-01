@@ -19,7 +19,7 @@ if (room == rm_loading)
 if (parsingaudio == 1) 
     refresh_audio();
 
-if (song) 
+if (song != -1) 
     FMODGMS_Sys_Update();
 
 if (room != rm_seq) exit;
@@ -85,7 +85,7 @@ else if (keyboard_check_pressed(vk_escape))
 else if (keyboard_check_pressed(vk_space))
 {
     playing = !playing;
-    if (seqcontrol.song != 0)
+    if (seqcontrol.song != -1)
     {
         if (playing)
         {
@@ -104,7 +104,7 @@ else if (keyboard_check_pressed(vk_left)) and (tlpos > projectfps/1000)
 
 else if (keyboard_check_pressed(vk_tab))
 {
-    if (song != 0) 
+    if (song != -1) 
 		FMODGMS_Chan_PauseChannel(play_sndchannel);
     playing = 0;
     room_goto(rm_ilda);
@@ -123,7 +123,7 @@ else if (keyboard_check_pressed(ord("0")))
     tlx = 0;
     playing = 0;
     tlpos = 0;
-    if (song != 0)
+    if (song != -1)
     {
         FMODGMS_Chan_StopChannel(play_sndchannel);
         FMODGMS_Snd_PlaySound(song, play_sndchannel);

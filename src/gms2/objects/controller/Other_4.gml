@@ -1,7 +1,7 @@
 if (laseron)
     dac_blank_and_center_all();
 
-refresh_miniaudio_flag = 1;
+refresh_minitimeline_flag = 1;
 frame_surf_refresh = 1;
 laseron = false;
 menu_open = 0;
@@ -12,7 +12,7 @@ with (seqcontrol)
     playing = false;
     frame_surf_refresh = true;
     output_buffer_ready = false;
-    if (song != 0)
+    if (song != -1)
         FMODGMS_Chan_PauseChannel(play_sndchannel);
 }
 output_buffer_ready = false;

@@ -60,12 +60,12 @@ with(controller)
     ds_list_add(undo_list,el_id);
     el_id++;
     frame_surf_refresh = 1;
-    refresh_miniaudio_flag = 1;
+    refresh_minitimeline_flag = 1;
     
     ds_list_destroy(ild_list);
     
     scope_end = maxframes-1;
-    refresh_miniaudio_flag = 1;
+    refresh_minitimeline_flag = 1;
     
     }
     

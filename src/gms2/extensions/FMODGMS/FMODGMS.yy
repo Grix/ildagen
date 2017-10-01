@@ -2082,6 +2082,68 @@
                     "kind": 1,
                     "name": "FMODGMS_Snd_LoadSound_Ext",
                     "returnType": 2
+                },
+                {
+                    "id": "cbfaa3ea-04c6-41a5-8537-2292450029c9",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        2
+                    ],
+                    "externalName": "FMODGMS_Snd_Get_BitsPerSample",
+                    "help": "FMODGMS_Snd_Get_BitsPerSample(sound)",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "FMODGMS_Snd_Get_BitsPerSample",
+                    "returnType": 2
+                },
+                {
+                    "id": "1d2a1564-ed47-4478-82af-9b847935da12",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        2
+                    ],
+                    "externalName": "FMODGMS_Snd_Get_DefaultFrequency",
+                    "help": "FMODGMS_Snd_Get_DefaultFrequency(sound)",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "FMODGMS_Snd_Get_DefaultFrequency",
+                    "returnType": 2
+                },
+                {
+                    "id": "f1c89c05-bffb-449b-9c2b-c1a8548255a3",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        2
+                    ],
+                    "externalName": "FMODGMS_Snd_Get_NumChannels",
+                    "help": "FMODGMS_Snd_Get_NumChannels(sound)",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "FMODGMS_Snd_Get_NumChannels",
+                    "returnType": 2
+                },
+                {
+                    "id": "f0a386b3-8099-4cb4-9c1c-986822098f11",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        1,
+                        1,
+                        2
+                    ],
+                    "externalName": "FMODGMS_Util_FFT",
+                    "help": "FMODGMS_Util_FFT(bufferIn, bufferOut, numPoints)",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "FMODGMS_Util_FFT",
+                    "returnType": 2
                 }
             ],
             "init": "",
@@ -2160,7 +2222,11 @@
                 "105a0fd0-55bc-4b1b-8c85-0953dd6faf8c",
                 "45206c13-b07d-49c0-b606-2ec94f48ae93",
                 "b0d6b537-18b3-42be-9d59-e9170154af76",
-                "cec11b67-bca2-443b-b485-15a770d3c8d0"
+                "cec11b67-bca2-443b-b485-15a770d3c8d0",
+                "cbfaa3ea-04c6-41a5-8537-2292450029c9",
+                "1d2a1564-ed47-4478-82af-9b847935da12",
+                "f1c89c05-bffb-449b-9c2b-c1a8548255a3",
+                "f0a386b3-8099-4cb4-9c1c-986822098f11"
             ],
             "origname": "extensions\\FMODGMS.dll",
             "uncompress": false

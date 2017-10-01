@@ -1,5 +1,5 @@
 ilda_cancel();
-if (seqcontrol.song != 0) 
+if (seqcontrol.song != -1) 
     FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
 seqcontrol.playing = 0;
 room_goto(rm_options);

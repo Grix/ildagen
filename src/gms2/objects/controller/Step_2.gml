@@ -60,7 +60,7 @@ check_mouseactions();
 if (keyboard_check_pressed(vk_space))
 {
     playing = !playing;
-    if (seqcontrol.song != 0)
+    if (seqcontrol.song != -1)
     {
         if (playing)
         {
@@ -72,7 +72,7 @@ if (keyboard_check_pressed(vk_space))
     }
     
     if (!playing)
-        refresh_miniaudio_flag = 1;
+        refresh_minitimeline_flag = 1;
 }
     
 else if (keyboard_check_pressed(vk_backspace))
@@ -90,7 +90,7 @@ else if (keyboard_check_pressed(ord("0")))
     ilda_cancel();
     frame = 0;
     framehr = 0;
-    refresh_miniaudio_flag = 1;
+    refresh_minitimeline_flag = 1;
 }
     
 else if (keyboard_check_pressed(ord("P")))
@@ -247,7 +247,7 @@ if (keyboard_check(vk_left)) && (maxframes > 1) && (placing_status == 0)
         update_semasterlist_flag = 1;
         
     }
-    refresh_miniaudio_flag = 1;
+    refresh_minitimeline_flag = 1;
 }
 else if (keyboard_check(vk_right)) && (maxframes > 1) && (placing_status == 0)
 {
@@ -275,7 +275,7 @@ else if (keyboard_check(vk_right)) && (maxframes > 1) && (placing_status == 0)
     {
         update_semasterlist_flag = 1;
     }
-    refresh_miniaudio_flag = 1;
+    refresh_minitimeline_flag = 1;
 }
     
 if (frame >= maxframes)
@@ -342,7 +342,7 @@ if (keyboard_check_pressed(vk_tab))
     ilda_cancel();
     frame = 0;
     framehr = 0;
-    if (seqcontrol.song != 0)
+    if (seqcontrol.song != -1)
         FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
         
     room_goto(rm_seq);

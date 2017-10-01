@@ -8,7 +8,7 @@ if (moving == 1)
     FMODGMS_Chan_Set_Volume(seqcontrol.play_sndchannel,seqcontrol.volume/100);
 }
     
-visible = (seqcontrol.song != 0);
+visible = (seqcontrol.song != -1);
 if (!visible)
     exit;
     

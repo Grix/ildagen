@@ -78,7 +78,7 @@ for (i = global.loading_current; i < global.loading_end;i++)
 }
 
 //saving audio data
-if (song)
+if (song != -1)
 {
     buffer_write(save_buffer,buffer_string,songfile_name);
     songfile_size = buffer_get_size(song_buffer);
