@@ -17,7 +17,7 @@ if (room == rm_loading)
 }
 
 if (parsingaudio == 1) 
-    refresh_audio();
+    parse_audio();
 
 if (song != -1) 
     FMODGMS_Sys_Update();

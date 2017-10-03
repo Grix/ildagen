@@ -2136,10 +2136,11 @@
                     "args": [
                         1,
                         1,
+                        2,
                         2
                     ],
                     "externalName": "FMODGMS_Util_FFT",
-                    "help": "FMODGMS_Util_FFT(bufferIn, bufferOut, numPoints)",
+                    "help": "FMODGMS_Util_FFT(bufferIn, bufferOut, numPoints, normalize)",
                     "hidden": false,
                     "kind": 1,
                     "name": "FMODGMS_Util_FFT",

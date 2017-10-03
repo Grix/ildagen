@@ -1,3 +1,5 @@
+//todo generalize into drawing missing surface chunks
+
 //redraws the surface containing the layer list and audio visualization in the timeline mode
 
 if (!surface_exists(timeline_surf))
@@ -272,7 +274,29 @@ surface_set_target(timeline_surf);
         scrollbarx = (tlw-18-scrollbarw)*(tlx)/(length-tlzoom);
     layerbarw = clamp(lbh/(ypos_perm+lbh)*(lbh-1),32,lbh-1);
     
-    gpu_set_blendenable(1);
+    //start and end frame lines
+    startframex = (startframe-tlx)*tlwdivtlzoom;
+    if (startframex == clamp(startframex,0,tlw-16))
+    {
+        draw_set_color(c_blue);
+        draw_rectangle(startframex,0,startframex+1,tlh-1,0);
+        draw_rectangle(startframex,tlh+17,startframex+1,lbsh,0);
+        draw_set_font(fnt_bold);
+        draw_text(startframex+4,lbsh-20,"Start");
+    }
+
+    endframex = (endframe-tlx)*tlwdivtlzoom;
+    if (endframex == clamp(endframex,0,tlw-16))
+    {
+        draw_set_color(c_red);
+        draw_rectangle(endframex,0,endframex+1,tlh-1,0);
+        draw_rectangle(endframex,tlh+17,endframex+1,lbsh,0);
+        draw_set_font(fnt_bold);
+        draw_text(endframex-25,lbsh-20,"End");
+    }
+    gpu_set_blendenable(1);   
+	
+	    gpu_set_blendenable(1);
     
     draw_set_colour(c_white);
     gpu_set_blendmode(bm_subtract);
@@ -281,9 +305,12 @@ surface_set_target(timeline_surf);
     gpu_set_blendmode(bm_normal);
        
     var drawtime = ceil(tlx/projectfps);
-    if (tlwdivtlzoom > 0.3) modulus = 5;
-    else if (tlwdivtlzoom > 0.05) modulus = 25;
-    else modulus = 60;
+    if (tlwdivtlzoom > 0.3) 
+		modulus = 5;
+    else if (tlwdivtlzoom > 0.05)
+		modulus = 25;
+    else 
+		modulus = 60;
     
     draw_set_colour(c_ltgray);
     gpu_set_blendenable(0);
@@ -315,36 +342,13 @@ surface_set_target(timeline_surf);
         drawtime++;
     }
     
-    
-    //start and end frame lines
-    startframex = (startframe-tlx)*tlwdivtlzoom;
-    if (startframex == clamp(startframex,0,tlw-16))
-    {
-        draw_set_color(c_blue);
-        draw_rectangle(startframex,0,startframex+1,tlh-1,0);
-        draw_rectangle(startframex,tlh+17,startframex+1,lbsh,0);
-        draw_set_font(fnt_bold);
-        draw_text(startframex+4,lbsh-20,"Start");
-    }
-
-    endframex = (endframe-tlx)*tlwdivtlzoom;
-    if (endframex == clamp(endframex,0,tlw-16))
-    {
-        draw_set_color(c_red);
-        draw_rectangle(endframex,0,endframex+1,tlh-1,0);
-        draw_rectangle(endframex,tlh+17,endframex+1,lbsh,0);
-        draw_set_font(fnt_bold);
-        draw_text(endframex-25,lbsh-20,"End");
-    }
-    gpu_set_blendenable(1);   
-    
     //audio   
     if (song != -1)
     {
-        draw_set_alpha(0.7);
+        draw_set_alpha(0.67);
         for (u=0; u <= tlw; u++)
         {
-            var nearesti = round((tlx+u*tlzoom/tlw)/projectfps*60)*3;
+            var nearesti = round((tlx+u*tlzoom/tlw)/projectfps*30)*3;
             
             if (nearesti > ds_list_size(audio_list)-3)
                 break;

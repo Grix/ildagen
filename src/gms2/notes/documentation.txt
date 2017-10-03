@@ -1,6 +1,8 @@
 TODO
 - double check and fix maxpoints_static calculation
 - fmodgms
+- waveform variables in function
+- reapply relative position functionality
 - LIVE mode
 
 SETTINGSCONTROL
@@ -37,6 +39,13 @@ layer_list
                 
 somaster_list
     layer elements.. (see above)
+	
+timeline_surf_list
+	tlzoom
+	surface_list
+		surfaces...
+			tlpos
+			surface
 
 CONTROLLER
 

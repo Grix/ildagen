@@ -1,8 +1,8 @@
 {
-    "id": "4dcfe571-cd1f-498c-9246-d2754b80f5b8",
+    "id": "6869b0e3-b4f4-4b34-8624-3d5769262000",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "refresh_audio",
+    "name": "draw_timeline",
     "IsCompatibility": false,
     "IsDnD": false
 }
