@@ -31,9 +31,6 @@ if (song == -1 || song_parse == -1)
 
 song_samplerate = FMODGMS_Snd_Get_DefaultFrequency(song);
 
-parse_audio();
-FMODGMS_Snd_Unload(song_parse);
-
 songfile_name = FMODGMS_Snd_Get_TagStringFromName(song, "TIT2");
 if (songfile_name == "Tag not found.")
 {
@@ -60,7 +57,8 @@ if (length < songlength/1000*projectfps)
     length = ceil(songlength/1000*projectfps);
     endframe = length;
 }
-parsingaudio = 1;
+parsingaudio = true;
+parsingaudio_pos = 0;
 deltatime = 0;    
 playing = 0;
 tlpos = 0;

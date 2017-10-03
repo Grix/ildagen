@@ -10,6 +10,7 @@ ds_list_add(_layer,0);
 ds_list_add(_layer,0);
 ds_list_add(_layer,"Layer 1");
 ds_list_add(_layer,ds_list_create()); //dac list
+timeline_surf_list = ds_list_create();
 
 surface_list = ds_list_create();
 somaster_list = ds_list_create();
@@ -86,6 +87,9 @@ tlx = 0;
 tly = 0;
 tlhalf = tlh/2;
 tlthird = tlh/3;
+
+ds_list_add(timeline_surf_list, tlzoom);
+ds_list_add(timeline_surf_list, ds_list_create());
 
 c_gold = make_colour_rgb(255,220,0);
 
