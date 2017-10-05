@@ -3,17 +3,18 @@
 //show_question_new("Hello.Testing. This is a longer sentence representing a normal message.\nAlso with a second line.");
 
 /*log("---")
+blah1 = surface_create(2048, 2048);
 time = get_timer();
 i = 0;
 x = 0;
 y = 0;
-repeat (1000000)
+repeat (1)
 {
-    x++;
-    y += 2;;
-	i = (x & y);
+    blah = surface_create(2048, 2048);
+	surface_copy_part(blah1,0,0,blah,0,0,1800,2048);
 }
 log("time1: ",get_timer()-time);
+*//*
 time2 = get_timer();
 i = 0;
 x = 0;

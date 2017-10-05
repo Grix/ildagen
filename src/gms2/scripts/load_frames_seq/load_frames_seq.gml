@@ -191,7 +191,7 @@ if (selectedx >= 0)
     
     info = ds_list_create();
     ds_list_add(info,tempmaxframes-1);
-    ds_list_add(info,make_screenshot(save_buffer));
+    ds_list_add(info,-1);
     ds_list_add(info,tempmaxframes);
     ds_list_add(objectlist,info);
     

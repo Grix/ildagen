@@ -404,9 +404,11 @@ else if (scroll_moving == 1)
 //vertical scroll moving
 else if (scroll_moving == 2)
 {
-    layerbarx += (mouse_y-mouseyprev)*lbh/layerbarw;//*(length/tlw);
-    if (layerbarx < 0) layerbarx = 0;
-    if ((layerbarx) > ypos_perm) layerbarx = ypos_perm;
+    layerbary += (mouse_y-mouseyprev)*lbh/layerbarw;//*(length/tlw);
+    if (layerbary < 0) 
+		layerbary = 0;
+    if ((layerbary) > ypos_perm) 
+		layerbary = ypos_perm;
     
     mouseyprev = mouse_y;
     
@@ -446,7 +448,7 @@ else if (mouse_wheel_down() or keyboard_check_pressed(vk_f8))
 
     
 //horizontal scroll
-var scrollypos = tls+(layerbarx*layerbarw/lbh);
+var scrollypos = tls+(layerbary*layerbarw/lbh);
 
 if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw)) 
 and (mouse_y == clamp(mouse_y,lbsh+138,lbsh+16+138))
@@ -544,7 +546,7 @@ for (i = 0; i < ds_list_size(marker_list); i++)
 }
 
 //layers
-var tempstarty = tls-layerbarx;
+var tempstarty = tls-layerbary;
 
 var ypos = tempstarty;
 for (i = 0; i <= ds_list_size(layer_list); i++)

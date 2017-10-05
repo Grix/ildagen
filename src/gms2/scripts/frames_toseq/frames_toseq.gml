@@ -83,7 +83,7 @@ with (seqcontrol)
         
         info = ds_list_create();
         ds_list_add(info,controller.maxframes-1);
-        ds_list_add(info,make_screenshot(controller.save_buffer));
+        ds_list_add(info,-1);
         ds_list_add(info,controller.maxframes);
         ds_list_add(objectlist,info);
         ds_list_add(selectedlayerlist[| 1],objectlist);
@@ -103,7 +103,7 @@ with (seqcontrol)
         var infolist = ds_list_find_value(objectlist,2);
         if (surface_exists(ds_list_find_value(infolist,1)))
             surface_free(ds_list_find_value(infolist,1));
-        ds_list_replace(infolist,1,make_screenshot(controller.save_buffer));
+        ds_list_replace(infolist,1,-1);
         ds_list_replace(infolist,2,controller.maxframes);
         
         infolisttemp = infolist;
