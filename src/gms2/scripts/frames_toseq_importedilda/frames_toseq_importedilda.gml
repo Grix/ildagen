@@ -73,7 +73,7 @@ with (seqcontrol)
     
     info = ds_list_create();
     ds_list_add(info,ds_list_size(controller.ild_list)-1);
-    ds_list_add(info,make_screenshot(controller.save_buffer));
+    ds_list_add(info,-1);
     ds_list_add(info,ds_list_size(controller.ild_list));
     ds_list_add(objectlist,info);
         

@@ -10,7 +10,6 @@ ds_list_add(_layer,0);
 ds_list_add(_layer,0);
 ds_list_add(_layer,"Layer 1");
 ds_list_add(_layer,ds_list_create()); //dac list
-timeline_surf_list = ds_list_create();
 
 surface_list = ds_list_create();
 somaster_list = ds_list_create();
@@ -21,11 +20,12 @@ effect_list = ds_list_create();
 ilda_list = ds_list_create();
 buffer_list = ds_list_create();
 marker_list = ds_list_create();
-timeline_surf = surface_create(1024,1024);
-frame_surf = surface_create(512,512);
-frame3d_surf = surface_create(512,512);
-frame_surf_large = surface_create(1024,1024);
-frame3d_surf_large = surface_create(1024,1024);
+timeline_surf = -1; //surface_create(1024,1024);
+timeline_surf_temp = -1; //surface_create(1024,1024);
+frame_surf = -1; //surface_create(512,512);
+frame3d_surf = -1; //surface_create(512,512);
+frame_surf_large = -1; //surface_create(1024,1024);
+frame3d_surf_large = -1; //surface_create(1024,1024);
 copy_list = ds_list_create();
 copy_buffer = ds_list_create();
 env_type_map = ds_map_create();
@@ -51,7 +51,7 @@ tlpos = 0;
 parsingaudio = 0;
 scrollbarx = 0;
 scrollbarw = 0;
-layerbarx = 0;
+layerbary = 0;
 layerbarw = 0;
 scroll_moving = 0;
 playbackspeed = 1;
@@ -76,20 +76,22 @@ endframex = -1;
 largepreview = 0;
 loop = false;
 
-tlw = 982;
-tlh = 128;
-tls = tlh+138+16; //start of layer area, seen from outside surface
-lbh = 705-32-tlh-138;
-lbsh = tlh+16+lbh; //start of bottom scrollbar
+tlsurf_y = 138;
+tlw = 982; //width of timeline
+tlh = 128; //height of audio part of timeline
+tls = tlh+tlsurf_y+16; //start of layer area, seen from outside surface
+lbh = 705-32-tlh-tlsurf_y;
+lbsh = tlh+16+lbh; //start of bottom scrollbar, seen from inside surface
 phi = 1.618;
-tlzoom = tlw;
+tlzoom = tlw; //number of frames displayed in visible timeline area
 tlx = 0;
 tly = 0;
 tlhalf = tlh/2;
 tlthird = tlh/3;
 
-ds_list_add(timeline_surf_list, tlzoom);
-ds_list_add(timeline_surf_list, ds_list_create());
+timeline_surf_pos = 0;
+timeline_surf_tlzoom = tlzoom;
+timeline_surf_length = 0;
 
 c_gold = make_colour_rgb(255,220,0);
 

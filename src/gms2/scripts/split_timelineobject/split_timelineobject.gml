@@ -84,7 +84,7 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
         
         infolist = ds_list_create();
         ds_list_add(infolist, splitafternum-1);
-        ds_list_add(infolist, make_screenshot(object1));
+        ds_list_add(infolist, -1);
         ds_list_add(infolist, splitafternum);
         
         ds_list_add(objectlist1, frametime);
@@ -93,7 +93,7 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
         
         infolist = ds_list_create();
         ds_list_add(infolist, maxframes-splitafternum-1);
-        ds_list_add(infolist, make_screenshot(object2));
+        ds_list_add(infolist, -1);
         ds_list_add(infolist, maxframes-splitafternum);
         
         ds_list_add(objectlist2, frametime+splitafternum);
