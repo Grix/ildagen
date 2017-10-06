@@ -35,6 +35,8 @@ if (new_id == getint)
             ds_list_replace(infolisttomove,0,newduration);
             
             //todo: check for collisions
+			
+			timeline_surf_length = 0;
             
             break;
         }
@@ -42,6 +44,7 @@ if (new_id == getint)
         {
             projectfps = clamp(ds_map_find_value(argument[0], "value"),1,999);
             controller.projectfps = projectfps;
+			timeline_surf_length = 0;
             break;
         }
         case "audioshift":
@@ -81,6 +84,7 @@ if (new_id == getint)
             ds_list_destroy(ds_list_find_value(selectedenvelope,2));
             ds_list_destroy(selectedenvelope);
             ds_list_delete(env_list_to_delete,selectedenvelope_index);
+			timeline_surf_length = 0;
             
             break;
         }
@@ -123,6 +127,8 @@ if (new_id == getint)
             
             selectedlayer = 0;
             selectedx = 0;
+			timeline_surf_length = 0;
+			frame_surf_refresh = 1;
             
             break;
         }  

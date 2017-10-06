@@ -46,4 +46,5 @@ if (ds_list_size(copy_list) != 0)
         
     selectedx += selectedxbump;
     frame_surf_refresh = 1;
+	timeline_surf_length = 0;
 }

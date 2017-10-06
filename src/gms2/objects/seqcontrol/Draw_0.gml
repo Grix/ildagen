@@ -21,32 +21,34 @@ if (view_current == 0)
 	var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 	
     //if ((alarm[0] == 1)) or (playing and (alarm[0] mod 2) == 1) or (moving_object) or (moving_object_flag) or (scroll_moving)
-        refresh_timeline_surface();
-    draw_surface_part(timeline_surf,floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom),layerbary,tlw+1,lbsh+17,0,tlsurf_y-1);
+       
+	refresh_timeline_surface();
+	
+    draw_timeline();
         
     gpu_set_blendenable(0);
 	
     with (obj_button_parent)
         draw_self();
 		
-	    //scroll
-		scrollbarw = clamp(((tlzoom+18)/length)*tlw-18,32,tlw-18);
-	    if (length != tlzoom)
-	        scrollbarx = (tlw-18-scrollbarw)*(tlx)/(length-tlzoom);
-	    layerbarw = clamp(lbh/(ypos_perm+lbh)*(lbh-1),32,lbh-1);
+	//scroll
+	scrollbarw = clamp(((tlzoom+18)/length)*tlw-18,32,tlw-18);
+	if (length != tlzoom)
+	    scrollbarx = (tlw-18-scrollbarw)*(tlx)/(length-tlzoom);
+	layerbarw = clamp(lbh/(ypos_perm+lbh)*(lbh-1),32,lbh-1);
 		
-	    var scrollx_x1 = scrollbarx;
-	    var scrollx_x2 = scrollx_x1+scrollbarw;
-	    var scrollx_y1 = lbsh+17+tlsurf_y;
-	    var scrolly_x1 = tlw-16;
-	    var scrolly_y1 = tls+(layerbary*layerbarw/lbh);
-	    var scrolly_y2 = scrolly_y1+layerbarw;
-	    draw_set_colour(c_gray);
-	    draw_rectangle(scrollx_x1,scrollx_y1,scrollx_x2,lbsh+tlsurf_y,0);
-	    draw_rectangle(scrolly_x1,scrolly_y1,tlw,scrolly_y2,0);
-	    draw_set_colour(c_black);
-	    draw_rectangle(scrollx_x1,scrollx_y1,scrollx_x2,lbsh+tlsurf_y,1);
-	    draw_rectangle(scrolly_x1,scrolly_y1,tlw,scrolly_y2,1);
+	var scrollx_x1 = scrollbarx;
+	var scrollx_x2 = scrollx_x1+scrollbarw;
+	var scrollx_y1 = lbsh+17+tlsurf_y;
+	var scrolly_x1 = tlw-16;
+	var scrolly_y1 = tls+(layerbary*layerbarw/lbh);
+	var scrolly_y2 = scrolly_y1+layerbarw;
+	draw_set_colour(c_gray);
+	draw_rectangle(scrollx_x1,scrollx_y1,scrollx_x2,lbsh+tlsurf_y,0);
+	draw_rectangle(scrolly_x1,scrolly_y1,tlw,scrolly_y2,0);
+	draw_set_colour(c_black);
+	draw_rectangle(scrollx_x1,scrollx_y1,scrollx_x2,lbsh+tlsurf_y,1);
+	draw_rectangle(scrolly_x1,scrolly_y1,tlw,scrolly_y2,1);
 		
     gpu_set_blendenable(1);
         

@@ -14,3 +14,4 @@ if (song != -1)
 song = -1;
 ds_list_clear(audio_list);
 parsingaudio = 0;
+timeline_surf_length = 0;

@@ -3,6 +3,11 @@
 mouseonsomelayer = 0;
 var t_loop;
 
+if (moving_object > 0 || somaster_list_prevsize != ds_list_size(somaster_list))
+	timeline_surf_length = 0;
+	
+somaster_list_prevsize = ds_list_size(somaster_list);
+
 if (moving_object == 1)
 {
     controller.tooltip = "Drag object to any position on any timeline";
@@ -578,6 +583,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                         ds_list_add(newlayer,"Layer "+string(controller.el_id));
                         controller.el_id++;
                         ds_list_add(newlayer,ds_list_create()); //dac list
+						timeline_surf_length = 0;
                     }
                 }
                 else

@@ -84,6 +84,9 @@ with (seqcontrol)
     undolisttemp = ds_list_create();
     ds_list_add(undolisttemp,objectlist);
     ds_list_add(undo_list,"c"+string(undolisttemp));
+	
+	timeline_surf_length = 0;
+	frame_surf_refresh = 1;
 }
     
 ds_list_destroy(ild_list);

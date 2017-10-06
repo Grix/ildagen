@@ -5,12 +5,9 @@ if (selectedlayer == -1) or (!ds_list_empty(somaster_list)) or (ds_list_empty(la
     exit;
 }
     
-with (seqcontrol)
-{
-    if (song != -1)
-		FMODGMS_Chan_PauseChannel(play_sndchannel);
-    playing = 0;
-}
+if (song != -1)
+	FMODGMS_Chan_PauseChannel(play_sndchannel);
+playing = 0;
 
 file_loc = argument0;
 if !string_length(file_loc) 
@@ -200,6 +197,9 @@ if (selectedx >= 0)
     infolisttemp = info;
     selectedx += tempmaxframes;
 }
+
+timeline_surf_length = 0;
+refresh_frame_surf = 1;
     
 undolisttemp = ds_list_create();
 ds_list_add(undolisttemp,objectlist);
