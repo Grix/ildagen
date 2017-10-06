@@ -69,6 +69,8 @@ songfile_name = "";
 song_samplerate = 0;
 song_parse = 0;
 
+somaster_list_prevsize = 0;
+
 startframe = 0;
 endframe = 1200;
 startframex = -1;

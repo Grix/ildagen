@@ -3,6 +3,7 @@ with (seqcontrol)
     if (ds_list_empty(undo_list))
         exit;
         
+	timeline_surf_length = 0;
     undo = ds_list_find_value(undo_list,ds_list_size(undo_list)-1);
     ds_list_delete(undo_list,ds_list_size(undo_list)-1);
     

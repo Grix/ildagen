@@ -1,6 +1,7 @@
 tlpos = 0;    
 playing = 0;
 frame_surf_refresh = 1;
+timeline_surf_length = 0;
 parsingaudio = 0;
 ds_list_destroy(audio_list);
 audio_list = ds_list_create();

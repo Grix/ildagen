@@ -41,16 +41,16 @@ while (get_timer()-t_time < (1/35)*1000000) //30+ fps target
 	
 	var t_w = FMODGMS_Util_FFT(buffer_get_address(t_bufferIn), buffer_get_address(t_bufferOut), t_numPoints, 1);
 	
-	ds_list_add(audio_list,t_w/4000);//(1+clamp(t_w*1.5,0,3.4)));
+	ds_list_add(audio_list,min(t_w/5000, 1));//(1+clamp(t_w*1.5,0,3.4)));
 	
 	var t_s = 0;
 	for (var t_i = 0; t_i < 5; t_i++)
 		t_s += buffer_peek(t_bufferOut, t_i*4, buffer_f32);
-	ds_list_add(audio_list,t_s/4);//ln(1+clamp(t_s*8,0,3.4)));
+	ds_list_add(audio_list,min(t_s/4, 1));//ln(1+clamp(t_s*8,0,3.4)));
 	t_s = 0;
 	for (var t_i = 40; t_i < 150; t_i++)
 		t_s += buffer_peek(t_bufferOut, t_i*4, buffer_f32);
-	ds_list_add(audio_list,t_s/30);//ln(1+clamp(t_s*8,0,3.4)));
+	ds_list_add(audio_list,min(t_s/30, 1));//ln(1+clamp(t_s*8,0,3.4)));
 	
 	parsingaudio_pos += 1/30;
 }
@@ -58,3 +58,4 @@ while (get_timer()-t_time < (1/35)*1000000) //30+ fps target
 buffer_delete(t_parsebuffer);
 buffer_delete(t_bufferIn);
 buffer_delete(t_bufferOut);
+timeline_surf_length = 0;
