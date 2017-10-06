@@ -40,17 +40,17 @@ while (get_timer()-t_time < (1/35)*1000000) //30+ fps target
 		buffer_write(t_bufferIn, buffer_f32, buffer_peek(t_parsebuffer, t_i*t_multiplier, buffer_s16)); //todo variable type
 	
 	var t_w = FMODGMS_Util_FFT(buffer_get_address(t_bufferIn), buffer_get_address(t_bufferOut), t_numPoints, 1);
-	
-	ds_list_add(audio_list,min(t_w/5000, 1));//(1+clamp(t_w*1.5,0,3.4)));
+
+	ds_list_add(audio_list,min(t_w/6000, 1));//(1+clamp(t_w*1.5,0,3.4)));
 	
 	var t_s = 0;
 	for (var t_i = 0; t_i < 5; t_i++)
 		t_s += buffer_peek(t_bufferOut, t_i*4, buffer_f32);
-	ds_list_add(audio_list,min(t_s/4, 1));//ln(1+clamp(t_s*8,0,3.4)));
+	ds_list_add(audio_list,min(t_s/5, 1));//ln(1+clamp(t_s*8,0,3.4)));
 	t_s = 0;
 	for (var t_i = 40; t_i < 150; t_i++)
 		t_s += buffer_peek(t_bufferOut, t_i*4, buffer_f32);
-	ds_list_add(audio_list,min(t_s/30, 1));//ln(1+clamp(t_s*8,0,3.4)));
+	ds_list_add(audio_list,min(t_s/35, 1));//ln(1+clamp(t_s*8,0,3.4)));
 	
 	parsingaudio_pos += 1/30;
 }

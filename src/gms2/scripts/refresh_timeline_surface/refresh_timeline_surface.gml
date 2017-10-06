@@ -1,5 +1,5 @@
 //redraws the surface containing the layer list and audio visualization in the timeline mode
-//todo
+
 if (!surface_exists(timeline_surf))
 {
     timeline_surf = surface_create(2048,2048);
@@ -17,12 +17,31 @@ if (timeline_surf_tlzoom != tlzoom || timeline_surf_pos > tlx)
 var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 var t_tlx = timeline_surf_pos + timeline_surf_length; //in frames
 var t_tlzoom = tlx+tlzoom-t_tlx + 200/tlwdivtlzoom; //in frames
-var t_tlw = t_tlzoom*tlwdivtlzoom; //in pixels
+var t_tlw = round(t_tlzoom*tlwdivtlzoom); //in pixels
 
 if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
 {
 	if (!surface_exists(timeline_surf_temp))
 		timeline_surf_temp = surface_create(2048,2048);
+
+	
+	if (surface_get_width(timeline_surf) - timeline_surf_length*tlwdivtlzoom < tlw+50)
+	{
+		surface_copy_part(timeline_surf_temp, 0, 0, timeline_surf, round(timeline_surf_length*tlwdivtlzoom-tlw-50), 0, tlw+100, surface_get_height(timeline_surf));
+		timeline_surf_length = tlw+100;
+		timeline_surf_pos += tlx+tlw+100;
+		
+		var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
+		var t_tlx = timeline_surf_pos + timeline_surf_length; //in frames
+		var t_tlzoom = tlx+tlzoom-t_tlx + 200/tlwdivtlzoom; //in frames
+		var t_tlw = round(t_tlzoom*tlwdivtlzoom); //in pixels
+		if (timeline_surf_length == 0)
+		{
+			var t_tempsurf = timeline_surf_temp;
+			timeline_surf_temp = timeline_surf;
+			timeline_surf = t_tempsurf;
+		}
+	}
 
 	surface_set_target(timeline_surf_temp);
 
@@ -47,7 +66,7 @@ if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
 	        //{
                             
 	            draw_rectangle_colour(-1,ypos_perm,t_tlw+1,ypos_perm+48,c_white,c_white,c_silver,c_silver,0);
-	            draw_rectangle(-1,ypos_perm,t_tlw-16,ypos_perm+48,1);
+	            draw_rectangle(-1,ypos_perm,t_tlw+1,ypos_perm+48,1);
             
 	            elementlist = _layer[| 1];
 	            for (j = 0; j < ds_list_size(elementlist); j++)
@@ -215,24 +234,26 @@ if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
 	    draw_rectangle(-1,lbh+tlh+16,t_tlw,lbh+tlh+33,0);
 	    gpu_set_blendmode(bm_normal);
        
-	    var drawtime = ceil(t_tlx/projectfps);
+	    var drawtime = ceil(t_tlx/projectfps - 10/tlwdivtlzoom);
 	    if (tlwdivtlzoom > 0.3) 
 			modulus = 5;
 	    else if (tlwdivtlzoom > 0.05)
 			modulus = 25;
-	    else 
+	    else if (tlwdivtlzoom > 0.01)
 			modulus = 60;
+		else
+			modulus = 300;
     
 	    draw_set_colour(c_ltgray);
 	    gpu_set_blendenable(false);
 	    while (1)
 	    {
 	        var tempx = round((drawtime*projectfps-t_tlx)*tlwdivtlzoom);
-	        if (tempx > t_tlw)
+	        if (tempx > t_tlw+10)
 	            break;
 
 			//todo move outside surface or fix clipping
-	        if ((drawtime mod modulus) == 0)
+	        if ((drawtime % modulus) == 0)
 	        {
 	            //draw timestamp
 	            draw_set_colour(c_gray);
@@ -254,12 +275,12 @@ if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
 	        drawtime++;
 	    }
 		
-		gpu_set_blendenable(true);
-    
 	    //audio   
 	    if (song != -1)
 	    {
-	        draw_set_alpha(0.67);
+			gpu_set_blendenable(true);
+			//gpu_set_blendmode(bm_add);
+			draw_set_alpha(0.67);
 	        for (u=0; u <= t_tlw; u++)
 	        {
 	            var nearesti = round((t_tlx+u*t_tlzoom/t_tlw)/projectfps*30)*3;
@@ -270,22 +291,26 @@ if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
 	            var v_tlhalf = tlhalf;
 	            var v_tlthird = tlthird;
                 
-	            var v = ds_list_find_value(audio_list,nearesti);
-	            draw_set_color(c_green);
-	            draw_line(u,v_tlhalf+v*v_tlhalf,u,v_tlhalf-v*v_tlhalf);
+				//draw_set_alpha(0.67);
+	            var t_wave = ds_list_find_value(audio_list,nearesti);
+				draw_set_color(c_green);
+	            draw_line(u, v_tlhalf+t_wave*v_tlhalf, u, v_tlhalf-t_wave*v_tlhalf);
             
-	            v = ds_list_find_value(audio_list,nearesti+1);
+				//draw_set_alpha(0.4);
+	            var t_bass = ds_list_find_value(audio_list,nearesti+1);
 	            draw_set_color(c_red);
-	            draw_line(u,v_tlhalf+v*v_tlhalf,u,v_tlhalf-v*v_tlhalf);
+	            draw_line(u, v_tlhalf+t_bass*v_tlhalf, u, v_tlhalf-t_bass*v_tlhalf);
             
-	            v = ds_list_find_value(audio_list,nearesti+2);
+				//draw_set_alpha(0.2);
+	            var t_treble = ds_list_find_value(audio_list,nearesti+2);
 	            draw_set_color(c_blue);
-	            draw_line(u,v_tlhalf+v*v_tlhalf,u,v_tlhalf-v*v_tlhalf);    
+	            draw_line(u, v_tlhalf+ t_treble*v_tlhalf, u, v_tlhalf-t_treble*v_tlhalf);    
 	        }
 	    }
         
 	draw_set_alpha(1);
 	draw_set_color(c_white);
+	gpu_set_blendmode(bm_normal);
 	draw_set_font(fnt_tooltip);
 	
 	surface_reset_target();
