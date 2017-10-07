@@ -422,6 +422,7 @@ else if (scroll_moving == 2)
         scroll_moving = 0;
     }
         
+	timeline_surf_length = 0;
     exit;
 }
     

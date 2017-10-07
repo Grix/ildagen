@@ -313,14 +313,14 @@ menu_width_start[6] = menu_width_start[5]+menu_width[5];
 menu_width[6] = string_width("   About   ");
 menu_width_start[7] = menu_width_start[6]+menu_width[6];
 
-radialgrid_surf = surface_create(512,512);
-surface_set_target(radialgrid_surf);
+radialgrid_surf = 1;//surface_create(512,512);
+/*surface_set_target(radialgrid_surf);
     draw_radialgrid();
-surface_reset_target();
-squaregrid_surf = surface_create(512,512);
-surface_set_target(squaregrid_surf);
+surface_reset_target();*/
+squaregrid_surf = -1; //surface_create(512,512);
+/*surface_set_target(squaregrid_surf);
     draw_grid();
-surface_reset_target();
+surface_reset_target();*/
 
 randomize();
 

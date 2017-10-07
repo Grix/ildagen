@@ -22,6 +22,8 @@ buffer_list = ds_list_create();
 marker_list = ds_list_create();
 timeline_surf = -1; //surface_create(1024,1024);
 timeline_surf_temp = -1; //surface_create(1024,1024);
+timeline_surf_audio_temp = -1;
+timeline_surf_audio = -1;
 frame_surf = -1; //surface_create(512,512);
 frame3d_surf = -1; //surface_create(512,512);
 frame_surf_large = -1; //surface_create(1024,1024);
@@ -80,7 +82,7 @@ loop = false;
 
 tlsurf_y = 138;
 tlw = 982; //width of timeline
-tlh = 128; //height of audio part of timeline
+tlh = 128-16; //height of audio part of timeline
 tls = tlh+tlsurf_y+16; //start of layer area, seen from outside surface
 lbh = 705-32-tlh-tlsurf_y;
 lbsh = tlh+16+lbh; //start of bottom scrollbar, seen from inside surface

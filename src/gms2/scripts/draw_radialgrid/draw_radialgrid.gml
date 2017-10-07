@@ -1,3 +1,4 @@
+draw_clear_alpha(c_black,0);
 draw_set_circle_precision(48);
 draw_set_color(c_gray);
 gpu_set_blendmode(bm_add);
