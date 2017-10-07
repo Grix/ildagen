@@ -1,7 +1,7 @@
 FMODGMS_Chan_Set_Volume(play_sndchannel, volume/100);
 FMODGMS_Chan_Set_Mute(play_sndchannel, muted);
 
-if (playing)
+if (playing && tlpos < fmod_get_length(song))
 	FMODGMS_Chan_ResumeChannel(play_sndchannel);
 else
 	FMODGMS_Chan_PauseChannel(play_sndchannel);
