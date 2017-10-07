@@ -5,3 +5,4 @@ ds_list_add(envelope,ds_list_create());
 ds_list_add(envelope,ds_list_create());
 ds_list_add(envelope,0);
 ds_list_add(envelope,0);
+seqcontrol.timeline_surf_length = 0;
