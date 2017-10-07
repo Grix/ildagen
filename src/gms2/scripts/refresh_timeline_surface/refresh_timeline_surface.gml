@@ -19,28 +19,29 @@ var t_tlx = timeline_surf_pos + timeline_surf_length; //in frames
 var t_tlzoom = tlx+tlzoom-t_tlx + 200/tlwdivtlzoom; //in frames
 var t_tlw = round(t_tlzoom*tlwdivtlzoom); //in pixels
 
-if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
+if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 {
 	if (!surface_exists(timeline_surf_temp))
 		timeline_surf_temp = surface_create(2048,2048);
 
 	
-	if (surface_get_width(timeline_surf) - timeline_surf_length*tlwdivtlzoom < tlw+50)
+	//if (surface_get_width(timeline_surf) - timeline_surf_length*tlwdivtlzoom < tlw+50)
+	if (timeline_surf_length*tlwdivtlzoom + t_tlw > surface_get_width(timeline_surf))
 	{
-		surface_copy_part(timeline_surf_temp, 0, 0, timeline_surf, round(timeline_surf_length*tlwdivtlzoom-tlw-50), 0, tlw+100, surface_get_height(timeline_surf));
-		timeline_surf_length = tlw+100;
-		timeline_surf_pos += tlx+tlw+100;
+		surface_copy_part(timeline_surf_temp, 0, 0, timeline_surf, timeline_surf_length*tlwdivtlzoom-tlw, 0, tlw+10, surface_get_height(timeline_surf));
+		timeline_surf_pos += timeline_surf_length - (tlw+50)/tlwdivtlzoom;
+		timeline_surf_length = (tlw+50)/tlwdivtlzoom;
+		
+		var t_tempsurf = timeline_surf_temp;
+		timeline_surf_temp = timeline_surf;
+		timeline_surf = t_tempsurf;
 		
 		var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 		var t_tlx = timeline_surf_pos + timeline_surf_length; //in frames
 		var t_tlzoom = tlx+tlzoom-t_tlx + 200/tlwdivtlzoom; //in frames
 		var t_tlw = round(t_tlzoom*tlwdivtlzoom); //in pixels
-		if (timeline_surf_length == 0)
-		{
-			var t_tempsurf = timeline_surf_temp;
-			timeline_surf_temp = timeline_surf;
-			timeline_surf = t_tempsurf;
-		}
+		
+		log("shift");
 	}
 
 	surface_set_target(timeline_surf_temp);
@@ -142,17 +143,17 @@ if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
 	                    draw_set_colour(c_gray);
 	                if (!hidden)
 	                {
-	                    draw_rectangle(-1,ypos_perm,t_tlw-16,ypos_perm+64,0);
+	                    draw_rectangle(-1,ypos_perm,t_tlw+1,ypos_perm+64,0);
 	                    draw_set_colour(c_ltgray);
-	                    draw_line(-1,ypos_perm+32,t_tlw-60,ypos_perm+32);
+	                    draw_line(-1,ypos_perm+32,t_tlw+1,ypos_perm+32);
 	                    draw_set_colour(c_black);
-	                    draw_rectangle(-1,ypos_perm,t_tlw-16,ypos_perm+64,1);
+	                    draw_rectangle(-1,ypos_perm,t_tlw+1,ypos_perm+64,1);
 	                }
 	                else
 	                {
-	                    draw_rectangle(-1,ypos_perm,t_tlw-16,ypos_perm+16,0);
+	                    draw_rectangle(-1,ypos_perm,t_tlw+1,ypos_perm+16,0);
 	                    draw_set_colour(c_black);
-	                    draw_rectangle(-1,ypos_perm,t_tlw-16,ypos_perm+16,1);
+	                    draw_rectangle(-1,ypos_perm,t_tlw+1,ypos_perm+16,1);
                     
 	                    //ypos_perm += 16;
 	                    ypos_perm += 16;
@@ -198,11 +199,11 @@ if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
 	                        {
 	                            if (t_index == 0)
 	                            {
-	                                draw_line( -1, t_env_y, t_tlw-16, t_env_y);
+	                                draw_line( -1, t_env_y, t_tlw+1, t_env_y);
 	                                draw_rectangle( t_env_x-1,t_env_y-1,t_env_x+1,t_env_y+1,0);
 	                                break;
 	                            }
-	                            draw_line(  t_env_x,t_env_y,t_tlw-16, t_env_y);
+	                            draw_line(  t_env_x,t_env_y,t_tlw+1, t_env_y);
 	                            draw_rectangle( t_env_x-1,t_env_y-1,t_env_x+1,t_env_y+1,0);
 	                            break;
 	                        }
@@ -217,7 +218,7 @@ if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
 	                }
 	                else
 	                {
-	                    draw_line(-1,default_value,t_tlw-16,default_value);
+	                    draw_line(-1,default_value,t_tlw+1,default_value);
 	                }
 	            //}
 	            //ypos_perm += 64;
@@ -234,12 +235,14 @@ if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
 	    draw_rectangle(-1,lbh+tlh+16,t_tlw,lbh+tlh+33,0);
 	    gpu_set_blendmode(bm_normal);
        
-	    var drawtime = ceil(t_tlx/projectfps - 10/tlwdivtlzoom);
-	    if (tlwdivtlzoom > 0.3) 
+	    var drawtime = floor(t_tlx/projectfps)-1;
+		if (tlwdivtlzoom > 5) 
+			modulus = 5/projectfps;
+	    else if (tlwdivtlzoom > 0.3) 
 			modulus = 5;
 	    else if (tlwdivtlzoom > 0.05)
-			modulus = 25;
-	    else if (tlwdivtlzoom > 0.01)
+			modulus = 30;
+	    else if (tlwdivtlzoom > 0.02)
 			modulus = 60;
 		else
 			modulus = 300;
@@ -272,7 +275,8 @@ if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
 	            if ((drawtime % (modulus/5)) == 0)
 	                draw_line(tempx,0,tempx,tlh-1);
 	        }
-	        drawtime++;
+			drawtime++;
+			//todo maybe add frame granulity
 	    }
 		
 	    //audio   
@@ -285,7 +289,7 @@ if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
 	        {
 	            var nearesti = round((t_tlx+u*t_tlzoom/t_tlw)/projectfps*30)*3;
             
-	            if (nearesti > ds_list_size(audio_list)-3)
+	            if (nearesti > ds_list_size(audio_list)-3 || nearesti < 0)
 	                break;
                 
 	            var v_tlhalf = tlhalf;
@@ -307,13 +311,13 @@ if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
 	            draw_line(u, v_tlhalf+ t_treble*v_tlhalf, u, v_tlhalf-t_treble*v_tlhalf);    
 	        }
 	    }
-        
-	draw_set_alpha(1);
-	draw_set_color(c_white);
-	gpu_set_blendmode(bm_normal);
-	draw_set_font(fnt_tooltip);
 	
 	surface_reset_target();
+	
+	draw_set_alpha(1);
+	draw_set_color(c_white);
+	//gpu_set_blendmode(bm_normal);
+	draw_set_font(fnt_tooltip);
 	
 	ypos_perm -= t_y;
 	if (timeline_surf_length == 0)
@@ -321,12 +325,13 @@ if (tlx+tlzoom-t_tlx > -50*tlwdivtlzoom)
 		var t_tempsurf = timeline_surf_temp;
 		timeline_surf_temp = timeline_surf;
 		timeline_surf = t_tempsurf;
+		log("FULL REFRESH");
 	}
 	else
-		surface_copy_part(timeline_surf, timeline_surf_length*tlwdivtlzoom, 0, timeline_surf_temp, 0, 0, ceil(t_tlzoom*tlwdivtlzoom), surface_get_height(timeline_surf));
+	{
+		surface_copy_part(timeline_surf, timeline_surf_length*tlwdivtlzoom, 0, timeline_surf_temp, 0, 0, t_tlw, surface_get_height(timeline_surf));
+		log("partial refresh");
+	}
+	
 	timeline_surf_length += t_tlzoom;
-
-	//draw_set_color(c_white);
-	draw_set_font(fnt_tooltip);
-
 }

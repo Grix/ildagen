@@ -15,7 +15,7 @@ if (playing == 1)
     
     if (song != -1) && (t_tlpos_prev <= length/projectfps*1000) && (tlpos > length/projectfps*1000)
     {
-        //playing = 0;
+		//playing = 0;
         //tlpos = 0;
         FMODGMS_Chan_StopChannel(play_sndchannel);
 		FMODGMS_Snd_PlaySound(song, play_sndchannel);
