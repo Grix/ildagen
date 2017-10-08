@@ -1,5 +1,5 @@
-alarm[0] = 2;
-alarm[4] = 600;
+//alarm[0] = 2;
+alarm[4] = 3000;
 
 layer_list = ds_list_create();
 _layer = ds_list_create();
@@ -73,6 +73,7 @@ muted = false;
 songfile_name = "";
 song_samplerate = 0;
 song_parse = 0;
+filepath = "";
 
 somaster_list_prevsize = 0;
 

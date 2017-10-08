@@ -116,5 +116,7 @@ show_message_new("LaserShowGen project saved to "+string(file_loc));
 
 buffer_delete(save_buffer);
 
+filepath = file_loc;
+
 global.loading_saveproject = 0;
 room_goto(rm_seq);

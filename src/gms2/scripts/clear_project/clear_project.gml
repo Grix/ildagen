@@ -2,6 +2,7 @@ tlpos = 0;
 playing = 0;
 frame_surf_refresh = 1;
 timeline_surf_length = 0;
+filepath = "";
 remove_audio();
 ds_list_clear(marker_list);
 
