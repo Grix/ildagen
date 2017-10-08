@@ -27,7 +27,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
           
 	if (t_ypos > tlh+16-48+tlsurf_y) and (t_ypos < lbsh)
 	{
-		var mouse_on_button_ver = (mouse_y == clamp(mouse_y,tlsurf_y+t_ypos+8,tlsurf_y+t_ypos+40));
+		var mouse_on_button_ver = (mouse_y == clamp(mouse_y,tlsurf_y+tlh+16+t_ypos+8,tlsurf_y+tlh+16+t_ypos+40));
 		draw_sprite(spr_deletelayer,
 		                mouse_on_button_ver and mouseoverlayerbutton_hor,
 		                tlw-56,t_ypos+8);
@@ -118,7 +118,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 	                draw_set_alpha(1);
 	            }
 	        gpu_set_blendenable(0);
-	        mouse_on_button_ver = (mouse_y == clamp(mouse_y,tlsurf_y+8+t_ypos,tlsurf_y+40+t_ypos));
+	        mouse_on_button_ver = (mouse_y == clamp(mouse_y,tlsurf_y+8+tlh+16+t_ypos,tlsurf_y+40+tlh+16+t_ypos));
 	        draw_sprite(spr_deletelayer,
 	                    mouse_on_button_ver and mouseoverlayerbutton_hor,
 	                    tlw-56,t_ypos+8);

@@ -25,6 +25,7 @@ var t_tlx = timeline_surf_pos + timeline_surf_length; //in frames
 var t_tlzoom = tlx+tlzoom-t_tlx + 200/tlwdivtlzoom; //in frames
 var t_tlw = round(t_tlzoom*tlwdivtlzoom); //in pixels
 
+
 if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 {
 	if (!surface_exists(timeline_surf_temp))
@@ -35,10 +36,13 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	//if (surface_get_width(timeline_surf) - timeline_surf_length*tlwdivtlzoom < tlw+50)
 	if (timeline_surf_length*tlwdivtlzoom + t_tlw > surface_get_width(timeline_surf))
 	{
-		surface_copy_part(timeline_surf_temp, 0, 0, timeline_surf, timeline_surf_length*tlwdivtlzoom-tlw, 0, tlw+10, surface_get_height(timeline_surf));
-		surface_copy_part(timeline_surf_audio_temp, 0, 0, timeline_surf_audio, timeline_surf_length*tlwdivtlzoom-tlw, 0, tlw+10, surface_get_height(timeline_surf_audio));
-		timeline_surf_pos += timeline_surf_length - (tlw+50)/tlwdivtlzoom;
-		timeline_surf_length = (tlw+50)/tlwdivtlzoom;
+		var t_newpos = tlx-20 - timeline_surf_pos;
+		
+		surface_copy_part(timeline_surf_temp, 0, 0, timeline_surf, t_newpos*tlwdivtlzoom, 0, tlw, surface_get_height(timeline_surf));
+		surface_copy_part(timeline_surf_audio_temp, 0, 0, timeline_surf_audio, t_newpos*tlwdivtlzoom, 0, tlw, surface_get_height(timeline_surf_audio));
+		
+		timeline_surf_pos = tlx-20;
+		timeline_surf_length = tlw/tlwdivtlzoom;
 		
 		var t_tempsurf = timeline_surf_temp;
 		timeline_surf_temp = timeline_surf;
@@ -240,18 +244,22 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	surface_reset_target();
     
 	surface_set_target(timeline_surf_audio_temp);
-		
+	
 	    draw_set_alpha(1);
 	    draw_set_font(fnt_small);
 	    gpu_set_blendenable(false);
 		draw_set_color(c_white);
 		draw_rectangle(0, 0, t_tlw, surface_get_height(timeline_surf_audio_temp), 0);
     
+		gpu_set_colorwriteenable(true,true,true,false);	
 	    /*draw_set_colour(c_white);
 	    gpu_set_blendmode(bm_subtract);
 	    draw_rectangle(-1,-1,t_tlw,tlh+16,0);
 	    draw_rectangle(-1,lbh+tlh+16,t_tlw,lbh+tlh+33,0);
 	    gpu_set_blendmode(bm_normal);*/
+		
+		draw_set_color(c_black);
+		draw_rectangle(-1,tlh,t_tlw+1,tlh+16,1);
 		
 		gpu_set_blendenable(true);
        
@@ -268,7 +276,7 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 			modulus = 300;
     
 	    draw_set_colour(c_ltgray);
-	    gpu_set_blendenable(false);
+	    gpu_set_blendenable(true);
 	    while (1)
 	    {
 	        var tempx = round((drawtime*projectfps-t_tlx)*tlwdivtlzoom);
@@ -302,9 +310,8 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	    //audio   
 	    if (song != -1)
 	    {
-			gpu_set_blendenable(true);
 			//gpu_set_blendmode(bm_add);
-			draw_set_alpha(0.67);
+			//draw_set_alpha(0.5);
 	        for (u=0; u <= t_tlw; u++)
 	        {
 	            var nearesti = round((t_tlx+u*t_tlzoom/t_tlw)/projectfps*30)*3;
@@ -315,23 +322,26 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	            var v_tlhalf = tlhalf;
 	            var v_tlthird = tlthird;
                 
-				//draw_set_alpha(0.67);
+				draw_set_alpha(0.6);
 	            var t_wave = ds_list_find_value(audio_list,nearesti);
 				draw_set_color(c_green);
 	            draw_line(u, v_tlhalf+t_wave*v_tlhalf, u, v_tlhalf-t_wave*v_tlhalf);
             
-				//draw_set_alpha(0.4);
+				draw_set_alpha(0.4);
 	            var t_bass = ds_list_find_value(audio_list,nearesti+1);
 	            draw_set_color(c_red);
 	            draw_line(u, v_tlhalf+t_bass*v_tlhalf, u, v_tlhalf-t_bass*v_tlhalf);
             
-				//draw_set_alpha(0.2);
+				draw_set_alpha(0.4);
 	            var t_treble = ds_list_find_value(audio_list,nearesti+2);
 	            draw_set_color(c_blue);
 	            draw_line(u, v_tlhalf+ t_treble*v_tlhalf, u, v_tlhalf-t_treble*v_tlhalf);    
 	        }
+			
+
+
 	    }
-	
+	gpu_set_colorwriteenable(true,true,true,true);
 	surface_reset_target();
 	
 	draw_set_alpha(1);
@@ -353,7 +363,7 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 		log("FULL REFRESH");
 	}
 	else
-	{
+	{	
 		surface_copy_part(timeline_surf, timeline_surf_length*tlwdivtlzoom, 0, timeline_surf_temp, 0, 0, t_tlw, surface_get_height(timeline_surf));
 		surface_copy_part(timeline_surf_audio, timeline_surf_length*tlwdivtlzoom, 0, timeline_surf_audio_temp, 0, 0, t_tlw, surface_get_height(timeline_surf_audio));
 		log("partial refresh");
