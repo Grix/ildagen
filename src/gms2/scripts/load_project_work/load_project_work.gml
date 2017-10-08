@@ -196,7 +196,9 @@ if (songload)
         else
             parsingaudio = parsingaudioload;
     }
-    ds_list_clear(audio_list);
+    if (buffer_exists(audio_buffer))
+		buffer_delete(audio_buffer);
+	audio_buffer = -1;
     deltatime = 0;
     playing = 0;
     tlpos = 0;

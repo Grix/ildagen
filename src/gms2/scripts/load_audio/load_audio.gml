@@ -46,7 +46,9 @@ if (songfile_name == "Tag not found.")
     song = FMODGMS_Snd_LoadStream(controller.FStemp+"tempaudio"+temprandomstring+filename_ext(songfile));
 }*/
 
-ds_list_clear(audio_list);
+if (buffer_exists(audio_buffer))
+	buffer_delete(audio_buffer);
+audio_buffer = -1;
 //FMODGMS_Snd_PlaySound(song, parse_sndchannel);
 //FMODGMS_Chan_ResumeChannel(parse_sndchannel);
 //fmod_set_pos(parse_sndchannel, 0);

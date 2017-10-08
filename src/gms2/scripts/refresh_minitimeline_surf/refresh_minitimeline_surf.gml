@@ -67,27 +67,27 @@ else
 //audio  
 if (seqcontrol.song != -1)
 {
-    draw_set_alpha(0.5);
-    var tlhalf = (tlh-13)/2;
-    var tlthird = (tlh-13)/3;
+    draw_set_alpha(0.67);
+    var t_tlhalf = (tlh-13)/2;
+    //var t_tlthird = (tlh-13)/3;
     for (u=0; u <= tlw; u++)
     {
         var nearesti = round((tlx+u*tlzoom/tlw)/projectfps*60)*3;
         
-        if (nearesti > ds_list_size(seqcontrol.audio_list)-3)
+        if (nearesti > buffer_get_size(seqcontrol.audio_buffer)-3 || nearesti < 0)
             break;
             
-        v = ds_list_find_value(seqcontrol.audio_list,nearesti);
+        v = buffer_peek(seqcontrol.audio_buffer, nearesti, buffer_u8)/255;
         draw_set_color(c_green);
-        draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);
+        draw_line(u,t_tlhalf+v*t_tlhalf,u,t_tlhalf-v*t_tlhalf);
         
-        v = ds_list_find_value(seqcontrol.audio_list,nearesti+1);
+        v = buffer_peek(seqcontrol.audio_buffer, nearesti+1, buffer_u8)/255;
         draw_set_color(c_red);
-        draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);
+        draw_line(u,t_tlhalf+v*t_tlhalf,u,t_tlhalf-v*t_tlhalf);
         
-        v = ds_list_find_value(seqcontrol.audio_list,nearesti+2);
+        v = buffer_peek(seqcontrol.audio_buffer, nearesti+2, buffer_u8)/255;
         draw_set_color(c_blue);
-        draw_line(u,tlhalf+v*tlthird,u,tlhalf-v*tlthird);    
+        draw_line(u,t_tlhalf+v*t_tlhalf,u,t_tlhalf-v*t_tlhalf);    
     }
     draw_set_alpha(1);
 }

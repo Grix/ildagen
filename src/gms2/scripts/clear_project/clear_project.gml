@@ -2,9 +2,7 @@ tlpos = 0;
 playing = 0;
 frame_surf_refresh = 1;
 timeline_surf_length = 0;
-parsingaudio = 0;
-ds_list_destroy(audio_list);
-audio_list = ds_list_create();
+remove_audio();
 ds_list_clear(marker_list);
 
 while (ds_list_size(undo_list))
@@ -63,8 +61,6 @@ while (ds_list_size(undo_list))
 }
 ds_list_destroy(undo_list);
 undo_list = ds_list_create();
-
-remove_audio();
     
 repeat (ds_list_size(layer_list))   
 {
