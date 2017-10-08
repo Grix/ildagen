@@ -1,8 +1,8 @@
 {
-    "id": "e0dda906-41b8-4709-855c-cd93027b64e9",
+    "id": "45e6c5bc-acf4-4932-8269-331b22106637",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "save_project",
+    "name": "save_project_quick",
     "IsCompatibility": false,
     "IsDnD": false
 }
