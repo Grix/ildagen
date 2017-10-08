@@ -316,24 +316,24 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	        {
 	            var nearesti = round((t_tlx+u*t_tlzoom/t_tlw)/projectfps*30)*3;
             
-	            if (nearesti > ds_list_size(audio_list)-3 || nearesti < 0)
+	            if (nearesti > buffer_get_size(audio_buffer)-3 || nearesti < 0)
 	                break;
                 
 	            var v_tlhalf = tlhalf;
-	            var v_tlthird = tlthird;
+	            //var v_tlthird = tlthird;
                 
 				draw_set_alpha(0.6);
-	            var t_wave = ds_list_find_value(audio_list,nearesti);
+	            var t_wave = buffer_peek(audio_buffer, nearesti, buffer_u8)/255;//ds_list_find_value(audio_list,nearesti);
 				draw_set_color(c_green);
 	            draw_line(u, v_tlhalf+t_wave*v_tlhalf, u, v_tlhalf-t_wave*v_tlhalf);
             
 				draw_set_alpha(0.4);
-	            var t_bass = ds_list_find_value(audio_list,nearesti+1);
+	            var t_bass = buffer_peek(audio_buffer, nearesti+1, buffer_u8)/255;
 	            draw_set_color(c_red);
 	            draw_line(u, v_tlhalf+t_bass*v_tlhalf, u, v_tlhalf-t_bass*v_tlhalf);
             
 				draw_set_alpha(0.4);
-	            var t_treble = ds_list_find_value(audio_list,nearesti+2);
+	            var t_treble = buffer_peek(audio_buffer, nearesti+2, buffer_u8)/255;
 	            draw_set_color(c_blue);
 	            draw_line(u, v_tlhalf+ t_treble*v_tlhalf, u, v_tlhalf-t_treble*v_tlhalf);    
 	        }

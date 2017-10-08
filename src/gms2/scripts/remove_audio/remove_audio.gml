@@ -12,6 +12,8 @@ if (song != -1)
 	ds_list_clear(effect_list);
 }
 song = -1;
-ds_list_clear(audio_list);
+if (buffer_exists(audio_buffer))
+	buffer_delete(audio_buffer);
+audio_buffer = -1;
 parsingaudio = 0;
 timeline_surf_length = 0;
