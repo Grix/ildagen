@@ -4,18 +4,16 @@ var t_tlzoom = tlx+tlzoom-t_tlx + 200/tlwdivtlzoom; //in frames
 var t_tlw = t_tlzoom*tlwdivtlzoom; //in pixels
 
 
-draw_surface_part(timeline_surf, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw+1, lbsh+17-(tlh+16), 0, tlsurf_y-1+tlh+16);
+draw_surface_part(timeline_surf, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw-16, lbsh-(tlh+16), 0, tlsurf_y+tlh+15);
 
 draw_set_color(c_black);
-var t_y = tlh+16-layerbary+tlsurf_y;
-//var ypos_perm = 0;
-var t_ypos = t_y;
+var t_ypos = tlh+16-layerbary+tlsurf_y;
 var mouseoverlayerbutton_hor = (mouse_x == clamp(mouse_x,tlw-56,tlw-24));
 for (i = 0; i <= ds_list_size(layer_list);i++)
 {
 	if (i == ds_list_size(layer_list))
 	{
-	    if (t_ypos > tlh+16-48+tlsurf_y) and (t_ypos < lbsh)
+	    if (t_ypos > tlh+16-48+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
 	        draw_sprite(spr_addlayer,
 	                    mouseoverlayerbutton_hor and (mouse_y == clamp(mouse_y,t_ypos+8,t_ypos+40)),
 	                    tlw-56,t_ypos+8);
@@ -25,9 +23,9 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
             
 	_layer = layer_list[| i];
           
-	if (t_ypos > tlh+16-48+tlsurf_y) and (t_ypos < lbsh)
+	if (t_ypos > tlh+16-48+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
 	{
-		var mouse_on_button_ver = (mouse_y == clamp(mouse_y,tlsurf_y+tlh+16+t_ypos+8,tlsurf_y+tlh+16+t_ypos+40));
+		var mouse_on_button_ver = (mouse_y == clamp(mouse_y,t_ypos+8,t_ypos+40));
 		draw_sprite(spr_deletelayer,
 		                mouse_on_button_ver and mouseoverlayerbutton_hor,
 		                tlw-56,t_ypos+8);
@@ -58,15 +56,14 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 		}
 	}
 
-                        
-	//t_ypos += 48;
+                     
 	t_ypos += 48;
         
 	//envelopes
 	envelope_list = ds_list_find_value(_layer, 0);
 	for (j = 0; j < ds_list_size(envelope_list); j++)
 	{
-	    if (t_ypos > tlh+16-64+tlsurf_y) and (t_ypos < lbsh)
+	    if (t_ypos > tlh+16-64+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
 	    {
 	        envelope = ds_list_find_value(envelope_list,j);
 	        type = ds_list_find_value(envelope,0);
@@ -87,7 +84,6 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 	            draw_text(t_stringx+5, t_ypos+2, typedraw);
 	            gpu_set_blendenable(false);
                     
-	            //t_ypos += 16;
 	            t_ypos += 16;
 	            continue;
 	        }
@@ -118,12 +114,11 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 	                draw_set_alpha(1);
 	            }
 	        gpu_set_blendenable(0);
-	        mouse_on_button_ver = (mouse_y == clamp(mouse_y,tlsurf_y+8+tlh+16+t_ypos,tlsurf_y+40+tlh+16+t_ypos));
+	        mouse_on_button_ver = (mouse_y == clamp(mouse_y,8+t_ypos,40+t_ypos));
 	        draw_sprite(spr_deletelayer,
 	                    mouse_on_button_ver and mouseoverlayerbutton_hor,
 	                    tlw-56,t_ypos+8);
 	    }
-	    //t_ypos += 64;
 	    t_ypos += 64;
 	}
 }
@@ -150,12 +145,6 @@ if (endframex == clamp(endframex,0,tlw-16))
 	draw_text(endframex-25,tlsurf_y+lbsh-20,"End");
 }
 draw_set_font(fnt_tooltip);
-    
-/*draw_set_colour(c_white);
-gpu_set_blendmode(bm_subtract);
-draw_rectangle(-1,-1,tlw,tlh+16,0);
-draw_rectangle(-1,lbh+tlh+16,tlw,lbh+tlh+33,0);
-gpu_set_blendmode(bm_normal);*/
         
 //markers
 draw_set_alpha(0.9);
@@ -171,7 +160,7 @@ for (i = 0; i < ds_list_size(marker_list); i++)
 }
 
 draw_set_alpha(1);
-draw_surface_part(timeline_surf_audio, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw+1, tlh+16, 0, tlsurf_y-1);
+draw_surface_part(timeline_surf_audio, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw, tlh+16, 0, tlsurf_y);
         
 //scope fog
 gpu_set_blendenable(true);
@@ -183,8 +172,14 @@ if (endframex < tlw)
 {
 	draw_rectangle(clamp(endframex,tlw-16,tlw),tlsurf_y,tlw,tlsurf_y+tlh+16,0);
 	if (endframex < tlw-16)
-	    draw_rectangle(clamp(endframex,0,tlw-16),tlsurf_y,tlw-16,lbsh+tlsurf_y,0);
+	    draw_rectangle(clamp(endframex,0,tlw-15),tlsurf_y,tlw-15,lbsh+tlsurf_y,0);
 }
 
+//scroll edges
 draw_set_alpha(1);
 draw_set_color(c_white);
+draw_rectangle(0, tlsurf_y+lbsh, tlw, tlsurf_y+lbsh+16, 0);
+draw_rectangle(tlw-16, tlsurf_y+tlh+16, tlw, tlsurf_y+lbsh+16, 0);
+draw_set_color(c_black);
+draw_rectangle(0, tlsurf_y+lbsh, tlw, tlsurf_y+lbsh+16, 1);
+draw_rectangle(tlw-16, tlsurf_y+tlh+16, tlw, tlsurf_y+lbsh+16, 1);

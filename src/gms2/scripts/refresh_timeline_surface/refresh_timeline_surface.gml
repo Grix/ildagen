@@ -55,8 +55,6 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 		var t_tlx = timeline_surf_pos + timeline_surf_length; //in frames
 		var t_tlzoom = tlx+tlzoom-t_tlx + 200/tlwdivtlzoom; //in frames
 		var t_tlw = round(t_tlzoom*tlwdivtlzoom); //in pixels
-		
-		log("shift");
 	}
 
 	surface_set_target(timeline_surf_temp);
@@ -71,7 +69,6 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
     
 	    draw_set_color(c_black);
 	    var t_y = -layerbary;
-	    //var ypos_perm = 0;
 	    ypos_perm = t_y;
 	    for (i = 0; i < ds_list_size(layer_list);i++)
 	    {
@@ -138,7 +135,6 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	            }
 	        }
                         
-	        //ypos_perm += 48;
 	        ypos_perm += 48;
         
 	        //envelopes
@@ -235,7 +231,6 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	                    draw_line(-1,default_value,t_tlw+1,default_value);
 	                }
 	            }
-	            //ypos_perm += 64;
 	            ypos_perm += 64;
 	        }
 		}
@@ -252,14 +247,9 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 		draw_rectangle(0, 0, t_tlw, surface_get_height(timeline_surf_audio_temp), 0);
     
 		gpu_set_colorwriteenable(true,true,true,false);	
-	    /*draw_set_colour(c_white);
-	    gpu_set_blendmode(bm_subtract);
-	    draw_rectangle(-1,-1,t_tlw,tlh+16,0);
-	    draw_rectangle(-1,lbh+tlh+16,t_tlw,lbh+tlh+33,0);
-	    gpu_set_blendmode(bm_normal);*/
 		
 		draw_set_color(c_black);
-		draw_rectangle(-1,tlh,t_tlw+1,tlh+16,1);
+		draw_rectangle(-1,tlh,t_tlw+1,tlh+15,1);
 		
 		gpu_set_blendenable(true);
        
@@ -292,7 +282,7 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	            draw_set_halign(fa_center);
 	            draw_set_valign(fa_center);
 	            draw_set_colour(c_dkgray);
-	            draw_text(tempx,tlh+9,string_replace(string_format(floor(drawtime/60),2,0)," ","0")+
+	            draw_text(tempx,tlh+8,string_replace(string_format(floor(drawtime/60),2,0)," ","0")+
 	                                ":"+string_replace(string_format(drawtime %60,2,0)," ","0"));
 	            draw_set_halign(fa_left);
 	            draw_set_valign(fa_top);
@@ -310,8 +300,6 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	    //audio   
 	    if (song != -1)
 	    {
-			//gpu_set_blendmode(bm_add);
-			//draw_set_alpha(0.5);
 	        for (u=0; u <= t_tlw; u++)
 	        {
 	            var nearesti = round((t_tlx+u*t_tlzoom/t_tlw)/projectfps*30)*3;
@@ -320,10 +308,9 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	                break;
                 
 	            var v_tlhalf = tlhalf;
-	            //var v_tlthird = tlthird;
                 
 				draw_set_alpha(0.6);
-	            var t_wave = buffer_peek(audio_buffer, nearesti, buffer_u8)/255;//ds_list_find_value(audio_list,nearesti);
+	            var t_wave = buffer_peek(audio_buffer, nearesti, buffer_u8)/255;
 				draw_set_color(c_green);
 	            draw_line(u, v_tlhalf+t_wave*v_tlhalf, u, v_tlhalf-t_wave*v_tlhalf);
             
@@ -346,11 +333,9 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	
 	draw_set_alpha(1);
 	draw_set_color(c_white);
-	//gpu_set_blendmode(bm_normal);
 	draw_set_font(fnt_tooltip);
 	
-	ypos_perm -= t_y;
-	ypos_perm += layerbary;
+	ypos_perm += t_y;
 	
 	if (timeline_surf_length == 0)
 	{
@@ -360,13 +345,11 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 		t_tempsurf = timeline_surf_audio_temp;
 		timeline_surf_audio_temp = timeline_surf_audio;
 		timeline_surf_audio = t_tempsurf;
-		log("FULL REFRESH");
 	}
 	else
 	{	
 		surface_copy_part(timeline_surf, timeline_surf_length*tlwdivtlzoom, 0, timeline_surf_temp, 0, 0, t_tlw, surface_get_height(timeline_surf));
 		surface_copy_part(timeline_surf_audio, timeline_surf_length*tlwdivtlzoom, 0, timeline_surf_audio_temp, 0, 0, t_tlw, surface_get_height(timeline_surf_audio));
-		log("partial refresh");
 	}
 	
 	timeline_surf_length += t_tlzoom;

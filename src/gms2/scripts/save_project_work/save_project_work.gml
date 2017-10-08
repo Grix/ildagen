@@ -60,7 +60,7 @@ for (i = global.loading_current; i < global.loading_end;i++)
             buffer_write(save_buffer,buffer_u8,0);
     }
     
-    //_layer vars
+    //layer vars
     buffer_write(save_buffer,buffer_u8,_layer[| 2]); //muted
     buffer_write(save_buffer,buffer_u8,_layer[| 3]); //hidden
     buffer_write(save_buffer,buffer_string,_layer[| 4]); //name
@@ -80,20 +80,18 @@ for (i = global.loading_current; i < global.loading_end;i++)
 //saving audio data
 if (song != -1)
 {
-    buffer_write(save_buffer,buffer_string,songfile_name);
+    buffer_write(save_buffer, buffer_string, songfile_name);
     songfile_size = buffer_get_size(song_buffer);
-    buffer_write(save_buffer,buffer_u32,songfile_size);
-    buffer_copy(song_buffer,0,songfile_size,save_buffer,buffer_tell(save_buffer));
-    buffer_seek(save_buffer,buffer_seek_relative,songfile_size);
+    buffer_write(save_buffer, buffer_u32, songfile_size);
+    buffer_copy(song_buffer, 0, songfile_size, save_buffer, buffer_tell(save_buffer));
+    buffer_seek(save_buffer, buffer_seek_relative, songfile_size);
     
     if (!parsingaudio)
     {
-        buffer_write(save_buffer,buffer_u32,ds_list_size(audio_list));
-        parsinglistsize = ds_list_size(audio_list);
-        for (i = 0; i < parsinglistsize; i++)
-        {
-            buffer_write(save_buffer,buffer_f32,ds_list_find_value(audio_list,i));
-        }
+        var t_buffersize = buffer_get_size(audio_buffer);
+	    buffer_write(save_buffer,buffer_u32,t_buffersize);
+	    buffer_copy(audio_buffer,0,t_buffersize,save_buffer,buffer_tell(save_buffer));
+	    buffer_seek(save_buffer,buffer_seek_relative,t_buffersize);
     }
 }
     

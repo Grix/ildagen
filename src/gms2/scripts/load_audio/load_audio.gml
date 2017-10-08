@@ -36,7 +36,11 @@ if (songfile_name == "Tag not found.")
 {
 	songfile_name = FMODGMS_Snd_Get_TagStringFromName(song, "TITLE");
 	if (songfile_name == "Tag not found.")
-		songfile_name = filename_name(t_songfile_loc);
+	{
+		songfile_name = FMODGMS_Snd_Get_TagStringFromName(song, "TT2");
+		if (songfile_name == "Tag not found.")
+			songfile_name = filename_name(t_songfile_loc);
+	}
 }
 
 /*if (!song and (FMODGetLastError() == 25))
