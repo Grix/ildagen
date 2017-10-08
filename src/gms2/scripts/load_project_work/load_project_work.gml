@@ -1,4 +1,4 @@
-if (idbyte == 103) or (idbyte == 101) or (idbyte == 102)
+if (idbyte == 104) or(idbyte == 103) or (idbyte == 101) or (idbyte == 102)
 {
     for (j = global.loading_current; j < global.loading_end;j++)
     {
@@ -68,7 +68,7 @@ if (idbyte == 103) or (idbyte == 101) or (idbyte == 102)
         }
         
         //layer vars
-        if (idbyte == 103)
+        if (idbyte == 103) or (idbyte == 104)
         {
             ds_list_add(layertemp, buffer_read(load_buffer,buffer_u8)); //muted
             ds_list_add(layertemp, buffer_read(load_buffer,buffer_u8)); //hidden
@@ -168,15 +168,21 @@ if (get_timer()-global.loadingtimeprev >= 100000)
     
 if (songload)
 {
-    songfile_name = buffer_read(load_buffer,buffer_string);
+    songfile_name = buffer_read(load_buffer, buffer_string);
     songfile = songfile_name;
-    songfile_size = buffer_read(load_buffer,buffer_u32);
-    song_buffer = buffer_create(songfile_size,buffer_fixed,1);
-    buffer_copy(load_buffer,buffer_tell(load_buffer),songfile_size,song_buffer,0);
-    buffer_seek(load_buffer,buffer_seek_relative,songfile_size);
-    temprandomstring = string(irandom(1000000));
-    buffer_save(song_buffer,"temp/tempaudio"+temprandomstring+filename_ext(songfile));
-	song = FMODGMS_Snd_LoadStream(controller.FStemp+"tempaudio"+temprandomstring+filename_ext(songfile));
+    songfile_size = buffer_read(load_buffer, buffer_u32);
+    song_buffer = buffer_create(songfile_size, buffer_fixed, 1);
+    buffer_copy(load_buffer ,buffer_tell(load_buffer), songfile_size, song_buffer,0);
+    buffer_seek(load_buffer, buffer_seek_relative, songfile_size);
+	
+	var t_exInfo = buffer_create(34*8, buffer_fixed, 8);
+	buffer_fill(t_exInfo, 0, buffer_u64, 0, buffer_get_size(t_exInfo));
+	buffer_poke(t_exInfo, 0, buffer_u32, buffer_get_size(song_buffer));
+	song = FMODGMS_Snd_LoadSound_Ext(buffer_get_address(song_buffer),	FMODGMS_MODE_DEFAULT | 
+																		FMODGMS_MODE_OPENMEMORY_POINT | 
+																		FMODGMS_MODE_ACCURATETIME |
+																		FMODGMS_MODE_CREATECOMPRESSEDSAMPLE, 
+																		buffer_get_address(t_exInfo));
    
     if (song == -1) 
     {
@@ -184,36 +190,57 @@ if (songload)
     }
     else
     {
-        songlength = FMODGMS_Snd_Get_Length(song);
-        if (length < songlength/1000*projectfps)
-        {
-            length = songlength/1000*projectfps;
-        }
-        
-        FMODGMS_Snd_PlaySound(song, parse_sndchannel); //todo create this channel
         if (idbyte < 103)
             parsingaudio = 1;
         else
             parsingaudio = parsingaudioload;
+			
+		FMODGMS_Snd_PlaySound(song, play_sndchannel);
+        apply_audio_settings();
+		fmod_set_pos(play_sndchannel, 0);
+		
+		if (parsingaudio)
+		{
+			song_parse = FMODGMS_Snd_LoadSound_Ext(buffer_get_address(song_buffer),	FMODGMS_MODE_DEFAULT | 
+																					FMODGMS_MODE_ACCURATETIME |
+																					FMODGMS_MODE_OPENMEMORY_POINT | 
+																					FMODGMS_MODE_CREATESTREAM |
+																					FMODGMS_MODE_OPENONLY, 
+																					buffer_get_address(t_exInfo));
+		}
+		
+		song_samplerate = FMODGMS_Snd_Get_DefaultFrequency(song);
+		
+		songlength = fmod_get_length(song);
+		if (length < songlength/1000*projectfps)
+		{
+		    length = ceil(songlength/1000*projectfps);
+		    endframe = length;
+		}
     }
+	
+	buffer_delete(t_exInfo);
+	
     if (buffer_exists(audio_buffer))
 		buffer_delete(audio_buffer);
 	audio_buffer = -1;
     deltatime = 0;
     playing = 0;
+	parsingaudio_pos = 0;
     tlpos = 0;
-    
-    if (song != -1)
-    {
-        FMODGMS_Snd_PlaySound(song, play_sndchannel); //todo create this channel
-        apply_audio_settings();
-    }
+	tlx = 0;
         
     //audio data
     if (!parsingaudioload)
     {
         parsinglistsize = buffer_read(load_buffer,buffer_u32);
-        if (idbyte >= 103)
+		if (idbyte == 104)
+		{
+		    audio_buffer = buffer_create(parsinglistsize, buffer_fast, 1);
+		    buffer_copy(load_buffer, buffer_tell(load_buffer), parsinglistsize, audio_buffer, 0);
+		    buffer_seek(load_buffer, buffer_seek_relative, parsinglistsize);
+		}
+        else if (idbyte == 103)
         {
             for (i = 0; i < parsinglistsize; i++)
             {
@@ -224,7 +251,7 @@ if (songload)
         {
             for (i = 0; i < parsinglistsize; i++)
             {
-                buffer_read(load_buffer,buffer_f32);
+                buffer_read(load_buffer,buffer_f32); //skip
             }
         }
     }
@@ -240,6 +267,7 @@ for (i = 0; i < parsinglistsize; i++)
 buffer_delete(load_buffer);
 
 projectorlist_update();
+timeline_surf_length = 0;
 
 global.loading_loadproject = 0;
 
