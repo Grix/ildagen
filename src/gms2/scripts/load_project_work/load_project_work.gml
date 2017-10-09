@@ -242,9 +242,10 @@ if (songload)
 		}
         else if (idbyte == 103)
         {
+			audio_buffer = buffer_create(parsinglistsize, buffer_fast, 1);
             for (i = 0; i < parsinglistsize; i++)
             {
-                ds_list_add(audio_list,buffer_read(load_buffer,buffer_f32));
+                buffer_write(audio_buffer, buffer_u8, clamp(buffer_read(load_buffer,buffer_f32)/1.5, 0, 1));
             }
         }
         else

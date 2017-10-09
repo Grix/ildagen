@@ -93,4 +93,4 @@ frame_list
             x4 for each
         
 semaster_list
-	el_lists.. (see above)
+	elid's
