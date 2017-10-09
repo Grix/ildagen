@@ -564,8 +564,8 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
         mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+48))
         if (mouseonlayer)
         {
-            var mouseoverlayerbuttons_ver = (mouse_y == clamp(mouse_y,ypos+8,ypos+40));
-            var mouseover_layer = (mouseoverlayerbuttons_ver  and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)));
+            var mouse_on_button_ver = (mouse_y == clamp(mouse_y,ypos+8,ypos+40)) && mouse_y > tlsurf_y+tlh+16;
+            var mouseover_layer = (mouse_on_button_ver  and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)));
             
             if (i == ds_list_size(layer_list))
             {
@@ -593,7 +593,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                 break;
             }
                 
-            var mouseover_envelope = !mouseover_layer and mouseoverlayerbuttons_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64));
+            var mouseover_envelope = !mouseover_layer and mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64));
             
             mouseonsomelayer = 1;
             if (mouseover_layer)

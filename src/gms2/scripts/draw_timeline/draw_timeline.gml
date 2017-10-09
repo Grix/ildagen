@@ -8,14 +8,15 @@ draw_surface_part(timeline_surf, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwd
 
 draw_set_color(c_black);
 var t_ypos = tlh+16-layerbary+tlsurf_y;
-var mouseoverlayerbutton_hor = (mouse_x == clamp(mouse_x,tlw-56,tlw-24));
+var mouse_on_button_hor = (mouse_x == clamp(mouse_x,tlw-56,tlw-24));
 for (i = 0; i <= ds_list_size(layer_list);i++)
 {
 	if (i == ds_list_size(layer_list))
 	{
+		var mouse_on_button_ver = (mouse_y == clamp(mouse_y,t_ypos+8,t_ypos+40)) && mouse_y > tlsurf_y+tlh+16;
 	    if (t_ypos > tlh+16-48+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
 	        draw_sprite(spr_addlayer,
-	                    mouseoverlayerbutton_hor and (mouse_y == clamp(mouse_y,t_ypos+8,t_ypos+40)),
+	                    mouse_on_button_hor && mouse_on_button_ver,
 	                    tlw-56,t_ypos+8);
 	    t_ypos += 48;
 	    break;
@@ -25,9 +26,9 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
           
 	if (t_ypos > tlh+16-48+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
 	{
-		var mouse_on_button_ver = (mouse_y == clamp(mouse_y,t_ypos+8,t_ypos+40));
+		var mouse_on_button_ver = (mouse_y == clamp(mouse_y,t_ypos+8,t_ypos+40)) && mouse_y > tlsurf_y+tlh+16;
 		draw_sprite(spr_deletelayer,
-		                mouse_on_button_ver and mouseoverlayerbutton_hor,
+		                mouse_on_button_ver and mouse_on_button_hor,
 		                tlw-56,t_ypos+8);
 		draw_sprite(spr_addenvelope,
 		                mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64)),
@@ -116,7 +117,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 	        gpu_set_blendenable(0);
 	        mouse_on_button_ver = (mouse_y == clamp(mouse_y,8+t_ypos,40+t_ypos));
 	        draw_sprite(spr_deletelayer,
-	                    mouse_on_button_ver and mouseoverlayerbutton_hor,
+	                    mouse_on_button_ver and mouse_on_button_hor,
 	                    tlw-56,t_ypos+8);
 	    }
 	    t_ypos += 64;

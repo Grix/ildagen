@@ -21,7 +21,7 @@ if (view_current == 0)
 	var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 	
     //if ((alarm[0] == 1)) or (playing and (alarm[0] mod 2) == 1) or (moving_object) or (moving_object_flag) or (scroll_moving)
-       
+
 	refresh_timeline_surface();
 	
     draw_timeline();
@@ -74,7 +74,7 @@ if (view_current == 0)
     {
         draw_set_alpha(0.2);
         draw_line(mouse_x,136,mouse_x,136+tlh);
-        draw_line(mouse_x,tls,mouse_x-1,lbsh+136);
+        draw_line(mouse_x,tls,mouse_x,lbsh+136);
         draw_mouseline = 0;
     }
     if (draw_cursorline = 1)

@@ -9,7 +9,7 @@ for (u = 0; u < ds_list_size(el_list);u++)
     
     for (j = 0;j < ds_list_size(semaster_list);j++)
     {
-        if (elid_temp = ds_list_find_value(semaster_list,j))
+        if (elid_temp == ds_list_find_value(semaster_list,j))
         {
             xo = ds_list_find_value(templist,0)/$ffff*512;
             yo = ds_list_find_value(templist,1)/$ffff*512;
