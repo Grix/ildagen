@@ -1,9 +1,9 @@
 if (room != rm_seq) 
     exit;
 
-if (view_current == 0)
+if (view_current == 1)
 {
-    draw_set_color(c_white);
+	draw_set_color(c_white);
     draw_set_alpha(1);
         
     //draws laser preview
@@ -17,7 +17,7 @@ if (view_current == 0)
             
         frame_surf_refresh = false;
     }
-        
+         
 	var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 	
     //if ((alarm[0] == 1)) or (playing and (alarm[0] mod 2) == 1) or (moving_object) or (moving_object_flag) or (scroll_moving)
@@ -83,7 +83,7 @@ if (view_current == 0)
         floatingcursorxcorrected = (floatingcursorx-tlx)/tlzoom*tlw;
         draw_line(floatingcursorxcorrected,floatingcursory,floatingcursorxcorrected,floatingcursory+48);
     }
-        
+	
     draw_set_alpha(1);
     if (controller.laseron)
     {
@@ -179,4 +179,3 @@ else if (view_current == 3)
         draw_set_alpha(1);
     }
 }
-

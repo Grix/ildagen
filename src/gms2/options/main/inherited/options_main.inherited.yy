@@ -2,10 +2,11 @@
     "option_author": "Gitle Mikkelsen",
     "option_gameguid": "{62473780-C74E-47E2-A7EF-4EF7A79A4438}",
     "option_game_speed": 60,
-    "option_lastchanged": "02 October 2017 21:21:43",
+    "option_lastchanged": "10 October 2017 18:51:56",
     "option_draw_colour": {
-        "Value": 4278190080
-    }
+        "Value": 4294967295
+    },
+    "option_mips_for_3d_textures": false
 }←be5f1418-b31b-48af-a023-f04cdf6e5121|{
     "textureGroups": {
         "Additions": [
