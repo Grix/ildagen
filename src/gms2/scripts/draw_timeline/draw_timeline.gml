@@ -4,7 +4,7 @@ var t_tlzoom = tlx+tlzoom-t_tlx + 200/tlwdivtlzoom; //in frames
 var t_tlw = t_tlzoom*tlwdivtlzoom; //in pixels
 
 
-draw_surface_part(timeline_surf, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw-16, lbsh-(tlh+16), 0, tlsurf_y+tlh+15);
+draw_surface_part(timeline_surf, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw-17, lbsh-(tlh+16), 0, tlsurf_y+tlh+15);
 
 draw_set_color(c_black);
 var t_ypos = tlh+16-layerbary+tlsurf_y;
@@ -49,10 +49,10 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
                             
 		if (selectedlayer == i)
 		{
-		    draw_set_colour(180);
+		    draw_set_colour(c_maroon);
 		    var drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
 		    if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
-		        draw_line(drawcursorxcorrected,t_ypos,drawcursorxcorrected,t_ypos+48);
+		        draw_line(drawcursorxcorrected,t_ypos-1,drawcursorxcorrected,t_ypos+47);
 		    draw_set_colour(c_black);
 		}
 	}
@@ -172,8 +172,8 @@ if (startframex > 0)
 if (endframex < tlw)
 {
 	draw_rectangle(clamp(endframex,tlw-16,tlw),tlsurf_y,tlw,tlsurf_y+tlh+16,0);
-	if (endframex < tlw-16)
-	    draw_rectangle(clamp(endframex,0,tlw-15),tlsurf_y,tlw-15,lbsh+tlsurf_y,0);
+	if (endframex < tlw-17)
+	    draw_rectangle(clamp(endframex,0,tlw-17),tlsurf_y,tlw-17,lbsh+tlsurf_y,0);
 }
 
 //scroll edges
