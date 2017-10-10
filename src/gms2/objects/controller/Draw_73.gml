@@ -1,4 +1,4 @@
-if (view_current != 0)
+if (view_current == 3)
     exit;
     
 if (tooltip != "")

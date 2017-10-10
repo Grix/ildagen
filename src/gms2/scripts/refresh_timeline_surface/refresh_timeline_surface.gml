@@ -68,8 +68,7 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	    //layers
     
 	    draw_set_color(c_black);
-	    var t_y = -layerbary;
-	    ypos_perm = t_y;
+	    ypos_perm = -layerbary;
 	    for (i = 0; i < ds_list_size(layer_list);i++)
 	    {
 	        _layer = layer_list[| i];
@@ -234,7 +233,7 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	            ypos_perm += 64;
 	        }
 		}
-		ypos_perm += 48+tlh+16;
+		//ypos_perm += 48;
 		
 	surface_reset_target();
     
@@ -335,7 +334,7 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	draw_set_color(c_white);
 	draw_set_font(fnt_tooltip);
 	
-	ypos_perm += t_y;
+	ypos_perm += layerbary;
 	
 	if (timeline_surf_length == 0)
 	{

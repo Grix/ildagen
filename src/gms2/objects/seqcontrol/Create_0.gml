@@ -84,12 +84,12 @@ endframex = -1;
 largepreview = 0;
 loop = false;
 
-tlsurf_y = 138;
-tlw = 982; //width of timeline
+tlsurf_y = 137;
+tlw = 983; //width of timeline
 tlh = 128-16; //height of audio part of timeline
 tls = tlh+tlsurf_y+16; //start of layer area, seen from outside surface
 lbh = 705-32-tlh-tlsurf_y;
-lbsh = tlh+16+lbh; //start of bottom scrollbar, seen from inside surface
+lbsh = tlh+15+lbh; //start of bottom scrollbar, seen from inside surface
 phi = 1.618;
 tlzoom = tlw; //number of frames displayed in visible timeline area
 tlx = 0;

@@ -39,8 +39,8 @@ if (view_current == 1)
 		
 	var scrollx_x1 = scrollbarx;
 	var scrollx_x2 = scrollx_x1+scrollbarw;
-	var scrollx_y1 = lbsh+17+tlsurf_y;
-	var scrolly_x1 = tlw-16;
+	var scrollx_y1 = lbsh+16+tlsurf_y;
+	var scrolly_x1 = tlw-17;
 	var scrolly_y1 = tls+(layerbary*layerbarw/lbh);
 	var scrolly_y2 = scrolly_y1+layerbarw;
 	draw_set_colour(c_gray);
@@ -60,7 +60,7 @@ if (view_current == 1)
     {
         //timeline cursor
         draw_line(cursorlinexdraw,136,cursorlinexdraw,136+tlh);
-        draw_line(cursorlinexdraw,tls-1,cursorlinexdraw-1,lbsh+137);
+        draw_line(cursorlinexdraw,tls-1,cursorlinexdraw,lbsh+137);
         if (cursorlinexdraw > (tlw/2)) and (playing) and (!scroll_moving) and (!mouse_check_button(mb_any))
         {
             tlx = cursorlinex-(tlw/2)*tlzoom/tlw;
