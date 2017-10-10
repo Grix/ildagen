@@ -177,10 +177,10 @@ if (endframex < tlw)
 }
 
 //scroll edges
-draw_set_alpha(1);
+/*draw_set_alpha(1);
 draw_set_color(c_white);
 draw_rectangle(0, tlsurf_y+lbsh, tlw, tlsurf_y+lbsh+16, 0);
 draw_rectangle(tlw-16, tlsurf_y+tlh+16, tlw, tlsurf_y+lbsh+16, 0);
 draw_set_color(c_black);
 draw_rectangle(0, tlsurf_y+lbsh, tlw, tlsurf_y+lbsh+16, 1);
-draw_rectangle(tlw-16, tlsurf_y+tlh+16, tlw, tlsurf_y+lbsh+16, 1);
+draw_rectangle(tlw-16, tlsurf_y+tlh+16, tlw, tlsurf_y+lbsh+16, 1);*/

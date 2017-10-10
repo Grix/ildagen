@@ -1,3 +1,6 @@
+draw_set_color(c_gray);
+//draw_line(0,400,1300,400);
+
 if (room != rm_ilda) 
     exit;
 if (view_current == 0)
