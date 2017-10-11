@@ -25,66 +25,15 @@ if (view_current == 1)
 	refresh_timeline_surface();
 	
     draw_timeline();
-        
-    gpu_set_blendenable(0);
 	
+	draw_set_alpha(1);
+	gpu_set_blendenable(false);
+	gpu_set_alphatestenable(false);
     with (obj_button_parent)
         draw_self();
-		
-	//scroll
-	scrollbarw = clamp(((tlzoom+18)/length)*tlw-18,32,tlw-18);
-	if (length != tlzoom)
-	    scrollbarx = (tlw-18-scrollbarw)*(tlx)/(length-tlzoom);
-	layerbarw = clamp(lbh/(ypos_perm+lbh)*(lbh-1),32,lbh-1);
-		
-	var scrollx_x1 = scrollbarx;
-	var scrollx_x2 = scrollx_x1+scrollbarw;
-	var scrollx_y1 = lbsh+16+tlsurf_y;
-	var scrolly_x1 = tlw-17;
-	var scrolly_y1 = tls+(layerbary*layerbarw/lbh);
-	var scrolly_y2 = scrolly_y1+layerbarw;
-	draw_set_colour(c_gray);
-	draw_rectangle(scrollx_x1,scrollx_y1,scrollx_x2,lbsh+tlsurf_y,0);
-	draw_rectangle(scrolly_x1,scrolly_y1,tlw,scrolly_y2,0);
-	draw_set_colour(c_black);
-	draw_rectangle(scrollx_x1,scrollx_y1,scrollx_x2,lbsh+tlsurf_y,1);
-	draw_rectangle(scrolly_x1,scrolly_y1,tlw,scrolly_y2,1);
-		
-    gpu_set_blendenable(1);
-        
-    draw_set_color(c_black);
-    draw_set_alpha(0.8);
-    cursorlinex = tlpos/1000*projectfps;
-    cursorlinexdraw = (cursorlinex-tlx)/tlzoom*tlw;
-    if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
-    {
-        //timeline cursor
-        draw_line(cursorlinexdraw,136,cursorlinexdraw,136+tlh);
-        draw_line(cursorlinexdraw,tls-1,cursorlinexdraw,lbsh+137);
-        if (cursorlinexdraw > (tlw/2)) and (playing) and (!scroll_moving) and (!mouse_check_button(mb_any))
-        {
-            tlx = cursorlinex-(tlw/2)*tlzoom/tlw;
-                if ((tlx+tlzoom) > length) length = tlx+tlzoom;
-        }
-    }
-        
-    draw_set_colour(c_teal);
     
-    if (draw_mouseline = 1)
-    {
-        draw_set_alpha(0.2);
-        draw_line(mouse_x,136,mouse_x,136+tlh);
-        draw_line(mouse_x,tls,mouse_x,lbsh+136);
-        draw_mouseline = 0;
-    }
-    if (draw_cursorline = 1)
-    {
-        draw_set_alpha(0.3);
-        floatingcursorxcorrected = (floatingcursorx-tlx)/tlzoom*tlw;
-        draw_line(floatingcursorxcorrected,floatingcursory,floatingcursorxcorrected,floatingcursory+48);
-    }
-	
-    draw_set_alpha(1);
+	gpu_set_blendenable(true);
+	gpu_set_alphatestenable(true);
     if (controller.laseron)
     {
         draw_set_color(c_white);

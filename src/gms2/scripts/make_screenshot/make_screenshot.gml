@@ -9,7 +9,7 @@ buffer_seek(el_buffer,buffer_seek_start,0);
 buffer_ver = buffer_read(el_buffer,buffer_u8);
 if (buffer_ver != 52)
 {
-    show_message_new("Error: Unexpected ID byte in make_screenshot. Things might get ugly. Contact developer.");
+    show_message_new("Error: Unexpected ID byte in make_screenshot. Things might get ugly. Please contact developer.");
     return temp_surf;
 }
 buffer_maxframes = buffer_read(el_buffer,buffer_u32);
@@ -24,7 +24,8 @@ gpu_set_blendenable(0);
 
 el_list = ds_list_create(); 
 
-for (i = 0; i < buffer_maxelements;i++)
+var t_i
+for (t_i = 0; t_i < buffer_maxelements; t_i++)
 {
     numofinds = buffer_read(el_buffer,buffer_u32);
     var repeatnum = (numofinds-20)/4-1;
