@@ -1,6 +1,6 @@
 ddobj = instance_create_layer(mouse_x,mouse_y,"foreground",obj_dropdown);
 with (ddobj)
-    {
+{
     num = 8;
     event_user(1);
     ds_list_add(desc_list,"Select type for new envelope:");
@@ -29,4 +29,4 @@ with (ddobj)
     ds_list_add(scr_list,dd_seq_envtype_rotabs_create);
     repeat (8)
         ds_list_add(hl_list,1);
-    }
+}
