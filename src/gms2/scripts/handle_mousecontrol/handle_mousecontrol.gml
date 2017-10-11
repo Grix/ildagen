@@ -263,55 +263,61 @@ else if (moving_object == 6)
     data_list = ds_list_find_value(envelopetoedit,2);
     var insertedthisstep = 0;
     
-    if ( point_distance(mousexprev,mouseyprev,mouse_x,mouse_y) >= 6)
+	var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
+	
+    if true// (mouse_check_button_pressed(mb_left) || point_distance(mousexprev,mouseyprev,mouse_x,mouse_y) >= 3/tlwdivtlzoom)
     {
-        var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
-        var t_ypos = clamp(mouse_y-ypos_env,0,64);
-        //adding point
-        for (u = 0; u < ds_list_size(time_list); u++)
-        {
-            if (ds_list_find_value(time_list,u) > t_xpos)
-            {
-                break;
-            }
-        }
-        if (ds_list_find_index(time_list,t_xpos) == -1)
-        {
-            ds_list_insert(time_list,u,t_xpos);
-            ds_list_insert(data_list,u,t_ypos);
-        }
-        else
-        {
-            ds_list_replace(data_list,ds_list_find_index(time_list,t_xpos),t_ypos);
-        }
-        //deleting points in between
-        if (xposprev < t_xpos)
-            for (u = 0; u < ds_list_size(time_list); u++)
-            {
-                var t_xpos_loop = ds_list_find_value(time_list,u);
-                if (t_xpos_loop == clamp(t_xpos_loop, xposprev+1, t_xpos-1))
-                {
-                    ds_list_delete(data_list,u);
-                    ds_list_delete(time_list,u);
-                    u--;
-                }
-            }
-        else
-            for (u = 0; u < ds_list_size(time_list); u++)
-            {
-                var t_xpos_loop = ds_list_find_value(time_list,u);
-                if (t_xpos_loop == clamp(t_xpos_loop, t_xpos+1, xposprev-1))
-                {
-                    ds_list_delete(data_list,u);
-                    ds_list_delete(time_list,u);
-                    u--;
-                }
-            }
-        xposprev = t_xpos;
-        yposprev = t_ypos;
-        mousexprev = mouse_x;
-        mouseyprev = mouse_y;
-        insertedthisstep = 1;
+        var t_xpos = round(tlx + mouse_x/tlwdivtlzoom);
+		var t_ypos = clamp(mouse_y-ypos_env,0,64);
+		if (mouse_check_button_pressed(mb_left) || abs(xposprev-t_xpos) > 0)
+		{
+	        //var t_ypos = clamp(mouse_y-ypos_env,0,64);
+	        //adding point
+	        for (u = 0; u < ds_list_size(time_list); u++)
+	        {
+	            if (ds_list_find_value(time_list,u) > t_xpos)
+	            {
+	                break;
+	            }
+	        }
+	        if (ds_list_find_index(time_list,t_xpos) == -1)
+	        {
+	            ds_list_insert(time_list, u, t_xpos);
+	            ds_list_insert(data_list, u, t_ypos);
+	        }
+	        else
+	        {
+	            ds_list_replace(data_list,ds_list_find_index(time_list,t_xpos),t_ypos);
+	        }
+	        //deleting points in between
+	        if (xposprev < t_xpos)
+	            for (u = 0; u < ds_list_size(time_list); u++)
+	            {
+	                var t_xpos_loop = ds_list_find_value(time_list,u);
+	                if (t_xpos_loop == clamp(t_xpos_loop, xposprev+0*tlwdivtlzoom, t_xpos-0*tlwdivtlzoom))
+	                {
+	                    ds_list_delete(data_list,u);
+	                    ds_list_delete(time_list,u);
+	                    u--;
+	                }
+	            }
+	        else
+	            for (u = 0; u < ds_list_size(time_list); u++)
+	            {
+	                var t_xpos_loop = ds_list_find_value(time_list,u);
+	                if (t_xpos_loop == clamp(t_xpos_loop, t_xpos+0*tlwdivtlzoom, xposprev-0*tlwdivtlzoom))
+	                {
+	                    ds_list_delete(data_list,u);
+	                    ds_list_delete(time_list,u);
+	                    u--;
+	                }
+	            }
+			insertedthisstep = 1;
+		}
+		xposprev = t_xpos;
+	    yposprev = t_ypos;
+	    mousexprev = mouse_x;
+	    mouseyprev = mouse_y;
     }
     if (mouse_check_button_released(mb_left))
     {
@@ -638,6 +644,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                             controller.scrollcursor_flag = 1;
                         if  mouse_check_button_pressed(mb_left)
                         {
+							timeline_surf_length = 0;
                             if (keyboard_check(vk_control))
                             {
                                 if (ds_list_find_index(somaster_list,objectlist) != -1)
