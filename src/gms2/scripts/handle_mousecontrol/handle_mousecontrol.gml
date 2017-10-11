@@ -265,100 +265,84 @@ else if (moving_object == 6)
     
 	var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 	
-    if true// (mouse_check_button_pressed(mb_left) || point_distance(mousexprev,mouseyprev,mouse_x,mouse_y) >= 3/tlwdivtlzoom)
-    {
-        var t_xpos = round(tlx + mouse_x/tlwdivtlzoom);
-		var t_ypos = clamp(mouse_y-ypos_env,0,64);
-		if (mouse_check_button_pressed(mb_left) || abs(xposprev-t_xpos) > 0)
+    var t_xpos = round(tlx + mouse_x/tlwdivtlzoom);
+	var t_ypos = clamp(round(mouse_y-ypos_env),0,64);
+	if (mouse_check_button_pressed(mb_left) || mouse_check_button_released(mb_left) || abs(xposprev-t_xpos) > 7/tlwdivtlzoom)
+	{
+	    //adding point
+	    for (u = 0; u < ds_list_size(time_list); u++)
+	    {
+	        if (ds_list_find_value(time_list,u) > t_xpos)
+	            break;
+	    }
+		if (time_list[| u] == t_xpos)
 		{
-	        //var t_ypos = clamp(mouse_y-ypos_env,0,64);
-	        //adding point
-	        for (u = 0; u < ds_list_size(time_list); u++)
-	        {
-	            if (ds_list_find_value(time_list,u) > t_xpos)
-	            {
-	                break;
-	            }
-	        }
-	        if (ds_list_find_index(time_list,t_xpos) == -1)
-	        {
-	            ds_list_insert(time_list, u, t_xpos);
-	            ds_list_insert(data_list, u, t_ypos);
-	        }
-	        else
-	        {
-	            ds_list_replace(data_list,ds_list_find_index(time_list,t_xpos),t_ypos);
-	        }
-	        //deleting points in between
-	        if (xposprev < t_xpos)
-	            for (u = 0; u < ds_list_size(time_list); u++)
-	            {
-	                var t_xpos_loop = ds_list_find_value(time_list,u);
-	                if (t_xpos_loop == clamp(t_xpos_loop, xposprev+0*tlwdivtlzoom, t_xpos-0*tlwdivtlzoom))
-	                {
-	                    ds_list_delete(data_list,u);
-	                    ds_list_delete(time_list,u);
-	                    u--;
-	                }
-	            }
-	        else
-	            for (u = 0; u < ds_list_size(time_list); u++)
-	            {
-	                var t_xpos_loop = ds_list_find_value(time_list,u);
-	                if (t_xpos_loop == clamp(t_xpos_loop, t_xpos+0*tlwdivtlzoom, xposprev-0*tlwdivtlzoom))
-	                {
-	                    ds_list_delete(data_list,u);
-	                    ds_list_delete(time_list,u);
-	                    u--;
-	                }
-	            }
-			insertedthisstep = 1;
+			data_list[| u] = t_ypos;
 		}
+		else
+		{
+			ds_list_insert(time_list, u, t_xpos);
+	        ds_list_insert(data_list, u, t_ypos);
+		}
+			
+		if (xposprev > t_xpos)
+		{
+			var t_u = u + 1;
+			while (ds_list_size(time_list) > t_u)
+			{
+				if (time_list[| t_u] < xposprev)
+				{
+					ds_list_delete(time_list, t_u);
+					ds_list_delete(data_list, t_u);
+				}
+				else
+				{
+					if (ds_list_size(time_list) > t_u+1)
+					{
+						if (time_list[| t_u] == xposprev && time_list[| t_u+1] == xposprev)
+						{
+							ds_list_delete(time_list, t_u);
+							ds_list_delete(data_list, t_u);
+						}
+					}
+					break;
+				}
+			}
+		}
+		else
+		{
+			var t_u = u - 1;
+			while (0 <= t_u)
+			{
+				if (time_list[| t_u] > xposprev)
+				{
+					ds_list_delete(time_list, t_u);
+					ds_list_delete(data_list, t_u);
+					t_u--;
+				}
+				else
+				{
+					if (0 <= t_u-1)
+					{
+						if (time_list[| t_u] == xposprev && time_list[| t_u-1] == xposprev)
+						{
+							ds_list_delete(time_list, t_u);
+							ds_list_delete(data_list, t_u);
+						}
+					}
+					break;
+				}
+			}
+		}
+			
+		insertedthisstep = 1;
 		xposprev = t_xpos;
-	    yposprev = t_ypos;
-	    mousexprev = mouse_x;
-	    mouseyprev = mouse_y;
-    }
+		yposprev = t_ypos;
+	}
+		
     if (mouse_check_button_released(mb_left))
-    {
-        var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
-        var t_ypos = clamp(mouse_y-ypos_env,0,64);
-        if (!insertedthisstep)
-        {
-            for (u = 0; u < ds_list_size(time_list); u++)
-            {
-                if (ds_list_find_value(time_list,u) > t_xpos)
-                {
-                    break;
-                }
-            }
-            ds_list_insert(time_list,u,t_xpos);
-            ds_list_insert(data_list,u,t_ypos);
-        }
-        if (xposprev < t_xpos)
-            for (u = 0; u < ds_list_size(time_list); u++)
-            {
-                var t_xpos_loop = ds_list_find_value(time_list,u);
-                if (t_xpos_loop == clamp(t_xpos_loop, xposprev+1, t_xpos-1))
-                {
-                    ds_list_delete(data_list,u);
-                    ds_list_delete(time_list,u);
-                    u--;
-                }
-            }
-        else
-            for (u = 0; u < ds_list_size(time_list); u++)
-            {
-                var t_xpos_loop = ds_list_find_value(time_list,u);
-                if (t_xpos_loop == clamp(t_xpos_loop, t_xpos+1, xposprev-1))
-                {
-                    ds_list_delete(data_list,u);
-                    ds_list_delete(time_list,u);
-                    u--;
-                }
-            }
         moving_object = 0;
-    }
+		
     exit;
 }
 else if (moving_object == 7)
@@ -803,8 +787,8 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                     if  mouse_check_button_pressed(mb_left) 
                     {
                         //adding/modifying/deleting point
-                        time_list = ds_list_find_value(envelope,1);
-                        data_list = ds_list_find_value(envelope,2);
+                        //time_list = ds_list_find_value(envelope,1);
+                        //data_list = ds_list_find_value(envelope,2);
                         var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
                         
                         if (keyboard_check(ord("D")))
@@ -820,7 +804,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                         
                         //todo bubble sort like in drawing for extra performance?
                         
-                        for (u = 0; u < ds_list_size(time_list); u++)
+                        /*for (u = 0; u < ds_list_size(time_list); u++)
                         {
                             if (ds_list_find_value(time_list,u) > t_xpos)
                             {
@@ -828,7 +812,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                             }
                         }
                         ds_list_insert(time_list,u,t_xpos);
-                        ds_list_insert(data_list,u,t_ypos);
+                        ds_list_insert(data_list,u,t_ypos);*/
                         xposprev = t_xpos;
                         yposprev = t_ypos;
                         mousexprev = mouse_x;
