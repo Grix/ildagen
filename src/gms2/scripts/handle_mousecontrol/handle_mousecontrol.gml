@@ -269,7 +269,14 @@ else if (moving_object == 6)
 	var t_ypos = clamp(round(mouse_y-ypos_env),0,64);
 	if (mouse_check_button_pressed(mb_left) || mouse_check_button_released(mb_left) || abs(xposprev-t_xpos) > 7/tlwdivtlzoom)
 	{
-	    //adding point
+	    //adding/editing point
+		
+		while (ds_list_find_index(time_list, t_xpos) != -1)
+		{
+			ds_list_delete(data_list, ds_list_find_index(time_list, t_xpos));
+			ds_list_delete(time_list, ds_list_find_index(time_list, t_xpos));
+		}
+		
 	    for (u = 0; u < ds_list_size(time_list); u++)
 	    {
 	        if (ds_list_find_value(time_list,u) > t_xpos)
@@ -752,6 +759,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                     if  mouse_check_button_pressed(mb_left) 
                     {
                         ds_list_replace(envelope,4,0);
+						timeline_surf_length = 0;
                         exit;
                     }
                     else if  mouse_check_button_pressed(mb_right) 

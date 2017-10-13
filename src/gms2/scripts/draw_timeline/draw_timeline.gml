@@ -158,12 +158,6 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 	            t_ypos += 16;
 	            continue;
 	        }
-                
-	        if (moving_object == 6) and (envelopetoedit == envelope)
-	        {
-	            draw_set_colour(c_green);
-	            draw_line(mousexprev,mouseyprev-tlsurf_y,mouse_x,mouse_y-tlsurf_y);
-	        }
                     
 	        var typedraw = ds_map_find_value(env_type_map,type);
 	        var t_stringlength = string_width(typedraw)+5;
@@ -180,7 +174,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 	            {
 	                draw_set_colour(c_red);
 	                draw_set_alpha(0.3);
-	                draw_rectangle(mousexprev,t_ypos,mouse_x,t_ypos+64,0);
+	                draw_rectangle(mousexprev,t_ypos,mouse_x,t_ypos+63,0);
 	                draw_set_colour(c_black);
 	                draw_set_alpha(1);
 	            }

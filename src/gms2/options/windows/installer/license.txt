@@ -1,13 +1,13 @@
-Copyright (c) 2015 Gitle Mikkelsen
+Copyright (c) 2017 Gitle Mikkelsen
 
 Permission is hereby granted, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to use, copy and
 modify this software subject to the following conditions:
 
-1. You have purchased and own a license code for the software from BitLasers.com, and
-2. You do not redistribute, share or resell the software or license without permission from the copyright holder, Gitle Mikkelsen
+1. You have purchased and own a valid license code for the software from Gitle Mikkelsen or a vendor approved by Gitle Mikkelsen, and
+2. You do not redistribute, share or resell the software or license without permission from Gitle Mikkelsen.
 
-The copyright holder reserves the right to revoke a purchased license should the these conditions be violated.
+The copyright holder reserves the right to revoke the validity of a purchased license should the these conditions be violated.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -17,4 +17,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-The user retains ownership of all files exported using the software.
+The user retains ownership of all files created by him-/herself using the software.

@@ -219,8 +219,6 @@ if (songload)
 		}
     }
 	
-	buffer_delete(t_exInfo);
-	
     if (buffer_exists(audio_buffer))
 		buffer_delete(audio_buffer);
 	audio_buffer = -1;
@@ -242,12 +240,18 @@ if (songload)
 		}
         else if (idbyte == 103)
         {
-			audio_buffer = buffer_create(parsinglistsize, buffer_fast, 1);
-            for (i = 0; i < parsinglistsize; i++)
+			parsingaudio = 1;
+			song_parse = FMODGMS_Snd_LoadSound_Ext(buffer_get_address(song_buffer),	FMODGMS_MODE_DEFAULT | 
+																					FMODGMS_MODE_ACCURATETIME |
+																					FMODGMS_MODE_OPENMEMORY_POINT | 
+																					FMODGMS_MODE_CREATESTREAM |
+																					FMODGMS_MODE_OPENONLY, 
+																					buffer_get_address(t_exInfo));
+			for (i = 0; i < parsinglistsize; i++)
             {
-                buffer_write(audio_buffer, buffer_u8, clamp(buffer_read(load_buffer,buffer_f32)/1.5, 0, 1));
-            }
-        }
+                buffer_read(load_buffer,buffer_f32); //skip
+            }        
+		}
         else
         {
             for (i = 0; i < parsinglistsize; i++)
@@ -257,6 +261,8 @@ if (songload)
         }
     }
 }
+
+buffer_delete(t_exInfo);
     
 //markers
 parsinglistsize = buffer_read(load_buffer,buffer_u32);
