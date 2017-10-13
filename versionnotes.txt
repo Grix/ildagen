@@ -1,3 +1,7 @@
+v1.5.7
+- Big performance improvements for certain tasks, most in the timeline mode
+- Other minor fixes and improvements
+
 v1.5.6
 - Fix bug sometimes corrupting a saved timeline project file
 
@@ -6,7 +10,3 @@ v1.5.5
 (Good for playback of imported pre-optimized ILD files)
 - Various bug fixes, especially for unoptimizized output
 - Other new minor features and fixes
-
-v1.5.4
-- More accurate output, especially for imported ILD files
-- ...

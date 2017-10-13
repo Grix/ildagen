@@ -19,7 +19,7 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
-[Ll]og/
+#[Ll]og/
 
 
 # Visual Studio 2015 cache/options directory
@@ -302,3 +302,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+
+#sorry, won't show you my licensing system :)
+verify_serial
+verify_numexports
