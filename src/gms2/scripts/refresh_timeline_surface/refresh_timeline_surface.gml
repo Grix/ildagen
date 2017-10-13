@@ -272,7 +272,6 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	        if (tempx > t_tlw+10)
 	            break;
 
-			//todo move outside surface or fix clipping
 	        if ((drawtime % modulus) == 0)
 	        {
 	            //draw timestamp

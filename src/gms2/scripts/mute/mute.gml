@@ -5,4 +5,4 @@ if (seqcontrol.song == -1)
 
 seqcontrol.muted = !seqcontrol.muted;
 
-FMODGMS_Chan_Set_Mute(seqcontrol.play_sndchannel, seqcontrol.muted); //todo proper muting
+FMODGMS_Chan_Set_Mute(seqcontrol.play_sndchannel, seqcontrol.muted);

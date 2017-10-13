@@ -7,6 +7,7 @@
 
 ;--------------------------------
 !include MUI2.nsh 
+!include "FileAssociation.nsh"
 
 !ifndef FULL_VERSION
 !define FULL_VERSION      "1.0.0.0"
@@ -135,6 +136,9 @@ Section `${APP_NAME}`
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
   
+  ;${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igf" "LasershowGen Frames"
+  ;${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igp" "LasershowGen Project"
+  
   ; Put file there
   File "${LICENSE_NAME}"
   File /r "${SOURCE_DIR}\*.*"
@@ -177,6 +181,9 @@ Section "Uninstall"
 
   ; Remove files and uninstaller (everything)
   RMDir /r "$INSTDIR"
+  
+  ;${unregisterExtension} ".igf" "LasershowGen Frames"
+  ;${unregisterExtension} ".igp" "LasershowGen Project"
 
   ; Remove desktop icon
   Delete "$DESKTOP\${APP_NAME}.lnk" 
