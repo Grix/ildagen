@@ -3,7 +3,7 @@ if (instance_exists(obj_dropdown))
 
 if (mouse_x < (x+14))
 {
-    if (mouse_y < (redy_upper+12))
+	if ((1 - (mouse_y-bbox_top)/52) > (controller.red_scale+controller.red_scale_lower)/2)
         moving = 1;   
     else
         moving = 4;

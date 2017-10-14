@@ -23,7 +23,7 @@ if (timeline_surf_tlzoom != tlzoom || timeline_surf_pos > tlx)
 var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 var t_tlx = timeline_surf_pos + timeline_surf_length; //in frames
 var t_tlzoom = tlx+tlzoom-t_tlx + 200/tlwdivtlzoom; //in frames
-var t_tlw = round(t_tlzoom*tlwdivtlzoom); //in pixels
+var t_tlw = ceil(t_tlzoom*tlwdivtlzoom); //in pixels
 
 
 if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
@@ -38,8 +38,8 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	{
 		var t_newpos = tlx-20 - timeline_surf_pos;
 		
-		surface_copy_part(timeline_surf_temp, 0, 0, timeline_surf, t_newpos*tlwdivtlzoom, 0, tlw, surface_get_height(timeline_surf));
-		surface_copy_part(timeline_surf_audio_temp, 0, 0, timeline_surf_audio, t_newpos*tlwdivtlzoom, 0, tlw, surface_get_height(timeline_surf_audio));
+		surface_copy_part(timeline_surf_temp, 0, 0, timeline_surf, ceil(t_newpos*tlwdivtlzoom), 0, tlw, surface_get_height(timeline_surf));
+		surface_copy_part(timeline_surf_audio_temp, 0, 0, timeline_surf_audio, ceil(t_newpos*tlwdivtlzoom), 0, tlw, surface_get_height(timeline_surf_audio));
 		
 		timeline_surf_pos = tlx-20;
 		timeline_surf_length = tlw/tlwdivtlzoom;
@@ -346,8 +346,8 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	}
 	else
 	{	
-		surface_copy_part(timeline_surf, timeline_surf_length*tlwdivtlzoom, 0, timeline_surf_temp, 0, 0, t_tlw, surface_get_height(timeline_surf));
-		surface_copy_part(timeline_surf_audio, timeline_surf_length*tlwdivtlzoom, 0, timeline_surf_audio_temp, 0, 0, t_tlw, surface_get_height(timeline_surf_audio));
+		surface_copy_part(timeline_surf, floor(timeline_surf_length*tlwdivtlzoom), 0, timeline_surf_temp, 0, 0, t_tlw, surface_get_height(timeline_surf));
+		surface_copy_part(timeline_surf_audio, floor(timeline_surf_length*tlwdivtlzoom), 0, timeline_surf_audio_temp, 0, 0, t_tlw, surface_get_height(timeline_surf_audio));
 	}
 	
 	timeline_surf_length += t_tlzoom;
