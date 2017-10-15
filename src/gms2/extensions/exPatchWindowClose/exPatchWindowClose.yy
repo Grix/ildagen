@@ -185,11 +185,7 @@
             "init": "ex_patch_window_close_initialize",
             "kind": 2,
             "order": [
-                "de65b40f-cc1f-48c7-8cbf-20139b327bf3",
-                "3cbf0f72-25fc-41ed-8221-0439655a9096",
-                "8fce6138-42d5-4e02-a06e-30b27d382ee5",
-                "53b4435d-94ab-4cd6-a960-3f5b94f139bf",
-                "fab60abf-39db-4875-8b88-1dc97f200962"
+                
             ],
             "origname": "extensions\\exPatchPowersave.gml",
             "uncompress": false

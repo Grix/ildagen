@@ -10,14 +10,14 @@ if (mouse_x < (x+14))
 }
 else if (mouse_x > (x+30))
 {
-    if (mouse_y < (bluey_upper+12))
+    if ((1 - (mouse_y-bbox_top)/52) > (controller.blue_scale+controller.blue_scale_lower)/2)
         moving = 3;   
     else
         moving = 6;
 }
 else 
 {
-    if (mouse_y < (greeny_upper+12))
+    if ((1 - (mouse_y-bbox_top)/52) > (controller.green_scale+controller.green_scale_lower)/2)
         moving = 2;   
     else
         moving = 5;

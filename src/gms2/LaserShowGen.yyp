@@ -1479,6 +1479,14 @@
             }
         },
         {
+            "Key": "2b338e92-0206-4375-aa92-3c352434c378",
+            "Value": {
+                "id": "7fd6ccf7-7d6f-407e-b2fa-11b0f4548144",
+                "resourcePath": "datafiles_yy\\GMFMODSimple.dll.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "2bb3e01b-c153-4b94-95f4-ed322dd831e5",
             "Value": {
                 "id": "a339e73f-22a6-4940-ba63-4f203fb5130c",
@@ -1612,6 +1620,14 @@
                 "id": "f61bd47f-3257-474f-89b4-dad3111fbc65",
                 "resourcePath": "scripts\\dropdown_res\\dropdown_res.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "2e603755-2578-4cb0-b8d6-ae4002de24be",
+            "Value": {
+                "id": "d87c7848-9d71-4f1f-89a4-48e6d4fcc107",
+                "resourcePath": "datafiles_yy\\fmodex.dll.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {

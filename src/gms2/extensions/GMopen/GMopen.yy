@@ -9,7 +9,7 @@
     "androidPermissions": [
         
     ],
-    "androidProps": false,
+    "androidProps": true,
     "androidactivityinject": "",
     "androidclassname": "",
     "androidinject": "",
@@ -17,7 +17,7 @@
     "androidsourcedir": "",
     "author": "",
     "classname": "",
-    "copyToTargets": 64,
+    "copyToTargets": 9223372036854775807,
     "date": "2017-51-14 08:09:35",
     "description": "",
     "extensionName": "",
@@ -131,7 +131,7 @@
     "gradleinject": "",
     "helpfile": "",
     "installdir": "",
-    "iosProps": false,
+    "iosProps": true,
     "iosSystemFrameworkEntries": [
         
     ],
@@ -146,5 +146,5 @@
     "packageID": "",
     "productID": "",
     "sourcedir": "",
-    "version": "1.2.0"
+    "version": "1.0.0"
 }
