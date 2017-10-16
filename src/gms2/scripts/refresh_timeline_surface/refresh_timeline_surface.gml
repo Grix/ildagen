@@ -62,8 +62,8 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	    draw_set_alpha(1);
 	    draw_set_font(fnt_small);
 	    gpu_set_blendenable(false);
-		draw_set_color(c_white);
-		draw_rectangle(0, 0, t_tlw, surface_get_height(timeline_surf_temp), 0);
+		//draw_set_color(c_white);
+		//draw_rectangle(0, 0, t_tlw, surface_get_height(timeline_surf_temp), 0);
     
 	    //layers
     

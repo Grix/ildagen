@@ -23,8 +23,6 @@ if (song != -1)
     FMODGMS_Sys_Update();
 
 if (room != rm_seq) exit;
-    
-drawn = false;
 
 if (instance_exists(obj_dropdown))
     exit;

@@ -1,10 +1,13 @@
+if (high_performance)
+	exit;
+
 var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 var t_tlx = timeline_surf_pos + timeline_surf_length; //in frames
 var t_tlzoom = tlx+tlzoom-t_tlx + 200/tlwdivtlzoom; //in frames
 var t_tlw = t_tlzoom*tlwdivtlzoom; //in pixels
 
 
-draw_surface_part(timeline_surf, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw-17, lbsh-(tlh+16), 0, tlsurf_y+tlh+15);
+draw_surface_part(timeline_surf, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw-17, clamp(ypos_perm-layerbary+1, 0, lbsh-(tlh+16)), 0, tlsurf_y+tlh+15);
     
 //start and end frame lines
 draw_set_font(fnt_bold);
@@ -108,10 +111,10 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 		var mouse_on_button_ver = (mouse_y == clamp(mouse_y,t_ypos+8,t_ypos+40)) && mouse_y > tlsurf_y+tlh+16;
 		draw_sprite(spr_deletelayer,
 		                mouse_on_button_ver and mouse_on_button_hor,
-		                tlw-56,t_ypos+8);
+		                tlw-56, t_ypos+8);
 		draw_sprite(spr_addenvelope,
 		                mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64)),
-		                tlw-96,t_ypos+8);
+		                tlw-96, t_ypos+8);
                             
 		var t_name = _layer[| 4];
 		var t_stringlength = string_width(t_name)+5;
@@ -227,6 +230,7 @@ if (draw_mouseline = 1)
 	
 	
 draw_set_alpha(1);
+gpu_set_blendenable(false);
 
 //scroll
 scrollbarw = clamp(((tlzoom+18)/length)*tlw-18,32,tlw-18);
@@ -234,26 +238,20 @@ if (length != tlzoom)
 	scrollbarx = (tlw-18-scrollbarw)*(tlx)/(length-tlzoom);
 layerbarw = clamp(lbh/(ypos_perm+lbh)*(lbh-1),32,lbh-1);
 		
-var scrollx_x1 = scrollbarx;
-var scrollx_x2 = scrollx_x1+scrollbarw;
-var scrollx_y1 = lbsh+16+tlsurf_y;
+var scrollx_x1 = round(scrollbarx);
+var scrollx_x2 = round(scrollx_x1+scrollbarw);
+var scrollx_y1 = lbsh+17+tlsurf_y;
 var scrolly_x1 = tlw-17;
 var scrolly_y1 = tls+(layerbary*layerbarw/lbh);
 var scrolly_y2 = scrolly_y1+layerbarw;
-draw_set_colour(c_gray);
-draw_rectangle(scrollx_x1,scrollx_y1,scrollx_x2,lbsh+tlsurf_y,0);
-draw_rectangle(scrolly_x1,scrolly_y1,tlw,scrolly_y2,0);
+draw_set_colour(c_white);
+draw_rectangle(0, scrollx_y1, tlw-17, lbsh+tlsurf_y, 0);
 draw_set_colour(c_black);
 draw_rectangle(scrollx_x1,scrollx_y1,scrollx_x2,lbsh+tlsurf_y,1);
 draw_rectangle(scrolly_x1,scrolly_y1,tlw,scrolly_y2,1);
-		
+draw_rectangle(0, scrollx_y1, tlw-17, lbsh+tlsurf_y, 1);
+draw_set_colour(c_gray);
+draw_rectangle(scrollx_x1+1,scrollx_y1-1,scrollx_x2-1,lbsh+tlsurf_y+1,0);
+draw_rectangle(scrolly_x1+1,scrolly_y1+1,tlw-1,scrolly_y2-1,0);
 
-	
-//scroll edges
-/*draw_set_alpha(1);
-draw_set_color(c_white);
-draw_rectangle(0, tlsurf_y+lbsh, tlw, tlsurf_y+lbsh+16, 0);
-draw_rectangle(tlw-16, tlsurf_y+tlh+16, tlw, tlsurf_y+lbsh+16, 0);
-draw_set_color(c_black);
-draw_rectangle(0, tlsurf_y+lbsh, tlw, tlsurf_y+lbsh+16, 1);
-draw_rectangle(tlw-16, tlsurf_y+tlh+16, tlw, tlsurf_y+lbsh+16, 1);*/
+gpu_set_blendenable(true);

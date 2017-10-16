@@ -1,5 +1,5 @@
-version = "1.5.7";
-versiondate = "2017-10-12";
+version = "1.5.8-beta1";
+versiondate = "2017-10-16";
 
 if (debug_mode)
 {
@@ -313,7 +313,7 @@ menu_width_start[6] = menu_width_start[5]+menu_width[5];
 menu_width[6] = string_width("   About   ");
 menu_width_start[7] = menu_width_start[6]+menu_width[6];
 
-radialgrid_surf = 1;//surface_create(512,512);
+radialgrid_surf = -1;//surface_create(512,512);
 /*surface_set_target(radialgrid_surf);
     draw_radialgrid();
 surface_reset_target();*/
