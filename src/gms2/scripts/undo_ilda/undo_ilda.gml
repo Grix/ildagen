@@ -25,7 +25,10 @@ if (is_real(undo))
 else if (string_char_at(undo,0) == "a")
 {
     controller.maxframes = real(string_digits(undo));
-    if (controller.frame > controller.maxframes) controller.frame = controller.maxframes-1;
+    if (controller.frame >= controller.maxframes) 
+		controller.frame = controller.maxframes-1;
+	if (controller.scope_end > controller.maxframes)
+		controller.scope_end = controller.maxframes-1;
 }
 else if (string_char_at(undo,0) == "r")
 {

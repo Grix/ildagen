@@ -532,12 +532,18 @@ if (new_id == getint)
               refresh_minitimeline_flag = 1;
               
               scopeflag = 0;
-              if (maxframes == (scope_end+1)) scopeflag = 1;
+              if (maxframes == (scope_end+1)) 
+				scopeflag = 1;
               
               maxframes = ds_map_find_value(argument[0], "value");
               
-              if (maxframes < 1) maxframes = 1;
-              else if (maxframes > $ffff) maxframes = $ffff;
+              if (maxframes < 1) 
+				maxframes = 1;
+              else if (maxframes > $ffff) 
+				maxframes = $ffff;
+				
+				if (scope_end > maxframes)
+					scope_end = maxframes-1;
               
               if (ds_list_size(frame_list) < maxframes)
                   repeat (maxframes - ds_list_size(frame_list))

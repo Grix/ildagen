@@ -28,12 +28,14 @@ if (func_doaudio)
 		var t_numPoints = 2048;
 		var t_length = t_numPoints*t_multiplier;
 		
-		audio_buffer = buffer_create(2048*2, buffer_fast, 1);
+		audio_buffer = buffer_create(t_numPoints*2, buffer_fast, 1);
 		parsebuffer = buffer_create(t_length, buffer_fixed, 1);
 		bufferIn = buffer_create(t_numPoints*4, buffer_fixed, 4);
 		bufferOut = buffer_create(t_numPoints, buffer_fixed, 4);
 		
 		var t_pcmpos = round(seqcontrol.selectedx+frame)/projectfps*seqcontrol.song_samplerate;
+		//while (t_pcmpos % t_channels)
+		//	t_pcmpos--;
 		buffer_seek(parsebuffer, buffer_seek_start, 0);
 		buffer_seek(bufferIn, buffer_seek_start, 0);
 		buffer_seek(bufferOut, buffer_seek_start, 0);
@@ -43,7 +45,8 @@ if (func_doaudio)
 
 		if (t_result < 0)
 		{
-			show_message_new("Failure when analyzing audio: "+FMODGMS_Util_GetErrorMessage());
+			log("Failure when analyzing audio: "+FMODGMS_Util_GetErrorMessage())
+			//show_message_new("Failure when analyzing audio: "+FMODGMS_Util_GetErrorMessage());
 			FMODGMS_Snd_Unload(song_parse);
 			song_parse = -1;
 			buffer_delete(parsebuffer);
@@ -60,7 +63,6 @@ if (func_doaudio)
 				buffer_write(bufferIn, buffer_f32, buffer_peek(parsebuffer, t_i*t_multiplier, buffer_s16));
 	
 			t_w = FMODGMS_Util_FFT(buffer_get_address(bufferIn), buffer_get_address(bufferOut), t_numPoints, 1);
-
 		}
 		
 	}	
@@ -75,7 +77,7 @@ if (placing == "func")
 	ML_VM_SetVarReal(parser_shape,"endx",endx_r*128);
 	ML_VM_SetVarReal(parser_shape,"endy",endy_r*128);
 	ML_VM_SetVarReal(parser_shape,"frame",t);
-	ML_VM_SetVarReal(parser_shape,"audio_loudness", t_w);
+	ML_VM_SetVarReal(parser_shape,"audio_loudness", t_w/6000);
 }
 
 if (colormode == "func") or (blankmode == "func")
@@ -93,5 +95,5 @@ if (colormode == "func") or (blankmode == "func")
     ML_VM_SetVarReal(parser_cb,"sec_red",colour_get_red(color2_r));
     ML_VM_SetVarReal(parser_cb,"sec_green",colour_get_green(color2_r));
     ML_VM_SetVarReal(parser_cb,"sec_blue",colour_get_blue(color2_r));
-	ML_VM_SetVarReal(parser_shape,"audio_loudness", t_w);
+	ML_VM_SetVarReal(parser_shape,"audio_loudness", t_w/6000);
 }

@@ -2,7 +2,7 @@ if (instance_exists(obj_dropdown))
     exit;
 if (moving == 1)
 {
-    controller.shapefunc_cp = clamp((mouse_x-bbox_left)/128*400, 1, 400);
+    controller.shapefunc_cp = clamp((mouse_x-bbox_left)/128*511, 1, 511);
 }
 
 visible = (controller.placing == "func");

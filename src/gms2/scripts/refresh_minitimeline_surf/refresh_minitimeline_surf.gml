@@ -1,5 +1,7 @@
+//todo fix, position not right
+
 if (!surface_exists(minitimeline_surf))
-    minitimeline_surf = surface_create(512,512);
+    minitimeline_surf = surface_create(512,64);
     
 surface_set_target(minitimeline_surf);
     
@@ -15,7 +17,7 @@ surface_set_target(minitimeline_surf);
         if (seqcontrol.selectedx >= 0)
             tlx = seqcontrol.selectedx;
         else
-            tlx = ds_list_find_value(abs(seqcontrol.selectedx),0);
+            tlx = ds_list_find_value(abs(seqcontrol.selectedx), 0);
         projectfps = seqcontrol.projectfps;;
         var drawtime = ceil(tlx/projectfps);
         tlzoom = maxframes;
@@ -69,10 +71,9 @@ if (seqcontrol.song != -1)
 {
     draw_set_alpha(0.67);
     var t_tlhalf = (tlh-13)/2;
-    //var t_tlthird = (tlh-13)/3;
     for (u=0; u <= tlw; u++)
     {
-        var nearesti = round((tlx+u*tlzoom/tlw)/projectfps*60)*3;
+        var nearesti = round((tlx+u*tlzoom/tlw)/projectfps*30)*3;
         
         if (nearesti > buffer_get_size(seqcontrol.audio_buffer)-3 || nearesti < 0)
             break;

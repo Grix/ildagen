@@ -44,9 +44,11 @@ parser_shape = ML_InitParserScience(varmap);
     ML_AddFunction(parser_shape, "lerp", _ML_Lerp, ML_VAL_REAL, ML_VAL_REAL, ML_VAL_REAL, ML_VAL_REAL);
     ML_AddFunction(parser_shape, "random", _ML_random, ML_VAL_REAL, ML_VAL_REAL, ML_VAL_REAL);
     ML_AddFunction(parser_shape, "random_normal", _ML_random_gauss, ML_VAL_REAL, ML_VAL_REAL, ML_VAL_REAL);
-	ML_AddFunction(parser_shape, "audio_wave", _ML_audio_wave, ML_VAL_REAL, ML_VAL_REAL);
-	ML_AddFunction(parser_shape, "audio_fft", _ML_audio_fft, ML_VAL_REAL, ML_VAL_REAL);
+	//ML_AddFunction(parser_shape, "audio_wave", _ML_audio_wave, ML_VAL_REAL, ML_VAL_REAL);
+	//ML_AddFunction(parser_shape, "audio_fft", _ML_audio_fft, ML_VAL_REAL, ML_VAL_REAL);
 	ML_AddVariable(parser_shape, "audio_loudness", 0, ML_VAL_REAL, 1);
+	ML_AddVariable(parser_shape, "audio_wave", 0, ML_VAL_REAL, 1);
+	ML_AddVariable(parser_shape, "audio_fft", 0, ML_VAL_REAL, 1);
 varmap = ds_map_create();
 //color/blank function
 parser_cb = ML_InitParserScience(varmap);
@@ -72,9 +74,11 @@ parser_cb = ML_InitParserScience(varmap);
     ML_AddFunction(parser_cb, "lerp", _ML_Lerp, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
     ML_AddFunction(parser_cb, "random", _ML_random, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
     ML_AddFunction(parser_cb, "random_normal", _ML_random_gauss, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
-	ML_AddFunction(parser_cb, "audio_wave", _ML_audio_wave, ML_VAL_REAL, ML_VAL_REAL);
-	ML_AddFunction(parser_cb, "audio_fft", _ML_audio_fft, ML_VAL_REAL, ML_VAL_REAL);
+	//ML_AddFunction(parser_cb, "audio_wave", _ML_audio_wave, ML_VAL_REAL, ML_VAL_REAL);
+	//ML_AddFunction(parser_cb, "audio_fft", _ML_audio_fft, ML_VAL_REAL, ML_VAL_REAL);
 	ML_AddVariable(parser_cb, "audio_loudness", 0, ML_VAL_REAL, 1);
+	ML_AddVariable(parser_cb, "audio_wave", 0, ML_VAL_REAL, 1);
+	ML_AddVariable(parser_cb, "audio_fft", 0, ML_VAL_REAL, 1);
     
 alarm[3] = 120;
 

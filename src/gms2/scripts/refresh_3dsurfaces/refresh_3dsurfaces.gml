@@ -36,7 +36,7 @@ for (i = 0;i < ds_list_size(el_list);i++)
             nxxp = 256+cos(degtorad(-npdir))*400;
             nyyp = 256+sin(degtorad(-npdir))*400;
             
-            if (xp == nxp) && (yp == nyp) && !(ds_list_find_value(new_list,nextpos-2))
+            if (abs(xp-nxp) < 8) && (abs(yp-nyp) < 8) && !(ds_list_find_value(new_list,nextpos-2))
             {
                 draw_set_alpha(0.9);
                 draw_line_colour(256,256,xxp,yyp,ds_list_find_value(new_list,nextpos+3),c_black);

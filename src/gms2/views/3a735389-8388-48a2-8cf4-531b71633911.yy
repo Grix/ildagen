@@ -49,9 +49,7 @@
         "b3420eb7-a01b-4d20-b298-27d49aec932f",
         "cbd50042-88f4-4cb8-9c9a-ebba0e10290b",
         "9cb549de-10c3-45d2-90eb-24e19df40d39",
-        "5e282214-96c9-446a-818e-5b5ae9cc2192",
-        "0e06405d-c228-4a55-851c-f4473d88dddb",
-        "3ccbbd97-41fa-439e-bc22-bbc29efae07d"
+        "5e282214-96c9-446a-818e-5b5ae9cc2192"
     ],
     "filterType": "GMScript",
     "folderName": "Helperfunctions",

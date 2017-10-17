@@ -45,7 +45,12 @@ for (n = 0;n <= checkpoints; n++)
     
     //XY
     ML_VM_SetVarReal(parser_shape,"point",n/checkpoints);
-    
+	if (func_doaudio == 1)
+	{
+		ML_VM_SetVarReal(parser_shape, "audio_wave", buffer_peek(bufferIn, min(n,2047)*4, buffer_f32)/40000);
+		ML_VM_SetVarReal(parser_shape, "audio_fft", buffer_peek(bufferOut, round(min(n/checkpoints*511,511))*4, buffer_f32));
+	}
+	
     result_x = ML_Execute(parser_shape,compiled_x);
     if (!ML_ResObj_HasAnswer(result_x))
     {
