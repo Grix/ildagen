@@ -96,6 +96,15 @@ with (seqcontrol)
     else
     {
         objectlist = ds_list_find_value(somaster_list,0);
+		if (!ds_exists(objectlist,ds_type_list))
+		{
+			ds_list_delete(somaster_list, 0);
+			{
+			    show_message_new("No timeline position marked, enter timeline mode and select a position by clicking on a layer first.");
+			    room_goto(rm_seq);
+				exit;
+			}
+		}
         if (buffer_exists(ds_list_find_value(objectlist,1)))
 			buffer_delete(ds_list_find_value(objectlist,1));
         ds_list_replace(objectlist,1,controller.save_buffer);

@@ -26,6 +26,10 @@ while (ds_list_size(undo_list))
         if (!ds_exists(undolisttemp,ds_type_list))
             exit;
         objectlist = ds_list_find_value(undolisttemp,1);
+		if (!ds_exists(objectlist,ds_type_list))
+		{
+			exit;
+		}
         infolist = ds_list_find_value(objectlist, 2);
         if (surface_exists(ds_list_find_value(infolist,1)))
             surface_free(ds_list_find_value(infolist,1));

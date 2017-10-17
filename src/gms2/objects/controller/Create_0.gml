@@ -1,4 +1,4 @@
-version = "1.5.8-beta1";
+version = "1.5.7";
 versiondate = "2017-10-16";
 
 if (debug_mode)
@@ -30,20 +30,25 @@ if (os_browser == browser_not_a_browser)
 draw_set_circle_precision(24);
 
 varmap = ds_map_create();
+//shape function
 parser_shape = ML_InitParserScience(varmap);
-    ML_AddVariable(parser_shape, "point",0, ML_VAL_REAL, 1);
-    ML_AddVariable(parser_shape, "frame",0, ML_VAL_REAL, 1);
-    ML_AddVariable(parser_shape, "startx",0, ML_VAL_REAL, 1);
-    ML_AddVariable(parser_shape, "starty",0, ML_VAL_REAL, 1);
-    ML_AddVariable(parser_shape, "endx",0, ML_VAL_REAL, 1);
-    ML_AddVariable(parser_shape, "endy",0, ML_VAL_REAL, 1);
-    ML_AddVariable(parser_shape, "width",$ffff, ML_VAL_REAL, 1);
-    ML_AddVariable(parser_shape, "height",$ffff, ML_VAL_REAL, 1);
-    ML_AddVariable(parser_shape, "max",$ffff, ML_VAL_REAL, 1);
-    ML_AddFunction(parser_shape, "lerp", _ML_Lerp, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
-    ML_AddFunction(parser_shape, "random", _ML_random, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
-    ML_AddFunction(parser_shape, "random_normal", _ML_random_gauss, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
+    ML_AddVariable(parser_shape, "point", 0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "frame", 0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "startx", 0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "starty", 0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "endx", 0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "endy", 0, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "width", $ffff, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "height", $ffff, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_shape, "max", $ffff, ML_VAL_REAL, 1);
+    ML_AddFunction(parser_shape, "lerp", _ML_Lerp, ML_VAL_REAL, ML_VAL_REAL, ML_VAL_REAL, ML_VAL_REAL);
+    ML_AddFunction(parser_shape, "random", _ML_random, ML_VAL_REAL, ML_VAL_REAL, ML_VAL_REAL);
+    ML_AddFunction(parser_shape, "random_normal", _ML_random_gauss, ML_VAL_REAL, ML_VAL_REAL, ML_VAL_REAL);
+	ML_AddFunction(parser_shape, "audio_wave", _ML_audio_wave, ML_VAL_REAL, ML_VAL_REAL);
+	ML_AddFunction(parser_shape, "audio_fft", _ML_audio_fft, ML_VAL_REAL, ML_VAL_REAL);
+	ML_AddVariable(parser_shape, "audio_loudness", 0, ML_VAL_REAL, 1);
 varmap = ds_map_create();
+//color/blank function
 parser_cb = ML_InitParserScience(varmap);
     ML_AddVariable(parser_cb, "point",0, ML_VAL_REAL, 1);
     ML_AddVariable(parser_cb, "frame",0, ML_VAL_REAL, 1);
@@ -61,12 +66,15 @@ parser_cb = ML_InitParserScience(varmap);
     ML_AddVariable(parser_cb, "sec_blue",0, ML_VAL_REAL, 1);
     ML_AddVariable(parser_cb, "x",0, ML_VAL_REAL, 1);
     ML_AddVariable(parser_cb, "y",0, ML_VAL_REAL, 1);
-    ML_AddVariable(parser_cb, "max",255, ML_VAL_REAL, 1);
-    ML_AddVariable(parser_cb, "width",$ffff, ML_VAL_REAL, 1);
-    ML_AddVariable(parser_cb, "height",$ffff, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "max", 255, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "width", $ffff, ML_VAL_REAL, 1);
+    ML_AddVariable(parser_cb, "height", $ffff, ML_VAL_REAL, 1);
     ML_AddFunction(parser_cb, "lerp", _ML_Lerp, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
     ML_AddFunction(parser_cb, "random", _ML_random, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
     ML_AddFunction(parser_cb, "random_normal", _ML_random_gauss, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
+	ML_AddFunction(parser_cb, "audio_wave", _ML_audio_wave, ML_VAL_REAL, ML_VAL_REAL);
+	ML_AddFunction(parser_cb, "audio_fft", _ML_audio_fft, ML_VAL_REAL, ML_VAL_REAL);
+	ML_AddVariable(parser_cb, "audio_loudness", 0, ML_VAL_REAL, 1);
     
 alarm[3] = 120;
 

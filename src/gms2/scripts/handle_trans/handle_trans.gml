@@ -1,9 +1,9 @@
 if (objmoving == 1)
 {
     //translate
-    anixtrans+= (obj_cursor.x-mousexprevious)*$ffff/512;
+    anixtrans+= (obj_cursor.x-mousexprev)*$ffff/512;
     aniytrans+= (obj_cursor.y-mouseyprevious)*$ffff/512;
-    mousexprevious = obj_cursor.x;
+    mousexprev = obj_cursor.x;
     mouseyprevious = obj_cursor.y;
     
     if (mouse_check_button_released(mb_left))
@@ -17,9 +17,9 @@ if (objmoving == 1)
 else if (objmoving == 2)    
 {
     //anchor
-    anchorx += (obj_cursor.x-mousexprevious)*$ffff/512;
+    anchorx += (obj_cursor.x-mousexprev)*$ffff/512;
     anchory += (obj_cursor.y-mouseyprevious)*$ffff/512;
-    mousexprevious = obj_cursor.x;
+    mousexprev = obj_cursor.x;
     mouseyprevious = obj_cursor.y;
     if (mouse_check_button_released(mb_left))
     {
@@ -51,16 +51,16 @@ else if (objmoving == 4)
     //resize
     if (!keyboard_check(vk_control))
     {
-        scalex+= (obj_cursor.x-mousexprevious)/max(1,(rectxmax-rectxmin))*2;
+        scalex+= (obj_cursor.x-mousexprev)/max(1,(rectxmax-rectxmin))*2;
         scaley+= (obj_cursor.y-mouseyprevious)/max(1,(rectymax-rectymin))*2;
     }
     else
     {
-        scalex+= (obj_cursor.x-mousexprevious)/max(1,(rectxmax-rectxmin))*2;
-        scaley+= (obj_cursor.x-mousexprevious)/max(1,(rectymax-rectymin))*2;
+        scalex+= (obj_cursor.x-mousexprev)/max(1,(rectxmax-rectxmin))*2;
+        scaley+= (obj_cursor.x-mousexprev)/max(1,(rectymax-rectymin))*2;
     }  
           
-    mousexprevious = obj_cursor.x;
+    mousexprev = obj_cursor.x;
     mouseyprevious = obj_cursor.y;
     
     if (mouse_check_button_released(mb_left))
@@ -77,7 +77,7 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
         if (mouse_check_button_pressed(mb_left)) 
         {
             objmoving = 2;
-            mousexprevious = obj_cursor.x;
+            mousexprev = obj_cursor.x;
             mouseyprevious = obj_cursor.y;
         }
         else if (mouse_check_button_pressed(mb_right)) 
@@ -97,7 +97,7 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
             anirot = 0;
             scalex = 1;
             scaley = 1;
-            mousexprevious = obj_cursor.x;
+            mousexprev = obj_cursor.x;
             mouseyprevious = obj_cursor.y;
         }
         else if (mouse_check_button_pressed(mb_right)) 
@@ -138,7 +138,7 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
             anirot = 0;
             scalex = 1;
             scaley = 1;
-            mousexprevious = obj_cursor.x;
+            mousexprev = obj_cursor.x;
             mouseyprevious = obj_cursor.y;
         }
         else if (mouse_check_button_pressed(mb_right)) 

@@ -39,7 +39,7 @@ if (n/checkpoints != ML_VM_GetVarReal(parser_cb,"point"))
     }
 }
     
-result_en = ML_Execute(parser_cb,compiled_en);
+result_en = ML_Execute(parser_cb, compiled_en);
 if (!ML_ResObj_HasAnswer(result_en))
 {
     show_message_new("Unexpected value for BLANK at point="+string(n/checkpoints)+" , frame="+string(t));  

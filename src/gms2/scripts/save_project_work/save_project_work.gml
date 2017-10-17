@@ -16,7 +16,8 @@ for (i = global.loading_current; i < global.loading_end;i++)
 		if (!ds_exists(objectlist, ds_type_list))
 		{
 			ds_list_delete(_layer[| 1], j);
-			j--;
+			if (j > 0)
+				j--;
 			continue;
 		}
         tempframe = ds_list_find_value(objectlist,0);

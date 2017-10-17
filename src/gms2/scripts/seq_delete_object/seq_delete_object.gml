@@ -10,6 +10,13 @@ for (k = 0; k < ds_list_size(somaster_list); k++)
         if (ds_list_find_index(layerlisttemp,ds_list_find_value(somaster_list,k)) != -1)    
         {
             objectlist = ds_list_find_value(somaster_list,k);
+			if (!ds_exists(objectlist,ds_type_list))
+			{
+				ds_list_delete(somaster_list, k);
+				if (k > 0)
+					k--;
+				continue;
+			}
             
             undolisttemp = ds_list_create();
             ds_list_add(undolisttemp,layerlisttemp);

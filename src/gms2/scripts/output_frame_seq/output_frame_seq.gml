@@ -60,6 +60,14 @@ for (k = 0; k < ds_list_size(layer_list); k++)
     for (m = 0; m < ds_list_size(_layer); m++)
     {
         objectlist = ds_list_find_value(_layer,m);
+		
+		if (!ds_exists(objectlist,ds_type_list))
+		{
+			ds_list_delete(_layer, m);
+			if (m > 0)
+				m--;
+			continue;
+		}
         
         infolist =  ds_list_find_value(objectlist,2);
         frametime = round(ds_list_find_value(objectlist,0));

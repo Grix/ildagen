@@ -1,11 +1,14 @@
-ML_VM_SetVarReal(parser_shape,"startx",startposx_r);
-ML_VM_SetVarReal(parser_shape,"starty",startposy_r);
-ML_VM_SetVarReal(parser_shape,"endx",endx_r);
-ML_VM_SetVarReal(parser_shape,"endy",endy_r);
-ML_VM_SetVarReal(parser_shape,"frame",t);
+if (placing == "func")
+{
+	ML_VM_SetVarReal(parser_shape,"startx",startposx_r);
+	ML_VM_SetVarReal(parser_shape,"starty",startposy_r);
+	ML_VM_SetVarReal(parser_shape,"endx",endx_r);
+	ML_VM_SetVarReal(parser_shape,"endy",endy_r);
+	ML_VM_SetVarReal(parser_shape,"frame",t);
+}
 
 if (colormode == "func") or (blankmode == "func")
-    {
+{
     ML_VM_SetVarReal(parser_cb,"startx",startposx_r);
     ML_VM_SetVarReal(parser_cb,"starty",startposy_r);
     ML_VM_SetVarReal(parser_cb,"endx",endx_r);
@@ -19,4 +22,4 @@ if (colormode == "func") or (blankmode == "func")
     ML_VM_SetVarReal(parser_cb,"sec_red",colour_get_red(color2_r));
     ML_VM_SetVarReal(parser_cb,"sec_green",colour_get_green(color2_r));
     ML_VM_SetVarReal(parser_cb,"sec_blue",colour_get_blue(color2_r));
-    }
+}

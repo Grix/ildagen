@@ -3,6 +3,13 @@ splitted = false;
 for (i = 0; i < ds_list_size(somaster_list); i++)
 {
     objectlist = somaster_list[| i];
+	if (!ds_exists(objectlist,ds_type_list))
+	{
+		ds_list_delete(somaster_list, i);
+		if (i > 0)
+			i--;
+		continue;
+	}
     correctframe = round(tlpos/1000*projectfps);
     infolist =  ds_list_find_value(objectlist,2);
     frametime = ds_list_find_value(objectlist,0);

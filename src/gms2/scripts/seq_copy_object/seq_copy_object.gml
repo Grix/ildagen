@@ -21,6 +21,14 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
 {
     layertemp = 0;
     objectlist = ds_list_find_value(somaster_list,i);
+	if (!ds_exists(objectlist,ds_type_list))
+	{
+		ds_list_delete(somaster_list, i);
+		if (i > 0)
+			i--;
+		continue;
+	}
+	
     for (c = 0; c < ds_list_size(layer_list); c++)
     {
         if (ds_list_find_index( ds_list_find_value(layer_list[| c],1), objectlist) != -1)    

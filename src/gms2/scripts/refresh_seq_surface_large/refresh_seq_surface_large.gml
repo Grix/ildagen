@@ -28,8 +28,15 @@ for (j = 0; j < ds_list_size(layer_list); j++)
     
     elementlist = _layer[| 1];
     for (m = 0; m < ds_list_size(elementlist); m++)
-        {
+    {
         objectlist = elementlist[| m];
+		if (!ds_exists(objectlist,ds_type_list))
+		{
+			ds_list_delete(elementlist, m);
+			if (m > 0)
+				m--;
+			continue;
+		}
         
         infolist =  ds_list_find_value(objectlist,2);
         frametime = round(ds_list_find_value(objectlist,0));

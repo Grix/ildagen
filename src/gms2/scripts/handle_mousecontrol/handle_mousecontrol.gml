@@ -426,7 +426,7 @@ else if (scroll_moving == 2)
 controller.scrollcursor_flag = 0;
     
 if (mouse_x > tlw) 
-or (mouse_y < 132)
+or (mouse_y < tlsurf_y)
 or (controller.dialog_open)
 or (controller.menu_open)
     exit;
@@ -438,6 +438,8 @@ if (mouse_wheel_up() or keyboard_check_pressed(vk_f7))
     if (tlzoom < 20) 
         tlzoom = 20;
     tlx = tlxtemp-mouse_x/tlw*tlzoom;
+	if (tlx+tlzoom > length)
+		length = tlx+tlzoom;
 }
 else if (mouse_wheel_down() or keyboard_check_pressed(vk_f8))
 {
@@ -447,6 +449,8 @@ else if (mouse_wheel_down() or keyboard_check_pressed(vk_f8))
     tlx = tlxtemp-mouse_x/tlw*tlzoom;
     if (tlx < 0) 
         tlx = 0;
+	if (tlx+tlzoom > length)
+		length = tlx+tlzoom;
 }
 
     
@@ -621,6 +625,14 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                 for (m = 0; m < ds_list_size(elementlist); m++)
                 {
                     objectlist = elementlist[| m];
+					
+					if (!ds_exists(objectlist,ds_type_list))
+					{
+						ds_list_delete(elementlist, m);
+						if (m > 0)
+							m--;
+						continue;
+					}
                     
                     infolist =  ds_list_find_value(objectlist,2);
                     frametime = ds_list_find_value(objectlist,0);
@@ -847,22 +859,29 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
 if !(mouseonsomelayer)
 {
     draw_mouseline = 1;
-    if (mouse_y > 132)
+    //playback pos
+    controller.tooltip = "Click to set playback position. Hold [Ctrl] and drag mouse to scroll timeline.";
+    if (mouse_check_button_pressed(mb_left))
     {
-        //playback pos
-        controller.tooltip = "Click to set playback position.";
-        if  mouse_check_button(mb_left)
+        tlpos = round(tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
+        if (song != -1)
         {
-            tlpos = round(tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
-            if (song != -1)
-            {
-                FMODGMS_Chan_StopChannel(play_sndchannel);
-                FMODGMS_Snd_PlaySound(song, play_sndchannel);
-                apply_audio_settings();
-                fmod_set_pos(play_sndchannel,clamp(((tlpos+audioshift)-10),0,songlength));
-            }
+            FMODGMS_Chan_StopChannel(play_sndchannel);
+            FMODGMS_Snd_PlaySound(song, play_sndchannel);
+            apply_audio_settings();
+            fmod_set_pos(play_sndchannel,clamp(((tlpos+audioshift)-10),0,songlength));
         }
+		mousexprev = mouse_x;
     }
+	if (keyboard_check(vk_control) && mouse_check_button(mb_left))
+	{
+		tlx -= round((mouse_x-mousexprev)/tlw*tlzoom);
+		if (tlx < 0) 
+			tlx = 0;
+		if (tlx+tlzoom > length)
+			length = tlx+tlzoom;
+		mousexprev = mouse_x;
+	}
 }
     
     
