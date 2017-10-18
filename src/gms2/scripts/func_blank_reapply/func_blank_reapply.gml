@@ -1,6 +1,11 @@
 if (j/checkpoints != ML_VM_GetVarReal(parser_cb,"point"))
 {
     ML_VM_SetVarReal(parser_cb,"point",j/checkpoints);
+	if (func_doaudio != 0)
+	{
+		ML_VM_SetVarReal(parser_cb, "audio_wave", buffer_peek(bufferIn, min(n,2047)*4, buffer_f32)/40000);
+		ML_VM_SetVarReal(parser_cb, "audio_fft", buffer_peek(bufferOut, round(min(n/checkpoints*511,511))*4, buffer_f32));
+	}
     ML_VM_SetVarReal(parser_cb,"x",ML_VM_GetVarReal(parser_cb,"startx")+xp);
     ML_VM_SetVarReal(parser_cb,"y",ML_VM_GetVarReal(parser_cb,"starty")+yp);
 }

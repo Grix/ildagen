@@ -3,6 +3,13 @@
 lastpointadded = 0
 framepre = frame;
 placing_status = 0;
+
+song_parse = -1;
+parsebuffer = -1;
+bufferIn = -1;
+bufferOut = -1;
+func_doaudio = 0;
+func_audioloudness = 0;
         
 if (maxframes == 1) and (anienable)
 {
@@ -347,7 +354,8 @@ if (!fillframes)
     ds_list_add(new_list,0);
     ds_list_add(new_list,0);
     ds_list_add(new_list,el_id);
-    repeat (10) ds_list_add(new_list,0);
+    repeat (10) 
+		ds_list_add(new_list,0);
     
     
     func_startofframe();
@@ -468,7 +476,9 @@ else
     frame = scope_start;
     repeat (scope_end-scope_start+1)
     {
-        
+		if (func_doaudio == 3)
+			func_doaudio = 2;
+			
         new_list = ds_list_create();
 
         if (anienable == 0) or (maxframes == 1)
@@ -721,4 +731,18 @@ if (autoresflag)
 
 ilda_cancel();
 ds_list_add(undo_list,el_id);
+
+if (func_doaudio)
+{
+	if (song_parse >= 0)
+		FMODGMS_Snd_Unload(song_parse);
+	song_parse = -1;
+	buffer_delete(parsebuffer);
+	buffer_delete(bufferIn);
+	buffer_delete(bufferOut);
+	parsebuffer = -1;
+	bufferIn = -1;
+	bufferOut = -1;
+}
+
 el_id++;

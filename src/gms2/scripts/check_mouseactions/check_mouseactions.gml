@@ -50,6 +50,21 @@ if ((mouse_x > tlorigo_x+2) && (mouse_x < tlorigo_x+tlw-2) &&
                 update_semasterlist_flag = 1;
             }
             refresh_minitimeline_flag = 1;
+			
+			with (seqcontrol)
+			{
+		        if (song != -1)
+		        {
+		            FMODGMS_Chan_StopChannel(play_sndchannel);
+		            FMODGMS_Snd_PlaySound(song, play_sndchannel);
+		            apply_audio_settings();
+					if (controller.playing)
+						FMODGMS_Chan_ResumeChannel(play_sndchannel);
+					else
+						FMODGMS_Chan_PauseChannel(play_sndchannel);
+		            fmod_set_pos(play_sndchannel,clamp(((selectedx+controller.frame)/projectfps*1000+audioshift)-10, 0, songlength));
+		        }
+			}
         }
     }
 }
