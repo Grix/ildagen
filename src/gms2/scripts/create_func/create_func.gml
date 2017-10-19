@@ -48,7 +48,7 @@ for (n = 0;n <= checkpoints; n++)
 	if (func_doaudio != 0)
 	{
 		ML_VM_SetVarReal(parser_shape, "audio_wave", buffer_peek(bufferIn, min(n,2047)*4, buffer_f32)/40000);
-		ML_VM_SetVarReal(parser_shape, "audio_fft", buffer_peek(bufferOut, round(min(n/checkpoints*511,511))*4, buffer_f32));
+		ML_VM_SetVarReal(parser_shape, "audio_spectrum", buffer_peek(bufferOut, round(min(n/checkpoints*511,511))*4, buffer_f32));
 	}
 	
     result_x = ML_Execute(parser_shape,compiled_x);

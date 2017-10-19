@@ -86,7 +86,7 @@ if (placing == "func")
 	ML_VM_SetVarReal(parser_shape,"endx",endx_r*128);
 	ML_VM_SetVarReal(parser_shape,"endy",endy_r*128);
 	ML_VM_SetVarReal(parser_shape,"frame",t);
-	ML_VM_SetVarReal(parser_shape,"audio_loudness", func_audioloudness/6000);
+	ML_VM_SetVarReal(parser_shape,"audio_loudness", func_audioloudness/7000);
 }
 
 if (colormode == "func") or (blankmode == "func")
@@ -104,5 +104,5 @@ if (colormode == "func") or (blankmode == "func")
     ML_VM_SetVarReal(parser_cb,"sec_red",colour_get_red(color2_r));
     ML_VM_SetVarReal(parser_cb,"sec_green",colour_get_green(color2_r));
     ML_VM_SetVarReal(parser_cb,"sec_blue",colour_get_blue(color2_r));
-	ML_VM_SetVarReal(parser_shape,"audio_loudness", func_audioloudness/6000);
+	ML_VM_SetVarReal(parser_shape,"audio_loudness", func_audioloudness/7000);
 }
