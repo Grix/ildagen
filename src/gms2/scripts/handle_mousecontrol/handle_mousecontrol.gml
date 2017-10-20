@@ -861,7 +861,7 @@ if !(mouseonsomelayer)
     draw_mouseline = 1;
     //playback pos
     controller.tooltip = "Click to set playback position. Hold [Ctrl] and drag mouse to scroll timeline.";
-    if (mouse_check_button_pressed(mb_left))
+    if (mouse_check_button(mb_left) && !keyboard_check(vk_control))
     {
         tlpos = round(tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
         if (song != -1)
@@ -871,9 +871,10 @@ if !(mouseonsomelayer)
             apply_audio_settings();
             fmod_set_pos(play_sndchannel,clamp(((tlpos+audioshift)-10),0,songlength));
         }
-		mousexprev = mouse_x;
+		
+		//mousexprev = mouse_x;
     }
-	if (keyboard_check(vk_control) && mouse_check_button(mb_left))
+	else if (keyboard_check(vk_control) && mouse_check_button(mb_left))
 	{
 		tlx -= round((mouse_x-mousexprev)/tlw*tlzoom);
 		if (tlx < 0) 

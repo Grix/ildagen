@@ -1,6 +1,8 @@
-if (room != rm_seq) exit;
+if (room != rm_seq) 
+	exit;
 
 alarm[2] = 1;
+mousexprev = mouse_x;
 
 //menu
 if (mouse_y > __view_get( e__VW.YView, 3 ))   

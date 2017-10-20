@@ -74,6 +74,8 @@ songfile_name = "";
 song_samplerate = 0;
 song_parse = 0;
 filepath = "";
+ybar = 137;
+xbar = 512;
 
 somaster_list_prevsize = 0;
 
@@ -84,7 +86,7 @@ endframex = -1;
 largepreview = 0;
 loop = false;
 
-tlsurf_y = 137;
+tlsurf_y = ybar;
 tlw = 983; //width of timeline
 tlh = 128-16; //height of audio part of timeline
 tls = tlh+tlsurf_y+16; //start of layer area, seen from outside surface

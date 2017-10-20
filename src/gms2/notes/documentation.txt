@@ -1,9 +1,9 @@
 TODO
 - double check and fix maxpoints_static calculation
-- fmodgms
-- waveform variables in function
-- reapply relative position functionality
+- reapply combine shapes
 - LIVE mode
+- switch x/y
+- other format 0 palette
 
 SETTINGSCONTROL
 
