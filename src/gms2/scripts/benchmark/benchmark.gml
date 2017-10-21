@@ -1,6 +1,5 @@
 //tesing benchmark
 
-//show_question_new("Hello.Testing. This is a longer sentence representing a normal message.\nAlso with a second line.");
 
 /*log("---")
 blah1 = surface_create(2048, 2048);

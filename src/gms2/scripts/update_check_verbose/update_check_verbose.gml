@@ -1,10 +1,11 @@
-if (os_browser != browser_not_a_browser) exit;
+if (os_browser != browser_not_a_browser) 
+	exit;
 
-show_debug_message("Checking for updates");
+log("Checking for updates");
 updatereceived = 0;
 
 with (controller)   
-    {
+{
     update_verbose = 1;
     updatenotes = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/versionnotes.txt");
-    }
+}

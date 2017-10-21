@@ -1954,7 +1954,7 @@
             "Key": "3a371281-f66f-4d33-bdff-214f55b04d62",
             "Value": {
                 "id": "069c102b-2290-4bf5-ba89-57cea303d2ae",
-                "resourcePath": "objects\\obj_xbar_parent\\obj_xbar_parent.yy",
+                "resourcePath": "objects\\obj_section0_parent\\obj_section0_parent.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -2562,7 +2562,7 @@
             "Key": "4ee18070-949b-4996-b9c3-67972ae1caa3",
             "Value": {
                 "id": "bed62c51-f39b-4235-8f2f-3ef420d01184",
-                "resourcePath": "objects\\obj_ybar_parent\\obj_ybar_parent.yy",
+                "resourcePath": "objects\\obj_section1_parent\\obj_section1_parent.yy",
                 "resourceType": "GMObject"
             }
         },

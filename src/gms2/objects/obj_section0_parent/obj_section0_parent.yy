@@ -2,7 +2,7 @@
     "id": "3a371281-f66f-4d33-bdff-214f55b04d62",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "obj_xbar_parent",
+    "name": "obj_section0_parent",
     "eventList": [
         
     ],

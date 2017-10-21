@@ -1,4 +1,4 @@
-version = "1.5.8";
+version = "1.5.9";
 versiondate = "2017-10-19";
 
 if (debug_mode)
@@ -18,10 +18,6 @@ if (os_browser == browser_not_a_browser)
     if (directory_exists("temp"))
         directory_destroy("temp");
     directory_create("temp");
-    
-    var t_buf = buffer_create(1,buffer_fast,1);
-    buffer_write(t_buf, buffer_u8, 1);
-    buffer_save(t_buf,"temp\\one");
 }
 
 //declarations and setup
@@ -44,8 +40,6 @@ parser_shape = ML_InitParserScience(varmap);
     ML_AddFunction(parser_shape, "lerp", _ML_Lerp, ML_VAL_REAL, ML_VAL_REAL, ML_VAL_REAL, ML_VAL_REAL);
     ML_AddFunction(parser_shape, "random", _ML_random, ML_VAL_REAL, ML_VAL_REAL, ML_VAL_REAL);
     ML_AddFunction(parser_shape, "random_normal", _ML_random_gauss, ML_VAL_REAL, ML_VAL_REAL, ML_VAL_REAL);
-	//ML_AddFunction(parser_shape, "audio_wave", _ML_audio_wave, ML_VAL_REAL, ML_VAL_REAL);
-	//ML_AddFunction(parser_shape, "audio_spectrum", _ML_audio_spectrum, ML_VAL_REAL, ML_VAL_REAL);
 	ML_AddVariable(parser_shape, "audio_loudness", 0, ML_VAL_REAL, 1);
 	ML_AddVariable(parser_shape, "audio_wave", 0, ML_VAL_REAL, 1);
 	ML_AddVariable(parser_shape, "audio_spectrum", 0, ML_VAL_REAL, 1);
@@ -74,8 +68,6 @@ parser_cb = ML_InitParserScience(varmap);
     ML_AddFunction(parser_cb, "lerp", _ML_Lerp, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
     ML_AddFunction(parser_cb, "random", _ML_random, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
     ML_AddFunction(parser_cb, "random_normal", _ML_random_gauss, ML_VAL_REAL,ML_VAL_REAL,ML_VAL_REAL);
-	//ML_AddFunction(parser_cb, "audio_wave", _ML_audio_wave, ML_VAL_REAL, ML_VAL_REAL);
-	//ML_AddFunction(parser_cb, "audio_spectrum", _ML_audio_spectrum, ML_VAL_REAL, ML_VAL_REAL);
 	ML_AddVariable(parser_cb, "audio_loudness", 0, ML_VAL_REAL, 1);
 	ML_AddVariable(parser_cb, "audio_wave", 0, ML_VAL_REAL, 1);
 	ML_AddVariable(parser_cb, "audio_spectrum", 0, ML_VAL_REAL, 1);
@@ -106,6 +98,8 @@ profile_list = ds_list_create();
 list = ds_list_create();
 emptyliststring = ds_list_write(list);
 ds_list_destroy(list);
+radialgrid_surf = -1;
+squaregrid_surf = -1;
 
 c_gold = make_colour_rgb(255,220,0);
 
@@ -326,15 +320,6 @@ menu_width[5] = string_width("   Settings   ");
 menu_width_start[6] = menu_width_start[5]+menu_width[5];
 menu_width[6] = string_width("   About   ");
 menu_width_start[7] = menu_width_start[6]+menu_width[6];
-
-radialgrid_surf = -1;//surface_create(512,512);
-/*surface_set_target(radialgrid_surf);
-    draw_radialgrid();
-surface_reset_target();*/
-squaregrid_surf = -1; //surface_create(512,512);
-/*surface_set_target(squaregrid_surf);
-    draw_grid();
-surface_reset_target();*/
 
 randomize();
 
