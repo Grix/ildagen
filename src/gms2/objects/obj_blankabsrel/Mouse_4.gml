@@ -1,6 +1,6 @@
 if (instance_exists(obj_dropdown))
     exit;
-if (!visible)
+if (!_visible)
     exit;
 
 if (mouse_x < (x+23*1.5))

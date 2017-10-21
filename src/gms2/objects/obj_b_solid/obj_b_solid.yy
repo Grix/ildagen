@@ -5,16 +5,6 @@
     "name": "obj_b_solid",
     "eventList": [
         {
-            "id": "86288776-d716-43b7-9ff1-eb321e5cbf34",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "f9ecfcfd-7b4e-4b2c-b06b-3ed19a3f2e08"
-        },
-        {
             "id": "f2e54173-59ed-4f85-8452-54a3e930c9ce",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -36,7 +26,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "00000000-0000-0000-0000-000000000000",
+    "parentObjectId": "3a371281-f66f-4d33-bdff-214f55b04d62",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,
