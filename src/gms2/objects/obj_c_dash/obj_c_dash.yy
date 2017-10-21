@@ -5,16 +5,6 @@
     "name": "obj_c_dash",
     "eventList": [
         {
-            "id": "bad9db05-0169-44aa-8f15-eb6e7da95120",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "083abc27-8392-48c5-95c1-75b99dc1e046"
-        },
-        {
             "id": "b74d8dc1-f73a-4414-98fa-34dc07a93d1c",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -36,7 +26,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "8fe7d7e6-7451-4ec3-b725-4d9d515d6ef6",
+    "parentObjectId": "3a371281-f66f-4d33-bdff-214f55b04d62",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,

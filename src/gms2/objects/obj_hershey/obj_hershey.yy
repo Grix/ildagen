@@ -5,16 +5,6 @@
     "name": "obj_hershey",
     "eventList": [
         {
-            "id": "7c45ba5b-73b4-45df-90f4-86587d18a4d1",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "b465a62d-3afc-475b-bcbf-32feae4d4313"
-        },
-        {
             "id": "4a3d582f-2c7f-4b1e-8078-1a865e2677fc",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -36,7 +26,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "8fe7d7e6-7451-4ec3-b725-4d9d515d6ef6",
+    "parentObjectId": "3a371281-f66f-4d33-bdff-214f55b04d62",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,

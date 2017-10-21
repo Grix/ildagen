@@ -1,5 +1,10 @@
 if (instance_exists(obj_dropdown))
     exit;
+	
+visible = !ds_list_empty(controller.semaster_list);
+	
+if (!visible)
+	exit;
     
 image_index = controller.color_blendmode;
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))

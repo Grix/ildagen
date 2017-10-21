@@ -1,3 +1,4 @@
-if (room != rm_ilda) exit;
+if (room != rm_ilda) 
+	exit;
 sgriddouble = 0;
 

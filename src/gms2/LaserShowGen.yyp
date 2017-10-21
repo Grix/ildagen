@@ -4495,14 +4495,6 @@
             }
         },
         {
-            "Key": "8fe7d7e6-7451-4ec3-b725-4d9d515d6ef6",
-            "Value": {
-                "id": "75b89735-21ec-41de-8c64-3df57ba04c25",
-                "resourcePath": "objects\\obj_button_parent\\obj_button_parent.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "90134032-6a8c-4127-af7b-7e36c6bcf806",
             "Value": {
                 "id": "2093b664-8c32-42b4-9789-7ef8200cbd98",

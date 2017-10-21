@@ -269,9 +269,13 @@ if (view_current == 0)
     draw_set_alpha(1);
     
     gpu_set_blendenable(0);
-    with (obj_button_parent)
+    with (obj_section0_parent)
     {
-        draw_self();
+		if (!transparent && !visible)
+		{
+			if (_visible)
+				draw_self();
+		}
     }
     gpu_set_blendenable(1);
 }

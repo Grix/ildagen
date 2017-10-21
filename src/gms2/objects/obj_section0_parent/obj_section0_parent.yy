@@ -4,7 +4,16 @@
     "mvc": "1.0",
     "name": "obj_section0_parent",
     "eventList": [
-        
+        {
+            "id": "a4904405-4bed-4f94-ac9b-d91f8847ae16",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
+            "enumb": 0,
+            "eventtype": 0,
+            "m_owner": "3a371281-f66f-4d33-bdff-214f55b04d62"
+        }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "parentObjectId": "00000000-0000-0000-0000-000000000000",
@@ -23,5 +32,5 @@
     "physicsStartAwake": true,
     "solid": false,
     "spriteId": "00000000-0000-0000-0000-000000000000",
-    "visible": true
+    "visible": false
 }

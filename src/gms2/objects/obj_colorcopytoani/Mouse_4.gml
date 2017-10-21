@@ -1,6 +1,7 @@
 if (instance_exists(obj_dropdown))
     exit;
-if (!visible) exit;
+if (!visible) 
+	exit;
 
 tempundolist = ds_list_create();
 ds_list_add(tempundolist,controller.anienddotscolor);

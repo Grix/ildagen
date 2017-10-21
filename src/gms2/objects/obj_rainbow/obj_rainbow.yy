@@ -5,16 +5,6 @@
     "name": "obj_rainbow",
     "eventList": [
         {
-            "id": "e988ecf4-6a65-49a7-9fe0-5713acf357fa",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "fd7b41b0-edab-4508-a2bc-1d54fa86196d"
-        },
-        {
             "id": "ae5f22a3-22cc-49c7-b1ba-f99efef9c6ca",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -36,7 +26,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "8fe7d7e6-7451-4ec3-b725-4d9d515d6ef6",
+    "parentObjectId": "3a371281-f66f-4d33-bdff-214f55b04d62",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,

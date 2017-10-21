@@ -5,16 +5,6 @@
     "name": "obj_c_gradient",
     "eventList": [
         {
-            "id": "25a03916-2c28-4998-a0c5-a4e50a1c0933",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "721464b3-2c94-4eb2-9bab-4a3f9ca310cd"
-        },
-        {
             "id": "d63f28b3-0d5e-406e-bab5-ad481871cf16",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -36,7 +26,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "8fe7d7e6-7451-4ec3-b725-4d9d515d6ef6",
+    "parentObjectId": "3a371281-f66f-4d33-bdff-214f55b04d62",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,
