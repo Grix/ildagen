@@ -2,7 +2,7 @@ if (room != rm_options)
     exit;
 
 //menu
-if (mouse_y > __view_get( e__VW.YView, 3 ))   
+if (mouse_y > camera_get_view_y(view_camera[3]))   
 {
     if (mouse_x > menu_width_start[0]) and (mouse_x < menu_width_start[1])
     {

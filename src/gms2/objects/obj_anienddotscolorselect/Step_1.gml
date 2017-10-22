@@ -17,28 +17,28 @@ if (moving == 4)
     ds_list_add(tempundolist,controller.anicolor2);
     ds_list_add(tempundolist,controller.anicolor1);
     ds_list_add(controller.undo_list,"v"+string(tempundolist));
-    controller.anienddotscolor = draw_getpixel(obj_cursor.x,obj_cursor.y+__view_get( e__VW.HView, 3 ));
+    controller.anienddotscolor = draw_getpixel(obj_cursor.x,obj_cursor.y+view_hport[3]);
     moving = 0;
     update_anicolors();
 }
 else
 {
     if (moving == 1) or ((moving) and keyboard_check(vk_control))
-        {
+    {
         red = colour_get_red(controller.anienddotscolor);
         red -= (mouse_y-mouse_yprevious)*255/25;
         if (red < 0) red = 0;
         if (red > 255) red = 255;
         controller.anienddotscolor = make_colour_rgb(red,colour_get_green(controller.anienddotscolor),colour_get_blue(controller.anienddotscolor));
-        }
+    }
     if (moving == 2) or ((moving) and keyboard_check(vk_control))
-        {
+    {
         green = colour_get_green(controller.anienddotscolor);
         green -= (mouse_y-mouse_yprevious)*255/25;
         if (green < 0) green = 0;
         if (green > 255) green = 255;
         controller.anienddotscolor = make_colour_rgb(colour_get_red(controller.anienddotscolor),green,colour_get_blue(controller.anienddotscolor));
-        }
+    }
     if (moving == 3) or ((moving) and keyboard_check(vk_control))
         {
         blue = colour_get_blue(controller.anienddotscolor);
@@ -46,7 +46,7 @@ else
         if (blue < 0) blue = 0;
         if (blue > 255) blue = 255;
         controller.anienddotscolor = make_colour_rgb(colour_get_red(controller.anienddotscolor),colour_get_green(controller.anienddotscolor),blue);
-        }
+    }
 }
     
 mouse_yprevious = mouse_y;

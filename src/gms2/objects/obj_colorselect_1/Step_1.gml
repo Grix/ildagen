@@ -16,7 +16,7 @@ if (moving == 4)
     ds_list_add(tempundolist,controller.color2);
     ds_list_add(tempundolist,controller.color1);
     ds_list_add(controller.undo_list,"b"+string(tempundolist));
-    controller.color1 = draw_getpixel(obj_cursor.x,obj_cursor.y+__view_get( e__VW.HView, 3 ));
+    controller.color1 = draw_getpixel(obj_cursor.x,obj_cursor.y+view_hport[3]);
     moving = 0;
     update_colors();
 }

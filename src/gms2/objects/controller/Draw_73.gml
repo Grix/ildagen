@@ -1,5 +1,5 @@
-if (view_current == 3)
-    exit;
+if (view_current != 4)
+	exit;
     
 if (tooltip != "")
 {
@@ -11,7 +11,7 @@ if (tooltip != "")
         draw_set_color(c_white);
         draw_set_alpha(1);
         draw_text(5,5,tooltip);
+		draw_set_color(c_black);
     }
     tooltip = "";
 }
-

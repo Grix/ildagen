@@ -36,8 +36,8 @@ with (obj_cursor)
     if (room == rm_ilda) && (keyboard_check(ord("Z")) && !keyboard_check(vk_control))
     {
         image_index = 8;
-        x = clamp(mouse_x,0,__view_get( e__VW.WView, 0 )-128);
-        y = clamp(mouse_y,0,__view_get( e__VW.HView, 0 )-128);
+        x = clamp(mouse_x,0,camera_get_view_x(view_camera[0])+view_wport[0]-128);
+        y = clamp(mouse_y,0,view_hport[0]-128);
     }
     else
     {
@@ -131,12 +131,12 @@ if (keyboard_check(vk_control) && keyboard_check_pressed(ord("V")))
     
 if (keyboard_check(ord("Z")) && !keyboard_check(vk_control))
 {
-    __view_set( e__VW.Visible, 2, 1 );
-    __view_set( e__VW.XPort, 2, clamp(obj_cursor.x-128,0,__view_get( e__VW.WView, 0 )-256 ));
-    __view_set( e__VW.YPort, 2, clamp(obj_cursor.y-128,0,__view_get( e__VW.HView, 0 )-256 ));
+	view_visible[2] = true;
+	camera_set_view_pos(view_camera[2], clamp(obj_cursor.x-128,0, camera_get_view_x(view_camera[0])+view_wport[0]-256),
+										clamp(obj_cursor.y-128,0, view_hport[0]-256 ));
 }
 else
-    __view_set( e__VW.Visible, 2, 0 );
+    view_visible[2] = false;
     
 if (keyboard_check(ord("S"))) || (sgridshow == 1)
 {

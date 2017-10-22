@@ -8,22 +8,22 @@ item_height = font_get_size(font)+item_padding*2;
 total_height = item_height*num;
 
 
-if(x < __view_get( e__VW.XView, 0 ))
+if(x < 0)
 {
-    x_offset = __view_get( e__VW.XView, 0 )-x+1;
+    x_offset = 0-x+1;
 }
-else if(x + total_width > __view_get( e__VW.XView, 0 )+__view_get( e__VW.WPort, 0 ))
+else if(x + total_width > camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0]))
 {
-    x_offset = (__view_get( e__VW.XView, 0 )+__view_get( e__VW.WView, 0 ))-(x+total_width)+1;
+    x_offset = camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])-(x+total_width)+1;
 }
 
-if(y < __view_get( e__VW.YView, 0 ))
+if(y < 0)
 {
-    y_offset = __view_get( e__VW.YView, 0 )-y+1;
+    y_offset = 0-y+1;
 }
-else if(y + total_height > __view_get( e__VW.YView, 0 )+__view_get( e__VW.HPort, 0 ))
+else if(y + total_height > camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0]))
 {
-    y_offset = -total_height;
+    y_offset = camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])-total_height;
 }
 
 x1 = x+x_offset;

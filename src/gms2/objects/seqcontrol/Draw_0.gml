@@ -79,51 +79,52 @@ else if (view_current == 3)
     //menu
     draw_set_alpha(1);
     draw_set_colour(c_black);
-    draw_text(0,__view_get( e__VW.YView, 3 )+4,menu_string);
-    if (mouse_y > __view_get( e__VW.YView, 3 ) && scroll_moving == 0)   
+	var t_ypos = camera_get_view_y(view_camera[3]);
+    draw_text(0,t_ypos+4,menu_string);
+    if (mouse_y > t_ypos && scroll_moving == 0)   
     {
         draw_set_colour(c_teal);
         if (mouse_x > menu_width_start[0]) && (mouse_x < menu_width_start[1])
         {
-            draw_rectangle(menu_width_start[0],__view_get( e__VW.YView, 3 )+1,menu_width_start[1],__view_get( e__VW.YView, 3 )+20,1);
+            draw_rectangle(menu_width_start[0],t_ypos+1,menu_width_start[1],t_ypos+20,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[0],__view_get( e__VW.YView, 3 )+1,menu_width_start[1],__view_get( e__VW.YView, 3 )+20,0);
+            draw_rectangle(menu_width_start[0],t_ypos+1,menu_width_start[1],t_ypos+20,0);
         }
         else if (mouse_x > menu_width_start[1]) && (mouse_x < menu_width_start[2])
         {
-            draw_rectangle(menu_width_start[1],__view_get( e__VW.YView, 3 )+1,menu_width_start[2],__view_get( e__VW.YView, 3 )+20,1);
+            draw_rectangle(menu_width_start[1],t_ypos+1,menu_width_start[2],t_ypos+20,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[1],__view_get( e__VW.YView, 3 )+1,menu_width_start[2],__view_get( e__VW.YView, 3 )+20,0);
+            draw_rectangle(menu_width_start[1],t_ypos+1,menu_width_start[2],t_ypos+20,0);
         }
         else if (mouse_x > menu_width_start[2]) && (mouse_x < menu_width_start[3])
         {
-            draw_rectangle(menu_width_start[2],__view_get( e__VW.YView, 3 )+1,menu_width_start[3],__view_get( e__VW.YView, 3 )+20,1);
+            draw_rectangle(menu_width_start[2],t_ypos+1,menu_width_start[3],t_ypos+20,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[2],__view_get( e__VW.YView, 3 )+1,menu_width_start[3],__view_get( e__VW.YView, 3 )+20,0);
+            draw_rectangle(menu_width_start[2],t_ypos+1,menu_width_start[3],t_ypos+20,0);
         }
         else if (mouse_x > menu_width_start[3]) && (mouse_x < menu_width_start[4])
         {
-            draw_rectangle(menu_width_start[3],__view_get( e__VW.YView, 3 )+1,menu_width_start[4],__view_get( e__VW.YView, 3 )+20,1);
+            draw_rectangle(menu_width_start[3],t_ypos+1,menu_width_start[4],t_ypos+20,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[3],__view_get( e__VW.YView, 3 )+1,menu_width_start[4],__view_get( e__VW.YView, 3 )+20,0);
+            draw_rectangle(menu_width_start[3],t_ypos+1,menu_width_start[4],t_ypos+20,0);
         }
         else if (mouse_x > menu_width_start[4]) && (mouse_x < menu_width_start[5])
         {
-            draw_rectangle(menu_width_start[4],__view_get( e__VW.YView, 3 )+1,menu_width_start[5],__view_get( e__VW.YView, 3 )+20,1);
+            draw_rectangle(menu_width_start[4],t_ypos+1,menu_width_start[5],t_ypos+20,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[4],__view_get( e__VW.YView, 3 )+1,menu_width_start[5],__view_get( e__VW.YView, 3 )+20,0);
+            draw_rectangle(menu_width_start[4],t_ypos+1,menu_width_start[5],t_ypos+20,0);
         }
         else if (mouse_x > menu_width_start[5]) && (mouse_x < menu_width_start[6])
         {
-            draw_rectangle(menu_width_start[5],__view_get( e__VW.YView, 3 )+1,menu_width_start[6],__view_get( e__VW.YView, 3 )+20,1);
+            draw_rectangle(menu_width_start[5],t_ypos+1,menu_width_start[6],t_ypos+20,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[5],__view_get( e__VW.YView, 3 )+1,menu_width_start[6],__view_get( e__VW.YView, 3 )+20,0);
+            draw_rectangle(menu_width_start[5],t_ypos+1,menu_width_start[6],t_ypos+20,0);
         }
         else if (mouse_x > menu_width_start[6]) and (mouse_x < menu_width_start[7])
         {
-            draw_rectangle(menu_width_start[6],__view_get( e__VW.YView, 3 )+1,menu_width_start[7],__view_get( e__VW.YView, 3 )+20,1);
+            draw_rectangle(menu_width_start[6],t_ypos+1,menu_width_start[7],t_ypos+20,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[6],__view_get( e__VW.YView, 3 )+1,menu_width_start[7],__view_get( e__VW.YView, 3 )+20,0);
+            draw_rectangle(menu_width_start[6],t_ypos+1,menu_width_start[7],t_ypos+20,0);
         }
         draw_set_alpha(1);
     }
