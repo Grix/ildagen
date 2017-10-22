@@ -5,16 +5,6 @@
     "name": "obj_onionskin",
     "eventList": [
         {
-            "id": "6f42de62-835b-411e-a4a7-03bcdc87d9d8",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "23faf1b8-8abf-4ebb-8b38-5cc4b64981a0"
-        },
-        {
             "id": "7a4d70c1-8225-45f8-b336-12886deae8d2",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -46,7 +36,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "00000000-0000-0000-0000-000000000000",
+    "parentObjectId": "4ee18070-949b-4996-b9c3-67972ae1caa3",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,
@@ -77,5 +67,5 @@
     "physicsStartAwake": true,
     "solid": false,
     "spriteId": "f6183bd6-63fe-4720-a5a6-5fe134f28e4d",
-    "visible": true
+    "visible": false
 }

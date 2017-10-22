@@ -5,16 +5,6 @@
     "name": "obj_mute",
     "eventList": [
         {
-            "id": "b3fcc0b2-639f-4edc-808e-3dbf0e199530",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "aebd6439-47b0-4def-857e-3ede927497f0"
-        },
-        {
             "id": "d703f488-a3b1-4f65-853f-88c1e04e6b69",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -36,7 +26,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "00000000-0000-0000-0000-000000000000",
+    "parentObjectId": "4ee18070-949b-4996-b9c3-67972ae1caa3",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,
@@ -67,5 +57,5 @@
     "physicsStartAwake": true,
     "solid": false,
     "spriteId": "9a521462-d1f7-4c4a-a334-7944c8b83476",
-    "visible": true
+    "visible": false
 }

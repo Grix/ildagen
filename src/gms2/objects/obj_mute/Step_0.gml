@@ -1,7 +1,7 @@
 if (instance_exists(obj_dropdown))
     exit;
-visible = (seqcontrol.song != -1);
-if (!visible)
+_visible = (seqcontrol.song != -1);
+if (!_visible)
     exit;
     
 if (seqcontrol.muted) 

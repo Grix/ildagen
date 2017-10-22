@@ -1,9 +1,9 @@
-draw_set_color(c_gray);
-//draw_line(0,400,1300,400);
+draw_set_color(c_black);
 
 if (room != rm_ilda) 
     exit;
-if (view_current == 0)
+	
+if (view_current == 4)
 {
     //hershey symbol selector
     if (placing = "hershey")
@@ -264,12 +264,27 @@ if (view_current == 0)
             draw_text(220,495,"Scope: All frames");
         else
             draw_text(220,495,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
-            
-    draw_set_colour(c_black);
-    draw_set_alpha(1);
-    
+			
+	draw_set_color(c_black);
+	draw_set_alpha(1);
+}
+else if (view_current == 0)
+{
     gpu_set_blendenable(0);
     with (obj_section0_parent)
+    {
+		if (!transparent && !visible)
+		{
+			if (_visible)
+				draw_self();
+		}
+    }
+    gpu_set_blendenable(1);
+}
+else if (view_current == 1)
+{
+	gpu_set_blendenable(0);
+    with (obj_section1_parent)
     {
 		if (!transparent && !visible)
 		{
