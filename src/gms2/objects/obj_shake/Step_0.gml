@@ -1,7 +1,7 @@
 if (instance_exists(obj_dropdown))
     exit;
-visible = controller.anienable;
-if (!visible) exit;
+_visible = controller.anienable;
+if (!_visible) exit;
 
 if (controller.shaking) 
     image_index = 2;

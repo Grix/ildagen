@@ -13,3 +13,4 @@ bluex = x+32;
 xplus70 = x+70;
 yplus16 = y+16;
 
+transparent = true;

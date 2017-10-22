@@ -5,16 +5,6 @@
     "name": "obj_reapply_color",
     "eventList": [
         {
-            "id": "9d204415-7ffb-463f-827d-1b07c25e29a8",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "30baf08a-bd60-43d1-987b-121a21ffb224"
-        },
-        {
             "id": "3af8f66c-8537-4210-a62f-771845dae4c4",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -56,7 +46,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "00000000-0000-0000-0000-000000000000",
+    "parentObjectId": "3a371281-f66f-4d33-bdff-214f55b04d62",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,

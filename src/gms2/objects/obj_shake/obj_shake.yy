@@ -5,16 +5,6 @@
     "name": "obj_shake",
     "eventList": [
         {
-            "id": "75a75b43-84bc-4cd3-8031-3c6241317c00",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "7f860753-f27b-450b-bb53-0e3f0ce93e32"
-        },
-        {
             "id": "eed0525b-b21f-4d88-b518-7c4dd01add89",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -36,7 +26,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "00000000-0000-0000-0000-000000000000",
+    "parentObjectId": "3a371281-f66f-4d33-bdff-214f55b04d62",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,
@@ -67,5 +57,5 @@
     "physicsStartAwake": true,
     "solid": false,
     "spriteId": "407bbcc3-655c-4128-b02c-e66058139d73",
-    "visible": true
+    "visible": false
 }

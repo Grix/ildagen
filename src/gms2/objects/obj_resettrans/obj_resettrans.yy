@@ -5,16 +5,6 @@
     "name": "obj_resettrans",
     "eventList": [
         {
-            "id": "7fa32cd1-cd83-4f5f-a603-950de190ef4d",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "8e6aa81a-3cea-4274-89c4-0c7c0f7b94f6"
-        },
-        {
             "id": "7084a60e-4265-4be6-8eef-6966a78a59be",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -36,7 +26,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "00000000-0000-0000-0000-000000000000",
+    "parentObjectId": "3a371281-f66f-4d33-bdff-214f55b04d62",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,

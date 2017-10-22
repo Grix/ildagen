@@ -5,16 +5,6 @@
     "name": "obj_toseq",
     "eventList": [
         {
-            "id": "74399f63-6201-4345-bc61-f88592d1d32a",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "f59ba795-259b-4527-b937-d028a8a01080"
-        },
-        {
             "id": "9f237f63-0f75-47ed-9e06-5bdd2ef87c18",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -46,7 +36,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "00000000-0000-0000-0000-000000000000",
+    "parentObjectId": "3a371281-f66f-4d33-bdff-214f55b04d62",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,

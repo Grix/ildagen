@@ -1,5 +1,9 @@
 if (instance_exists(obj_dropdown))
     exit;
+	
+if (!_visible)
+	exit;
+	
 with (controller)
 {
     for (c = 0; c < ds_list_size(semaster_list); c++)
