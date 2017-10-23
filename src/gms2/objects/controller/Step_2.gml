@@ -31,19 +31,20 @@ if (room == rm_loading)
     }
 }
     
-with (obj_cursor)
+if (room == rm_ilda) && (keyboard_check(ord("Z")) && !keyboard_check(vk_control))
 {
-    if (room == rm_ilda) && (keyboard_check(ord("Z")) && !keyboard_check(vk_control))
-    {
-        image_index = 8;
-        x = clamp(mouse_x,0,camera_get_view_x(view_camera[0])+view_wport[0]-128);
-        y = clamp(mouse_y,0,view_hport[0]-128);
-    }
-    else
-    {
-        x = mouse_x;
-        y = mouse_y;
-    }
+    obj_cursor.image_index = 8;
+    obj_cursor.x = clamp(mouse_x, 0, view_wport[4]);
+    obj_cursor.y = clamp(mouse_y, 0, view_hport[4]);
+	view_visible[5] = true;
+	view_xport[5] = clamp(obj_cursor.x-128, 0, view_wport[4]-256);
+	view_yport[5] = clamp(obj_cursor.y-128, 0, view_hport[4]-256 );
+}
+else
+{
+    obj_cursor.x = mouse_x;
+    obj_cursor.y = mouse_y;
+	view_visible[5] = false;
 }
 
 if (room != rm_ilda) exit;
@@ -128,15 +129,6 @@ if (keyboard_check(vk_control) && keyboard_check_pressed(ord("V")))
 {
     paste_object();
 }
-    
-if (keyboard_check(ord("Z")) && !keyboard_check(vk_control))
-{
-	view_visible[2] = true;
-	camera_set_view_pos(view_camera[2], clamp(obj_cursor.x-128,0, camera_get_view_x(view_camera[0])+view_wport[0]-256),
-										clamp(obj_cursor.y-128,0, view_hport[0]-256 ));
-}
-else
-    view_visible[2] = false;
     
 if (keyboard_check(ord("S"))) || (sgridshow == 1)
 {

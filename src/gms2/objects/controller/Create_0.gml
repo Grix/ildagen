@@ -1,6 +1,8 @@
 version = "1.5.8";
 versiondate = "2017-10-19";
 
+shader_set(sh_default);
+
 if (debug_mode)
 {
     show_debug_overlay(1);

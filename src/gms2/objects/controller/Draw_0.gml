@@ -3,34 +3,9 @@ draw_set_color(c_black);
 if (room != rm_ilda) 
     exit;
 	
-if (view_current == 4)
-{
-    //hershey symbol selector
-    if (placing = "hershey")
-    {
-        draw_sprite_part(bck_hershey3,0,0,clamp(hershey_scrollx-4096,0,2048),420,120-clamp(4096-hershey_scrollx,0,120),650,30+clamp(4096-hershey_scrollx,0,120));
-        draw_sprite_part(bck_hershey2,0,0,clamp(hershey_scrollx-2048,0,2048),420,120-clamp(2048-hershey_scrollx,0,120),650,30+clamp(2048-hershey_scrollx,0,120));
-        draw_sprite_part(bck_hershey1,0,0,clamp(hershey_scrollx,0,2048),420,120,650,30);
-        
-        draw_set_alpha(1);
-        draw_set_colour(c_white);
-        draw_rectangle(1070,30,1090,150,0);
-        draw_set_colour(c_black);
-        draw_rectangle(1070,30,1090,150,1);
-        draw_set_colour(c_dkgray);
-        draw_rectangle(1070,30+hershey_scrollx*100/hershey_scrollh,1090,30+hershey_scrollx*100/hershey_scrollh+hershey_scrollw,0);
-        
-        yo = ceil((hershey_selected+1)/14)*30-30;
-        if (yo = clamp(yo,hershey_scrollx-30,hershey_scrollx+120))
-        {
-            draw_set_alpha(0.3)
-            draw_set_colour(c_gold);
-            xo = (hershey_selected mod 14)*30;
-            draw_rectangle(650+xo,max(30+yo-hershey_scrollx,30),680+xo,min(30+yo-hershey_scrollx+30,150),0);
-        }
-    }
-    
-    //mine timeline + cursors
+if (view_current == 4 || view_current == 5)
+{   
+    //mini timeline + cursors
     if (!surface_exists(minitimeline_surf) || refresh_minitimeline_flag)
     {
         refresh_minitimeline_surf();
@@ -271,6 +246,36 @@ if (view_current == 4)
 else if (view_current == 0)
 {
     gpu_set_blendenable(0);
+	
+	//hershey symbol selector
+    if (placing = "hershey")
+    {
+        draw_sprite_part(bck_hershey3,0,0,clamp(hershey_scrollx-4096,0,2048),420,120-clamp(4096-hershey_scrollx,0,120),650,30+clamp(4096-hershey_scrollx,0,120));
+        draw_sprite_part(bck_hershey2,0,0,clamp(hershey_scrollx-2048,0,2048),420,120-clamp(2048-hershey_scrollx,0,120),650,30+clamp(2048-hershey_scrollx,0,120));
+        draw_sprite_part(bck_hershey1,0,0,clamp(hershey_scrollx,0,2048),420,120,650,30);
+        
+        draw_set_colour(c_white);
+        draw_rectangle(1070,30,1090,150,0);
+        draw_set_colour(c_black);
+        draw_rectangle(1070,30,1090,150,1);
+        draw_set_colour(c_dkgray);
+        draw_rectangle(1070,30+hershey_scrollx*100/hershey_scrollh,1090,30+hershey_scrollx*100/hershey_scrollh+hershey_scrollw,0);
+        
+		gpu_set_blendenable(1);
+		
+        yo = ceil((hershey_selected+1)/14)*30-30;
+        if (yo = clamp(yo,hershey_scrollx-30,hershey_scrollx+120))
+        {
+            draw_set_alpha(0.3)
+            draw_set_color(c_gold);
+            xo = (hershey_selected mod 14)*30;
+            draw_rectangle(650+xo,max(30+yo-hershey_scrollx,30),680+xo,min(30+yo-hershey_scrollx+30,150),0);
+			draw_set_alpha(1);
+			draw_set_color(c_black);
+        }
+    }
+	
+	gpu_set_blendenable(0);
     with (obj_section0_parent)
     {
 		if (!transparent && !visible)
