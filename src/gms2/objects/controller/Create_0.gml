@@ -1,8 +1,6 @@
 version = "1.5.8";
 versiondate = "2017-10-19";
 
-shader_set(sh_default);
-
 if (debug_mode)
 {
     show_debug_overlay(1);
@@ -104,6 +102,7 @@ radialgrid_surf = -1;
 squaregrid_surf = -1;
 
 c_gold = make_colour_rgb(255,220,0);
+c_ltltgray = make_colour_rgb(240,240,240);
 
 adclosed = false;
 dac = -1;

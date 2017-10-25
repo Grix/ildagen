@@ -15,6 +15,9 @@ draw_sprite(spr_anicolorselectblue,(moving == 3),bluex,bluey);
 
 draw_set_colour(activecolor);
     draw_rectangle(x+5,y-30,x+42,y-11,0);
-draw_set_color(c_black);
+draw_set_color(c_aqua);
     draw_rectangle(x+5,y-30,x+42,y-11,1);
+	
+draw_set_color(c_black);
+
 

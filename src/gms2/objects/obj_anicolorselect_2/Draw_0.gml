@@ -18,3 +18,4 @@ draw_set_colour(activecolor);
 draw_set_color(c_aqua);
     draw_rectangle(x+5,y-30,x+42,y-11,1);
 
+draw_set_color(c_black);

@@ -255,3 +255,4 @@ draw_rectangle(scrollx_x1+1,scrollx_y1-1,scrollx_x2-1,lbsh+tlsurf_y+1,0);
 draw_rectangle(scrolly_x1+1,scrolly_y1+1,tlw-1,scrolly_y2-1,0);
 
 gpu_set_blendenable(true);
+draw_set_colour(c_black);

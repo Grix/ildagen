@@ -6,5 +6,6 @@ if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and
     image_index = 1;
     controller.tooltip = "Changes the length (total number of frames) of the animation.";
 }
-else image_index = 0; 
+else 
+	image_index = 0; 
 

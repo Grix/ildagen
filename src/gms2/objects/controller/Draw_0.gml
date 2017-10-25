@@ -11,13 +11,17 @@ if (view_current == 4 || view_current == 5)
         refresh_minitimeline_surf();
         refresh_minitimeline_flag = 0;
     }
-    draw_set_color(c_white);
-    draw_set_alpha(1);
+	gpu_set_blendenable(false);
+	
+	draw_clear(c_black);
+	
     if (surface_exists(minitimeline_surf))
         draw_surface_part(minitimeline_surf,0,0,tlw,tlh+1,tlorigo_x,tlorigo_y);
+	
+	gpu_set_blendenable(true);
+	
     if (maxframes > 1)
     {
-        draw_set_color(c_black);
         cursorlinex = lerp(2,tlw-2,frame/(maxframes-1));
         draw_line(cursorlinex,tlorigo_y,cursorlinex,tlorigo_y+tlh-13);
         if (show_framecursor_prev)
@@ -30,7 +34,6 @@ if (view_current == 4 || view_current == 5)
         }
     }
     draw_set_color(c_white);
-    
     
     //frame box
     draw_ilda_2d();
@@ -245,7 +248,10 @@ if (view_current == 4 || view_current == 5)
 }
 else if (view_current == 0)
 {
-    gpu_set_blendenable(0);
+	//shader_set(sh_default);
+    gpu_set_blendenable(false);
+	
+	draw_clear(c_ltltgray);
 	
 	//hershey symbol selector
     if (placing = "hershey")
@@ -261,7 +267,7 @@ else if (view_current == 0)
         draw_set_colour(c_dkgray);
         draw_rectangle(1070,30+hershey_scrollx*100/hershey_scrollh,1090,30+hershey_scrollx*100/hershey_scrollh+hershey_scrollw,0);
         
-		gpu_set_blendenable(1);
+		gpu_set_blendenable(true);
 		
         yo = ceil((hershey_selected+1)/14)*30-30;
         if (yo = clamp(yo,hershey_scrollx-30,hershey_scrollx+120))
@@ -273,9 +279,10 @@ else if (view_current == 0)
 			draw_set_alpha(1);
 			draw_set_color(c_black);
         }
+		
+		gpu_set_blendenable(false);
     }
 	
-	gpu_set_blendenable(0);
     with (obj_section0_parent)
     {
 		if (!transparent && !visible)
@@ -284,11 +291,15 @@ else if (view_current == 0)
 				draw_self();
 		}
     }
-    gpu_set_blendenable(1);
+	
+    gpu_set_blendenable(true);
 }
 else if (view_current == 1)
 {
-	gpu_set_blendenable(0);
+	gpu_set_blendenable(false);
+	
+	draw_clear(c_ltltgray);
+	
     with (obj_section1_parent)
     {
 		if (!transparent && !visible)
@@ -297,13 +308,16 @@ else if (view_current == 1)
 				draw_self();
 		}
     }
-    gpu_set_blendenable(1);
+    gpu_set_blendenable(true);
 }
 else if (view_current == 3)
 {
     draw_set_colour(c_black);
-    draw_set_alpha(1);
-    
+	
+	gpu_set_blendenable(false);
+	draw_clear(c_ltltgray);
+    gpu_set_blendenable(true);
+	
     //menu
 	var t_ypos = camera_get_view_y(view_camera[3]);
     draw_text(0, t_ypos+4,menu_string);
@@ -354,6 +368,5 @@ else if (view_current == 3)
         }
         draw_set_alpha(1);
     }
-    draw_set_colour(c_white);
 }
 

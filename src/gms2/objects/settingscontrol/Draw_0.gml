@@ -1,18 +1,7 @@
 if (room != rm_options)
     exit;
-if (view_current != 3)
-	exit;
-
-draw_set_font(fnt_tooltip);
-menu_string = "   Properties      View      About   ";
-menu_width_start[0] = 0;
-menu_width[0] = string_width("   Properties   ");
-menu_width_start[1] = menu_width[0];
-menu_width[1] = string_width("   View   ");
-menu_width_start[2] = menu_width_start[1]+menu_width[1];
-menu_width[2] = string_width("   About   ");
-menu_width_start[3] = menu_width_start[2]+menu_width[2];
-
+//if (view_current != 3)
+//	exit;
     
 //menu
 draw_set_colour(c_black);
@@ -44,9 +33,20 @@ if (mouse_y > t_ypos)
 }
     
 gpu_set_blendenable(0);
-with (obj_button_parent)
+with (obj_section1_parent)
 {
-    draw_self();
+	if (!transparent && !visible)
+	{
+		if (_visible)
+			draw_self();
+	}
+}
+with (obj_section0_parent)
+{
+	if (!transparent && !visible)
+	{
+		if (_visible)
+			draw_self();
+	}
 }
 gpu_set_blendenable(1);
-

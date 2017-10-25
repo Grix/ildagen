@@ -4,6 +4,8 @@ TODO
 - LIVE mode
 - switch x/y
 - other format 0 palette
+- fix timeline scroll y layer outline rounding eller noe
+- resizing
 
 SETTINGSCONTROL
 

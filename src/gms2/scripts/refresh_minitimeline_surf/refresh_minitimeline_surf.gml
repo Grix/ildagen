@@ -90,10 +90,10 @@ if (seqcontrol.song != -1)
         draw_set_color(c_blue);
         draw_line(u,t_tlhalf+v*t_tlhalf,u,t_tlhalf-v*t_tlhalf);    
     }
-    draw_set_alpha(1);
 }
     
-        
+     
 surface_reset_target();
-draw_set_color(c_white);
+draw_set_color(c_black);
+draw_set_alpha(1);   
 draw_set_font(fnt_tooltip);

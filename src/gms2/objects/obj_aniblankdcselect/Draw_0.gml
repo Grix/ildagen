@@ -4,5 +4,6 @@ if (view_current != 0)
 draw_self();
 draw_sprite(spr_aniknob,(moving > 0),x+controller.aniblank_dc*2*64,y+16);
 
+draw_set_color(c_teal);
 draw_text(x+150,y+9,"Ratio: "+string(controller.aniblank_dc));
-
+draw_set_color(c_black);
