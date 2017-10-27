@@ -283,6 +283,8 @@ else if (view_current == 0)
 		gpu_set_blendenable(false);
     }
 	
+	draw_line(view_wport[4], -1, view_wport[4], view_hport[4]);
+	
     with (obj_section0_parent)
     {
 		if (!transparent && !visible)
@@ -299,6 +301,7 @@ else if (view_current == 1)
 	gpu_set_blendenable(false);
 	
 	draw_clear(c_ltltgray);
+	draw_line(-1, view_hport[4], view_wport[1], view_hport[4]);
 	
     with (obj_section1_parent)
     {
@@ -313,13 +316,14 @@ else if (view_current == 1)
 else if (view_current == 3)
 {
     draw_set_colour(c_black);
+	var t_ypos = camera_get_view_y(view_camera[3]);
 	
 	gpu_set_blendenable(false);
 	draw_clear(c_ltltgray);
+	draw_line(-1, t_ypos+22, view_wport[3], t_ypos+22);
     gpu_set_blendenable(true);
 	
     //menu
-	var t_ypos = camera_get_view_y(view_camera[3]);
     draw_text(0, t_ypos+4,menu_string);
     if (mouse_y >  t_ypos)   
     {
