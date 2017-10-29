@@ -1,7 +1,7 @@
 ddobj = instance_create_layer(controller.menu_width_start[2],0,"foreground",obj_dropdown);
 with (ddobj)
 {
-    num = 4;
+    num = 5;
     event_user(1);
     ds_list_add(desc_list,"Info");
     ds_list_add(desc_list,"Open manual");
@@ -19,4 +19,8 @@ with (ddobj)
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
+	ds_list_add(desc_list,"Enter registration code");
+    ds_list_add(sep_list,1);
+    ds_list_add(scr_list,dd_verifyserial);
+    ds_list_add(hl_list,!verify_serial(false));
 }

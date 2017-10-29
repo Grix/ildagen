@@ -277,12 +277,18 @@ else if (view_current == 0)
             xo = (hershey_selected mod 14)*30;
             draw_rectangle(650+xo,max(30+yo-hershey_scrollx,30),680+xo,min(30+yo-hershey_scrollx+30,150),0);
 			draw_set_alpha(1);
-			draw_set_color(c_black);
         }
-		
 		gpu_set_blendenable(false);
     }
 	
+	//separator lines
+	draw_set_color(c_ltgray);
+	draw_line(view_wport[4]+10, 170, view_wport[4]+view_wport[0]-10, 170);
+	draw_line(view_wport[4]+10, 342, view_wport[4]+view_wport[0]-10, 342);
+	draw_line(view_wport[4]+10, 512, view_wport[4]+view_wport[0]-10, 512);
+	draw_line(1116, 522, 1116, view_hport[0]-10);
+	draw_line(834, 522, 834, view_hport[0]-10);
+	draw_set_color(c_black);
 	draw_line(view_wport[4], -1, view_wport[4], view_hport[4]);
 	
     with (obj_section0_parent)
@@ -301,6 +307,8 @@ else if (view_current == 1)
 	gpu_set_blendenable(false);
 	
 	draw_clear(c_ltltgray);
+	
+	//separator lines
 	draw_line(-1, view_hport[4], view_wport[1], view_hport[4]);
 	
     with (obj_section1_parent)
