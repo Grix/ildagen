@@ -1,6 +1,7 @@
 if (instance_exists(obj_dropdown))
     exit;
-if (!visible) exit;
+if (!visible) 
+	exit;
 
 if (mouse_y < bbox_bottom-36)
 {

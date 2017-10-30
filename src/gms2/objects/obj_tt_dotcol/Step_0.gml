@@ -1,0 +1,1 @@
+visible = obj_enddotscolorselect.visible;
