@@ -1,3 +1,22 @@
+if (window_get_height() < 728 || window_get_width() < 1300)
+	window_set_size(1300,728);
+	
+view_wport[0] = 788;//window_get_width()-view_wport[4];
+view_wport[4] = window_get_width()-view_wport[0];
+view_hport[4] = window_get_height()-view_hport[1];
+view_wport[3] = window_get_width();
+view_hport[0] = window_get_height();
+view_hport[1] = 149; //window_get_height()-view_hport[4];
+tlw = view_wport[4];
+view_wport[1] = view_wport[4];
+camera_set_view_size(view_camera[0], view_wport[0], view_hport[0]);
+camera_set_view_size(view_camera[3], view_wport[3], view_hport[3]);
+camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
+camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
+camera_set_view_pos(view_camera[3], 0, -25);
+view_xport[0] = view_wport[4];
+tlorigo_y = view_hport[4];
+
 draw_set_color(c_black);
 
 if (room != rm_ilda) 
@@ -333,7 +352,7 @@ else if (view_current == 3)
 	
     //menu
     draw_text(0, t_ypos+4,menu_string);
-    if (mouse_y >  t_ypos)   
+    if (mouse_y <  0)   
     {
         draw_set_colour(c_teal);
         if (mouse_x > menu_width_start[0]) && (mouse_x < menu_width_start[1])

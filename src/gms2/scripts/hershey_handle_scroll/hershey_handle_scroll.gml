@@ -1,8 +1,8 @@
 if (hershey_moving)
 {
-    hershey_scrollx += (mouse_y-hmouseyprev)*hershey_scrollh/100;
+    hershey_scrollx += (mouse_y-hmouse_yprevious)*hershey_scrollh/100;
     hershey_scrollx = clamp(hershey_scrollx,0,4930);
-    hmouseyprev = mouse_y;
+    hmouse_yprevious = mouse_y;
     tooltip = "Drag to scroll the table of symbols.";
     if (!mouse_check_button(mb_left))
     {
@@ -18,7 +18,7 @@ else
         if (mouse_check_button_pressed(mb_left))
         {
             hershey_moving = 1;
-            hmouseyprev = mouse_y;
+            hmouse_yprevious = mouse_y;
         }
         else if (mouse_wheel_up())
         {

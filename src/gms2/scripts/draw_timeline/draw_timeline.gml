@@ -177,7 +177,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 	            {
 	                draw_set_colour(c_red);
 	                draw_set_alpha(0.3);
-	                draw_rectangle(mousexprev,t_ypos,mouse_x,t_ypos+63,0);
+	                draw_rectangle(mouse_xprevious,t_ypos,mouse_x,t_ypos+63,0);
 	                draw_set_colour(c_black);
 	                draw_set_alpha(1);
 	            }

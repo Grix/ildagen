@@ -24,6 +24,7 @@ if (os_browser == browser_not_a_browser)
 //math_set_epsilon(0.00001);
 //ds_set_precision(0.00001); 
 draw_set_circle_precision(24);
+application_surface_enable(false);
 
 varmap = ds_map_create();
 //shape function
@@ -137,8 +138,9 @@ framecursor_prev = 0;
 show_framecursor_prev = false;
 scope_moving = false;
 highlight = false;
-ybar = 512;
-xbar = 512;
+//ybar = 512;
+//xbar = 512;
+resizing_moving = 0;
 
 sgridshow = 0;
 rgridshow = 0;

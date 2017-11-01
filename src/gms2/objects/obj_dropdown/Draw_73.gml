@@ -41,7 +41,7 @@ for(var i = 0; i < num; i++)
     }
 }
 
-draw_sprite(spr_cursor,9,obj_cursor.x,obj_cursor.y);
+//draw_sprite(spr_cursor,9,obj_cursor.x,obj_cursor.y);
 
 draw_set_color(c_black);
 draw_set_alpha(1);

@@ -1,6 +1,30 @@
+if (resizing_moving == 1)
+{
+	view_wport[4] += mouse_x-mouse_xprevious;
+	if (view_wport[4] < 512)
+		view_wport[4] = 512;
+	mouse_xprevious = mouse_x;
+	if (mouse_check_button_released(mb_left))
+	{
+		resizing_moving = 0;
+	}
+	exit;
+}
+
+if (mouse_x > view_wport[4]-5 && mouse_x < view_wport[4]+5)
+{
+	if (mouse_check_button_pressed(mb_left))
+	{
+		resizing_moving = 1;
+		mouse_xprevious = mouse_x;
+		exit;
+	}
+}
+
 show_framecursor_prev = false;
 
-if (maxframes < 2) exit;
+if (maxframes < 2) 
+	exit;
 
 if (scope_moving)
 {

@@ -12,7 +12,7 @@ if (moving_object == 1)
 {
     controller.tooltip = "Drag object to any position on any timeline";
     draw_mouseline = 1;
-    mouseyprevflag = 0;
+    mouse_ypreviousflag = 0;
     //currently dragging object on timeline
     for (i = 0; i < ds_list_size(somaster_list); i++)
     {
@@ -35,21 +35,21 @@ if (moving_object == 1)
             exit;
         }
             
-        ds_list_replace(objecttomove,0,max(0,ds_list_find_value(objecttomove,0)+(mouse_x-mousexprev)*tlzoom/tlw));
+        ds_list_replace(objecttomove,0,max(0,ds_list_find_value(objecttomove,0)+(mouse_x-mouse_xprevious)*tlzoom/tlw));
         
-        if (mouse_y > (mouseyprev+48)) and (layertomove_index < (ds_list_size(layer_list)-1))
+        if (mouse_y > (mouse_yprevious+48)) and (layertomove_index < (ds_list_size(layer_list)-1))
         {
             //move to lower layer
-            mouseyprevflag = 1;
+            mouse_ypreviousflag = 1;
             var newlayertomove = ds_list_find_value(layer_list,layertomove_index+1);
             ds_list_add(newlayertomove[| 1],objecttomove);
             ds_list_delete(layertomove,ds_list_find_index(layertomove,objecttomove));
             layertomove = newlayertomove[| 1];
         }
-        else if (mouse_y < (mouseyprev-48)) and (layertomove_index > 0)
+        else if (mouse_y < (mouse_yprevious-48)) and (layertomove_index > 0)
         {
             //move to above layer
-            mouseyprevflag = 1;
+            mouse_ypreviousflag = 1;
             var newlayertomove = ds_list_find_value(layer_list,layertomove_index-1);
             ds_list_add(newlayertomove[| 1],objecttomove);
             ds_list_delete(layertomove,ds_list_find_index(layertomove,objecttomove));
@@ -57,9 +57,9 @@ if (moving_object == 1)
         }
     }
         
-    mousexprev = mouse_x;
-    if (mouseyprevflag)
-        mouseyprev = mouse_y;
+    mouse_xprevious = mouse_x;
+    if (mouse_ypreviousflag)
+        mouse_yprevious = mouse_y;
         
     if (mouse_check_button_released(mb_left))
     {
@@ -144,10 +144,10 @@ else if (moving_object == 2)
         infolisttomove = ds_list_find_value(objecttomove,2);
         
         draw_mouseline = 1;
-        ds_list_replace(infolisttomove,0,max(0,ds_list_find_value(infolisttomove,0)+(mouse_x-mousexprev)*tlzoom/tlw));
+        ds_list_replace(infolisttomove,0,max(0,ds_list_find_value(infolisttomove,0)+(mouse_x-mouse_xprevious)*tlzoom/tlw));
     }
         
-    mousexprev = mouse_x;    
+    mouse_xprevious = mouse_x;    
     
     if (mouse_check_button_released(mb_left))
     {
@@ -219,9 +219,9 @@ else if (moving_object == 3)
 {
     //moving startframe
     controller.scrollcursor_flag = 1;
-    startframe += (mouse_x-mousexprev)*tlzoom/tlw;
+    startframe += (mouse_x-mouse_xprevious)*tlzoom/tlw;
     if (startframe < 0) startframe = 0;
-    mousexprev = mouse_x;
+    mouse_xprevious = mouse_x;
     if (mouse_check_button_released(mb_left))
     {
         startframe = round(startframe);
@@ -233,8 +233,8 @@ else if (moving_object == 4)
 {
     //moving endframe
     controller.scrollcursor_flag = 1;
-    endframe += (mouse_x-mousexprev)*tlzoom/tlw;
-    mousexprev = mouse_x;
+    endframe += (mouse_x-mouse_xprevious)*tlzoom/tlw;
+    mouse_xprevious = mouse_x;
     if (mouse_check_button_released(mb_left))
     {
         endframe = round(endframe);
@@ -246,8 +246,8 @@ else if (moving_object == 5)
 {
     //moving marker
     controller.scrollcursor_flag = 1;
-    ds_list_replace(marker_list,markertomove,max(1,ds_list_find_value(marker_list,markertomove)+(mouse_x-mousexprev)*tlzoom/tlw));
-    mousexprev = mouse_x;
+    ds_list_replace(marker_list,markertomove,max(1,ds_list_find_value(marker_list,markertomove)+(mouse_x-mouse_xprevious)*tlzoom/tlw));
+    mouse_xprevious = mouse_x;
     if (mouse_check_button_released(mb_left))
     {
         ds_list_replace(marker_list,markertomove,round(ds_list_find_value(marker_list,markertomove)));
@@ -390,11 +390,11 @@ else if (moving_object == 7)
 //horizontal scroll moving
 else if (scroll_moving == 1)
 {
-    tlx += (mouse_x-mousexprev)*(length/(tlw-17));
+    tlx += (mouse_x-mouse_xprevious)*(length/(tlw-17));
     if (tlx < 0) tlx = 0;
     if ((tlx+tlzoom) > length) length = tlx+tlzoom;
     
-    mousexprev = mouse_x;
+    mouse_xprevious = mouse_x;
     
     if (mouse_check_button_released(mb_left))
     {
@@ -406,13 +406,13 @@ else if (scroll_moving == 1)
 //vertical scroll moving
 else if (scroll_moving == 2)
 {
-    layerbary += (mouse_y-mouseyprev)*lbh/layerbarw;//*(length/tlw);
+    layerbary += (mouse_y-mouse_yprevious)*lbh/layerbarw;//*(length/tlw);
     if (layerbary < 0) 
 		layerbary = 0;
     if ((layerbary) > ypos_perm) 
 		layerbary = ypos_perm;
     
-    mouseyprev = mouse_y;
+    mouse_yprevious = mouse_y;
     
     if (mouse_check_button_released(mb_left))
     {
@@ -465,7 +465,7 @@ and (mouse_y == clamp(mouse_y,lbsh+138,lbsh+16+138))
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
     {
         scroll_moving = 1;
-        mousexprev = mouse_x;
+        mouse_xprevious = mouse_x;
     }
 }
 //vertical scroll
@@ -477,7 +477,7 @@ else if (mouse_y == clamp(mouse_y,scrollypos,scrollypos+layerbarw))
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
     {
         scroll_moving = 2;
-        mouseyprev = mouse_y;
+        mouse_yprevious = mouse_y;
     }
 }
     
@@ -492,7 +492,7 @@ if (moving_object_flag)
         moving_object_flag = 0;
         ds_list_clear(somoving_list);
     }
-    else if (abs(mousexprev - mouse_x) > 1)
+    else if (abs(mouse_xprevious - mouse_x) > 1)
     {
         ds_list_copy(somaster_list,somoving_list);
         moving_object = moving_object_flag;
@@ -507,7 +507,7 @@ if (mouse_x == clamp(mouse_x,startframex-2,startframex+2))
     controller.tooltip = "Drag to adjust the start of the project";
     if (mouse_check_button_pressed(mb_left))
     {
-        mousexprev = mouse_x;
+        mouse_xprevious = mouse_x;
         moving_object = 3;
     }
     exit;
@@ -519,7 +519,7 @@ else if (mouse_x == clamp(mouse_x,endframex-2,endframex+2))
     controller.tooltip = "Drag to adjust the end of the project";
     if (mouse_check_button_pressed(mb_left))
     {
-        mousexprev = mouse_x;
+        mouse_xprevious = mouse_x;
         moving_object = 4;
     }
     exit;
@@ -544,7 +544,7 @@ for (i = 0; i < ds_list_size(marker_list); i++)
             else
             {
                 markertomove = i;
-                mousexprev = mouse_x;
+                mouse_xprevious = mouse_x;
                 moving_object = 5;
             }
         }
@@ -689,7 +689,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                                     ds_list_add(undolisttemp,infolist);
                                     ds_list_add(undolisttemp,object_length);
                                     
-                                    mousexprev = mouse_x;
+                                    mouse_xprevious = mouse_x;
                                 }
                                 else
                                 {
@@ -701,8 +701,8 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                                     ds_list_add(undolisttemp,elementlist);
                                     ds_list_add(undolisttemp,frametime);
                                     
-                                    mousexprev = mouse_x;
-                                    mouseyprev = mouse_y;
+                                    mouse_xprevious = mouse_x;
+                                    mouse_yprevious = mouse_y;
                                 }
                             }
                         }
@@ -816,7 +816,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                             //entering deletion mode, drag mouse to cover area
                             moving_object = 7;
                             xposprev = t_xpos;
-                            mousexprev = mouse_x;
+                            mouse_xprevious = mouse_x;
                             envelopetoedit = envelope;
                             exit;
                         }
@@ -835,8 +835,8 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                         ds_list_insert(data_list,u,t_ypos);*/
                         xposprev = t_xpos;
                         yposprev = t_ypos;
-                        mousexprev = mouse_x;
-                        mouseyprev = mouse_y;
+                        mouse_xprevious = mouse_x;
+                        mouse_yprevious = mouse_y;
                         ypos_env = ypos;
                         envelopetoedit = envelope;
                         moving_object = 6;
@@ -872,16 +872,16 @@ if !(mouseonsomelayer)
             fmod_set_pos(play_sndchannel,clamp(((tlpos+audioshift)-10),0,songlength));
         }
 		
-		//mousexprev = mouse_x;
+		//mouse_xprevious = mouse_x;
     }
 	else if (keyboard_check(vk_control) && mouse_check_button(mb_left))
 	{
-		tlx -= round((mouse_x-mousexprev)/tlw*tlzoom);
+		tlx -= round((mouse_x-mouse_xprevious)/tlw*tlzoom);
 		if (tlx < 0) 
 			tlx = 0;
 		if (tlx+tlzoom > length)
 			length = tlx+tlzoom;
-		mousexprev = mouse_x;
+		mouse_xprevious = mouse_x;
 	}
 }
     

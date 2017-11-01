@@ -1,8 +1,8 @@
 if (moving == 1)
 {
-    scrollx += (mouse_y-mouseyprev)*scrollh/list_height;
+    scrollx += (mouse_y-mouse_yprevious)*scrollh/list_height;
     scrollx = clamp(scrollx,0,scrollh-scrollw);
-    mouseyprev = mouse_y;
+    mouse_yprevious = mouse_y;
     controller.tooltip = "Drag to scroll the list of DACs.";
     if (!mouse_check_button(mb_left))
     {
@@ -22,7 +22,7 @@ if (scrollh > list_height)
     if (mouse_check_button_pressed(mb_left))
     {
         moving = 1;
-        mouseyprev = mouse_y;
+        mouse_yprevious = mouse_y;
     }
     else if (mouse_wheel_up())
     {
