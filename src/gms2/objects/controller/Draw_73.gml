@@ -1,4 +1,4 @@
-if (view_current != 4)
+if (room == rm_ilda && view_current != 4)
 	exit;
     
 if (tooltip != "")

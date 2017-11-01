@@ -1,4 +1,4 @@
-if (resizing_moving == 1)
+/*if (resizing_moving == 1)
 {
 	view_wport[4] += mouse_x-mouse_xprevious;
 	if (view_wport[4] < 512)
@@ -19,7 +19,7 @@ if (mouse_x > view_wport[4]-5 && mouse_x < view_wport[4]+5)
 		mouse_xprevious = mouse_x;
 		exit;
 	}
-}
+}*/
 
 show_framecursor_prev = false;
 

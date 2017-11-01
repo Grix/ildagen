@@ -25,10 +25,10 @@ else
         window_set_cursor(cr_cross);*/
     if (controller.tooltip != "") or (controller.objmoving)
     {
-        if (mouse_check_button(mb_left))
+        /*if (mouse_check_button(mb_left))
             image_index = 10;
         else
-            image_index = 9;
+            image_index = 9;*/
 		window_set_cursor(cr_handpoint);
     }
     if (keyboard_check(ord("E")) and (controller.placing_status != 2))

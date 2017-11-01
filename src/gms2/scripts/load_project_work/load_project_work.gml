@@ -20,7 +20,7 @@ if (idbyte == 104) or(idbyte == 103) or (idbyte == 101) or (idbyte == 102)
         for (i = 0; i < numofobjects;i++)
         {
             objectlist = ds_list_create();
-            ds_list_add(objectlist,buffer_read(load_buffer,buffer_u32));
+            ds_list_add(objectlist,round(buffer_read(load_buffer,buffer_u32)));
             
             objectbuffersize = buffer_read(load_buffer,buffer_u32);
             objectbuffer = buffer_create(objectbuffersize,buffer_fixed,1);
@@ -30,9 +30,9 @@ if (idbyte == 104) or(idbyte == 103) or (idbyte == 101) or (idbyte == 102)
             
             objectinfolist = ds_list_create();
             ds_list_add(objectlist,objectinfolist);
-            ds_list_add(objectinfolist,buffer_read(load_buffer,buffer_u32));
+            ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
             ds_list_add(objectinfolist,-1);
-            ds_list_add(objectinfolist,buffer_read(load_buffer,buffer_u32));
+            ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
             
             ds_list_add(layertemp[| 1],objectlist);
         }
@@ -116,7 +116,7 @@ else if (idbyte == 100) //old, need to remake buffers
         for (i = 0; i < numofobjects;i++)
         {
             objectlist = ds_list_create();
-            ds_list_add(objectlist,buffer_read(load_buffer,buffer_u32));
+            ds_list_add(objectlist,round(buffer_read(load_buffer,buffer_u32)));
             
             objectbuffersize = buffer_read(load_buffer,buffer_u32);
             objectbuffer = buffer_create(objectbuffersize,buffer_fixed,1);
@@ -145,9 +145,9 @@ else if (idbyte == 100) //old, need to remake buffers
             
             objectinfolist = ds_list_create();
             ds_list_add(objectlist,objectinfolist);
-            ds_list_add(objectinfolist,buffer_read(load_buffer,buffer_u32));
+            ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
             ds_list_add(objectinfolist,-1);
-            ds_list_add(objectinfolist,buffer_read(load_buffer,buffer_u32));
+            ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
             
             ds_list_add(layertemp[| 1],objectlist);
         }

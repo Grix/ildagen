@@ -1,6 +1,8 @@
 //reapplies the object properties
 ilda_cancel();
 var t_loop;
+
+func_doaudio = 0;
     
 if (maxframes == 1) and (anienable)
 {

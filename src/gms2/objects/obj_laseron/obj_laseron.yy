@@ -5,16 +5,6 @@
     "name": "obj_laseron",
     "eventList": [
         {
-            "id": "a82f375e-1369-4ea5-8d9e-afadb2f1cd5d",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "bcc1db9d-df97-48cd-b80c-fd325e56aaa0"
-        },
-        {
             "id": "ac59ab6b-4796-45df-8fee-ed3ebf89af54",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -36,7 +26,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "00000000-0000-0000-0000-000000000000",
+    "parentObjectId": "4ee18070-949b-4996-b9c3-67972ae1caa3",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,

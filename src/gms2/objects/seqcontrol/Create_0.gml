@@ -76,6 +76,8 @@ song_parse = 0;
 filepath = "";
 ybar = 137;
 xbar = 512;
+mouse_xprevious = mouse_x;
+mouse_yprevious = mouse_y;
 
 somaster_list_prevsize = 0;
 
@@ -95,7 +97,6 @@ lbsh = tlh+15+lbh; //start of bottom scrollbar, seen from inside surface
 phi = 1.618;
 tlzoom = tlw; //number of frames displayed in visible timeline area
 tlx = 0;
-tly = 0;
 tlhalf = tlh/2;
 tlthird = tlh/3;
 

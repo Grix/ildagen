@@ -639,11 +639,11 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                     object_length = ds_list_find_value(infolist,0);
                     draw_mouseline = 1;
                     
-                    if (floatingcursorx == clamp(floatingcursorx, frametime-2, frametime+object_length+1))
+					if (mouse_x > ((frametime-tlx)/tlzoom*tlw) && mouse_x < ((frametime+object_length+1-tlx)/tlzoom*tlw)+3)
                     {
                         //mouse over object
                         controller.tooltip = "Click to select this object. [Ctrl]+Click to select multiple objects.\nDrag to move object. Drag the far edge to adjust duration.\nDouble-click to edit frames\nRight click for more actions";
-                        if (mouse_x > ((frametime-tlx)/tlzoom*tlw)+object_length/tlzoom*tlw-3)
+                        if (mouse_x > ((frametime+object_length+0.7-tlx)/tlzoom*tlw))
                             controller.scrollcursor_flag = 1;
                         if  mouse_check_button_pressed(mb_left)
                         {
@@ -679,7 +679,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                             }
                             else
                             {
-                                if (mouse_x > ((frametime-tlx)/tlzoom*tlw)+object_length/tlzoom*tlw-3)
+                                if (mouse_x > ((frametime+object_length+0.7-tlx)/tlzoom*tlw)-1)
                                 {
                                     //resize object
                                     
@@ -874,14 +874,26 @@ if !(mouseonsomelayer)
 		
 		//mouse_xprevious = mouse_x;
     }
+	else if (keyboard_check(vk_control) && mouse_check_button_pressed(mb_left))
+	{
+		mouse_xprevious = mouse_x;
+		mouse_yprevious = mouse_y;
+	}
 	else if (keyboard_check(vk_control) && mouse_check_button(mb_left))
 	{
 		tlx -= round((mouse_x-mouse_xprevious)/tlw*tlzoom);
+		layerbary -= round(mouse_y-mouse_yprevious);
+		if (layerbary < 0) 
+			layerbary = 0;
+	    if ((layerbary) > ypos_perm) 
+			layerbary = ypos_perm;
 		if (tlx < 0) 
 			tlx = 0;
 		if (tlx+tlzoom > length)
 			length = tlx+tlzoom;
 		mouse_xprevious = mouse_x;
+		mouse_yprevious = mouse_y;
+		timeline_surf_length = 0;
 	}
 }
     

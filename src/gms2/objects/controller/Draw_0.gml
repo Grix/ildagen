@@ -1,4 +1,4 @@
-if (window_get_height() < 728 || window_get_width() < 1300)
+/*if (window_get_height() < 728 || window_get_width() < 1300)
 	window_set_size(1300,728);
 	
 view_wport[0] = 788;//window_get_width()-view_wport[4];
@@ -15,7 +15,7 @@ camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
 camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
 camera_set_view_pos(view_camera[3], 0, -25);
 view_xport[0] = view_wport[4];
-tlorigo_y = view_hport[4];
+tlorigo_y = view_hport[4];*/
 
 draw_set_color(c_black);
 
