@@ -76,7 +76,7 @@ if (new_id == getint)
           
             case "updatefound":
             {
-                file = http_get_file("https://github.com/Grix/ildagen/releases/download/v"+versionnew+"/LasershowGen-"+versionnew+"-Installer.exe","temp\\update.exe");
+                file = http_get_file("https://github.com/Grix/ildagen/releases/download/v"+versionnew+"/LaserShowGen-"+versionnew+"-Installer.exe","temp\\update.exe");
                 show_message_new("Download started, program will exit and installation start shortly..");
                 break;
             }    
