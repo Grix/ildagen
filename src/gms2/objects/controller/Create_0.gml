@@ -1,5 +1,5 @@
-version = "1.5.8";
-versiondate = "2017-10-19";
+version = "1.5.9";
+versiondate = "2017-11-02";
 
 if (debug_mode)
 {
@@ -25,6 +25,8 @@ if (os_browser == browser_not_a_browser)
 //ds_set_precision(0.00001); 
 draw_set_circle_precision(24);
 application_surface_enable(false);
+
+instance_create_layer(mouse_x,mouse_y, "normal", obj_cursor);
 
 varmap = ds_map_create();
 //shape function
@@ -297,6 +299,8 @@ scope_end = 0;
 objmoving = 0;
 projectfps = 30;
 fpsmultiplier = 1;
+endx = 0;
+endy = 0;
 
 shapefunc_cp = 100;
 shapefunc_string_x = "";

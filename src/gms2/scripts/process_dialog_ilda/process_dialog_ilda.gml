@@ -87,7 +87,7 @@ if (new_id == getint)
               
               break;
           }
-            case "blankshift":
+            case "blankshift": 
           {
               opt_blankshift = ds_map_find_value(argument[0], "value");
               save_profile();

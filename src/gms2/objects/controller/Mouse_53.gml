@@ -1,7 +1,7 @@
 if (room != rm_ilda) exit;
     
 //menu
-if (mouse_y < 0)   
+if (mouse_y > view_hport[0])   
 {
     if (mouse_x > menu_width_start[0]) and (mouse_x < menu_width_start[1])
     {

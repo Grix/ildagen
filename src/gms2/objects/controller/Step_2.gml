@@ -1,5 +1,22 @@
 if (ex_patch_window_close_event())
     exit_confirm();
+
+if (controller.scrollcursor_flag == 1)
+    window_set_cursor(cr_size_we);
+else if (controller.scrollcursor_flag == 2)
+    window_set_cursor(cr_size_ns);
+else
+{
+    if (controller.placing == "text") && (room == rm_ilda)
+        window_set_cursor(cr_beam);
+	else
+		window_set_cursor(cr_default);
+		
+    if (controller.tooltip != "") || (controller.objmoving)
+		window_set_cursor(cr_handpoint);
+    if (room == rm_ilda) && (keyboard_check(ord("E")) && (controller.placing_status != 2))
+        window_set_cursor(cr_handpoint);
+}
     
 if (keyboard_check_pressed(ord("M")))
 {
@@ -47,7 +64,8 @@ else
 	view_visible[5] = false;
 }
 
-if (room != rm_ilda) exit;
+if (room != rm_ilda) 
+	exit;
 
 el_list = frame_list[| frame];
 

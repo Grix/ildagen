@@ -5,16 +5,6 @@
     "name": "obj_cursor",
     "eventList": [
         {
-            "id": "c65d8fc2-b630-4069-95db-18690791673e",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 2,
-            "eventtype": 3,
-            "m_owner": "7ef2a074-e31a-4d7b-bf50-1b084de04212"
-        },
-        {
             "id": "06d7eb8a-63f8-4369-b624-62ea8e091bad",
             "modelName": "GMEvent",
             "mvc": "1.0",

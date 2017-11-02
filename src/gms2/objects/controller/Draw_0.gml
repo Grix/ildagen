@@ -301,12 +301,20 @@ else if (view_current == 0)
     }
 	
 	//separator lines
+	draw_set_color(c_white);
+	draw_line(view_wport[4]+10, 171, view_wport[4]+view_wport[0]-10, 171);
+	draw_line(view_wport[4]+10, 343, view_wport[4]+view_wport[0]-10, 343);
+	draw_line(view_wport[4]+10, 513, view_wport[4]+view_wport[0]-10, 513);
+	draw_line(1117, 522, 1117, view_hport[0]-10);
+	draw_line(835, 522, 835, view_hport[0]-10);
+	draw_line(view_wport[4]+1, view_hport[4]+10, view_wport[4]+1, view_hport[0]-10);
 	draw_set_color(c_ltgray);
 	draw_line(view_wport[4]+10, 170, view_wport[4]+view_wport[0]-10, 170);
 	draw_line(view_wport[4]+10, 342, view_wport[4]+view_wport[0]-10, 342);
 	draw_line(view_wport[4]+10, 512, view_wport[4]+view_wport[0]-10, 512);
 	draw_line(1116, 522, 1116, view_hport[0]-10);
 	draw_line(834, 522, 834, view_hport[0]-10);
+	draw_line(view_wport[4], view_hport[4]+10, view_wport[4], view_hport[0]-10);
 	draw_set_color(c_black);
 	draw_line(view_wport[4], -1, view_wport[4], view_hport[4]);
 	
@@ -352,7 +360,7 @@ else if (view_current == 3)
 	
     //menu
     draw_text(0, t_ypos+4,menu_string);
-    if (mouse_y <  0)   
+    if (mouse_y > view_hport[0])
     {
         draw_set_colour(c_teal);
         if (mouse_x > menu_width_start[0]) && (mouse_x < menu_width_start[1])

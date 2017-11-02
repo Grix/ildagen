@@ -5,16 +5,6 @@
     "name": "obj_sendtoeditor",
     "eventList": [
         {
-            "id": "60bfb386-28f8-41be-ac89-48372aff35e5",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "72d50298-b292-43a1-84d0-443b2323eff2"
-        },
-        {
             "id": "fe5ecaaa-577e-48d6-83b1-e9b974683c9e",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -36,7 +26,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "00000000-0000-0000-0000-000000000000",
+    "parentObjectId": "3a371281-f66f-4d33-bdff-214f55b04d62",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,

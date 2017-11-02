@@ -48,5 +48,15 @@ else if (ds_map_find_value(async_load, "id") == file)
             }
         }
      }
+	 else if (ds_map_find_value(async_load, "status") < 0)
+	{
+        if (updatereceived == 0)
+        {
+            show_message_new("Failed to automatically download update. Opening download website..");
+            url_open_new("http://pages.bitlasers.com/lasershowgen/");
+            updatereceived = 1;
+        }
+    }
+	
 }
 

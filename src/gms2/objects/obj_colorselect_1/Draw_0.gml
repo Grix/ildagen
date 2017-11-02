@@ -18,3 +18,4 @@ draw_set_colour(activecolor);
 draw_set_color(c_black);
     draw_rectangle(x+5,y-30,x+42,y-11,1);
 
+draw_sprite(spr_tt_primarycol, 0, x-5, y-60);

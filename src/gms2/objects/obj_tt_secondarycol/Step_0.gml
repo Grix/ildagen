@@ -1,1 +1,0 @@
-visible = obj_colorselect_2.visible;

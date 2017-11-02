@@ -5,16 +5,6 @@
     "name": "obj_saveproject",
     "eventList": [
         {
-            "id": "bffb6c25-86cf-47fe-a3f0-1a2ae19493c6",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "cf3bbd2e-c80c-42ad-ac11-c6304849e00b"
-        },
-        {
             "id": "d3475877-1f76-43d7-ab57-67dbb47dc875",
             "modelName": "GMEvent",
             "mvc": "1.0",
@@ -56,7 +46,7 @@
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "parentObjectId": "00000000-0000-0000-0000-000000000000",
+    "parentObjectId": "3a371281-f66f-4d33-bdff-214f55b04d62",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,

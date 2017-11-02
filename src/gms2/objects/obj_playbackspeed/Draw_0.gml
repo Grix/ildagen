@@ -1,5 +1,7 @@
-if (view_current != 1)
+if (view_current != 1) && (room = rm_ilda)
 	exit;
+
+draw_set_color(c_black);
 
 draw_self();
 

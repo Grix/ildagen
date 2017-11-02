@@ -13,5 +13,5 @@ if (tooltip != "")
         draw_text(5,5,tooltip);
 		draw_set_color(c_black);
     }
-    tooltip = "";
+    window_set_cursor(cr_handpoint);
 }
