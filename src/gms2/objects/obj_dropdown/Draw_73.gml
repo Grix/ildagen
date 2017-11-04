@@ -1,5 +1,7 @@
 if (!rdy) 
 	exit;
+if (view_current == 3)
+	exit;
 
 ///Draw the box
 draw_set_color(bak_color);

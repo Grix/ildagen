@@ -6,6 +6,15 @@ if (room == rm_options && view_current != 0)
 	exit;
 	
 //cursor
+if (instance_exists(obj_dropdown))
+{
+	if (mouse_x > obj_dropdown.x1 && mouse_x < obj_dropdown.x2 && mouse_y > obj_dropdown.ty1 && mouse_y < obj_dropdown.ty2)
+		window_set_cursor(cr_handpoint);
+	else
+		window_set_cursor(cr_default);
+	exit;
+}
+
 if (scrollcursor_flag == 1)
     window_set_cursor(cr_size_we);
 else if (scrollcursor_flag == 2)
@@ -35,7 +44,12 @@ if (tooltip != "")
         draw_text(5,5,tooltip);
 		draw_set_color(c_black);
     }
-    window_set_cursor(cr_handpoint);
+	if (scrollcursor_flag == 1)
+		window_set_cursor(cr_size_we);
+	else if (scrollcursor_flag == 2)
+		window_set_cursor(cr_size_ns);
+	else
+		window_set_cursor(cr_handpoint);
 }
 
 tooltip = "";

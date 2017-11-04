@@ -129,16 +129,16 @@ if (func_doaudio == 0)
 {
 	if (colormode == "func")
 	{
-		if (string_pos("audio_", colorfunc_string_1) != -1)
+		if (string_pos("audio_", colorfunc_string_1) != 0)
 			func_doaudio = 1;
-		else if (string_pos("audio_", colorfunc_string_2) != -1)
+		else if (string_pos("audio_", colorfunc_string_2) != 0)
 			func_doaudio = 1;
-		else if (string_pos("audio_", colorfunc_string_3) != -1)
+		else if (string_pos("audio_", colorfunc_string_3) != 0)
 			func_doaudio = 1;
 	}
 	if (blankmode == "func")
 	{
-		if (string_pos("audio_", blankfunc_string) != -1)
+		if (string_pos("audio_", blankfunc_string) != 0)
 			func_doaudio = 1;
 	}
 }

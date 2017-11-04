@@ -315,8 +315,12 @@ else if (view_current == 0)
 	draw_line(1116, 522, 1116, view_hport[0]-10);
 	draw_line(834, 522, 834, view_hport[0]-10);
 	draw_line(view_wport[4], view_hport[4]+10, view_wport[4], view_hport[0]-10);
+	draw_set_color(c_gold);
+	draw_line(view_wport[4]+1, -1, view_wport[4]+1, view_hport[4]+1);
 	draw_set_color(c_black);
 	draw_line(view_wport[4], -1, view_wport[4], view_hport[4]);
+	draw_line(view_wport[4]+2, -1, view_wport[4]+2, view_hport[4]+2);
+	draw_line(view_wport[4]-1, view_hport[4]+2, view_wport[4]+2, view_hport[4]+1);
 	
     with (obj_section0_parent)
     {
@@ -336,7 +340,11 @@ else if (view_current == 1)
 	draw_clear(c_ltltgray);
 	
 	//separator lines
+	draw_set_color(c_gold);
+	draw_line(-1, view_hport[4]+1, view_wport[1], view_hport[4]+1);
+	draw_set_color(c_black);
 	draw_line(-1, view_hport[4], view_wport[1], view_hport[4]);
+	draw_line(-1, view_hport[4]+2, view_wport[1], view_hport[4]+2);
 	
     with (obj_section1_parent)
     {
