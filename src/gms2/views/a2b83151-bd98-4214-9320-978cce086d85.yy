@@ -13,15 +13,7 @@
         "90ff0a71-9f43-4aeb-9621-16c00af23289",
         "cc8a66ad-2280-47d0-b34e-2b5692f44740",
         "4cfbadd6-699a-4fda-b8a7-6e137f97f7f0",
-        "d36f186e-519a-4cd4-a7c7-43c9c0bf45fb",
-        "d2fe0613-bc30-4594-a087-530d1869b953",
-        "2c62ad49-88e1-4607-9006-7baf122128b9",
-        "e06593aa-15cd-48ba-a926-56d88b7f4139",
-        "cc415337-bd2d-43ec-8b4b-567817d1ae5e",
-        "e3a655a4-6bb9-44b1-9e0f-61745970e77d",
-        "c1fcab1c-06ae-41ac-a784-969051ad4617",
-        "bf50977a-5893-47ff-92a9-ca1f311a79a7",
-        "7c1ba92a-eb55-4c70-ad0b-15dcdc12be64"
+        "d36f186e-519a-4cd4-a7c7-43c9c0bf45fb"
     ],
     "filterType": "GMScript",
     "folderName": "createobject",

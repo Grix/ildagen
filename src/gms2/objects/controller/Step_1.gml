@@ -1,5 +1,4 @@
 /// @description timing and laser output
-tooltip = "";
 
 if (room != rm_ilda) 
 	exit;

@@ -3,13 +3,6 @@
 lastpointadded = 0
 framepre = frame;
 placing_status = 0;
-
-song_parse = -1;
-parsebuffer = -1;
-bufferIn = -1;
-bufferOut = -1;
-func_doaudio = 0;
-func_audioloudness = 0;
         
 if (maxframes == 1) and (anienable)
 {
@@ -229,6 +222,37 @@ if (blankmode == "func")
         return 0;
     }
 }
+
+song_parse = -1;
+parsebuffer = -1;
+bufferIn = -1;
+bufferOut = -1;
+func_doaudio = 0;
+if (func_doaudio == 0)
+{
+	if (placing == "func")
+	{
+		if (string_pos("audio_", shapefunc_string_x) != -1)
+			func_doaudio = 1;
+		else if (string_pos("audio_", shapefunc_string_y) != -1)
+			func_doaudio = 1;
+	}
+	if (colormode == "func")
+	{
+		if (string_pos("audio_", colorfunc_string_1) != -1)
+			func_doaudio = 1;
+		else if (string_pos("audio_", colorfunc_string_2) != -1)
+			func_doaudio = 1;
+		else if (string_pos("audio_", colorfunc_string_3) != -1)
+			func_doaudio = 1;
+	}
+	if (blankmode == "func")
+	{
+		if (string_pos("audio_", blankfunc_string) != -1)
+			func_doaudio = 1;
+	}
+}
+func_audioloudness = 0;
 
     
 //ONLY ONE FRAME

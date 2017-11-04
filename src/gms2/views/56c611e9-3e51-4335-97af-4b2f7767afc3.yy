@@ -33,7 +33,15 @@
         "1d3b9b62-dab1-43be-8205-69dc58c5cb17",
         "39dd6914-6787-4e94-b68f-9ad3fea58b19",
         "7cc55aed-5cd7-4b20-a6c4-9a06830d604e",
-        "300a6e4f-367e-46ce-b057-6fe70fa37466"
+        "300a6e4f-367e-46ce-b057-6fe70fa37466",
+        "bf50977a-5893-47ff-92a9-ca1f311a79a7",
+        "7c1ba92a-eb55-4c70-ad0b-15dcdc12be64",
+        "d2fe0613-bc30-4594-a087-530d1869b953",
+        "2c62ad49-88e1-4607-9006-7baf122128b9",
+        "e06593aa-15cd-48ba-a926-56d88b7f4139",
+        "cc415337-bd2d-43ec-8b4b-567817d1ae5e",
+        "e3a655a4-6bb9-44b1-9e0f-61745970e77d",
+        "c1fcab1c-06ae-41ac-a784-969051ad4617"
     ],
     "filterType": "GMScript",
     "folderName": "ilda",

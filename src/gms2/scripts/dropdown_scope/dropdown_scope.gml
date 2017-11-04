@@ -1,6 +1,6 @@
 ddobj = instance_create_layer(mouse_x,mouse_y,"foreground",obj_dropdown);
 with (ddobj)
-    {
+{
     num = 3;
     event_user(1);
     ds_list_add(desc_list,"Set start frame");
@@ -15,5 +15,5 @@ with (ddobj)
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
-    }
+}
     

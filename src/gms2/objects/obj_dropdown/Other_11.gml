@@ -12,18 +12,18 @@ if(x < 0)
 {
     x_offset = 0-x+1;
 }
-else if(x + total_width > camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0]))
+else if(x + total_width > view_wport[3])
 {
-    x_offset = camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])-(x+total_width)+1;
+    x_offset = view_wport[3]-(x+total_width)+1;
 }
 
 if(y < 0)
 {
     y_offset = 0-y+1;
 }
-else if(y + total_height > camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0]))
+else if(y + total_height > view_hport[0])
 {
-    y_offset = camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])-total_height;
+    y_offset = view_hport[0]-(y+total_height)+1;
 }
 
 x1 = x+x_offset;

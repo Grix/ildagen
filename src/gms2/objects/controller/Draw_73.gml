@@ -1,6 +1,28 @@
 if (room == rm_ilda && view_current != 4)
 	exit;
-    
+if (room == rm_seq && view_current != 0)
+	exit;
+if (room == rm_options && view_current != 0)
+	exit;
+	
+//cursor
+if (scrollcursor_flag == 1)
+    window_set_cursor(cr_size_we);
+else if (scrollcursor_flag == 2)
+    window_set_cursor(cr_size_ns);
+else
+{
+    if (placing == "text") && (room == rm_ilda)
+        window_set_cursor(cr_beam);
+	else
+		window_set_cursor(cr_default);
+		
+    if (objmoving)
+		window_set_cursor(cr_handpoint);
+    if (room == rm_ilda) && (keyboard_check(ord("E")) && (placing_status != 2))
+        window_set_cursor(cr_handpoint);
+}
+	
 if (tooltip != "")
 {
     if (show_tooltip)
@@ -15,3 +37,6 @@ if (tooltip != "")
     }
     window_set_cursor(cr_handpoint);
 }
+
+tooltip = "";
+scrollcursor_flag = 0;

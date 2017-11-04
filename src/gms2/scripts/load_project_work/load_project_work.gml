@@ -260,9 +260,8 @@ if (songload)
             }
         }
     }
+	buffer_delete(t_exInfo);
 }
-
-buffer_delete(t_exInfo);
     
 //markers
 parsinglistsize = buffer_read(load_buffer,buffer_u32);

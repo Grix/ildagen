@@ -1,9 +1,3 @@
-if (func_doaudio == 0)
-{
-	if (string_pos("audio_", blankfunc_string) != -1)
-		func_doaudio = 1;
-}
-	
 if (func_doaudio > 0)
 {
 	if (seqcontrol.song != -1)
