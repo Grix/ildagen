@@ -1,11 +1,10 @@
+v1.5.10
+- Bug fixes: Possible crash when reapplying properties, broken scope-button, and more
+
 v1.5.9
 - Bug fixes: Possible crash when reapplying colors, possible crash when using curve tool, auto-update broken, and more
 
 v1.5.8
 - Added audio data variables: audio_wave, audio_spectrum and audio_loudness to function modes
 - Bug fixes: FPS button broken, radial grid broken, FPS issues, editor mode audio visualization offset
-- Other minor fixes and improvements
-
-v1.5.7
-- Big performance improvements for certain tasks, mostly in the timeline mode
 - Other minor fixes and improvements
