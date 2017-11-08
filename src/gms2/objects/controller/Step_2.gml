@@ -5,7 +5,7 @@ if (ex_patch_window_close_event())
 if (keyboard_check_pressed(ord("M")))
 {
     window_set_fullscreen(0);
-    window_set_size(room_width,room_height);
+    window_set_size(default_window_w, default_window_h);
 }
 else if (keyboard_check_released(vk_f11))
     window_set_fullscreen(!window_get_fullscreen());

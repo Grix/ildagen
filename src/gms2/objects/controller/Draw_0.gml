@@ -1,21 +1,28 @@
-/*if (window_get_height() < 728 || window_get_width() < 1300)
-	window_set_size(1300,728);
+if (window_get_height() < default_window_h || window_get_width() < default_window_w)
+	window_set_size(default_window_w, default_window_h);
 	
 view_wport[0] = 788;//window_get_width()-view_wport[4];
 view_wport[4] = window_get_width()-view_wport[0];
-view_hport[4] = window_get_height()-view_hport[1];
+view_hport[4] = window_get_height()-view_hport[1]-view_hport[3];
 view_wport[3] = window_get_width();
-view_hport[0] = window_get_height();
+view_hport[0] = default_window_h-view_hport[3]; //window_get_height()-view_hport[3];
 view_hport[1] = 149; //window_get_height()-view_hport[4];
+view_hport[6] = window_get_height()-view_hport[3]-view_hport[0];
+view_wport[6] = view_wport[0];
 tlw = view_wport[4];
 view_wport[1] = view_wport[4];
-camera_set_view_size(view_camera[0], view_wport[0], view_hport[0]);
+view_yport[1] = view_hport[4]+view_hport[3];
+view_yport[6] = view_hport[3]+view_hport[0];
+//camera_set_view_size(view_camera[0], view_wport[0], view_hport[0]);
 camera_set_view_size(view_camera[3], view_wport[3], view_hport[3]);
 camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
 camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
-camera_set_view_pos(view_camera[3], 0, -25);
+camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
+//camera_set_view_pos(view_camera[3], 0, -25);
 view_xport[0] = view_wport[4];
-tlorigo_y = view_hport[4];*/
+view_xport[6] = view_xport[0];
+camera_set_view_pos(view_camera[6], 512, view_yport[6]-view_hport[3]);
+tlorigo_y = view_hport[4]-tlh;//view_hport[4];
 
 draw_set_color(c_black);
 
@@ -302,25 +309,27 @@ else if (view_current == 0)
 	
 	//separator lines
 	draw_set_color(c_white);
-	draw_line(view_wport[4]+10, 171, view_wport[4]+view_wport[0]-10, 171);
-	draw_line(view_wport[4]+10, 343, view_wport[4]+view_wport[0]-10, 343);
-	draw_line(view_wport[4]+10, 513, view_wport[4]+view_wport[0]-10, 513);
-	draw_line(1117, 522, 1117, view_hport[0]-10);
-	draw_line(835, 522, 835, view_hport[0]-10);
-	draw_line(view_wport[4]+1, view_hport[4]+10, view_wport[4]+1, view_hport[0]-10);
+	var t_w4 = 512;//view_wport[4];
+	var t_h4 = view_hport[4]+1; //	var t_h4 = 512+tlh+3;
+	var t_h0 = view_hport[0];
+	var t_w0w4 = view_wport[0]+view_wport[4];
+	draw_line(t_w4+10, 171, t_w0w4-10, 171);
+	draw_line(t_w4+10, 343, t_w0w4-10, 343);
+	draw_line(t_w4+10, 513, t_w0w4-10, 513);
+	draw_line(1117, 522, 1117, t_h0-10);
+	draw_line(835, 522, 835, t_h0-10);
 	draw_set_color(c_ltgray);
-	draw_line(view_wport[4]+10, 170, view_wport[4]+view_wport[0]-10, 170);
-	draw_line(view_wport[4]+10, 342, view_wport[4]+view_wport[0]-10, 342);
-	draw_line(view_wport[4]+10, 512, view_wport[4]+view_wport[0]-10, 512);
-	draw_line(1116, 522, 1116, view_hport[0]-10);
-	draw_line(834, 522, 834, view_hport[0]-10);
-	draw_line(view_wport[4], view_hport[4]+10, view_wport[4], view_hport[0]-10);
+	draw_line(t_w4+10, 170, t_w0w4-10, 170);
+	draw_line(t_w4+10, 342, t_w0w4-10, 342);
+	draw_line(t_w4+10, 512, t_w0w4-10, 512);
+	draw_line(1116, 522, 1116, t_h0-10);
+	draw_line(834, 522, 834, t_h0-10);
 	draw_set_color(c_gold);
-	draw_line(view_wport[4]+1, -1, view_wport[4]+1, view_hport[4]+1);
+	draw_line(t_w4+1, -1, t_w4+1, t_h4+1);
 	draw_set_color(c_black);
-	draw_line(view_wport[4], -1, view_wport[4], view_hport[4]);
-	draw_line(view_wport[4]+2, -1, view_wport[4]+2, view_hport[4]+2);
-	draw_line(view_wport[4]-1, view_hport[4]+2, view_wport[4]+2, view_hport[4]+1);
+	draw_line(t_w4, -1, t_w4, t_h4);
+	draw_line(t_w4+2, -1, t_w4+2, t_h4+2);
+	draw_line(t_w4-1, t_h4+1, t_w4+2, t_h4+1);
 	
     with (obj_section0_parent)
     {
@@ -340,11 +349,18 @@ else if (view_current == 1)
 	draw_clear(c_ltltgray);
 	
 	//separator lines
+	var t_h4 = 512+tlh+3;
+	var t_w1 = view_wport[1];
+	var t_h0 = view_hport[0];
+	draw_set_color(c_white);
+	draw_line(t_w1-1, t_h4+10, t_w1-1, t_h0-10);
+	draw_set_color(c_ltgray);
+	draw_line(t_w1-2, t_h4+10, t_w1-2, t_h0-10);
 	draw_set_color(c_gold);
-	draw_line(-1, view_hport[4]+1, view_wport[1], view_hport[4]+1);
+	draw_line(-1, t_h4+1, t_w1, t_h4+1);
 	draw_set_color(c_black);
-	draw_line(-1, view_hport[4], view_wport[1], view_hport[4]);
-	draw_line(-1, view_hport[4]+2, view_wport[1], view_hport[4]+2);
+	draw_line(-1, t_h4, t_w1, t_h4);
+	draw_line(-1, t_h4+2, t_w1, t_h4+2);
 	
     with (obj_section1_parent)
     {
@@ -368,7 +384,7 @@ else if (view_current == 3)
 	
     //menu
     draw_text(0, t_ypos+4,menu_string);
-    if (mouse_y > view_hport[0])
+    if (mouse_y < 0)
     {
         draw_set_colour(c_teal);
         if (mouse_x > menu_width_start[0]) && (mouse_x < menu_width_start[1])
@@ -415,5 +431,19 @@ else if (view_current == 3)
         }
         draw_set_alpha(1);
     }
+}
+else if (view_current == 6)
+{
+	draw_clear(c_ltltgray);
+	
+	//separator lines
+	var t_w4 = 512;
+	var t_h4 = view_hport[4];
+	draw_set_color(c_gold);
+	draw_line(t_w4+1, -1, t_w4+1, t_h4+1);
+	draw_set_color(c_black);
+	draw_line(t_w4, -1, t_w4, t_h4);
+	draw_line(t_w4+2, -1, t_w4+2, t_h4+2);
+	draw_line(t_w4-1, t_h4+2, t_w4+2, t_h4+2);
 }
 

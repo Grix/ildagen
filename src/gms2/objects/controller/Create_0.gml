@@ -77,6 +77,9 @@ parser_cb = ML_InitParserScience(varmap);
     
 alarm[3] = 120;
 
+default_window_w = 1300;//window_get_width();
+default_window_h = 728;//window_get_height();
+
 el_list = ds_list_create();
 undo_list = ds_list_create();
 frame_surf = -1; //surface_create(512,512);
