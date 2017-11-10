@@ -1,33 +1,38 @@
-if (window_get_height() < default_window_h || window_get_width() < default_window_w)
-	window_set_size(default_window_w, default_window_h);
-	
-view_wport[0] = 788;//window_get_width()-view_wport[4];
-view_wport[4] = window_get_width()-view_wport[0];
-view_hport[4] = window_get_height()-view_hport[1]-view_hport[3];
-view_wport[3] = window_get_width();
-view_hport[0] = default_window_h-view_hport[3]; //window_get_height()-view_hport[3];
-view_hport[1] = 149; //window_get_height()-view_hport[4];
-view_hport[6] = window_get_height()-view_hport[3]-view_hport[0];
-view_wport[6] = view_wport[0];
-tlw = view_wport[4];
-view_wport[1] = view_wport[4];
-view_yport[1] = view_hport[4]+view_hport[3];
-view_yport[6] = view_hport[3]+view_hport[0];
-//camera_set_view_size(view_camera[0], view_wport[0], view_hport[0]);
-camera_set_view_size(view_camera[3], view_wport[3], view_hport[3]);
-camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
-camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
-camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
-//camera_set_view_pos(view_camera[3], 0, -25);
-view_xport[0] = view_wport[4];
-view_xport[6] = view_xport[0];
-camera_set_view_pos(view_camera[6], 512, view_yport[6]-view_hport[3]);
-tlorigo_y = view_hport[4]-tlh;//view_hport[4];
-
-draw_set_color(c_black);
-
 if (room != rm_ilda) 
     exit;
+	
+if (window_get_height() != window_heightprev || window_get_width() != window_widthprev) || true
+{
+	if (window_get_height() < default_window_h || window_get_width() < default_window_w)
+		window_set_size(default_window_w, default_window_h);
+	
+	view_hport[4] = window_get_height()-view_hport[1]-view_hport[3];
+	tlw = view_wport[4];
+	tlh = round(view_hport[4]/(512/42));
+	view_wport[4] = view_hport[4]-tlh-3;
+	view_wport[0] = window_get_width()-view_wport[4];//788
+	view_wport[3] = window_get_width();
+	view_hport[0] = 706;//default_window_h-view_hport[3]; //window_get_height()-view_hport[3];
+	view_hport[1] = 149; //window_get_height()-view_hport[4];
+	view_hport[6] = window_get_height()-view_hport[3]-view_hport[0];
+	view_wport[6] = view_wport[0];
+	view_wport[1] = view_wport[4];
+	view_yport[1] = view_hport[4]+view_hport[3];
+	view_yport[6] = view_hport[3]+view_hport[0];
+	camera_set_view_size(view_camera[0], view_wport[0], view_hport[0]);
+	camera_set_view_size(view_camera[3], view_wport[3], view_hport[3]);
+	camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
+	camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
+	camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
+	//camera_set_view_pos(view_camera[3], 0, -25);
+	view_xport[0] = view_wport[4];
+	view_xport[6] = view_xport[0];
+	camera_set_view_pos(view_camera[6], 512, view_yport[6]-view_hport[3]);
+	tlorigo_y = view_hport[4]-tlh;//view_hport[4];
+	
+	window_heightprev = window_get_height();
+	window_widthprev = window_get_width();
+}
 	
 if (view_current == 4 || view_current == 5)
 {   
@@ -310,9 +315,9 @@ else if (view_current == 0)
 	//separator lines
 	draw_set_color(c_white);
 	var t_w4 = 512;//view_wport[4];
-	var t_h4 = view_hport[4]+1; //	var t_h4 = 512+tlh+3;
+	var t_h4 = view_hport[4]; //	var t_h4 = 512+tlh+3;
 	var t_h0 = view_hport[0];
-	var t_w0w4 = view_wport[0]+view_wport[4];
+	var t_w0w4 = view_wport[0]+t_w4;
 	draw_line(t_w4+10, 171, t_w0w4-10, 171);
 	draw_line(t_w4+10, 343, t_w0w4-10, 343);
 	draw_line(t_w4+10, 513, t_w0w4-10, 513);
@@ -329,7 +334,7 @@ else if (view_current == 0)
 	draw_set_color(c_black);
 	draw_line(t_w4, -1, t_w4, t_h4);
 	draw_line(t_w4+2, -1, t_w4+2, t_h4+2);
-	draw_line(t_w4-1, t_h4+1, t_w4+2, t_h4+1);
+	draw_line(t_w4-1, t_h4+2, t_w4+2, t_h4+2);
 	
     with (obj_section0_parent)
     {
@@ -349,7 +354,7 @@ else if (view_current == 1)
 	draw_clear(c_ltltgray);
 	
 	//separator lines
-	var t_h4 = 512+tlh+3;
+	var t_h4 = camera_get_view_y(view_camera[1]);
 	var t_w1 = view_wport[1];
 	var t_h0 = view_hport[0];
 	draw_set_color(c_white);
@@ -434,16 +439,24 @@ else if (view_current == 3)
 }
 else if (view_current == 6)
 {
+	gpu_set_blendenable(false);
 	draw_clear(c_ltltgray);
 	
 	//separator lines
 	var t_w4 = 512;
 	var t_h4 = view_hport[4];
+	var t_w0w4 = view_wport[0]+t_w4;
+	var t_h0 = view_hport[0];
+	/*draw_set_color(c_white);
+	draw_line(t_w4+10, t_h0+1, t_w0w4-10, t_h0+1);
+	draw_set_color(c_ltgray);
+	draw_line(t_w4+10, t_h0+2, t_w0w4-10, t_h0+2);*/
 	draw_set_color(c_gold);
 	draw_line(t_w4+1, -1, t_w4+1, t_h4+1);
 	draw_set_color(c_black);
 	draw_line(t_w4, -1, t_w4, t_h4);
 	draw_line(t_w4+2, -1, t_w4+2, t_h4+2);
 	draw_line(t_w4-1, t_h4+2, t_w4+2, t_h4+2);
+	gpu_set_blendenable(true);
 }
 

@@ -79,6 +79,8 @@ alarm[3] = 120;
 
 default_window_w = 1300;//window_get_width();
 default_window_h = 728;//window_get_height();
+window_heightprev = default_window_h;
+window_widthprev = default_window_w;
 
 el_list = ds_list_create();
 undo_list = ds_list_create();
@@ -108,7 +110,7 @@ radialgrid_surf = -1;
 squaregrid_surf = -1;
 
 c_gold = make_colour_rgb(255,220,0);
-c_ltltgray = make_colour_rgb(240,240,240);
+c_ltltgray = make_colour_rgb(236,236,236);
 
 adclosed = false;
 dac = -1;
