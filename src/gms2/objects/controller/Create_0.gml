@@ -77,8 +77,8 @@ parser_cb = ML_InitParserScience(varmap);
     
 alarm[3] = 120;
 
-default_window_w = 1300;//window_get_width();
-default_window_h = 728;//window_get_height();
+default_window_w = window_get_width(); //1300;
+default_window_h = window_get_height(); //728;
 window_heightprev = default_window_h;
 window_widthprev = default_window_w;
 

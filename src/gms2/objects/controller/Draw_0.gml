@@ -11,6 +11,15 @@ if (window_get_height() != window_heightprev || window_get_width() != window_wid
 	tlh = round(view_hport[4]/(512/42));
 	view_wport[4] = view_hport[4]-tlh-3;
 	view_wport[0] = window_get_width()-view_wport[4];//788
+	if (view_wport[0] < 788)
+	{
+		window_set_size(default_window_w, default_window_h);
+	
+		view_hport[4] = window_get_height()-view_hport[1]-view_hport[3];
+		tlw = view_wport[4];
+		tlh = round(view_hport[4]/(512/42));
+		view_wport[4] = view_hport[4]-tlh-3;
+	}
 	view_wport[3] = window_get_width();
 	view_hport[0] = 706;//default_window_h-view_hport[3]; //window_get_height()-view_hport[3];
 	view_hport[1] = 149; //window_get_height()-view_hport[4];
@@ -126,29 +135,31 @@ if (view_current == 4 || view_current == 5)
         {
             if (!surface_exists(squaregrid_surf))
             {
-                squaregrid_surf = surface_create(512,512);
+                squaregrid_surf = surface_create(1024,1024);
                 surface_set_target(squaregrid_surf);
                     draw_grid();
                 surface_reset_target();
             }
-            draw_surface(squaregrid_surf,0,0);
+            draw_surface_stretched(squaregrid_surf,0,0, view_wport[4], view_wport[4]);
         } 
         if (keyboard_check(ord("R")) || (rgridshow == 1))
         {
             if (!surface_exists(radialgrid_surf))
             {
-                radialgrid_surf = surface_create(512,512);
+                radialgrid_surf = surface_create(1024,1024);
                 surface_set_target(radialgrid_surf);
                     draw_radialgrid();
                 surface_reset_target();
             }
-            draw_surface(radialgrid_surf,0,0);
+            draw_surface_stretched(radialgrid_surf,0,0, view_wport[4], view_wport[4]);
         }
             
         if ((keyboard_check(ord("A")) && !keyboard_check(vk_control)) || (guidelineshow == 1))
         {
             draw_guidelines();
         }
+		
+		var t_scale = $ffff*view_wport[4];
         
         draw_set_alpha(1);
         draw_set_color(c_gray);
@@ -158,8 +169,8 @@ if (view_current == 4 || view_current == 5)
             {
                 templist = ds_list_find_value(el_list,u);
                 
-                xo = ds_list_find_value(templist,0)/$ffff*512;
-                yo = ds_list_find_value(templist,1)/$ffff*512;
+                xo = ds_list_find_value(templist,0)/t_scale;
+                yo = ds_list_find_value(templist,1)/t_scale;
                 
                 xp1 = xo+ds_list_find_value(templist,4);
                 yp1 = yo+ds_list_find_value(templist,6);
@@ -176,7 +187,7 @@ if (view_current == 4 || view_current == 5)
             if (update_semasterlist_flag)
                 update_semasterlist();
             
-            draw_sprite(spr_anchor,0,round(anchorx/$ffff*512),round(anchory/$ffff*512));
+            draw_sprite(spr_anchor,0,round(anchorx/t_scale),round(anchory/t_scale));
             draw_set_alpha(0.6);
             draw_sprite(spr_rotate,0,rectxmin,rectymax);
             draw_sprite(spr_resize,0,rectxmax,rectymax);
@@ -186,39 +197,40 @@ if (view_current == 4 || view_current == 5)
             
             if (objmoving == 1) || (objmoving == 3) || (objmoving == 4)
             {
-                xp1 = rectxmin+anixtrans/$ffff*512;
-                yp1 = rectymin+aniytrans/$ffff*512;
-                xp2 = rectxmax+anixtrans/$ffff*512;
-                yp2 = rectymax+aniytrans/$ffff*512;
-                xp3 = rectxmax+anixtrans/$ffff*512;
-                yp3 = rectymin+aniytrans/$ffff*512;
-                xp4 = rectxmin+anixtrans/$ffff*512;
-                yp4 = rectymax+aniytrans/$ffff*512;
+				
+                xp1 = rectxmin+anixtrans/t_scale;
+                yp1 = rectymin+aniytrans/t_scale;
+                xp2 = rectxmax+anixtrans/t_scale;
+                yp2 = rectymax+aniytrans/t_scale;
+                xp3 = rectxmax+anixtrans/t_scale;
+                yp3 = rectymin+aniytrans/t_scale;
+                xp4 = rectxmin+anixtrans/t_scale;
+                yp4 = rectymax+aniytrans/t_scale;
                 rot_r = degtorad(anirot);
                 
-                angle1 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp1,yp1));
-                dist1 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp1,yp1);
+                angle1 = degtorad(point_direction(anchorx/t_scale,anchory/t_scale,xp1,yp1));
+                dist1 = point_distance(anchorx/t_scale,anchory/t_scale,xp1,yp1);
                 
-                xpnew1 = anchorx/$ffff*512+cos(rot_r-angle1)*dist1*scalex;
-                ypnew1 = anchory/$ffff*512+sin(rot_r-angle1)*dist1*scaley;
+                xpnew1 = anchorx/t_scale+cos(rot_r-angle1)*dist1*scalex;
+                ypnew1 = anchory/t_scale+sin(rot_r-angle1)*dist1*scaley;
                 
-                angle2 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp2,yp2));
-                dist2 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp2,yp2);
+                angle2 = degtorad(point_direction(anchorx/t_scale,anchory/t_scale,xp2,yp2));
+                dist2 = point_distance(anchorx/t_scale,anchory/t_scale,xp2,yp2);
                 
-                xpnew2 = anchorx/$ffff*512+cos(rot_r-angle2)*dist2*scalex;
-                ypnew2 = anchory/$ffff*512+sin(rot_r-angle2)*dist2*scaley;
+                xpnew2 = anchorx/t_scale+cos(rot_r-angle2)*dist2*scalex;
+                ypnew2 = anchory/t_scale+sin(rot_r-angle2)*dist2*scaley;
         
-                angle3 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp3,yp3));
-                dist3 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp3,yp3);
+                angle3 = degtorad(point_direction(anchorx/t_scale,anchory/t_scale,xp3,yp3));
+                dist3 = point_distance(anchorx/t_scale,anchory/t_scale,xp3,yp3);
                 
-                xpnew3 = anchorx/$ffff*512+cos(rot_r-angle3)*dist3*scalex;
-                ypnew3 = anchory/$ffff*512+sin(rot_r-angle3)*dist3*scaley;
+                xpnew3 = anchorx/t_scale+cos(rot_r-angle3)*dist3*scalex;
+                ypnew3 = anchory/t_scale+sin(rot_r-angle3)*dist3*scaley;
                 
-                angle4 = degtorad(point_direction(anchorx/$ffff*512,anchory/$ffff*512,xp4,yp4));
-                dist4 = point_distance(anchorx/$ffff*512,anchory/$ffff*512,xp4,yp4);
+                angle4 = degtorad(point_direction(anchorx/t_scale,anchory/t_scale,xp4,yp4));
+                dist4 = point_distance(anchorx/t_scale,anchory/t_scale,xp4,yp4);
                 
-                xpnew4 = anchorx/$ffff*512+cos(rot_r-angle4)*dist4*scalex;
-                ypnew4 = anchory/$ffff*512+sin(rot_r-angle4)*dist4*scaley;
+                xpnew4 = anchorx/t_scale+cos(rot_r-angle4)*dist4*scalex;
+                ypnew4 = anchory/t_scale+sin(rot_r-angle4)*dist4*scaley;
                 
         
                 draw_set_color(c_teal);
@@ -248,7 +260,7 @@ if (view_current == 4 || view_current == 5)
     draw_set_font(fnt_tooltip);
     
         draw_set_color(c_ltgray);
-        draw_text(12,495,"Frame: "+string(frame+1)+"/"+string(maxframes));
+        draw_text(12, view_wport[4]-20, "Frame: "+string(frame+1)+"/"+string(maxframes));
         
         draw_text(12,7,"FPS: "+string(projectfps));
         if (playing && (fps != projectfps) && laseron)
@@ -263,16 +275,16 @@ if (view_current == 4 || view_current == 5)
             draw_set_color(c_orange);
         else 
             draw_set_color(c_ltgray);
-        draw_text(440,495,"Points: "+string(framepoints));
+        draw_text(view_wport[4]-70, view_wport[4]-20, "Points: "+string(framepoints));
         
         if (!anienable) && (maxframes < 2)
             draw_set_color(c_gray);
         else 
             draw_set_color(c_ltgray);
         if (scope_start == 0) && (scope_end == maxframes-1)
-            draw_text(220,495,"Scope: All frames");
+            draw_text(view_wport[4]/2-34, view_wport[4]-20, "Scope: All frames");
         else
-            draw_text(220,495,"Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
+            draw_text(view_wport[4]/2-34, view_wport[4]-20, "Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
 			
 	draw_set_color(c_black);
 	draw_set_alpha(1);
