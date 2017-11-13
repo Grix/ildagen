@@ -16,7 +16,7 @@
     "option_windows_icon": "${options_dir}\\windows\\runner_icon.ico",
     "option_windows_installer_finished": "${options_dir}\\windows\\Runner_finish.bmp",
     "option_windows_installer_header": "${options_dir}\\windows\\Runner_header.bmp",
-    "option_windows_interpolate_pixels": true,
+    "option_windows_interpolate_pixels": false,
     "option_windows_license": "${options_dir}\\windows\\installer\\license.txt",
     "option_windows_nsis_file": "${options_dir}\\windows\\installer\\nsis_script.nsi",
     "option_windows_product_info": "LaserShowGen",

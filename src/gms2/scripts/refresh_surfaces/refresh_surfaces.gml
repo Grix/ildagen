@@ -5,9 +5,11 @@ frame_complexity = 0;
 el_list = ds_list_find_value(frame_list,frame);
 
 if (!surface_exists(frame_surf))
-    frame_surf = surface_create(512,512);
+    frame_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_wport[4]))));
 if (!surface_exists(frame3d_surf))
-    frame3d_surf = surface_create(512,512);
+    frame3d_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_wport[4]))));
+
+var t_div = $ffff/view_wport[4];
 
 if (viewmode == 0) or (viewmode == 2)
 {
@@ -19,8 +21,8 @@ if (viewmode == 0) or (viewmode == 2)
     {
         new_list = ds_list_find_value(el_list,i);
         
-        xo = ds_list_find_value(new_list,0)/128;
-        yo = ds_list_find_value(new_list,1)/128;
+        xo = ds_list_find_value(new_list,0)/t_div;
+        yo = ds_list_find_value(new_list,1)/t_div;
         listsize = (((ds_list_size(new_list)-20)/4)-1);
         
         for (u = 0; u < listsize; u++)
@@ -45,10 +47,10 @@ if (viewmode == 0) or (viewmode == 2)
                     
                 if (abs(xp-nxp) < 8) && (abs(yp-nyp) < 8) && !(ds_list_find_value(new_list,nextpos-2))
                 {
-                    draw_rectangle(xo+xp/128-1,yo+yp/128-1,xo+xp/128+1,yo+yp/128+1,0);
+                    draw_rectangle(xo+xp/t_div-1,yo+yp/t_div-1,xo+xp/t_div+1,yo+yp/t_div+1,0);
                 }
                 else
-                    draw_line(xo+ xp/128,yo+ yp/128,xo+ nxp/128,yo+ nyp/128);
+                    draw_line(xo+ xp/t_div,yo+ yp/t_div,xo+ nxp/t_div,yo+ nyp/t_div);
             }
             
             
@@ -70,8 +72,8 @@ if (viewmode == 0) or (viewmode == 2)
         {
             new_list = ds_list_find_value(el_list,i);
             
-            xo = ds_list_find_value(new_list,0)/128;
-            yo = ds_list_find_value(new_list,1)/128;
+            xo = ds_list_find_value(new_list,0)/t_div;
+            yo = ds_list_find_value(new_list,1)/t_div;
             listsize = (((ds_list_size(new_list)-20)/4)-1);
             
             for (u = 0; u < listsize; u++)
@@ -89,9 +91,9 @@ if (viewmode == 0) or (viewmode == 2)
                     
                     draw_set_color(ds_list_find_value(new_list,nextpos+3));
                     if (abs(xp-nxp) < 8) && (abs(yp-nyp) < 8) && !(ds_list_find_value(new_list,nextpos-2))
-                        draw_rectangle(xo+xp/128-1,yo+yp/128-1,xo+xp/128+1,yo+yp/128+1,0);
+                        draw_rectangle(xo+xp/t_div-1,yo+yp/t_div-1,xo+xp/t_div+1,yo+yp/t_div+1,0);
                     else
-                        draw_line(xo+ xp/128,yo+ yp/128,xo+ nxp/128,yo+ nyp/128);
+                        draw_line(xo+ xp/t_div,yo+ yp/t_div,xo+ nxp/t_div,yo+ nyp/t_div);
                 }
                 
             }

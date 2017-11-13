@@ -41,6 +41,7 @@ if (window_get_height() != window_heightprev || window_get_width() != window_wid
 	
 	window_heightprev = window_get_height();
 	window_widthprev = window_get_width();
+
 }
 	
 if (view_current == 4 || view_current == 5)
@@ -135,23 +136,23 @@ if (view_current == 4 || view_current == 5)
         {
             if (!surface_exists(squaregrid_surf))
             {
-                squaregrid_surf = surface_create(1024,1024);
+                squaregrid_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_wport[4]))));
                 surface_set_target(squaregrid_surf);
                     draw_grid();
                 surface_reset_target();
             }
-            draw_surface_stretched(squaregrid_surf,0,0, view_wport[4], view_wport[4]);
+            draw_surface_part(squaregrid_surf,0,0, view_wport[4], view_wport[4], 0,0);
         } 
         if (keyboard_check(ord("R")) || (rgridshow == 1))
         {
             if (!surface_exists(radialgrid_surf))
             {
-                radialgrid_surf = surface_create(1024,1024);
+                radialgrid_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_wport[4]))));
                 surface_set_target(radialgrid_surf);
                     draw_radialgrid();
                 surface_reset_target();
             }
-            draw_surface_stretched(radialgrid_surf,0,0, view_wport[4], view_wport[4]);
+            draw_surface_part(radialgrid_surf,0,0, view_wport[4], view_wport[4], 0,0);
         }
             
         if ((keyboard_check(ord("A")) && !keyboard_check(vk_control)) || (guidelineshow == 1))

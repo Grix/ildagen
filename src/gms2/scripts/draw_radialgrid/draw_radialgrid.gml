@@ -3,14 +3,16 @@ draw_set_circle_precision(64);
 draw_set_color(c_ltgray);
 gpu_set_blendmode(bm_add);
 
-draw_circle(512,512,100,1);
-draw_circle(512,512,200,1);
-draw_circle(512,512,300,1);
-draw_circle(512,512,400,1);
+var t_wport_half = view_wport[4]/2;
+
+draw_circle(t_wport_half,t_wport_half,view_wport[4]/12,1);
+draw_circle(t_wport_half,t_wport_half,view_wport[4]/6,1);
+draw_circle(t_wport_half,t_wport_half,view_wport[4]/3,1);
+draw_circle(t_wport_half,t_wport_half,view_wport[4]/1.5,1);
 for (i = 0;i < 2*pi; i += degtorad(15))
-    draw_line(512+100*cos(i),512+100*sin(i),512+800*cos(i),512+800*sin(i));
+    draw_line(t_wport_half+view_wport[4]/12*cos(i),t_wport_half+view_wport[4]/12*sin(i),t_wport_half+view_wport[4]/1.5*cos(i),t_wport_half+view_wport[4]/1.5*sin(i));
 for (i = 0;i < 2*pi; i += degtorad(45))
-    draw_line(512,512,512+800*cos(i),512+800*sin(i));
+    draw_line(t_wport_half,t_wport_half,t_wport_half+view_wport[4]/1.5*cos(i),t_wport_half+view_wport[4]/1.5*sin(i));
     
 draw_set_color(c_black);
 gpu_set_blendmode(bm_normal);

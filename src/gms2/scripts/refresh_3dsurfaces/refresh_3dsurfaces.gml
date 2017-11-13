@@ -2,6 +2,9 @@ draw_clear_alpha(c_black,1);
 
 el_list = ds_list_find_value(frame_list,frame);
 
+var t_div = $ffff/view_wport[4];
+var t_wporthalf = view_wport[4]/2;
+
 gpu_set_blendmode(bm_add);
 draw_set_alpha(0.8);
 draw_set_colour(c_white);
@@ -9,8 +12,8 @@ for (i = 0;i < ds_list_size(el_list);i++)
 {
     new_list = ds_list_find_value(el_list,i);
     
-    xo = ds_list_find_value(new_list,0)/128;
-    yo = ds_list_find_value(new_list,1)/128;
+    xo = ds_list_find_value(new_list,0)/t_div;
+    yo = ds_list_find_value(new_list,1)/t_div;
     listsize = (((ds_list_size(new_list)-20)/4)-1);
     
     for (u = 0; u < listsize; u++)
@@ -29,21 +32,21 @@ for (i = 0;i < ds_list_size(el_list);i++)
             nxp = ds_list_find_value(new_list,nextpos);
             nyp = ds_list_find_value(new_list,nextpos+1);
             
-            pdir = point_direction(256,256,xo+ xp/128,yo+ yp/128);
-            npdir = point_direction(256,256,xo+ nxp/128,yo+ nyp/128);
-            xxp = 256+cos(degtorad(-pdir))*400;
-            yyp = 256+sin(degtorad(-pdir))*400;
-            nxxp = 256+cos(degtorad(-npdir))*400;
-            nyyp = 256+sin(degtorad(-npdir))*400;
+            pdir = point_direction(t_wporthalf,t_wporthalf,xo+ xp/t_div,yo+ yp/t_div);
+            npdir = point_direction(t_wporthalf,t_wporthalf,xo+ nxp/t_div,yo+ nyp/t_div);
+            xxp = t_wporthalf+cos(degtorad(-pdir))*view_wport[4];
+            yyp = t_wporthalf+sin(degtorad(-pdir))*view_wport[4];
+            nxxp = t_wporthalf+cos(degtorad(-npdir))*view_wport[4];
+            nyyp = t_wporthalf+sin(degtorad(-npdir))*view_wport[4];
             
             if (abs(xp-nxp) < 8) && (abs(yp-nyp) < 8) && !(ds_list_find_value(new_list,nextpos-2))
             {
                 draw_set_alpha(0.9);
-                draw_line_colour(256,256,xxp,yyp,ds_list_find_value(new_list,nextpos+3),c_black);
+                draw_line_colour(t_wporthalf,t_wporthalf,xxp,yyp,ds_list_find_value(new_list,nextpos+3),c_black);
                 draw_set_alpha(0.8);
             }
             else
-                draw_triangle_colour(256,256,xxp,yyp,nxxp,nyyp,ds_list_find_value(new_list,nextpos+3),c_black,c_black,0);
+                draw_triangle_colour(t_wporthalf,t_wporthalf,xxp,yyp,nxxp,nyyp,ds_list_find_value(new_list,nextpos+3),c_black,c_black,0);
         }
     }
 }

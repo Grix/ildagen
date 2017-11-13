@@ -575,6 +575,14 @@
             }
         },
         {
+            "Key": "10da6c1c-5c8c-4b25-b39e-891e8f45f16f",
+            "Value": {
+                "id": "980bac00-7bb5-46fa-92f8-e8f69fff6d1f",
+                "resourcePath": "extensions\\FXAA\\FXAA.yy",
+                "resourceType": "GMExtension"
+            }
+        },
+        {
             "Key": "10fb2ba0-9e0c-44ae-91a7-6e0105351bef",
             "Value": {
                 "id": "8ef4bb91-6777-4755-b768-767b36a3299d",
@@ -1755,6 +1763,14 @@
             "Value": {
                 "id": "cc9aea0c-3e92-49fb-9d6b-36d9496a0526",
                 "resourcePath": "scripts\\create_wave\\create_wave.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "337eb48d-3ebe-442a-a96f-b3ceaa678e5c",
+            "Value": {
+                "id": "5a7bc32c-5e67-4961-b15f-674cdf50c1b5",
+                "resourcePath": "scripts\\draw_surf_ild\\draw_surf_ild.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8682,6 +8698,7 @@
         "cc415337-bd2d-43ec-8b4b-567817d1ae5e",
         "e3a655a4-6bb9-44b1-9e0f-61745970e77d",
         "c1fcab1c-06ae-41ac-a784-969051ad4617",
+        "337eb48d-3ebe-442a-a96f-b3ceaa678e5c",
         "dc616206-1b16-49d1-8be7-be69edd4af6a",
         "6e78e9d4-9bd5-42da-bce1-2b44ccfd581c",
         "cd52dd4f-8e98-4cb8-b27c-fb4725b1340d",
