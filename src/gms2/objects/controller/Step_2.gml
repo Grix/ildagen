@@ -136,44 +136,43 @@ if (keyboard_check(ord("S"))) || (sgridshow == 1)
 {
     with (obj_cursor)
     {
-        if (x < 512) && (y < 512)
-            move_snap(512/controller.sgridnum,512/controller.sgridnum);
+        if (x < view_wport[4]) && (y < view_wport[4])
+            move_snap(view_wport[4]/controller.sgridnum, view_wport[4]/controller.sgridnum);
     }
 }
 
 if (ds_list_size(el_list) > 0)
 {
-
     if (keyboard_check(vk_alt) && (placing_status == 0))
     {
         if (keyboard_check(vk_control))
         {
-            obj_cursor.x = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),0)/128;
-            obj_cursor.y = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),1)/128;
+            obj_cursor.x = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),0)/$ffff*view_wport[4];
+            obj_cursor.y = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),1)/$ffff*view_wport[4];
         }
         else
         {
-            obj_cursor.x = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),2)/128;
-            obj_cursor.y = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),3)/128;
+            obj_cursor.x = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),2)/$ffff*view_wport[4];
+            obj_cursor.y = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),3)/$ffff*view_wport[4];
         }
     }
     else if (keyboard_check(ord("Q")))
     {
-        nearestdist = 32;
+        nearestdist = 32/512*view_wport[4];
         for (i = 0;i < ds_list_size(el_list);i++)
         {
             templist =  ds_list_find_value(el_list,i);
-            if (point_distance(ds_list_find_value(templist,0)/128,ds_list_find_value(templist,1)/128,mouse_x,mouse_y) < nearestdist)
+            if (point_distance(ds_list_find_value(templist,0)/$ffff*view_wport[4],ds_list_find_value(templist,1)/$ffff*view_wport[4],mouse_x,mouse_y) < nearestdist)
             {
-                obj_cursor.x = ds_list_find_value(templist,0)/128;
-                obj_cursor.y = ds_list_find_value(templist,1)/128;
-                nearestdist = point_distance(ds_list_find_value(templist,0)/128,ds_list_find_value(templist,1)/128,mouse_x,mouse_y);
+                obj_cursor.x = ds_list_find_value(templist,0)/$ffff*view_wport[4];
+                obj_cursor.y = ds_list_find_value(templist,1)/$ffff*view_wport[4];
+                nearestdist = point_distance(ds_list_find_value(templist,0)/128,ds_list_find_value(templist,1)/$ffff*view_wport[4],mouse_x,mouse_y);
             }
-            if (point_distance(ds_list_find_value(templist,2)/128,ds_list_find_value(templist,3)/128,mouse_x,mouse_y) < nearestdist)
+            if (point_distance(ds_list_find_value(templist,2)/$ffff*view_wport[4],ds_list_find_value(templist,3)/128,mouse_x,mouse_y) < nearestdist)
             {
-                obj_cursor.x = ds_list_find_value(templist,2)/128;
-                obj_cursor.y = ds_list_find_value(templist,3)/128;
-                nearestdist = point_distance(ds_list_find_value(templist,2)/128,ds_list_find_value(templist,3)/128,mouse_x,mouse_y);
+                obj_cursor.x = ds_list_find_value(templist,2)/$ffff*view_wport[4];
+                obj_cursor.y = ds_list_find_value(templist,3)/$ffff*view_wport[4];
+                nearestdist = point_distance(ds_list_find_value(templist,2)/$ffff*view_wport[4],ds_list_find_value(templist,3)/$ffff*view_wport[4],mouse_x,mouse_y);
             }
         }
         

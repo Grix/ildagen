@@ -1,5 +1,8 @@
 //if (obj_cursor.x != clamp(obj_cursor.x,0,512)) && (obj_cursor.y != clamp(obj_cursor.y,0,512))
 //    exit;
+
+if (laseron)
+	exit;
     
 var t_ellistsize = ds_list_size(el_list);
 var t_order_grid = ds_grid_create(2, t_ellistsize);
@@ -21,13 +24,13 @@ ds_grid_sort(t_order_grid,0,true);
     
 for (i = 0;i < t_ellistsize; i++)
 {
-    t_templist = ds_grid_get(t_order_grid, 1, i);//ds_list_find_value(el_list,i);
-    xo = ds_list_find_value(t_templist, 0) / $ffff*512;
-    yo = ds_list_find_value(t_templist, 1) / $ffff*512;
-    rectxmin2 = xo + (ds_list_find_value(t_templist, 4));
-    rectymin2 = yo + (ds_list_find_value(t_templist, 6));
-    rectxmax2 = xo + (ds_list_find_value(t_templist, 5));
-    rectymax2 = yo + (ds_list_find_value(t_templist, 7));
+    t_templist = ds_grid_get(t_order_grid, 1, i);
+    xo = ds_list_find_value(t_templist, 0) / $ffff*view_wport[4];
+    yo = ds_list_find_value(t_templist, 1) / $ffff*view_wport[4];
+    rectxmin2 = xo + (ds_list_find_value(t_templist, 4)/$ffff*view_wport[4]);
+    rectymin2 = yo + (ds_list_find_value(t_templist, 6)/$ffff*view_wport[4]);
+    rectxmax2 = xo + (ds_list_find_value(t_templist, 5)/$ffff*view_wport[4]);
+    rectymax2 = yo + (ds_list_find_value(t_templist, 7)/$ffff*view_wport[4]);
     
     if (obj_cursor.x == clamp(obj_cursor.x,rectxmin2-5,rectxmax2+5)) && (obj_cursor.y == clamp(obj_cursor.y,rectymin2-5,rectymax2+5))
     {

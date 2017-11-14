@@ -8,6 +8,7 @@ if (maxframes == 1) and (anienable)
     refresh_minitimeline_flag = 1;
     
     if (ds_list_size(frame_list) < maxframes)
+	{
         repeat (maxframes - ds_list_size(frame_list))
         {
             templist = ds_list_create();
@@ -23,6 +24,7 @@ if (maxframes == 1) and (anienable)
             }
             ds_list_add(frame_list,templist);
         }
+	}
 }
 
 for (c = 0; c < ds_list_size(semaster_list); c++)

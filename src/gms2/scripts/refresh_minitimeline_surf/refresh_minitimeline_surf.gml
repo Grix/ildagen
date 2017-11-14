@@ -1,7 +1,7 @@
 //todo fix, position not right
 
 if (!surface_exists(minitimeline_surf))
-    minitimeline_surf = surface_create(512,64);
+    minitimeline_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_wport[4]/512*42))));
     
 surface_set_target(minitimeline_surf);
     
@@ -53,18 +53,18 @@ if (maxframes > 1)
 {
     if (fillframes)
     {
-        minicursorx1 = lerp(0,512,scope_start/(maxframes-1));
-        minicursorx2 = lerp(0,512,scope_end/(maxframes-1));
+        minicursorx1 = lerp(0,tlw,scope_start/(maxframes-1));
+        minicursorx2 = lerp(0,tlw,scope_end/(maxframes-1));
     }
     else
     {
-        minicursorx1 = lerp(0,512,frame/(maxframes-1))-1;
-        minicursorx2 = lerp(0,512,frame/(maxframes-1))+1;
+        minicursorx1 = lerp(0,tlw,frame/(maxframes-1))-1;
+        minicursorx2 = lerp(0,tlw,frame/(maxframes-1))+1;
     }
     draw_rectangle(minicursorx1,tlh-13,minicursorx2,tlh+1,0);
 }
 else
-    draw_rectangle(0,tlh-13,512,tlh+1,0);
+    draw_rectangle(0,tlh-13,tlw,tlh+1,0);
          
 //audio  
 if (seqcontrol.song != -1)

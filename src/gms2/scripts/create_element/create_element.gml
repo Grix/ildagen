@@ -346,17 +346,17 @@ if (!fillframes)
 
     if (placing == "curve")
     {
-        ds_list_add(new_list,ds_list_find_value(bez_list,0)*128); //origo x
-        ds_list_add(new_list,ds_list_find_value(bez_list,1)*128); //origo y
-        ds_list_add(new_list,ds_list_find_value(bez_list,6)*128); //end x
-        ds_list_add(new_list,ds_list_find_value(bez_list,7)*128); //end y
+        ds_list_add(new_list,ds_list_find_value(bez_list,0)*$ffff/view_wport[4]); //origo x
+        ds_list_add(new_list,ds_list_find_value(bez_list,1)*$ffff/view_wport[4]); //origo y
+        ds_list_add(new_list,ds_list_find_value(bez_list,6)*$ffff/view_wport[4]); //end x
+        ds_list_add(new_list,ds_list_find_value(bez_list,7)*$ffff/view_wport[4]); //end y
     }
     else if (placing == "text")
     {
-        ds_list_add(new_list,(startposx_r+xdelta[frame])*128); //origo x
-        ds_list_add(new_list,startposy_r*128); //origo y
-        ds_list_add(new_list,(endx_r+xdelta[frame])*128); //end x
-        ds_list_add(new_list,endy_r*128); //end y
+        ds_list_add(new_list,(startposx_r+xdelta[frame])*$ffff/view_wport[4]); //origo x
+        ds_list_add(new_list,startposy_r*$ffff/view_wport[4]); //origo y
+        ds_list_add(new_list,(endx_r+xdelta[frame])*$ffff/view_wport[4]); //end x
+        ds_list_add(new_list,endy_r*$ffff/view_wport[4]); //end y
     }
     else if (placing == "func")
     {
@@ -367,10 +367,10 @@ if (!fillframes)
     }
     else
     {
-        ds_list_add(new_list,startposx_r*128); //origo x
-        ds_list_add(new_list,startposy_r*128); //origo y
-        ds_list_add(new_list,endx_r*128); //end x
-        ds_list_add(new_list,endy_r*128); //end y
+        ds_list_add(new_list,startposx_r*$ffff/view_wport[4]); //origo x
+        ds_list_add(new_list,startposy_r*$ffff/view_wport[4]); //origo y
+        ds_list_add(new_list,endx_r*$ffff/view_wport[4]); //end x
+        ds_list_add(new_list,endy_r*$ffff/view_wport[4]); //end y
     }
     ds_list_add(new_list,0);
     ds_list_add(new_list,0);
@@ -591,17 +591,17 @@ else
             
         if (placing == "curve")
         {
-            ds_list_add(new_list,ds_list_find_value(bez_list,0)*128); //origo x
-            ds_list_add(new_list,ds_list_find_value(bez_list,1)*128); //origo y
-            ds_list_add(new_list,ds_list_find_value(bez_list,6)*128); //end x
-            ds_list_add(new_list,ds_list_find_value(bez_list,7)*128); //end y
+            ds_list_add(new_list,ds_list_find_value(bez_list,0)*$ffff/view_wport[4]); //origo x
+            ds_list_add(new_list,ds_list_find_value(bez_list,1)*$ffff/view_wport[4]); //origo y
+            ds_list_add(new_list,ds_list_find_value(bez_list,6)*$ffff/view_wport[4]); //end x
+            ds_list_add(new_list,ds_list_find_value(bez_list,7)*$ffff/view_wport[4]); //end y
         }
         else if (placing == "text")
         {
-            ds_list_add(new_list,(startposx_r+xdelta[frame])*128); //origo x
-            ds_list_add(new_list,startposy_r*128); //origo y
-            ds_list_add(new_list,(endx_r+xdelta[frame])*128); //end x
-            ds_list_add(new_list,endy_r*128); //end y
+            ds_list_add(new_list,(startposx_r+xdelta[frame])*$ffff/view_wport[4]); //origo x
+            ds_list_add(new_list,startposy_r*$ffff/view_wport[4]); //origo y
+            ds_list_add(new_list,(endx_r+xdelta[frame])*$ffff/view_wport[4]); //end x
+            ds_list_add(new_list,endy_r*$ffff/view_wport[4]); //end y
             
         }    
         else if (placing == "func")
@@ -613,10 +613,10 @@ else
         }
         else
         {
-            ds_list_add(new_list,startposx_r*128); //origo x
-            ds_list_add(new_list,startposy_r*128); //origo y
-            ds_list_add(new_list,endx_r*128); //end x
-            ds_list_add(new_list,endy_r*128); //end y
+            ds_list_add(new_list,startposx_r*$ffff/view_wport[4]); //origo x
+            ds_list_add(new_list,startposy_r*$ffff/view_wport[4]); //origo y
+            ds_list_add(new_list,endx_r*$ffff/view_wport[4]); //end x
+            ds_list_add(new_list,endy_r*$ffff/view_wport[4]); //end y
         }
         ds_list_add(new_list,0);
         ds_list_add(new_list,0);

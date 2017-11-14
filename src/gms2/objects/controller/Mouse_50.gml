@@ -1,5 +1,5 @@
 if (room != rm_ilda) exit;
-if (mouse_x > 512) or (mouse_y > 512)
+if (mouse_x > view_wport[4]) || (mouse_y > view_wport[4])
     exit;
 if (instance_exists(obj_dropdown))
     exit;
@@ -15,7 +15,7 @@ if (placing == "free")
             autoresflag = 1; 
             resolution = 512;
         }
-        if (point_distance(startpos[0]+ds_list_find_value(free_list,ds_list_size(free_list)-2),startpos[1]+ds_list_find_value(free_list,ds_list_size(free_list)-1),mouse_x,mouse_y) >= resolution/128)
+        if (point_distance(startpos[0]+ds_list_find_value(free_list,ds_list_size(free_list)-2),startpos[1]+ds_list_find_value(free_list,ds_list_size(free_list)-1),mouse_x,mouse_y) >= resolution/$ffff*view_wport[4])
         {
             ds_list_add(free_list,mouse_x-startpos[0]);
             ds_list_add(free_list,mouse_y-startpos[1]);

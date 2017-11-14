@@ -41,7 +41,14 @@ if (window_get_height() != window_heightprev || window_get_width() != window_wid
 	
 	window_heightprev = window_get_height();
 	window_widthprev = window_get_width();
-
+	
+	/*
+	refresh_minitimeline_flag = 1;
+	refresh_frame_surf = 1;
+	if (surface_exists(squaregrid_surf))
+		surface_free(squaregrid_surf);
+	if (surface_exists(radialgrid_surf))
+		surface_free(radialgrid_surf);*/
 }
 	
 if (view_current == 4 || view_current == 5)
@@ -173,10 +180,10 @@ if (view_current == 4 || view_current == 5)
                 xo = ds_list_find_value(templist,0)/t_scale;
                 yo = ds_list_find_value(templist,1)/t_scale;
                 
-                xp1 = xo+ds_list_find_value(templist,4);
-                yp1 = yo+ds_list_find_value(templist,6);
-                xp2 = xo+ds_list_find_value(templist,5);
-                yp2 = yo+ds_list_find_value(templist,7);
+                xp1 = xo+ds_list_find_value(templist,4)/t_scale;
+                yp1 = yo+ds_list_find_value(templist,6)/t_scale;
+                xp2 = xo+ds_list_find_value(templist,5)/t_scale;
+                yp2 = yo+ds_list_find_value(templist,7)/t_scale;
                 draw_rectangle(xp1,yp1,xp2,yp2,1);
             }
         }

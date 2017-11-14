@@ -1,8 +1,8 @@
 if (objmoving == 1)
 {
     //translate
-    anixtrans+= (obj_cursor.x-mouse_xprevious)*$ffff/512;
-    aniytrans+= (obj_cursor.y-mouse_ypreviousious)*$ffff/512;
+    anixtrans += (obj_cursor.x-mouse_xprevious)*$ffff/view_wport[4];
+    aniytrans += (obj_cursor.y-mouse_ypreviousious)*$ffff/view_wport[4];
     mouse_xprevious = obj_cursor.x;
     mouse_ypreviousious = obj_cursor.y;
     
@@ -17,8 +17,8 @@ if (objmoving == 1)
 else if (objmoving == 2)    
 {
     //anchor
-    anchorx += (obj_cursor.x-mouse_xprevious)*$ffff/512;
-    anchory += (obj_cursor.y-mouse_ypreviousious)*$ffff/512;
+    anchorx += (obj_cursor.x-mouse_xprevious)*$ffff/view_wport[4];
+    anchory += (obj_cursor.y-mouse_ypreviousious)*$ffff/view_wport[4];
     mouse_xprevious = obj_cursor.x;
     mouse_ypreviousious = obj_cursor.y;
     if (mouse_check_button_released(mb_left))
@@ -29,14 +29,14 @@ else if (objmoving == 2)
 else if (objmoving == 3)
 {
     //rotate
-    mouseangle = point_direction(obj_cursor.x,obj_cursor.y,anchorx/$ffff*512,anchory/$ffff*512);
+    mouseangle = point_direction(obj_cursor.x,obj_cursor.y,anchorx/$ffff*view_wport[4],anchory/$ffff*view_wport[4]);
     
     if ((mouseangleprevious-mouseangle) > 180)
-        anirot-=360;
+        anirot -= 360;
     else if ((mouseangleprevious-mouseangle) < -180)
-        anirot+=360;
+        anirot += 360;
         
-    anirot+= mouseangleprevious-mouseangle;
+    anirot += mouseangleprevious-mouseangle;
     
     mouseangleprevious = mouseangle;
     
@@ -71,7 +71,8 @@ else if (objmoving == 4)
 }
 else if !(keyboard_check(vk_control)) and (!object_select_hovering)
 {
-    if (mouse_x == clamp(mouse_x,anchorx/$ffff*512-10,anchorx/$ffff*512+10)) and (mouse_y == clamp(mouse_y,anchory/$ffff*512-10,anchory/$ffff*512+10))
+    if	(mouse_x == clamp(mouse_x,anchorx/$ffff*view_wport[4]-10, anchorx/$ffff*view_wport[4]+10)) and 
+		(mouse_y == clamp(mouse_y,anchory/$ffff*view_wport[4]-10, anchory/$ffff*view_wport[4]+10))
     {
         tooltip = "Click and drag to move the rotation anchor point.\nRight click to move to center of object."
         if (mouse_check_button_pressed(mb_left)) 
@@ -82,8 +83,8 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
         }
         else if (mouse_check_button_pressed(mb_right)) 
         {
-            anchorx = (rectxmin+rectxmax)*128/2;
-            anchory = (rectymin+rectymax)*128/2;
+            anchorx = ((rectxmin+rectxmax)*$ffff/view_wport[4])/2;
+            anchory = ((rectymin+rectymax)*$ffff/view_wport[4])/2;
         }
     }
     else if (mouse_x == clamp(mouse_x,rectxmin-2,rectxmax+2)) and (mouse_y == clamp(mouse_y,rectymin-2,rectymax+2))
