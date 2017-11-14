@@ -1,4 +1,4 @@
-checkpoints = ceil(bezlength*128/resolution)
+checkpoints = ceil(bezlength/resolution)
 if (checkpoints < 2) checkpoints = 2;
 blanknew = 1;
 
@@ -182,14 +182,14 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
             
             if (blankmode == "dot")
             {
-                ds_list_add(new_list,pointx*128);
-                ds_list_add(new_list,pointy*128);
+                ds_list_add(new_list,pointx);
+                ds_list_add(new_list,pointy);
                 ds_list_add(new_list,1);
                 ds_list_add(new_list,c);
                 repeat (dotmultiply)
                 {
-                    ds_list_add(new_list,pointx*128);
-                    ds_list_add(new_list,pointy*128);
+                    ds_list_add(new_list,pointx);
+                    ds_list_add(new_list,pointy);
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,c);
                 }
@@ -200,36 +200,36 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
                 {
                     if (blank)
                     {
-                        ds_list_add(new_list,pointxprevious*128);
-                        ds_list_add(new_list,pointyprevious*128);
+                        ds_list_add(new_list,pointxprevious);
+                        ds_list_add(new_list,pointyprevious);
                         ds_list_add(new_list,1);
                         ds_list_add(new_list,c);
                     }
                     else
                     {
-                        ds_list_add(new_list,pointxprevious*128);
-                        ds_list_add(new_list,pointyprevious*128);
+                        ds_list_add(new_list,pointxprevious);
+                        ds_list_add(new_list,pointyprevious);
                         ds_list_add(new_list,0);
                         ds_list_add(new_list,controller.enddotscolor_r);
                     }
                     repeat (dotmultiply)
                     {
-                        ds_list_add(new_list,pointxprevious*128);
-                        ds_list_add(new_list,pointyprevious*128);
+                        ds_list_add(new_list,pointxprevious);
+                        ds_list_add(new_list,pointyprevious);
                         ds_list_add(new_list,0);
                         ds_list_add(new_list,controller.enddotscolor_r);
                     }
                 }
                 else
                 {
-                    ds_list_add(new_list,pointx*128);
-                    ds_list_add(new_list,pointy*128);
+                    ds_list_add(new_list,pointx);
+                    ds_list_add(new_list,pointy);
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,c);
                     repeat (dotmultiply)
                     {
-                        ds_list_add(new_list,pointx*128);
-                        ds_list_add(new_list,pointy*128);
+                        ds_list_add(new_list,pointx);
+                        ds_list_add(new_list,pointy);
                         ds_list_add(new_list,0);
                         ds_list_add(new_list,controller.enddotscolor_r);
                     }
@@ -239,8 +239,8 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
         }  
         else
         {    
-            ds_list_add(new_list,pointx*128);
-            ds_list_add(new_list,pointy*128);
+            ds_list_add(new_list,pointx);
+            ds_list_add(new_list,pointy);
             ds_list_add(new_list,blank);
             ds_list_add(new_list,c);
         }
@@ -256,12 +256,12 @@ if !((startposx_r == endx_r) && (startposy_r == (endy_r)))
     }
 else
 {
-    ds_list_add(new_list,endx_r*128);
-    ds_list_add(new_list,endy_r*128);
+    ds_list_add(new_list,endx_r);
+    ds_list_add(new_list,endy_r);
     ds_list_add(new_list,blank);
     ds_list_add(new_list,c);
-    ds_list_add(new_list,endx_r*128);
-    ds_list_add(new_list,endy_r*128);
+    ds_list_add(new_list,endx_r);
+    ds_list_add(new_list,endy_r);
     ds_list_add(new_list,blank);
     ds_list_add(new_list,c);
     

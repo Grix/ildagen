@@ -34,11 +34,18 @@ if (placing_status == 1) and (placing != "text") and (placing != "select")
         point2y = endy+sin(-mousedir-pi/2)*100;
         if (point2y > view_wport[4]-10) or (point2y < 10)
             point2y = endy+sin(-mousedir+pi/2)*100;
-        ds_list_replace(bez_list,2,point1x);
-        ds_list_replace(bez_list,3,point1y);
-        ds_list_replace(bez_list,4,point2x);
-        ds_list_replace(bez_list,5,point2y);
-        bezier_coeffs(ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1),ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3),ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5),ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7));
+        ds_list_replace(bez_list,2,point1x/view_wport[4]*$ffff);
+        ds_list_replace(bez_list,3,point1y/view_wport[4]*$ffff);
+        ds_list_replace(bez_list,4,point2x/view_wport[4]*$ffff);
+        ds_list_replace(bez_list,5,point2y/view_wport[4]*$ffff);
+        bezier_coeffs(	ds_list_find_value(bez_list,0)/$ffff*view_wport[4],
+						ds_list_find_value(bez_list,1)/$ffff*view_wport[4],
+						ds_list_find_value(bez_list,2)/$ffff*view_wport[4],
+						ds_list_find_value(bez_list,3)/$ffff*view_wport[4],
+						ds_list_find_value(bez_list,4)/$ffff*view_wport[4],
+						ds_list_find_value(bez_list,5)/$ffff*view_wport[4],
+						ds_list_find_value(bez_list,6)/$ffff*view_wport[4],
+						ds_list_find_value(bez_list,7)/$ffff*view_wport[4]);
     }
 }
     

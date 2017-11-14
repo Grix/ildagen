@@ -268,14 +268,14 @@ for (n = 0;n < checkpoints; n++)
         ds_list_add(new_list,c);
     }
     
-    if (((ds_list_find_value(letter_list,currentpos)))/128 > xmax)
-       xmax = ((ds_list_find_value(letter_list,currentpos)))/128;     
-    if (((ds_list_find_value(letter_list,currentpos)))/128 < xmin)
-       xmin = ((ds_list_find_value(letter_list,currentpos)))/128;
-    if (((ds_list_find_value(letter_list,currentpos+1)))/128 > ymax)
-       ymax = ((ds_list_find_value(letter_list,currentpos+1)))/128;     
-    if (((ds_list_find_value(letter_list,currentpos+1)))/128 < ymin)
-       ymin = ((ds_list_find_value(letter_list,currentpos+1)))/128;
+    if (((ds_list_find_value(letter_list,currentpos))) > xmax)
+       xmax = ((ds_list_find_value(letter_list,currentpos)));     
+    if (((ds_list_find_value(letter_list,currentpos))) < xmin)
+       xmin = ((ds_list_find_value(letter_list,currentpos)));
+    if (((ds_list_find_value(letter_list,currentpos+1))) > ymax)
+       ymax = ((ds_list_find_value(letter_list,currentpos+1)));     
+    if (((ds_list_find_value(letter_list,currentpos+1))) < ymin)
+       ymin = ((ds_list_find_value(letter_list,currentpos+1)));
     
 }
     

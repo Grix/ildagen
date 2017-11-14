@@ -1,4 +1,4 @@
-radius = point_distance(startposx_r,startposy_r,endx_r,endy_r)*128;
+radius = point_distance(startposx_r,startposy_r,endx_r,endy_r);
 startrad = degtorad(-point_direction(startposx_r,startposy_r,endx_r,endy_r));
 
 checkpoints = ceil(2*pi*radius/resolution);
@@ -239,25 +239,25 @@ if !((startposx_r == endx_r) && (startposy_r == endy_r))
         ds_list_add(new_list,c);
     }
         
-    if ((cos(startrad+ 2*pi/checkpoints*n)*radius)/128 > xmax)
-       xmax = cos(startrad+ 2*pi/checkpoints*n)*radius/128;
-    if ((cos(startrad+ 2*pi/checkpoints*n)*radius)/128 < xmin)
-       xmin = cos(startrad+ 2*pi/checkpoints*n)*radius/128;
-    if ((sin(startrad+ 2*pi/checkpoints*n)*radius)/128 > ymax)
-       ymax = sin(startrad+ 2*pi/checkpoints*n)*radius/128;
-    if ((sin(startrad+ 2*pi/checkpoints*n)*radius)/128 < ymin)
-       ymin = sin(startrad+ 2*pi/checkpoints*n)*radius/128;
+    if ((cos(startrad+ 2*pi/checkpoints*n)*radius) > xmax)
+       xmax = cos(startrad+ 2*pi/checkpoints*n)*radius;
+    if ((cos(startrad+ 2*pi/checkpoints*n)*radius) < xmin)
+       xmin = cos(startrad+ 2*pi/checkpoints*n)*radius;
+    if ((sin(startrad+ 2*pi/checkpoints*n)*radius) > ymax)
+       ymax = sin(startrad+ 2*pi/checkpoints*n)*radius;
+    if ((sin(startrad+ 2*pi/checkpoints*n)*radius) < ymin)
+       ymin = sin(startrad+ 2*pi/checkpoints*n)*radius;
         
         
 }
 else
 {
-    ds_list_add(new_list,endx_r*128);
-    ds_list_add(new_list,endy_r*128);
+    ds_list_add(new_list,endx_r);
+    ds_list_add(new_list,endy_r);
     ds_list_add(new_list,blank);
     ds_list_add(new_list,c);
-    ds_list_add(new_list,endx_r*128);
-    ds_list_add(new_list,endy_r*128);
+    ds_list_add(new_list,endx_r);
+    ds_list_add(new_list,endy_r);
     ds_list_add(new_list,blank);
     ds_list_add(new_list,c);
     

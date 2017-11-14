@@ -34,17 +34,17 @@ if (room == rm_loading)
     
 if (room == rm_ilda) && (keyboard_check(ord("Z")) && !keyboard_check(vk_control))
 {
-    obj_cursor.image_index = 8;
-    obj_cursor.x = clamp(mouse_x, 0, view_wport[4]);
-    obj_cursor.y = clamp(mouse_y, 0, view_hport[4]);
+	obj_cursor.x = mouse_x;
+	obj_cursor.y = mouse_y;
 	view_visible[5] = true;
-	view_xport[5] = clamp(obj_cursor.x-128, 0, view_wport[4]-256);
-	view_yport[5] = clamp(obj_cursor.y-128, 0, view_hport[4]-256 );
+	view_xport[5] = clamp(window_mouse_get_x()-128, 0, view_wport[4]-256);
+	view_yport[5] = clamp(window_mouse_get_y()-23-128, 0, view_wport[4]-256);
+	camera_set_view_pos(view_camera[5], window_mouse_get_x()-24, window_mouse_get_y()-23-24);
 }
 else
 {
-    obj_cursor.x = mouse_x;
-    obj_cursor.y = mouse_y;
+	obj_cursor.x = window_mouse_get_x();
+	obj_cursor.y = window_mouse_get_y()-23;
 	view_visible[5] = false;
 }
 

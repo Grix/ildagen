@@ -9,8 +9,8 @@ if (n/checkpoints != ML_VM_GetVarReal(parser_cb,"point"))
     
     if (placing == "line")
     {
-        ML_VM_SetVarReal(parser_cb,"x",ML_VM_GetVarReal(parser_cb,"startx")+n*vector[0]*128);
-        ML_VM_SetVarReal(parser_cb,"y",ML_VM_GetVarReal(parser_cb,"starty")+n*vector[1]*128);
+        ML_VM_SetVarReal(parser_cb,"x",ML_VM_GetVarReal(parser_cb,"startx")+n*vector[0]);
+        ML_VM_SetVarReal(parser_cb,"y",ML_VM_GetVarReal(parser_cb,"starty")+n*vector[1]);
     }
     else if (placing == "func")
     {
@@ -24,18 +24,18 @@ if (n/checkpoints != ML_VM_GetVarReal(parser_cb,"point"))
     }
     else if (placing == "wave")
     {
-        ML_VM_SetVarReal(parser_cb,"x",ML_VM_GetVarReal(parser_cb,"startx")+pointx*128);
-        ML_VM_SetVarReal(parser_cb,"y",ML_VM_GetVarReal(parser_cb,"starty")+pointy*128);
+        ML_VM_SetVarReal(parser_cb,"x",ML_VM_GetVarReal(parser_cb,"startx")+pointx);
+        ML_VM_SetVarReal(parser_cb,"y",ML_VM_GetVarReal(parser_cb,"starty")+pointy);
     }
     else if (placing == "curve")
     {
-        ML_VM_SetVarReal(parser_cb,"x",ML_VM_GetVarReal(parser_cb,"startx")+pointx*128);
-        ML_VM_SetVarReal(parser_cb,"y",ML_VM_GetVarReal(parser_cb,"starty")+pointy*128);
+        ML_VM_SetVarReal(parser_cb,"x",ML_VM_GetVarReal(parser_cb,"startx")+pointx);
+        ML_VM_SetVarReal(parser_cb,"y",ML_VM_GetVarReal(parser_cb,"starty")+pointy);
     }
     else if (placing == "free")
     {
-        ML_VM_SetVarReal(parser_cb,"x",ML_VM_GetVarReal(parser_cb,"startx")+ds_list_find_value(free_list,2*n)*128);
-        ML_VM_SetVarReal(parser_cb,"y",ML_VM_GetVarReal(parser_cb,"starty")+ds_list_find_value(free_list,2*n+1)*128);
+        ML_VM_SetVarReal(parser_cb,"x",ML_VM_GetVarReal(parser_cb,"startx")+ds_list_find_value(free_list,2*n));
+        ML_VM_SetVarReal(parser_cb,"y",ML_VM_GetVarReal(parser_cb,"starty")+ds_list_find_value(free_list,2*n+1));
     }
     else if (placing == "letter")
     {

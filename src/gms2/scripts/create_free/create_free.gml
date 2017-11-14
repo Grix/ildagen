@@ -14,7 +14,7 @@ if (lastpointadded = 0)
         length = point_distance( ds_list_find_value(free_list,temppos)
                                 ,ds_list_find_value(free_list,temppos+1)
                                 ,ds_list_find_value(free_list,temppos+2)
-                                ,ds_list_find_value(free_list,temppos+3))*128;
+                                ,ds_list_find_value(free_list,temppos+3));
         
         if (length < resolution*phi) continue;
         
@@ -219,14 +219,14 @@ for (n = 0;n < checkpoints; n++)
         
         if (blankmode == "dot")
         {
-            ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
-            ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
+            ds_list_add(new_list,ds_list_find_value(free_list,2*n));
+            ds_list_add(new_list,ds_list_find_value(free_list,2*n+1));
             ds_list_add(new_list,1);
             ds_list_add(new_list,c);
             repeat (dotmultiply)
             {
-                ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
-                ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
+                ds_list_add(new_list,ds_list_find_value(free_list,2*n));
+                ds_list_add(new_list,ds_list_find_value(free_list,2*n+1));
                 ds_list_add(new_list,0);
                 ds_list_add(new_list,c);
             }
@@ -239,13 +239,13 @@ for (n = 0;n < checkpoints; n++)
                 {
                     if (n)
                     {
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1))*128);
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1)*128);
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)));
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1));
                     }
                     else
                     {
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n))*128);
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1)*128);
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)));
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1));
                     }
                     ds_list_add(new_list,1);
                     ds_list_add(new_list,c);
@@ -254,13 +254,13 @@ for (n = 0;n < checkpoints; n++)
                 {
                     if (n)
                     {
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1))*128);
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1)*128);
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)));
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1));
                     }
                     else
                     {
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n))*128);
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1)*128);
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)));
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1));
                     }
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,controller.enddotscolor_r);
@@ -269,13 +269,13 @@ for (n = 0;n < checkpoints; n++)
                 {
                     if (n)
                     {
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1))*128);
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1)*128);
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)));
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n-1)+1));
                     }
                     else
                     {
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n))*128);
-                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1)*128);
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)));
+                        ds_list_add(new_list,ds_list_find_value(free_list,2*(n)+1));
                     }
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,controller.enddotscolor_r);
@@ -283,14 +283,14 @@ for (n = 0;n < checkpoints; n++)
             }
             else
             {
-                ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
-                ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
+                ds_list_add(new_list,ds_list_find_value(free_list,2*n));
+                ds_list_add(new_list,ds_list_find_value(free_list,2*n+1));
                 ds_list_add(new_list,0);
                 ds_list_add(new_list,c);
                 repeat (dotmultiply)
                 {
-                    ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
-                    ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
+                    ds_list_add(new_list,ds_list_find_value(free_list,2*n));
+                    ds_list_add(new_list,ds_list_find_value(free_list,2*n+1));
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,controller.enddotscolor_r);
                 }
@@ -300,8 +300,8 @@ for (n = 0;n < checkpoints; n++)
     }  
     else
     {    
-        ds_list_add(new_list,ds_list_find_value(free_list,2*n)*128);
-        ds_list_add(new_list,ds_list_find_value(free_list,2*n+1)*128);
+        ds_list_add(new_list,ds_list_find_value(free_list,2*n));
+        ds_list_add(new_list,ds_list_find_value(free_list,2*n+1));
         ds_list_add(new_list,blank);
         ds_list_add(new_list,c);
     }

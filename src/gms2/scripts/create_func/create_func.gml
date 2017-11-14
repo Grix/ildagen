@@ -282,14 +282,14 @@ for (n = 0;n <= checkpoints; n++)
         ds_list_add(new_list,c);
     }
         
-    if (xp/128 > xmax)
-       xmax = xp/128;
-    if (xp/128 < xmin)
-       xmin = xp/128;
-    if (yp/128 > ymax)
-       ymax = yp/128;
-    if (yp/128 < ymin)
-       ymin = yp/128;
+    if (xp > xmax)
+       xmax = xp;
+    if (xp < xmin)
+       xmin = xp;
+    if (yp > ymax)
+       ymax = yp;
+    if (yp < ymin)
+       ymin = yp;
     
 }
 

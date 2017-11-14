@@ -2,8 +2,9 @@
 //resolution = resolution/5;
 //imp_point_list = ds_list_create();
 
-checkpoints = ceil(point_distance(startposx_r,startposy_r,endx_r,endy_r)*128/resolution);
-if (checkpoints < 2) checkpoints = 2;
+checkpoints = ceil(point_distance(startposx_r,startposy_r,endx_r,endy_r)/resolution);
+if (checkpoints < 2) 
+	checkpoints = 2;
 
 vector[0] = (endx_r-startposx_r)/checkpoints;
 vector[1] = (endy_r-startposy_r)/checkpoints;
@@ -202,14 +203,14 @@ for (n = 0; n <= checkpoints; n++)
         
         if (blankmode == "dot")
         {
-            ds_list_add(new_list,n*vector[0]*128);
-            ds_list_add(new_list,n*vector[1]*128);
+            ds_list_add(new_list,n*vector[0]);
+            ds_list_add(new_list,n*vector[1]);
             ds_list_add(new_list,1);
             ds_list_add(new_list,c);
             repeat (dotmultiply)
             {
-                ds_list_add(new_list,n*vector[0]*128);
-                ds_list_add(new_list,n*vector[1]*128);
+                ds_list_add(new_list,n*vector[0]);
+                ds_list_add(new_list,n*vector[1]);
                 ds_list_add(new_list,0);
                 ds_list_add(new_list,c);
             }
@@ -220,36 +221,36 @@ for (n = 0; n <= checkpoints; n++)
             {
                 if (blank)
                 {
-                    ds_list_add(new_list,(n-1)*vector[0]*128);
-                    ds_list_add(new_list,(n-1)*vector[1]*128);
+                    ds_list_add(new_list,(n-1)*vector[0]);
+                    ds_list_add(new_list,(n-1)*vector[1]);
                     ds_list_add(new_list,1);
                     ds_list_add(new_list,c);
                 }
                 else
                 {
-                    ds_list_add(new_list,(n-1)*vector[0]*128);
-                    ds_list_add(new_list,(n-1)*vector[1]*128);
+                    ds_list_add(new_list,(n-1)*vector[0]);
+                    ds_list_add(new_list,(n-1)*vector[1]);
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,controller.enddotscolor_r);
                 }
                 repeat (dotmultiply)
                 {
-                    ds_list_add(new_list,(n-1)*vector[0]*128);
-                    ds_list_add(new_list,(n-1)*vector[1]*128);
+                    ds_list_add(new_list,(n-1)*vector[0]);
+                    ds_list_add(new_list,(n-1)*vector[1]);
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,controller.enddotscolor_r);
                 }
             }
             else
             {
-                ds_list_add(new_list,n*vector[0]*128);
-                ds_list_add(new_list,n*vector[1]*128);
+                ds_list_add(new_list,n*vector[0]);
+                ds_list_add(new_list,n*vector[1]);
                 ds_list_add(new_list,0);
                 ds_list_add(new_list,c);
                 repeat (dotmultiply)
                 {
-                    ds_list_add(new_list,n*vector[0]*128);
-                    ds_list_add(new_list,n*vector[1]*128);
+                    ds_list_add(new_list,n*vector[0]);
+                    ds_list_add(new_list,n*vector[1]);
                     ds_list_add(new_list,0);
                     ds_list_add(new_list,controller.enddotscolor_r);
                 }
@@ -261,8 +262,8 @@ for (n = 0; n <= checkpoints; n++)
     {    
         //if (blanksig) or (colorsig) or (n % 5 == 0)
          //   {
-            ds_list_add(new_list,n*vector[0]*128);
-            ds_list_add(new_list,n*vector[1]*128);
+            ds_list_add(new_list,n*vector[0]);
+            ds_list_add(new_list,n*vector[1]);
             ds_list_add(new_list,blank);
             ds_list_add(new_list,c);
           //  }

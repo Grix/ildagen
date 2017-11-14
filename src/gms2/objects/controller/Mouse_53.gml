@@ -34,12 +34,12 @@ if (mouse_y < 0)
     exit;
 }
 
-if (instance_exists(obj_dropdown)) or (mouse_x > 512) or (mouse_y > 512) or (keyboard_check(vk_control) or (placing == "select"))
+if (instance_exists(obj_dropdown)) or (mouse_x > view_wport[4]) or (mouse_y > view_wport[4]) or (keyboard_check(vk_control) or (placing == "select"))
     exit;
 
 if !ds_list_empty(semaster_list)  and (
 ((mouse_x == clamp(mouse_x,rectxmin-2,rectxmax+2)) and (mouse_y == clamp(mouse_y,rectymin-2,rectymax+2)))
-or ((mouse_x == clamp(mouse_x,anchorx/$ffff*512-10,anchorx/$ffff*512+10)) and (mouse_y == clamp(mouse_y,anchory/$ffff*512-10,anchory/$ffff*512+10)))
+or ((mouse_x == clamp(mouse_x,anchorx/$ffff*view_wport[4]-10,anchorx/$ffff*view_wport[4]+10)) and (mouse_y == clamp(mouse_y,anchory/$ffff*view_wport[4]-10,anchory/$ffff*view_wport[4]+10)))
 or ((mouse_x == clamp(mouse_x,rectxmin-20,rectxmin-2)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20)))
 or ((mouse_x == clamp(mouse_x,rectxmax+2,rectxmax+20)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20)))
 )
@@ -56,7 +56,7 @@ if ((keyboard_check(ord("E"))) and (placing_status != 2))
     exit;
 }
 
-if ((mouse_x > 515) or (mouse_y > 515)) and (placing_status != 2)
+if ((mouse_x > view_wport[4]+3) or (mouse_y > view_wport[4]+3)) and (placing_status != 2)
 {
     placing_status = 0;
     ds_list_clear(free_list);
@@ -68,8 +68,8 @@ if ((mouse_x > 515) or (mouse_y > 515)) and (placing_status != 2)
 if (placing_status == 0)
 {
     placing_status = 1;
-    startpos[0] = obj_cursor.x;
-    startpos[1] = obj_cursor.y;
+    startpos[0] = obj_cursor.x/view_wport[4]*$ffff;
+    startpos[1] = obj_cursor.y/view_wport[4]*$ffff;
     if (placing == "text")
         create_text_init();
     else if (placing == "free")

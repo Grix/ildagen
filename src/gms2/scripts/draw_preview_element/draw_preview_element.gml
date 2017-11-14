@@ -4,6 +4,9 @@ draw_set_color(c_gray);
 
 if (placing == "font")
     exit;
+	
+var t_startx = startpos[0]/$ffff*view_wport[4];
+var t_starty = startpos[1]/$ffff*view_wport[4];
 
 if (placing_status == 1)
 {
@@ -14,8 +17,8 @@ if (placing_status == 1)
     }
     else
     {
-        theta = point_direction(startpos[0],startpos[1],mouse_x,mouse_y)
-        if (theta > 315 || theta < 45 || (theta > 135 && theta < 225))
+        var t_theta = point_direction(t_startx,t_starty,mouse_x,mouse_y);
+        if (t_theta > 315 || t_theta < 45 || (t_theta > 135 && t_theta < 225))
         {
             endx = obj_cursor.x;
             endy = startpos[1];
@@ -30,24 +33,24 @@ if (placing_status == 1)
 }
 
 if (placing == "line")
-    draw_line(startpos[0],startpos[1],endx,endy);
+    draw_line(t_startx,t_starty,endx,endy);
 else if (placing == "rect")
-    draw_rectangle(startpos[0],startpos[1],endx,endy,1);
+    draw_rectangle(t_startx,t_starty,endx,endy,1);
 else if (placing == "circle")
-    draw_circle(startpos[0],startpos[1],point_distance(startpos[0],startpos[1],endx,endy),1);
+    draw_circle(t_startx,t_starty,point_distance(t_startx,t_starty,endx,endy),1);
 //else if (placing == "hershey")
 //    draw_surface(hershey_preview_surf,mouse_x-256,mouse_y-256);
 else if (placing == "func")
 {
-    draw_circle(startpos[0],startpos[1],2,0);
-    draw_text(startpos[0]+5,startpos[1]-10,"startx, starty");
+    draw_circle(t_startx,t_starty,2,0);
+    draw_text(t_startx+5,t_starty-10,"startx, starty");
     draw_text(obj_cursor.x+8,obj_cursor.y-10,"endx, endy");
 }
 else if (placing == "wave")
 {
     cp = 20+5*wave_period;
-    vector[0] = (endx-startpos[0])/(cp-1);
-    vector[1] = (endy-startpos[1])/(cp-1);
+    vector[0] = (endx-t_startx)/(cp-1);
+    vector[1] = (endy-t_starty)/(cp-1);
     
     if (anienable)
     {
@@ -61,10 +64,10 @@ else if (placing == "wave")
     
     for (i = 0; i < cp; i++)
     {
-        ratiox = sin(degtorad(point_direction(startpos[0],startpos[1],endx,endy)));
-        ratioy = cos(degtorad(point_direction(startpos[0],startpos[1],endx,endy)));
-        pointx[i] = startpos[0]+vector[0]*i+wave_amp*sin(wave_offset_r+ pi*2/(cp-1)*i*wave_period)*ratiox/128;
-        pointy[i] = startpos[1]+vector[1]*i+wave_amp*sin(wave_offset_r+ pi*2/(cp-1)*i*wave_period)*ratioy/128;
+        ratiox = sin(degtorad(point_direction(t_startx,t_starty,endx,endy)));
+        ratioy = cos(degtorad(point_direction(t_startx,t_starty,endx,endy)));
+        pointx[i] = t_startx+vector[0]*i+wave_amp*sin(wave_offset_r+ pi*2/(cp-1)*i*wave_period)*ratiox/128;
+        pointy[i] = t_starty+vector[1]*i+wave_amp*sin(wave_offset_r+ pi*2/(cp-1)*i*wave_period)*ratioy/128;
     }
     for (i = 0; i < (cp-1); i++)
         draw_line(pointx[i],pointy[i],pointx[i+1],pointy[i+1]);
@@ -87,24 +90,24 @@ else if (placing == "wave")
 }
 else if (placing == "free")
 {
-    draw_line(startpos[0]+ ds_list_find_value(free_list,0),startpos[1]+ ds_list_find_value(free_list,1),startpos[0],startpos[1]);
+    draw_line(t_startx+ ds_list_find_value(free_list,0),t_starty+ ds_list_find_value(free_list,1),t_startx,t_starty);
     for (i=2;i < ds_list_size(free_list);i+= 2)
     {
-        draw_line(startpos[0]+ ds_list_find_value(free_list,i),startpos[1]+ ds_list_find_value(free_list,i+1),startpos[0]+ ds_list_find_value(free_list,i-2),startpos[1]+ ds_list_find_value(free_list,i-1));
+        draw_line(t_startx+ ds_list_find_value(free_list,i),t_starty+ ds_list_find_value(free_list,i+1),t_startx+ ds_list_find_value(free_list,i-2),t_starty+ ds_list_find_value(free_list,i-1));
     }
 }
 else if (placing == "curve")
 {
     if (placing_status == 1)
     {
-        draw_line(startpos[0],startpos[1],endx,endy);
+        draw_line(t_startx,t_starty,endx,endy);
     }
     else
     {
-        if  (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3)) < 7) or
-        (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5)) < 7) or
-        (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1)) < 7) or
-        (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7)) < 7)
+        if  (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,2)/$ffff*view_wport[4],ds_list_find_value(bez_list,3)/$ffff*view_wport[4]) < 7) or
+        (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,4)/$ffff*view_wport[4],ds_list_find_value(bez_list,5)/$ffff*view_wport[4]) < 7) or
+        (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,0)/$ffff*view_wport[4],ds_list_find_value(bez_list,1)/$ffff*view_wport[4]) < 7) or
+        (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,6)/$ffff*view_wport[4],ds_list_find_value(bez_list,7)/$ffff*view_wport[4]) < 7)
         {
             tooltip = "Click and drag to adjust curve."
         }
@@ -115,7 +118,14 @@ else if (placing == "curve")
         
         if (bez_moving)
         {
-            bezier_coeffs(ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1),ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3),ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5),ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7));
+            bezier_coeffs(	ds_list_find_value(bez_list,0)/$ffff*view_wport[4],
+							ds_list_find_value(bez_list,1)/$ffff*view_wport[4],
+							ds_list_find_value(bez_list,2)/$ffff*view_wport[4],
+							ds_list_find_value(bez_list,3)/$ffff*view_wport[4],
+							ds_list_find_value(bez_list,4)/$ffff*view_wport[4],
+							ds_list_find_value(bez_list,5)/$ffff*view_wport[4],
+							ds_list_find_value(bez_list,6)/$ffff*view_wport[4],
+							ds_list_find_value(bez_list,7)/$ffff*view_wport[4]);
         }
         tprevx = startx;
         tprevy = starty;
@@ -132,11 +142,29 @@ else if (placing == "curve")
         }
         
         draw_set_color(c_green);
-        draw_rectangle(ds_list_find_value(bez_list,0)-2,ds_list_find_value(bez_list,1)-2,ds_list_find_value(bez_list,0)+2,ds_list_find_value(bez_list,1)+2,0);
-        draw_rectangle(ds_list_find_value(bez_list,2)-2,ds_list_find_value(bez_list,3)-2,ds_list_find_value(bez_list,2)+2,ds_list_find_value(bez_list,3)+2,0);
-        draw_rectangle(ds_list_find_value(bez_list,4)-2,ds_list_find_value(bez_list,5)-2,ds_list_find_value(bez_list,4)+2,ds_list_find_value(bez_list,5)+2,0);
-        draw_rectangle(ds_list_find_value(bez_list,6)-2,ds_list_find_value(bez_list,7)-2,ds_list_find_value(bez_list,6)+2,ds_list_find_value(bez_list,7)+2,0); 
-        draw_line(ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1),ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3));
-        draw_line(ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5),ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7));
+        draw_rectangle(	ds_list_find_value(bez_list,0)/$ffff*view_wport[4]-2,
+						ds_list_find_value(bez_list,1)/$ffff*view_wport[4]-2,
+						ds_list_find_value(bez_list,0)/$ffff*view_wport[4]+2,
+						ds_list_find_value(bez_list,1)/$ffff*view_wport[4]+2,0);
+        draw_rectangle(	ds_list_find_value(bez_list,2)/$ffff*view_wport[4]-2,
+						ds_list_find_value(bez_list,3)/$ffff*view_wport[4]-2,
+						ds_list_find_value(bez_list,2)/$ffff*view_wport[4]+2,
+						ds_list_find_value(bez_list,3)/$ffff*view_wport[4]+2,0);
+        draw_rectangle(	ds_list_find_value(bez_list,4)/$ffff*view_wport[4]-2,
+						ds_list_find_value(bez_list,5)/$ffff*view_wport[4]-2,
+						ds_list_find_value(bez_list,4)/$ffff*view_wport[4]+2,
+						ds_list_find_value(bez_list,5)/$ffff*view_wport[4]+2,0);
+        draw_rectangle(	ds_list_find_value(bez_list,6)/$ffff*view_wport[4]-2,
+						ds_list_find_value(bez_list,7)/$ffff*view_wport[4]-2,
+						ds_list_find_value(bez_list,6)/$ffff*view_wport[4]+2,
+						ds_list_find_value(bez_list,7)/$ffff*view_wport[4]+2,0); 
+        draw_line(	ds_list_find_value(bez_list,0)/$ffff*view_wport[4],
+					ds_list_find_value(bez_list,1)/$ffff*view_wport[4],
+					ds_list_find_value(bez_list,2)/$ffff*view_wport[4],
+					ds_list_find_value(bez_list,3)/$ffff*view_wport[4]);
+        draw_line(	ds_list_find_value(bez_list,4)/$ffff*view_wport[4],
+					ds_list_find_value(bez_list,5)/$ffff*view_wport[4],
+					ds_list_find_value(bez_list,6)/$ffff*view_wport[4],
+					ds_list_find_value(bez_list,7)/$ffff*view_wport[4]);
     }
 }

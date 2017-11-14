@@ -6,6 +6,7 @@ TODO
 - other format 0 palette
 - resizing
 - polygon projection size
+- stretching
 
 SETTINGSCONTROL
 
