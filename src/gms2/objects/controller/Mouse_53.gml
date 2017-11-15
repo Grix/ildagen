@@ -93,13 +93,13 @@ if (placing_status == 0)
     
 else if (placing_status == 2) and (placing == "curve")
 {
-    if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3)) < 7)
+    if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,2)/$ffff*view_wport[4],ds_list_find_value(bez_list,3)/$ffff*view_wport[4]) < 7)
         bez_moving = 1;
-    else if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5)) < 7)
+    else if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,4)/$ffff*view_wport[4],ds_list_find_value(bez_list,5)/$ffff*view_wport[4]) < 7)
         bez_moving = 2;
-    if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1)) < 7)
+    if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,0)/$ffff*view_wport[4],ds_list_find_value(bez_list,1)/$ffff*view_wport[4]) < 7)
         bez_moving = 3;
-    else if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7)) < 7)
+    else if (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,6)/$ffff*view_wport[4],ds_list_find_value(bez_list,7)/$ffff*view_wport[4]) < 7)
         bez_moving = 4;
     mouse_yprevious = mouse_y;
     mouse_xprevious = mouse_x;

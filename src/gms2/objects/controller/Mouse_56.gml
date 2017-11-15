@@ -22,30 +22,30 @@ if (placing_status == 1) and (placing != "text") and (placing != "select")
     else
     {
         placing_status = 2;
-        point1x = startpos[0]+cos(-mousedir-pi/2)*100;
-        if (point1x > view_wport[4]-10) or (point1x < 10)
-            point1x = startpos[0]+cos(-mousedir+pi/2)*100;
-        point1y = startpos[1]+sin(-mousedir-pi/2)*100;
-        if (point1y > view_wport[4]-10) or (point1y < 10)
-            point1y = startpos[1]+sin(-mousedir+pi/2)*100;
-        point2x = endx+cos(-mousedir-pi/2)*100;
-        if (point2x > view_wport[4]-10) or (point2x < 10)
-            point2x = endx+cos(-mousedir+pi/2)*100;
-        point2y = endy+sin(-mousedir-pi/2)*100;
-        if (point2y > view_wport[4]-10) or (point2y < 10)
-            point2y = endy+sin(-mousedir+pi/2)*100;
-        ds_list_replace(bez_list,2,point1x/view_wport[4]*$ffff);
-        ds_list_replace(bez_list,3,point1y/view_wport[4]*$ffff);
-        ds_list_replace(bez_list,4,point2x/view_wport[4]*$ffff);
-        ds_list_replace(bez_list,5,point2y/view_wport[4]*$ffff);
-        bezier_coeffs(	ds_list_find_value(bez_list,0)/$ffff*view_wport[4],
-						ds_list_find_value(bez_list,1)/$ffff*view_wport[4],
-						ds_list_find_value(bez_list,2)/$ffff*view_wport[4],
-						ds_list_find_value(bez_list,3)/$ffff*view_wport[4],
-						ds_list_find_value(bez_list,4)/$ffff*view_wport[4],
-						ds_list_find_value(bez_list,5)/$ffff*view_wport[4],
-						ds_list_find_value(bez_list,6)/$ffff*view_wport[4],
-						ds_list_find_value(bez_list,7)/$ffff*view_wport[4]);
+        point1x = startpos[0]+cos(-mousedir-pi/2)*5000;
+        if (point1x/$ffff*view_wport[4] > view_wport[4]-10) or (point1x < 500)
+            point1x = startpos[0]+cos(-mousedir+pi/2)*5000;
+        point1y = startpos[1]+sin(-mousedir-pi/2)*5000;
+        if (point1y/$ffff*view_wport[4] > view_wport[4]-10) or (point1y < 500)
+            point1y = startpos[1]+sin(-mousedir+pi/2)*5000;
+        point2x = endx+cos(-mousedir-pi/2)*5000;
+        if (point2x/$ffff*view_wport[4] > view_wport[4]-10) or (point2x < 500)
+            point2x = endx+cos(-mousedir+pi/2)*5000;
+        point2y = endy+sin(-mousedir-pi/2)*5000;
+        if (point2y/$ffff*view_wport[4] > view_wport[4]-10) or (point2y < 500)
+            point2y = endy+sin(-mousedir+pi/2)*5000;
+        ds_list_replace(bez_list,2,point1x);
+        ds_list_replace(bez_list,3,point1y);
+        ds_list_replace(bez_list,4,point2x);
+        ds_list_replace(bez_list,5,point2y);
+        bezier_coeffs(	ds_list_find_value(bez_list,0),
+						ds_list_find_value(bez_list,1),
+						ds_list_find_value(bez_list,2),
+						ds_list_find_value(bez_list,3),
+						ds_list_find_value(bez_list,4),
+						ds_list_find_value(bez_list,5),
+						ds_list_find_value(bez_list,6),
+						ds_list_find_value(bez_list,7));
     }
 }
     

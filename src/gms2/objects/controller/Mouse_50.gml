@@ -31,41 +31,48 @@ else if (placing == "curve")
         mousedir = degtorad(point_direction(startpos[0],startpos[1],endx,endy));
         ds_list_replace(bez_list,6,endx);
         ds_list_replace(bez_list,7,endy);
-        bezier_coeffs(ds_list_find_value(bez_list,0),ds_list_find_value(bez_list,1),ds_list_find_value(bez_list,2),ds_list_find_value(bez_list,3),ds_list_find_value(bez_list,4),ds_list_find_value(bez_list,5),ds_list_find_value(bez_list,6),ds_list_find_value(bez_list,7));
+        bezier_coeffs(	ds_list_find_value(bez_list,0),
+						ds_list_find_value(bez_list,1),
+						ds_list_find_value(bez_list,2),
+						ds_list_find_value(bez_list,3),
+						ds_list_find_value(bez_list,4),
+						ds_list_find_value(bez_list,5),
+						ds_list_find_value(bez_list,6),
+						ds_list_find_value(bez_list,7));
     }
     else if (placing_status == 2)
     {
         if (bez_moving == 1)
         {
-            ds_list_replace(bez_list,2,ds_list_find_value(bez_list,2)+mouse_x*$ffff/view_wport[4]-mouse_xprevious);
-            ds_list_replace(bez_list,3,ds_list_find_value(bez_list,3)+mouse_y*$ffff/view_wport[4]-mouse_yprevious);
-            mouse_yprevious = mouse_y*$ffff/view_wport[4];
-            mouse_xprevious = mouse_x*$ffff/view_wport[4];
+            ds_list_replace(bez_list,2,ds_list_find_value(bez_list,2)+(mouse_x-mouse_xprevious)/view_wport[4]*$ffff);
+            ds_list_replace(bez_list,3,ds_list_find_value(bez_list,3)+(mouse_y-mouse_yprevious)/view_wport[4]*$ffff);
+            mouse_yprevious = mouse_y;
+            mouse_xprevious = mouse_x;
         }
         else if (bez_moving == 2)
         {
-            ds_list_replace(bez_list,4,ds_list_find_value(bez_list,4)+mouse_x*$ffff/view_wport[4]-mouse_xprevious);
-            ds_list_replace(bez_list,5,ds_list_find_value(bez_list,5)+mouse_y*$ffff/view_wport[4]-mouse_yprevious);
-            mouse_yprevious = mouse_y*$ffff/view_wport[4];
-            mouse_xprevious = mouse_x*$ffff/view_wport[4];
+            ds_list_replace(bez_list,4,ds_list_find_value(bez_list,4)+(mouse_x-mouse_xprevious)/view_wport[4]*$ffff);
+            ds_list_replace(bez_list,5,ds_list_find_value(bez_list,5)+(mouse_y-mouse_yprevious)/view_wport[4]*$ffff);
+            mouse_yprevious = mouse_y;
+            mouse_xprevious = mouse_x;
         }
         else if (bez_moving == 3)
         {
-            ds_list_replace(bez_list,0,ds_list_find_value(bez_list,0)+mouse_x*$ffff/view_wport[4]-mouse_xprevious);
-            ds_list_replace(bez_list,1,ds_list_find_value(bez_list,1)+mouse_y*$ffff/view_wport[4]-mouse_yprevious);
+            ds_list_replace(bez_list,0,ds_list_find_value(bez_list,0)+(mouse_x-mouse_xprevious)/view_wport[4]*$ffff);
+            ds_list_replace(bez_list,1,ds_list_find_value(bez_list,1)+(mouse_y-mouse_yprevious)/view_wport[4]*$ffff);
             startpos[0] = ds_list_find_value(bez_list,0);
             startpos[1] = ds_list_find_value(bez_list,1);
-            mouse_yprevious = mouse_y*$ffff/view_wport[4];
-            mouse_xprevious = mouse_x*$ffff/view_wport[4];
+            mouse_yprevious = mouse_y;
+            mouse_xprevious = mouse_x;
         }
         else if (bez_moving == 4)
         {
-            ds_list_replace(bez_list,6,ds_list_find_value(bez_list,6)+mouse_x*$ffff/view_wport[4]-mouse_xprevious);
-            ds_list_replace(bez_list,7,ds_list_find_value(bez_list,7)+mouse_y*$ffff/view_wport[4]-mouse_yprevious);
+            ds_list_replace(bez_list,6,ds_list_find_value(bez_list,6)+(mouse_x-mouse_xprevious)/view_wport[4]*$ffff);
+            ds_list_replace(bez_list,7,ds_list_find_value(bez_list,7)+(mouse_y-mouse_yprevious)/view_wport[4]*$ffff);
             endx = ds_list_find_value(bez_list,6);
             endy = ds_list_find_value(bez_list,7);
-            mouse_yprevious = mouse_y*$ffff/view_wport[4];
-            mouse_xprevious = mouse_x*$ffff/view_wport[4];
+            mouse_yprevious = mouse_y;
+            mouse_xprevious = mouse_x;
         }
     }
 }
