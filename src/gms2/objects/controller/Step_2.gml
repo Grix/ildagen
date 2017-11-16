@@ -158,7 +158,7 @@ if (ds_list_size(el_list) > 0)
     }
     else if (keyboard_check(ord("Q")))
     {
-        nearestdist = 32/512*view_wport[4];
+        nearestdist = 32;
         for (i = 0;i < ds_list_size(el_list);i++)
         {
             templist =  ds_list_find_value(el_list,i);
@@ -209,7 +209,7 @@ if !ds_list_empty(semaster_list)
     }
 }
 
-if (mouse_x == clamp(mouse_x,0,512)) && (mouse_y == clamp(mouse_y,0,512))
+if (mouse_x == clamp(mouse_x,0,view_wport[4])) && (mouse_y == clamp(mouse_y,0,view_wport[4]))
 && (mouse_check_button_pressed(mb_right)) && (canrightclick)
     dropdown_empty();
     

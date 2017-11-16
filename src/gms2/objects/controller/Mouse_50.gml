@@ -3,7 +3,6 @@ if (mouse_x > view_wport[4]) || (mouse_y > view_wport[4])
     exit;
 if (instance_exists(obj_dropdown))
     exit;
-
     
 if (placing == "free")
 {

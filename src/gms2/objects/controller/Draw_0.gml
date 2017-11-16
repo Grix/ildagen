@@ -167,7 +167,7 @@ if (view_current == 4 || view_current == 5)
             draw_guidelines();
         }
 		
-		var t_scale = $ffff*view_wport[4];
+		var t_scale = $ffff/view_wport[4];
         
         draw_set_alpha(1);
         draw_set_color(c_gray);
@@ -197,64 +197,66 @@ if (view_current == 4 || view_current == 5)
             
             draw_sprite(spr_anchor,0,round(anchorx/t_scale),round(anchory/t_scale));
             draw_set_alpha(0.6);
-            draw_sprite(spr_rotate,0,rectxmin,rectymax);
-            draw_sprite(spr_resize,0,rectxmax,rectymax);
+            draw_sprite(spr_rotate,0,rectxmin/t_scale,rectymax/t_scale);
+            draw_sprite(spr_resize,0,rectxmax/t_scale,rectymax/t_scale);
             draw_set_alpha(1);
             
-            draw_rectangle(rectxmin,rectymin,rectxmax,rectymax,1);
+            draw_rectangle(rectxmin/t_scale,rectymin/t_scale,rectxmax/t_scale,rectymax/t_scale,1);
             
             if (objmoving == 1) || (objmoving == 3) || (objmoving == 4)
             {
 				
-                xp1 = rectxmin+anixtrans/t_scale;
-                yp1 = rectymin+aniytrans/t_scale;
-                xp2 = rectxmax+anixtrans/t_scale;
-                yp2 = rectymax+aniytrans/t_scale;
-                xp3 = rectxmax+anixtrans/t_scale;
-                yp3 = rectymin+aniytrans/t_scale;
-                xp4 = rectxmin+anixtrans/t_scale;
-                yp4 = rectymax+aniytrans/t_scale;
+                xp1 = rectxmin+anixtrans;
+                yp1 = rectymin+aniytrans;
+                xp2 = rectxmax+anixtrans;
+                yp2 = rectymax+aniytrans;
+                xp3 = rectxmax+anixtrans;
+                yp3 = rectymin+aniytrans;
+                xp4 = rectxmin+anixtrans;
+                yp4 = rectymax+aniytrans;
                 rot_r = degtorad(anirot);
                 
-                angle1 = degtorad(point_direction(anchorx/t_scale,anchory/t_scale,xp1,yp1));
-                dist1 = point_distance(anchorx/t_scale,anchory/t_scale,xp1,yp1);
+                angle1 = degtorad(point_direction(anchorx,anchory,xp1,yp1));
+                dist1 = point_distance(anchorx,anchory,xp1,yp1);
                 
-                xpnew1 = anchorx/t_scale+cos(rot_r-angle1)*dist1*scalex;
-                ypnew1 = anchory/t_scale+sin(rot_r-angle1)*dist1*scaley;
+                xpnew1 = anchorx+cos(rot_r-angle1)*dist1*scalex;
+                ypnew1 = anchory+sin(rot_r-angle1)*dist1*scaley;
                 
-                angle2 = degtorad(point_direction(anchorx/t_scale,anchory/t_scale,xp2,yp2));
-                dist2 = point_distance(anchorx/t_scale,anchory/t_scale,xp2,yp2);
+                angle2 = degtorad(point_direction(anchorx,anchory,xp2,yp2));
+                dist2 = point_distance(anchorx,anchory,xp2,yp2);
                 
-                xpnew2 = anchorx/t_scale+cos(rot_r-angle2)*dist2*scalex;
-                ypnew2 = anchory/t_scale+sin(rot_r-angle2)*dist2*scaley;
+                xpnew2 = anchorx+cos(rot_r-angle2)*dist2*scalex;
+                ypnew2 = anchory+sin(rot_r-angle2)*dist2*scaley;
         
-                angle3 = degtorad(point_direction(anchorx/t_scale,anchory/t_scale,xp3,yp3));
-                dist3 = point_distance(anchorx/t_scale,anchory/t_scale,xp3,yp3);
+                angle3 = degtorad(point_direction(anchorx,anchory,xp3,yp3));
+                dist3 = point_distance(anchorx,anchory,xp3,yp3);
                 
-                xpnew3 = anchorx/t_scale+cos(rot_r-angle3)*dist3*scalex;
-                ypnew3 = anchory/t_scale+sin(rot_r-angle3)*dist3*scaley;
+                xpnew3 = anchorx+cos(rot_r-angle3)*dist3*scalex;
+                ypnew3 = anchory+sin(rot_r-angle3)*dist3*scaley;
                 
-                angle4 = degtorad(point_direction(anchorx/t_scale,anchory/t_scale,xp4,yp4));
-                dist4 = point_distance(anchorx/t_scale,anchory/t_scale,xp4,yp4);
+                angle4 = degtorad(point_direction(anchorx,anchory,xp4,yp4));
+                dist4 = point_distance(anchorx,anchory,xp4,yp4);
                 
-                xpnew4 = anchorx/t_scale+cos(rot_r-angle4)*dist4*scalex;
-                ypnew4 = anchory/t_scale+sin(rot_r-angle4)*dist4*scaley;
+                xpnew4 = anchorx+cos(rot_r-angle4)*dist4*scalex;
+                ypnew4 = anchory+sin(rot_r-angle4)*dist4*scaley;
                 
         
                 draw_set_color(c_teal);
-                draw_rectangle(xp1,yp1,xp2,yp2,1);
+                draw_rectangle(xp1/t_scale,yp1/t_scale,xp2/t_scale,yp2/t_scale,1);
                 
-                draw_line(xpnew1,ypnew1,xpnew3,ypnew3);
-                draw_line(xpnew2,ypnew2,xpnew3,ypnew3);
-                draw_line(xpnew2,ypnew2,xpnew4,ypnew4);
-                draw_line(xpnew4,ypnew4,xpnew1,ypnew1);
+				draw_set_alpha(0.4);
+                draw_line(xpnew1/t_scale,ypnew1/t_scale,xpnew3/t_scale,ypnew3/t_scale);
+                draw_line(xpnew2/t_scale,ypnew2/t_scale,xpnew3/t_scale,ypnew3/t_scale);
+                draw_line(xpnew2/t_scale,ypnew2/t_scale,xpnew4/t_scale,ypnew4/t_scale);
+                draw_line(xpnew4/t_scale,ypnew4/t_scale,xpnew1/t_scale,ypnew1/t_scale);
             
                 if (objmoving == 1)
                 {
-                    draw_set_alpha(0.4);
-                        draw_arrow(mean(rectxmin,rectxmax),mean(rectymin,rectymax),mean(xpnew1,xpnew2),mean(ypnew1,ypnew2),12);
-                    draw_set_alpha(1);
+                    draw_arrow(	mean(rectxmin/t_scale,rectxmax/t_scale),mean(rectymin/t_scale,rectymax/t_scale),
+								mean(xpnew1/t_scale,xpnew2/t_scale),mean(ypnew1/t_scale,ypnew2/t_scale),12);
                 }
+				
+				draw_set_alpha(1);
             }
             
         }

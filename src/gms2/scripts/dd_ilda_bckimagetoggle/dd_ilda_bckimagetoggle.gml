@@ -15,17 +15,17 @@ if (bckimage)
         bck_bckimage = sprite_add(bckfile,1,0,0,0,0);
         if (sprite_get_width(bck_bckimage) > sprite_get_height(bck_bckimage))
         {
-            bckimage_width = 512;
-            bckimage_height = 512/sprite_get_width(bck_bckimage)*sprite_get_height(bck_bckimage);
-            bckimage_top = (512-bckimage_height)/2;
+            bckimage_width = view_wport[4];
+            bckimage_height = view_wport[4]/sprite_get_width(bck_bckimage)*sprite_get_height(bck_bckimage);
+            bckimage_top = (view_wport[4]-bckimage_height)/2;
             bckimage_left = 0;
         }
         else
         {
-            bckimage_height = 512;
-            bckimage_width = 512/sprite_get_height(bck_bckimage)*sprite_get_width(bck_bckimage);
+            bckimage_height = view_wport[4];
+            bckimage_width = view_wport[4]/sprite_get_height(bck_bckimage)*sprite_get_width(bck_bckimage);
             bckimage_top = 0;
-            bckimage_left = (512-bckimage_width)/2;
+            bckimage_left = (view_wport[4]-bckimage_width)/2;
         }
     }
     else

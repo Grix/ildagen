@@ -5,16 +5,6 @@
     "name": "obj_colorblendmode",
     "eventList": [
         {
-            "id": "87e6eb8a-cf24-4d3b-abed-55d23e397fc4",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "4d09f6c9-8bb8-4597-939e-0a6b6a68cb29"
-        },
-        {
             "id": "956937e0-0e17-4b85-94dc-802178196f1b",
             "modelName": "GMEvent",
             "mvc": "1.0",

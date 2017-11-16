@@ -1,9 +1,9 @@
 if (instance_exists(obj_dropdown))
     exit;
 	
-visible = !ds_list_empty(controller.semaster_list);
+_visible = !ds_list_empty(controller.semaster_list);
 	
-if (!visible)
+if (!_visible)
 	exit;
     
 image_index = controller.blank_blendmode;

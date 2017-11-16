@@ -24,9 +24,9 @@ for (u = 0; u < ds_list_size(el_list);u++)
         }
     }
 }
-rectxmax = xmax/$ffff*view_wport[4];
-rectxmin = xmin/$ffff*view_wport[4];
-rectymax = ymax/$ffff*view_wport[4];
-rectymin = ymin/$ffff*view_wport[4];
+rectxmax = xmax;
+rectxmin = xmin;
+rectymax = ymax;
+rectymin = ymin;
 
 update_semasterlistflag = 0;

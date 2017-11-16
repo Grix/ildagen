@@ -193,10 +193,10 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
         ds_list_replace(new_list,2,endx_r_fix);
         ds_list_replace(new_list,3,endy_r_fix);
         
-        ds_list_replace(new_list,4,xmin/$ffff*512);
-        ds_list_replace(new_list,5,xmax/$ffff*512);
-        ds_list_replace(new_list,6,ymin/$ffff*512);
-        ds_list_replace(new_list,7,ymax/$ffff*512);    
+        ds_list_replace(new_list,4,xmin);
+        ds_list_replace(new_list,5,xmax);
+        ds_list_replace(new_list,6,ymin);
+        ds_list_replace(new_list,7,ymax);    
     }
 }
 

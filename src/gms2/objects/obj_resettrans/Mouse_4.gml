@@ -106,8 +106,8 @@ with (controller)
             {
                 sefound = 1;
                 var t_list = ds_list_find_value(el_list,i);
-                xo = ds_list_find_value(t_list,0)/$ffff*512;
-                yo = ds_list_find_value(t_list,1)/$ffff*512;
+                xo = ds_list_find_value(t_list,0);
+                yo = ds_list_find_value(t_list,1);
                 rectxmin = round(xo + (ds_list_find_value(t_list,4)));
                 rectymin = round(yo + (ds_list_find_value(t_list,6)));
                 rectxmax = round(xo + (ds_list_find_value(t_list,5)));

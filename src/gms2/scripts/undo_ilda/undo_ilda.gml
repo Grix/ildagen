@@ -2,11 +2,12 @@ if (ds_list_empty(controller.undo_list))
     exit;
 
 ilda_cancel();
+ds_list_clear(controller.semaster_list);
     
 undo = ds_list_find_value(controller.undo_list,ds_list_size(controller.undo_list)-1);
 ds_list_delete(controller.undo_list,ds_list_size(controller.undo_list)-1);
 
-if (is_real(undo))
+if (is_real(undo)) //undo create
 {
     for (j = 0;j < ds_list_size(controller.frame_list);j++)
     {

@@ -32,7 +32,8 @@ for (i = 0;i < t_ellistsize; i++)
     rectxmax2 = xo + (ds_list_find_value(t_templist, 5)/$ffff*view_wport[4]);
     rectymax2 = yo + (ds_list_find_value(t_templist, 7)/$ffff*view_wport[4]);
     
-    if (obj_cursor.x == clamp(obj_cursor.x,rectxmin2-5,rectxmax2+5)) && (obj_cursor.y == clamp(obj_cursor.y,rectymin2-5,rectymax2+5))
+    if	(obj_cursor.x == clamp(obj_cursor.x,rectxmin2-5,rectxmax2+5)) && 
+		(obj_cursor.y == clamp(obj_cursor.y,rectymin2-5,rectymax2+5))
     {
         if (ds_list_find_index(semaster_list,ds_list_find_value(t_templist,9)) == -1)
         {
