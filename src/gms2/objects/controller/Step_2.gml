@@ -34,8 +34,9 @@ if (room == rm_loading)
     
 if (room == rm_ilda) && (keyboard_check(ord("Z")) && !keyboard_check(vk_control))
 {
-	obj_cursor.x = mouse_x;
-	obj_cursor.y = mouse_y;
+	//todo test
+	obj_cursor.x = display_mouse_get_x();
+	obj_cursor.y = display_mouse_get_y()-23;
 	view_visible[5] = true;
 	view_xport[5] = clamp(window_mouse_get_x()-128, 0, view_wport[4]-256);
 	view_yport[5] = clamp(window_mouse_get_y()-23-128, 0, view_wport[4]-256);
@@ -209,9 +210,10 @@ if !ds_list_empty(semaster_list)
     }
 }
 
-if (mouse_x == clamp(mouse_x,0,view_wport[4])) && (mouse_y == clamp(mouse_y,0,view_wport[4]))
-&& (mouse_check_button_pressed(mb_right)) && (canrightclick)
-    dropdown_empty();
+if	(window_mouse_get_x() == clamp(window_mouse_get_x(),0,view_wport[4])) && 
+	(window_mouse_get_y()-23  == clamp(window_mouse_get_y()-23,0,view_wport[4])) &&
+	(mouse_check_button_pressed(mb_right)) && (canrightclick)
+		dropdown_empty();
     
 //KEYBOARD RIGHT LEFT
 if (keyboard_check(vk_left)) && (maxframes > 1) && (placing_status == 0)

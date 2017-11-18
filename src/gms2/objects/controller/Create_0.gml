@@ -26,7 +26,7 @@ if (os_browser == browser_not_a_browser)
 draw_set_circle_precision(24);
 application_surface_enable(false);
 
-instance_create_layer(mouse_x,mouse_y, "normal", obj_cursor);
+instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-23, "normal", obj_cursor);
 
 varmap = ds_map_create();
 //shape function

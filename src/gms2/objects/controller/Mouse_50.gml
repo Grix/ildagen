@@ -14,7 +14,7 @@ if (placing == "free")
             autoresflag = 1; 
             resolution = 512;
         }
-        if (point_distance(startpos[0]+ds_list_find_value(free_list,ds_list_size(free_list)-2),startpos[1]+ds_list_find_value(free_list,ds_list_size(free_list)-1),mouse_x*$ffff/view_wport[4],mouse_y*$ffff/view_wport[4]) >= resolution)
+        if (point_distance(startpos[0]+ds_list_find_value(free_list,ds_list_size(free_list)-2),startpos[1]+ds_list_find_value(free_list,ds_list_size(free_list)-1),window_mouse_get_x()*$ffff/view_wport[4],window_mouse_get_y()-23*$ffff/view_wport[4]) >= resolution)
         {
             ds_list_add(free_list, obj_cursor.x*$ffff/view_wport[4]-startpos[0]);
             ds_list_add(free_list, obj_cursor.y*$ffff/view_wport[4]-startpos[1]);
@@ -43,35 +43,35 @@ else if (placing == "curve")
     {
         if (bez_moving == 1)
         {
-            ds_list_replace(bez_list,2,ds_list_find_value(bez_list,2)+(mouse_x-mouse_xprevious)/view_wport[4]*$ffff);
-            ds_list_replace(bez_list,3,ds_list_find_value(bez_list,3)+(mouse_y-mouse_yprevious)/view_wport[4]*$ffff);
-            mouse_yprevious = mouse_y;
-            mouse_xprevious = mouse_x;
+            ds_list_replace(bez_list,2,ds_list_find_value(bez_list,2)+(window_mouse_get_x()-mouse_xprevious)/view_wport[4]*$ffff);
+            ds_list_replace(bez_list,3,ds_list_find_value(bez_list,3)+(window_mouse_get_y()-23-mouse_yprevious)/view_wport[4]*$ffff);
+            mouse_yprevious = window_mouse_get_y()-23;
+            mouse_xprevious = window_mouse_get_x();
         }
         else if (bez_moving == 2)
         {
-            ds_list_replace(bez_list,4,ds_list_find_value(bez_list,4)+(mouse_x-mouse_xprevious)/view_wport[4]*$ffff);
-            ds_list_replace(bez_list,5,ds_list_find_value(bez_list,5)+(mouse_y-mouse_yprevious)/view_wport[4]*$ffff);
-            mouse_yprevious = mouse_y;
-            mouse_xprevious = mouse_x;
+            ds_list_replace(bez_list,4,ds_list_find_value(bez_list,4)+(window_mouse_get_x()-mouse_xprevious)/view_wport[4]*$ffff);
+            ds_list_replace(bez_list,5,ds_list_find_value(bez_list,5)+(window_mouse_get_y()-23-mouse_yprevious)/view_wport[4]*$ffff);
+            mouse_yprevious = window_mouse_get_y()-23;
+            mouse_xprevious = window_mouse_get_x();
         }
         else if (bez_moving == 3)
         {
-            ds_list_replace(bez_list,0,ds_list_find_value(bez_list,0)+(mouse_x-mouse_xprevious)/view_wport[4]*$ffff);
-            ds_list_replace(bez_list,1,ds_list_find_value(bez_list,1)+(mouse_y-mouse_yprevious)/view_wport[4]*$ffff);
+            ds_list_replace(bez_list,0,ds_list_find_value(bez_list,0)+(window_mouse_get_x()-mouse_xprevious)/view_wport[4]*$ffff);
+            ds_list_replace(bez_list,1,ds_list_find_value(bez_list,1)+(window_mouse_get_y()-23-mouse_yprevious)/view_wport[4]*$ffff);
             startpos[0] = ds_list_find_value(bez_list,0);
             startpos[1] = ds_list_find_value(bez_list,1);
-            mouse_yprevious = mouse_y;
-            mouse_xprevious = mouse_x;
+            mouse_yprevious = window_mouse_get_y()-23;
+            mouse_xprevious = window_mouse_get_x();
         }
         else if (bez_moving == 4)
         {
-            ds_list_replace(bez_list,6,ds_list_find_value(bez_list,6)+(mouse_x-mouse_xprevious)/view_wport[4]*$ffff);
-            ds_list_replace(bez_list,7,ds_list_find_value(bez_list,7)+(mouse_y-mouse_yprevious)/view_wport[4]*$ffff);
+            ds_list_replace(bez_list,6,ds_list_find_value(bez_list,6)+(window_mouse_get_x()-mouse_xprevious)/view_wport[4]*$ffff);
+            ds_list_replace(bez_list,7,ds_list_find_value(bez_list,7)+(window_mouse_get_y()-23-mouse_yprevious)/view_wport[4]*$ffff);
             endx = ds_list_find_value(bez_list,6);
             endy = ds_list_find_value(bez_list,7);
-            mouse_yprevious = mouse_y;
-            mouse_xprevious = mouse_x;
+            mouse_yprevious = window_mouse_get_y()-23;
+            mouse_xprevious = window_mouse_get_x();
         }
     }
 }

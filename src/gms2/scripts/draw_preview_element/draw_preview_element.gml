@@ -112,10 +112,10 @@ else if (placing == "curve")
     }
     else
     {
-        if  (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,2)/$ffff*view_wport[4],ds_list_find_value(bez_list,3)/$ffff*view_wport[4]) < 7) or
-        (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,4)/$ffff*view_wport[4],ds_list_find_value(bez_list,5)/$ffff*view_wport[4]) < 7) or
-        (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,0)/$ffff*view_wport[4],ds_list_find_value(bez_list,1)/$ffff*view_wport[4]) < 7) or
-        (point_distance(mouse_x,mouse_y,ds_list_find_value(bez_list,6)/$ffff*view_wport[4],ds_list_find_value(bez_list,7)/$ffff*view_wport[4]) < 7)
+        if  (point_distance(window_mouse_get_x(), window_mouse_get_y()-23,ds_list_find_value(bez_list,2)/$ffff*view_wport[4],ds_list_find_value(bez_list,3)/$ffff*view_wport[4]) < 7) or
+        (point_distance(window_mouse_get_x(), window_mouse_get_y()-23,ds_list_find_value(bez_list,4)/$ffff*view_wport[4],ds_list_find_value(bez_list,5)/$ffff*view_wport[4]) < 7) or
+        (point_distance(window_mouse_get_x(), window_mouse_get_y()-23,ds_list_find_value(bez_list,0)/$ffff*view_wport[4],ds_list_find_value(bez_list,1)/$ffff*view_wport[4]) < 7) or
+        (point_distance(window_mouse_get_x(), window_mouse_get_y()-23,ds_list_find_value(bez_list,6)/$ffff*view_wport[4],ds_list_find_value(bez_list,7)/$ffff*view_wport[4]) < 7)
         {
             tooltip = "Click and drag to adjust curve."
         }

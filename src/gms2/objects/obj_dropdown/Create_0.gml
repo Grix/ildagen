@@ -43,3 +43,4 @@ text_color = $828282;
 
 bak_alpha = 1;
 
+log(x,y)

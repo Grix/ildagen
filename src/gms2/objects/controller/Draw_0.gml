@@ -37,7 +37,7 @@ if (window_get_height() != window_heightprev || window_get_width() != window_wid
 	view_xport[0] = view_wport[4];
 	view_xport[6] = view_xport[0];
 	camera_set_view_pos(view_camera[6], 512, view_yport[6]-view_hport[3]);
-	tlorigo_y = view_hport[4]-tlh;//view_hport[4];
+	tlorigo_y = camera_get_view_y(view_camera[4])+view_hport[4]-tlh;//view_hport[4];
 	
 	window_heightprev = window_get_height();
 	window_widthprev = window_get_width();
@@ -86,6 +86,8 @@ if (view_current == 4 || view_current == 5)
     
     //frame box
     draw_ilda_2d();
+	
+	var t_y = camera_get_view_y(view_camera[4]);
     
     if (!laseron)
     {
@@ -95,7 +97,7 @@ if (view_current == 4 || view_current == 5)
                 draw_set_alpha(0.3);
             if (sprite_exists(bck_bckimage))
             {
-                draw_sprite_stretched(bck_bckimage,0,bckimage_left,bckimage_top,view_wport[4],view_wport[4]*bckimage_height/bckimage_width);
+                draw_sprite_stretched(bck_bckimage,0,bckimage_left,t_y+bckimage_top,view_wport[4],view_wport[4]*bckimage_height/bckimage_width);
             }
             else bckimage = 0;
         }
@@ -103,8 +105,8 @@ if (view_current == 4 || view_current == 5)
         if (object_select_hovering = 1)
         {
             draw_set_alpha(0.5);
-            draw_set_colour(c_teal);
-                draw_rectangle(rectxmin2,rectymin2,rectxmax2,rectymax2,1);
+            draw_set_colour(c_teal);//todo fix scale?
+                draw_rectangle(rectxmin2,t_y+rectymin2,rectxmax2,t_y+rectymax2,1);
             draw_set_alpha(1);
             draw_set_colour(c_white);
         }
@@ -112,28 +114,28 @@ if (view_current == 4 || view_current == 5)
         {
             draw_set_alpha(0.7);
             draw_set_colour(c_maroon);
-                draw_rectangle(rectxmin2,rectymin2,rectxmax2,rectymax2,1);
+                draw_rectangle(rectxmin2,t_y+rectymin2,rectxmax2,t_y+rectymax2,1);
             draw_set_alpha(1);
             draw_set_colour(c_white);
         }
         
         draw_set_color(c_gray);
         if (objmoving == 3)
-            draw_text(20,20,string_format(anirot,3,2)+" deg");
+            draw_text(20,t_y+20,string_format(anirot,3,2)+" deg");
         else if (objmoving == 1)
         {
-            draw_text(20,20,"X translation: "+string_format(anixtrans,5,0));
-            draw_text(20,40,"Y translation: "+string_format(aniytrans,5,0));
+            draw_text(20,t_y+20,"X translation: "+string_format(anixtrans,5,0));
+            draw_text(20,t_y+40,"Y translation: "+string_format(aniytrans,5,0));
         }
         else if (objmoving == 2)
         {
-            draw_text(20,20,"Anchor X: "+string_format(anchorx,5,0));
-            draw_text(20,40,"Anchor Y: "+string_format(anchory,5,0));
+            draw_text(20,t_y+20,"Anchor X: "+string_format(anchorx,5,0));
+            draw_text(20,t_y+40,"Anchor Y: "+string_format(anchory,5,0));
         }
         else if (objmoving == 4)
         {
-            draw_text(20,20,"X scale: "+string_format(scalex,2,3));
-            draw_text(20,40,"Y scale: "+string_format(scaley,2,3));
+            draw_text(20,t_y+20,"X scale: "+string_format(scalex,2,3));
+            draw_text(20,t_y+40,"Y scale: "+string_format(scaley,2,3));
         }
         draw_set_color(c_white);
             
@@ -149,7 +151,7 @@ if (view_current == 4 || view_current == 5)
                     draw_grid();
                 surface_reset_target();
             }
-            draw_surface_part(squaregrid_surf,0,0, view_wport[4], view_wport[4], 0,0);
+            draw_surface_part(squaregrid_surf,0,0, view_wport[4], view_wport[4], 0, t_y);
         } 
         if (keyboard_check(ord("R")) || (rgridshow == 1))
         {
@@ -160,7 +162,7 @@ if (view_current == 4 || view_current == 5)
                     draw_radialgrid();
                 surface_reset_target();
             }
-            draw_surface_part(radialgrid_surf,0,0, view_wport[4], view_wport[4], 0,0);
+            draw_surface_part(radialgrid_surf,0,0, view_wport[4], view_wport[4], 0, t_y);
         }
             
         if ((keyboard_check(ord("A")) && !keyboard_check(vk_control)) || (guidelineshow == 1))
@@ -185,7 +187,7 @@ if (view_current == 4 || view_current == 5)
                 yp1 = yo+ds_list_find_value(templist,6)/t_scale;
                 xp2 = xo+ds_list_find_value(templist,5)/t_scale;
                 yp2 = yo+ds_list_find_value(templist,7)/t_scale;
-                draw_rectangle(xp1,yp1,xp2,yp2,1);
+                draw_rectangle(xp1,t_y+yp1,xp2,t_y+yp2,1);
             }
         }
         
@@ -196,13 +198,13 @@ if (view_current == 4 || view_current == 5)
             if (update_semasterlist_flag)
                 update_semasterlist();
             
-            draw_sprite(spr_anchor,0,round(anchorx/t_scale),round(anchory/t_scale));
+            draw_sprite(spr_anchor,0,round(anchorx/t_scale), round(t_y+anchory/t_scale));
             draw_set_alpha(0.6);
-            draw_sprite(spr_rotate,0,rectxmin/t_scale,rectymax/t_scale);
-            draw_sprite(spr_resize,0,rectxmax/t_scale,rectymax/t_scale);
+            draw_sprite(spr_rotate,0,rectxmin/t_scale, t_y+rectymax/t_scale);
+            draw_sprite(spr_resize,0,rectxmax/t_scale, t_y+rectymax/t_scale);
             draw_set_alpha(1);
             
-            draw_rectangle(rectxmin/t_scale,rectymin/t_scale,rectxmax/t_scale,rectymax/t_scale,1);
+            draw_rectangle(rectxmin/t_scale, t_y+rectymin/t_scale, rectxmax/t_scale, t_y+rectymax/t_scale,1);
             
             if (objmoving == 1) || (objmoving == 3) || (objmoving == 4)
             {
@@ -243,18 +245,18 @@ if (view_current == 4 || view_current == 5)
                 
         
                 draw_set_color(c_teal);
-                draw_rectangle(xp1/t_scale,yp1/t_scale,xp2/t_scale,yp2/t_scale,1);
+                draw_rectangle(xp1/t_scale, t_y+yp1/t_scale, xp2/t_scale, t_y+yp2/t_scale,1);
                 
 				draw_set_alpha(0.4);
-                draw_line(xpnew1/t_scale,ypnew1/t_scale,xpnew3/t_scale,ypnew3/t_scale);
-                draw_line(xpnew2/t_scale,ypnew2/t_scale,xpnew3/t_scale,ypnew3/t_scale);
-                draw_line(xpnew2/t_scale,ypnew2/t_scale,xpnew4/t_scale,ypnew4/t_scale);
-                draw_line(xpnew4/t_scale,ypnew4/t_scale,xpnew1/t_scale,ypnew1/t_scale);
+                draw_line(xpnew1/t_scale, t_y+ypnew1/t_scale, xpnew3/t_scale, t_y+ypnew3/t_scale);
+                draw_line(xpnew2/t_scale, t_y+ypnew2/t_scale, xpnew3/t_scale, t_y+ypnew3/t_scale);
+                draw_line(xpnew2/t_scale, t_y+ypnew2/t_scale, xpnew4/t_scale, t_y+ypnew4/t_scale);
+                draw_line(xpnew4/t_scale, t_y+ypnew4/t_scale, xpnew1/t_scale, t_y+ypnew1/t_scale);
             
                 if (objmoving == 1)
                 {
-                    draw_arrow(	mean(rectxmin/t_scale,rectxmax/t_scale),mean(rectymin/t_scale,rectymax/t_scale),
-								mean(xpnew1/t_scale,xpnew2/t_scale),mean(ypnew1/t_scale,ypnew2/t_scale),12);
+                    draw_arrow(	mean(rectxmin/t_scale, rectxmax/t_scale), t_y+mean(rectymin/t_scale,rectymax/t_scale),
+								mean(xpnew1/t_scale, xpnew2/t_scale), t_y+mean(ypnew1/t_scale,ypnew2/t_scale),12);
                 }
 				
 				draw_set_alpha(1);
@@ -271,13 +273,13 @@ if (view_current == 4 || view_current == 5)
     draw_set_font(fnt_tooltip);
     
         draw_set_color(c_ltgray);
-        draw_text(12, view_wport[4]-20, "Frame: "+string(frame+1)+"/"+string(maxframes));
+        draw_text(12, t_y+view_wport[4]-20, "Frame: "+string(frame+1)+"/"+string(maxframes));
         
-        draw_text(12,7,"FPS: "+string(projectfps));
+        draw_text(12,t_y+7,"FPS: "+string(projectfps));
         if (playing && (fps != projectfps) && laseron)
         {
             draw_set_color(c_red);
-            draw_text(32,7,"Warning: Dropping frames. Actual FPS: "+string(fps));
+            draw_text(32,t_y+7,"Warning: Dropping frames. Actual FPS: "+string(fps));
         }
         
         if (frame_complexity == 1)
@@ -286,16 +288,16 @@ if (view_current == 4 || view_current == 5)
             draw_set_color(c_orange);
         else 
             draw_set_color(c_ltgray);
-        draw_text(view_wport[4]-70, view_wport[4]-20, "Points: "+string(framepoints));
+        draw_text(view_wport[4]-70, t_y+view_wport[4]-20, "Points: "+string(framepoints));
         
         if (!anienable) && (maxframes < 2)
             draw_set_color(c_gray);
         else 
             draw_set_color(c_ltgray);
         if (scope_start == 0) && (scope_end == maxframes-1)
-            draw_text(view_wport[4]/2-34, view_wport[4]-20, "Scope: All frames");
+            draw_text(view_wport[4]/2-34, t_y+view_wport[4]-20, "Scope: All frames");
         else
-            draw_text(view_wport[4]/2-34, view_wport[4]-20, "Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
+            draw_text(view_wport[4]/2-34, t_y+view_wport[4]-20, "Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
 			
 	draw_set_color(c_black);
 	draw_set_alpha(1);

@@ -12,18 +12,18 @@ if(x < 0)
 {
     x_offset = round(0-x+1);
 }
-else if(x + total_width > view_wport[3])
+else if(x + total_width > window_get_width())
 {
-    x_offset = round(view_wport[3]-(x+total_width)+1);
+    x_offset = round(window_get_width()-(x+total_width)+1);
 }
 
 if(y < 0)
 {
     y_offset = round(0-y+1);
 }
-else if(y + total_height > view_hport[0])
+else if(y + total_height > window_get_height())
 {
-    y_offset = round(view_hport[0]-(y+total_height)+1);
+    y_offset = round(window_get_height()-(y+total_height)+1);
 }
 
 x1 = x+x_offset;

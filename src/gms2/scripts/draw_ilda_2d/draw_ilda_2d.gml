@@ -15,6 +15,6 @@ if (frame_surf_refresh) or !surface_exists(frame3d_surf) or !surface_exists(fram
 }
 
 if (viewmode != 0)
-    draw_surface_part(frame3d_surf, 0,0, view_wport[4], view_wport[4], 0,0);
+    draw_surface_part(frame3d_surf, 0,0, view_wport[4], view_wport[4], camera_get_view_x(view_camera[4]), camera_get_view_y(view_camera[4]));
 if (viewmode == 0) || (viewmode == 2)
-	draw_surface_part(frame_surf, 0,0, view_wport[4], view_wport[4], 0,0);
+	draw_surface_part(frame_surf, 0,0, view_wport[4], view_wport[4], camera_get_view_x(view_camera[4]), camera_get_view_y(view_camera[4]));

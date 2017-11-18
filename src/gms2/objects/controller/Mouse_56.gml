@@ -1,12 +1,15 @@
 if (room != rm_ilda) exit;
 if (instance_exists(obj_dropdown))
     exit;
+	
+var t_mouse_x = window_mouse_get_x();
+var t_mouse_y = window_mouse_get_y()-23;
 
-if ((window_mouse_get_x() > view_wport[4]+30) or (window_mouse_get_y()-23 > view_wport[4]+30)) and (placing_status != 2) or (!ds_list_empty(semaster_list) and (
-((mouse_x == clamp(mouse_x,rectxmin-2,rectxmax+2)) and (mouse_y == clamp(mouse_y,rectymin-2,rectymax+2)))
-or ((mouse_x == clamp(mouse_x,anchorx/$ffff*view_wport[4]-10,anchorx/$ffff*view_wport[4]+10)) and (mouse_y == clamp(mouse_y,anchory/$ffff*view_wport[4]-10,anchory/$ffff*view_wport[4]+10)))
-or ((mouse_x == clamp(mouse_x,rectxmin-20,rectxmin-2)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20)))
-or ((mouse_x == clamp(mouse_x,rectxmax+2,rectxmax+20)) and (mouse_y == clamp(mouse_y,rectymax+2,rectymax+20)))
+if ((t_mouse_x > view_wport[4]+30) or (t_mouse_y > view_wport[4]+30)) and (placing_status != 2) or (!ds_list_empty(semaster_list) and (
+((t_mouse_x == clamp(t_mouse_x,rectxmin-2,rectxmax+2)) and (t_mouse_y == clamp(t_mouse_y,rectymin-2,rectymax+2)))
+or ((t_mouse_x == clamp(t_mouse_x,anchorx/$ffff*view_wport[4]-10,anchorx/$ffff*view_wport[4]+10)) and (t_mouse_y == clamp(t_mouse_y,anchory/$ffff*view_wport[4]-10,anchory/$ffff*view_wport[4]+10)))
+or ((t_mouse_x == clamp(t_mouse_x,rectxmin-20,rectxmin-2)) and (t_mouse_y == clamp(t_mouse_y,rectymax+2,rectymax+20)))
+or ((t_mouse_x == clamp(t_mouse_x,rectxmax+2,rectxmax+20)) and (t_mouse_y == clamp(t_mouse_y,rectymax+2,rectymax+20)))
 ))
 {
     placing_status = 0;
