@@ -49,6 +49,7 @@ if (window_get_height() != window_heightprev || window_get_width() != window_wid
 		surface_free(squaregrid_surf);
 	if (surface_exists(radialgrid_surf))
 		surface_free(radialgrid_surf);*/
+	display_set_gui_maximise(1,1,0,23);
 }
 	
 if (view_current == 4 || view_current == 5)

@@ -15,8 +15,8 @@ draw_set_color(separator_color);
 
 for(var i = 0; i < num; i++)
 {
-    var y1 = y+(item_height*i)+y_offset+1;
-    var y2 = y+(item_height*(i+1))+y_offset;
+    var y1 = round(y+(item_height*i)+y_offset+1);
+    var y2 = round(y+(item_height*(i+1))+y_offset);
     
     draw_set_color(separator_color);
     
@@ -30,7 +30,7 @@ for(var i = 0; i < num; i++)
         draw_set_color(text_color);
     else
         draw_set_color(c_white);
-    draw_text(x1+item_padding, y1+item_padding-2, ds_list_find_value(desc_list,i));
+    draw_text(floor(x1+item_padding), floor(y1+item_padding-2), ds_list_find_value(desc_list,i));
     
     if(i == selected)
     {

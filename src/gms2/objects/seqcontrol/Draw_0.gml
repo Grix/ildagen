@@ -26,11 +26,11 @@ if (window_get_height() != controller.window_heightprev || window_get_width() !=
 	camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
 	camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
 	camera_set_view_pos(view_camera[6], 987, view_yport[6]-view_hport[3]);
+	tlsurf_y = camera_get_view_y(view_camera[1]);
 	tlw = view_wport[1];
-	tlh = view_hport[1]/570*136;
-	tlsurf_y = ybar;
+	tlh = 128-16;
 	tls = tlh+tlsurf_y+16; //start of layer area, seen from outside surface
-	lbh = view_hport[1]-32-tlh-tlsurf_y;
+	lbh = view_hport[1]-32-tlh;
 	lbsh = tlh+15+lbh; //start of bottom scrollbar, seen from inside surface
 	tlhalf = tlh/2;
 	tlthird = tlh/3;
@@ -166,10 +166,11 @@ else if (view_current == 6)
 else if (view_current == 3)
 {
     //menu
+	var t_ypos = camera_get_view_y(view_camera[3]);
 	gpu_set_blendenable(false);
 	draw_clear(controller.c_ltltgray);
+	draw_line(0, t_ypos+22, view_wport[3], t_ypos+22);
 	gpu_set_blendenable(true);
-	var t_ypos = camera_get_view_y(view_camera[3]);
     draw_text(0,t_ypos+4,menu_string);
     if (mouse_y < 0)   
     {

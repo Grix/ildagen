@@ -1,6 +1,6 @@
 if (room == rm_ilda && view_current != 4)
 	exit;
-if (room == rm_seq && view_current != 0)
+if (room == rm_seq && view_current != 4)
 	exit;
 if (room == rm_options && view_current != 0)
 	exit;
@@ -8,7 +8,7 @@ if (room == rm_options && view_current != 0)
 //cursor
 if (instance_exists(obj_dropdown))
 {
-	if (mouse_x > obj_dropdown.x1 && mouse_x < obj_dropdown.x2 && mouse_y > obj_dropdown.ty1 && mouse_y < obj_dropdown.ty2)
+	if (window_mouse_get_x() > obj_dropdown.x1 && window_mouse_get_x() < obj_dropdown.x2 && window_mouse_get_y()-23 > obj_dropdown.ty1 && window_mouse_get_y()-23 < obj_dropdown.ty2)
 		window_set_cursor(cr_handpoint);
 	else
 		window_set_cursor(cr_default);

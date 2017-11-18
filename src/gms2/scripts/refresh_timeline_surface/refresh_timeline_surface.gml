@@ -2,7 +2,7 @@
 
 if (!surface_exists(timeline_surf))
 {
-    timeline_surf = surface_create(2048,1024);
+    timeline_surf = surface_create(2048, power(2, ceil(log2(view_hport[4]))));
 	timeline_surf_pos = tlx;
 	timeline_surf_length = 0;
 }
@@ -29,7 +29,7 @@ var t_tlw = ceil(t_tlzoom*tlwdivtlzoom); //in pixels
 if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 {
 	if (!surface_exists(timeline_surf_temp))
-		timeline_surf_temp = surface_create(2048,1024);
+		timeline_surf_temp = surface_create(2048, power(2, ceil(log2(view_hport[4]))));
 	if (!surface_exists(timeline_surf_audio_temp))
 		timeline_surf_audio_temp = surface_create(2048,128);
 	

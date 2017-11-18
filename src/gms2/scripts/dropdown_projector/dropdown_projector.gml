@@ -13,7 +13,7 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,projector_rename);
     ds_list_add(hl_list,1);
-    
+	
     for (i = 0; i < ds_list_size(controller.dac_list); i++)
     {
         ds_list_add(desc_list,"Add DAC: ["+ds_list_find_value(controller.dac_list[| i], 1)+"]");

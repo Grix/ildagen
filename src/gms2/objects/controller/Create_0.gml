@@ -145,8 +145,6 @@ framecursor_prev = 0;
 show_framecursor_prev = false;
 scope_moving = false;
 highlight = false;
-//ybar = 512;
-//xbar = 512;
 resizing_moving = 0;
 
 sgridshow = 0;
