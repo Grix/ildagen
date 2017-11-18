@@ -5,7 +5,7 @@ alarm[2] = 1;
 mouse_xprevious = mouse_x;
 
 //menu
-if (mouse_y > camera_get_view_y(view_camera[3]))   
+if (mouse_y < 0)   
 {
     if (mouse_x > menu_width_start[0]) and (mouse_x < menu_width_start[1])
     {

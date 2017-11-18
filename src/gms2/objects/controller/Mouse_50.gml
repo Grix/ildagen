@@ -1,5 +1,5 @@
 if (room != rm_ilda) exit;
-if (mouse_x > view_wport[4]) || (mouse_y > view_wport[4])
+if (window_mouse_get_x() > view_wport[4]) || (window_mouse_get_y()-23 > view_wport[4])
     exit;
 if (instance_exists(obj_dropdown))
     exit;

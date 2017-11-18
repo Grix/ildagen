@@ -73,7 +73,7 @@ else if (objmoving == 4)
 }
 else if !(keyboard_check(vk_control)) and (!object_select_hovering)
 {
-	if (mouse_x > view_wport[4] or mouse_y > view_wport[4])
+	if (window_mouse_get_x() > view_wport[4] or window_mouse_get_y()-23 > view_wport[4])
 		exit;
 		
     if	(mouse_x == clamp(mouse_x,anchorx/$ffff*view_wport[4]-10, anchorx/$ffff*view_wport[4]+10)) and 

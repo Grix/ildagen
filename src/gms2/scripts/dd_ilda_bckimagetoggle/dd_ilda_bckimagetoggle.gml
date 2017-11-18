@@ -17,7 +17,8 @@ if (bckimage)
         {
             bckimage_width = view_wport[4];
             bckimage_height = view_wport[4]/sprite_get_width(bck_bckimage)*sprite_get_height(bck_bckimage);
-            bckimage_top = (view_wport[4]-bckimage_height)/2;
+            //todo make this better for scalability:
+			bckimage_top = (view_wport[4]-bckimage_height)/2;
             bckimage_left = 0;
         }
         else

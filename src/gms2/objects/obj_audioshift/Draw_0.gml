@@ -1,3 +1,6 @@
+if (view_current != 0)
+	exit;
+
 draw_self();
 
 draw_set_font(fnt_tooltip);

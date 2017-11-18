@@ -1,3 +1,6 @@
+if (view_current != 0)
+	exit;
+
 if (seqcontrol.loop == true) 
     image_index = 1;
 else 

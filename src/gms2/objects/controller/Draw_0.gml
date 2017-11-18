@@ -8,8 +8,8 @@ if (window_get_height() != window_heightprev || window_get_width() != window_wid
 	
 	view_hport[4] = window_get_height()-view_hport[1]-view_hport[3];
 	tlw = view_wport[4];
-	tlh = round(view_hport[4]/(512/42));
-	view_wport[4] = view_hport[4]-tlh-3;
+	tlh = round(view_hport[4]/(512/44));
+	view_wport[4] = view_hport[4]-tlh-1;
 	view_wport[0] = window_get_width()-view_wport[4];//788
 	if (view_wport[0] < 788)
 	{
@@ -18,7 +18,7 @@ if (window_get_height() != window_heightprev || window_get_width() != window_wid
 		view_hport[4] = window_get_height()-view_hport[1]-view_hport[3];
 		tlw = view_wport[4];
 		tlh = round(view_hport[4]/(512/42));
-		view_wport[4] = view_hport[4]-tlh-3;
+		view_wport[4] = view_hport[4]-tlh-1;
 	}
 	view_wport[3] = window_get_width();
 	view_hport[0] = 706;//default_window_h-view_hport[3]; //window_get_height()-view_hport[3];
@@ -94,7 +94,7 @@ if (view_current == 4 || view_current == 5)
                 draw_set_alpha(0.3);
             if (sprite_exists(bck_bckimage))
             {
-                draw_sprite_stretched(bck_bckimage,0,bckimage_left,bckimage_top,bckimage_width,bckimage_height);
+                draw_sprite_stretched(bck_bckimage,0,bckimage_left,bckimage_top,view_wport[4],view_wport[4]*bckimage_height/bckimage_width);
             }
             else bckimage = 0;
         }

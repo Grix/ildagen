@@ -1,3 +1,6 @@
+if (view_current != 0)
+	exit;
+
 if (view_current != 1) && (room = rm_ilda)
 	exit;
 
