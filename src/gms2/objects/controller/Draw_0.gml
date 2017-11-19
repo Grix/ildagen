@@ -381,7 +381,7 @@ else if (view_current == 1)
 	//separator lines
 	var t_h4 = camera_get_view_y(view_camera[1]);
 	var t_w1 = view_wport[1];
-	var t_h0 = view_hport[0];
+	var t_h0 = view_hport[1]+camera_get_view_y(view_camera[1]);
 	draw_set_color(c_white);
 	draw_line(t_w1-1, t_h4+10, t_w1-1, t_h0-10);
 	draw_set_color(c_ltgray);

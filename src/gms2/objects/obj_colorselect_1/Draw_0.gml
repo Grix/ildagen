@@ -2,6 +2,7 @@ if (view_current != 0)
     exit;
 
 draw_self();
+
 if (moving)
 {
     activecolor = controller.color1;

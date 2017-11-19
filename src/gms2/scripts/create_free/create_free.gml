@@ -1,8 +1,8 @@
 if (lastpointadded = 0)
 {
     lastpointadded = 1;
-    ds_list_add(free_list,mouse_x/view_wport[4]*$ffff-startpos[0]);
-    ds_list_add(free_list,mouse_y/view_wport[4]*$ffff-startpos[1]);
+    ds_list_add(free_list,window_mouse_get_x()/view_wport[4]*$ffff-startpos[0]);
+    ds_list_add(free_list,(window_mouse_get_y()-23)/view_wport[4]*$ffff-startpos[1]);
     
     //interpolate
     checkpoints = ((ds_list_size(free_list))/2);

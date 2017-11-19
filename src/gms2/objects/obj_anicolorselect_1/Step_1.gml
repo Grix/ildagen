@@ -17,7 +17,7 @@ if (moving == 4)
     ds_list_add(tempundolist,controller.anicolor2);
     ds_list_add(tempundolist,controller.anicolor1);
     ds_list_add(controller.undo_list,"v"+string(tempundolist));
-    controller.anicolor1 = draw_getpixel(obj_cursor.x,obj_cursor.y+view_hport[3]);
+    controller.anicolor1 = draw_getpixel(mouse_x,mouse_y+23);
     moving = 0;
     update_anicolors();
 }

@@ -1,14 +1,14 @@
-if (room == rm_ilda && view_current != 4)
+/*if (room == rm_ilda && view_current != 4)
 	exit;
 if (room == rm_seq && view_current != 4)
 	exit;
 if (room == rm_options && view_current != 0)
-	exit;
+	exit;*/
 	
 //cursor
 if (instance_exists(obj_dropdown))
 {
-	if (window_mouse_get_x() > obj_dropdown.x1 && window_mouse_get_x() < obj_dropdown.x2 && window_mouse_get_y()-23 > obj_dropdown.ty1 && window_mouse_get_y()-23 < obj_dropdown.ty2)
+	if (obj_dropdown.selected != noone)
 		window_set_cursor(cr_handpoint);
 	else
 		window_set_cursor(cr_default);
@@ -38,10 +38,10 @@ if (tooltip != "")
     {
         draw_set_alpha(0.8);
         draw_set_color(c_black);
-        draw_rectangle(0,0,string_width(tooltip)+20,string_height(tooltip)+10,0);
+        draw_rectangle(0,23,string_width(tooltip)+20,string_height(tooltip)+10+23,0);
         draw_set_color(c_white);
         draw_set_alpha(1);
-        draw_text(5,5,tooltip);
+        draw_text(5,5+23,tooltip);
 		draw_set_color(c_black);
     }
 	if (scrollcursor_flag == 1)

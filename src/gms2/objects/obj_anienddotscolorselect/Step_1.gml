@@ -6,9 +6,9 @@ if (!visible)
     exit;
     
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
-    {
+{
     controller.tooltip = "Changes color of ending dots at the end of the animation\n(Sliders represent red, green and blue) ";
-    } 
+} 
         
 if (moving == 4)
 {
@@ -17,7 +17,7 @@ if (moving == 4)
     ds_list_add(tempundolist,controller.anicolor2);
     ds_list_add(tempundolist,controller.anicolor1);
     ds_list_add(controller.undo_list,"v"+string(tempundolist));
-    controller.anienddotscolor = draw_getpixel(obj_cursor.x,obj_cursor.y+view_hport[3]);
+    controller.anienddotscolor = draw_getpixel(mouse_x,mouse_y+23);
     moving = 0;
     update_anicolors();
 }

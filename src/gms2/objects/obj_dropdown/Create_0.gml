@@ -4,6 +4,7 @@ controller.menu_open = 1;
 
 rdy = 0;
 selected = noone;
+y += 23;
 
 with (obj_dropdown)
 {
@@ -42,5 +43,3 @@ separator_color = c_dkgray;
 text_color = $828282;
 
 bak_alpha = 1;
-
-log(x,y)
