@@ -25,7 +25,7 @@ if (window_get_height() != controller.window_heightprev || window_get_width() !=
 	camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
 	camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
 	camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
-	camera_set_view_pos(view_camera[6], 987, view_yport[6]-view_hport[3]);
+	camera_set_view_pos(view_camera[6], 987, camera_get_view_y(view_camera[0])+view_yport[6]-view_hport[3]);
 	tlsurf_y = camera_get_view_y(view_camera[1]);
 	tlw = view_wport[1];
 	tlh = 128-16;
@@ -37,33 +37,6 @@ if (window_get_height() != controller.window_heightprev || window_get_width() !=
 	
 	controller.window_heightprev = window_get_height();
 	controller.window_widthprev = window_get_width();
-	/*view_hport[4] = window_get_height()/970*136-view_hport[3];
-	view_wport[4] = view_hport[4]-tlh-1;
-	view_wport[3] = window_get_width();
-	view_wport[0] = 316;
-	view_hport[0] = 706;//default_window_h-view_hport[3]; //window_get_height()-view_hport[3];
-	view_hport[6] = window_get_height()-view_hport[3]-view_hport[0];
-	view_wport[6] = view_wport[0];
-	view_hport[1] = 136; //window_get_height()-view_hport[4];
-	view_wport[1] = view_wport[4];
-	view_yport[1] = view_hport[4]+view_hport[3];
-	view_yport[6] = view_hport[3]+view_hport[0];
-	tlw = view_wport[1]-16;
-	tlh = view_hport[1]/705*136-16;
-	camera_set_view_size(view_camera[0], view_wport[0], view_hport[0]);
-	camera_set_view_size(view_camera[3], view_wport[3], view_hport[3]);
-	camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
-	camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
-	camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
-	//camera_set_view_pos(view_camera[3], 0, -25);
-	view_xport[0] = view_wport[4];
-	view_xport[6] = view_xport[0];
-	camera_set_view_pos(view_camera[6], 512, view_yport[6]-view_hport[3]);
-	
-	controller.window_heightprev = window_get_height();
-	controller.window_widthprev = window_get_width();
-	
-	*/
 }
 
 if (view_current == 4)
@@ -109,6 +82,7 @@ else if (view_current == 1)
 {
 	gpu_set_blendenable(false);
 	draw_clear(controller.c_ltltgray);
+
 	gpu_set_blendenable(true);
 	
 	refresh_timeline_surface();
@@ -141,6 +115,23 @@ else if (view_current == 0)
 	gpu_set_blendenable(false);
 	draw_clear(controller.c_ltltgray);
 	
+	//separator lines
+	draw_set_color(c_white);
+	var t_h0 = view_hport[0];
+	var t_w0 = view_wport[0];
+	var t_x0 = camera_get_view_x(view_camera[0]);
+	var t_y0 = camera_get_view_y(view_camera[0]);
+	draw_line(t_x0+10, t_y0+424, t_x0+t_w0-10, t_y0+424);
+	draw_line(t_x0+10, t_y0+567, t_x0+t_w0-10, t_y0+567);
+	draw_set_color(c_ltgray);
+	draw_line(t_x0+10, t_y0+423, t_x0+t_w0-10, t_y0+423);
+	draw_line(t_x0+10, t_y0+566, t_x0+t_w0-10, t_y0+566);
+	draw_set_color(controller.c_gold);
+	draw_line(t_x0+1, t_y0-1, t_x0+1, t_y0+t_h0+1);
+	draw_set_color(c_black);
+	draw_line(t_x0, t_y0-1, t_x0, t_y0+t_h0+1);
+	draw_line(t_x0+2, t_y0-1, t_x0+2, t_y0+t_h0+1);
+	
 	with (obj_section1_parent)
 	{
 		if (!transparent && !visible)
@@ -161,7 +152,21 @@ else if (view_current == 0)
 }
 else if (view_current == 6)
 {
+	gpu_set_blendenable(false);
+	
 	draw_clear(controller.c_ltltgray);
+	
+	//separator lines
+	var t_h6 = view_hport[6];
+	var t_x0 = camera_get_view_x(view_camera[0]);
+	var t_y6 = camera_get_view_y(view_camera[6]);
+	draw_set_color(controller.c_gold);
+	draw_line(t_x0+1, t_y6-1, t_x0+1, t_y6+t_h6+1);
+	draw_set_color(c_black);
+	draw_line(t_x0, t_y6-1, t_x0, t_y6+t_h6+1);
+	draw_line(t_x0+2, t_y6-1, t_x0+2, t_y6+t_h6+1);
+	
+	gpu_set_blendenable(true);
 }
 else if (view_current == 3)
 {
