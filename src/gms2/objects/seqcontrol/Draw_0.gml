@@ -8,11 +8,11 @@ if (window_get_height() != controller.window_heightprev || window_get_width() !=
 	
 	view_hport[0] = 706;
 	view_wport[0] = 316;
-	view_wport[1] = window_get_width()-view_wport[0];
-	view_hport[1] = (window_get_height()-view_hport[3])/706*(706-136);
-	view_yport[1] = view_hport[4]+view_hport[3];
 	view_wport[4] = view_wport[1];
-	view_hport[4] = window_get_height()-view_hport[3]-view_hport[1];
+	view_hport[4] = (window_get_height()-view_hport[3])*0.2*(power(window_get_height()/706, 0.8));
+	view_wport[1] = window_get_width()-view_wport[0];
+	view_hport[1] = window_get_height()-view_hport[3]-view_hport[4];
+	view_yport[1] = view_hport[4]+view_hport[3];
 	view_xport[0] = view_wport[1];
 	view_wport[6] = view_wport[0];
 	view_hport[6] = window_get_height()-view_hport[3]-view_hport[0];
@@ -46,7 +46,7 @@ if (view_current == 4)
 	
     //draws laser preview
     if  (!controller.laseron) and 
-        ((frame_surf_refresh == 1) or !surface_exists(frame_surf) or !surface_exists(frame_surf_large) or !surface_exists(frame3d_surf_large) or !surface_exists(frame3d_surf))
+        ((frame_surf_refresh == 1) or !surface_exists(frame_surf) or /*!surface_exists(frame_surf_large) or !surface_exists(frame3d_surf_large) or*/ !surface_exists(frame3d_surf))
     {
         if (largepreview)
             refresh_seq_surface_large();
@@ -64,6 +64,26 @@ if (view_current == 4)
         draw_set_halign(fa_center);
         draw_text(view_wport[4]/2,view_hport[2]/2,"Laser output active: "+string(controller.dac[| 1]));
         draw_set_halign(fa_left);
+    }
+	else if (largepreview)
+    {
+        /*draw_set_colour(c_black);
+        draw_rectangle(89,49,691,651,0);
+        draw_set_color(c_white);
+        
+        if (viewmode != 0)
+            draw_surface_part(frame3d_surf_large,0,0,600,600,90,50);
+            
+        if (viewmode != 1)
+            draw_surface_part(frame_surf_large,0,0,600,600,90,50);*/
+    }
+    else
+    {
+        if (viewmode != 0)
+            draw_surface_part(frame3d_surf,0,0,view_wport[4],view_hport[4],0,0);
+            
+        if (viewmode != 1)
+            draw_surface_part(frame_surf,0,0,view_wport[4],view_hport[4],0,0);
     }
     
     draw_set_alpha(0.8);
@@ -88,27 +108,6 @@ else if (view_current == 1)
 	refresh_timeline_surface();
 	
     draw_timeline();
-	
-    /*else if (largepreview)
-    {
-        draw_set_colour(c_black);
-        draw_rectangle(89,49,691,651,0);
-        draw_set_color(c_white);
-        
-        if (viewmode != 0)
-            draw_surface_part(frame3d_surf_large,0,0,600,600,90,50);
-            
-        if (viewmode != 1)
-            draw_surface_part(frame_surf_large,0,0,600,600,90,50);
-    }
-    else
-    {
-        if (viewmode != 0)
-            draw_surface_part(frame3d_surf,0,0,509,135,0,0);
-            
-        if (viewmode != 1)
-            draw_surface_part(frame_surf,0,0,509,135,0,0);
-    }*/
 }
 else if (view_current == 0)
 {

@@ -426,7 +426,7 @@ else if (scroll_moving == 2)
 controller.scrollcursor_flag = 0;
     
 if (window_mouse_get_x() > tlw) 
-or (mouse_y < tlsurf_y)
+or (window_mouse_get_y() < view_hport[3]+view_hport[4])
 or (controller.dialog_open)
 or (controller.menu_open)
     exit;
