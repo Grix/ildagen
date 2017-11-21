@@ -1,6 +1,7 @@
 if (view_current != 0)
     exit;
 
+gpu_set_blendenable(false);
 draw_self();
 
 if (moving)

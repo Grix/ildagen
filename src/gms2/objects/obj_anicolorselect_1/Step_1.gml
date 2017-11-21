@@ -17,7 +17,14 @@ if (moving == 4)
     ds_list_add(tempundolist,controller.anicolor2);
     ds_list_add(tempundolist,controller.anicolor1);
     ds_list_add(controller.undo_list,"v"+string(tempundolist));
-    controller.anicolor1 = draw_getpixel(mouse_x,mouse_y+23);
+    if (mouse_y-y < 47+9)
+		controller.anicolor1 = make_color_rgb(255, floor((mouse_x-x)/8)*51, 0);
+	else if (mouse_y-y < 47+18)
+		controller.anicolor1 = make_color_rgb(0, 255, floor((mouse_x-x)/8)*51);
+	else if (mouse_y-y < 47+27)
+		controller.anicolor1 = make_color_rgb(floor((mouse_x-x)/8)*51, 0, 255);
+	else if (mouse_y-y < 47+36)
+		controller.anicolor1 = make_color_rgb(255 - floor((mouse_x-x)/8)*51, 255 - floor((mouse_x-x)/8)*51, 255 - floor((mouse_x-x)/8)*51);
     moving = 0;
     update_anicolors();
 }

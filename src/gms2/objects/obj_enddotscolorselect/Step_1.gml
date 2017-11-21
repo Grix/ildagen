@@ -16,7 +16,14 @@ if (moving == 4)
     ds_list_add(tempundolist,controller.color2);
     ds_list_add(tempundolist,controller.color1);
     ds_list_add(controller.undo_list,"b"+string(tempundolist));
-    controller.enddotscolor = draw_getpixel(mouse_x,mouse_y+23);
+    if (mouse_y-y < 47+9)
+		controller.enddotscolor = make_color_rgb(255, floor((mouse_x-x)/8)*51, 0);
+	else if (mouse_y-y < 47+18)
+		controller.enddotscolor = make_color_rgb(0, 255, floor((mouse_x-x)/8)*51);
+	else if (mouse_y-y < 47+27)
+		controller.enddotscolor = make_color_rgb(floor((mouse_x-x)/8)*51, 0, 255);
+	else if (mouse_y-y < 47+36)
+		controller.enddotscolor = make_color_rgb(255 - floor((mouse_x-x)/8)*51, 255 - floor((mouse_x-x)/8)*51, 255 - floor((mouse_x-x)/8)*51);
     moving = 0;
     update_colors();
 }
