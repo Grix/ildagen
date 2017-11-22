@@ -304,7 +304,6 @@ if (view_current == 4 || view_current == 5)
 }
 else if (view_current == 0)
 {
-	//shader_set(sh_default);
     gpu_set_blendenable(false);
 	
 	draw_clear(c_ltltgray);

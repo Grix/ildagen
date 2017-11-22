@@ -479,14 +479,6 @@
             }
         },
         {
-            "Key": "0ce35a36-746a-4cf8-92fe-fdcf3bea8a33",
-            "Value": {
-                "id": "a3cc7e73-0f51-4f80-9c15-2a489def2389",
-                "resourcePath": "shaders\\sh_default\\sh_default.yy",
-                "resourceType": "GMShader"
-            }
-        },
-        {
             "Key": "0d291712-cd2e-4782-b202-23703b32ca51",
             "Value": {
                 "id": "93322e00-7312-4e64-b3e8-bb4ddad89977",
@@ -1548,14 +1540,6 @@
                 "id": "ec9eb214-ed09-436b-9068-13ab1413640b",
                 "resourcePath": "scripts\\func_startofframe_blank\\func_startofframe_blank.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "2c642215-3cab-4001-8778-06ff56dec421",
-            "Value": {
-                "id": "be73c440-23f4-4c92-a158-7e13681239e9",
-                "resourcePath": "sprites\\bck_ilda\\bck_ilda.yy",
-                "resourceType": "GMSprite"
             }
         },
         {
@@ -5612,14 +5596,6 @@
                 "id": "9ac76d85-a869-4855-870c-fe49ce929e99",
                 "resourcePath": "datafiles_yy\\font_arial.ild.yy",
                 "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "aeb0b6e4-0610-4b23-906b-bf1d7a7b6480",
-            "Value": {
-                "id": "10f4f22f-0088-4eb8-aa13-6cdff5adc944",
-                "resourcePath": "sprites\\bck_seq\\bck_seq.yy",
-                "resourceType": "GMSprite"
             }
         },
         {

@@ -263,7 +263,7 @@
     "mvc": "1.0",
     "views": [
         {"id": "4fc6c1e0-3394-47cc-a5a3-1c04d3fab379","hborder": 32,"hport": 705,"hspeed": -1,"hview": 705,"inherit": false,"modelName": "GMRView","objId": "00000000-0000-0000-0000-000000000000","mvc": "1.0","vborder": 32,"visible": true,"vspeed": -1,"wport": 1300,"wview": 1300,"xport": 0,"xview": 0,"yport": 23,"yview": 0},
-        {"id": "3506626b-f114-4b78-8da3-dde7bebfc1c4","hborder": 32,"hport": 768,"hspeed": -1,"hview": 768,"inherit": false,"modelName": "GMRView","objId": "00000000-0000-0000-0000-000000000000","mvc": "1.0","vborder": 32,"visible": false,"vspeed": -1,"wport": 1024,"wview": 1024,"xport": 0,"xview": 0,"yport": 0,"yview": 0},
+        {"id": "3506626b-f114-4b78-8da3-dde7bebfc1c4","hborder": 32,"hport": 705,"hspeed": -1,"hview": 705,"inherit": false,"modelName": "GMRView","objId": "00000000-0000-0000-0000-000000000000","mvc": "1.0","vborder": 32,"visible": true,"vspeed": -1,"wport": 1300,"wview": 1300,"xport": 0,"xview": 0,"yport": 23,"yview": 0},
         {"id": "e5aaec09-d17c-4a7f-8539-e65b103107f1","hborder": 32,"hport": 768,"hspeed": -1,"hview": 768,"inherit": false,"modelName": "GMRView","objId": "00000000-0000-0000-0000-000000000000","mvc": "1.0","vborder": 32,"visible": false,"vspeed": -1,"wport": 1024,"wview": 1024,"xport": 0,"xview": 0,"yport": 0,"yview": 0},
         {"id": "3135d969-508a-4379-942d-ce3f92d68b19","hborder": 32,"hport": 23,"hspeed": -1,"hview": 23,"inherit": false,"modelName": "GMRView","objId": "00000000-0000-0000-0000-000000000000","mvc": "1.0","vborder": 32,"visible": true,"vspeed": -1,"wport": 1300,"wview": 1300,"xport": 0,"xview": 0,"yport": 0,"yview": 705},
         {"id": "584d2ba3-ba55-4723-9293-d80c39cdc070","hborder": 32,"hport": 768,"hspeed": -1,"hview": 768,"inherit": false,"modelName": "GMRView","objId": "00000000-0000-0000-0000-000000000000","mvc": "1.0","vborder": 32,"visible": false,"vspeed": -1,"wport": 1024,"wview": 1024,"xport": 0,"xview": 0,"yport": 0,"yview": 0},
@@ -273,7 +273,7 @@
     ],
     "viewSettings":     {
         "id": "71dea83f-6385-4fb1-bca2-ceb686273007",
-        "clearDisplayBuffer": true,
+        "clearDisplayBuffer": false,
         "clearViewBackground": false,
         "enableViews": true,
         "inheritViewSettings": false,

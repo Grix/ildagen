@@ -1,6 +1,8 @@
 if (view_current != 0)
     exit;
 
+gpu_set_blendenable(false);
+
 draw_self();
 if (moving)
 {
@@ -19,3 +21,5 @@ draw_set_color(c_aqua);
     draw_rectangle(x+5,y-30,x+42,y-11,1);
 
 draw_set_color(c_black);
+
+gpu_set_blendenable(true);

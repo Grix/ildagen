@@ -1,5 +1,7 @@
 if (view_current != 0)
     exit;
+	
+gpu_set_blendenable(false);
     
 draw_self();
 if (moving)
@@ -19,3 +21,5 @@ draw_set_color(c_black);
     draw_rectangle(x+5,y-30,x+42,y-11,1);
 
 draw_sprite(spr_tt_secondarycol, 0, x-5, y-60);
+
+gpu_set_blendenable(true);
