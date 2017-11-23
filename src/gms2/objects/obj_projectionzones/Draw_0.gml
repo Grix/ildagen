@@ -44,6 +44,4 @@ for (i = ds_list_size(t_list)-4; i >= 0; i-=4)
 }
 
 draw_set_alpha(1);
-
-/* */
-/*  */
+draw_set_colour(c_black);

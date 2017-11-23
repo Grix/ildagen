@@ -124,7 +124,6 @@ play_sndchannel = FMODGMS_Chan_CreateChannel();
 
 benchmark();
 
-draw_set_font(fnt_tooltip);
 menu_string = "   File      Properties      Edit      Tools      View      Settings      About   ";
 menu_width_start[0] = 0;
 menu_width[0] = string_width("   File   ");

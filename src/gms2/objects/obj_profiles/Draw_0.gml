@@ -51,4 +51,4 @@ if (!surface_exists(surf_profilelist))
 }
 
 draw_surface_part(surf_profilelist, 0, round(scrollx), list_width, list_height, x, y);
-
+draw_set_color(c_black);

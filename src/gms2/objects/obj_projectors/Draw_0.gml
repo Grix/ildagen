@@ -78,6 +78,7 @@ if (!surface_exists(surf_projectorlist))
 }
 
 draw_surface_part(surf_projectorlist, 0, round(scrollx), list_width, list_height, x, y);
+draw_set_color(c_black);
 
 /* */
 /*  */

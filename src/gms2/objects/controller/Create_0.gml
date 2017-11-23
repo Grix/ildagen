@@ -25,6 +25,8 @@ if (os_browser == browser_not_a_browser)
 //ds_set_precision(0.00001); 
 draw_set_circle_precision(24);
 application_surface_enable(false);
+draw_set_font(fnt_tooltip);
+draw_set_color(c_black);
 
 instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-23, "normal", obj_cursor);
 
@@ -313,7 +315,6 @@ colorfunc_string_2 = "";
 colorfunc_string_3 = "";
 blankfunc_string = "";
 
-draw_set_font(fnt_tooltip);
 menu_string = "   File      Properties      Edit      Tools      View      Settings      About   ";
 menu_width_start[0] = 0;
 menu_width[0] = string_width("   File   ");

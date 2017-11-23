@@ -43,8 +43,6 @@ if (endframex < tlw-17)
 
 draw_set_font(fnt_tooltip);
 
-draw_set_alpha(1);
-
 gpu_set_blendenable(true);
         
 draw_set_alpha(0.8);

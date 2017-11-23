@@ -17,6 +17,8 @@ with (seqcontrol)
 }
 output_buffer_ready = false;
 
+forceresize = true;
+
 if (room == rm_ilda)
     window_set_caption("LaserShowGen - Editor Mode");
 else if (room == rm_seq)

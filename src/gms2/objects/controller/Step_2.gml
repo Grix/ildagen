@@ -1,6 +1,5 @@
 if (ex_patch_window_close_event())
     exit_confirm();
-
     
 if (keyboard_check_pressed(ord("M")))
 {
@@ -51,6 +50,54 @@ else
 
 if (room != rm_ilda) 
 	exit;
+	
+//if (window_get_height() != window_heightprev || window_get_width() != window_widthprev) || true
+if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window_get_width() != view_wport[3])
+&& !(window_get_height() == 0 || window_get_width() == 0)
+|| forceresize
+{
+	if (window_get_height() < default_window_h || window_get_width() < default_window_w)
+		window_set_size(default_window_w, default_window_h);
+		
+	log("Resized window");
+	forceresize = false;
+	
+	view_hport[4] = window_get_height()-view_hport[1]-view_hport[3];
+	tlh = round(view_hport[4]/(512/44));
+	view_wport[4] = view_hport[4]-tlh-1;
+	tlw = view_wport[4];
+	view_wport[0] = window_get_width()-view_wport[4];//788
+	if (view_wport[0] < 788)
+	{
+		window_set_size(default_window_w, default_window_h);
+	
+		view_hport[4] = window_get_height()-view_hport[1]-view_hport[3];
+		tlw = view_wport[4];
+		tlh = round(view_hport[4]/(512/42));
+		view_wport[4] = view_hport[4]-tlh-1;
+	}
+	view_wport[3] = window_get_width();
+	view_hport[0] = 706;//default_window_h-view_hport[3]; //window_get_height()-view_hport[3];
+	view_hport[1] = 149; //window_get_height()-view_hport[4];
+	view_hport[6] = window_get_height()-view_hport[3]-view_hport[0];
+	view_wport[6] = view_wport[0];
+	view_wport[1] = view_wport[4];
+	view_yport[1] = view_hport[4]+view_hport[3];
+	view_yport[6] = view_hport[3]+view_hport[0];
+	camera_set_view_size(view_camera[0], view_wport[0], view_hport[0]);
+	camera_set_view_size(view_camera[3], view_wport[3], view_hport[3]);
+	camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
+	camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
+	camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
+	//camera_set_view_pos(view_camera[3], 0, -25);
+	view_xport[0] = view_wport[4];
+	view_xport[6] = view_xport[0];
+	camera_set_view_pos(view_camera[6], 512, view_yport[6]-view_hport[3]);
+	tlorigo_y = camera_get_view_y(view_camera[4])+view_hport[4]-tlh;//view_hport[4];
+	
+	/*window_heightprev = window_get_height();
+	window_widthprev = window_get_width();*/
+}
 
 el_list = frame_list[| frame];
 

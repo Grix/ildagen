@@ -16,4 +16,5 @@ draw_set_colour(c_dkgray);
     }
     
 draw_sprite( ad, 0, x+1,y+21);
+draw_set_color(c_black);
 

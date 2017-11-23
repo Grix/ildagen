@@ -1,43 +1,5 @@
 if (room != rm_seq) 
     exit;
-	
-if (window_get_height() != controller.window_heightprev || window_get_width() != controller.window_widthprev) || true
-{
-	if (window_get_height() < controller.default_window_h || window_get_width() < controller.default_window_w)
-		window_set_size(controller.default_window_w, controller.default_window_h);
-	
-	view_hport[0] = 706;
-	view_wport[0] = 316;
-	view_wport[4] = view_wport[1];
-	view_hport[4] = (window_get_height()-view_hport[3])*0.2*(power(window_get_height()/706, 0.8));
-	view_wport[1] = window_get_width()-view_wport[0];
-	view_hport[1] = window_get_height()-view_hport[3]-view_hport[4];
-	view_yport[1] = view_hport[4]+view_hport[3];
-	view_xport[0] = view_wport[1];
-	view_wport[6] = view_wport[0];
-	view_hport[6] = window_get_height()-view_hport[3]-view_hport[0];
-	view_xport[6] = view_xport[0];
-	view_yport[6] = view_hport[3]+view_hport[0];
-	view_wport[3] = window_get_width();
-	view_yport[3] = 0;
-	camera_set_view_size(view_camera[0], view_wport[0], view_hport[0]);
-	camera_set_view_size(view_camera[3], view_wport[3], view_hport[3]);
-	camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
-	camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
-	camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
-	camera_set_view_pos(view_camera[6], 987, camera_get_view_y(view_camera[0])+view_yport[6]-view_hport[3]);
-	tlsurf_y = camera_get_view_y(view_camera[1]);
-	tlw = view_wport[1];
-	tlh = 128-16;
-	tls = tlh+tlsurf_y+16; //start of layer area, seen from outside surface
-	lbh = view_hport[1]-32-tlh;
-	lbsh = tlh+15+lbh; //start of bottom scrollbar, seen from inside surface
-	tlhalf = tlh/2;
-	tlthird = tlh/3;
-	
-	controller.window_heightprev = window_get_height();
-	controller.window_widthprev = window_get_width();
-}
 
 if (view_current == 4)
 {	
@@ -97,6 +59,7 @@ if (view_current == 4)
         draw_set_color(c_red);
         draw_text(32,7,"Warning: Dropping frames. Actual FPS: "+string(fps));
     }
+	draw_set_color(c_black);
 }
 else if (view_current == 1)
 {

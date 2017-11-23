@@ -58,13 +58,10 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 
 	surface_set_target(timeline_surf_temp);
 
-	    draw_set_alpha(1);
 	    draw_set_font(fnt_small);
 	    gpu_set_blendenable(false);
     
 	    //layers
-    
-	    draw_set_color(c_black);
 	    ypos_perm = -layerbary;
 	    for (i = 0; i < ds_list_size(layer_list);i++)
 	    {
@@ -325,7 +322,6 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	surface_reset_target();
 	
 	draw_set_alpha(1);
-	draw_set_color(c_white);
 	draw_set_font(fnt_tooltip);
 	
 	ypos_perm += layerbary;
