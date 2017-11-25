@@ -46,7 +46,7 @@ if (view_current == 4 || view_current == 5)
                 draw_set_alpha(0.3);
             if (sprite_exists(bck_bckimage))
             {
-                draw_sprite_stretched(bck_bckimage,0,bckimage_left,t_y+bckimage_top,view_wport[4],view_wport[4]*bckimage_height/bckimage_width);
+                draw_sprite_stretched(bck_bckimage,0,bckimage_left*view_wport[4],t_y+bckimage_top*view_hport[4],bckimage_width*view_wport[4],bckimage_height*view_wport[4]);
             }
             else bckimage = 0;
         }

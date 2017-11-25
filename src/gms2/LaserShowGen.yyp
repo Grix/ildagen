@@ -487,6 +487,14 @@
             }
         },
         {
+            "Key": "0d2fef5b-f7c1-4433-9869-8b8292c0f2a0",
+            "Value": {
+                "id": "a3affdb6-bfbf-4786-8ec3-c7a02f8fab42",
+                "resourcePath": "objects\\obj_bckimage\\obj_bckimage.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "0d836c76-610f-471b-8af1-c1295d7eb92a",
             "Value": {
                 "id": "aeb79d43-7187-442f-8555-7177e126889a",
@@ -6823,6 +6831,14 @@
             }
         },
         {
+            "Key": "d7a74022-b9e4-4c6b-bd5e-d5d4074583ec",
+            "Value": {
+                "id": "8ad35a25-71b2-4fa5-900f-8ee1e3df400d",
+                "resourcePath": "scripts\\free_scalable_surfaces\\free_scalable_surfaces.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d7c35dcb-2f71-4604-962f-4d0fce2861a2",
             "Value": {
                 "id": "9e9e36aa-6f88-4385-b4fd-9422112a0153",
@@ -8770,7 +8786,8 @@
         "0f493bf8-f1dc-4806-a320-5e0e61f17637",
         "aacbc5c4-9a04-47cf-bf80-8bca7a29e481",
         "a4da6f21-1da4-416b-b964-6d5efcd43acd",
-        "bd822e39-4154-4ae4-90c3-728aa0271c17"
+        "bd822e39-4154-4ae4-90c3-728aa0271c17",
+        "d7a74022-b9e4-4c6b-bd5e-d5d4074583ec"
     ],
     "tutorial": ""
 }

@@ -94,7 +94,7 @@ if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window
 	camera_set_view_pos(view_camera[6], 512, view_yport[6]-view_hport[3]);
 	tlorigo_y = camera_get_view_y(view_camera[4])+view_hport[4]-tlh;
 	
-	//todo free surfaces
+	free_scalable_surfaces();
 }
 
 el_list = frame_list[| frame];

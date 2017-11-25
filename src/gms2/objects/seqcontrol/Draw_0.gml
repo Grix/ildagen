@@ -66,7 +66,11 @@ if (view_current == 4)
 else if (view_current == 1)
 {
 	gpu_set_blendenable(false);
-	draw_clear(controller.c_ltltgray);
+	
+	if (largepreview)
+		draw_clear(c_black);
+    else
+		draw_clear(controller.c_ltltgray);
 
 	gpu_set_blendenable(true);
 	

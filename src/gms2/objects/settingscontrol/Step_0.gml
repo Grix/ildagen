@@ -21,6 +21,8 @@ if (window_get_height() != (view_hport[3]+view_hport[0]) || window_get_width() !
 	camera_set_view_size(view_camera[0], view_wport[0], view_hport[0]);
 	camera_set_view_size(view_camera[3], view_wport[3], view_hport[3]);
 	camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
+	
+	free_scalable_surfaces();
 }
 
 if (keyboard_check_pressed(vk_tab))
