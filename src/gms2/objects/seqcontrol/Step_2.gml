@@ -62,6 +62,15 @@ if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window
 	lbsh = tlh+15+lbh; //start of bottom scrollbar, seen from inside surface
 	tlhalf = tlh/2;
 	tlthird = tlh/3;
+	timeline_surf_length = 0;
+	if (surface_exists(frame_surf))
+		surface_free(frame_surf);
+	if (surface_exists(frame3d_surf))
+		surface_free(frame3d_surf);
+	if (surface_exists(frame_surf_large))
+		surface_free(frame_surf_large);
+	if (surface_exists(frame3d_surf_large))
+		surface_free(frame3d_surf_large)
 }
 
 if (instance_exists(obj_dropdown))

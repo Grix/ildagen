@@ -77,8 +77,8 @@ if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window
 		view_wport[4] = view_hport[4]-tlh-1;
 	}
 	view_wport[3] = window_get_width();
-	view_hport[0] = 706;//default_window_h-view_hport[3]; //window_get_height()-view_hport[3];
-	view_hport[1] = 149; //window_get_height()-view_hport[4];
+	view_hport[0] = 706;
+	view_hport[1] = 149;
 	view_hport[6] = window_get_height()-view_hport[3]-view_hport[0];
 	view_wport[6] = view_wport[0];
 	view_wport[1] = view_wport[4];
@@ -89,14 +89,12 @@ if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window
 	camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
 	camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
 	camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
-	//camera_set_view_pos(view_camera[3], 0, -25);
 	view_xport[0] = view_wport[4];
 	view_xport[6] = view_xport[0];
 	camera_set_view_pos(view_camera[6], 512, view_yport[6]-view_hport[3]);
-	tlorigo_y = camera_get_view_y(view_camera[4])+view_hport[4]-tlh;//view_hport[4];
+	tlorigo_y = camera_get_view_y(view_camera[4])+view_hport[4]-tlh;
 	
-	/*window_heightprev = window_get_height();
-	window_widthprev = window_get_width();*/
+	//todo free surfaces
 }
 
 el_list = frame_list[| frame];

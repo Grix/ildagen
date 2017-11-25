@@ -1,9 +1,9 @@
 //refreshes the laser show preview surface in the sequencer mode room
 
 if (!surface_exists(frame_surf))
-    frame_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_wport[4]))));
+    frame_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_hport[4]))));
 if (!surface_exists(frame3d_surf))
-    frame3d_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_wport[4]))));
+    frame3d_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_hport[4]))));
 
 if (viewmode != 1)
 {
@@ -26,6 +26,7 @@ var t_scaley = 1/$FFFF*view_hport[4];
 var t_scalex = 1/$FFFF*view_wport[4];
 var t_centerx = view_wport[4]/2;
 var t_centery = view_hport[4]/2;
+var t_scalediag = sqrt(view_hport[4]*view_hport[4]+view_wport[4]*view_wport[4])/2;
     
 //check which should be drawn
 for (j = 0; j < ds_list_size(layer_list); j++)
@@ -183,8 +184,8 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                     if (!bl)
                     {
                         pdir = point_direction(t_centerx, t_centery, xo+ xp*t_scaley,yo+ yp*t_scaley);
-                        xxp = t_centerx+cos(degtorad(-pdir))*view_wport[4];
-                        yyp = t_centery+sin(degtorad(-pdir))*view_wport[4];
+                        xxp = t_centerx+cos(degtorad(-pdir))*t_scalediag;
+                        yyp = t_centery+sin(degtorad(-pdir))*t_scalediag;
                         
                         if (xpp == xp) and (ypp == yp) and !(blp)
                         {
@@ -195,8 +196,8 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                         else
                         {
                             pdir_p = point_direction(t_centerx,t_centery,xo+ xpp*t_scaley,yo+ ypp*t_scaley);
-                            xxp_p = t_centerx+cos(degtorad(-pdir_p))*view_wport[4];
-                            yyp_p = t_centery+sin(degtorad(-pdir_p))*view_wport[4];
+                            xxp_p = t_centerx+cos(degtorad(-pdir_p))*t_scalediag;
+                            yyp_p = t_centery+sin(degtorad(-pdir_p))*t_scalediag;
                             draw_triangle_colour(t_centerx,t_centery,xxp_p,yyp_p,xxp,yyp,c,c_black,c_black,0);
                         }
                     }
@@ -212,3 +213,4 @@ for (j = 0; j < ds_list_size(layer_list); j++)
   
 draw_set_alpha(1);
 gpu_set_blendmode(bm_normal);
+draw_set_color(c_black);

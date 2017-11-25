@@ -1,8 +1,8 @@
 //refreshes the laser show preview surface in the sequencer mode room
 if (!surface_exists(frame_surf_large))
-    frame_surf_large = surface_create(1024,1024);
+    frame_surf_large = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_hport[4]+view_hport[1]))));
 if (!surface_exists(frame3d_surf_large))
-    frame3d_surf_large = surface_create(1024,1024);
+    frame3d_surf_large = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_hport[4]+view_hport[1]))));
 
 if (viewmode != 1)
 {
@@ -19,6 +19,12 @@ if (viewmode != 0)
 }
 
 correctframe = round(tlpos/1000*projectfps);
+
+var t_scaley = 1/$FFFF*(view_hport[4]+view_hport[1]);
+var t_scalex = 1/$FFFF*view_wport[4];
+var t_centerx = view_wport[4]/2;
+var t_centery = (view_hport[4]+view_hport[1])/2;
+var t_scalediag = sqrt((view_hport[4]+view_hport[1])*(view_hport[4]+view_hport[1])+view_wport[4]*view_wport[4])/2;
     
 //check which should be drawn
 for (j = 0; j < ds_list_size(layer_list); j++)
@@ -94,8 +100,8 @@ for (j = 0; j < ds_list_size(layer_list); j++)
             //2d
             if (viewmode != 1)
             {
-                xo = buffer_read(el_buffer,buffer_f32)/$FFFF*594;
-                yo = buffer_read(el_buffer,buffer_f32)/$FFFF*594;  
+                xo = view_wport[4]/2-(view_hport[4]+view_hport[1])/2+buffer_read(el_buffer,buffer_f32)*t_scaley;
+                yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
                 buffer_seek(el_buffer,buffer_seek_relative,42);
                 
                 apply_envelope_frame(110);
@@ -127,10 +133,10 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                         draw_set_color(c);
                         if ((xp == xpp) and (yp == ypp) and !blp)
                         {
-                            draw_point(xo+xp/$FFFF*594,yo+yp/$FFFF*594);
+                            draw_point(xo+xp*t_scaley,yo+yp*t_scaley);
                         }
                         else
-                            draw_line(xo+ xpp/$FFFF*594,yo+ ypp/$FFFF*594,xo+ xp/$FFFF*594,yo+ yp/$FFFF*594);
+                            draw_line(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley);
                     }
                 }
                 surface_reset_target();
@@ -141,8 +147,8 @@ for (j = 0; j < ds_list_size(layer_list); j++)
             {
                 buffer_seek(el_buffer,buffer_seek_start,buffer_start_pos);
                 
-                xo = buffer_read(el_buffer,buffer_f32)/$FFFF*594;
-                yo = buffer_read(el_buffer,buffer_f32)/$FFFF*594;  
+                xo = view_wport[4]/2-(view_hport[4]+view_hport[1])/2+buffer_read(el_buffer,buffer_f32)*t_scaley;
+                yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
                 buffer_seek(el_buffer,buffer_seek_relative,42);
                 
                 apply_envelope_frame(110);
@@ -173,22 +179,22 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                     
                     if (!bl)
                     {
-                        pdir = point_direction(300,300,xo+ xp/$FFFF*594,yo+ yp/$FFFF*594);
-                        xxp = 300+cos(degtorad(-pdir))*600;
-                        yyp = 300+sin(degtorad(-pdir))*600;
+                        pdir = point_direction(t_centerx,t_centery,xo+ xp*t_scaley,yo+ yp*t_scaley);
+                        xxp = t_centerx+cos(degtorad(-pdir))*t_scalediag;
+                        yyp = t_centery+sin(degtorad(-pdir))*t_scalediag;
                         
                         if (xpp == xp) and (ypp == yp) and !(blp)
                         {
                             draw_set_alpha(0.9);
-                            draw_line_colour(300,300,xxp,yyp,c,c_black);
+                            draw_line_colour(t_centerx,t_centery,xxp,yyp,c,c_black);
                             draw_set_alpha(0.7);
                         }
                         else
                         {
-                            pdir_p = point_direction(300,300,xo+ xpp/$FFFF*594,yo+ ypp/$FFFF*594);
-                            xxp_p = 300+cos(degtorad(-pdir_p))*600;
-                            yyp_p = 300+sin(degtorad(-pdir_p))*600;
-                            draw_triangle_colour(300,300,xxp_p,yyp_p,xxp,yyp,c,c_black,c_black,0);
+                            pdir_p = point_direction(t_centerx,t_centery,xo+ xpp*t_scaley,yo+ ypp*t_scaley);
+                            xxp_p = t_centerx+cos(degtorad(-pdir_p))*t_scalediag;
+                            yyp_p = t_centery+sin(degtorad(-pdir_p))*t_scalediag;
+                            draw_triangle_colour(t_centerx,t_centery,xxp_p,yyp_p,xxp,yyp,c,c_black,c_black,0);
                         }
                     }
                 }
@@ -203,3 +209,4 @@ for (j = 0; j < ds_list_size(layer_list); j++)
   
 draw_set_alpha(1);
 gpu_set_blendmode(bm_normal);
+draw_set_color(c_black);

@@ -4,6 +4,7 @@ el_list = ds_list_find_value(frame_list,frame);
 
 var t_div = $ffff/view_wport[4];
 var t_wporthalf = view_wport[4]/2;
+var t_scalediag = sqrt(view_hport[4]*view_hport[4]+view_wport[4]*view_wport[4])/2;
 
 gpu_set_blendmode(bm_add);
 draw_set_alpha(0.8);
@@ -34,10 +35,10 @@ for (i = 0;i < ds_list_size(el_list);i++)
             
             pdir = point_direction(t_wporthalf,t_wporthalf,xo+ xp/t_div,yo+ yp/t_div);
             npdir = point_direction(t_wporthalf,t_wporthalf,xo+ nxp/t_div,yo+ nyp/t_div);
-            xxp = t_wporthalf+cos(degtorad(-pdir))*view_wport[4];
-            yyp = t_wporthalf+sin(degtorad(-pdir))*view_wport[4];
-            nxxp = t_wporthalf+cos(degtorad(-npdir))*view_wport[4];
-            nyyp = t_wporthalf+sin(degtorad(-npdir))*view_wport[4];
+            xxp = t_wporthalf+cos(degtorad(-pdir))*t_scalediag;
+            yyp = t_wporthalf+sin(degtorad(-pdir))*t_scalediag;
+            nxxp = t_wporthalf+cos(degtorad(-npdir))*t_scalediag;
+            nyyp = t_wporthalf+sin(degtorad(-npdir))*t_scalediag;
             
             if (abs(xp-nxp) < 8) && (abs(yp-nyp) < 8) && !(ds_list_find_value(new_list,nextpos-2))
             {

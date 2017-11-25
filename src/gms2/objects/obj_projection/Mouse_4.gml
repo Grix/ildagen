@@ -1,7 +1,5 @@
 if (instance_exists(obj_dropdown))
     exit;
-if (!_visible)
-    exit;
 
 if (room == rm_seq)
 {
