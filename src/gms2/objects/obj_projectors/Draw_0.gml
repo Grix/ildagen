@@ -1,4 +1,3 @@
-draw_set_alpha(1);
 if (scrollh > list_height)
 {
     draw_set_colour(c_white);
@@ -79,6 +78,3 @@ if (!surface_exists(surf_projectorlist))
 
 draw_surface_part(surf_projectorlist, 0, round(scrollx), list_width, list_height, x, y);
 draw_set_color(c_black);
-
-/* */
-/*  */

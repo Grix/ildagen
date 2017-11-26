@@ -1,4 +1,3 @@
-draw_set_alpha(1);
 if (scrollh > list_height)
 {
     draw_set_colour(c_white);
