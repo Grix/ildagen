@@ -1,6 +1,6 @@
 highlight_close = false;
-
-if (mouse_x >= (x+670)) && (mouse_x <= (x+700)) && (mouse_y >= y) && (mouse_y <= (y+20))
+//todo fix
+if (window_mouse_get_x() >= (670)) && (window_mouse_get_x() <= (700)) && (window_mouse_get_y() >= y) && (window_mouse_get_x() <= (y+20))
 {
     controller.tooltip = "Click to close advertisement.";
     highlight_close = true;

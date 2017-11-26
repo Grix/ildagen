@@ -5,8 +5,9 @@ visible = !ds_list_empty(controller.semaster_list);
 	
 if (!visible)
 	exit;
-
-image_index = 0;
+	
+var t_foundtrue = false;
+var t_foundfalse = false;
 
 for (var i = 0; i < ds_list_size(controller.el_list); i++)
 {
@@ -18,17 +19,19 @@ for (var i = 0; i < ds_list_size(controller.el_list); i++)
         if (elid_temp == ds_list_find_value(controller.semaster_list, j))
         {
             if (t_list[| 11] == true)
-				image_index = 1;
-			else if (image_index == 1)
-			{
-				image_index = 2;
-				break;
-			} //todo will this be wrong if the last element is true but the rest false?
-        }
-    }
-	if (image_index == 2)
-		break;
+				t_foundtrue = true;
+			else 
+				t_foundfalse = true;
+		}	
+	}
 }
+
+if (t_foundtrue && t_foundfalse)
+	image_index = 2;
+else if (t_foundtrue)
+	image_index = 1;
+else
+	image_index = 0;
 	
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
 {

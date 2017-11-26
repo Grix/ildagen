@@ -21,10 +21,10 @@ if (format > 2)
         ds_list_add(frame_list_parse, bytes); 
             
         //max and min
-        if (bytes/128 > xmax)
-            xmax = bytes/128;
-        if (bytes/128 < xmin)
-            xmin = bytes/128;
+        if (bytes > xmax)
+            xmax = bytes;
+        if (bytes < xmin)
+            xmin = bytes;
             
         i+=(2);
         //y
@@ -38,10 +38,10 @@ if (format > 2)
         bytes = $ffff-bytes;
         ds_list_add(frame_list_parse, bytes); 
         
-        if (bytes/128 > ymax)
-            ymax = bytes/128;
-        if (bytes/128 < ymin)
-            ymin = bytes/128;
+        if (bytes> ymax)
+            ymax = bytes;
+        if (bytes < ymin)
+            ymin = bytes;
             
         i+=(2+(format == 4)*2);
         
@@ -76,10 +76,10 @@ else
         i+=(2);
         
         //max and min
-        if (bytes/128 > xmax)
-            xmax = bytes/128;
-        if (bytes/128 < xmin)
-            xmin = bytes/128;
+        if (bytes > xmax)
+            xmax = bytes;
+        if (bytes < xmin)
+            xmin = bytes;
             
             
         //y
@@ -94,10 +94,10 @@ else
         ds_list_add(frame_list_parse, bytes); 
         i+=(2+(format == 0)*2);
         
-        if (bytes/128 > ymax)
-            ymax = bytes/128;
-        if (bytes/128 < ymin)
-            ymin = bytes/128;
+        if (bytes > ymax)
+            ymax = bytes;
+        if (bytes < ymin)
+            ymin = bytes;
         
         //blank
         blank = ((get_byte() & $40) > 0);

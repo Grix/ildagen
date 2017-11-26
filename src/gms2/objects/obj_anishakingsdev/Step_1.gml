@@ -2,7 +2,7 @@ if (instance_exists(obj_dropdown))
     exit;
 if (moving == 1)
 {
-    controller.anishaking_sdev = clamp((mouse_x-bbox_left)/72*50, 0, 50);
+    controller.anishaking_sdev = clamp((mouse_x-bbox_left)/72*10000, 0, 10000);
 }
 
 visible = (controller.shaking) and (controller.anienable);

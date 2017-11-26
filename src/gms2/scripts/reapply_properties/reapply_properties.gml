@@ -296,8 +296,8 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
         {
             t = 0;
             shaking_sdev_r = shaking_sdev;
-            gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
-            gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsetx = reap_trans*shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsety = reap_trans*shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             blank_freq_r = blank_freq;
             blank_period_r = blank_period;
             blank_dc_r = blank_dc;
@@ -350,8 +350,8 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
                 t /= 2;
             }
             shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
-            gaussoffsetx = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
-            gaussoffsety = reap_trans*shaking*128*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsetx = reap_trans*shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
+            gaussoffsety = reap_trans*shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             blank_freq_r = blank_freq//lerp(blank_freq,aniblank_freq,t);
             blank_period_r = blank_period//lerp(blank_period,aniblank_period,t);
             blank_dc_r = lerp(blank_dc,aniblank_dc,t);
