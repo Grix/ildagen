@@ -1,6 +1,8 @@
 if (high_performance)
 	exit;
 
+//todo fix markers etc lines not showing over timeline section
+
 var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 var t_tlx = timeline_surf_pos + timeline_surf_length; //in frames
 var t_tlzoom = tlx+tlzoom-t_tlx + 200/tlwdivtlzoom; //in frames
@@ -17,7 +19,7 @@ startframex = (startframe-tlx)*tlwdivtlzoom;
 if (startframex == clamp(startframex,0,tlw-16))
 {
 	draw_set_color(c_blue);
-	draw_rectangle(startframex,tlsurf_y,startframex+1,tlsurf_y+tlh-1,0);
+	//draw_rectangle(startframex,tlsurf_y,startframex+1,tlsurf_y+tlh,0);
 	draw_rectangle(startframex,tlsurf_y+tlh+17,startframex+1,tlsurf_y+lbsh,0);
 	draw_text(startframex+4,tlsurf_y+lbsh-20,"Start");
 }
@@ -26,7 +28,7 @@ endframex = (endframe-tlx)*tlwdivtlzoom;
 if (endframex == clamp(endframex,0,tlw-16))
 {
 	draw_set_color(c_red);
-	draw_rectangle(endframex,tlsurf_y,endframex+1,tlsurf_y+tlh-1,0);
+	//draw_rectangle(endframex,tlsurf_y,endframex+1,tlsurf_y+tlh,0);
 	draw_rectangle(endframex,tlsurf_y+tlh+17,endframex+1,tlsurf_y+lbsh,0);
 	draw_text(endframex-25,tlsurf_y+lbsh-20,"End");
 }
@@ -51,7 +53,7 @@ cursorlinex = tlpos/1000*projectfps;
 cursorlinexdraw = (cursorlinex-tlx)/tlzoom*tlw;
 if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
 {
-    draw_line(cursorlinexdraw,tlsurf_y-2,cursorlinexdraw,tlsurf_y-2+tlh);
+    //draw_line(cursorlinexdraw,tlsurf_y,cursorlinexdraw,tlsurf_y+tlh);
     draw_line(cursorlinexdraw,tls-1,cursorlinexdraw,lbsh+tlsurf_y);
     if (cursorlinexdraw > (tlw/2)) and (playing) and (!scroll_moving) and (!mouse_check_button(mb_any))
     {
@@ -197,7 +199,7 @@ for (i = 0; i < ds_list_size(marker_list); i++)
 	if (ds_list_find_value(marker_list,i) == clamp(ds_list_find_value(marker_list,i),tlx,tlx+tlzoom))
 	{
 	    var markerpostemp = (ds_list_find_value(marker_list,i)-tlx)*tlwdivtlzoom;
-	    draw_rectangle(markerpostemp,tlsurf_y,markerpostemp+1,tlh-1+tlsurf_y,0);
+	    //draw_rectangle(markerpostemp,tlsurf_y,markerpostemp+1,tlh-1+tlsurf_y,0);
 	    draw_rectangle(markerpostemp,tlsurf_y+tlh+17,markerpostemp+1,lbsh+tlsurf_y,0);
 	}
 }
@@ -240,8 +242,8 @@ var scrollx_x1 = round(scrollbarx);
 var scrollx_x2 = round(scrollx_x1+scrollbarw);
 var scrollx_y1 = lbsh+17+tlsurf_y;
 var scrolly_x1 = tlw-17;
-var scrolly_y1 = tls+(layerbary*layerbarw/lbh);
-var scrolly_y2 = scrolly_y1+layerbarw;
+var scrolly_y1 = round(tls+(layerbary*layerbarw/lbh));
+var scrolly_y2 = round(scrolly_y1+layerbarw);
 draw_set_colour(c_white);
 draw_rectangle(0, scrollx_y1, tlw-17, lbsh+tlsurf_y, 0);
 draw_rectangle(scrolly_x1, tls-1, scrolly_x1+17, lbsh+tlsurf_y+17, 0);

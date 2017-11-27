@@ -1,6 +1,9 @@
 highlight_close = false;
-//todo fix
-if (window_mouse_get_x() >= (670)) && (window_mouse_get_x() <= (700)) && (window_mouse_get_y() >= y) && (window_mouse_get_x() <= (y+20))
+
+x = round(window_get_width()/2 - 350);
+y = round(window_get_height()/2 - 200);
+
+if (window_mouse_get_x() >= (x+670)) && (window_mouse_get_x() <= (x+700)) && (window_mouse_get_y() >= y) && (window_mouse_get_y() <= (y+20))
 {
     controller.tooltip = "Click to close advertisement.";
     highlight_close = true;
@@ -10,7 +13,7 @@ if (window_mouse_get_x() >= (670)) && (window_mouse_get_x() <= (700)) && (window
         instance_destroy();
     }
 }
-else if (mouse_x >= x) && (mouse_x <= (x+700)) && (mouse_y >= (y+20)) && (mouse_y <= (y+420))
+else if (window_mouse_get_x() >= x) && (window_mouse_get_x() <= (x+700)) && (window_mouse_get_y() >= (y+20)) && (window_mouse_get_y() <= (y+420))
 {
     controller.tooltip = "More info.";
     if (mouse_check_button_pressed(mb_left))

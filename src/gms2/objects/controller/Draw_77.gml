@@ -6,7 +6,7 @@ if (room == rm_options && view_current != 0)
 	exit;*/
 	
 //cursor
-if (instance_exists(obj_dropdown))
+if (instance_exists(obj_dropdown) && !instance_exists(obj_ad))
 {
 	if (obj_dropdown.selected != noone)
 		window_set_cursor(cr_handpoint);
@@ -50,7 +50,8 @@ if (tooltip != "")
 		window_set_cursor(cr_size_ns);
 	else
 		window_set_cursor(cr_handpoint);
+		
+	tooltip = "";
 }
 
-tooltip = "";
 scrollcursor_flag = 0;
