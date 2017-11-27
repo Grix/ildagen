@@ -575,14 +575,6 @@
             }
         },
         {
-            "Key": "10da6c1c-5c8c-4b25-b39e-891e8f45f16f",
-            "Value": {
-                "id": "980bac00-7bb5-46fa-92f8-e8f69fff6d1f",
-                "resourcePath": "extensions\\FXAA\\FXAA.yy",
-                "resourceType": "GMExtension"
-            }
-        },
-        {
             "Key": "10fb2ba0-9e0c-44ae-91a7-6e0105351bef",
             "Value": {
                 "id": "8ef4bb91-6777-4755-b768-767b36a3299d",

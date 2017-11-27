@@ -4,8 +4,12 @@ with (controller)
 {
     ini_open("settings.ini");
     
-        ini_write_real("main","projector",projector);
-        ini_write_real("main","show_tooltip",show_tooltip);
+        ini_write_real("main", "projector",projector);
+        ini_write_real("main", "show_tooltip",show_tooltip);
+		/*ini_write_real("main", "window_width", window_get_width());
+		ini_write_real("main", "window_height", window_get_height());
+		ini_write_real("main", "window_x", window_get_x());
+		ini_write_real("main", "window_y", window_get_y());*/
         
         for (i = 0; i < ds_list_size(profile_list); i++)
         {

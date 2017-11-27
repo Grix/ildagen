@@ -117,12 +117,32 @@
                     "kind": 12,
                     "name": "RegisterCallbacks",
                     "returnType": 2
+                },
+                {
+                    "id": "f3eeea2f-46d9-49eb-b13a-b19b718e5927",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        1
+                    ],
+                    "externalName": "WindowMaximize",
+                    "help": "window_maximize(handle)",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "window_maximize",
+                    "returnType": 2
                 }
             ],
             "init": "",
             "kind": 1,
             "order": [
-                
+                "ad44abf4-3201-4c55-ad43-ccffdbb670d2",
+                "3a9d3672-d475-4ab9-8447-a65408d855f3",
+                "9d5a301d-65ed-4acb-989f-2de55c46e0b1",
+                "3626e4de-43f6-4971-8462-28febbe65974",
+                "f012b50a-1ec9-4e89-b347-2c1ab35dc59a",
+                "f3eeea2f-46d9-49eb-b13a-b19b718e5927"
             ],
             "origname": "extensions\\GMopen.dll",
             "uncompress": false

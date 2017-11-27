@@ -74,6 +74,19 @@ with (controller)
             projector = 0;
             
         show_tooltip = ini_read_real("main", "show_tooltip", 1);
+		
+		/*if (!ini_read_real("main", "window_width", 0))
+		{
+			window_maximize(window_handle());
+		}
+		else
+		{
+			window_set_size(ini_read_real("main", "window_width", window_get_width()),
+							ini_read_real("main", "window_height", window_get_height()));
+			window_set_position(ini_read_real("main", "window_x", window_get_x()),
+								ini_read_real("main", "window_y", window_get_y()));
+		}
+		controller.forceresize = true;*/
         
     ini_close();
 }
