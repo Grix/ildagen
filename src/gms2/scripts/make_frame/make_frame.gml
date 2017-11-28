@@ -1,5 +1,7 @@
 if (debug_mode)
     log("make_frame");
+	
+	//TODO FIX CRASH
     
 //var timerbm = get_timer();
 
@@ -94,8 +96,13 @@ for (i = 0; i < t_numofelems; i++)
         
             if (list_id[| 10] != true)//if not blind zone
             {
-                xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
-                yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
+				//var t_x = xo+list_id[| currentpos+0];
+				//var t_y = yo+list_id[| currentpos+1];
+                //xp = x_lowerbound+(x_lowerbound-x_lowerbound)*(t_x/$ffff)+t_x*(x_scale+(x_scale-x_scale)*(t_x/$ffff));
+                //yp = y_lowerbound+(y_lowerbound-y_lowerbound)*(t_y/$ffff)+t_y*(y_scale+(y_scale-y_scale)*(t_y/$ffff));
+				//log(get_timer());
+				xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
+				yp = y_lowerbound+(yo+list_id[| currentpos+1])*y_scale;
                 
                 if ((yp >= $ffff) || (yp <= 0) || (xp >= $ffff) || (xp <= 0))
                 {
