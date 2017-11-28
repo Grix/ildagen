@@ -54,7 +54,7 @@ if (view_current == 4 || view_current == 5)
         if (object_select_hovering = 1)
         {
             draw_set_alpha(0.5);
-            draw_set_colour(c_teal);//todo fix scale?
+            draw_set_colour(c_teal);
                 draw_rectangle(rectxmin2,t_y+rectymin2,rectxmax2,t_y+rectymax2,1);
             draw_set_alpha(1);
             draw_set_colour(c_white);

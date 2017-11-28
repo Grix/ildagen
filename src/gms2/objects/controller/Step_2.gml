@@ -33,7 +33,6 @@ if (room == rm_loading)
     
 if (room == rm_ilda) && (keyboard_check(ord("Z")) && !keyboard_check(vk_control))
 {
-	//todo test
 	obj_cursor.x = mouse_x;
 	obj_cursor.y = mouse_y-camera_get_view_y(view_camera[4]);
 	view_visible[5] = true;
@@ -51,7 +50,6 @@ else
 if (room != rm_ilda) 
 	exit;
 	
-//if (window_get_height() != window_heightprev || window_get_width() != window_widthprev) || true
 if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window_get_width() != view_wport[3])
 && !(window_get_height() == 0 || window_get_width() == 0)
 || forceresize
@@ -66,7 +64,7 @@ if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window
 	tlh = round(view_hport[4]/(512/44));
 	view_wport[4] = view_hport[4]-tlh-1;
 	tlw = view_wport[4];
-	view_wport[0] = window_get_width()-view_wport[4];//788
+	view_wport[0] = window_get_width()-view_wport[4];
 	if (view_wport[0] < 788)
 	{
 		window_set_size(default_window_w, default_window_h);

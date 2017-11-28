@@ -807,8 +807,6 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                     if  mouse_check_button_pressed(mb_left) 
                     {
                         //adding/modifying/deleting point
-                        //time_list = ds_list_find_value(envelope,1);
-                        //data_list = ds_list_find_value(envelope,2);
                         var t_xpos = round(tlx+window_mouse_get_x()/tlw*tlzoom);
                         
                         if (keyboard_check(ord("D")))
@@ -824,15 +822,6 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                         
                         //todo bubble sort like in drawing for extra performance?
                         
-                        /*for (u = 0; u < ds_list_size(time_list); u++)
-                        {
-                            if (ds_list_find_value(time_list,u) > t_xpos)
-                            {
-                                break;
-                            }
-                        }
-                        ds_list_insert(time_list,u,t_xpos);
-                        ds_list_insert(data_list,u,t_ypos);*/
                         xposprev = t_xpos;
                         yposprev = t_ypos;
                         mouse_xprevious = window_mouse_get_x();
