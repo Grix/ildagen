@@ -26,7 +26,7 @@ c_prev = 0;
 new_dot = 1;
 
 //if too many dots in frame, first attempt to shrink overlapping ones
-if (lit_length > 0)
+if (lit_length == 0)
 {
     var t_dotstodelete = 0;
     while ((t_lengthwanted > 1000) && (maxpoints_dots != 0) && (smallestdotsize > 3)) //todo create setting for 1000
@@ -46,13 +46,12 @@ else
 
 if (t_lengthwanted == 0) 
 {
-    t_lengthwanted = 0.0001; //to avoid dividing by zero
+    t_lengthwanted = 0.0001; //to avoid dividing by zero. todo more elegant solution
 }
 
 //parse elements
 var t_numofelems = ds_list_size(order_list);
   
-
 for (i = 0; i < t_numofelems; i++)
 {
     list_id = ds_list_find_value(el_list,order_list[| i]);
@@ -75,7 +74,6 @@ for (i = 0; i < t_numofelems; i++)
     {
         currentpos = ds_list_size(list_id)-4;
         currentposadjust = -4;
-      
     }
     
     var t_i;
@@ -93,16 +91,15 @@ for (i = 0; i < t_numofelems; i++)
         }
         else 
         {
-        
             if (list_id[| 10] != true)//if not blind zone
             {
-				//var t_x = xo+list_id[| currentpos+0];
-				//var t_y = yo+list_id[| currentpos+1];
-                //xp = x_lowerbound+(x_lowerbound-x_lowerbound)*(t_x/$ffff)+t_x*(x_scale+(x_scale-x_scale)*(t_x/$ffff));
-                //yp = y_lowerbound+(y_lowerbound-y_lowerbound)*(t_y/$ffff)+t_y*(y_scale+(y_scale-y_scale)*(t_y/$ffff));
+				var t_x = xo+list_id[| currentpos+0];
+				var t_y = yo+list_id[| currentpos+1];
+                xp = x_lowerbound+(x_lowerbound-x_lowerbound)*(t_x/$ffff)+t_x*(x_scale+(x_scale-x_scale)*(t_x/$ffff));
+                yp = y_lowerbound+(y_lowerbound-y_lowerbound)*(t_y/$ffff)+t_y*(y_scale+(y_scale-y_scale)*(t_y/$ffff));
 				//log(get_timer());
-				xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
-				yp = y_lowerbound+(yo+list_id[| currentpos+1])*y_scale;
+				//xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
+				//yp = y_lowerbound+(yo+list_id[| currentpos+1])*y_scale;
                 
                 if ((yp >= $ffff) || (yp <= 0) || (xp >= $ffff) || (xp <= 0))
                 {
@@ -316,10 +313,10 @@ for (i = 0; i < t_numofelems; i++)
             }
             
             opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
-            if (opt_dist == 0)
+            if (opt_dist < 2)
             {
                 //dot, adjust intensity if necessary
-                if (lit_length == 0)
+                if (lit_length != 0)
                 {
                     if (t_dotstoadd < 0)
                     {
@@ -357,7 +354,7 @@ for (i = 0; i < t_numofelems; i++)
                 new_dot = 1;
         }//end if !bl
         
-        if (!bl_prev && (opt_dist != 0) && lit_length)
+        if (!bl_prev && (opt_dist >= 2) && lit_length)
         {
             //INTERPOLATE
             if (opt_dist < t_lengthwanted)
@@ -384,7 +381,6 @@ for (i = 0; i < t_numofelems; i++)
                 stepscount = round(steps+1);
                 t_vectorx = (xp-xp_prev)/stepscount;
                 t_vectory = (yp-yp_prev)/stepscount;
-                
                 for (u = 1; u < stepscount; u++)
                 {
                     ds_list_add(list_raw,xp_prev+t_vectorx*(u));

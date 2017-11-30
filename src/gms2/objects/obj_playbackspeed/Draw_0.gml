@@ -1,7 +1,7 @@
-if (view_current != 0)
+if (view_current != 0) && (room == rm_seq)
 	exit;
 
-if (view_current != 1) && (room = rm_ilda)
+if (view_current != 1) && (room == rm_ilda)
 	exit;
 
 draw_set_color(c_black);

@@ -142,10 +142,8 @@ for (t_i = 1; t_i < listsize; t_i++)
     }
     else
         opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
-        
-    lit_length += opt_dist;
     
-    if (opt_dist == 0)
+    if (opt_dist < 2)
     {
         maxpoints_dots++;
         currentdotsize++;
@@ -153,6 +151,7 @@ for (t_i = 1; t_i < listsize; t_i++)
     }
     else
     {
+		lit_length += opt_dist;
         if ((new_dot) && (currentdotsize > 1))
         {
             num_dots++;
