@@ -147,12 +147,13 @@ for (t_i = 1; t_i < listsize; t_i++)
     {
         maxpoints_dots++;
         currentdotsize++;
-        new_dot = 1;
+        //new_dot = 1;
     }
     else
     {
 		lit_length += opt_dist;
-        if ((new_dot) && (currentdotsize > 1))
+		numrawpoints++;
+        /*if ((new_dot) && (currentdotsize > 1))
         {
             num_dots++;
             maxpoints_dots++;
@@ -160,7 +161,7 @@ for (t_i = 1; t_i < listsize; t_i++)
                 smallestdotsize = currentdotsize;
             currentdotsize = 0;
         }
-        new_dot = 0;
+        new_dot = 0;*/
     }
     
     xp_prev_prev = xp_prev;
@@ -171,14 +172,14 @@ for (t_i = 1; t_i < listsize; t_i++)
     bl_prev = 0;
 }
 
-if ((new_dot) && (currentdotsize > 1))
+/*if ((new_dot) && (currentdotsize > 1))
 {
     num_dots++;
     maxpoints_dots++;
     if (currentdotsize < smallestdotsize)
         smallestdotsize = currentdotsize;
     currentdotsize = 0;
-}
+}*/
 
 
 

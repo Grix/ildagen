@@ -308,5 +308,5 @@ $RECYCLE.BIN/
 
 
 #sorry, won't show you my licensing system :)
-verify_serial
-verify_numexports
+verify_serial.gml
+verify_numexports.gml

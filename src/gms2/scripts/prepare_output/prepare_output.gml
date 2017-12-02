@@ -7,6 +7,7 @@ order_list = ds_list_create();
 polarity_list = ds_list_create();
 
 lit_length = 0;
+numrawpoints = 0;
 maxpoints_static = 0;
 maxpoints_dots = 0;
 smallestdotsize = 100000;
@@ -183,6 +184,8 @@ if (xp_prev != mid_x) and (yp_prev != mid_y)
 }
 
 ds_list_destroy(t_list_empties);
+
+numrawpoints += maxpoints_dots;
 
 return 1;
 

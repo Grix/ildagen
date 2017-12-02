@@ -215,6 +215,7 @@ x_scale_start = 0;
 x_scale_end = $FFFF;
 y_scale_start = 0;
 y_scale_end = $FFFF;
+dotstrength = 1;
 
 placing = "line";
 placing_select_last = "line";

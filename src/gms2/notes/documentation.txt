@@ -9,6 +9,8 @@ TODO
 - stretching
 - audio_loudness_previous_frame
 - shaking stuff (email 2017-11-18)
+- simulation settings (more projectors etc)
+- optimize output (buffer_fast?)
 
 SETTINGSCONTROL
 
