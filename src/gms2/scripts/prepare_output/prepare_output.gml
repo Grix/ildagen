@@ -185,7 +185,7 @@ if (xp_prev != mid_x) and (yp_prev != mid_y)
 
 ds_list_destroy(t_list_empties);
 
-numrawpoints += maxpoints_dots;
+//numrawpoints += maxpoints_dots;
 
 return 1;
 

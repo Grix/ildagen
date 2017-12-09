@@ -13,12 +13,11 @@ var t_litpointswanted = t_totalpointswanted - maxpoints_static - 3;
 
 if (t_litpointswanted == 0) 
     t_litpointswanted = 0.0001; //todo
-if ((numrawpoints-maxpoints_dots) != 0)
-	var t_dotlength = abs(lit_length/(numrawpoints-maxpoints_dots))*dotstrength;
+if (numrawpoints != 0)
+	var t_dotlength = lit_length/numrawpoints*dotstrength;
 	
-var t_lengthwanted = abs((lit_length+t_dotlength*maxpoints_dots)/t_litpointswanted);
+var t_lengthwanted = (lit_length + t_dotlength*maxpoints_dots)/t_litpointswanted;
 
-//todo compensate for dots
 
 xp_prev = mid_x;
 yp_prev = mid_y;
@@ -251,7 +250,7 @@ for (i = 0; i < t_numofelems; i++)
                 var t_n = 1;
                 var t_quantumsteps = 0;
                 var t_totaldist = 0;
-                while (1)
+                while (1) //todo replace with formula
                 {
                     t_totaldist += (t_n + t_n-1)*t_trav_dist;
                     t_quantumsteps += (t_n + t_n-1);
@@ -318,45 +317,47 @@ for (i = 0; i < t_numofelems; i++)
             xp_prev = xpp;
             yp_prev = ypp;
             c_prev = c;
+			
+			opt_dist = point_distance(xpp,ypp,xp,yp);
         } //end if bl_prev
 		else// if (opt_dist >= 2 && lit_length)
-        {
 			opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
-			if (opt_dist < 2)
-				opt_dist = t_dotlength;
 			
-            //INTERPOLATE
-            if (opt_dist < t_lengthwanted)
+			
+		if (opt_dist < 2)
+			opt_dist = t_dotlength;
+			
+        //INTERPOLATE
+        if (opt_dist < t_lengthwanted)
+        {
+            //skip point
+            currentpos += currentposadjust;
+            if (currentpos < ds_list_size(list_id)-1)
             {
-                //skip point
-                currentpos += currentposadjust;
-                if (currentpos < ds_list_size(list_id)-1)
-                {
-                    t_i++;
-                    t_totalrem -= opt_dist;
-                    continue;
-                } //todo draw to the end if skipped?
+                t_i++;
+                t_totalrem -= opt_dist;
+                continue;
+            } //todo draw to the end if skipped?
+        }
+        else
+        {
+            //add points
+            t_totalrem += t_lengthwanted - (opt_dist % t_lengthwanted);
+            if (t_totalrem > t_lengthwanted)
+            {
+                t_totalrem -= t_lengthwanted;
+                opt_dist -= t_lengthwanted;
             }
-            else
+            steps = opt_dist/t_lengthwanted;
+            stepscount = round(steps+1);
+            t_vectorx = (xp-xp_prev)/stepscount;
+            t_vectory = (yp-yp_prev)/stepscount;
+            for (u = 1; u < stepscount; u++)
             {
-                //add points
-                t_totalrem += t_lengthwanted - (opt_dist % t_lengthwanted);
-                if (t_totalrem > t_lengthwanted)
-                {
-                    t_totalrem -= t_lengthwanted;
-                    opt_dist -= t_lengthwanted;
-                }
-                steps = opt_dist/t_lengthwanted;
-                stepscount = round(steps+1);
-                t_vectorx = (xp-xp_prev)/stepscount;
-                t_vectory = (yp-yp_prev)/stepscount;
-                for (u = 1; u < stepscount; u++)
-                {
-                    ds_list_add(list_raw,xp_prev+t_vectorx*(u));
-                    ds_list_add(list_raw,yp_prev+t_vectory*(u));
-                    ds_list_add(list_raw,0);
-                    ds_list_add(list_raw,c);
-                }
+                ds_list_add(list_raw,xp_prev+t_vectorx*(u));
+                ds_list_add(list_raw,yp_prev+t_vectory*(u));
+                ds_list_add(list_raw,0);
+                ds_list_add(list_raw,c);
             }
         }
 
