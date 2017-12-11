@@ -9,15 +9,20 @@ var t_contflag = false;
 
 var t_totalrem = 0;
 var t_totalpointswanted = floor(controller.opt_scanspeed/controller.projectfps);
-var t_litpointswanted = t_totalpointswanted - maxpoints_static - 3;
+var t_litpointswanted = t_totalpointswanted - maxpoints_static// - 3;
 
 if (t_litpointswanted == 0) 
     t_litpointswanted = 0.0001; //todo
 if (numrawpoints != 0)
+{
 	var t_dotlength = lit_length/numrawpoints*dotstrength;
-	
-var t_lengthwanted = (lit_length + t_dotlength*maxpoints_dots)/t_litpointswanted;
-
+	var t_lengthwanted = (lit_length + t_dotlength*maxpoints_dots)/t_litpointswanted;
+}
+else
+{
+	var t_dotlength = 1;
+	var t_lengthwanted = (t_dotlength*maxpoints_dots)/t_litpointswanted;
+}
 
 xp_prev = mid_x;
 yp_prev = mid_y;
@@ -96,14 +101,14 @@ for (i = 0; i < t_numofelems; i++)
         if (list_id[| 10] != true)//if not blind zone
         {
 			var t_x = xo+list_id[| currentpos+0];
-			var t_y = yo+list_id[| currentpos+1];
+			var t_y = $ffff-(yo+list_id[| currentpos+1]);
             xp = x_lowerbound+(x_lowerbound-x_lowerbound)*(t_x/$ffff)+t_x*(x_scale+(x_scale-x_scale)*(t_x/$ffff));
             yp = y_lowerbound+(y_lowerbound-y_lowerbound)*(t_y/$ffff)+t_y*(y_scale+(y_scale-y_scale)*(t_y/$ffff));
 			//log(get_timer());
 			//xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
 			//yp = y_lowerbound+(yo+list_id[| currentpos+1])*y_scale;
                 
-            if ((yp >= $ffff) || (yp <= 0) || (xp >= $ffff) || (xp <= 0))
+            if ((yp > $ffff) || (yp < 0) || (xp > $ffff) || (xp < 0))
             {
                 //list_id[| currentpos+2 ] = 1;
                 bl_prev = 1;
@@ -142,7 +147,7 @@ for (i = 0; i < t_numofelems; i++)
             //ypp = y_lowerbound+($ffff-(yo+list_id[| t_prevpos+1]))*y_scale;
 				
 			var t_x = xo+list_id[| t_prevpos+0];
-			var t_y = yo+list_id[| t_prevpos+1];
+			var t_y = $ffff-(yo+list_id[| t_prevpos+1]);
             xpp = x_lowerbound+(x_lowerbound-x_lowerbound)*(t_x/$ffff)+t_x*(x_scale+(x_scale-x_scale)*(t_x/$ffff));
             ypp = y_lowerbound+(y_lowerbound-y_lowerbound)*(t_y/$ffff)+t_y*(y_scale+(y_scale-y_scale)*(t_y/$ffff));
                 
@@ -311,18 +316,12 @@ for (i = 0; i < t_numofelems; i++)
                 }
                     
             }
-            bl_prev = 0;
-            xp_prev_prev = xp_prev;
-            yp_prev_prev = yp_prev;
             xp_prev = xpp;
             yp_prev = ypp;
-            c_prev = c;
 			
-			opt_dist = point_distance(xpp,ypp,xp,yp);
         } //end if bl_prev
-		else// if (opt_dist >= 2 && lit_length)
-			opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
 			
+		opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
 			
 		if (opt_dist < 2)
 			opt_dist = t_dotlength;

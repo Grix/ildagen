@@ -36,13 +36,13 @@ for (t_i = 1; t_i < listsize; t_i++)
     if (list_id[| 10] != true)
     {
 		var t_x = xo+list_id[| currentpos+0];
-		var t_y = yo+list_id[| currentpos+1];
+		var t_y = $ffff-(yo+list_id[| currentpos+1]);
         xp = x_lowerbound+(x_lowerbound-x_lowerbound)*(t_x/$ffff)+t_x*(x_scale+(x_scale-x_scale)*(t_x/$ffff));
         yp = y_lowerbound+(y_lowerbound-y_lowerbound)*(t_y/$ffff)+t_y*(y_scale+(y_scale-y_scale)*(t_y/$ffff));
         //xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
         //yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
        
-        if ((yp >= $fffe) || (yp <= 1) || (xp >= $fffe) || (xp <= 1))
+        if ((yp > $ffff) || (yp < 0) || (xp > $ffff) || (xp < 0))
         {
             //list_id[| currentpos+2 ] = 1;
             bl_prev = 1;
@@ -82,7 +82,7 @@ for (t_i = 1; t_i < listsize; t_i++)
         //xpp = x_lowerbound+(xo+list_id[| t_prevpos+0])*x_scale;
         //ypp = y_lowerbound+($ffff-(yo+list_id[| t_prevpos+1]))*y_scale;
 		var t_x = xo+list_id[| t_prevpos+0];
-		var t_y = yo+list_id[| t_prevpos+1];
+		var t_y = $ffff-(yo+list_id[| t_prevpos+1]);
         xpp = x_lowerbound+(x_lowerbound-x_lowerbound)*(t_x/$ffff)+t_x*(x_scale+(x_scale-x_scale)*(t_x/$ffff));
         ypp = y_lowerbound+(y_lowerbound-y_lowerbound)*(t_y/$ffff)+t_y*(y_scale+(y_scale-y_scale)*(t_y/$ffff));
         opt_dist = point_distance(xp_prev,yp_prev,xpp,ypp);
@@ -146,10 +146,11 @@ for (t_i = 1; t_i < listsize; t_i++)
                                     +  (t_n + t_n - 1) );
         }
         
-        opt_dist = point_distance(xpp,ypp,xp,yp);
+        xp_prev = xpp;
+        yp_prev = ypp;
     }
-    else
-        opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
+	
+    opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
     
     if (opt_dist < 2)
     {

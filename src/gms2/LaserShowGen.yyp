@@ -1687,6 +1687,14 @@
             }
         },
         {
+            "Key": "30bb5619-df5a-441e-aa7c-9e6b08812a20",
+            "Value": {
+                "id": "3eca6529-5671-48d9-a7c6-7ccfaae8c550",
+                "resourcePath": "datafiles_yy\\LaserBoy_2017_08_06.zip.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "30fbc62d-a4e7-4879-82b0-d570c7539ea0",
             "Value": {
                 "id": "3b126c12-91eb-4a0e-8519-e082a3b53f78",
@@ -4172,14 +4180,6 @@
                 "id": "9fb9f008-de6e-4e5e-ad9a-66bfa05e8e51",
                 "resourcePath": "scripts\\_ML_FMultiply\\_ML_FMultiply.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "8451fa7f-3096-424c-89ca-70447d35502f",
-            "Value": {
-                "id": "cf2dbb28-4052-4e04-b2b9-ac96a1519b8d",
-                "resourcePath": "datafiles_yy\\LaserBoy_2017_07_22.zip.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {

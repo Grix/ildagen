@@ -128,7 +128,7 @@ for (i = 0; i < t_numofelems; i++)
         
     prepare_output_points();
     
-    maxpoints_static++;
+    //maxpoints_static++;
        
     bl_prev = 1;
 }

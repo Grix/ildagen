@@ -1,3 +1,4 @@
+//todo fix
 draw_set_color(c_gray);
 for (i = 0; i < ds_list_size(el_list);i++)
 {
