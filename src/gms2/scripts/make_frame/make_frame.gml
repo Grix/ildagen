@@ -347,11 +347,10 @@ for (i = 0; i < t_numofelems; i++)
                 t_totalrem -= t_lengthwanted;
                 opt_dist -= t_lengthwanted;
             }
-            steps = opt_dist/t_lengthwanted;
-            stepscount = round(steps+1);
-            t_vectorx = (xp-xp_prev)/stepscount;
-            t_vectory = (yp-yp_prev)/stepscount;
-            for (u = 1; u < stepscount; u++)
+            var t_stepscount = floor(opt_dist/t_lengthwanted+1);
+            t_vectorx = (xp-xp_prev)/t_stepscount;
+            t_vectory = (yp-yp_prev)/t_stepscount;
+            for (u = 1; u < t_stepscount; u++)
             {
                 ds_list_add(list_raw,xp_prev+t_vectorx*(u));
                 ds_list_add(list_raw,yp_prev+t_vectory*(u));
@@ -359,46 +358,6 @@ for (i = 0; i < t_numofelems; i++)
                 ds_list_add(list_raw,c);
             }
         }
-
-        /*if (opt_dist < 2)
-        {
-            //dot, adjust intensity if necessary
-            if (lit_length != 0)
-            {
-                if (t_dotstoadd < 0)
-                {
-                    currentpos += currentposadjust*abs(0-t_dotstoadd);
-                    t_i += abs(0-t_dotstoadd);
-                }
-                else
-                {
-                    if (new_dot)
-                    { 
-                        repeat (t_dotstoadd)
-                        {
-                            ds_list_add(list_raw,xp);
-                            ds_list_add(list_raw,yp);
-                            ds_list_add(list_raw,0);
-                            ds_list_add(list_raw,c);
-                        }
-                    new_dot = 0;
-                    currentpos += currentposadjust*smallestdotsize; //save some time by jumping
-                    t_i += smallestdotsize;
-                    }
-                }
-            }
-            else
-            {
-                if (new_dot)
-                {
-                    new_dot = 0;
-                    currentpos += currentposadjust*t_dotstodelete;
-                    t_i += t_dotstodelete;
-                }
-            }
-        }
-        else
-            new_dot = 1;*/
         
         //normal point, writing
         ds_list_add(list_raw,xp);
@@ -415,6 +374,7 @@ for (i = 0; i < t_numofelems; i++)
     }
         
     bl_prev = 1;
+	log("----");
 }
 
 //back to middle

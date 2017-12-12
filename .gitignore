@@ -22,7 +22,7 @@ bld/
 [Oo]bj/
 #[Ll]og/
 *.exe
-#*.zip
+*.zip
 
 
 # Visual Studio 2015 cache/options directory

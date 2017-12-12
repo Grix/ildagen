@@ -18,8 +18,7 @@ else
 }
 
 //walk through list to get lit length and static point count
-var t_i;
-for (t_i = 1; t_i < listsize; t_i++)
+for (var t_i = 1; t_i < listsize; t_i++)
 {
     currentpos += currentposadjust;
     //getting values from element list
