@@ -154,22 +154,11 @@ for (var t_i = 1; t_i < listsize; t_i++)
     if (opt_dist < 2)
     {
         maxpoints_dots++;
-        //currentdotsize++;
-        //new_dot = 1;
     }
     else
     {
 		lit_length += opt_dist;
 		numrawpoints++;
-        /*if ((new_dot) && (currentdotsize > 1))
-        {
-            num_dots++;
-            maxpoints_dots++;
-            if (currentdotsize < smallestdotsize)
-                smallestdotsize = currentdotsize;
-            currentdotsize = 0;
-        }
-        new_dot = 0;*/
     }
     
     xp_prev_prev = xp_prev;
@@ -179,15 +168,5 @@ for (var t_i = 1; t_i < listsize; t_i++)
     //c_prev = c;
     bl_prev = 0;
 }
-
-/*if ((new_dot) && (currentdotsize > 1))
-{
-    num_dots++;
-    maxpoints_dots++;
-    if (currentdotsize < smallestdotsize)
-        smallestdotsize = currentdotsize;
-    currentdotsize = 0;
-}*/
-
 
 

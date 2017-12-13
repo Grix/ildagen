@@ -3,6 +3,8 @@ if (debug_mode)
     
 //var timerbm = get_timer();
 
+//todo fix crash real argument unset
+
 var t_vectorx, t_vectory, t_true_dwell_falling, t_true_dwell_rising;
 var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
 var t_contflag = false;
@@ -31,31 +33,6 @@ yp_prev_prev = mid_y;
 bl_prev = 1;
 c_prev = 0;
 new_dot = 1;
-
-//if too many dots in frame, first attempt to shrink overlapping ones
-/*if (lit_length == 0)
-{
-    var t_dotstodelete = 0;
-    while ((t_lengthwanted > 1000) && (maxpoints_dots != 0) && (smallestdotsize > 3)) //todo create setting for 1000
-    {
-        t_dotstodelete++;
-        t_litpointswanted += num_dots;
-        if (t_litpointswanted == 0) 
-            t_litpointswanted = 1;
-        t_lengthwanted = abs(lit_length/t_litpointswanted);
-        smallestdotsize--;
-    }
-	
-}
-else
-{
-    var t_dotstoadd = floor((t_litpointswanted+maxpoints_dots)/num_dots);
-}
-
-if (t_lengthwanted == 0) 
-{
-    t_lengthwanted = 0.0001; //to avoid dividing by zero. todo more elegant solution
-}*/
 
 //parse elements
 var t_numofelems = ds_list_size(order_list);
@@ -374,7 +351,6 @@ for (i = 0; i < t_numofelems; i++)
     }
         
     bl_prev = 1;
-	log("----");
 }
 
 //back to middle

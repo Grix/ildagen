@@ -54,13 +54,7 @@ autoresflag = 0;
 if (is_string(resolution))
 {
     autoresflag = 1;
-    resolution = 1000;
-        
-    if (colormode != "solid") or (blankmode != "solid")
-        resolution = 500;
-        
-    if (placing == "text") or (placing == "hershey")
-        resolution = 300;
+    resolution = 300;
     
     if (anienable) and (blankmode != "solid") and ((blank_offset != aniblank_offset) or (blank_dc != aniblank_dc))
         resolution = 200;
