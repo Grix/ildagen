@@ -17,7 +17,7 @@ if (t_litpointswanted == 0)
     t_litpointswanted = 0.0001; //todo
 if (numrawpoints != 0)
 {
-	var t_dotlength = lit_length/numrawpoints*dotstrength;
+	var t_dotlength = lit_length/numrawpoints*controller.dotstrength;
 	var t_lengthwanted = (lit_length + t_dotlength*maxpoints_dots)/t_litpointswanted;
 }
 else
