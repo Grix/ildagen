@@ -229,18 +229,9 @@ for (i = 0; i < t_numofelems; i++)
                     
                 //find number of steps and step size
                 var t_trav_dist = a_ballistic;
-                var t_n = 1;
-                var t_quantumsteps = 0;
-                var t_totaldist = 0;
-                while (1) //todo replace with formula
-                {
-                    t_totaldist += (t_n + t_n-1)*t_trav_dist;
-                    t_quantumsteps += (t_n + t_n-1);
-                    if (t_totaldist > opt_dist)
-                        break;
-                    t_n++;
-                }
-                t_trav_dist -= (t_totaldist-opt_dist)/t_quantumsteps;
+				var t_quantumstepssqrt = ceil(sqrt(opt_dist/t_trav_dist));
+                var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
+                t_trav_dist -= (t_quantumsteps*t_trav_dist-opt_dist)/t_quantumsteps;
                 var t_trav_dist_x = -t_trav_dist*(xp_prev-xpp)/opt_dist;
                 var t_trav_dist_y = -t_trav_dist*(yp_prev-ypp)/opt_dist;
                     
@@ -250,7 +241,8 @@ for (i = 0; i < t_numofelems; i++)
                 var t_xp_now = xp_prev;
                 var t_yp_now = yp_prev;
                     
-                for (k = 0; k < t_n; k++)
+					
+                for (k = 0; k < t_quantumstepssqrt; k++)
                 {
                     t_step_dist_x += t_trav_dist_x;
                     t_step_dist_y += t_trav_dist_y;
@@ -263,7 +255,7 @@ for (i = 0; i < t_numofelems; i++)
                     ds_list_add(list_raw,1);
                     ds_list_add(list_raw,0);
                 }
-                for (k = 1; k < t_n; k++)
+                for (k = 1; k < t_quantumstepssqrt; k++)
                 {
                     t_step_dist_x -= t_trav_dist_x;
                     t_step_dist_y -= t_trav_dist_y;
@@ -417,18 +409,9 @@ else //not connecting segments
     
     //find number of steps and step size
     var t_trav_dist = a_ballistic;
-    var t_n = 1;
-    var t_quantumsteps = 0;
-    var t_totaldist = 0;
-    while (1)
-    {
-        t_totaldist += (t_n + t_n-1)*t_trav_dist;
-        t_quantumsteps += (t_n + t_n-1);
-        if (t_totaldist > opt_dist)
-            break;
-        t_n++;
-    }
-    t_trav_dist -= (t_totaldist-opt_dist)/t_quantumsteps;
+    var t_quantumstepssqrt = ceil(sqrt(opt_dist/t_trav_dist));
+    var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
+    t_trav_dist -= (t_quantumsteps*t_trav_dist-opt_dist)/t_quantumsteps;
     var t_trav_dist_x = -t_trav_dist*(xp_prev-xp)/opt_dist;
     var t_trav_dist_y = -t_trav_dist*(yp_prev-yp)/opt_dist;
     
@@ -438,7 +421,7 @@ else //not connecting segments
     var t_xp_now = xp_prev;
     var t_yp_now = yp_prev;
     
-    for (k = 0; k < t_n; k++)
+    for (k = 0; k < t_quantumstepssqrt; k++)
     {
         t_step_dist_x += t_trav_dist_x;
         t_step_dist_y += t_trav_dist_y;
@@ -451,7 +434,7 @@ else //not connecting segments
         ds_list_add(list_raw,1);
         ds_list_add(list_raw,0);
     }
-    for (k = 1; k < t_n; k++)
+    for (k = 1; k < t_quantumstepssqrt; k++)
     {
         t_step_dist_x -= t_trav_dist_x;
         t_step_dist_y -= t_trav_dist_y;

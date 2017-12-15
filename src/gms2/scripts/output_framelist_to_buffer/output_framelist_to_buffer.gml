@@ -3,8 +3,8 @@ if (debug_mode)
     
 //var timerbm = get_timer();
 
-output_buffer_next_size = min(ds_list_size(list_raw)/4, $ffff/controller.projectfps);
-var t_list_raw_size = min(ds_list_size(list_raw), $ffff/controller.projectfps*4);
+output_buffer_next_size = min(ds_list_size(list_raw)/4, $ffff/controller.projectfps, 4095);
+var t_list_raw_size = output_buffer_next_size*4;
 
 var t_red_lowerbound = round(controller.red_scale_lower*255);
 var t_green_lowerbound = round(controller.green_scale_lower*255);

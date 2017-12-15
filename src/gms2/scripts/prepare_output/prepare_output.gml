@@ -164,22 +164,13 @@ if (xp_prev != mid_x) and (yp_prev != mid_y)
         }       
                  
         var t_trav_dist = a_ballistic;
-        var t_n = 1;
-        var t_quantumsteps = 0;
-        var t_totaldist = 0;
-        while (1)
-        {
-            t_totaldist += (t_n + t_n-1)*t_trav_dist;
-            t_quantumsteps += (t_n + t_n-1);
-            if (t_totaldist > opt_dist)
-                break;
-            t_n++;
-        }
+        var t_quantumstepssqrt = ceil(sqrt(opt_dist/t_trav_dist));
+        var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
+        t_trav_dist -= (t_quantumsteps*t_trav_dist-opt_dist)/t_quantumsteps;
              
         maxpoints_static += (   (controller.opt_maxdwell_blank) 
                                 +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
-                                +  (t_n + t_n) 
-                                + 1);
+                                +  t_quantumsteps);
     }
 }
 
