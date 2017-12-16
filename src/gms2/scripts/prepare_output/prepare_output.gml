@@ -166,11 +166,10 @@ if (xp_prev != mid_x) and (yp_prev != mid_y)
         var t_trav_dist = a_ballistic;
         var t_quantumstepssqrt = ceil(sqrt(opt_dist/t_trav_dist));
         var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
-        t_trav_dist -= (t_quantumsteps*t_trav_dist-opt_dist)/t_quantumsteps;
              
         maxpoints_static += (   (controller.opt_maxdwell_blank) 
                                 +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
-                                +  t_quantumsteps);
+                                +  t_quantumstepssqrt+t_quantumstepssqrt-1);
     }
 }
 

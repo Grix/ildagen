@@ -11,7 +11,7 @@ var t_contflag = false;
 
 var t_totalrem = 0;
 var t_totalpointswanted = floor(controller.opt_scanspeed/controller.projectfps);
-var t_litpointswanted = t_totalpointswanted - maxpoints_static// - 3;
+var t_litpointswanted = t_totalpointswanted - maxpoints_static - 1;
 
 if (t_litpointswanted == 0) 
     t_litpointswanted = 0.0001; //todo
@@ -231,7 +231,7 @@ for (i = 0; i < t_numofelems; i++)
                 var t_trav_dist = a_ballistic;
 				var t_quantumstepssqrt = ceil(sqrt(opt_dist/t_trav_dist));
                 var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
-                t_trav_dist -= (t_quantumsteps*t_trav_dist-opt_dist)/t_quantumsteps;
+                t_trav_dist = opt_dist/t_quantumsteps;
                 var t_trav_dist_x = -t_trav_dist*(xp_prev-xpp)/opt_dist;
                 var t_trav_dist_y = -t_trav_dist*(yp_prev-ypp)/opt_dist;
                     
@@ -411,7 +411,7 @@ else //not connecting segments
     var t_trav_dist = a_ballistic;
     var t_quantumstepssqrt = ceil(sqrt(opt_dist/t_trav_dist));
     var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
-    t_trav_dist -= (t_quantumsteps*t_trav_dist-opt_dist)/t_quantumsteps;
+    t_trav_dist = opt_dist/t_quantumsteps;
     var t_trav_dist_x = -t_trav_dist*(xp_prev-xp)/opt_dist;
     var t_trav_dist_y = -t_trav_dist*(yp_prev-yp)/opt_dist;
     

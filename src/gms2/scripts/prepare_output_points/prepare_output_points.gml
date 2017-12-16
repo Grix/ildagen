@@ -133,7 +133,7 @@ for (var t_i = 1; t_i < listsize; t_i++)
             maxpoints_static += (   2*(controller.opt_maxdwell_blank) 
                                     +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
                                     +  max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank)
-                                    +  t_quantumsteps );
+                                    +  t_quantumstepssqrt+t_quantumstepssqrt-1 );
         }
         
         xp_prev = xpp;
