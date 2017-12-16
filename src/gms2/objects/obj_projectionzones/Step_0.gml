@@ -8,17 +8,14 @@ if (moving == 1)
     {
 		controller.scale_left_top += ((mouse_x-mouse_xprevious));
 		controller.scale_left_bottom += ((mouse_x-mouse_xprevious));
-		controller.scale_left_top = clamp(controller.scale_left_top, 0, $ffff);
-		controller.scale_left_bottom = clamp(controller.scale_left_bottom, 0, $ffff);
     }
     else
     {
 	    controller.scale_left_top += ((mouse_x-mouse_xprevious)/256*$ffff);
 		controller.scale_left_bottom += ((mouse_x-mouse_xprevious)/256*$ffff);
-		controller.scale_left_top = clamp(controller.scale_left_top, 0, $ffff);
-		controller.scale_left_bottom = clamp(controller.scale_left_bottom, 0, $ffff);
-		log(controller.scale_left_top);
     }
+	controller.scale_left_top = clamp(controller.scale_left_top, 0, $ffff);
+	controller.scale_left_bottom = clamp(controller.scale_left_bottom, 0, $ffff);
     mouse_xprevious = mouse_x;
     mouse_yprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -35,16 +32,14 @@ else if (moving == 2)
     {
 		controller.scale_right_top += ((mouse_x-mouse_xprevious));
 		controller.scale_right_bottom += ((mouse_x-mouse_xprevious));
-		controller.scale_right_top = clamp(controller.scale_right_top, 0, $ffff);
-		controller.scale_right_bottom = clamp(controller.scale_right_bottom, 0, $ffff);
     }
     else
     {
 	    controller.scale_right_top += ((mouse_x-mouse_xprevious)/256*$ffff);
 		controller.scale_right_bottom += ((mouse_x-mouse_xprevious)/256*$ffff);
-		controller.scale_right_top = clamp(controller.scale_right_top, 0, $ffff);
-		controller.scale_right_bottom = clamp(controller.scale_right_bottom, 0, $ffff);
     }
+	controller.scale_right_top = clamp(controller.scale_right_top, 0, $ffff);
+	controller.scale_right_bottom = clamp(controller.scale_right_bottom, 0, $ffff);
     mouse_xprevious = mouse_x;
     mouse_yprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -61,16 +56,14 @@ else if (moving == 3)
     {
 		controller.scale_top_left += ((mouse_y-mouse_yprevious));
 		controller.scale_top_right += ((mouse_y-mouse_yprevious));
-		controller.scale_top_left = clamp(controller.scale_top_left, 0, $ffff);
-		controller.scale_top_right = clamp(controller.scale_top_right, 0, $ffff);
     }
     else
     {
 	    controller.scale_top_left += ((mouse_y-mouse_yprevious)/256*$ffff);
 		controller.scale_top_right += ((mouse_y-mouse_yprevious)/256*$ffff);
-		controller.scale_top_left = clamp(controller.scale_top_left, 0, $ffff);
-		controller.scale_top_right = clamp(controller.scale_top_right, 0, $ffff);
     }
+	controller.scale_top_left = clamp(controller.scale_top_left, 0, $ffff);
+	controller.scale_top_right = clamp(controller.scale_top_right, 0, $ffff);
     mouse_xprevious = mouse_x;
     mouse_yprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -87,16 +80,14 @@ else if (moving == 4)
     {
 		controller.scale_bottom_left += ((mouse_y-mouse_yprevious));
 		controller.scale_bottom_right += ((mouse_y-mouse_yprevious));
-		controller.scale_bottom_left = clamp(controller.scale_bottom_left, 0, $ffff);
-		controller.scale_bottom_right = clamp(controller.scale_bottom_right, 0, $ffff);
     }
     else
     {
 	    controller.scale_bottom_left += ((mouse_y-mouse_yprevious)/256*$ffff);
 		controller.scale_bottom_right += ((mouse_y-mouse_yprevious)/256*$ffff);
-		controller.scale_bottom_left = clamp(controller.scale_bottom_left, 0, $ffff);
-		controller.scale_bottom_right = clamp(controller.scale_bottom_right, 0, $ffff);
     }
+	controller.scale_bottom_left = clamp(controller.scale_bottom_left, 0, $ffff);
+	controller.scale_bottom_right = clamp(controller.scale_bottom_right, 0, $ffff);
     mouse_xprevious = mouse_x;
     mouse_yprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -110,38 +101,34 @@ else if (moving == 5)
     //drag whole window
     if (keyboard_check(vk_control))
     {
-        /*controller.y_scale_end += ((mouse_y-mouse_yprevious)*4);
-        controller.y_scale_start += ((mouse_y-mouse_yprevious)*4);
-        controller.x_scale_end += ((mouse_x-mouse_xprevious)*4);
-        controller.x_scale_start += ((mouse_x-mouse_xprevious)*4);*/
+		controller.scale_bottom_left += ((mouse_y-mouse_yprevious));
+		controller.scale_bottom_right += ((mouse_y-mouse_yprevious));
+		controller.scale_top_left += ((mouse_y-mouse_yprevious));
+		controller.scale_top_right += ((mouse_y-mouse_yprevious));
+		controller.scale_right_top += ((mouse_x-mouse_xprevious));
+		controller.scale_right_bottom += ((mouse_x-mouse_xprevious));
+		controller.scale_left_top += ((mouse_x-mouse_xprevious));
+		controller.scale_left_bottom += ((mouse_x-mouse_xprevious));
     }
     else
     {
-        /*controller.y_scale_end += ((mouse_y-mouse_yprevious)*$ffff/256);
-        controller.y_scale_start += ((mouse_y-mouse_yprevious)*$ffff/256);
-        controller.x_scale_end += ((mouse_x-mouse_xprevious)*$ffff/256);
-        controller.x_scale_start += ((mouse_x-mouse_xprevious)*$ffff/256);*/
+        controller.scale_bottom_left += ((mouse_y-mouse_yprevious)/256*$ffff);
+		controller.scale_bottom_right += ((mouse_y-mouse_yprevious)/256*$ffff);
+		controller.scale_top_left += ((mouse_y-mouse_yprevious)/256*$ffff);
+		controller.scale_top_right += ((mouse_y-mouse_yprevious)/256*$ffff);
+		controller.scale_right_top += ((mouse_x-mouse_xprevious)/256*$ffff);
+		controller.scale_right_bottom += ((mouse_x-mouse_xprevious)/256*$ffff);
+		controller.scale_left_top += ((mouse_x-mouse_xprevious)/256*$ffff);
+		controller.scale_left_bottom += ((mouse_x-mouse_xprevious)/256*$ffff);
     }
-    /*if (controller.x_scale_start < 0)
-    {
-        controller.x_scale_end += abs(controller.x_scale_start);
-        controller.x_scale_start = 0;
-    }
-    if (controller.x_scale_end > $FFFF)
-    {
-        controller.x_scale_start -= controller.x_scale_end-$FFFF;
-        controller.x_scale_end = $FFFF;
-    }
-    if (controller.y_scale_start < 0)
-    {
-        controller.y_scale_end += abs(controller.y_scale_start);
-        controller.y_scale_start = 0;
-    }
-    if (controller.y_scale_end > $FFFF)
-    {
-        controller.y_scale_start -= controller.y_scale_end-$FFFF;
-        controller.y_scale_end = $FFFF;
-    }*/
+	controller.scale_left_top = clamp(controller.scale_left_top, 0, $ffff);
+	controller.scale_left_bottom = clamp(controller.scale_left_bottom, 0, $ffff);
+	controller.scale_bottom_left = clamp(controller.scale_bottom_left, 0, $ffff);
+	controller.scale_bottom_right = clamp(controller.scale_bottom_right, 0, $ffff);
+	controller.scale_top_left = clamp(controller.scale_top_left, 0, $ffff);
+	controller.scale_top_right = clamp(controller.scale_top_right, 0, $ffff);
+	controller.scale_left_top = clamp(controller.scale_left_top, 0, $ffff);
+	controller.scale_left_bottom = clamp(controller.scale_left_bottom, 0, $ffff);
     mouse_xprevious = mouse_x;
     mouse_yprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
@@ -317,6 +304,102 @@ else if (moving == 10)
         moving = 0;
     }
 }
+else if (moving == 11)
+{
+    //upper left corner
+	controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+    if (keyboard_check(vk_control))
+    {
+		controller.scale_top_left += ((mouse_y-mouse_yprevious));
+		controller.scale_left_top += ((mouse_x-mouse_xprevious));
+    }
+    else
+    {
+	    controller.scale_top_left += ((mouse_y-mouse_yprevious)/256*$ffff);
+		controller.scale_left_top += ((mouse_x-mouse_xprevious)/256*$ffff);
+    }
+	controller.scale_top_left = clamp(controller.scale_top_left, 0, $ffff);
+	controller.scale_left_top = clamp(controller.scale_left_top, 0, $ffff);
+    mouse_xprevious = mouse_x;
+    mouse_yprevious = mouse_y;
+    if (mouse_check_button_released(mb_left))
+    {
+        save_profile();
+        moving = 0;
+    }
+}
+else if (moving == 12)
+{
+    //upper right corner
+	controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+    if (keyboard_check(vk_control))
+    {
+		controller.scale_top_right += ((mouse_y-mouse_yprevious));
+		controller.scale_right_top += ((mouse_x-mouse_xprevious));
+    }
+    else
+    {
+	    controller.scale_top_right += ((mouse_y-mouse_yprevious)/256*$ffff);
+		controller.scale_right_top += ((mouse_x-mouse_xprevious)/256*$ffff);
+    }
+	controller.scale_top_right = clamp(controller.scale_top_right, 0, $ffff);
+	controller.scale_right_top = clamp(controller.scale_right_top, 0, $ffff);
+    mouse_xprevious = mouse_x;
+    mouse_yprevious = mouse_y;
+    if (mouse_check_button_released(mb_left))
+    {
+        save_profile();
+        moving = 0;
+    }
+}
+else if (moving == 13)
+{
+    //lower left corner
+	controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+    if (keyboard_check(vk_control))
+    {
+		controller.scale_bottom_left += ((mouse_y-mouse_yprevious));
+		controller.scale_left_bottom += ((mouse_x-mouse_xprevious));
+    }
+    else
+    {
+	    controller.scale_bottom_left += ((mouse_y-mouse_yprevious)/256*$ffff);
+		controller.scale_left_bottom += ((mouse_x-mouse_xprevious)/256*$ffff);
+    }
+	controller.scale_bottom_left = clamp(controller.scale_bottom_left, 0, $ffff);
+	controller.scale_left_bottom = clamp(controller.scale_left_bottom, 0, $ffff);
+    mouse_xprevious = mouse_x;
+    mouse_yprevious = mouse_y;
+    if (mouse_check_button_released(mb_left))
+    {
+        save_profile();
+        moving = 0;
+    }
+}
+else if (moving == 14)
+{
+    //lower right corner
+	controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+    if (keyboard_check(vk_control))
+    {
+		controller.scale_bottom_right += ((mouse_y-mouse_yprevious));
+		controller.scale_right_bottom += ((mouse_x-mouse_xprevious));
+    }
+    else
+    {
+	    controller.scale_bottom_right += ((mouse_y-mouse_yprevious)/256*$ffff);
+		controller.scale_right_bottom += ((mouse_x-mouse_xprevious)/256*$ffff);
+    }
+	controller.scale_bottom_right = clamp(controller.scale_bottom_right, 0, $ffff);
+	controller.scale_right_bottom = clamp(controller.scale_right_bottom, 0, $ffff);
+    mouse_xprevious = mouse_x;
+    mouse_yprevious = mouse_y;
+    if (mouse_check_button_released(mb_left))
+    {
+        save_profile();
+        moving = 0;
+    }
+}
 
 else
 {
@@ -407,76 +490,130 @@ else
     
     if (!t_withinblindzone)
     {
-        if ((mouse_x > (x+controller.x_scale_start/$FFFF*256-2)) &&
-            (mouse_y > (y+controller.y_scale_start/$FFFF*256-2)) && 
-            (mouse_x < (x+controller.x_scale_end/$FFFF*256+2)) &&
-            (mouse_y < (y+controller.y_scale_end/$FFFF*256+2)) )
-        {
-            //within projector window
-            if (mouse_x < (x+controller.x_scale_start/$FFFF*256+5))
-            {   
-                controller.scrollcursor_flag = 1;
-                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
-                if (mouse_check_button_pressed(mb_left))
-                {
-                    mouse_xprevious = mouse_x;
-                    mouse_yprevious = mouse_y;
-                    moving = 1;
-                }
-                exit;
-            }
-            else if (mouse_x > (x+controller.x_scale_end/$FFFF*256-5))
-            {   
-                controller.scrollcursor_flag = 1;
-                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
-                if (mouse_check_button_pressed(mb_left))
-                {
-                    mouse_xprevious = mouse_x;
-                    mouse_yprevious = mouse_y;
-                    moving = 2;
-                }
-                exit;
-            }
-            else if (mouse_y < (y+controller.y_scale_start/$FFFF*256+5))
-            {   
-                controller.scrollcursor_flag = 2;
-                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
-                if (mouse_check_button_pressed(mb_left))
-                {
-                    mouse_xprevious = mouse_x;
-                    mouse_yprevious = mouse_y;
-                    moving = 3;
-                }
-                exit;
-            }
-            else if (mouse_y > (y+controller.y_scale_end/$FFFF*256-5))
-            {   
-                controller.scrollcursor_flag = 2;
-                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
-                if (mouse_check_button_pressed(mb_left))
-                {
-                    mouse_xprevious = mouse_x;
-                    mouse_yprevious = mouse_y;
-                    moving = 4;
-                }
-                exit;
-            }
-            else
-            {
-                controller.tooltip = "Drag to move projection window.\nHold CTRL to drag more slowly.\nRight click for more options.";
-                if (mouse_check_button_pressed(mb_left))
-                {
-                    mouse_xprevious = mouse_x;
-                    mouse_yprevious = mouse_y;
-                    moving = 5;
-                }
-                if (mouse_check_button_pressed(mb_right))
-                {
-                    dropdown_projectionwindow();
-                }
-                exit;
-            }
+		if (mode == 0)
+		{
+	        if ((mouse_x > (x+controller.scale_left_top/$FFFF*256-2)) &&
+	            (mouse_y > (y+controller.scale_top_left/$FFFF*256-2)) && 
+	            (mouse_x < (x+controller.scale_right_top/$FFFF*256+2)) &&
+	            (mouse_y < (y+controller.scale_bottom_left/$FFFF*256+2)) )
+	        {
+	            //within projector window
+	            if (mouse_x < (x+controller.scale_left_top/$FFFF*256+5))
+	            {   
+	                controller.scrollcursor_flag = 1;
+	                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
+	                if (mouse_check_button_pressed(mb_left))
+	                {
+	                    mouse_xprevious = mouse_x;
+	                    mouse_yprevious = mouse_y;
+	                    moving = 1;
+	                }
+	                exit;
+	            }
+	            else if (mouse_x > (x+controller.scale_right_top/$FFFF*256-5))
+	            {   
+	                controller.scrollcursor_flag = 1;
+	                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
+	                if (mouse_check_button_pressed(mb_left))
+	                {
+	                    mouse_xprevious = mouse_x;
+	                    mouse_yprevious = mouse_y;
+	                    moving = 2;
+	                }
+	                exit;
+	            }
+	            else if (mouse_y < (y+controller.scale_top_left/$FFFF*256+5))
+	            {   
+	                controller.scrollcursor_flag = 2;
+	                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
+	                if (mouse_check_button_pressed(mb_left))
+	                {
+	                    mouse_xprevious = mouse_x;
+	                    mouse_yprevious = mouse_y;
+	                    moving = 3;
+	                }
+	                exit;
+	            }
+	            else if (mouse_y > (y+controller.scale_bottom_left/$FFFF*256-5))
+	            {   
+	                controller.scrollcursor_flag = 2;
+	                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
+	                if (mouse_check_button_pressed(mb_left))
+	                {
+	                    mouse_xprevious = mouse_x;
+	                    mouse_yprevious = mouse_y;
+	                    moving = 4;
+	                }
+	                exit;
+	            }
+	            else
+	            {
+	                controller.tooltip = "Drag to move projection window.\nHold CTRL to drag more slowly.\nRight click for more options.";
+	                if (mouse_check_button_pressed(mb_left))
+	                {
+	                    mouse_xprevious = mouse_x;
+	                    mouse_yprevious = mouse_y;
+	                    moving = 5;
+	                }
+	                if (mouse_check_button_pressed(mb_right))
+	                {
+	                    dropdown_projectionwindow();
+	                }
+	                exit;
+	            }
+			}
         }
+		else if (mode == 1)
+		{
+			if (point_distance(	window_mouse_get_x(), window_mouse_get_y()-23,
+								x+controller.scale_left_top/$ffff*256, y+controller.scale_top_left/$ffff*256) < 3)
+			{
+				controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+				if (mouse_check_button_pressed(mb_left))
+	            {
+	                mouse_xprevious = mouse_x;
+	                mouse_yprevious = mouse_y;
+	                moving = 11;
+	            }
+	            exit;
+			}
+			if (point_distance(	window_mouse_get_x(), window_mouse_get_y()-23,
+								x+controller.scale_right_top/$ffff*256, y+controller.scale_top_right/$ffff*256) < 3)
+			{
+				controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+				if (mouse_check_button_pressed(mb_left))
+	            {
+	                mouse_xprevious = mouse_x;
+	                mouse_yprevious = mouse_y;
+	                moving = 12;
+	            }
+	            exit;
+			}
+			if (point_distance(	window_mouse_get_x(), window_mouse_get_y()-23,
+								x+controller.scale_left_bottom/$ffff*256, y+controller.scale_bottom_left/$ffff*256) < 3)
+			{
+				controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+				if (mouse_check_button_pressed(mb_left))
+	            {
+	                mouse_xprevious = mouse_x;
+	                mouse_yprevious = mouse_y;
+	                moving = 13;
+	            }
+	            exit;
+			}
+			if (point_distance(	window_mouse_get_x(), window_mouse_get_y()-23,
+								x+controller.scale_right_bottom/$ffff*256, y+controller.scale_bottom_right/$ffff*256) < 3)
+			{
+				controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+				if (mouse_check_button_pressed(mb_left))
+	            {
+	                mouse_xprevious = mouse_x;
+	                mouse_yprevious = mouse_y;
+	                moving = 14;
+	            }
+	            exit;
+			}
+		}
     }
 
 }
