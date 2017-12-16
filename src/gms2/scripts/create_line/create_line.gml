@@ -1,7 +1,3 @@
-//testing
-//resolution = resolution/5;
-//imp_point_list = ds_list_create();
-
 checkpoints = ceil(point_distance(startposx_r,startposy_r,endx_r,endy_r)/resolution);
 if (checkpoints < 2) 
 	checkpoints = 2;
@@ -73,7 +69,6 @@ for (n = 0; n <= checkpoints; n++)
                     makedot = 2;
                 }
                 blanknew = blank;
-                //blanksig = 1;
             }
         }
         else if (floor(n+blank_offset_r/pi/2*dotfreq) % round(dotfreq) > blank_dc_r*dotfreq) or (blank_dc_r < 0.02)
@@ -86,7 +81,6 @@ for (n = 0; n <= checkpoints; n++)
                     makedot = 2;
                 }
                 blanknew = blank;
-                //blanksig = 1;
             }
         }
         else 
@@ -99,7 +93,6 @@ for (n = 0; n <= checkpoints; n++)
                     makedot = 2;
                 }
                 blanknew = blank;
-                //blanksig = 1;
             }
         }
     }
@@ -243,10 +236,13 @@ for (n = 0; n <= checkpoints; n++)
             }
             else
             {
-                ds_list_add(new_list,n*vector[0]);
-                ds_list_add(new_list,n*vector[1]);
-                ds_list_add(new_list,0);
-                ds_list_add(new_list,c);
+				if (n != 0) //todo rework the dot creation process, and also blanking etc
+				{
+	                ds_list_add(new_list,n*vector[0]);
+	                ds_list_add(new_list,n*vector[1]);
+	                ds_list_add(new_list,0);
+	                ds_list_add(new_list,c);
+				}
                 repeat (dotmultiply)
                 {
                     ds_list_add(new_list,n*vector[0]);
@@ -260,13 +256,10 @@ for (n = 0; n <= checkpoints; n++)
     }  
     else
     {    
-        //if (blanksig) or (colorsig) or (n % 5 == 0)
-         //   {
-            ds_list_add(new_list,n*vector[0]);
-            ds_list_add(new_list,n*vector[1]);
-            ds_list_add(new_list,blank);
-            ds_list_add(new_list,c);
-          //  }
+        ds_list_add(new_list,n*vector[0]);
+        ds_list_add(new_list,n*vector[1]);
+        ds_list_add(new_list,blank);
+        ds_list_add(new_list,c);
     }
     
         
@@ -279,14 +272,6 @@ for (n = 0; n <= checkpoints; n++)
     if (n*vector[1] < ymin)
        ymin = n*vector[1];
 }
-    
- /* 
-for (n = 50; n < ds_list_size(new_list)-3; n+=6)
-{
-
-}
-  */
-//resolution = resolution*5;
     
     
 return 1;

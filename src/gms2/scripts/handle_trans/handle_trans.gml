@@ -2,9 +2,9 @@ if (objmoving == 1)
 {
     //translate
     anixtrans += (obj_cursor.x-mouse_xprevious)*$ffff/view_wport[4];
-    aniytrans += (obj_cursor.y-mouse_ypreviousious)*$ffff/view_wport[4];
+    aniytrans += (obj_cursor.y-mouse_yprevious)*$ffff/view_wport[4];
     mouse_xprevious = obj_cursor.x;
-    mouse_ypreviousious = obj_cursor.y;
+    mouse_yprevious = obj_cursor.y;
     
     if (mouse_check_button_released(mb_left))
     {
@@ -18,9 +18,9 @@ else if (objmoving == 2)
 {
     //anchor
     anchorx += (obj_cursor.x-mouse_xprevious)*$ffff/view_wport[4];
-    anchory += (obj_cursor.y-mouse_ypreviousious)*$ffff/view_wport[4];
+    anchory += (obj_cursor.y-mouse_yprevious)*$ffff/view_wport[4];
     mouse_xprevious = obj_cursor.x;
-    mouse_ypreviousious = obj_cursor.y;
+    mouse_yprevious = obj_cursor.y;
     if (mouse_check_button_released(mb_left))
     {
         objmoving = 0;
@@ -54,7 +54,7 @@ else if (objmoving == 4)
     if (!keyboard_check(vk_control))
     {
         scalex+= (obj_cursor.x-mouse_xprevious)/max(1,(rectxmax-rectxmin)/$ffff*view_wport[4])*2;
-        scaley+= (obj_cursor.y-mouse_ypreviousious)/max(1,(rectymax-rectymin)/$ffff*view_wport[4])*2;
+        scaley+= (obj_cursor.y-mouse_yprevious)/max(1,(rectymax-rectymin)/$ffff*view_wport[4])*2;
     }
     else
     {
@@ -63,7 +63,7 @@ else if (objmoving == 4)
     }  
           
     mouse_xprevious = obj_cursor.x;
-    mouse_ypreviousious = obj_cursor.y;
+    mouse_yprevious = obj_cursor.y;
     
     if (mouse_check_button_released(mb_left))
     {
@@ -84,7 +84,7 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
         {
             objmoving = 2;
             mouse_xprevious = obj_cursor.x;
-            mouse_ypreviousious = obj_cursor.y;
+            mouse_yprevious = obj_cursor.y;
         }
         else if (mouse_check_button_pressed(mb_right)) 
         {
@@ -105,7 +105,7 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
             scalex = 1;
             scaley = 1;
             mouse_xprevious = obj_cursor.x;
-            mouse_ypreviousious = obj_cursor.y;
+            mouse_yprevious = obj_cursor.y;
         }
         else if (mouse_check_button_pressed(mb_right)) 
         {
@@ -148,7 +148,7 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
             scalex = 1;
             scaley = 1;
             mouse_xprevious = obj_cursor.x;
-            mouse_ypreviousious = obj_cursor.y;
+            mouse_yprevious = obj_cursor.y;
         }
         else if (mouse_check_button_pressed(mb_right)) 
         {

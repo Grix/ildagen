@@ -283,10 +283,13 @@ for (n = 0;n < checkpoints; n++)
             }
             else
             {
-                ds_list_add(new_list,ds_list_find_value(free_list,2*n));
-                ds_list_add(new_list,ds_list_find_value(free_list,2*n+1));
-                ds_list_add(new_list,0);
-                ds_list_add(new_list,c);
+				if (n != 0)
+				{
+	                ds_list_add(new_list,ds_list_find_value(free_list,2*n));
+	                ds_list_add(new_list,ds_list_find_value(free_list,2*n+1));
+	                ds_list_add(new_list,0);
+	                ds_list_add(new_list,c);
+				}
                 repeat (dotmultiply)
                 {
                     ds_list_add(new_list,ds_list_find_value(free_list,2*n));

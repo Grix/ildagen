@@ -1,19 +1,31 @@
 draw_self();
 draw_set_colour(c_aqua);
 draw_set_alpha(0.15);
-draw_rectangle( x+controller.x_scale_start/$FFFF*256+1,
+draw_primitive_begin(pr_trianglestrip);
+draw_vertex(x+controller.scale_left_top/$FFFF*256+1, y+controller.scale_top_left/$FFFF*256+1);
+draw_vertex(x+controller.scale_right_top/$FFFF*256-1, y+controller.scale_top_right/$FFFF*256+1);
+draw_vertex(x+controller.scale_left_bottom/$FFFF*256+1, y+controller.scale_bottom_left/$FFFF*256-1);
+draw_vertex(x+controller.scale_right_bottom/$FFFF*256-1, y+controller.scale_bottom_right/$FFFF*256-1);
+draw_primitive_end();
+/*draw_rectangle( x+controller.x_scale_start/$FFFF*256+1,
                 y+controller.y_scale_start/$FFFF*256+1,
                 x+controller.x_scale_end/$FFFF*256-1,
-                y+controller.y_scale_end/$FFFF*256-1,     0);
+                y+controller.y_scale_end/$FFFF*256-1,     0);*/
 draw_set_alpha(1);
-draw_rectangle( x+controller.x_scale_start/$FFFF*256+1,
-                y+controller.y_scale_start/$FFFF*256+1,
-                x+controller.x_scale_end/$FFFF*256-1,
-                y+controller.y_scale_end/$FFFF*256-1,     1);
-draw_rectangle( x+controller.x_scale_start/$FFFF*256,
-                y+controller.y_scale_start/$FFFF*256,
-                x+controller.x_scale_end/$FFFF*256,
-                y+controller.y_scale_end/$FFFF*256,     1);
+draw_primitive_begin(pr_linestrip);
+draw_vertex(x+controller.scale_left_top/$FFFF*256+1, y+controller.scale_top_left/$FFFF*256+1);
+draw_vertex(x+controller.scale_right_top/$FFFF*256-1, y+controller.scale_top_right/$FFFF*256+1);
+draw_vertex(x+controller.scale_right_bottom/$FFFF*256-1, y+controller.scale_bottom_right/$FFFF*256-1);
+draw_vertex(x+controller.scale_left_bottom/$FFFF*256+1, y+controller.scale_bottom_left/$FFFF*256-1);
+draw_vertex(x+controller.scale_left_top/$FFFF*256+1, y+controller.scale_top_left/$FFFF*256+1);
+draw_primitive_end();
+draw_primitive_begin(pr_linestrip);
+draw_vertex(x+controller.scale_left_top/$FFFF*256, y+controller.scale_top_left/$FFFF*256);
+draw_vertex(x+controller.scale_right_top/$FFFF*256, y+controller.scale_top_right/$FFFF*256);
+draw_vertex(x+controller.scale_right_bottom/$FFFF*256, y+controller.scale_bottom_right/$FFFF*256);
+draw_vertex(x+controller.scale_left_bottom/$FFFF*256, y+controller.scale_bottom_left/$FFFF*256);
+draw_vertex(x+controller.scale_left_top/$FFFF*256, y+controller.scale_top_left/$FFFF*256);
+draw_primitive_end();
 
 
 var t_list = controller.blindzone_list;

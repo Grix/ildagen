@@ -193,9 +193,9 @@ global.loading_importfont = 0;
 global.loading_importildaseq = 0;
 
 opt_onlyblanking = false;
-opt_maxdist = 300;
-opt_maxdwell = 5;
-opt_maxdwell_blank = 1;
+opt_maxdist = 150;
+opt_maxdwell = 2;
+opt_maxdwell_blank = 2;
 opt_blankshift = 0;
 opt_redshift = 0;
 opt_greenshift = 0;
@@ -211,11 +211,20 @@ red_scale_lower = 0;
 blue_scale_lower = 0;
 green_scale_lower = 0;
 angle_prev = 0;
+dotstrength = 1;
 x_scale_start = 0;
 x_scale_end = $FFFF;
 y_scale_start = 0;
 y_scale_end = $FFFF;
-dotstrength = 1;
+scale_left_top = 0;
+scale_left_bottom = 0;
+scale_right_top = $FFFF;
+scale_right_bottom = $FFFF;
+scale_top_left = 0;
+scale_top_right = 0;
+scale_bottom_left = $FFFF;
+scale_bottom_right = $FFFF;
+
 
 placing = "line";
 placing_select_last = "line";
