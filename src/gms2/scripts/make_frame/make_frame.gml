@@ -81,9 +81,6 @@ for (i = 0; i < t_numofelems; i++)
 			var t_y = $ffff-(yo+list_id[| currentpos+1]);
 	        xp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
 	        yp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
-			//log(get_timer());
-			//xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
-			//yp = y_lowerbound+(yo+list_id[| currentpos+1])*y_scale;
                 
             if ((yp > $ffff) || (yp < 0) || (xp > $ffff) || (xp < 0))
             {

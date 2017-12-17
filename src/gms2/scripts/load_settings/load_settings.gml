@@ -6,8 +6,8 @@ with (controller)
         {
             ini_write_string("projector_0", "name", "default");
             ini_write_real("projector_0", "scanrate", 20000);
-            ini_write_real("projector_0", "maxdist", 300);
-            ini_write_real("projector_0", "maxdwell", 6);
+            ini_write_real("projector_0", "maxdist", 150);
+            ini_write_real("projector_0", "maxdwell", 2);
             ini_write_real("projector_0", "maxdwell_blank", 1);
             ini_write_real("projector_0", "blankshift", 0);
             ini_write_real("projector_0", "redshift", 0);
@@ -46,13 +46,13 @@ with (controller)
             var t_profilemap = ds_map_create();
             ds_map_add(t_profilemap, "name", ini_read_string(t_projectorstring, "name", "name_error"));
             ds_map_add(t_profilemap, "scanrate", ini_read_real(t_projectorstring, "scanrate", 20000));
-            ds_map_add(t_profilemap, "maxdwell", ini_read_real(t_projectorstring, "maxdwell", 6));
+            ds_map_add(t_profilemap, "maxdwell", ini_read_real(t_projectorstring, "maxdwell", 2));
             ds_map_add(t_profilemap, "maxdwell_blank", ini_read_real(t_projectorstring, "maxdwell_blank", 1));
             ds_map_add(t_profilemap, "blankshift", ini_read_real(t_projectorstring, "blankshift", 0));
             ds_map_add(t_profilemap, "redshift", ini_read_real(t_projectorstring, "redshift", 0));
             ds_map_add(t_profilemap, "greenshift", ini_read_real(t_projectorstring, "greenshift", 0));
             ds_map_add(t_profilemap, "blueshift", ini_read_real(t_projectorstring, "blueshift", 0));
-            ds_map_add(t_profilemap, "maxdist", ini_read_real(t_projectorstring, "maxdist", 300));
+            ds_map_add(t_profilemap, "maxdist", ini_read_real(t_projectorstring, "maxdist", 150));
             ds_map_add(t_profilemap, "format", ini_read_real(t_projectorstring, "format", 5));
             ds_map_add(t_profilemap, "optimize", ini_read_real(t_projectorstring, "optimize", 1));
             ds_map_add(t_profilemap, "onlyblanking", ini_read_real(t_projectorstring, "onlyblanking", false));
