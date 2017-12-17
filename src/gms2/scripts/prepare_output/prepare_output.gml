@@ -12,16 +12,18 @@ maxpoints_static = 0;
 maxpoints_dots = 0;
 
 x_lowerbound_top = controller.scale_left_top;
-y_lowerbound_left = $FFFF-controller.scale_top_left;
+y_lowerbound_left = $FFFF-controller.scale_bottom_left;
 x_lowerbound_bottom = controller.scale_left_bottom;
-y_lowerbound_right = $FFFF-controller.scale_top_right;
+y_lowerbound_right = $FFFF-controller.scale_bottom_right;
 x_scale_top = controller.scale_right_top/$FFFF*($FFFF-x_lowerbound_top)/$FFFF;
-y_scale_left = ($FFFF-controller.scale_bottom_left)/$FFFF*($FFFF-y_lowerbound_left)/$FFFF;
+y_scale_left = ($FFFF-controller.scale_top_left)/$FFFF*($FFFF-y_lowerbound_left)/$FFFF;
 x_scale_bottom = controller.scale_right_bottom/$FFFF*($FFFF-x_lowerbound_bottom)/$FFFF;
-y_scale_right = ($FFFF-controller.scale_bottom_right)/$FFFF*($FFFF-y_lowerbound_right)/$FFFF;
+y_scale_right = ($FFFF-controller.scale_top_right)/$FFFF*($FFFF-y_lowerbound_right)/$FFFF;
 mid_x = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*($8000/$ffff)+$8000*(x_scale_top+(x_scale_bottom-x_scale_top)*($8000/$ffff));
 mid_y = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*($8000/$ffff)+$8000*(y_scale_left+(y_scale_right-y_scale_left)*($8000/$ffff));
-
+//mid_x = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(0/$ffff)+0*(x_scale_top+(x_scale_bottom-x_scale_top)*(0/$ffff));
+//mid_y = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(0/$ffff)+0*(y_scale_left+(y_scale_right-y_scale_left)*(0/$ffff));
+//log(mid_x, mid_y);
 xp_prev = mid_x;
 yp_prev = mid_y;
 xp_prev_prev = mid_x;

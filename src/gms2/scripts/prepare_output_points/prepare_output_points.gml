@@ -36,8 +36,8 @@ for (var t_i = 1; t_i < listsize; t_i++)
     {
 		var t_x = xo+list_id[| currentpos+0];
 		var t_y = $ffff-(yo+list_id[| currentpos+1]);
-        xp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(t_x/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(t_x/$ffff));
-        yp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_y/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_y/$ffff));
+        xp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
+	    yp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
         //xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
         //yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
        
@@ -82,8 +82,8 @@ for (var t_i = 1; t_i < listsize; t_i++)
         //ypp = y_lowerbound+($ffff-(yo+list_id[| t_prevpos+1]))*y_scale;
 		var t_x = xo+list_id[| t_prevpos+0];
 		var t_y = $ffff-(yo+list_id[| t_prevpos+1]);
-        xpp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(t_x/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(t_x/$ffff));
-        ypp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_y/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_y/$ffff));
+        xpp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
+	    ypp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
         opt_dist = point_distance(xp_prev,yp_prev,xpp,ypp);
         
         if (opt_dist < 250) //connecting segments
