@@ -36,10 +36,14 @@ with (controller)
             ini_write_real(t_projectorstring, "red_scale_lower", t_profilemap[? "red_scale_lower"]);
             ini_write_real(t_projectorstring, "green_scale_lower", t_profilemap[? "green_scale_lower"]);
             ini_write_real(t_projectorstring, "blue_scale_lower", t_profilemap[? "blue_scale_lower"]);
-            ini_write_real(t_projectorstring, "x_scale_start", t_profilemap[? "x_scale_start"]);
-            ini_write_real(t_projectorstring, "y_scale_start", t_profilemap[? "y_scale_start"]);
-            ini_write_real(t_projectorstring, "x_scale_end", t_profilemap[? "x_scale_end"]);
-            ini_write_real(t_projectorstring, "y_scale_end", t_profilemap[? "y_scale_end"]);
+            ini_write_real(t_projectorstring, "scale_top_left", t_profilemap[? "scale_top_left"]);
+            ini_write_real(t_projectorstring, "scale_top_right", t_profilemap[? "scale_top_right"]);
+            ini_write_real(t_projectorstring, "scale_bottom_left", t_profilemap[? "scale_bottom_left"]);
+            ini_write_real(t_projectorstring, "scale_bottom_right", t_profilemap[? "scale_bottom_right"]);
+            ini_write_real(t_projectorstring, "scale_right_top", t_profilemap[? "scale_right_top"]);
+            ini_write_real(t_projectorstring, "scale_right_bottom", t_profilemap[? "scale_right_bottom"]);
+            ini_write_real(t_projectorstring, "scale_left_top", t_profilemap[? "scale_left_top"]);
+            ini_write_real(t_projectorstring, "scale_left_bottom", t_profilemap[? "scale_left_bottom"]);
             ini_write_string(t_projectorstring, "blindzones", t_profilemap[? "blindzones"]);
         }
         

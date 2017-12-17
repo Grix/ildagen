@@ -20,9 +20,13 @@ with (controller)
     t_profilemap[? "red_scale_lower"] = red_scale_lower;
     t_profilemap[? "green_scale_lower"] = green_scale_lower;
     t_profilemap[? "blue_scale_lower"] = blue_scale_lower;
-    t_profilemap[? "x_scale_start"] = x_scale_start;
-    t_profilemap[? "x_scale_end"] = x_scale_end;
-    t_profilemap[? "y_scale_start"] = y_scale_start;
-    t_profilemap[? "y_scale_end"] = y_scale_end;
+	t_profilemap[? "scale_top_left"] = scale_top_left;
+	t_profilemap[? "scale_top_right"] = scale_top_right;
+	t_profilemap[? "scale_bottom_left"] = scale_bottom_left;
+	t_profilemap[? "scale_bottom_right"] = scale_bottom_right;
+	t_profilemap[? "scale_right_top"] = scale_right_top;
+	t_profilemap[? "scale_right_bottom"] = scale_right_bottom;
+	t_profilemap[? "scale_left_top"] = scale_left_top;
+	t_profilemap[? "scale_left_bottom"] = scale_left_bottom;
     t_profilemap[? "blindzones"] = ds_list_write(blindzone_list);
 }

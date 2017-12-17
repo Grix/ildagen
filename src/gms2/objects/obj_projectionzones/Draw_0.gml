@@ -7,10 +7,6 @@ draw_vertex(x+controller.scale_right_top/$FFFF*256-1, y+controller.scale_top_rig
 draw_vertex(x+controller.scale_left_bottom/$FFFF*256+1, y+controller.scale_bottom_left/$FFFF*256-1);
 draw_vertex(x+controller.scale_right_bottom/$FFFF*256-1, y+controller.scale_bottom_right/$FFFF*256-1);
 draw_primitive_end();
-/*draw_rectangle( x+controller.x_scale_start/$FFFF*256+1,
-                y+controller.y_scale_start/$FFFF*256+1,
-                x+controller.x_scale_end/$FFFF*256-1,
-                y+controller.y_scale_end/$FFFF*256-1,     0);*/
 draw_set_alpha(1);
 draw_primitive_begin(pr_linestrip);
 draw_vertex(x+controller.scale_left_top/$FFFF*256+1, y+controller.scale_top_left/$FFFF*256+1);
