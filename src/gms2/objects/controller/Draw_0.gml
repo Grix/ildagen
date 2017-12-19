@@ -142,15 +142,15 @@ if (view_current == 4 || view_current == 5)
         
         //selected elements
         draw_set_color(c_aqua);
-        if !(ds_list_empty(semaster_list))//(selectedelement != -1)
+        if !(ds_list_empty(semaster_list))
         {
             if (update_semasterlist_flag)
                 update_semasterlist();
             
             draw_sprite(spr_anchor,0,round(anchorx/t_scale), round(t_y+anchory/t_scale));
             draw_set_alpha(0.6);
-            draw_sprite(spr_rotate,0,rectxmin/t_scale, t_y+rectymax/t_scale);
-            draw_sprite(spr_resize,0,rectxmax/t_scale, t_y+rectymax/t_scale);
+            draw_sprite(spr_rotate,0,clamp(rectxmin/t_scale, 22, view_wport[4]), clamp(t_y+rectymax/t_scale, t_y, t_y+view_wport[4]-22));
+            draw_sprite(spr_resize,0,clamp(rectxmax/t_scale, 0, view_wport[4]-22), clamp(t_y+rectymax/t_scale, t_y, t_y+view_wport[4]-22));
             draw_set_alpha(1);
             
             draw_rectangle(rectxmin/t_scale, t_y+rectymin/t_scale, rectxmax/t_scale, t_y+rectymax/t_scale,1);

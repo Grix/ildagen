@@ -76,6 +76,12 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
 	if (window_mouse_get_x() > view_wport[4] or window_mouse_get_y()-23 > view_wport[4])
 		exit;
 		
+	var t_resizex = clamp(rectxmax/$ffff*view_wport[4], 0, view_wport[4]-22);
+	var t_resizey = clamp(rectymax/$ffff*view_wport[4], 0, view_wport[4]-22);
+	var t_rotatex = clamp(rectxmin/$ffff*view_wport[4], 22, view_wport[4]);
+	var t_rotatey = clamp(rectymax/$ffff*view_wport[4], 0, view_wport[4]-22);
+	//todo fix clickability
+		
     if	(window_mouse_get_x() == clamp(window_mouse_get_x(), anchorx/$ffff*view_wport[4]-10, anchorx/$ffff*view_wport[4]+10)) and 
 		(window_mouse_get_y()-23 == clamp(window_mouse_get_y()-23, anchory/$ffff*view_wport[4]-10, anchory/$ffff*view_wport[4]+10))
     {
@@ -112,8 +118,10 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
             dropdown_object();
         }
     }
-    else if (window_mouse_get_x() == clamp(window_mouse_get_x(),rectxmin/$ffff*view_wport[4]-20, rectxmin/$ffff*view_wport[4]-2)) and 
-			(window_mouse_get_y()-23 == clamp(window_mouse_get_y()-23,rectymax/$ffff*view_wport[4]+2, rectymax/$ffff*view_wport[4]+20))
+    else if (window_mouse_get_x() > t_rotatex-20 &&
+			 window_mouse_get_x() < t_rotatex-2 &&
+			 window_mouse_get_y()-23 > t_rotatey+2 &&
+			 window_mouse_get_y()-23 < t_rotatey+20)
     {
         tooltip = "Click and drag to rotate the selected object around the anchor.\nIf animation is enabled, the rotation will be animated.\nRight click to enter precise rotation amount.";
 		if (mouse_check_button_pressed(mb_left)) 
@@ -135,11 +143,13 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
             ilda_dialog_num("anirot","Enter the amount of degrees to rotate.",0);
         }
     }
-    else if (window_mouse_get_x() == clamp(window_mouse_get_x(),rectxmax/$ffff*view_wport[4]+2,rectxmax/$ffff*view_wport[4]+20)) and 
-			(window_mouse_get_y()-23 == clamp(window_mouse_get_y()-23,rectymax/$ffff*view_wport[4]+2,rectymax/$ffff*view_wport[4]+20))
+    else if (window_mouse_get_x() > t_resizex+2 &&
+			 window_mouse_get_x() < t_resizex+20 &&
+			 window_mouse_get_y()-23 > t_resizey+2 &&
+			 window_mouse_get_y()-23 < t_resizey+20)
     {
         tooltip = "Click and drag to resize the selected object around the anchor.\nHold Ctrl to resize X and Y the same amount.\nRight click to enter precise scaling amount.\nIf animation is enabled, the change will be animated."
-        if (mouse_check_button_pressed(mb_left)) 
+		if (mouse_check_button_pressed(mb_left)) 
         {
             objmoving = 4;
             anixtrans = 0;
