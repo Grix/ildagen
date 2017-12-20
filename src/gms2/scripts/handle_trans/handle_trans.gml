@@ -80,8 +80,7 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
 	var t_resizey = clamp(rectymax/$ffff*view_wport[4], 0, view_wport[4]-22);
 	var t_rotatex = clamp(rectxmin/$ffff*view_wport[4], 22, view_wport[4]);
 	var t_rotatey = clamp(rectymax/$ffff*view_wport[4], 0, view_wport[4]-22);
-	//todo fix clickability
-		
+	
     if	(window_mouse_get_x() == clamp(window_mouse_get_x(), anchorx/$ffff*view_wport[4]-10, anchorx/$ffff*view_wport[4]+10)) and 
 		(window_mouse_get_y()-23 == clamp(window_mouse_get_y()-23, anchory/$ffff*view_wport[4]-10, anchory/$ffff*view_wport[4]+10))
     {

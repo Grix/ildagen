@@ -489,7 +489,7 @@ else
     }
     
     if (!t_withinblindzone)
-    {
+    {		
 		if (mode == 0)
 		{
 	        if ((mouse_x > (x+controller.scale_left_top/$FFFF*256-2)) &&
@@ -555,12 +555,14 @@ else
 	                    mouse_yprevious = mouse_y;
 	                    moving = 5;
 	                }
-	                if (mouse_check_button_pressed(mb_right))
-	                {
-	                    dropdown_projectionwindow();
-	                }
-	                exit;
 	            }
+			}
+			else if (mouse_x > x) && (mouse_y > y) && (mouse_x < x+256) && (mouse_y < y+256)
+			{
+				controller.tooltip = "Right click for options";
+		
+				if (mouse_check_button_pressed(mb_right))
+					dropdown_projectionwindow();
 			}
         }
 		else if (mode == 1)
@@ -613,8 +615,17 @@ else
 	            }
 	            exit;
 			}
+			else if (mouse_x > x) && (mouse_y > y) && (mouse_x < x+256) && (mouse_y < y+256)
+			{
+				controller.tooltip = "Right click for options";
+		
+				if (mouse_check_button_pressed(mb_right))
+					dropdown_projectionwindow();
+			}
 		}
     }
 
 }
 
+if (controller.laseron && moving > 0)
+	save_profile();

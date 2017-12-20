@@ -42,12 +42,7 @@ var t_mouse_x = window_mouse_get_x();
 var t_mouse_y = window_mouse_get_y()-23;
 
 //todo maybe rewrite to avoid clamp
-if !ds_list_empty(semaster_list)  and (
-((t_mouse_x == clamp(t_mouse_x,rectxmin/t_scale-2,rectxmax/t_scale+2)) and (t_mouse_y == clamp(t_mouse_y,rectymin/t_scale-2,rectymax/t_scale+2)))
-or ((t_mouse_x == clamp(t_mouse_x,anchorx/t_scale-10,anchorx/t_scale+10)) and (t_mouse_y == clamp(t_mouse_y,anchory/t_scale-10,anchory/t_scale+10)))
-or ((t_mouse_x == clamp(t_mouse_x,rectxmin/t_scale-20,rectxmin/t_scale-2)) and (t_mouse_y == clamp(t_mouse_y,rectymax/t_scale+2,rectymax/t_scale+20)))
-or ((t_mouse_x == clamp(t_mouse_x,rectxmax/t_scale+2,rectxmax/t_scale+20)) and (t_mouse_y == clamp(t_mouse_y,rectymax/t_scale+2,rectymax/t_scale+20)))
-)
+if !ds_list_empty(semaster_list) && handle_trans()
     exit;
     
 ds_list_clear(semaster_list);

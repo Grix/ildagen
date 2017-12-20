@@ -30,6 +30,9 @@ if (moving == 6) || ((moving > 3) && keyboard_check(vk_control))
 {
     controller.blue_scale_lower = clamp(1 - (mouse_y-bbox_top)/52, 0, controller.blue_scale-0.001);
 }
+
+if (controller.laseron && moving > 0)
+	save_profile();
     
 mouse_yprevious = mouse_y;
 

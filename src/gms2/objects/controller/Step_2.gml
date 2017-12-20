@@ -283,7 +283,6 @@ if (keyboard_check(vk_left)) && (maxframes > 1) && (placing_status == 0)
     if !ds_list_empty(semaster_list)
     {
         update_semasterlist_flag = 1;
-        
     }
     refresh_minitimeline_flag = 1;
 }
