@@ -1,3 +1,5 @@
+version = "1.6.0";
+versiondate = "2017-12-21";
 
 if (debug_mode)
 {
