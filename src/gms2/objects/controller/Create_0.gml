@@ -1,5 +1,3 @@
-version = "1.5.10";
-versiondate = "2017-11-05";
 
 if (debug_mode)
 {
