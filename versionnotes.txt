@@ -1,9 +1,9 @@
+v1.6.1
+- Fixed bug causing broken timeline mode interface on some resolutions.
+
 v1.6.0
 - Interface scales properly when resized, users can take advantage of the whole screen if maximizing the window.
 - Projection can now be more freely adjusted by moving each corner of the projection window independently.
 - Better optimization algorithm, especially for frames with dots in them.
 - Other misc. bug fixes and tweaks.
 NB: A lot have changed under the hood for this update, bugs may have been introduced.
-
-v1.5.10
-- Bug fixes: Possible crash when reapplying properties, broken scope-button, and more

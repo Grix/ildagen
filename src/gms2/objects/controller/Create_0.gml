@@ -1,5 +1,5 @@
-version = "1.6.0";
-versiondate = "2017-12-21";
+version = "1.6.1";
+versiondate = "2017-12-23";
 
 if (debug_mode)
 {
@@ -79,10 +79,9 @@ parser_cb = ML_InitParserScience(varmap);
     
 alarm[3] = 120;
 
-default_window_w = window_get_width(); //1300;
-default_window_h = window_get_height(); //728;
-window_heightprev = default_window_h;
-window_widthprev = default_window_w;
+default_window_w = 1350;
+default_window_h = 729;
+window_set_size(default_window_w, default_window_h);
 
 el_list = ds_list_create();
 undo_list = ds_list_create();
