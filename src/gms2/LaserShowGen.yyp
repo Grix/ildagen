@@ -5231,14 +5231,6 @@
             }
         },
         {
-            "Key": "a34ea049-708f-4777-87a0-84209f0d82f8",
-            "Value": {
-                "id": "36c0ad62-b388-4c58-8e1d-9ff362ceca1f",
-                "resourcePath": "datafiles_yy\\palette.txt.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "a3766bbe-cfc6-4e44-98b8-175f9712dd26",
             "Value": {
                 "id": "13f98ec7-7e76-4f41-af28-9f629d9e177f",

@@ -4,13 +4,11 @@ TODO
 - LIVE mode
 - switch x/y
 - other format 0 palette
-- resizing
-- polygon projection size
 - stretching
 - audio_loudness_previous_frame
 - shaking stuff (email 2017-11-18)
 - simulation settings (more projectors etc)
-- optimize output (buffer_fast?)
+- optimize output
 
 SETTINGSCONTROL
 

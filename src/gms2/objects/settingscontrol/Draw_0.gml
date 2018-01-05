@@ -7,6 +7,7 @@ if (view_current == 3)
 	draw_set_colour(c_black);
 	draw_set_alpha(1);
 	var t_ypos = camera_get_view_y(view_camera[3]);
+	draw_line(0, t_ypos+view_hport[3]-1, view_wport[3], t_ypos+view_hport[3]-1);
 	draw_text(0, t_ypos+4, menu_string);
 	if (mouse_y > t_ypos)   
 	{
