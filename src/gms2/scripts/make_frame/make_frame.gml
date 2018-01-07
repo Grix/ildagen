@@ -3,8 +3,6 @@ if (debug_mode)
     
 //var timerbm = get_timer();
 
-//todo fix crash real argument unset
-
 var t_vectorx, t_vectory, t_true_dwell_falling, t_true_dwell_rising;
 var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
 var t_contflag = false;
@@ -284,6 +282,7 @@ for (i = 0; i < t_numofelems; i++)
             }
             xp_prev = xpp;
             yp_prev = ypp;
+			bl_prev = 0;
 			
         } //end if bl_prev
 			
@@ -303,6 +302,7 @@ for (i = 0; i < t_numofelems; i++)
                 t_totalrem -= opt_dist;
                 continue;
             } //todo draw to the end if skipped?
+			//TODO INVESTIGATE FAILURE LINES BECOME DOTTED
         }
         else
         {
@@ -331,7 +331,7 @@ for (i = 0; i < t_numofelems; i++)
         ds_list_add(list_raw,0);
         ds_list_add(list_raw,c);
         
-        bl_prev = 0;
+        
         xp_prev_prev = xp_prev;
         yp_prev_prev = yp_prev;
         xp_prev = xp;

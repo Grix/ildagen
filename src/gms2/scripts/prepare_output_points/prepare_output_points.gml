@@ -138,6 +138,7 @@ for (var t_i = 1; t_i < listsize; t_i++)
         
         xp_prev = xpp;
         yp_prev = ypp;
+		bl_prev = 0;
     }
 	
     opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
@@ -157,7 +158,6 @@ for (var t_i = 1; t_i < listsize; t_i++)
     xp_prev = xp;
     yp_prev = yp;
     //c_prev = c;
-    bl_prev = 0;
 }
 
 

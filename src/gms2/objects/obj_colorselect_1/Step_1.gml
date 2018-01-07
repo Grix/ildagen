@@ -17,13 +17,13 @@ if (moving == 4)
     ds_list_add(tempundolist,controller.color1);
     ds_list_add(controller.undo_list,"b"+string(tempundolist));
 	if (mouse_y-y < 47+9)
-		controller.color1 = make_color_rgb(255, floor((mouse_x-x)/8)*51, 0);
+		controller.color1 = make_color_rgb(255, floor((mouse_x+5-x)/8)*51, 0); //todo adjust
 	else if (mouse_y-y < 47+18)
-		controller.color1 = make_color_rgb(0, 255, floor((mouse_x-x)/8)*51);
+		controller.color1 = make_color_rgb(0, 255, floor((mouse_x-x)/9)*51);
 	else if (mouse_y-y < 47+27)
-		controller.color1 = make_color_rgb(floor((mouse_x-x)/8)*51, 0, 255);
+		controller.color1 = make_color_rgb(floor((mouse_x-x)/9)*51, 0, 255);
 	else if (mouse_y-y < 47+36)
-		controller.color1 = make_color_rgb(255 - floor((mouse_x-x)/8)*51, 255 - floor((mouse_x-x)/8)*51, 255 - floor((mouse_x-x)/8)*51);
+		controller.color1 = make_color_rgb(255 - floor((mouse_x-x)/9)*51, 255 - floor((mouse_x-x)/8)*51, 255 - floor((mouse_x-x)/8)*51);
     moving = 0;
     update_colors();
 }
