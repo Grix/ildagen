@@ -35,6 +35,11 @@ with (controller)
 	scale_right_bottom = t_profilemap[? "scale_right_bottom"];
 	scale_left_top = t_profilemap[? "scale_left_top"];
 	scale_left_bottom = t_profilemap[? "scale_left_bottom"];
+	ttlpalette = t_profilemap[? "ttlpalette"];
+	if (ttlpalette == 0)
+		pal_list = pal_list_ilda;
+	else
+		pal_list = pal_list_ttl;
 	
     ds_list_read(blindzone_list, t_profilemap[? "blindzones"]);
     

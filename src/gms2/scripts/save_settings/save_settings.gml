@@ -44,6 +44,7 @@ with (controller)
             ini_write_real(t_projectorstring, "scale_right_bottom", t_profilemap[? "scale_right_bottom"]);
             ini_write_real(t_projectorstring, "scale_left_top", t_profilemap[? "scale_left_top"]);
             ini_write_real(t_projectorstring, "scale_left_bottom", t_profilemap[? "scale_left_bottom"]);
+			ini_write_real(t_projectorstring, "ttlpalette", t_profilemap[? "ttlpalette"]);
             ini_write_string(t_projectorstring, "blindzones", t_profilemap[? "blindzones"]);
         }
         

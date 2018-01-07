@@ -5711,6 +5711,14 @@
             }
         },
         {
+            "Key": "b2d60eab-38bc-4100-aba4-dea40a2879df",
+            "Value": {
+                "id": "1f47fbe5-3789-4b8a-9da3-5eb5b79c9f13",
+                "resourcePath": "objects\\obj__ttlpalette\\obj__ttlpalette.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "b310ff2e-8079-4a6f-bbab-8b55559c9ea9",
             "Value": {
                 "id": "b293b724-1259-42ed-9f84-340d791e1a17",

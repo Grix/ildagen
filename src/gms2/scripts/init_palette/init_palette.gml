@@ -45,3 +45,4 @@ ini_close();*/
 log("palette loaded, size: "+string(ds_list_size(pal_list_ilda)));
 
 pal_list = pal_list_ilda;
+ttlpalette = 0;

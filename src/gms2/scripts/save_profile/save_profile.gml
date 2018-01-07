@@ -28,5 +28,6 @@ with (controller)
 	t_profilemap[? "scale_right_bottom"] = scale_right_bottom;
 	t_profilemap[? "scale_left_top"] = scale_left_top;
 	t_profilemap[? "scale_left_bottom"] = scale_left_bottom;
+	t_profilemap[? "ttlpalette"] = ttlpalette;
     t_profilemap[? "blindzones"] = ds_list_write(blindzone_list);
 }
