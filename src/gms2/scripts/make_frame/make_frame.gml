@@ -280,8 +280,10 @@ for (i = 0; i < t_numofelems; i++)
                 }
                     
             }
+			
             xp_prev = xpp;
             yp_prev = ypp;
+			c_prev = c;
 			bl_prev = 0;
 			
         } //end if bl_prev
@@ -291,21 +293,20 @@ for (i = 0; i < t_numofelems; i++)
 		if (opt_dist < 2)
 			opt_dist = t_dotlength;
 			
+		opt_dist += t_totalrem;
+			
         //INTERPOLATE
         if (opt_dist < t_lengthwanted)
         {
             //skip point
-            currentpos += currentposadjust;
-            if (currentpos < ds_list_size(list_id)-1)
+            if (t_i != listsize-1)
             {
-                t_i++;
-                t_totalrem -= opt_dist;
+				t_totalrem += t_lengthwanted;
                 continue;
             } //todo draw to the end if skipped?
-			//TODO INVESTIGATE FAILURE LINES BECOME DOTTED
         }
-        else
-        {
+        else if (opt_dist > t_lengthwanted*2)
+		{
             //add points
             t_totalrem += t_lengthwanted - (opt_dist % t_lengthwanted);
             if (t_totalrem > t_lengthwanted)
@@ -324,6 +325,11 @@ for (i = 0; i < t_numofelems; i++)
                 ds_list_add(list_raw,c);
             }
         }
+		else
+		{
+			//no action needed
+			t_totalrem -= opt_dist-t_lengthwanted;
+		}
         
         //normal point, writing
         ds_list_add(list_raw,xp);
