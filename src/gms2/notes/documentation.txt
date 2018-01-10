@@ -3,7 +3,6 @@ TODO
 - reapply combine shapes
 - LIVE mode
 - switch x/y
-- other format 0 palette
 - stretching
 - audio_loudness_previous_frame
 - shaking stuff (email 2017-11-18)

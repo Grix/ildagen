@@ -24,6 +24,9 @@ else
 	var t_lengthwanted = (t_dotlength*maxpoints_dots)/t_litpointswanted;
 }
 
+var t_lengthwanted70 = t_lengthwanted*0.7;
+var t_lengthwanted170 = t_lengthwanted*1.7;
+
 xp_prev = mid_x;
 yp_prev = mid_y;
 xp_prev_prev = mid_x;
@@ -292,20 +295,22 @@ for (i = 0; i < t_numofelems; i++)
 			
 		if (opt_dist < 2)
 			opt_dist = t_dotlength;
-			
-		opt_dist += t_totalrem;
-			
-        //INTERPOLATE
-        if (opt_dist < t_lengthwanted)
+		
+        if (opt_dist+t_totalrem < t_lengthwanted70)
         {
             //skip point
-            if (t_i != listsize-1)
+			log("skip", opt_dist, t_totalrem, t_lengthwanted);
+            if (t_i != listsize-1 && t_i != 1)
             {
-				t_totalrem += t_lengthwanted;
+				t_totalrem += opt_dist;//t_lengthwanted;
+				xp_prev = xp;
+				yp_prev = yp;
                 continue;
-            } //todo draw to the end if skipped?
+			}
+			else
+				t_totalrem = opt_dist+t_totalrem-t_lengthwanted;
         }
-        else if (opt_dist > t_lengthwanted*2)
+        else if (opt_dist+t_totalrem > t_lengthwanted170)
 		{
             //add points
             t_totalrem += t_lengthwanted - (opt_dist % t_lengthwanted);
@@ -328,7 +333,8 @@ for (i = 0; i < t_numofelems; i++)
 		else
 		{
 			//no action needed
-			t_totalrem -= opt_dist-t_lengthwanted;
+			log("nothing", opt_dist, t_totalrem, t_lengthwanted);
+			t_totalrem = opt_dist+t_totalrem-t_lengthwanted;
 		}
         
         //normal point, writing
@@ -336,7 +342,6 @@ for (i = 0; i < t_numofelems; i++)
         ds_list_add(list_raw,yp);
         ds_list_add(list_raw,0);
         ds_list_add(list_raw,c);
-        
         
         xp_prev_prev = xp_prev;
         yp_prev_prev = yp_prev;
