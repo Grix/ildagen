@@ -1,3 +1,8 @@
+v1.6.2
+- Fixed bug in optimization algorithm causing very complex frames to become corrupt when outputted.
+- Added alternative color palette for format 0 ILDA file export, should fix inaccurate color on some projectors.
+- Various other small fixes and tweaks.
+
 v1.6.1
 - Fixed bug causing broken timeline mode interface on some resolutions.
 

@@ -1,5 +1,3 @@
-//todo fix, position not right
-
 if (!surface_exists(minitimeline_surf))
     minitimeline_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_wport[4]/512*42))));
     

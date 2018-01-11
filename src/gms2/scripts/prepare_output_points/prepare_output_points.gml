@@ -78,8 +78,6 @@ for (var t_i = 1; t_i < listsize; t_i++)
         //BLANKING
         
         var t_prevpos = currentpos-currentposadjust;
-        //xpp = x_lowerbound+(xo+list_id[| t_prevpos+0])*x_scale;
-        //ypp = y_lowerbound+($ffff-(yo+list_id[| t_prevpos+1]))*y_scale;
 		var t_x = xo+list_id[| t_prevpos+0];
 		var t_y = $ffff-(yo+list_id[| t_prevpos+1]);
         xpp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));

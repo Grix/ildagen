@@ -1,4 +1,3 @@
-//todo make new palette for ttl sd card using bmp2ild
 pal_list_ilda = ds_list_create();
 pal_list_ttl = ds_list_create();
 ini_open("palette.ini");

@@ -299,7 +299,6 @@ for (i = 0; i < t_numofelems; i++)
         if (opt_dist+t_totalrem < t_lengthwanted70)
         {
             //skip point
-			log("skip", opt_dist, t_totalrem, t_lengthwanted);
             if (t_i != listsize-1 && t_i != 1)
             {
 				t_totalrem += opt_dist;//t_lengthwanted;
@@ -333,7 +332,6 @@ for (i = 0; i < t_numofelems; i++)
 		else
 		{
 			//no action needed
-			log("nothing", opt_dist, t_totalrem, t_lengthwanted);
 			t_totalrem = opt_dist+t_totalrem-t_lengthwanted;
 		}
         

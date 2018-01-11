@@ -1,5 +1,5 @@
-version = "1.6.1";
-versiondate = "2017-12-23";
+version = "1.6.2";
+versiondate = "2018-01-11";
 
 if (debug_mode)
 {

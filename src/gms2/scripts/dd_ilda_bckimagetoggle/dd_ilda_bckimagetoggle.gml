@@ -17,7 +17,6 @@ if (bckimage)
         {
             bckimage_width = 1;
             bckimage_height = 1/sprite_get_width(bck_bckimage)*sprite_get_height(bck_bckimage);
-            //todo make this better for scalability:
 			bckimage_top = (1-bckimage_height)/2;
             bckimage_left = 0;
         }
