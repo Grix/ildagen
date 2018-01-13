@@ -118,8 +118,6 @@ for (i = 0; i < t_numofelems; i++)
         {
             //BLANKING
             var t_prevpos = currentpos-currentposadjust;
-            //xpp = x_lowerbound+(xo+list_id[| t_prevpos+0])*x_scale;
-            //ypp = y_lowerbound+($ffff-(yo+list_id[| t_prevpos+1]))*y_scale;
 				
 			var t_x = xo+list_id[| t_prevpos+0];
 			var t_y = $ffff-(yo+list_id[| t_prevpos+1]);
@@ -157,7 +155,7 @@ for (i = 0; i < t_numofelems; i++)
                 {
                     ds_list_add(list_raw,xp_prev);
                     ds_list_add(list_raw,yp_prev);
-                    ds_list_add(list_raw,0);
+                    ds_list_add(list_raw,(c_prev == 0));
                     ds_list_add(list_raw,c_prev);
                 }
                 repeat (t_true_dwell_falling - controller.opt_maxdwell_blank*2 )
@@ -208,7 +206,7 @@ for (i = 0; i < t_numofelems; i++)
                 {
                     ds_list_add(list_raw,xp_prev);
                     ds_list_add(list_raw,yp_prev);
-                    ds_list_add(list_raw,0);
+                    ds_list_add(list_raw,(c_prev == 0));
                     ds_list_add(list_raw,c_prev);
                 }
                 repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank) )
