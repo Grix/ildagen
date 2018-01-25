@@ -1,13 +1,12 @@
 TODO
-- double check and fix maxpoints_static calculation
+- stretching
 - reapply combine shapes
+- double check and fix maxpoints_static calculation
 - LIVE mode
 - switch x/y
-- stretching
 - audio_loudness_previous_frame
 - shaking stuff (email 2017-11-18)
 - simulation settings (more projectors etc)
-- optimize output
 
 SETTINGSCONTROL
 
