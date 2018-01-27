@@ -60,14 +60,14 @@ if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window
 	log("Resized window");
 	forceresize = false;
 	
-	view_hport[4] = window_get_height()-view_hport[1]-view_hport[3];
+	view_hport[4] = max(window_get_height()-view_hport[1]-view_hport[3], 1);
 	tlh = round(view_hport[4]/(512/44));
-	view_wport[4] = view_hport[4]-tlh-1;
+	view_wport[4] = max(view_hport[4]-tlh-1, 1);
 	tlw = view_wport[4];
 	view_wport[0] = window_get_width()-view_wport[4];
-	if (view_wport[0] < 788)
+	if false //(view_wport[0] < 788)
 	{
-	//	window_set_size(default_window_w, default_window_h);
+		window_set_size(default_window_w, default_window_h);
 	
 		view_hport[4] = window_get_height()-view_hport[1]-view_hport[3];
 		tlw = view_wport[4];
@@ -77,7 +77,7 @@ if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window
 	view_wport[3] = window_get_width();
 	view_hport[0] = 706;
 	view_hport[1] = 149;
-	view_hport[6] = window_get_height()-view_hport[3]-view_hport[0];
+	view_hport[6] = max(window_get_height()-view_hport[3]-view_hport[0], 1);
 	view_wport[6] = view_wport[0];
 	view_wport[1] = view_wport[4];
 	view_yport[1] = view_hport[4]+view_hport[3];

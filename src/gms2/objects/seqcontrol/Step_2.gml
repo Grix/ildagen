@@ -36,7 +36,7 @@ if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window
 	
 	view_hport[0] = 706;
 	view_wport[0] = 316;
-	view_wport[1] = window_get_width()-view_wport[0];
+	view_wport[1] = max(window_get_width()-view_wport[0], 1);
 	view_wport[4] = view_wport[1];
 	view_hport[4] = (window_get_height()-view_hport[3])*0.2*(power(window_get_height()/706, 0.8));
 	view_hport[1] = window_get_height()-view_hport[3]-view_hport[4];
