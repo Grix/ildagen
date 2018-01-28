@@ -28,8 +28,8 @@ if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window
 && !(window_get_height() == 0 || window_get_width() == 0)
 || controller.forceresize
 {
-	if (window_get_height() < controller.default_window_h || window_get_width() < controller.default_window_w)
-		window_set_size(controller.default_window_w, controller.default_window_h);
+	//if (window_get_height() < controller.default_window_h || window_get_width() < controller.default_window_w)
+	//	window_set_size(controller.default_window_w, controller.default_window_h);
 	
 	log("Resized window");
 	controller.forceresize = false;
@@ -43,7 +43,7 @@ if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window
 	view_yport[1] = view_hport[4]+view_hport[3];
 	view_xport[0] = view_wport[1];
 	view_wport[6] = view_wport[0];
-	view_hport[6] = window_get_height()-view_hport[3]-view_hport[0];
+	view_hport[6] = max(window_get_height()-view_hport[3]-view_hport[0], 1);
 	view_xport[6] = view_xport[0];
 	view_yport[6] = view_hport[3]+view_hport[0];
 	view_wport[3] = window_get_width();

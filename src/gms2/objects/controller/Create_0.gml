@@ -1,5 +1,5 @@
-version = "1.6.2";
-versiondate = "2018-01-11";
+version = "1.6.3";
+versiondate = "2018-01-28";
 
 if (debug_mode)
 {
@@ -80,7 +80,7 @@ parser_cb = ML_InitParserScience(varmap);
 alarm[3] = 120;
 
 default_window_w = 1350;
-default_window_h = 729;
+default_window_h = 735;
 window_set_size(default_window_w, default_window_h);
 
 el_list = ds_list_create();

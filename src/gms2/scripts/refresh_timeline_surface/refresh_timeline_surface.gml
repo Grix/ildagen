@@ -2,13 +2,13 @@
 
 if (!surface_exists(timeline_surf))
 {
-    timeline_surf = surface_create(power(2, ceil(log2(view_wport[1]))), power(2, ceil(log2(view_hport[1]))));
+    timeline_surf = surface_create(power(2, ceil(log2(view_wport[1]+512))), power(2, ceil(log2(view_hport[1]))));
 	timeline_surf_pos = tlx;
 	timeline_surf_length = 0;
 }
 if (!surface_exists(timeline_surf_audio))
 {
-    timeline_surf_audio = surface_create(power(2, ceil(log2(view_wport[1]))), 128);
+    timeline_surf_audio = surface_create(power(2, ceil(log2(view_wport[1]+512))), 128);
 	timeline_surf_pos = tlx;
 	timeline_surf_length = 0;
 }
@@ -29,9 +29,9 @@ var t_tlw = ceil(t_tlzoom*tlwdivtlzoom); //in pixels
 if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 {
 	if (!surface_exists(timeline_surf_temp))
-		timeline_surf_temp = surface_create(power(2, ceil(log2(view_wport[1]))), power(2, ceil(log2(view_hport[1]))));
+		timeline_surf_temp = surface_create(power(2, ceil(log2(view_wport[1]+512))), power(2, ceil(log2(view_hport[1]))));
 	if (!surface_exists(timeline_surf_audio_temp))
-		timeline_surf_audio_temp = surface_create(power(2, ceil(log2(view_wport[1]))), 128);
+		timeline_surf_audio_temp = surface_create(power(2, ceil(log2(view_wport[1]+512))), 128);
 	
 	if (timeline_surf_length*tlwdivtlzoom + t_tlw > surface_get_width(timeline_surf))
 	{

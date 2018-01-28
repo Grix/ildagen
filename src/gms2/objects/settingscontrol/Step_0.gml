@@ -5,8 +5,8 @@ if (window_get_height() != (view_hport[3]+view_hport[0]) || window_get_width() !
 && !(window_get_height() == 0 || window_get_width() == 0)
 || controller.forceresize
 {
-	if (window_get_height() < controller.default_window_h || window_get_width() < controller.default_window_w)
-		window_set_size(controller.default_window_w, controller.default_window_h);
+	//if (window_get_height() < controller.default_window_h || window_get_width() < controller.default_window_w)
+	//	window_set_size(controller.default_window_w, controller.default_window_h);
 	
 	log("Resized window");
 	controller.forceresize = false;

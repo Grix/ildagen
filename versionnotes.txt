@@ -1,14 +1,12 @@
-v1.6.2
+v1.6.3
+- Fixed compatibility with low resolution monitors, and possible crash
+
+v1.6.0 - 1.6.2
 - Fixed bug in optimization algorithm causing very complex frames to become corrupt when outputted.
 - Added alternative color palette for format 0 ILDA file export, should fix inaccurate color on some projectors.
 - Various other small fixes and tweaks.
-
-v1.6.1
 - Fixed bug causing broken timeline mode interface on some resolutions.
-
-v1.6.0
 - Interface scales properly when resized, users can take advantage of the whole screen if maximizing the window.
 - Projection can now be more freely adjusted by moving each corner of the projection window independently.
 - Better optimization algorithm, especially for frames with dots in them.
 - Other misc. bug fixes and tweaks.
-NB: A lot have changed under the hood for this update, bugs may have been introduced.
