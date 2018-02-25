@@ -41,7 +41,11 @@ if (viewmode == 0) or (viewmode == 2)
                 framepoints++;
                 
                 if (!highlight)
+				{
+					if (is_undefined(ds_list_find_value(new_list,nextpos+3)))
+						new_list[| nextpos+3] = c_white; //todo find bug?
                     draw_set_color(ds_list_find_value(new_list,nextpos+3));
+				}
                 else
                     draw_set_color(c_white);
                     

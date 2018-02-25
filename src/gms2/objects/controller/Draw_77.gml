@@ -1,10 +1,9 @@
-/*if (room == rm_ilda && view_current != 4)
+if (room == rm_loading)
+{
+	window_set_cursor(cr_hourglass);
 	exit;
-if (room == rm_seq && view_current != 4)
-	exit;
-if (room == rm_options && view_current != 0)
-	exit;*/
-	
+}
+
 //cursor
 if (instance_exists(obj_dropdown) && !instance_exists(obj_ad))
 {

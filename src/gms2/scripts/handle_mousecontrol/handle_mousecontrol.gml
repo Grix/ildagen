@@ -215,6 +215,88 @@ else if (moving_object == 2)
     }
     exit;
 }
+else if (moving_object == 8)
+{
+    //stretching object on timeline
+    controller.scrollcursor_flag = 1;
+    for (i = 0; i < ds_list_size(somaster_list); i++)
+    {
+        objecttomove = ds_list_find_value(somaster_list,i);
+        infolisttomove = ds_list_find_value(objecttomove,2);
+		stretch += (window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw;
+        
+        draw_mouseline = 1;
+        //ds_list_replace(infolisttomove,0,max(0,ds_list_find_value(infolisttomove,0)+(window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw));
+    }
+        
+    mouse_xprevious = window_mouse_get_x();    
+    
+    if (mouse_check_button_released(mb_left))
+    {
+        for (i = 0; i < ds_list_size(somaster_list); i++)
+        {
+            objecttomove = ds_list_find_value(somaster_list,i);
+            infolisttomove = ds_list_find_value(objecttomove,2);
+            layertomove = -1;
+            for (j = 0; j < ds_list_size(layer_list); j++)
+            {
+                elementlist = ds_list_find_value(layer_list[| j], 1);
+                if (ds_list_find_index(elementlist,objecttomove) != -1)
+                    layertomove = elementlist;
+            }
+            if (layertomove == -1)
+            {
+                moving_object = 0;
+                exit;
+            }
+            
+            frame_surf_refresh = 1;
+            templength = round(ds_list_find_value(infolisttomove,0));
+            if (!keyboard_check(vk_control))
+            {
+                tempxstart = round(ds_list_find_value(objecttomove,0));
+                //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
+                loopcount = 5;
+                t_loop = 1;
+                while (t_loop and loopcount)
+                {
+                    loopcount--;
+                    t_loop = 0;
+                    tempxend = tempxstart + templength;
+                    for ( u = 0; u < ds_list_size(layertomove); u++)
+                    {
+                        if (ds_list_find_value(layertomove,u) == objecttomove) 
+                            continue;
+                            
+                        tempxstart2 = ds_list_find_value(ds_list_find_value(layertomove,u),0); 
+                        if (tempxstart2 > tempxend) //if object is ahead
+                            continue;
+        
+                        tempxend2 = tempxstart2 + ds_list_find_value(ds_list_find_value(ds_list_find_value(layertomove,u),2),0);
+                        if (tempxend2 < tempxstart) //if object is behind
+                            continue;
+                            
+                        //collision:
+                        t_loop = 1;
+                        templength = tempxstart2-tempxstart-1;
+                        if (templength < 1) 
+                        {
+                            templength = round(ds_list_find_value(infolisttomove,0));
+                            t_loop = 0;
+                        }
+                    }
+                }
+            }
+            
+            ds_list_replace(infolisttomove,0,templength);
+            
+            ds_list_add(undo_list,"r"+string(undolisttemp));
+            
+            moving_object = 0;
+        }
+    }
+    exit;
+}
 else if (moving_object == 3)
 {
     //moving startframe
@@ -681,13 +763,20 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                             {
                                 if (window_mouse_get_x() > ((frametime+object_length+0.7-tlx)/tlzoom*tlw)-1)
                                 {
-                                    //resize object
-                                    
-                                    moving_object_flag = 2;
-                                   
-                                    undolisttemp = ds_list_create();
-                                    ds_list_add(undolisttemp,infolist);
-                                    ds_list_add(undolisttemp,object_length);
+									if (keyboard_check(vk_control))
+									{
+										//resize object
+										moving_object_flag = 2;
+										undolisttemp = ds_list_create();
+	                                    ds_list_add(undolisttemp,infolist);
+	                                    ds_list_add(undolisttemp,object_length);
+									}
+									else 
+									{
+										//stretch object
+										moving_object_flag = 8;
+										stretch = 0;
+									}
                                     
                                     mouse_xprevious = window_mouse_get_x();
                                 }
