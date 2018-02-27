@@ -306,7 +306,7 @@ else if (moving_object == 8)
 			ds_list_add(newinfolist, -1);
 			ds_list_add(newinfolist, t_newmaxframes);
 			//set up frame buffer
-			for (n = 0; n < t_newmaxframes; n++)
+			for (n = 0; n < t_newmaxframes; n++) //todo this can be optimized
 			{
 				log("frame", n)
 		        buffer_seek(t_oldbuffer, buffer_seek_start, 0);
@@ -323,7 +323,7 @@ else if (moving_object == 8)
 		        //skip to correct frame
 		        for (j = 0; j < fetchedframe; j++)
 		        {
-					log("skippedto", j)
+					//log("skippedto", j)
 		            numofel = buffer_read(t_oldbuffer,buffer_u32);
 		            for (u = 0; u < numofel; u++)
 		            {
@@ -336,13 +336,16 @@ else if (moving_object == 8)
 				buffer_write(el_buffer, buffer_u32, buffer_maxelements);
 				for (j = 0; j < buffer_maxelements; j++)
 				{
+					log("copyelement", j)
 					numofdata = buffer_read(t_oldbuffer,buffer_u32);
 					buffer_write(el_buffer, buffer_u32, numofdata);
 					buffer_copy(t_oldbuffer, buffer_tell(t_oldbuffer), 50+(numofdata-20)*3.25, el_buffer, buffer_tell(el_buffer));
-					buffer_seek(el_buffer, buffer_seek_end, 0);
+					buffer_seek(el_buffer, buffer_seek_relative, 50+(numofdata-20)*3.25);
 					buffer_seek(t_oldbuffer, buffer_seek_relative, 50+(numofdata-20)*3.25);
 				}
 			}
+			
+			buffer_resize(el_buffer, buffer_tell(el_buffer));
             
             undolisttemp = ds_list_create();
 	        ds_list_add(undolisttemp,new_objectlist);
