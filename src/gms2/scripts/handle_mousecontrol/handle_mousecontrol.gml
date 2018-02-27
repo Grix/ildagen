@@ -151,6 +151,8 @@ else if (moving_object == 2)
     
     if (mouse_check_button_released(mb_left))
     {
+		frame_surf_refresh = 1;
+		
         for (i = 0; i < ds_list_size(somaster_list); i++)
         {
             objecttomove = ds_list_find_value(somaster_list,i);
@@ -167,8 +169,7 @@ else if (moving_object == 2)
                 moving_object = 0;
                 exit;
             }
-            
-            frame_surf_refresh = 1;
+			
             templength = round(ds_list_find_value(infolisttomove,0));
             if (!keyboard_check(vk_control))
             {
@@ -233,6 +234,7 @@ else if (moving_object == 8)
     
     if (mouse_check_button_released(mb_left))
     {
+		frame_surf_refresh = 1;
         for (i = 0; i < ds_list_size(somaster_list); i++)
         {
             objecttomove = ds_list_find_value(somaster_list,i);
@@ -249,10 +251,9 @@ else if (moving_object == 8)
                 moving_object = 0;
                 exit;
             }
-            
-            frame_surf_refresh = 1;
-            templength = round(ds_list_find_value(infolisttomove,0));
-            if (!keyboard_check(vk_control))
+			
+            //templength = round(ds_list_find_value(infolisttomove,0));
+            /*if (!keyboard_check(vk_control))
             {
                 tempxstart = round(ds_list_find_value(objecttomove,0));
                 //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
@@ -286,14 +287,72 @@ else if (moving_object == 8)
                         }
                     }
                 }
-            }
+            }*/
             
-            ds_list_replace(infolisttomove,0,templength);
+            //ds_list_replace(infolisttomove,0,templength);
+			//set up lists
+			var t_newlength = max(infolisttomove[| 0]+stretch, 1);
+			var t_newmaxframes = max(infolisttomove[| 2]+stretch, 1);
+			var t_oldbuffer = objecttomove[| 1];
+			new_objectlist = ds_list_create();
+			ds_list_add(new_objectlist, objecttomove[| 0]);
+			el_buffer = buffer_create(1, buffer_grow, 1);
+			buffer_write(el_buffer, buffer_u8, 52);
+			buffer_write(el_buffer, buffer_u32, t_newmaxframes);
+			ds_list_add(new_objectlist, el_buffer);
+			newinfolist = ds_list_create();
+			ds_list_add(new_objectlist, newinfolist);
+			ds_list_add(newinfolist, t_newlength);
+			ds_list_add(newinfolist, -1);
+			ds_list_add(newinfolist, t_newmaxframes);
+			//set up frame buffer
+			for (n = 0; n < t_newmaxframes; n++)
+			{
+				log("frame", n)
+		        buffer_seek(t_oldbuffer, buffer_seek_start, 0);
+		        buffer_ver = buffer_read(t_oldbuffer,buffer_u8);
+		        if (buffer_ver != 52)
+		        {
+		            show_message_new("Error: Unexpected version id reading buffer while stretching object: "+string(buffer_ver)+". Things might get ugly. Contact developer.");
+		            exit;
+		        }
+		        buffer_maxframes = buffer_read(t_oldbuffer,buffer_u32);
+				fetchedframe = floor(lerp(0, buffer_maxframes-1, n/t_newmaxframes));
+				log("fetchedframe", fetchedframe)
+        
+		        //skip to correct frame
+		        for (j = 0; j < fetchedframe; j++)
+		        {
+					log("skippedto", j)
+		            numofel = buffer_read(t_oldbuffer,buffer_u32);
+		            for (u = 0; u < numofel; u++)
+		            {
+		                numofdata = buffer_read(t_oldbuffer,buffer_u32)-20;
+		                buffer_seek(t_oldbuffer,buffer_seek_relative,50+numofdata*3.25);
+		            }
+		        }
             
-            ds_list_add(undo_list,"r"+string(undolisttemp));
+		        buffer_maxelements = buffer_read(t_oldbuffer,buffer_u32);
+				buffer_write(el_buffer, buffer_u32, buffer_maxelements);
+				for (j = 0; j < buffer_maxelements; j++)
+				{
+					numofdata = buffer_read(t_oldbuffer,buffer_u32);
+					buffer_write(el_buffer, buffer_u32, numofdata);
+					buffer_copy(t_oldbuffer, buffer_tell(t_oldbuffer), 50+(numofdata-20)*3.25, el_buffer, buffer_tell(el_buffer));
+					buffer_seek(el_buffer, buffer_seek_end, 0);
+					buffer_seek(t_oldbuffer, buffer_seek_relative, 50+(numofdata-20)*3.25);
+				}
+			}
             
-            moving_object = 0;
+            undolisttemp = ds_list_create();
+	        ds_list_add(undolisttemp,new_objectlist);
+	        ds_list_add(undo_list,"c"+string(undolisttemp));
+			
+			ds_list_add(layertomove, new_objectlist);
+			
         }
+		seq_delete_object();
+		moving_object = 0;
     }
     exit;
 }
