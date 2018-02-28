@@ -94,11 +94,14 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	                {
 	                    //draw object on timeline
 	                    framestartx = floor((frametime-t_tlx)*tlwdivtlzoom);
-	                    frameendx = ceil((frametime-t_tlx+duration+1)*tlwdivtlzoom);
-	                    draw_set_colour(c_dkgray);
-	                        draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+47,0);
-	                    draw_set_colour(c_green);
-	                        draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+47,1);
+						if (moving_object == 8) && (objecttomove == objectlist)
+							frameendx = ceil((frametime-t_tlx+duration+stretch+1)*tlwdivtlzoom);
+						else
+							frameendx = ceil((frametime-t_tlx+duration+1)*tlwdivtlzoom);
+		                draw_set_colour(c_dkgray);
+		                    draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+47,0);
+		                draw_set_colour(c_green);
+		                    draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+47,1);
 	                    draw_set_colour(c_white);
 						if ((duration+1)*tlwdivtlzoom > 3)
 						{
@@ -124,6 +127,18 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	                        gpu_set_blendenable(false);
 	                        draw_set_colour(c_black);
 	                    }
+						if (moving_object == 8) && (objecttomove == objectlist)
+						{
+							log("yes");
+							steps = ceil(duration*tlwdivtlzoom/15);
+							draw_set_color(c_aqua);
+							for (k = 0; k < steps; k++)
+							{
+								draw_line(lerp(framestartx, frameendx, k/steps), ypos_perm+5, lerp(framestartx, frameendx, (k+0.5)/steps), ypos_perm+42);
+								draw_line(lerp(framestartx, frameendx, (k+0.5)/steps), ypos_perm+42, lerp(framestartx, frameendx, (k+1)/steps), ypos_perm+5);
+							}
+							draw_set_colour(c_black);
+						}
 	                }
 	            }
 	        }

@@ -825,7 +825,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                             {
                                 if (window_mouse_get_x() > ((frametime+object_length+0.7-tlx)/tlzoom*tlw)-1)
                                 {
-									if (keyboard_check(vk_control))
+									if (!keyboard_check(vk_shift))
 									{
 										//resize object
 										moving_object_flag = 2;
