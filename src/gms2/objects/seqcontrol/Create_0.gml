@@ -76,6 +76,8 @@ song_parse = 0;
 filepath = "";
 mouse_xprevious = mouse_x;
 mouse_yprevious = mouse_y;
+stretch_flag = 0;
+objecttomove = 0;
 
 somaster_list_prevsize = 0;
 

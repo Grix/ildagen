@@ -1,6 +1,11 @@
 //all the interaction with the timeline
     
 mouseonsomelayer = 0;
+if (stretch_flag)
+{
+	timeline_surf_length = 0;
+	stretch_flag = 0;
+}
 var t_loop;
 
 if (moving_object > 0 || somaster_list_prevsize != ds_list_size(somaster_list))
@@ -220,11 +225,15 @@ else if (moving_object == 8)
 {
     //stretching object on timeline
     controller.scrollcursor_flag = 1;
+	timeline_surf_length = 0;
+	
     for (i = 0; i < ds_list_size(somaster_list); i++)
     {
         objecttomove = ds_list_find_value(somaster_list,i);
         infolisttomove = ds_list_find_value(objecttomove,2);
 		stretch += (window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw;
+		if (infolisttomove[| 2] + stretch < 1)
+			stretch = 1 - infolisttomove[| 2];
         
         draw_mouseline = 1;
         //ds_list_replace(infolisttomove,0,max(0,ds_list_find_value(infolisttomove,0)+(window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw));
@@ -308,7 +317,6 @@ else if (moving_object == 8)
 			//set up frame buffer
 			for (n = 0; n < t_newmaxframes; n++) //todo this can be optimized
 			{
-				log("frame", n)
 		        buffer_seek(t_oldbuffer, buffer_seek_start, 0);
 		        buffer_ver = buffer_read(t_oldbuffer,buffer_u8);
 		        if (buffer_ver != 52)
@@ -318,7 +326,6 @@ else if (moving_object == 8)
 		        }
 		        buffer_maxframes = buffer_read(t_oldbuffer,buffer_u32);
 				fetchedframe = floor(lerp(0, buffer_maxframes-1, n/t_newmaxframes));
-				log("fetchedframe", fetchedframe)
         
 		        //skip to correct frame
 		        for (j = 0; j < fetchedframe; j++)
@@ -336,7 +343,6 @@ else if (moving_object == 8)
 				buffer_write(el_buffer, buffer_u32, buffer_maxelements);
 				for (j = 0; j < buffer_maxelements; j++)
 				{
-					log("copyelement", j)
 					numofdata = buffer_read(t_oldbuffer,buffer_u32);
 					buffer_write(el_buffer, buffer_u32, numofdata);
 					buffer_copy(t_oldbuffer, buffer_tell(t_oldbuffer), 50+(numofdata-20)*3.25, el_buffer, buffer_tell(el_buffer));
@@ -788,7 +794,13 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                         //mouse over object
                         controller.tooltip = "Click to select this object. [Ctrl]+Click to select multiple objects.\nDrag to move object. Drag the far edge to adjust duration.\nDouble-click to edit frames\nRight click for more actions";
                         if (window_mouse_get_x() > ((frametime+object_length+0.7-tlx)/tlzoom*tlw))
+						{
                             controller.scrollcursor_flag = 1;
+							if keyboard_check(vk_shift)
+							{
+								stretch_flag = 1;
+							}
+						}
                         if  mouse_check_button_pressed(mb_left)
                         {
 							timeline_surf_length = 0;

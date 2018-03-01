@@ -127,9 +127,8 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	                        gpu_set_blendenable(false);
 	                        draw_set_colour(c_black);
 	                    }
-						if (moving_object == 8) && (objecttomove == objectlist)
+						if ((moving_object == 8) && (objecttomove == objectlist)) || (stretch_flag)
 						{
-							log("yes");
 							steps = ceil(duration*tlwdivtlzoom/15);
 							draw_set_color(c_aqua);
 							for (k = 0; k < steps; k++)
