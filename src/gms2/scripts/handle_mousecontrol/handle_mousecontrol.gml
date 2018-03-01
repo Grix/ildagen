@@ -1,4 +1,4 @@
-//all the interaction with the timeline
+//all the user input interaction with the timeline
     
 mouseonsomelayer = 0;
 if (stretch_flag)
@@ -233,7 +233,7 @@ else if (moving_object == 8)
         infolisttomove = ds_list_find_value(objecttomove,2);
 		stretch += (window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw;
 		if (infolisttomove[| 2] + stretch < 1)
-			stretch = 1 - infolisttomove[| 2];
+			stretch = 1 - infolisttomove[| 2]; //todo allow reversing
         
         draw_mouseline = 1;
         //ds_list_replace(infolisttomove,0,max(0,ds_list_find_value(infolisttomove,0)+(window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw));
@@ -261,9 +261,10 @@ else if (moving_object == 8)
                 exit;
             }
 			
-            //templength = round(ds_list_find_value(infolisttomove,0));
-            /*if (!keyboard_check(vk_control))
+            tempstretch = stretch;
+            if (!keyboard_check(vk_control))
             {
+				templength = round(ds_list_find_value(infolisttomove,0));
                 tempxstart = round(ds_list_find_value(objecttomove,0));
                 //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
                 loopcount = 5;
@@ -272,36 +273,37 @@ else if (moving_object == 8)
                 {
                     loopcount--;
                     t_loop = 0;
-                    tempxend = tempxstart + templength;
+                    tempxend = tempxstart + templength + tempstretch;
                     for ( u = 0; u < ds_list_size(layertomove); u++)
                     {
+						log("1")
                         if (ds_list_find_value(layertomove,u) == objecttomove) 
                             continue;
-                            
+                            log("2")
                         tempxstart2 = ds_list_find_value(ds_list_find_value(layertomove,u),0); 
                         if (tempxstart2 > tempxend) //if object is ahead
                             continue;
-        
+        log("3")
                         tempxend2 = tempxstart2 + ds_list_find_value(ds_list_find_value(ds_list_find_value(layertomove,u),2),0);
                         if (tempxend2 < tempxstart) //if object is behind
                             continue;
-                            
+                            log("4")
                         //collision:
                         t_loop = 1;
-                        templength = tempxstart2-tempxstart-1;
-                        if (templength < 1) 
-                        {
-                            templength = round(ds_list_find_value(infolisttomove,0));
-                            t_loop = 0;
-                        }
+                        templength = tempxstart2-tempxstart-templength-1;
+						if (infolisttomove[| 2] + tempstretch < 1)
+						{
+							tempstretch = 1 - infolisttomove[| 2];
+							t_loop = 0;
+						}
+						log(tempstretch, stretch)
                     }
                 }
-            }*/
+            }
             
-            //ds_list_replace(infolisttomove,0,templength);
 			//set up lists
-			var t_newlength = max(infolisttomove[| 0]+stretch, 1);
-			var t_newmaxframes = max(infolisttomove[| 2]+stretch, 1);
+			var t_newlength = max(infolisttomove[| 0]+tempstretch, 1);
+			var t_newmaxframes = max(infolisttomove[| 2]+tempstretch, 1);
 			var t_oldbuffer = objecttomove[| 1];
 			new_objectlist = ds_list_create();
 			ds_list_add(new_objectlist, objecttomove[| 0]);
@@ -799,6 +801,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
 							if keyboard_check(vk_shift)
 							{
 								stretch_flag = 1;
+								objecttomove = objectlist;
 							}
 						}
                         if  mouse_check_button_pressed(mb_left)

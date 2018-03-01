@@ -127,7 +127,8 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	                        gpu_set_blendenable(false);
 	                        draw_set_colour(c_black);
 	                    }
-						if ((moving_object == 8) && (objecttomove == objectlist)) || (stretch_flag)
+						//draw stretching triangle wave
+						if ((moving_object == 8) || stretch_flag) && (objecttomove == objectlist)
 						{
 							steps = ceil(duration*tlwdivtlzoom/15);
 							draw_set_color(c_aqua);
