@@ -131,7 +131,7 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 						if ((moving_object == 8) || stretch_flag) && (objecttomove == objectlist)
 						{
 							steps = ceil(duration*tlwdivtlzoom/15);
-							draw_set_color(c_aqua);
+							draw_set_color(c_ltgray);
 							for (k = 0; k < steps; k++)
 							{
 								draw_line(lerp(framestartx, frameendx, k/steps), ypos_perm+5, lerp(framestartx, frameendx, (k+0.5)/steps), ypos_perm+42);
