@@ -108,6 +108,11 @@ else if (keyboard_check_pressed(ord("S")))
     split_timelineobject();
 }
 
+else if (keyboard_check_pressed(ord("R")))
+{
+    reverse_timelineobject();
+}
+
 else if (keyboard_check_pressed(vk_right))
 {
     tlpos += 1000/projectfps;

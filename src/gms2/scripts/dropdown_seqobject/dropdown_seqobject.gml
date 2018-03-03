@@ -19,8 +19,12 @@ with (ddobj)
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
-    ds_list_add(desc_list,"Change duration");
+	ds_list_add(desc_list,"Reverse");
     ds_list_add(sep_list,1);
+    ds_list_add(scr_list,reverse_timelineobject);
+    ds_list_add(hl_list,1);
+    ds_list_add(desc_list,"Change duration");
+    ds_list_add(sep_list,0);
     ds_list_add(scr_list,dd_seq_object_duration);
     ds_list_add(hl_list,1);
     ds_list_add(desc_list,"Split here (S)");

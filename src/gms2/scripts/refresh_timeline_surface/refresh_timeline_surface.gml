@@ -88,16 +88,16 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
                 
 	                frametime = ds_list_find_value(objectlist,0);
 	                infolist = ds_list_find_value(objectlist,2);
-	                duration = ds_list_find_value(infolist,0);
+					if (moving_object == 8) && (objecttomove == objectlist)
+						duration = ds_list_find_value(infolist,0) + stretch;
+					else
+						duration = ds_list_find_value(infolist,0);
                 
 	                if (frametime < t_tlx+t_tlzoom) and (frametime+duration > t_tlx)
 	                {
 	                    //draw object on timeline
 	                    framestartx = floor((frametime-t_tlx)*tlwdivtlzoom);
-						if (moving_object == 8) && (objecttomove == objectlist)
-							frameendx = ceil((frametime-t_tlx+duration+stretch+1)*tlwdivtlzoom);
-						else
-							frameendx = ceil((frametime-t_tlx+duration+1)*tlwdivtlzoom);
+						frameendx = ceil((frametime-t_tlx+duration+1)*tlwdivtlzoom);
 		                draw_set_colour(c_dkgray);
 		                    draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+47,0);
 		                draw_set_colour(c_green);
@@ -130,7 +130,7 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 						//draw stretching triangle wave
 						if ((moving_object == 8) || stretch_flag) && (objecttomove == objectlist)
 						{
-							steps = ceil(duration*tlwdivtlzoom/15);
+							steps = ceil((duration-stretch)*tlwdivtlzoom/15);
 							draw_set_color(c_ltgray);
 							for (k = 0; k < steps; k++)
 							{

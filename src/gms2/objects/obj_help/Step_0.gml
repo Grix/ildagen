@@ -60,7 +60,8 @@ else if (room = rm_seq)
         "Ctrl+C)    Copy selected objects\n"+
         "Ctrl+X)    Cut selected objects\n"+
         "Ctrl+V)    Paste\n"+
-        "S)    Split selected object at playback cursor position\n"+
+		"R)    Reverse selected object\n"+
+        "S)    Split selected object at playback cursor position\n\n"+
 		"Ctrl+S)    Save project\n"+
         "Esc)    Stop laser DAC output\n"+
         "0)    Jump to first frame\n"+

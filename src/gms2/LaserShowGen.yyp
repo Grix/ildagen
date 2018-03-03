@@ -6423,6 +6423,14 @@
             }
         },
         {
+            "Key": "ca9d4b20-b2e0-493a-8597-5ffe172c7001",
+            "Value": {
+                "id": "76812142-cf4d-4dc1-ab43-226bf8be8ac8",
+                "resourcePath": "scripts\\reverse_timelineobject\\reverse_timelineobject.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cb4ad3a9-c992-4ef8-97c3-157949e6bfda",
             "Value": {
                 "id": "f2e4b055-80df-483a-adc2-e0ca6e71529f",
@@ -8642,6 +8650,7 @@
         "555539fe-3132-43a5-8d01-e0b6e8934e47",
         "f19d0b01-00ac-4201-9e9b-a1dd1373f579",
         "4ab43f8f-1f79-4664-8d2e-41d851cfdca6",
+        "ca9d4b20-b2e0-493a-8597-5ffe172c7001",
         "2d998974-ac41-4793-b921-a6f693de9a80",
         "98b7f55b-d28d-4461-a0e1-38c441e75b12",
         "65aa041d-bd2c-4024-8a02-0c6a20205417",

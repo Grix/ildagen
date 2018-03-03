@@ -1,4 +1,4 @@
-//all the user input interaction with the timeline
+//all the user mouse input interaction with the timeline
     
 mouseonsomelayer = 0;
 if (stretch_flag)
@@ -232,7 +232,7 @@ else if (moving_object == 8)
         objecttomove = ds_list_find_value(somaster_list,i);
         infolisttomove = ds_list_find_value(objecttomove,2);
 		stretch += (window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw;
-		if (infolisttomove[| 2] + stretch == 0)
+		if (infolisttomove[| 2] + stretch < 1)
 			stretch = 1 - infolisttomove[| 2];
         
         draw_mouseline = 1;
@@ -289,7 +289,7 @@ else if (moving_object == 8)
                         //collision:
                         t_loop = 1;
                         tempstretch = tempxstart2-tempxstart-templength-1;
-						if (infolisttomove[| 2] + tempstretch == 0)
+						if (infolisttomove[| 2] + tempstretch < 1)
 						{
 							tempstretch = 1 - infolisttomove[| 2];
 							t_loop = 0;
@@ -299,8 +299,8 @@ else if (moving_object == 8)
             }
             
 			//set up lists
-			var t_newlength = max(abs(infolisttomove[| 0]+tempstretch), 1);
-			var t_newmaxframes = max(abs(infolisttomove[| 2]+tempstretch), 1);
+			var t_newlength = max(infolisttomove[| 0]+tempstretch, 1);
+			var t_newmaxframes = max(infolisttomove[| 2]+tempstretch, 1);
 			var t_oldbuffer = objecttomove[| 1];
 			new_objectlist = ds_list_create();
 			ds_list_add(new_objectlist, objecttomove[| 0]);
@@ -324,7 +324,7 @@ else if (moving_object == 8)
 		            exit;
 		        }
 		        buffer_maxframes = buffer_read(t_oldbuffer,buffer_u32);
-				fetchedframe = floor(lerp(0, buffer_maxframes-1, n/t_newmaxframes));
+				fetchedframe = floor(lerp(0, buffer_maxframes-0.001, n/t_newmaxframes));
         
 		        //skip to correct frame
 		        for (j = 0; j < fetchedframe; j++)
@@ -791,13 +791,14 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
 					if (window_mouse_get_x() > ((frametime-tlx)/tlzoom*tlw) && window_mouse_get_x() < ((frametime+object_length+1-tlx)/tlzoom*tlw)+3)
                     {
                         //mouse over object
-                        controller.tooltip = "Click to select this object. [Ctrl]+Click to select multiple objects.\nDrag to move object. Drag the far edge to adjust duration.\nDouble-click to edit frames\nRight click for more actions";
+                        controller.tooltip = "Click to select this object. [Ctrl]+Click to select multiple objects.\nDrag to move object. Drag the far edge to adjust duration by looping.\nHold [Shift] and drag the far edge to adjust duration by stretching.\nDouble-click to edit frames\nRight click for more actions";
                         if (window_mouse_get_x() > ((frametime+object_length+0.7-tlx)/tlzoom*tlw))
 						{
                             controller.scrollcursor_flag = 1;
 							if keyboard_check(vk_shift)
 							{
 								stretch_flag = 1;
+								stretch = 0;
 								objecttomove = objectlist;
 							}
 						}
@@ -877,6 +878,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                             if (ds_list_find_index(somaster_list,objectlist) != -1)
                                 ds_list_delete(somaster_list,ds_list_find_index(somaster_list,objectlist));
                             ds_list_insert(somaster_list,0,objectlist);
+							timeline_surf_length = 0;
                             dropdown_seqobject();
                         }
                         ypos += 48;

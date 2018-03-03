@@ -1,5 +1,5 @@
 TODO
-- stretching
+- stretching TODO manual
 - reapply combine shapes
 - double check and fix maxpoints_static calculation
 - LIVE mode

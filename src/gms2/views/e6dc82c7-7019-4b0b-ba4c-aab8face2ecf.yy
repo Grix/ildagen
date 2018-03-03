@@ -31,7 +31,8 @@
         "94bac41b-cb1d-463f-bbb6-5ac41b7fe89a",
         "555539fe-3132-43a5-8d01-e0b6e8934e47",
         "f19d0b01-00ac-4201-9e9b-a1dd1373f579",
-        "4ab43f8f-1f79-4664-8d2e-41d851cfdca6"
+        "4ab43f8f-1f79-4664-8d2e-41d851cfdca6",
+        "ca9d4b20-b2e0-493a-8597-5ffe172c7001"
     ],
     "filterType": "GMScript",
     "folderName": "seq",
