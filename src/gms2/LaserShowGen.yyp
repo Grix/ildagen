@@ -3799,6 +3799,14 @@
             }
         },
         {
+            "Key": "7939feaf-2998-4785-a058-005fe42e831b",
+            "Value": {
+                "id": "78a10066-e805-4ca9-97fb-a945bf7a40da",
+                "resourcePath": "scripts\\ilda_reverse\\ilda_reverse.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "79672dce-c585-4d48-9496-6cd19e24bcb7",
             "Value": {
                 "id": "d72e4b81-2940-4c3f-af16-161b8e18d11a",
@@ -8699,6 +8707,7 @@
         "cc415337-bd2d-43ec-8b4b-567817d1ae5e",
         "e3a655a4-6bb9-44b1-9e0f-61745970e77d",
         "c1fcab1c-06ae-41ac-a784-969051ad4617",
+        "7939feaf-2998-4785-a058-005fe42e831b",
         "dc616206-1b16-49d1-8be7-be69edd4af6a",
         "6e78e9d4-9bd5-42da-bce1-2b44ccfd581c",
         "cd52dd4f-8e98-4cb8-b27c-fb4725b1340d",

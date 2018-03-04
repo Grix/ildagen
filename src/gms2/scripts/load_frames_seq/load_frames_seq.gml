@@ -199,7 +199,7 @@ if (selectedx >= 0)
 }
 
 timeline_surf_length = 0;
-refresh_frame_surf = 1;
+frame_surf_refresh = 1;
     
 undolisttemp = ds_list_create();
 ds_list_add(undolisttemp,objectlist);

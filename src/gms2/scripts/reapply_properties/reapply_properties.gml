@@ -316,7 +316,7 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
         }
         else
         {
-            t = i/(ds_list_size(temp_frame_list));    
+            t = i/(ds_list_size(temp_frame_list)-0.99);    
             t = (t*anirep)%1;
             if (anifunc = "tri")
             {

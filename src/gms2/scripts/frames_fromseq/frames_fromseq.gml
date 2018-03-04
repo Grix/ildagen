@@ -81,5 +81,5 @@ if (song != -1)
 	FMODGMS_Chan_PauseChannel(play_sndchannel);
 playing = 0;
 timeline_surf_length = 0;
-refresh_frame_surf = 1;
+frame_surf_refresh = 1;
 room_goto(rm_ilda);

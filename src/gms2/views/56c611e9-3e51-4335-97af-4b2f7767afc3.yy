@@ -42,7 +42,8 @@
         "e06593aa-15cd-48ba-a926-56d88b7f4139",
         "cc415337-bd2d-43ec-8b4b-567817d1ae5e",
         "e3a655a4-6bb9-44b1-9e0f-61745970e77d",
-        "c1fcab1c-06ae-41ac-a784-969051ad4617"
+        "c1fcab1c-06ae-41ac-a784-969051ad4617",
+        "7939feaf-2998-4785-a058-005fe42e831b"
     ],
     "filterType": "GMScript",
     "folderName": "ilda",
