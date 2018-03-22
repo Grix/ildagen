@@ -1,5 +1,4 @@
 TODO
-- stretching TODO manual
 - reapply combine shapes
 - double check and fix maxpoints_static calculation
 - LIVE mode
@@ -9,6 +8,7 @@ TODO
 - shaking stuff (email 2017-11-18)
 - simulation settings (more projectors etc)
 - Support for other glyphs in the text tool
+- etherdream bug fix TESTBUILD SENT never responded
 
 SETTINGSCONTROL
 

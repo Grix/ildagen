@@ -1,7 +1,8 @@
-v1.6.3
-- Fixed compatibility with low resolution monitors, and possible crash
+v1.6.4
+- Animations can now be stretched out or sped up, and reversed.
 
-v1.6.0 - 1.6.2
+v1.6.0 - 1.6.3
+- Fixed compatibility with low resolution monitors, and possible crash.
 - Fixed bug in optimization algorithm causing very complex frames to become corrupt when outputted.
 - Added alternative color palette for format 0 ILDA file export, should fix inaccurate color on some projectors.
 - Various other small fixes and tweaks.
