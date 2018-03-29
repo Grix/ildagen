@@ -1,6 +1,8 @@
 TODO
 - reapply combine shapes
+- split and merge objects
 - double check and fix maxpoints_static calculation
+- motion controller
 - LIVE mode
 - AUTOMATIC live mode
 - switch x/y
@@ -8,7 +10,7 @@ TODO
 - shaking stuff (email 2017-11-18)
 - simulation settings (more projectors etc)
 - Support for other glyphs in the text tool
-- etherdream bug fix TESTBUILD SENT never responded
+- etherdream bug fix
 
 SETTINGSCONTROL
 
