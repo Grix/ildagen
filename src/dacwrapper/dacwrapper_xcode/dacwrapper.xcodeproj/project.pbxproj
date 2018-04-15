@@ -1,0 +1,330 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8E7A31912083D68900416B44 /* dacwrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E7A318F2083D68900416B44 /* dacwrapper.cpp */; };
+		8E7A31922083D68900416B44 /* dacwrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E7A31902083D68900416B44 /* dacwrapper.h */; };
+		8E7A31952083D6BF00416B44 /* Device_Helios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E7A31932083D6BF00416B44 /* Device_Helios.cpp */; };
+		8E7A31962083D6BF00416B44 /* Device_Helios.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E7A31942083D6BF00416B44 /* Device_Helios.h */; };
+		8E7A31992083D6CC00416B44 /* Device_LaserDock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E7A31972083D6CC00416B44 /* Device_LaserDock.cpp */; };
+		8E7A319A2083D6CC00416B44 /* Device_LaserDock.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E7A31982083D6CC00416B44 /* Device_LaserDock.h */; };
+		8E7A31A52083D6DC00416B44 /* HeliosDac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E7A319B2083D6DC00416B44 /* HeliosDac.cpp */; };
+		8E7A31A62083D6DC00416B44 /* HeliosDac.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E7A319C2083D6DC00416B44 /* HeliosDac.h */; };
+		8E7A31A72083D6DC00416B44 /* LaserdockDevice_desktop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E7A319D2083D6DC00416B44 /* LaserdockDevice_desktop.cpp */; };
+		8E7A31A82083D6DC00416B44 /* LaserdockDevice_p.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E7A319E2083D6DC00416B44 /* LaserdockDevice_p.h */; };
+		8E7A31A92083D6DC00416B44 /* LaserdockDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E7A319F2083D6DC00416B44 /* LaserdockDevice.cpp */; };
+		8E7A31AA2083D6DC00416B44 /* LaserdockDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E7A31A02083D6DC00416B44 /* LaserdockDevice.h */; };
+		8E7A31AB2083D6DC00416B44 /* LaserdockDeviceManager_desktop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E7A31A12083D6DC00416B44 /* LaserdockDeviceManager_desktop.cpp */; };
+		8E7A31AC2083D6DC00416B44 /* LaserdockDeviceManager_p.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E7A31A22083D6DC00416B44 /* LaserdockDeviceManager_p.h */; };
+		8E7A31AD2083D6DC00416B44 /* LaserdockDeviceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E7A31A32083D6DC00416B44 /* LaserdockDeviceManager.cpp */; };
+		8E7A31AE2083D6DC00416B44 /* LaserdockDeviceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E7A31A42083D6DC00416B44 /* LaserdockDeviceManager.h */; };
+		8E7A31B02083D6E400416B44 /* libusb.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E7A31AF2083D6E400416B44 /* libusb.h */; };
+		8EDAE47B20840C5A003AB75E /* libusb-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDAE47A20840C5A003AB75E /* libusb-1.0.0.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8E7A31882083D57300416B44 /* libdacwrapper.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libdacwrapper.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E7A318F2083D68900416B44 /* dacwrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dacwrapper.cpp; path = ../dacwrapper/dacwrapper.cpp; sourceTree = "<group>"; };
+		8E7A31902083D68900416B44 /* dacwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = dacwrapper.h; path = ../dacwrapper/dacwrapper.h; sourceTree = "<group>"; };
+		8E7A31932083D6BF00416B44 /* Device_Helios.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Device_Helios.cpp; path = ../dacwrapper/Device_Helios.cpp; sourceTree = "<group>"; };
+		8E7A31942083D6BF00416B44 /* Device_Helios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Device_Helios.h; path = ../dacwrapper/Device_Helios.h; sourceTree = "<group>"; };
+		8E7A31972083D6CC00416B44 /* Device_LaserDock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Device_LaserDock.cpp; path = ../dacwrapper/Device_LaserDock.cpp; sourceTree = "<group>"; };
+		8E7A31982083D6CC00416B44 /* Device_LaserDock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Device_LaserDock.h; path = ../dacwrapper/Device_LaserDock.h; sourceTree = "<group>"; };
+		8E7A319B2083D6DC00416B44 /* HeliosDac.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HeliosDac.cpp; path = ../dacwrapper/HeliosDac.cpp; sourceTree = "<group>"; };
+		8E7A319C2083D6DC00416B44 /* HeliosDac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeliosDac.h; path = ../dacwrapper/HeliosDac.h; sourceTree = "<group>"; };
+		8E7A319D2083D6DC00416B44 /* LaserdockDevice_desktop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LaserdockDevice_desktop.cpp; path = ../dacwrapper/LaserdockDevice_desktop.cpp; sourceTree = "<group>"; };
+		8E7A319E2083D6DC00416B44 /* LaserdockDevice_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaserdockDevice_p.h; path = ../dacwrapper/LaserdockDevice_p.h; sourceTree = "<group>"; };
+		8E7A319F2083D6DC00416B44 /* LaserdockDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LaserdockDevice.cpp; path = ../dacwrapper/LaserdockDevice.cpp; sourceTree = "<group>"; };
+		8E7A31A02083D6DC00416B44 /* LaserdockDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaserdockDevice.h; path = ../dacwrapper/LaserdockDevice.h; sourceTree = "<group>"; };
+		8E7A31A12083D6DC00416B44 /* LaserdockDeviceManager_desktop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LaserdockDeviceManager_desktop.cpp; path = ../dacwrapper/LaserdockDeviceManager_desktop.cpp; sourceTree = "<group>"; };
+		8E7A31A22083D6DC00416B44 /* LaserdockDeviceManager_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaserdockDeviceManager_p.h; path = ../dacwrapper/LaserdockDeviceManager_p.h; sourceTree = "<group>"; };
+		8E7A31A32083D6DC00416B44 /* LaserdockDeviceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LaserdockDeviceManager.cpp; path = ../dacwrapper/LaserdockDeviceManager.cpp; sourceTree = "<group>"; };
+		8E7A31A42083D6DC00416B44 /* LaserdockDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaserdockDeviceManager.h; path = ../dacwrapper/LaserdockDeviceManager.h; sourceTree = "<group>"; };
+		8E7A31AF2083D6E400416B44 /* libusb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libusb.h; path = ../dacwrapper/libusb.h; sourceTree = "<group>"; };
+		8EDAE47A20840C5A003AB75E /* libusb-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libusb-1.0.0.dylib"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8E7A31852083D57300416B44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EDAE47B20840C5A003AB75E /* libusb-1.0.0.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8E7A317F2083D57300416B44 = {
+			isa = PBXGroup;
+			children = (
+				8E7A31892083D57300416B44 /* Products */,
+				8E7A318F2083D68900416B44 /* dacwrapper.cpp */,
+				8E7A31902083D68900416B44 /* dacwrapper.h */,
+				8E7A31932083D6BF00416B44 /* Device_Helios.cpp */,
+				8E7A31942083D6BF00416B44 /* Device_Helios.h */,
+				8E7A31972083D6CC00416B44 /* Device_LaserDock.cpp */,
+				8E7A31982083D6CC00416B44 /* Device_LaserDock.h */,
+				8E7A319B2083D6DC00416B44 /* HeliosDac.cpp */,
+				8E7A319C2083D6DC00416B44 /* HeliosDac.h */,
+				8E7A319D2083D6DC00416B44 /* LaserdockDevice_desktop.cpp */,
+				8E7A319E2083D6DC00416B44 /* LaserdockDevice_p.h */,
+				8E7A319F2083D6DC00416B44 /* LaserdockDevice.cpp */,
+				8E7A31A02083D6DC00416B44 /* LaserdockDevice.h */,
+				8E7A31A12083D6DC00416B44 /* LaserdockDeviceManager_desktop.cpp */,
+				8E7A31A22083D6DC00416B44 /* LaserdockDeviceManager_p.h */,
+				8E7A31A32083D6DC00416B44 /* LaserdockDeviceManager.cpp */,
+				8E7A31A42083D6DC00416B44 /* LaserdockDeviceManager.h */,
+				8E7A31AF2083D6E400416B44 /* libusb.h */,
+				8EDAE47A20840C5A003AB75E /* libusb-1.0.0.dylib */,
+			);
+			sourceTree = "<group>";
+		};
+		8E7A31892083D57300416B44 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E7A31882083D57300416B44 /* libdacwrapper.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8E7A31862083D57300416B44 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E7A31962083D6BF00416B44 /* Device_Helios.h in Headers */,
+				8E7A31AE2083D6DC00416B44 /* LaserdockDeviceManager.h in Headers */,
+				8E7A31B02083D6E400416B44 /* libusb.h in Headers */,
+				8E7A31A62083D6DC00416B44 /* HeliosDac.h in Headers */,
+				8E7A31AC2083D6DC00416B44 /* LaserdockDeviceManager_p.h in Headers */,
+				8E7A319A2083D6CC00416B44 /* Device_LaserDock.h in Headers */,
+				8E7A31AA2083D6DC00416B44 /* LaserdockDevice.h in Headers */,
+				8E7A31922083D68900416B44 /* dacwrapper.h in Headers */,
+				8E7A31A82083D6DC00416B44 /* LaserdockDevice_p.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8E7A31872083D57300416B44 /* dacwrapper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E7A318C2083D57300416B44 /* Build configuration list for PBXNativeTarget "dacwrapper" */;
+			buildPhases = (
+				8E7A31842083D57300416B44 /* Sources */,
+				8E7A31852083D57300416B44 /* Frameworks */,
+				8E7A31862083D57300416B44 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = dacwrapper;
+			productName = dacwrapper;
+			productReference = 8E7A31882083D57300416B44 /* libdacwrapper.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8E7A31802083D57300416B44 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Gitle Mikkelsen";
+				TargetAttributes = {
+					8E7A31872083D57300416B44 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 8E7A31832083D57300416B44 /* Build configuration list for PBXProject "dacwrapper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8E7A317F2083D57300416B44;
+			productRefGroup = 8E7A31892083D57300416B44 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8E7A31872083D57300416B44 /* dacwrapper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8E7A31842083D57300416B44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E7A31912083D68900416B44 /* dacwrapper.cpp in Sources */,
+				8E7A31A72083D6DC00416B44 /* LaserdockDevice_desktop.cpp in Sources */,
+				8E7A31992083D6CC00416B44 /* Device_LaserDock.cpp in Sources */,
+				8E7A31A52083D6DC00416B44 /* HeliosDac.cpp in Sources */,
+				8E7A31AB2083D6DC00416B44 /* LaserdockDeviceManager_desktop.cpp in Sources */,
+				8E7A31A92083D6DC00416B44 /* LaserdockDevice.cpp in Sources */,
+				8E7A31AD2083D6DC00416B44 /* LaserdockDeviceManager.cpp in Sources */,
+				8E7A31952083D6BF00416B44 /* Device_Helios.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8E7A318A2083D57300416B44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8E7A318B2083D57300416B44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8E7A318D2083D57300416B44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8E7A318E2083D57300416B44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8E7A31832083D57300416B44 /* Build configuration list for PBXProject "dacwrapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E7A318A2083D57300416B44 /* Debug */,
+				8E7A318B2083D57300416B44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E7A318C2083D57300416B44 /* Build configuration list for PBXNativeTarget "dacwrapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E7A318D2083D57300416B44 /* Debug */,
+				8E7A318E2083D57300416B44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8E7A31802083D57300416B44 /* Project object */;
+}

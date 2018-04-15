@@ -320,7 +320,7 @@ GMEXPORT double Stop(double doubleNum)
 //get descriptive name of specific dac
 GMEXPORT char* GetName(double doubleNum)
 {
-	if (!initialized) return "error";
+	if (!initialized) return (char*)"error";
 	int num = (int)(doubleNum + 0.5); //dac number
 
 	return dacs[num].desc;
