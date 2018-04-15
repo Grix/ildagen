@@ -13,7 +13,12 @@
 #include <thread>
 #include <mutex>
 
-#define GMEXPORT extern "C" __declspec (dllexport)
+#ifdef _WIN32
+	#define GMEXPORT extern "C" __declspec (dllexport)
+#else
+	#define GMEXPORT extern "C"
+#endif
+
 #define MAX_FRAME_SIZE 0x1000
 
 Device_LaserDock* laserDockDevice;
