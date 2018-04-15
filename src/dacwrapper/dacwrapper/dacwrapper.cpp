@@ -11,13 +11,15 @@ GMEXPORT double InitDacwrapper()
 {
 	FreeDacwrapper();
 
-	etherDreamDevice = new Device_Etherdream();
-	riyaDevice = new Device_RIYA();
-	heliosDevice = new Device_Helios();
-	olscDevice = new Device_OLSC();
-	olscEasylaseDevice = new Device_OLSC_Easylase();
-	olscEzAudDacDevice = new Device_OLSC_EzAudDac();
 	laserDockDevice = new Device_LaserDock();
+	heliosDevice = new Device_Helios();
+	#ifdef _WIN32
+		etherDreamDevice = new Device_Etherdream();
+		olscDevice = new Device_OLSC();
+		olscEasylaseDevice = new Device_OLSC_Easylase();
+		olscEzAudDacDevice = new Device_OLSC_EzAudDac();
+		riyaDevice = new Device_RIYA();
+	#endif
 	
 	initialized = true;
 
@@ -31,41 +33,52 @@ GMEXPORT double ScanDevices()
 
 	numDevices = 0;
 
-	int numEtherdreams = etherDreamDevice->Init();
-	fprintf(stderr, "Found %d Etherdreams\n", numEtherdreams);
-	for (int i = 0; i < numEtherdreams; i++)
-	{
-		char* name = new char[64];
-		etherDreamDevice->GetName(i, name);
-		dacs[numDevices++] = { 1, i, name };
-	}
+	#ifdef _WIN32
+		int numEtherdreams = etherDreamDevice->Init();
+		fprintf(stderr, "Found %d Etherdreams\n", numEtherdreams);
+		for (int i = 0; i < numEtherdreams; i++)
+		{
+			char* name = new char[64];
+			etherDreamDevice->GetName(i, name);
+			dacs[numDevices++] = { 1, i, name };
+		}
 
-	int numOLSC = olscDevice->Init();
-	fprintf(stderr, "Found %d OLSC\n", numOLSC);
-	for (int i = 0; i < numOLSC; i++)
-	{
-		char* name = new char[64];
-		olscDevice->GetName(i, name);
-		dacs[numDevices++] = { 3, i, name };
-	}
+		int numOLSC = olscDevice->Init();
+		fprintf(stderr, "Found %d OLSC\n", numOLSC);
+		for (int i = 0; i < numOLSC; i++)
+		{
+			char* name = new char[64];
+			olscDevice->GetName(i, name);
+			dacs[numDevices++] = { 3, i, name };
+		}
 
-	int numOLSCEasylase = olscEasylaseDevice->Init();
-	fprintf(stderr, "Found %d Easylase\n", numOLSCEasylase);
-	for (int i = 0; i < numOLSCEasylase; i++)
-	{
-		char* name = new char[64];
-		olscEasylaseDevice->GetName(i, name);
-		dacs[numDevices++] = { 5, i, name };
-	}
+		int numOLSCEasylase = olscEasylaseDevice->Init();
+		fprintf(stderr, "Found %d Easylase\n", numOLSCEasylase);
+		for (int i = 0; i < numOLSCEasylase; i++)
+		{
+			char* name = new char[64];
+			olscEasylaseDevice->GetName(i, name);
+			dacs[numDevices++] = { 5, i, name };
+		}
 
-	int numOLSCEzAudDac = olscEzAudDacDevice->Init();
-	fprintf(stderr, "Found %d EZAud\n", numOLSCEzAudDac);
-	for (int i = 0; i < numOLSCEzAudDac; i++)
-	{
-		char* name = new char[64];
-		olscEzAudDacDevice->GetName(i, name);
-		dacs[numDevices++] = { 6, i, name };
-	}
+		int numOLSCEzAudDac = olscEzAudDacDevice->Init();
+		fprintf(stderr, "Found %d EZAud\n", numOLSCEzAudDac);
+		for (int i = 0; i < numOLSCEzAudDac; i++)
+		{
+			char* name = new char[64];
+			olscEzAudDacDevice->GetName(i, name);
+			dacs[numDevices++] = { 6, i, name };
+		}
+		
+		int numRiyas = riyaDevice->Init();
+		fprintf(stderr, "Found %d Riyas\n", numRiyas);
+		for (int i = 0; i < numRiyas; i++)
+		{
+			char* name = new char[64];
+			riyaDevice->GetName(i, name);
+			dacs[numDevices++] = { 2, i, name };
+		}
+	#endif
 
 	int numHelios = heliosDevice->Init();
 	fprintf(stderr, "Found %d Helios\n", numHelios);
@@ -74,15 +87,6 @@ GMEXPORT double ScanDevices()
 		char* name = new char[64];
 		heliosDevice->GetName(i, name);
 		dacs[numDevices++] = { 4, i, name };
-	}
-
-	int numRiyas = riyaDevice->Init();
-	fprintf(stderr, "Found %d Riyas\n", numRiyas);
-	for (int i = 0; i < numRiyas; i++)
-	{
-		char* name = new char[64];
-		riyaDevice->GetName(i, name);
-		dacs[numDevices++] = { 2, i, name };
 	}
 	int numLaserDocks = laserDockDevice->Init();
 	fprintf(stderr,"Found %d LaserDocks\n", numLaserDocks);
@@ -105,20 +109,22 @@ GMEXPORT double DeviceOpen(double doubleNum)
 	int dacType = dacs[num].type;
 	int cardNum = dacs[num].cardNum;
 
-	if (dacType == 1)		//EtherDream
-		return (double)etherDreamDevice->OpenDevice(cardNum);
-	else if (dacType == 2)	//RIYA
-		return (double)riyaDevice->OpenDevice(cardNum);
-	else if (dacType == 3)	//OLSC
-		return (double)olscDevice->OpenDevice(cardNum);
-	else if (dacType == 4)	//Helios
+	if (dacType == 4)		//Helios
 		return (double)heliosDevice->OpenDevice(cardNum);
-	else if (dacType == 5)	//OLSC_Easylase
-		return (double)olscEasylaseDevice->OpenDevice(cardNum);
-	else if (dacType == 6)	//OLSC_EzAudDac
-		return (double)olscEzAudDacDevice->OpenDevice(cardNum);
 	else if (dacType == 7)	//LaserDock
 		return (double)laserDockDevice->OpenDevice(cardNum);
+	#ifdef _WIN32
+		else if (dacType == 1)	//EtherDream
+			return (double)etherDreamDevice->OpenDevice(cardNum);
+		else if (dacType == 2)	//RIYA
+			return (double)riyaDevice->OpenDevice(cardNum);
+		else if (dacType == 3)	//OLSC
+			return (double)olscDevice->OpenDevice(cardNum);
+		else if (dacType == 5)	//OLSC_Easylase
+			return (double)olscEasylaseDevice->OpenDevice(cardNum);
+		else if (dacType == 6)	//OLSC_EzAudDac
+			return (double)olscEzAudDacDevice->OpenDevice(cardNum);
+	#endif
 	else
 		return -1.0;
 }
@@ -151,85 +157,7 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 	int dacType = dacs[num].type;
 	int cardNum = dacs[num].cardNum;
 
-	if (dacType == 1)	//EtherDream
-	{
-		int currentPos = 0;
-		Device_Etherdream::EAD_Pnt_s etherdreamBuffer[MAX_FRAME_SIZE];
-		for (int i = 0; i < frameSize; i++)
-		{
-			etherdreamBuffer[i].X = bufferAddress[currentPos++] - 0x8000;
-			etherdreamBuffer[i].Y = bufferAddress[currentPos++] - 0x8000;
-			etherdreamBuffer[i].R = bufferAddress[currentPos++] << 7;
-			etherdreamBuffer[i].G = bufferAddress[currentPos++] << 7;
-			etherdreamBuffer[i].B = bufferAddress[currentPos++] << 7;
-			etherdreamBuffer[i].I = bufferAddress[currentPos++] << 7;
-			etherdreamBuffer[i].AL = 0;
-			etherdreamBuffer[i].AR = 0;
-		}
-		etherDreamDevice->OutputFrame(cardNum, &etherdreamBuffer[0], frameSize*sizeof(Device_Etherdream::EAD_Pnt_s), scanRate);
-	}
-	else if (dacType == 2)	//RIYA
-	{
-		int currentPos = 0;
-		Device_RIYA::Riya_Point riyaBuffer[MAX_FRAME_SIZE];
-		for (int i = 0; i < frameSize; i++)
-		{
-			riyaBuffer[i].X = bufferAddress[currentPos++] >> 4;
-			riyaBuffer[i].Y = bufferAddress[currentPos++] >> 4;
-			riyaBuffer[i].R = (uint8_t)bufferAddress[currentPos++];
-			riyaBuffer[i].G = (uint8_t)bufferAddress[currentPos++];
-			riyaBuffer[i].B = (uint8_t)bufferAddress[currentPos++];
-			riyaBuffer[i].I = (uint8_t)bufferAddress[currentPos++];
-		}
-		riyaDevice->OutputFrame(cardNum, scanRate, frameSize, (uint8_t*)&riyaBuffer[0]);
-	}
-	else if (dacType == 3)	//OLSC
-	{
-		int currentPos = 0;
-		Device_OLSC::OLSC_Point olscBuffer[MAX_FRAME_SIZE];
-		for (int i = 0; i < frameSize; i++)
-		{
-			olscBuffer[i].x = bufferAddress[currentPos++];
-			olscBuffer[i].y = bufferAddress[currentPos++];
-			olscBuffer[i].r = bufferAddress[currentPos++];
-			olscBuffer[i].g = bufferAddress[currentPos++];
-			olscBuffer[i].b = bufferAddress[currentPos++];
-			olscBuffer[i].i = bufferAddress[currentPos++];
-		}
-		olscDevice->OutputFrame(cardNum, scanRate, frameSize, &olscBuffer[0]);
-
-	}
-	else if (dacType == 5)	//OLSC_Easylase
-	{
-		int currentPos = 0;
-		Device_OLSC_Easylase::OLSC_Point olscEasylaseBuffer[MAX_FRAME_SIZE];
-		for (int i = 0; i < frameSize; i++)
-		{
-			olscEasylaseBuffer[i].x = bufferAddress[currentPos++];
-			olscEasylaseBuffer[i].y = bufferAddress[currentPos++];
-			olscEasylaseBuffer[i].r = bufferAddress[currentPos++];
-			olscEasylaseBuffer[i].g = bufferAddress[currentPos++];
-			olscEasylaseBuffer[i].b = bufferAddress[currentPos++];
-			olscEasylaseBuffer[i].i = bufferAddress[currentPos++];
-		}
-		olscEasylaseDevice->OutputFrame(cardNum, scanRate, frameSize, &olscEasylaseBuffer[0]);
-	}
-	else if (dacType == 6)	//OLSC_EzAudDac
-	{
-		int currentPos = 0;
-		Device_OLSC_EzAudDac::OLSC_Point olscEzAudDacBuffer[MAX_FRAME_SIZE];
-		for (int i = 0; i < frameSize; i++)
-		{
-			olscEzAudDacBuffer[i].x = bufferAddress[currentPos++];
-			olscEzAudDacBuffer[i].y = bufferAddress[currentPos++];
-			olscEzAudDacBuffer[i].r = bufferAddress[currentPos++];
-			olscEzAudDacBuffer[i].g = bufferAddress[currentPos++];
-			olscEzAudDacBuffer[i].b = bufferAddress[currentPos++];
-			olscEzAudDacBuffer[i].i = bufferAddress[currentPos++];
-		}
-		olscEzAudDacDevice->OutputFrame(cardNum, scanRate, frameSize, &olscEzAudDacBuffer[0]);
-	}
-	else if (dacType == 4)	//Helios
+	if (dacType == 4)	//Helios
 	{
 		int currentPos = 0;
 		HeliosPoint heliosBuffer[MAX_FRAME_SIZE];
@@ -260,6 +188,86 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 		}
 		laserDockDevice->OutputFrame(cardNum, scanRate, frameSize * 8, &laserDockBuffer[0]);
 	}
+	#ifdef _WIN32
+		else if (dacType == 1)	//EtherDream
+		{
+			int currentPos = 0;
+			Device_Etherdream::EAD_Pnt_s etherdreamBuffer[MAX_FRAME_SIZE];
+			for (int i = 0; i < frameSize; i++)
+			{
+				etherdreamBuffer[i].X = bufferAddress[currentPos++] - 0x8000;
+				etherdreamBuffer[i].Y = bufferAddress[currentPos++] - 0x8000;
+				etherdreamBuffer[i].R = bufferAddress[currentPos++] << 7;
+				etherdreamBuffer[i].G = bufferAddress[currentPos++] << 7;
+				etherdreamBuffer[i].B = bufferAddress[currentPos++] << 7;
+				etherdreamBuffer[i].I = bufferAddress[currentPos++] << 7;
+				etherdreamBuffer[i].AL = 0;
+				etherdreamBuffer[i].AR = 0;
+			}
+			etherDreamDevice->OutputFrame(cardNum, &etherdreamBuffer[0], frameSize*sizeof(Device_Etherdream::EAD_Pnt_s), scanRate);
+		}
+		else if (dacType == 2)	//RIYA
+		{
+			int currentPos = 0;
+			Device_RIYA::Riya_Point riyaBuffer[MAX_FRAME_SIZE];
+			for (int i = 0; i < frameSize; i++)
+			{
+				riyaBuffer[i].X = bufferAddress[currentPos++] >> 4;
+				riyaBuffer[i].Y = bufferAddress[currentPos++] >> 4;
+				riyaBuffer[i].R = (uint8_t)bufferAddress[currentPos++];
+				riyaBuffer[i].G = (uint8_t)bufferAddress[currentPos++];
+				riyaBuffer[i].B = (uint8_t)bufferAddress[currentPos++];
+				riyaBuffer[i].I = (uint8_t)bufferAddress[currentPos++];
+			}
+			riyaDevice->OutputFrame(cardNum, scanRate, frameSize, (uint8_t*)&riyaBuffer[0]);
+		}
+		else if (dacType == 3)	//OLSC
+		{
+			int currentPos = 0;
+			Device_OLSC::OLSC_Point olscBuffer[MAX_FRAME_SIZE];
+			for (int i = 0; i < frameSize; i++)
+			{
+				olscBuffer[i].x = bufferAddress[currentPos++];
+				olscBuffer[i].y = bufferAddress[currentPos++];
+				olscBuffer[i].r = bufferAddress[currentPos++];
+				olscBuffer[i].g = bufferAddress[currentPos++];
+				olscBuffer[i].b = bufferAddress[currentPos++];
+				olscBuffer[i].i = bufferAddress[currentPos++];
+			}
+			olscDevice->OutputFrame(cardNum, scanRate, frameSize, &olscBuffer[0]);
+
+		}
+		else if (dacType == 5)	//OLSC_Easylase
+		{
+			int currentPos = 0;
+			Device_OLSC_Easylase::OLSC_Point olscEasylaseBuffer[MAX_FRAME_SIZE];
+			for (int i = 0; i < frameSize; i++)
+			{
+				olscEasylaseBuffer[i].x = bufferAddress[currentPos++];
+				olscEasylaseBuffer[i].y = bufferAddress[currentPos++];
+				olscEasylaseBuffer[i].r = bufferAddress[currentPos++];
+				olscEasylaseBuffer[i].g = bufferAddress[currentPos++];
+				olscEasylaseBuffer[i].b = bufferAddress[currentPos++];
+				olscEasylaseBuffer[i].i = bufferAddress[currentPos++];
+			}
+			olscEasylaseDevice->OutputFrame(cardNum, scanRate, frameSize, &olscEasylaseBuffer[0]);
+		}
+		else if (dacType == 6)	//OLSC_EzAudDac
+		{
+			int currentPos = 0;
+			Device_OLSC_EzAudDac::OLSC_Point olscEzAudDacBuffer[MAX_FRAME_SIZE];
+			for (int i = 0; i < frameSize; i++)
+			{
+				olscEzAudDacBuffer[i].x = bufferAddress[currentPos++];
+				olscEzAudDacBuffer[i].y = bufferAddress[currentPos++];
+				olscEzAudDacBuffer[i].r = bufferAddress[currentPos++];
+				olscEzAudDacBuffer[i].g = bufferAddress[currentPos++];
+				olscEzAudDacBuffer[i].b = bufferAddress[currentPos++];
+				olscEzAudDacBuffer[i].i = bufferAddress[currentPos++];
+			}
+			olscEzAudDacDevice->OutputFrame(cardNum, scanRate, frameSize, &olscEzAudDacBuffer[0]);
+		}
+	#endif
 
 }
 
@@ -267,14 +275,15 @@ GMEXPORT double FreeDacwrapper()
 {
 	if (!initialized) return -1.0;
 
-	
-	delete etherDreamDevice;
-	delete riyaDevice;
-	delete heliosDevice;
-	delete olscDevice;
-	delete olscEzAudDacDevice;
-	delete olscEasylaseDevice;
+	#ifdef _WIN32
+		delete etherDreamDevice;
+		delete riyaDevice;
+		delete olscDevice;
+		delete olscEzAudDacDevice;
+		delete olscEasylaseDevice;
+	#endif
 	delete laserDockDevice;
+	delete heliosDevice;
 
 	return 1.0;
 }
@@ -288,20 +297,22 @@ GMEXPORT double Stop(double doubleNum)
 	int dacType = dacs[num].type;
 	int cardNum = dacs[num].cardNum;
 
-	if (dacType == 1)		//EtherDream
-		return (double)etherDreamDevice->Stop(cardNum);
-	else if (dacType == 2)	//RIYA
-		return (double)riyaDevice->Stop(cardNum);
-	else if (dacType == 3)	//OLSC
-		return (double)olscDevice->Stop(cardNum);
-	else if (dacType == 5)	//OLSC_Easylase
-		return (double)olscEasylaseDevice->Stop(cardNum);
-	else if (dacType == 6)	//OLSC_EzAudDac
-		return (double)olscEzAudDacDevice->Stop(cardNum);
-	else if (dacType == 4)	//Helios
+	if (dacType == 4)		//Helios
 		return (double)heliosDevice->Stop(cardNum);
 	else if (dacType == 7)	//Laserdock
 		return (double)laserDockDevice->Stop(cardNum);
+	#ifdef _WIN32
+		else if (dacType == 1)	//EtherDream
+			return (double)etherDreamDevice->Stop(cardNum);
+		else if (dacType == 2)	//RIYA
+			return (double)riyaDevice->Stop(cardNum);
+		else if (dacType == 3)	//OLSC
+			return (double)olscDevice->Stop(cardNum);
+		else if (dacType == 5)	//OLSC_Easylase
+			return (double)olscEasylaseDevice->Stop(cardNum);
+		else if (dacType == 6)	//OLSC_EzAudDac
+			return (double)olscEzAudDacDevice->Stop(cardNum);
+	#endif
 	else
 		return -1.0;
 }

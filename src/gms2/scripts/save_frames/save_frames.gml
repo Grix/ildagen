@@ -6,7 +6,7 @@ if !string_length(file_loc)
     exit;
     
 if (filename_ext(file_loc) != ".igf")
-    show_message_new("Warning: Your filename has no .igf extension, and might not be recognized by other software.\n\nIt is recommended to save the file again, with a the text .igf at the end of the name.");
+    show_message_new("Warning: Your filename has no .igf extension, and might not be recognized when trying to load it.\n\nIt is recommended to save the file again, with a the text .igf at the end of the name.");
     
 save_buffer = buffer_create(1,buffer_grow,1);
 
