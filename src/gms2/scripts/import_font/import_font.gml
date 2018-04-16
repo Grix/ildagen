@@ -2,18 +2,18 @@ global.loadingtimeprev = get_timer();
 ilda_cancel();
 
 with(controller)
-    {
+{
     filename = get_open_filename_ext("ILDA font file|*.ild|All files|*","",program_directory,"Select ILDA font file")
     if string_length(filename)
-        {
+    {
         ild_file = buffer_load(filename);
         file_size = buffer_get_size(ild_file);
-        }
+    }
     else
-        {
+    {
         global.loading_importfont = 0;
         return 0;
-        }
+    }
         
         
     i = 0;
@@ -48,6 +48,6 @@ with(controller)
     global.loading_start = 0;
     global.loading_end = file_size;
     global.loading_current = global.loading_start;
-    }
+}
 room_goto(rm_loading);
 return 1;

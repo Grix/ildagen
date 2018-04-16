@@ -2,7 +2,7 @@
 
 ilda_cancel();
 
-file_loc = get_save_filename_ext("*.ild","example.ild","","Select ILDA file location");
+file_loc = get_save_filename_ext("ILDA Files|*.ild","example.ild","","Select ILDA file location");
 if !string_length(file_loc)
     exit;
     

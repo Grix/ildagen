@@ -1,4 +1,4 @@
-var t_songfile_loc = get_open_filename_ext("","","","Select audio file");
+var t_songfile_loc = get_open_filename_ext("All files|*","","","Select audio file");
 if !string_length(t_songfile_loc) 
 {
     log("cancel");

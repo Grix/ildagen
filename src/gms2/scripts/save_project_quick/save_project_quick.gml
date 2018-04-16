@@ -10,7 +10,7 @@ if (filepath != "")
 	file_loc = filepath;
 else
 {
-	file_loc = get_save_filename_ext("*.igp","example.igp","","Select LaserShowGen project file location");
+	file_loc = get_save_filename_ext("LSG Project|*.igp","example.igp","","Select LaserShowGen project file location");
 	if !string_length(file_loc) 
 	    exit;
     

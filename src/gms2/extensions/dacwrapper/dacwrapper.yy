@@ -10,7 +10,7 @@
     "androidPermissions": [
         
     ],
-    "androidProps": true,
+    "androidProps": false,
     "androidactivityinject": "",
     "androidclassname": "",
     "androidinject": "",
@@ -18,7 +18,7 @@
     "androidsourcedir": "",
     "author": "",
     "classname": "",
-    "copyToTargets": 1048640,
+    "copyToTargets": 66,
     "date": "2017-51-14 08:09:35",
     "description": "",
     "extensionName": "",
@@ -76,12 +76,18 @@
             "modelName": "GMExtensionFile",
             "mvc": "1.0",
             "ProxyFiles": [
-                
+                {
+                    "id": "80467815-37d4-491b-8672-d3f832074dc9",
+                    "modelName": "GMProxyFile",
+                    "mvc": "1.0",
+                    "TargetMask": 1,
+                    "proxyName": "libdacwrapper.dylib"
+                }
             ],
             "constants": [
                 
             ],
-            "copyToTargets": 542228544,
+            "copyToTargets": 66,
             "filename": "dacwrapper.dll",
             "final": "FreeDacwrapper",
             "functions": [
@@ -228,7 +234,15 @@
             "init": "InitDacwrapper",
             "kind": 1,
             "order": [
-                
+                "6841e542-0835-4642-b803-51a59b11b550",
+                "fe7a35b5-fec4-40a4-8472-dd6275408b9c",
+                "886fde93-e3fa-4576-8ca8-da076f4c6b81",
+                "8b0b24e8-bf3f-4a60-9906-6fcbe805c0aa",
+                "2722c1ed-ffe8-4708-bb60-bca200988285",
+                "cadf2719-21b9-4b65-bce3-cab6ba95c1e7",
+                "7baa393c-ebf6-497d-950a-cd392fba2adc",
+                "6c56e040-b1db-476f-b2e9-9a4fe90e70b2",
+                "623595e4-2d86-4b5a-96c2-14059ee49ced"
             ],
             "origname": "extensions\\dacwrapper.dll",
             "uncompress": false
@@ -429,7 +443,7 @@
     "gradleinject": "",
     "helpfile": "",
     "installdir": "",
-    "iosProps": true,
+    "iosProps": false,
     "iosSystemFrameworkEntries": [
         
     ],
@@ -444,5 +458,5 @@
     "packageID": "",
     "productID": "",
     "sourcedir": "",
-    "version": "0.1.0"
+    "version": "0.2.0"
 }

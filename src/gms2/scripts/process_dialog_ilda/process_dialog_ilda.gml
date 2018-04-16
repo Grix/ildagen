@@ -432,7 +432,7 @@ if (new_id == getint)
               
             case "loadfile":
           {
-              load_frames(get_open_filename_ext("LaserShowGen frames|*.igf","","","Select LaserShowGen frames file"));
+              load_frames(get_open_filename_ext("LSG frames|*.igf","","","Select LaserShowGen frames file"));
               
               break;
           }

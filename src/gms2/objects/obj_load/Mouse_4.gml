@@ -16,6 +16,6 @@ else if (room == rm_seq)
     if (!verify_serial(true))
         exit;
     with (seqcontrol)
-        load_frames_seq(get_open_filename_ext("LaserShowGen frames|*.igf","","","Select LaserShowGen frames file"));
+        load_frames_seq(get_open_filename_ext("LSG frames|*.igf","","","Select LaserShowGen frames file"));
 }
 
