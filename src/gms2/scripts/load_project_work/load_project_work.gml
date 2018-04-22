@@ -51,13 +51,13 @@ if (idbyte == 104) or(idbyte == 103) or (idbyte == 101) or (idbyte == 102)
             ds_list_add(t_env,t_time_list);
             repeat (t_time_list_size)
             {
-                ds_list_add(t_time_list,buffer_read(load_buffer,buffer_u32));
+                ds_list_add(t_time_list,real(buffer_read(load_buffer,buffer_u32)));
             }
             var t_data_list_size = buffer_read(load_buffer,buffer_u32);
             var t_data_list = ds_list_create();
             ds_list_add(t_env,t_data_list);
             repeat (t_data_list_size)
-                ds_list_add(t_data_list,buffer_read(load_buffer,buffer_u8));
+                ds_list_add(t_data_list,real(buffer_read(load_buffer,buffer_u8)));
                 
             ds_list_add(t_env,buffer_read(load_buffer,buffer_u8));
             ds_list_add(t_env,buffer_read(load_buffer,buffer_u8));

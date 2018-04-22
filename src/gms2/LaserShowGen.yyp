@@ -2279,6 +2279,14 @@
             }
         },
         {
+            "Key": "4621afce-897b-462d-9f89-ec873049e92e",
+            "Value": {
+                "id": "6385ac47-82c5-41d0-90de-be47c17faaae",
+                "resourcePath": "extensions\\library\\library.yy",
+                "resourceType": "GMExtension"
+            }
+        },
+        {
             "Key": "46271bd8-8570-4df4-b987-f82bda1d5250",
             "Value": {
                 "id": "85508f16-e08b-43a7-8553-4b86af86b863",

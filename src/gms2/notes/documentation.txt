@@ -11,6 +11,7 @@ TODO
 - simulation settings (more projectors etc)
 - Support for other glyphs in the text tool
 - etherdream bug fix
+- mac/linux
 
 SETTINGSCONTROL
 

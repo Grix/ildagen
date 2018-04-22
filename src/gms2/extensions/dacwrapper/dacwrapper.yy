@@ -57,7 +57,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": 17592940089542,
+            "copyToTargets": 64,
             "filename": "EtherDream.dll",
             "final": "",
             "functions": [
@@ -77,7 +77,7 @@
             "mvc": "1.0",
             "ProxyFiles": [
                 {
-                    "id": "80467815-37d4-491b-8672-d3f832074dc9",
+                    "id": "b02e487a-55eb-48fb-addc-bd63946c00c1",
                     "modelName": "GMProxyFile",
                     "mvc": "1.0",
                     "TargetMask": 1,
@@ -229,6 +229,21 @@
                     "kind": 12,
                     "name": "dacwrapper_getfirmware",
                     "returnType": 2
+                },
+                {
+                    "id": "12e0b64a-5790-4a62-9360-30151dc02be6",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        
+                    ],
+                    "externalName": "ReturnOne",
+                    "help": "dacwrapper_returnone()",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "dacwrapper_returnone",
+                    "returnType": 2
                 }
             ],
             "init": "InitDacwrapper",
@@ -242,7 +257,8 @@
                 "cadf2719-21b9-4b65-bce3-cab6ba95c1e7",
                 "7baa393c-ebf6-497d-950a-cd392fba2adc",
                 "6c56e040-b1db-476f-b2e9-9a4fe90e70b2",
-                "623595e4-2d86-4b5a-96c2-14059ee49ced"
+                "623595e4-2d86-4b5a-96c2-14059ee49ced",
+                "12e0b64a-5790-4a62-9360-30151dc02be6"
             ],
             "origname": "extensions\\dacwrapper.dll",
             "uncompress": false
@@ -257,7 +273,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": 9223372036854775807,
+            "copyToTargets": 64,
             "filename": "OLSC.dll",
             "final": "",
             "functions": [
@@ -281,7 +297,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": 17592738762820,
+            "copyToTargets": 64,
             "filename": "EasyLase.dll",
             "final": "",
             "functions": [
@@ -305,7 +321,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": 17592738762820,
+            "copyToTargets": 64,
             "filename": "EzAudDac.dll",
             "final": "",
             "functions": [
@@ -329,7 +345,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": 17592738762820,
+            "copyToTargets": 64,
             "filename": "OLSC_EasyLase.dll",
             "final": "",
             "functions": [
@@ -353,7 +369,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": 17592738762820,
+            "copyToTargets": 64,
             "filename": "OLSC_EzAudDac.dll",
             "final": "",
             "functions": [
@@ -377,7 +393,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": 9223372036854775807,
+            "copyToTargets": 64,
             "filename": "SDL.dll",
             "final": "",
             "functions": [
@@ -401,7 +417,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": 9223372036854775807,
+            "copyToTargets": 64,
             "filename": "ftd2xx.dll",
             "final": "",
             "functions": [
@@ -437,6 +453,30 @@
                 
             ],
             "origname": "extensions\\EzAudDacDEFAULT.ini",
+            "uncompress": false
+        },
+        {
+            "id": "385e7746-1287-42d6-9005-70b6aa2a34d6",
+            "modelName": "GMExtensionFile",
+            "mvc": "1.0",
+            "ProxyFiles": [
+                
+            ],
+            "constants": [
+                
+            ],
+            "copyToTargets": 2,
+            "filename": "libusb-1.0.0.dylib",
+            "final": "",
+            "functions": [
+                
+            ],
+            "init": "",
+            "kind": 1,
+            "order": [
+                
+            ],
+            "origname": "",
             "uncompress": false
         }
     ],
