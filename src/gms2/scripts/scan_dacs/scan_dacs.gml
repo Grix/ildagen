@@ -8,9 +8,7 @@ if (os_browser != browser_not_a_browser)
 
 controller.laseron = false;
 controller.dac = -1;
-numofdacs = dacwrapper_returnone();//dacwrapper_scandevices();
-//if numofdacs == 0
-show_message(numofdacs);
+numofdacs = dacwrapper_scandevices();
 
 //cleanup
 for (i = 0; i < ds_list_size(controller.dac_list); i++)
