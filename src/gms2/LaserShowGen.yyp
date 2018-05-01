@@ -2279,14 +2279,6 @@
             }
         },
         {
-            "Key": "4621afce-897b-462d-9f89-ec873049e92e",
-            "Value": {
-                "id": "6385ac47-82c5-41d0-90de-be47c17faaae",
-                "resourcePath": "extensions\\library\\library.yy",
-                "resourceType": "GMExtension"
-            }
-        },
-        {
             "Key": "46271bd8-8570-4df4-b987-f82bda1d5250",
             "Value": {
                 "id": "85508f16-e08b-43a7-8553-4b86af86b863",
@@ -8501,6 +8493,9 @@
         "67d2c3b3-a470-48eb-8410-a6db6d519265",
         "21fd3037-7149-433f-a706-4d0fcc69f021",
         "e314cff8-32bd-4cf5-942f-2b46341a3da9",
+        "16ced252-4205-4678-ba2d-566958a69727",
+        "f0f11bbc-4906-41eb-b492-445b1f46ef90",
+        "162f00ca-f2c5-4f56-93ed-92db17f419af",
         "1c80e47a-b481-4e25-a4ab-b86569a0513b",
         "0c3136b5-c07a-49e4-b734-9b64469c57e9",
         "6e71eaa5-9d14-44e3-b96e-67060e9b3656",
@@ -8651,9 +8646,6 @@
         "d96bf979-9f7d-40d0-96dc-515b9b004b97",
         "1eeae7bb-0fc5-416a-a971-04bac20970f9",
         "4ac5511c-53a2-4374-91db-462a6bb6f23e",
-        "f0f11bbc-4906-41eb-b492-445b1f46ef90",
-        "162f00ca-f2c5-4f56-93ed-92db17f419af",
-        "16ced252-4205-4678-ba2d-566958a69727",
         "433de39d-c313-4092-9083-7f27d15b064f",
         "1d292966-bd64-4aae-ac7a-0a014f43e528",
         "6d9baa3a-c92d-490a-9aeb-3caf88488409",

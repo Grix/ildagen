@@ -1,11 +1,12 @@
-var t_songfile_loc = get_open_filename_ext("All files|*","","","Select audio file");
+var t_songfile_loc = get_open_filename_ext("Audio files|*.mp3","","","Select audio file");
 if !string_length(t_songfile_loc) 
 {
     log("cancel");
     exit;
 }
 remove_audio();
-song_buffer = buffer_load(t_songfile_loc);
+file_copy(t_songfile_loc, "temp/audio.mp3");
+song_buffer = buffer_load("temp/audio.mp3");
 var t_exInfo = buffer_create(34*8, buffer_fixed, 8);
 buffer_fill(t_exInfo, 0, buffer_u64, 0, buffer_get_size(t_exInfo));
 buffer_poke(t_exInfo, 0, buffer_u32, buffer_get_size(song_buffer));
@@ -14,6 +15,7 @@ song = FMODGMS_Snd_LoadSound_Ext(buffer_get_address(song_buffer),	FMODGMS_MODE_D
 																	FMODGMS_MODE_ACCURATETIME |
 																	FMODGMS_MODE_CREATECOMPRESSEDSAMPLE, 
 																	buffer_get_address(t_exInfo));
+
 song_parse = FMODGMS_Snd_LoadSound_Ext(buffer_get_address(song_buffer),	FMODGMS_MODE_DEFAULT | 
 																		FMODGMS_MODE_ACCURATETIME |
 																		FMODGMS_MODE_OPENMEMORY_POINT | 

@@ -6,7 +6,8 @@ with(controller)
     filename = get_open_filename_ext("ILDA font file|*.ild|All files|*","",program_directory,"Select ILDA font file")
     if string_length(filename)
     {
-        ild_file = buffer_load(filename);
+        file_copy(filename, "temp/temp.ild");
+		ild_file = buffer_load("temp/temp.ild");
         file_size = buffer_get_size(ild_file);
     }
     else

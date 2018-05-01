@@ -5,7 +5,8 @@
 filename = argument0;
 if (string_length(filename))
 {
-    ild_file = buffer_load(filename);
+	file_copy(filename, "temp/temp.ild");
+	ild_file = buffer_load("temp/temp.ild");
     file_size = buffer_get_size(ild_file);
 }
 else

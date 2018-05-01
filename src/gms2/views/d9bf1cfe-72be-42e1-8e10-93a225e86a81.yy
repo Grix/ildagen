@@ -11,7 +11,10 @@
         "88fae1cc-90d8-4321-a850-8b987b303543",
         "67d2c3b3-a470-48eb-8410-a6db6d519265",
         "21fd3037-7149-433f-a706-4d0fcc69f021",
-        "e314cff8-32bd-4cf5-942f-2b46341a3da9"
+        "e314cff8-32bd-4cf5-942f-2b46341a3da9",
+        "16ced252-4205-4678-ba2d-566958a69727",
+        "f0f11bbc-4906-41eb-b492-445b1f46ef90",
+        "162f00ca-f2c5-4f56-93ed-92db17f419af"
     ],
     "filterType": "GMScript",
     "folderName": "FMODGMS",
