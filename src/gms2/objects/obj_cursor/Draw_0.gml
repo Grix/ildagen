@@ -1,9 +1,9 @@
-/*if (mouse_x > 23)
+if (mouse_x > 23)
 {
     if (view_current == 3)
         exit;
-}*/
-/*
+}
+
 if (controller.scrollcursor_flag == 1)
     image_index = 13;
 else if (controller.scrollcursor_flag == 2)
@@ -43,5 +43,3 @@ draw_set_alpha(0.3);
 draw_sprite(sprite_index, image_index, mouse_x, mouse_y);
 draw_set_alpha(1);
 draw_self();
-
-*/

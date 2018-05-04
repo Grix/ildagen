@@ -76,8 +76,14 @@ if (new_id == getint)
           
             case "updatefound":
             {
-                file = http_get_file("https://github.com/Grix/ildagen/releases/download/v"+versionnew+"/LaserShowGen-"+versionnew+"-Installer.exe","temp\\update.exe");
-                show_message_new("Download started, program will exit and installation start shortly..");
+				if (os_type == os_windows)
+				{
+					file = http_get_file("https://github.com/Grix/ildagen/releases/download/v"+versionnew+"/LaserShowGen-"+versionnew+"-Installer.exe","temp\\update.exe");
+					show_message_new("Download started, program will exit and installation start shortly..");
+				}
+				else
+					url_open("https://github.com/Grix/ildagen/releases/download/v"+versionnew+"/LaserShowGen-"+versionnew+"-Installer.exe");
+				
                 break;
             }    
             case "maxdist":
