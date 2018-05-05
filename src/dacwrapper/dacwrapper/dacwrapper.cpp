@@ -1,6 +1,6 @@
 /*
-wrapper for dac libraries,
-used in LasershowGen, license: https://raw.githubusercontent.com/Grix/ildagen/master/LICENSE
+wrapper for laser dac libraries,
+used in LaserShowGen, license: https://raw.githubusercontent.com/Grix/ildagen/master/LICENSE
 by Gitle Mikkelsen
 */
 
@@ -19,6 +19,8 @@ GMEXPORT double InitDacwrapper()
 		olscEasylaseDevice = new Device_OLSC_Easylase();
 		olscEzAudDacDevice = new Device_OLSC_EzAudDac();
 		riyaDevice = new Device_RIYA();
+	#else
+		etherDreamDevice = new Device_Etherdream_unix();
 	#endif
 	
 	initialized = true;
@@ -34,15 +36,6 @@ GMEXPORT double ScanDevices()
 	numDevices = 0;
 
 	#ifdef _WIN32
-		int numEtherdreams = etherDreamDevice->Init();
-		fprintf(stderr, "Found %d Etherdreams\n", numEtherdreams);
-		for (int i = 0; i < numEtherdreams; i++)
-		{
-			char* name = new char[64];
-			etherDreamDevice->GetName(i, name);
-			dacs[numDevices++] = { 1, i, name };
-		}
-
 		int numOLSC = olscDevice->Init();
 		fprintf(stderr, "Found %d OLSC\n", numOLSC);
 		for (int i = 0; i < numOLSC; i++)
@@ -80,6 +73,15 @@ GMEXPORT double ScanDevices()
 		}
 	#endif
 
+	int numEtherdreams = etherDreamDevice->Init();
+	fprintf(stderr, "Found %d Etherdreams\n", numEtherdreams);
+	for (int i = 0; i < numEtherdreams; i++)
+	{
+		char* name = new char[64];
+		etherDreamDevice->GetName(i, name);
+		dacs[numDevices++] = { 1, i, name };
+	}
+
 	int numHelios = heliosDevice->Init();
 	fprintf(stderr, "Found %d Helios\n", numHelios);
 	for (int i = 0; i < numHelios; i++)
@@ -88,6 +90,7 @@ GMEXPORT double ScanDevices()
 		heliosDevice->GetName(i, name);
 		dacs[numDevices++] = { 4, i, name };
 	}
+
 	int numLaserDocks = laserDockDevice->Init();
 	fprintf(stderr,"Found %d LaserDocks\n", numLaserDocks);
 	for (int i = 0; i < numLaserDocks; i++)
@@ -113,9 +116,9 @@ GMEXPORT double DeviceOpen(double doubleNum)
 		return (double)heliosDevice->OpenDevice(cardNum);
 	else if (dacType == 7)	//LaserDock
 		return (double)laserDockDevice->OpenDevice(cardNum);
+	else if (dacType == 1)	//EtherDream
+		return (double)etherDreamDevice->OpenDevice(cardNum);
 	#ifdef _WIN32
-		else if (dacType == 1)	//EtherDream
-			return (double)etherDreamDevice->OpenDevice(cardNum);
 		else if (dacType == 2)	//RIYA
 			return (double)riyaDevice->OpenDevice(cardNum);
 		else if (dacType == 3)	//OLSC
@@ -267,6 +270,24 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 			}
 			olscEzAudDacDevice->OutputFrame(cardNum, scanRate, frameSize, &olscEzAudDacBuffer[0]);
 		}
+	#else
+		else if (dacType == 1)	//EtherDream
+		{
+			int currentPos = 0;
+			Device_Etherdream::etherdream_point* etherdreamBuffer[MAX_FRAME_SIZE];
+			for (int i = 0; i < frameSize; i++)
+			{
+				etherdreamBuffer[i].x = bufferAddress[currentPos++] - 0x8000;
+				etherdreamBuffer[i].y = bufferAddress[currentPos++] - 0x8000;
+				etherdreamBuffer[i].r = bufferAddress[currentPos++] << 8;
+				etherdreamBuffer[i].g = bufferAddress[currentPos++] << 8;
+				etherdreamBuffer[i].b = bufferAddress[currentPos++] << 8;
+				etherdreamBuffer[i].i = bufferAddress[currentPos++] << 8;
+				etherdreamBuffer[i].u1 = 0;
+				etherdreamBuffer[i].u2 = 0;
+			}
+			etherDreamDevice->OutputFrame(cardNum, &etherdreamBuffer[0], frameSize, scanRate);
+		}
 	#endif
 
 }
@@ -276,12 +297,12 @@ GMEXPORT double FreeDacwrapper()
 	if (!initialized) return -1.0;
 
 	#ifdef _WIN32
-		delete etherDreamDevice;
 		delete riyaDevice;
 		delete olscDevice;
 		delete olscEzAudDacDevice;
 		delete olscEasylaseDevice;
 	#endif
+	delete etherDreamDevice;
 	delete laserDockDevice;
 	delete heliosDevice;
 
@@ -301,9 +322,9 @@ GMEXPORT double Stop(double doubleNum)
 		return (double)heliosDevice->Stop(cardNum);
 	else if (dacType == 7)	//Laserdock
 		return (double)laserDockDevice->Stop(cardNum);
+	else if (dacType == 1)	//EtherDream
+		return (double)etherDreamDevice->Stop(cardNum);
 	#ifdef _WIN32
-		else if (dacType == 1)	//EtherDream
-			return (double)etherDreamDevice->Stop(cardNum);
 		else if (dacType == 2)	//RIYA
 			return (double)riyaDevice->Stop(cardNum);
 		else if (dacType == 3)	//OLSC

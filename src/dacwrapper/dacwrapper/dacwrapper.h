@@ -8,6 +8,8 @@
 	#include "Device_RIYA.h"
 	#include "Device_OLSC_Easylase.h"
 	#include "Device_OLSC_EzAudDac.h"
+#else
+	#include "Device_Etherdream_unix.h"
 #endif
 #include <string>
 #include <thread>
@@ -24,11 +26,13 @@
 Device_LaserDock* laserDockDevice;
 Device_Helios* heliosDevice;
 #ifdef _WIN32
-	Device_Etherdream* etherDreamDevice; //todo integrate for unix
+	Device_Etherdream* etherDreamDevice;
 	Device_RIYA* riyaDevice;
 	Device_OLSC* olscDevice;
 	Device_OLSC_Easylase* olscEasylaseDevice;
 	Device_OLSC_EzAudDac* olscEzAudDacDevice;
+#else
+	Device_Etherdream_unix* etherDreamDevice;
 #endif
 
 bool initialized = false;
@@ -46,7 +50,7 @@ std::mutex dacMutex[32];
 GMEXPORT double InitDacwrapper();
 GMEXPORT double FreeDacwrapper();
 GMEXPORT double ScanDevices();
-GMEXPORT double OpenDevice(double dacNum);
+GMEXPORT double DeviceOpen(double dacNum);
 GMEXPORT double OutputFrame(double dacNum, double scanRate, double bufferSize, uint16_t* bufferAddress);
 void OutputFrameThreaded(double dacNum, double scanRate, double bufferSize, uint16_t* bufferAddress);
 GMEXPORT double Stop(double dacNum);

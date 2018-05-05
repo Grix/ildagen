@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Helios">
       <UniqueIdentifier>{bcf067eb-3947-4fe7-ad67-e43096a78b65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\etherdream_unix">
+      <UniqueIdentifier>{9224305e-f512-4c91-a796-d96bdeab1c3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\etherdream_unix">
+      <UniqueIdentifier>{a9cc1c78-10ca-4f2b-acff-b8dccc475243}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dacwrapper.cpp">
@@ -65,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="HeliosDac.cpp">
       <Filter>Source Files\Helios</Filter>
+    </ClCompile>
+    <ClCompile Include="Device_Etherdream_unix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="etherdream.c">
+      <Filter>Source Files\etherdream_unix</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +121,15 @@
     </ClInclude>
     <ClInclude Include="HeliosDac.h">
       <Filter>Header Files\Helios</Filter>
+    </ClInclude>
+    <ClInclude Include="Device_Etherdream_unix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="etherdream.h">
+      <Filter>Header Files\etherdream_unix</Filter>
+    </ClInclude>
+    <ClInclude Include="protocol.h">
+      <Filter>Header Files\etherdream_unix</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
