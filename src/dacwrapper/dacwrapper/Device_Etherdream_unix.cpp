@@ -32,7 +32,7 @@ bool Device_Etherdream::OpenDevice(int cardNum)
 
 	frameNum[cardNum] = 0;
 
-	return (etherdream_connect(etherdream_get(cardNum)));
+	return (etherdream_connect(etherdream_get(cardNum)) == 0);
 }
 
 bool Device_Etherdream::CloseDevice(int cardNum)
@@ -40,7 +40,8 @@ bool Device_Etherdream::CloseDevice(int cardNum)
 	if (!ready) 
 		return false;
 
-	return (etherdream_disconnect(etherdream_get(cardNum)));
+	etherdream_disconnect(etherdream_get(cardNum));
+    return true;
 }
 
 bool Device_Etherdream::CloseAll()
@@ -62,14 +63,20 @@ bool Device_Etherdream::CloseAll()
 bool Device_Etherdream::Stop(int cardNum)
 {
 	if (!ready) return false;
-	return (etherdream_stop(etherdream_get(cardNum)));
+	return (etherdream_stop(etherdream_get(cardNum)) == 0);
 }
 
-bool Device_Etherdream::OutputFrame(int cardNum, const etherdream_point* data, int numPoints, uint16_t PPS)
+bool Device_Etherdream::OutputFrame(int cardNum, const struct etherdream_point* data, int numPoints, uint16_t PPS)
 {
 	if (!ready) return false;
 
 	int thisFrameNum = ++frameNum[cardNum];
+    
+    struct etherdream* ed = etherdream_get(cardNum);
+    const struct etherdream_point* dat = new struct etherdream_point[1];
+    int int1 = 2;
+    int int2 = 0;
+    int int3 = 0;
 
 	std::lock_guard<std::mutex> lock(frameLock[cardNum]);
 
@@ -77,9 +84,9 @@ bool Device_Etherdream::OutputFrame(int cardNum, const etherdream_point* data, i
 	{
 		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;
-		else if (etherdream_is_ready(etherdream_get(cardNum)) == 1)
-		{
-			return etherdream_write(etherdream_get(cardNum), data, numPoints, PPS, -1);
+		else if (etherdream_is_ready(ed) == 1)
+        {
+            return etherdream_write(ed, dat, int1, int2, int3);//(etherdream_write(ed, data, numPoints, (int)PPS, -1) == 0);
 		}
 		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
@@ -89,5 +96,5 @@ bool Device_Etherdream::OutputFrame(int cardNum, const etherdream_point* data, i
 
 void Device_Etherdream::GetName(int cardNum, char* name)
 {
-	name = "Etherdream"; //todo add index/name
+    name = "Etherdream"; //todo add index/name
 }

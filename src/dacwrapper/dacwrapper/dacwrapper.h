@@ -25,14 +25,12 @@
 
 Device_LaserDock* laserDockDevice;
 Device_Helios* heliosDevice;
+Device_Etherdream* etherDreamDevice;
 #ifdef _WIN32
-	Device_Etherdream* etherDreamDevice;
 	Device_RIYA* riyaDevice;
 	Device_OLSC* olscDevice;
 	Device_OLSC_Easylase* olscEasylaseDevice;
 	Device_OLSC_EzAudDac* olscEzAudDacDevice;
-#else
-	Device_Etherdream_unix* etherDreamDevice;
 #endif
 
 bool initialized = false;

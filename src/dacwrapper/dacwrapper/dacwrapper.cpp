@@ -13,14 +13,13 @@ GMEXPORT double InitDacwrapper()
 
 	laserDockDevice = new Device_LaserDock();
 	heliosDevice = new Device_Helios();
+    etherDreamDevice = new Device_Etherdream();
 	#ifdef _WIN32
 		etherDreamDevice = new Device_Etherdream();
 		olscDevice = new Device_OLSC();
 		olscEasylaseDevice = new Device_OLSC_Easylase();
 		olscEzAudDacDevice = new Device_OLSC_EzAudDac();
 		riyaDevice = new Device_RIYA();
-	#else
-		etherDreamDevice = new Device_Etherdream_unix();
 	#endif
 	
 	initialized = true;
@@ -274,7 +273,7 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 		else if (dacType == 1)	//EtherDream
 		{
 			int currentPos = 0;
-			Device_Etherdream::etherdream_point* etherdreamBuffer[MAX_FRAME_SIZE];
+			struct etherdream_point etherdreamBuffer[MAX_FRAME_SIZE];
 			for (int i = 0; i < frameSize; i++)
 			{
 				etherdreamBuffer[i].x = bufferAddress[currentPos++] - 0x8000;

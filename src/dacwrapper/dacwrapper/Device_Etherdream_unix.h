@@ -12,18 +12,6 @@ public:
 	Device_Etherdream();
 	~Device_Etherdream();
 
-	struct etherdream_point {
-		int16_t x;
-		int16_t y;
-		uint16_t r;
-		uint16_t g;
-		uint16_t b;
-		uint16_t i;
-		uint16_t u1;
-		uint16_t u2;
-	};
-
-
 	int Init();
 	bool OpenDevice(int cardNum);
 	bool CloseDevice(int cardNum);
