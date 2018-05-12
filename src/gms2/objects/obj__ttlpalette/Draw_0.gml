@@ -1,5 +1,5 @@
 draw_self();
 
-draw_text(x+22,y+2,"Alternative palette");
+draw_text(x+24,y-5,"Alternative palette\nfor format 0");
 
 

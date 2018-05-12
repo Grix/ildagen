@@ -1,8 +1,5 @@
 if (instance_exists(obj_dropdown))
     exit;
-visible = (controller.exp_format == 0);
-if (!visible)
-	exit;
 	
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
 {

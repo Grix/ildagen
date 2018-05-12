@@ -1,12 +1,12 @@
-var t_songfile_loc = get_open_filename_ext("Audio files|*.mp3","","","Select audio file");
+var t_songfile_loc = get_open_filename_ext("Audio files|*.mp3;*.aiff;*.asf;*.asx;*.flac;*.fsb;*.it;*.m3u;*.midi;*.mod;*.mp2;*.ogg;*.pls;*.s3m;*.wav;*.wax;*.wma;*.xm","","","Select audio file");
 if !string_length(t_songfile_loc) 
 {
-    log("cancel");
+    log("cancelled audio load");
     exit;
 }
 remove_audio();
-file_copy(t_songfile_loc, "temp/audio.mp3");
-song_buffer = buffer_load("temp/audio.mp3");
+file_copy(t_songfile_loc, "temp/audio");
+song_buffer = buffer_load("temp/audio");
 var t_exInfo = buffer_create(34*8, buffer_fixed, 8);
 buffer_fill(t_exInfo, 0, buffer_u64, 0, buffer_get_size(t_exInfo));
 buffer_poke(t_exInfo, 0, buffer_u32, buffer_get_size(song_buffer));
