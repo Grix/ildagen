@@ -16,7 +16,7 @@ int Device_OLSC::Init()
 {
 	CloseAll();
 
-	OLSCLibrary = LoadLibrary(L"OLSC.dll");
+	OLSCLibrary = LoadLibrary(L"OLSD.dll");
 	if (OLSCLibrary == NULL) return -2;
 
 	OLSC_Initialize = (OLSCFuncPtr1)GetProcAddress(OLSCLibrary, "OLSC_Initialize");
@@ -78,25 +78,22 @@ bool Device_OLSC::OutputFrame(int cardNum, int scanRate, int bufferSize, OLSC_Po
 	if (!ready)
 		return false;
 
+	//todo maybe add mutex, failed after adding this earlier
+
 	int thisFrameNum = ++frameNum[cardNum];
 
-	std::lock_guard<std::mutex> lock(frameLock[cardNum]);
-
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < 16; i++)
 	{
 		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;
 		else
 		{
 			DWORD status;
-			if ( (OLSC_GetStatus(cardNum, status)) == 1)
+			if ((OLSC_GetStatus(cardNum, status) & 1) == 0) //if ready
 			{
-				if ((status & 1) != 0) //if ready
-					continue;
 				return (OLSC_WriteFrameEx(cardNum, scanRate, bufferSize, bufferAddress) == 1);
 			}
 		}
-		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
 
 	return false;

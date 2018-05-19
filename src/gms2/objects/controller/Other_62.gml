@@ -3,19 +3,22 @@
 
 if (ds_map_find_value(async_load, "id") == updateget)
 {
-   if (ds_map_find_value(async_load, "status") == 0)
-   {
-       versionnew = ds_map_find_value(async_load, "result");
-       log("Checking version");
-       if (versionnew != version)
-       {
-            ilda_dialog_yesno("updatefound","New version available: "+versionnew+"\nWould you like to download and install the update?\n\n"+releasenotes+"\n\n");
-       }
-       else if (update_verbose == 1)
-       {
-            show_message_new("Current version is up to date.");
-       }
-   }
+    if (ds_map_find_value(async_load, "status") == 0)
+    {
+        versionnew = ds_map_find_value(async_load, "result");
+        log("Checking version");
+        if (versionnew != version)
+        {
+			if (os_type == os_macosx)
+				ilda_dialog_yesno("updatefound","New version available: "+versionnew+", would you like to download and install?");
+			else
+				ilda_dialog_yesno("updatefound","New version available: "+versionnew+"\nWould you like to download and install the update?\n\n"+releasenotes+"\n\n");
+        }
+        else if (update_verbose == 1)
+        {
+	 		show_message_new("Current version is up to date.");
+        }
+    }
 }
 else if (ds_map_find_value(async_load, "id") == updatenotes)
 {

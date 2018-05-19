@@ -478,6 +478,30 @@
             ],
             "origname": "",
             "uncompress": false
+        },
+        {
+            "id": "91e2484a-effe-4530-98d7-a8a642b1263d",
+            "modelName": "GMExtensionFile",
+            "mvc": "1.0",
+            "ProxyFiles": [
+                
+            ],
+            "constants": [
+                
+            ],
+            "copyToTargets": 598172980216040,
+            "filename": "OLSD.dll",
+            "final": "",
+            "functions": [
+                
+            ],
+            "init": "",
+            "kind": 1,
+            "order": [
+                
+            ],
+            "origname": "",
+            "uncompress": false
         }
     ],
     "gradleinject": "",

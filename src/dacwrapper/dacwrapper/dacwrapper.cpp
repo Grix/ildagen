@@ -13,13 +13,14 @@ GMEXPORT double InitDacwrapper()
 
 	laserDockDevice = new Device_LaserDock();
 	heliosDevice = new Device_Helios();
-    etherDreamDevice = new Device_Etherdream();
 	#ifdef _WIN32
 		etherDreamDevice = new Device_Etherdream();
 		olscDevice = new Device_OLSC();
 		olscEasylaseDevice = new Device_OLSC_Easylase();
 		olscEzAudDacDevice = new Device_OLSC_EzAudDac();
 		riyaDevice = new Device_RIYA();
+    #else
+		etherDreamDevice = new Device_Etherdream_unix();
 	#endif
 	
 	initialized = true;
