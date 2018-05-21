@@ -20,7 +20,7 @@
     "option_mac_output_dir": "~\/GameMaker-Studio\/ildagen",
     "option_mac_resize_window": true,
     "option_mac_scale": 0,
-    "option_mac_signing_identity": "",
+    "option_mac_signing_identity": "Developer ID Application:",
     "option_mac_splash_png": "${options_dir}\\mac\\splash\\splash.png",
     "option_mac_start_fullscreen": false,
     "option_mac_team_id": "",
