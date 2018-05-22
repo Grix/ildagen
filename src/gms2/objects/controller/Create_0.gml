@@ -146,6 +146,7 @@ show_framecursor_prev = false;
 scope_moving = false;
 highlight = false;
 resizing_moving = 0;
+update_semasterlist_flag = 0;
 
 sgridshow = 0;
 rgridshow = 0;

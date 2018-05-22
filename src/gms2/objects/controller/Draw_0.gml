@@ -144,8 +144,6 @@ if (view_current == 4 || view_current == 5)
         draw_set_color(c_aqua);
         if !(ds_list_empty(semaster_list))
         {
-            if (update_semasterlist_flag)
-                update_semasterlist();
             
             draw_sprite(spr_anchor,0,round(anchorx/t_scale), round(t_y+anchory/t_scale));
             draw_set_alpha(0.6);
@@ -253,6 +251,7 @@ if (view_current == 4 || view_current == 5)
 }
 else if (view_current == 0)
 {
+	
     gpu_set_blendenable(false);
 	
 	draw_clear(c_ltltgray);

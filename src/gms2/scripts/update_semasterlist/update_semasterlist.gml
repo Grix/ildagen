@@ -1,6 +1,9 @@
-xmax = -$ffff;
+if ds_list_empty(semaster_list)
+	exit;
+
+xmax = 0;
 xmin = $ffff;
-ymax = -$ffff;
+ymax = 0;
 ymin = $ffff;
 for (u = 0; u < ds_list_size(el_list);u++)
 {
@@ -29,4 +32,4 @@ rectxmin = xmin;
 rectymax = ymax;
 rectymin = ymin;
 
-update_semasterlistflag = 0;
+update_semasterlist_flag = 0;

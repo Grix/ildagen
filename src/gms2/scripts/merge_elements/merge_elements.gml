@@ -57,16 +57,20 @@ for (i = scope_start; i <= scope_end; i++)
 	}
 	
 	new_list[| 4] = xmin;	
-	new_list[| 4] = xmax;	
-	new_list[| 4] = ymin;	
-	new_list[| 4] = ymax;	
+	new_list[| 5] = xmax;	
+	new_list[| 6] = ymin;	
+	new_list[| 7] = ymax;	
 	ds_list_add(el_list, new_list);
 }
+
+temp_undo_list = ds_list_create();
 
 ds_list_clear(semaster_list);
 ds_list_add(semaster_list, el_id);
 el_id++;
 
 el_list = frame_list[| frame];
+
+temp_undo_list = ds_list_create();
 
 //todo undo

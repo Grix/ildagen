@@ -21,11 +21,7 @@ if (playing == 1)
     if (frame != frameprev)
     {
         frame_surf_refresh = 1;
-    }
-    
-    if !ds_list_empty(semaster_list)
-    {
-        update_semasterlist_flag = 1;
+		update_semasterlist_flag = 1;
     }
         
     if (frameprev != 0) and (frame == 0) and (seqcontrol.song != -1)

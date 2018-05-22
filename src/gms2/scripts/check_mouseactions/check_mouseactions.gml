@@ -69,10 +69,7 @@ if ((mouse_x > tlorigo_x+2) && (mouse_x < tlorigo_x+tlw-2) &&
             frame = framecursor_prev;
             
             frame_surf_refresh = 1;
-            if !ds_list_empty(semaster_list)
-            {
-                update_semasterlist_flag = 1;
-            }
+            update_semasterlist_flag = 1;
             refresh_minitimeline_flag = 1;
 			
 			with (seqcontrol)

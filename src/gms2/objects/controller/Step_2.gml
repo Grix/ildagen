@@ -97,10 +97,13 @@ if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window
 
 el_list = frame_list[| frame];
 
-if (placing = "hershey")
+if (placing == "hershey")
     hershey_handle_scroll();
     
 object_select_hovering = 0;
+
+if (update_semasterlist_flag)
+    update_semasterlist();
 
 check_mouseactions();
 
@@ -278,13 +281,12 @@ if (keyboard_check(vk_left)) && (maxframes > 1) && (placing_status == 0)
     frame = round(framehr);
     if (frame < 1)
         frame = 0;
-    frame_surf_refresh = 1;
-    
-    if !ds_list_empty(semaster_list)
-    {
-        update_semasterlist_flag = 1;
-    }
-    refresh_minitimeline_flag = 1;
+	if (frame != frameprev)
+	{
+        frame_surf_refresh = 1;
+		update_semasterlist_flag = 1;
+		refresh_minitimeline_flag = 1;
+	}
 }
 else if (keyboard_check(vk_right)) && (maxframes > 1) && (placing_status == 0)
 {
@@ -306,13 +308,11 @@ else if (keyboard_check(vk_right)) && (maxframes > 1) && (placing_status == 0)
     if (frame < 1)
         frame = 0;
     if (frame != frameprev)
+	{
         frame_surf_refresh = 1;
-    
-    if !ds_list_empty(semaster_list)
-    {
-        update_semasterlist_flag = 1;
-    }
-    refresh_minitimeline_flag = 1;
+		update_semasterlist_flag = 1;
+		refresh_minitimeline_flag = 1;
+	}
 }
     
 if (frame >= maxframes)
