@@ -102,9 +102,6 @@ if (placing == "hershey")
     
 object_select_hovering = 0;
 
-if (update_semasterlist_flag)
-    update_semasterlist();
-
 check_mouseactions();
 
 if (keyboard_check_pressed(vk_space))
@@ -385,3 +382,5 @@ if (keyboard_check_pressed(vk_tab))
     room_goto(rm_seq);
 }
 
+if (update_semasterlist_flag)
+    update_semasterlist();

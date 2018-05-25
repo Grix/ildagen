@@ -1,5 +1,8 @@
 //reapplies the object properties
 
+if (anixtrans == 0) && (aniytrans == 0) && (anirot == 0) && (scalex == 1) && (scaley == 1)
+	exit;
+
 //create more frames if only one and animation is on
 if (maxframes == 1) and (anienable)
 {
@@ -27,12 +30,13 @@ if (maxframes == 1) and (anienable)
 	}
 }
 
+temp_undof_list = ds_list_create();
+
 for (c = 0; c < ds_list_size(semaster_list); c++)
 {
     selectedelement = ds_list_find_value(semaster_list,c);
     
     //find elements
-    temp_undof_list = ds_list_create();
     temp_frame_list = ds_list_create();
     if (fillframes)
     {
@@ -71,8 +75,6 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
             }
         }
     }
-    
-    ds_list_add(undo_list,"k"+string(temp_undof_list));
     
     
     //walk through frames
@@ -202,3 +204,4 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
 
 frame_surf_refresh = 1;
 update_semasterlist_flag = 1;
+ds_list_add(undo_list,"k"+string(temp_undof_list));

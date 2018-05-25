@@ -1,7 +1,7 @@
 ddobj = instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-23,"foreground",obj_dropdown);
 with (ddobj)
-    {
-    num = 5;
+{
+    num = 6;
     event_user(1);
     ds_list_add(desc_list,"Copy");
     ds_list_add(desc_list,"Cut");
@@ -23,4 +23,8 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,deselect_object);
     ds_list_add(hl_list,!ds_list_empty(controller.semaster_list));
-    }
+	ds_list_add(desc_list,"Merge selected objects");
+	ds_list_add(sep_list,0);
+	ds_list_add(scr_list,merge_elements);
+	ds_list_add(hl_list,(ds_list_size(controller.semaster_list) > 1));
+}

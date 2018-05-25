@@ -187,13 +187,14 @@ if (is_string(resolution))
     else if (anienable) and (colormode != "solid") and ((color_offset != anicolor_offset) or (color_dc != anicolor_dc))
         resolution = 250;
 }
+
+temp_undof_list = ds_list_create();
     
 for (l = 0; l < ds_list_size(semaster_list); l++)
 {
     selectedelement = ds_list_find_value(semaster_list,l);
 
     //find elements
-    temp_undof_list = ds_list_create();
     temp_frame_list = ds_list_create();
     if (fillframes)
     {
@@ -232,8 +233,6 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
             }
         }
     }
-    
-    ds_list_add(undo_list,"k"+string(temp_undof_list));
     
     randomize();
             
@@ -679,6 +678,8 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
 }
     
 if (autoresflag)
-resolution = "auto";
+	resolution = "auto";
 
 frame_surf_refresh = 1;
+ds_list_add(undo_list,"k"+string(temp_undof_list));
+

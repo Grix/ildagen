@@ -76,6 +76,9 @@ else if !(keyboard_check(vk_control)) and (!object_select_hovering)
 	if (window_mouse_get_x() > view_wport[4] or window_mouse_get_y()-23 > view_wport[4])
 		exit;
 		
+	if (instance_exists(obj_dropdown))
+		exit;
+		
 	var t_resizex = clamp(rectxmax/$ffff*view_wport[4], 0, view_wport[4]-22);
 	var t_resizey = clamp(rectymax/$ffff*view_wport[4], 0, view_wport[4]-22);
 	var t_rotatex = clamp(rectxmin/$ffff*view_wport[4], 22, view_wport[4]);

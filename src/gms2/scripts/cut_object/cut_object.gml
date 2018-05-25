@@ -55,9 +55,10 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
             }
         }
     }
-	ds_list_add(undo_list,"l"+string(temp_undof_list));
 }
     
+ds_list_add(undo_list,"l"+string(temp_undof_list));
+
 ds_list_clear(semaster_list);
 frame_surf_refresh = 1;
 update_semasterlist_flag = 1;
