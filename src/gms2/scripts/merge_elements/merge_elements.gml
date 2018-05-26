@@ -34,10 +34,10 @@ for (i = scope_start; i <= scope_end; i++)
 		xo = t_element[| 0];
 		yo = t_element[| 1];
 		
-		xmin = min(t_element[| 4], xmin);
-		xmax = max(t_element[| 5], xmax);
-		ymin = min(t_element[| 6], ymin);
-		ymax = max(t_element[| 7], ymax);
+		xmin = min(xo+t_element[| 4], xmin);
+		xmax = max(xo+t_element[| 5], xmax);
+		ymin = min(yo+t_element[| 6], ymin);
+		ymax = max(yo+t_element[| 7], ymax);
 			
 		for (k = 20; k < ds_list_size(t_element); k += 4)
 		{
