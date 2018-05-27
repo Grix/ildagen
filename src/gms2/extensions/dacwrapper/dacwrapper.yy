@@ -264,30 +264,6 @@
             "uncompress": false
         },
         {
-            "id": "630dc6e1-16cc-485a-ab20-5c19e704997d",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 64,
-            "filename": "OLSC.dll",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                
-            ],
-            "origname": "extensions\\OLSC.dll",
-            "uncompress": false
-        },
-        {
             "id": "cde19827-9680-4d43-8a51-c582048e81db",
             "modelName": "GMExtensionFile",
             "mvc": "1.0",

@@ -111,4 +111,7 @@
       <Filter>Header Files\Helios</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Library Include="libusb-1.0.lib" />
+  </ItemGroup>
 </Project>

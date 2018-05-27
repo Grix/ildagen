@@ -111,6 +111,9 @@
     <ClInclude Include="LaserdockDeviceManager_p.h" />
     <ClInclude Include="LaserdockDevice_p.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Library Include="libusb-1.0.lib" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
