@@ -52,6 +52,13 @@ for (i = scope_start; i <= scope_end; i++)
 			ds_list_add(new_list, yo + t_element[| k+1]);
 			ds_list_add(new_list, t_element[| k+2]);
 			ds_list_add(new_list, t_element[| k+3]);
+			if (k == ds_list_size(t_element) - 4)
+			{
+				ds_list_add(new_list, xo + t_element[| k]);
+				ds_list_add(new_list, yo + t_element[| k+1]);
+				ds_list_add(new_list, 1);
+				ds_list_add(new_list, c_black);
+			}
 		}
 		ds_list_add(t_element, i);
 		ds_list_add(temp_undof_list, t_element);

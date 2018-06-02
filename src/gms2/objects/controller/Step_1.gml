@@ -14,10 +14,8 @@ if (playing == 1)
         
     framehr += delta_time/1000000*seqcontrol.projectfps*seqcontrol.playbackspeed;
     if (framehr > maxframes-0.5)
-        framehr-= maxframes;
+        framehr -= maxframes;
     frame = clamp(round(framehr),0,maxframes-1);
-    if (frame < 1)
-        frame = 0;
     if (frame != frameprev)
     {
         frame_surf_refresh = 1;

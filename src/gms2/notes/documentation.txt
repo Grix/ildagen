@@ -1,6 +1,6 @@
 TODO
 - reapply combine shapes
-- split and merge objects
+- split objects
 - double check and fix maxpoints_static calculation
 - motion controller
 - LIVE mode
@@ -11,7 +11,7 @@ TODO
 - simulation settings (more projectors etc)
 - Support for other glyphs in the text tool
 - etherdream bug fix
-- mac/linux
+- linux
 
 SETTINGSCONTROL
 

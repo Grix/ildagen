@@ -275,9 +275,7 @@ if (keyboard_check(vk_left)) && (maxframes > 1) && (placing_status == 0)
         framehr -= delta_time/1000000*seqcontrol.projectfps;
     if (framehr < -0.5)
         framehr+= maxframes;
-    frame = round(framehr);
-    if (frame < 1)
-        frame = 0;
+    frame = clamp(round(framehr),0,maxframes-1);
 	if (frame != frameprev)
 	{
         frame_surf_refresh = 1;
@@ -299,11 +297,10 @@ else if (keyboard_check(vk_right)) && (maxframes > 1) && (placing_status == 0)
     }
     else if (scroll)
         framehr += delta_time/1000000*seqcontrol.projectfps;
-    if (framehr > maxframes-0.5)
-        framehr-= maxframes;
-    frame = round(framehr);
-    if (frame < 1)
-        frame = 0;
+    if (framehr > (maxframes-0.5))
+        framehr -= maxframes;
+	//log(frame, framehr, maxframes, maxframes-0.5);
+    frame = clamp(round(framehr),0,maxframes-1);
     if (frame != frameprev)
 	{
         frame_surf_refresh = 1;
@@ -311,12 +308,17 @@ else if (keyboard_check(vk_right)) && (maxframes > 1) && (placing_status == 0)
 		refresh_minitimeline_flag = 1;
 	}
 }
+
+
     
 if (frame >= maxframes)
 {
     frame = maxframes-1;
     framehr = maxframes-1;
 }
+
+//todo remove when fix for buffer loaded floats->int
+maxframes = real(maxframes);
     
 frameprev = frame;    
 
