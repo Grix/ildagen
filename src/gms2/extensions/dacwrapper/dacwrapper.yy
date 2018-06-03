@@ -478,6 +478,30 @@
             ],
             "origname": "",
             "uncompress": false
+        },
+        {
+            "id": "6cda25f1-634e-4e2e-a0e2-d6367aec3d45",
+            "modelName": "GMExtensionFile",
+            "mvc": "1.0",
+            "ProxyFiles": [
+                
+            ],
+            "constants": [
+                
+            ],
+            "copyToTargets": 35184372088896,
+            "filename": "OLSC.dll",
+            "final": "",
+            "functions": [
+                
+            ],
+            "init": "",
+            "kind": 1,
+            "order": [
+                
+            ],
+            "origname": "",
+            "uncompress": false
         }
     ],
     "gradleinject": "",
