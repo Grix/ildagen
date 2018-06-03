@@ -1,13 +1,8 @@
+v1.6.5
+- macOS version is now available
+- Added ability to merge objects into one in editor mode
+- Fixed bug possibly corrupting envelopes when loading a project in timeline mode
+- Various other bug fixes
+
 v1.6.4
 - Animations can now be stretched out or sped up, and reversed.
-
-v1.6.0 - 1.6.3
-- Fixed compatibility with low resolution monitors, and possible crash.
-- Fixed bug in optimization algorithm causing very complex frames to become corrupt when outputted.
-- Added alternative color palette for format 0 ILDA file export, should fix inaccurate color on some projectors.
-- Various other small fixes and tweaks.
-- Fixed bug causing broken timeline mode interface on some resolutions.
-- Interface scales properly when resized, users can take advantage of the whole screen if maximizing the window.
-- Projection can now be more freely adjusted by moving each corner of the projection window independently.
-- Better optimization algorithm, especially for frames with dots in them.
-- Other misc. bug fixes and tweaks.
