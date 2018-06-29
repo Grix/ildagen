@@ -661,7 +661,7 @@ else if (new_id == getstr)
                     if (ord(letter) != clamp(ord(letter),33,126))
                     {
                         for (i = 0;i <= maxframes;i++)
-                            xdelta[i] += font_size*1.3;
+                            xdelta[i] += font_size/1.3*256;
                     }
                     else
                     {
