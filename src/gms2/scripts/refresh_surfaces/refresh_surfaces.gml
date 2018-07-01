@@ -63,46 +63,46 @@ if (viewmode == 0) or (viewmode == 2)
     }
     
     if (onion)
-    for (j = 1;j <= onion_number;j++)
-    {
-        if !(frame >= j) 
-            break;
+	    for (j = 1;j <= onion_number;j++)
+	    {
+	        if !(frame >= j) 
+	            break;
         
-        el_list = ds_list_find_value(frame_list,frame-j);
+	        el_list = ds_list_find_value(frame_list,frame-j);
     
-        draw_set_alpha(onion_alpha*power(onion_dropoff,j));
+	        draw_set_alpha(onion_alpha*power(onion_dropoff,j));
         
-        for (i = 0;i < ds_list_size(el_list);i++)
-        {
-            new_list = ds_list_find_value(el_list,i);
+	        for (i = 0;i < ds_list_size(el_list);i++)
+	        {
+	            new_list = ds_list_find_value(el_list,i);
             
-            xo = ds_list_find_value(new_list,0)/t_div;
-            yo = ds_list_find_value(new_list,1)/t_div;
-            listsize = (((ds_list_size(new_list)-20)/4)-1);
+	            xo = ds_list_find_value(new_list,0)/t_div;
+	            yo = ds_list_find_value(new_list,1)/t_div;
+	            listsize = (((ds_list_size(new_list)-20)/4)-1);
             
-            for (u = 0; u < listsize; u++)
-            {
-                nextpos = 20+(u+1)*4;
-                nbl = ds_list_find_value(new_list,nextpos+2);
+	            for (u = 0; u < listsize; u++)
+	            {
+	                nextpos = 20+(u+1)*4;
+	                nbl = ds_list_find_value(new_list,nextpos+2);
                 
-                if (nbl == 0)
-                {
-                    xp = ds_list_find_value(new_list,nextpos-4);
-                    yp = ds_list_find_value(new_list,nextpos-3);
+	                if (nbl == 0)
+	                {
+	                    xp = ds_list_find_value(new_list,nextpos-4);
+	                    yp = ds_list_find_value(new_list,nextpos-3);
                     
-                    nxp = ds_list_find_value(new_list,nextpos);
-                    nyp = ds_list_find_value(new_list,nextpos+1);
+	                    nxp = ds_list_find_value(new_list,nextpos);
+	                    nyp = ds_list_find_value(new_list,nextpos+1);
                     
-                    draw_set_color(ds_list_find_value(new_list,nextpos+3));
-                    if (abs(xp-nxp) < 8) && (abs(yp-nyp) < 8) && !(ds_list_find_value(new_list,nextpos-2))
-                        draw_rectangle(xo+xp/t_div-1,yo+yp/t_div-1,xo+xp/t_div+1,yo+yp/t_div+1,0);
-                    else
-                        draw_line(xo+ xp/t_div,yo+ yp/t_div,xo+ nxp/t_div,yo+ nyp/t_div);
-                }
+	                    draw_set_color(ds_list_find_value(new_list,nextpos+3));
+	                    if (abs(xp-nxp) < 8) && (abs(yp-nyp) < 8) && !(ds_list_find_value(new_list,nextpos-2))
+	                        draw_rectangle(xo+xp/t_div-1,yo+yp/t_div-1,xo+xp/t_div+1,yo+yp/t_div+1,0);
+	                    else
+	                        draw_line(xo+ xp/t_div,yo+ yp/t_div,xo+ nxp/t_div,yo+ nyp/t_div);
+	                }
                 
-            }
-        }
-    }
+	            }
+	        }
+		}
         
     el_list = ds_list_find_value(frame_list,frame);
     draw_set_alpha(1);
