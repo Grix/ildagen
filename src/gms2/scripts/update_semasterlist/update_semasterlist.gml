@@ -1,5 +1,7 @@
 if ds_list_empty(semaster_list)
 	exit;
+	
+el_list = frame_list[| frame];
 
 xmax = 0;
 xmin = $ffff;

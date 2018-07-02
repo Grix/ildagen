@@ -1,6 +1,6 @@
 if (instance_exists(obj_dropdown))
     exit;
-_visible = (controller.maxframes > 1);
+_visible = (controller.maxframes > 1) || (room = rm_seq);
 if (!_visible)
 	exit;
 
