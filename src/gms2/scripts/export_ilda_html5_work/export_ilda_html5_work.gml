@@ -88,25 +88,33 @@ ds_map_destroy(c_map);
 //remove excess size
 buffersize = buffer_tell(ilda_buffer);
 
-filesaver_clearArray();
-
-error = 0;
-for (i = 0;i < buffersize;i++)
+if (os_browser != browser_not_a_browser)
 {
-    if (!filesaver_toArray(i,buffer_peek(ilda_buffer,i,buffer_u8)))
-    {
-        if (!error) show_message_new("Error filling file with data, may not save correctly!");
-        error = 1;
-    }
-}
-    
-filesaver_save(file_loc);
+	filesaver_clearArray();
 
-var t_time = get_timer();
-while ((get_timer() - t_time) > 4095)
-    j = 0;
+	error = 0;
+	for (i = 0;i < buffersize;i++)
+	{
+	    if (!filesaver_toArray(i,buffer_peek(ilda_buffer,i,buffer_u8)))
+	    {
+	        if (!error) show_message_new("Error filling file with data, may not save correctly!");
+	        error = 1;
+	    }
+	}
+    
+	filesaver_save(file_loc);
+
+	var t_time = get_timer();
+	while ((get_timer() - t_time) > 4095)
+	    j = 0;
        
-show_message_new("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));
+	show_message_new("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));
+}
+else
+{
+	buffer_save(ilda_buffer, file_loc);
+	url_open_new(file_loc);
+}
 
 buffer_delete(ilda_buffer);
 
