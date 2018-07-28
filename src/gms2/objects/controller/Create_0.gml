@@ -234,6 +234,7 @@ pointy[20] = 0;
 wave_offset = 0;
 bez_moving = 0;
 font_size = 20;
+font_spacing = 1;
 preview_testframe = 0; //0: testframe, 1: editor mode, 2: timeline mode
 
 resolution = "auto";

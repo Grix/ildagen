@@ -283,7 +283,7 @@ for (n = 0;n < checkpoints; n++)
 ds_list_replace(new_list,0,(ds_list_find_value(new_list,0)-xmin));
 ds_list_replace(new_list,2,(ds_list_find_value(new_list,2)-xmin));
 
-xdelta[frame] += xmax-xmin+font_size/4.5*256;
+xdelta[frame] += xmax-xmin+font_size/4.5*256*font_spacing;
 
 
 return 1;

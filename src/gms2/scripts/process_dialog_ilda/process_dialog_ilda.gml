@@ -478,6 +478,11 @@ if (new_id == getint)
               font_size = clamp(ds_map_find_value(argument[0], "value"),1,128);
               break;
           }
+		    case "fontspacing":
+          {
+              font_spacing = clamp(ds_map_find_value(argument[0], "value"),0,128);
+              break;
+          }
               
             case "res":
           {
@@ -661,7 +666,7 @@ else if (new_id == getstr)
                     if (ord(letter) != clamp(ord(letter),33,126))
                     {
                         for (i = 0;i <= maxframes;i++)
-                            xdelta[i] += font_size/1.3*256;
+                            xdelta[i] += font_size/1.3*256*font_spacing;
                     }
                     else
                     {

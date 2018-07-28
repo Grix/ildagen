@@ -6463,6 +6463,14 @@
             }
         },
         {
+            "Key": "cb91b168-bfed-45f9-97ed-f99bc7c73044",
+            "Value": {
+                "id": "c020f29e-3232-45f0-aeb7-b781f56470db",
+                "resourcePath": "scripts\\dd_text_spacing\\dd_text_spacing.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cb93b68c-e017-4044-96d6-e456094410e4",
             "Value": {
                 "id": "a3046603-7c57-4ff6-96da-62aba6685995",
@@ -6852,6 +6860,14 @@
                 "id": "8a7db290-7141-47ff-b797-0fbef97970cb",
                 "resourcePath": "rooms\\rm_loading\\rm_loading.yy",
                 "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "d70d3d48-1a83-4551-8952-327538185edd",
+            "Value": {
+                "id": "f8c8dc03-7a11-4b6a-a19b-80de0f080c70",
+                "resourcePath": "extensions\\FMODGMS\\FMODGMS.yy",
+                "resourceType": "GMExtension"
             }
         },
         {
@@ -8548,6 +8564,7 @@
         "92f13683-39f8-452e-8d0a-a9104231a445",
         "2613b46c-7ace-42ea-a777-f41de411a199",
         "fe6c5d3f-745f-4217-b8de-38efb8f9d607",
+        "cb91b168-bfed-45f9-97ed-f99bc7c73044",
         "845c05ae-4443-4b2f-8486-9ad46e8f43b9",
         "87f8988e-d84c-4192-a9be-65cc426d39f3",
         "7d038a50-37c1-4cdc-b6dd-66743deda078",
