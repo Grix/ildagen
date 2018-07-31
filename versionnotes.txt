@@ -1,8 +1,9 @@
+v1.6.6
+- Fixed broken spacing between letters in text tool, and added custom spacing width support
+- Added onion skinning to timeline mode
+
 v1.6.5
 - macOS version is now available
 - Added ability to merge objects into one in editor mode
 - Fixed bug possibly corrupting envelopes when loading a project in timeline mode
 - Various other bug fixes
-
-v1.6.4
-- Animations can now be stretched out or sped up, and reversed.

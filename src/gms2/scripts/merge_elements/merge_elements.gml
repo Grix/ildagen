@@ -81,5 +81,3 @@ ds_list_add(undo_list,el_id);
 el_id++;
 
 el_list = frame_list[| frame];
-
-//todo undo

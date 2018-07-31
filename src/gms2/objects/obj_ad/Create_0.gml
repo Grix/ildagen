@@ -3,7 +3,7 @@ if (verify_serial(false)) || (controller.adclosed)
     
 md5query = -1;
 adquery = -1;
-ad = choose(spr_ad1, spr_ad1, spr_ad2, spr_ad3, spr_ad3, spr_ad4);
+ad = choose(spr_ad1, spr_ad1, spr_ad2, spr_ad3, spr_ad3); //spr_ad4
 highlight_close = false;
 
 //todo?

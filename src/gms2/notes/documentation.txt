@@ -1,5 +1,4 @@
 TODO
-- adjustable space width text tool
 - reapply combine shapes
 - split objects
 - double check and fix maxpoints_static calculation
