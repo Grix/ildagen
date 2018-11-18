@@ -6,6 +6,8 @@
 Device_Etherdream::Device_Etherdream()
 {
 	ready = false;
+	for (int i = 0; i < 16; i++)
+		stopped[i] = true;
 }
 
 
@@ -97,8 +99,10 @@ bool Device_Etherdream::OpenDevice(int cardNum)
 	if (!ready) return false;
 
 	frameNum[cardNum] = 0;
+	if (EtherDreamOpenDevice(&cardNum))
+		stopped[cardNum] = false;
 
-	return EtherDreamOpenDevice(&cardNum);
+	return stopped[cardNum];
 }
 
 bool Device_Etherdream::CloseDevice(int cardNum)
@@ -123,12 +127,18 @@ bool Device_Etherdream::Stop(int cardNum)
 {
 	if (!ready) return false;
 
-	return EtherDreamStop(&cardNum);
+	if (EtherDreamStop(&cardNum))
+		stopped[cardNum] = true;
+
+	return stopped[cardNum];
 }
 
 bool Device_Etherdream::OutputFrame(int cardNum, const EAD_Pnt_s* data, int Bytes, uint16_t PPS)
 {
 	if (!ready) return false;
+
+	if (stopped[cardNum])
+		OpenDevice(cardNum);
 
 	int thisFrameNum = ++frameNum[cardNum];
 

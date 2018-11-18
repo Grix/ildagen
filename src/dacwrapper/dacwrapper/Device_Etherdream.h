@@ -65,5 +65,6 @@ private:
 	bool ready;
 	int frameNum[16];
 	std::mutex frameLock[16];
+	bool stopped[16];
 };
 

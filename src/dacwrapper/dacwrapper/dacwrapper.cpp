@@ -248,10 +248,10 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 			{
 				olscEasylaseBuffer[i].x = bufferAddress[currentPos++];
 				olscEasylaseBuffer[i].y = bufferAddress[currentPos++];
-				olscEasylaseBuffer[i].r = bufferAddress[currentPos++];
-				olscEasylaseBuffer[i].g = bufferAddress[currentPos++];
-				olscEasylaseBuffer[i].b = bufferAddress[currentPos++];
-				olscEasylaseBuffer[i].i = bufferAddress[currentPos++];
+				olscEasylaseBuffer[i].r = bufferAddress[currentPos++] << 8;
+				olscEasylaseBuffer[i].g = bufferAddress[currentPos++] << 8;
+				olscEasylaseBuffer[i].b = bufferAddress[currentPos++] << 8;
+				olscEasylaseBuffer[i].i = bufferAddress[currentPos++] << 8;
 			}
 			olscEasylaseDevice->OutputFrame(cardNum, scanRate, frameSize, &olscEasylaseBuffer[0]);
 		}
@@ -263,10 +263,10 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 			{
 				olscEzAudDacBuffer[i].x = bufferAddress[currentPos++];
 				olscEzAudDacBuffer[i].y = bufferAddress[currentPos++];
-				olscEzAudDacBuffer[i].r = bufferAddress[currentPos++];
-				olscEzAudDacBuffer[i].g = bufferAddress[currentPos++];
-				olscEzAudDacBuffer[i].b = bufferAddress[currentPos++];
-				olscEzAudDacBuffer[i].i = bufferAddress[currentPos++];
+				olscEzAudDacBuffer[i].r = bufferAddress[currentPos++] << 8;
+				olscEzAudDacBuffer[i].g = bufferAddress[currentPos++] << 8;
+				olscEzAudDacBuffer[i].b = bufferAddress[currentPos++] << 8;
+				olscEzAudDacBuffer[i].i = bufferAddress[currentPos++] << 8;
 			}
 			olscEzAudDacDevice->OutputFrame(cardNum, scanRate, frameSize, &olscEzAudDacBuffer[0]);
 		}
