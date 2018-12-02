@@ -122,7 +122,29 @@ bool Device_OLSC_EzAudDac::Stop(int cardNum)
 	if (!ready)
 		return false;
 
-	return (OLSC_Pause(cardNum) == 1);
+	OLSC_Point stopBuffer[16000];
+	for (int i = 0; i < 16000; i++)
+	{
+		stopBuffer[i].x = 0;
+		stopBuffer[i].y = 0;
+		stopBuffer[i].r = 0;
+		stopBuffer[i].g = 0;
+		stopBuffer[i].b = 0;
+		stopBuffer[i].i = 0;
+	}
+	OutputFrame(cardNum, 16384, 16000, &stopBuffer[0]);
+	std::this_thread::sleep_for(std::chrono::seconds(1));
+	OutputFrame(cardNum, 16384, 16000, &stopBuffer[0]);
+	std::this_thread::sleep_for(std::chrono::seconds(1));
+	OutputFrame(cardNum, 16384, 16000, &stopBuffer[0]);
+	std::this_thread::sleep_for(std::chrono::seconds(1));
+	OutputFrame(cardNum, 16384, 16000, &stopBuffer[0]);
+	std::this_thread::sleep_for(std::chrono::seconds(1));
+	OutputFrame(cardNum, 16384, 16000, &stopBuffer[0]);
+
+
+	return 1;
+	//return (OLSC_Pause(cardNum) == 1);
 }
 
 bool Device_OLSC_EzAudDac::CloseAll()

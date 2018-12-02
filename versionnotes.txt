@@ -1,9 +1,11 @@
+v1.6.7
+- Fixed some critical bugs with certain DACs, especially EzAudDAC and Easylase
+- Other minor bug fixes
+
 v1.6.6
 - Fixed broken spacing between letters in text tool, and added custom spacing width support
 - Added onion skinning to timeline mode
 
 v1.6.5
 - macOS version is now available
-- Added ability to merge objects into one in editor mode
-- Fixed bug possibly corrupting envelopes when loading a project in timeline mode
-- Various other bug fixes
+...

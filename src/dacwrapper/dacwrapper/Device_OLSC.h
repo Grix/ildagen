@@ -9,7 +9,7 @@
 class Device_OLSC
 {
 public:
-	Device_OLSC();
+	Device_OLSC(LPCWSTR dllFileName);
 	~Device_OLSC();
 
 	typedef struct
@@ -32,6 +32,8 @@ public:
 private:
 
 	HINSTANCE OLSCLibrary;
+
+	LPCWSTR dllFileName;
 
 	//OLSC_GetInterfaceName
 	typedef int(__stdcall *OLSCFuncPtr0)(char*);

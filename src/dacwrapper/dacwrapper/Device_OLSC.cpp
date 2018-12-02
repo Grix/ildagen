@@ -1,8 +1,9 @@
 #include "Device_OLSC.h"
 
 
-Device_OLSC::Device_OLSC()
+Device_OLSC::Device_OLSC(LPCWSTR _dllFileName)
 {
+	dllFileName = _dllFileName;
 	ready = false;
 }
 
@@ -16,7 +17,7 @@ int Device_OLSC::Init()
 {
 	CloseAll();
 
-	OLSCLibrary = LoadLibrary(L"OLSD.dll");
+	OLSCLibrary = LoadLibrary(dllFileName);
 	if (OLSCLibrary == NULL) return -2;
 
 	OLSC_Initialize = (OLSCFuncPtr1)GetProcAddress(OLSCLibrary, "OLSC_Initialize");

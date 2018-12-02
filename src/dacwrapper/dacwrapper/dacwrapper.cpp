@@ -15,7 +15,7 @@ GMEXPORT double InitDacwrapper()
 	heliosDevice = new Device_Helios();
 	#ifdef _WIN32
 		etherDreamDevice = new Device_Etherdream();
-		olscDevice = new Device_OLSC();
+		olscDevice = new Device_OLSC(L"OLSD.dll");
 		olscEasylaseDevice = new Device_OLSC_Easylase();
 		olscEzAudDacDevice = new Device_OLSC_EzAudDac();
 		riyaDevice = new Device_RIYA();
@@ -246,12 +246,12 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 			Device_OLSC_Easylase::OLSC_Point olscEasylaseBuffer[MAX_FRAME_SIZE];
 			for (int i = 0; i < frameSize; i++)
 			{
-				olscEasylaseBuffer[i].x = bufferAddress[currentPos++];
-				olscEasylaseBuffer[i].y = bufferAddress[currentPos++];
-				olscEasylaseBuffer[i].r = bufferAddress[currentPos++] << 8;
-				olscEasylaseBuffer[i].g = bufferAddress[currentPos++] << 8;
-				olscEasylaseBuffer[i].b = bufferAddress[currentPos++] << 8;
-				olscEasylaseBuffer[i].i = bufferAddress[currentPos++] << 8;
+				olscEasylaseBuffer[i].x = bufferAddress[currentPos++] - 0x8000;
+				olscEasylaseBuffer[i].y = bufferAddress[currentPos++] - 0x8000;
+				olscEasylaseBuffer[i].r = (bufferAddress[currentPos++] << 8) - 0x80;
+				olscEasylaseBuffer[i].g = (bufferAddress[currentPos++] << 8) - 0x80;
+				olscEasylaseBuffer[i].b = (bufferAddress[currentPos++] << 8) - 0x80;
+				olscEasylaseBuffer[i].i = (bufferAddress[currentPos++] << 8) - 0x80;
 			}
 			olscEasylaseDevice->OutputFrame(cardNum, scanRate, frameSize, &olscEasylaseBuffer[0]);
 		}
@@ -261,12 +261,12 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 			Device_OLSC_EzAudDac::OLSC_Point olscEzAudDacBuffer[MAX_FRAME_SIZE];
 			for (int i = 0; i < frameSize; i++)
 			{
-				olscEzAudDacBuffer[i].x = bufferAddress[currentPos++];
-				olscEzAudDacBuffer[i].y = bufferAddress[currentPos++];
-				olscEzAudDacBuffer[i].r = bufferAddress[currentPos++] << 8;
-				olscEzAudDacBuffer[i].g = bufferAddress[currentPos++] << 8;
-				olscEzAudDacBuffer[i].b = bufferAddress[currentPos++] << 8;
-				olscEzAudDacBuffer[i].i = bufferAddress[currentPos++] << 8;
+				olscEzAudDacBuffer[i].x = bufferAddress[currentPos++] - 0x8000;
+				olscEzAudDacBuffer[i].y = bufferAddress[currentPos++] - 0x8000;
+				olscEzAudDacBuffer[i].r = (bufferAddress[currentPos++] << 7);
+				olscEzAudDacBuffer[i].g = (bufferAddress[currentPos++] << 7);
+				olscEzAudDacBuffer[i].b = (bufferAddress[currentPos++] << 7);
+				olscEzAudDacBuffer[i].i = (bufferAddress[currentPos++] << 7);
 			}
 			olscEzAudDacDevice->OutputFrame(cardNum, scanRate, frameSize, &olscEzAudDacBuffer[0]);
 		}

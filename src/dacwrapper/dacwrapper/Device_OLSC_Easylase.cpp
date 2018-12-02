@@ -23,7 +23,6 @@ int Device_OLSC_Easylase::Init()
 	if (!OLSC_Initialize)
 	{
 		FreeLibrary(OLSCLibrary);
-		
 		return -1;
 	}
 
@@ -31,7 +30,6 @@ int Device_OLSC_Easylase::Init()
 	if (!OLSC_Shutdown)
 	{
 		FreeLibrary(OLSCLibrary);
-		
 		return -1;
 	}
 
@@ -123,6 +121,18 @@ bool Device_OLSC_Easylase::Stop(int cardNum)
 {
 	if (!ready)
 		return false;
+
+	OLSC_Point stopBuffer[1000];
+	for (int i = 0; i < 1000; i++)
+	{
+		stopBuffer[i].x = 0;
+		stopBuffer[i].y = 0;
+		stopBuffer[i].r = 0;
+		stopBuffer[i].g = 0;
+		stopBuffer[i].b = 0;
+		stopBuffer[i].i = 0;
+	}
+	OutputFrame(cardNum, 1000, 1000, &stopBuffer[0]);
 
 	return (OLSC_Pause(cardNum) == 1);
 }
