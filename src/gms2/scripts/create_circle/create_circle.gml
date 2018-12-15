@@ -252,19 +252,75 @@ if !((startposx_r == endx_r) && (startposy_r == endy_r))
 }
 else
 {
-    ds_list_add(new_list,endx_r);
-    ds_list_add(new_list,endy_r);
+	//COLOR
+    if (colormode == "solid")
+    {
+        c = color1_r;
+    }
+    else if (colormode == "rainbow")
+    {
+        if (colormode2 == 0)
+        {
+            colorrb = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-n)*color_freq_r/checkpoints)*255)%255,255,255); 
+        }
+        else
+        {
+            colorrb = make_colour_hsv(((color_offset_r/(2*pi)+ (checkpoints-n)*resolution/color_period_r)*255)%255,255,255); 
+        }
+        c = colorrb;
+    }
+    else if (colormode == "gradient")
+    {
+        if (colormode2 == 0)
+        {
+            var tt = color_offset_r/(2*pi)+ (checkpoints-n)*color_freq_r/checkpoints;
+            tt = (tt*2) mod 2;
+            if (tt > 1) tt = 2-tt;
+            var colorresult = merge_colour(color1_r,color2_r,tt);
+        }
+        else
+        {
+            var tt = color_offset_r/(2*pi)+ (checkpoints-n)*resolution/color_period_r;
+            tt = (tt*2) mod 2;
+            if (tt > 1) tt = 2-tt;
+            var colorresult = merge_colour(color1_r,color2_r,tt);
+        }
+        c = colorresult;
+    }
+    else if (colormode == "dash")
+    {
+        if (color_dc_r >= 0.98)
+        {
+            c = color1_r;
+        }
+        else if (floor(n+color_offset_r/pi/2*colorfreq) % floor(colorfreq) > color_dc_r*colorfreq) or (color_dc_r < 0.02)
+        {
+            c = color2_r;
+        }
+        else 
+        {
+            c = color1_r;
+        }
+    }
+    else if (colormode == "func")
+        if (!func_color())
+            return 0;
+			
+	blank = 0;
+	
+    ds_list_add(new_list,0);
+    ds_list_add(new_list,0);
     ds_list_add(new_list,blank);
     ds_list_add(new_list,c);
-    ds_list_add(new_list,endx_r);
-    ds_list_add(new_list,endy_r);
+    ds_list_add(new_list,0);
+    ds_list_add(new_list,0);
     ds_list_add(new_list,blank);
     ds_list_add(new_list,c);
     
-    xmax = endx_r+1;
-    xmin = endx_r;
-    ymax = endy_r+1;
-    ymin = endy_r;
+    xmax = 1;
+    xmin = 0;
+    ymax = 1;
+    ymin = 0;
 }
     
 return 1;
