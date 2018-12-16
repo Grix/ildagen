@@ -1,11 +1,6 @@
+v1.6.8
+- Fixed various bugs including crashes when entering numbers into settings dialogs on some systems
+
 v1.6.7
 - Fixed some critical bugs with certain DACs, especially EzAudDAC and Easylase
 - Other minor bug fixes
-
-v1.6.6
-- Fixed broken spacing between letters in text tool, and added custom spacing width support
-- Added onion skinning to timeline mode
-
-v1.6.5
-- macOS version is now available
-...
