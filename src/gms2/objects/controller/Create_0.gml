@@ -298,6 +298,7 @@ scalex = 1;
 scaley = 1;
 aniscalex = 1;
 aniscaley = 1;
+swapxy = false;
 anchorx = $8000;
 anchory = $8000;
 anixtrans = 0;

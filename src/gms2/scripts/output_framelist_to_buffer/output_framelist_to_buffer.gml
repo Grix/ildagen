@@ -27,15 +27,30 @@ if (controller.exp_optimize)
     {
         //writing point
         
-        if (controller.invert_x)
-            buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+0]);
-        else
-            buffer_write(output_buffer,buffer_u16, list_raw[| i+0]);
+		if (controller.swapxy)
+		{
+	        if (controller.invert_x)
+	            buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+0]);
+	        else
+	            buffer_write(output_buffer,buffer_u16, list_raw[| i+0]);
             
-        if (controller.invert_y)
-            buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+1]);
-        else
-            buffer_write(output_buffer,buffer_u16, list_raw[| i+1]);
+	        if (controller.invert_y)
+	            buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+1]);
+	        else
+	            buffer_write(output_buffer,buffer_u16, list_raw[| i+1]);
+		}
+		else
+		{
+			if (controller.invert_y)
+	            buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+1]);
+	        else
+	            buffer_write(output_buffer,buffer_u16, list_raw[| i+1]);
+				
+			if (controller.invert_x)
+	            buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+0]);
+	        else
+	            buffer_write(output_buffer,buffer_u16, list_raw[| i+0]);
+		}
             
         if ((i < safe_bottom_boundary) || (i > safe_top_boundary))
         {

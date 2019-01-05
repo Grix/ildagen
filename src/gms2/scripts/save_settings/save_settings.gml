@@ -30,6 +30,7 @@ with (controller)
             ini_write_real(t_projectorstring, "onlyblanking", t_profilemap[? "onlyblanking"]);
             ini_write_real(t_projectorstring, "invert_y", t_profilemap[? "invert_y"]);
             ini_write_real(t_projectorstring, "invert_x", t_profilemap[? "invert_x"]);
+			ini_write_real(t_projectorstring, "swapxy", t_profilemap[? "swapxy"]);
             ini_write_real(t_projectorstring, "red_scale", t_profilemap[? "red_scale"]);
             ini_write_real(t_projectorstring, "green_scale", t_profilemap[? "green_scale"]);
             ini_write_real(t_projectorstring, "blue_scale", t_profilemap[? "blue_scale"]);

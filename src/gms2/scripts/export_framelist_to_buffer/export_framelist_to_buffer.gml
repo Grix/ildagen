@@ -29,15 +29,30 @@ if (controller.exp_optimize)
     for (i = 0; i <= t_list_raw_size; i += 4)
     {
         //writing point
-        if (controller.invert_x)
-            xp = $FFFF - list_raw[| i];
-        else
-            xp = list_raw[| i];
+		if (controller.swapxy)
+		{
+	        if (controller.invert_x)
+	            xp = $FFFF - list_raw[| i];
+	        else
+	            xp = list_raw[| i];
             
-        if (controller.invert_y)
-            yp = $FFFF - list_raw[| i+1];
-        else
-            yp = list_raw[| i+1];
+	        if (controller.invert_y)
+	            yp = $FFFF - list_raw[| i+1];
+	        else
+	            yp = list_raw[| i+1];
+		}
+		else
+		{
+			if (controller.invert_y)
+	            yp = $FFFF - list_raw[| i+1];
+	        else
+	            yp = list_raw[| i+1];
+				
+			if (controller.invert_x)
+	            xp = $FFFF - list_raw[| i];
+	        else
+	            xp = list_raw[| i];
+		}
             
         if ((i < safe_bottom_boundary) || (i > safe_top_boundary))
         {

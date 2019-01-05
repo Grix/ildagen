@@ -21,6 +21,7 @@ with (controller)
 		controller.opt_warning_flag = 1;
     invert_x = t_profilemap[? "invert_y"];
     invert_y = t_profilemap[? "invert_x"];
+	swapxy = t_profilemap[? "swapxy"];
     red_scale = t_profilemap[? "red_scale"];
     green_scale = t_profilemap[? "green_scale"];
     blue_scale = t_profilemap[? "blue_scale"];

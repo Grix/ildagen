@@ -1,16 +1,17 @@
 TODO
+- selected line in timeline mode also covering envelopes
+- undo in envelopes
+- LIVE mode
+- set fixed scanrate instead of fps
 - reapply combine shapes
 - split objects
 - double check and fix maxpoints_static calculation
 - motion controller
-- LIVE mode
 - AUTOMATIC live mode
-- switch x/y
 - audio_loudness_previous_frame
 - shaking stuff (email 2017-11-18)
 - simulation settings (more projectors etc)
 - Support for other glyphs in the text tool
-- etherdream bug fix
 - linux
 
 SETTINGSCONTROL
