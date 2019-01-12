@@ -36,5 +36,6 @@ for (u = 0;u < ds_list_size(copy_list);u++)
     ds_list_add(el_list,list);
 }
 
+el_id++;
 update_semasterlist_flag = 1;
 frame_surf_refresh = 1;

@@ -1,5 +1,4 @@
 TODO
-- selected line in timeline mode also covering envelopes
 - undo in envelopes
 - LIVE mode
 - set fixed scanrate instead of fps

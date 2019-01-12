@@ -139,6 +139,15 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 	{
 	    if (t_ypos > tlh+16-64+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
 	    {
+			if (selectedlayer == i)
+			{
+			    draw_set_colour(c_maroon);
+			    var drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
+			    if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
+			        draw_line(drawcursorxcorrected,t_ypos-1,drawcursorxcorrected,t_ypos+63);
+			    draw_set_colour(c_black);
+			}
+			
 	        envelope = ds_list_find_value(envelope_list,j);
 	        type = ds_list_find_value(envelope,0);
 	        disabled = ds_list_find_value(envelope,3);

@@ -27,7 +27,7 @@ if (controller.exp_optimize)
     {
         //writing point
         
-		if (controller.swapxy)
+		if (!controller.swapxy)
 		{
 	        if (controller.invert_x)
 	            buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+0]);
