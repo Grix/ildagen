@@ -410,6 +410,7 @@ else if (moving_object == 6)
     
     time_list = ds_list_find_value(envelopetoedit,1);
     data_list = ds_list_find_value(envelopetoedit,2);
+		
     var insertedthisstep = 0;
     
 	var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
@@ -497,7 +498,11 @@ else if (moving_object == 6)
 	}
 		
     if (mouse_check_button_released(mb_left))
+	{
         moving_object = 0;
+		if (ds_exists(envelope_undolist,ds_type_list))
+			ds_list_add(seqcontrol.undo_list,"e"+string(envelope_undolist));
+	}
 		
     exit;
 }
@@ -505,9 +510,19 @@ else if (moving_object == 7)
 {
     //deleting points from envelope
     if (mouse_check_button_released(mb_left))
-    {
+    {			
         time_list = ds_list_find_value(envelopetoedit,1);
         data_list = ds_list_find_value(envelopetoedit,2);
+		
+		var t_undolist = ds_list_create();
+		var t_list1 = ds_list_create();
+		var t_list2 = ds_list_create();
+		ds_list_copy(t_list1,time_list);
+		ds_list_copy(t_list2,data_list);
+		ds_list_add(t_undolist,t_list1);
+		ds_list_add(t_undolist,t_list2);
+		ds_list_add(t_undolist,envelopetoedit);
+		
         var t_xpos = round(tlx+window_mouse_get_x()/tlw*tlzoom);
         if (xposprev < t_xpos)
             for (u = 0; u < ds_list_size(time_list); u++)
@@ -532,6 +547,8 @@ else if (moving_object == 7)
                 }
             }
         moving_object = 0;
+		
+		ds_list_add(seqcontrol.undo_list,"e"+string(t_undolist));
     }
     exit;
 }
@@ -994,6 +1011,17 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                         ypos_env = ypos;
                         envelopetoedit = envelope;
                         moving_object = 6;
+						
+						time_list = ds_list_find_value(envelopetoedit,1);
+						data_list = ds_list_find_value(envelopetoedit,2);
+						envelope_undolist = ds_list_create();
+						var t_list1 = ds_list_create();
+						var t_list2 = ds_list_create();
+						ds_list_copy(t_list1,time_list);
+						ds_list_copy(t_list2,data_list);
+						ds_list_add(envelope_undolist,t_list1);
+						ds_list_add(envelope_undolist,t_list2);
+						ds_list_add(envelope_undolist,envelopetoedit);
                     }
                     else if  mouse_check_button_pressed(mb_right) 
                     {

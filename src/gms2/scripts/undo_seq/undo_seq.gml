@@ -128,7 +128,7 @@ with (seqcontrol)
     }
     else if (string_char_at(undo,0) == "e")
     {
-        //undo envelope data clear
+        //undo envelope data clear/edit
         undolisttemp = real(string_digits(undo));
 		if (!ds_exists(undolisttemp,ds_type_list))
             exit;

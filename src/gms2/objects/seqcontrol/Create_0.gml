@@ -80,6 +80,7 @@ stretch_flag = 0;
 objecttomove = 0;
 
 somaster_list_prevsize = 0;
+envelope_undolist = -1;
 
 startframe = 0;
 endframe = 1200;
