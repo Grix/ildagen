@@ -1,4 +1,5 @@
 v1.6.9
+- Hotfix 1: Fixed Ether Dream DAC not being detected properly
 - Fixed various bugs including objects possibly becoming merged in editor mode, and missing undo functionality in timeline mode envelopes
 - Added swap x/y output setting
 

@@ -99,10 +99,11 @@ bool Device_Etherdream::OpenDevice(int cardNum)
 	if (!ready) return false;
 
 	frameNum[cardNum] = 0;
-	if (EtherDreamOpenDevice(&cardNum))
+	bool result = EtherDreamOpenDevice(&cardNum);
+	if (result)
 		stopped[cardNum] = false;
 
-	return stopped[cardNum];
+	return result;
 }
 
 bool Device_Etherdream::CloseDevice(int cardNum)
@@ -127,18 +128,34 @@ bool Device_Etherdream::Stop(int cardNum)
 {
 	if (!ready) return false;
 
-	if (EtherDreamStop(&cardNum))
-		stopped[cardNum] = true;
+	//bool result = EtherDreamStop(&cardNum);
+	//if (result)
+	//	stopped[cardNum] = true;
 
-	return stopped[cardNum];
+	EAD_Pnt_s blankPoints[100];
+
+	for (int i = 0; i < 100; i++)
+	{
+		blankPoints[i].X = 0;
+		blankPoints[i].Y = 0;
+		blankPoints[i].R = 0;
+		blankPoints[i].G = 0;
+		blankPoints[i].B = 0;
+		blankPoints[i].I = 0;
+		blankPoints[i].AR = 0;
+		blankPoints[i].AL = 0;
+	}
+	OutputFrame(cardNum, blankPoints, 100 * sizeof(Device_Etherdream::EAD_Pnt_s), 10000);
+
+	return true;
 }
 
 bool Device_Etherdream::OutputFrame(int cardNum, const EAD_Pnt_s* data, int Bytes, uint16_t PPS)
 {
 	if (!ready) return false;
 
-	if (stopped[cardNum])
-		OpenDevice(cardNum);
+	//if (stopped[cardNum])
+	//	OpenDevice(cardNum);
 
 	int thisFrameNum = ++frameNum[cardNum];
 
