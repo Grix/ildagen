@@ -87,6 +87,14 @@
             }
         },
         {
+            "Key": "016c36bb-0968-46fa-bd7d-c9bc85bfe86a",
+            "Value": {
+                "id": "055add0b-4f26-41ec-93f3-46824e3ecdbf",
+                "resourcePath": "scripts\\dd_ilda_viewlive\\dd_ilda_viewlive.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0178a7fc-a4d0-4d0b-970b-3cf80631b18e",
             "Value": {
                 "id": "d9952613-036e-495e-b055-97856994133d",
@@ -4943,14 +4951,6 @@
             }
         },
         {
-            "Key": "99fb9553-6141-4a18-a599-a02ebb664059",
-            "Value": {
-                "id": "83ba6115-6e57-4d33-8829-e56d9fef3547",
-                "resourcePath": "rooms\\rm_live\\rm_live.yy",
-                "resourceType": "GMRoom"
-            }
-        },
-        {
             "Key": "9a521462-d1f7-4c4a-a334-7944c8b83476",
             "Value": {
                 "id": "3e692706-89a4-427d-95ff-2e907a5c59d7",
@@ -6255,6 +6255,14 @@
             }
         },
         {
+            "Key": "c25b17ba-57b9-4245-995c-d50d701beb08",
+            "Value": {
+                "id": "6c6dc2be-1b25-4041-ac5b-f44d547e3685",
+                "resourcePath": "objects\\livecontrol\\livecontrol.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "c26d0b84-e510-4e2f-9272-121ca11ef81b",
             "Value": {
                 "id": "7af5e64e-b96e-4b58-9692-a30eb3959fea",
@@ -7431,6 +7439,14 @@
             }
         },
         {
+            "Key": "e7ef2bb6-0860-4d9f-9085-525f7cc32139",
+            "Value": {
+                "id": "3df9648c-c1c7-4531-8be6-db7a710293d4",
+                "resourcePath": "rooms\\rm_live\\rm_live.yy",
+                "resourceType": "GMRoom"
+            }
+        },
+        {
             "Key": "e84776fc-2226-4b5b-a325-8635eeb08228",
             "Value": {
                 "id": "d2a76fc1-0ee9-4a51-b533-405b561c2936",
@@ -8547,6 +8563,7 @@
         "53b66bd8-cf5c-4f60-b76b-3c0d8d6fcd05",
         "0731aeff-863f-46c6-a0b0-127f2e7de2a3",
         "4f02ae45-bf34-4548-bd34-367b0004f455",
+        "016c36bb-0968-46fa-bd7d-c9bc85bfe86a",
         "2ec941f2-1789-444c-b0f4-3d552aa57033",
         "631ac0a0-99d2-4b97-bd74-b0aee304ab16",
         "a41f380a-7791-4df1-b939-7784af186d88",
