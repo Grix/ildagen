@@ -108,7 +108,6 @@ timeline_surf_length = 0;
 c_gold = make_colour_rgb(255,220,0);
 
 playing = 0;
-pos = 0;
 deltatime = 0;
 
 ds_map_add(env_type_map,"x","X");

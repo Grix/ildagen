@@ -13,7 +13,7 @@ minroomspeed = 60;
    
 if (controller.laseron)
 {
-    //output_frame_live();
+    output_frame_live();
 }
 
 room_speed = controller.projectfps;

@@ -9,10 +9,20 @@ mouse_yprevious = mouse_y;
 viewmode = 0;
 doubleclick = 0;
 
-c_gold = make_colour_rgb(255,220,0);
-
 playing = 0;
 deltatime = 0;
+tlpos = 0; //in ms
+frameprev = -1;
+
+browser_grid_surf = -1;
+frame_surf = -1;
+frame3d_surf = -1;
+
+tlw = 983; //width of grid area
+tlh = 570; // height of grid area
+tlsurf_y = 137; //start of grid area, seen from outside surface
+
+c_gold = make_colour_rgb(255,220,0);
 
 menu_string = "   File      Properties      Edit      Tools      View      Settings      About   ";
 menu_width_start[0] = 0;

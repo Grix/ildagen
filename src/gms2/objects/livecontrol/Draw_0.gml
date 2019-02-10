@@ -1,20 +1,16 @@
 if (room != rm_live) 
     exit;
 
-/*if (view_current == 4)
+if (view_current == 4)
 {	
     gpu_set_blendenable(false);
 	draw_clear(c_black);
 	
     //draws laser preview
     if  (!controller.laseron) and 
-        ((frame_surf_refresh == 1) or !surface_exists(frame_surf) or !surface_exists(frame_surf_large) or !surface_exists(frame3d_surf_large) or !surface_exists(frame3d_surf))
+        ((frame_surf_refresh == 1) | !surface_exists(frame_surf) || !surface_exists(frame3d_surf))
     {
-        if (largepreview)
-            refresh_seq_surface_large();
-        else
-            refresh_seq_surface();
-            
+        refresh_live_surface();
         frame_surf_refresh = false;
     }
 	
@@ -27,21 +23,9 @@ if (room != rm_live)
         draw_text(view_wport[4]/2,view_hport[2]/2,"Laser output active: "+string(controller.dac[| 1]));
         draw_set_halign(fa_left);
 		
-		draw_set_alpha(0.8);
-	    draw_set_color(c_ltgray);
-	    draw_text(12,view_hport[4]-20,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1));
-    }
-	else if (largepreview)
-    {
-        if (viewmode != 0)
-            draw_surface_part(frame3d_surf_large,0,0,view_wport[4],view_hport[4]+view_hport[1],0,0);
-            
-        if (viewmode != 1)
-            draw_surface_part(frame_surf_large,0,0,view_wport[4],view_hport[4]+view_hport[1],0,0);
-			
-		draw_set_alpha(0.8);
-	    draw_set_color(c_ltgray);
-	    draw_text(12,7+16,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1));
+		//draw_set_alpha(0.8);
+	    //draw_set_color(c_ltgray);
+	    //draw_text(12,view_hport[4]-20,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1));
     }
     else
     {
@@ -51,12 +35,12 @@ if (room != rm_live)
         if (viewmode != 1)
             draw_surface_part(frame_surf,0,0,view_wport[4],view_hport[4],0,0);
 			
-		draw_set_alpha(0.8);
-	    draw_set_color(c_ltgray);
-	    draw_text(12,view_hport[4]-20,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1));
+		//draw_set_alpha(0.8);
+	    //draw_set_color(c_ltgray);
+	    //draw_text(12,view_hport[4]-20,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1));
     }
-	draw_text(12,7,"FPS: "+string(projectfps));
-	if (playing && (fps != projectfps) && controller.laseron)
+	draw_text(12,7,"FPS: "+string(controller.projectfps));
+	if (playing && (fps != controller.projectfps) && controller.laseron)
 	{
 	    draw_set_color(c_red);
 	    draw_text(32,7,"Warning: Dropping frames. Actual FPS: "+string(fps));
@@ -67,38 +51,11 @@ else if (view_current == 1)
 {
 	gpu_set_blendenable(false);
 	
-	if (largepreview)
-		draw_clear(c_black);
-    else
-		draw_clear(controller.c_ltltgray);
+	draw_clear(controller.c_ltltgray);
 
 	gpu_set_blendenable(true);
-	
-	if (largepreview)
-    {
-	    if  (!controller.laseron) and 
-	        ((frame_surf_refresh == 1) or !surface_exists(frame_surf) or !surface_exists(frame_surf_large) or !surface_exists(frame3d_surf_large) or !surface_exists(frame3d_surf))
-	    {
-	        if (largepreview)
-	            refresh_seq_surface_large();
-	        else
-	            refresh_seq_surface();
-            
-	        frame_surf_refresh = false;
-	    }
-	
-        if (viewmode != 0)
-            draw_surface_part(frame3d_surf_large,0,0,view_wport[4],view_hport[4]+view_hport[1],0,camera_get_view_y(view_camera[1])-view_hport[4]);
-            
-        if (viewmode != 1)
-            draw_surface_part(frame_surf_large,0,0,view_wport[4],view_hport[4]+view_hport[1],0,camera_get_view_y(view_camera[1])-view_hport[4]);
-    }
-	else
-	{
-		refresh_timeline_surface();
-	
-	    draw_timeline();
-	}
+	refresh_browser_grid_surface();
+	draw_browser_grid();
 }
 else if (view_current == 0)
 {
@@ -214,4 +171,4 @@ else if (view_current == 3)
         }
         draw_set_alpha(1);
     }
-}*/
+}
