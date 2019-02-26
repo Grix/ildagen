@@ -10,9 +10,14 @@ viewmode = 0;
 doubleclick = 0;
 
 playing = 0;
-deltatime = 0;
-tlpos = 0; //in ms
+frame = 0;
+framehr = 0;
+maxframes = 1;
 frameprev = -1;
+playingfile = -1; // index of filelist, -1 if none selected
+filelist = ds_list_create();
+el_list = ds_list_create();
+frame_list = ds_list_create();
 
 browser_grid_surf = -1;
 frame_surf = -1;

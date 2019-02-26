@@ -60,7 +60,7 @@ else if (room = rm_seq)
         }
     }
 }
-if (room = rm_options)
+else if (room = rm_options)
 { 
     with (controller)
     {
@@ -103,4 +103,30 @@ if (room = rm_options)
         }
     }
 }
-
+else if (room = rm_live)
+{ 
+    if (!verify_serial(true))
+        exit;
+        
+    with (controller)
+    {
+        if (laseron)
+        {
+            laseron = false;
+            livecontrol.frame_surf_refresh = true;
+            close_dacs();
+        }
+        else if (ds_exists(dac, ds_type_list))
+        {
+            laseron = true;
+            laseronfirst = true;
+            livecontrol.frame_surf_refresh = true;
+        }
+        else
+        {
+            show_message_new("No DACs found. Please go to settings and set up the connection (Click SCAN).");
+            livecontrol.playing = 0;
+            room_goto(rm_options);
+        }
+    }
+}

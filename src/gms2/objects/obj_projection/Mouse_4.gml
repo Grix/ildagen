@@ -21,4 +21,14 @@ else if (room == rm_ilda)
         frame_surf_refresh = 1;
     }
 }
+else if (room == rm_live)
+{
+    with (livecontrol)
+    {
+        viewmode++;
+        if (viewmode > 2)
+            viewmode = 0;
+        frame_surf_refresh = 1;
+    }
+}
 
