@@ -1,10 +1,14 @@
 /// @description make_screenshot(buffer)
 /// @function make_screenshot
 /// @param buffer
+/// @param size
 //returns a surface with a preview of argument0, which is a buffer containing laser frames
 
-temp_surf = surface_create(32,32);
 el_buffer = argument0;
+var t_size = argument1;
+
+temp_surf = surface_create(power(2, ceil(log2(t_size))),power(2, ceil(log2(t_size))));
+
 buffer_seek(el_buffer,buffer_seek_start,0);
 buffer_ver = buffer_read(el_buffer,buffer_u8);
 if (buffer_ver != 52)
@@ -29,11 +33,10 @@ for (t_i = 0; t_i < buffer_maxelements; t_i++)
 {
     numofinds = buffer_read(el_buffer,buffer_u32);
     var repeatnum = (numofinds-20)/4-1;
-    var buffer_start_pos = buffer_tell(el_buffer);
     
     //2d
-    xo = buffer_read(el_buffer,buffer_f32)/2048;
-    yo = buffer_read(el_buffer,buffer_f32)/2048;  
+    xo = buffer_read(el_buffer,buffer_f32)/$FFFF*t_size;
+    yo = buffer_read(el_buffer,buffer_f32)/$FFFF*t_size;  
     buffer_seek(el_buffer,buffer_seek_relative,42);
         
     xp = buffer_read(el_buffer,buffer_f32);
@@ -57,10 +60,10 @@ for (t_i = 0; t_i < buffer_maxelements; t_i++)
             draw_set_color(c);
             if ((xp == xpp) and (yp == ypp) and !blp)
             {
-                draw_point(xo+xp/$FFFF*27, yo+yp/$FFFF*27);
+                draw_point(xo+xp/$FFFF*t_size, yo+yp/$FFFF*t_size);
             }
             else
-                draw_line(xo+xpp/$FFFF*27, yo+ypp/$FFFF*27, xo+xp/$FFFF*27, yo+yp/$FFFF*27);
+                draw_line(xo+xpp/$FFFF*t_size, yo+ypp/$FFFF*t_size, xo+xp/$FFFF*t_size, yo+yp/$FFFF*t_size);
         }
     }
         

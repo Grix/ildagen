@@ -10,7 +10,7 @@ if (view_current == 4)
     if  (!controller.laseron) and 
         ((frame_surf_refresh == 1) | !surface_exists(frame_surf) || !surface_exists(frame3d_surf))
     {
-        refresh_live_surface();
+        //refresh_live_surface();
         frame_surf_refresh = false;
     }
 	
@@ -29,11 +29,11 @@ if (view_current == 4)
     }
     else
     {
-        if (viewmode != 0)
+        /*if (viewmode != 0)
             draw_surface_part(frame3d_surf,0,0,view_wport[4],view_hport[4],0,0);
             
         if (viewmode != 1)
-            draw_surface_part(frame_surf,0,0,view_wport[4],view_hport[4],0,0);
+            draw_surface_part(frame_surf,0,0,view_wport[4],view_hport[4],0,0);*/
 			
 		//draw_set_alpha(0.8);
 	    //draw_set_color(c_ltgray);

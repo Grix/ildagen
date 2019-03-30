@@ -19,9 +19,11 @@ filelist = ds_list_create();
 el_list = ds_list_create();
 frame_list = ds_list_create();
 
-browser_grid_surf = -1;
+browser_surf = -1;
 frame_surf = -1;
 frame3d_surf = -1;
+
+target_width_per_cell = 128;
 
 tlw = 983; //width of grid area
 tlh = 570; // height of grid area

@@ -106,7 +106,7 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 						if ((duration+1)*tlwdivtlzoom > 3)
 						{
 		                    if (!surface_exists(infolist[| 1]))
-		                        infolist[| 1] = make_screenshot(objectlist[| 1]);
+		                        infolist[| 1] = make_screenshot(objectlist[| 1], 27);
 		                    draw_surface_part(infolist[| 1],0,0,floor(clamp((duration+1)*tlwdivtlzoom,0,32))-1,32,framestartx+1,ypos_perm+8);
 						}
 	                    maxframes = infolist[| 2];
