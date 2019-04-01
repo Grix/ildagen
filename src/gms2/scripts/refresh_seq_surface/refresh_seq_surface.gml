@@ -23,7 +23,6 @@ if (viewmode != 0)
 correctframe = round(tlpos/1000*projectfps);
 
 var t_scaley = 1/$FFFF*view_hport[4];
-var t_scalex = 1/$FFFF*view_wport[4];
 var t_centerx = view_wport[4]/2;
 var t_centery = view_hport[4]/2;
 var t_scalediag = sqrt(view_hport[4]*view_hport[4]+view_wport[4]*view_wport[4])/2;

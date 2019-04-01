@@ -8,20 +8,34 @@ surface_set_target(browser_surf);
 	draw_clear_alpha(c_white, 0);
 
 	var t_width = view_wport[1];
-	var t_cells_per_row = ceil(target_width_per_cell / t_width);
+	var t_cells_per_row = ceil(t_width / target_width_per_cell);
 	var t_cell_size = t_width / t_cells_per_row;
 
-	var t_row = 0;
-	var t_column = 0;
+	var t_row;
+	var t_column;
 
 	for (i = 0; i < ds_list_size(filelist); i++)
 	{
-		var t_infolist = filelist[| i];
-		var t_duration = t_infolist[| 0];
+		objectlist = filelist[| i];
+		
+		t_column = i mod t_cells_per_row;
+		t_row = i div t_cells_per_row;
+		
+		var t_infolist = objectlist[| 2];
 	
 		if (!surface_exists(t_infolist[| 1]))
-			t_infolist[| 1] = make_screenshot(objectlist[| 1], t_cell_size);
-		draw_surface_part(t_infolist[| 1],0,0,t_cell_size,t_cell_size, t_column*t_cell_size, t_row*t_cell_size);
+			t_infolist[| 1] = make_screenshot(objectlist[| 1], t_cell_size-1);
+		draw_surface_part(t_infolist[| 1],0,0,t_cell_size-1,t_cell_size-1, t_column*t_cell_size+1, t_row*t_cell_size+1);
+		
+		if (playingfile == i)
+		{
+			draw_set_alpha(0.1);
+			draw_set_color(controller.c_gold);
+				draw_rectangle(t_cell_size-1,t_cell_size-1, t_column*t_cell_size+1, t_row*t_cell_size+1, 0);
+			draw_set_alpha(1);
+		}
 	}
 
 surface_reset_target();
+
+draw_set_color(c_white);

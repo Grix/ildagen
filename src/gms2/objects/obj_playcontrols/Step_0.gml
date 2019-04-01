@@ -52,7 +52,7 @@ if (room = rm_ilda)
         }
     }
 }
-else
+else if (room == rm_seq)
 {
     switch (floor( (mouse_x-x)/20))
     {
@@ -106,4 +106,45 @@ else
         }
     }
 }
+else if (room == rm_live)
+{
+    switch (floor( (mouse_x-x)/20))
+    {
+        case 0: 
+        {
+            image_index = 1;
+            controller.tooltip = "Play. Shortcut: [Space bar]";
+            if (mouse_check_button_pressed(mb_left))
+            {
+                livecontrol.playing = 1;
+            }
+            break;
+        }
+        case 1: 
+        {
+            image_index = 2;
+            controller.tooltip = "Pause. Shortcut: [Space bar]";
+            if (mouse_check_button_pressed(mb_left))
+            {
+                livecontrol.playing = 0;
+            }
+            break;
+        }
+        case 2: 
+        {
+            image_index = 3;
+            controller.tooltip = "Stop and set position to start. Shortcut: [0]";
+            if (mouse_check_button_pressed(mb_left))
+            {
+                with (livecontrol)
+                {
+                    playing = 0;
+                    tlpos = 0;
+                }
+            }
+            break;
+        }
+    }
+}
+
 

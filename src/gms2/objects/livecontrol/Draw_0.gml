@@ -10,7 +10,7 @@ if (view_current == 4)
     if  (!controller.laseron) and 
         ((frame_surf_refresh == 1) | !surface_exists(frame_surf) || !surface_exists(frame3d_surf))
     {
-        //refresh_live_surface();
+        refresh_live_surface();
         frame_surf_refresh = false;
     }
 	
@@ -22,23 +22,17 @@ if (view_current == 4)
         draw_set_halign(fa_center);
         draw_text(view_wport[4]/2,view_hport[2]/2,"Laser output active: "+string(controller.dac[| 1]));
         draw_set_halign(fa_left);
-		
-		//draw_set_alpha(0.8);
-	    //draw_set_color(c_ltgray);
-	    //draw_text(12,view_hport[4]-20,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1));
     }
     else
     {
-        /*if (viewmode != 0)
+        if (viewmode != 0)
             draw_surface_part(frame3d_surf,0,0,view_wport[4],view_hport[4],0,0);
             
         if (viewmode != 1)
-            draw_surface_part(frame_surf,0,0,view_wport[4],view_hport[4],0,0);*/
-			
-		//draw_set_alpha(0.8);
-	    //draw_set_color(c_ltgray);
-	    //draw_text(12,view_hport[4]-20,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1));
+            draw_surface_part(frame_surf,0,0,view_wport[4],view_hport[4],0,0);
     }
+	draw_set_alpha(0.8);
+	draw_set_color(c_ltgray);
 	draw_text(12,7,"FPS: "+string(controller.projectfps));
 	if (playing && (fps != controller.projectfps) && controller.laseron)
 	{
@@ -118,6 +112,8 @@ else if (view_current == 6)
 else if (view_current == 3)
 {
     //menu
+	draw_set_color(c_black);
+	draw_set_alpha(1);
 	var t_ypos = camera_get_view_y(view_camera[3]);
 	gpu_set_blendenable(false);
 	draw_clear(controller.c_ltltgray);

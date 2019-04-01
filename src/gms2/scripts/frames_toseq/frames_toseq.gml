@@ -68,7 +68,7 @@ for (j = 0; j < maxframes;j++)
     }
 }
 //remove excess size
-buffer_resize(save_buffer,buffer_tell(save_buffer));
+buffer_resize(save_buffer, buffer_tell(save_buffer));
 
 
 //TEST send to live
