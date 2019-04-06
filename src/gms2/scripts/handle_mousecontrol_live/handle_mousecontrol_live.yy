@@ -1,8 +1,8 @@
 {
-    "id": "e2bd9394-c670-4401-9644-6a426e65790c",
+    "id": "083d5894-1073-4cc2-a8c0-e6aeae8c7452",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "handle_mousecontrol",
+    "name": "handle_mousecontrol_live",
     "IsCompatibility": false,
     "IsDnD": false
 }

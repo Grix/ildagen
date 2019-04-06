@@ -2,6 +2,8 @@ if (!surface_exists(browser_surf))
 {
     browser_surf = surface_create(power(2, ceil(log2(view_wport[1]+512))), power(2, ceil(log2(view_hport[1]))));
 }
+else
+	exit; // Don't need to refresh
 
 surface_set_target(browser_surf);
 

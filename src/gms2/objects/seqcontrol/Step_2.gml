@@ -188,7 +188,7 @@ else if (keyboard_check_pressed(vk_delete))
     }
 }
     
-handle_mousecontrol();
+handle_mousecontrol_seq();
 
 
 

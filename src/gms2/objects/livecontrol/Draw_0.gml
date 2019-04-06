@@ -48,11 +48,29 @@ else if (view_current == 1)
 	draw_clear(controller.c_ltltgray);
 
 	gpu_set_blendenable(true);
+	
 	refresh_browser_grid_surface();
 	draw_browser_grid();
+	
+	if (highlightfile != -1)
+	{
+		var t_width = view_wport[1];
+		var t_ystart = camera_get_view_y(view_camera[1]);
+		var t_cells_per_row = ceil(t_width / target_width_per_cell);
+		var t_cell_size = t_width / t_cells_per_row;
+		var t_column = highlightfile mod t_cells_per_row;
+		var t_row = highlightfile div t_cells_per_row;
+	
+		draw_set_alpha(0.05);
+		draw_set_color(c_white);
+			draw_rectangle(t_column*t_cell_size+1, t_ystart+t_row*t_cell_size+1, t_column*t_cell_size+t_cell_size-1, t_ystart+t_row*t_cell_size+1+t_cell_size-1, 0);
+			//log(t_column*t_cell_size+1, t_ystart+t_row*t_cell_size+1, t_column*t_cell_size+t_cell_size-1, t_ystart+t_row*t_cell_size+1+t_cell_size-1);
+		draw_set_alpha(1);
+	}
 }
 else if (view_current == 0)
 {
+	
 	gpu_set_blendenable(false);
 	draw_clear(controller.c_ltltgray);
 	

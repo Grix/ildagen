@@ -399,6 +399,14 @@
             }
         },
         {
+            "Key": "083d5894-1073-4cc2-a8c0-e6aeae8c7452",
+            "Value": {
+                "id": "f854c054-b09a-4615-bde3-faf3652edc9a",
+                "resourcePath": "scripts\\handle_mousecontrol_live\\handle_mousecontrol_live.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "085e5c5a-9e42-46af-90e0-a807cbbad25a",
             "Value": {
                 "id": "aa7ba424-a4ad-48e5-890e-77e6ff944bba",
@@ -7258,7 +7266,7 @@
             "Key": "e2bd9394-c670-4401-9644-6a426e65790c",
             "Value": {
                 "id": "de82d75b-d863-4bbd-a949-141b74dcb300",
-                "resourcePath": "scripts\\handle_mousecontrol\\handle_mousecontrol.yy",
+                "resourcePath": "scripts\\handle_mousecontrol_seq\\handle_mousecontrol_seq.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8791,6 +8799,7 @@
         "c1fcab1c-06ae-41ac-a784-969051ad4617",
         "7939feaf-2998-4785-a058-005fe42e831b",
         "24ddcea9-4a55-41f9-8f4d-86e8ea3bfe9e",
+        "083d5894-1073-4cc2-a8c0-e6aeae8c7452",
         "5c428409-e1bd-48a8-a893-2a1f5fb43a49",
         "a9f08ee6-e2a6-42e0-b1d5-644a5074e222",
         "d2f990b9-f657-4807-a24f-798e17ca2dac",
