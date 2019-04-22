@@ -1,5 +1,5 @@
 TODO
-- undo in envelopes
+- integrate shutter fix in dacwrapper
 - LIVE mode
 - set fixed scanrate instead of fps
 - reapply combine shapes

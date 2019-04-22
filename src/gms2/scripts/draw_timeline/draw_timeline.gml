@@ -4,10 +4,6 @@ if (high_performance)
 //todo fix markers etc lines not showing over timeline section
 
 var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
-var t_tlx = timeline_surf_pos + timeline_surf_length; //in frames
-var t_tlzoom = tlx+tlzoom-t_tlx + 200/tlwdivtlzoom; //in frames
-var t_tlw = t_tlzoom*tlwdivtlzoom; //in pixels
-
 
 draw_surface_part(timeline_surf, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw-17, clamp(ypos_perm-layerbary+1, 0, lbsh-(tlh+16)), 0, tlsurf_y+tlh+15);
     

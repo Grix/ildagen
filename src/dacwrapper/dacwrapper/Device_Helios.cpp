@@ -50,7 +50,8 @@ bool Device_Helios::OutputFrame(int cardNum, int rate, int frameSize, HeliosPoin
 
 bool Device_Helios::OpenDevice(int cardNum)
 {
-	//init already opened all devices
+	std::lock_guard<std::mutex> lock(frameLock[cardNum]);
+	heliosDevice->SetShutter(cardNum, 1);
 	return true;
 }
 

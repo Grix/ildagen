@@ -7,6 +7,7 @@ else
 
 surface_set_target(browser_surf);
 
+	draw_set_alpha(1);
 	draw_clear_alpha(c_white, 0);
 
 	var t_width = view_wport[1];
@@ -31,9 +32,9 @@ surface_set_target(browser_surf);
 		
 		if (playingfile == i)
 		{
-			draw_set_alpha(0.1);
+			draw_set_alpha(0.3);
 			draw_set_color(controller.c_gold);
-				draw_rectangle(t_cell_size-1,t_cell_size-1, t_column*t_cell_size+1, t_row*t_cell_size+1, 0);
+				draw_rectangle(t_column*t_cell_size+1, t_row*t_cell_size+1, t_column*t_cell_size-1+t_cell_size, t_row*t_cell_size-1+t_cell_size, 0);
 			draw_set_alpha(1);
 		}
 	}

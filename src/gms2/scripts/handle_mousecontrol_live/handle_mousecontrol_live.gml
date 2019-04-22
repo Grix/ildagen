@@ -1,5 +1,5 @@
-var t_width = view_wport[1];
-var t_ystart = view_yport[1];
+var t_width = camera_get_view_width(view_get_camera(1));
+var t_ystart = camera_get_view_y(view_get_camera(1));
 var t_cells_per_row = ceil(t_width / target_width_per_cell);
 var t_cell_size = t_width / t_cells_per_row;
 
@@ -22,11 +22,13 @@ for (i = 0; i < ds_list_size(filelist); i++)
 		
 		if (mouse_check_button_pressed(mb_left))
 		{
+			frame = 0;
+			framehr = 0;
+			frame_surf_refresh = 1;
 			playingfile = i;
 			if (surface_exists(browser_surf))
 				surface_free(browser_surf);
 			browser_surf = -1;
-			log(playingfile);
 		}
 	}
 }
