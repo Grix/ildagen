@@ -1,2 +1,2 @@
-//process_dialog_live(async_load);
+process_dialog_live(async_load);
 

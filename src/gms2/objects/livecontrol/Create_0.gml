@@ -16,6 +16,7 @@ maxframes = 1;
 frameprev = -1;
 playingfile = 0; // index of filelist, -1 if none selected
 highlightfile = -1;
+undo_list = ds_list_create();
 filelist = ds_list_create();
 el_list = ds_list_create();
 frame_list = ds_list_create();

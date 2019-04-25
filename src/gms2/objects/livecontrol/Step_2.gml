@@ -103,10 +103,8 @@ else if (keyboard_check_pressed(ord("P")))
 
 else if (keyboard_check_pressed(vk_delete))
 {
-    /*if (!ds_list_empty(somaster_list))
-    {
-        seq_delete_object();
-    }*/
+    if (playingfile != -1)
+		live_delete_object();
 }
     
 handle_mousecontrol_live();

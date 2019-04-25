@@ -1,6 +1,6 @@
 ddobj = instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-23,"foreground",obj_dropdown);
 with (ddobj)
-    {
+{
     num = 6;
     event_user(1);
     ds_list_add(desc_list,"Cut (Ctrl+X)");
@@ -31,4 +31,4 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,split_timelineobject_dropdown);
     ds_list_add(hl_list,1);
-    }
+}

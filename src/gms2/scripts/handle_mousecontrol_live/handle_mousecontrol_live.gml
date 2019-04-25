@@ -1,3 +1,9 @@
+if (window_mouse_get_x() > tlw) 
+or (window_mouse_get_y() < view_hport[3]+view_hport[4])
+or (controller.dialog_open)
+or (controller.menu_open)
+    exit;
+
 var t_width = camera_get_view_width(view_get_camera(1));
 var t_ystart = camera_get_view_y(view_get_camera(1));
 var t_cells_per_row = ceil(t_width / target_width_per_cell);
@@ -19,16 +25,35 @@ for (i = 0; i < ds_list_size(filelist); i++)
 		// mouse over an item cell
 		
 		highlightfile = i;
+		controller.tooltip = "Click to select and play this file.\nDoubleclick to open in editor mode.\nRight click for options.";
 		
 		if (mouse_check_button_pressed(mb_left))
 		{
-			frame = 0;
-			framehr = 0;
-			frame_surf_refresh = 1;
+			if (doubleclick && playingfile == i)
+			{
+				//edit object
+                live_dialog_yesno("fromlive","You are about to open these frames in the editor mode. This will discard any unsaved changes in the editor. Continue? (Cannot be undone)");
+			}        
+			else
+			{
+				playing = 1;
+				frame = 0;
+				framehr = 0;
+				frame_surf_refresh = 1;
+				playingfile = i;
+				if (surface_exists(browser_surf))
+					surface_free(browser_surf);
+				browser_surf = -1;
+			}
+		}
+		else if (mouse_check_button_pressed(mb_right))
+		{
 			playingfile = i;
 			if (surface_exists(browser_surf))
 				surface_free(browser_surf);
 			browser_surf = -1;
+			
+			dropdown_live_file();
 		}
 	}
 }

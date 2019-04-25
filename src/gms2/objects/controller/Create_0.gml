@@ -147,6 +147,7 @@ scope_moving = false;
 highlight = false;
 resizing_moving = 0;
 update_semasterlist_flag = 0;
+doubleclick = 0;
 
 sgridshow = 0;
 rgridshow = 0;
@@ -155,6 +156,7 @@ rgriddouble = 0;
 guidelineshow = 0;
 guidelinedouble = 0;
 sgridnum = 16;
+
 
 mouse_yprevious = mouse_y;
 mouse_xprevious = mouse_x;

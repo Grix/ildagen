@@ -102,3 +102,15 @@ frame_list
         
 semaster_list
 	elid's
+	
+	
+LIVECONTROL
+
+filelist
+    elements...
+        xpos on timeline
+        frame buffers
+        info list..
+            length
+            screenshot surface
+            maxframes
