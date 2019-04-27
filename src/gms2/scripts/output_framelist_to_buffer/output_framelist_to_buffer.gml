@@ -15,8 +15,8 @@ var t_blue_scale = controller.blue_scale*(255-t_blue_lowerbound)/255;
 
 if (controller.exp_optimize)
 {
-    safe_bottom_boundary = abs(min(controller.opt_redshift,controller.opt_greenshift,controller.opt_blueshift,controller.opt_blankshift));
-    safe_top_boundary = t_list_raw_size-max(controller.opt_redshift,controller.opt_greenshift,controller.opt_blueshift,controller.opt_blankshift);
+    //safe_bottom_boundary = abs(min(controller.opt_redshift,controller.opt_greenshift,controller.opt_blueshift,controller.opt_blankshift));
+    //safe_top_boundary = t_list_raw_size-max(controller.opt_redshift,controller.opt_greenshift,controller.opt_blueshift,controller.opt_blankshift);
     
     var t_blankshift = controller.opt_blankshift*4;
     var t_redshift = controller.opt_redshift*4;
@@ -52,21 +52,34 @@ if (controller.exp_optimize)
 	            buffer_write(output_buffer,buffer_u16, list_raw[| i+0]);
 		}
             
-        if ((i < safe_bottom_boundary) || (i > safe_top_boundary))
-        {
-            buffer_write(output_buffer,buffer_u32,0);
-            buffer_write(output_buffer,buffer_u32,0);
-        }
-        else
-        {
-            buffer_write(output_buffer,buffer_u16,t_red_lowerbound + (list_raw[| i+t_redshift+3] & $FF) * t_red_scale);
-            buffer_write(output_buffer,buffer_u16,t_green_lowerbound + ((list_raw[| i+t_greenshift+3] >> 8) & $FF) * t_green_scale);
-            buffer_write(output_buffer,buffer_u16,t_blue_lowerbound + (list_raw[| i+t_blueshift+3] >> 16) * t_blue_scale);
-            if (list_raw[| i+t_blankshift+2])
-                buffer_write(output_buffer,buffer_u16,0); 
-            else
-                buffer_write(output_buffer,buffer_u16,255);
-        }
+		var t_index = i+t_redshift+3;
+		if (t_index >= 0 && t_index < t_list_raw_size)
+			buffer_write(output_buffer,buffer_u16,t_red_lowerbound + (list_raw[| t_index] & $FF) * t_red_scale);
+		else
+			buffer_write(output_buffer,buffer_u16, 0);
+				
+		t_index = i+t_greenshift+3;
+		if (t_index >= 0 && t_index < t_list_raw_size)
+			buffer_write(output_buffer,buffer_u16,t_green_lowerbound + ((list_raw[| t_index] >> 8) & $FF) * t_green_scale);
+		else
+			buffer_write(output_buffer,buffer_u16, 0);
+				
+		t_index = i+t_blueshift+3;
+		if (t_index >= 0 && t_index < t_list_raw_size)
+			buffer_write(output_buffer,buffer_u16,t_blue_lowerbound + (list_raw[| t_index] >> 16) * t_blue_scale);
+		else
+			buffer_write(output_buffer,buffer_u16, 0);
+				
+		t_index = i+t_blankshift+2;
+        if (t_index >= 0 && t_index < t_list_raw_size)
+		{
+			if (list_raw[| t_index])
+				buffer_write(output_buffer,buffer_u16,0); 
+	        else
+	            buffer_write(output_buffer,buffer_u16,255);
+		}
+		else
+			buffer_write(output_buffer,buffer_u16,0); 
     }
 }
 else //not optimized

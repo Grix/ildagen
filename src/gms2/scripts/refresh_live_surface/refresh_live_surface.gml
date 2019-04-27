@@ -21,8 +21,6 @@ if (viewmode != 0)
 if (playingfile < 0 || playingfile >= ds_list_size(filelist))
 	exit;
 
-correctframe = frame;
-
 var t_scaley = 1/$FFFF*view_hport[4];
 var t_centerx = view_wport[4]/2;
 var t_centery = view_hport[4]/2;

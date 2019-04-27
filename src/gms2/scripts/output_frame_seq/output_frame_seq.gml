@@ -6,6 +6,8 @@ var t_dac = argument[0];
 var t_dac_index = ds_list_find_index(controller.dac_list, t_dac);
 if (t_dac_index == -1)
     exit;
+	
+minroomspeed = max(projectfps,7.5);
     
 output_buffer = t_dac[| 4];
 output_buffer2 = t_dac[| 5];
