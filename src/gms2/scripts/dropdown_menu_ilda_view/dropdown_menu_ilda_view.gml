@@ -3,9 +3,9 @@ with (ddobj)
 {
     num = 5;
     event_user(1);
-    ds_list_add(desc_list,"Editor Mode (Tab)");
-    ds_list_add(desc_list,"Timeline Mode (Tab)");
-	ds_list_add(desc_list,"Live Mode"); //Todo tab save between timeline and live
+    ds_list_add(desc_list,"Editor Mode" + ((room != rm_ilda) ? " (Tab)" : ""));
+    ds_list_add(desc_list,"Timeline Mode" + ((room == rm_ilda && controller.last_room == rm_seq) ? " (Tab)" : ""));
+	ds_list_add(desc_list,"Live Mode" + ((room == rm_ilda && controller.last_room == rm_live) ? " (Tab)" : ""));
     ds_list_add(desc_list,"Toggle fullscreen (F11)");
     ds_list_add(desc_list,"Reset window size (M)");
     ds_list_add(sep_list,0);

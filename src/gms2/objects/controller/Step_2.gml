@@ -381,7 +381,7 @@ if (keyboard_check_pressed(vk_tab))
     if (seqcontrol.song != -1)
         FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
         
-    room_goto(rm_seq);
+    room_goto(last_room);
 }
 
 if (update_semasterlist_flag)

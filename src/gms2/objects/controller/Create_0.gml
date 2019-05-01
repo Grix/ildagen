@@ -148,6 +148,7 @@ highlight = false;
 resizing_moving = 0;
 update_semasterlist_flag = 0;
 doubleclick = 0;
+last_room = rm_seq;
 
 sgridshow = 0;
 rgridshow = 0;

@@ -5,9 +5,6 @@ if (os_browser != browser_not_a_browser)
     exit;
 }
 
-if (!verify_serial(true))
-    exit;
-
 if (seqcontrol.selectedlayer = -1) or (ds_list_empty(seqcontrol.layer_list))
 {
     show_message_new("No timeline position marked, enter timeline mode and select a position by clicking on a layer first.");
@@ -69,22 +66,6 @@ for (j = 0; j < maxframes;j++)
 }
 //remove excess size
 buffer_resize(save_buffer, buffer_tell(save_buffer));
-
-
-//TEST send to live
-with (livecontrol)
-{
-	objectlist = ds_list_create();
-    ds_list_add(objectlist,0);
-    ds_list_add(objectlist,controller.save_buffer);
-	info = ds_list_create();
-    ds_list_add(info,controller.maxframes-1);
-    ds_list_add(info,-1);
-    ds_list_add(info,controller.maxframes);
-    ds_list_add(objectlist,info);
-	
-    ds_list_add(filelist,objectlist);
-}
 
 //send to sequencer
 with (seqcontrol)

@@ -73,6 +73,13 @@ if (new_id == getint)
                 
                 break;
             }
+			
+			case "tolivereplace":
+            {
+                frames_tolive();
+                
+                break;
+            }
           
             case "updatefound":
             {

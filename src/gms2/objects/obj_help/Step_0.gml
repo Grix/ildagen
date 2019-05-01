@@ -13,6 +13,7 @@ if (room = rm_ilda)
         "Ctrl+Mouse)    Select object\n"+
         "Tab)    Enter timeline mode\n"+
         "I)    Send frames from editor mode to timeline mode\n"+
+		"L)    Send frames from editor mode to live mode\n"+
         "Delete)    Delete selected object\n"+
         "P)    Toggle 3D frame previewing\n"+
         "Shift)    Force horizontal or vertical lines when drawing\n"+

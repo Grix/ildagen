@@ -153,6 +153,7 @@ else if (keyboard_check_pressed(vk_tab))
     if (song != -1) 
 		FMODGMS_Chan_PauseChannel(play_sndchannel);
     playing = 0;
+	controller.last_room = room;
     room_goto(rm_ilda);
 }
     
