@@ -1,3 +1,15 @@
+if (room == rm_loading)
+{
+    if (global.loading_importildalive == 1)
+    {
+        
+        if (global.loading_current < global.loading_end)
+            read_ilda_work();
+        else
+            import_ildalive_end();
+    }
+}
+
 if (room != rm_live) exit;
 
 if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window_get_width() != view_wport[3])

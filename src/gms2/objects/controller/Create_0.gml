@@ -194,6 +194,7 @@ global.loading_loadproject = 0;
 global.loading_importilda = 0;
 global.loading_importfont = 0;
 global.loading_importildaseq = 0;
+global.loading_importildalive = 0;
 
 opt_onlyblanking = false;
 opt_maxdist = 150;

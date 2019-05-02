@@ -46,7 +46,7 @@ for (j = 0; j < maxframes;j++)
 buffer_resize(save_buffer, buffer_tell(save_buffer));
 
 
-//TEST send to live
+//send to live
 with (livecontrol)
 {
 	objectlist = ds_list_create();

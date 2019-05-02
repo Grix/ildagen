@@ -1591,6 +1591,14 @@
             }
         },
         {
+            "Key": "2bf19b66-b1ad-47b8-961a-d3ebe48fff29",
+            "Value": {
+                "id": "322f2668-fc1f-4e27-869d-2540432846f8",
+                "resourcePath": "scripts\\load_frames_live\\load_frames_live.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2c62ad49-88e1-4607-9006-7baf122128b9",
             "Value": {
                 "id": "ec9eb214-ed09-436b-9068-13ab1413640b",
@@ -3307,6 +3315,14 @@
             "Value": {
                 "id": "439814df-b16f-49c8-bbaa-091e96260701",
                 "resourcePath": "scripts\\seq_dialog_num\\seq_dialog_num.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "63bd1321-4f83-4c1e-a512-bdbaca973548",
+            "Value": {
+                "id": "33dcfa72-d7e4-40b5-b44b-81d85dfe76d3",
+                "resourcePath": "scripts\\import_ildalive\\import_ildalive.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -6295,6 +6311,14 @@
             }
         },
         {
+            "Key": "c19261b0-1133-47fe-986a-5ede20c4a35f",
+            "Value": {
+                "id": "096a0452-052c-4574-b8da-26d1d4f92894",
+                "resourcePath": "scripts\\frames_tolive_importedilda\\frames_tolive_importedilda.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c19d4722-f9c6-4df7-9efe-0ec69e119472",
             "Value": {
                 "id": "73aa1f24-376f-4fc2-9821-2a3506fc1496",
@@ -6843,6 +6867,14 @@
             "Value": {
                 "id": "33f44254-5b85-4ea2-89d3-be8ab0ad3562",
                 "resourcePath": "scripts\\dd_seq_saveproject_quick\\dd_seq_saveproject_quick.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "d105a3ed-b834-45e7-ad22-c9b382b9a6c2",
+            "Value": {
+                "id": "3423182c-f3e5-48f6-a616-3699b14aec34",
+                "resourcePath": "scripts\\import_ildalive_end\\import_ildalive_end.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8950,6 +8982,8 @@
         "9e012af2-4b87-4dd3-8537-a0dfe01acdf8",
         "26787b73-1796-43cc-9241-176f87d23d91",
         "e9d791ad-8bf1-49c6-bd6a-a05a539db7d2",
+        "63bd1321-4f83-4c1e-a512-bdbaca973548",
+        "d105a3ed-b834-45e7-ad22-c9b382b9a6c2",
         "48d17253-beb6-430d-8b84-dd5bc064c586",
         "9bd1fca4-0fb6-4927-8b10-1fb5bf4d8d92",
         "cf1e5bc9-3a47-4447-bfbf-468e576ab4d8",
@@ -8962,6 +8996,7 @@
         "e398d9f5-8088-4bd7-bfd3-a535c874d3d3",
         "cbf98f82-5e50-4a28-b5e5-efd3b3ebd3dd",
         "b77b0ca4-8ba6-41a4-a083-c33793130756",
+        "2bf19b66-b1ad-47b8-961a-d3ebe48fff29",
         "fadc4144-be77-4e63-89da-792cf39dfa2c",
         "33e9a8e0-cd8e-4fe9-8035-f880faf27fed",
         "45e6c5bc-acf4-4932-8269-331b22106637",
@@ -8972,6 +9007,7 @@
         "02c864ed-3b3f-489e-8b04-7ec2a3769c72",
         "cff8ddb0-9153-43ae-8a89-b7a23df1b520",
         "2e871b95-c947-4ce8-b313-08d0ee9ac499",
+        "c19261b0-1133-47fe-986a-5ede20c4a35f",
         "2967fb05-fdf8-4231-b11f-ba3a99458c8b",
         "5cc8f1d8-fd05-4292-84e6-2aa5eedf8dfc",
         "fce177dd-2e49-4511-a867-1cd0131e647a",

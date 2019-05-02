@@ -13,9 +13,12 @@ if (room == rm_ilda)
 }
 else if (room == rm_seq)
 {
-    if (!verify_serial(true))
-        exit;
     with (seqcontrol)
         load_frames_seq(get_open_filename_ext("LSG frames|*.igf","","","Select LaserShowGen frames file"));
+}
+else if (room == rm_live)
+{
+    with (livecontrol)
+        load_frames_live(get_open_filename_ext("LSG frames|*.igf","","","Select LaserShowGen frames file"));
 }
 
