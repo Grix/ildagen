@@ -45,9 +45,10 @@ with (livecontrol)
     ds_list_add(info,-1);
     ds_list_add(info,controller.maxframes);
     ds_list_add(objectlist,info);
+	ds_list_add(objectlist,ord("1")+ds_list_size(filelist));
 	
     ds_list_add(filelist,objectlist);
-	
+	playingfile = ds_list_size(filelist)-1;
 	
 	frame_surf_refresh = 1;
 	if (surface_exists(browser_surf))

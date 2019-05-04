@@ -8,7 +8,8 @@
         "5c428409-e1bd-48a8-a893-2a1f5fb43a49",
         "a9f08ee6-e2a6-42e0-b1d5-644a5074e222",
         "d2f990b9-f657-4807-a24f-798e17ca2dac",
-        "15c19dfb-f6e9-4fca-92e7-49312a6fc59a"
+        "15c19dfb-f6e9-4fca-92e7-49312a6fc59a",
+        "7d5aec72-67a2-4d60-8b72-a29cb13c36bd"
     ],
     "filterType": "GMScript",
     "folderName": "live",

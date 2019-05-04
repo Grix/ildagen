@@ -114,3 +114,4 @@ filelist
             length
             screenshot surface
             maxframes
+		keyboard shortcut

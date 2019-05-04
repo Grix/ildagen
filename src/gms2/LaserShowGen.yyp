@@ -4143,6 +4143,14 @@
             }
         },
         {
+            "Key": "7d5aec72-67a2-4d60-8b72-a29cb13c36bd",
+            "Value": {
+                "id": "37f7d455-b3f3-46ec-a1e0-ead87223d378",
+                "resourcePath": "scripts\\live_change_shortcut\\live_change_shortcut.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7d654bbd-a693-4b8e-82f8-597aea704a9a",
             "Value": {
                 "id": "8ef350e0-d771-4881-80e8-b821256f767b",
@@ -8934,6 +8942,7 @@
         "a9f08ee6-e2a6-42e0-b1d5-644a5074e222",
         "d2f990b9-f657-4807-a24f-798e17ca2dac",
         "15c19dfb-f6e9-4fca-92e7-49312a6fc59a",
+        "7d5aec72-67a2-4d60-8b72-a29cb13c36bd",
         "dc616206-1b16-49d1-8be7-be69edd4af6a",
         "6e78e9d4-9bd5-42da-bce1-2b44ccfd581c",
         "cd52dd4f-8e98-4cb8-b27c-fb4725b1340d",

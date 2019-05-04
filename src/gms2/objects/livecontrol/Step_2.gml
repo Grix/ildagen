@@ -119,6 +119,37 @@ else if (keyboard_check_pressed(vk_delete))
     if (playingfile != -1)
 		live_delete_object();
 }
+
+else
+{
+	for (i = 0; i < ds_list_size(filelist); i++)
+	{
+		if (ds_list_find_value(filelist[| i], 3) == -1)
+		{
+			if (keyboard_check_pressed(vk_anykey))
+			{
+				ds_list_set(filelist[| i], 3, ord(string_upper(string_char_at(keyboard_string,string_length(keyboard_string)))));
+				if (surface_exists(browser_surf))
+					surface_free(browser_surf);
+				browser_surf = -1;
+			}
+		}
+		else
+		{
+			if (keyboard_check_pressed(ds_list_find_value(filelist[| i], 3)))
+			{
+				playing = 1;
+				frame = 0;
+				framehr = 0;
+				frame_surf_refresh = 1;
+				playingfile = i;
+				if (surface_exists(browser_surf))
+					surface_free(browser_surf);
+				browser_surf = -1;
+			}
+		}
+	}
+}
     
 handle_mousecontrol_live();
 

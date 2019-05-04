@@ -9,11 +9,6 @@ if (os_browser != browser_not_a_browser)
 
 with (controller)
 {
-    if (livecontrol.playingfile != -1)
-    {
-        ilda_dialog_yesno("tolivereplace","This will replace the selected live mode tile with these frames. Continue? (Cannot be undone)");
-    }
-    else
-        frames_tolive();
+    frames_tolive();
 }
 
