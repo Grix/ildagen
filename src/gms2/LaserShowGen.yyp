@@ -6407,6 +6407,14 @@
             }
         },
         {
+            "Key": "c2e9406c-a84a-4c6e-87fe-2fe7a4d674f7",
+            "Value": {
+                "id": "11878a31-8e6c-49c3-b1b8-f0f9e16e9717",
+                "resourcePath": "scripts\\find_next_available_shortcut\\find_next_available_shortcut.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c30dfb19-0218-433d-917d-cf403ef47cde",
             "Value": {
                 "id": "3245f56c-2850-4f4a-895e-b3c9edf60007",
@@ -8943,6 +8951,7 @@
         "d2f990b9-f657-4807-a24f-798e17ca2dac",
         "15c19dfb-f6e9-4fca-92e7-49312a6fc59a",
         "7d5aec72-67a2-4d60-8b72-a29cb13c36bd",
+        "c2e9406c-a84a-4c6e-87fe-2fe7a4d674f7",
         "dc616206-1b16-49d1-8be7-be69edd4af6a",
         "6e78e9d4-9bd5-42da-bce1-2b44ccfd581c",
         "cd52dd4f-8e98-4cb8-b27c-fb4725b1340d",

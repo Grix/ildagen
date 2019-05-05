@@ -25,7 +25,15 @@ for (i = 0; i < ds_list_size(filelist); i++)
 		// mouse over an item cell
 		
 		highlightfile = i;
-		controller.tooltip = "Click to select and play this file.\nDoubleclick to open in editor mode.\nRight click for options.";
+		
+		objectlist = filelist[| i];
+		var t_shortcut = "";
+		if (objectlist[| 3] > 0)
+		{
+			t_shortcut += chr(objectlist[| 3]);
+		}
+		
+		controller.tooltip = "Click to select and play this file ("+t_shortcut+").\nDoubleclick to open in editor mode.\nRight click for options.";
 		
 		if (mouse_check_button_pressed(mb_left))
 		{

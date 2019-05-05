@@ -128,13 +128,20 @@ else
 		{
 			if (keyboard_check_pressed(vk_anykey))
 			{
-				ds_list_set(filelist[| i], 3, ord(string_upper(string_char_at(keyboard_string,string_length(keyboard_string)))));
+				if (keyboard_check_pressed(ord(string_upper(string_char_at(keyboard_string,string_length(keyboard_string))))))
+				{
+					ds_list_set(filelist[| i], 3, ord(string_upper(string_char_at(keyboard_string,string_length(keyboard_string)))));
+				}
+				else
+				{
+					ds_list_set(filelist[| i], 3, 0);
+				}
 				if (surface_exists(browser_surf))
 					surface_free(browser_surf);
 				browser_surf = -1;
 			}
 		}
-		else
+		else if (ds_list_find_value(filelist[| i], 3) > 0)
 		{
 			if (keyboard_check_pressed(ds_list_find_value(filelist[| i], 3)))
 			{

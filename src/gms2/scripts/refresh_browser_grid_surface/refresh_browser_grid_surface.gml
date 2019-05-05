@@ -44,7 +44,7 @@ surface_set_target(browser_surf);
 			draw_set_color(controller.c_gold);
 			draw_text(t_column*t_cell_size+3, t_row*t_cell_size+3, "Press key...");
 		}
-		else
+		else if (objectlist[| 3] > 0)
 		{
 			draw_set_color(c_white);
 			draw_text(t_column*t_cell_size+3, t_row*t_cell_size+3, chr(objectlist[| 3]));

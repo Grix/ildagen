@@ -185,6 +185,7 @@ ds_list_add(info,tempmaxframes-1);
 ds_list_add(info,-1);
 ds_list_add(info,tempmaxframes);
 ds_list_add(objectlist,info);
+ds_list_add(objectlist, find_next_available_shortcut());
 	
 ds_list_add(filelist,objectlist);
     
