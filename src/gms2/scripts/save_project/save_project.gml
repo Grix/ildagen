@@ -11,7 +11,7 @@ if !string_length(file_loc)
     exit;
     
 if (filename_ext(file_loc) != ".igp")
-    show_message_new("Warning: Your filename has no .igp extension, and might not be recognized by other software.\n\nIt is recommended to save the file again, with a the text .igp at the end of the name.");
+    show_message_new("Warning: Your filename has no .igp extension, and might not be recognized by LSG when you try to load it.\n\nIt is recommended to save the file again, with a the text .igp at the end of the name.");
     
 length = ceil(length);
 

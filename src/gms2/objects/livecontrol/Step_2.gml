@@ -2,11 +2,18 @@ if (room == rm_loading)
 {
     if (global.loading_importildalive == 1)
     {
-        
         if (global.loading_current < global.loading_end)
             read_ilda_work();
         else
             import_ildalive_end();
+    }
+	else if (global.loading_saveliveproject == 1)
+    {
+        save_live_project_work();
+    }
+	else if (global.loading_loadliveproject == 1)
+    {
+        load_live_project_work();
     }
 }
 

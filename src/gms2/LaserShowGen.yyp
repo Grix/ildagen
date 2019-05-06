@@ -3903,6 +3903,14 @@
             }
         },
         {
+            "Key": "78cd21d5-f592-4cc1-861e-6e4dda5d1efa",
+            "Value": {
+                "id": "97128cd0-69e6-485f-a82d-ef566ca9c9dd",
+                "resourcePath": "scripts\\save_live_project_work\\save_live_project_work.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "791110ed-5587-4664-9470-c669819db018",
             "Value": {
                 "id": "c1475916-2517-4c19-8515-1a4b98de451b",
@@ -7959,6 +7967,14 @@
             }
         },
         {
+            "Key": "f35defce-428f-46dc-9e74-01aea78f5064",
+            "Value": {
+                "id": "3d6fada7-fa84-416b-ac72-93d882ea61cb",
+                "resourcePath": "scripts\\load_live_project_work\\load_live_project_work.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f3ee859d-2dce-4a8c-a168-4e16ff56af2c",
             "Value": {
                 "id": "0e8cc5c9-f413-40ee-aa51-b41c18ba1a1b",
@@ -8139,6 +8155,14 @@
             "Value": {
                 "id": "b7d34e41-e413-4409-903f-73d447642817",
                 "resourcePath": "scripts\\get_bytes_signed\\get_bytes_signed.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "f926fc6a-8727-425a-991f-31478c11fb4d",
+            "Value": {
+                "id": "795209a7-1ef9-417f-aebd-04a5ac9703cf",
+                "resourcePath": "scripts\\save_live_project\\save_live_project.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8364,6 +8388,14 @@
                 "id": "d01cc4b8-a946-405b-a68a-4d97ff528a66",
                 "resourcePath": "views\\ff1454b9-df93-4742-99cd-60fa374a0717.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "ff54fb09-98af-4acb-a5c7-1c773285eec9",
+            "Value": {
+                "id": "91be3794-e6e0-4d4c-afa9-f63a799cc31f",
+                "resourcePath": "scripts\\load_live_project\\load_live_project.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -9017,9 +9049,13 @@
         "2bf19b66-b1ad-47b8-961a-d3ebe48fff29",
         "fadc4144-be77-4e63-89da-792cf39dfa2c",
         "33e9a8e0-cd8e-4fe9-8035-f880faf27fed",
+        "ff54fb09-98af-4acb-a5c7-1c773285eec9",
+        "f35defce-428f-46dc-9e74-01aea78f5064",
         "45e6c5bc-acf4-4932-8269-331b22106637",
         "e0dda906-41b8-4709-855c-cd93027b64e9",
         "603f8bd3-3627-4d34-8f17-1e6db398b084",
+        "f926fc6a-8727-425a-991f-31478c11fb4d",
+        "78cd21d5-f592-4cc1-861e-6e4dda5d1efa",
         "bac449e9-d610-4f53-b3c4-10f0a2e45f87",
         "7b40b38e-5836-452c-a486-67dbf55fe7e0",
         "02c864ed-3b3f-489e-8b04-7ec2a3769c72",

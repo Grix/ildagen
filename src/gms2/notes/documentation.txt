@@ -108,7 +108,7 @@ LIVECONTROL
 
 filelist
     elements...
-        xpos on timeline
+        xpos on timeline (unused)
         frame buffers
         info list..
             length

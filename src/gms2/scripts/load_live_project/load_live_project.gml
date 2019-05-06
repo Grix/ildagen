@@ -1,0 +1,37 @@
+//loads project igp file
+file_loc = argument0;
+if !string_length(file_loc) 
+    exit;
+    
+clear_project();
+
+file_copy(file_loc, "temp/temp.igl");
+load_buffer = buffer_load("temp/temp.igl");
+    
+idbyte = buffer_read(load_buffer,buffer_u8);
+if (idbyte != 100)
+{
+    show_message_new("Unexpected ID byte, is this a valid LaserShowGen live grid file?");
+    exit;
+}
+
+playingfile = -1;
+frame_surf_refresh = 1;
+if (surface_exists(browser_surf))
+	surface_free(browser_surf);
+browser_surf = -1;
+frame = 0;
+playing = 0;
+    
+projectfps = buffer_read(load_buffer,buffer_u8);
+buffer_seek(load_buffer,buffer_seek_start,50);
+    
+global.loadingtimeprev = get_timer();
+
+global.loading_loadliveproject = 1;
+
+global.loading_start = 0;
+global.loading_end = buffer_read(load_buffer,buffer_u32);
+global.loading_current = global.loading_start;
+
+room_goto(rm_loading);
