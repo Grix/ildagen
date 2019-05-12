@@ -59,11 +59,10 @@
 ds_list_destroy(undo_list);*/
 undo_list = ds_list_create();
     
-for (i = 0; i < ds_list_size(filelist); i++)
+repeat (ds_list_size(filelist))
 {
-    playingfile = i;
+    playingfile = 0;
 	live_delete_object_noundo();
-	
 }
 
 playingfile = -1;

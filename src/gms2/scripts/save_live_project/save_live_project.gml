@@ -20,7 +20,7 @@ global.loading_start = 0;
 global.loading_end = ds_list_size(filelist);
 global.loading_current = global.loading_start;
     
-buffer_write(save_buffer,buffer_u8,100); //version / ID
+buffer_write(save_buffer,buffer_u8,200); //version / ID
 buffer_write(save_buffer,buffer_u8,controller.projectfps); //fps
 buffer_write(save_buffer,buffer_u8,0);
 buffer_write(save_buffer,buffer_u8,0);

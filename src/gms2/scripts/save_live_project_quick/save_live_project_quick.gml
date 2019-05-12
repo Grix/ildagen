@@ -8,38 +8,42 @@ if (filepath != "")
 	file_loc = filepath;
 else
 {
-	file_loc = get_save_filename_ext("LSG Live Project|*.igl","example.igl","","Select LaserShowGen Live project file location");
+	file_loc = get_save_filename_ext("LSG Live Grid|*.igl","example.igl","","Select LaserShowGen Live grid file location");
 	if !string_length(file_loc) 
 	    exit;
     
 	if (filename_ext(file_loc) != ".igl")
-	    show_message_new("Warning: Your filename has no .igp extension, and might not be recognized by other software.\n\nIt is recommended to save the file again, with a the text .igl at the end of the name.");
+	    show_message_new("Warning: Your filename has no .igl extension, and might not be recognized by other software.\n\nIt is recommended to save the file again, with a the text .igl at the end of the name.");
 }
-
-length = ceil(length);
 
 global.loadingtimeprev = get_timer();
 
-global.loading_saveproject = 1;
+global.loading_saveliveproject = 1;
 
 global.loading_start = 0;
-global.loading_end = ds_list_size(layer_list);
+global.loading_end = ds_list_size(filelist);
 global.loading_current = global.loading_start;
     
-buffer_write(save_buffer,buffer_u8,104); //version / ID
-buffer_write(save_buffer,buffer_u8,projectfps); //fps
-buffer_write(save_buffer,buffer_u8,(song != -1)); //audio enabled
-buffer_write(save_buffer,buffer_u8,parsingaudio); //audio still parsing
-buffer_write(save_buffer,buffer_u32,startframe);
-buffer_write(save_buffer,buffer_u32,endframe);
-buffer_write(save_buffer,buffer_u32,audioshift);
-buffer_write(save_buffer,buffer_bool,loop);
+buffer_write(save_buffer,buffer_u8,200); //version / ID
+buffer_write(save_buffer,buffer_u8,controller.projectfps); //fps
+buffer_write(save_buffer,buffer_u8,0);
+buffer_write(save_buffer,buffer_u8,0);
+buffer_write(save_buffer,buffer_u8,0);
+buffer_write(save_buffer,buffer_u8,0);
+buffer_write(save_buffer,buffer_u8,0);
+buffer_write(save_buffer,buffer_u8,0);
+buffer_write(save_buffer,buffer_u8,0);
+buffer_write(save_buffer,buffer_u8,0);
+buffer_write(save_buffer,buffer_u8,0);
+buffer_write(save_buffer,buffer_u8,0);
+buffer_write(save_buffer,buffer_u32,0);
+buffer_write(save_buffer,buffer_u8,0);
 buffer_write(save_buffer,buffer_u8,0);
 buffer_write(save_buffer,buffer_u8,0);
 buffer_write(save_buffer,buffer_u8,0);
 repeat (30)
     buffer_write(save_buffer,buffer_u8,0);
-buffer_write(save_buffer,buffer_u32,ds_list_size(layer_list)); //pos 50
+buffer_write(save_buffer,buffer_u32,ds_list_size(filelist)); //pos 50
 
 
 room_goto(rm_loading);

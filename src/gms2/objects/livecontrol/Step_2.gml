@@ -84,10 +84,11 @@ if (keyboard_check(vk_control))
             seq_paste_object();
         }
     }
-    else if (keyboard_check_pressed(ord("Z")))
+    */
+	if (keyboard_check_pressed(ord("Z")))
     {
-        undo_seq();
-    }*/
+        undo_live();
+    }
 }
 
 else if (keyboard_check_pressed(vk_escape))

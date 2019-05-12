@@ -1,4 +1,4 @@
-if (idbyte == 100)
+if (idbyte == 200)
 {
     for (j = global.loading_current; j < global.loading_end;j++)
     {

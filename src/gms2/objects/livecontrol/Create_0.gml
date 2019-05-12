@@ -10,6 +10,8 @@ viewmode = 0;
 doubleclick = 0;
 filepath = "";
 
+alarm[4] = 300;
+
 playing = 0;
 frame = 0;
 framehr = 0;

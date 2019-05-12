@@ -1,12 +1,5 @@
 //load frames file for live mode object
 
-frame_surf_refresh = 1;
-if (surface_exists(browser_surf))
-	surface_free(browser_surf);
-browser_surf = -1;
-frame = 0;
-playing = 0;
-
 file_loc = argument0;
 if !string_length(file_loc) 
     exit;
@@ -189,10 +182,15 @@ ds_list_add(objectlist, find_next_available_shortcut());
 	
 ds_list_add(filelist,objectlist);
     
-undolisttemp = ds_list_create();
-ds_list_add(undolisttemp,objectlist);
-ds_list_add(undo_list,"c"+string(undolisttemp));
+playingfile = ds_list_size(filelist)-1;
+	
+ds_list_add(undo_list, "c"+string(playingfile));
+	
+frame_surf_refresh = 1;
+if (surface_exists(browser_surf))
+	surface_free(browser_surf);
+browser_surf = -1;
+frame = 0;
+playing = 0;
      
 ds_list_destroy(temp_list);
-
-room_goto(rm_live);

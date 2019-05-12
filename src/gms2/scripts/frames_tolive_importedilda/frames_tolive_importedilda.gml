@@ -52,6 +52,8 @@ with (livecontrol)
     ds_list_add(filelist,objectlist);
 	playingfile = ds_list_size(filelist)-1;
 	
+	ds_list_add(undo_list, "c"+string(playingfile));
+	
 	frame_surf_refresh = 1;
 	if (surface_exists(browser_surf))
 		surface_free(browser_surf);

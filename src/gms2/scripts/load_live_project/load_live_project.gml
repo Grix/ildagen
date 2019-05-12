@@ -9,7 +9,7 @@ file_copy(file_loc, "temp/temp.igl");
 load_buffer = buffer_load("temp/temp.igl");
     
 idbyte = buffer_read(load_buffer,buffer_u8);
-if (idbyte != 100)
+if (idbyte != 200)
 {
     show_message_new("Unexpected ID byte, is this a valid LaserShowGen live grid file?");
     exit;
