@@ -8,6 +8,7 @@ mouse_xprevious = mouse_x;
 mouse_yprevious = mouse_y;
 viewmode = 0;
 doubleclick = 0;
+filepath = "";
 
 playing = 0;
 frame = 0;

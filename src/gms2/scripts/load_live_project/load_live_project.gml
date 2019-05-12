@@ -3,7 +3,7 @@ file_loc = argument0;
 if !string_length(file_loc) 
     exit;
     
-clear_project();
+clear_live_project();
 
 file_copy(file_loc, "temp/temp.igl");
 load_buffer = buffer_load("temp/temp.igl");
@@ -23,7 +23,7 @@ browser_surf = -1;
 frame = 0;
 playing = 0;
     
-projectfps = buffer_read(load_buffer,buffer_u8);
+controller.projectfps = buffer_read(load_buffer,buffer_u8);
 buffer_seek(load_buffer,buffer_seek_start,50);
     
 global.loadingtimeprev = get_timer();

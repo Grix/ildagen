@@ -4,7 +4,6 @@ if (debug_mode)
 listsize = ((ds_list_size(list_id)-20)/4);
 var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
 var t_true_dwell_falling, t_true_dwell_rising;
-var t_contflag = false;
 
 if (polarity_list[| i] == 0)
 {
@@ -126,7 +125,6 @@ for (var t_i = 1; t_i < listsize; t_i++)
         
             var t_trav_dist = a_ballistic;
             var t_quantumstepssqrt = ceil(sqrt(opt_dist/t_trav_dist));
-            var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
                  
             maxpoints_static += (   2*(controller.opt_maxdwell_blank) 
                                     +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)

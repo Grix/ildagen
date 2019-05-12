@@ -9,7 +9,7 @@ if (mouse_y < 0)
 {
     if (mouse_x > menu_width_start[0]) and (mouse_x < menu_width_start[1])
     {
-        dropdown_menu_seq_file();
+        dropdown_menu_live_file();
     }
     else if (mouse_x > menu_width_start[1]) and (mouse_x < menu_width_start[2])
     {
@@ -29,7 +29,7 @@ if (mouse_y < 0)
     }
     else if (mouse_x > menu_width_start[5]) and (mouse_x < menu_width_start[6])
     {
-        dropdown_menu_seq_settings();
+        dropdown_menu_ilda_settings();
     }
     else if (mouse_x > menu_width_start[6]) and (mouse_x < menu_width_start[7])
     {

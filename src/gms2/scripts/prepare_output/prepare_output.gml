@@ -34,7 +34,7 @@ a_ballistic = controller.opt_maxdist; //scanner acceleration
 
 t_pol = 0;
 t_order = 0;
-var t_lowestdist, t_dist, t_tempxp_prev_other, t_tempyp_prev_other, t_tempxp_prev, t_tempyp_prev;
+var t_lowestdist, t_dist;
 var t_found = 0;
 var t_list_empties = ds_list_create();
 
@@ -166,7 +166,6 @@ if (xp_prev != mid_x) and (yp_prev != mid_y)
                  
         var t_trav_dist = a_ballistic;
         var t_quantumstepssqrt = ceil(sqrt(opt_dist/t_trav_dist));
-        var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
              
         maxpoints_static += (   (controller.opt_maxdwell_blank) 
                                 +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)

@@ -31,7 +31,7 @@ var t_time = get_timer();
 while ((get_timer() - t_time) > 4095)
     j = 0;
     
-show_message_new("LaserShowGen live grid saved to "+string(file_loc));
+show_message_new("LaserShowGen Live grid saved to "+string(file_loc));
 
 buffer_delete(save_buffer);
 

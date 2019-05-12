@@ -10,8 +10,7 @@ if !string_length(file_loc)
     
 if (filename_ext(file_loc) != ".igl")
     show_message_new("Warning: Your filename has no .igl extension, and might not be recognized by LSG when you try to load it.\n\nIt is recommended to save the file again, with a the text .igl at the end of the name.");
-    
-length = ceil(length);
+
 
 global.loadingtimeprev = get_timer();
 
@@ -33,7 +32,7 @@ buffer_write(save_buffer,buffer_u8,0);
 buffer_write(save_buffer,buffer_u8,0);
 buffer_write(save_buffer,buffer_u8,0);
 buffer_write(save_buffer,buffer_u8,0);
-buffer_write(save_buffer,buffer_s32,audioshift);
+buffer_write(save_buffer,buffer_u32,0);
 buffer_write(save_buffer,buffer_u8,0);
 buffer_write(save_buffer,buffer_u8,0);
 buffer_write(save_buffer,buffer_u8,0);

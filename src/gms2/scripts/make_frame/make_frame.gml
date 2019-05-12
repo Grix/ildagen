@@ -5,9 +5,9 @@ if (debug_mode)
 
 var t_vectorx, t_vectory, t_true_dwell_falling, t_true_dwell_rising;
 var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
-var t_contflag = false;
 
 var t_totalrem = 0;
+//todo fps multiplier
 var t_totalpointswanted = floor(controller.opt_scanspeed/controller.projectfps);
 var t_litpointswanted = t_totalpointswanted - maxpoints_static - 1;
 
