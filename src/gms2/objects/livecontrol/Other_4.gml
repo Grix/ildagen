@@ -1,3 +1,8 @@
+if (room != rm_live)
+	exit;
+
+controller.last_room = room;
+
 playing = 0;
 frame = 0;
 framehr = 0;
