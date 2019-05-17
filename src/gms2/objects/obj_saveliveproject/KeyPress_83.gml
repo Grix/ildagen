@@ -1,4 +1,4 @@
-if !keyboard_check(vk_control) or (!verify_serial(true))
+if !keyboard_check(vk_control)
     exit;
 
 with (livecontrol) 

@@ -1,5 +1,8 @@
 //exports project into igp file
 
+if (!verify_serial(true))
+    exit;
+
 playing = 0;
 if (song != -1)
 	FMODGMS_Chan_PauseChannel(play_sndchannel);

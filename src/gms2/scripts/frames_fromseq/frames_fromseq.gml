@@ -4,6 +4,9 @@ if (os_browser != browser_not_a_browser)
     exit;
 }
 
+if (!verify_serial(true))
+    exit;
+
 controller.load_buffer = ds_list_find_value(ds_list_find_value(somaster_list,0),1);
 
 with (controller)

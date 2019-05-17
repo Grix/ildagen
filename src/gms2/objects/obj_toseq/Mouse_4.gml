@@ -1,9 +1,6 @@
-
 if (instance_exists(obj_dropdown))
     exit;
-    
-if (!verify_serial(true))
-    exit;
+
 if (os_browser != browser_not_a_browser)
 {
     show_message_new("Sorry, this feature is not available in the web version");

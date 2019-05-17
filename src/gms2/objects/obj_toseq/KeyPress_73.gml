@@ -1,7 +1,3 @@
-
-if (!verify_serial(true))
-    exit;
-
 if (os_browser != browser_not_a_browser)
 {
     show_message_new("Sorry, the timeline mode is not available in the web version yet");

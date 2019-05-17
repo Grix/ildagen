@@ -1,5 +1,8 @@
 //exports live project into igl file
 
+if (!verify_serial(true))
+    exit;
+
 playing = 0;
     
 save_buffer = buffer_create(1,buffer_grow,1);
