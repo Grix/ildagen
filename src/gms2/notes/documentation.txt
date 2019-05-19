@@ -1,6 +1,5 @@
 TODO
 - integrate shutter fix in dacwrapper
-- LIVE mode
 - set fixed scanrate instead of fps
 - reapply combine shapes
 - split objects

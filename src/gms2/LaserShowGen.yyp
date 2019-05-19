@@ -559,6 +559,14 @@
             }
         },
         {
+            "Key": "0e0184d7-aa37-4240-afac-51c544fbf092",
+            "Value": {
+                "id": "d265ddfb-5114-442c-b361-68bb4305a4a3",
+                "resourcePath": "scripts\\dropdown_menu_live_stop_at_play\\dropdown_menu_live_stop_at_play.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0e145e46-ba21-471f-9a1d-e2c906379f0e",
             "Value": {
                 "id": "100101df-b1c6-4967-a4a4-ff2423480e5c",
@@ -5783,6 +5791,14 @@
             }
         },
         {
+            "Key": "abe0264a-b57d-4bf6-96c6-e7b6ebd8afb5",
+            "Value": {
+                "id": "d7ffda6e-d9e3-4dc6-a3dc-fd0a0bed4f19",
+                "resourcePath": "scripts\\dropdown_menu_live_properties\\dropdown_menu_live_properties.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ac17a8ed-95da-43d6-b6c4-99ee5298d6fd",
             "Value": {
                 "id": "77a6209b-dda4-4f1e-ae33-61b2aa96eeff",
@@ -9035,6 +9051,7 @@
         "189f40b7-6857-47f5-87f7-f0381c56a26c",
         "9ad41102-5e12-4297-b231-b63a19cfbb23",
         "ff5827ac-efbb-4d5c-81b3-0c9d735992a4",
+        "abe0264a-b57d-4bf6-96c6-e7b6ebd8afb5",
         "0ba5fe5c-9982-40f5-a4ee-b058e3628feb",
         "5abe5057-36bd-49fa-86a4-bfb23c711203",
         "157133c8-66fe-46bf-85d1-5335571d4b75",
@@ -9045,6 +9062,7 @@
         "a345055d-688a-417c-939c-e4d2b2d0ef23",
         "b3d3520e-0185-4b3a-81be-4a588d94799f",
         "4271150a-e391-40d4-b827-bc02a0a9f3a3",
+        "0e0184d7-aa37-4240-afac-51c544fbf092",
         "dcf30b9b-0985-47de-91ec-0f14cac9291a",
         "02468822-99a1-404f-a5be-9a4b7fa12724",
         "6463fd7d-65ca-4350-af6d-2fb5944e77ab",

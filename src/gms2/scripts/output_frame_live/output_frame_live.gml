@@ -23,75 +23,78 @@ if (output_buffer_ready)
 }
 
 maxpoints = 0;
-
-if (selectedfile < 0 || selectedfile >= ds_list_size(filelist))
-	exit;
     
 buffer_seek(output_buffer, buffer_seek_start, 0);
 
 el_list = ds_list_create(); 
     
-objectlist = filelist[| selectedfile];
+for (j = 0; j < ds_list_size(filelist); j++)
+{
+	objectlist = filelist[| j];
+	
+	if (!objectlist[| 0]) // is not playing
+		continue;
 
-infolist =  ds_list_find_value(objectlist, 2);
-object_length = ds_list_find_value(infolist, 0);
-object_maxframes = ds_list_find_value(infolist, 2);
+	infolist =  ds_list_find_value(objectlist, 2);
+	object_maxframes = ds_list_find_value(infolist, 2);
+	frame = infolist[| 0];
 
-//draw object
-el_buffer = ds_list_find_value(objectlist,1);
-fetchedframe = frame mod object_maxframes;
-buffer_seek(el_buffer,buffer_seek_start,0);
-buffer_ver = buffer_read(el_buffer,buffer_u8);
-if (buffer_ver != 52)
-{
-    show_message_new("Error: Unexpected idbyte in buffer for export_project. Things might get ugly. Contact developer.");
-    controller.dac[| 4] = output_buffer;
-    controller.dac[| 5] = output_buffer2;
-    controller.dac[| 6] = output_buffer_ready;
-    controller.dac[| 7] = output_buffer_next_size;
-    exit;
-}
-buffer_maxframes = buffer_read(el_buffer,buffer_u32);
+	//draw object
+	el_buffer = ds_list_find_value(objectlist,1);
+	fetchedframe = frame mod object_maxframes;
+	buffer_seek(el_buffer,buffer_seek_start,0);
+	buffer_ver = buffer_read(el_buffer,buffer_u8);
+	if (buffer_ver != 52)
+	{
+	    show_message_new("Error: Unexpected idbyte in buffer for export_project. Things might get ugly. Contact developer.");
+	    controller.dac[| 4] = output_buffer;
+	    controller.dac[| 5] = output_buffer2;
+	    controller.dac[| 6] = output_buffer_ready;
+	    controller.dac[| 7] = output_buffer_next_size;
+	    exit;
+	}
+	buffer_maxframes = buffer_read(el_buffer,buffer_u32);
         
-//skip to correct frame
-for (i = 0; i < fetchedframe;i++)
-{
-    numofel = buffer_read(el_buffer,buffer_u32);
-    for (u = 0; u < numofel; u++)
-    {
-        numofdata = buffer_read(el_buffer,buffer_u32)-20;
-        buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*3.25);
-    }
-}
+	//skip to correct frame
+	for (i = 0; i < fetchedframe;i++)
+	{
+	    numofel = buffer_read(el_buffer,buffer_u32);
+	    for (u = 0; u < numofel; u++)
+	    {
+	        numofdata = buffer_read(el_buffer,buffer_u32)-20;
+	        buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*3.25);
+	    }
+	}
             
-buffer_maxelements = buffer_read(el_buffer,buffer_u32);
+	buffer_maxelements = buffer_read(el_buffer,buffer_u32);
         
-//make into lists
-for (i = 0; i < buffer_maxelements;i++)
-{
-    numofinds = buffer_read(el_buffer,buffer_u32);
-    ind_list = ds_list_create();
-    ds_list_add(el_list,ind_list);
-    for (u = 0; u < 10; u++)
-    {
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
-    }
+	//make into lists
+	for (i = 0; i < buffer_maxelements;i++)
+	{
+	    numofinds = buffer_read(el_buffer,buffer_u32);
+	    ind_list = ds_list_create();
+	    ds_list_add(el_list,ind_list);
+	    for (u = 0; u < 10; u++)
+	    {
+	        ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
+	    }
             
-    for (u = 10; u < 20; u++)
-    {
-        ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
-    }
-    for (u = 20; u < numofinds; u += 4)
-    {
-        xp = buffer_read(el_buffer,buffer_f32);
-        yp = buffer_read(el_buffer,buffer_f32);
-        bl = buffer_read(el_buffer,buffer_bool);
-        c = buffer_read(el_buffer,buffer_u32);
-        ds_list_add(ind_list,xp);
-        ds_list_add(ind_list,yp);
-        ds_list_add(ind_list,bl);
-        ds_list_add(ind_list,c);
-    }
+	    for (u = 10; u < 20; u++)
+	    {
+	        ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
+	    }
+	    for (u = 20; u < numofinds; u += 4)
+	    {
+	        xp = buffer_read(el_buffer,buffer_f32);
+	        yp = buffer_read(el_buffer,buffer_f32);
+	        bl = buffer_read(el_buffer,buffer_bool);
+	        c = buffer_read(el_buffer,buffer_u32);
+	        ds_list_add(ind_list,xp);
+	        ds_list_add(ind_list,yp);
+	        ds_list_add(ind_list,bl);
+	        ds_list_add(ind_list,c);
+	    }
+	}
 }
     
 //blindzones preview

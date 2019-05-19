@@ -53,6 +53,13 @@ for (i = 0; i < ds_list_size(filelist); i++)
 				else
 				{
 					// play
+					if (stop_at_play)
+					{
+						for (j = 0; j < ds_list_size(filelist); j++)
+						{
+							ds_list_set(filelist[| j], 0, false);
+						}
+					}
 					playing = 1;
 					ds_list_set(filelist[| i], 0, true);
 					ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);

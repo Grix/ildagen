@@ -1,0 +1,1 @@
+livecontrol.stop_at_play = !livecontrol.stop_at_play;

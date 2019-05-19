@@ -13,7 +13,7 @@ if (mouse_y < 0)
     }
     else if (mouse_x > menu_width_start[1]) and (mouse_x < menu_width_start[2])
     {
-        dropdown_menu_seq_properties();
+        dropdown_menu_live_properties();
     }
     else if (mouse_x > menu_width_start[2]) and (mouse_x < menu_width_start[3])
     {
