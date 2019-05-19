@@ -50,10 +50,10 @@ buffer_resize(save_buffer, buffer_tell(save_buffer));
 with (livecontrol)
 {
 	objectlist = ds_list_create();
-    ds_list_add(objectlist,0);
+    ds_list_add(objectlist,false);
     ds_list_add(objectlist,controller.save_buffer);
 	info = ds_list_create();
-    ds_list_add(info,controller.maxframes-1);
+    ds_list_add(info,0);
     ds_list_add(info,-1);
     ds_list_add(info,controller.maxframes);
     ds_list_add(objectlist,info);
@@ -61,9 +61,9 @@ with (livecontrol)
 	
     ds_list_add(filelist,objectlist);
 	
-	playingfile = ds_list_size(filelist)-1;
+	selectedfile = ds_list_size(filelist)-1;
 	
-	ds_list_add(undo_list, "c"+string(playingfile));
+	ds_list_add(undo_list, "c"+string(selectedfile));
 	
 	frame_surf_refresh = 1;
 	if (surface_exists(browser_surf))

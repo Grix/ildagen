@@ -4,23 +4,29 @@ if (room != rm_live) exit;
 if (playing == 1)
 {
     framehr += delta_time/1000000*controller.projectfps;
+    frame = round(framehr);
 	
-	var t_maxframes = 1;
-	if (playingfile >= 0 && playingfile < ds_list_size(filelist))
-	{
-		var t_objectlist = filelist[| playingfile];
-		var t_infolist = t_objectlist[| 2];
-		t_maxframes = t_infolist[| 2];
-	}
-	
-    if (framehr > t_maxframes-0.5)
-        framehr -= t_maxframes;
-    frame = clamp(round(framehr),0,t_maxframes-1);
     if (frame != frameprev)
     {
+		log((frame-frameprev), frame, frameprev);
         frame_surf_refresh = 1;
+		for (i = 0; i < ds_list_size(filelist); i++)
+		{
+			if (!ds_list_find_value(filelist[| i], 0))
+				continue;
+			
+			ds_list_set(ds_list_find_value(filelist[| i], 2), 0, ds_list_find_value(ds_list_find_value(filelist[| i], 2), 0)+(frame-frameprev));
+			
+			if (ds_list_find_value(ds_list_find_value(filelist[| i], 2), 0) >= ds_list_find_value(ds_list_find_value(filelist[| i], 2), 2))
+			{
+				// todo if loop
+				ds_list_set(filelist[| i], 0, false);
+			}
+		}
     }
 }
+
+frameprev = frame;
 
 minroomspeed = 60;
 

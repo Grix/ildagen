@@ -11,9 +11,9 @@ with (ddobj)
     ds_list_add(desc_list,"Send selected frames to editor mode");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,dd_live_fromlive);
-    ds_list_add(hl_list,ds_list_size(livecontrol.playingfile != -1));
+    ds_list_add(hl_list,ds_list_size(livecontrol.selectedfile != -1));
     ds_list_add(desc_list,"Delete (Del)");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,live_delete_object);
-    ds_list_add(hl_list,ds_list_size(livecontrol.playingfile != -1));
+    ds_list_add(hl_list,ds_list_size(livecontrol.selectedfile != -1));
 }

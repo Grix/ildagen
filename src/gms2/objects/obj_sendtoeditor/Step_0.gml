@@ -4,7 +4,7 @@ if (instance_exists(obj_dropdown))
 if (room == rm_seq)
 	_visible = (ds_list_size(seqcontrol.somaster_list) == 1)
 else if (room == rm_live)
-	_visible = (livecontrol.playingfile != -1)
+	_visible = (livecontrol.selectedfile != -1)
 	
 if (!_visible) 
     exit;

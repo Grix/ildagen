@@ -150,8 +150,6 @@ else if (keyboard_check_pressed(ord("P")))
 
 else if (keyboard_check_pressed(vk_escape))
 {
-    ds_list_clear(semaster_list);
-        
     if (laseron)
     {
         laseron = false;

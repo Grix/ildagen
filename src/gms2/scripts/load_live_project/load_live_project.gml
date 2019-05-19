@@ -15,7 +15,7 @@ if (idbyte != 200)
     exit;
 }
 
-playingfile = -1;
+selectedfile = -1;
 frame_surf_refresh = 1;
 if (surface_exists(browser_surf))
 	surface_free(browser_surf);

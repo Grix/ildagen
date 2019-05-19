@@ -24,14 +24,14 @@ if (output_buffer_ready)
 
 maxpoints = 0;
 
-if (playingfile < 0 || playingfile >= ds_list_size(filelist))
+if (selectedfile < 0 || selectedfile >= ds_list_size(filelist))
 	exit;
     
 buffer_seek(output_buffer, buffer_seek_start, 0);
 
 el_list = ds_list_create(); 
     
-objectlist = filelist[| playingfile];
+objectlist = filelist[| selectedfile];
 
 infolist =  ds_list_find_value(objectlist, 2);
 object_length = ds_list_find_value(infolist, 0);

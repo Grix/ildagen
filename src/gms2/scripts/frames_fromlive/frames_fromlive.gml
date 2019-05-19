@@ -4,7 +4,7 @@ if (os_browser != browser_not_a_browser)
     exit;
 }
 
-controller.load_buffer = ds_list_find_value(filelist[| playingfile],1);
+controller.load_buffer = ds_list_find_value(filelist[| selectedfile],1);
 
 with (controller)
 {

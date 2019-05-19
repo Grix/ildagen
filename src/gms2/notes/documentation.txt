@@ -108,10 +108,11 @@ LIVECONTROL
 
 filelist
     elements...
-        xpos on timeline (unused)
+        is_playing
         frame buffers
         info list..
-            length
+            position
             screenshot surface
             maxframes
 		keyboard shortcut
+		is_loop //todo

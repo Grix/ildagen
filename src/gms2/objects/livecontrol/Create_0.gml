@@ -17,12 +17,12 @@ frame = 0;
 framehr = 0;
 maxframes = 1;
 frameprev = -1;
-playingfile = -1; // index of filelist, -1 if none selected
+selectedfile = -1; // index of filelist, -1 if none selected
 highlightfile = -1;
+stop_at_play = false;
 undo_list = ds_list_create();
 filelist = ds_list_create();
-el_list = ds_list_create();
-frame_list = ds_list_create();
+el_list = -1;
 
 browser_surf = -1;
 frame_surf = -1;

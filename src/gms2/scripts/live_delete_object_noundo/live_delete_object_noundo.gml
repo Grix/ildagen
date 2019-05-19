@@ -1,6 +1,6 @@
 with (livecontrol)
 {
-	objectlist = filelist[| playingfile];
+	objectlist = filelist[| selectedfile];
 	
 	infolist = objectlist[| 2];
         
@@ -14,9 +14,9 @@ with (livecontrol)
     ds_list_destroy(infolist);
     ds_list_destroy(objectlist);
 	
-	ds_list_delete(filelist, playingfile);
+	ds_list_delete(filelist, selectedfile);
 	
-	playingfile = -1;
+	selectedfile = -1;
 	if (surface_exists(browser_surf))
 		surface_free(browser_surf);
 	browser_surf = -1;

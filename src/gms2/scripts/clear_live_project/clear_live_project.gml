@@ -61,11 +61,11 @@ undo_list = ds_list_create();
     
 repeat (ds_list_size(filelist))
 {
-    playingfile = 0;
+    selectedfile = 0;
 	live_delete_object_noundo();
 }
 
-playingfile = -1;
+selectedfile = -1;
 frame_surf_refresh = 1;
 if (surface_exists(browser_surf))
 	surface_free(browser_surf);

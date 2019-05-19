@@ -30,7 +30,7 @@ surface_set_target(browser_surf);
 			t_infolist[| 1] = make_screenshot(objectlist[| 1], t_cell_size-1);
 		draw_surface_part(t_infolist[| 1],0,0,t_cell_size-1,t_cell_size-1, t_column*t_cell_size+1, t_row*t_cell_size+1);
 		
-		if (playingfile == i)
+		if (selectedfile == i)
 		{
 			draw_set_alpha(0.3);
 			draw_set_color(controller.c_gold);

@@ -123,8 +123,19 @@ else if (keyboard_check_pressed(ord("P")))
 
 else if (keyboard_check_pressed(vk_delete))
 {
-    if (playingfile != -1)
+    if (selectedfile != -1)
 		live_delete_object();
+}
+
+else if (keyboard_check_pressed(vk_backspace))
+{
+	frame_surf_refresh = 1;
+	if (surface_exists(browser_surf))
+		surface_free(browser_surf);
+	browser_surf = -1;
+	frame = 0;
+    playing = 0;
+	selectedfile = -1;
 }
 
 else
@@ -152,11 +163,19 @@ else
 		{
 			if (keyboard_check_pressed(ds_list_find_value(filelist[| i], 3)))
 			{
-				playing = 1;
-				frame = 0;
-				framehr = 0;
+				if (ds_list_find_value(filelist[| i], 0))
+				{
+					// stop
+					ds_list_set(filelist[| i], 0, false);
+				}
+				else
+				{
+					// play
+					playing = 1;
+					ds_list_set(filelist[| i], 0, true);
+					ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);
+				}
 				frame_surf_refresh = 1;
-				playingfile = i;
 				if (surface_exists(browser_surf))
 					surface_free(browser_surf);
 				browser_surf = -1;

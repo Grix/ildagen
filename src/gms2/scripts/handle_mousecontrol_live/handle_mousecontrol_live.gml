@@ -37,18 +37,27 @@ for (i = 0; i < ds_list_size(filelist); i++)
 		
 		if (mouse_check_button_pressed(mb_left))
 		{
-			if (doubleclick && playingfile == i)
+			if (doubleclick && selectedfile == i)
 			{
 				//edit object
                 live_dialog_yesno("fromlive","You are about to open these frames in the editor mode. This will discard any unsaved changes in the editor. Continue? (Cannot be undone)");
 			}        
 			else
 			{
-				playing = 1;
-				frame = 0;
-				framehr = 0;
+				selectedfile = i;
+				if (ds_list_find_value(filelist[| i], 0))
+				{
+					// stop
+					ds_list_set(filelist[| i], 0, false);
+				}
+				else
+				{
+					// play
+					playing = 1;
+					ds_list_set(filelist[| i], 0, true);
+					ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);
+				}
 				frame_surf_refresh = 1;
-				playingfile = i;
 				if (surface_exists(browser_surf))
 					surface_free(browser_surf);
 				browser_surf = -1;
@@ -56,7 +65,7 @@ for (i = 0; i < ds_list_size(filelist); i++)
 		}
 		else if (mouse_check_button_pressed(mb_right))
 		{
-			playingfile = i;
+			selectedfile = i;
 			if (surface_exists(browser_surf))
 				surface_free(browser_surf);
 			browser_surf = -1;

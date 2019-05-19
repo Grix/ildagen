@@ -9,7 +9,7 @@ with (livecontrol)
     if (string_char_at(undo,0) == "c")
     {
         //undo create object (delete)
-        playingfile = real(string_digits(undo));
+        selectedfile = real(string_digits(undo));
 		live_delete_object_noundo();
     }
     else if (string_char_at(undo,0) == "d")
