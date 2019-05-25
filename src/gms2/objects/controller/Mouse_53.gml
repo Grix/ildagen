@@ -37,12 +37,10 @@ if (mouse_y < 0)
 if (instance_exists(obj_dropdown)) or (window_mouse_get_x() > view_wport[4]) or (window_mouse_get_y()-23 > view_wport[4]) or (keyboard_check(vk_control) or (placing == "select"))
     exit;
 
-var t_scale = $ffff/view_wport[4];
 var t_mouse_x = window_mouse_get_x();
 var t_mouse_y = window_mouse_get_y()-23;
 
-//todo maybe rewrite to avoid clamp
-if !ds_list_empty(semaster_list) && handle_trans()
+if (!ds_list_empty(semaster_list) && handle_trans())
     exit;
     
 ds_list_clear(semaster_list);

@@ -1,6 +1,6 @@
 TODO
-- integrate shutter fix in dacwrapper
 - set fixed scanrate instead of fps
+- increase default fps and reduce automatically on complex frames
 - reapply combine shapes
 - split objects
 - double check and fix maxpoints_static calculation
@@ -114,4 +114,4 @@ filelist
             screenshot surface
             maxframes
 		keyboard shortcut
-		is_loop //todo
+		is_loop

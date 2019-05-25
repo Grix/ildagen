@@ -19,8 +19,10 @@ if (playing == 1)
 			
 			if (ds_list_find_value(ds_list_find_value(filelist[| i], 2), 0) >= ds_list_find_value(ds_list_find_value(filelist[| i], 2), 2))
 			{
-				// todo if loop
-				ds_list_set(filelist[| i], 0, false);
+				if (ds_list_find_value(filelist[| i], 4))
+					ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0); //loop
+				else
+					ds_list_set(filelist[| i], 0, false); //stop
 			}
 		}
     }

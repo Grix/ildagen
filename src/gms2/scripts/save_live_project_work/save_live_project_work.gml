@@ -20,6 +20,7 @@ for (i = global.loading_current; i < global.loading_end;i++)
     buffer_write(save_buffer, buffer_u32, ds_list_find_value(tempinfolist,0));
     buffer_write(save_buffer, buffer_u32, ds_list_find_value(tempinfolist,2));
 	buffer_write(save_buffer, buffer_u32, t_shortcut);
+	buffer_write(save_buffer, buffer_bool, objectlist[| 4]);
 }
     
 buffer_resize(save_buffer,buffer_tell(save_buffer));
