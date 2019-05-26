@@ -28,10 +28,19 @@ buffer_seek(load_buffer,buffer_seek_start,50);
     
 global.loadingtimeprev = get_timer();
 
-global.loading_loadliveproject = 1;
-
 global.loading_start = 0;
 global.loading_end = buffer_read(load_buffer,buffer_u32);
+
+if (global.loading_end >= 10)
+{
+	if (!verify_serial(1))
+	{
+		buffer_delete(load_buffer);
+		return;
+	}
+}
+
+global.loading_loadliveproject = 1;
 global.loading_current = global.loading_start;
 
 room_goto(rm_loading);

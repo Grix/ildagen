@@ -26,9 +26,9 @@ if (idbyte == 200)
         ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
         ds_list_add(objectinfolist,-1);
         ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
-		ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_bool)));
             
         ds_list_add(objectlist,round(buffer_read(load_buffer,buffer_u32)));
+		ds_list_add(objectlist,buffer_read(load_buffer,buffer_bool));
 		
 		ds_list_add(filelist, objectlist);
 	}

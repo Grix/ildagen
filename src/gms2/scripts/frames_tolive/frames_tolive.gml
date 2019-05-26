@@ -5,6 +5,12 @@ if (os_browser != browser_not_a_browser)
     exit;
 }
 
+if (ds_list_size(livecontrol.filelist) >= 10)
+{
+	if (!verify_serial(1))
+		return;
+}
+
 ilda_cancel();
 frame = 0;
 framehr = 0;

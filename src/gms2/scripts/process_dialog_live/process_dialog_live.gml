@@ -24,6 +24,11 @@ if (new_id == getint)
 			load_live_project(get_open_filename_ext("LSG Live Grid|*.igl","","","Select LaserShowGen Live grid file"));
 			break;
 		}
+		case "clearproject":
+		{
+			clear_live_project();
+			break;
+		}
       }
     }
 }

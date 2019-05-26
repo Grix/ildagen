@@ -1,2 +1,2 @@
 with (livecontrol)
-	clear_live_project();
+	live_dialog_yesno( "clearproject", "Are you sure you want to clear the live grid project? (Cannot be undone)");

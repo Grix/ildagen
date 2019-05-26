@@ -1,3 +1,9 @@
+if (ds_list_size(livecontrol.filelist) >= 10)
+{
+	if (!verify_serial(1))
+		return;
+}
+
 global.loadingtimeprev = get_timer();
 
 with(controller)

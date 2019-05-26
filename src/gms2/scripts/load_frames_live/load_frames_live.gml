@@ -1,5 +1,11 @@
 //load frames file for live mode object
 
+if (ds_list_size(livecontrol.filelist) >= 10)
+{
+	if (!verify_serial(1))
+		return;
+}
+
 file_loc = argument0;
 if !string_length(file_loc) 
     exit;
