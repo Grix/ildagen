@@ -20,7 +20,7 @@ GMEXPORT double InitDacwrapper()
 		olscEzAudDacDevice = new Device_OLSC_EzAudDac();
 		riyaDevice = new Device_RIYA();
     #else
-		etherDreamDevice = new Device_Etherdream_unix();
+		etherDreamDevice = new Device_Etherdream();
 	#endif
 	
 	initialized = true;

@@ -1,11 +1,8 @@
+v1.7.0
+- New Live Mode: Play files on the fly, for DJs and improvised shows.
+- Various bug fixes.
+
 v1.6.9
-- Hotfix 1: Fixed Ether Dream DAC not being detected properly
-- Fixed various bugs including objects possibly becoming merged in editor mode, and missing undo functionality in timeline mode envelopes
-- Added swap x/y output setting
-
-v1.6.8
-- Fixed various bugs including crashes when entering numbers into settings dialogs on some systems
-
-v1.6.7
-- Fixed some critical bugs with certain DACs, especially EzAudDAC and Easylase
-- Other minor bug fixes
+- Hotfix 1: Fixed Ether Dream DAC not being detected properly.
+- Fixed various bugs including objects possibly becoming merged in editor mode, and missing undo functionality in timeline mode envelopes.
+- Added swap x/y output setting.
