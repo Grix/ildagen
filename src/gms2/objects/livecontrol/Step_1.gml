@@ -8,7 +8,6 @@ if (playing == 1)
 	
     if (frame != frameprev)
     {
-		log((frame-frameprev), frame, frameprev);
         frame_surf_refresh = 1;
 		for (i = 0; i < ds_list_size(filelist); i++)
 		{
@@ -17,7 +16,12 @@ if (playing == 1)
 			
 			ds_list_set(ds_list_find_value(filelist[| i], 2), 0, ds_list_find_value(ds_list_find_value(filelist[| i], 2), 0)+(frame-frameprev));
 			
-			if (ds_list_find_value(ds_list_find_value(filelist[| i], 2), 0) >= ds_list_find_value(ds_list_find_value(filelist[| i], 2), 2))
+			
+			var t_pos = ds_list_find_value(ds_list_find_value(filelist[| i], 2), 0);
+			var t_maxframes = ds_list_find_value(ds_list_find_value(filelist[| i], 2), 2);
+			
+			if (t_pos >= t_maxframes && t_maxframes > 1) //todo first frame of animation missing
+			|| (t_pos > t_maxframes && t_maxframes == 1) 
 			{
 				if (ds_list_find_value(filelist[| i], 4))
 					ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0); //loop

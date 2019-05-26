@@ -38,6 +38,7 @@ for (j = 0; j < ds_list_size(filelist); j++)
 	infolist =  ds_list_find_value(objectlist, 2);
 	object_maxframes = ds_list_find_value(infolist, 2);
 	frame = infolist[| 0];
+	log(j, frame);
 
 	//draw object
 	el_buffer = ds_list_find_value(objectlist,1);

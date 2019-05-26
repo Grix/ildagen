@@ -2,6 +2,7 @@ if (window_mouse_get_x() > tlw)
 or (window_mouse_get_y() < view_hport[3]+view_hport[4])
 or (controller.dialog_open)
 or (controller.menu_open)
+or (instance_exists(obj_dropdown))
     exit;
 
 var t_width = camera_get_view_width(view_get_camera(1));

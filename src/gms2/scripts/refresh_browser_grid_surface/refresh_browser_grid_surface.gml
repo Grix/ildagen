@@ -16,6 +16,8 @@ surface_set_target(browser_surf);
 
 	var t_row;
 	var t_column;
+	
+	//todo draw empty grid?
 
 	for (i = 0; i < ds_list_size(filelist); i++)
 	{

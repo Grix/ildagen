@@ -1,5 +1,5 @@
-version = "1.6.9hf1";
-versiondate = "2019-01-19";
+version = "1.7.0";
+versiondate = "2019-05-26";
 
 if (debug_mode)
 {
@@ -117,7 +117,7 @@ dac = -1;
 laseron = false;
 laseronfirst = false;
 el_id = 2;
-projectfps = 60;
+projectfps = 30;
 xdelta[32] = 0;
 playing = 0;
 update_verbose = 0;

@@ -1,4 +1,4 @@
-if (room != rm_seq) controller.menu_open = 0;
+//if (room != rm_seq) controller.menu_open = 0;
 
 if (controller.dialog_open)
     exit;

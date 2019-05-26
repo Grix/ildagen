@@ -105,9 +105,6 @@ else if (room = rm_options)
 }
 else if (room = rm_live)
 { 
-    if (!verify_serial(true))
-        exit;
-        
     with (controller)
     {
         if (laseron)
