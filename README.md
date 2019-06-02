@@ -1,7 +1,7 @@
-LasershowGen
+LaserShowGen
 =======
 
-Freemium ILDA file / laser frame generator
+Freemium laser show editor / viewer
 
 http://pages.bitlasers.com/lasershowgen/
 
