@@ -1,5 +1,5 @@
 TODO
-- set fixed scanrate instead of fps
+- set fixed scanrate instead of fps when optimization off
 - increase default fps and reduce automatically on complex frames
 - reapply combine shapes
 - split objects

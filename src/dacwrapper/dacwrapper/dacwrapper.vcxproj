@@ -14,19 +14,19 @@
     <ProjectGuid>{01625F4D-C99D-41A9-BCB3-10C8BD176AE1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>dacwrapper</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -84,12 +84,14 @@
     <ClCompile Include="dacwrapper.cpp" />
     <ClCompile Include="Device_Etherdream.cpp" />
     <ClCompile Include="Device_Helios.cpp" />
+    <ClCompile Include="Device_IDN.cpp" />
     <ClCompile Include="Device_LaserDock.cpp" />
     <ClCompile Include="Device_OLSC.cpp" />
     <ClCompile Include="Device_OLSC_Easylase.cpp" />
     <ClCompile Include="Device_OLSC_EzAudDac.cpp" />
     <ClCompile Include="Device_RIYA.cpp" />
     <ClCompile Include="HeliosDac.cpp" />
+    <ClCompile Include="idn.cpp" />
     <ClCompile Include="LaserdockDevice.cpp" />
     <ClCompile Include="LaserdockDeviceManager.cpp" />
     <ClCompile Include="LaserdockDeviceManager_desktop.cpp" />
@@ -100,12 +102,16 @@
     <ClInclude Include="dacwrapper.h" />
     <ClInclude Include="Device_Etherdream.h" />
     <ClInclude Include="Device_Helios.h" />
+    <ClInclude Include="Device_IDN.h" />
     <ClInclude Include="Device_LaserDock.h" />
     <ClInclude Include="Device_OLSC.h" />
     <ClInclude Include="Device_OLSC_Easylase.h" />
     <ClInclude Include="Device_OLSC_EzAudDac.h" />
     <ClInclude Include="Device_RIYA.h" />
     <ClInclude Include="HeliosDac.h" />
+    <ClInclude Include="idn-hello.h" />
+    <ClInclude Include="idn-stream.h" />
+    <ClInclude Include="idn.h" />
     <ClInclude Include="LaserdockDevice.h" />
     <ClInclude Include="LaserdockDeviceManager.h" />
     <ClInclude Include="LaserdockDeviceManager_p.h" />

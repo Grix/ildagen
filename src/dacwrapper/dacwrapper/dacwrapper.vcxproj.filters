@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Helios">
       <UniqueIdentifier>{bcf067eb-3947-4fe7-ad67-e43096a78b65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Idn">
+      <UniqueIdentifier>{441f5b54-373a-4eea-800a-651ad86a1036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Idn">
+      <UniqueIdentifier>{352c261c-5421-4b84-9f8d-b7ef46e44242}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dacwrapper.cpp">
@@ -65,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="HeliosDac.cpp">
       <Filter>Source Files\Helios</Filter>
+    </ClCompile>
+    <ClCompile Include="idn.cpp">
+      <Filter>Source Files\Idn</Filter>
+    </ClCompile>
+    <ClCompile Include="Device_IDN.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +121,18 @@
     </ClInclude>
     <ClInclude Include="HeliosDac.h">
       <Filter>Header Files\Helios</Filter>
+    </ClInclude>
+    <ClInclude Include="idn.h">
+      <Filter>Header Files\Idn</Filter>
+    </ClInclude>
+    <ClInclude Include="idn-hello.h">
+      <Filter>Header Files\Idn</Filter>
+    </ClInclude>
+    <ClInclude Include="idn-stream.h">
+      <Filter>Header Files\Idn</Filter>
+    </ClInclude>
+    <ClInclude Include="Device_IDN.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
