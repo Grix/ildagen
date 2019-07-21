@@ -2,6 +2,7 @@
 
 #include "idn.cpp"
 #include <mutex>
+#include <vector>
 
 class Device_IDN
 {
@@ -32,7 +33,8 @@ public:
 
 private:
 
-	IDNCONTEXT contex = { 0 };
+	IDNCONTEXT* contexts[16];
+	in_addr_t helloServerAddr = 0;
 
 	bool ready;
 	int frameNum[16];

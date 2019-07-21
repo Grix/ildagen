@@ -47,9 +47,16 @@ bool Device_IDN::OutputFrame(int cardNum, int rate, int frameSize, IdnPoint* buf
 	{
 		if ((frameNum[cardNum] > thisFrameNum)) //if newer frame is waiting to be transfered, cancel this one
 			break;
-		else if (heliosDevice->GetStatus(cardNum) == 1)
+		else if (true)//heliosDevice->GetStatus(cardNum) == 1)
 		{
-			return (heliosDevice->WriteFrame(cardNum, rate, HELIOS_FLAGS_DEFAULT, bufferAddress, frameSize) == HELIOS_SUCCESS);
+			//return (heliosDevice->WriteFrame(cardNum, rate, HELIOS_FLAGS_DEFAULT, bufferAddress, frameSize) == HELIOS_SUCCESS);
+			idnOpenFrameXYRGB(contexts[cardNum]);
+			//todo must insert special first two and last two points;
+			for (int i = 0; i < frameSize; i++)
+			{
+				idnPutSampleXYRGB(contexts[cardNum], bufferAddress[i].x, bufferAddress[i].x, bufferAddress[i].r, bufferAddress[i].g, bufferAddress[i].b);
+			}
+			idnPushFrameXYRGB(contexts[i]);
 		}
 		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
@@ -60,6 +67,18 @@ bool Device_IDN::OutputFrame(int cardNum, int rate, int frameSize, IdnPoint* buf
 bool Device_IDN::OpenDevice(int cardNum)
 {
 	std::lock_guard<std::mutex> lock(frameLock[cardNum]);
+
+	IDNCONTEXT ctx = { 0 };
+	ctx.serverSockAddr.sin_family = AF_INET;
+	ctx.serverSockAddr.sin_port = htons(IDN_PORT);
+	ctx.serverSockAddr.sin_addr.s_addr = helloServerAddr;
+	//ctx.usFrameTime = 1000000 / frameRate;
+	//ctx.jitterFreeFlag = jitterFreeFlag;
+	//ctx.scanSpeed = scanSpeed;
+	//ctx.colorShift = colorShift;
+	ctx.startTime = getSystemTimeUS();
+
+	contexts[cardNum] = &ctx;
 	
 	#if defined(_WIN32) || defined(WIN32)
 		// Initialize Winsock
@@ -81,8 +100,8 @@ bool Device_IDN::OpenDevice(int cardNum)
 	#endif
 
 		// Open UDP socket
-		context.fdSocket = socket(AF_INET, SOCK_DGRAM, 0);
-		if (context.fdSocket < 0)
+		contexts[cardNum]->fdSocket = socket(AF_INET, SOCK_DGRAM, 0);
+		if (contexts[cardNum]->fdSocket < 0)
 		{
 		#if defined(_WIN32) || defined(WIN32)
 				logError("socket() error %d", WSAGetLastError());
@@ -103,7 +122,7 @@ bool Device_IDN::Stop(int cardNum)
 	for (int i = 0; i < 20; i++)
 	{
 		frameNum[cardNum]++;
-		if (heliosDevice->Stop(cardNum) == 1)
+		if (idnSendVoid(contexts[cardNum]) == 0)
 			return true;
 	}
 
@@ -115,18 +134,27 @@ bool Device_IDN::CloseAll()
 	if (!ready)
 		return false;
 
-	idnSendClose(&context);
-	// Free buffer memory
-	if (context.bufferPtr) free(context.bufferPtr);
+	if (!ready) return false;
 
-	// Close socket
-	if (context.fdSocket >= 0)
+	for (int i = 0; i < 16; i++)
 	{
+		frameNum[i]++;
+		if (contexts[i] != NULL)
+		{
+			idnSendClose(&contexts[i]);
+
+			if (contexts[i]->bufferPtr) free(contexts[i]->bufferPtr);
+
+			// Close socket
+			if (contexts[i]->fdSocket >= 0)
+			{
 #if defined(_WIN32) || defined(WIN32)
-		closesocket(context.fdSocket);
+				closesocket(contexts[i]->fdSocket);
 #else
-		close(ctx.fdSocket);
+				close(contexts[i]->fdSocket);
 #endif
+			}
+		}
 	}
 
 	ready = false;
@@ -138,7 +166,7 @@ bool Device_IDN::GetName(int cardNum, char* name)
 	if (!ready)
 		return false;
 
-	return (heliosDevice->GetName(cardNum, name) == 1);
+	return "IDN";//(heliosDevice->GetName(cardNum, name) == 1);
 }
 
 bool Device_IDN::SetName(int cardNum, char* name)
@@ -146,13 +174,13 @@ bool Device_IDN::SetName(int cardNum, char* name)
 	if (!ready)
 		return false;
 
-	return (heliosDevice->SetName(cardNum, name) == 1);
+	return "IDN";//(heliosDevice->SetName(cardNum, name) == 1);
 }
 
 double Device_IDN::GetFirmwareVersion(int cardNum)
 {
 	if (!ready)
-		return false;
+		return -1;
 
-	return heliosDevice->GetFirmwareVersion(cardNum);
+	return 0;//heliosDevice->GetFirmwareVersion(cardNum);
 }
