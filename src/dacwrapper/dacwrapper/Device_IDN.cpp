@@ -13,26 +13,11 @@ Device_IDN::~Device_IDN()
 
 int Device_IDN::Init()
 {
-	CloseAll();
-
-	// Initialize driver function context
-	context = { 0 };
-	context.serverSockAddr.sin_family = AF_INET;
-	context.serverSockAddr.sin_port = htons(IDN_PORT);
-	context.serverSockAddr.sin_addr.s_addr = helloServerAddr;
-	context.usFrameTime = 1000000 / frameRate;
-	context.jitterFreeFlag = jitterFreeFlag;
-	context.scanSpeed = scanSpeed;
-	context.colorShift = colorShift;
-	context.startTime = getSystemTimeUS();
-
 	ready = true;
-	int result = heliosDevice->OpenDevices();
 
-	if (result <= 0)
-		CloseAll();
+	// todo detect with hello-scan
 
-	return result;
+	return 0;
 }
 
 bool Device_IDN::OutputFrame(int cardNum, int rate, int frameSize, IdnPoint* bufferAddress)
@@ -50,13 +35,23 @@ bool Device_IDN::OutputFrame(int cardNum, int rate, int frameSize, IdnPoint* buf
 		else if (true)//heliosDevice->GetStatus(cardNum) == 1)
 		{
 			//return (heliosDevice->WriteFrame(cardNum, rate, HELIOS_FLAGS_DEFAULT, bufferAddress, frameSize) == HELIOS_SUCCESS);
-			idnOpenFrameXYRGB(contexts[cardNum]);
+			if (idnOpenFrameXYRGB(contexts[cardNum]))
+				return false;
+
+			contexts[cardNum]->usFrameTime = 1000000 / (frameSize/rate);
+			contexts[cardNum]->scanSpeed = rate;
+			contexts[cardNum]->jitterFreeFlag = 1;
+
 			//todo must insert special first two and last two points;
 			for (int i = 0; i < frameSize; i++)
 			{
-				idnPutSampleXYRGB(contexts[cardNum], bufferAddress[i].x, bufferAddress[i].x, bufferAddress[i].r, bufferAddress[i].g, bufferAddress[i].b);
+				if (idnPutSampleXYRGB(contexts[cardNum], bufferAddress[i].x, bufferAddress[i].x, bufferAddress[i].r, bufferAddress[i].g, bufferAddress[i].b))
+					return false;
 			}
-			idnPushFrameXYRGB(contexts[i]);
+			if (idnPushFrameXYRGB(contexts[i]))
+				return false;
+			else
+				return true;
 		}
 		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
@@ -75,7 +70,7 @@ bool Device_IDN::OpenDevice(int cardNum)
 	//ctx.usFrameTime = 1000000 / frameRate;
 	//ctx.jitterFreeFlag = jitterFreeFlag;
 	//ctx.scanSpeed = scanSpeed;
-	//ctx.colorShift = colorShift;
+	ctx.colorShift = 0;
 	ctx.startTime = getSystemTimeUS();
 
 	contexts[cardNum] = &ctx;
@@ -99,18 +94,18 @@ bool Device_IDN::OpenDevice(int cardNum)
 		currTimeUS = (uint32_t)((tsRef.tv_sec * 1000000ul) + (tsRef.tv_nsec / 1000));
 	#endif
 
-		// Open UDP socket
-		contexts[cardNum]->fdSocket = socket(AF_INET, SOCK_DGRAM, 0);
-		if (contexts[cardNum]->fdSocket < 0)
-		{
-		#if defined(_WIN32) || defined(WIN32)
-				logError("socket() error %d", WSAGetLastError());
-		#else
-				logError("socket() errno = %d", errno);
-		#endif
+	// Open UDP socket
+	contexts[cardNum]->fdSocket = socket(AF_INET, SOCK_DGRAM, 0);
+	if (contexts[cardNum]->fdSocket < 0)
+	{
+	#if defined(_WIN32) || defined(WIN32)
+			logError("socket() error %d", WSAGetLastError());
+	#else
+			logError("socket() errno = %d", errno);
+	#endif
 
-				return false;
-		}
+			return false;
+	}
 
 	return true;
 }
