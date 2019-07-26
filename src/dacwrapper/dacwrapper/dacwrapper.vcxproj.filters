@@ -78,6 +78,9 @@
     <ClCompile Include="Device_IDN.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="plt-windows.c">
+      <Filter>Source Files\Idn</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device_RIYA.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="Device_IDN.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="plt-windows.h">
+      <Filter>Header Files\Idn</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -20,6 +20,25 @@
 	#include <arpa/inet.h>
 #endif
 
+#include <stdio.h>
+#include <stdarg.h>
+#include <stdint.h>
+#include <time.h>
+
+#if defined(_WIN32) || defined(WIN32)
+
+#include "plt-windows.h"
+
+#else
+
+#include <stdlib.h>
+#include <ifaddrs.h>
+
+#include "plt-posix.h"
+
+#endif
+
+
 #define MAX_IDN_MESSAGE_LEN             0xFF00      // IDN-Message maximum length (due to lower layer transport)
 #define XYRGB_SAMPLE_SIZE               7
 
@@ -588,6 +607,199 @@ int idnSendClose(void* context)
 	return 0;
 }
 
+
+bool idnHelloScan(const char* ifName, uint32_t ifIP4Addr)
+{
+	// Socket file descriptor
+	int fdSocket = -1;
+
+	bool found = false;
+
+	do
+	{
+		// Print interface info
+		char ifAddrString[20];
+		if (inet_ntop(AF_INET, &ifIP4Addr, ifAddrString, sizeof(ifAddrString)) == (char*)0)
+		{
+			logError("inet_ntop() failed (error: %d)", plt_sockGetLastError());
+			break;
+		}
+		logInfo("Scanning interface %s (IP4: %s)", ifName ? ifName : "<?>", ifAddrString);
+
+		// Create socket
+		fdSocket = plt_sockOpen(AF_INET, SOCK_DGRAM, 0);
+		if (fdSocket < 0)
+		{
+			logError("socket() failed (error: %d)", plt_sockGetLastError());
+			break;
+		}
+
+		// Allow broadcast on socket
+		if (plt_sockSetBroadcast(fdSocket) < 0)
+		{
+			logError("setsockopt(broadcast) failed (error: %d)", plt_sockGetLastError());
+			break;
+		}
+
+		// Bind to local interface (any! port)
+		// Note: This bind is needed to send the broadcast on the specific (virtual) interface,
+		struct sockaddr_in bindSockAddr = { 0 };
+		bindSockAddr.sin_family = AF_INET;
+		bindSockAddr.sin_port = 0;
+		bindSockAddr.sin_addr.s_addr = ifIP4Addr;
+
+		if (bind(fdSocket, (struct sockaddr*) & bindSockAddr, sizeof(bindSockAddr)) < 0)
+		{
+			logError("bind() failed (error: %d)", plt_sockGetLastError());
+			break;
+		}
+
+		// ----------------------------------------------------------------------------------------
+		// Send request, use network broadcast address
+
+		struct sockaddr_in sendSockAddr;
+		sendSockAddr.sin_family = AF_INET;
+		sendSockAddr.sin_port = htons(IDNVAL_HELLO_UDP_PORT);
+		sendSockAddr.sin_addr.s_addr = INADDR_BROADCAST;
+
+		IDNHDR_PACKET sendPacketHdr;
+		sendPacketHdr.command = IDNCMD_SCAN_REQUEST;
+		sendPacketHdr.flags = 0;
+		sendPacketHdr.sequence = htons(rand() & 0xFFFF);
+
+		if (sendto(fdSocket, (char*)& sendPacketHdr, sizeof(sendPacketHdr), 0, (struct sockaddr*) & sendSockAddr, sizeof(sendSockAddr)) < 0)
+		{
+			logError("sendto() failed (error: %d)", plt_sockGetLastError());
+			break;
+		}
+
+
+		// ----------------------------------------------------------------------------------------
+		// Receive response(s)
+
+		fd_set rfdsPrm;
+		FD_ZERO(&rfdsPrm);
+		FD_SET(fdSocket, &rfdsPrm);
+
+		unsigned msTimeout = 500;
+
+		// Remember start time
+		uint32_t usStart = plt_getMonoTimeUS();
+
+		while (1)
+		{
+			// Calculate time left
+			uint32_t usNow = plt_getMonoTimeUS();
+			uint32_t usElapsed = usNow - usStart;
+			uint32_t usLeft = (msTimeout * 1000) - usElapsed;
+			if ((int32_t)usLeft <= 0) break;
+
+			// Populate select timeout
+			struct timeval tv;
+			tv.tv_sec = usLeft / 1000000;
+			tv.tv_usec = usLeft % 1000000;
+
+			// Wait for incoming datagrams
+			fd_set rfdsResult = rfdsPrm;
+			int numReady = select(fdSocket + 1, &rfdsResult, 0, 0, &tv);
+			if (numReady < 0)
+			{
+				logError("select() failed (error: %d)", plt_sockGetLastError());
+				break;
+			}
+			else if (numReady == 0)
+			{
+				break;
+			}
+
+			// Receive scan response
+			struct sockaddr_in recvSockAddr;
+			struct sockaddr* recvAddrPre = (struct sockaddr*) & recvSockAddr;
+			socklen_t recvAddrSize = sizeof(recvSockAddr);
+
+			int nBytes = recvfrom(fdSocket, gbl_packetBuffer, sizeof(gbl_packetBuffer), 0, recvAddrPre, &recvAddrSize);
+			if (nBytes < 0)
+			{
+				logError("recvfrom() failed (error: %d)", plt_sockGetLastError());
+				break;
+			}
+
+			// Convert IP address to string
+			char recvAddrString[20];
+			if (inet_ntop(AF_INET, &recvSockAddr.sin_addr, recvAddrString, sizeof(recvAddrString)) == (char*)0)
+			{
+				logError("inet_ntop() failed (error: %d)", plt_sockGetLastError());
+				break;
+			}
+
+			// Check sender port
+			if (ntohs(recvSockAddr.sin_port) != IDNVAL_HELLO_UDP_PORT)
+			{
+				logError("%s: Invalid sender port %u", recvAddrString, ntohs(recvSockAddr.sin_port));
+				break;
+			}
+
+			// Check packet size
+			if (nBytes != (sizeof(IDNHDR_PACKET) + sizeof(IDNHDR_SCAN_RESPONSE)))
+			{
+				logError("%s: Invalid packet size %u\n", recvAddrString, nBytes);
+				break;
+			}
+
+			// Check IDN-Hello packet header
+			IDNHDR_PACKET* recvPacketHdr = (IDNHDR_PACKET*)gbl_packetBuffer;
+			if (recvPacketHdr->command != IDNCMD_SCAN_RESPONSE)
+			{
+				logError("%s: Invalid command 0x%02X\n", recvAddrString, recvPacketHdr->command);
+				break;
+			}
+			if (recvPacketHdr->sequence != sendPacketHdr.sequence)
+			{
+				logError("%s: Invalid sequence\n", recvAddrString);
+				break;
+			}
+
+			// Check scan response header
+			IDNHDR_SCAN_RESPONSE* scanResponseHdr = (IDNHDR_SCAN_RESPONSE*)& recvPacketHdr[1];
+			if (scanResponseHdr->structSize != sizeof(IDNHDR_SCAN_RESPONSE))
+			{
+				logError("%s: Invalid scan response header size %u\n", recvAddrString, scanResponseHdr->structSize);
+				break;
+			}
+
+			// Allocate log buffer
+			char logString[200], * logPtr = logString, * logLimit = &logString[sizeof(logString)];
+
+			// Print unitID as a string
+			unsigned unitIDLen = scanResponseHdr->unitID[0];
+			unsigned char* src = (unsigned char*)& scanResponseHdr->unitID[1];
+			for (unsigned i = 0; i < unitIDLen; i++)
+			{
+				logPtr = bufPrintf(logPtr, logLimit, "%02X", *src++);
+				if (i == 0) logPtr = bufPrintf(logPtr, logLimit, "-");
+			}
+
+			// Append host name (in case available)
+			if (scanResponseHdr->hostName[0])
+			{
+				logPtr = bufPrintf(logPtr, logLimit, "(%s)", scanResponseHdr->hostName);
+			}
+
+			// Print server information
+			logInfo("%s at %s", logString, recvAddrString);
+			found = true;
+			return true;
+		}
+	} while (0);
+
+	// Close socket
+	if (fdSocket >= 0)
+	{
+		if (plt_sockClose(fdSocket)) logError("close() failed (error: %d)", plt_sockGetLastError());
+	}
+
+	return found;
+}
 
 // -------------------------------------------------------------------------------------------------
 //  Entry point

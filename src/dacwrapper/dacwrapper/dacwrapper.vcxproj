@@ -96,6 +96,7 @@
     <ClCompile Include="LaserdockDeviceManager.cpp" />
     <ClCompile Include="LaserdockDeviceManager_desktop.cpp" />
     <ClCompile Include="LaserdockDevice_desktop.cpp" />
+    <ClCompile Include="plt-windows.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D:\GitHub\helios_dac\sdk\libusb.h" />
@@ -116,6 +117,7 @@
     <ClInclude Include="LaserdockDeviceManager.h" />
     <ClInclude Include="LaserdockDeviceManager_p.h" />
     <ClInclude Include="LaserdockDevice_p.h" />
+    <ClInclude Include="plt-windows.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="libusb-1.0.lib" />

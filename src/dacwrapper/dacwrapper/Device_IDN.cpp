@@ -15,7 +15,36 @@ int Device_IDN::Init()
 {
 	ready = true;
 
-	// todo detect with hello-scan
+	// Scan for IDN-hello servers.
+
+	extern void logError(const char* fmt, ...);
+
+	struct addrinfo* servinfo;              // Will point to the results
+	struct addrinfo hints;                  // Hints about the caller-supported socket types
+	memset(&hints, 0, sizeof hints);        // Make sure the struct is empty
+	hints.ai_flags = AI_PASSIVE;            // Intention to use address with the bind function
+	hints.ai_family = AF_INET;              // IPv4
+
+	int rcAddrInfo = getaddrinfo("", "", &hints, &servinfo);
+	if (rcAddrInfo != 0) return rcAddrInfo;
+
+	// Walk through all interfaces (servinfo points to a linked list of struct addrinfos)
+	for (struct addrinfo* ifa = servinfo; ifa != NULL; ifa = ifa->ai_next)
+	{
+		if (ifa->ai_addr == NULL) continue;
+		if (ifa->ai_addr->sa_family != AF_INET) continue;
+
+		// Invoke callback on interface
+		struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ai_addr;
+
+		// Start check whether address is an IDN-hello server
+
+
+		pfnCallback(callbackArg, ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr));
+	}
+
+	// Interface list is dynamically allocated and must be freed
+	freeaddrinfo(servinfo);
 
 	return 0;
 }
