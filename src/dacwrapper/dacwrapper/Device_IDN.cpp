@@ -28,6 +28,8 @@ int Device_IDN::Init()
 	int rcAddrInfo = getaddrinfo("", "", &hints, &servinfo);
 	if (rcAddrInfo != 0) return rcAddrInfo;
 
+	int numDevices = 0;
+
 	// Walk through all interfaces (servinfo points to a linked list of struct addrinfos)
 	for (struct addrinfo* ifa = servinfo; ifa != NULL; ifa = ifa->ai_next)
 	{
@@ -38,9 +40,15 @@ int Device_IDN::Init()
 		struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ai_addr;
 
 		// Start check whether address is an IDN-hello server
+		if (idnHelloScan(ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr)))
+		{
+			IDNCONTEXT *ctx = new IDNCONTEXT { 0 };
+			ctx->serverSockAddr.sin_family = AF_INET;
+			ctx->serverSockAddr.sin_port = htons(IDN_PORT);
+			ctx->serverSockAddr.sin_addr.s_addr = ifSockAddr->sin_addr.s_addr;
 
-
-		pfnCallback(callbackArg, ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr));
+			contexts[numDevices++] = ctx;
+		}
 	}
 
 	// Interface list is dynamically allocated and must be freed
@@ -92,17 +100,8 @@ bool Device_IDN::OpenDevice(int cardNum)
 {
 	std::lock_guard<std::mutex> lock(frameLock[cardNum]);
 
-	IDNCONTEXT ctx = { 0 };
-	ctx.serverSockAddr.sin_family = AF_INET;
-	ctx.serverSockAddr.sin_port = htons(IDN_PORT);
-	ctx.serverSockAddr.sin_addr.s_addr = helloServerAddr;
-	//ctx.usFrameTime = 1000000 / frameRate;
-	//ctx.jitterFreeFlag = jitterFreeFlag;
-	//ctx.scanSpeed = scanSpeed;
-	ctx.colorShift = 0;
-	ctx.startTime = getSystemTimeUS();
-
-	contexts[cardNum] = &ctx;
+	contexts[cardNum]->colorShift = 0;
+	contexts[cardNum]->startTime = plt_getMonoTimeUS();
 	
 	#if defined(_WIN32) || defined(WIN32)
 		// Initialize Winsock
@@ -155,9 +154,6 @@ bool Device_IDN::Stop(int cardNum)
 
 bool Device_IDN::CloseAll()
 {
-	if (!ready)
-		return false;
-
 	if (!ready) return false;
 
 	for (int i = 0; i < 16; i++)
@@ -178,6 +174,8 @@ bool Device_IDN::CloseAll()
 				close(contexts[i]->fdSocket);
 #endif
 			}
+
+			delete contexts[i];
 		}
 	}
 

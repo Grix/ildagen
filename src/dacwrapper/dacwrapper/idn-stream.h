@@ -1,11 +1,37 @@
 // -------------------------------------------------------------------------------------------------
 //  File idn-stream.h
 //
+//  Copyright (c) 2013-2017 DexLogic, Dirk Apitz
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+//
+// -------------------------------------------------------------------------------------------------
+//  Change History:
+//
 //  07/2013 Dirk Apitz, created
 //  07/2014 Dirk Apitz, Frame mode
 //  01/2015 Dirk Apitz, IDN-stream standard draft
 //  06/2015 Dirk Apitz, Frame chunk fragments
 //  05/2016 Dirk Apitz, Generic data types
+//  09/2017 Dirk Apitz, Service types
+//
+//  Version: 2017-09-03
 // -------------------------------------------------------------------------------------------------
 
 
@@ -20,6 +46,14 @@
 // -------------------------------------------------------------------------------------------------
 //  Defines
 // -------------------------------------------------------------------------------------------------
+
+// Service types(0x00..0x3F): Interfaces
+#define IDNVAL_STYPE_RELAY                  0x00        // Relay
+#define IDNVAL_STYPE_UART                   0x04        // Generic UART
+#define IDNVAL_STYPE_DMX512                 0x05        // DMX512
+
+// Service types(0x80..0xBF / 2 LSB): Media types
+#define IDNVAL_STYPE_LAPRO                  0x80        // Standard laser projector
 
 // Channel message content IDs
 #define IDNFLG_CONTENTID_CHANNELMSG         0x8000      // Channel message flag (specific bit assignments)

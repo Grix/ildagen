@@ -36,8 +36,7 @@
 #include <stdint.h>
 
 // Platform headers
-#include <winsock2.h>
-#include <ws2tcpip.h>
+#include <windows.h>
 
 
 // -------------------------------------------------------------------------------------------------
@@ -45,8 +44,6 @@
 // -------------------------------------------------------------------------------------------------
 
 typedef unsigned long in_addr_t;
-
-typedef void(*IFADDR_CALLBACK_PFN)(void *callbackArg, const char *ifName, uint32_t ifIP4Addr);
 
 
 // -------------------------------------------------------------------------------------------------
@@ -104,36 +101,30 @@ inline static uint32_t plt_getMonoTimeUS(void)
 }
 
 
-inline static int plt_ifAddrListVisitor(IFADDR_CALLBACK_PFN pfnCallback, void *callbackArg)
+inline static int plt_usleep(unsigned usec)
 {
-    extern void logError(const char *fmt, ...);
+    HANDLE timer;
+    LARGE_INTEGER ft;
 
-    struct addrinfo *servinfo;              // Will point to the results
-    struct addrinfo hints;                  // Hints about the caller-supported socket types
-    memset(&hints, 0, sizeof hints);        // Make sure the struct is empty
-    hints.ai_flags = AI_PASSIVE;            // Intention to use address with the bind function
-    hints.ai_family = AF_INET;              // IPv4
-
-    int rcAddrInfo = getaddrinfo("", "", &hints, &servinfo);
-    if(rcAddrInfo != 0) return rcAddrInfo;
-
-    // Walk through all interfaces (servinfo points to a linked list of struct addrinfos)
-    for(struct addrinfo *ifa = servinfo; ifa != NULL; ifa = ifa->ai_next)
-    {
-        if(ifa->ai_addr == NULL) continue;
-        if(ifa->ai_addr->sa_family != AF_INET) continue;
-
-        // Invoke callback on interface
-        struct sockaddr_in *ifSockAddr = (struct sockaddr_in *)ifa->ai_addr;
-        pfnCallback(callbackArg, ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr));
-    }
-
-    // Interface list is dynamically allocated and must be freed
-    freeaddrinfo(servinfo);
+    // Convert to 100 nanosecond interval, negative value indicates relative time
+    ft.QuadPart = -(10 * (__int64)usec);
+    timer = CreateWaitableTimer(NULL, TRUE, NULL);
+    SetWaitableTimer(timer, &ft, 0, NULL, NULL, 0);
+    WaitForSingleObject(timer, INFINITE);
+    CloseHandle(timer);
 
     return 0;
 }
 
+
+inline static FILE *plt_fopen(const char *filename, const char *mode)
+{
+    FILE *fp;
+    errno_t err = fopen_s(&fp, filename, mode);
+    if(err != 0) return (FILE *)0;
+
+    return fp;
+}
 
 inline static int plt_sockStartup()
 {
@@ -169,8 +160,8 @@ inline static int plt_sockClose(int fdSocket)
 
 inline static int plt_sockSetBroadcast(int fdSocket)
 {
-    char bcastOptStr[] = "1";
-    return setsockopt(fdSocket, SOL_SOCKET, SO_BROADCAST, bcastOptStr, sizeof(bcastOptStr));
+	char bcastOptStr[] = "1";
+	return setsockopt(fdSocket, SOL_SOCKET, SO_BROADCAST, bcastOptStr, sizeof(bcastOptStr));
 }
 
 

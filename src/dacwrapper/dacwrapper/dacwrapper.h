@@ -2,6 +2,7 @@
 
 #include "Device_Helios.h"
 #include "Device_LaserDock.h"
+#include "Device_IDN.h"
 #ifdef _WIN32
 	#include "Device_Etherdream.h"
 	#include "Device_OLSC.h"
@@ -26,6 +27,7 @@
 Device_LaserDock* laserDockDevice;
 Device_Helios* heliosDevice;
 Device_Etherdream* etherDreamDevice;
+Device_IDN* idnDevice;
 #ifdef _WIN32
 	Device_RIYA* riyaDevice;
 	Device_OLSC* olscDevice;

@@ -10,7 +10,7 @@
 #include "idn.h"
 
 #if defined(_WIN32) || defined(WIN32)
-	#include <windows.h>
+	//#include <windows.h>
 	#include <tchar.h>
 	typedef uint32_t in_addr_t;
 #else
@@ -21,13 +21,13 @@
 #endif
 
 #include <stdio.h>
-#include <stdarg.h>
-#include <stdint.h>
+//#include <stdarg.h>
 #include <time.h>
 
 #if defined(_WIN32) || defined(WIN32)
 
 #include "plt-windows.h"
+#include <WS2tcpip.h>
 
 #else
 
@@ -39,13 +39,34 @@
 #endif
 
 
+// -------------------------------------------------------------------------------------------------
+//  Defines
+// -------------------------------------------------------------------------------------------------
+
+#define DEFAULT_FRAMERATE               30
+#define DEFAULT_SCANSPEED               30000
+
 #define MAX_IDN_MESSAGE_LEN             0xFF00      // IDN-Message maximum length (due to lower layer transport)
+//#define MAX_IDN_MESSAGE_LEN             0x0800      // Message len for fragmentation tests
+
 #define XYRGB_SAMPLE_SIZE               7
+
+
+
+
+
+
+static uint8_t gbl_packetBuffer[0x10000];   // Work buffer
+
+// -------------------------------------------------------------------------------------------------
+//  Typedefs
+// -------------------------------------------------------------------------------------------------
 
 typedef struct
 {
 	int fdSocket;                           // Socket file descriptor
 	struct sockaddr_in serverSockAddr;      // Target server address
+	unsigned char clientGroup;              // Client group to send on
 	unsigned usFrameTime;                   // Time for one frame in microseconds (1000000/frameRate)
 	int jitterFreeFlag;                     // Scan frames only once to exactly match frame rate
 	unsigned scanSpeed;                     // Scan speed in samples per second
@@ -73,104 +94,31 @@ typedef struct
 
 
 // -------------------------------------------------------------------------------------------------
-//  Variables
-// -------------------------------------------------------------------------------------------------
-
-#if defined(_WIN32) || defined(WIN32)
-
-#else
-
-static struct timespec tsRef;
-static uint32_t currTimeUS = 0;
-
-#endif
-
-
-// -------------------------------------------------------------------------------------------------
 //  Tools
 // -------------------------------------------------------------------------------------------------
 
 void logError(const char* fmt, ...)
 {
-	//va_list arg_ptr;
-	//va_start(arg_ptr, fmt);
+	va_list arg_ptr;
+	va_start(arg_ptr, fmt);
 
 	//printf("\x1B[1;31m");
-	//vprintf(fmt, arg_ptr);
+	vprintf(fmt, arg_ptr);
 	//printf("\x1B[0m");
-	//printf("\n");
-	//fflush(stdout);
+	printf("\n");
+	fflush(stdout);
 }
 
 
 void logInfo(const char* fmt, ...)
 {
-	//va_list arg_ptr;
-	//va_start(arg_ptr, fmt);
+	va_list arg_ptr;
+	va_start(arg_ptr, fmt);
 
-	//vprintf(fmt, arg_ptr);
-	//printf("\n");
-	//fflush(stdout);
+	vprintf(fmt, arg_ptr);
+	printf("\n");
+	fflush(stdout);
 }
-
-
-#if defined(_WIN32) || defined(WIN32)
-
-static uint32_t getSystemTimeUS()
-{
-	ULARGE_INTEGER ul;
-	FILETIME ft;
-	GetSystemTimeAsFileTime(&ft);
-
-	// Fill ULARGE_INTEGER low and high parts.
-	ul.LowPart = ft.dwLowDateTime;
-	ul.HighPart = ft.dwHighDateTime;
-
-	// Convert to microseconds (FILETIME is in 100 nanosecont intervals).
-	return (uint32_t)(ul.QuadPart / 10ULL);
-}
-
-void usleep(__int64 usec)
-{
-	HANDLE timer;
-	LARGE_INTEGER ft;
-
-	// Convert to 100 nanosecond interval, negative value indicates relative time
-	ft.QuadPart = -(10 * usec);
-	timer = CreateWaitableTimer(NULL, TRUE, NULL);
-	SetWaitableTimer(timer, &ft, 0, NULL, NULL, 0);
-	WaitForSingleObject(timer, INFINITE);
-	CloseHandle(timer);
-}
-
-#else
-
-static uint32_t getSystemTimeUS()
-{
-	// Get current time
-	struct timespec tsNow, tsDiff;
-	clock_gettime(CLOCK_MONOTONIC, &tsNow);
-
-	// Determine difference to reference time
-	if (tsNow.tv_nsec < tsRef.tv_nsec)
-	{
-		tsDiff.tv_sec = (tsNow.tv_sec - tsRef.tv_sec) - 1;
-		tsDiff.tv_nsec = (1000000000 + tsNow.tv_nsec) - tsRef.tv_nsec;
-	}
-	else
-	{
-		tsDiff.tv_sec = tsNow.tv_sec - tsRef.tv_sec;
-		tsDiff.tv_nsec = tsNow.tv_nsec - tsRef.tv_nsec;
-	}
-
-	// Update internal counters
-	currTimeUS += (uint32_t)((tsDiff.tv_sec * 1000000) + (tsDiff.tv_nsec / 1000));
-	tsRef = tsNow;
-
-	return currTimeUS;
-}
-
-#endif
 
 
 static int ensureBufferCapacity(IDNCONTEXT* ctx, unsigned minLen)
@@ -199,7 +147,7 @@ static int ensureBufferCapacity(IDNCONTEXT* ctx, unsigned minLen)
 static char int2Hex(unsigned i)
 {
 	i &= 0xf;
-	return(i > 9) ? ((i - 10) + 'A') : (i + '0');
+	return (char)((i > 9) ? ((i - 10) + 'A') : (i + '0'));
 }
 
 
@@ -212,7 +160,7 @@ void binDump(void* buffer, unsigned length)
 	char* src = (char*)buffer;
 	unsigned k = 0;
 
-	//printf("dump buffer %08X; %d Bytes\n", (unsigned)buffer, length);
+	printf("dump buffer %08X; %d Bytes\n", (uint32_t)(uintptr_t)buffer, length);
 
 	while (k < length)
 	{
@@ -244,16 +192,16 @@ void binDump(void* buffer, unsigned length)
 		if ((k % 16) == 15)
 		{
 			*dst2++ = 0;
-			//printf("%s\n", send);
+			printf("%s\n", send);
 			dst1 = 0;
 			dst2 = 0;
 		}
 		k++;
 	}
 
-	//if (k % 16) printf("%s\n", send);
+	if (k % 16) printf("%s\n", send);
 
-	//fflush(stdout);
+	fflush(stdout);
 }
 
 
@@ -262,18 +210,13 @@ static int idnSend(void* context, IDNHDR_PACKET* packetHdr, unsigned packetLen)
 	IDNCONTEXT* ctx = (IDNCONTEXT*)context;
 
 	/*
-		printf("\n%u\n", (getSystemTimeUS() - ctx->startTime) / 1000);
+		printf("\n%u\n", (plt_getMonoTimeUS() - ctx->startTime) / 1000);
 		binDump(packetHdr, packetLen);
 	*/
 
 	if (sendto(ctx->fdSocket, (const char*)packetHdr, packetLen, 0, (struct sockaddr*) & ctx->serverSockAddr, sizeof(ctx->serverSockAddr)) < 0)
 	{
-#if defined(_WIN32) || defined(WIN32)
-		logError("sendto() error %d", WSAGetLastError());
-#else
-		logError("sendto() errno = %d", errno);
-#endif
-
+		logError("sendto() failed (error: %d)", plt_sockGetLastError());
 		return -1;
 	}
 
@@ -294,8 +237,8 @@ int idnOpenFrameXYRGB(void* context)
 
 	// IDN-Hello packet header. Note: Sequence number populated on push
 	IDNHDR_PACKET* packetHdr = (IDNHDR_PACKET*)ctx->bufferPtr;
-	packetHdr->command = IDNCMD_MESSAGE;
-	packetHdr->flags = 0;
+	packetHdr->command = IDNCMD_RT_CNLMSG;
+	packetHdr->flags = ctx->clientGroup;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -304,7 +247,7 @@ int idnOpenFrameXYRGB(void* context)
 	uint16_t contentID = IDNFLG_CONTENTID_CHANNELMSG;
 
 	// Insert channel config header every 200 ms
-	unsigned now = getSystemTimeUS();
+	unsigned now = plt_getMonoTimeUS();
 	IDNHDR_SAMPLE_CHUNK* sampleChunkHdr = (IDNHDR_SAMPLE_CHUNK*)& channelMsgHdr[1];
 	if ((ctx->frameCnt == 0) || ((now - ctx->cfgTimestamp) > 200000))
 	{
@@ -350,8 +293,9 @@ int idnPutSampleXYRGB(void* context, int16_t x, int16_t y, uint8_t r, uint8_t g,
 	// Sanity check
 	if (ctx->payload == (uint8_t*)0) return -1;
 
-	// Make sure there is enough buffer
-	unsigned lenUsed = ctx->payload - ctx->bufferPtr;
+	// Make sure there is enough buffer. Note: payload and bufferPtr are (uint8_t *) - and 
+	// pointer substraction is defined as the difference of (array) elements.
+	unsigned lenUsed = (unsigned)(ctx->payload - ctx->bufferPtr);
 	unsigned lenNeeded = lenUsed + ((1 + ctx->colorShift) * XYRGB_SAMPLE_SIZE);
 	if (ensureBufferCapacity(ctx, lenNeeded)) return -1;
 
@@ -441,8 +385,8 @@ int idnPushFrameXYRGB(void* context)
 	// Wait between frames to match frame rate
 	if (ctx->frameCnt != 0)
 	{
-		unsigned usWait = ctx->usFrameTime - (getSystemTimeUS() - ctx->frameTimestamp);
-		if ((int)usWait > 0) usleep(usWait);
+		unsigned usWait = ctx->usFrameTime - (plt_getMonoTimeUS() - ctx->frameTimestamp);
+		if ((int)usWait > 0) plt_usleep(usWait);
 	}
 	ctx->frameCnt++;
 
@@ -454,7 +398,7 @@ int idnPushFrameXYRGB(void* context)
 	uint16_t contentID = ntohs(channelMsgHdr->contentID);
 
 	// IDN channel message header: Set timestamp; Update internal timestamps.
-	unsigned now = getSystemTimeUS();
+	unsigned now = plt_getMonoTimeUS();
 	channelMsgHdr->timestamp = htonl(now);
 	ctx->frameTimestamp = now;
 	if (contentID & IDNFLG_CONTENTID_CONFIG_LSTFRG) ctx->cfgTimestamp = now;
@@ -487,8 +431,8 @@ int idnPushFrameXYRGB(void* context)
 
 			// Allocate and populate packet header
 			packetHdr = (IDNHDR_PACKET*)((uint8_t*)channelMsgHdr - sizeof(IDNHDR_PACKET));
-			packetHdr->command = IDNCMD_MESSAGE;
-			packetHdr->flags = 0;
+			packetHdr->command = IDNCMD_RT_CNLMSG;
+			packetHdr->flags = ctx->clientGroup;
 			packetHdr->sequence = htons(ctx->sequence++);
 
 			// Calculate remaining message length
@@ -506,7 +450,7 @@ int idnPushFrameXYRGB(void* context)
 			else
 			{
 				// Last sequel fragment, set last fragment flag
-				channelMsgHdr->totalSize = htons(msgLength);
+				channelMsgHdr->totalSize = htons((unsigned short)msgLength);
 				channelMsgHdr->contentID = htons(contentID | IDNFLG_CONTENTID_CONFIG_LSTFRG);
 
 				// Send the packet
@@ -520,7 +464,7 @@ int idnPushFrameXYRGB(void* context)
 	else
 	{
 		// Regular frame (single message), set message length and chunk type
-		channelMsgHdr->totalSize = htons(msgLength);
+		channelMsgHdr->totalSize = htons((unsigned short)msgLength);
 		channelMsgHdr->contentID = htons(contentID | IDNVAL_CNKTYPE_LPGRF_FRAME);
 
 		// Set IDN-Hello sequence number (used on UDP for lost packet tracking)
@@ -546,8 +490,8 @@ int idnSendVoid(void* context)
 
 	// IDN-Hello packet header
 	IDNHDR_PACKET* packetHdr = (IDNHDR_PACKET*)ctx->bufferPtr;
-	packetHdr->command = IDNCMD_MESSAGE;
-	packetHdr->flags = 0;
+	packetHdr->command = IDNCMD_RT_CNLMSG;
+	packetHdr->flags = ctx->clientGroup;
 	packetHdr->sequence = htons(ctx->sequence++);
 
 	// IDN-Stream channel message header
@@ -559,8 +503,8 @@ int idnSendVoid(void* context)
 	ctx->payload = (uint8_t*)& channelMsgHdr[1];
 
 	// Populate message header fields
-	channelMsgHdr->totalSize = htons(ctx->payload - (uint8_t*)channelMsgHdr);
-	channelMsgHdr->timestamp = htonl(getSystemTimeUS());
+	channelMsgHdr->totalSize = htons((unsigned short)(ctx->payload - (uint8_t*)channelMsgHdr));
+	channelMsgHdr->timestamp = htonl(plt_getMonoTimeUS());
 
 	// Send the packet
 	if (idnSend(context, packetHdr, ctx->payload - (uint8_t*)packetHdr)) return -1;
@@ -576,10 +520,10 @@ int idnSendClose(void* context)
 	// Make sure there is enough buffer
 	if (ensureBufferCapacity(ctx, 0x1000)) return -1;
 
-	// IDN-Hello packet header
+	// Close the channel: IDN-Hello packet header
 	IDNHDR_PACKET* packetHdr = (IDNHDR_PACKET*)ctx->bufferPtr;
-	packetHdr->command = IDNCMD_MESSAGE;
-	packetHdr->flags = 0;
+	packetHdr->command = IDNCMD_RT_CNLMSG;
+	packetHdr->flags = ctx->clientGroup;
 	packetHdr->sequence = htons(ctx->sequence++);
 
 	// IDN-Stream channel message header
@@ -598,11 +542,21 @@ int idnSendClose(void* context)
 	ctx->payload = (uint8_t*)& channelConfigHdr[1];
 
 	// Populate message header fields
-	channelMsgHdr->totalSize = htons(ctx->payload - (uint8_t*)channelMsgHdr);
-	channelMsgHdr->timestamp = htonl(getSystemTimeUS());
+	channelMsgHdr->totalSize = htons((unsigned short)(ctx->payload - (uint8_t*)channelMsgHdr));
+	channelMsgHdr->timestamp = htonl(plt_getMonoTimeUS());
 
 	// Send the packet
 	if (idnSend(context, packetHdr, ctx->payload - (uint8_t*)packetHdr)) return -1;
+
+	// ---------------------------------------------------------------------------------------------
+
+	// Close the connection/session: IDN-Hello packet header
+	packetHdr->command = IDNCMD_RT_CNLMSG_CLOSE;
+	packetHdr->flags = ctx->clientGroup;
+	packetHdr->sequence = htons(ctx->sequence++);
+
+	// Send the packet (gracefully close session)
+	if (idnSend(context, packetHdr, sizeof(IDNHDR_PACKET))) return -1;
 
 	return 0;
 }
@@ -717,7 +671,10 @@ bool idnHelloScan(const char* ifName, uint32_t ifIP4Addr)
 			struct sockaddr* recvAddrPre = (struct sockaddr*) & recvSockAddr;
 			socklen_t recvAddrSize = sizeof(recvSockAddr);
 
-			int nBytes = recvfrom(fdSocket, gbl_packetBuffer, sizeof(gbl_packetBuffer), 0, recvAddrPre, &recvAddrSize);
+			//recvfrom()
+
+
+			int nBytes = recvfrom(fdSocket, (char*)gbl_packetBuffer, sizeof(gbl_packetBuffer), 0, recvAddrPre, &recvAddrSize);
 			if (nBytes < 0)
 			{
 				logError("recvfrom() failed (error: %d)", plt_sockGetLastError());
@@ -768,7 +725,7 @@ bool idnHelloScan(const char* ifName, uint32_t ifIP4Addr)
 			}
 
 			// Allocate log buffer
-			char logString[200], * logPtr = logString, * logLimit = &logString[sizeof(logString)];
+			/*char logString[200], * logPtr = logString, * logLimit = &logString[sizeof(logString)];
 
 			// Print unitID as a string
 			unsigned unitIDLen = scanResponseHdr->unitID[0];
@@ -783,10 +740,10 @@ bool idnHelloScan(const char* ifName, uint32_t ifIP4Addr)
 			if (scanResponseHdr->hostName[0])
 			{
 				logPtr = bufPrintf(logPtr, logLimit, "(%s)", scanResponseHdr->hostName);
-			}
+			}*/
 
 			// Print server information
-			logInfo("%s at %s", logString, recvAddrString);
+			//logInfo("%s at %s", logString, recvAddrString);
 			found = true;
 			return true;
 		}
@@ -799,199 +756,4 @@ bool idnHelloScan(const char* ifName, uint32_t ifIP4Addr)
 	}
 
 	return found;
-}
-
-// -------------------------------------------------------------------------------------------------
-//  Entry point
-// -------------------------------------------------------------------------------------------------
-
-int main(int argc, char** argv)
-{
-	int usageFlag = 0;
-	in_addr_t helloServerAddr = 0;
-	char* idtfFilename = 0;
-	unsigned holdTime = 5;
-	unsigned frameRate = DEFAULT_FRAMERATE;
-	int jitterFreeFlag = 0;
-	unsigned scanSpeed = DEFAULT_SCANSPEED;
-	unsigned colorShift = 0;
-	float xyScale = 1.0;
-	unsigned options = 0;
-
-
-	for (int i = 1; i < argc; i++)
-	{
-		if (!strcmp(argv[i], "-hs"))
-		{
-			if (++i >= argc) { usageFlag = 1; break; }
-			helloServerAddr = inet_addr(argv[i]);
-		}
-		else if (!strcmp(argv[i], "-idtf"))
-		{
-			if (++i >= argc) { usageFlag = 1; break; }
-			idtfFilename = argv[i];
-		}
-		else if (!strcmp(argv[i], "-hold"))
-		{
-			if (++i >= argc) { usageFlag = 1; break; }
-			int param = atoi(argv[i]);
-			if (param > 0) holdTime = param;
-		}
-		else if (!strcmp(argv[i], "-fr"))
-		{
-			if (++i >= argc) { usageFlag = 1; break; }
-			frameRate = atoi(argv[i]);
-		}
-		else if (!strcmp(argv[i], "-jf"))
-		{
-			jitterFreeFlag = 1;
-		}
-		else if (!strcmp(argv[i], "-pps"))
-		{
-			if (++i >= argc) { usageFlag = 1; break; }
-			scanSpeed = atoi(argv[i]);
-		}
-		else if (!strcmp(argv[i], "-sft"))
-		{
-			if (++i >= argc) { usageFlag = 1; break; }
-			colorShift = atoi(argv[i]);
-		}
-		else if (!strcmp(argv[i], "-scale"))
-		{
-			if (++i >= argc) { usageFlag = 1; break; }
-			xyScale = (float)atof(argv[i]);
-		}
-		else if (!strcmp(argv[i], "-mx"))
-		{
-			options |= IDTFOPT_MIRROR_X;
-		}
-		else if (!strcmp(argv[i], "-my"))
-		{
-			options |= IDTFOPT_MIRROR_Y;
-		}
-		else if (!strcmp(argv[i], "-def-pal"))
-		{
-			options = (options & ~IDTFOPT_PALETTE_MASK) | IDTFOPT_PALETTE_IDTF_DEFAULT;
-		}
-		else if (!strcmp(argv[i], "-std-pal"))
-		{
-			options = (options & ~IDTFOPT_PALETTE_MASK) | IDTFOPT_PALETTE_ILDA_STANDARD;
-		}
-		else
-		{
-			usageFlag = 1;
-			break;
-		}
-	}
-
-	if (usageFlag || !helloServerAddr || !idtfFilename || (frameRate < 5))
-	{
-		printf("\n");
-		printf("USAGE: idtfPlayer { Options } \n\n");
-		printf("Options:\n");
-		printf("  -hs      ipAddress  IP address of the IDN-Hello server.\n");
-		printf("  -idtf    filename   Name of the IDTF (ILDA Image Data Transfer Format) file.\n");
-		printf("  -hold    time       Time in seconds to display single-frame files\n");
-		printf("  -fr      frameRate  Number of frames per second. (default: 30)\n");
-		printf("  -jf                 Jitter-Free (scan frames only once to match frame rate)\n");
-		printf("  -pps     scanSpeed  Number of points/samples per second. (default: 30000)\n");
-		printf("  -sft     colorShift Number of points, the color is shifted (default: 0)\n");
-		printf("  -scale   factor     Factor by which to scale the IDTF file (default: 1.0)\n");
-		printf("  -mx                 Mirror x axis\n");
-		printf("  -my                 Mirror y axis\n");
-		printf("  -def-pal            Use the default palette as of IDTF rev. 11 (default).\n");
-		printf("  -std-pal            Use the abandoned ILDA Standard Palette.\n");
-		printf("\n");
-
-		return 0;
-	}
-
-
-	// -------------------------------------------------------------------------
-
-	// Initialize driver function context
-	IDNCONTEXT ctx = { 0 };
-	ctx.serverSockAddr.sin_family = AF_INET;
-	ctx.serverSockAddr.sin_port = htons(IDN_PORT);
-	ctx.serverSockAddr.sin_addr.s_addr = helloServerAddr;
-	ctx.usFrameTime = 1000000 / frameRate;
-	ctx.jitterFreeFlag = jitterFreeFlag;
-	ctx.scanSpeed = scanSpeed;
-	ctx.colorShift = colorShift;
-	ctx.startTime = getSystemTimeUS();
-
-	do
-	{
-		//printf("Connecting to IDN-Hello server at %s\n", inet_ntoa(*(in_addr*)& helloServerAddr));
-		//printf("Press Ctrl-C to stop\n");
-
-#if defined(_WIN32) || defined(WIN32)
-		// Initialize Winsock
-		WSADATA wsaData;
-		int iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
-		if (iResult != NO_ERROR)
-		{
-			logError("WSAStartup failed with error: %d", iResult);
-			break;
-		}
-#else
-		// Initialize time reference and initialize the current time randomly
-		if (clock_gettime(CLOCK_MONOTONIC, &tsRef) < 0)
-		{
-			logError("clock_gettime(CLOCK_MONOTONIC) errno = %d", errno);
-			break;
-		}
-		currTimeUS = (uint32_t)((tsRef.tv_sec * 1000000ul) + (tsRef.tv_nsec / 1000));
-#endif
-
-		// Open UDP socket
-		ctx.fdSocket = socket(AF_INET, SOCK_DGRAM, 0);
-		if (ctx.fdSocket < 0)
-		{
-#if defined(_WIN32) || defined(WIN32)
-			logError("socket() error %d", WSAGetLastError());
-#else
-			logError("socket() errno = %d", errno);
-#endif
-
-			break;
-		}
-
-		// Initialize IDTF reader callback function table
-		IDTF_CALLBACK_FUNC cbFunc = { 0 };
-		cbFunc.openFrame = idnOpenFrameXYRGB;
-		cbFunc.putSampleXYRGB = idnPutSampleXYRGB;
-		cbFunc.pushFrame = idnPushFrameXYRGB;
-
-		// Run IDTF reader
-		if (idtfRead(idtfFilename, xyScale, options, &cbFunc, &ctx)) break;
-
-		// Check for single frame IDTF file.
-		if (ctx.frameCnt == 1)
-		{
-			// Wait
-			for (unsigned i = 0; i < holdTime * 10; i++)
-			{
-				usleep(100000);
-				idnSendVoid(&ctx);
-			}
-		}
-
-		idnSendClose(&ctx);
-	} while (0);
-
-	// Free buffer memory
-	if (ctx.bufferPtr) free(ctx.bufferPtr);
-
-	// Close socket
-	if (ctx.fdSocket >= 0)
-	{
-#if defined(_WIN32) || defined(WIN32)
-		closesocket(ctx.fdSocket);
-#else
-		close(ctx.fdSocket);
-#endif
-	}
-
-	return 0;
 }

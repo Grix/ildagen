@@ -13,6 +13,7 @@ GMEXPORT double InitDacwrapper()
 
 	laserDockDevice = new Device_LaserDock();
 	heliosDevice = new Device_Helios();
+	idnDevice = new Device_IDN();
 	#ifdef _WIN32
 		etherDreamDevice = new Device_Etherdream();
 		olscDevice = new Device_OLSC(L"OLSD.dll");
@@ -100,6 +101,16 @@ GMEXPORT double ScanDevices()
 		dacs[numDevices++] = { 7, i, name };
 	}
 
+	int numIdn = idnDevice->Init();
+	fprintf(stderr, "Found %d IDN servers\n", numIdn);
+	for (int i = 0; i < numIdn; i++)
+	{
+		char* name = new char[64];
+		idnDevice->GetName(i, name);
+		dacs[numDevices++] = { 8, i, name };
+	}
+
+
 	return (double)numDevices;
 }
 
@@ -114,6 +125,8 @@ GMEXPORT double DeviceOpen(double doubleNum)
 
 	if (dacType == 4)		//Helios
 		return (double)heliosDevice->OpenDevice(cardNum);
+	else if(dacType == 8)	//IDN
+		return (double)idnDevice->OpenDevice(cardNum);
 	else if (dacType == 7)	//LaserDock
 		return (double)laserDockDevice->OpenDevice(cardNum);
 	else if (dacType == 1)	//EtherDream
@@ -174,6 +187,21 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 			heliosBuffer[i].i = (uint8_t)bufferAddress[currentPos++];
 		}
 		heliosDevice->OutputFrame(cardNum, scanRate, frameSize, &heliosBuffer[0]);
+	}
+	else if (dacType == 8)	//IDN
+	{
+		int currentPos = 0;
+		Device_IDN::IdnPoint idnBuffer[MAX_FRAME_SIZE];
+		for (int i = 0; i < frameSize; i++)
+		{
+			idnBuffer[i].x = bufferAddress[currentPos++];
+			idnBuffer[i].y = bufferAddress[currentPos++];
+			idnBuffer[i].r = (uint8_t)bufferAddress[currentPos++];
+			idnBuffer[i].g = (uint8_t)bufferAddress[currentPos++];
+			idnBuffer[i].b = (uint8_t)bufferAddress[currentPos++];
+			idnBuffer[i].i = (uint8_t)bufferAddress[currentPos++];
+		}
+		idnDevice->OutputFrame(cardNum, scanRate, frameSize, &idnBuffer[0]);
 	}
 	else if (dacType == 7)	//LaserDock
 	{
@@ -305,6 +333,7 @@ GMEXPORT double FreeDacwrapper()
 	delete etherDreamDevice;
 	delete laserDockDevice;
 	delete heliosDevice;
+	delete idnDevice;
 
 	return 1.0;
 }
@@ -324,6 +353,8 @@ GMEXPORT double Stop(double doubleNum)
 		return (double)laserDockDevice->Stop(cardNum);
 	else if (dacType == 1)	//EtherDream
 		return (double)etherDreamDevice->Stop(cardNum);
+	else if (dacType == 8)	//IDN
+		return (double)idnDevice->Stop(cardNum);
 	#ifdef _WIN32
 		else if (dacType == 2)	//RIYA
 			return (double)riyaDevice->Stop(cardNum);

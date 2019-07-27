@@ -38,15 +38,7 @@
 #include <time.h>
 
 // Platform headers
-#include <ifaddrs.h>
 #include <arpa/inet.h>
-
-
-// -------------------------------------------------------------------------------------------------
-//  Typedefs
-// -------------------------------------------------------------------------------------------------
-
-typedef void (* IFADDR_CALLBACK_PFN)(void *callbackArg, const char *ifName, uint32_t ifIP4Addr);
 
 
 // -------------------------------------------------------------------------------------------------
@@ -102,27 +94,15 @@ inline static uint32_t plt_getMonoTimeUS()
 }
 
 
-inline static int plt_ifAddrListVisitor(IFADDR_CALLBACK_PFN pfnCallback, void *callbackArg)
+inline static int plt_usleep(unsigned usec)
 {
-    // Find all interfaces
-    struct ifaddrs *ifaddr;
-    if(getifaddrs(&ifaddr) == -1) return errno;
+    return usleep(usec);
+}
 
-    // Walk through all interfaces
-    for(struct ifaddrs *ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next) 
-    {
-        if(ifa->ifa_addr == NULL) continue;
-        if(ifa->ifa_addr->sa_family != AF_INET) continue;
 
-        // Invoke callback on interface
-        struct sockaddr_in *ifSockAddr = (struct sockaddr_in *)ifa->ifa_addr;
-        pfnCallback(callbackArg, ifa->ifa_name, (uint32_t)(ifSockAddr->sin_addr.s_addr));
-    }
-
-    // Interface list is dynamically allocated and must be freed
-    freeifaddrs(ifaddr);
-
-    return 0;
+inline static FILE *plt_fopen(const char *filename, const char *mode)
+{
+    return fopen(filename, mode);
 }
 
 
@@ -153,13 +133,6 @@ inline static int plt_sockOpen(int domain, int type, int protocol)
 inline static int plt_sockClose(int fdSocket)
 {
     return close(fdSocket);
-}
-
-
-inline static int plt_sockSetBroadcast(int fdSocket)
-{
-    int bcastOpt = 1;
-    return setsockopt(fdSocket, SOL_SOCKET, SO_BROADCAST, &bcastOpt, sizeof(bcastOpt));
 }
 
 
