@@ -1,6 +1,5 @@
 #include "Device_Etherdream.h"
-#include <windows.h>
-#include <thread>
+
 
 
 Device_Etherdream::Device_Etherdream()

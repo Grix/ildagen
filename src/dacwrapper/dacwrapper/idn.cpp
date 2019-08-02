@@ -2,96 +2,11 @@
 
 // Functions for ILDA Digital Network DAC communication
 
-//#include <stdio.h>
-//#include <stdarg.h>
-//#include <errno.h>
-#include <stdint.h>
-//#include <time.h>
 #include "idn.h"
-
-#if defined(_WIN32) || defined(WIN32)
-	//#include <windows.h>
-	#include <tchar.h>
-	typedef uint32_t in_addr_t;
-#else
-	#include <stdlib.h>
-	#include <unistd.h>
-	#include <string.h>
-	#include <arpa/inet.h>
-#endif
-
-#include <stdio.h>
-//#include <stdarg.h>
-#include <time.h>
-
-#if defined(_WIN32) || defined(WIN32)
-
-#include "plt-windows.h"
-#include <WS2tcpip.h>
-
-#else
-
-#include <stdlib.h>
-#include <ifaddrs.h>
-
-#include "plt-posix.h"
-
-#endif
-
-
-// -------------------------------------------------------------------------------------------------
-//  Defines
-// -------------------------------------------------------------------------------------------------
-
-#define DEFAULT_FRAMERATE               30
-#define DEFAULT_SCANSPEED               30000
-
-#define MAX_IDN_MESSAGE_LEN             0xFF00      // IDN-Message maximum length (due to lower layer transport)
-//#define MAX_IDN_MESSAGE_LEN             0x0800      // Message len for fragmentation tests
-
-#define XYRGB_SAMPLE_SIZE               7
-
-
-
 
 
 
 static uint8_t gbl_packetBuffer[0x10000];   // Work buffer
-
-// -------------------------------------------------------------------------------------------------
-//  Typedefs
-// -------------------------------------------------------------------------------------------------
-
-typedef struct
-{
-	int fdSocket;                           // Socket file descriptor
-	struct sockaddr_in serverSockAddr;      // Target server address
-	unsigned char clientGroup;              // Client group to send on
-	unsigned usFrameTime;                   // Time for one frame in microseconds (1000000/frameRate)
-	int jitterFreeFlag;                     // Scan frames only once to exactly match frame rate
-	unsigned scanSpeed;                     // Scan speed in samples per second
-	unsigned colorShift;                    // Color shift in points/samples
-
-	unsigned bufferLen;                     // Length of work buffer
-	uint8_t* bufferPtr;                     // Pointer to work buffer
-
-	uint32_t startTime;                     // System time at stream start (log reference)
-	uint32_t frameCnt;                      // Number of sent frames
-	uint32_t frameTimestamp;                // Timestamp of the last frame
-	uint32_t cfgTimestamp;                  // Timestamp of the last channel configuration
-
-	// Buffer related
-	uint8_t* payload;                       // Pointer to the end of the buffer
-
-	// IDN-Hello related
-	uint16_t sequence;                      // IDN-Hello sequence number (UDP packet tracking)
-
-	// IDN-Stream related
-	IDNHDR_SAMPLE_CHUNK* sampleChunkHdr;    // Current sample chunk header
-	uint32_t sampleCnt;                     // Current number of samples
-
-} IDNCONTEXT;
-
 
 // -------------------------------------------------------------------------------------------------
 //  Tools
@@ -99,6 +14,8 @@ typedef struct
 
 void logError(const char* fmt, ...)
 {
+	return; // skip
+
 	va_list arg_ptr;
 	va_start(arg_ptr, fmt);
 
@@ -112,6 +29,8 @@ void logError(const char* fmt, ...)
 
 void logInfo(const char* fmt, ...)
 {
+	return; // skip
+
 	va_list arg_ptr;
 	va_start(arg_ptr, fmt);
 

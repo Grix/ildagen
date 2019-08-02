@@ -1,17 +1,18 @@
 //dac wrapper for LasershowGen main header file
-
+#ifdef _WIN32
+#include <winsock2.h> // For IDN, need to declare this first, before windows.h used by other classes
+#include <ws2tcpip.h> // ^
+#include "Device_Etherdream.h"
+#include "Device_OLSC.h"
+#include "Device_RIYA.h"
+#include "Device_OLSC_Easylase.h"
+#include "Device_OLSC_EzAudDac.h"
+#else
+#include "Device_Etherdream_unix.h"
+#endif
 #include "Device_Helios.h"
 #include "Device_LaserDock.h"
 #include "Device_IDN.h"
-#ifdef _WIN32
-	#include "Device_Etherdream.h"
-	#include "Device_OLSC.h"
-	#include "Device_RIYA.h"
-	#include "Device_OLSC_Easylase.h"
-	#include "Device_OLSC_EzAudDac.h"
-#else
-	#include "Device_Etherdream_unix.h"
-#endif
 #include <string>
 #include <thread>
 #include <mutex>
@@ -34,6 +35,12 @@ Device_IDN* idnDevice;
 	Device_OLSC_Easylase* olscEasylaseDevice;
 	Device_OLSC_EzAudDac* olscEzAudDacDevice;
 #endif
+
+// Needed for IDN plt files, gives redefinition error if moved there
+int plt_monoValid = 0;
+LARGE_INTEGER plt_monoCtrFreq;
+LARGE_INTEGER plt_monoCtrRef;
+uint32_t plt_monoTimeUS = 0;
 
 bool initialized = false;
 int numDevices = 0;

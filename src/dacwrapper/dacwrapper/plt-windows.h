@@ -27,6 +27,7 @@
 //  06/2017 Dirk Apitz, created
 // -------------------------------------------------------------------------------------------------
 
+#pragma once
 
 #ifndef PLT_WINDOWS_H
 #define PLT_WINDOWS_H
@@ -34,9 +35,22 @@
 
 // Standard libraries
 #include <stdint.h>
+//#include "idn.h" for log functions
 
 // Platform headers
-#include <windows.h>
+//#include <winsock2.h>
+#include <ws2tcpip.h>
+
+
+//#include "plt-windows.c"
+// -------------------------------------------------------------------------------------------------
+//  Variables
+// -------------------------------------------------------------------------------------------------
+
+extern int plt_monoValid;
+extern LARGE_INTEGER plt_monoCtrFreq;
+extern LARGE_INTEGER plt_monoCtrRef;
+extern uint32_t plt_monoTimeUS;
 
 
 // -------------------------------------------------------------------------------------------------
@@ -52,26 +66,19 @@ typedef unsigned long in_addr_t;
 
 inline static int plt_validateMonoTime()
 {
-    extern int plt_monoValid;
-    extern LARGE_INTEGER plt_monoCtrFreq;
-    extern LARGE_INTEGER plt_monoCtrRef;
-    extern uint32_t plt_monoTimeUS;
-
-    extern void logError(const char *fmt, ...);
-
     if(!plt_monoValid)
     {
         // Get performance counter frequency
         if(QueryPerformanceFrequency(&plt_monoCtrFreq) == 0)
         {
-            logError("QueryPerformanceFrequency() error = %d", (int)GetLastError());
+            //logError("QueryPerformanceFrequency() error = %d", (int)GetLastError());
             return -1;
         }
 
         // Initialize performance counter reference
         if(QueryPerformanceCounter(&plt_monoCtrRef) == 0)
         {
-            logError("QueryPerformanceCounter() error = %d", (int)GetLastError());
+            //logError("QueryPerformanceCounter() error = %d", (int)GetLastError());
             return -1;
         }
 
@@ -85,9 +92,6 @@ inline static int plt_validateMonoTime()
 
 inline static uint32_t plt_getMonoTimeUS(void)
 {
-    extern LARGE_INTEGER plt_monoCtrFreq;
-    extern LARGE_INTEGER plt_monoCtrRef;
-    extern uint32_t plt_monoTimeUS;
 
     // Get current time
     LARGE_INTEGER pctNow;
@@ -116,15 +120,6 @@ inline static int plt_usleep(unsigned usec)
     return 0;
 }
 
-
-inline static FILE *plt_fopen(const char *filename, const char *mode)
-{
-    FILE *fp;
-    errno_t err = fopen_s(&fp, filename, mode);
-    if(err != 0) return (FILE *)0;
-
-    return fp;
-}
 
 inline static int plt_sockStartup()
 {

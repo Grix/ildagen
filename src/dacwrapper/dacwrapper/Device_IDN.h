@@ -1,6 +1,6 @@
 #pragma once
 
-#include "idn.cpp"
+#include "idn.h"
 #include <mutex>
 #include <vector>
 
@@ -8,19 +8,6 @@
 #include <stdarg.h>
 #include <stdint.h>
 #include <time.h>
-
-#if defined(_WIN32) || defined(WIN32)
-
-#include "plt-windows.h"
-
-#else
-
-#include <stdlib.h>
-#include <ifaddrs.h>
-
-#include "plt-posix.h"
-
-#endif
 
 class Device_IDN
 {

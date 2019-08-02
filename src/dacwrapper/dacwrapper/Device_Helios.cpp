@@ -16,8 +16,13 @@ int Device_Helios::Init()
 	CloseAll();
 
 	heliosDevice = new HeliosDac;
-	
+
+
+	for (int i = 0; i < 16; i++)
+		frameNum[i] = 0;
+
 	ready = true;
+
 	int result = heliosDevice->OpenDevices();
 
 	if (result <= 0)

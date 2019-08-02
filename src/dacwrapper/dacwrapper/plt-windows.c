@@ -25,13 +25,13 @@
 //  Change History:
 //
 //  09/2017 Dirk Apitz, created
-// -------------------------------------------------------------------------------------------------
-
+// ----
+/*
 // Standard libraries
 #include <stdint.h>
 
 // Platform headers
-#include <windows.h>
+#include "plt-windows.h"
 
 
 // -------------------------------------------------------------------------------------------------
@@ -41,5 +41,4 @@
 int plt_monoValid = 0;
 LARGE_INTEGER plt_monoCtrFreq;
 LARGE_INTEGER plt_monoCtrRef;
-uint32_t plt_monoTimeUS = 0;
-
+uint32_t plt_monoTimeUS = 0;*/
