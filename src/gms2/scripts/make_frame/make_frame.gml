@@ -7,7 +7,6 @@ var t_vectorx, t_vectory, t_true_dwell_falling, t_true_dwell_rising;
 var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
 
 var t_totalrem = 0;
-//todo fps multiplier
 var t_totalpointswanted = floor(controller.opt_scanspeed/controller.projectfps);
 var t_litpointswanted = t_totalpointswanted - maxpoints_static - 1;
 
@@ -24,6 +23,16 @@ else
 	var t_lengthwanted = (t_dotlength*maxpoints_dots)/t_litpointswanted;
 }
 
+// double framerate if frame is simple enough TODO test
+if ((opt_maxdist/t_lengthwanted) > 4)
+{
+	fpsmultiplier = 2;
+	t_lengthwanted *= 2;
+}
+else
+	fpsmultiplier = 1;
+	
+	
 var t_lengthwanted70 = t_lengthwanted*0.7;
 var t_lengthwanted170 = t_lengthwanted*1.7;
 
