@@ -23,14 +23,21 @@ else
 	var t_lengthwanted = (t_dotlength*maxpoints_dots)/t_litpointswanted;
 }
 
-// double framerate if frame is simple enough TODO test
-if ((opt_maxdist/t_lengthwanted) > 4)
+// slow framerate if frame is too complex
+if ((controller.opt_maxdist/t_lengthwanted) < 0.12)
 {
-	fpsmultiplier = 2;
-	t_lengthwanted *= 2;
+	controller.fpsmultiplier = 4;
+}
+else if ((controller.opt_maxdist/t_lengthwanted) < 0.25)
+{
+	controller.fpsmultiplier = 3;
+}
+else if ((controller.opt_maxdist/t_lengthwanted) < 0.5)
+{
+	controller.fpsmultiplier = 2;
 }
 else
-	fpsmultiplier = 1;
+	controller.fpsmultiplier = 1;
 	
 	
 var t_lengthwanted70 = t_lengthwanted*0.7;
