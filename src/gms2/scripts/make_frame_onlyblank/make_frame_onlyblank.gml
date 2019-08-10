@@ -3,9 +3,10 @@ if (debug_mode)
     
 //var timerbm = get_timer();
 
-var t_vectorx, t_vectory, t_true_dwell_falling, t_true_dwell_rising;
+var t_vectorx, t_true_dwell_falling, t_true_dwell_rising;
 var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
 var t_contflag = false;
+
 
 xp_prev = mid_x;
 yp_prev = mid_y;

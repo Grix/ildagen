@@ -31,7 +31,7 @@ a_ballistic = controller.opt_maxdist; //scanner acceleration
 
 t_pol = 0;
 t_order = 0;
-var t_lowestdist, t_dist, t_tempxp_prev_other, t_tempyp_prev_other, t_tempxp_prev, t_tempyp_prev;
+var t_lowestdist, t_dist;
 var t_found = 0;
 var t_list_empties = ds_list_create();
 

@@ -1143,6 +1143,14 @@
             }
         },
         {
+            "Key": "1dccce07-17aa-482a-8369-667db9d903ec",
+            "Value": {
+                "id": "c8f7ebee-b52d-4b23-831f-3b5fbb782048",
+                "resourcePath": "views\\1dccce07-17aa-482a-8369-667db9d903ec.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "1ddf36f2-b98e-4f00-8b6b-c7c30d90c495",
             "Value": {
                 "id": "d1746c0c-f2b1-4f56-8a40-1d527be0fed5",
@@ -2843,6 +2851,14 @@
             "Value": {
                 "id": "6af1804b-cbc4-45d1-b70e-64b7bce441d2",
                 "resourcePath": "objects\\obj_entertimeline\\obj_entertimeline.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "553cb975-27dd-4ebf-88cb-ae32b40bf433",
+            "Value": {
+                "id": "425d315f-0c58-47da-bb2c-bf05d8ebe7a1",
+                "resourcePath": "objects\\obj_live_masteralpha\\obj_live_masteralpha.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -5795,6 +5811,14 @@
             "Value": {
                 "id": "d7ffda6e-d9e3-4dc6-a3dc-fd0a0bed4f19",
                 "resourcePath": "scripts\\dropdown_menu_live_properties\\dropdown_menu_live_properties.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "abfd5bfb-1202-43a5-b74a-3241a7dafa70",
+            "Value": {
+                "id": "ffba18d3-6e14-4961-85ae-a73229a3502b",
+                "resourcePath": "scripts\\live_dialog_num\\live_dialog_num.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9254,6 +9278,7 @@
         "6395451d-985b-4d20-8887-e3a6300c51e4",
         "3a48ff02-5fb6-494f-8107-028810883832",
         "babd7fb5-418f-4c0b-9a96-6ee35bea29bd",
+        "abfd5bfb-1202-43a5-b74a-3241a7dafa70",
         "c439c6f6-7eea-4c3b-affc-aa7d88ecfbf4",
         "828f9dcf-1b57-4e34-9aa4-e10a0b963585",
         "0de7858f-98ae-4d3c-8b89-c3e91d000f87",
