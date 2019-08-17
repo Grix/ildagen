@@ -4,5 +4,5 @@ if (view_current != 0)
 draw_self();
 draw_sprite(spr_knob,(moving > 0),x+clamp(livecontrol.masteralpha,0,100)/100*72,y+16);
 
-draw_text(x+80,y+9,string(round(livecontrol.masteralpha)));
+draw_text(x+80,y+9,"Intensity");
 

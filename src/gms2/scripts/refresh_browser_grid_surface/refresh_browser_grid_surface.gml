@@ -55,4 +55,5 @@ surface_set_target(browser_surf);
 
 surface_reset_target();
 
+draw_set_alpha(1);
 draw_set_color(c_white);

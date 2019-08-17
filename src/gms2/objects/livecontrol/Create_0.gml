@@ -24,6 +24,15 @@ undo_list = ds_list_create();
 filelist = ds_list_create();
 el_list = -1;
 
+masterx = 0;
+mastery = 0;
+masteralpha = 1;
+masterhue = 255;
+masterred = 255;
+masterblue = 255;
+mastergreen = 255;
+masterabsrot = 0;
+
 browser_surf = -1;
 frame_surf = -1;
 frame3d_surf = -1;

@@ -40,6 +40,7 @@ if (view_current == 4)
 	    draw_text(32,7,"Warning: Dropping frames. Actual FPS: "+string(fps));
 	}
 	draw_set_color(c_black);
+	draw_set_alpha(1);
 }
 else if (view_current == 1)
 {

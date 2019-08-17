@@ -39,6 +39,9 @@ for (j = 0; j < ds_list_size(filelist); j++)
 	object_maxframes = ds_list_find_value(infolist, 2);
 	frame = infolist[| 0];
 	log(j, frame);
+	
+	//modifier transforms
+    ready_envelope_applying_live();
 
 	//draw object
 	el_buffer = ds_list_find_value(objectlist,1);
@@ -47,7 +50,7 @@ for (j = 0; j < ds_list_size(filelist); j++)
 	buffer_ver = buffer_read(el_buffer,buffer_u8);
 	if (buffer_ver != 52)
 	{
-	    show_message_new("Error: Unexpected idbyte in buffer for export_project. Things might get ugly. Contact developer.");
+	    show_message_new("Error: Unexpected idbyte in buffer for output_frame_live. Things might get ugly. Contact developer.");
 	    controller.dac[| 4] = output_buffer;
 	    controller.dac[| 5] = output_buffer2;
 	    controller.dac[| 6] = output_buffer_ready;
@@ -79,6 +82,21 @@ for (j = 0; j < ds_list_size(filelist); j++)
 	    {
 	        ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
 	    }
+		
+		//modifier transforms
+        if (env_xtrans)
+        {
+            ds_list_replace(ind_list,0,ds_list_find_value(ind_list,0) + env_xtrans_val);
+        }
+        if (env_ytrans)
+        {
+            ds_list_replace(ind_list,1,ds_list_find_value(ind_list,1) + env_ytrans_val);
+        }
+        if (env_rotabs)
+        {
+            var t_actualanchor_x = $8000 - ds_list_find_value(ind_list,0);
+            var t_actualanchor_y = $8000 - ds_list_find_value(ind_list,1);
+        }
             
 	    for (u = 10; u < 20; u++)
 	    {
@@ -90,6 +108,36 @@ for (j = 0; j < ds_list_size(filelist); j++)
 	        yp = buffer_read(el_buffer,buffer_f32);
 	        bl = buffer_read(el_buffer,buffer_bool);
 	        c = buffer_read(el_buffer,buffer_u32);
+			
+			//apply modifier transforms to point data
+            if (env_hue)
+            {
+                c = make_colour_hsv((colour_get_hue(c)+env_hue_val) % 255,colour_get_saturation(c),colour_get_value(c));
+            }
+            if (env_a)
+            {
+                c = merge_colour(c,c_black,env_a_val);
+            }
+            if (env_r)
+            {
+                c = (c & $FFFF00) | ((c & $FF)*env_r_val);
+            }
+            if (env_g)
+            {
+                c = (c & $FF00FF) | ((((c >> 8) & $FF)*env_g_val) << 8);
+            }
+            if (env_b)
+            {
+                c = (c & $00FFFF) | (((c >> 16)*env_b_val) << 16);
+            }
+            if (env_rotabs)
+            {
+                angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
+                dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
+                xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
+                yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
+            }
+			
 	        ds_list_add(ind_list,xp);
 	        ds_list_add(ind_list,yp);
 	        ds_list_add(ind_list,bl);
