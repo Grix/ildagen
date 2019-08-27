@@ -481,18 +481,23 @@ int idnSendClose(void* context)
 }
 
 
-bool idnHelloScan(const char* ifName, uint32_t ifIP4Addr)
+std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 {
 	// Socket file descriptor
 	int fdSocket = -1;
 
 	bool found = false;
 
+	std::vector<int>* foundIps = new std::vector<int>();
+
+	if (plt_validateMonoTime() != 0)
+		return foundIps;
+
 	do
 	{
 		// Print interface info
 		char ifAddrString[20];
-		if (inet_ntop(AF_INET, &ifIP4Addr, ifAddrString, sizeof(ifAddrString)) == (char*)0)
+		if (inet_ntop(AF_INET, &adapterIpAddr, ifAddrString, sizeof(ifAddrString)) == (char*)0)
 		{
 			logError("inet_ntop() failed (error: %d)", plt_sockGetLastError());
 			break;
@@ -519,7 +524,7 @@ bool idnHelloScan(const char* ifName, uint32_t ifIP4Addr)
 		struct sockaddr_in bindSockAddr = { 0 };
 		bindSockAddr.sin_family = AF_INET;
 		bindSockAddr.sin_port = 0;
-		bindSockAddr.sin_addr.s_addr = ifIP4Addr;
+		bindSockAddr.sin_addr.s_addr = adapterIpAddr;
 
 		if (bind(fdSocket, (struct sockaddr*) & bindSockAddr, sizeof(bindSockAddr)) < 0)
 		{
@@ -663,8 +668,10 @@ bool idnHelloScan(const char* ifName, uint32_t ifIP4Addr)
 
 			// Print server information
 			//logInfo("%s at %s", logString, recvAddrString);
-			found = true;
-			return true;
+
+			int ipAddr;
+			if (inet_pton(AF_INET, recvAddrString, &ipAddr))
+				foundIps->push_back(ipAddr);
 		}
 	} while (0);
 
@@ -674,5 +681,5 @@ bool idnHelloScan(const char* ifName, uint32_t ifIP4Addr)
 		if (plt_sockClose(fdSocket)) logError("close() failed (error: %d)", plt_sockGetLastError());
 	}
 
-	return found;
+	return foundIps;
 }

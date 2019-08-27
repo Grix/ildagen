@@ -9,6 +9,7 @@
 
 #include "idn-stream.h"
 #include "idn-hello.h"
+#include <vector>
 
 
 #ifndef IDN_H
@@ -126,7 +127,7 @@ int idnPutSampleXYRGB(void* context, int16_t x, int16_t y, uint8_t r, uint8_t g,
 int idnPushFrameXYRGB(void* context);
 int idnSendVoid(void* context);
 int idnSendClose(void* context);
-bool idnHelloScan(const char* ifName, uint32_t ifIP4Addr);
+std::vector<int>* idnHelloScan(const char* ifName, uint32_t ifIP4Addr);
 
 
 #endif

@@ -40,21 +40,23 @@ int Device_IDN::Init()
 		struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ai_addr;
 
 		// Start check whether address is an IDN-hello server
-		if (idnHelloScan(ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr)))
+		std::vector<int>* ipAddrs = idnHelloScan(ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr));
+		for (int ipAddr : *ipAddrs)
 		{
 			IDNCONTEXT *ctx = new IDNCONTEXT { 0 };
 			ctx->serverSockAddr.sin_family = AF_INET;
 			ctx->serverSockAddr.sin_port = htons(IDN_PORT);
-			ctx->serverSockAddr.sin_addr.s_addr = ifSockAddr->sin_addr.s_addr;
+			ctx->serverSockAddr.sin_addr.s_addr = ipAddr;
 
 			contexts[numDevices++] = ctx;
 		}
+		delete ipAddrs;
 	}
 
 	// Interface list is dynamically allocated and must be freed
 	freeaddrinfo(servinfo);
 
-	return 0;
+	return numDevices;
 }
 
 bool Device_IDN::OutputFrame(int cardNum, int rate, int frameSize, IdnPoint* bufferAddress)
