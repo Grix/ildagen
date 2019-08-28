@@ -218,14 +218,14 @@ blue_scale_lower = 0;
 green_scale_lower = 0;
 angle_prev = 0;
 dotstrength = 1;
-scale_left_top = 0;
-scale_left_bottom = 0;
-scale_right_top = $FFFF;
-scale_right_bottom = $FFFF;
-scale_top_left = 0;
-scale_top_right = 0;
-scale_bottom_left = $FFFF;
-scale_bottom_right = $FFFF;
+scale_left_top = $2000;
+scale_left_bottom = $2000;
+scale_right_top = $DFFF;
+scale_right_bottom = $DFFF;
+scale_top_left = $2000;
+scale_top_right = $2000;
+scale_bottom_left = $DFFF;
+scale_bottom_right = $DFFF;
 
 
 placing = "line";

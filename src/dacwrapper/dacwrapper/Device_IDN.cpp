@@ -77,14 +77,14 @@ bool Device_IDN::OutputFrame(int cardNum, int rate, int frameSize, IdnPoint* buf
 			if (idnOpenFrameXYRGB(contexts[cardNum]))
 				return false;
 
-			contexts[cardNum]->usFrameTime = 1000000 / (frameSize/rate);
+			contexts[cardNum]->usFrameTime = 1000000 / ((double)frameSize/rate);
 			contexts[cardNum]->scanSpeed = rate;
 			contexts[cardNum]->jitterFreeFlag = 1;
 
 			//todo must insert special first two and last two points;
 			for (int i = 0; i < frameSize; i++)
 			{
-				if (idnPutSampleXYRGB(contexts[cardNum], bufferAddress[i].x, bufferAddress[i].x, bufferAddress[i].r, bufferAddress[i].g, bufferAddress[i].b))
+				if (idnPutSampleXYRGB(contexts[cardNum], bufferAddress[i].x, bufferAddress[i].y, bufferAddress[i].r, bufferAddress[i].g, bufferAddress[i].b))
 					return false;
 			}
 			if (idnPushFrameXYRGB(contexts[i]))
@@ -190,7 +190,9 @@ bool Device_IDN::GetName(int cardNum, char* name)
 	if (!ready)
 		return false;
 
-	return "IDN";//(heliosDevice->GetName(cardNum, name) == 1);
+	name = "IDN";
+
+	return true;//(heliosDevice->GetName(cardNum, name) == 1);
 }
 
 bool Device_IDN::SetName(int cardNum, char* name)
@@ -198,7 +200,7 @@ bool Device_IDN::SetName(int cardNum, char* name)
 	if (!ready)
 		return false;
 
-	return "IDN";//(heliosDevice->SetName(cardNum, name) == 1);
+	return false;//(heliosDevice->SetName(cardNum, name) == 1);
 }
 
 double Device_IDN::GetFirmwareVersion(int cardNum)

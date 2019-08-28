@@ -25,14 +25,14 @@ with (controller)
             ini_write_real("projector_0", "red_scale_lower", 0);
             ini_write_real("projector_0", "green_scale_lower", 0);
             ini_write_real("projector_0", "blue_scale_lower", 0);
-            ini_write_real("projector_0", "scale_top_left", 0);
-			ini_write_real("projector_0", "scale_top_right", 0);
-			ini_write_real("projector_0", "scale_bottom_left", $ffff);
-			ini_write_real("projector_0", "scale_bottom_right", $ffff);
-			ini_write_real("projector_0", "scale_left_top", 0);
-			ini_write_real("projector_0", "scale_left_bottom", 0);
-			ini_write_real("projector_0", "scale_right_top", $ffff);
-			ini_write_real("projector_0", "scale_right_bottom", $ffff);
+            ini_write_real("projector_0", "scale_top_left", $2000);
+			ini_write_real("projector_0", "scale_top_right", $2000);
+			ini_write_real("projector_0", "scale_bottom_left", $dfff);
+			ini_write_real("projector_0", "scale_bottom_right", $dfff);
+			ini_write_real("projector_0", "scale_left_top", $2000);
+			ini_write_real("projector_0", "scale_left_bottom", $2000);
+			ini_write_real("projector_0", "scale_right_top", $dfff);
+			ini_write_real("projector_0", "scale_right_bottom", $dfff);
 			ini_write_real("projector_0", "ttlpalette", 0);
             ini_write_string("projector_0", "blindzones", emptyliststring);
         }

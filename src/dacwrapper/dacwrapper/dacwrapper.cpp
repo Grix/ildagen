@@ -194,8 +194,8 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 		Device_IDN::IdnPoint idnBuffer[MAX_FRAME_SIZE];
 		for (int i = 0; i < frameSize; i++)
 		{
-			idnBuffer[i].x = bufferAddress[currentPos++];
-			idnBuffer[i].y = bufferAddress[currentPos++];
+			idnBuffer[i].x = bufferAddress[currentPos++] - 0x8000;
+			idnBuffer[i].y = bufferAddress[currentPos++] - 0x8000;
 			idnBuffer[i].r = (uint8_t)bufferAddress[currentPos++];
 			idnBuffer[i].g = (uint8_t)bufferAddress[currentPos++];
 			idnBuffer[i].b = (uint8_t)bufferAddress[currentPos++];

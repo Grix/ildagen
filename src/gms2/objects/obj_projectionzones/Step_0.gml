@@ -121,6 +121,7 @@ else if (moving == 5)
 		controller.scale_left_top += ((mouse_x-mouse_xprevious)/256*$ffff);
 		controller.scale_left_bottom += ((mouse_x-mouse_xprevious)/256*$ffff);
     }
+	//todo fix problems when hitting right side of boundary
 	controller.scale_left_top = clamp(controller.scale_left_top, 0, $ffff);
 	controller.scale_left_bottom = clamp(controller.scale_left_bottom, 0, $ffff);
 	controller.scale_bottom_left = clamp(controller.scale_bottom_left, 0, $ffff);
