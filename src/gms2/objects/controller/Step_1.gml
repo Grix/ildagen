@@ -48,6 +48,3 @@ room_speed = projectfps/fpsmultiplier;
 while (room_speed < minroomspeed)
     room_speed += projectfps/fpsmultiplier;
 game_set_speed(room_speed, gamespeed_fps);
-
-log(room_speed, fpsmultiplier);
-

@@ -175,7 +175,7 @@ int idnOpenFrameXYRGB(void* context)
 		channelConfigHdr->wordCount = 4;
 		channelConfigHdr->flags = IDNFLG_CHNCFG_ROUTING;
 		channelConfigHdr->serviceID = 0;
-		channelConfigHdr->serviceMode = IDNVAL_SMOD_LPGRF_DISCRETE;
+		channelConfigHdr->serviceMode = IDNVAL_SMOD_LPGRF_CONTINUOUS;
 
 		// Standard IDTF-to-IDN descriptors
 		uint16_t* descriptors = (uint16_t*)& channelConfigHdr[1];
@@ -302,11 +302,11 @@ int idnPushFrameXYRGB(void* context)
 	ctx->sampleChunkHdr->flagsDuration = htonl((frameFlags << 24) | frameDuration);
 
 	// Wait between frames to match frame rate
-	if (ctx->frameCnt != 0)
+	/*if (ctx->frameCnt != 0)
 	{
 		unsigned usWait = ctx->usFrameTime - (plt_getMonoTimeUS() - ctx->frameTimestamp);
 		if ((int)usWait > 0) plt_usleep(usWait);
-	}
+	}*/
 	ctx->frameCnt++;
 
 	// ---------------------------------------------------------------------------------------------
@@ -324,7 +324,7 @@ int idnPushFrameXYRGB(void* context)
 
 	// Message header: Calculate message length. Must not exceed 0xFF00 octets !!
 	unsigned msgLength = ctx->payload - (uint8_t*)channelMsgHdr;
-	if (msgLength > MAX_IDN_MESSAGE_LEN)
+	/*if (msgLength > MAX_IDN_MESSAGE_LEN)
 	{
 		// Fragmented frame (split across multiple messages), set message length and chunk type
 		channelMsgHdr->totalSize = htons(MAX_IDN_MESSAGE_LEN);
@@ -380,17 +380,18 @@ int idnPushFrameXYRGB(void* context)
 			}
 		}
 	}
-	else
+	else*/
 	{
 		// Regular frame (single message), set message length and chunk type
 		channelMsgHdr->totalSize = htons((unsigned short)msgLength);
-		channelMsgHdr->contentID = htons(contentID | IDNVAL_CNKTYPE_LPGRF_FRAME);
+		channelMsgHdr->contentID = htons(contentID | IDNVAL_CNKTYPE_LPGRF_WAVE);
 
 		// Set IDN-Hello sequence number (used on UDP for lost packet tracking)
 		packetHdr->sequence = htons(ctx->sequence++);
 
 		// Send the packet
-		if (idnSend(ctx, packetHdr, ctx->payload - (uint8_t*)packetHdr)) return -1;
+		if (idnSend(ctx, packetHdr, ctx->payload - (uint8_t*)packetHdr)) 
+			return -1;
 	}
 
 	// Invalidate payload - cause error in case of invalid call order
