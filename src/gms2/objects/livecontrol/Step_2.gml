@@ -110,7 +110,7 @@ else if (keyboard_check_pressed(vk_space))
 else if (keyboard_check_pressed(vk_tab))
 {
     playing = 0;
-    room_goto(rm_ilda);
+	room_goto(rm_ilda);
 }
     
 else if (keyboard_check_pressed(ord("P")))

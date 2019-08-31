@@ -153,7 +153,10 @@ else if (keyboard_check_pressed(vk_tab))
     if (song != -1) 
 		FMODGMS_Chan_PauseChannel(play_sndchannel);
     playing = 0;
-    room_goto(rm_ilda);
+	if (controller.tab_cycles_all == 1)
+		room_goto(rm_live);
+	else
+		room_goto(rm_ilda);
 }
     
 else if (keyboard_check_pressed(ord("P")))

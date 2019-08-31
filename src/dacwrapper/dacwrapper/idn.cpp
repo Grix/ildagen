@@ -298,7 +298,8 @@ int idnPushFrameXYRGB(void* context)
 	// In case jitter-free option is set: Scan frames 2.. ony once.
 	uint32_t frameDuration = (((uint64_t)(ctx->sampleCnt - 1)) * 1000000ull) / (uint64_t)ctx->scanSpeed;
 	uint8_t frameFlags = 0;
-	if (ctx->jitterFreeFlag && ctx->frameCnt != 0) frameFlags |= IDNFLG_GRAPHIC_FRAME_ONCE;
+	if (ctx->jitterFreeFlag && ctx->frameCnt != 0) 
+		frameFlags |= IDNFLG_GRAPHIC_FRAME_ONCE;
 	ctx->sampleChunkHdr->flagsDuration = htonl((frameFlags << 24) | frameDuration);
 
 	// Wait between frames to match frame rate
@@ -307,7 +308,7 @@ int idnPushFrameXYRGB(void* context)
 		unsigned usWait = ctx->usFrameTime - (plt_getMonoTimeUS() - ctx->frameTimestamp);
 		if ((int)usWait > 0) plt_usleep(usWait);
 	}*/
-	ctx->frameCnt++;
+	
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -318,9 +319,16 @@ int idnPushFrameXYRGB(void* context)
 
 	// IDN channel message header: Set timestamp; Update internal timestamps.
 	unsigned now = plt_getMonoTimeUS();
-	channelMsgHdr->timestamp = htonl(now);
-	ctx->frameTimestamp = now;
-	if (contentID & IDNFLG_CONTENTID_CONFIG_LSTFRG) ctx->cfgTimestamp = now;
+	//if (contentID & IDNFLG_CONTENTID_CONFIG_LSTFRG) ctx->cfgTimestamp = now;
+
+	if (ctx->frameCnt == 0)
+		ctx->frameTimestamp = now;
+	else
+		ctx->frameTimestamp = ctx->frameTimestamp;
+	
+	channelMsgHdr->timestamp = htonl(ctx->frameTimestamp);
+	ctx->frameCnt++;
+	ctx->frameTimestamp += frameDuration;
 
 	// Message header: Calculate message length. Must not exceed 0xFF00 octets !!
 	unsigned msgLength = ctx->payload - (uint8_t*)channelMsgHdr;
@@ -425,6 +433,7 @@ int idnSendVoid(void* context)
 	// Populate message header fields
 	channelMsgHdr->totalSize = htons((unsigned short)(ctx->payload - (uint8_t*)channelMsgHdr));
 	channelMsgHdr->timestamp = htonl(plt_getMonoTimeUS());
+	ctx->frameCnt = 0;
 
 	// Send the packet
 	if (idnSend(context, packetHdr, ctx->payload - (uint8_t*)packetHdr)) return -1;

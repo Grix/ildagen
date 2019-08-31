@@ -67,14 +67,14 @@ with (controller)
             ds_map_add(t_profilemap, "red_scale_lower", ini_read_real(t_projectorstring, "red_scale_lower", 0));
             ds_map_add(t_profilemap, "green_scale_lower", ini_read_real(t_projectorstring, "green_scale_lower", 0));
             ds_map_add(t_profilemap, "blue_scale_lower", ini_read_real(t_projectorstring, "blue_scale_lower", 0));
-            ds_map_add(t_profilemap, "scale_top_left", ini_read_real(t_projectorstring, "scale_top_left", 0));
-			ds_map_add(t_profilemap, "scale_top_right", ini_read_real(t_projectorstring, "scale_top_right", 0));
-			ds_map_add(t_profilemap, "scale_bottom_left", ini_read_real(t_projectorstring, "scale_bottom_left", $ffff));
-			ds_map_add(t_profilemap, "scale_bottom_right", ini_read_real(t_projectorstring, "scale_bottom_right", $ffff));
-			ds_map_add(t_profilemap, "scale_left_top", ini_read_real(t_projectorstring, "scale_left_top", 0));
-			ds_map_add(t_profilemap, "scale_left_bottom", ini_read_real(t_projectorstring, "scale_left_bottom", 0));
-			ds_map_add(t_profilemap, "scale_right_top", ini_read_real(t_projectorstring, "scale_right_top", $ffff));
-			ds_map_add(t_profilemap, "scale_right_bottom", ini_read_real(t_projectorstring, "scale_right_bottom", $ffff));
+            ds_map_add(t_profilemap, "scale_top_left", ini_read_real(t_projectorstring, "scale_top_left", $2000));
+			ds_map_add(t_profilemap, "scale_top_right", ini_read_real(t_projectorstring, "scale_top_right", $2000));
+			ds_map_add(t_profilemap, "scale_bottom_left", ini_read_real(t_projectorstring, "scale_bottom_left", $dfff));
+			ds_map_add(t_profilemap, "scale_bottom_right", ini_read_real(t_projectorstring, "scale_bottom_right", $dfff));
+			ds_map_add(t_profilemap, "scale_left_top", ini_read_real(t_projectorstring, "scale_left_top", $2000));
+			ds_map_add(t_profilemap, "scale_left_bottom", ini_read_real(t_projectorstring, "scale_left_bottom", $2000));
+			ds_map_add(t_profilemap, "scale_right_top", ini_read_real(t_projectorstring, "scale_right_top", $dfff));
+			ds_map_add(t_profilemap, "scale_right_bottom", ini_read_real(t_projectorstring, "scale_right_bottom", $dfff));
 			ds_map_add(t_profilemap, "ttlpalette", ini_read_real(t_projectorstring, "ttlpalette", 0));
             ds_map_add(t_profilemap, "blindzones", ini_read_string(t_projectorstring, "blindzones", emptyliststring));
             ds_list_add(profile_list,t_profilemap);
@@ -86,6 +86,10 @@ with (controller)
             projector = 0;
             
         show_tooltip = ini_read_real("main", "show_tooltip", 1);
+		onion_dropoff = ini_read_real("main", "onion_dropoff", 0.7);
+		onion_number = ini_read_real("main", "onion_number", 2);
+		onion_alpha = ini_read_real("main", "onion_alpha", 0.8);
+		tab_cycles_all = ini_read_real("main", "tab_cycles_all", 0);
 		
 		/*if (!ini_read_real("main", "window_width", 0))
 		{

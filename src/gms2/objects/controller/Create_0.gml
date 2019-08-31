@@ -185,6 +185,7 @@ getstr = -1;
 dialog = "";
 selecting = 0;
 scrollcursor_flag = 0;
+tab_cycles_all = 0;
 
 global.loading_exportproject = 0;
 global.loading_exportilda = 0;

@@ -4,8 +4,12 @@ with (controller)
 {
     ini_open("settings.ini");
     
-        ini_write_real("main", "projector",projector);
-        ini_write_real("main", "show_tooltip",show_tooltip);
+        ini_write_real("main", "projector", projector);
+        ini_write_real("main", "show_tooltip", show_tooltip);
+		ini_write_real("main", "onion_dropoff", onion_dropoff);
+		ini_write_real("main", "onion_number", onion_number);
+		ini_write_real("main", "onion_alpha", onion_alpha);
+		ini_write_real("main", "tab_cycles_all", tab_cycles_all);
 		/*ini_write_real("main", "window_width", window_get_width());
 		ini_write_real("main", "window_height", window_get_height());
 		ini_write_real("main", "window_x", window_get_x());
