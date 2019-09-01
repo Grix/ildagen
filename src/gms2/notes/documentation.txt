@@ -1,6 +1,6 @@
 TODO
 - IDN
-- tab key behavior settings
+- ctrl key problem in mac
 - onion skin in live mode
 - set fixed scanrate instead of fps when optimization off
 - increase default fps and reduce automatically on complex frames

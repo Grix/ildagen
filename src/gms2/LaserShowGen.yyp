@@ -5735,6 +5735,14 @@
             }
         },
         {
+            "Key": "a8f5f3a0-f853-40be-ae01-9010e07852fa",
+            "Value": {
+                "id": "0d34162b-0798-463c-b98d-ddc13c26c9c2",
+                "resourcePath": "objects\\obj_tabcyclesall\\obj_tabcyclesall.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "a9188620-a624-4a5a-83ae-a1b53faf038b",
             "Value": {
                 "id": "1f373891-cdd6-4607-bbc5-a273cfb11b9f",

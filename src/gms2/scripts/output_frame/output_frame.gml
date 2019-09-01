@@ -11,7 +11,8 @@ if (output_buffer_ready)
         log("outputted frame ", dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps/fpsmultiplier, fpsmultiplier, delta_time/1000);
         
     dac_send_frame(dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps/fpsmultiplier);
-    frame_surf_refresh = false;
+	
+	frame_surf_refresh = false;
     output_buffer_ready = false;
     laseronfirst = false;
     

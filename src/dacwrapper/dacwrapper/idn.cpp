@@ -296,6 +296,13 @@ int idnPushFrameXYRGB(void* context)
 
 	// Sample chunk header: Calculate frame duration based on scan speed.
 	// In case jitter-free option is set: Scan frames 2.. ony once.
+
+	unsigned now = plt_getMonoTimeUS();
+	if (ctx->frameCnt == 0 || (now-1000 < ctx->frameTimestamp))
+		ctx->frameTimestamp = now;
+	else
+		ctx->scanSpeed = (((uint64_t)(ctx->sampleCnt - 1)) * 1000000ull) / (now - ctx->frameTimestamp);
+
 	uint32_t frameDuration = (((uint64_t)(ctx->sampleCnt - 1)) * 1000000ull) / (uint64_t)ctx->scanSpeed;
 	uint8_t frameFlags = 0;
 	if (ctx->jitterFreeFlag && ctx->frameCnt != 0) 
@@ -318,17 +325,15 @@ int idnPushFrameXYRGB(void* context)
 	uint16_t contentID = ntohs(channelMsgHdr->contentID);
 
 	// IDN channel message header: Set timestamp; Update internal timestamps.
-	unsigned now = plt_getMonoTimeUS();
+	//unsigned now = plt_getMonoTimeUS();
 	//if (contentID & IDNFLG_CONTENTID_CONFIG_LSTFRG) ctx->cfgTimestamp = now;
-
-	if (ctx->frameCnt == 0)
-		ctx->frameTimestamp = now;
-	else
-		ctx->frameTimestamp = ctx->frameTimestamp;
 	
 	channelMsgHdr->timestamp = htonl(ctx->frameTimestamp);
 	ctx->frameCnt++;
 	ctx->frameTimestamp += frameDuration;
+//#ifdef DEBUG
+	//printf("frameduration: %d\n", frameDuration);
+//#endif
 
 	// Message header: Calculate message length. Must not exceed 0xFF00 octets !!
 	unsigned msgLength = ctx->payload - (uint8_t*)channelMsgHdr;

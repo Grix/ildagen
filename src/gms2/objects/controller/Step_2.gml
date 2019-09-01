@@ -101,6 +101,7 @@ if (placing == "hershey")
     hershey_handle_scroll();
     
 object_select_hovering = 0;
+canrightclick = 1;
 
 check_mouseactions();
 
@@ -157,7 +158,7 @@ else if (keyboard_check_pressed(vk_escape))
         dac_blank_and_center(dac);
     }
 }
-    
+	
 else if (keyboard_check(vk_control) || (placing == "select") || (highlight)) && ds_list_size(el_list)
 {
     check_elementselect();
@@ -227,7 +228,6 @@ if (!surface_exists(frame_surf) || (!surface_exists(frame3d_surf) && viewmode !=
 highlight = keyboard_check(ord("H"));
     
 //SELECTED ELEMENT STUFFS
-canrightclick = 1;
 if !ds_list_empty(semaster_list)
 {
     canrightclick = !handle_trans();

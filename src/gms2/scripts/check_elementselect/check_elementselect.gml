@@ -40,8 +40,9 @@ for (i = 0;i < t_ellistsize; i++)
             tooltip = "Click to select this object";
             object_select_hovering = 1;
         
-            if (mouse_check_button_pressed(mb_left))
+            if (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right)) 
             {
+				canrightclick = 0;
                 ds_list_add(semaster_list,ds_list_find_value(t_templist,9));
                 update_semasterlist_flag = 1;
                 if (placing == "select")
@@ -53,8 +54,9 @@ for (i = 0;i < t_ellistsize; i++)
             tooltip = "Click to deselect this object";
             object_select_hovering = 2;
         
-            if (mouse_check_button_pressed(mb_left))
+            if (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right)) 
             {
+				canrightclick = 0;
                 ds_list_delete(semaster_list,ds_list_find_index(semaster_list,ds_list_find_value(t_templist,9)));
                 update_semasterlist_flag = 1;
                 if (placing == "select")
@@ -66,7 +68,8 @@ for (i = 0;i < t_ellistsize; i++)
     }
 }
     
-if (mouse_check_button_pressed(mb_left)) and (placing != "select")
+if (mouse_check_button_pressed(mb_left) and (placing != "select"))
+{
     deselect_object();
-    
+}
 
