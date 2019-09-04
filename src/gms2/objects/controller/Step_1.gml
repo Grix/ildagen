@@ -18,6 +18,7 @@ if (playing == 1)
     frame = clamp(round(framehr),0,maxframes-1);
     if (frame != frameprev)
     {
+		log("new frame");
         frame_surf_refresh = 1;
 		update_semasterlist_flag = 1;
     }
@@ -28,7 +29,7 @@ if (playing == 1)
     }
 }
 
-minroomspeed = 60;
+minroomspeed = 7.5;
 
 if (laseron)
 {

@@ -3,6 +3,7 @@ TODO
 - ctrl key problem in mac
 - onion skin in live mode
 - set fixed scanrate instead of fps when optimization off
+- live mode global sliders
 - increase default fps and reduce automatically on complex frames
 - reapply combine shapes
 - split objects

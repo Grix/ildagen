@@ -28,10 +28,10 @@ masterx = 0;
 mastery = 0;
 masteralpha = 1;
 masterhue = 255;
-masterred = 255;
-masterblue = 255;
-mastergreen = 255;
-masterabsrot = 0;
+masterred = 1;
+masterblue = 1;
+mastergreen = 1;
+masterabsrot = pi;
 
 browser_surf = -1;
 frame_surf = -1;
