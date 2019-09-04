@@ -2,7 +2,7 @@
 /// @function output_frame_seq
 /// @param daclist
 
-minroomspeed = max(controller.projectfps,7.5);
+//minroomspeed = max(controller.projectfps,7.5);
     
 output_buffer = controller.dac[| 4];
 output_buffer2 = controller.dac[| 5];

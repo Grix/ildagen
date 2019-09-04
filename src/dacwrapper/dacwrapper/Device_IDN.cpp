@@ -79,7 +79,7 @@ bool Device_IDN::OutputFrame(int cardNum, int rate, int frameSize, IdnPoint* buf
 
 			contexts[cardNum]->usFrameTime = 1000000 / ((double)frameSize/rate);
 			contexts[cardNum]->scanSpeed = rate;
-			contexts[cardNum]->jitterFreeFlag = 0;
+			contexts[cardNum]->jitterFreeFlag = 1;
 
 			//todo must insert special first two and last two points;
 			for (int i = 0; i < frameSize; i++)

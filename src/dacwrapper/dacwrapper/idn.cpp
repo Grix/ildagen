@@ -175,7 +175,7 @@ int idnOpenFrameXYRGB(void* context)
 		channelConfigHdr->wordCount = 4;
 		channelConfigHdr->flags = IDNFLG_CHNCFG_ROUTING;
 		channelConfigHdr->serviceID = 0;
-		channelConfigHdr->serviceMode = IDNVAL_SMOD_LPGRF_CONTINUOUS;
+		channelConfigHdr->serviceMode = IDNVAL_SMOD_LPGRF_DISCRETE;
 
 		// Standard IDTF-to-IDN descriptors
 		uint16_t* descriptors = (uint16_t*)& channelConfigHdr[1];
@@ -298,10 +298,10 @@ int idnPushFrameXYRGB(void* context)
 	// In case jitter-free option is set: Scan frames 2.. ony once.
 
 	unsigned now = plt_getMonoTimeUS();
-	if (ctx->frameCnt == 0 || (now-1000 < ctx->frameTimestamp))
+	//if (ctx->frameCnt == 0 || (now-1000 < ctx->frameTimestamp))
 		ctx->frameTimestamp = now;
-	else
-		ctx->scanSpeed = (((uint64_t)(ctx->sampleCnt - 1)) * 1000000ull) / (now - ctx->frameTimestamp);
+	//else
+	//	ctx->scanSpeed = (((uint64_t)(ctx->sampleCnt - 1)) * 1000000ull) / (now - ctx->frameTimestamp);
 
 	uint32_t frameDuration = (((uint64_t)(ctx->sampleCnt - 1)) * 1000000ull) / (uint64_t)ctx->scanSpeed;
 	uint8_t frameFlags = 0;
@@ -397,7 +397,7 @@ int idnPushFrameXYRGB(void* context)
 	{
 		// Regular frame (single message), set message length and chunk type
 		channelMsgHdr->totalSize = htons((unsigned short)msgLength);
-		channelMsgHdr->contentID = htons(contentID | IDNVAL_CNKTYPE_LPGRF_WAVE);
+		channelMsgHdr->contentID = htons(contentID | IDNVAL_CNKTYPE_LPGRF_FRAME);
 
 		// Set IDN-Hello sequence number (used on UDP for lost packet tracking)
 		packetHdr->sequence = htons(ctx->sequence++);

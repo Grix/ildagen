@@ -34,7 +34,7 @@ if (playing == 1)
 
 frameprev = frame;
 
-minroomspeed = 60;
+minroomspeed = 7.5;
 
 if (controller.laseron)
 {

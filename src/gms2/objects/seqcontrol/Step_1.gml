@@ -34,7 +34,8 @@ if (frameprev != round(tlpos/1000*projectfps))
     frameprev = round(tlpos/1000*projectfps);
 }
     
-minroomspeed = 60; 
+	
+minroomspeed = 7.5; 
    
 if (controller.laseron)
 {
