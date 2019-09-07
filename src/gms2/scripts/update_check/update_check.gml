@@ -24,6 +24,9 @@ else
     ini_close();
     if (updatecheckenabled)
     {
-        updateget = http_get("http://github.com/Grix/ildagen/raw/master/version.txt");
+		if (os_version == os_macosx)
+			updateget = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/version_mac.txt");
+		else
+			updateget = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/version.txt");
     }
 }

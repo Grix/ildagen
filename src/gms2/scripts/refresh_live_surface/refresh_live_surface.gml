@@ -167,6 +167,105 @@ for (j = 0; j < ds_list_size(filelist); j++)
 	}
 }
 
+if (controller.onion)
+{
+	for (k = 1; k <= controller.onion_number; k++)
+    {
+		draw_set_alpha(controller.onion_alpha * power(controller.onion_dropoff, k));
+		
+		for (j = 0; j < ds_list_size(filelist); j++)
+		{
+			objectlist = filelist[| j];
+	
+			if (!objectlist[| 0]) // is not playing
+				continue;
+
+			infolist =  ds_list_find_value(objectlist, 2);
+			object_maxframes = ds_list_find_value(infolist, 2);
+		    frame = infolist[| 0];
+        
+			//draw object
+			el_buffer = ds_list_find_value(objectlist, 1);
+			fetchedframe = (frame+k) mod object_maxframes;
+			if (objectlist[| 4] == 0 && fetchedframe < (frame mod object_maxframes))
+				continue; // is not looping, so don't wrap to start
+				
+			buffer_seek(el_buffer,buffer_seek_start,0);
+			buffer_ver = buffer_read(el_buffer,buffer_u8);
+			if (buffer_ver != 52)
+			{
+				show_message_new("Error: Unexpected version id reading buffer in refresh_seq_surface: "+string(buffer_ver)+". Things might get ugly. Contact developer.");
+				exit;
+			}
+			buffer_maxframes = buffer_read(el_buffer,buffer_u32);
+        
+			//skip to correct frame
+			for (i = 0; i < fetchedframe;i++)
+			{
+				numofel = buffer_read(el_buffer,buffer_u32);
+				for (u = 0; u < numofel; u++)
+				{
+				    numofdata = buffer_read(el_buffer,buffer_u32)-20;
+				    buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*3.25);
+				}
+			}
+            
+			buffer_maxelements = buffer_read(el_buffer,buffer_u32);
+        
+			//actual elements
+			for (i = 0; i < buffer_maxelements;i++)
+			{
+				numofinds = buffer_read(el_buffer,buffer_u32);
+				var repeatnum = (numofinds-20)/4-1;
+				var buffer_start_pos = buffer_tell(el_buffer);
+            
+				//2d
+				gpu_set_blendenable(0);
+				if (viewmode != 1)
+				{
+				    xo = view_wport[4]/2-view_hport[4]/2+buffer_read(el_buffer,buffer_f32)*t_scaley;
+				    yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
+				    buffer_seek(el_buffer,buffer_seek_relative,42);
+                
+				    xp = buffer_read(el_buffer,buffer_f32);
+				    yp = buffer_read(el_buffer,buffer_f32);
+				    bl = buffer_read(el_buffer,buffer_bool);
+				    c = buffer_read(el_buffer,buffer_u32);
+		
+				    surface_set_target(frame_surf);
+                
+				    repeat (repeatnum)
+				    {
+				        xpp = xp;
+				        ypp = yp;
+				        blp = bl;
+                    
+				        xp = buffer_read(el_buffer,buffer_f32);
+				        yp = buffer_read(el_buffer,buffer_f32);
+				        bl = buffer_read(el_buffer,buffer_bool);
+				        c = buffer_read(el_buffer,buffer_u32);
+                    
+				        if (!bl)
+				        {
+				            draw_set_color(c);
+				            if ((xp == xpp) and (yp == ypp) and !blp)
+				            {
+				                draw_point(xo+xp*t_scaley,yo+yp*t_scaley);
+				            }
+				            else
+				                draw_line(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley);
+				        }
+				    }
+                
+				    surface_reset_target();
+				}
+				gpu_set_blendenable(1);
+                
+			}
+		}
+	}
+}
+
 draw_set_alpha(1);
 gpu_set_blendmode(bm_normal);
 draw_set_color(c_black);
