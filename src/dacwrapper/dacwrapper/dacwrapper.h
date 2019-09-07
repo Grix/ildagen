@@ -21,6 +21,7 @@
 	#define GMEXPORT extern "C" __declspec (dllexport)
 #else
 	#define GMEXPORT extern "C"
+#define LARGE_INTEGER
 #endif
 
 #define MAX_FRAME_SIZE 0x1000
@@ -37,10 +38,12 @@ Device_IDN* idnDevice;
 #endif
 
 // Needed for IDN plt files, gives redefinition error if moved there
+#ifdef WIN32
 int plt_monoValid = 0;
 LARGE_INTEGER plt_monoCtrFreq;
 LARGE_INTEGER plt_monoCtrRef;
 uint32_t plt_monoTimeUS = 0;
+#endif
 
 bool initialized = false;
 int numDevices = 0;
