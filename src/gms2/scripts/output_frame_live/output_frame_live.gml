@@ -38,7 +38,6 @@ for (j = 0; j < ds_list_size(filelist); j++)
 	infolist =  ds_list_find_value(objectlist, 2);
 	object_maxframes = ds_list_find_value(infolist, 2);
 	frame = infolist[| 0];
-	log(j, frame);
 	
 	//modifier transforms
     ready_envelope_applying_live();
