@@ -501,8 +501,6 @@ std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 	// Socket file descriptor
 	int fdSocket = -1;
 
-	bool found = false;
-
 	std::vector<int>* foundIps = new std::vector<int>();
 
 	if (plt_validateMonoTime() != 0)
@@ -629,9 +627,6 @@ std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 			int ipAddr;
 			if (!inet_pton(AF_INET, recvAddrString, &ipAddr))
 				break;
-
-			if (foundIps->size() != 0 && std::find(foundIps->begin(), foundIps->end(), ipAddr) == foundIps->end())
-				break; // already found
 
 			// Check sender port
 			if (ntohs(recvSockAddr.sin_port) != IDNVAL_HELLO_UDP_PORT)

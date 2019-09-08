@@ -64,6 +64,7 @@ typedef struct
 #include <ifaddrs.h>
 
 #include "plt-posix.h"
+#include <netdb.h>
 
 #endif
 
