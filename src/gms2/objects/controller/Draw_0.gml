@@ -222,8 +222,8 @@ if (view_current == 4 || view_current == 5)
         draw_set_color(c_ltgray);
         draw_text(12, t_y+view_wport[4]-20, "Frame: "+string(frame+1)+"/"+string(maxframes));
         
-        draw_text(12,t_y+7,"FPS: "+string(projectfps));
-        if (playing && (fps != projectfps) && laseron)
+        draw_text(12,t_y+7,"FPS: "+string(projectfps/controller.fpsmultiplier));
+        if (playing && (fps != projectfps/fpsmultiplier) && laseron)
         {
             draw_set_color(c_red);
             draw_text(32,t_y+7,"Warning: Dropping frames. Actual FPS: "+string(fps));

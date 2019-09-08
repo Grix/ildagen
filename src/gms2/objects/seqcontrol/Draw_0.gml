@@ -55,8 +55,8 @@ if (view_current == 4)
 	    draw_set_color(c_ltgray);
 	    draw_text(12,view_hport[4]-20,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1));
     }
-	draw_text(12,7,"FPS: "+string(projectfps));
-	if (playing && (fps != projectfps) && controller.laseron)
+	draw_text(12,7,"FPS: "+string(projectfps/controller.fpsmultiplier));
+	if (playing && (fps != projectfps/controller.fpsmultiplier) && controller.laseron)
 	{
 	    draw_set_color(c_red);
 	    draw_text(32,7,"Warning: Dropping frames. Actual FPS: "+string(fps));
