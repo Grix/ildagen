@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E02613E2325003200323762 /* Device_IDN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E02613C2325003200323762 /* Device_IDN.cpp */; };
+		8E02613F2325003200323762 /* Device_IDN.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E02613D2325003200323762 /* Device_IDN.h */; };
 		8E4FF6DD209F792D0088C085 /* Device_Etherdream_unix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E4FF6DB209F792D0088C085 /* Device_Etherdream_unix.cpp */; };
 		8E4FF6DE209F792D0088C085 /* Device_Etherdream_unix.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E4FF6DC209F792D0088C085 /* Device_Etherdream_unix.h */; };
-		8E5B066C232401B2007219AC /* Device_IDN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5B066A232401B2007219AC /* Device_IDN.cpp */; };
-		8E5B066D232401B2007219AC /* Device_IDN.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E5B066B232401B2007219AC /* Device_IDN.h */; };
 		8E7A31912083D68900416B44 /* dacwrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E7A318F2083D68900416B44 /* dacwrapper.cpp */; };
 		8E7A31922083D68900416B44 /* dacwrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E7A31902083D68900416B44 /* dacwrapper.h */; };
 		8E7A31952083D6BF00416B44 /* Device_Helios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E7A31932083D6BF00416B44 /* Device_Helios.cpp */; };
@@ -40,10 +40,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E02613C2325003200323762 /* Device_IDN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Device_IDN.cpp; path = ../dacwrapper/Device_IDN.cpp; sourceTree = "<group>"; };
+		8E02613D2325003200323762 /* Device_IDN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Device_IDN.h; path = ../dacwrapper/Device_IDN.h; sourceTree = "<group>"; };
 		8E4FF6DB209F792D0088C085 /* Device_Etherdream_unix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Device_Etherdream_unix.cpp; path = ../dacwrapper/Device_Etherdream_unix.cpp; sourceTree = "<group>"; };
 		8E4FF6DC209F792D0088C085 /* Device_Etherdream_unix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Device_Etherdream_unix.h; path = ../dacwrapper/Device_Etherdream_unix.h; sourceTree = "<group>"; };
-		8E5B066A232401B2007219AC /* Device_IDN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Device_IDN.cpp; sourceTree = "<group>"; };
-		8E5B066B232401B2007219AC /* Device_IDN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device_IDN.h; sourceTree = "<group>"; };
 		8E7A31882083D57300416B44 /* libdacwrapper.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libdacwrapper.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7A318F2083D68900416B44 /* dacwrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dacwrapper.cpp; path = ../dacwrapper/dacwrapper.cpp; sourceTree = "<group>"; };
 		8E7A31902083D68900416B44 /* dacwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = dacwrapper.h; path = ../dacwrapper/dacwrapper.h; sourceTree = "<group>"; };
@@ -102,8 +102,6 @@
 				8E7A319E2083D6DC00416B44 /* LaserdockDevice_p.h */,
 				8E7A319F2083D6DC00416B44 /* LaserdockDevice.cpp */,
 				8E7A31A02083D6DC00416B44 /* LaserdockDevice.h */,
-				8E5B066A232401B2007219AC /* Device_IDN.cpp */,
-				8E5B066B232401B2007219AC /* Device_IDN.h */,
 				8E7A31A12083D6DC00416B44 /* LaserdockDeviceManager_desktop.cpp */,
 				8E7A31A22083D6DC00416B44 /* LaserdockDeviceManager_p.h */,
 				8E7A31A32083D6DC00416B44 /* LaserdockDeviceManager.cpp */,
@@ -115,6 +113,8 @@
 				8EA62ED6209F80860087E229 /* etherdream_common */,
 				8EA62ED7209F80860087E229 /* etherdream.c */,
 				8EA62ED8209F80860087E229 /* etherdream.h */,
+				8E02613C2325003200323762 /* Device_IDN.cpp */,
+				8E02613D2325003200323762 /* Device_IDN.h */,
 				8EE0D8822324267D006267DE /* idn-hello.h */,
 				8EE0D8832324267D006267DE /* idn-stream.h */,
 				8EE0D8842324267D006267DE /* idn.cpp */,
@@ -142,11 +142,11 @@
 				8EE0D8872324267D006267DE /* idn-stream.h in Headers */,
 				8EE0D88D23242693006267DE /* plt-posix.h in Headers */,
 				8EA62EDA209F80860087E229 /* etherdream.h in Headers */,
+				8E02613F2325003200323762 /* Device_IDN.h in Headers */,
 				8E7A31962083D6BF00416B44 /* Device_Helios.h in Headers */,
 				8EE0D8892324267D006267DE /* idn.h in Headers */,
 				8E4FF6DE209F792D0088C085 /* Device_Etherdream_unix.h in Headers */,
 				8E7A31AE2083D6DC00416B44 /* LaserdockDeviceManager.h in Headers */,
-				8E5B066D232401B2007219AC /* Device_IDN.h in Headers */,
 				8E7A31B02083D6E400416B44 /* libusb.h in Headers */,
 				8E7A31A62083D6DC00416B44 /* HeliosDac.h in Headers */,
 				8E7A31AC2083D6DC00416B44 /* LaserdockDeviceManager_p.h in Headers */,
@@ -220,7 +220,6 @@
 				8E7A31A72083D6DC00416B44 /* LaserdockDevice_desktop.cpp in Sources */,
 				8EE0D8882324267D006267DE /* idn.cpp in Sources */,
 				8E7A31992083D6CC00416B44 /* Device_LaserDock.cpp in Sources */,
-				8E5B066C232401B2007219AC /* Device_IDN.cpp in Sources */,
 				8E7A31A52083D6DC00416B44 /* HeliosDac.cpp in Sources */,
 				8EE0D88C23242693006267DE /* plt-posix.c in Sources */,
 				8E7A31AB2083D6DC00416B44 /* LaserdockDeviceManager_desktop.cpp in Sources */,
@@ -228,6 +227,7 @@
 				8E7A31AD2083D6DC00416B44 /* LaserdockDeviceManager.cpp in Sources */,
 				8EA62ED9209F80860087E229 /* etherdream.c in Sources */,
 				8E7A31952083D6BF00416B44 /* Device_Helios.cpp in Sources */,
+				8E02613E2325003200323762 /* Device_IDN.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -35,11 +35,57 @@
 // Standard libraries
 #include <unistd.h>
 #include <errno.h>
-#include <time.h>
 
 // Platform headers
 #include <arpa/inet.h>
 
+#ifdef __APPLE__
+#include <sys/types.h>
+#include <sys/_types/_timespec.h>
+#include <mach/mach.h>
+#include <mach/clock.h>
+#include <mach/mach_time.h>
+
+#define TIMER_ABSTIME -1
+#define MT_NANO (+1.0E-9)
+#define MT_GIGA UINT64_C(1000000000)
+
+// TODO create a list of timers,
+static double mt_timebase = 0.0;
+static uint64_t mt_timestart = 0;
+inline int mach_clock_gettime(int clk_id, struct timespec *tp)
+{
+    kern_return_t retval = KERN_SUCCESS;
+    if( clk_id == TIMER_ABSTIME) {
+        if (!mt_timestart) { // only one timer, initilized on the first call to the TIMER
+            mach_timebase_info_data_t tb = { 0 };
+            mach_timebase_info(&tb);
+            mt_timebase = tb.numer;
+            mt_timebase /= tb.denom;
+            mt_timestart = mach_absolute_time();
+        }
+        
+        double diff = (mach_absolute_time() - mt_timestart) * mt_timebase;
+        tp->tv_sec = diff * MT_NANO;
+        tp->tv_nsec = diff - (tp->tv_sec * MT_GIGA);
+    }
+    else { // other clk_ids are mapped to the coresponding mach clock_service
+        clock_serv_t cclock;
+        mach_timespec_t mts;
+        
+        host_get_clock_service(mach_host_self(), clk_id, &cclock);
+        retval = clock_get_time(cclock, &mts);
+        mach_port_deallocate(mach_task_self(), cclock);
+        
+        tp->tv_sec = mts.tv_sec;
+        tp->tv_nsec = mts.tv_nsec;
+    }
+    
+    return retval;
+}
+#else
+#include <time.h>
+#endif
 
 // -------------------------------------------------------------------------------------------------
 //  Inline functions
@@ -50,12 +96,18 @@ inline static int plt_validateMonoTime()
     extern int plt_monoValid;
     extern struct timespec plt_monoRef;
     extern uint32_t plt_monoTimeUS;
+    
 
     if(!plt_monoValid)
     {
         // Initialize time reference
+#ifdef __APPLE__
+        if(mach_clock_gettime(SYSTEM_CLOCK, &plt_monoRef) < 0) return -1;
+#else
         if(clock_gettime(CLOCK_MONOTONIC, &plt_monoRef) < 0) return -1;
-
+#endif
+        
+        
         // Initialize internal time randomly
         plt_monoTimeUS = (uint32_t)((plt_monoRef.tv_sec * 1000000ul) + (plt_monoRef.tv_nsec / 1000));
         plt_monoValid = 1;
@@ -72,7 +124,11 @@ inline static uint32_t plt_getMonoTimeUS()
 
     // Get current time
     struct timespec tsNow, tsDiff;
+#ifdef __APPLE__
+    mach_clock_gettime(SYSTEM_CLOCK, &tsNow);
+#else
     clock_gettime(CLOCK_MONOTONIC, &tsNow);
+#endif
 
     // Determine difference to reference time
     if(tsNow.tv_nsec < plt_monoRef.tv_nsec) 
@@ -137,7 +193,11 @@ inline static int plt_sockClose(int fdSocket)
 
 inline static int plt_sockSetBroadcast(int fdSocket)
 {
+#ifdef __APPLE__
+    int bcastOptStr[] = {1};
+#else
     char bcastOptStr[] = "1";
+#endif
     return setsockopt(fdSocket, SOL_SOCKET, SO_BROADCAST, bcastOptStr, sizeof(bcastOptStr));
 }
 

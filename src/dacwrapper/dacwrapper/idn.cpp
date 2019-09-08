@@ -531,7 +531,7 @@ std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 			logError("setsockopt(broadcast) failed (error: %d)", plt_sockGetLastError());
 			break;
 		}
-
+        
 		// Bind to local interface (any! port)
 		// Note: This bind is needed to send the broadcast on the specific (virtual) interface,
 		struct sockaddr_in bindSockAddr = { 0 };

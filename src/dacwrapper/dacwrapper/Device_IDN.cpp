@@ -25,50 +25,49 @@ int Device_IDN::Init()
 	hints.ai_flags = AI_PASSIVE;            // Intention to use address with the bind function
 	hints.ai_family = AF_INET;              // IPv4
 
-	int rcAddrInfo = getaddrinfo("", "7255"/*std::to_string(IDN_PORT).c_str()*/, &hints, &servinfo);
-	if (rcAddrInfo != 0) 
-		return 0;
-
+	int rcAddrInfo = getaddrinfo("", "7255", &hints, &servinfo);
+	if (rcAddrInfo != 0)
+        return 0;
 	int numDevices = 0;
 
-	std::vector<int> allIpAddrs;
-
-	// Walk through all interfaces (servinfo points to a linked list of struct addrinfos)
-	for (struct addrinfo* ifa = servinfo; ifa != NULL; ifa = ifa->ai_next)
-	{
-		if (ifa->ai_addr == NULL) continue;
-		if (ifa->ai_addr->sa_family != AF_INET) continue;
-
-		// Invoke callback on interface
-		struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ai_addr;
-
-		// Start check whether address is an IDN-hello server
-		std::vector<int>* ipAddrs = idnHelloScan(ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr));
-		for (int ipAddr : *ipAddrs)
-		{
-			bool found = false;
-			for (int _ipAddr : allIpAddrs)
-			{
-				if (_ipAddr == ipAddr)
-					found = true;
-			}
-			if (!found)
-				allIpAddrs.push_back(ipAddr);
-		}
-		delete ipAddrs;
-	}
-
-	for (int ipAddr : allIpAddrs)
-	{
-		IDNCONTEXT *ctx = new IDNCONTEXT{ 0 };
-		ctx->serverSockAddr.sin_family = AF_INET;
-		ctx->serverSockAddr.sin_port = htons(IDN_PORT);
-		ctx->serverSockAddr.sin_addr.s_addr = ipAddr;
-
-		contexts[numDevices++] = ctx;
-	}
-
-	// Interface list is dynamically allocated and must be freed
+    std::vector<int> allIpAddrs;
+    
+    // Walk through all interfaces (servinfo points to a linked list of struct addrinfos)
+    for (struct addrinfo* ifa = servinfo; ifa != NULL; ifa = ifa->ai_next)
+    {
+        if (ifa->ai_addr == NULL) continue;
+        if (ifa->ai_addr->sa_family != AF_INET) continue;
+        
+        // Invoke callback on interface
+        struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ai_addr;
+        
+        // Start check whether address is an IDN-hello server
+        std::vector<int>* ipAddrs = idnHelloScan(ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr));
+        for (int ipAddr : *ipAddrs)
+        {
+            bool found = false;
+            for (int _ipAddr : allIpAddrs)
+            {
+                if (_ipAddr == ipAddr)
+                    found = true;
+            }
+            if (!found)
+                allIpAddrs.push_back(ipAddr);
+        }
+        delete ipAddrs;
+    }
+    
+    for (int ipAddr : allIpAddrs)
+    {
+        IDNCONTEXT *ctx = new IDNCONTEXT{ 0 };
+        ctx->serverSockAddr.sin_family = AF_INET;
+        ctx->serverSockAddr.sin_port = htons(IDN_PORT);
+        ctx->serverSockAddr.sin_addr.s_addr = ipAddr;
+        
+        contexts[numDevices++] = ctx;
+    }
+    
+    // Interface list is dynamically allocated and must be freed
 	freeaddrinfo(servinfo);
 
 	return numDevices;
@@ -131,12 +130,18 @@ bool Device_IDN::OpenDevice(int cardNum)
 		}
 	#else
 		// Initialize time reference and initialize the current time randomly
-		if (clock_gettime(CLOCK_MONOTONIC, &tsRef) < 0)
+        extern struct timespec plt_monoRef;
+        extern uint32_t plt_monoTimeUS;
+#ifdef __APPLE__
+    if (mach_clock_gettime(SYSTEM_CLOCK, &plt_monoRef) < 0)
+#else
+    if (clock_gettime(CLOCK_MONOTONIC, &plt_monoRef) < 0)
+#endif
 		{
 			logError("clock_gettime(CLOCK_MONOTONIC) errno = %d", errno);
 			return false;
 		}
-		currTimeUS = (uint32_t)((tsRef.tv_sec * 1000000ul) + (tsRef.tv_nsec / 1000));
+		plt_monoTimeUS = (uint32_t)((plt_monoRef.tv_sec * 1000000ul) + (plt_monoRef.tv_nsec / 1000));
 	#endif
 
 	// Open UDP socket
@@ -205,7 +210,11 @@ bool Device_IDN::GetName(int cardNum, char* name)
 	if (!ready)
 		return false;
 
-	memcpy(name, "IDN", 4);
+	memcpy(name, "IDN: ", 6);
+    char ip[32];
+    inet_ntop(AF_INET, &contexts[cardNum]->serverSockAddr.sin_addr.s_addr, ip, 32);
+    memcpy(name+5, ip, 17);
+    name[32] = 0;
 
 	return true;//(heliosDevice->GetName(cardNum, name) == 1);
 }

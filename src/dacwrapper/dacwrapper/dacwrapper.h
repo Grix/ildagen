@@ -38,7 +38,7 @@ Device_IDN* idnDevice;
 #endif
 
 // Needed for IDN plt files, gives redefinition error if moved there
-#ifdef WIN32
+#ifdef _WIN32
 int plt_monoValid = 0;
 LARGE_INTEGER plt_monoCtrFreq;
 LARGE_INTEGER plt_monoCtrRef;

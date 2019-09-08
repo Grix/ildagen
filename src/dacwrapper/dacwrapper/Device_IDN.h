@@ -8,7 +8,7 @@
 #include <stdarg.h>
 #include <stdint.h>
 #include <time.h>
-#include <string>
+#include <thread>
 
 class Device_IDN
 {
