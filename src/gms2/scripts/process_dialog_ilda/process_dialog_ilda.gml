@@ -21,7 +21,7 @@ if (new_id == getint)
         ini_close();
         if (updatecheckenabled)
         {
-            if (os_version == os_macosx)
+            if (os_type == os_macosx)
 				updateget = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/version_mac.txt");
 			else
 				updateget = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/version.txt");

@@ -25,7 +25,7 @@ else if (ds_map_find_value(async_load, "id") == updatenotes)
    if (ds_map_find_value(async_load, "status") == 0)
    {
 		releasenotes = ds_map_find_value(async_load, "result");
-		if (os_version == os_macosx)
+		if (os_type == os_macosx)
 			updateget = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/version_mac.txt");
 		else
 			updateget = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/version.txt");
