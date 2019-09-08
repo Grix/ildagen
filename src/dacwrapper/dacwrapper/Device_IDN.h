@@ -8,6 +8,7 @@
 #include <stdarg.h>
 #include <stdint.h>
 #include <time.h>
+#include <string>
 
 class Device_IDN
 {

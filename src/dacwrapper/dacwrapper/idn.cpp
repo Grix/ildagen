@@ -602,15 +602,13 @@ std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 			}
 			else if (numReady == 0)
 			{
-				break;
+				continue;
 			}
 
 			// Receive scan response
 			struct sockaddr_in recvSockAddr;
 			struct sockaddr* recvAddrPre = (struct sockaddr*) & recvSockAddr;
 			socklen_t recvAddrSize = sizeof(recvSockAddr);
-
-			//recvfrom()
 
 
 			int nBytes = recvfrom(fdSocket, (char*)gbl_packetBuffer, sizeof(gbl_packetBuffer), 0, recvAddrPre, &recvAddrSize);
@@ -627,6 +625,13 @@ std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 				logError("inet_ntop() failed (error: %d)", plt_sockGetLastError());
 				break;
 			}
+
+			int ipAddr;
+			if (!inet_pton(AF_INET, recvAddrString, &ipAddr))
+				break;
+
+			if (foundIps->size() != 0 && std::find(foundIps->begin(), foundIps->end(), ipAddr) == foundIps->end())
+				break; // already found
 
 			// Check sender port
 			if (ntohs(recvSockAddr.sin_port) != IDNVAL_HELLO_UDP_PORT)
@@ -684,9 +689,7 @@ std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 			// Print server information
 			//logInfo("%s at %s", logString, recvAddrString);
 
-			int ipAddr;
-			if (inet_pton(AF_INET, recvAddrString, &ipAddr))
-				foundIps->push_back(ipAddr);
+			foundIps->push_back(ipAddr);
 		}
 	} while (0);
 

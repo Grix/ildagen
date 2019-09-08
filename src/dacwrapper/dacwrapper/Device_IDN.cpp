@@ -25,10 +25,13 @@ int Device_IDN::Init()
 	hints.ai_flags = AI_PASSIVE;            // Intention to use address with the bind function
 	hints.ai_family = AF_INET;              // IPv4
 
-	int rcAddrInfo = getaddrinfo("", "", &hints, &servinfo);
-	if (rcAddrInfo != 0) return rcAddrInfo;
+	int rcAddrInfo = getaddrinfo("", "7255"/*std::to_string(IDN_PORT).c_str()*/, &hints, &servinfo);
+	if (rcAddrInfo != 0) 
+		return 0;
 
 	int numDevices = 0;
+
+	std::vector<int> allIpAddrs;
 
 	// Walk through all interfaces (servinfo points to a linked list of struct addrinfos)
 	for (struct addrinfo* ifa = servinfo; ifa != NULL; ifa = ifa->ai_next)
@@ -43,14 +46,26 @@ int Device_IDN::Init()
 		std::vector<int>* ipAddrs = idnHelloScan(ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr));
 		for (int ipAddr : *ipAddrs)
 		{
-			IDNCONTEXT *ctx = new IDNCONTEXT { 0 };
-			ctx->serverSockAddr.sin_family = AF_INET;
-			ctx->serverSockAddr.sin_port = htons(IDN_PORT);
-			ctx->serverSockAddr.sin_addr.s_addr = ipAddr;
-
-			contexts[numDevices++] = ctx;
+			bool found = false;
+			for (int _ipAddr : allIpAddrs)
+			{
+				if (_ipAddr == ipAddr)
+					found = true;
+			}
+			if (!found)
+				allIpAddrs.push_back(ipAddr);
 		}
 		delete ipAddrs;
+	}
+
+	for (int ipAddr : allIpAddrs)
+	{
+		IDNCONTEXT *ctx = new IDNCONTEXT{ 0 };
+		ctx->serverSockAddr.sin_family = AF_INET;
+		ctx->serverSockAddr.sin_port = htons(IDN_PORT);
+		ctx->serverSockAddr.sin_addr.s_addr = ipAddr;
+
+		contexts[numDevices++] = ctx;
 	}
 
 	// Interface list is dynamically allocated and must be freed
