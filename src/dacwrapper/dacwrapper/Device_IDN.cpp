@@ -15,6 +15,11 @@ int Device_IDN::Init()
 {
 	ready = true;
 
+	for (int i = 0; i < 16; i++)
+	{
+		contexts[i] = NULL;
+	}
+
 	// Scan for IDN-hello servers.
 
 	extern void logError(const char* fmt, ...);
@@ -198,6 +203,7 @@ bool Device_IDN::CloseAll()
 			}
 
 			delete contexts[i];
+			contexts[i] = NULL;
 		}
 	}
 

@@ -1807,14 +1807,6 @@
             }
         },
         {
-            "Key": "30bb5619-df5a-441e-aa7c-9e6b08812a20",
-            "Value": {
-                "id": "3eca6529-5671-48d9-a7c6-7ccfaae8c550",
-                "resourcePath": "datafiles_yy\\LaserBoy_2017_08_06.zip.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "30fbc62d-a4e7-4879-82b0-d570c7539ea0",
             "Value": {
                 "id": "3b126c12-91eb-4a0e-8519-e082a3b53f78",
@@ -5500,6 +5492,14 @@
                 "id": "986b0a7f-698d-4e72-a0bf-4e6ba25d787d",
                 "resourcePath": "scripts\\dd_seq_object_duration\\dd_seq_object_duration.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a26c027e-b886-4473-b6f9-276a948c40f6",
+            "Value": {
+                "id": "3a9f3a10-82b0-4886-8452-8e49c07a9674",
+                "resourcePath": "datafiles_yy\\LaserBoy_Current.zip.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
