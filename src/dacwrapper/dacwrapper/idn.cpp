@@ -40,29 +40,6 @@ void logInfo(const char* fmt, ...)
 }
 
 
-static int ensureBufferCapacity(IDNCONTEXT* ctx, unsigned minLen)
-{
-	// Check for buffer enlargement
-	if (ctx->bufferLen < minLen)
-	{
-		if (ctx->bufferLen == 0) ctx->bufferLen = minLen;
-		else while (ctx->bufferLen < minLen) ctx->bufferLen *= 2;
-
-		ctx->bufferPtr = (uint8_t*)realloc(ctx->bufferPtr, ctx->bufferLen);
-	}
-
-	// Check buffer pointer
-	if (ctx->bufferPtr == (uint8_t*)0)
-	{
-		logError("[IDN] Insufficient buffer memory");
-		ctx->payload = (uint8_t*)0;
-		return -1;
-	}
-
-	return 0;
-}
-
-
 static char int2Hex(unsigned i)
 {
 	i &= 0xf;
@@ -151,9 +128,6 @@ int idnOpenFrameXYRGB(void* context)
 {
 	IDNCONTEXT* ctx = (IDNCONTEXT*)context;
 
-	// Make sure there is enough buffer
-	if (ensureBufferCapacity(ctx, 0x4000)) return -1;
-
 	// IDN-Hello packet header. Note: Sequence number populated on push
 	IDNHDR_PACKET* packetHdr = (IDNHDR_PACKET*)ctx->bufferPtr;
 	packetHdr->command = IDNCMD_RT_CNLMSG;
@@ -216,7 +190,6 @@ int idnPutSampleXYRGB(void* context, int16_t x, int16_t y, uint8_t r, uint8_t g,
 	// pointer substraction is defined as the difference of (array) elements.
 	unsigned lenUsed = (unsigned)(ctx->payload - ctx->bufferPtr);
 	unsigned lenNeeded = lenUsed + ((1 + ctx->colorShift) * XYRGB_SAMPLE_SIZE);
-	if (ensureBufferCapacity(ctx, lenNeeded)) return -1;
 
 
 	// Note: With IDN, the first two points and the last two points of a frame have special 
@@ -418,9 +391,6 @@ int idnSendVoid(void* context)
 {
 	IDNCONTEXT* ctx = (IDNCONTEXT*)context;
 
-	// Make sure there is enough buffer
-	if (ensureBufferCapacity(ctx, 0x1000)) return -1;
-
 	// IDN-Hello packet header
 	IDNHDR_PACKET* packetHdr = (IDNHDR_PACKET*)ctx->bufferPtr;
 	packetHdr->command = IDNCMD_RT_CNLMSG;
@@ -451,8 +421,6 @@ int idnSendClose(void* context)
 {
 	IDNCONTEXT* ctx = (IDNCONTEXT*)context;
 
-	// Make sure there is enough buffer
-	if (ensureBufferCapacity(ctx, 0x1000)) return -1;
 
 	// Close the channel: IDN-Hello packet header
 	IDNHDR_PACKET* packetHdr = (IDNHDR_PACKET*)ctx->bufferPtr;

@@ -121,6 +121,8 @@ bool Device_IDN::OpenDevice(int cardNum)
 {
 	std::lock_guard<std::mutex> lock(frameLock[cardNum]);
 
+	contexts[cardNum]->bufferLen = 0x4000;
+	contexts[cardNum]->bufferPtr = new uint8_t[0x4000];
 	contexts[cardNum]->colorShift = 0;
 	contexts[cardNum]->startTime = plt_getMonoTimeUS();
 	
@@ -188,9 +190,10 @@ bool Device_IDN::CloseAll()
 		frameNum[i]++;
 		if (contexts[i] != NULL)
 		{
-			idnSendClose(&contexts[i]);
+			idnSendClose(contexts[i]);
 
-			if (contexts[i]->bufferPtr) free(contexts[i]->bufferPtr);
+			if (contexts[i]->bufferPtr) 
+				free(contexts[i]->bufferPtr);
 
 			// Close socket
 			if (contexts[i]->fdSocket >= 0)
