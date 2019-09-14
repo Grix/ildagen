@@ -2,7 +2,7 @@ v1.8.0
 - Dynamic FPS: Default FPS is now 60 to reduce flicker, and it is automatically adjusted down on complex frames to keep scanning accuracy. You might have to re-adjust your optimization settings.
 - Support for ILDA Digital Network (IDN) DACs.
 - Modification sliders in Live Mode to adjust the color and effects of all playing files on the fly.
-- Misc. other fixes and features like alternative Tab key behavior and onion skinning in Live Mode.
+- Misc. other fixes and features like alternative Tab key behavior, fixed object selection in Mac, and onion skinning in Live Mode.
 
 v1.7.0
 - New Live Mode: Play files on the fly, for DJs and improvised shows.
