@@ -596,6 +596,8 @@ or (window_mouse_get_y() < view_hport[3]+view_hport[4])
 or (controller.dialog_open)
 or (controller.menu_open)
     exit;
+	
+var t_mac_ctrl_click = (os_type == os_macosx) && (keyboard_check(vk_control) && mouse_check_button_pressed(mb_right));
     
 if (mouse_wheel_up() or keyboard_check_pressed(vk_f7))
 {
@@ -666,23 +668,13 @@ if (moving_object_flag)
     }
 }
 
-//startframe
-if (window_mouse_get_x() == clamp(window_mouse_get_x(),startframex-2,startframex+2))                         
-{
-    controller.scrollcursor_flag = 1;
-    controller.tooltip = "Drag to adjust the start of the project";
-    if (mouse_check_button_pressed(mb_left))
-    {
-        mouse_xprevious = window_mouse_get_x();
-        moving_object = 3;
-    }
-    exit;
-}
+
 //endframe
-else if (window_mouse_get_x() == clamp(window_mouse_get_x(),endframex-2,endframex+2))                         
+if (window_mouse_get_x() == clamp(window_mouse_get_x(),endframex-2,endframex+2))                         
 {
     controller.scrollcursor_flag = 1;
     controller.tooltip = "Drag to adjust the end of the project";
+	mouseonsomelayer = 1;
     if (mouse_check_button_pressed(mb_left))
     {
         mouse_xprevious = window_mouse_get_x();
@@ -690,6 +682,7 @@ else if (window_mouse_get_x() == clamp(window_mouse_get_x(),endframex-2,endframe
     }
     exit;
 }
+//start marker is further down, as it is has lower priority because it is moved less often
     
 draw_cursorline = 0;    
 
@@ -703,7 +696,7 @@ for (i = 0; i < ds_list_size(marker_list); i++)
         mouseonsomelayer = 1;
         controller.scrollcursor_flag = 1;
         controller.tooltip = "Drag to adjust the marker. Ctrl+Click to delete marker.";
-        if (mouse_check_button_pressed(mb_left))
+        if (mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
         {
             if (keyboard_check(vk_control))
                 ds_list_delete(marker_list,i);
@@ -819,7 +812,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
 								objecttomove = objectlist;
 							}
 						}
-                        if  mouse_check_button_pressed(mb_left)
+                        if (mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
                         {
 							timeline_surf_length = 0;
                             if (keyboard_check(vk_control))
@@ -908,13 +901,13 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                 draw_cursorline = 1;
                 draw_mouseline = 1;
                 
-                if  mouse_check_button_pressed(mb_left)
+                if (mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
                 {
                     selectedlayer = i;
                     selectedx = floatingcursorx;
                     ds_list_clear(somaster_list);
                 }
-                else if  mouse_check_button_pressed(mb_right)
+                else if (mouse_check_button_pressed(mb_right))
                 {
                     selectedlayer = i;
                     selectedlayer_list = _layer;
@@ -950,13 +943,13 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                 {
                     mouseonsomelayer = 1;
                     controller.tooltip = "Click to restore full view of this envelope.";
-                    if  mouse_check_button_pressed(mb_left) 
+                    if (mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
                     {
                         ds_list_replace(envelope,4,0);
 						timeline_surf_length = 0;
                         exit;
                     }
-                    else if  mouse_check_button_pressed(mb_right) 
+                    else if (mouse_check_button_pressed(mb_right))
                     {
                         selectedenvelope = envelope;
                         env_list_to_delete = envelope_list;
@@ -976,7 +969,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                 if (mouseover_delete) 
                 {
                     controller.tooltip = "Click to delete this envelope and its data.";
-                    if  mouse_check_button_pressed(mb_left) 
+                    if (mouse_check_button_pressed(mb_left))
                     {
                         selectedenvelope = envelope;
                         env_list_to_delete = envelope_list;
@@ -986,7 +979,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                 else
                 {
                     controller.tooltip = "Click or drag the mouse to place points on the envelope graph.\nHold [D] and drag the mouse to delete points.\nRight click for menu.";
-                    if  mouse_check_button_pressed(mb_left) 
+                    if (mouse_check_button_pressed(mb_left))
                     {
                         //adding/modifying/deleting point
                         var t_xpos = round(tlx+window_mouse_get_x()/tlw*tlzoom);
@@ -1037,6 +1030,22 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
         ypos += 64;
     }
 }
+
+
+
+//startframe
+if (window_mouse_get_x() == clamp(window_mouse_get_x(),startframex-2,startframex+2))                         
+{
+    controller.scrollcursor_flag = 1;
+    controller.tooltip = "Drag to adjust the start of the project";
+	mouseonsomelayer = 1;
+    if (mouse_check_button_pressed(mb_left))
+    {
+        mouse_xprevious = window_mouse_get_x();
+        moving_object = 3;
+    }
+    exit;
+}
     
 if !(mouseonsomelayer)
 {
@@ -1056,7 +1065,7 @@ if !(mouseonsomelayer)
 		
 		//mouse_xprevious = window_mouse_get_x();
     }
-	else if (keyboard_check(vk_control) && mouse_check_button_pressed(mb_left))
+	else if (keyboard_check(vk_control) && mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
 	{
 		mouse_xprevious = window_mouse_get_x();
 		mouse_yprevious = window_mouse_get_y();
