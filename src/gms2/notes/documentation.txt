@@ -1,10 +1,6 @@
 TODO
-- IDN
-- ctrl key problem in mac
-- onion skin in live mode
+- investigate crash ild files pl@lightwriters.dk
 - set fixed scanrate instead of fps when optimization off
-- live mode global sliders
-- increase default fps and reduce automatically on complex frames
 - reapply combine shapes
 - split objects
 - double check and fix maxpoints_static calculation
