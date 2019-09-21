@@ -2,7 +2,7 @@ ddobj = instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-23,"for
 with (ddobj)
     {
     var t_currenttype = ds_list_find_value(seqcontrol.selectedenvelope,0);
-    num = 7;
+    num = 8;
     event_user(1);
     ds_list_add(desc_list,"X (Horizontal displacement)");
     ds_list_add(desc_list,"Y (Vertical displacement)");
@@ -22,12 +22,12 @@ with (ddobj)
     ds_list_add(scr_list,dd_seq_envtype_g);
     ds_list_add(scr_list,dd_seq_envtype_b);
     ds_list_add(scr_list,dd_seq_envtype_rotabs);
-    ds_list_add(hl_list,(t_currenttype == "x"));
-    ds_list_add(hl_list,(t_currenttype == "y"));
-    ds_list_add(hl_list,(t_currenttype == "a"));
-    ds_list_add(hl_list,(t_currenttype == "hue"));
-    ds_list_add(hl_list,(t_currenttype == "r"));
-    ds_list_add(hl_list,(t_currenttype == "g"));
-    ds_list_add(hl_list,(t_currenttype == "b"));
-    ds_list_add(hl_list,(t_currenttype == "rotabs"));
+    ds_list_add(hl_list,(t_currenttype != "x"));
+    ds_list_add(hl_list,(t_currenttype != "y"));
+    ds_list_add(hl_list,(t_currenttype != "a"));
+    ds_list_add(hl_list,(t_currenttype != "hue"));
+    ds_list_add(hl_list,(t_currenttype != "r"));
+    ds_list_add(hl_list,(t_currenttype != "g"));
+    ds_list_add(hl_list,(t_currenttype != "b"));
+    ds_list_add(hl_list,(t_currenttype != "rotabs"));
     }

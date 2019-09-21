@@ -23,8 +23,8 @@ if (env_b)
 }
 if (env_rotabs)
 {
-    var t_actualanchor_x = $8000 - (xo-187)*480;
-    var t_actualanchor_y = $8000 - yo*480;
+    var t_actualanchor_x = $8000;// - (xo-187)*480;
+    var t_actualanchor_y = 0;//$8000;// - yo*480;
     angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
     dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
     xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
