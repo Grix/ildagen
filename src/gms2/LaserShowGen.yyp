@@ -711,6 +711,14 @@
             }
         },
         {
+            "Key": "125de3be-ec22-453d-b4e8-2a080b4bcf7d",
+            "Value": {
+                "id": "5be09b34-6f74-4fda-b6b8-ce793577f455",
+                "resourcePath": "extensions\\DialogModule\\DialogModule.yy",
+                "resourceType": "GMExtension"
+            }
+        },
+        {
             "Key": "1265934b-eaac-40fd-ba5d-5b04fc03543c",
             "Value": {
                 "id": "102a36d7-e0f9-45ec-a024-f6aec1b88cec",

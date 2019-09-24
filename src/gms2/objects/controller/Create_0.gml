@@ -1,5 +1,5 @@
 version = "1.8.1";
-versiondate = "2019-09-22";
+versiondate = "2019-09-24";
 
 if (debug_mode)
 {
@@ -10,6 +10,9 @@ else
 {
     gml_release_mode(true);
 }
+
+window_set_min_height(732);
+window_set_min_width(1100);
 
 //setup file handling system
 FStemp = game_save_id+"temp\\";
@@ -149,6 +152,7 @@ resizing_moving = 0;
 update_semasterlist_flag = 0;
 doubleclick = 0;
 last_room = rm_seq;
+releasenotes = "";
 
 sgridshow = 0;
 rgridshow = 0;

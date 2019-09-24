@@ -9,7 +9,7 @@
     "androidPermissions": [
         
     ],
-    "androidProps": true,
+    "androidProps": false,
     "androidactivityinject": "",
     "androidclassname": "",
     "androidinject": "",
@@ -17,7 +17,7 @@
     "androidsourcedir": "",
     "author": "",
     "classname": "",
-    "copyToTargets": 9223372036854775807,
+    "copyToTargets": 32,
     "date": "2017-51-14 08:09:35",
     "description": "",
     "extensionName": "",
@@ -95,13 +95,14 @@
     "gradleinject": "",
     "helpfile": "",
     "installdir": "",
-    "iosProps": true,
+    "iosProps": false,
     "iosSystemFrameworkEntries": [
         
     ],
     "iosThirdPartyFrameworkEntries": [
         
     ],
+    "iosdelegatename": null,
     "iosplistinject": "",
     "license": "Free to use, also for commercial games.",
     "maccompilerflags": "",
@@ -110,5 +111,17 @@
     "packageID": "",
     "productID": "",
     "sourcedir": "",
+    "tvosProps": false,
+    "tvosSystemFrameworkEntries": [
+        
+    ],
+    "tvosThirdPartyFrameworkEntries": [
+        
+    ],
+    "tvosclassname": null,
+    "tvosdelegatename": null,
+    "tvosmaccompilerflags": null,
+    "tvosmaclinkerflags": null,
+    "tvosplistinject": null,
     "version": "1.0.0"
 }
