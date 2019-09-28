@@ -5,8 +5,15 @@
 filename = argument0;
 if (string_length(filename))
 {
-	file_copy(filename, "temp/temp.ild");
-	ild_file = buffer_load("temp/temp.ild");
+	//file_copy(filename, "temp/temp.ild");
+	ild_file = buffer_load(filename);
+	
+	if (ild_file == -1)
+	{
+		show_message_new("Could not open file");
+		return 0;
+	}
+	
     file_size = buffer_get_size(ild_file);
 }
 else

@@ -5,8 +5,14 @@ if !string_length(file_loc)
     
 clear_project();
 
-file_copy(file_loc, "temp/temp.igp");
-load_buffer = buffer_load("temp/temp.igp");
+//file_copy(file_loc, "temp/temp.igp");
+load_buffer = buffer_load(file_loc);
+
+if (load_buffer == -1)
+{
+	show_message_new("Could not open file");
+	exit;
+}
     
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 104) and (idbyte != 103) and (idbyte != 100) and (idbyte != 101) and (idbyte != 102)

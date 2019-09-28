@@ -5,8 +5,14 @@ if !string_length(file_loc)
     
 clear_live_project();
 
-file_copy(file_loc, "temp/temp.igl");
-load_buffer = buffer_load("temp/temp.igl");
+//file_copy(file_loc, "temp/temp.igl");
+load_buffer = buffer_load(file_loc);
+
+if (load_buffer == -1)
+{
+	show_message_new("Could not open file");
+	exit;
+}
     
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 200)

@@ -5,8 +5,15 @@ if !string_length(t_songfile_loc)
     exit;
 }
 remove_audio();
-file_copy(t_songfile_loc, "temp/audio");
-song_buffer = buffer_load("temp/audio");
+//file_copy(t_songfile_loc, "temp/audio");
+song_buffer = buffer_load(t_songfile_loc);
+
+if (ild_file == -1)
+{
+	show_message_new("Could not open file");
+	exit;
+}
+
 var t_exInfo = buffer_create(34*8, buffer_fixed, 8);
 buffer_fill(t_exInfo, 0, buffer_u64, 0, buffer_get_size(t_exInfo));
 buffer_poke(t_exInfo, 0, buffer_u32, buffer_get_size(song_buffer));

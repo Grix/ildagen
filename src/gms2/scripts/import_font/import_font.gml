@@ -6,9 +6,16 @@ with(controller)
     filename = get_open_filename_ext("ILDA font file|*.ild|All files|*","",program_directory,"Select ILDA font file")
     if string_length(filename)
     {
-        file_copy(filename, "temp/temp.ild");
-		ild_file = buffer_load("temp/temp.ild");
+        //file_copy(filename, "temp/temp.ild");
+		ild_file = buffer_load(filename);
         file_size = buffer_get_size(ild_file);
+		
+		if (ild_file == -1)
+		{
+			show_message_new("Could not open file");
+			global.loading_importfont = 0;
+			return 0;
+		}
     }
     else
     {

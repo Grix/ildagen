@@ -2,8 +2,15 @@ file_loc = argument0;
 if !string_length(file_loc) 
     exit;
     
-file_copy(file_loc, "temp/temp.igf");
-load_buffer = buffer_load("temp/temp.igf");
+//file_copy(file_loc, "temp/temp.igf");
+load_buffer = buffer_load(file_loc);
+
+if (load_buffer == -1)
+{
+	show_message_new("Could not open file");
+	exit;
+}
+
 buffer_seek(load_buffer,buffer_seek_start,0);
 idbyte = buffer_read(load_buffer,buffer_u8);
 if (idbyte != 0) and (idbyte != 50) and (idbyte != 51) and (idbyte != 52)
