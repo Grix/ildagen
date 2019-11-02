@@ -1,7 +1,7 @@
 {
     "id": "42b03ec2-e71e-4bd1-b627-aad83578184d",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "exPatchWindowClose",
     "IncludedResources": [
         "Fonts\\fnt_sample_ex_patch_windowclose",
@@ -22,6 +22,7 @@
     "copyToTargets": 9223372036854775807,
     "date": "2017-51-14 08:09:35",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -254,13 +255,29 @@
     "iosThirdPartyFrameworkEntries": [
         
     ],
+    "iosdelegatename": null,
     "iosplistinject": "",
     "license": "Free to use, also for commercial games.",
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "com.alexandervrs.expatchwindowclose",
     "productID": "",
     "sourcedir": "",
+    "supportedTargets": 9223372036854775807,
+    "tvosProps": false,
+    "tvosSystemFrameworkEntries": [
+        
+    ],
+    "tvosThirdPartyFrameworkEntries": [
+        
+    ],
+    "tvosclassname": null,
+    "tvosdelegatename": null,
+    "tvosmaccompilerflags": null,
+    "tvosmaclinkerflags": null,
+    "tvosplistinject": null,
     "version": "1.0.0"
 }

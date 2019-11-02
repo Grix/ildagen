@@ -1,7 +1,7 @@
 {
     "id": "125de3be-ec22-453d-b4e8-2a080b4bcf7d",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "DialogModule",
     "IncludedResources": [
         "Sprites\\spr_example",
@@ -22,6 +22,7 @@
     "copyToTargets": 128,
     "date": "2019-39-08 04:09:41",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -1697,9 +1698,12 @@
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "",
     "productID": "F3D00DAD3DDB83EFFDD568E8093FC7AA",
     "sourcedir": "",
+    "supportedTargets": 128,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         

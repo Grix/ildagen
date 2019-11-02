@@ -8,14 +8,13 @@ with(controller)
     {
         //file_copy(filename, "temp/temp.ild");
 		ild_file = buffer_load(filename);
-        file_size = buffer_get_size(ild_file);
-		
 		if (ild_file == -1)
 		{
 			show_message_new("Could not open file");
 			global.loading_importfont = 0;
 			return 0;
 		}
+        file_size = buffer_get_size(ild_file);
     }
     else
     {

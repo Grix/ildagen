@@ -8,7 +8,7 @@ remove_audio();
 //file_copy(t_songfile_loc, "temp/audio");
 song_buffer = buffer_load(t_songfile_loc);
 
-if (ild_file == -1)
+if (song_buffer == -1)
 {
 	show_message_new("Could not open file");
 	exit;

@@ -1,7 +1,7 @@
 {
     "id": "36d24759-27d2-4ead-a453-d863688492ce",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "filesaver",
     "IncludedResources": [
         
@@ -20,6 +20,7 @@
     "copyToTargets": 32,
     "date": "2017-51-14 08:09:35",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -108,9 +109,12 @@
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "",
     "productID": "",
     "sourcedir": "",
+    "supportedTargets": 32,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         

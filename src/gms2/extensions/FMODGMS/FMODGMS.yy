@@ -1,7 +1,7 @@
 {
     "id": "d70d3d48-1a83-4551-8952-327538185edd",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "FMODGMS",
     "IncludedResources": [
         "Scripts\\FMODGMS\\FMODGMS_Util_BeatsToSamples",
@@ -28,6 +28,7 @@
     "copyToTargets": 202375362,
     "date": "2018-10-18 07:07:23",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -2305,30 +2306,6 @@
             "uncompress": false
         },
         {
-            "id": "2921ec09-f48d-4a47-ab45-ae1ca462ae1c",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 128,
-            "filename": "libfmod.so.10",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 4,
-            "order": [
-                
-            ],
-            "origname": "",
-            "uncompress": false
-        },
-        {
             "id": "3cc408a4-0915-476c-883a-f1ebd30ced24",
             "modelName": "GMExtensionFile",
             "mvc": "1.0",
@@ -2340,6 +2317,30 @@
             ],
             "copyToTargets": 2,
             "filename": "libfmod.dylib",
+            "final": "",
+            "functions": [
+                
+            ],
+            "init": "",
+            "kind": 1,
+            "order": [
+                
+            ],
+            "origname": "",
+            "uncompress": false
+        },
+        {
+            "id": "1a4a0809-f5ea-48ee-a0fa-7ae569e0192a",
+            "modelName": "GMExtensionFile",
+            "mvc": "1.0",
+            "ProxyFiles": [
+                
+            ],
+            "constants": [
+                
+            ],
+            "copyToTargets": 128,
+            "filename": "libfmod.so",
             "final": "",
             "functions": [
                 
@@ -2369,9 +2370,12 @@
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "",
     "productID": "ACBD3CFF4E539AD869A0E8E3B4B022DD",
     "sourcedir": "",
+    "supportedTargets": 202375362,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         

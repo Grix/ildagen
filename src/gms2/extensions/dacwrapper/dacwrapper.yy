@@ -1,7 +1,7 @@
 {
     "id": "9e729640-f691-4915-adbb-92931c5bcbd8",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "dacwrapper",
     "IncludedResources": [
         "Included Files\\dacwrapper.dll",
@@ -21,6 +21,7 @@
     "copyToTargets": 66,
     "date": "2017-51-14 08:09:35",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -514,13 +515,29 @@
     "iosThirdPartyFrameworkEntries": [
         
     ],
+    "iosdelegatename": null,
     "iosplistinject": "",
     "license": "Free to use, also for commercial games.",
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "",
     "productID": "",
     "sourcedir": "",
+    "supportedTargets": 66,
+    "tvosProps": false,
+    "tvosSystemFrameworkEntries": [
+        
+    ],
+    "tvosThirdPartyFrameworkEntries": [
+        
+    ],
+    "tvosclassname": null,
+    "tvosdelegatename": null,
+    "tvosmaccompilerflags": null,
+    "tvosmaclinkerflags": null,
+    "tvosplistinject": null,
     "version": "0.2.0"
 }

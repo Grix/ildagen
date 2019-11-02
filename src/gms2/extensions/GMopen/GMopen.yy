@@ -1,7 +1,7 @@
 {
     "id": "b8341357-321c-4d44-affc-38e098efc70c",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "GMopen",
     "IncludedResources": [
         
@@ -20,6 +20,7 @@
     "copyToTargets": 598172980216044,
     "date": "2017-51-14 08:09:35",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -158,13 +159,29 @@
     "iosThirdPartyFrameworkEntries": [
         
     ],
+    "iosdelegatename": null,
     "iosplistinject": "",
     "license": "Free to use, also for commercial games.",
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "",
     "productID": "",
     "sourcedir": "",
+    "supportedTargets": 598172980216044,
+    "tvosProps": false,
+    "tvosSystemFrameworkEntries": [
+        
+    ],
+    "tvosThirdPartyFrameworkEntries": [
+        
+    ],
+    "tvosclassname": null,
+    "tvosdelegatename": null,
+    "tvosmaccompilerflags": null,
+    "tvosmaclinkerflags": null,
+    "tvosplistinject": null,
     "version": "1.0.0"
 }

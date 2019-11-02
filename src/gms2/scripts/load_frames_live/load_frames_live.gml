@@ -12,7 +12,6 @@ if !string_length(file_loc)
 
 //file_copy(file_loc, "temp/temp.igf");
 load_buffer = buffer_load(file_loc);
-
 if (load_buffer == -1)
 {
 	show_message_new("Could not open file");

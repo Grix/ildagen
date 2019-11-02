@@ -1,5 +1,10 @@
 TODO
+- optional dynamic FPS
+- optional drawing frame when laser is on
+- fix keyboard shortcuts ctrl+alt, Q
 - exclusive button in live mode
+- mac DMG packaging
+- linux
 - resume instead of restart on trigger, toggle option in live
 - set fixed scanrate instead of fps when optimization off
 - reapply combine shapes
@@ -11,7 +16,6 @@ TODO
 - shaking stuff (email 2017-11-18)
 - simulation settings (more projectors etc)
 - Support for other glyphs in the text tool
-- linux
 
 SETTINGSCONTROL
 
