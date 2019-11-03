@@ -39,7 +39,7 @@
 #include <mach/mach_time.h>
 #endif
 
-#include <protocol.h>
+#include "etherdream_common/protocol.h"
 #include "etherdream.h"
 
 #define BUFFER_POINTS_PER_FRAME 16000

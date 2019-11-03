@@ -120,7 +120,6 @@ typedef struct
 
 void logError(const char* fmt, ...);
 void logInfo(const char* fmt, ...);
-static int ensureBufferCapacity(IDNCONTEXT* ctx, unsigned minLen);
 static char int2Hex(unsigned i);
 void binDump(void* buffer, unsigned length);
 static int idnSend(void* context, IDNHDR_PACKET* packetHdr, unsigned packetLen);

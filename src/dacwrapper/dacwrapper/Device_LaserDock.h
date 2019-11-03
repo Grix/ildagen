@@ -5,6 +5,7 @@
 #include <thread>
 #include <chrono>
 #include <mutex>
+#include <string.h>
 
 #define LASERDOCK_MAX_DEVICES 8
 

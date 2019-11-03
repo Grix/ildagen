@@ -16,14 +16,14 @@ void logError(const char* fmt, ...)
 {
 	return; // skip
 
-	va_list arg_ptr;
+	/*va_list arg_ptr;
 	va_start(arg_ptr, fmt);
 
 	//printf("\x1B[1;31m");
 	vprintf(fmt, arg_ptr);
 	//printf("\x1B[0m");
 	printf("\n");
-	fflush(stdout);
+	fflush(stdout);*/
 }
 
 
@@ -31,12 +31,12 @@ void logInfo(const char* fmt, ...)
 {
 	return; // skip
 
-	va_list arg_ptr;
+	/*va_list arg_ptr;
 	va_start(arg_ptr, fmt);
 
 	vprintf(fmt, arg_ptr);
 	printf("\n");
-	fflush(stdout);
+	fflush(stdout);*/
 }
 
 
