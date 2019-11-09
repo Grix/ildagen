@@ -18,7 +18,7 @@
     "androidsourcedir": "",
     "author": "",
     "classname": "",
-    "copyToTargets": 66,
+    "copyToTargets": 194,
     "date": "2017-51-14 08:09:35",
     "description": "",
     "exportToGame": true,
@@ -83,12 +83,19 @@
                     "mvc": "1.0",
                     "TargetMask": 1,
                     "proxyName": "libdacwrapper.dylib"
+                },
+                {
+                    "id": "4b60c97c-e118-4eab-8c89-0c42408ec17b",
+                    "modelName": "GMProxyFile",
+                    "mvc": "1.0",
+                    "TargetMask": 7,
+                    "proxyName": "libdacwrapper.so"
                 }
             ],
             "constants": [
                 
             ],
-            "copyToTargets": 66,
+            "copyToTargets": 194,
             "filename": "dacwrapper.dll",
             "final": "FreeDacwrapper",
             "functions": [
@@ -418,7 +425,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": 9223372036854775807,
+            "copyToTargets": 144150372447944768,
             "filename": "EzAudDacDEFAULT.ini",
             "final": "",
             "functions": [
@@ -466,7 +473,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": 598172980216040,
+            "copyToTargets": 64,
             "filename": "OLSD.dll",
             "final": "",
             "functions": [
@@ -526,7 +533,7 @@
     "packageID": "",
     "productID": "",
     "sourcedir": "",
-    "supportedTargets": 66,
+    "supportedTargets": 194,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         
