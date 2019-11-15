@@ -12,9 +12,9 @@ static uint8_t gbl_packetBuffer[0x10000];   // Work buffer
 //  Tools
 // -------------------------------------------------------------------------------------------------
 
-void logError(const char* fmt, ...)
-{
-	return; // skip
+//void logError(const char* fmt, ...)
+//{
+//	return; // skip
 
 	/*va_list arg_ptr;
 	va_start(arg_ptr, fmt);
@@ -24,12 +24,12 @@ void logError(const char* fmt, ...)
 	//printf("\x1B[0m");
 	printf("\n");
 	fflush(stdout);*/
-}
+//}
 
 
-void logInfo(const char* fmt, ...)
-{
-	return; // skip
+//void logInfo(const char* fmt, ...)
+//{
+//	return; // skip
 
 	/*va_list arg_ptr;
 	va_start(arg_ptr, fmt);
@@ -37,7 +37,7 @@ void logInfo(const char* fmt, ...)
 	vprintf(fmt, arg_ptr);
 	printf("\n");
 	fflush(stdout);*/
-}
+//}
 
 
 static char int2Hex(unsigned i)
@@ -47,7 +47,7 @@ static char int2Hex(unsigned i)
 }
 
 
-void binDump(void* buffer, unsigned length)
+/*void binDump(void* buffer, unsigned length)
 {
 	if (!length || !buffer) return;
 
@@ -98,7 +98,7 @@ void binDump(void* buffer, unsigned length)
 	if (k % 16) printf("%s\n", send);
 
 	fflush(stdout);
-}
+}*/
 
 
 static int idnSend(void* context, IDNHDR_PACKET* packetHdr, unsigned packetLen)
