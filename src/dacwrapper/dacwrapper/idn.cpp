@@ -12,9 +12,9 @@ static uint8_t gbl_packetBuffer[0x10000];   // Work buffer
 //  Tools
 // -------------------------------------------------------------------------------------------------
 
-//void logError(const char* fmt, ...)
-//{
-//	return; // skip
+void logError(const char* fmt, ...)
+{
+	return; // skip
 
 	/*va_list arg_ptr;
 	va_start(arg_ptr, fmt);
@@ -24,12 +24,12 @@ static uint8_t gbl_packetBuffer[0x10000];   // Work buffer
 	//printf("\x1B[0m");
 	printf("\n");
 	fflush(stdout);*/
-//}
+}
 
 
-//void logInfo(const char* fmt, ...)
-//{
-//	return; // skip
+void logInfo(const char* fmt, ...)
+{
+	return; // skip
 
 	/*va_list arg_ptr;
 	va_start(arg_ptr, fmt);
@@ -37,7 +37,7 @@ static uint8_t gbl_packetBuffer[0x10000];   // Work buffer
 	vprintf(fmt, arg_ptr);
 	printf("\n");
 	fflush(stdout);*/
-//}
+}
 
 
 static char int2Hex(unsigned i)
@@ -469,6 +469,8 @@ std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 	// Socket file descriptor
 	int fdSocket = -1;
 
+	fprintf(stderr, "IDN Hello Scan starting, %d , %s\n", adapterIpAddr, ifName);
+
 	std::vector<int>* foundIps = new std::vector<int>();
 
 	if (plt_validateMonoTime() != 0)
@@ -484,12 +486,14 @@ std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 			break;
 		}
 		logInfo("Scanning interface %s (IP4: %s)", ifName ? ifName : "<?>", ifAddrString);
+		fprintf(stderr, "Scanning interface %s (IP4: %s)", ifName ? ifName : "<?>", ifAddrString);
 
 		// Create socket
 		fdSocket = plt_sockOpen(AF_INET, SOCK_DGRAM, 0);
 		if (fdSocket < 0)
 		{
 			logError("socket() failed (error: %d)", plt_sockGetLastError());
+			fprintf(stderr, "socket() failed (error: %d)", plt_sockGetLastError());
 			break;
 		}
 
@@ -497,6 +501,7 @@ std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 		if (plt_sockSetBroadcast(fdSocket) < 0)
 		{
 			logError("setsockopt(broadcast) failed (error: %d)", plt_sockGetLastError());
+			fprintf(stderr, "setsockopt(broadcast) failed (error: %d)", plt_sockGetLastError());
 			break;
 		}
         
@@ -510,6 +515,7 @@ std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 		if (bind(fdSocket, (struct sockaddr*) & bindSockAddr, sizeof(bindSockAddr)) < 0)
 		{
 			logError("bind() failed (error: %d)", plt_sockGetLastError());
+			fprintf(stderr, "bind() failed (error: %d)", plt_sockGetLastError());
 			break;
 		}
 
@@ -529,6 +535,7 @@ std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 		if (sendto(fdSocket, (char*)& sendPacketHdr, sizeof(sendPacketHdr), 0, (struct sockaddr*) & sendSockAddr, sizeof(sendSockAddr)) < 0)
 		{
 			logError("sendto() failed (error: %d)", plt_sockGetLastError());
+			fprintf(stderr, "sendto() failed (error: %d)", plt_sockGetLastError());
 			break;
 		}
 
@@ -564,6 +571,7 @@ std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 			if (numReady < 0)
 			{
 				logError("select() failed (error: %d)", plt_sockGetLastError());
+				fprintf(stderr, "select() failed (error: %d)", plt_sockGetLastError());
 				break;
 			}
 			else if (numReady == 0)

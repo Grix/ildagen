@@ -29,38 +29,82 @@ int Device_IDN::Init()
 	memset(&hints, 0, sizeof hints);        // Make sure the struct is empty
 	hints.ai_flags = AI_PASSIVE;            // Intention to use address with the bind function
 	hints.ai_family = AF_INET;              // IPv4
-
-	int rcAddrInfo = getaddrinfo("", "7255", &hints, &servinfo);
-	if (rcAddrInfo != 0)
-        return 0;
+	
 	int numDevices = 0;
+	std::vector<int> allIpAddrs;
 
-    std::vector<int> allIpAddrs;
+	#ifdef __linux__ 
+	//int rcAddrInfo = getaddrinfo(NULL, "7255", &hints, &servinfo);
+		struct ifaddrs *ifaddr;
+		    if(getifaddrs(&ifaddr) == -1) return errno;
+
+		    // Walk through all interfaces
+		    for(struct ifaddrs *ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next) 
+		    {
+			if(ifa->ifa_addr == NULL) continue;
+			if(ifa->ifa_addr->sa_family != AF_INET) continue;
+
+			// Invoke callback on interface
+			struct sockaddr_in *ifSockAddr = (struct sockaddr_in *)ifa->ifa_addr;
+
+			// Start check whether address is an IDN-hello server
+			std::vector<int>* ipAddrs = idnHelloScan(ifa->ifa_name, (uint32_t)(ifSockAddr->sin_addr.s_addr));
+			for (int ipAddr : *ipAddrs)
+			{
+			    bool found = false;
+			    for (int _ipAddr : allIpAddrs)
+			    {
+				if (_ipAddr == ipAddr)
+				    found = true;
+			    }
+			    if (!found)
+				allIpAddrs.push_back(ipAddr);
+			}
+			delete ipAddrs;
+		    }
+
+		    // Interface list is dynamically allocated and must be freed
+		    freeifaddrs(ifaddr);
+	#else
+		int rcAddrInfo = getaddrinfo("", "7255", &hints, &servinfo);
+		if (rcAddrInfo != 0)
+			{
+				fprintf(stderr, "IDN getaddrinfo failed: %d\n", rcAddrInfo);
+				return 0;
+			}
+		    
+		    // Walk through all interfaces (servinfo points to a linked list of struct addrinfos)
+		    for (struct addrinfo* ifa = servinfo; ifa != NULL; ifa = ifa->ai_next)
+		    {
+			if (ifa->ai_addr == NULL) continue;
+			if (ifa->ai_addr->sa_family != AF_INET) continue;
+			
+			// Invoke callback on interface
+			struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ai_addr;
+
+			
+			// Start check whether address is an IDN-hello server
+			std::vector<int>* ipAddrs = idnHelloScan(ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr));
+			for (int ipAddr : *ipAddrs)
+			{
+			    bool found = false;
+			    for (int _ipAddr : allIpAddrs)
+			    {
+				if (_ipAddr == ipAddr)
+				    found = true;
+			    }
+			    if (!found)
+				allIpAddrs.push_back(ipAddr);
+			}
+			delete ipAddrs;
+		    }
+
     
-    // Walk through all interfaces (servinfo points to a linked list of struct addrinfos)
-    for (struct addrinfo* ifa = servinfo; ifa != NULL; ifa = ifa->ai_next)
-    {
-        if (ifa->ai_addr == NULL) continue;
-        if (ifa->ai_addr->sa_family != AF_INET) continue;
-        
-        // Invoke callback on interface
-        struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ai_addr;
-        
-        // Start check whether address is an IDN-hello server
-        std::vector<int>* ipAddrs = idnHelloScan(ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr));
-        for (int ipAddr : *ipAddrs)
-        {
-            bool found = false;
-            for (int _ipAddr : allIpAddrs)
-            {
-                if (_ipAddr == ipAddr)
-                    found = true;
-            }
-            if (!found)
-                allIpAddrs.push_back(ipAddr);
-        }
-        delete ipAddrs;
-    }
+	    // Interface list is dynamically allocated and must be freed
+		freeaddrinfo(servinfo);
+	#endif
+
+	
     
     for (int ipAddr : allIpAddrs)
     {
@@ -71,9 +115,6 @@ int Device_IDN::Init()
         
         contexts[numDevices++] = ctx;
     }
-    
-    // Interface list is dynamically allocated and must be freed
-	freeaddrinfo(servinfo);
 
 	return numDevices;
 }

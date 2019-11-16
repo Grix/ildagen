@@ -81,8 +81,6 @@ typedef struct
 
 #define XYRGB_SAMPLE_SIZE               7
 
-#define logError printf
-#define logInfo printf
 
 
 // -------------------------------------------------------------------------------------------------
@@ -121,8 +119,8 @@ typedef struct
 } IDNCONTEXT;
 
 
-//void logError(const char* fmt, ...);
-//void logInfo(const char* fmt, ...);
+void logError(const char* fmt, ...);
+void logInfo(const char* fmt, ...);
 static char int2Hex(unsigned i);
 //void binDump(void* buffer, unsigned length);
 static int idnSend(void* context, IDNHDR_PACKET* packetHdr, unsigned packetLen);

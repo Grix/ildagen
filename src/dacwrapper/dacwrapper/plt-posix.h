@@ -193,11 +193,11 @@ inline static int plt_sockClose(int fdSocket)
 
 inline static int plt_sockSetBroadcast(int fdSocket)
 {
-#ifdef __APPLE__
+//#ifdef __APPLE__
     int bcastOptStr[] = {1};
-#else
-    char bcastOptStr[] = "1";
-#endif
+//#else
+//    char bcastOptStr[] = "1";
+//#endif
     return setsockopt(fdSocket, SOL_SOCKET, SO_BROADCAST, bcastOptStr, sizeof(bcastOptStr));
 }
 
