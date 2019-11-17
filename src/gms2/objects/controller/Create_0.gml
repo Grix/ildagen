@@ -15,13 +15,19 @@ window_set_min_height(732);
 window_set_min_width(1100);
 
 //setup file handling system
-FStemp = game_save_id+"temp\\";
+FStemp = game_save_id;
+if (os_type == os_windows) 
+	FStemp+="temp\\";
+else
+	FStemp+="temp/";
 if (os_browser == browser_not_a_browser)
 {
     if (directory_exists("temp"))
         directory_destroy("temp");
     directory_create("temp");
 }
+
+log("save location:",FStemp);
 
 //declarations and setup
 //math_set_epsilon(0.00001);

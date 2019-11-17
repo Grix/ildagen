@@ -4,6 +4,8 @@ TODO
 - fix keyboard shortcuts ctrl+alt, Q
 - exclusive button in live mode
 - mac DMG packaging
+- fix wrong file extension when saving
+- fix dialogs on linux/mac to allow copy paste
 - linux
 - update web
 - resume instead of restart on trigger, toggle option in live
