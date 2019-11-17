@@ -172,16 +172,23 @@ if (songload)
     songfile = songfile_name;
     songfile_size = buffer_read(load_buffer, buffer_u32);
     song_buffer = buffer_create(songfile_size, buffer_fixed, 1);
-    buffer_copy(load_buffer ,buffer_tell(load_buffer), songfile_size, song_buffer,0);
+    buffer_copy(load_buffer, buffer_tell(load_buffer), songfile_size, song_buffer,0);
     buffer_seek(load_buffer, buffer_seek_relative, songfile_size);
 	
 	var t_exInfo = buffer_create(34*8, buffer_fixed, 8);
 	buffer_fill(t_exInfo, 0, buffer_u64, 0, buffer_get_size(t_exInfo));
 	buffer_poke(t_exInfo, 0, buffer_u32, buffer_get_size(song_buffer));
-	song = FMODGMS_Snd_LoadSound_Ext(buffer_get_address(song_buffer),	FMODGMS_MODE_DEFAULT | 
-																		FMODGMS_MODE_OPENMEMORY_POINT | 
+	
+	file_delete(controller.FStemp+"temp_songbuffer");
+	buffer_save(song_buffer, controller.FStemp+"temp_songbuffer");
+	
+	var t_time = get_timer(); //delay a little to give the buffer time to save
+	while (!file_exists(controller.FStemp+"temp_songbuffer") && (get_timer() - t_time) > 5000000)
+		j = 0;
+		
+	song = FMODGMS_Snd_LoadSound_Ext(controller.FStemp+"temp_songbuffer",			FMODGMS_MODE_DEFAULT | 
 																		FMODGMS_MODE_ACCURATETIME |
-																		FMODGMS_MODE_CREATECOMPRESSEDSAMPLE, 
+																		FMODGMS_MODE_CREATESAMPLE,
 																		buffer_get_address(t_exInfo));
    
     if (song == -1) 

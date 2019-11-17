@@ -5,6 +5,7 @@ TODO
 - exclusive button in live mode
 - mac DMG packaging
 - linux
+- update web
 - resume instead of restart on trigger, toggle option in live
 - set fixed scanrate instead of fps when optimization off
 - reapply combine shapes

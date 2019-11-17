@@ -17,11 +17,10 @@ if (song_buffer == -1)
 var t_exInfo = buffer_create(34*8, buffer_fixed, 8);
 buffer_fill(t_exInfo, 0, buffer_u64, 0, buffer_get_size(t_exInfo));
 buffer_poke(t_exInfo, 0, buffer_u32, buffer_get_size(song_buffer));
-song = FMODGMS_Snd_LoadSound_Ext(buffer_get_address(song_buffer),	FMODGMS_MODE_DEFAULT | 
-																	FMODGMS_MODE_OPENMEMORY_POINT | 
+song = FMODGMS_Snd_LoadSound_Ext(t_songfile_loc,					FMODGMS_MODE_DEFAULT | 
 																	FMODGMS_MODE_ACCURATETIME |
-																	FMODGMS_MODE_CREATECOMPRESSEDSAMPLE, 
-																	buffer_get_address(t_exInfo));
+																	FMODGMS_MODE_CREATESAMPLE
+																	,buffer_get_address(t_exInfo));
 
 song_parse = FMODGMS_Snd_LoadSound_Ext(buffer_get_address(song_buffer),	FMODGMS_MODE_DEFAULT | 
 																		FMODGMS_MODE_ACCURATETIME |
