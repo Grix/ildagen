@@ -12,6 +12,7 @@ TODO
 - set fixed scanrate instead of fps when optimization off
 - reapply combine shapes
 - split objects
+- mac notarization
 - double check and fix maxpoints_static calculation
 - motion controller
 - AUTOMATIC live mode

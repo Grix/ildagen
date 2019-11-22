@@ -27,6 +27,8 @@ else if (ds_map_find_value(async_load, "id") == updatenotes)
 		releasenotes = ds_map_find_value(async_load, "result");
 		if (os_type == os_macosx)
 			updateget = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/version_mac.txt");
+		else if (os_type == os_linux)
+			updateget = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/version_linux.txt");
 		else
 			updateget = http_get("https://raw.githubusercontent.com/Grix/ildagen/master/version.txt");
    }
@@ -49,7 +51,7 @@ else if (ds_map_find_value(async_load, "id") == file)
             if (updatereceived == 0)
             {
                 show_message_new("Failed to automatically download update. Opening download website..");
-                url_open_new("http://pages.bitlasers.com/lasershowgen/");
+                url_open_new("https://bitlasers.com/lasershowgen-sw/");
                 updatereceived = 1;
             }
         }

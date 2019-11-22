@@ -19,7 +19,7 @@ FStemp = game_save_id;
 if (os_type == os_windows) 
 	FStemp+="temp\\";
 else
-	FStemp+="temp/";
+	FStemp+="temp/"; //sometimes fails when linux? todo hardcode ~/.config/LaserShowGen/temp/
 if (os_browser == browser_not_a_browser)
 {
     if (directory_exists("temp"))
