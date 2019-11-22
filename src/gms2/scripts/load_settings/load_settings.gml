@@ -90,6 +90,8 @@ with (controller)
 		onion_number = ini_read_real("main", "onion_number", 2);
 		onion_alpha = ini_read_real("main", "onion_alpha", 0.8);
 		tab_cycles_all = ini_read_real("main", "tab_cycles_all", 0);
+		enable_dynamic_fps = ini_read_real("main", "enable_dynamic_fps", 1);
+		preview_while_laser_on = ini_read_real("main", "preview_while_laser_on", 0);
 		
 		/*if (!ini_read_real("main", "window_width", 0))
 		{

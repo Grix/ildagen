@@ -2,7 +2,7 @@
 
 var t_y = camera_get_view_y(view_camera[4]);
 
-if (laseron)
+if (laseron && !preview_while_laser_on)
 {
     draw_set_halign(fa_center);
     draw_text(view_wport[4]/2,t_y+view_wport[4]/2,"Laser output active: "+string(dac[| 1]));

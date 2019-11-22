@@ -196,6 +196,8 @@ dialog = "";
 selecting = 0;
 scrollcursor_flag = 0;
 tab_cycles_all = 0;
+enable_dynamic_fps = 1;
+preview_while_laser_on = 0;
 
 global.loading_exportproject = 0;
 global.loading_exportilda = 0;

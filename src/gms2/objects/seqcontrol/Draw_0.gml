@@ -20,7 +20,7 @@ if (view_current == 4)
 	
 	
 	gpu_set_blendenable(true);
-    if (controller.laseron)
+    if (controller.laseron && !controller.preview_while_laser_on)
     {
         draw_set_color(c_white);
         draw_set_halign(fa_center);

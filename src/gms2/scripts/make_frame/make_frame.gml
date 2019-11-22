@@ -24,20 +24,23 @@ else
 }
 
 // slow framerate if frame is too complex
-if ((controller.opt_maxdist/t_lengthwanted) < 0.12)
+if (controller.enable_dynamic_fps)
 {
-	controller.fpsmultiplier = 4;
+	if ((controller.opt_maxdist/t_lengthwanted) < 0.12)
+	{
+		controller.fpsmultiplier = 4;
+	}
+	else if ((controller.opt_maxdist/t_lengthwanted) < 0.25)
+	{
+		controller.fpsmultiplier = 3;
+	}
+	else if ((controller.opt_maxdist/t_lengthwanted) < 0.5)
+	{
+		controller.fpsmultiplier = 2;
+	}
+	else
+		controller.fpsmultiplier = 1;
 }
-else if ((controller.opt_maxdist/t_lengthwanted) < 0.25)
-{
-	controller.fpsmultiplier = 3;
-}
-else if ((controller.opt_maxdist/t_lengthwanted) < 0.5)
-{
-	controller.fpsmultiplier = 2;
-}
-else
-	controller.fpsmultiplier = 1;
 	
 	
 var t_lengthwanted70 = t_lengthwanted*0.7;

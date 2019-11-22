@@ -2863,6 +2863,14 @@
             }
         },
         {
+            "Key": "54773813-911d-40f4-bb9d-3256c3ac8e6d",
+            "Value": {
+                "id": "34b9a561-b17b-4902-8d17-6e9d16e5090d",
+                "resourcePath": "objects\\obj_dynamicfps\\obj_dynamicfps.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "54e06955-35b3-4845-9ec4-29e2bbfed77e",
             "Value": {
                 "id": "2e278541-a0f0-43a8-ba2b-a3a71a20c713",
@@ -7292,6 +7300,14 @@
                 "id": "8a7db290-7141-47ff-b797-0fbef97970cb",
                 "resourcePath": "rooms\\rm_loading\\rm_loading.yy",
                 "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "d6bf65a1-a7cc-4b88-bf9c-a66c7f5763ac",
+            "Value": {
+                "id": "08ed7b93-a5cb-4608-b670-255123711da9",
+                "resourcePath": "objects\\obj_previewlaseron\\obj_previewlaseron.yy",
+                "resourceType": "GMObject"
             }
         },
         {
