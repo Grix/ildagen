@@ -3,7 +3,7 @@ highlight_close = false;
 x = round(window_get_width()/2 - 350);
 y = round(window_get_height()/2 - 200);
 
-if (window_mouse_get_x() >= (x+670)) && (window_mouse_get_x() <= (x+700)) && (window_mouse_get_y() >= y) && (window_mouse_get_y() <= (y+20))
+if (window_mouse_get_x() >= (x+660)) && (window_mouse_get_x() <= (x+700)) && (window_mouse_get_y() >= y-10) && (window_mouse_get_y() <= (y+20))
 {
     controller.tooltip = "Click to close advertisement.";
     highlight_close = true;

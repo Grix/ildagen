@@ -6,7 +6,7 @@ TODO
 - mac DMG packaging
 - fix wrong file extension when saving
 - fix dialogs on linux/mac to allow copy paste
-- linux
+- fix high resolution screen scaling
 - update web
 - resume instead of restart on trigger, toggle option in live
 - set fixed scanrate instead of fps when optimization off
