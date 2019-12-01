@@ -43,7 +43,7 @@ if (room == rm_ilda) && (keyboard_check(ord("Z")) && !keyboard_check(vk_control)
 else
 {
 	obj_cursor.x = window_mouse_get_x();
-	obj_cursor.y = window_mouse_get_y()-23;
+	obj_cursor.y = mouse_y-camera_get_view_y(view_camera[4]);//window_mouse_get_y()-23;
 	view_visible[5] = false;
 }
 
@@ -205,17 +205,17 @@ if (ds_list_size(el_list) > 0)
         for (i = 0;i < ds_list_size(el_list);i++)
         {
             templist =  ds_list_find_value(el_list,i);
-            if (point_distance(ds_list_find_value(templist,0)/$ffff*view_wport[4],ds_list_find_value(templist,1)/$ffff*view_wport[4],mouse_x,mouse_y) < nearestdist)
+            if (point_distance(ds_list_find_value(templist,0)/$ffff*view_wport[4],ds_list_find_value(templist,1)/$ffff*view_wport[4],mouse_x,mouse_y-camera_get_view_y(view_camera[4])) < nearestdist)
             {
                 obj_cursor.x = ds_list_find_value(templist,0)/$ffff*view_wport[4];
                 obj_cursor.y = ds_list_find_value(templist,1)/$ffff*view_wport[4];
-                nearestdist = point_distance(ds_list_find_value(templist,0)/128,ds_list_find_value(templist,1)/$ffff*view_wport[4],mouse_x,mouse_y);
+                nearestdist = point_distance(ds_list_find_value(templist,0)/128,ds_list_find_value(templist,1)/$ffff*view_wport[4],mouse_x,mouse_y-camera_get_view_y(view_camera[4]));
             }
-            if (point_distance(ds_list_find_value(templist,2)/$ffff*view_wport[4],ds_list_find_value(templist,3)/128,mouse_x,mouse_y) < nearestdist)
+            if (point_distance(ds_list_find_value(templist,2)/$ffff*view_wport[4],ds_list_find_value(templist,3)/128,mouse_x,mouse_y-camera_get_view_y(view_camera[4])) < nearestdist)
             {
                 obj_cursor.x = ds_list_find_value(templist,2)/$ffff*view_wport[4];
                 obj_cursor.y = ds_list_find_value(templist,3)/$ffff*view_wport[4];
-                nearestdist = point_distance(ds_list_find_value(templist,2)/$ffff*view_wport[4],ds_list_find_value(templist,3)/$ffff*view_wport[4],mouse_x,mouse_y);
+                nearestdist = point_distance(ds_list_find_value(templist,2)/$ffff*view_wport[4],ds_list_find_value(templist,3)/$ffff*view_wport[4],mouse_x,mouse_y-camera_get_view_y(view_camera[4]));
             }
         }
         

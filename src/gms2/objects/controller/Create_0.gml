@@ -29,6 +29,10 @@ if (os_browser == browser_not_a_browser)
 
 log("save location:",FStemp);
 
+// Dialog module settings
+widget_set_caption(window_get_caption());
+widget_set_owner(window_handle());
+
 //declarations and setup
 //math_set_epsilon(0.00001);
 //ds_set_precision(0.00001); 
@@ -37,7 +41,7 @@ application_surface_enable(false);
 draw_set_font(fnt_tooltip);
 draw_set_color(c_black);
 
-instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-23, "normal", obj_cursor);
+instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-23, "foreground", obj_cursor);
 
 varmap = ds_map_create();
 //shape function

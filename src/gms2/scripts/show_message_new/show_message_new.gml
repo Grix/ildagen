@@ -4,10 +4,11 @@
 
 if (os_browser == browser_not_a_browser)
 {
-	if (os_type == os_windows)
-		show_message_win(string(argument[0]), "LaserShowGen", $00040000 /*topmost*/);
+	/*if (os_type == os_windows)
+		show_message_win(string(argument[0]), "LaserShowGen", $00040000);
 	else
-		show_message_async(argument[0]);
+		show_message_async(argument[0]);*/
+	show_message(string(argument[0]));
 }
 else
     show_message_async(argument[0]);

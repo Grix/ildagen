@@ -1,3 +1,5 @@
+//show_message_new("test");
+
 //tesing benchmark
 
 

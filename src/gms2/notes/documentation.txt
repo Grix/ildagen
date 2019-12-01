@@ -1,7 +1,8 @@
 TODO
 - optional dynamic FPS
 - optional drawing frame when laser is on
-- fix keyboard shortcuts ctrl+alt, Q
+- fix keyboard shortcuts ctrl+alt, Q, Z
+- fix keyboard shortcut shift only drawing vertically, not horizontally
 - exclusive button in live mode
 - mac DMG packaging
 - fix wrong file extension when saving
