@@ -1,8 +1,5 @@
-/*if (mouse_x > 23)
-{
-    if (view_current == 3)
-        exit;
-}*/
+if (view_current != 4)
+    exit;
 
 if (controller.scrollcursor_flag == 1)
     image_index = 13;
@@ -39,4 +36,4 @@ else
         image_index = 6;
 }
    
-draw_self();
+draw_sprite(sprite_index, image_index, x, y+camera_get_view_y(view_camera[4]));

@@ -37,8 +37,10 @@ if (!keyboard_check(vk_shift))
 }
 else
 {
-	var t_theta = point_direction(startpos[0]/$ffff*view_wport[4],startpos[1]/$ffff*view_wport[4],mouse_x,mouse_y);
-       if (t_theta > 315 || t_theta < 45 || (t_theta > 135 && t_theta < 225))
+	var t_startx = startpos[0]/$ffff*view_wport[4];
+	var t_starty = camera_get_view_y(view_camera[4])+startpos[1]/$ffff*view_wport[4];
+	var t_theta = point_direction(t_startx,t_starty,mouse_x,mouse_y);
+    if (t_theta > 315 || t_theta < 45 || (t_theta > 135 && t_theta < 225))
     {
         endx = obj_cursor.x/view_wport[4]*$ffff;
         endy = startpos[1];

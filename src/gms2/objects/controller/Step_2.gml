@@ -186,6 +186,7 @@ if (keyboard_check(ord("S"))) || (sgridshow == 1)
 
 if (ds_list_size(el_list) > 0)
 {
+	// snap to last drawn edge
     if (keyboard_check(vk_alt) && (placing_status == 0))
     {
         if (keyboard_check(vk_control))
@@ -199,19 +200,20 @@ if (ds_list_size(el_list) > 0)
             obj_cursor.y = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),3)/$ffff*view_wport[4];
         }
     }
+	// snap to closest edge
     else if (keyboard_check(ord("Q")))
     {
         nearestdist = 32;
         for (i = 0;i < ds_list_size(el_list);i++)
         {
             templist =  ds_list_find_value(el_list,i);
-            if (point_distance(ds_list_find_value(templist,0)/$ffff*view_wport[4],ds_list_find_value(templist,1)/$ffff*view_wport[4],mouse_x,mouse_y-camera_get_view_y(view_camera[4])) < nearestdist)
+			if (point_distance(ds_list_find_value(templist,0)/$ffff*view_wport[4],ds_list_find_value(templist,1)/$ffff*view_wport[4],mouse_x,mouse_y-camera_get_view_y(view_camera[4])) < nearestdist)
             {
                 obj_cursor.x = ds_list_find_value(templist,0)/$ffff*view_wport[4];
                 obj_cursor.y = ds_list_find_value(templist,1)/$ffff*view_wport[4];
                 nearestdist = point_distance(ds_list_find_value(templist,0)/128,ds_list_find_value(templist,1)/$ffff*view_wport[4],mouse_x,mouse_y-camera_get_view_y(view_camera[4]));
             }
-            if (point_distance(ds_list_find_value(templist,2)/$ffff*view_wport[4],ds_list_find_value(templist,3)/128,mouse_x,mouse_y-camera_get_view_y(view_camera[4])) < nearestdist)
+			if (point_distance(ds_list_find_value(templist,2)/$ffff*view_wport[4],ds_list_find_value(templist,3)/$ffff*view_wport[4],mouse_x,mouse_y-camera_get_view_y(view_camera[4])) < nearestdist)
             {
                 obj_cursor.x = ds_list_find_value(templist,2)/$ffff*view_wport[4];
                 obj_cursor.y = ds_list_find_value(templist,3)/$ffff*view_wport[4];

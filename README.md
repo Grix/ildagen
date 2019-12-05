@@ -1,8 +1,8 @@
 LaserShowGen
 =======
 
-Freemium laser show editor / viewer
+Freemium cross-platform laser show editor / viewer
 
-http://pages.bitlasers.com/lasershowgen/
+https://bitlasers.com/lasershowgen-sw/
 
 
