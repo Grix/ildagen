@@ -13,7 +13,8 @@ else
 	    exit;
     
 	if (filename_ext(file_loc) != ".igl")
-	    show_message_new("Warning: Your filename has no .igl extension, and might not be recognized by other software.\n\nIt is recommended to save the file again, with a the text .igl at the end of the name.");
+		file_loc += ".igl";
+	    //show_message_new("Warning: Your filename has no .igl extension, and might not be recognized by other software.\n\nIt is recommended to save the file again, with a the text .igl at the end of the name.");
 }
 
 global.loadingtimeprev = get_timer();

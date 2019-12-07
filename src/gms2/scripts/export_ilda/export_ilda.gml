@@ -7,7 +7,8 @@ if !string_length(file_loc)
     exit;
     
 if (filename_ext(file_loc) != ".ild")
-    show_message_new("Warning: Your filename has no .ild extension, and might not be recognized by other software.\n\nIt is recommended to save the file again, with a the text .ild at the end of the name.");
+	file_loc += ".ild";
+    //show_message_new("Warning: Your filename has no .ild extension, and might not be recognized by other software.\n\nIt is recommended to save the file again, with a the text .ild at the end of the name.");
     
 if (!verify_numexports())
 {   
