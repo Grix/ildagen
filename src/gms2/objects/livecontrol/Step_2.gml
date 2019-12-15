@@ -181,7 +181,9 @@ else
 					
 					playing = 1;
 					ds_list_set(filelist[| i], 0, true);
-					ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);
+						
+					if (ds_list_find_value(filelist[| i], 6) == 0) // if resume instead of restart
+						ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);
 				}
 				frame_surf_refresh = 1;
 				if (surface_exists(browser_surf))

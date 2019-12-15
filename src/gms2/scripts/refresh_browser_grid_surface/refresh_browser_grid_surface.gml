@@ -51,6 +51,22 @@ surface_set_target(browser_surf);
 			draw_set_color(c_white);
 			draw_text(t_column*t_cell_size+3, t_row*t_cell_size+3, chr(objectlist[| 3]));
 		}
+		
+		if (objectlist[| 4])
+		{
+			draw_set_color(c_white);
+			draw_sprite(spr_loop, 0, t_column*t_cell_size+3, t_row*t_cell_size+32);
+		}
+		if (objectlist[| 5])
+		{
+			draw_set_color(c_white);
+			draw_sprite(spr_exclusive, 0, t_column*t_cell_size+3, t_row*t_cell_size+48);
+		}
+		if (objectlist[| 6])
+		{
+			draw_set_color(c_white);
+			draw_sprite(spr_resume, 0, t_column*t_cell_size+3, t_row*t_cell_size+64);
+		}
 	}
 
 surface_reset_target();
