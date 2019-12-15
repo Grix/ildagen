@@ -15,10 +15,14 @@ else if (room == rm_seq)
 {
     with (seqcontrol)
         load_frames_seq(get_open_filename_ext("LSG frames|*.igf","","","Select LaserShowGen frames file"));
+	keyboard_clear(keyboard_lastkey);
+	mouse_clear(mouse_lastbutton);
 }
 else if (room == rm_live)
 {
     with (livecontrol)
         load_frames_live(get_open_filename_ext("LSG frames|*.igf","","","Select LaserShowGen frames file"));
+	keyboard_clear(keyboard_lastkey);
+	mouse_clear(mouse_lastbutton);
 }
 

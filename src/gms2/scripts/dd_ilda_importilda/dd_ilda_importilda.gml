@@ -9,3 +9,5 @@ if (os_browser != browser_not_a_browser)
 
 ilda_cancel();
 import_ilda(get_open_filename_ext("ILDA files|*.ild","","","Select ILDA file"));
+keyboard_clear(keyboard_lastkey);
+mouse_clear(mouse_lastbutton);

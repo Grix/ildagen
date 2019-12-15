@@ -20,6 +20,24 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,live_toggle_loop);
     ds_list_add(hl_list,1);
+	var label = "Toggle exclusive ";
+	if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 5))
+		label += "off";
+	else
+		label += "on";
+	ds_list_add(desc_list,label);
+    ds_list_add(sep_list,1);
+    ds_list_add(scr_list,live_toggle_exclusive);
+    ds_list_add(hl_list,1);
+	var label = "";
+	if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 6))
+		label += "Resume at trigger";
+	else
+		label += "Restart at trigger";
+	ds_list_add(desc_list,label);
+    ds_list_add(sep_list,1);
+    ds_list_add(scr_list,live_toggle_resume);
+    ds_list_add(hl_list,1);
 	ds_list_add(desc_list,"Change keyboard shortcut...");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,live_change_shortcut);

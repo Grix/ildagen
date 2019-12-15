@@ -15,7 +15,7 @@ if (load_buffer == -1)
 }
     
 idbyte = buffer_read(load_buffer,buffer_u8);
-if (idbyte != 200)
+if (idbyte != 200 && idbyte != 201)
 {
     show_message_new("Unexpected ID byte, is this a valid LaserShowGen live grid file?");
     exit;

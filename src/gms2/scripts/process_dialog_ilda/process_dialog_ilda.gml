@@ -4,6 +4,10 @@
 
 //what a mess
 dialog_open = 0;
+menu_open = 0;
+
+keyboard_clear(keyboard_lastkey);
+mouse_clear(mouse_lastbutton);
 
 if (!ds_exists(argument[0], ds_type_map))
     exit;
@@ -451,7 +455,8 @@ if (new_id == getint)
             case "loadfile":
           {
               load_frames(get_open_filename_ext("LSG frames|*.igf","","","Select LaserShowGen frames file"));
-              
+              keyboard_clear(keyboard_lastkey);
+			mouse_clear(mouse_lastbutton);
               break;
           }
             

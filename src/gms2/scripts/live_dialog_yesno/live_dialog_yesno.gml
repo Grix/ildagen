@@ -6,7 +6,7 @@ if (controller.dialog_open) exit;
 with (livecontrol)
 {
     controller.dialog_open = 1;
-    dialog = argument0;
+    dialog = argument[0];
     //getint = show_question_new(argument1);
 	
 	if (os_browser == browser_not_a_browser)

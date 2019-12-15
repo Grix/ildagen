@@ -23,11 +23,21 @@ var t_centerx = view_wport[4]/2;
 var t_centery = view_hport[4]/2;
 var t_scalediag = sqrt(view_hport[4]*view_hport[4]+view_wport[4]*view_wport[4])/2;
 
+var t_exclusive_active = false;
+for (j = 0; j < ds_list_size(filelist); j++)
+{
+	if (ds_list_find_value(filelist[| j], 5) != 0)
+	{
+		t_exclusive_active = true;
+		break;
+	}
+}
+
 for (j = 0; j < ds_list_size(filelist); j++)
 {
 	objectlist = filelist[| j];
 	
-	if (!objectlist[| 0]) // is not playing
+	if (!objectlist[| 0] || (t_exclusive_active && objectlist[| 5] == 0)) // is not playing
 		continue;
 
 	infolist =  ds_list_find_value(objectlist, 2);

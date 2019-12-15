@@ -47,6 +47,8 @@ with (livecontrol)
     ds_list_add(objectlist,info);
 	ds_list_add(objectlist,find_next_available_shortcut());
 	ds_list_add(objectlist,(controller.maxframes_parse == 1));
+	ds_list_add(objectlist,0);
+	ds_list_add(objectlist,0);
 	
     ds_list_add(filelist,objectlist);
 	selectedfile = ds_list_size(filelist)-1;

@@ -10,6 +10,8 @@ bckimage = !bckimage;
 if (bckimage)
 {
     bckfile = get_open_filename("Image files|*.png;*.jpg;*.gif","");
+	keyboard_clear(keyboard_lastkey);
+	mouse_clear(mouse_lastbutton);
     if string_length(bckfile) 
     {
         bck_bckimage = sprite_add(bckfile,1,0,0,0,0);

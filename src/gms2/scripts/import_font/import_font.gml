@@ -4,7 +4,9 @@ ilda_cancel();
 with(controller)
 {
     filename = get_open_filename_ext("ILDA font file|*.ild|All files|*","",program_directory,"Select ILDA font file")
-    if string_length(filename)
+    keyboard_clear(keyboard_lastkey);
+	mouse_clear(mouse_lastbutton);
+	if string_length(filename)
     {
         //file_copy(filename, "temp/temp.ild");
 		ild_file = buffer_load(filename);

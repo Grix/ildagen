@@ -10,6 +10,8 @@ if (song != -1)
 save_buffer = buffer_create(1,buffer_grow,1);
 
 file_loc = get_save_filename_ext("LSG Projects|*.igp","example.igp","","Select LaserShowGen project file location");
+keyboard_clear(keyboard_lastkey);
+mouse_clear(mouse_lastbutton);
 if !string_length(file_loc) 
     exit;
     

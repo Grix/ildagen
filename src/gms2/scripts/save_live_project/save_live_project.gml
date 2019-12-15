@@ -5,6 +5,8 @@ playing = 0;
 save_buffer = buffer_create(1,buffer_grow,1);
 
 file_loc = get_save_filename_ext("LSG Live Grids|*.igl","example.igl","","Select LaserShowGen live grid file location");
+keyboard_clear(keyboard_lastkey);
+mouse_clear(mouse_lastbutton);
 if !string_length(file_loc) 
     exit;
     
@@ -21,7 +23,7 @@ global.loading_start = 0;
 global.loading_end = ds_list_size(filelist);
 global.loading_current = global.loading_start;
     
-buffer_write(save_buffer,buffer_u8,200); //version / ID
+buffer_write(save_buffer,buffer_u8,201); //version / ID
 buffer_write(save_buffer,buffer_u8,controller.projectfps); //fps
 buffer_write(save_buffer,buffer_u8,0);
 buffer_write(save_buffer,buffer_u8,0);

@@ -125,3 +125,5 @@ filelist
             maxframes
 		keyboard shortcut
 		is_loop
+		is_exclusive
+		is_resuming (instead of restarting on play)

@@ -9,6 +9,8 @@ if (filepath != "")
 else
 {
 	file_loc = get_save_filename_ext("LSG Live Grid|*.igl","example.igl","","Select LaserShowGen Live grid file location");
+	keyboard_clear(keyboard_lastkey);
+	mouse_clear(mouse_lastbutton);
 	if !string_length(file_loc) 
 	    exit;
     

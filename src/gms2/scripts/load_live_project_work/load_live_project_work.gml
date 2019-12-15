@@ -1,4 +1,4 @@
-if (idbyte == 200)
+if (idbyte == 200 || idbyte == 201)
 {
     for (j = global.loading_current; j < global.loading_end;j++)
     {
@@ -29,6 +29,21 @@ if (idbyte == 200)
             
         ds_list_add(objectlist,round(buffer_read(load_buffer,buffer_u32)));
 		ds_list_add(objectlist,buffer_read(load_buffer,buffer_bool));
+		
+		if (idbyte == 201)
+		{
+			ds_list_add(objectlist,buffer_read(load_buffer,buffer_bool));
+			ds_list_add(objectlist,buffer_read(load_buffer,buffer_bool));
+			buffer_read(load_buffer,buffer_u32);
+			buffer_read(load_buffer,buffer_u32);
+			buffer_read(load_buffer,buffer_u32);
+			buffer_read(load_buffer,buffer_u32);
+		}
+		else
+		{
+			ds_list_add(objectlist,0);
+			ds_list_add(objectlist,0);
+		}
 		
 		ds_list_add(filelist, objectlist);
 	}
