@@ -70,7 +70,7 @@ if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window
 if (instance_exists(obj_dropdown))
     exit;
     
-if (keyboard_check(vk_control))
+if (keyboard_check_control())
 {
     //CTRL+*
     if (keyboard_check_pressed(ord("C")))

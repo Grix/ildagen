@@ -51,7 +51,7 @@ else if (objmoving == 3)
 else if (objmoving == 4)
 {
     //resize
-    if (!keyboard_check(vk_control))
+    if (!keyboard_check_control())
     {
         scalex+= (obj_cursor.x-mouse_xprevious)/max(1,(rectxmax-rectxmin)/$ffff*view_wport[4])*2;
         scaley+= (obj_cursor.y-mouse_yprevious)/max(1,(rectymax-rectymin)/$ffff*view_wport[4])*2;
@@ -71,7 +71,7 @@ else if (objmoving == 4)
         reapply_trans();
     }
 }
-else if !(keyboard_check(vk_control)) and (!object_select_hovering)
+else if !(keyboard_check_control()) and (!object_select_hovering)
 {
 	if (window_mouse_get_x() > view_wport[4] or window_mouse_get_y()-23 > view_wport[4])
 		exit;

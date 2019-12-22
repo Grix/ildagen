@@ -3,7 +3,7 @@ if (instance_exists(obj_dropdown))
 if (!visible)
     exit;
 
-if (keyboard_check(vk_control))
+if (keyboard_check_control())
 {
     if (mouse_x > (x+23))
     {

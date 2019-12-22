@@ -89,7 +89,7 @@ if (moving_object == 1)
             
             frame_surf_refresh = 1;
             tempxstart = round(ds_list_find_value(objecttomove,0));
-            if (!keyboard_check(vk_control))
+            if (!keyboard_check_control())
             {
                 //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
                 loopcount = 5;
@@ -176,7 +176,7 @@ else if (moving_object == 2)
             }
 			
             templength = round(ds_list_find_value(infolisttomove,0));
-            if (!keyboard_check(vk_control))
+            if (!keyboard_check_control())
             {
                 tempxstart = round(ds_list_find_value(objecttomove,0));
                 //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
@@ -261,7 +261,7 @@ else if (moving_object == 8)
             }
 			
             tempstretch = stretch;
-            if (!keyboard_check(vk_control))
+            if (!keyboard_check_control())
             {
 				templength = round(ds_list_find_value(infolisttomove,0));
                 tempxstart = round(ds_list_find_value(objecttomove,0));
@@ -597,7 +597,7 @@ or (controller.dialog_open)
 or (controller.menu_open)
     exit;
 	
-var t_mac_ctrl_click = (os_type == os_macosx) && (keyboard_check(vk_control) && mouse_check_button_pressed(mb_right));
+var t_mac_ctrl_click = (os_type == os_macosx) && (keyboard_check_control() && mouse_check_button_pressed(mb_right));
     
 if (mouse_wheel_up() or keyboard_check_pressed(vk_f7))
 {
@@ -698,7 +698,7 @@ for (i = 0; i < ds_list_size(marker_list); i++)
         controller.tooltip = "Drag to adjust the marker. Ctrl+Click to delete marker.";
         if (mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
         {
-            if (keyboard_check(vk_control))
+            if (keyboard_check_control())
                 ds_list_delete(marker_list,i);
             else
             {
@@ -815,7 +815,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                         if (mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
                         {
 							timeline_surf_length = 0;
-                            if (keyboard_check(vk_control))
+                            if (keyboard_check_control())
                             {
                                 if (ds_list_find_index(somaster_list,objectlist) != -1)
                                 {
@@ -883,7 +883,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                         else if mouse_check_button_pressed(mb_right)
                         {
                             //right clicked on object
-                            if (!keyboard_check(vk_control))
+                            if (!keyboard_check_control())
                                 ds_list_clear(somaster_list);
                             if (ds_list_find_index(somaster_list,objectlist) != -1)
                                 ds_list_delete(somaster_list,ds_list_find_index(somaster_list,objectlist));
@@ -1052,7 +1052,7 @@ if !(mouseonsomelayer)
     draw_mouseline = 1;
     //playback pos
     controller.tooltip = "Click to set playback position. Hold [Ctrl] and drag mouse to scroll timeline.";
-    if (mouse_check_button(mb_left) && !keyboard_check(vk_control))
+    if (mouse_check_button(mb_left) && !keyboard_check_control())
     {
         tlpos = round(tlx+window_mouse_get_x()/tlw*tlzoom)/projectfps*1000;
         if (song != -1)
@@ -1065,12 +1065,12 @@ if !(mouseonsomelayer)
 		
 		//mouse_xprevious = window_mouse_get_x();
     }
-	else if (keyboard_check(vk_control) && mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
+	else if (keyboard_check_control() && mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
 	{
 		mouse_xprevious = window_mouse_get_x();
 		mouse_yprevious = window_mouse_get_y();
 	}
-	else if (keyboard_check(vk_control) && mouse_check_button(mb_left))
+	else if (keyboard_check_control() && mouse_check_button(mb_left))
 	{
 		tlx -= round((window_mouse_get_x()-mouse_xprevious)/tlw*tlzoom);
 		layerbary -= round(window_mouse_get_y()-mouse_yprevious);

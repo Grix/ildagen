@@ -32,41 +32,6 @@ surface_set_target(browser_surf);
 			t_infolist[| 1] = make_screenshot(objectlist[| 1], t_cell_size-1);
 		draw_surface_part(t_infolist[| 1],0,0,t_cell_size-1,t_cell_size-1, t_column*t_cell_size+1, t_row*t_cell_size+1);
 		
-		if (selectedfile == i)
-		{
-			draw_set_alpha(0.3);
-			draw_set_color(controller.c_gold);
-				draw_rectangle(t_column*t_cell_size+1, t_row*t_cell_size+1, t_column*t_cell_size-1+t_cell_size, t_row*t_cell_size-1+t_cell_size, 0);
-			draw_set_alpha(1);
-		}
-		
-		
-		if (objectlist[| 3] == -1)
-		{
-			draw_set_color(controller.c_gold);
-			draw_text(t_column*t_cell_size+3, t_row*t_cell_size+3, "Press key...");
-		}
-		else if (objectlist[| 3] > 0)
-		{
-			draw_set_color(c_white);
-			draw_text(t_column*t_cell_size+3, t_row*t_cell_size+3, chr(objectlist[| 3]));
-		}
-		
-		if (objectlist[| 4])
-		{
-			draw_set_color(c_white);
-			draw_sprite(spr_loop, 0, t_column*t_cell_size+3, t_row*t_cell_size+32);
-		}
-		if (objectlist[| 5])
-		{
-			draw_set_color(c_white);
-			draw_sprite(spr_exclusive, 0, t_column*t_cell_size+3, t_row*t_cell_size+48);
-		}
-		if (objectlist[| 6])
-		{
-			draw_set_color(c_white);
-			draw_sprite(spr_resume, 0, t_column*t_cell_size+3, t_row*t_cell_size+64);
-		}
 	}
 
 surface_reset_target();

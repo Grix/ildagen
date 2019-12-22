@@ -1,4 +1,4 @@
-if (!keyboard_check(vk_control))
+if (!keyboard_check_control())
     exit;
 
 if (controller.maxframes == 1) and !ds_list_size(controller.el_list)

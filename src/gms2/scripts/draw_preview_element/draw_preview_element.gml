@@ -77,13 +77,13 @@ else if (placing == "wave")
         
     if (mouse_wheel_up())
     {
-        if !(keyboard_check(vk_control))
+        if !(keyboard_check_control())
             wave_amp += 128*3;
         else 
             wave_period += 0.5;
     }
     else if (mouse_wheel_down())
-        if !(keyboard_check(vk_control))
+        if !(keyboard_check_control())
             wave_amp -= 128*3;
         else 
             wave_period -= 0.5;

@@ -73,6 +73,28 @@ else if (room = rm_seq)
     } 
     else image_index = 0;
 }
+if (room = rm_live)
+{
+    if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
+    {
+        image_index = 1;
+        controller.tooltip = "Click here to open the full manual. Keyboard controls:\n\n"+
+        "Mouse)    Select file\n"+
+        "Space)    Play/Pause\n"+
+        "Tab)    Enter editor mode\n"+
+		"L)    Send frames from editor mode to live mode\n"+
+        "Delete)    Delete selected object\n"+
+		"X)    Toggle exclusive playback of selected object\n"+
+		"O)    Toggle looping of selected object\n"+
+		"R)    Toggle restarting/resuming when playing selected object\n"+
+        "P)    Toggle 3D frame previewing\n"+
+        "Ctrl+Z)    Undo\n"+
+        "Esc)    Stop laser DAC output\n\n"+
+        "M)    Reset window size\n"+
+        "F11)    Toggle fullscreen";
+    } 
+    else image_index = 0;
+}
 else
 {
     if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))

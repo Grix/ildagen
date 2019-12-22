@@ -114,7 +114,7 @@ if (view_current == 4 || view_current == 5)
             draw_surface_part(radialgrid_surf,0,0, view_wport[4], view_wport[4], 0, t_y);
         }
             
-        if ((keyboard_check(ord("A")) && !keyboard_check(vk_control)) || (guidelineshow == 1))
+        if ((keyboard_check(ord("A")) && !keyboard_check_control()) || (guidelineshow == 1))
         {
             draw_guidelines();
         }

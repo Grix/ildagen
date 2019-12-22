@@ -4,7 +4,7 @@ if (moving == 1)
 {
     //x start
     controller.scrollcursor_flag = 1;
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
 		controller.scale_left_top += ((mouse_x-mouse_xprevious));
 		controller.scale_left_bottom += ((mouse_x-mouse_xprevious));
@@ -28,7 +28,7 @@ else if (moving == 2)
 {
     //x end
     controller.scrollcursor_flag = 1;
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
 		controller.scale_right_top += ((mouse_x-mouse_xprevious));
 		controller.scale_right_bottom += ((mouse_x-mouse_xprevious));
@@ -52,7 +52,7 @@ else if (moving == 3)
 {
     //y start
     controller.scrollcursor_flag = 2;
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
 		controller.scale_top_left += ((mouse_y-mouse_yprevious));
 		controller.scale_top_right += ((mouse_y-mouse_yprevious));
@@ -76,7 +76,7 @@ else if (moving == 4)
 {
     //y end
     controller.scrollcursor_flag = 2;
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
 		controller.scale_bottom_left += ((mouse_y-mouse_yprevious));
 		controller.scale_bottom_right += ((mouse_y-mouse_yprevious));
@@ -99,7 +99,7 @@ else if (moving == 4)
 else if (moving == 5)
 {
     //drag whole window
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
 		controller.scale_bottom_left += ((mouse_y-mouse_yprevious));
 		controller.scale_bottom_right += ((mouse_y-mouse_yprevious));
@@ -144,7 +144,7 @@ else if (moving == 6)
     var t_list = controller.blindzone_list;
     controller.scrollcursor_flag = 1;
     i = blindzonetoedit;
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
         t_list[| i] = t_list[| i]+((mouse_x-mouse_xprevious)*4);
         if (t_list[| i] < 0)
@@ -174,7 +174,7 @@ else if (moving == 7)
     var t_list = controller.blindzone_list;
     controller.scrollcursor_flag = 1;
     i = blindzonetoedit+1;
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
         t_list[| i] = t_list[| i]+((mouse_x-mouse_xprevious)*4);
         if (t_list[| i] > $FFFF)
@@ -204,7 +204,7 @@ else if (moving == 8)
     var t_list = controller.blindzone_list;
     controller.scrollcursor_flag = 2;
     i = blindzonetoedit+2;
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
         t_list[| i] = t_list[| i]+((mouse_y-mouse_yprevious)*4);
         if (t_list[| i] < 0)
@@ -234,7 +234,7 @@ else if (moving == 9)
     var t_list = controller.blindzone_list;
     controller.scrollcursor_flag = 2;
     i = blindzonetoedit+3;
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
         t_list[| i] = t_list[| i]+((mouse_y-mouse_yprevious)*4);
         if (t_list[| i] > $FFFF)
@@ -263,7 +263,7 @@ else if (moving == 10)
     //drag whole window blind zone
     var t_list = controller.blindzone_list;
     i = blindzonetoedit;
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
         t_list[| i+0] = t_list[| i+0]+((mouse_x-mouse_xprevious)*4);
         t_list[| i+1] = t_list[| i+1]+((mouse_x-mouse_xprevious)*4);
@@ -309,7 +309,7 @@ else if (moving == 11)
 {
     //upper left corner
 	controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
 		controller.scale_top_left += ((mouse_y-mouse_yprevious));
 		controller.scale_left_top += ((mouse_x-mouse_xprevious));
@@ -333,7 +333,7 @@ else if (moving == 12)
 {
     //upper right corner
 	controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
 		controller.scale_top_right += ((mouse_y-mouse_yprevious));
 		controller.scale_right_top += ((mouse_x-mouse_xprevious));
@@ -357,7 +357,7 @@ else if (moving == 13)
 {
     //lower left corner
 	controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
 		controller.scale_bottom_left += ((mouse_y-mouse_yprevious));
 		controller.scale_left_bottom += ((mouse_x-mouse_xprevious));
@@ -381,7 +381,7 @@ else if (moving == 14)
 {
     //lower right corner
 	controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
-    if (keyboard_check(vk_control))
+    if (keyboard_check_control())
     {
 		controller.scale_bottom_right += ((mouse_y-mouse_yprevious));
 		controller.scale_right_bottom += ((mouse_x-mouse_xprevious));

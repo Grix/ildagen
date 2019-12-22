@@ -31,17 +31,17 @@ if (moving == 4)
 }
 else
 {
-    if (moving == 1) or ((moving) and keyboard_check(vk_control))
+    if (moving == 1) or ((moving) and keyboard_check_control())
     {
         red = clamp(255 - (mouse_y-bbox_top)/25*255, 0, 255);
         controller.enddotscolor = make_colour_rgb(red,colour_get_green(controller.enddotscolor),colour_get_blue(controller.enddotscolor));
     }
-    if (moving == 2) or ((moving) and keyboard_check(vk_control))
+    if (moving == 2) or ((moving) and keyboard_check_control())
     {
         green = clamp(255 - (mouse_y-bbox_top)/25*255, 0, 255);
         controller.enddotscolor = make_colour_rgb(colour_get_red(controller.enddotscolor),green,colour_get_blue(controller.enddotscolor));
     }
-    if (moving == 3) or ((moving) and keyboard_check(vk_control))
+    if (moving == 3) or ((moving) and keyboard_check_control())
     {
         blue = clamp(255 - (mouse_y-bbox_top)/25*255, 0, 255);
         controller.enddotscolor = make_colour_rgb(colour_get_red(controller.enddotscolor),colour_get_green(controller.enddotscolor),blue);

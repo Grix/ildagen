@@ -6591,6 +6591,14 @@
             }
         },
         {
+            "Key": "c0f2e7be-db54-4962-aca0-5ad3cb673ba5",
+            "Value": {
+                "id": "7e3eefec-fa3b-484e-af83-bf53efee4fa8",
+                "resourcePath": "scripts\\keyboard_check_control\\keyboard_check_control.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c17e0eb1-4f78-41b0-9f40-8e57d3c6e477",
             "Value": {
                 "id": "2805680c-c44c-42e4-8b11-206a0e3c1817",
@@ -9442,7 +9450,8 @@
         "aacbc5c4-9a04-47cf-bf80-8bca7a29e481",
         "d7a74022-b9e4-4c6b-bd5e-d5d4074583ec",
         "a4da6f21-1da4-416b-b964-6d5efcd43acd",
-        "bd822e39-4154-4ae4-90c3-728aa0271c17"
+        "bd822e39-4154-4ae4-90c3-728aa0271c17",
+        "c0f2e7be-db54-4962-aca0-5ad3cb673ba5"
     ],
     "tutorial": ""
 }

@@ -36,7 +36,7 @@ if (mouse_y < 0)
     exit;
 }
 
-if (instance_exists(obj_dropdown)) or (window_mouse_get_x() > view_wport[4]) or (window_mouse_get_y()-23 > view_wport[4]) or (keyboard_check(vk_control) or (placing == "select"))
+if (instance_exists(obj_dropdown)) or (window_mouse_get_x() > view_wport[4]) or (window_mouse_get_y()-23 > view_wport[4]) or (keyboard_check_control() or (placing == "select"))
     exit;
 
 var t_mouse_x = window_mouse_get_x();

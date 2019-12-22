@@ -31,7 +31,7 @@ if (room == rm_loading)
     }
 }
     
-if (room == rm_ilda) && (keyboard_check(ord("Z")) && !keyboard_check(vk_control))
+if (room == rm_ilda) && (keyboard_check(ord("Z")) && !keyboard_check_control())
 {
 	obj_cursor.x = mouse_x;
 	obj_cursor.y = mouse_y-camera_get_view_y(view_camera[4]);
@@ -128,7 +128,7 @@ else if (keyboard_check_pressed(vk_backspace))
     deselect_object();
 }
     
-else if (keyboard_check(vk_control) && keyboard_check_pressed(ord("Z")))
+else if (keyboard_check_control() && keyboard_check_pressed(ord("Z")))
 {
     undo_ilda();
 }
@@ -159,18 +159,18 @@ else if (keyboard_check_pressed(vk_escape))
     }
 }
 	
-else if (keyboard_check(vk_control) || (placing == "select") || (highlight)) && ds_list_size(el_list)
+else if (keyboard_check_control() || (placing == "select") || (highlight)) && ds_list_size(el_list)
 {
     check_elementselect();
 }
 
-if (keyboard_check(vk_control) && keyboard_check_pressed(ord("A")))
+if (keyboard_check_control() && keyboard_check_pressed(ord("A")))
 {
     dd_ilda_selectall();
 }
     
 //PASTE
-if (keyboard_check(vk_control) && keyboard_check_pressed(ord("V")))
+if (keyboard_check_control() && keyboard_check_pressed(ord("V")))
 {
     paste_object();
 }
@@ -189,7 +189,7 @@ if (ds_list_size(el_list) > 0)
 	// snap to last drawn edge
     if (keyboard_check(vk_alt) && (placing_status == 0))
     {
-        if (keyboard_check(vk_control))
+        if (keyboard_check_control())
         {
             obj_cursor.x = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),0)/$ffff*view_wport[4];
             obj_cursor.y = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),1)/$ffff*view_wport[4];
@@ -235,13 +235,13 @@ if !ds_list_empty(semaster_list)
     canrightclick = !handle_trans();
     
     //COPY
-    if (keyboard_check(vk_control) && keyboard_check_pressed(ord("C")))
+    if (keyboard_check_control() && keyboard_check_pressed(ord("C")))
     {
         copy_object();
     }
         
     //CUT
-    else if (keyboard_check(vk_control) && keyboard_check_pressed(ord("X")))
+    else if (keyboard_check_control() && keyboard_check_pressed(ord("X")))
     {
         cut_object();
     }

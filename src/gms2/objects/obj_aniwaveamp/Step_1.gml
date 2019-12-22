@@ -5,7 +5,7 @@ if (moving == 1)
     controller.aniwave_amp += (mouse_x-mouse_xprevious)*$ffff/128;
     if (controller.aniwave_amp  < -$ffff/2) controller.aniwave_amp = -$ffff/2;
     if (controller.aniwave_amp > $ffff/2) controller.aniwave_amp = $ffff/2;
-    if (keyboard_check(vk_control)) controller.aniwave_amp = 0;
+    if (keyboard_check_control()) controller.aniwave_amp = 0;
     }
 
 visible = (controller.placing == "wave") and (controller.anienable);

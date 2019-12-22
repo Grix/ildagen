@@ -66,17 +66,11 @@ for (i = 0; i < ds_list_size(filelist); i++)
 					ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);
 				}
 				frame_surf_refresh = 1;
-				if (surface_exists(browser_surf))
-					surface_free(browser_surf);
-				browser_surf = -1;
 			}
 		}
 		else if (mouse_check_button_pressed(mb_right))
 		{
 			selectedfile = i;
-			if (surface_exists(browser_surf))
-				surface_free(browser_surf);
-			browser_surf = -1;
 			
 			dropdown_live_file();
 		}

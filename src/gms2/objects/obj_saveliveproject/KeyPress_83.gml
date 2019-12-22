@@ -1,4 +1,4 @@
-if !keyboard_check(vk_control)
+if !keyboard_check_control()
     exit;
 
 with (livecontrol) 

@@ -57,7 +57,7 @@ if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window
 if (instance_exists(obj_dropdown))
     exit;
     
-if (keyboard_check(vk_control))
+if (keyboard_check_control())
 {
     //CTRL+*
     /*if (keyboard_check_pressed(ord("C")))
@@ -127,12 +127,27 @@ else if (keyboard_check_pressed(vk_delete))
 		live_delete_object();
 }
 
-else if (keyboard_check_pressed(vk_backspace))
+else if (keyboard_check_pressed(ord("X")))
+{
+	 if (selectedfile != -1)
+		live_toggle_exclusive();
+}
+
+else if (keyboard_check_pressed(ord("R")))
+{
+	 if (selectedfile != -1)
+		live_toggle_resume();
+}
+
+else if (keyboard_check_pressed(ord("O")))
+{
+	 if (selectedfile != -1)
+		live_toggle_loop();
+}
+
+else if (keyboard_check_pressed(ord("0")))
 {
 	frame_surf_refresh = 1;
-	if (surface_exists(browser_surf))
-		surface_free(browser_surf);
-	browser_surf = -1;
 	frame = 0;
     playing = 0;
 	selectedfile = -1;
@@ -154,9 +169,6 @@ else
 				{
 					ds_list_set(filelist[| i], 3, 0);
 				}
-				if (surface_exists(browser_surf))
-					surface_free(browser_surf);
-				browser_surf = -1;
 			}
 		}
 		else if (ds_list_find_value(filelist[| i], 3) > 0)
@@ -186,9 +198,6 @@ else
 						ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);
 				}
 				frame_surf_refresh = 1;
-				if (surface_exists(browser_surf))
-					surface_free(browser_surf);
-				browser_surf = -1;
 			}
 		}
 	}

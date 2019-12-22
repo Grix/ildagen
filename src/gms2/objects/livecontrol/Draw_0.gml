@@ -73,13 +73,51 @@ else if (view_current == 1)
 	draw_set_color(c_green);
 	for (i = 0; i < ds_list_size(filelist); i++)
 	{
+		var t_column = i mod t_cells_per_row;
+		var t_row = i div t_cells_per_row;
+		objectlist = filelist[| i];
+		
 		// timeline
-		if (ds_list_find_value(filelist[| i], 0))
+		if (ds_list_find_value(objectlist, 0))
 		{
-			var t_column = i mod t_cells_per_row;
-			var t_row = i div t_cells_per_row;
-			var t_positionratio = ds_list_find_value(ds_list_find_value(filelist[| i], 2), 0) / ds_list_find_value(ds_list_find_value(filelist[| i], 2), 2);
+			var t_positionratio = (ds_list_find_value(objectlist[| 2], 0)+1) / ds_list_find_value(objectlist[| 2], 2);
+			draw_set_color(c_green);
 			draw_rectangle(t_column*t_cell_size+1, t_ystart+t_row*t_cell_size+t_cell_size-7, t_column*t_cell_size+(t_cell_size-2)*t_positionratio, t_ystart+t_row*t_cell_size+t_cell_size-1, 0);
+		}
+		
+		if (selectedfile == i)
+		{
+			draw_set_alpha(0.3);
+			draw_set_color(controller.c_gold);
+				draw_rectangle(t_column*t_cell_size+1, t_ystart+t_row*t_cell_size+1, t_column*t_cell_size-1+t_cell_size, t_ystart+t_row*t_cell_size-1+t_cell_size, 0);
+			draw_set_alpha(1);
+		}
+		
+		if (objectlist[| 3] == -1)
+		{
+			draw_set_color(controller.c_gold);
+			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+3, "Press key...");
+		}
+		else if (objectlist[| 3] > 0)
+		{
+			draw_set_color(c_white);
+			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+3, chr(objectlist[| 3]));
+		}
+		
+		if (objectlist[| 4])
+		{
+			draw_set_color(c_white);
+			draw_sprite(spr_loop, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32);
+		}
+		if (objectlist[| 5])
+		{
+			draw_set_color(c_white);
+			draw_sprite(spr_exclusive, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+48);
+		}
+		if (objectlist[| 6])
+		{
+			draw_set_color(c_white);
+			draw_sprite(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+64);
 		}
 	}
 }
