@@ -1,15 +1,16 @@
 TODO
+- pause individual files in live
 - optional dynamic FPS
 - optional drawing frame when laser is on
-- fix keyboard shortcuts ctrl+alt, Q, Z
-- fix keyboard shortcut shift only drawing vertically, not horizontally
-- exclusive button in live mode
+x fix keyboard shortcuts ctrl+alt, Q, Z
+x fix keyboard shortcut shift only drawing vertically, not horizontally
+x exclusive button in live mode
 - mac DMG packaging
 - fix wrong file extension when saving
 - fix dialogs on linux/mac to allow copy paste
 - fix high resolution screen scaling
 - update web
-- resume instead of restart on trigger, toggle option in live
+x resume instead of restart on trigger, toggle option in live
 - set fixed scanrate instead of fps when optimization off
 - reapply combine shapes
 - split objects

@@ -63,7 +63,15 @@ for (i = 0; i < ds_list_size(filelist); i++)
 					}
 					playing = 1;
 					ds_list_set(filelist[| i], 0, true);
-					ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);
+					
+					if (ds_list_find_value(filelist[| i], 6) == 0) // if restart instead of resume
+						ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);
+					else 
+					{
+						var t_infolist = ds_list_find_value(filelist[| i], 2);
+						if (ds_list_find_value(t_infolist, 0) >= ds_list_find_value(t_infolist, 2))
+							ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);
+					}
 				}
 				frame_surf_refresh = 1;
 			}

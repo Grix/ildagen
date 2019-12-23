@@ -1,6 +1,4 @@
 if (room != rm_ilda) exit;
-
-log("click");
     
 //menu
 if (mouse_y < 0)

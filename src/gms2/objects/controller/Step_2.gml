@@ -189,7 +189,12 @@ if (ds_list_size(el_list) > 0)
 	// snap to last drawn edge
     if (keyboard_check(vk_alt) && (placing_status == 0))
     {
-        if (keyboard_check_control())
+		var t_controlpressed = false;
+		if (os_type == os_macosx)
+			t_controlpressed = (keyboard_check(91) || keyboard_check(92));
+		else
+			t_controlpressed = keyboard_check(vk_control);
+        if (t_controlpressed)
         {
             obj_cursor.x = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),0)/$ffff*view_wport[4];
             obj_cursor.y = ds_list_find_value(ds_list_find_value(el_list,ds_list_size(el_list)-1),1)/$ffff*view_wport[4];

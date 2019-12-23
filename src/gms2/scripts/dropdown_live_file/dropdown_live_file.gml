@@ -31,9 +31,9 @@ with (ddobj)
     ds_list_add(hl_list,1);
 	var label = "";
 	if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 6))
-		label += "Set resume at trigger";
+		label += "Set restart at play";
 	else
-		label += "Set restart at trigger";
+		label += "Set resume at play";
 	ds_list_add(desc_list,label);
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,live_toggle_resume);

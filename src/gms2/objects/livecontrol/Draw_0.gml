@@ -70,12 +70,25 @@ else if (view_current == 1)
 		draw_set_alpha(1);
 	}
 	
-	draw_set_color(c_green);
 	for (i = 0; i < ds_list_size(filelist); i++)
 	{
 		var t_column = i mod t_cells_per_row;
 		var t_row = i div t_cells_per_row;
 		objectlist = filelist[| i];
+		
+		draw_set_color(c_white);
+		if (objectlist[| 4])
+		{
+			draw_sprite(spr_loop, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32);
+		}
+		if (objectlist[| 5])
+		{
+			draw_sprite(spr_exclusive, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+48);
+		}
+		if (objectlist[| 6])
+		{
+			draw_sprite(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+64);
+		}
 		
 		// timeline
 		if (ds_list_find_value(objectlist, 0))
@@ -102,22 +115,6 @@ else if (view_current == 1)
 		{
 			draw_set_color(c_white);
 			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+3, chr(objectlist[| 3]));
-		}
-		
-		if (objectlist[| 4])
-		{
-			draw_set_color(c_white);
-			draw_sprite(spr_loop, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32);
-		}
-		if (objectlist[| 5])
-		{
-			draw_set_color(c_white);
-			draw_sprite(spr_exclusive, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+48);
-		}
-		if (objectlist[| 6])
-		{
-			draw_set_color(c_white);
-			draw_sprite(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+64);
 		}
 	}
 }
