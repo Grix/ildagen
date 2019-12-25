@@ -1,5 +1,5 @@
-version = "1.8.1";
-versiondate = "2019-09-24";
+version = "1.8.2";
+versiondate = "2019-12-25";
 
 if (debug_mode)
 {
@@ -369,7 +369,7 @@ init_palette();
 if (os_browser == browser_not_a_browser)
 {
     update_check();
-    parse_parameter();
+    alarm[7] = 2; // parse parameters after everything has inited
     load_settings();
 }
 

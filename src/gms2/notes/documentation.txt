@@ -1,12 +1,13 @@
 TODO
+x open files via parameters
 - pause individual files in live
-- optional dynamic FPS
-- optional drawing frame when laser is on
+x optional dynamic FPS
+x optional drawing frame when laser is on
 x fix keyboard shortcuts ctrl+alt, Q, Z
 x fix keyboard shortcut shift only drawing vertically, not horizontally
 x exclusive button in live mode
 - mac DMG packaging
-- fix wrong file extension when saving
+x fix wrong file extension when saving
 - fix dialogs on linux/mac to allow copy paste
 - fix high resolution screen scaling
 - update web
