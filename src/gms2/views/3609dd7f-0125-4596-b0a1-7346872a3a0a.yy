@@ -11,7 +11,12 @@
         "ddcf6192-c244-487d-bb62-3226af0818b6",
         "c2458283-fe5a-45ad-9535-288733c102bb",
         "46271bd8-8570-4df4-b987-f82bda1d5250",
-        "1d57a6c1-0d10-4792-952b-3bb0b9412d54"
+        "1d57a6c1-0d10-4792-952b-3bb0b9412d54",
+        "6395451d-985b-4d20-8887-e3a6300c51e4",
+        "3a48ff02-5fb6-494f-8107-028810883832",
+        "babd7fb5-418f-4c0b-9a96-6ee35bea29bd",
+        "abfd5bfb-1202-43a5-b74a-3241a7dafa70",
+        "c439c6f6-7eea-4c3b-affc-aa7d88ecfbf4"
     ],
     "filterType": "GMScript",
     "folderName": "dialogs",

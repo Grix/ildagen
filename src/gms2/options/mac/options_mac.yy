@@ -8,6 +8,7 @@
     "option_mac_allow_outgoing_network": false,
     "option_mac_app_category": "Productivity",
     "option_mac_app_id": "gitlem.lasershowgen",
+    "option_mac_apple_sign_in": false,
     "option_mac_build_app_store": false,
     "option_mac_copyright": "(c)2019 Gitle Mikkelsen",
     "option_mac_disable_sandbox": true,
@@ -27,7 +28,7 @@
     "option_mac_team_id": "",
     "option_mac_texture_page": "2048x2048",
     "option_mac_version": {
-        "build": 1,
+        "build": 2,
         "major": 1,
         "minor": 8,
         "revision": 0

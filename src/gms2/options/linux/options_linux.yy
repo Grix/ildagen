@@ -9,7 +9,7 @@
     "option_linux_display_name": "LaserShowGen",
     "option_linux_display_splash": false,
     "option_linux_enable_steam": false,
-    "option_linux_homepage": "http:\/\/pages.bitlasers.com\/lasershowgen\/",
+    "option_linux_homepage": "https:\/\/bitlasers.com\/lasershowgen-sw\/",
     "option_linux_icon": "${options_dir}\\linux\\icons\\64.png",
     "option_linux_interpolate_pixels": false,
     "option_linux_long_desc": "LaserShowGen",
@@ -22,7 +22,7 @@
     "option_linux_sync": false,
     "option_linux_texture_page": "2048x2048",
     "option_linux_version": {
-        "build": 1,
+        "build": 2,
         "major": 1,
         "minor": 8,
         "revision": 0

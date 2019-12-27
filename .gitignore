@@ -24,6 +24,7 @@ bld/
 *.exe
 *.zip
 *.7z
+*.dmg
 
 
 # Visual Studio 2015 cache/options directory
