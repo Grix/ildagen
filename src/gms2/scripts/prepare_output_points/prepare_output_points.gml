@@ -59,7 +59,7 @@ for (var t_i = 1; t_i < listsize; t_i++)
                 //list_id[| currentpos+2 ] = 1;
                 bl_prev = 1;
 				t_skipflag = true;
-                continue;
+                break;
             }
         }
 		if (t_skipflag)

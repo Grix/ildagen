@@ -75,7 +75,7 @@ for (i = 0; i < t_numofelems; i++)
                     //list_id[| currentpos+2 ] = 1;
                     bl_prev = 1;
 					t_skipflag = true;
-                    continue;
+                    break;
                 }
             }
 			if (t_skipflag)
