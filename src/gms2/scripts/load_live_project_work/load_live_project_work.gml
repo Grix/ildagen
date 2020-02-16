@@ -8,8 +8,6 @@ if (idbyte == 200 || idbyte == 201)
             global.loadingtimeprev = get_timer();
             return 0;
         }
-            
-        objectlist = ds_list_create();
         
         //object data
         objectlist = ds_list_create();

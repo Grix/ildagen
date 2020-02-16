@@ -97,6 +97,8 @@ for (i = 0; i < t_numofelems; i++)
 		
         if (list_id[| 10] != true)//if not blind zone
         {
+			var t_skipflag = false;
+			
 			var t_x = xo+list_id[| currentpos+0];
 			var t_y = $ffff-(yo+list_id[| currentpos+1]);
 	        xp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
@@ -118,9 +120,12 @@ for (i = 0; i < t_numofelems; i++)
                 {
                     //list_id[| currentpos+2 ] = 1;
                     bl_prev = 1;
-                    continue;
+					t_skipflag = true;
+                    break;
                 }
             }
+			if (t_skipflag)
+				continue;
         }
         else
         {   

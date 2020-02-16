@@ -1,17 +1,9 @@
 TODO
-x open files via parameters
+- keyboard shortcut for turning laser on/off
+- bugs (email 2020-02-14)
 - pause individual files in live
-x optional dynamic FPS
-x optional drawing frame when laser is on
-x fix keyboard shortcuts ctrl+alt, Q, Z
-x fix keyboard shortcut shift only drawing vertically, not horizontally
-x exclusive button in live mode
-- mac DMG packaging
-x fix wrong file extension when saving
-- fix dialogs on linux/mac to allow copy paste
 - fix high resolution screen scaling
 - update web
-x resume instead of restart on trigger, toggle option in live
 - set fixed scanrate instead of fps when optimization off
 - reapply combine shapes
 - split objects

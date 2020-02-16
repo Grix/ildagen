@@ -1,6 +1,6 @@
 if (instance_exists(obj_dropdown))
     exit;
-if (room = rm_ilda)
+if (room == rm_ilda)
 {
     if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
     {
@@ -42,7 +42,7 @@ if (room = rm_ilda)
     } 
     else image_index = 0;
 }
-else if (room = rm_seq)
+else if (room == rm_seq)
 {
     if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
     {
@@ -73,7 +73,7 @@ else if (room = rm_seq)
     } 
     else image_index = 0;
 }
-if (room = rm_live)
+else if (room == rm_live)
 {
     if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
     {
