@@ -33,7 +33,7 @@ else
 	
 if (tooltip != "")
 {
-    if (show_tooltip)
+    if (show_tooltip && tooltip != ".")
     {
         draw_set_alpha(0.8);
         draw_set_color(c_black);

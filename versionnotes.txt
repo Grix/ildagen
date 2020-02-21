@@ -1,8 +1,6 @@
-v1.8.2
-- Fixed some editing mode keyboard shortcuts being broken.
-- Added toggling of exclusive playback for files in live mode, and more live mode keyboard shortcuts.
-- Made the new dynamic FPS feature optional, and allow frame to be drawn on screen at the same time as lasing.
-- Fixed some platform-specific problems with keyboard shortcuts and input dialogs.
+v1.8.3
+- Fixed possible corruption of live mode project file when quick-saving
+- Fixed projection blind zones not working correctly
 
 v1.7.0
 - New Live Mode: Play files on the fly, for DJs and improvised shows.

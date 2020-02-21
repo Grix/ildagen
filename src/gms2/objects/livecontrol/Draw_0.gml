@@ -193,36 +193,42 @@ else if (view_current == 3)
         draw_set_colour(c_teal);
         if (mouse_x > menu_width_start[0]) && (mouse_x < menu_width_start[1])
         {
+			controller.tooltip = ".";
             draw_rectangle(menu_width_start[0],t_ypos+1,menu_width_start[1],t_ypos+20,1);
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[0],t_ypos+1,menu_width_start[1],t_ypos+20,0);
         }
         else if (mouse_x > menu_width_start[1]) && (mouse_x < menu_width_start[2])
         {
+			controller.tooltip = ".";
             draw_rectangle(menu_width_start[1],t_ypos+1,menu_width_start[2],t_ypos+20,1);
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[1],t_ypos+1,menu_width_start[2],t_ypos+20,0);
         }
         else if (mouse_x > menu_width_start[2]) && (mouse_x < menu_width_start[3])
         {
+			controller.tooltip = ".";
             draw_rectangle(menu_width_start[2],t_ypos+1,menu_width_start[3],t_ypos+20,1);
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[2],t_ypos+1,menu_width_start[3],t_ypos+20,0);
         }
         else if (mouse_x > menu_width_start[3]) && (mouse_x < menu_width_start[4])
         {
+			controller.tooltip = ".";
             draw_rectangle(menu_width_start[3],t_ypos+1,menu_width_start[4],t_ypos+20,1);
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[3],t_ypos+1,menu_width_start[4],t_ypos+20,0);
         }
         else if (mouse_x > menu_width_start[4]) && (mouse_x < menu_width_start[5])
         {
+			controller.tooltip = ".";
             draw_rectangle(menu_width_start[4],t_ypos+1,menu_width_start[5],t_ypos+20,1);
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[4],t_ypos+1,menu_width_start[5],t_ypos+20,0);
         }
         else if (mouse_x > menu_width_start[5]) && (mouse_x < menu_width_start[6])
         {
+			controller.tooltip = ".";
             draw_rectangle(menu_width_start[5],t_ypos+1,menu_width_start[6],t_ypos+20,1);
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[5],t_ypos+1,menu_width_start[6],t_ypos+20,0);

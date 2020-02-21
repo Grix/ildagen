@@ -50,34 +50,40 @@ else
 if (room != rm_ilda) 
 	exit;
 	
-if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window_get_width() != view_wport[3])
-&& !(window_get_height() == 0 || window_get_width() == 0)
+var t_multiplier = 1;
+var t_windowwidth = window_get_width()/t_multiplier;
+var t_windowheight = window_get_height()/t_multiplier;
+	
+if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwidth != view_wport[3])
+&& !(t_windowheight == 0 || t_windowwidth == 0)
 || forceresize
 {
 	//if (window_get_height() < default_window_h || window_get_width() < default_window_w)
 	//	window_set_size(default_window_w, default_window_h);
+	
+	surface_resize(application_surface, t_windowwidth, t_windowheight);
 		
 	log("Resized window");
 	forceresize = false;
 	
-	view_hport[4] = max(window_get_height()-view_hport[1]-view_hport[3], 1);
+	view_hport[4] = max(t_windowheight-view_hport[1]-view_hport[3], 1);
 	tlh = round(view_hport[4]/(512/44));
 	view_wport[4] = max(view_hport[4]-tlh-1, 1);
 	tlw = view_wport[4];
-	view_wport[0] = window_get_width()-view_wport[4];
+	view_wport[0] = (t_windowwidth-view_wport[4]);
 	if false //(view_wport[0] < 788)
 	{
 		window_set_size(default_window_w, default_window_h);
 	
-		view_hport[4] = window_get_height()-view_hport[1]-view_hport[3];
+		view_hport[4] = (t_windowheight-view_hport[1]-view_hport[3]);
 		tlw = view_wport[4];
 		tlh = round(view_hport[4]/(512/42));
 		view_wport[4] = view_hport[4]-tlh-1;
 	}
-	view_wport[3] = window_get_width();
+	view_wport[3] = t_windowwidth;
 	view_hport[0] = 706;
 	view_hport[1] = 149;
-	view_hport[6] = max(window_get_height()-view_hport[3]-view_hport[0], 1);
+	view_hport[6] = max(t_windowheight-view_hport[3]-view_hport[0], 1);
 	view_wport[6] = view_wport[0];
 	view_wport[1] = view_wport[4];
 	view_yport[1] = view_hport[4]+view_hport[3];
