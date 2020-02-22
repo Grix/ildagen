@@ -1,0 +1,1 @@
+dmgbuild -s settings.py "LaserShowGen" LaserShowGen-1.8.3-Mac.dmg
