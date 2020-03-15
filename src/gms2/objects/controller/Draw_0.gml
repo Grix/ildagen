@@ -1,6 +1,7 @@
 if (room != rm_ilda) 
     exit;
 	
+	
 if (view_current == 4 || view_current == 5)
 {   
     //mini timeline + cursors
@@ -254,7 +255,7 @@ else if (view_current == 0)
 	
     gpu_set_blendenable(false);
 	
-	draw_clear(c_ltltgray);
+	//draw_clear(c_ltltgray);
 	
 	//hershey symbol selector
     if (placing = "hershey")
@@ -301,12 +302,12 @@ else if (view_current == 0)
 	draw_line(t_w4+10, 512, t_w0w4-10, 512);
 	draw_line(1116, 522, 1116, t_h0-10);
 	draw_line(834, 522, 834, t_h0-10);
-	draw_set_color(c_gold);
+	/*draw_set_color(c_gold);
 	draw_line(t_w4+1, -1, t_w4+1, t_h4+1);
 	draw_set_color(c_black);
 	draw_line(t_w4, -1, t_w4, t_h4);
 	draw_line(t_w4+2, -1, t_w4+2, t_h4+2);
-	draw_line(t_w4-1, t_h4+2, t_w4+2, t_h4+2);
+	draw_line(t_w4-1, t_h4+2, t_w4+2, t_h4+2);*/
 	
     with (obj_section0_parent)
     {
@@ -333,11 +334,11 @@ else if (view_current == 1)
 	draw_line(t_w1-1, t_h4+10, t_w1-1, t_h0-10);
 	draw_set_color(c_ltgray);
 	draw_line(t_w1-2, t_h4+10, t_w1-2, t_h0-10);
-	draw_set_color(c_gold);
-	draw_line(-1, t_h4+1, t_w1, t_h4+1);
+	/*draw_set_color(c_gold);
+	draw_line(-1, t_h4+1, t_w1, t_h4+1);*/
 	draw_set_color(c_black);
 	draw_line(-1, t_h4, t_w1, t_h4);
-	draw_line(-1, t_h4+2, t_w1, t_h4+2);
+	//draw_line(-1, t_h4+2, t_w1, t_h4+2);
 	
     with (obj_section1_parent)
     {

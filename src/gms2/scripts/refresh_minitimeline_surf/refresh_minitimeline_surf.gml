@@ -10,14 +10,15 @@ surface_set_target(minitimeline_surf);
     
     //timeline
     draw_set_color(c_black);
-        draw_line(-1,tlh-13,tlw,tlh-13);
+        draw_line(-1, tlh-13, tlw, tlh-13);
+		draw_line(tlw-1, -1, tlw-1, tlh);
     draw_set_alpha(0.2);
         if (seqcontrol.selectedx >= 0)
             tlx = seqcontrol.selectedx;
         else
             tlx = ds_list_find_value(abs(seqcontrol.selectedx), 0);
         projectfps = seqcontrol.projectfps;;
-        var drawtime = ceil(tlx/projectfps);
+        //var drawtime = ceil(tlx/projectfps);
         tlzoom = maxframes;
         var modulus = ceil(maxframes/90)*0.2;
         var templine = 0;

@@ -125,6 +125,8 @@ squaregrid_surf = -1;
 c_gold = make_colour_rgb(255,220,0);
 c_ltltgray = make_colour_rgb(236,236,236);
 
+window_set_color(c_ltltgray);
+
 adclosed = false;
 dac = -1;
 laseron = false;
