@@ -324,20 +324,20 @@ else if (view_current == 1)
 {
 	gpu_set_blendenable(false);
 	
-	draw_clear(c_ltltgray);
+	//draw_clear(c_green);
 	
 	//separator lines
 	var t_h4 = camera_get_view_y(view_camera[1]);
-	var t_w1 = view_wport[1];
-	var t_h0 = view_hport[1]+camera_get_view_y(view_camera[1]);
+	var t_w1 = camera_get_view_width(view_camera[1]);
+	var t_h0 = view_hport[1]+t_h4;
 	draw_set_color(c_white);
 	draw_line(t_w1-1, t_h4+10, t_w1-1, t_h0-10);
 	draw_set_color(c_ltgray);
 	draw_line(t_w1-2, t_h4+10, t_w1-2, t_h0-10);
 	/*draw_set_color(c_gold);
 	draw_line(-1, t_h4+1, t_w1, t_h4+1);*/
-	draw_set_color(c_black);
-	draw_line(-1, t_h4, t_w1, t_h4);
+	//draw_set_color(c_black);
+	//draw_line(-1, t_h4, t_w1, t_h4);
 	//draw_line(-1, t_h4+2, t_w1, t_h4+2);
 	
     with (obj_section1_parent)
@@ -354,11 +354,12 @@ else if (view_current == 3)
 {
     draw_set_colour(c_black);
 	var t_ypos = camera_get_view_y(view_camera[3]);
+	var t_height = camera_get_view_height(view_camera[3]);
 	
-	gpu_set_blendenable(false);
-	draw_clear(c_ltltgray);
-	draw_line(-1, t_ypos+22, view_wport[3], t_ypos+22);
-    gpu_set_blendenable(true);
+	//gpu_set_blendenable(false);
+	//draw_clear(c_ltltgray);
+	draw_line(-1, t_ypos+t_height-1, view_wport[3], t_ypos+t_height-1);
+    //gpu_set_blendenable(true);
 	
     //menu
     draw_text(0, t_ypos+4,menu_string);
@@ -368,51 +369,51 @@ else if (view_current == 3)
         if (mouse_x > menu_width_start[0]) && (mouse_x < menu_width_start[1])
         {
 			tooltip = ".";
-            draw_rectangle(menu_width_start[0], t_ypos+1,menu_width_start[1], t_ypos+20,1);
+            draw_rectangle(menu_width_start[0], t_ypos+1,menu_width_start[1], t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[0], t_ypos+1,menu_width_start[1], t_ypos+20,0);
+            draw_rectangle(menu_width_start[0], t_ypos+1,menu_width_start[1], t_ypos+t_height-3,0);
         }
         else if (mouse_x > menu_width_start[1]) && (mouse_x < menu_width_start[2])
         {
 			tooltip = ".";
-            draw_rectangle(menu_width_start[1], t_ypos+1,menu_width_start[2], t_ypos+20,1);
+            draw_rectangle(menu_width_start[1], t_ypos+1,menu_width_start[2], t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[1], t_ypos+1,menu_width_start[2], t_ypos+20,0);
+            draw_rectangle(menu_width_start[1], t_ypos+1,menu_width_start[2], t_ypos+t_height-3,0);
         }
         else if (mouse_x > menu_width_start[2]) && (mouse_x < menu_width_start[3])
         {
 			tooltip = ".";
-            draw_rectangle(menu_width_start[2], t_ypos+1,menu_width_start[3], t_ypos+20,1);
+            draw_rectangle(menu_width_start[2], t_ypos+1,menu_width_start[3], t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[2], t_ypos+1,menu_width_start[3], t_ypos+20,0);
+            draw_rectangle(menu_width_start[2], t_ypos+1,menu_width_start[3], t_ypos+t_height-3,0);
         }
         else if (mouse_x > menu_width_start[3]) && (mouse_x < menu_width_start[4])
         {
 			tooltip = ".";
-            draw_rectangle(menu_width_start[3], t_ypos+1,menu_width_start[4], t_ypos+20,1);
+            draw_rectangle(menu_width_start[3], t_ypos+1,menu_width_start[4], t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[3], t_ypos+1,menu_width_start[4], t_ypos+20,0);
+            draw_rectangle(menu_width_start[3], t_ypos+1,menu_width_start[4], t_ypos+t_height-3,0);
         }
         else if (mouse_x > menu_width_start[4]) && (mouse_x < menu_width_start[5])
         {
 			tooltip = ".";
-            draw_rectangle(menu_width_start[4], t_ypos+1,menu_width_start[5], t_ypos+20,1);
+            draw_rectangle(menu_width_start[4], t_ypos+1,menu_width_start[5], t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[4], t_ypos+1,menu_width_start[5], t_ypos+20,0);
+            draw_rectangle(menu_width_start[4], t_ypos+1,menu_width_start[5], t_ypos+t_height-3,0);
         }
         else if (mouse_x > menu_width_start[5]) && (mouse_x < menu_width_start[6])
         {
 			tooltip = ".";
-            draw_rectangle(menu_width_start[5], t_ypos+1,menu_width_start[6], t_ypos+20,1);
+            draw_rectangle(menu_width_start[5], t_ypos+1,menu_width_start[6], t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[5], t_ypos+1,menu_width_start[6], t_ypos+20,0);
+            draw_rectangle(menu_width_start[5], t_ypos+1,menu_width_start[6], t_ypos+t_height-3,0);
         }
         else if (mouse_x > menu_width_start[6]) && (mouse_x < menu_width_start[7])
         {
 			tooltip = ".";
-            draw_rectangle(menu_width_start[6], t_ypos+1,menu_width_start[7], t_ypos+20,1);
+            draw_rectangle(menu_width_start[6], t_ypos+1,menu_width_start[7], t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[6], t_ypos+1,menu_width_start[7], t_ypos+20,0);
+            draw_rectangle(menu_width_start[6], t_ypos+1,menu_width_start[7], t_ypos+t_height-3,0);
         }
         draw_set_alpha(1);
     }

@@ -58,7 +58,7 @@ if (room != rm_ilda)
 // view 5: zoom (normally deactivated)
 // view 6: filler background, bottom right
 	
-var t_multiplier = 1.3;
+dpi_multiplier = 1.5;
 var t_windowwidth = window_get_width();
 var t_windowheight = window_get_height();
 	
@@ -74,12 +74,9 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 	log("Resized window");
 	forceresize = false;
 	
-	view_hport[4] = max(t_windowheight-view_hport[1]-view_hport[3], 1);
-	tlh = round(view_hport[4]/(512/44));
-	view_wport[4] = max(view_hport[4]-tlh-1, 1);
-	tlw = view_wport[4];
-	view_wport[0] = 788*t_multiplier;//(t_windowwidth-view_wport[4])*t_multiplier;
-	if false //(view_wport[0] < 788)
+	view_hport[3] = 23*dpi_multiplier;
+	view_wport[0] = 788*dpi_multiplier;//(t_windowwidth-view_wport[4])*dpi_multiplier;
+	/*if false //(view_wport[0] < 788)
 	{
 		window_set_size(default_window_w, default_window_h);
 	
@@ -87,27 +84,34 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 		tlw = view_wport[4];
 		tlh = round(view_hport[4]/(512/42));
 		view_wport[4] = view_hport[4]-tlh-1;
-	}
+	}*/
 	view_wport[3] = t_windowwidth;
-	view_hport[0] = 706*t_multiplier;
-	view_hport[1] = 149;
+	view_hport[0] = 706*dpi_multiplier;
+	view_hport[1] = 149*dpi_multiplier;
+	
+	view_hport[4] = max(t_windowheight-view_hport[1]-view_hport[3], 1);
+	tlh = round(view_hport[4]/(512/44));
+	view_wport[4] = max(view_hport[4]-tlh-1, 1);
+	tlw = view_wport[4];
 	view_hport[6] = max(t_windowheight-view_hport[3]-view_hport[0], 1);
+	view_wport[1] = view_wport[4];//min(512*dpi_multiplier, view_wport[4]);//view_wport[4];
 	view_wport[6] = view_wport[0];
-	view_wport[1] = view_wport[4];
 	view_yport[1] = view_hport[4]+view_hport[3];
-	view_yport[6] = view_hport[3]+view_hport[0];
+	view_yport[4] = view_hport[3];
+	view_yport[0] = view_hport[3];
+	//view_yport[6] = view_hport[3]+view_hport[0];
 	//camera_set_view_size(view_camera[0], max(view_wport[0],788), view_hport[0]);
-	camera_set_view_size(view_camera[3], view_wport[3], view_hport[3]);
+	camera_set_view_size(view_camera[3], view_wport[3]/dpi_multiplier, view_hport[3]/dpi_multiplier);
 	camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
-	camera_set_view_size(view_camera[1], max(view_wport[1],512), view_hport[1]);
+	camera_set_view_size(view_camera[1], max(view_wport[1],512)/dpi_multiplier, view_hport[1]/dpi_multiplier);
 	//camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
 	view_xport[0] = view_wport[4];
-	view_xport[6] = view_xport[0];
-	camera_set_view_pos(view_camera[6], 512, view_yport[6]-view_hport[3]);
+	//view_xport[6] = view_xport[0];
+	//camera_set_view_pos(view_camera[6], 512, view_yport[6]-view_hport[3]);
 	tlorigo_y = camera_get_view_y(view_camera[4])+view_hport[4]-tlh;
 	
-	view_hport[2] = t_windowheight;
-	view_wport[2] = t_windowwidth;
+	//view_hport[2] = t_windowheight;
+	//view_wport[2] = t_windowwidth;
 	
 	free_scalable_surfaces();
 }

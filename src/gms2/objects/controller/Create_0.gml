@@ -183,6 +183,7 @@ tlw = 512;
 tlh = 42;
 tlorigo_x = 0;
 tlorigo_y = 515;
+dpi_multiplier = 1;
 
 tooltip = "";
 bckimage = 0;
