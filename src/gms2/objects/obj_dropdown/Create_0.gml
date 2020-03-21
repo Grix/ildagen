@@ -4,7 +4,7 @@ controller.menu_open = 1;
 
 rdy = 0;
 selected = noone;
-y += 23;
+y += 23*controller.dpi_multiplier;
 
 with (obj_dropdown)
 {
@@ -29,10 +29,10 @@ hl_list = ds_list_create();
 font = fnt_tooltip;
 
 //size
-total_width = 200;
-item_padding = 8;       //space around each item
-highlight_padding = 3;   //extra padding for highlight indicator
-highlight_rad = 4;       //Radius for round rect highlight
+total_width = 200*controller.dpi_multiplier;
+item_padding = 8*controller.dpi_multiplier;        //space around each item
+highlight_padding = 3*controller.dpi_multiplier;   //extra padding for highlight indicator
+highlight_rad = 4*controller.dpi_multiplier;       //Radius for round rect highlight
 
 //colors
 bak_color = $151515;

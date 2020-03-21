@@ -1,8 +1,8 @@
 if (!surface_exists(minitimeline_surf))
-    minitimeline_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_wport[4]/512*42))));
+    minitimeline_surf = surface_create(power(2, ceil(log2(view_wport[4]/dpi_multiplier))), power(2, ceil(log2(view_wport[4]/512*42/dpi_multiplier))));
     
-var t_tlw = tlw;// / dpi_multiplier;
-var t_tlh = tlh;// / dpi_multiplier;
+var t_tlw = tlw / dpi_multiplier;
+var t_tlh = tlh / dpi_multiplier;
 	
 surface_set_target(minitimeline_surf);
     

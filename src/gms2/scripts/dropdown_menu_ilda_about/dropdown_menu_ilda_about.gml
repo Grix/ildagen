@@ -1,7 +1,7 @@
 if (room == rm_ilda || room == rm_seq || room == rm_options)
-	ddobj = instance_create_layer(controller.menu_width_start[6],0,"foreground",obj_dropdown);
+	ddobj = instance_create_layer(controller.menu_width_start[6]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 else if (room == rm_live)
-	ddobj = instance_create_layer(livecontrol.menu_width_start[5],0,"foreground",obj_dropdown);
+	ddobj = instance_create_layer(livecontrol.menu_width_start[5]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 with (ddobj)
 {
     num = 5;

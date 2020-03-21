@@ -51,10 +51,10 @@ if (viewmode == 0) or (viewmode == 2)
                     
                 if (abs(xp-nxp) < 8) && (abs(yp-nyp) < 8) && !(ds_list_find_value(new_list,nextpos-2))
                 {
-                    draw_rectangle(xo+xp/t_div-1,yo+yp/t_div-1,xo+xp/t_div+1,yo+yp/t_div+1,0);
+                    draw_rectangle(xo+xp/t_div-2,yo+yp/t_div-2,xo+xp/t_div+2,yo+yp/t_div+2,0);
                 }
                 else
-                    draw_line(xo+ xp/t_div,yo+ yp/t_div,xo+ nxp/t_div,yo+ nyp/t_div);
+                    draw_line_width(xo+ xp/t_div,yo+ yp/t_div,xo+ nxp/t_div,yo+ nyp/t_div, dpi_multiplier);
             }
             
             
@@ -95,9 +95,9 @@ if (viewmode == 0) or (viewmode == 2)
                     
 	                    draw_set_color(ds_list_find_value(new_list,nextpos+3));
 	                    if (abs(xp-nxp) < 8) && (abs(yp-nyp) < 8) && !(ds_list_find_value(new_list,nextpos-2))
-	                        draw_rectangle(xo+xp/t_div-1,yo+yp/t_div-1,xo+xp/t_div+1,yo+yp/t_div+1,0);
+	                        draw_rectangle(xo+xp/t_div-2,yo+yp/t_div-2,xo+xp/t_div+2,yo+yp/t_div+2,0);
 	                    else
-	                        draw_line(xo+ xp/t_div,yo+ yp/t_div,xo+ nxp/t_div,yo+ nyp/t_div);
+	                        draw_line_width(xo+ xp/t_div,yo+ yp/t_div,xo+ nxp/t_div,yo+ nyp/t_div, dpi_multiplier);
 	                }
                 
 	            }
@@ -117,7 +117,7 @@ if (viewmode != 0)
 }
 
 //find point count
-if (controller.exp_optimize)
+if (controller.exp_optimize && (!controller.laseron || !controller.preview_while_laser_on))
 {
     if (!controller.opt_onlyblanking)
     {

@@ -2855,6 +2855,14 @@
             }
         },
         {
+            "Key": "53c8a4a9-2fb0-40ed-a919-ac6883a315da",
+            "Value": {
+                "id": "44cc7287-9229-4339-9ed1-443a3ec5f28c",
+                "resourcePath": "sprites\\spr_clearblindzone\\spr_clearblindzone.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "53ec7154-7b61-4c75-b16e-b1377d3a82eb",
             "Value": {
                 "id": "a1e7d431-2bf9-478e-978f-d095f284f7e7",
@@ -5716,6 +5724,14 @@
                 "id": "ecdb9cb4-3439-4fdd-ac3b-09fbcc61b399",
                 "resourcePath": "scripts\\ML_NoException\\ML_NoException.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a70be147-3c04-4a23-b227-7f33bbfabcb7",
+            "Value": {
+                "id": "adeb6316-9c70-4db5-8808-0a5210a2907e",
+                "resourcePath": "objects\\obj_clearblindzones\\obj_clearblindzones.yy",
+                "resourceType": "GMObject"
             }
         },
         {

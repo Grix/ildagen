@@ -30,7 +30,7 @@ for(var i = 0; i < num; i++)
         draw_set_color(text_color);
     else
         draw_set_color(c_white);
-    draw_text(floor(x1+item_padding), floor(y1+item_padding-2), ds_list_find_value(desc_list,i));
+    draw_text_transformed(floor(x1+item_padding), floor(y1+item_padding-2), ds_list_find_value(desc_list,i), controller.dpi_multiplier, controller.dpi_multiplier, 0);
     
     if(i == selected)
     {

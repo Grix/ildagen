@@ -15,7 +15,7 @@ if (view_current == 4 || view_current == 5)
 	draw_clear(c_black);
 	
     if (surface_exists(minitimeline_surf))
-        draw_surface_part(minitimeline_surf,0,0,tlw,tlh+1,tlorigo_x,tlorigo_y);
+        draw_surface_part_ext(minitimeline_surf,0,0,tlw,tlh+1,tlorigo_x,tlorigo_y, dpi_multiplier, dpi_multiplier, c_white, 1);
 	
 	gpu_set_blendenable(true);
 	
