@@ -5,6 +5,9 @@ if (high_performance)
 
 var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 
+var t_rowheight = 48*controller.dpi_multiplier;
+var t_env_rowheight = 64*controller.dpi_multiplier;
+
 draw_surface_part(timeline_surf, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw-17, clamp(ypos_perm-layerbary+1, 0, lbsh-(tlh+16)), 0, tlsurf_y+tlh+15);
     
 //start and end frame lines
@@ -50,7 +53,7 @@ cursorlinexdraw = (cursorlinex-tlx)/tlzoom*tlw;
 if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
 {
     //draw_line(cursorlinexdraw,tlsurf_y,cursorlinexdraw,tlsurf_y+tlh);
-    draw_line(cursorlinexdraw,tls-1,cursorlinexdraw,lbsh+tlsurf_y);
+    draw_line_width(cursorlinexdraw,tls-1,cursorlinexdraw,lbsh+tlsurf_y,controller.dpi_multiplier);
     if (cursorlinexdraw > (tlw/2)) and (playing) and (!scroll_moving) and (!mouse_check_button(mb_any))
     {
         tlx = cursorlinex-(tlw/2)*tlzoom/tlw;
@@ -70,7 +73,7 @@ if (draw_cursorline = 1)
 {
     draw_set_alpha(0.3);
     floatingcursorxcorrected = (floatingcursorx-tlx)/tlzoom*tlw;
-    draw_line(floatingcursorxcorrected,floatingcursory,floatingcursorxcorrected,floatingcursory+48);
+    draw_line(floatingcursorxcorrected,floatingcursory,floatingcursorxcorrected,floatingcursory+t_rowheight);
 }
 
 
@@ -83,24 +86,24 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 	if (i == ds_list_size(layer_list))
 	{
 		var mouse_on_button_ver = (mouse_y == clamp(mouse_y,t_ypos+8,t_ypos+40)) && mouse_y > tlsurf_y+tlh+16;
-	    if (t_ypos > tlh+16-48+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
+	    if (t_ypos > tlh+16-t_rowheight+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
 	        draw_sprite(spr_addlayer,
 	                    mouse_on_button_hor && mouse_on_button_ver,
 	                    tlw-56,t_ypos+8);
-	    t_ypos += 48;
+	    t_ypos += t_rowheight;
 	    break;
 	}
             
 	_layer = layer_list[| i];
           
-	if (t_ypos > tlh+16-48+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
+	if (t_ypos > tlh+16-t_rowheight+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
 	{
 		if (selectedlayer == i)
 		{
 		    draw_set_colour(c_maroon);
 		    var drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
 		    if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
-		        draw_line(drawcursorxcorrected,t_ypos-1,drawcursorxcorrected,t_ypos+47);
+		        draw_line(drawcursorxcorrected,t_ypos-1,drawcursorxcorrected,t_ypos+t_rowheight-1);
 		    draw_set_colour(c_black);
 		}
 		
@@ -127,20 +130,20 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 	}
 
                      
-	t_ypos += 48;
+	t_ypos += t_rowheight;
         
 	//envelopes
 	envelope_list = ds_list_find_value(_layer, 0);
 	for (j = 0; j < ds_list_size(envelope_list); j++)
 	{
-	    if (t_ypos > tlh+16-64+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
+	    if (t_ypos > tlh+16-t_env_rowheight+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
 	    {
 			if (selectedlayer == i)
 			{
 			    draw_set_colour(c_maroon);
 			    var drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
 			    if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
-			        draw_line(drawcursorxcorrected,t_ypos-1,drawcursorxcorrected,t_ypos+63);
+			        draw_line(drawcursorxcorrected,t_ypos-1,drawcursorxcorrected,t_ypos+t_env_rowheight-1);
 			    draw_set_colour(c_black);
 			}
 			
@@ -182,7 +185,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 	            {
 	                draw_set_colour(c_red);
 	                draw_set_alpha(0.3);
-	                draw_rectangle(mouse_xprevious,t_ypos,mouse_x,t_ypos+63,0);
+	                draw_rectangle(mouse_xprevious,t_ypos,mouse_x,t_ypos+t_env_rowheight-1,0);
 	                draw_set_colour(c_black);
 	                draw_set_alpha(1);
 	            }
@@ -192,7 +195,7 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 	                    mouse_on_button_ver and mouse_on_button_hor,
 	                    tlw-56,t_ypos+8);
 	    }
-	    t_ypos += 64;
+	    t_ypos += t_env_rowheight;
 	}
 }
         
@@ -205,7 +208,7 @@ for (i = 0; i < ds_list_size(marker_list); i++)
 	{
 	    var markerpostemp = (ds_list_find_value(marker_list,i)-tlx)*tlwdivtlzoom;
 	    //draw_rectangle(markerpostemp,tlsurf_y,markerpostemp+1,tlh-1+tlsurf_y,0);
-	    draw_rectangle(markerpostemp,tlsurf_y+tlh+17,markerpostemp+1,lbsh+tlsurf_y,0);
+		draw_line_width(markerpostemp,tlsurf_y+tlh+17,markerpostemp,lbsh+tlsurf_y, controller.dpi_multiplier*2);
 	}
 }
 
@@ -224,12 +227,12 @@ if (endframex < tlw)
 draw_set_alpha(0.8);
 //tlpos cursor audio
 if (cursorlinexdraw == clamp(cursorlinexdraw,0,tlw))
-    draw_line(cursorlinexdraw,tlsurf_y-1,cursorlinexdraw,tlsurf_y-1+tlh);
+    draw_line_width(cursorlinexdraw,tlsurf_y-1,cursorlinexdraw,tlsurf_y-1+tlh, controller.dpi_multiplier);
 draw_set_colour(c_teal);
 draw_set_alpha(0.3);
 if (draw_mouseline = 1)
 {
-    draw_line(mouse_x,tlsurf_y-1,mouse_x,tlsurf_y-1+tlh);
+    draw_line_width(mouse_x,tlsurf_y-1,mouse_x,tlsurf_y-1+tlh, controller.dpi_multiplier);
 	draw_mouseline = 0;
 }
 	
@@ -263,3 +266,8 @@ draw_rectangle(scrolly_x1+1,scrolly_y1+1,tlw-1,scrolly_y2-1,0);
 
 gpu_set_blendenable(true);
 draw_set_colour(c_black);
+
+
+var t_x = camera_get_view_width(view_camera[1])-1;
+var t_y = camera_get_view_y(view_camera[1]);
+draw_line(t_x, t_y, t_x, t_y+camera_get_view_height(view_camera[1]));

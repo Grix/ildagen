@@ -136,7 +136,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                             draw_point(xo+xp*t_scaley,yo+yp*t_scaley);
                         }
                         else
-                            draw_line(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley);
+                            draw_line_width(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley, controller.dpi_multiplier);
                     }
                 }
                 

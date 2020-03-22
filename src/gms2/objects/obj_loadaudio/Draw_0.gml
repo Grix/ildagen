@@ -3,6 +3,7 @@ if (view_current != 0)
 
 draw_self();
 
+draw_set_color(c_black);
 draw_set_alpha(1);
 
 if (seqcontrol.song == -1) 

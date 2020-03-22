@@ -58,7 +58,7 @@ if (room != rm_ilda)
 // view 5: zoom (normally deactivated)
 // view 6: filler background, bottom right
 	
-dpi_multiplier = 2;
+dpi_multiplier = 1.5;
 var t_windowwidth = window_get_width();
 var t_windowheight = window_get_height();
 	

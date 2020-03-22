@@ -7,6 +7,8 @@ if (stretch_flag)
 	stretch_flag = 0;
 }
 var t_loop;
+var t_rowheight = 48*controller.dpi_multiplier;
+var t_env_rowheight = 64*controller.dpi_multiplier;
 
 if (moving_object > 0 || somaster_list_prevsize != ds_list_size(somaster_list))
 	timeline_surf_length = 0;
@@ -42,7 +44,7 @@ if (moving_object == 1)
             
         ds_list_replace(objecttomove,0,max(0,ds_list_find_value(objecttomove,0)+(window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw));
         
-        if (mouse_y > (mouse_yprevious+48)) and (layertomove_index < (ds_list_size(layer_list)-1))
+        if (mouse_y > (mouse_yprevious+t_rowheight)) and (layertomove_index < (ds_list_size(layer_list)-1))
         {
             //move to lower layer
             mouse_ypreviousflag = 1;
@@ -51,7 +53,7 @@ if (moving_object == 1)
             ds_list_delete(layertomove,ds_list_find_index(layertomove,objecttomove));
             layertomove = newlayertomove[| 1];
         }
-        else if (mouse_y < (mouse_yprevious-48)) and (layertomove_index > 0)
+        else if (mouse_y < (mouse_yprevious-t_rowheight)) and (layertomove_index > 0)
         {
             //move to above layer
             mouse_ypreviousflag = 1;
@@ -416,7 +418,7 @@ else if (moving_object == 6)
 	var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 	
     var t_xpos = round(tlx + window_mouse_get_x()/tlwdivtlzoom);
-	var t_ypos = clamp(round(mouse_y-ypos_env),0,64);
+	var t_ypos = clamp(round(mouse_y-ypos_env),0,t_env_rowheight);
 	if (mouse_check_button_pressed(mb_left) || mouse_check_button_released(mb_left) || abs(xposprev-t_xpos) > 7/tlwdivtlzoom)
 	{
 	    //adding/editing point
@@ -719,9 +721,9 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
 {
     _layer = ds_list_find_value(layer_list, i); 
     
-    if (ypos > tlh+16-48+138) and (ypos < lbsh+138)
+    if (ypos > tlh+16-t_rowheight+138) and (ypos < lbsh+138)
     {
-        mouseonlayer = (window_mouse_get_x() == clamp(window_mouse_get_x(),0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+48))
+        mouseonlayer = (window_mouse_get_x() == clamp(window_mouse_get_x(),0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+t_rowheight))
         if (mouseonlayer)
         {
             var mouse_on_button_ver = (mouse_y == clamp(mouse_y,ypos+8,ypos+40)) && mouse_y > tlsurf_y+tlh+16;
@@ -749,7 +751,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                 }
                 else
                     draw_mouseline = 1;
-                ypos += 48;
+                ypos += t_rowheight;
                 break;
             }
                 
@@ -891,7 +893,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
 							timeline_surf_length = 0;
                             dropdown_seqobject();
                         }
-                        ypos += 48;
+                        ypos += t_rowheight;
                         exit;
                     }
                 }
@@ -922,7 +924,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
             
     }
         
-    ypos += 48;
+    ypos += t_rowheight;
     
     //envelopes
     if (i == ds_list_size(layer_list)) 
@@ -931,7 +933,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
     envelope_list = _layer[| 0];
     for (j = 0; j < ds_list_size(envelope_list); j++)
     {
-        if (ypos > tlh+16-64+138) and (ypos < lbsh+138)
+        if (ypos > tlh+16-t_env_rowheight+138) and (ypos < lbsh+138)
         {
             envelope = ds_list_find_value(envelope_list,j);
             type = ds_list_find_value(envelope,0);
@@ -960,7 +962,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                 continue;
             }
             
-            mouseonenvelope = (mouse_y == clamp(mouse_y,ypos,ypos+64)) and (window_mouse_get_x() == clamp(window_mouse_get_x(),0,tlw-16));
+            mouseonenvelope = (mouse_y == clamp(mouse_y,ypos,ypos+t_env_rowheight)) and (window_mouse_get_x() == clamp(window_mouse_get_x(),0,tlw-16));
             if (mouseonenvelope)
             {
                 mouseonsomelayer = 1;
@@ -1027,7 +1029,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
             }
                 
         }
-        ypos += 64;
+        ypos += t_env_rowheight;
     }
 }
 
