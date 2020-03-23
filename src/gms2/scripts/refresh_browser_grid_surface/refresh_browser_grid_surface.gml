@@ -11,7 +11,7 @@ surface_set_target(browser_surf);
 	draw_clear_alpha(c_white, 0);
 
 	var t_width = view_wport[1];
-	var t_cells_per_row = ceil(t_width / target_width_per_cell);
+	var t_cells_per_row = ceil(t_width / (target_width_per_cell*controller.dpi_multiplier));
 	var t_cell_size = t_width / t_cells_per_row;
 
 	var t_row;

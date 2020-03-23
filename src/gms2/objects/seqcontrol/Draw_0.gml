@@ -69,8 +69,8 @@ else if (view_current == 1)
 	
 	if (largepreview)
 		draw_clear(c_black);
-    else
-		draw_clear(controller.c_ltltgray);
+    //else
+		//draw_clear(controller.c_ltltgray);
 		
 	gpu_set_blendenable(true);
 	
@@ -140,7 +140,7 @@ else if (view_current == 0)
 	}
 	gpu_set_blendenable(true);
 }
-else if (view_current == 6)
+/*else if (view_current == 6)
 {
 	gpu_set_blendenable(false);
 	
@@ -157,7 +157,7 @@ else if (view_current == 6)
 	draw_line(t_x0+2, t_y6-1, t_x0+2, t_y6+t_h6+1);
 	
 	gpu_set_blendenable(true);
-}
+}*/
 else if (view_current == 3)
 {
     //menu

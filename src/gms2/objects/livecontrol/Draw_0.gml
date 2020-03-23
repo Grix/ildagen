@@ -44,18 +44,18 @@ if (view_current == 4)
 }
 else if (view_current == 1)
 {
-	gpu_set_blendenable(false);
+	//gpu_set_blendenable(false);
 	
-	draw_clear(controller.c_ltltgray);
+	//draw_clear(controller.c_ltltgray);
 
-	gpu_set_blendenable(true);
+	//gpu_set_blendenable(true);
 	
 	refresh_browser_grid_surface();
 	draw_browser_grid();
 	
 	var t_width = view_wport[1];
 	var t_ystart = camera_get_view_y(view_camera[1]);
-	var t_cells_per_row = ceil(t_width / target_width_per_cell);
+	var t_cells_per_row = ceil(t_width / (target_width_per_cell*controller.dpi_multiplier));
 	var t_cell_size = t_width / t_cells_per_row;
 	
 	if (highlightfile != -1)
@@ -76,18 +76,17 @@ else if (view_current == 1)
 		var t_row = i div t_cells_per_row;
 		objectlist = filelist[| i];
 		
-		draw_set_color(c_white);
 		if (objectlist[| 4])
 		{
-			draw_sprite(spr_loop, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32);
+			draw_sprite_ext(spr_loop, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32, controller.dpi_multiplier, controller.dpi_multiplier, 0, c_white, 1);
 		}
 		if (objectlist[| 5])
 		{
-			draw_sprite(spr_exclusive, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+48);
+			draw_sprite_ext(spr_exclusive, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+48, controller.dpi_multiplier, controller.dpi_multiplier, 0, c_white, 1);
 		}
 		if (objectlist[| 6])
 		{
-			draw_sprite(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+64);
+			draw_sprite_ext(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+64, controller.dpi_multiplier, controller.dpi_multiplier, 0, c_white, 1);
 		}
 		
 		// timeline
@@ -122,11 +121,11 @@ else if (view_current == 0)
 {
 	
 	gpu_set_blendenable(false);
-	draw_clear(controller.c_ltltgray);
+	//draw_clear(controller.c_ltltgray);
 	
 	//separator lines
 	draw_set_color(c_white);
-	var t_h0 = view_hport[0];
+	//var t_h0 = view_hport[0];
 	var t_w0 = view_wport[0];
 	var t_x0 = camera_get_view_x(view_camera[0]);
 	var t_y0 = camera_get_view_y(view_camera[0]);
@@ -135,11 +134,11 @@ else if (view_current == 0)
 	draw_set_color(c_ltgray);
 	draw_line(t_x0+10, t_y0+423, t_x0+t_w0-10, t_y0+423);
 	draw_line(t_x0+10, t_y0+566, t_x0+t_w0-10, t_y0+566);
-	draw_set_color(controller.c_gold);
-	draw_line(t_x0+1, t_y0-1, t_x0+1, t_y0+t_h0+1);
-	draw_set_color(c_black);
-	draw_line(t_x0, t_y0-1, t_x0, t_y0+t_h0+1);
-	draw_line(t_x0+2, t_y0-1, t_x0+2, t_y0+t_h0+1);
+	//draw_set_color(controller.c_gold);
+	//draw_line(t_x0+1, t_y0-1, t_x0+1, t_y0+t_h0+1);
+	//draw_set_color(c_black);
+	//draw_line(t_x0, t_y0-1, t_x0, t_y0+t_h0+1);
+	//draw_line(t_x0+2, t_y0-1, t_x0+2, t_y0+t_h0+1);
 	
 	with (obj_section1_parent)
 	{
@@ -159,11 +158,11 @@ else if (view_current == 0)
 	}
 	gpu_set_blendenable(true);
 }
-else if (view_current == 6)
+/*else if (view_current == 6)
 {
 	gpu_set_blendenable(false);
 	
-	draw_clear(controller.c_ltltgray);
+	//draw_clear(controller.c_ltltgray);
 	
 	//separator lines
 	var t_h6 = view_hport[6];
@@ -176,17 +175,18 @@ else if (view_current == 6)
 	draw_line(t_x0+2, t_y6-1, t_x0+2, t_y6+t_h6+1);
 	
 	gpu_set_blendenable(true);
-}
+}*/
 else if (view_current == 3)
 {
     //menu
 	draw_set_color(c_black);
 	draw_set_alpha(1);
 	var t_ypos = camera_get_view_y(view_camera[3]);
-	gpu_set_blendenable(false);
-	draw_clear(controller.c_ltltgray);
-	draw_line(0, t_ypos+22, view_wport[3], t_ypos+22);
-	gpu_set_blendenable(true);
+	var t_height = camera_get_view_height(view_camera[3]);
+	//gpu_set_blendenable(false);
+	//draw_clear(controller.c_ltltgray);
+	draw_line(0, t_ypos+t_height-1, view_wport[3], t_ypos+t_height-1);
+	//gpu_set_blendenable(true);
     draw_text(0,t_ypos+4,menu_string);
     if (mouse_y < 0)   
     {
@@ -194,44 +194,44 @@ else if (view_current == 3)
         if (mouse_x > menu_width_start[0]) && (mouse_x < menu_width_start[1])
         {
 			controller.tooltip = ".";
-            draw_rectangle(menu_width_start[0],t_ypos+1,menu_width_start[1],t_ypos+20,1);
+            draw_rectangle(menu_width_start[0],t_ypos+1,menu_width_start[1],t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[0],t_ypos+1,menu_width_start[1],t_ypos+20,0);
+            draw_rectangle(menu_width_start[0],t_ypos+1,menu_width_start[1],t_ypos+t_height-3,0);
         }
         else if (mouse_x > menu_width_start[1]) && (mouse_x < menu_width_start[2])
         {
 			controller.tooltip = ".";
-            draw_rectangle(menu_width_start[1],t_ypos+1,menu_width_start[2],t_ypos+20,1);
+            draw_rectangle(menu_width_start[1],t_ypos+1,menu_width_start[2],t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[1],t_ypos+1,menu_width_start[2],t_ypos+20,0);
+            draw_rectangle(menu_width_start[1],t_ypos+1,menu_width_start[2],t_ypos+t_height-3,0);
         }
         else if (mouse_x > menu_width_start[2]) && (mouse_x < menu_width_start[3])
         {
 			controller.tooltip = ".";
-            draw_rectangle(menu_width_start[2],t_ypos+1,menu_width_start[3],t_ypos+20,1);
+            draw_rectangle(menu_width_start[2],t_ypos+1,menu_width_start[3],t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[2],t_ypos+1,menu_width_start[3],t_ypos+20,0);
+            draw_rectangle(menu_width_start[2],t_ypos+1,menu_width_start[3],t_ypos+t_height-3,0);
         }
         else if (mouse_x > menu_width_start[3]) && (mouse_x < menu_width_start[4])
         {
 			controller.tooltip = ".";
-            draw_rectangle(menu_width_start[3],t_ypos+1,menu_width_start[4],t_ypos+20,1);
+            draw_rectangle(menu_width_start[3],t_ypos+1,menu_width_start[4],t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[3],t_ypos+1,menu_width_start[4],t_ypos+20,0);
+            draw_rectangle(menu_width_start[3],t_ypos+1,menu_width_start[4],t_ypos+t_height-3,0);
         }
         else if (mouse_x > menu_width_start[4]) && (mouse_x < menu_width_start[5])
         {
 			controller.tooltip = ".";
-            draw_rectangle(menu_width_start[4],t_ypos+1,menu_width_start[5],t_ypos+20,1);
+            draw_rectangle(menu_width_start[4],t_ypos+1,menu_width_start[5],t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[4],t_ypos+1,menu_width_start[5],t_ypos+20,0);
+            draw_rectangle(menu_width_start[4],t_ypos+1,menu_width_start[5],t_ypos+t_height-3,0);
         }
         else if (mouse_x > menu_width_start[5]) && (mouse_x < menu_width_start[6])
         {
 			controller.tooltip = ".";
-            draw_rectangle(menu_width_start[5],t_ypos+1,menu_width_start[6],t_ypos+20,1);
+            draw_rectangle(menu_width_start[5],t_ypos+1,menu_width_start[6],t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[5],t_ypos+1,menu_width_start[6],t_ypos+20,0);
+            draw_rectangle(menu_width_start[5],t_ypos+1,menu_width_start[6],t_ypos+t_height-3,0);
         }
         draw_set_alpha(1);
     }

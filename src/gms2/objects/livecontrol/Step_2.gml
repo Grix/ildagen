@@ -19,36 +19,42 @@ if (room == rm_loading)
 
 if (room != rm_live) exit;
 
-if (window_get_height() != (view_hport[3]+view_hport[4]+view_hport[1]) || window_get_width() != view_wport[3])
-&& !(window_get_height() == 0 || window_get_width() == 0)
+var t_windowwidth = window_get_width();
+var t_windowheight = window_get_height();
+
+if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwidth != view_wport[3])
+&& !(t_windowheight == 0 || t_windowwidth == 0)
 || controller.forceresize
 {
-	//if (window_get_height() < controller.default_window_h || window_get_width() < controller.default_window_w)
+	//if (t_windowheight < controller.default_window_h || t_windowwidth < controller.default_window_w)
 	//	window_set_size(controller.default_window_w, controller.default_window_h);
 	
 	log("Resized window");
 	controller.forceresize = false;
 	
-	view_hport[0] = 706;
-	view_wport[0] = 316;
-	view_wport[1] = max(window_get_width()-view_wport[0], 1);
+	view_hport[3] = 23*controller.dpi_multiplier;
+	view_hport[0] = 706*controller.dpi_multiplier;
+	view_wport[0] = 315*controller.dpi_multiplier;
+	view_wport[1] = max(t_windowwidth-view_wport[0], 1);
 	view_wport[4] = view_wport[1];
-	view_hport[4] = (window_get_height()-view_hport[3])*0.2*(power(window_get_height()/706, 0.8));
-	view_hport[1] = window_get_height()-view_hport[3]-view_hport[4];
+	view_hport[4] = (t_windowheight-view_hport[3])*0.2*(power(t_windowheight/view_hport[0], 0.8));
+	view_hport[1] = t_windowheight-view_hport[3]-view_hport[4];
+	view_yport[4] = view_hport[3];
+	view_yport[0] = view_hport[3];
 	view_yport[1] = view_hport[4]+view_hport[3];
 	view_xport[0] = view_wport[1];
-	view_wport[6] = view_wport[0];
-	view_hport[6] = max(window_get_height()-view_hport[3]-view_hport[0], 1);
-	view_xport[6] = view_xport[0];
-	view_yport[6] = view_hport[3]+view_hport[0];
-	view_wport[3] = window_get_width();
+	//view_wport[6] = view_wport[0];
+	//view_hport[6] = max(t_windowheight-view_hport[3]-view_hport[0], 1);
+	//view_xport[6] = view_xport[0];
+	//view_yport[6] = view_hport[3]+view_hport[0];
+	view_wport[3] = t_windowwidth;
 	view_yport[3] = 0;
-	camera_set_view_size(view_camera[0], view_wport[0], view_hport[0]);
-	camera_set_view_size(view_camera[3], view_wport[3], view_hport[3]);
+	//camera_set_view_size(view_camera[0], view_wport[0], view_hport[0]);
+	camera_set_view_size(view_camera[3], view_wport[3]/controller.dpi_multiplier, view_hport[3]/controller.dpi_multiplier);
 	camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
 	camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
-	camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
-	camera_set_view_pos(view_camera[6], 987, camera_get_view_y(view_camera[0])+view_yport[6]-view_hport[3]);
+	//camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
+	//camera_set_view_pos(view_camera[6], 987, camera_get_view_y(view_camera[0])+view_yport[6]-view_hport[3]);
 	tlw = view_wport[1];
 	
 	free_scalable_surfaces();
