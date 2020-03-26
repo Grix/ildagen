@@ -109,10 +109,10 @@ for (j = 0; j < ds_list_size(filelist); j++)
 		            draw_set_color(c);
 		            if ((xp == xpp) and (yp == ypp) and !blp)
 		            {
-		                draw_point(xo+xp*t_scaley,yo+yp*t_scaley);
+		                draw_rectangle(xo+xp*t_scaley-1,yo+yp*t_scaley-1,xo+xp*t_scaley+1,yo+yp*t_scaley+1, 0);
 		            }
 		            else
-		                draw_line(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley);
+		                draw_line_width(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley, controller.dpi_multiplier);
 		        }
 		    }
                 

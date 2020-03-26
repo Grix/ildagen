@@ -60,10 +60,10 @@ for (t_i = 0; t_i < buffer_maxelements; t_i++)
             draw_set_color(c);
             if ((xp == xpp) and (yp == ypp) and !blp)
             {
-                draw_point(xo+xp/$FFFF*t_size, yo+yp/$FFFF*t_size);
+                draw_rectangle(xo+xp/$FFFF*t_size+1, yo+yp/$FFFF*t_size+1,xo+xp/$FFFF*t_size-1, yo+yp/$FFFF*t_size-1, 0);
             }
             else
-                draw_line(xo+xpp/$FFFF*t_size, yo+ypp/$FFFF*t_size, xo+xp/$FFFF*t_size, yo+yp/$FFFF*t_size);
+                draw_line_width(xo+xpp/$FFFF*t_size, yo+ypp/$FFFF*t_size, xo+xp/$FFFF*t_size, yo+yp/$FFFF*t_size, controller.dpi_multiplier);
         }
     }
         

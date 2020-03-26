@@ -2,13 +2,13 @@
 
 if (!surface_exists(timeline_surf))
 {
-    timeline_surf = surface_create(power(2, ceil(log2(view_wport[1]+512))), power(2, ceil(log2(view_hport[1]))));
+    timeline_surf = surface_create(power(2, ceil(log2(view_wport[1]/controller.dpi_multiplier+512))), power(2, ceil(log2(view_hport[1]/controller.dpi_multiplier))));
 	timeline_surf_pos = tlx;
 	timeline_surf_length = 0;
 }
 if (!surface_exists(timeline_surf_audio))
 {
-    timeline_surf_audio = surface_create(power(2, ceil(log2(view_wport[1]+512))), 128);
+    timeline_surf_audio = surface_create(power(2, ceil(log2(view_wport[1]/controller.dpi_multiplier+512))), 128);
 	timeline_surf_pos = tlx;
 	timeline_surf_length = 0;
 }
@@ -20,21 +20,18 @@ if (timeline_surf_tlzoom != tlzoom || timeline_surf_pos > tlx)
 	timeline_surf_tlzoom = tlzoom;
 }
 
-var t_rowheight = 48*controller.dpi_multiplier;
-var t_env_rowheight = 64*controller.dpi_multiplier;
-
 var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 var t_tlx = timeline_surf_pos + timeline_surf_length; //in frames
 var t_tlzoom = tlx+tlzoom-t_tlx + 200/tlwdivtlzoom; //in frames
-var t_tlw = ceil(t_tlzoom*tlwdivtlzoom); //in pixels
+var t_tlw = ceil(t_tlzoom*tlwdivtlzoom)/controller.dpi_multiplier; //in pixels
 
 
 if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 {
 	if (!surface_exists(timeline_surf_temp))
-		timeline_surf_temp = surface_create(power(2, ceil(log2(view_wport[1]+512))), power(2, ceil(log2(view_hport[1]))));
+		timeline_surf_temp = surface_create(power(2, ceil(log2(view_wport[1]/controller.dpi_multiplier+512))), power(2, ceil(log2(view_hport[1]/controller.dpi_multiplier))));
 	if (!surface_exists(timeline_surf_audio_temp))
-		timeline_surf_audio_temp = surface_create(power(2, ceil(log2(view_wport[1]+512))), 128);
+		timeline_surf_audio_temp = surface_create(power(2, ceil(log2(view_wport[1]/controller.dpi_multiplier+512))), 128);
 	
 	if (timeline_surf_length*tlwdivtlzoom + t_tlw > surface_get_width(timeline_surf))
 	{
@@ -70,11 +67,11 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	    {
 	        _layer = layer_list[| i];
         
-	        if (ypos_perm > -t_rowheight) and (ypos_perm < lbsh)
+	        if (ypos_perm > -48) and (ypos_perm < lbsh)
 	        {
                             
-	            draw_rectangle_colour(-1,ypos_perm,t_tlw+1,ypos_perm+t_rowheight,c_white,c_white,c_silver,c_silver,0);
-	            draw_rectangle(-1,ypos_perm,t_tlw+1,ypos_perm+t_rowheight,1);
+	            draw_rectangle_colour(-1,ypos_perm,t_tlw+1,ypos_perm+48,c_white,c_white,c_silver,c_silver,0);
+	            draw_rectangle(-1,ypos_perm,t_tlw+1,ypos_perm+48,1);
             
 	            elementlist = _layer[| 1];
 	            for (j = 0; j < ds_list_size(elementlist); j++)
@@ -96,21 +93,21 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 					else
 						duration = ds_list_find_value(infolist,0);
                 
-	                if (frametime < t_tlx+t_tlzoom) and (frametime+duration > t_tlx)
+	                if (frametime <= t_tlx+t_tlzoom) and (frametime+duration >= t_tlx)
 	                {
 	                    //draw object on timeline
 	                    framestartx = floor((frametime-t_tlx)*tlwdivtlzoom);
 						frameendx = ceil((frametime-t_tlx+duration+1)*tlwdivtlzoom);
 		                draw_set_colour(c_dkgray);
-		                    draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+t_rowheight-1,0);
+		                    draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+47,0);
 		                draw_set_colour(c_green);
-		                    draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+t_rowheight-1,1);
+		                    draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+47,1);
 	                    draw_set_colour(c_white);
 						if ((duration+1)*tlwdivtlzoom > 3)
 						{
 		                    if (!surface_exists(infolist[| 1]))
 		                        infolist[| 1] = make_screenshot(objectlist[| 1], 27);
-		                    draw_surface_part_ext(infolist[| 1],0,0,floor(clamp((duration+1)*tlwdivtlzoom/controller.dpi_multiplier,0,32))-1,32,framestartx+1,ypos_perm+8,controller.dpi_multiplier,controller.dpi_multiplier,c_white,1);
+		                    draw_surface_part(infolist[| 1],0,0,floor(clamp((duration+1)*tlwdivtlzoom,0,32))-1,32,framestartx+1,ypos_perm+8);
 						}
 	                    maxframes = infolist[| 2];
 	                    draw_set_colour(c_black);
@@ -118,14 +115,14 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	                        for (k = 1; k <= duration/maxframes; k++)
 	                        {
 	                            linex = floor(framestartx+k*maxframes*tlwdivtlzoom);
-	                            draw_line(linex,ypos_perm,linex,ypos_perm+t_rowheight);
+	                            draw_line(linex,ypos_perm,linex,ypos_perm+48);
 	                        }
 	                    if (ds_list_find_index(somaster_list,objectlist) != -1)
 	                    {
 	                        draw_set_colour(c_gold);
 	                        gpu_set_blendenable(true);
 	                        draw_set_alpha(0.3);
-	                            draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+t_rowheight-1,0);
+	                            draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+47,0);
 	                        draw_set_alpha(1);
 	                        gpu_set_blendenable(false);
 	                        draw_set_colour(c_black);
@@ -146,13 +143,13 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	            }
 	        }
                         
-	        ypos_perm += t_rowheight;
+	        ypos_perm += 48;
         
 	        //envelopes
 	        envelope_list = ds_list_find_value(_layer, 0);
 	        for (j = 0; j < ds_list_size(envelope_list); j++)
 	        {
-	            if (ypos_perm > -t_env_rowheight) and (ypos_perm < lbsh)
+	            if (ypos_perm > -64) and (ypos_perm < lbsh)
 	            {
 	                envelope = ds_list_find_value(envelope_list,j);
 	                type = ds_list_find_value(envelope,0);
@@ -164,11 +161,11 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	                    draw_set_colour(c_gray);
 	                if (!hidden)
 	                {
-	                    draw_rectangle(-1,ypos_perm,t_tlw+1,ypos_perm+t_env_rowheight,0);
+	                    draw_rectangle(-1,ypos_perm,t_tlw+1,ypos_perm+64,0);
 	                    draw_set_colour(c_ltgray);
 	                    draw_line(-1,ypos_perm+32,t_tlw+1,ypos_perm+32);
 	                    draw_set_colour(c_black);
-	                    draw_rectangle(-1,ypos_perm,t_tlw+1,ypos_perm+t_env_rowheight,1);
+	                    draw_rectangle(-1,ypos_perm,t_tlw+1,ypos_perm+64,1);
 	                }
 	                else
 	                {
@@ -241,7 +238,7 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	                    draw_line(-1,default_value,t_tlw+1,default_value);
 	                }
 	            }
-	            ypos_perm += t_env_rowheight;
+	            ypos_perm += 64;
 	        }
 		}
 		

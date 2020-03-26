@@ -79,11 +79,7 @@ else if (view_current == 1)
 	    if  (!controller.laseron) and 
 	        ((frame_surf_refresh == 1) or !surface_exists(frame_surf) or !surface_exists(frame_surf_large) or !surface_exists(frame3d_surf_large) or !surface_exists(frame3d_surf))
 	    {
-	        if (largepreview)
-	            refresh_seq_surface_large();
-	        else
-	            refresh_seq_surface();
-            
+	        refresh_seq_surface_large();
 	        frame_surf_refresh = false;
 	    }
 	

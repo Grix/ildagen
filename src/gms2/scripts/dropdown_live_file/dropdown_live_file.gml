@@ -13,27 +13,27 @@ with (ddobj)
     ds_list_add(hl_list,1);
 	var label = "Toggle looping ";
 	if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 4))
-		label += "off";
+		label += "off (O)";
 	else
-		label += "on";
+		label += "on (O)";
 	ds_list_add(desc_list,label);
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,live_toggle_loop);
     ds_list_add(hl_list,1);
 	var label = "Toggle exclusive ";
 	if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 5))
-		label += "off";
+		label += "off (X)";
 	else
-		label += "on";
+		label += "on (X)";
 	ds_list_add(desc_list,label);
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,live_toggle_exclusive);
     ds_list_add(hl_list,1);
 	var label = "";
 	if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 6))
-		label += "Set restart at play";
+		label += "Set restart at play (R)";
 	else
-		label += "Set resume at play";
+		label += "Set resume at play (R)";
 	ds_list_add(desc_list,label);
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,live_toggle_resume);

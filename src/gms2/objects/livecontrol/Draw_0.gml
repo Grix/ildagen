@@ -82,11 +82,11 @@ else if (view_current == 1)
 		}
 		if (objectlist[| 5])
 		{
-			draw_sprite_ext(spr_exclusive, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+48, controller.dpi_multiplier, controller.dpi_multiplier, 0, c_white, 1);
+			draw_sprite_ext(spr_exclusive, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32+16*controller.dpi_multiplier, controller.dpi_multiplier, controller.dpi_multiplier, 0, c_white, 1);
 		}
 		if (objectlist[| 6])
 		{
-			draw_sprite_ext(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+64, controller.dpi_multiplier, controller.dpi_multiplier, 0, c_white, 1);
+			draw_sprite_ext(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32+32*controller.dpi_multiplier, controller.dpi_multiplier, controller.dpi_multiplier, 0, c_white, 1);
 		}
 		
 		// timeline
@@ -134,6 +134,7 @@ else if (view_current == 0)
 	draw_set_color(c_ltgray);
 	draw_line(t_x0+10, t_y0+423, t_x0+t_w0-10, t_y0+423);
 	draw_line(t_x0+10, t_y0+566, t_x0+t_w0-10, t_y0+566);
+	draw_set_color(c_black);
 	//draw_set_color(controller.c_gold);
 	//draw_line(t_x0+1, t_y0-1, t_x0+1, t_y0+t_h0+1);
 	//draw_set_color(c_black);

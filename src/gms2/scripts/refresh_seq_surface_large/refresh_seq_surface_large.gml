@@ -21,7 +21,7 @@ if (viewmode != 0)
 correctframe = round(tlpos/1000*projectfps);
 
 var t_scaley = 1/$FFFF*(view_hport[4]+view_hport[1]);
-var t_scalex = 1/$FFFF*view_wport[4];
+//var t_scalex = 1/$FFFF*view_wport[4];
 var t_centerx = view_wport[4]/2;
 var t_centery = (view_hport[4]+view_hport[1])/2;
 var t_scalediag = sqrt((view_hport[4]+view_hport[1])*(view_hport[4]+view_hport[1])+view_wport[4]*view_wport[4])/2;
@@ -132,10 +132,10 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                         draw_set_color(c);
                         if ((xp == xpp) and (yp == ypp) and !blp)
                         {
-                            draw_point(xo+xp*t_scaley,yo+yp*t_scaley);
+                            draw_rectangle(xo+xp*t_scaley-1,yo+yp*t_scaley-1, xo+xp*t_scaley+1,yo+yp*t_scaley+1, 0);
                         }
                         else
-                            draw_line(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley);
+                            draw_line_width(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley, controller.dpi_multiplier);
                     }
                 }
                 surface_reset_target();
