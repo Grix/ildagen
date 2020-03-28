@@ -57,15 +57,15 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 	//camera_set_view_size(view_camera[0], view_wport[0], view_hport[0]);
 	camera_set_view_size(view_camera[3], view_wport[3]/controller.dpi_multiplier, view_hport[3]/controller.dpi_multiplier);
 	camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
-	camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
+	camera_set_view_size(view_camera[1], view_wport[1]/controller.dpi_multiplier, view_hport[1]/controller.dpi_multiplier);
 	//camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
 	//camera_set_view_pos(view_camera[6], 987, camera_get_view_y(view_camera[0])+view_yport[6]-view_hport[3]);
 	tlsurf_y = camera_get_view_y(view_camera[1]);
-	tlw = view_wport[1];
+	tlw = view_wport[1]/controller.dpi_multiplier;
 	tlh = 128-16;
 	tls = tlh+tlsurf_y+16; //start of layer area, seen from outside surface
-	lbh = view_hport[1]-16-10+8*controller.dpi_multiplier-tlh;
-	lbsh = tlh+10+8*controller.dpi_multiplier+lbh; //start of bottom scrollbar, seen from inside surface
+	lbh = view_hport[1]/controller.dpi_multiplier-16-18-tlh;
+	lbsh = tlh+18+lbh; //start of bottom scrollbar, seen from inside surface
 	tlhalf = tlh/2;
 	tlthird = tlh/3;
 	timeline_surf_length = 0;

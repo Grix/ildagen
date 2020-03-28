@@ -5,7 +5,7 @@ if (high_performance)
 
 var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 
-draw_surface_part_ext(timeline_surf, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw-17, clamp(ypos_perm-layerbary+1, 0, lbsh-(tlh+16)), 0, tlsurf_y+tlh+15,controller.dpi_multiplier, controller.dpi_multiplier, c_white, 1);
+draw_surface_part(timeline_surf, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw-17, clamp(ypos_perm-layerbary+1, 0, lbsh-(tlh+16)), 0, tlsurf_y+tlh+15);
     
 //start and end frame lines
 draw_set_font(fnt_bold);
@@ -210,7 +210,7 @@ for (i = 0; i < ds_list_size(marker_list); i++)
 }
 
 draw_set_alpha(1);
-draw_surface_part_ext(timeline_surf_audio, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw, tlh+16, 0, tlsurf_y, controller.dpi_multiplier, controller.dpi_multiplier, c_white, 1);
+draw_surface_part(timeline_surf_audio, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw, tlh+16, 0, tlsurf_y);
         
 //scope fog audio
 gpu_set_blendenable(true);
@@ -238,7 +238,7 @@ draw_set_alpha(1);
 gpu_set_blendenable(false);
 
 //scroll
-var t_width = 10+8*controller.dpi_multiplier;
+var t_width = 18;
 
 scrollbarw = clamp(((tlzoom+t_width)/length)*tlw-t_width,32,tlw-t_width);
 if (length != tlzoom)

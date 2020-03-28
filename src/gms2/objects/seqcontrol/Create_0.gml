@@ -83,7 +83,7 @@ somaster_list_prevsize = 0;
 envelope_undolist = -1;
 
 startframe = 0;
-endframe = 1200;
+endframe = 2600;
 startframex = -1;
 endframex = -1;
 largepreview = 0;
@@ -96,7 +96,7 @@ tls = tlh+tlsurf_y+16; //start of layer area, seen from outside surface
 lbh = 705-32-tlh-tlsurf_y;
 lbsh = tlh+15+lbh; //start of bottom scrollbar, seen from inside surface
 phi = 1.618;
-tlzoom = tlw; //number of frames displayed in visible timeline area
+tlzoom = tlw*2; //number of frames displayed in visible timeline area
 tlx = 0;
 tlhalf = tlh/2;
 tlthird = tlh/3;

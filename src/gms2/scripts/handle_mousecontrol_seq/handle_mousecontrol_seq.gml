@@ -7,8 +7,8 @@ if (stretch_flag)
 	stretch_flag = 0;
 }
 var t_loop;
-var t_rowheight = 48*controller.dpi_multiplier;
-var t_env_rowheight = 64*controller.dpi_multiplier;
+var t_rowheight = 48;
+var t_env_rowheight = 64;
 
 if (moving_object > 0 || somaster_list_prevsize != ds_list_size(somaster_list))
 	timeline_surf_length = 0;
@@ -42,7 +42,7 @@ if (moving_object == 1)
             exit;
         }
             
-        ds_list_replace(objecttomove,0,max(0,ds_list_find_value(objecttomove,0)+(window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw));
+        ds_list_replace(objecttomove,0,max(0,ds_list_find_value(objecttomove,0)+(mouse_x-mouse_xprevious)*tlzoom/tlw));
         
         if (mouse_y > (mouse_yprevious+t_rowheight)) and (layertomove_index < (ds_list_size(layer_list)-1))
         {
@@ -64,7 +64,7 @@ if (moving_object == 1)
         }
     }
         
-    mouse_xprevious = window_mouse_get_x();
+    mouse_xprevious = mouse_x;
     if (mouse_ypreviousflag)
         mouse_yprevious = mouse_y;
         
@@ -151,10 +151,10 @@ else if (moving_object == 2)
         infolisttomove = ds_list_find_value(objecttomove,2);
         
         draw_mouseline = 1;
-        ds_list_replace(infolisttomove,0,max(0,ds_list_find_value(infolisttomove,0)+(window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw));
+        ds_list_replace(infolisttomove,0,max(0,ds_list_find_value(infolisttomove,0)+(mouse_x-mouse_xprevious)*tlzoom/tlw));
     }
         
-    mouse_xprevious = window_mouse_get_x();    
+    mouse_xprevious = mouse_x;    
     
     if (mouse_check_button_released(mb_left))
     {
@@ -233,14 +233,14 @@ else if (moving_object == 8)
     {
         objecttomove = ds_list_find_value(somaster_list,i);
         infolisttomove = ds_list_find_value(objecttomove,2);
-		stretch += (window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw;
+		stretch += (mouse_x-mouse_xprevious)*tlzoom/tlw;
 		if (infolisttomove[| 2] + stretch < 1)
 			stretch = 1 - infolisttomove[| 2];
         
         draw_mouseline = 1;
     }
         
-    mouse_xprevious = window_mouse_get_x();    
+    mouse_xprevious = mouse_x;    
     
     if (mouse_check_button_released(mb_left))
     {
@@ -370,9 +370,9 @@ else if (moving_object == 3)
 {
     //moving startframe
     controller.scrollcursor_flag = 1;
-    startframe += (window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw;
+    startframe += (mouse_x-mouse_xprevious)*tlzoom/tlw;
     if (startframe < 0) startframe = 0;
-    mouse_xprevious = window_mouse_get_x();
+    mouse_xprevious = mouse_x;
     if (mouse_check_button_released(mb_left))
     {
         startframe = round(startframe);
@@ -384,8 +384,8 @@ else if (moving_object == 4)
 {
     //moving endframe
     controller.scrollcursor_flag = 1;
-    endframe += (window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw;
-    mouse_xprevious = window_mouse_get_x();
+    endframe += (mouse_x-mouse_xprevious)*tlzoom/tlw;
+    mouse_xprevious = mouse_x;
     if (mouse_check_button_released(mb_left))
     {
         endframe = round(endframe);
@@ -397,8 +397,8 @@ else if (moving_object == 5)
 {
     //moving marker
     controller.scrollcursor_flag = 1;
-    ds_list_replace(marker_list,markertomove,max(1,ds_list_find_value(marker_list,markertomove)+(window_mouse_get_x()-mouse_xprevious)*tlzoom/tlw));
-    mouse_xprevious = window_mouse_get_x();
+    ds_list_replace(marker_list,markertomove,max(1,ds_list_find_value(marker_list,markertomove)+(mouse_x-mouse_xprevious)*tlzoom/tlw));
+    mouse_xprevious = mouse_x;
     if (mouse_check_button_released(mb_left))
     {
         ds_list_replace(marker_list,markertomove,round(ds_list_find_value(marker_list,markertomove)));
@@ -417,7 +417,7 @@ else if (moving_object == 6)
     
 	var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 	
-    var t_xpos = round(tlx + window_mouse_get_x()/tlwdivtlzoom);
+    var t_xpos = round(tlx + mouse_x/tlwdivtlzoom);
 	var t_ypos = clamp(round(mouse_y-ypos_env),0,t_env_rowheight);
 	if (mouse_check_button_pressed(mb_left) || mouse_check_button_released(mb_left) || abs(xposprev-t_xpos) > 7/tlwdivtlzoom)
 	{
@@ -525,7 +525,7 @@ else if (moving_object == 7)
 		ds_list_add(t_undolist,t_list2);
 		ds_list_add(t_undolist,envelopetoedit);
 		
-        var t_xpos = round(tlx+window_mouse_get_x()/tlw*tlzoom);
+        var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
         if (xposprev < t_xpos)
             for (u = 0; u < ds_list_size(time_list); u++)
             {
@@ -558,11 +558,11 @@ else if (moving_object == 7)
 //horizontal scroll moving
 else if (scroll_moving == 1)
 {
-    tlx += (window_mouse_get_x()-mouse_xprevious)*(length/(tlw-17));
+    tlx += (mouse_x-mouse_xprevious)*(length/(tlw-17));
     if (tlx < 0) tlx = 0;
     if ((tlx+tlzoom) > length) length = tlx+tlzoom;
     
-    mouse_xprevious = window_mouse_get_x();
+    mouse_xprevious = mouse_x;
     
     if (mouse_check_button_released(mb_left))
     {
@@ -574,13 +574,13 @@ else if (scroll_moving == 1)
 //vertical scroll moving
 else if (scroll_moving == 2)
 {
-    layerbary += (window_mouse_get_y()-mouse_yprevious)*lbh/layerbarw;//*(length/tlw);
+    layerbary += (mouse_y-mouse_yprevious)*lbh/layerbarw;//*(length/tlw);
     if (layerbary < 0) 
 		layerbary = 0;
     if ((layerbary) > ypos_perm) 
 		layerbary = ypos_perm;
     
-    mouse_yprevious = window_mouse_get_y();
+    mouse_yprevious = mouse_y;
     
     if (mouse_check_button_released(mb_left))
     {
@@ -593,8 +593,8 @@ else if (scroll_moving == 2)
     
 controller.scrollcursor_flag = 0;
     
-if (window_mouse_get_x() > tlw) 
-or (window_mouse_get_y() < view_hport[3]+view_hport[4])
+if (mouse_x > tlw) 
+or (mouse_y < view_hport[3]+view_hport[4])
 or (controller.dialog_open)
 or (controller.menu_open)
     exit;
@@ -603,20 +603,20 @@ var t_mac_ctrl_click = (os_type == os_macosx) && (keyboard_check_control() && mo
     
 if (mouse_wheel_up() or keyboard_check_pressed(vk_f7))
 {
-    tlxtemp = tlx+window_mouse_get_x()/tlw*tlzoom;
+    tlxtemp = tlx+mouse_x/tlw*tlzoom;
     tlzoom *= 0.8;
     if (tlzoom < 20) 
         tlzoom = 20;
-    tlx = tlxtemp-window_mouse_get_x()/tlw*tlzoom;
+    tlx = tlxtemp-mouse_x/tlw*tlzoom;
 	if (tlx+tlzoom > length)
 		length = tlx+tlzoom;
 }
 else if (mouse_wheel_down() or keyboard_check_pressed(vk_f8))
 {
-    tlxtemp = tlx+window_mouse_get_x()/tlw*tlzoom;
+    tlxtemp = tlx+mouse_x/tlw*tlzoom;
     tlzoom *= 1.2;
-    tlx -= window_mouse_get_x()/tlw*tlzoom/10;
-    tlx = tlxtemp-window_mouse_get_x()/tlw*tlzoom;
+    tlx -= mouse_x/tlw*tlzoom/10;
+    tlx = tlxtemp-mouse_x/tlw*tlzoom;
     if (tlx < 0) 
         tlx = 0;
 	if (tlx+tlzoom > length)
@@ -627,7 +627,7 @@ else if (mouse_wheel_down() or keyboard_check_pressed(vk_f8))
 //horizontal scroll
 var scrollypos = tls+(layerbary*layerbarw/lbh);
 
-if (window_mouse_get_x() == clamp(window_mouse_get_x(),scrollbarx,scrollbarx+scrollbarw)) 
+if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw)) 
 and (mouse_y == clamp(mouse_y,lbsh+138,lbsh+16+138))
 {
     mouseonsomelayer = 1;
@@ -635,24 +635,24 @@ and (mouse_y == clamp(mouse_y,lbsh+138,lbsh+16+138))
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
     {
         scroll_moving = 1;
-        mouse_xprevious = window_mouse_get_x();
+        mouse_xprevious = mouse_x;
     }
 }
 //vertical scroll
 else if (mouse_y == clamp(mouse_y,scrollypos,scrollypos+layerbarw)) 
-    and (window_mouse_get_x() == clamp(window_mouse_get_x(),tlw-16,tlw))
+    and (mouse_x == clamp(mouse_x,tlw-16,tlw))
 {
     mouseonsomelayer = 1;
     controller.tooltip = "Drag to scroll the layer list.";
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
     {
         scroll_moving = 2;
-        mouse_yprevious = window_mouse_get_y();
+        mouse_yprevious = mouse_y;
     }
 }
     
 if (mouse_y > lbsh+136) 
-or (window_mouse_get_x() > tlw-16) 
+or (mouse_x > tlw-16) 
     exit;
     
 if (moving_object_flag)
@@ -662,7 +662,7 @@ if (moving_object_flag)
         moving_object_flag = 0;
         ds_list_clear(somoving_list);
     }
-    else if (abs(mouse_xprevious - window_mouse_get_x()) > 1)
+    else if (abs(mouse_xprevious - mouse_x) > 1)
     {
         ds_list_copy(somaster_list,somoving_list);
         moving_object = moving_object_flag;
@@ -672,14 +672,14 @@ if (moving_object_flag)
 
 
 //endframe
-if (window_mouse_get_x() == clamp(window_mouse_get_x(),endframex-2,endframex+2))                         
+if (mouse_x == clamp(mouse_x,endframex-2,endframex+2))                         
 {
     controller.scrollcursor_flag = 1;
     controller.tooltip = "Drag to adjust the end of the project";
 	mouseonsomelayer = 1;
     if (mouse_check_button_pressed(mb_left))
     {
-        mouse_xprevious = window_mouse_get_x();
+        mouse_xprevious = mouse_x;
         moving_object = 4;
     }
     exit;
@@ -693,7 +693,7 @@ for (i = 0; i < ds_list_size(marker_list); i++)
 {
     var tlwdivtlzoom = tlw/tlzoom;   
     var markerpostemp = (ds_list_find_value(marker_list,i)-tlx)*tlwdivtlzoom;
-    if (window_mouse_get_x() == clamp(window_mouse_get_x(),markerpostemp-2,markerpostemp+2))                         
+    if (mouse_x == clamp(mouse_x,markerpostemp-2,markerpostemp+2))                         
     {
         mouseonsomelayer = 1;
         controller.scrollcursor_flag = 1;
@@ -705,7 +705,7 @@ for (i = 0; i < ds_list_size(marker_list); i++)
             else
             {
                 markertomove = i;
-                mouse_xprevious = window_mouse_get_x();
+                mouse_xprevious = mouse_x;
                 moving_object = 5;
             }
         }
@@ -723,11 +723,11 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
     
     if (ypos > tlh+16-t_rowheight+138) and (ypos < lbsh+138)
     {
-        mouseonlayer = (window_mouse_get_x() == clamp(window_mouse_get_x(),0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+t_rowheight))
+        mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+t_rowheight))
         if (mouseonlayer)
         {
             var mouse_on_button_ver = (mouse_y == clamp(mouse_y,ypos+8,ypos+40)) && mouse_y > tlsurf_y+tlh+16;
-            var mouseover_layer = (mouse_on_button_ver  and (window_mouse_get_x() == clamp(window_mouse_get_x(),tlw-56,tlw-24)));
+            var mouseover_layer = (mouse_on_button_ver  and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)));
             
             if (i == ds_list_size(layer_list))
             {
@@ -755,7 +755,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                 break;
             }
                 
-            var mouseover_envelope = !mouseover_layer and mouse_on_button_ver and (window_mouse_get_x() == clamp(window_mouse_get_x(),tlw-96,tlw-64));
+            var mouseover_envelope = !mouseover_layer and mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64));
             
             mouseonsomelayer = 1;
             if (mouseover_layer)
@@ -780,7 +780,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
             else
             {
                 //mouse on layer but not button
-                floatingcursorx = round(tlx+window_mouse_get_x()/tlw*tlzoom);
+                floatingcursorx = round(tlx+mouse_x/tlw*tlzoom);
                 
                 elementlist = _layer[| 1];
                 for (m = 0; m < ds_list_size(elementlist); m++)
@@ -800,11 +800,11 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                     object_length = ds_list_find_value(infolist,0);
                     draw_mouseline = 1;
                     
-					if (window_mouse_get_x() > ((frametime-tlx)/tlzoom*tlw) && window_mouse_get_x() < ((frametime+object_length+1-tlx)/tlzoom*tlw)+3)
+					if (mouse_x > ((frametime-tlx)/tlzoom*tlw) && mouse_x < ((frametime+object_length+1-tlx)/tlzoom*tlw)+3)
                     {
                         //mouse over object
                         controller.tooltip = "Click to select this object. [Ctrl]+Click to select multiple objects.\nDrag to move object. Drag the far edge to adjust duration by looping.\nHold [Shift] and drag the far edge to adjust duration by stretching.\nDouble-click to edit frames\nRight click for more actions";
-                        if (window_mouse_get_x() > ((frametime+object_length+0.7-tlx)/tlzoom*tlw))
+                        if (mouse_x > ((frametime+object_length+0.7-tlx)/tlzoom*tlw))
 						{
                             controller.scrollcursor_flag = 1;
 							if keyboard_check(vk_shift)
@@ -848,7 +848,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                             }
                             else
                             {
-                                if (window_mouse_get_x() > ((frametime+object_length+0.7-tlx)/tlzoom*tlw)-1)
+                                if (mouse_x > ((frametime+object_length+0.7-tlx)/tlzoom*tlw)-1)
                                 {
 									if (!keyboard_check(vk_shift))
 									{
@@ -865,7 +865,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
 										stretch = 0;
 									}
                                     
-                                    mouse_xprevious = window_mouse_get_x();
+                                    mouse_xprevious = mouse_x;
                                 }
                                 else
                                 {
@@ -877,7 +877,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                                     ds_list_add(undolisttemp,elementlist);
                                     ds_list_add(undolisttemp,frametime);
                                     
-                                    mouse_xprevious = window_mouse_get_x();
+                                    mouse_xprevious = mouse_x;
                                     mouse_yprevious = mouse_y;
                                 }
                             }
@@ -940,7 +940,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
             hidden = ds_list_find_value(envelope,4);
             if (hidden)
             {
-                mouseonenvelope = (mouse_y == clamp(mouse_y,ypos,ypos+16)) and (window_mouse_get_x() == clamp(window_mouse_get_x(),0,tlw-16));
+                mouseonenvelope = (mouse_y == clamp(mouse_y,ypos,ypos+16)) and (mouse_x == clamp(mouse_x,0,tlw-16));
                 if (mouseonenvelope)
                 {
                     mouseonsomelayer = 1;
@@ -962,11 +962,11 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                 continue;
             }
             
-            mouseonenvelope = (mouse_y == clamp(mouse_y,ypos,ypos+t_env_rowheight)) and (window_mouse_get_x() == clamp(window_mouse_get_x(),0,tlw-16));
+            mouseonenvelope = (mouse_y == clamp(mouse_y,ypos,ypos+t_env_rowheight)) and (mouse_x == clamp(mouse_x,0,tlw-16));
             if (mouseonenvelope)
             {
                 mouseonsomelayer = 1;
-                var mouseover_delete = (mouse_y == clamp(mouse_y,ypos+8,ypos+40)) and (window_mouse_get_x() == clamp(window_mouse_get_x(),tlw-56,tlw-24));
+                var mouseover_delete = (mouse_y == clamp(mouse_y,ypos+8,ypos+40)) and (mouse_x == clamp(mouse_x,tlw-56,tlw-24));
             
                 if (mouseover_delete) 
                 {
@@ -984,14 +984,14 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                     if (mouse_check_button_pressed(mb_left))
                     {
                         //adding/modifying/deleting point
-                        var t_xpos = round(tlx+window_mouse_get_x()/tlw*tlzoom);
+                        var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
                         
                         if (keyboard_check(ord("D")))
                         {
                             //entering deletion mode, drag mouse to cover area
                             moving_object = 7;
                             xposprev = t_xpos;
-                            mouse_xprevious = window_mouse_get_x();
+                            mouse_xprevious = mouse_x;
                             envelopetoedit = envelope;
                             exit;
                         }
@@ -1001,7 +1001,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                         
                         xposprev = t_xpos;
                         yposprev = t_ypos;
-                        mouse_xprevious = window_mouse_get_x();
+                        mouse_xprevious = mouse_x;
                         mouse_yprevious = mouse_y;
                         ypos_env = ypos;
                         envelopetoedit = envelope;
@@ -1036,14 +1036,14 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
 
 
 //startframe
-if (window_mouse_get_x() == clamp(window_mouse_get_x(),startframex-2,startframex+2))                         
+if (mouse_x == clamp(mouse_x,startframex-2,startframex+2))                         
 {
     controller.scrollcursor_flag = 1;
     controller.tooltip = "Drag to adjust the start of the project";
 	mouseonsomelayer = 1;
     if (mouse_check_button_pressed(mb_left))
     {
-        mouse_xprevious = window_mouse_get_x();
+        mouse_xprevious = mouse_x;
         moving_object = 3;
     }
     exit;
@@ -1056,7 +1056,7 @@ if !(mouseonsomelayer)
     controller.tooltip = "Click to set playback position. Hold [Ctrl] and drag mouse to scroll timeline.";
     if (mouse_check_button(mb_left) && !keyboard_check_control())
     {
-        tlpos = round(tlx+window_mouse_get_x()/tlw*tlzoom)/projectfps*1000;
+        tlpos = round(tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
         if (song != -1)
         {
             FMODGMS_Chan_StopChannel(play_sndchannel);
@@ -1065,17 +1065,17 @@ if !(mouseonsomelayer)
             fmod_set_pos(play_sndchannel,clamp(((tlpos+audioshift)-10),0,songlength));
         }
 		
-		//mouse_xprevious = window_mouse_get_x();
+		//mouse_xprevious = mouse_x;
     }
 	else if (keyboard_check_control() && mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
 	{
-		mouse_xprevious = window_mouse_get_x();
-		mouse_yprevious = window_mouse_get_y();
+		mouse_xprevious = mouse_x;
+		mouse_yprevious = mouse_y;
 	}
 	else if (keyboard_check_control() && mouse_check_button(mb_left))
 	{
-		tlx -= round((window_mouse_get_x()-mouse_xprevious)/tlw*tlzoom);
-		layerbary -= round(window_mouse_get_y()-mouse_yprevious);
+		tlx -= round((mouse_x-mouse_xprevious)/tlw*tlzoom);
+		layerbary -= round(mouse_y-mouse_yprevious);
 		if (layerbary < 0) 
 			layerbary = 0;
 	    if ((layerbary) > ypos_perm) 
@@ -1084,8 +1084,8 @@ if !(mouseonsomelayer)
 			tlx = 0;
 		if (tlx+tlzoom > length)
 			length = tlx+tlzoom;
-		mouse_xprevious = window_mouse_get_x();
-		mouse_yprevious = window_mouse_get_y();
+		mouse_xprevious = mouse_x;
+		mouse_yprevious = mouse_y;
 		timeline_surf_length = 0;
 	}
 }
