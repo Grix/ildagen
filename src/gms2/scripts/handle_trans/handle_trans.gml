@@ -1,8 +1,13 @@
+var t_wport4 = view_wport[4];
+var t_mouse_x = mouse_x;//window_mouse_get_x();
+var t_mouse_y = mouse_y-camera_get_view_y(view_camera[4]);//window_mouse_get_y()-view_hport[3];
+
 if (objmoving == 1)
 {
     //translate
-    anixtrans += (obj_cursor.x-mouse_xprevious)*$ffff/view_wport[4];
-    aniytrans += (obj_cursor.y-mouse_yprevious)*$ffff/view_wport[4];
+    anixtrans += (obj_cursor.x-mouse_xprevious)*$ffff/t_wport4;
+	if (obj_cursor.y > camera_get_view_y(view_camera[0]))
+		aniytrans += (obj_cursor.y-mouse_yprevious)*$ffff/t_wport4;
     mouse_xprevious = obj_cursor.x;
     mouse_yprevious = obj_cursor.y;
     
@@ -17,8 +22,8 @@ if (objmoving == 1)
 else if (objmoving == 2)    
 {
     //anchor
-    anchorx += (obj_cursor.x-mouse_xprevious)*$ffff/view_wport[4];
-    anchory += (obj_cursor.y-mouse_yprevious)*$ffff/view_wport[4];
+    anchorx += (obj_cursor.x-mouse_xprevious)*$ffff/t_wport4;
+    anchory += (obj_cursor.y-mouse_yprevious)*$ffff/t_wport4;
     mouse_xprevious = obj_cursor.x;
     mouse_yprevious = obj_cursor.y;
     if (mouse_check_button_released(mb_left))
@@ -31,7 +36,7 @@ else if (objmoving == 2)
 else if (objmoving == 3)
 {
     //rotate
-    mouseangle = point_direction(obj_cursor.x,obj_cursor.y,anchorx/$ffff*view_wport[4],anchory/$ffff*view_wport[4]);
+    mouseangle = point_direction(obj_cursor.x,obj_cursor.y,anchorx/$ffff*t_wport4,anchory/$ffff*t_wport4);
     
     if ((mouseangleprevious-mouseangle) > 180)
         anirot -= 360;
@@ -53,13 +58,13 @@ else if (objmoving == 4)
     //resize
     if (!keyboard_check_control())
     {
-        scalex+= (obj_cursor.x-mouse_xprevious)/max(1,(rectxmax-rectxmin)/$ffff*view_wport[4])*2;
-        scaley+= (obj_cursor.y-mouse_yprevious)/max(1,(rectymax-rectymin)/$ffff*view_wport[4])*2;
+        scalex+= (obj_cursor.x-mouse_xprevious)/max(1,(rectxmax-rectxmin)/$ffff*t_wport4)*2;
+        scaley+= (obj_cursor.y-mouse_yprevious)/max(1,(rectymax-rectymin)/$ffff*t_wport4)*2;
     }
     else
     {
-        scalex+= (obj_cursor.x-mouse_xprevious)/max(1,(rectxmax-rectxmin)/$ffff*view_wport[4])*2;
-        scaley+= (obj_cursor.x-mouse_xprevious)/max(1,(rectymax-rectymin)/$ffff*view_wport[4])*2;
+        scalex+= (obj_cursor.x-mouse_xprevious)/max(1,(rectxmax-rectxmin)/$ffff*t_wport4)*2;
+        scaley+= (obj_cursor.x-mouse_xprevious)/max(1,(rectymax-rectymin)/$ffff*t_wport4)*2;
     }  
           
     mouse_xprevious = obj_cursor.x;
@@ -73,19 +78,21 @@ else if (objmoving == 4)
 }
 else if !(keyboard_check_control()) and (!object_select_hovering)
 {
-	if (window_mouse_get_x() > view_wport[4] or window_mouse_get_y()-23 > view_wport[4])
+	if (t_mouse_x > t_wport4 or t_mouse_y > t_wport4)
 		exit;
 		
 	if (instance_exists(obj_dropdown))
 		exit;
 		
-	var t_resizex = clamp(rectxmax/$ffff*view_wport[4], 0, view_wport[4]-22);
-	var t_resizey = clamp(rectymax/$ffff*view_wport[4], 0, view_wport[4]-22);
-	var t_rotatex = clamp(rectxmin/$ffff*view_wport[4], 22, view_wport[4]);
-	var t_rotatey = clamp(rectymax/$ffff*view_wport[4], 0, view_wport[4]-22);
+	var t_resizex = clamp(rectxmax/$ffff*t_wport4, 0, t_wport4-22);
+	var t_resizey = clamp(rectymax/$ffff*t_wport4, 0, t_wport4-22);
+	var t_rotatex = clamp(rectxmin/$ffff*t_wport4, 22, t_wport4);
+	var t_rotatey = clamp(rectymax/$ffff*t_wport4, 0, t_wport4-22);
 	
-    if	(window_mouse_get_x() == clamp(window_mouse_get_x(), anchorx/$ffff*view_wport[4]-10, anchorx/$ffff*view_wport[4]+10)) and 
-		(window_mouse_get_y()-23 == clamp(window_mouse_get_y()-23, anchory/$ffff*view_wport[4]-10, anchory/$ffff*view_wport[4]+10))
+	log(t_mouse_x, t_mouse_y, anchorx/$ffff*t_wport4, anchory/$ffff*t_wport4);
+	
+    if	(t_mouse_x == clamp(t_mouse_x, anchorx/$ffff*t_wport4-10, anchorx/$ffff*t_wport4+10)) and 
+		(t_mouse_y == clamp(t_mouse_y, anchory/$ffff*t_wport4-10, anchory/$ffff*t_wport4+10))
     {
         tooltip = "Click and drag to move the rotation/scaling anchor point.\nRight click to move to center of object.";
 		if (mouse_check_button_pressed(mb_left)) 
@@ -100,8 +107,8 @@ else if !(keyboard_check_control()) and (!object_select_hovering)
             anchory = (rectymin+rectymax)/2;
         }
     }
-    else if (window_mouse_get_x() == clamp(window_mouse_get_x(),rectxmin/$ffff*view_wport[4]-2,rectxmax/$ffff*view_wport[4]+2)) and 
-			(window_mouse_get_y()-23 == clamp(window_mouse_get_y()-23,rectymin/$ffff*view_wport[4]-2,rectymax/$ffff*view_wport[4]+2))
+    else if (t_mouse_x == clamp(t_mouse_x,rectxmin/$ffff*t_wport4-2,rectxmax/$ffff*t_wport4+2)) and 
+			(t_mouse_y == clamp(t_mouse_y,rectymin/$ffff*t_wport4-2,rectymax/$ffff*t_wport4+2))
     {
         tooltip = "Click and drag to move the selected object.\nIf animation is enabled, the movement will be animated.\nRight click for other actions.";
         if (mouse_check_button_pressed(mb_left)) 
@@ -120,10 +127,10 @@ else if !(keyboard_check_control()) and (!object_select_hovering)
             dropdown_object();
         }
     }
-    else if (window_mouse_get_x() > t_rotatex-20 &&
-			 window_mouse_get_x() < t_rotatex-2 &&
-			 window_mouse_get_y()-23 > t_rotatey+2 &&
-			 window_mouse_get_y()-23 < t_rotatey+20)
+    else if (t_mouse_x > t_rotatex-20 &&
+			 t_mouse_x < t_rotatex-2 &&
+			 t_mouse_y > t_rotatey+2 &&
+			 t_mouse_y < t_rotatey+20)
     {
         tooltip = "Click and drag to rotate the selected object around the anchor.\nIf animation is enabled, the rotation will be animated.\nRight click to enter precise rotation amount.";
 		if (mouse_check_button_pressed(mb_left)) 
@@ -134,7 +141,7 @@ else if !(keyboard_check_control()) and (!object_select_hovering)
             anirot = 0;
             scalex = 1;
             scaley = 1;
-            mouseangleprevious = point_direction(obj_cursor.x,obj_cursor.y,anchorx/$ffff*view_wport[4],anchory/$ffff*view_wport[4]);
+            mouseangleprevious = point_direction(obj_cursor.x,obj_cursor.y,anchorx/$ffff*t_wport4,anchory/$ffff*t_wport4);
         }
         else if (mouse_check_button_pressed(mb_right)) 
         {
@@ -145,10 +152,10 @@ else if !(keyboard_check_control()) and (!object_select_hovering)
             ilda_dialog_num("anirot","Enter the amount of degrees to rotate.",0);
         }
     }
-    else if (window_mouse_get_x() > t_resizex+2 &&
-			 window_mouse_get_x() < t_resizex+20 &&
-			 window_mouse_get_y()-23 > t_resizey+2 &&
-			 window_mouse_get_y()-23 < t_resizey+20)
+    else if (t_mouse_x > t_resizex+2 &&
+			 t_mouse_x < t_resizex+20 &&
+			 t_mouse_y > t_resizey+2 &&
+			 t_mouse_y < t_resizey+20)
     {
         tooltip = "Click and drag to resize the selected object around the anchor.\nHold Ctrl to resize X and Y the same amount.\nRight click to enter precise scaling amount.\nIf animation is enabled, the change will be animated."
 		if (mouse_check_button_pressed(mb_left)) 

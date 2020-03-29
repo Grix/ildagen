@@ -43,7 +43,12 @@ if (room == rm_ilda) && (keyboard_check(ord("Z")) && !keyboard_check_control())
 else
 {
 	obj_cursor.x = window_mouse_get_x();
-	obj_cursor.y = mouse_y-camera_get_view_y(view_camera[4]);//window_mouse_get_y()-23;
+	
+	if (mouse_y > camera_get_view_y(view_camera[4]))
+		obj_cursor.y = mouse_y-camera_get_view_y(view_camera[4]);
+	else
+		obj_cursor.y = window_mouse_get_y()-view_hport[3];
+		
 	view_visible[5] = false;
 }
 
@@ -58,7 +63,7 @@ if (room != rm_ilda)
 // view 5: zoom (normally deactivated)
 // view 6: filler background, bottom right
 	
-dpi_multiplier = 2;
+dpi_multiplier = 1;
 var t_windowwidth = window_get_width();
 var t_windowheight = window_get_height();
 	

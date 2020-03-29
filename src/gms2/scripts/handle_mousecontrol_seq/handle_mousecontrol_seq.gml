@@ -592,9 +592,9 @@ else if (scroll_moving == 2)
 }
     
 controller.scrollcursor_flag = 0;
-    
+
 if (mouse_x > tlw) 
-or (mouse_y < view_hport[3]+view_hport[4])
+or (mouse_y < camera_get_view_height(3)+camera_get_view_height(4))
 or (controller.dialog_open)
 or (controller.menu_open)
     exit;
@@ -717,9 +717,12 @@ for (i = 0; i < ds_list_size(marker_list); i++)
 var tempstarty = tls-layerbary;
 
 var ypos = tempstarty;
-for (i = 0; i <= ds_list_size(layer_list); i++)
+for (i = 0; i < ds_list_size(layer_list); i++)
 {
     _layer = ds_list_find_value(layer_list, i); 
+	
+	if (is_undefined(_layer) || !ds_exists(_layer, ds_type_list))
+		continue;
     
     if (ypos > tlh+16-t_rowheight+138) and (ypos < lbsh+138)
     {

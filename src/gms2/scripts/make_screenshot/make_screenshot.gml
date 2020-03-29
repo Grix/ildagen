@@ -63,7 +63,7 @@ for (t_i = 0; t_i < buffer_maxelements; t_i++)
                 draw_rectangle(xo+xp/$FFFF*t_size+1, yo+yp/$FFFF*t_size+1,xo+xp/$FFFF*t_size-1, yo+yp/$FFFF*t_size-1, 0);
             }
             else
-                draw_line_width(xo+xpp/$FFFF*t_size, yo+ypp/$FFFF*t_size, xo+xp/$FFFF*t_size, yo+yp/$FFFF*t_size, controller.dpi_multiplier);
+                draw_line(xo+xpp/$FFFF*t_size, yo+ypp/$FFFF*t_size, xo+xp/$FFFF*t_size, yo+yp/$FFFF*t_size);
         }
     }
         
