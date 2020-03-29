@@ -248,7 +248,7 @@ layerbarw = clamp(lbh/(ypos_perm+lbh)*(lbh-1),32,lbh-1);
 var scrollx_x1 = round(scrollbarx);
 var scrollx_x2 = round(scrollx_x1+scrollbarw);
 var scrollx_y1 = lbsh+t_width-1+tlsurf_y;
-var scrolly_x1 = tlw-t_width-1;
+var scrolly_x1 = tlw-t_width;
 var scrolly_y1 = round(tls+(layerbary*layerbarw/lbh));
 var scrolly_y2 = round(scrolly_y1+layerbarw);
 draw_set_colour(c_white);
@@ -265,3 +265,7 @@ draw_rectangle(scrolly_x1+1,scrolly_y1+1,tlw-1,scrolly_y2-1,0);
 
 gpu_set_blendenable(true);
 draw_set_colour(c_black);
+
+var t_x = camera_get_view_width(view_camera[1])-1;
+var t_y = camera_get_view_y(view_camera[1]);
+draw_line(t_x, t_y, t_x, t_y+camera_get_view_height(view_camera[1]));

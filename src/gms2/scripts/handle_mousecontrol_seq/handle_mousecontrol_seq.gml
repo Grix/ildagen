@@ -558,11 +558,11 @@ else if (moving_object == 7)
 //horizontal scroll moving
 else if (scroll_moving == 1)
 {
-    tlx += (mouse_x-mouse_xprevious)*(length/(tlw-17));
+    tlx += (window_mouse_get_x()-mouse_xprevious)*(length/(tlw-17));
     if (tlx < 0) tlx = 0;
     if ((tlx+tlzoom) > length) length = tlx+tlzoom;
     
-    mouse_xprevious = mouse_x;
+    mouse_xprevious = window_mouse_get_x();
     
     if (mouse_check_button_released(mb_left))
     {
@@ -574,13 +574,13 @@ else if (scroll_moving == 1)
 //vertical scroll moving
 else if (scroll_moving == 2)
 {
-    layerbary += (mouse_y-mouse_yprevious)*lbh/layerbarw;//*(length/tlw);
+    layerbary += (window_mouse_get_y()-mouse_yprevious)*lbh/layerbarw;//*(length/tlw);
     if (layerbary < 0) 
 		layerbary = 0;
     if ((layerbary) > ypos_perm) 
 		layerbary = ypos_perm;
     
-    mouse_yprevious = mouse_y;
+    mouse_yprevious = window_mouse_get_y();
     
     if (mouse_check_button_released(mb_left))
     {
@@ -593,8 +593,8 @@ else if (scroll_moving == 2)
     
 controller.scrollcursor_flag = 0;
 
-if (mouse_x > tlw) 
-or (mouse_y < camera_get_view_height(3)+camera_get_view_height(4))
+if (mouse_x > tlw)
+or (mouse_y < camera_get_view_height(view_camera[3])+camera_get_view_height(view_camera[4]))
 or (controller.dialog_open)
 or (controller.menu_open)
     exit;
@@ -627,15 +627,17 @@ else if (mouse_wheel_down() or keyboard_check_pressed(vk_f8))
 //horizontal scroll
 var scrollypos = tls+(layerbary*layerbarw/lbh);
 
+log(mouse_y, tlsurf_y+lbsh);
+
 if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw)) 
-and (mouse_y == clamp(mouse_y,lbsh+138,lbsh+16+138))
+and (mouse_y == clamp(mouse_y,tlsurf_y+lbsh,tlsurf_y+lbsh+16))
 {
     mouseonsomelayer = 1;
     controller.tooltip = "Drag to scroll the timeline. Use the mouse wheel or [F7]/[F8] to zoom";
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
     {
         scroll_moving = 1;
-        mouse_xprevious = mouse_x;
+        mouse_xprevious = window_mouse_get_x();
     }
 }
 //vertical scroll
@@ -647,11 +649,11 @@ else if (mouse_y == clamp(mouse_y,scrollypos,scrollypos+layerbarw))
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
     {
         scroll_moving = 2;
-        mouse_yprevious = mouse_y;
+        mouse_yprevious = window_mouse_get_y();
     }
 }
     
-if (mouse_y > lbsh+136) 
+if (mouse_y > tlsurf_y+lbsh) 
 or (mouse_x > tlw-16) 
     exit;
     
@@ -717,14 +719,11 @@ for (i = 0; i < ds_list_size(marker_list); i++)
 var tempstarty = tls-layerbary;
 
 var ypos = tempstarty;
-for (i = 0; i < ds_list_size(layer_list); i++)
+for (i = 0; i <= ds_list_size(layer_list); i++)
 {
     _layer = ds_list_find_value(layer_list, i); 
-	
-	if (is_undefined(_layer) || !ds_exists(_layer, ds_type_list))
-		continue;
     
-    if (ypos > tlh+16-t_rowheight+138) and (ypos < lbsh+138)
+    if (ypos > tlh+16-t_rowheight+138) and (ypos < tlsurf_y+lbsh)
     {
         mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+t_rowheight))
         if (mouseonlayer)
@@ -738,7 +737,7 @@ for (i = 0; i < ds_list_size(layer_list); i++)
                 {
                     mouseonsomelayer = 1;
                     controller.tooltip = "Click to create a new layer";
-                    if  mouse_check_button_pressed(mb_left)
+                    if (mouse_check_button_pressed(mb_left))
                     {
                         newlayer = ds_list_create();
                         ds_list_add(layer_list,newlayer);
@@ -754,6 +753,7 @@ for (i = 0; i < ds_list_size(layer_list); i++)
                 }
                 else
                     draw_mouseline = 1;
+				
                 ypos += t_rowheight;
                 break;
             }
@@ -930,7 +930,7 @@ for (i = 0; i < ds_list_size(layer_list); i++)
     ypos += t_rowheight;
     
     //envelopes
-    if (i == ds_list_size(layer_list)) 
+    if (i == ds_list_size(layer_list) || is_undefined(_layer) || !ds_exists(_layer, ds_type_list)) 
         break;
     
     envelope_list = _layer[| 0];
