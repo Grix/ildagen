@@ -52,7 +52,7 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 	//camera_set_view_size(view_camera[0], view_wport[0], view_hport[0]);
 	camera_set_view_size(view_camera[3], view_wport[3]/controller.dpi_multiplier, view_hport[3]/controller.dpi_multiplier);
 	camera_set_view_size(view_camera[4], view_wport[4], view_hport[4]);
-	camera_set_view_size(view_camera[1], view_wport[1], view_hport[1]);
+	camera_set_view_size(view_camera[1], view_wport[1]/controller.dpi_multiplier, view_hport[1]/controller.dpi_multiplier);
 	//camera_set_view_size(view_camera[6], view_wport[6], view_hport[6]);
 	//camera_set_view_pos(view_camera[6], 987, camera_get_view_y(view_camera[0])+view_yport[6]-view_hport[3]);
 	tlw = view_wport[1];

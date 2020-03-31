@@ -20,6 +20,8 @@ for (i = 0; i < ds_list_size(filelist); i++)
 	t_column = i mod t_cells_per_row;
 	t_row = i div t_cells_per_row;
 	
+	log(mouse_x,mouse_y, t_column*t_cell_size+1,t_ystart+t_row*t_cell_size+1);
+	
 	if (	mouse_x > t_column*t_cell_size+1		&& mouse_x < t_column*t_cell_size+1+t_cell_size
 		&&	mouse_y > t_ystart+t_row*t_cell_size+1	&& mouse_y < t_ystart+t_row*t_cell_size+1+t_cell_size)
 	{

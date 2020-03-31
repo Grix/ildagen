@@ -53,9 +53,9 @@ else if (view_current == 1)
 	refresh_browser_grid_surface();
 	draw_browser_grid();
 	
-	var t_width = view_wport[1];
+	var t_width = camera_get_view_width(view_camera[1]);
 	var t_ystart = camera_get_view_y(view_camera[1]);
-	var t_cells_per_row = ceil(t_width / (target_width_per_cell*controller.dpi_multiplier));
+	var t_cells_per_row = ceil(t_width / (target_width_per_cell));
 	var t_cell_size = t_width / t_cells_per_row;
 	
 	if (highlightfile != -1)
@@ -78,15 +78,15 @@ else if (view_current == 1)
 		
 		if (objectlist[| 4])
 		{
-			draw_sprite_ext(spr_loop, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32, controller.dpi_multiplier, controller.dpi_multiplier, 0, c_white, 1);
+			draw_sprite(spr_loop, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32);
 		}
 		if (objectlist[| 5])
 		{
-			draw_sprite_ext(spr_exclusive, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32+16*controller.dpi_multiplier, controller.dpi_multiplier, controller.dpi_multiplier, 0, c_white, 1);
+			draw_sprite(spr_exclusive, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32+16);
 		}
 		if (objectlist[| 6])
 		{
-			draw_sprite_ext(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32+32*controller.dpi_multiplier, controller.dpi_multiplier, controller.dpi_multiplier, 0, c_white, 1);
+			draw_sprite(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32+32);
 		}
 		
 		// timeline

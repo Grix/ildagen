@@ -1,4 +1,5 @@
 TODO
+- todo apply scalers to live mode preview
 - pause individual files in live
 - fix high resolution screen scaling
 - update web

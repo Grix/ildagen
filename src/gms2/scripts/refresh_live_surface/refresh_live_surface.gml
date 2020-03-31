@@ -3,6 +3,7 @@ if (!surface_exists(frame_surf))
 if (!surface_exists(frame3d_surf))
     frame3d_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_hport[4]))));
 	
+// todo apply scalers
 	
 if (viewmode != 1)
 {
