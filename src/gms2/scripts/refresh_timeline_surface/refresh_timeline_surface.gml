@@ -109,7 +109,11 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 		                        infolist[| 1] = make_screenshot(objectlist[| 1], 27);
 		                    draw_surface_part(infolist[| 1],0,0,floor(clamp((duration+1)*tlwdivtlzoom,0,32))-1,32,framestartx+1,ypos_perm+8);
 						}
-	                    maxframes = infolist[| 2];
+						if (moving_object == 8) && (objecttomove == objectlist)
+							maxframes = infolist[| 2] + stretch/infolist[| 0]*infolist[| 2];
+						else
+							maxframes = infolist[| 2];
+						
 	                    draw_set_colour(c_black);
 	                    if (maxframes != 1)
 	                        for (k = 1; k <= duration/maxframes; k++)

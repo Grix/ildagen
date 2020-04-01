@@ -6,7 +6,7 @@ with (controller)
         {
             ini_write_string("projector_0", "name", "default");
             ini_write_real("projector_0", "scanrate", 20000);
-            ini_write_real("projector_0", "maxdist", 150);
+            ini_write_real("projector_0", "maxdist", 250);
             ini_write_real("projector_0", "maxdwell", 2);
             ini_write_real("projector_0", "maxdwell_blank", 1);
             ini_write_real("projector_0", "blankshift", 0);

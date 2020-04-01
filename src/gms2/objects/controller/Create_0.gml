@@ -219,7 +219,7 @@ global.loading_importildaseq = 0;
 global.loading_importildalive = 0;
 
 opt_onlyblanking = false;
-opt_maxdist = 150;
+opt_maxdist = 250;
 opt_maxdwell = 2;
 opt_maxdwell_blank = 2;
 opt_blankshift = 0;

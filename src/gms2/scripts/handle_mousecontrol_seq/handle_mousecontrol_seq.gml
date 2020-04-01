@@ -234,8 +234,8 @@ else if (moving_object == 8)
         objecttomove = ds_list_find_value(somaster_list,i);
         infolisttomove = ds_list_find_value(objecttomove,2);
 		stretch += (mouse_x-mouse_xprevious)*tlzoom/tlw;
-		if (infolisttomove[| 2] + stretch < 1)
-			stretch = 1 - infolisttomove[| 2];
+		if (infolisttomove[| 2] + stretch/infolisttomove[| 0]*infolisttomove[| 2] < 1)
+			stretch = (1 - infolisttomove[| 2])/infolisttomove[| 2]*infolisttomove[| 0];
         
         draw_mouseline = 1;
     }
@@ -302,7 +302,7 @@ else if (moving_object == 8)
             
 			//set up lists
 			var t_newlength = max(infolisttomove[| 0]+tempstretch, 1);
-			var t_newmaxframes = max(infolisttomove[| 2]+tempstretch, 1);
+			var t_newmaxframes = max(infolisttomove[| 2]+floor(tempstretch/infolisttomove[| 0]*infolisttomove[| 2]), 1);
 			var t_oldbuffer = objecttomove[| 1];
 			new_objectlist = ds_list_create();
 			ds_list_add(new_objectlist, objecttomove[| 0]);
@@ -558,11 +558,11 @@ else if (moving_object == 7)
 //horizontal scroll moving
 else if (scroll_moving == 1)
 {
-    tlx += (window_mouse_get_x()-mouse_xprevious)*(length/(tlw-17));
+    tlx += (mouse_x-mouse_xprevious)*(length/(tlw-17));
     if (tlx < 0) tlx = 0;
     if ((tlx+tlzoom) > length) length = tlx+tlzoom;
     
-    mouse_xprevious = window_mouse_get_x();
+    mouse_xprevious = mouse_x;
     
     if (mouse_check_button_released(mb_left))
     {
@@ -574,13 +574,13 @@ else if (scroll_moving == 1)
 //vertical scroll moving
 else if (scroll_moving == 2)
 {
-    layerbary += (window_mouse_get_y()-mouse_yprevious)*lbh/layerbarw;//*(length/tlw);
+    layerbary += (mouse_y-mouse_yprevious)*lbh/layerbarw;//*(length/tlw);
     if (layerbary < 0) 
 		layerbary = 0;
     if ((layerbary) > ypos_perm) 
 		layerbary = ypos_perm;
     
-    mouse_yprevious = window_mouse_get_y();
+    mouse_yprevious = mouse_y;
     
     if (mouse_check_button_released(mb_left))
     {
@@ -627,8 +627,6 @@ else if (mouse_wheel_down() or keyboard_check_pressed(vk_f8))
 //horizontal scroll
 var scrollypos = tls+(layerbary*layerbarw/lbh);
 
-log(mouse_y, tlsurf_y+lbsh);
-
 if (mouse_x == clamp(mouse_x,scrollbarx,scrollbarx+scrollbarw)) 
 and (mouse_y == clamp(mouse_y,tlsurf_y+lbsh,tlsurf_y+lbsh+16))
 {
@@ -637,7 +635,7 @@ and (mouse_y == clamp(mouse_y,tlsurf_y+lbsh,tlsurf_y+lbsh+16))
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
     {
         scroll_moving = 1;
-        mouse_xprevious = window_mouse_get_x();
+        mouse_xprevious = mouse_x;
     }
 }
 //vertical scroll
@@ -649,7 +647,7 @@ else if (mouse_y == clamp(mouse_y,scrollypos,scrollypos+layerbarw))
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
     {
         scroll_moving = 2;
-        mouse_yprevious = window_mouse_get_y();
+        mouse_yprevious = mouse_y;
     }
 }
     
