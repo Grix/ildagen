@@ -1,4 +1,4 @@
-ddobj = instance_create_layer(livecontrol.menu_width_start[1],0,"foreground",obj_dropdown);
+ddobj = instance_create_layer(livecontrol.menu_width_start[1]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 with (ddobj)
 {
     num = 3;

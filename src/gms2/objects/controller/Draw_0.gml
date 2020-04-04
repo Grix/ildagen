@@ -22,13 +22,13 @@ if (view_current == 4 || view_current == 5)
     if (maxframes > 1)
     {
         cursorlinex = lerp(2,tlw-2,frame/(maxframes-1));
-        draw_line(cursorlinex,tlorigo_y,cursorlinex,tlorigo_y+tlh-13);
+        draw_line_width(cursorlinex,tlorigo_y,cursorlinex,tlorigo_y+tlh-13*dpi_multiplier, dpi_multiplier);
         if (show_framecursor_prev)
         {
             draw_set_alpha(0.6);
             draw_set_color(c_teal);
             cursorlinex = lerp(2,tlw-2,framecursor_prev/(maxframes-1));
-            draw_line(cursorlinex,tlorigo_y,cursorlinex,tlorigo_y+tlh);
+            draw_line_width(cursorlinex,tlorigo_y,cursorlinex,tlorigo_y+tlh, dpi_multiplier);
             draw_set_alpha(1);
         }
     }

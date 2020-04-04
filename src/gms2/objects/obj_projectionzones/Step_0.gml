@@ -121,15 +121,14 @@ else if (moving == 5)
 		controller.scale_left_top += ((mouse_x-mouse_xprevious)/256*$ffff);
 		controller.scale_left_bottom += ((mouse_x-mouse_xprevious)/256*$ffff);
     }
-	//todo fix problems when hitting right side of boundary
 	controller.scale_left_top = clamp(controller.scale_left_top, 0, $ffff);
 	controller.scale_left_bottom = clamp(controller.scale_left_bottom, 0, $ffff);
 	controller.scale_bottom_left = clamp(controller.scale_bottom_left, 0, $ffff);
 	controller.scale_bottom_right = clamp(controller.scale_bottom_right, 0, $ffff);
 	controller.scale_top_left = clamp(controller.scale_top_left, 0, $ffff);
 	controller.scale_top_right = clamp(controller.scale_top_right, 0, $ffff);
-	controller.scale_left_top = clamp(controller.scale_left_top, 0, $ffff);
-	controller.scale_left_bottom = clamp(controller.scale_left_bottom, 0, $ffff);
+	controller.scale_right_top = clamp(controller.scale_right_top, 0, $ffff);
+	controller.scale_right_bottom = clamp(controller.scale_right_bottom, 0, $ffff);
     mouse_xprevious = mouse_x;
     mouse_yprevious = mouse_y;
     if (mouse_check_button_released(mb_left))
