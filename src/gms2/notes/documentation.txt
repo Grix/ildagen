@@ -1,7 +1,5 @@
 TODO
-- todo apply scalers to live mode preview
 - pause individual files in live
-- fix high resolution screen scaling
 - update web
 - set fixed scanrate instead of fps when optimization off
 - reapply combine shapes
