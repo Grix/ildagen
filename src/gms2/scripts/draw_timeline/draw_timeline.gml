@@ -1,32 +1,43 @@
 if (high_performance)
 	exit;
 
-//todo fix markers etc lines not showing over timeline section
-
 var tlwdivtlzoom = tlw/tlzoom; //frames to pixels -> *
 
 draw_surface_part(timeline_surf, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw-17, clamp(ypos_perm-layerbary+1, 0, lbsh-(tlh+16)), 0, tlsurf_y+tlh+15);
     
+startframex = (startframe-tlx)*tlwdivtlzoom;
+endframex = (endframe-tlx)*tlwdivtlzoom;
+
 //start and end frame lines
 draw_set_font(fnt_bold);
 gpu_set_blendenable(true);
 
-startframex = (startframe-tlx)*tlwdivtlzoom;
+
 if (startframex == clamp(startframex,0,tlw-16))
 {
 	draw_set_color(c_blue);
-	//draw_rectangle(startframex,tlsurf_y,startframex+1,tlsurf_y+tlh,0);
-	draw_rectangle(startframex,tlsurf_y+tlh+17,startframex+1,tlsurf_y+lbsh,0);
+	draw_line_width(startframex,tls-1,startframex,tlsurf_y+lbsh, 2);
 	draw_text(startframex+4,tlsurf_y+lbsh-20,"Start");
 }
 
-endframex = (endframe-tlx)*tlwdivtlzoom;
 if (endframex == clamp(endframex,0,tlw-16))
 {
 	draw_set_color(c_red);
-	//draw_rectangle(endframex,tlsurf_y,endframex+1,tlsurf_y+tlh,0);
-	draw_rectangle(endframex,tlsurf_y+tlh+17,endframex+1,tlsurf_y+lbsh,0);
+	draw_line_width(endframex,tls-1,endframex,tlsurf_y+lbsh, 2);
 	draw_text(endframex-25,tlsurf_y+lbsh-20,"End");
+}
+
+//markers timeline
+draw_set_alpha(0.9);
+draw_set_colour(c_fuchsia);
+for (i = 0; i < ds_list_size(marker_list); i++)
+{
+	if (ds_list_find_value(marker_list,i) == clamp(ds_list_find_value(marker_list,i),tlx,tlx+tlzoom))
+	{
+	    var markerpostemp = (ds_list_find_value(marker_list,i)-tlx)*tlwdivtlzoom;
+	    //draw_rectangle(markerpostemp,tlsurf_y,markerpostemp+1,tlh-1+tlsurf_y,0);
+	    draw_rectangle(markerpostemp,tls-1,markerpostemp+1,lbsh+tlsurf_y,0);
+	}
 }
 
 //scope fog main
@@ -95,12 +106,12 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
           
 	if (t_ypos > tlh+16-48+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
 	{
-		if (selectedlayer == i)
+		if (selectedlayer == i && ds_list_empty(somaster_list))
 		{
 		    draw_set_colour(c_maroon);
 		    var drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
 		    if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
-		        draw_line(drawcursorxcorrected,t_ypos-1,drawcursorxcorrected,t_ypos+47);
+		        draw_line_width(drawcursorxcorrected,t_ypos-1,drawcursorxcorrected,t_ypos+47, 2);
 		    draw_set_colour(c_black);
 		}
 		
@@ -195,8 +206,11 @@ for (i = 0; i <= ds_list_size(layer_list);i++)
 	    t_ypos += 64;
 	}
 }
+
+draw_set_alpha(1);
+draw_surface_part(timeline_surf_audio, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw, tlh+16, 0, tlsurf_y);
         
-//markers
+//markers audio
 draw_set_alpha(0.9);
 draw_set_colour(c_fuchsia);
 for (i = 0; i < ds_list_size(marker_list); i++)
@@ -204,14 +218,23 @@ for (i = 0; i < ds_list_size(marker_list); i++)
 	if (ds_list_find_value(marker_list,i) == clamp(ds_list_find_value(marker_list,i),tlx,tlx+tlzoom))
 	{
 	    var markerpostemp = (ds_list_find_value(marker_list,i)-tlx)*tlwdivtlzoom;
-	    //draw_rectangle(markerpostemp,tlsurf_y,markerpostemp+1,tlh-1+tlsurf_y,0);
-	    draw_rectangle(markerpostemp,tlsurf_y+tlh+17,markerpostemp+1,lbsh+tlsurf_y,0);
+	    draw_line_width(markerpostemp,tlsurf_y,markerpostemp,tlh-1+tlsurf_y, 2);
 	}
 }
 
-draw_set_alpha(1);
-draw_surface_part(timeline_surf_audio, floor(tlx*tlwdivtlzoom - timeline_surf_pos*tlwdivtlzoom), 0, tlw, tlh+16, 0, tlsurf_y);
-        
+
+// start/end lines audio
+if (startframex == clamp(startframex,0,tlw-16))
+{
+	draw_set_color(c_blue);
+	draw_line_width(startframex,tlsurf_y,startframex,tlsurf_y+tlh,2);
+}
+if (endframex == clamp(endframex,0,tlw-16))
+{
+	draw_set_color(c_red);
+	draw_line_width(endframex,tlsurf_y,endframex,tlsurf_y+tlh, 2);
+}
+
 //scope fog audio
 gpu_set_blendenable(true);
 draw_set_alpha(0.3);
@@ -220,6 +243,7 @@ if (startframex > 0)
 	draw_rectangle(0,tlsurf_y,clamp(startframex,0,tlw-16),tlsurf_y+tlh+16,0);
 if (endframex < tlw)
 	draw_rectangle(clamp(endframex,0,tlw),tlsurf_y,tlw,tlsurf_y+tlh+16,0);
+	
 	
 draw_set_alpha(0.8);
 //tlpos cursor audio
