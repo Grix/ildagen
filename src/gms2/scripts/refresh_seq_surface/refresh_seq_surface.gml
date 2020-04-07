@@ -73,18 +73,15 @@ for (j = 0; j < ds_list_size(layer_list); j++)
             exit;
         }
         buffer_maxframes = buffer_read(el_buffer,buffer_u32);
-		log("maxf",buffer_maxframes);
         
         //skip to correct frame
         for (i = 0; i < fetchedframe;i++)
         {
             numofel = buffer_read(el_buffer,buffer_u32);
-			log("numofel",numofel);
             for (u = 0; u < numofel; u++)
             {
                 numofdata = buffer_read(el_buffer,buffer_u32)-20;
                 buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*3.25);
-				log("numofdata",numofdata);
             }
         }
             

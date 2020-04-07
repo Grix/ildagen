@@ -15,11 +15,11 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
     el_buffer_new = buffer_create(16,buffer_grow,1);
     el_buffer_old = objectlist[| 1];
 	
-    buffer_seek(el_buffer, buffer_seek_start, 0);
+    buffer_seek(el_buffer_old, buffer_seek_start, 0);
     bufferformat = buffer_read(el_buffer_old, buffer_u8);
 	if (bufferformat != 52)
 	{
-		show_message_new("Error: Unexpected version id reading buffer while stretching object: "+string(bufferformat)+". Things might get ugly. Contact developer.");
+		show_message_new("Error: Unexpected version id reading buffer while reversing object: "+string(bufferformat)+". Things might get ugly. Contact developer.");
 		exit;
 	}
     maxframes = buffer_read(el_buffer_old,buffer_u32);
@@ -61,7 +61,10 @@ for (i = 0; i < ds_list_size(somaster_list); i++)
 
 	objectlist[| 1] = el_buffer_new;
 	
-	//todo add undo
+	if (argument_count < 1 || argument[0] == true) // don't save undo if arg1 = false
+	{
+		ds_list_add(undo_list, "a"+string(objectlist));
+	}
 }
 
 timeline_surf_length = 0;

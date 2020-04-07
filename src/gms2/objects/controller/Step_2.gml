@@ -348,7 +348,6 @@ if (frame >= maxframes)
     framehr = maxframes-1;
 }
 
-//todo remove when fix for buffer loaded floats->int
 maxframes = real(maxframes);
     
 frameprev = frame;    

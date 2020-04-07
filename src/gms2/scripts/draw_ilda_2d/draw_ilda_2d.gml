@@ -9,7 +9,7 @@ if (laseron && !preview_while_laser_on)
     draw_set_halign(fa_left);
     exit;
 }
-    //todo blendenable disable?
+
 if (frame_surf_refresh) or !surface_exists(frame3d_surf) or !surface_exists(frame_surf)
 {
     refresh_surfaces();

@@ -1,4 +1,5 @@
 TODO
+- add titles etc to button sections in timeline and live mode
 - pause individual files in live
 - update web
 - set fixed scanrate instead of fps when optimization off

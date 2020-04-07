@@ -89,7 +89,6 @@ else if !(keyboard_check_control()) and (!object_select_hovering)
 	var t_rotatex = clamp(rectxmin/$ffff*t_wport4, 22, t_wport4);
 	var t_rotatey = clamp(rectymax/$ffff*t_wport4, 0, t_wport4-22);
 	
-	log(t_mouse_x, t_mouse_y, anchorx/$ffff*t_wport4, anchory/$ffff*t_wport4);
 	
     if	(t_mouse_x == clamp(t_mouse_x, anchorx/$ffff*t_wport4-10, anchorx/$ffff*t_wport4+10)) and 
 		(t_mouse_y == clamp(t_mouse_y, anchory/$ffff*t_wport4-10, anchory/$ffff*t_wport4+10))

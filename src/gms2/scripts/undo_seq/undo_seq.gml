@@ -147,6 +147,14 @@ with (seqcontrol)
         }
         ds_list_destroy(undolisttemp);
     }
+	else if (string_char_at(undo,0) == "a")
+    {
+        //undo reverse
+        var t_listtoreverse = real(string_digits(undo));
+		ds_list_clear(somaster_list);
+		ds_list_add(somaster_list, t_listtoreverse);
+		reverse_timelineobject(false);
+    }
     
     frame_surf_refresh = 1;
     selectedlayer = 0;

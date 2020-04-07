@@ -28,10 +28,10 @@
     "option_windows_splash_screen": "${options_dir}\\windows\\splash.png",
     "option_windows_start_fullscreen": false,
     "option_windows_steam_use_alternative_launcher": false,
-    "option_windows_texture_page": "2048x2048",
+    "option_windows_texture_page": "4096x4096",
     "option_windows_use_splash": false,
     "option_windows_version": {
-        "build": 3,
+        "build": 4,
         "major": 1,
         "minor": 8,
         "revision": 0
