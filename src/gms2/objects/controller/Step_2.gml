@@ -63,7 +63,6 @@ if (room != rm_ilda)
 // view 5: zoom (normally deactivated)
 // view 6: filler background, bottom right
 	
-dpi_multiplier = 1.5;
 var t_windowwidth = window_get_width();
 var t_windowheight = window_get_height();
 	
@@ -71,6 +70,7 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 && !(t_windowheight == 0 || t_windowwidth == 0)
 || forceresize
 {
+	
 	//if (window_get_height() < default_window_h || window_get_width() < default_window_w)
 	//	window_set_size(default_window_w, default_window_h);
 	

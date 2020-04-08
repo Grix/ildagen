@@ -92,10 +92,6 @@ parser_cb = ML_InitParserScience(varmap);
     
 alarm[3] = 120;
 
-default_window_w = 1350;
-default_window_h = 735;
-window_set_size(default_window_w, default_window_h);
-
 el_list = ds_list_create();
 undo_list = ds_list_create();
 frame_surf = -1;
@@ -183,7 +179,10 @@ tlw = 512;
 tlh = 42;
 tlorigo_x = 0;
 tlorigo_y = 515;
-dpi_multiplier = 1;
+dpi_multiplier = ceil(display_get_height()/1900);
+default_window_w = 1350*dpi_multiplier;
+default_window_h = 735*dpi_multiplier;
+log("window size", default_window_w, default_window_h);
 
 tooltip = "";
 bckimage = 0;
@@ -217,6 +216,7 @@ global.loading_importilda = 0;
 global.loading_importfont = 0;
 global.loading_importildaseq = 0;
 global.loading_importildalive = 0;
+global.loading_importfolderlive = 0;
 
 opt_onlyblanking = false;
 opt_maxdist = 250;

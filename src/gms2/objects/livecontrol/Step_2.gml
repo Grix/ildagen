@@ -19,6 +19,12 @@ if (room == rm_loading)
 
 if (room != rm_live) exit;
 
+if (global.loading_importfolderlive == 1)
+{
+	load_folder_live_work();
+	return;
+}
+
 var t_windowwidth = window_get_width();
 var t_windowheight = window_get_height();
 
