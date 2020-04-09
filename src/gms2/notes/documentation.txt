@@ -1,5 +1,4 @@
 TODO
-- open folder in live mode
 - add small guidelines in empty live or timeline mode etc
 - add titles etc to button sections in timeline and live mode
 - pause individual files in live
