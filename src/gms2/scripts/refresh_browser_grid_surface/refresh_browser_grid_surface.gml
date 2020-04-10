@@ -10,14 +10,24 @@ surface_set_target(browser_surf);
 	draw_set_alpha(1);
 	draw_clear_alpha(c_white, 0);
 
-	var t_width = camera_get_view_width(view_get_camera(1));
+	var t_width = camera_get_view_width(view_camera[1]);
+	var t_height = camera_get_view_height(view_camera[1]);
 	var t_cells_per_row = ceil(t_width / (target_width_per_cell));
+	var t_cells_per_column = ceil(t_height / (target_width_per_cell));
 	var t_cell_size = t_width / t_cells_per_row;
 
 	var t_row;
 	var t_column;
 	
-	//todo draw empty grid?
+	draw_set_color(c_ltgray);
+	for (i=1; i <= t_cells_per_row; i++)
+	{
+	    draw_line(t_cell_size*i, 0, t_cell_size*i, t_height);
+	}
+	for (i=1; i <= t_cells_per_column; i++)
+	{
+	    draw_line(0, t_cell_size*i, t_width, t_cell_size*i);
+	}
 
 	for (i = 0; i < ds_list_size(filelist); i++)
 	{

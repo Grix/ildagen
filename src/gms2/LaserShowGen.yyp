@@ -4087,6 +4087,14 @@
             }
         },
         {
+            "Key": "787bc7c1-849c-466b-9c27-11e41e0a718d",
+            "Value": {
+                "id": "d5de9f23-4843-4b76-bba4-ec3af5001e56",
+                "resourcePath": "objects\\obj_quicktip\\obj_quicktip.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "78cd21d5-f592-4cc1-861e-6e4dda5d1efa",
             "Value": {
                 "id": "97128cd0-69e6-485f-a82d-ef566ca9c9dd",
