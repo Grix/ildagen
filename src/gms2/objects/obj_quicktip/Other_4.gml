@@ -1,3 +1,6 @@
+if (ds_list_find_index(controller.quicktip_closed_list, tip_id) != -1)
+	instance_destroy();
+
 var t_close = false;
 ini_open("settings.ini");
 	if (ini_read_real("quicktips", "tip_viewed_"+string(tip_id), 0))
@@ -5,7 +8,10 @@ ini_open("settings.ini");
 ini_close();
 
 if (t_close)
+{
+	ds_list_add(controller.quicktip_closed_list, tip_id);
 	instance_destroy();
+}
 
 width = 400;
 height = ceil(string_width(message)/400)*20;
@@ -20,3 +26,5 @@ button_x1 = button_ok_x1-200;
 button_x2 = button_ok_x2-200;
 button_y1 = button_ok_y1;
 button_y2 = button_ok_y2;
+
+yprev = y;

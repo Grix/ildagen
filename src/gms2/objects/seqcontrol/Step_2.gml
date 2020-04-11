@@ -71,6 +71,9 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 	tlthird = tlh/3;
 	timeline_surf_length = 0;
 	
+	if (instance_exists(inst_quicktip_seq))
+		inst_quicktip_seq.y = camera_get_view_y(view_camera[1])+250;
+	
 	free_scalable_surfaces();
 }
 

@@ -27,6 +27,9 @@ if (os_browser == browser_not_a_browser)
     directory_create("temp");
 }
 
+if (!file_exists("settings.ini"))
+	file_copy("settings_default.ini", "settings.ini");
+
 log("save location:",FStemp);
 
 // Dialog module settings
@@ -339,6 +342,8 @@ projectfps = 30;
 fpsmultiplier = 1;
 endx = 0;
 endy = 0;
+
+quicktip_closed_list = ds_list_create();
 
 shapefunc_cp = 100;
 shapefunc_string_x = "";

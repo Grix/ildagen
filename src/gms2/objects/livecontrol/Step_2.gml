@@ -63,6 +63,9 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 	//camera_set_view_pos(view_camera[6], 987, camera_get_view_y(view_camera[0])+view_yport[6]-view_hport[3]);
 	tlw = view_wport[1];
 	
+	if (instance_exists(inst_quicktip_live))
+		inst_quicktip_live.y = camera_get_view_y(view_camera[1])+150;
+	
 	free_scalable_surfaces();
 }
 
