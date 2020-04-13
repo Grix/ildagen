@@ -3,7 +3,7 @@ highlight_close = false;
 x = round(window_get_width()/2 - 350*controller.dpi_multiplier);
 y = round(window_get_height()/2 - 200*controller.dpi_multiplier);
 
-if (window_mouse_get_x() >= (x+660*controller.dpi_multiplier)) && (window_mouse_get_x() <= (x+700*controller.dpi_multiplier)) && (window_mouse_get_y() >= y-10) && (window_mouse_get_y() <= (y+20*controller.dpi_multiplier))
+if (window_mouse_get_x() >= (x+660*controller.dpi_multiplier)) && (window_mouse_get_x() <= (x+700*controller.dpi_multiplier)) && (window_mouse_get_y() >= y-10*controller.dpi_multiplier) && (window_mouse_get_y() <= (y+20*controller.dpi_multiplier))
 {
     controller.tooltip = "Click to close advertisement.";
     highlight_close = true;

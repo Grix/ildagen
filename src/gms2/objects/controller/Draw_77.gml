@@ -37,7 +37,7 @@ if (tooltip != "")
     {
         draw_set_alpha(0.8);
         draw_set_color(c_black);
-        draw_rectangle(0,view_yport[4],string_width(tooltip)*dpi_multiplier+20,string_height(tooltip)*dpi_multiplier+10+23,0);
+        draw_rectangle(0,view_yport[4],string_width(tooltip)*dpi_multiplier+20,string_height(tooltip)*dpi_multiplier+10+view_hport[3],0);
         draw_set_color(c_white);
         draw_set_alpha(1);
         draw_text_transformed(5,5+view_yport[4],tooltip, dpi_multiplier, dpi_multiplier, 0);

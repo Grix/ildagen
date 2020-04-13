@@ -2,14 +2,14 @@ if (room != rm_ilda) exit;
 if (instance_exists(obj_dropdown))
     exit;
 	
-var t_mouse_x = window_mouse_get_x();
-var t_mouse_y = window_mouse_get_y()-23;
+var t_mouse_x = mouse_x;
+var t_mouse_y = mouse_y-camera_get_view_y(view_camera[4]);
 
 if ((t_mouse_x > view_wport[4]+30) or (t_mouse_y > view_wport[4]+30)) and (placing_status != 2) or (!ds_list_empty(semaster_list) and (
-((t_mouse_x == clamp(t_mouse_x,rectxmin-2,rectxmax+2)) and (t_mouse_y == clamp(t_mouse_y,rectymin-2,rectymax+2)))
-or ((t_mouse_x == clamp(t_mouse_x,anchorx/$ffff*view_wport[4]-10,anchorx/$ffff*view_wport[4]+10)) and (t_mouse_y == clamp(t_mouse_y,anchory/$ffff*view_wport[4]-10,anchory/$ffff*view_wport[4]+10)))
-or ((t_mouse_x == clamp(t_mouse_x,rectxmin-20,rectxmin-2)) and (t_mouse_y == clamp(t_mouse_y,rectymax+2,rectymax+20)))
-or ((t_mouse_x == clamp(t_mouse_x,rectxmax+2,rectxmax+20)) and (t_mouse_y == clamp(t_mouse_y,rectymax+2,rectymax+20)))
+((t_mouse_x == clamp(t_mouse_x,rectxmin-2*dpi_multiplier,rectxmax+2*dpi_multiplier)) and (t_mouse_y == clamp(t_mouse_y,rectymin-2*dpi_multiplier,rectymax+2*dpi_multiplier)))
+or ((t_mouse_x == clamp(t_mouse_x,anchorx/$ffff*view_wport[4]-10*dpi_multiplier,anchorx/$ffff*view_wport[4]+10*dpi_multiplier)) and (t_mouse_y == clamp(t_mouse_y,anchory/$ffff*view_wport[4]-10*dpi_multiplier,anchory/$ffff*view_wport[4]+10*dpi_multiplier)))
+or ((t_mouse_x == clamp(t_mouse_x,rectxmin-20*dpi_multiplier,rectxmin-2*dpi_multiplier)) and (t_mouse_y == clamp(t_mouse_y,rectymax+2*dpi_multiplier,rectymax+20*dpi_multiplier)))
+or ((t_mouse_x == clamp(t_mouse_x,rectxmax+2*dpi_multiplier,rectxmax+20*dpi_multiplier)) and (t_mouse_y == clamp(t_mouse_y,rectymax+2*dpi_multiplier,rectymax+20*dpi_multiplier)))
 ))
 {
     placing_status = 0;

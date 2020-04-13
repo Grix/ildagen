@@ -58,19 +58,29 @@ else if (placing == "wave")
     if (anienable)
     {
         if (maxframes > 1)
+		{
             wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,frame/(maxframes-1)));
+			wave_amp_r = lerp(wave_amp,aniwave_amp,frame/(maxframes-1));
+		}
         else
+		{
             wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,frame/63));
+			wave_amp_r = lerp(wave_amp,aniwave_amp,frame/63);
+		}
     }
     else
+	{
         wave_offset_r = wave_offset;
+		wave_amp_r = wave_amp;
+	}
     
     for (i = 0; i < cp; i++)
     {
         ratiox = sin(degtorad(point_direction(t_startx,t_starty,t_endx,t_endy)));
         ratioy = cos(degtorad(point_direction(t_startx,t_starty,t_endx,t_endy)));
-        pointx[i] = t_startx+vector[0]*i+wave_amp*sin(wave_offset_r+ pi*2/(cp-1)*i*wave_period)*ratiox/128;
-        pointy[i] = t_starty+vector[1]*i+wave_amp*sin(wave_offset_r+ pi*2/(cp-1)*i*wave_period)*ratioy/128;
+        pointx[i] = t_startx+vector[0]*i+wave_amp_r*2*sin(wave_offset_r+ pi*2/(cp-1)*i*wave_period)*ratiox/128;
+        pointy[i] = t_starty+vector[1]*i+wave_amp_r*2*sin(wave_offset_r+ pi*2/(cp-1)*i*wave_period)*ratioy/128;
+		// todo the amplitude is a little bit off, fix
     }
     for (i = 0; i < (cp-1); i++)
         draw_line(pointx[i],pointy[i],pointx[i+1],pointy[i+1]);
@@ -106,16 +116,19 @@ else if (placing == "free")
 }
 else if (placing == "curve")
 {
+	
     if (placing_status == 1)
     {
         draw_line(t_startx,t_starty,t_endx,t_endy);
     }
     else
     {
-        if  (point_distance(window_mouse_get_x(), window_mouse_get_y()-23,ds_list_find_value(bez_list,2)/$ffff*view_wport[4],ds_list_find_value(bez_list,3)/$ffff*view_wport[4]) < 7) or
-			(point_distance(window_mouse_get_x(), window_mouse_get_y()-23,ds_list_find_value(bez_list,4)/$ffff*view_wport[4],ds_list_find_value(bez_list,5)/$ffff*view_wport[4]) < 7) or
-			(point_distance(window_mouse_get_x(), window_mouse_get_y()-23,ds_list_find_value(bez_list,0)/$ffff*view_wport[4],ds_list_find_value(bez_list,1)/$ffff*view_wport[4]) < 7) or
-			(point_distance(window_mouse_get_x(), window_mouse_get_y()-23,ds_list_find_value(bez_list,6)/$ffff*view_wport[4],ds_list_find_value(bez_list,7)/$ffff*view_wport[4]) < 7)
+		var t_mouse_y = (mouse_y - camera_get_view_y(view_camera[4]));
+		var t_mouse_x = (mouse_x - camera_get_view_x(view_camera[4]));
+        if  (point_distance(t_mouse_x,  t_mouse_y, ds_list_find_value(bez_list,2)/$ffff*view_wport[4], ds_list_find_value(bez_list,3)/$ffff*view_wport[4]) < 7*controller.dpi_multiplier) or
+			(point_distance(t_mouse_x,  t_mouse_y, ds_list_find_value(bez_list,4)/$ffff*view_wport[4], ds_list_find_value(bez_list,5)/$ffff*view_wport[4]) < 7*controller.dpi_multiplier) or
+			(point_distance(t_mouse_x,  t_mouse_y, ds_list_find_value(bez_list,0)/$ffff*view_wport[4], ds_list_find_value(bez_list,1)/$ffff*view_wport[4]) < 7*controller.dpi_multiplier) or
+			(point_distance(t_mouse_x,  t_mouse_y, ds_list_find_value(bez_list,6)/$ffff*view_wport[4], ds_list_find_value(bez_list,7)/$ffff*view_wport[4]) < 7*controller.dpi_multiplier)
         {
             tooltip = "Click and drag to adjust curve."
         }
@@ -150,29 +163,29 @@ else if (placing == "curve")
         }
         
         draw_set_color(c_green);
-        draw_rectangle(	ds_list_find_value(bez_list,0)/$ffff*view_wport[4]-2,
-						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,1)/$ffff*view_wport[4]-2,
-						ds_list_find_value(bez_list,0)/$ffff*view_wport[4]+2,
-						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,1)/$ffff*view_wport[4]+2,0);
-        draw_rectangle(	ds_list_find_value(bez_list,2)/$ffff*view_wport[4]-2,
-						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,3)/$ffff*view_wport[4]-2,
-						ds_list_find_value(bez_list,2)/$ffff*view_wport[4]+2,
-						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,3)/$ffff*view_wport[4]+2,0);
-        draw_rectangle(	ds_list_find_value(bez_list,4)/$ffff*view_wport[4]-2,
-						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,5)/$ffff*view_wport[4]-2,
-						ds_list_find_value(bez_list,4)/$ffff*view_wport[4]+2,
-						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,5)/$ffff*view_wport[4]+2,0);
-        draw_rectangle(	ds_list_find_value(bez_list,6)/$ffff*view_wport[4]-2,
-						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,7)/$ffff*view_wport[4]-2,
-						ds_list_find_value(bez_list,6)/$ffff*view_wport[4]+2,
-						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,7)/$ffff*view_wport[4]+2,0); 
-        draw_line(	ds_list_find_value(bez_list,0)/$ffff*view_wport[4],
+        draw_rectangle(	ds_list_find_value(bez_list,0)/$ffff*view_wport[4]-2*dpi_multiplier,
+						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,1)/$ffff*view_wport[4]-2*dpi_multiplier,
+						ds_list_find_value(bez_list,0)/$ffff*view_wport[4]+2*dpi_multiplier,
+						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,1)/$ffff*view_wport[4]+2*dpi_multiplier,0);
+        draw_rectangle(	ds_list_find_value(bez_list,2)/$ffff*view_wport[4]-2*dpi_multiplier,
+						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,3)/$ffff*view_wport[4]-2*dpi_multiplier,
+						ds_list_find_value(bez_list,2)/$ffff*view_wport[4]+2*dpi_multiplier,
+						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,3)/$ffff*view_wport[4]+2*dpi_multiplier,0);
+        draw_rectangle(	ds_list_find_value(bez_list,4)/$ffff*view_wport[4]-2*dpi_multiplier,
+						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,5)/$ffff*view_wport[4]-2*dpi_multiplier,
+						ds_list_find_value(bez_list,4)/$ffff*view_wport[4]+2*dpi_multiplier,
+						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,5)/$ffff*view_wport[4]+2*dpi_multiplier,0);
+        draw_rectangle(	ds_list_find_value(bez_list,6)/$ffff*view_wport[4]-2*dpi_multiplier,
+						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,7)/$ffff*view_wport[4]-2*dpi_multiplier,
+						ds_list_find_value(bez_list,6)/$ffff*view_wport[4]+2*dpi_multiplier,
+						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,7)/$ffff*view_wport[4]+2*dpi_multiplier,0); 
+        draw_line_width(	ds_list_find_value(bez_list,0)/$ffff*view_wport[4],
 					camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,1)/$ffff*view_wport[4],
 					ds_list_find_value(bez_list,2)/$ffff*view_wport[4],
-					camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,3)/$ffff*view_wport[4]);
-        draw_line(	ds_list_find_value(bez_list,4)/$ffff*view_wport[4],
+					camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,3)/$ffff*view_wport[4], dpi_multiplier);
+        draw_line_width(	ds_list_find_value(bez_list,4)/$ffff*view_wport[4],
 					camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,5)/$ffff*view_wport[4],
 					ds_list_find_value(bez_list,6)/$ffff*view_wport[4],
-					camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,7)/$ffff*view_wport[4]);
+					camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,7)/$ffff*view_wport[4], dpi_multiplier);
     }
 }

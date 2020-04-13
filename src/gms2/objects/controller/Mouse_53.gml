@@ -34,11 +34,8 @@ if (mouse_y < 0)
     exit;
 }
 
-if (instance_exists(obj_dropdown)) or (window_mouse_get_x() > view_wport[4]) or (window_mouse_get_y()-23 > view_wport[4]) or (keyboard_check_control() or (placing == "select"))
+if (instance_exists(obj_dropdown)) or (window_mouse_get_x() > view_wport[4]) or (mouse_y-camera_get_view_y(view_camera[4]) > view_wport[4]) or (keyboard_check_control() or (placing == "select"))
     exit;
-
-var t_mouse_x = window_mouse_get_x();
-var t_mouse_y = window_mouse_get_y()-23;
 
 if (!ds_list_empty(semaster_list) && handle_trans())
     exit;
@@ -54,7 +51,7 @@ if ((keyboard_check(ord("E"))) and (placing_status != 2))
     exit;
 }
 
-if ((window_mouse_get_x() > view_wport[4]+3) or (window_mouse_get_y()-23 > view_wport[4]+3)) and (placing_status != 2)
+if ((window_mouse_get_x() > view_wport[4]+3) or (window_mouse_get_y()-view_hport[3] > view_wport[4]+3)) and (placing_status != 2)
 {
     placing_status = 0;
     ds_list_clear(free_list);
@@ -91,15 +88,15 @@ if (placing_status == 0)
     
 else if (placing_status == 2) and (placing == "curve")
 {
-    if (point_distance(window_mouse_get_x(), window_mouse_get_y()-23,ds_list_find_value(bez_list,2)/$ffff*view_wport[4],ds_list_find_value(bez_list,3)/$ffff*view_wport[4]) < 7)
+    if (point_distance(mouse_x, mouse_y-camera_get_view_y(view_camera[4]),ds_list_find_value(bez_list,2)/$ffff*view_wport[4],ds_list_find_value(bez_list,3)/$ffff*view_wport[4]) < 7*dpi_multiplier)
         bez_moving = 1;
-    else if (point_distance(window_mouse_get_x(), window_mouse_get_y()-23,ds_list_find_value(bez_list,4)/$ffff*view_wport[4],ds_list_find_value(bez_list,5)/$ffff*view_wport[4]) < 7)
+    else if (point_distance(mouse_x, mouse_y-camera_get_view_y(view_camera[4]),ds_list_find_value(bez_list,4)/$ffff*view_wport[4],ds_list_find_value(bez_list,5)/$ffff*view_wport[4]) < 7*dpi_multiplier)
         bez_moving = 2;
-    if (point_distance(window_mouse_get_x(), window_mouse_get_y()-23,ds_list_find_value(bez_list,0)/$ffff*view_wport[4],ds_list_find_value(bez_list,1)/$ffff*view_wport[4]) < 7)
+    if (point_distance(mouse_x, mouse_y-camera_get_view_y(view_camera[4]),ds_list_find_value(bez_list,0)/$ffff*view_wport[4],ds_list_find_value(bez_list,1)/$ffff*view_wport[4]) < 7*dpi_multiplier)
         bez_moving = 3;
-    else if (point_distance(window_mouse_get_x(), window_mouse_get_y()-23,ds_list_find_value(bez_list,6)/$ffff*view_wport[4],ds_list_find_value(bez_list,7)/$ffff*view_wport[4]) < 7)
+    else if (point_distance(mouse_x, mouse_y-camera_get_view_y(view_camera[4]),ds_list_find_value(bez_list,6)/$ffff*view_wport[4],ds_list_find_value(bez_list,7)/$ffff*view_wport[4]) < 7*dpi_multiplier)
         bez_moving = 4;
-    mouse_yprevious = t_mouse_y;
-    mouse_xprevious = t_mouse_x;
+    mouse_yprevious = window_mouse_get_y();
+    mouse_xprevious = window_mouse_get_x();
 }
 

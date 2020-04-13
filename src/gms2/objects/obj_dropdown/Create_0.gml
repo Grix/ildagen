@@ -29,7 +29,7 @@ hl_list = ds_list_create();
 font = fnt_tooltip;
 
 //size
-total_width = 200*controller.dpi_multiplier;
+total_width = 200*controller.dpi_multiplier; //default
 item_padding = 8*controller.dpi_multiplier;        //space around each item
 highlight_padding = 3*controller.dpi_multiplier;   //extra padding for highlight indicator
 highlight_rad = 4*controller.dpi_multiplier;       //Radius for round rect highlight

@@ -1,4 +1,4 @@
-if (view_current != 4)
+if (room != rm_ilda || view_current != 4 || y > view_wport[4] || (y == mouse_y-camera_get_view_y(view_camera[4]) && x == mouse_x))
     exit;
 
 if (controller.scrollcursor_flag == 1)
@@ -36,4 +36,4 @@ else
         image_index = 6;
 }
    
-draw_sprite(sprite_index, image_index, x, y+camera_get_view_y(view_camera[4]));
+draw_sprite_ext(sprite_index, image_index, x, y+camera_get_view_y(view_camera[4]), controller.dpi_multiplier, controller.dpi_multiplier, 0, c_white, 1);

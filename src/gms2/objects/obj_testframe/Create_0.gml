@@ -1,4 +1,5 @@
 highlight = 0;
+text="";
 
 if (controller.preview_testframe == 0)
     testframe_usetestframe();

@@ -37,8 +37,8 @@ if (room == rm_ilda) && (keyboard_check(ord("Z")) && !keyboard_check_control())
 	obj_cursor.y = mouse_y-camera_get_view_y(view_camera[4]);
 	view_visible[5] = true;
 	view_xport[5] = clamp(window_mouse_get_x()-128, 0, view_wport[4]-256);
-	view_yport[5] = clamp(window_mouse_get_y()-23-128, 0, view_wport[4]-256);
-	camera_set_view_pos(view_camera[5], window_mouse_get_x()-24, camera_get_view_y(view_camera[4])+window_mouse_get_y()-23-24);
+	view_yport[5] = clamp(window_mouse_get_y()-view_hport[3]-128, 0, view_wport[4]-256);
+	camera_set_view_pos(view_camera[5], window_mouse_get_x()-24, camera_get_view_y(view_camera[4])+window_mouse_get_y()-view_hport[3]-24);
 }
 else
 {
@@ -76,7 +76,7 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 	
 	//surface_resize(application_surface, t_windowwidth, t_windowheight);
 		
-	log("Resized window");
+	log("Rescaled window views");
 	forceresize = false;
 	
 	view_hport[3] = 23*dpi_multiplier;
@@ -234,6 +234,7 @@ if (ds_list_size(el_list) > 0)
 	// snap to closest edge
     else if (keyboard_check(ord("Q")))
     {
+		// todo fix
         nearestdist = 32;
         for (i = 0;i < ds_list_size(el_list);i++)
         {
@@ -284,8 +285,8 @@ if !ds_list_empty(semaster_list)
     }
 }
 
-if	(window_mouse_get_x() == clamp(window_mouse_get_x(),0,view_wport[4])) && 
-	(window_mouse_get_y()-23  == clamp(window_mouse_get_y()-23,0,view_wport[4])) &&
+if	(mouse_x == clamp(mouse_x,0,view_wport[4])) && 
+	(mouse_y-camera_get_view_y(view_camera[4]) == clamp(mouse_y-camera_get_view_y(view_camera[4]),0,view_wport[4])) &&
 	(mouse_check_button_pressed(mb_right)) && (canrightclick)
 		dropdown_empty();
     

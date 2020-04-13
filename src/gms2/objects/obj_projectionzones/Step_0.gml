@@ -567,7 +567,7 @@ else
         }
 		else if (mode == 1)
 		{
-			if (point_distance(	window_mouse_get_x(), window_mouse_get_y()-23,
+			if (point_distance(	mouse_x, mouse_y,
 								x+controller.scale_left_top/$ffff*256, y+controller.scale_top_left/$ffff*256) < 6)
 			{
 				controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
@@ -579,7 +579,7 @@ else
 	            }
 	            exit;
 			}
-			else if (point_distance(	window_mouse_get_x(), window_mouse_get_y()-23,
+			else if (point_distance(	mouse_x, mouse_y,
 								x+controller.scale_right_top/$ffff*256, y+controller.scale_top_right/$ffff*256) < 6)
 			{
 				controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
@@ -591,7 +591,7 @@ else
 	            }
 	            exit;
 			}
-			else if (point_distance(	window_mouse_get_x(), window_mouse_get_y()-23,
+			else if (point_distance(	mouse_x, mouse_y,
 								x+controller.scale_left_bottom/$ffff*256, y+controller.scale_bottom_left/$ffff*256) < 6)
 			{
 				controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
@@ -603,7 +603,7 @@ else
 	            }
 	            exit;
 			}
-			else if (point_distance(	window_mouse_get_x(), window_mouse_get_y()-23,
+			else if (point_distance(	mouse_x, mouse_y,
 								x+controller.scale_right_bottom/$ffff*256, y+controller.scale_bottom_right/$ffff*256) < 6)
 			{
 				controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";

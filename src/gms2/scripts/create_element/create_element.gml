@@ -574,7 +574,7 @@ else
             color_period_r = color_period//lerp(color_period,anicolor_period,t);
             color_dc_r = lerp(color_dc,anicolor_dc,t);
             color_offset_r = degtorad(lerp(color_offset,anicolor_offset,t));
-            wave_period_r = wave_period//lerp(color_period,anicolor_period,t);
+            wave_period_r = wave_period;//lerp(color_period,anicolor_period,t);
             wave_amp_r = lerp(wave_amp,aniwave_amp,t);
             wave_offset_r = degtorad(lerp(wave_offset,aniwave_offset,t));
             color1_r = merge_color(color1,anicolor1,t);

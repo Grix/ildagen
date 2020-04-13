@@ -1,5 +1,5 @@
 version = "1.8.4";
-versiondate = "2020-04-09";
+versiondate = "2020-04-12";
 
 if (debug_mode)
 {
@@ -44,7 +44,7 @@ application_surface_enable(false);
 draw_set_font(fnt_tooltip);
 draw_set_color(c_black);
 
-instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-23, "foreground", obj_cursor);
+instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-view_hport[3], "foreground", obj_cursor);
 
 varmap = ds_map_create();
 //shape function
@@ -182,7 +182,7 @@ tlw = 512;
 tlh = 42;
 tlorigo_x = 0;
 tlorigo_y = 515;
-dpi_multiplier = ceil(display_get_height()/1900);
+dpi_multiplier = ceil(display_get_height()/900);
 default_window_w = 1350*dpi_multiplier;
 default_window_h = 735*dpi_multiplier;
 log("window size", default_window_w, default_window_h);

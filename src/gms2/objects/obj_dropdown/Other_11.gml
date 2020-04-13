@@ -7,6 +7,14 @@ item_height = font_get_size(font)+item_padding*2;
 //calculate offsets to keep box on screen
 total_height = round(item_height*num);
 
+for (var t_i = 0; t_i < ds_list_size(desc_list); t_i++)
+{
+	if (string_width(desc_list[| t_i])*controller.dpi_multiplier+item_padding+20 > total_width)
+	{
+		total_width = string_width(desc_list[| t_i])*controller.dpi_multiplier+item_padding+20;
+	}
+}
+
 
 if(x < 0)
 {

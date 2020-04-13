@@ -8,13 +8,13 @@ if (argument_count == 0)
 {
     update_colors_scalesettings();
         
-    with (obj_profiles)
-        surface_free(surf_profilelist);
+	if (instance_exists(obj_profiles))
+		surface_free(obj_profiles.surf_profilelist);
 }
 else if (!argument[0])
 { 
     update_colors_scalesettings();
     
-    with (obj_profiles)
-        surface_free(surf_profilelist);
+	if (instance_exists(obj_profiles))
+		surface_free(obj_profiles.surf_profilelist);
 }

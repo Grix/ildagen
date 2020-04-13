@@ -36,7 +36,7 @@ repeat (10000)
 {
     x++;
     y++;
-    if (point_in_rectangle(window_mouse_get_x(), window_mouse_get_y()-23,bbox_left,bbox_top,bbox_right,bbox_bottom))
+    if (point_in_rectangle(window_mouse_get_x(), window_mouse_get_y()-view_hport[3],bbox_left,bbox_top,bbox_right,bbox_bottom))
         i++;
 }
 log(get_timer()-time2);
