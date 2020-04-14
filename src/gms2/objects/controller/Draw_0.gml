@@ -146,10 +146,10 @@ if (view_current == 4 || view_current == 5)
         if !(ds_list_empty(semaster_list))
         {
             
-            draw_sprite(spr_anchor,0,round(anchorx/t_scale), round(t_y+anchory/t_scale));
+            draw_sprite_ext(spr_anchor,0,round(anchorx/t_scale), round(t_y+anchory/t_scale), dpi_multiplier, dpi_multiplier, 0, c_white, 1);
             draw_set_alpha(0.6);
-            draw_sprite(spr_rotate,0,clamp(rectxmin/t_scale, 22, view_wport[4]), clamp(t_y+rectymax/t_scale, t_y, t_y+view_wport[4]-22));
-            draw_sprite(spr_resize,0,clamp(rectxmax/t_scale, 0, view_wport[4]-22), clamp(t_y+rectymax/t_scale, t_y, t_y+view_wport[4]-22));
+            draw_sprite_ext(spr_rotate,0,clamp(rectxmin/t_scale, 22, view_wport[4]), clamp(t_y+rectymax/t_scale, t_y, t_y+view_wport[4]-22), dpi_multiplier, dpi_multiplier, 0, c_white, 1);
+            draw_sprite_ext(spr_resize,0,clamp(rectxmax/t_scale, 0, view_wport[4]-22), clamp(t_y+rectymax/t_scale, t_y, t_y+view_wport[4]-22), dpi_multiplier, dpi_multiplier, 0, c_white, 1);
             draw_set_alpha(1);
             
             draw_rectangle(rectxmin/t_scale, t_y+rectymin/t_scale, rectxmax/t_scale, t_y+rectymax/t_scale,1);
@@ -196,10 +196,10 @@ if (view_current == 4 || view_current == 5)
                 draw_rectangle(xp1/t_scale, t_y+yp1/t_scale, xp2/t_scale, t_y+yp2/t_scale,1);
                 
 				draw_set_alpha(0.4);
-                draw_line(xpnew1/t_scale, t_y+ypnew1/t_scale, xpnew3/t_scale, t_y+ypnew3/t_scale);
-                draw_line(xpnew2/t_scale, t_y+ypnew2/t_scale, xpnew3/t_scale, t_y+ypnew3/t_scale);
-                draw_line(xpnew2/t_scale, t_y+ypnew2/t_scale, xpnew4/t_scale, t_y+ypnew4/t_scale);
-                draw_line(xpnew4/t_scale, t_y+ypnew4/t_scale, xpnew1/t_scale, t_y+ypnew1/t_scale);
+                draw_line_width(xpnew1/t_scale, t_y+ypnew1/t_scale, xpnew3/t_scale, t_y+ypnew3/t_scale, dpi_multiplier);
+                draw_line_width(xpnew2/t_scale, t_y+ypnew2/t_scale, xpnew3/t_scale, t_y+ypnew3/t_scale, dpi_multiplier);
+                draw_line_width(xpnew2/t_scale, t_y+ypnew2/t_scale, xpnew4/t_scale, t_y+ypnew4/t_scale, dpi_multiplier);
+                draw_line_width(xpnew4/t_scale, t_y+ypnew4/t_scale, xpnew1/t_scale, t_y+ypnew1/t_scale, dpi_multiplier);
             
                 if (objmoving == 1)
                 {
@@ -221,31 +221,32 @@ if (view_current == 4 || view_current == 5)
     draw_set_font(fnt_tooltip);
     
         draw_set_color(c_ltgray);
-        draw_text(12, t_y+view_wport[4]-20, "Frame: "+string(frame+1)+"/"+string(maxframes));
+        draw_text_transformed(12, t_y+view_wport[4]-20*dpi_multiplier, "Frame: "+string(frame+1)+"/"+string(maxframes), dpi_multiplier, dpi_multiplier, 0);
         
-        draw_text(12,t_y+7,"FPS: "+string(projectfps/controller.fpsmultiplier));
+        draw_text_transformed(12,t_y+7,"FPS: "+string(projectfps/controller.fpsmultiplier), dpi_multiplier, dpi_multiplier, 0);
         if (playing && (fps != projectfps/fpsmultiplier) && laseron)
         {
             draw_set_color(c_red);
-            draw_text(32,t_y+7,"Warning: Dropping frames. Actual FPS: "+string(fps));
+            draw_text_transformed(32*dpi_multiplier, t_y+7,"Warning: Dropping frames. Actual FPS: "+string(fps), dpi_multiplier, dpi_multiplier, 0);
         }
         
+		
         if (frame_complexity == 1)
             draw_set_color(c_red);
         else if (frame_complexity == 2)
             draw_set_color(c_orange);
         else 
             draw_set_color(c_ltgray);
-        draw_text(view_wport[4]-70, t_y+view_wport[4]-20, "Points: "+string(framepoints));
+        draw_text_transformed(view_wport[4]-70*dpi_multiplier, t_y+view_wport[4]-20*dpi_multiplier, "Points: "+string(framepoints), dpi_multiplier, dpi_multiplier, 0);
         
         if (!anienable) && (maxframes < 2)
             draw_set_color(c_gray);
         else 
             draw_set_color(c_ltgray);
         if (scope_start == 0) && (scope_end == maxframes-1)
-            draw_text(view_wport[4]/2-34, t_y+view_wport[4]-20, "Scope: All frames");
+            draw_text_transformed(view_wport[4]/2-34*dpi_multiplier, t_y+view_wport[4]-20*dpi_multiplier, "Scope: All frames", dpi_multiplier, dpi_multiplier, 0);
         else
-            draw_text(view_wport[4]/2-34, t_y+view_wport[4]-20, "Scope: "+string(scope_start+1)+" - "+string(scope_end+1));
+            draw_text_transformed(view_wport[4]/2-34*dpi_multiplier, t_y+view_wport[4]-20*dpi_multiplier, "Scope: "+string(scope_start+1)+" - "+string(scope_end+1), dpi_multiplier, dpi_multiplier, 0);
 			
 	draw_set_color(c_black);
 	draw_set_alpha(1);

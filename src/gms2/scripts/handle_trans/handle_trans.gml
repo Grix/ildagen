@@ -90,8 +90,8 @@ else if !(keyboard_check_control()) and (!object_select_hovering)
 	var t_rotatey = clamp(rectymax/$ffff*t_wport4, 0, t_wport4-22);
 	
 	
-    if	(t_mouse_x == clamp(t_mouse_x, anchorx/$ffff*t_wport4-10, anchorx/$ffff*t_wport4+10)) and 
-		(t_mouse_y == clamp(t_mouse_y, anchory/$ffff*t_wport4-10, anchory/$ffff*t_wport4+10))
+    if	(t_mouse_x == clamp(t_mouse_x, anchorx/$ffff*t_wport4-10*dpi_multiplier, anchorx/$ffff*t_wport4+10*dpi_multiplier)) and 
+		(t_mouse_y == clamp(t_mouse_y, anchory/$ffff*t_wport4-10*dpi_multiplier, anchory/$ffff*t_wport4+10*dpi_multiplier))
     {
         tooltip = "Click and drag to move the rotation/scaling anchor point.\nRight click to move to center of object.";
 		if (mouse_check_button_pressed(mb_left)) 
@@ -126,10 +126,10 @@ else if !(keyboard_check_control()) and (!object_select_hovering)
             dropdown_object();
         }
     }
-    else if (t_mouse_x > t_rotatex-20 &&
-			 t_mouse_x < t_rotatex-2 &&
-			 t_mouse_y > t_rotatey+2 &&
-			 t_mouse_y < t_rotatey+20)
+    else if (t_mouse_x > t_rotatex-20*dpi_multiplier &&
+			 t_mouse_x < t_rotatex-2*dpi_multiplier &&
+			 t_mouse_y > t_rotatey+2*dpi_multiplier &&
+			 t_mouse_y < t_rotatey+20*dpi_multiplier)
     {
         tooltip = "Click and drag to rotate the selected object around the anchor.\nIf animation is enabled, the rotation will be animated.\nRight click to enter precise rotation amount.";
 		if (mouse_check_button_pressed(mb_left)) 
@@ -151,10 +151,10 @@ else if !(keyboard_check_control()) and (!object_select_hovering)
             ilda_dialog_num("anirot","Enter the amount of degrees to rotate.",0);
         }
     }
-    else if (t_mouse_x > t_resizex+2 &&
-			 t_mouse_x < t_resizex+20 &&
-			 t_mouse_y > t_resizey+2 &&
-			 t_mouse_y < t_resizey+20)
+    else if (t_mouse_x > t_resizex+2*dpi_multiplier &&
+			 t_mouse_x < t_resizex+20*dpi_multiplier &&
+			 t_mouse_y > t_resizey+2*dpi_multiplier &&
+			 t_mouse_y < t_resizey+20*dpi_multiplier)
     {
         tooltip = "Click and drag to resize the selected object around the anchor.\nHold Ctrl to resize X and Y the same amount.\nRight click to enter precise scaling amount.\nIf animation is enabled, the change will be animated."
 		if (mouse_check_button_pressed(mb_left)) 

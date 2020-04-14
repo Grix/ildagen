@@ -7,9 +7,10 @@ else if (controller.scrollcursor_flag == 2)
     image_index = 14;
 else
 {
-    if (room != rm_ilda) or (x > 512 or y > 512)
-        image_index = 0;
-    else if (controller.placing == "line")
+	image_index = 0;
+    //if (room != rm_ilda) or (x > view_w or y > 512)
+    //    image_index = 0;
+    /*if (controller.placing == "line")
         image_index = 1;
     else if (controller.placing == "circle")
         image_index = 2;
@@ -33,7 +34,7 @@ else
             image_index = 9;
     }
     if (keyboard_check(ord("E")) and (controller.placing_status != 2))
-        image_index = 6;
+        image_index = 6;*/
 }
    
 draw_sprite_ext(sprite_index, image_index, x, y+camera_get_view_y(view_camera[4]), controller.dpi_multiplier, controller.dpi_multiplier, 0, c_white, 1);

@@ -138,8 +138,10 @@ else if (room == rm_live)
             {
                 with (livecontrol)
                 {
-                    playing = 0;
-                    tlpos = 0;
+                    frame_surf_refresh = 1;
+					frame = 0;
+				    playing = 0;
+					selectedfile = -1;
                 }
             }
             break;

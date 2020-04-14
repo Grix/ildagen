@@ -2,7 +2,6 @@ ddobj = instance_create_layer(controller.menu_width_start[2]*controller.dpi_mult
 with (ddobj)
 {
     num = 9;
-    event_user(1);
     ds_list_add(desc_list,"Undo (Ctrl+Z)");
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,undo_ilda);
@@ -39,4 +38,5 @@ with (ddobj)
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,merge_elements);
     ds_list_add(hl_list,!ds_list_empty(controller.semaster_list));
+    event_user(1);
 }

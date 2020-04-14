@@ -1,9 +1,8 @@
 
 ddobj = instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-view_hport[3],"foreground",obj_dropdown);
 with (ddobj)
-    {
+{
     num = 4;
-    event_user(1);
     ds_list_add(desc_list,"Bright dots");
     ds_list_add(desc_list,"Medium dots");
     ds_list_add(desc_list,"Weak dots");
@@ -25,5 +24,6 @@ with (ddobj)
     else if (controller.dotmultiply == 3) highlighted = 2;
     else highlighted = 3;
     ds_list_replace(hl_list,highlighted,1);
-    }
+    event_user(1);
+}
     

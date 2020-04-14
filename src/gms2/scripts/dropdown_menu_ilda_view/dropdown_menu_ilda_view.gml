@@ -6,7 +6,6 @@ else if (room == rm_live)
 with (ddobj)
 {
     num = 5;
-    event_user(1);
     ds_list_add(desc_list,"Editor Mode" + ((room != rm_ilda) ? " (Tab)" : ""));
     ds_list_add(desc_list,"Timeline Mode" + ((room == rm_ilda && controller.last_room == rm_seq) ? " (Tab)" : ""));
 	ds_list_add(desc_list,"Live Mode" + ((room == rm_ilda && controller.last_room == rm_live) ? " (Tab)" : ""));
@@ -27,4 +26,5 @@ with (ddobj)
 	ds_list_add(hl_list,(room != rm_live));
     ds_list_add(hl_list,1);
     ds_list_add(hl_list,1);
+    event_user(1);
 }

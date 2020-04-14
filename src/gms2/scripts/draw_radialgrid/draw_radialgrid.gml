@@ -10,9 +10,9 @@ draw_circle(t_wport_half,t_wport_half,view_wport[4]/6,1);
 draw_circle(t_wport_half,t_wport_half,view_wport[4]/3,1);
 draw_circle(t_wport_half,t_wport_half,view_wport[4]/1.5,1);
 for (i = 0;i < 2*pi; i += degtorad(15))
-    draw_line(t_wport_half+view_wport[4]/12*cos(i),t_wport_half+view_wport[4]/12*sin(i),t_wport_half+view_wport[4]/1.5*cos(i),t_wport_half+view_wport[4]/1.5*sin(i));
+    draw_line_width(t_wport_half+view_wport[4]/12*cos(i),t_wport_half+view_wport[4]/12*sin(i),t_wport_half+view_wport[4]/1.5*cos(i),t_wport_half+view_wport[4]/1.5*sin(i), dpi_multiplier);
 for (i = 0;i < 2*pi; i += degtorad(45))
-    draw_line(t_wport_half,t_wport_half,t_wport_half+view_wport[4]/1.5*cos(i),t_wport_half+view_wport[4]/1.5*sin(i));
+    draw_line_width(t_wport_half,t_wport_half,t_wport_half+view_wport[4]/1.5*cos(i),t_wport_half+view_wport[4]/1.5*sin(i), dpi_multiplier);
     
 draw_set_color(c_black);
 gpu_set_blendmode(bm_normal);

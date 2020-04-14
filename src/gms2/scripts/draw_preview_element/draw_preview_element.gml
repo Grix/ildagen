@@ -36,7 +36,7 @@ var t_endx = endx/$ffff*view_wport[4];
 var t_endy = camera_get_view_y(view_camera[4])+endy/$ffff*view_wport[4];
 
 if (placing == "line")
-    draw_line(t_startx,t_starty,t_endx,t_endy);
+    draw_line_width(t_startx,t_starty,t_endx,t_endy, dpi_multiplier);
 else if (placing == "rect")
     draw_rectangle(t_startx,t_starty,t_endx,t_endy,1);
 else if (placing == "circle")
@@ -103,15 +103,16 @@ else if (placing == "wave")
 }
 else if (placing == "free")
 {
-    draw_line(	t_startx+ ds_list_find_value(free_list,0)/$ffff*view_wport[4],
-				t_starty+ ds_list_find_value(free_list,1)/$ffff*view_wport[4],
-				t_startx,t_starty);
+    draw_line_width(t_startx+ ds_list_find_value(free_list,0)/$ffff*view_wport[4],
+					t_starty+ ds_list_find_value(free_list,1)/$ffff*view_wport[4],
+					t_startx,t_starty, dpi_multiplier);
+					
     for (i=2; i < ds_list_size(free_list); i+= 2)
     {
-        draw_line(	t_startx+ ds_list_find_value(free_list,i)/$ffff*view_wport[4],
-					t_starty+ ds_list_find_value(free_list,i+1)/$ffff*view_wport[4],
-					t_startx+ ds_list_find_value(free_list,i-2)/$ffff*view_wport[4],
-					t_starty+ ds_list_find_value(free_list,i-1)/$ffff*view_wport[4]);
+        draw_line_width(t_startx+ ds_list_find_value(free_list,i)/$ffff*view_wport[4],
+						t_starty+ ds_list_find_value(free_list,i+1)/$ffff*view_wport[4],
+						t_startx+ ds_list_find_value(free_list,i-2)/$ffff*view_wport[4],
+						t_starty+ ds_list_find_value(free_list,i-1)/$ffff*view_wport[4], dpi_multiplier);
     }
 }
 else if (placing == "curve")
@@ -119,7 +120,7 @@ else if (placing == "curve")
 	
     if (placing_status == 1)
     {
-        draw_line(t_startx,t_starty,t_endx,t_endy);
+        draw_line_width(t_startx,t_starty,t_endx,t_endy, dpi_multiplier);
     }
     else
     {
@@ -156,7 +157,7 @@ else if (placing == "curve")
         {
             tx = bezier_x(i/14)/$ffff*view_wport[4];
             ty = camera_get_view_y(view_camera[4])+bezier_y(i/14)/$ffff*view_wport[4];
-            draw_line(tprevx,tprevy,tx,ty);
+            draw_line_width(tprevx,tprevy,tx,ty, dpi_multiplier);
             bezlength += point_distance(tprevx,tprevy,tx,ty)/view_wport[4]*$ffff;
             tprevx = tx;
             tprevy = ty;
@@ -180,12 +181,12 @@ else if (placing == "curve")
 						ds_list_find_value(bez_list,6)/$ffff*view_wport[4]+2*dpi_multiplier,
 						camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,7)/$ffff*view_wport[4]+2*dpi_multiplier,0); 
         draw_line_width(	ds_list_find_value(bez_list,0)/$ffff*view_wport[4],
-					camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,1)/$ffff*view_wport[4],
-					ds_list_find_value(bez_list,2)/$ffff*view_wport[4],
-					camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,3)/$ffff*view_wport[4], dpi_multiplier);
+							camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,1)/$ffff*view_wport[4],
+							ds_list_find_value(bez_list,2)/$ffff*view_wport[4],
+							camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,3)/$ffff*view_wport[4], dpi_multiplier);
         draw_line_width(	ds_list_find_value(bez_list,4)/$ffff*view_wport[4],
-					camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,5)/$ffff*view_wport[4],
-					ds_list_find_value(bez_list,6)/$ffff*view_wport[4],
-					camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,7)/$ffff*view_wport[4], dpi_multiplier);
+							camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,5)/$ffff*view_wport[4],
+							ds_list_find_value(bez_list,6)/$ffff*view_wport[4],
+							camera_get_view_y(view_camera[4])+ds_list_find_value(bez_list,7)/$ffff*view_wport[4], dpi_multiplier);
     }
 }

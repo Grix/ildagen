@@ -2,7 +2,6 @@ ddobj = instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-view_hp
 with (ddobj)
 {
     num = 6;
-    event_user(1);
     ds_list_add(desc_list,"Delete (Del)");
     ds_list_add(desc_list,"Open in frame editor");
     ds_list_add(sep_list,0);
@@ -42,4 +41,6 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,live_change_shortcut);
     ds_list_add(hl_list,1);
+	
+    event_user(1);
 }

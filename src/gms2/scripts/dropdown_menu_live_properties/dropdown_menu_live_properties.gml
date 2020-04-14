@@ -2,7 +2,6 @@ ddobj = instance_create_layer(livecontrol.menu_width_start[1]*controller.dpi_mul
 with (ddobj)
 {
     num = 3;
-    event_user(1);
     ds_list_add(desc_list,"Change FPS");
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,dd_ilda_fps);
@@ -15,4 +14,5 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,dropdown_menu_seq_settings);
     ds_list_add(hl_list,1);
+    event_user(1);
 }

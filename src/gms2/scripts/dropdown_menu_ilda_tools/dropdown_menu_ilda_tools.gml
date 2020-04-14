@@ -2,7 +2,6 @@ ddobj = instance_create_layer(controller.menu_width_start[3]*controller.dpi_mult
 with (ddobj)
 {
     num = 5;
-    event_user(1);
     ds_list_add(desc_list,"Toggle square grid (S)");
     ds_list_add(desc_list,"Toggle radial grid (R)");
     ds_list_add(desc_list,"Toggle onion skinning (O)");
@@ -23,4 +22,5 @@ with (ddobj)
     ds_list_add(hl_list,controller.onion);
     ds_list_add(hl_list,controller.guidelineshow);
     ds_list_add(hl_list,controller.bckimage);
+    event_user(1);
 }

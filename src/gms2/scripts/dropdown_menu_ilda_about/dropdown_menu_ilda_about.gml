@@ -5,7 +5,6 @@ else if (room == rm_live)
 with (ddobj)
 {
     num = 5;
-    event_user(1);
     ds_list_add(desc_list,"Info");
     ds_list_add(desc_list,"Open manual");
     ds_list_add(desc_list,"Contact developer");
@@ -26,4 +25,5 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,dd_verifyserial);
     ds_list_add(hl_list,!verify_serial(false));
+    event_user(1);
 }

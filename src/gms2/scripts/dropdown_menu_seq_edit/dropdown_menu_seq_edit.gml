@@ -1,9 +1,7 @@
-ddobj = instance_create_layer(seqcontrol.menu_width_start[2],0,"foreground",obj_dropdown);
+ddobj = instance_create_layer(seqcontrol.menu_width_start[2]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 with (ddobj)
 {
     num = 9;
-    total_width = 230;
-    event_user(1);
     ds_list_add(desc_list,"Undo (Ctrl+Z)");
     ds_list_add(sep_list,0);
     ds_list_add(scr_list,undo_seq);
@@ -40,4 +38,5 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,dd_seq_deselect);
     ds_list_add(hl_list,ds_list_size(seqcontrol.somaster_list));
+    event_user(1);
 }

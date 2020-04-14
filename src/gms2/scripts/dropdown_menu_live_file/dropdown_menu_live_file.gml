@@ -1,9 +1,7 @@
 ddobj = instance_create_layer(livecontrol.menu_width_start[0]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 with (ddobj)
 {
-    total_width = 265;
     num = 9;
-    event_user(1);
     ds_list_add(desc_list,"New grid");
     ds_list_add(desc_list,"Save grid (Ctrl-S)");
 	ds_list_add(desc_list,"Save grid as...");
@@ -40,4 +38,5 @@ with (ddobj)
     ds_list_add(sep_list,1);
     ds_list_add(scr_list,exit_confirm);
     ds_list_add(hl_list,1);
+    event_user(1);
 }

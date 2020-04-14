@@ -331,7 +331,6 @@ else if (moving_object == 8)
 		        //skip to correct frame
 		        for (j = 0; j < fetchedframe; j++)
 		        {
-					//log("skippedto", j)
 		            numofel = buffer_read(t_oldbuffer,buffer_u32);
 		            for (u = 0; u < numofel; u++)
 		            {
@@ -719,43 +718,44 @@ var tempstarty = tls-layerbary;
 var ypos = tempstarty;
 for (i = 0; i <= ds_list_size(layer_list); i++)
 {
+	if (i == ds_list_size(layer_list))
+    {
+        var mouse_on_button_ver = (mouse_y == clamp(mouse_y,ypos+8,ypos+40)) && mouse_y > tlsurf_y+tlh+16;
+		var mouseover_layer = (mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)));
+        if (mouseover_layer) 
+        {
+            mouseonsomelayer = 1;
+            controller.tooltip = "Click to create a new layer";
+            if (mouse_check_button_pressed(mb_left))
+            {
+                newlayer = ds_list_create();
+                ds_list_add(layer_list,newlayer);
+                ds_list_add(newlayer,ds_list_create()); //envelope list
+                ds_list_add(newlayer,ds_list_create()); //objects list
+                ds_list_add(newlayer,0); 
+                ds_list_add(newlayer,0);
+                ds_list_add(newlayer,"Layer "+string(controller.el_id));
+                controller.el_id++;
+                ds_list_add(newlayer,ds_list_create()); //dac list
+				timeline_surf_length = 0;
+            }
+        }
+        else
+            draw_mouseline = 1;
+				
+        ypos += t_rowheight;
+        break;
+    }
+	
     _layer = ds_list_find_value(layer_list, i); 
     
-    if (ypos > tlh+16-t_rowheight+138) and (ypos < tlsurf_y+lbsh)
+    if (ypos > tlh+16-t_rowheight+tlsurf_y) and (ypos < tlsurf_y+lbsh)
     {
         mouseonlayer = (mouse_x == clamp(mouse_x,0,tlw-16)) && (mouse_y == clamp(mouse_y,ypos,ypos+t_rowheight))
         if (mouseonlayer)
         {
             var mouse_on_button_ver = (mouse_y == clamp(mouse_y,ypos+8,ypos+40)) && mouse_y > tlsurf_y+tlh+16;
-            var mouseover_layer = (mouse_on_button_ver  and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)));
-            
-            if (i == ds_list_size(layer_list))
-            {
-                if (mouseover_layer) 
-                {
-                    mouseonsomelayer = 1;
-                    controller.tooltip = "Click to create a new layer";
-                    if (mouse_check_button_pressed(mb_left))
-                    {
-                        newlayer = ds_list_create();
-                        ds_list_add(layer_list,newlayer);
-                        ds_list_add(newlayer,ds_list_create()); //envelope list
-                        ds_list_add(newlayer,ds_list_create()); //objects list
-                        ds_list_add(newlayer,0); 
-                        ds_list_add(newlayer,0);
-                        ds_list_add(newlayer,"Layer "+string(controller.el_id));
-                        controller.el_id++;
-                        ds_list_add(newlayer,ds_list_create()); //dac list
-						timeline_surf_length = 0;
-                    }
-                }
-                else
-                    draw_mouseline = 1;
-				
-                ypos += t_rowheight;
-                break;
-            }
-                
+            var mouseover_layer = (mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-56,tlw-24)));
             var mouseover_envelope = !mouseover_layer and mouse_on_button_ver and (mouse_x == clamp(mouse_x,tlw-96,tlw-64));
             
             mouseonsomelayer = 1;
@@ -934,7 +934,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
     envelope_list = _layer[| 0];
     for (j = 0; j < ds_list_size(envelope_list); j++)
     {
-        if (ypos > tlh+16-t_env_rowheight+138) and (ypos < lbsh+138)
+        if (ypos > tlh+16-t_env_rowheight+tlsurf_y) and (ypos < lbsh+tlsurf_y)
         {
             envelope = ds_list_find_value(envelope_list,j);
             type = ds_list_find_value(envelope,0);
@@ -964,7 +964,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
             }
             
             mouseonenvelope = (mouse_y == clamp(mouse_y,ypos,ypos+t_env_rowheight)) and (mouse_x == clamp(mouse_x,0,tlw-16));
-            if (mouseonenvelope)
+			if (mouseonenvelope)
             {
                 mouseonsomelayer = 1;
                 var mouseover_delete = (mouse_y == clamp(mouse_y,ypos+8,ypos+40)) and (mouse_x == clamp(mouse_x,tlw-56,tlw-24));
