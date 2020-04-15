@@ -6,7 +6,7 @@ env_ytrans = (mastery != 0);
 env_ytrans_val = clamp(mastery, -$8000, $8000);
 env_size = 0;
 env_rotabs = (masterabsrot != pi);
-env_rotabs_val = clamp(masterabsrot, 0, pi*2);
+env_rotabs_val = clamp(masterabsrot-pi, -pi, pi);
 env_a = (masteralpha != 1);
 env_a_val = 1-clamp(masteralpha, 0, 1);
 env_hue = (masterhue != 1);

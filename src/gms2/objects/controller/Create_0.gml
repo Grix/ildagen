@@ -1,5 +1,5 @@
 version = "1.8.4";
-versiondate = "2020-04-12";
+versiondate = "2020-04-15";
 
 if (debug_mode)
 {
@@ -182,7 +182,7 @@ tlw = 512;
 tlh = 42;
 tlorigo_x = 0;
 tlorigo_y = 515;
-dpi_multiplier = ceil(display_get_height()/900);
+dpi_multiplier = ceil(display_get_height()/1700);
 default_window_w = 1350*dpi_multiplier;
 default_window_h = 735*dpi_multiplier;
 log("window size", default_window_w, default_window_h);

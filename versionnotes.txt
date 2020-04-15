@@ -1,6 +1,10 @@
-v1.8.3
-- Fixed possible corruption of live mode project file when quick-saving
-- Fixed projection blind zones not working correctly
+v1.8.4 (2020-04-15)
+- Better scaling for high-resolution displays.
+- Fix possible crashes in timeline mode when stretching object or deleting layer.
+- Fix sliders in live mode not affecting preview graphics.
+- Better support for macOS Catalina with signed and notarized app (pending release).
+- Various other minor bugfixes and improvements.
 
-v1.7.0
-- New Live Mode: Play files on the fly, for DJs and improvised shows.
+v1.8.3 (2020-02-21)
+- Fixed possible corruption of live mode project file when quick-saving.
+- Fixed projection blind zones not working correctly.
