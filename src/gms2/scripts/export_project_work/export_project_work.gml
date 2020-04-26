@@ -119,6 +119,11 @@ for (j = global.loading_current; j < global.loading_end;j++)
                 {
                     ds_list_replace(ind_list,1,ds_list_find_value(ind_list,1) + env_ytrans_val);
                 }
+				if (env_rotabs)
+	            {
+	                var t_actualanchor_x = $8000 - ds_list_find_value(ind_list,0);
+	                var t_actualanchor_y = $8000 - ds_list_find_value(ind_list,1);
+	            }
                 for (u = 10; u < 20; u++)
                 {
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));
@@ -163,6 +168,13 @@ for (j = global.loading_current; j < global.loading_end;j++)
                                                                                             colour_get_green(c),
                                                                                             colour_get_blue(c)*env_b_val));
                     }
+					if (env_rotabs)
+	                {
+	                    angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
+	                    dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
+	                    xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
+	                    yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
+	                }
                 }
             }
                     
