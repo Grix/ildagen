@@ -121,8 +121,8 @@ for (j = global.loading_current; j < global.loading_end;j++)
                 }
 				if (env_rotabs)
 	            {
-	                var t_actualanchor_x = $8000 - ds_list_find_value(ind_list,0);
-	                var t_actualanchor_y = $8000 - ds_list_find_value(ind_list,1);
+	                var t_actualanchor_x = $8000;//$8000 - ds_list_find_value(ind_list,0); TODO
+	                var t_actualanchor_y = $0;//$8000 - ds_list_find_value(ind_list,1);
 	            }
                 for (u = 10; u < 20; u++)
                 {
@@ -170,10 +170,12 @@ for (j = global.loading_current; j < global.loading_end;j++)
                     }
 					if (env_rotabs)
 	                {
-	                    angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
-	                    dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
-	                    xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
-	                    yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
+						var t_xp = ds_list_find_value(ind_list,ds_list_size(ind_list)-4);
+						var t_yp = ds_list_find_value(ind_list,ds_list_size(ind_list)-3);
+	                    angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, t_xp, t_yp));
+	                    dist = point_distance(t_actualanchor_x, t_actualanchor_y, t_xp, t_yp);
+						ds_list_replace(ind_list,ds_list_size(ind_list)-4, t_actualanchor_x+cos(env_rotabs_val-angle)*dist);
+						ds_list_replace(ind_list,ds_list_size(ind_list)-3, t_actualanchor_y+sin(env_rotabs_val-angle)*dist);
 	                }
                 }
             }

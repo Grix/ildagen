@@ -2,7 +2,6 @@ v1.8.4 (2020-04-15)
 - Better scaling for high-resolution displays.
 - Fix possible crashes in timeline mode when stretching object or deleting layer.
 - Fix sliders in live mode not affecting preview graphics.
-- Better support for macOS Catalina with signed and notarized app (pending release).
 - Various other minor bugfixes and improvements.
 
 v1.8.3 (2020-02-21)

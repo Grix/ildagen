@@ -1,4 +1,8 @@
 TODO
+- fix timeline mode envelopes, hue is cut off and rotation anchor is not center
+- add scrollbar to live mode
+- add length stretching in editor mode
+- BPM sync indicator/quantization in all modes
 - add titles etc to button sections in timeline and live mode
 - pause individual files in live
 - update web
