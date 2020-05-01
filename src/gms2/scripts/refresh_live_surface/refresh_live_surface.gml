@@ -127,7 +127,7 @@ for (j = 0; j < ds_list_size(filelist); j++)
 		        {
 					if (env_hue)
 		            {
-		                c = make_colour_hsv((colour_get_hue(c)+env_hue_val) % 255,colour_get_saturation(c),colour_get_value(c));
+		                c = make_colour_hsv((colour_get_hue(c)+env_hue_val+255) % 255,colour_get_saturation(c),colour_get_value(c));
 		            }
 		            if (env_a)
 		            {
@@ -209,7 +209,7 @@ for (j = 0; j < ds_list_size(filelist); j++)
 		        {
 					if (env_hue)
 		            {
-		                c = make_colour_hsv((colour_get_hue(c)+env_hue_val) % 255,colour_get_saturation(c),colour_get_value(c));
+		                c = make_colour_hsv((colour_get_hue(c)+env_hue_val+255) % 255,colour_get_saturation(c),colour_get_value(c));
 		            }
 		            if (env_a)
 		            {

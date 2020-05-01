@@ -982,7 +982,7 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                 else
                 {
                     controller.tooltip = "Click or drag the mouse to place points on the envelope graph.\nHold [D] and drag the mouse to delete points.\nRight click for menu.";
-                    if (mouse_check_button_pressed(mb_left))
+					if (mouse_check_button_pressed(mb_left))
                     {
                         //adding/modifying/deleting point
                         var t_xpos = round(tlx+mouse_x/tlw*tlzoom);

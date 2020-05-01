@@ -122,7 +122,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
 				if (env_rotabs)
 	            {
 	                var t_actualanchor_x = $8000;//$8000 - ds_list_find_value(ind_list,0); TODO
-	                var t_actualanchor_y = $0;//$8000 - ds_list_find_value(ind_list,1);
+	                var t_actualanchor_y = $8000;//$8000 - ds_list_find_value(ind_list,1);
 	            }
                 for (u = 10; u < 20; u++)
                 {
@@ -138,7 +138,7 @@ for (j = global.loading_current; j < global.loading_end;j++)
                     if (env_hue)
                     {
                         c = ds_list_find_value(ind_list,ds_list_size(ind_list)-1);
-                        ds_list_replace(ind_list,ds_list_size(ind_list)-1,make_colour_hsv(  (colour_get_hue(c)+env_hue_val) mod 255,
+                        ds_list_replace(ind_list,ds_list_size(ind_list)-1,make_colour_hsv(  (colour_get_hue(c)+env_hue_val+255) % 255,
                                                                                             colour_get_saturation(c),
                                                                                             colour_get_value(c)));
                     }

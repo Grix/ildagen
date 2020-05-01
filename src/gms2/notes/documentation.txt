@@ -1,5 +1,5 @@
 TODO
-- fix timeline mode envelopes, hue is cut off and rotation anchor is not center
+- fix timeline mode envelopes, rotation anchor is not center
 - add scrollbar to live mode
 - add length stretching in editor mode
 - BPM sync indicator/quantization in all modes
