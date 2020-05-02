@@ -9,6 +9,11 @@ mouse_yprevious = mouse_y;
 viewmode = 0;
 doubleclick = 0;
 filepath = "";
+scrollbary = 0;
+scrollbarw = 0;
+ypos_perm = 0;
+scrollbarwidth = 18;
+scroll_moving = 0;
 
 alarm[4] = 300;
 

@@ -44,88 +44,16 @@ if (view_current == 4)
 }
 else if (view_current == 1)
 {
-	//gpu_set_blendenable(false);
-	
-	//draw_clear(controller.c_ltltgray);
-
-	//gpu_set_blendenable(true);
-	
 	refresh_browser_grid_surface();
 	draw_browser_grid();
 	
-	var t_width = camera_get_view_width(view_camera[1]);
-	var t_ystart = camera_get_view_y(view_camera[1]);
-	var t_cells_per_row = ceil(t_width / (target_width_per_cell));
-	var t_cell_size = t_width / t_cells_per_row;
-	
-	if (highlightfile != -1)
-	{
-		var t_column = highlightfile mod t_cells_per_row;
-		var t_row = highlightfile div t_cells_per_row;
-		
-		// highlight on mouseover
-		draw_set_alpha(0.2);
-		draw_set_color(c_white);
-			draw_rectangle(t_column*t_cell_size+1, t_ystart+t_row*t_cell_size+1, t_column*t_cell_size+t_cell_size-1, t_ystart+t_row*t_cell_size+1+t_cell_size-1, 0);
-		draw_set_alpha(1);
-	}
-	
-	for (i = 0; i < ds_list_size(filelist); i++)
-	{
-		var t_column = i mod t_cells_per_row;
-		var t_row = i div t_cells_per_row;
-		objectlist = filelist[| i];
-		
-		if (objectlist[| 4])
-		{
-			draw_sprite(spr_loop, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32);
-		}
-		if (objectlist[| 5])
-		{
-			draw_sprite(spr_exclusive, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32+16);
-		}
-		if (objectlist[| 6])
-		{
-			draw_sprite(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32+32);
-		}
-		
-		// timeline
-		if (ds_list_find_value(objectlist, 0))
-		{
-			var t_positionratio = (ds_list_find_value(objectlist[| 2], 0)+1) / ds_list_find_value(objectlist[| 2], 2);
-			draw_set_color(c_green);
-			draw_rectangle(t_column*t_cell_size+1, t_ystart+t_row*t_cell_size+t_cell_size-7, t_column*t_cell_size+(t_cell_size-2)*t_positionratio, t_ystart+t_row*t_cell_size+t_cell_size-1, 0);
-		}
-		
-		if (selectedfile == i)
-		{
-			draw_set_alpha(0.3);
-			draw_set_color(controller.c_gold);
-				draw_rectangle(t_column*t_cell_size+1, t_ystart+t_row*t_cell_size+1, t_column*t_cell_size-1+t_cell_size, t_ystart+t_row*t_cell_size-1+t_cell_size, 0);
-			draw_set_alpha(1);
-		}
-		
-		if (objectlist[| 3] == -1)
-		{
-			draw_set_color(controller.c_gold);
-			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+3, "Press key...");
-		}
-		else if (objectlist[| 3] > 0)
-		{
-			draw_set_color(c_white);
-			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+3, chr(objectlist[| 3]));
-		}
-	}
 }
 else if (view_current == 0)
 {
-	
 	gpu_set_blendenable(false);
-	//draw_clear(controller.c_ltltgray);
 	
 	//separator lines
 	draw_set_color(c_white);
-	//var t_h0 = view_hport[0];
 	var t_w0 = view_wport[0];
 	var t_x0 = camera_get_view_x(view_camera[0]);
 	var t_y0 = camera_get_view_y(view_camera[0]);
@@ -135,11 +63,6 @@ else if (view_current == 0)
 	draw_line(t_x0+10, t_y0+423, t_x0+t_w0-10, t_y0+423);
 	draw_line(t_x0+10, t_y0+566, t_x0+t_w0-10, t_y0+566);
 	draw_set_color(c_black);
-	//draw_set_color(controller.c_gold);
-	//draw_line(t_x0+1, t_y0-1, t_x0+1, t_y0+t_h0+1);
-	//draw_set_color(c_black);
-	//draw_line(t_x0, t_y0-1, t_x0, t_y0+t_h0+1);
-	//draw_line(t_x0+2, t_y0-1, t_x0+2, t_y0+t_h0+1);
 	
 	with (obj_section1_parent)
 	{
@@ -159,24 +82,6 @@ else if (view_current == 0)
 	}
 	gpu_set_blendenable(true);
 }
-/*else if (view_current == 6)
-{
-	gpu_set_blendenable(false);
-	
-	//draw_clear(controller.c_ltltgray);
-	
-	//separator lines
-	var t_h6 = view_hport[6];
-	var t_x0 = camera_get_view_x(view_camera[0]);
-	var t_y6 = camera_get_view_y(view_camera[6]);
-	draw_set_color(controller.c_gold);
-	draw_line(t_x0+1, t_y6-1, t_x0+1, t_y6+t_h6+1);
-	draw_set_color(c_black);
-	draw_line(t_x0, t_y6-1, t_x0, t_y6+t_h6+1);
-	draw_line(t_x0+2, t_y6-1, t_x0+2, t_y6+t_h6+1);
-	
-	gpu_set_blendenable(true);
-}*/
 else if (view_current == 3)
 {
     //menu
@@ -184,10 +89,7 @@ else if (view_current == 3)
 	draw_set_alpha(1);
 	var t_ypos = camera_get_view_y(view_camera[3]);
 	var t_height = camera_get_view_height(view_camera[3]);
-	//gpu_set_blendenable(false);
-	//draw_clear(controller.c_ltltgray);
 	draw_line(0, t_ypos+t_height-1, view_wport[3], t_ypos+t_height-1);
-	//gpu_set_blendenable(true);
     draw_text(0,t_ypos+4,menu_string);
     if (mouse_y < 0)   
     {

@@ -1,6 +1,6 @@
 if (!surface_exists(browser_surf))
 {
-    browser_surf = surface_create(power(2, ceil(log2(camera_get_view_width(view_get_camera(1))+512))), power(2, ceil(log2(camera_get_view_height(view_get_camera(1))))));
+    browser_surf = surface_create(power(2, ceil(log2(camera_get_view_width(view_get_camera(1))))), power(2, ceil(log2(ypos_perm+camera_get_view_height(view_get_camera(1))))));
 }
 else
 	exit; // Don't need to refresh
@@ -10,8 +10,8 @@ surface_set_target(browser_surf);
 	draw_set_alpha(1);
 	draw_clear_alpha(c_white, 0);
 
-	var t_width = camera_get_view_width(view_camera[1]);
-	var t_height = camera_get_view_height(view_camera[1]);
+	var t_width = camera_get_view_width(view_camera[1])-scrollbarwidth;
+	var t_height = surface_get_height(browser_surf);
 	var t_cells_per_row = ceil(t_width / (target_width_per_cell));
 	var t_cells_per_column = ceil(t_height / (target_width_per_cell));
 	var t_cell_size = t_width / t_cells_per_row;
