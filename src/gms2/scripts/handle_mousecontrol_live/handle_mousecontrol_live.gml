@@ -37,7 +37,8 @@ var t_column;
 highlightfile = -1;
 
 // scroll
-var scrollypos = camera_get_view_y(view_camera[1])+scrollbary;
+var t_gridheight = camera_get_view_height(view_camera[1]);
+var scrollypos = camera_get_view_y(view_camera[1])+scrollbary+(scrollbary*scrollbarw/t_gridheight);
 if (mouse_y == clamp(mouse_y,scrollypos,scrollypos+scrollbarw)) && (mouse_x == clamp(mouse_x,t_width,t_width+scrollbarwidth))
 {
     controller.tooltip = "Drag to scroll the grid view.";

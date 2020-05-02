@@ -7,10 +7,6 @@ var t_ystart = camera_get_view_y(view_camera[1])-scrollbary;
 var t_cells_per_row = ceil(t_width / (target_width_per_cell));
 var t_cell_size = t_width / t_cells_per_row;
 
-/*var t_x = t_width-1;
-var t_y = camera_get_view_y(view_camera[1])-1;
-draw_line(t_x, t_y, t_x, t_y+camera_get_view_height(view_camera[1]));*/
-	
 if (highlightfile != -1)
 {
 	var t_column = highlightfile mod t_cells_per_row;
