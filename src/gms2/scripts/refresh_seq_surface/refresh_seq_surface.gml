@@ -104,7 +104,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
                 buffer_seek(el_buffer,buffer_seek_relative,42);
                 
-                apply_envelope_frame(480);
+                apply_envelope_frame(t_scaley);
                     
                 xp = buffer_read(el_buffer,buffer_f32);
                 yp = buffer_read(el_buffer,buffer_f32);
@@ -153,7 +153,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
                 buffer_seek(el_buffer,buffer_seek_relative,42);
                 
-                apply_envelope_frame(480);
+                apply_envelope_frame(t_scaley);
                 
                 xp = buffer_read(el_buffer,buffer_f32);
                 yp = buffer_read(el_buffer,buffer_f32);
@@ -290,7 +290,7 @@ if (controller.onion)
 		                yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
 		                buffer_seek(el_buffer,buffer_seek_relative,42);
                 
-		                apply_envelope_frame(480);
+		                apply_envelope_frame(t_scaley);
                     
 		                xp = buffer_read(el_buffer,buffer_f32);
 		                yp = buffer_read(el_buffer,buffer_f32);
@@ -335,7 +335,14 @@ if (controller.onion)
 	}
 }
 
-  
-draw_set_alpha(1);
+
+gpu_set_blendenable(1);
 gpu_set_blendmode(bm_normal);
+
+draw_set_color(c_white);
+draw_set_alpha(0.2);
+draw_line(t_centerx - view_hport[4]/2, t_centery - view_hport[4]/2, t_centerx - view_hport[4]/2, t_centery + view_hport[4]/2);
+draw_line(t_centerx + view_hport[4]/2, t_centery - view_hport[4]/2, t_centerx + view_hport[4]/2, t_centery + view_hport[4]/2);
+
+draw_set_alpha(1);
 draw_set_color(c_black);

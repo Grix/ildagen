@@ -4,9 +4,9 @@ gml_pragma("forceinline");
 //apply envelope transforms to frame data
 if (env_xtrans)
 {
-    xo += env_xtrans_val/argument0;
+    xo += env_xtrans_val*argument0;
 }
 if (env_ytrans)
 {
-    yo += env_ytrans_val/argument0;
+    yo += env_ytrans_val*argument0;
 }

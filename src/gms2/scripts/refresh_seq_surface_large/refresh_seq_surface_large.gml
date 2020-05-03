@@ -21,7 +21,6 @@ if (viewmode != 0)
 correctframe = round(tlpos/1000*projectfps);
 
 var t_scaley = 1/$FFFF*(view_hport[4]+view_hport[1]);
-//var t_scalex = 1/$FFFF*view_wport[4];
 var t_centerx = view_wport[4]/2;
 var t_centery = (view_hport[4]+view_hport[1])/2;
 var t_scalediag = sqrt((view_hport[4]+view_hport[1])*(view_hport[4]+view_hport[1])+view_wport[4]*view_wport[4])/2;
@@ -103,7 +102,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
                 buffer_seek(el_buffer,buffer_seek_relative,42);
                 
-                apply_envelope_frame(110);
+                apply_envelope_frame(t_scaley);
                 
                 xp = buffer_read(el_buffer,buffer_f32);
                 yp = buffer_read(el_buffer,buffer_f32);
@@ -150,7 +149,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                 yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
                 buffer_seek(el_buffer,buffer_seek_relative,42);
                 
-                apply_envelope_frame(110);
+                apply_envelope_frame(t_scaley);
                 
                 xp = buffer_read(el_buffer,buffer_f32);
                 yp = buffer_read(el_buffer,buffer_f32);
@@ -287,7 +286,7 @@ if (controller.onion)
 		                yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
 		                buffer_seek(el_buffer,buffer_seek_relative,42);
                 
-		                apply_envelope_frame(110);
+		                apply_envelope_frame(t_scaley);
                 
 		                xp = buffer_read(el_buffer,buffer_f32);
 		                yp = buffer_read(el_buffer,buffer_f32);

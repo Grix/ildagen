@@ -1,7 +1,8 @@
 //vertical scroll moving
 if (scroll_moving == 2)
 {
-    scrollbary += (display_mouse_get_y()-mouse_yprevious)/controller.dpi_multiplier;
+	var t_gridheight = camera_get_view_height(view_camera[1]);
+    scrollbary += (display_mouse_get_y()-mouse_yprevious)/controller.dpi_multiplier*(ypos_perm+t_gridheight)/(t_gridheight-1);
     if (scrollbary < 0) 
 		scrollbary = 0;
     if ((scrollbary) > ypos_perm+1) 
@@ -38,8 +39,8 @@ highlightfile = -1;
 
 // scroll
 var t_gridheight = camera_get_view_height(view_camera[1]);
-var scrollypos = camera_get_view_y(view_camera[1])+scrollbary+(scrollbary*scrollbarw/t_gridheight);
-if (mouse_y == clamp(mouse_y,scrollypos,scrollypos+scrollbarw)) && (mouse_x == clamp(mouse_x,t_width,t_width+scrollbarwidth))
+var scrolly_y1 = round(t_ystart+scrollbary+(scrollbary*scrollbarw/t_gridheight));
+if (mouse_y == clamp(mouse_y,scrolly_y1, scrolly_y1+scrollbarw)) && (mouse_x == clamp(mouse_x,t_width,t_width+scrollbarwidth))
 {
     controller.tooltip = "Drag to scroll the grid view.";
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
