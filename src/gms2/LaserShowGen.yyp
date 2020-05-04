@@ -4927,6 +4927,14 @@
             }
         },
         {
+            "Key": "8f43b55a-96d0-4646-95b5-0f9f5856efe0",
+            "Value": {
+                "id": "2db31bb9-a198-4fae-878e-6978a5f02f84",
+                "resourcePath": "scripts\\dd_ilda_maxframes_stretch\\dd_ilda_maxframes_stretch.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8fb2d8c4-8c42-4a3e-8e2d-b18d4526c9c7",
             "Value": {
                 "id": "ea0b01aa-7f53-4a17-aa5f-ff94ac5cf85e",
@@ -9167,6 +9175,7 @@
         "d37f56cc-c164-4d6a-b447-8a937ee3ac04",
         "5169a195-bf6f-44f6-b7d2-0a2758700458",
         "912d6f4c-2327-411c-ab7c-c8e6023cb831",
+        "8f43b55a-96d0-4646-95b5-0f9f5856efe0",
         "03745cfe-fb78-4842-9e45-f27a746ad990",
         "53b66bd8-cf5c-4f60-b76b-3c0d8d6fcd05",
         "0731aeff-863f-46c6-a0b0-127f2e7de2a3",

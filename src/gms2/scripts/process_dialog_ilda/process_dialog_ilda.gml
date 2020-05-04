@@ -559,10 +559,6 @@ if (new_id == getint)
               
               refresh_minitimeline_flag = 1;
               
-              scopeflag = 0;
-              if (maxframes == (scope_end+1)) 
-				scopeflag = 1;
-              
               maxframes = ds_map_find_value(argument[0], "value");
               
               if (maxframes < 1) 
@@ -570,8 +566,53 @@ if (new_id == getint)
               else if (maxframes > $ffff) 
 				maxframes = $ffff;
 				
-				if (scope_end > maxframes)
-					scope_end = maxframes-1;
+              
+              if (ds_list_size(frame_list) < maxframes)
+                  repeat (maxframes - ds_list_size(frame_list))
+                  {
+                      templist = ds_list_create();
+                      if (fillframes)
+                      {
+                          tempelcount = ds_list_size(ds_list_find_value(frame_list,ds_list_size(frame_list)-1));
+                          for (u = 0;u < tempelcount;u++)
+                          {
+                              tempellist = ds_list_create();
+                              ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(frame_list,ds_list_size(frame_list)-1),u));
+                              ds_list_add(templist,tempellist);
+                          }
+                      }
+                      ds_list_add(frame_list,templist);
+                  }
+              /*else
+                  repeat (ds_list_size(frame_list)-maxframes)
+                  {
+                      el_list_temp = ds_list_find_value(frame_list,ds_list_size(frame_list)-1);
+                      //for (u = 0;u < ds_list_size(el_list_temp);u++)
+                      //    ds_list_destroy(ds_list_find_value(el_list_temp,u));
+                      ds_list_destroy(el_list_temp);
+                  }*/
+              if (frame > maxframes) 
+              {
+                  frame = maxframes-1;
+                  framehr = maxframes-1;
+              }
+                  
+              dd_scope_reset();
+              
+              break;
+          }
+		  case "maxframes_stretch":
+          {
+              ds_list_add(undo_list,"a"+string(maxframes)) //todo
+              
+              refresh_minitimeline_flag = 1;
+              
+              var t_newmaxframes = ds_map_find_value(argument[0], "value");
+              
+              if (t_newmaxframes < 1) 
+				t_newmaxframes = 1;
+              else if (t_newmaxframes > $ffff) 
+				t_newmaxframes = $ffff;
               
               if (ds_list_size(frame_list) < maxframes)
                   repeat (maxframes - ds_list_size(frame_list))
