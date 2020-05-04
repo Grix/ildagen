@@ -111,6 +111,11 @@ for (j = global.loading_current; j < global.loading_end;j++)
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_f32));
                 }
                 //envelope transforms
+				if (env_rotabs)
+	            {
+	                var t_actualanchor_x = $8000 - ds_list_find_value(ind_list,0); //todo add custom anchor instead of $8000
+	                var t_actualanchor_y = $8000 - ds_list_find_value(ind_list,1);
+	            }
                 if (env_xtrans)
                 {
                     ds_list_replace(ind_list,0,ds_list_find_value(ind_list,0) + env_xtrans_val);
@@ -119,11 +124,6 @@ for (j = global.loading_current; j < global.loading_end;j++)
                 {
                     ds_list_replace(ind_list,1,ds_list_find_value(ind_list,1) + env_ytrans_val);
                 }
-				if (env_rotabs)
-	            {
-	                var t_actualanchor_x = $8000;//$8000 - ds_list_find_value(ind_list,0); TODO
-	                var t_actualanchor_y = $8000;//$8000 - ds_list_find_value(ind_list,1);
-	            }
                 for (u = 10; u < 20; u++)
                 {
                     ds_list_add(ind_list,buffer_read(el_buffer,buffer_bool));

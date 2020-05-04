@@ -100,8 +100,10 @@ for (j = 0; j < ds_list_size(layer_list); j++)
             gpu_set_blendenable(0);
             if (viewmode != 1)
             {
-                xo = view_wport[4]/2-view_hport[4]/2+buffer_read(el_buffer,buffer_f32)*t_scaley;
-                yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
+				xo_raw = buffer_read(el_buffer,buffer_f32);
+				yo_raw =  buffer_read(el_buffer,buffer_f32);
+                xo = view_wport[4]/2-view_hport[4]/2+xo_raw*t_scaley;
+                yo = yo_raw*t_scaley;  
                 buffer_seek(el_buffer,buffer_seek_relative,42);
                 
                 apply_envelope_frame(t_scaley);

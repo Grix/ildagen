@@ -1,6 +1,6 @@
 TODO
 - fix timeline mode envelopes, rotation anchor is not center
-- add scrollbar to live mode
+- add custom anchor to timeline mode rotation envelope
 - add length stretching in editor mode
 - BPM sync indicator/quantization in all modes
 - add titles etc to button sections in timeline and live mode
