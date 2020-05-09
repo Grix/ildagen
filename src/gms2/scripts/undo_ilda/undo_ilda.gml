@@ -115,6 +115,31 @@ else if (string_char_at(undo,0) == "l")
     }
     ds_list_destroy(tempundolist);
 }
+else if (string_char_at(undo,0) == "s")
+{
+	if (!ds_exists(real(string_digits(undo)),ds_type_list))
+        exit;
+    //undo stretch maxframes
+    tempundolist = real(string_digits(undo));	
+	
+	for (u = 0; u < ds_list_size(frame_list); u++)
+	{
+		ds_list_destroy(frame_list[| u]);
+	}
+	ds_list_destroy(frame_list);
+	
+	frame_list = tempundolist;
+	el_list = ds_list_create();
+	maxframes = ds_list_size(frame_list);
+	dd_scope_reset();
+	if (frame > maxframes-1)
+	{
+		frame = maxframes-1;
+		framehr = maxframes-1;
+	}
+	
+	refresh_minitimeline_flag = 1;
+}
     
     
 with (controller)

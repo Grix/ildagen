@@ -1,6 +1,6 @@
 TODO
 - add custom anchor to timeline mode rotation envelope
-- add length stretching in editor mode
+- change text "blanking" with "stroke type"
 - BPM sync indicator/quantization in all modes
 - add titles etc to button sections in timeline and live mode
 - pause individual files in live

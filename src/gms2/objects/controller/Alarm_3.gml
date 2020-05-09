@@ -2,7 +2,7 @@
 
 alarm[3] = 1200;
 
-while (ds_list_size(undo_list) > 100)
+while (ds_list_size(undo_list) > 50)
 {
     show_debug_message("cleaning undo list");
     undo = ds_list_find_value(undo_list,0);
@@ -42,7 +42,7 @@ while (ds_list_size(undo_list) > 100)
         if (!ds_exists(real(string_digits(undo)),ds_type_list))
             continue;
         tempundolist = real(string_digits(undo));
-        for (u = 0;u < ds_list_size(tempundolist)-1;u++)
+        for (u = 0;u < ds_list_size(tempundolist);u++)
         {
             list = ds_list_find_value(tempundolist,u);
             if (ds_exists(list,ds_type_list))
@@ -56,7 +56,7 @@ while (ds_list_size(undo_list) > 100)
         if (!ds_exists(real(string_digits(undo)),ds_type_list))
             continue;
         tempundolist = real(string_digits(undo));
-        for (u = 0;u < ds_list_size(tempundolist)-1;u++)
+        for (u = 0;u < ds_list_size(tempundolist);u++)
         {
             list = ds_list_find_value(tempundolist,u);
             if (ds_exists(list,ds_type_list))
@@ -64,6 +64,19 @@ while (ds_list_size(undo_list) > 100)
         }
         ds_list_destroy(tempundolist);
     }
+	else if (string_char_at(undo,0) == "s")
+	{
+		if (!ds_exists(real(string_digits(undo)),ds_type_list))
+	        exit;
+	    //undo stretch maxframes
+	    tempundolist = real(string_digits(undo));	
+	
+		for (u = 0; u < ds_list_size(tempundolist); u++)
+			ds_list_destroy(tempundolist[| u]);
+		ds_list_destroy(tempundolist);
+	
+		refresh_minitimeline_flag = 1;
+	}
 }
 
 

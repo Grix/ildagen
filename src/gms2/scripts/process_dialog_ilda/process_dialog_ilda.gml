@@ -603,9 +603,11 @@ if (new_id == getint)
           }
 		  case "maxframes_stretch":
           {
-              ds_list_add(undo_list,"a"+string(maxframes)) //todo
+              ds_list_add(undo_list,"s"+string(frame_list)) //todo
               
               refresh_minitimeline_flag = 1;
+			  frame_surf_refresh = 1;
+			  update_semasterlist_flag = 1;
               
               var t_newmaxframes = ds_map_find_value(argument[0], "value");
               
@@ -613,31 +615,27 @@ if (new_id == getint)
 				t_newmaxframes = 1;
               else if (t_newmaxframes > $ffff) 
 				t_newmaxframes = $ffff;
+				
+			  var t_newframelist = ds_list_create();
+				
+			  for (u = 0; u < t_newmaxframes; u++)
+			  {
+				  var t_newlist = ds_list_create();
+				  ds_list_add(t_newframelist, t_newlist);
+				  
+				  var t_oldlistindex = round(u * maxframes / t_newmaxframes);
+				  var t_elcount = ds_list_size(frame_list[| t_oldlistindex]);
+				  for (v = 0; v < t_elcount; v++)
+				  {
+					  var t_newellist = ds_list_create();
+					  ds_list_copy(t_newellist, ds_list_find_value(frame_list[| t_oldlistindex], v));
+					  ds_list_add(t_newlist, t_newellist);
+				  }
+			  }
+			  
+			  maxframes = t_newmaxframes;
+			  frame_list = t_newframelist;
               
-              if (ds_list_size(frame_list) < maxframes)
-                  repeat (maxframes - ds_list_size(frame_list))
-                  {
-                      templist = ds_list_create();
-                      if (fillframes)
-                      {
-                          tempelcount = ds_list_size(ds_list_find_value(frame_list,ds_list_size(frame_list)-1));
-                          for (u = 0;u < tempelcount;u++)
-                          {
-                              tempellist = ds_list_create();
-                              ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(frame_list,ds_list_size(frame_list)-1),u));
-                              ds_list_add(templist,tempellist);
-                          }
-                      }
-                      ds_list_add(frame_list,templist);
-                  }
-              /*else
-                  repeat (ds_list_size(frame_list)-maxframes)
-                  {
-                      el_list_temp = ds_list_find_value(frame_list,ds_list_size(frame_list)-1);
-                      //for (u = 0;u < ds_list_size(el_list_temp);u++)
-                      //    ds_list_destroy(ds_list_find_value(el_list_temp,u));
-                      ds_list_destroy(el_list_temp);
-                  }*/
               if (frame > maxframes) 
               {
                   frame = maxframes-1;
