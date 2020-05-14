@@ -103,14 +103,6 @@
             }
         },
         {
-            "Key": "021deb3e-ccae-4ab0-be64-a95ea3169744",
-            "Value": {
-                "id": "8598aaaf-1522-4469-ae39-79b7263c4eea",
-                "resourcePath": "objects\\obj_tt_blanking\\obj_tt_blanking.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "0222bb16-2f2e-4ce3-af98-030e3ef44b4b",
             "Value": {
                 "id": "fd40c1bc-42ed-4169-860c-e2cfac5d6de5",
@@ -580,14 +572,6 @@
                 "id": "100101df-b1c6-4967-a4a4-ff2423480e5c",
                 "resourcePath": "sprites\\spr_funch\\spr_funch.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "0e2bf0be-f5b1-41e7-9570-4942c2602722",
-            "Value": {
-                "id": "a3276444-153e-4803-8730-6fa96df57457",
-                "resourcePath": "objects\\obj_tt_file\\obj_tt_file.yy",
-                "resourceType": "GMObject"
             }
         },
         {
@@ -2559,14 +2543,6 @@
             }
         },
         {
-            "Key": "4927ff02-c87f-45ae-b5c2-358ae6ea3668",
-            "Value": {
-                "id": "f1d2dd3b-7b4c-4cda-bbc1-29588aeb33bb",
-                "resourcePath": "objects\\obj_tt_shape\\obj_tt_shape.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "4957ce29-5f6c-4dc3-9924-7c5ab01b7b2a",
             "Value": {
                 "id": "089f5c81-1000-4823-bc7e-462ac9a2728d",
@@ -2596,14 +2572,6 @@
                 "id": "e06be84a-b3bc-49b7-9203-fb4efa4862de",
                 "resourcePath": "objects\\obj_swapxy\\obj_swapxy.yy",
                 "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "4a7972d1-69f5-4d86-afb2-38f50e711286",
-            "Value": {
-                "id": "a89fbeb2-2536-4f96-8548-56f2aa529d41",
-                "resourcePath": "views\\4a7972d1-69f5-4d86-afb2-38f50e711286.yy",
-                "resourceType": "GMFolder"
             }
         },
         {
@@ -3979,14 +3947,6 @@
             "Value": {
                 "id": "72cddb22-7a1c-4376-a5b9-ed0ad96340b7",
                 "resourcePath": "objects\\obj_sendtoeditor\\obj_sendtoeditor.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "72ef289e-002f-4c94-a4f9-22f0bb438af7",
-            "Value": {
-                "id": "03b0160c-4921-47d5-8f31-0147c914e794",
-                "resourcePath": "objects\\obj_tt_color\\obj_tt_color.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -5943,14 +5903,6 @@
             }
         },
         {
-            "Key": "ab0aa0a7-29a2-4c4a-8ba2-400dceafcf59",
-            "Value": {
-                "id": "a511101d-e83e-49f4-b9a5-ae04700677cf",
-                "resourcePath": "objects\\obj_tt_edit\\obj_tt_edit.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "abb79c31-4f9c-4d02-8305-a8ea13e75db6",
             "Value": {
                 "id": "c4a1ffac-07a4-4a1a-95c6-80f170c1738d",
@@ -6471,14 +6423,6 @@
             }
         },
         {
-            "Key": "ba5bc915-3a97-4690-a1c5-8f15a119edd9",
-            "Value": {
-                "id": "c1d3974c-c1d0-4d6c-96b8-4c0c26127fd6",
-                "resourcePath": "objects\\obj_tt_settingstools\\obj_tt_settingstools.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "baa445ca-04e0-445c-b8ff-f0b389d30be6",
             "Value": {
                 "id": "653b2af9-f574-45e7-8161-626e955819e7",
@@ -6628,14 +6572,6 @@
                 "id": "d4b1b67e-d245-42e2-a7c7-75636501c38c",
                 "resourcePath": "scripts\\reapply_properties\\reapply_properties.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "bf77369d-7583-4915-9094-5fdf44916c44",
-            "Value": {
-                "id": "7b172b30-68fe-4456-aed4-4ee733f42cfc",
-                "resourcePath": "objects\\obj_tt_animation\\obj_tt_animation.yy",
-                "resourceType": "GMObject"
             }
         },
         {

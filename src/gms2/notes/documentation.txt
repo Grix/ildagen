@@ -17,6 +17,7 @@ TODO
 - simulation settings (more projectors etc)
 - Support for other glyphs in the text tool
 
+
 SETTINGSCONTROL
 
 
@@ -122,3 +123,7 @@ filelist
 		is_loop
 		is_exclusive
 		is_resuming (instead of restarting on play)
+		
+		
+Fonts
+Text tiles are drawn with paint.net, font Arial, sizes 10 and 12, color pure black

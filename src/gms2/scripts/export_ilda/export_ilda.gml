@@ -14,7 +14,7 @@ if (filename_ext(file_loc) != ".ild")
     
 if (!verify_numexports())
 {   
-    show_message_new("You have unfortunately used up all 10 free exports per day. Try again tomorrow or buy LaserShowGen Full");
+    show_message_new("You have unfortunately used up all 20 free exports per day. Try again tomorrow or purchase LaserShowGen Pro");
     exit;
 }
 
