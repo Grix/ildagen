@@ -57,10 +57,10 @@ else if (view_current == 0)
 	var t_w0 = view_wport[0];
 	var t_x0 = camera_get_view_x(view_camera[0]);
 	var t_y0 = camera_get_view_y(view_camera[0]);
-	draw_line(t_x0+10, t_y0+424, t_x0+t_w0-10, t_y0+424);
+	draw_line(t_x0+10, t_y0+434, t_x0+t_w0-10, t_y0+434);
 	draw_line(t_x0+10, t_y0+567, t_x0+t_w0-10, t_y0+567);
 	draw_set_color(c_ltgray);
-	draw_line(t_x0+10, t_y0+423, t_x0+t_w0-10, t_y0+423);
+	draw_line(t_x0+10, t_y0+433, t_x0+t_w0-10, t_y0+433);
 	draw_line(t_x0+10, t_y0+566, t_x0+t_w0-10, t_y0+566);
 	draw_set_color(c_black);
 	
