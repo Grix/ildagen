@@ -10,7 +10,7 @@
     "option_mac_app_id": "gitlem.lasershowgen",
     "option_mac_apple_sign_in": false,
     "option_mac_build_app_store": false,
-    "option_mac_copyright": "(c)2019 Gitle Mikkelsen",
+    "option_mac_copyright": "(c)2020 Gitle Mikkelsen",
     "option_mac_disable_sandbox": true,
     "option_mac_display_cursor": true,
     "option_mac_display_name": "LaserShowGen",

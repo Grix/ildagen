@@ -2,7 +2,7 @@ if !(controller.regflag)
 {
     if file_exists("serial")
     {
-        controller.registeredstring = "Full Edition. Thank you for purchasing!";
+        controller.registeredstring = "Pro Edition. Thank you for purchasing!";
         controller.regflag = 1;
     }
     else
@@ -13,8 +13,8 @@ if !(controller.regflag)
 }
     
 controller.message = 
-"LaserShowGen - ILDA laser frame creation tool\n"+
-"Created by Gitle Mikkelsen / gitlem@gmail.com\n\n"+
+"LaserShowGen - Laser show editor and player\n"+
+"Created by Gitle Mikkelsen / gitle@bitlasers.com\n\n"+
 "See manual for list of credits and licenses.\n\n"+
 "Version: "+string(controller.version)+
 "\nReleased on: "+string(controller.versiondate)+
