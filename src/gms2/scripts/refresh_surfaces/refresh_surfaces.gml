@@ -38,7 +38,7 @@ if (viewmode == 0) or (viewmode == 2)
                 nxp = ds_list_find_value(new_list,nextpos);
                 nyp = ds_list_find_value(new_list,nextpos+1);
                 
-                framepoints++;
+				framepoints++;
                 
                 if (!highlight)
 				{
@@ -56,8 +56,8 @@ if (viewmode == 0) or (viewmode == 2)
                 else
                     draw_line_width(xo+ xp/t_div,yo+ yp/t_div,xo+ nxp/t_div,yo+ nyp/t_div, dpi_multiplier);
             }
-            
-            
+			else if (!controller.exp_optimize)
+				framepoints++;
             
         }
     }

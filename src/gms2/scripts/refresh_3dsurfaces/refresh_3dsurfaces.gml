@@ -49,6 +49,8 @@ for (i = 0;i < ds_list_size(el_list);i++)
             else
                 draw_triangle_colour(t_wporthalf,t_wporthalf,xxp,yyp,nxxp,nyyp,ds_list_find_value(new_list,nextpos+3),c_black,c_black,0);
         }
+		else if (!controller.exp_optimize)
+			framepoints++;
     }
 }
 gpu_set_blendmode(bm_normal);

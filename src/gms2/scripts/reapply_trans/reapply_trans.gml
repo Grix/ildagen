@@ -6,8 +6,8 @@ if (anixtrans == 0) && (aniytrans == 0) && (anirot == 0) && (scalex == 1) && (sc
 //create more frames if only one and animation is on
 if (maxframes == 1) and (anienable)
 {
-    maxframes = 32;
-    scope_end = 31;
+    maxframes = 64;
+    scope_end = 63;
     refresh_minitimeline_flag = 1;
     
     if (ds_list_size(frame_list) < maxframes)
@@ -110,6 +110,13 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
             }
             else if (anifunc = "sine")
             {
+                t = sin(t*pi*2);
+                t *= -1;
+                t += 1;
+                t /= 2;
+            }
+			else if (anifunc = "cos")
+            {
                 t = cos(t*pi*2);
                 t *= -1;
                 t += 1;
@@ -117,21 +124,26 @@ for (c = 0; c < ds_list_size(semaster_list); c++)
             }
             else if (anifunc = "easeout")
             {
-                t = sin(t*pi/2);
+                //t = sin(t*pi/2);
+				t = 1 - power(1 - t, 2);
             }
             else if (anifunc = "easein")
             {
-                t = 1-sin(t*pi/2+pi/2);
+                //t = 1-cos(t*pi/2);
+				t = t*t;
             }
             else if (anifunc = "bounce")
             {
-                t = sin(t*pi);
+                //t = sin(t*pi);
+				t = 1 - ((t-0.5)*(t-0.5)*4);
             }
             else if (anifunc = "easeinout")
             {
-                t = sin(t*pi-pi/2);
+				t = t < 0.5 ? 2 * t*t  : 1 - power(-2 * t+2, 2) / 2;
+				//return x < 0.5 ? 4 * x * x * x : 1 - pow(-2 * x + 2, 3) / 2;
+                /*t = sin(t*pi-pi/2);
                 t += 1;
-                t /= 2;
+                t /= 2;*/
             }
                 
             endx_r = lerp(endx,endx+anixtrans,t);

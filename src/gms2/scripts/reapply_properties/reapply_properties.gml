@@ -147,8 +147,8 @@ func_audioloudness = 0;
     
 if (maxframes == 1) and (anienable)
 {
-    maxframes = 32;
-    scope_end = 31;
+    maxframes = 64;
+    scope_end = 63;
     refresh_minitimeline_flag = 1;
     
     if (ds_list_size(frame_list) < maxframes)
@@ -325,6 +325,13 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
             }
             else if (anifunc = "sine")
             {
+                t = sin(t*pi*2);
+                t *= -1;
+                t += 1;
+                t /= 2;
+            }
+			else if (anifunc = "cos")
+            {
                 t = cos(t*pi*2);
                 t *= -1;
                 t += 1;
@@ -332,22 +339,27 @@ for (l = 0; l < ds_list_size(semaster_list); l++)
             }
             else if (anifunc = "easeout")
             {
-                t = sin(t*pi/2);
+                //t = sin(t*pi/2);
+				t = 1 - power(1 - t, 2);
             }
             else if (anifunc = "easein")
             {
-                t = 1-sin(t*pi/2+pi/2);
+                //t = 1-cos(t*pi/2);
+				t = t*t;
             }
             else if (anifunc = "bounce")
             {
-                t = sin(t*pi);
+                //t = sin(t*pi);
+				t = 1 - ((t-0.5)*(t-0.5)*4);
             }
             else if (anifunc = "easeinout")
             {
-                t = sin(t*pi-pi/2);
+				t = t < 0.5 ? 2 * t*t  : 1 - power(-2 * t+2, 2) / 2;
+                /*t = sin(t*pi-pi/2);
                 t += 1;
-                t /= 2;
+                t /= 2;*/
             }
+			
             shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
             gaussoffsetx = reap_trans*shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
             gaussoffsety = reap_trans*shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);

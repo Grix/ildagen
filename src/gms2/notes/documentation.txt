@@ -1,4 +1,6 @@
 TODO
+- arbitrary animation easing function
+- merge properties and edit menu
 - add custom anchor to timeline mode rotation envelope
 - BPM sync indicator/quantization in all modes
 - pause individual files in live
