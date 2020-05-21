@@ -20,7 +20,7 @@
     "option_linux_splash_screen": "${options_dir}\\linux\\splash\\splash.png",
     "option_linux_start_fullscreen": false,
     "option_linux_sync": false,
-    "option_linux_texture_page": "4096x4096",
+    "option_linux_texture_page": "2048x2048",
     "option_linux_version": {
         "build": 4,
         "major": 1,
