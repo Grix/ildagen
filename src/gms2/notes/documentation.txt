@@ -1,4 +1,5 @@
 TODO
+- color shift and swap x/y without optimization
 - arbitrary animation easing function
 - merge properties and edit menu
 - add custom anchor to timeline mode rotation envelope
@@ -9,6 +10,7 @@ TODO
 - reapply combine shapes
 - split objects
 - mac notarization
+- color offset and dwell etc based on time instead of points
 - double check and fix maxpoints_static calculation
 - motion controller
 - AUTOMATIC live mode
