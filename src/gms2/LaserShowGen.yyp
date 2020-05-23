@@ -7647,6 +7647,14 @@
             }
         },
         {
+            "Key": "df3d4183-fb72-44b7-a265-32ec4911bb15",
+            "Value": {
+                "id": "9c5bfdd4-4026-478a-bf40-b83a931616b8",
+                "resourcePath": "scripts\\dd_seq_loaddemoproject\\dd_seq_loaddemoproject.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "df48b96e-ce94-4cd8-a95f-d9ba3b400d4b",
             "Value": {
                 "id": "b3ab8dd4-6605-475b-a214-145276ad35b6",
@@ -9178,6 +9186,7 @@
         "fbcad04d-7cfa-4695-8172-7af3b20a078d",
         "5a9863b9-dfc8-49ec-98ea-3c6623f8d834",
         "d30ebe7f-8ece-43e4-bd59-d2e8545d0084",
+        "df3d4183-fb72-44b7-a265-32ec4911bb15",
         "8a13e74e-f749-43d1-94df-3349f1c0e096",
         "69586e10-df5f-4bf4-a100-7a89e715d447",
         "791110ed-5587-4664-9470-c669819db018",

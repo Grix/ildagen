@@ -73,6 +73,12 @@ if (new_id == getint)
 			mouse_clear(mouse_lastbutton);
             break;
         }
+		
+		case "loaddemo":
+        {
+			load_project("demo_show.igp")
+            break;
+        };
           
         case "fromseq":
         {

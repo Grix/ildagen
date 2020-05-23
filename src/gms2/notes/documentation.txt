@@ -1,5 +1,4 @@
 TODO
-- color shift and swap x/y without optimization
 - arbitrary animation easing function
 - merge properties and edit menu
 - add custom anchor to timeline mode rotation envelope
