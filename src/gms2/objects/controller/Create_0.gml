@@ -32,6 +32,9 @@ if (!file_exists("settings.ini"))
 
 log("save location:",FStemp);
 
+if (!file_exists("demo_show.igp"))
+	zip_unzip("demo_show.zip", working_directory);
+
 // Dialog module settings
 widget_set_caption(window_get_caption());
 widget_set_owner(window_handle());
