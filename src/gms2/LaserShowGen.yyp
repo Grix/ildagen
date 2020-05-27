@@ -1391,6 +1391,14 @@
             }
         },
         {
+            "Key": "2473cd28-f1fb-4987-bdce-2d5350ef38e3",
+            "Value": {
+                "id": "1b723530-94cf-42bf-91cf-a2b5dd86d55c",
+                "resourcePath": "scripts\\layer_mute\\layer_mute.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "249d1e70-74ca-4bfc-a1f9-5e19900203ae",
             "Value": {
                 "id": "534f5f1b-7195-4122-befe-28326b9782a6",
@@ -9273,6 +9281,7 @@
         "f5861bcf-b005-414b-9e9f-623aecf5188e",
         "c86821a1-e7a3-4523-b5a8-4bb9f7264cc6",
         "9c4c1d61-14cf-4888-b839-4b2451bd05f2",
+        "2473cd28-f1fb-4987-bdce-2d5350ef38e3",
         "b108cfca-02b1-45fb-9014-379110ecc024",
         "10d3230a-4662-4926-a432-903378b5886c",
         "cb51dd83-4c33-4ca9-8ed5-f2b7eb12ea66",
