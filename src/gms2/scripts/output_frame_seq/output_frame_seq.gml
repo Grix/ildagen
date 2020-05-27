@@ -59,6 +59,10 @@ for (k = 0; k < ds_list_size(layer_list); k++)
     
     env_dataset = 0;
     _layer = ds_list_find_value(layer_list[| k], 1);
+	
+	if (_layer[| 2])
+		continue;
+	
     for (m = 0; m < ds_list_size(_layer); m++)
     {
         objectlist = ds_list_find_value(_layer,m);

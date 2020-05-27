@@ -69,9 +69,12 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
         
 	        if (ypos_perm > -48) and (ypos_perm < lbsh)
 	        {
-                            
-	            draw_rectangle_colour(-1,ypos_perm,t_tlw+1,ypos_perm+48,c_white,c_white,c_silver,c_silver,0);
-	            draw_rectangle(-1,ypos_perm,t_tlw+1,ypos_perm+48,1);
+                if (_layer[| 2])
+					draw_rectangle_colour(-1,ypos_perm,t_tlw+1,ypos_perm+48,c_gray,c_gray,c_gray,c_gray,0);
+				else
+					draw_rectangle_colour(-1,ypos_perm,t_tlw+1,ypos_perm+48,c_white,c_white,c_silver,c_silver,0);
+	            
+				draw_rectangle(-1,ypos_perm,t_tlw+1,ypos_perm+48,1);
             
 	            elementlist = _layer[| 1];
 	            for (j = 0; j < ds_list_size(elementlist); j++)

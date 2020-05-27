@@ -30,6 +30,9 @@ for (j = 0; j < ds_list_size(layer_list); j++)
 {
     var env_dataset = 0;
     _layer = ds_list_find_value(layer_list, j);
+	
+	if (_layer[| 2])
+		continue;
     
     elementlist = _layer[| 1];
     for (m = 0; m < ds_list_size(elementlist); m++)
@@ -216,6 +219,9 @@ if (controller.onion)
 		{
 		    var env_dataset = 0;
 		    _layer = ds_list_find_value(layer_list, j);
+			
+			if (_layer[| 2])
+				continue;
     
 		    elementlist = _layer[| 1];
 		    for (m = 0; m < ds_list_size(elementlist); m++)
