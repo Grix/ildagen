@@ -96,7 +96,7 @@ if (new_id == getint)
 					show_message_new("Download started, program will exit and installation start shortly..");
 				}
 				else if (os_type == os_macosx)
-					url_open("https://github.com/Grix/ildagen/releases/download/v"+versionnew+"/LaserShowGen-"+versionnew+"-Mac.dmg");
+					url_open("https://github.com/Grix/ildagen/releases/download/v"+versionnew+"/LaserShowGen-"+versionnew+"-Mac.zip");
 				else if (os_type == os_linux)
 					url_open("https://github.com/Grix/ildagen/releases/download/v"+versionnew+"/LaserShowGen-"+versionnew+"-Linux.zip");
 				

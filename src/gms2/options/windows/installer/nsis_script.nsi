@@ -7,10 +7,11 @@
 
 ;--------------------------------
 !include MUI2.nsh 
+
 !include "FileAssociation.nsh"
 
 !ifndef FULL_VERSION
-!define FULL_VERSION      "1.0.0.0"
+!define FULL_VERSION      "1.8.5"
 !endif
 !ifndef SOURCE_DIR
 !define SOURCE_DIR        "C:\source\temp\InstallerTest\runner"
@@ -24,15 +25,15 @@
 !endif
 
 !ifndef COMPANY_NAME
-!define COMPANY_NAME      ""
+!define COMPANY_NAME      "Gitle Mikkelsen"
 !endif
 
 !ifndef COPYRIGHT_TXT
-!define COPYRIGHT_TXT     "(c)Copyright 2017"
+!define COPYRIGHT_TXT     "(c) Copyright 2020"
 !endif
 
 !ifndef FILE_DESC
-!define FILE_DESC         "LaserShowGen"
+!define FILE_DESC         "LaserShowGen by Gitle Mikkelsen"
 !endif
 
 !ifndef LICENSE_NAME
@@ -57,11 +58,6 @@
 
 !define APP_NAME        "${PRODUCT_NAME}"
 !define SHORT_NAME        "${PRODUCT_NAME}"
-
-!ifndef EXE_NAME
-!define EXE_NAME "${PRODUCT_NAME}"
-!endif
-
 
 ;;USAGE:
 !define MIN_FRA_MAJOR "2"
@@ -119,9 +115,10 @@ VIAddVersionKey /LANG=1033 "FileDescription" "${FILE_DESC}"
     # These indented statements modify settings for MUI_PAGE_FINISH
     !define MUI_FINISHPAGE_NOAUTOCLOSE
     !define MUI_FINISHPAGE_RUN_TEXT "Start ${PRODUCT_NAME}"
-    !define MUI_FINISHPAGE_RUN "$INSTDIR\${EXE_NAME}.exe"
+    !define MUI_FINISHPAGE_RUN "$INSTDIR\${PRODUCT_NAME}.exe"
 !insertmacro MUI_PAGE_FINISH
 
+Var DirectXSetupError
 
 UninstPage uninstConfirm
 UninstPage instfiles
@@ -135,9 +132,15 @@ Section `${APP_NAME}`
   
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
-  
-  ;${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igf" "LasershowGen Frames"
-  ;${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igp" "LasershowGen Project"
+
+  ;${unregisterExtension} ".igf" "LaserShowGen Frames"
+  ;${unregisterExtension} ".igp" "LaserShowGen Timeline Project"
+  ;${unregisterExtension} ".ild" "ILDA Laser Frames"
+  ;${unregisterExtension} ".igl" "LaserShowGen Live Grid"
+  ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igf" "LaserShowGen Frames"
+  ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igp" "LaserShowGen Timeline Project"
+  ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".ild" "ILDA Laser Frames"
+  ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igl" "LaserShowGen Live Grid"
   
   ; Put file there
   File "${LICENSE_NAME}"
@@ -157,7 +160,7 @@ Section "Start Menu Shortcuts"
 
   CreateDirectory "$SMPROGRAMS\${APP_NAME}"
   CreateShortCut "$SMPROGRAMS\${APP_NAME}\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
-  CreateShortCut "$SMPROGRAMS\${APP_NAME}\${APP_NAME}.lnk" "$INSTDIR\${EXE_NAME}.exe" "" "$INSTDIR\${EXE_NAME}.exe" 
+  CreateShortCut "$SMPROGRAMS\${APP_NAME}\${APP_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" "" "$INSTDIR\${PRODUCT_NAME}.exe" 
   CreateShortCut "$SMPROGRAMS\${APP_NAME}\${APP_NAME} License.lnk" "notepad.exe" "$INSTDIR\License.txt"
   
 SectionEnd
@@ -166,7 +169,7 @@ SectionEnd
 ; Optional section (can be enabled by the user)
 Section /o "Desktop shortcut"
 
-  CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${EXE_NAME}.exe" ""
+  CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
   
 SectionEnd
 
@@ -176,14 +179,19 @@ SectionEnd
 ; Uninstaller
 
 Section "Uninstall"
+
+  ;${unregisterExtension} ".igf" "LasershowGen Frames"
+  ;${unregisterExtension} ".igp" "LasershowGen Project"
+  ${unregisterExtension} ".igf" "LaserShowGen Frames"
+  ${unregisterExtension} ".igp" "LaserShowGen Timeline Project"
+  ${unregisterExtension} ".ild" "ILDA Laser Frames"
+  ${unregisterExtension} ".igl" "LaserShowGen Live Grid"
+
   ; Remove registry keys
   DeleteRegKey SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\${SHORT_NAME}"
 
   ; Remove files and uninstaller (everything)
   RMDir /r "$INSTDIR"
-  
-  ;${unregisterExtension} ".igf" "LasershowGen Frames"
-  ;${unregisterExtension} ".igp" "LasershowGen Project"
 
   ; Remove desktop icon
   Delete "$DESKTOP\${APP_NAME}.lnk" 
@@ -197,3 +205,23 @@ Section "Uninstall"
 
 SectionEnd
 
+
+;--------------------------------
+;
+; This should be the LAST section available....
+;
+Section "DirectX Install" SEC_DIRECTX
+ 
+ SectionIn RO
+ 
+ SetOutPath "$TEMP"
+ File "${MAKENSIS}\dxwebsetup.exe"
+ DetailPrint "Running DirectX Setup..."
+ ExecWait '"$TEMP\dxwebsetup.exe" /Q' $DirectXSetupError
+ DetailPrint "Finished DirectX Setup"
+ 
+ Delete "$TEMP\dxwebsetup.exe"
+ 
+ SetOutPath "$INSTDIR"
+ 
+SectionEnd

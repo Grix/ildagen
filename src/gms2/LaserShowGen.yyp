@@ -1591,6 +1591,14 @@
             }
         },
         {
+            "Key": "29d95569-7948-47ca-b2ca-a2f4020c602c",
+            "Value": {
+                "id": "d6dd927c-c8d9-4a8c-91c0-67247033bf1d",
+                "resourcePath": "datafiles_yy\\demo_show.igp.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "29e7d345-b6da-4f68-b0ea-32ecd6b313cd",
             "Value": {
                 "id": "46e862f8-cc01-4e38-b0f3-124639975d3e",

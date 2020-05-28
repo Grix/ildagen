@@ -1,9 +1,9 @@
-v1.8.4 (2020-04-15)
-- Better scaling for high-resolution displays.
-- Fix possible crashes in timeline mode when stretching object or deleting layer.
-- Fix sliders in live mode not affecting preview graphics.
-- Various other minor bugfixes and improvements.
-
-v1.8.3 (2020-02-21)
-- Fixed possible corruption of live mode project file when quick-saving.
-- Fixed projection blind zones not working correctly.
+v1.8.5 (2020-05-28)
+- Added free demo show to timeline mode.
+- Added scrollbar to live grid.
+- Can stretch rather than pad when changing number of frames in editor mode.
+- Fix some problems with rotation envelope in timeline mode and hue slider in live mode.
+- Added muting of layers in timeline mode.
+- Signed and notarized macOS application.
+- Support for color shifting and X/Y swapping when playing unoptimized ILDA files.
+- Misc. other bugfixes and GUI improvements

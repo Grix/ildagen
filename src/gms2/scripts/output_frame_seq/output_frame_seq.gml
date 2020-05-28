@@ -40,6 +40,9 @@ el_list = ds_list_create();
 //check which should be drawn
 for (k = 0; k < ds_list_size(layer_list); k++)
 {
+	if (ds_list_find_value(layer_list[| k], 2)) // if muted
+		continue;
+	
     var t_found = false;
     var t_daclist = ds_list_find_value(layer_list[| k], 5);
     if (ds_list_size(t_daclist) == 0)
@@ -59,9 +62,6 @@ for (k = 0; k < ds_list_size(layer_list); k++)
     
     env_dataset = 0;
     _layer = ds_list_find_value(layer_list[| k], 1);
-	
-	if (_layer[| 2])
-		continue;
 	
     for (m = 0; m < ds_list_size(_layer); m++)
     {

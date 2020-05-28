@@ -1,5 +1,5 @@
-version = "1.8.4";
-versiondate = "2020-04-29";
+version = "1.8.5";
+versiondate = "2020-05-28";
 
 if (debug_mode)
 {
@@ -32,8 +32,8 @@ if (!file_exists("settings.ini"))
 
 log("save location:",FStemp);
 
-if (!file_exists("demo_show.igp"))
-	zip_unzip("demo_show.zip", working_directory);
+//if (!file_exists("demo_show.igp"))
+//	zip_unzip("demo_show.zip", working_directory);
 
 // Dialog module settings
 widget_set_caption(window_get_caption());
