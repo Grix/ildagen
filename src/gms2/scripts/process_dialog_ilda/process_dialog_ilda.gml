@@ -623,12 +623,13 @@ if (new_id == getint)
 				  var t_newlist = ds_list_create();
 				  ds_list_add(t_newframelist, t_newlist);
 				  
-				  var t_oldlistindex = round(u * maxframes / t_newmaxframes);
-				  var t_elcount = ds_list_size(frame_list[| t_oldlistindex]);
+				  var t_oldlistindex = floor(u * maxframes / t_newmaxframes);
+				  var t_oldlist = frame_list[| t_oldlistindex];
+				  var t_elcount = ds_list_size(t_oldlist);
 				  for (v = 0; v < t_elcount; v++)
 				  {
 					  var t_newellist = ds_list_create();
-					  ds_list_copy(t_newellist, ds_list_find_value(frame_list[| t_oldlistindex], v));
+					  ds_list_copy(t_newellist, ds_list_find_value(t_oldlist, v));
 					  ds_list_add(t_newlist, t_newellist);
 				  }
 			  }

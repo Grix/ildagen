@@ -557,11 +557,11 @@ else if (moving_object == 7)
 //horizontal scroll moving
 else if (scroll_moving == 1)
 {
-    tlx += (display_mouse_get_x()-mouse_xprevious)/controller.dpi_multiplier*(length/(tlw-17));
+    tlx += (device_mouse_raw_x(0)-mouse_xprevious)/controller.dpi_multiplier*(length/(tlw-17));
     if (tlx < 0) tlx = 0;
     if ((tlx+tlzoom) > length) length = tlx+tlzoom;
     
-    mouse_xprevious = display_mouse_get_x();
+    mouse_xprevious = device_mouse_raw_x(0);
     
     if (mouse_check_button_released(mb_left))
     {
@@ -573,13 +573,13 @@ else if (scroll_moving == 1)
 //vertical scroll moving
 else if (scroll_moving == 2)
 {
-    layerbary += (display_mouse_get_y()-mouse_yprevious)/controller.dpi_multiplier*lbh/layerbarw;//*(length/tlw);
+    layerbary += (device_mouse_raw_y(0)-mouse_yprevious)/controller.dpi_multiplier*lbh/layerbarw;//*(length/tlw);
     if (layerbary < 0) 
 		layerbary = 0;
     if ((layerbary) > ypos_perm) 
 		layerbary = ypos_perm;
     
-    mouse_yprevious = display_mouse_get_y();
+    mouse_yprevious = device_mouse_raw_y(0);
     
     if (mouse_check_button_released(mb_left))
     {
@@ -634,7 +634,7 @@ and (mouse_y == clamp(mouse_y,tlsurf_y+lbsh,tlsurf_y+lbsh+16))
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
     {
         scroll_moving = 1;
-        mouse_xprevious = display_mouse_get_x();
+        mouse_xprevious = device_mouse_raw_x(0);
     }
 }
 //vertical scroll
@@ -646,7 +646,7 @@ else if (mouse_y == clamp(mouse_y,scrollypos,scrollypos+layerbarw))
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
     {
         scroll_moving = 2;
-        mouse_yprevious = display_mouse_get_y();
+        mouse_yprevious = device_mouse_raw_y(0);
     }
 }
     

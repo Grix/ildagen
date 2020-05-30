@@ -2,7 +2,7 @@ if !(controller.regflag)
 {
     if file_exists("serial")
     {
-        controller.registeredstring = "Pro Edition. Thank you for purchasing!";
+        controller.registeredstring = "Pro edition registered. Thank you for purchasing!";
         controller.regflag = 1;
     }
     else

@@ -2,13 +2,14 @@
 if (scroll_moving == 2)
 {
 	var t_gridheight = camera_get_view_height(view_camera[1]);
-    scrollbary += (display_mouse_get_y()-mouse_yprevious)/controller.dpi_multiplier*(ypos_perm+t_gridheight)/(t_gridheight-1);
+    scrollbary += (device_mouse_raw_y(0)-mouse_yprevious)/controller.dpi_multiplier*(ypos_perm+t_gridheight)/(t_gridheight-1);
     if (scrollbary < 0) 
 		scrollbary = 0;
     if ((scrollbary) > ypos_perm+1) 
 		scrollbary = ypos_perm+1;
     
-    mouse_yprevious = display_mouse_get_y();
+    mouse_yprevious = device_mouse_raw_y(0);
+	log(mouse_yprevious, scrollbary);
     
     if (mouse_check_button_released(mb_left))
     {
@@ -46,7 +47,7 @@ if (mouse_y == clamp(mouse_y,scrolly_y1, scrolly_y1+scrollbarw)) && (mouse_x == 
     if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
     {
         scroll_moving = 2;
-        mouse_yprevious = display_mouse_get_y();;
+        mouse_yprevious = device_mouse_raw_y(0);;
     }
 	exit;
 }

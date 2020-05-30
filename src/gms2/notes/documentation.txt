@@ -1,4 +1,5 @@
 TODO
+- customizable dpi scaling factor
 - arbitrary animation easing function
 - merge properties and edit menu
 - add custom anchor to timeline mode rotation envelope
