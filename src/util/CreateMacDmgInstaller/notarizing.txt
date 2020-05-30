@@ -1,0 +1,7 @@
+codesign -s "Developer ID Application: Gitle Mikkelsen (Y62YL762Z5)" --timestamp LaserShowGen-1.8.5-Mac.dmg 
+xcrun altool --notarize-app --primary-bundle-id "lasershowgen" -u "gitle@bitlasers.com" -p "@keychain:altool" -t osx -f ./LaserShowGen-1.8.5-Mac.dmg 
+xcrun stapler staple ./LaserShowGen-1.8.5-Mac.dmg
+
+verify:
+spctl -a -vv -t install MyApp.dmg
+spctl -a -vv /Applications/MyApp.app

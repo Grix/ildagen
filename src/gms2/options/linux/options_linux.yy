@@ -13,7 +13,7 @@
     "option_linux_icon": "${options_dir}\\linux\\icons\\64.png",
     "option_linux_interpolate_pixels": false,
     "option_linux_long_desc": "Laser show editor and player.",
-    "option_linux_maintainer_email": "gitlem@gmail.com",
+    "option_linux_maintainer_email": "gitle@bitlasers.com",
     "option_linux_resize_window": true,
     "option_linux_scale": 1,
     "option_linux_short_desc": "LaserShowGen",
@@ -22,7 +22,7 @@
     "option_linux_sync": false,
     "option_linux_texture_page": "2048x2048",
     "option_linux_version": {
-        "build": 4,
+        "build": 5,
         "major": 1,
         "minor": 8,
         "revision": 0

@@ -1,5 +1,9 @@
-if (ds_list_find_index(controller.quicktip_closed_list, tip_id) != -1)
-	instance_destroy();
+//if (ds_list_find_index(controller.quicktip_closed_list, real(tip_id)) != -1)
+for (var t_i = 0; t_i < ds_list_size(controller.quicktip_closed_list); t_i++)
+{
+	if (controller.quicktip_closed_list[| t_i] == tip_id)
+		instance_destroy();
+}
 
 var t_close = false;
 ini_open("settings.ini");
