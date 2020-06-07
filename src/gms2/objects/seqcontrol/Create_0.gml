@@ -9,7 +9,11 @@ ds_list_add(_layer,ds_list_create()); //elements list
 ds_list_add(_layer,0); 
 ds_list_add(_layer,0);
 ds_list_add(_layer,"Layer 1");
-ds_list_add(_layer,ds_list_create()); //dac list
+ds_list_add(_layer,ds_list_create()); //dac 
+ds_list_add(_layer,0); //preview offsets
+ds_list_add(_layer,0);
+ds_list_add(_layer,0);
+ds_list_add(_layer,0);
 
 surface_list = ds_list_create();
 somaster_list = ds_list_create();

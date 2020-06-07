@@ -68,12 +68,17 @@ if (idbyte == 104) or(idbyte == 103) or (idbyte == 101) or (idbyte == 102)
         }
         
         //layer vars
-        if (idbyte == 103) or (idbyte == 104)
+        if (idbyte >= 103)
         {
             ds_list_add(layertemp, buffer_read(load_buffer,buffer_u8)); //muted
             ds_list_add(layertemp, buffer_read(load_buffer,buffer_u8)); //hidden
             ds_list_add(layertemp, buffer_read(load_buffer,buffer_string)); //name
-            repeat (16)
+			var t_x_offset = buffer_read(load_buffer,buffer_f32); //preview x offset
+			t_x_offset = ds_list_size(layer_list) == 1 ? 20000 : -20000;
+			var t_y_offset = buffer_read(load_buffer,buffer_f32); //preview y offset
+			var t_x_angle = buffer_read(load_buffer,buffer_f32);
+			var t_y_fov = buffer_read(load_buffer,buffer_f32);
+            repeat (12)
                 buffer_read(load_buffer,buffer_u32); //reserved
                 
             var t_daclist = ds_list_create();
@@ -87,6 +92,11 @@ if (idbyte == 104) or(idbyte == 103) or (idbyte == 101) or (idbyte == 102)
                 ds_list_add(t_thisdaclist, buffer_read(load_buffer,buffer_string));
                 ds_list_add(t_thisdaclist, buffer_read(load_buffer,buffer_string));
             }
+			
+			ds_list_add(layertemp,t_x_offset);
+			ds_list_add(layertemp,t_y_offset);
+			ds_list_add(layertemp,t_x_angle);
+			ds_list_add(layertemp,t_y_fov);
         }
         else
         {
@@ -94,6 +104,10 @@ if (idbyte == 104) or(idbyte == 103) or (idbyte == 101) or (idbyte == 102)
             ds_list_add(layertemp, 0);
             ds_list_add(layertemp, "Layer "+string(j+1));
             ds_list_add(layertemp, ds_list_create());
+			ds_list_add(layertemp, 0);
+            ds_list_add(layertemp, 0);
+			ds_list_add(layertemp, 0);
+            ds_list_add(layertemp, 0);
         }
     }
 }
@@ -156,6 +170,10 @@ else if (idbyte == 100) //old, need to remake buffers
         ds_list_add(layertemp, 0);
         ds_list_add(layertemp, "Layer "+string(j+1));
         ds_list_add(layertemp, ds_list_create());
+		ds_list_add(layertemp, 0);
+        ds_list_add(layertemp, 0);
+		ds_list_add(layertemp, 0);
+        ds_list_add(layertemp, 0);
     }
 }
     

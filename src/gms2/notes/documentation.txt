@@ -1,5 +1,6 @@
 TODO
 - customizable dpi scaling factor
+- simulation settings (more projectors etc)
 - arbitrary animation easing function
 - merge properties and edit menu
 - add custom anchor to timeline mode rotation envelope
@@ -16,7 +17,6 @@ TODO
 - AUTOMATIC live mode
 - audio_loudness_previous_frame
 - shaking stuff (email 2017-11-18)
-- simulation settings (more projectors etc)
 - Support for other glyphs in the text tool
 
 
@@ -51,6 +51,10 @@ layer_list
                 num (index in dac_list)
                 name
                 profile name
+		preview_projector_offset_x
+		preview_projector_offset_y
+		preview_projector_offset_angle
+		preview_projector_offset_fov_offset (0 = 20 degrees)
                 
 somaster_list
     layer elements.. (see above)

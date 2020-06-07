@@ -65,7 +65,11 @@ for (i = global.loading_current; i < global.loading_end;i++)
     buffer_write(save_buffer,buffer_u8,_layer[| 2]); //muted
     buffer_write(save_buffer,buffer_u8,_layer[| 3]); //hidden
     buffer_write(save_buffer,buffer_string,_layer[| 4]); //name
-    repeat (16)
+	buffer_write(save_buffer,buffer_f32,_layer[| 6]); //preview x offset
+	buffer_write(save_buffer,buffer_f32,_layer[| 7]); //preview y offset
+	buffer_write(save_buffer,buffer_f32,_layer[| 8]); //preview angle offset
+	buffer_write(save_buffer,buffer_f32,_layer[| 9]); //preview fov offset
+    repeat (12)
         buffer_write(save_buffer,buffer_u32,0); //reserved
     
     var t_thisdaclist = _layer[| 5];

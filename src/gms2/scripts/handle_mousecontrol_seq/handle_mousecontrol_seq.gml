@@ -737,6 +737,10 @@ for (i = 0; i <= ds_list_size(layer_list); i++)
                 ds_list_add(newlayer,"Layer "+string(controller.el_id));
                 controller.el_id++;
                 ds_list_add(newlayer,ds_list_create()); //dac list
+				ds_list_add(newlayer,0); 
+                ds_list_add(newlayer,0);
+				ds_list_add(newlayer,0); 
+                ds_list_add(newlayer,0);
 				timeline_surf_length = 0;
             }
         }
