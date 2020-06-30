@@ -53,18 +53,31 @@ for (i = 0; i < t_numofelems; i++)
             
             if ((yp >= $ffff) || (yp <= 0) || (xp >= $ffff) || (xp <= 0))
             {
-                bl = 1;
+                //bl = 1;
+				bl_prev = 1;
+				continue;
             }
-            else for (jj = 0; jj < t_blindzonelistsize; jj += 4)
-            {
-                if ((xp > controller.blindzone_list[| jj+0]) 
-                &&  (xp < controller.blindzone_list[| jj+1])
-                &&  (yp < $FFFF-controller.blindzone_list[| jj+2]) 
-                &&  (yp > $FFFF-controller.blindzone_list[| jj+3]))
-                {
-                    bl = 1;
-                }
-            }
+            else 
+			{
+				var t_skipflag = false;
+				for (jj = 0; jj < t_blindzonelistsize; jj += 4)
+	            {
+	                if ((xp > controller.blindzone_list[| jj+0]) 
+	                &&  (xp < controller.blindzone_list[| jj+1])
+	                &&  (yp < $FFFF-controller.blindzone_list[| jj+2]) 
+	                &&  (yp > $FFFF-controller.blindzone_list[| jj+3]))
+	                {
+	                    //bl = 1;
+						t_skipflag = true;
+						break;
+	                }
+	            }
+				if (t_skipflag)
+				{
+					bl_prev = 1;
+					continue;
+				}
+			}
         }
         else
         {   

@@ -1375,6 +1375,14 @@
             }
         },
         {
+            "Key": "23c434bc-5b50-4757-b513-7b0db592f87b",
+            "Value": {
+                "id": "e7365130-5f8a-4285-921e-a601d35f0fe1",
+                "resourcePath": "scripts\\dd_seq_addfadeout\\dd_seq_addfadeout.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "23faf1b8-8abf-4ebb-8b38-5cc4b64981a0",
             "Value": {
                 "id": "8c4c2cbf-ca4e-4232-bda4-3daab254d8fb",
@@ -6591,6 +6599,14 @@
             }
         },
         {
+            "Key": "bfd44ccf-4c14-4bb4-b9ee-0d9f9ee63394",
+            "Value": {
+                "id": "703cda6b-ecff-48be-bd93-b533e79a07de",
+                "resourcePath": "scripts\\find_layer_of_object\\find_layer_of_object.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c04db310-2ca7-4bb4-9b76-f3d8d6d677c1",
             "Value": {
                 "id": "c632198f-d7bd-4216-ae50-8e2446a22e52",
@@ -8335,6 +8351,14 @@
             }
         },
         {
+            "Key": "f3fca823-fe39-48aa-890e-a01084b243b4",
+            "Value": {
+                "id": "2e803af2-f50a-45b3-b366-1a3fa771441b",
+                "resourcePath": "scripts\\dd_seq_addfadein\\dd_seq_addfadein.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f418569b-3bdd-4706-a0e4-364317f54032",
             "Value": {
                 "id": "73690a58-55cd-47f3-8625-46b30d5baa83",
@@ -9211,6 +9235,8 @@
         "b549d2c3-82c6-4117-b408-790bd5135db5",
         "a268667c-f88d-4b4b-8a31-d4cf154f5e66",
         "cdbb4a6e-2b24-4aa6-bb30-e4ca727ff86c",
+        "f3fca823-fe39-48aa-890e-a01084b243b4",
+        "23c434bc-5b50-4757-b513-7b0db592f87b",
         "cf313baf-9c9f-46ce-becb-41c6a283caff",
         "98afae34-fc55-4703-8e52-b2d7972667e1",
         "c8140367-898f-4be8-b0cd-e66f47e48593",
@@ -9303,6 +9329,7 @@
         "f19d0b01-00ac-4201-9e9b-a1dd1373f579",
         "4ab43f8f-1f79-4664-8d2e-41d851cfdca6",
         "ca9d4b20-b2e0-493a-8597-5ffe172c7001",
+        "bfd44ccf-4c14-4bb4-b9ee-0d9f9ee63394",
         "2d998974-ac41-4793-b921-a6f693de9a80",
         "98b7f55b-d28d-4461-a0e1-38c441e75b12",
         "65aa041d-bd2c-4024-8a02-0c6a20205417",

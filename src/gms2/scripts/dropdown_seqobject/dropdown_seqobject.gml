@@ -1,7 +1,7 @@
 ddobj = instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-view_hport[3],"foreground",obj_dropdown);
 with (ddobj)
 {
-    num = 6;
+    num = 9;
     event_user(1);
     ds_list_add(desc_list,"Cut (Ctrl+X)");
     ds_list_add(desc_list,"Copy (Ctrl+C)");
@@ -28,7 +28,19 @@ with (ddobj)
     ds_list_add(scr_list,dd_seq_object_duration);
     ds_list_add(hl_list,1);
     ds_list_add(desc_list,"Split here (S)");
-    ds_list_add(sep_list,1);
+    ds_list_add(sep_list,0);
     ds_list_add(scr_list,split_timelineobject_dropdown);
     ds_list_add(hl_list,1);
+	ds_list_add(desc_list,"Add fade-in effect...");
+    ds_list_add(sep_list,0);
+    ds_list_add(scr_list,dd_seq_addfadein);
+    ds_list_add(hl_list,1);
+	ds_list_add(desc_list,"Add fade-out effect...");
+    ds_list_add(sep_list,0);
+    ds_list_add(scr_list,dd_seq_addfadeout);
+    ds_list_add(hl_list,1);
+	/*ds_list_add(desc_list,"Add strobe effect...");
+    ds_list_add(sep_list,0);
+    ds_list_add(scr_list,dd_seq_addstrobe);
+    ds_list_add(hl_list,1);*/
 }

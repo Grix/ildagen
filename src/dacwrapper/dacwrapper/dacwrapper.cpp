@@ -37,77 +37,125 @@ GMEXPORT double ScanDevices()
 	numDevices = 0;
 
 	#ifdef _WIN32
-		int numOLSC = olscDevice->Init();
-		fprintf(stderr, "Found %d OLSC\n", numOLSC);
-		for (int i = 0; i < numOLSC; i++)
+		try 
 		{
-			char* name = new char[64];
-			olscDevice->GetName(i, name);
-			dacs[numDevices++] = { 3, i, name };
+			int numOLSC = olscDevice->Init();
+			fprintf(stderr, "Found %d OLSC\n", numOLSC);
+			for (int i = 0; i < numOLSC; i++)
+			{
+				char* name = new char[64];
+				olscDevice->GetName(i, name);
+				dacs[numDevices++] = { 3, i, name };
+			}
+		}
+		catch(...)
+		{
 		}
 
-		int numOLSCEasylase = olscEasylaseDevice->Init();
-		fprintf(stderr, "Found %d Easylase\n", numOLSCEasylase);
-		for (int i = 0; i < numOLSCEasylase; i++)
+		try
 		{
-			char* name = new char[64];
-			olscEasylaseDevice->GetName(i, name);
-			dacs[numDevices++] = { 5, i, name };
+			int numOLSCEasylase = olscEasylaseDevice->Init();
+			fprintf(stderr, "Found %d Easylase\n", numOLSCEasylase);
+			for (int i = 0; i < numOLSCEasylase; i++)
+			{
+				char* name = new char[64];
+				olscEasylaseDevice->GetName(i, name);
+				dacs[numDevices++] = { 5, i, name };
+			}
+		}
+		catch (...)
+		{
 		}
 
-		int numOLSCEzAudDac = olscEzAudDacDevice->Init();
-		fprintf(stderr, "Found %d EZAud\n", numOLSCEzAudDac);
-		for (int i = 0; i < numOLSCEzAudDac; i++)
+		try
 		{
-			char* name = new char[64];
-			olscEzAudDacDevice->GetName(i, name);
-			dacs[numDevices++] = { 6, i, name };
+			int numOLSCEzAudDac = olscEzAudDacDevice->Init();
+			fprintf(stderr, "Found %d EZAud\n", numOLSCEzAudDac);
+			for (int i = 0; i < numOLSCEzAudDac; i++)
+			{
+				char* name = new char[64];
+				olscEzAudDacDevice->GetName(i, name);
+				dacs[numDevices++] = { 6, i, name };
+			}
+		}
+		catch (...)
+		{
 		}
 		
-		int numRiyas = riyaDevice->Init();
-		fprintf(stderr, "Found %d Riyas\n", numRiyas);
-		for (int i = 0; i < numRiyas; i++)
+		try
 		{
-			char* name = new char[64];
-			riyaDevice->GetName(i, name);
-			dacs[numDevices++] = { 2, i, name };
+			int numRiyas = riyaDevice->Init();
+			fprintf(stderr, "Found %d Riyas\n", numRiyas);
+			for (int i = 0; i < numRiyas; i++)
+			{
+				char* name = new char[64];
+				riyaDevice->GetName(i, name);
+				dacs[numDevices++] = { 2, i, name };
+			}
+		}
+		catch (...)
+		{
 		}
 	#endif
 
-	int numEtherdreams = etherDreamDevice->Init();
-	fprintf(stderr, "Found %d Etherdreams\n", numEtherdreams);
-	for (int i = 0; i < numEtherdreams; i++)
+	try
 	{
-		char* name = new char[64];
-		etherDreamDevice->GetName(i, name);
-		dacs[numDevices++] = { 1, i, name };
+		int numEtherdreams = etherDreamDevice->Init();
+		fprintf(stderr, "Found %d Etherdreams\n", numEtherdreams);
+		for (int i = 0; i < numEtherdreams; i++)
+		{
+			char* name = new char[64];
+			etherDreamDevice->GetName(i, name);
+			dacs[numDevices++] = { 1, i, name };
+		}
+	}
+	catch (...)
+	{
 	}
 
-	int numHelios = heliosDevice->Init();
-	fprintf(stderr, "Found %d Helios\n", numHelios);
-	for (int i = 0; i < numHelios; i++)
+	try
 	{
-		char* name = new char[64];
-		heliosDevice->GetName(i, name);
-		dacs[numDevices++] = { 4, i, name };
+		int numHelios = heliosDevice->Init();
+		fprintf(stderr, "Found %d Helios\n", numHelios);
+		for (int i = 0; i < numHelios; i++)
+		{
+			char* name = new char[64];
+			heliosDevice->GetName(i, name);
+			dacs[numDevices++] = { 4, i, name };
+		}
+	}
+	catch (...)
+	{
 	}
 
-	int numLaserDocks = laserDockDevice->Init();
-	fprintf(stderr,"Found %d LaserDocks\n", numLaserDocks);
-	for (int i = 0; i < numLaserDocks; i++)
+	try
 	{
-		char* name = new char[64];
-		laserDockDevice->GetName(i, name);
-		dacs[numDevices++] = { 7, i, name };
+		int numLaserDocks = laserDockDevice->Init();
+		fprintf(stderr,"Found %d LaserDocks\n", numLaserDocks);
+		for (int i = 0; i < numLaserDocks; i++)
+		{
+			char* name = new char[64];
+			laserDockDevice->GetName(i, name);
+			dacs[numDevices++] = { 7, i, name };
+		}
+	}
+	catch (...)
+	{
 	}
 
-	int numIdn = idnDevice->Init();
-	fprintf(stderr, "Found %d IDN servers\n", numIdn);
-	for (int i = 0; i < numIdn; i++)
+	try
 	{
-		char* name = new char[64];
-		idnDevice->GetName(i, name);
-		dacs[numDevices++] = { 8, i, name };
+		int numIdn = idnDevice->Init();
+		fprintf(stderr, "Found %d IDN servers\n", numIdn);
+		for (int i = 0; i < numIdn; i++)
+		{
+			char* name = new char[64];
+			idnDevice->GetName(i, name);
+			dacs[numDevices++] = { 8, i, name };
+		}
+	}
+	catch (...)
+	{
 	}
 
 
@@ -123,26 +171,33 @@ GMEXPORT double DeviceOpen(double doubleNum)
 	int dacType = dacs[num].type;
 	int cardNum = dacs[num].cardNum;
 
-	if (dacType == 4)		//Helios
-		return (double)heliosDevice->OpenDevice(cardNum);
-	else if(dacType == 8)	//IDN
-		return (double)idnDevice->OpenDevice(cardNum);
-	else if (dacType == 7)	//LaserDock
-		return (double)laserDockDevice->OpenDevice(cardNum);
-	else if (dacType == 1)	//EtherDream
-		return (double)etherDreamDevice->OpenDevice(cardNum);
-	#ifdef _WIN32
-		else if (dacType == 2)	//RIYA
-			return (double)riyaDevice->OpenDevice(cardNum);
-		else if (dacType == 3)	//OLSC
-			return (double)olscDevice->OpenDevice(cardNum);
-		else if (dacType == 5)	//OLSC_Easylase
-			return (double)olscEasylaseDevice->OpenDevice(cardNum);
-		else if (dacType == 6)	//OLSC_EzAudDac
-			return (double)olscEzAudDacDevice->OpenDevice(cardNum);
-	#endif
-	else
+	try
+	{
+		if (dacType == 4)		//Helios
+			return (double)heliosDevice->OpenDevice(cardNum);
+		else if (dacType == 8)	//IDN
+			return (double)idnDevice->OpenDevice(cardNum);
+		else if (dacType == 7)	//LaserDock
+			return (double)laserDockDevice->OpenDevice(cardNum);
+		else if (dacType == 1)	//EtherDream
+			return (double)etherDreamDevice->OpenDevice(cardNum);
+		#ifdef _WIN32
+			else if (dacType == 2)	//RIYA
+				return (double)riyaDevice->OpenDevice(cardNum);
+			else if (dacType == 3)	//OLSC
+				return (double)olscDevice->OpenDevice(cardNum);
+			else if (dacType == 5)	//OLSC_Easylase
+				return (double)olscEasylaseDevice->OpenDevice(cardNum);
+			else if (dacType == 6)	//OLSC_EzAudDac
+				return (double)olscEzAudDacDevice->OpenDevice(cardNum);
+		#endif
+		else
+			return -1.0;
+	}
+	catch (...)
+	{
 		return -1.0;
+	}
 }
 
 //prepares buffer and outputs frame to specified device

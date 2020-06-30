@@ -60,6 +60,106 @@ if (new_id == getint)
             
             break;
         }
+		case "add_fadein":
+		case "add_fadeout":
+		{
+            var t_parameter = ds_map_find_value(argument[0], "value")*controller.projectfps;
+			
+			for (i = 0; i < ds_list_size(somaster_list); i++)
+			{
+				var t_object = somaster_list[| i];
+				var t_layer = find_layer_of_object(t_object);
+				if (!ds_exists(t_layer, ds_type_list))
+					continue;
+					
+				var t_envelopelist = t_layer[| 0];
+				var t_envelope = -1;
+				for (j = 0; j < ds_list_size(t_envelopelist); j++)
+				{
+					if (ds_list_find_value(t_envelopelist[| j], 0) == "a")
+					{
+						t_envelope = t_envelopelist[| j];
+						break;
+					}
+				}
+				if (t_envelope == -1)
+				{
+					t_envelope = ds_list_create();
+					ds_list_add(t_envelopelist,t_envelope);
+					ds_list_add(t_envelope,"a");
+					ds_list_add(t_envelope,ds_list_create());
+					ds_list_add(t_envelope,ds_list_create());
+					ds_list_add(t_envelope,0);
+					ds_list_add(t_envelope,0);
+				}
+				var t_timelist = t_envelope[| 1];
+				var t_datalist = t_envelope[| 2];
+				
+				var t_undolist = ds_list_create();
+				var t_list1 = ds_list_create();
+				var t_list2 = ds_list_create();
+				ds_list_copy(t_list1,t_timelist);
+				ds_list_copy(t_list2,t_datalist);
+				ds_list_add(t_undolist,t_list1);
+				ds_list_add(t_undolist,t_list2);
+				ds_list_add(t_undolist,t_envelope);
+				
+				var t_start;
+				var t_end;
+				if (dialog == "add_fadein")
+				{
+					t_start = t_object[| 0] - 1;
+					t_end = t_start + t_parameter + 1;
+				}
+				else// if (dialog == "add_fadeout")
+				{
+					t_end = t_object[| 0] + ds_list_find_value(t_object[| 2], 0) + 1;
+					t_start = t_end - t_parameter;
+				}
+		
+		        for (u = 0; u < ds_list_size(t_timelist); u++)
+		        {
+		            if (t_timelist[| u] >= t_start && t_timelist[| u] <= t_end)
+		            {
+		                ds_list_delete(t_timelist,u);
+		                ds_list_delete(t_datalist,u);
+		                u--;
+		            }
+		        }
+				
+				var t_index;
+				for (t_index = 0; t_index < ds_list_size(t_timelist); t_index++)
+				{
+					if (t_timelist[| t_index] > t_start)
+						break;
+				}
+				
+				if (dialog == "add_fadein")
+				{
+					ds_list_insert(t_timelist, t_index, t_end);
+					ds_list_insert(t_datalist, t_index, 0);
+					ds_list_insert(t_timelist, t_index, t_start+1);
+					ds_list_insert(t_datalist, t_index, 64);
+					ds_list_insert(t_timelist, t_index, t_start);
+					ds_list_insert(t_datalist, t_index, 0);
+				}
+				else if (dialog == "add_fadeout")
+				{
+					ds_list_insert(t_timelist, t_index, t_end);
+					ds_list_insert(t_datalist, t_index, 0);
+					ds_list_insert(t_timelist, t_index, t_end-1);
+					ds_list_insert(t_datalist, t_index, 64);
+					ds_list_insert(t_timelist, t_index, t_start);
+					ds_list_insert(t_datalist, t_index, 0);
+				}
+				// todo use the current value instead of default 100% on edges
+				
+				ds_list_add(seqcontrol.undo_list,"e"+string(t_undolist));
+			}
+			
+			seqcontrol.timeline_surf_length = 0;
+			break;
+		}
         case "projectclear":
         {
             clear_project();
