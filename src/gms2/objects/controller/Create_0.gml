@@ -185,7 +185,13 @@ tlw = 512;
 tlh = 42;
 tlorigo_x = 0;
 tlorigo_y = 515;
-dpi_multiplier = ceil(display_get_height()/1700);
+ini_open("settings.ini");
+var t_dpi_scaling = ini_read_real("main", "dpi_scaling_override", -1);
+if (t_dpi_scaling == -1)
+	dpi_multiplier = ceil(display_get_height()/1700);
+else
+	dpi_multiplier = t_dpi_scaling;
+ini_close();
 default_window_w = 1350*dpi_multiplier;
 default_window_h = 735*dpi_multiplier;
 log("window size", default_window_w, default_window_h);

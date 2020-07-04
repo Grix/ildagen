@@ -24,36 +24,8 @@ for (u = 0; u < ds_list_size(t_envelope_list); u++)
         
     data_list = ds_list_find_value(envelope,2); 
     
-    //binary search algo, set t_index to the current cursor pos
-    var imin = 0;
-    var imax = ds_list_size(time_list)-1;
-    var imid;
-    while (imin <= imax)
-    {
-        imid = floor(mean(imin,imax));
-        if (ds_list_find_value(time_list,imid) <= correctframe)
-        {
-            var valnext = ds_list_find_value(time_list,imid+1);
-            if (is_undefined(valnext)) or (valnext >= correctframe)
-                break;
-            else
-                imin = imid+1;
-        }
-        else
-            imax = imid-1;
-    }
-    var t_index = imid;
+    raw_data_value = find_envelope_value(data_list, time_list, correctframe);
     
-    //interpolate
-    if (t_index == ds_list_size(data_list)-1) or ( (t_index == 0) and (time_list[| t_index] >= correctframe) ) or (time_list[| t_index+1] == time_list[| t_index])
-        raw_data_value = data_list[| t_index];
-    else
-	{
-        raw_data_value = lerp(  data_list[| t_index],
-                                data_list[| t_index+1],
-                                1-(time_list[| t_index+1]-correctframe)/(time_list[| t_index+1]-time_list[| t_index]));
-	}
-		
     //get value    
     type = ds_list_find_value(envelope,0);
     if (type == "x")

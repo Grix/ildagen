@@ -2271,6 +2271,14 @@
             }
         },
         {
+            "Key": "3ef79bc7-3fe9-467e-bbf2-c6973cd86a54",
+            "Value": {
+                "id": "d7e891c2-6d7c-494c-91fe-5b7f736295c9",
+                "resourcePath": "scripts\\find_envelope_index\\find_envelope_index.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3f4d83a9-4499-4047-b198-e6c835da259a",
             "Value": {
                 "id": "42875f05-11e6-439a-b16b-05594958842a",
@@ -5347,6 +5355,14 @@
             "Value": {
                 "id": "394c9312-95b1-4449-a940-851078e33166",
                 "resourcePath": "scripts\\import_font_end\\import_font_end.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9be6d4ef-9b02-45f9-b53f-55b56cfc4e65",
+            "Value": {
+                "id": "5c3633ab-8e6e-46cc-a325-d9ca9ef849d1",
+                "resourcePath": "scripts\\find_envelope_value\\find_envelope_value.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9330,6 +9346,8 @@
         "4ab43f8f-1f79-4664-8d2e-41d851cfdca6",
         "ca9d4b20-b2e0-493a-8597-5ffe172c7001",
         "bfd44ccf-4c14-4bb4-b9ee-0d9f9ee63394",
+        "3ef79bc7-3fe9-467e-bbf2-c6973cd86a54",
+        "9be6d4ef-9b02-45f9-b53f-55b56cfc4e65",
         "2d998974-ac41-4793-b921-a6f693de9a80",
         "98b7f55b-d28d-4461-a0e1-38c441e75b12",
         "65aa041d-bd2c-4024-8a02-0c6a20205417",

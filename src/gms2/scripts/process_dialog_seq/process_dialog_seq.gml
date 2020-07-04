@@ -104,18 +104,23 @@ if (new_id == getint)
 				ds_list_add(t_undolist,t_list2);
 				ds_list_add(t_undolist,t_envelope);
 				
-				var t_start;
-				var t_end;
+				var t_start, t_end, t_valuestart, t_valueend;
 				if (dialog == "add_fadein")
 				{
 					t_start = t_object[| 0] - 1;
-					t_end = t_start + t_parameter + 1;
+					t_end = t_start + t_parameter + 2;
 				}
 				else// if (dialog == "add_fadeout")
 				{
 					t_end = t_object[| 0] + ds_list_find_value(t_object[| 2], 0) + 1;
-					t_start = t_end - t_parameter;
+					t_start = t_end - t_parameter - 1;
 				}
+				t_valuestart = find_envelope_value(t_datalist, t_timelist, t_start);
+				t_valueend = find_envelope_value(t_datalist, t_timelist, t_end);
+				if (is_undefined(t_valuestart))
+					t_valuestart = 0;
+				if (is_undefined(t_valueend))
+					t_valueend = 0;
 		
 		        for (u = 0; u < ds_list_size(t_timelist); u++)
 		        {
@@ -127,32 +132,30 @@ if (new_id == getint)
 		            }
 		        }
 				
-				var t_index;
 				for (t_index = 0; t_index < ds_list_size(t_timelist); t_index++)
 				{
 					if (t_timelist[| t_index] > t_start)
 						break;
 				}
 				
+				ds_list_insert(t_timelist, t_index, t_end);
+				ds_list_insert(t_datalist, t_index, t_valueend);
 				if (dialog == "add_fadein")
 				{
-					ds_list_insert(t_timelist, t_index, t_end);
+					ds_list_insert(t_timelist, t_index, t_end-1);
 					ds_list_insert(t_datalist, t_index, 0);
 					ds_list_insert(t_timelist, t_index, t_start+1);
 					ds_list_insert(t_datalist, t_index, 64);
-					ds_list_insert(t_timelist, t_index, t_start);
-					ds_list_insert(t_datalist, t_index, 0);
 				}
 				else if (dialog == "add_fadeout")
 				{
-					ds_list_insert(t_timelist, t_index, t_end);
-					ds_list_insert(t_datalist, t_index, 0);
 					ds_list_insert(t_timelist, t_index, t_end-1);
 					ds_list_insert(t_datalist, t_index, 64);
-					ds_list_insert(t_timelist, t_index, t_start);
+					ds_list_insert(t_timelist, t_index, t_start+1);
 					ds_list_insert(t_datalist, t_index, 0);
 				}
-				// todo use the current value instead of default 100% on edges
+				ds_list_insert(t_timelist, t_index, t_start);
+				ds_list_insert(t_datalist, t_index, t_valuestart);
 				
 				ds_list_add(seqcontrol.undo_list,"e"+string(t_undolist));
 			}
