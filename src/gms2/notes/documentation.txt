@@ -1,8 +1,10 @@
 TODO
 - customizable dpi scaling factor
+- fix slow performance on seeking in long timeline objects. Automatic split, or checkpoint list?
 - simulation settings (more projectors etc)
 - arbitrary animation easing function
 - merge properties and edit menu
+- investigate and fix problem of dac falling out and having to rescan. Automatic rescan on failure?
 - add custom anchor to timeline mode rotation envelope
 - BPM sync indicator/quantization in all modes
 - pause individual files in live

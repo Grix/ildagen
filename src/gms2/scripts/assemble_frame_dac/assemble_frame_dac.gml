@@ -17,6 +17,7 @@ else
             else
             {
                 make_frame_onlyblank();
+				output_framelist_to_buffer();
             }
         }
         else
@@ -28,6 +29,7 @@ else
             else
             {
                 make_frame();
+				output_framelist_to_buffer();
             }
         }
     }
@@ -40,9 +42,9 @@ else
         else
         {
             make_frame_unopt();
+			output_framelist_to_buffer();
         }
     }
-    output_framelist_to_buffer();
 }
 
 

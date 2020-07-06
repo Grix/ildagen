@@ -3,7 +3,7 @@ if (debug_mode)
 
 list_raw = ds_list_create();
 
-order_list = ds_list_create();
+order_list = ds_list_create(); //todo deleted? memory leak?
 polarity_list = ds_list_create();
 
 lit_length = 0;
@@ -51,6 +51,12 @@ while (ds_list_size(order_list) < (ds_list_size(el_list)-ds_list_size(t_list_emp
         
         if (ds_list_find_index(t_list_empties, list_id) != -1)
             continue;
+			
+		if (ds_list_size(list_id) <= 20)
+		{
+			ds_list_add(t_list_empties, list_id);
+			continue;
+		}
         
         xo = list_id[| 0];
         yo = list_id[| 1];
