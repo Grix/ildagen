@@ -198,6 +198,7 @@ if (selectedx >= 0)
     ds_list_add(info,tempmaxframes-1);
     ds_list_add(info,-1);
     ds_list_add(info,tempmaxframes);
+	ds_list_add(info, create_checkpoint_list(save_buffer));
     ds_list_add(objectlist,info);
     
     ds_list_add(selectedlayerlist[| 1],objectlist);

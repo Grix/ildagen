@@ -24,6 +24,7 @@ if (idbyte == 200 || idbyte == 201)
         ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
         ds_list_add(objectinfolist,-1);
         ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
+		ds_list_add(objectinfolist, create_checkpoint_list(objectbuffer));
             
         ds_list_add(objectlist,round(buffer_read(load_buffer,buffer_u32)));
 		ds_list_add(objectlist,buffer_read(load_buffer,buffer_bool));

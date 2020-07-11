@@ -36,8 +36,13 @@ save_buffer = buffer_create(16,buffer_grow,1);
 buffer_write(save_buffer,buffer_u8,52);
 buffer_write(save_buffer,buffer_u32,maxframes);
 
+var t_checkpointlist = ds_list_create();
+
 for (j = 0; j < maxframes;j++)
 {
+	if (j % 100 == 0 && j != 0)
+		ds_list_add(t_checkpointlist, buffer_tell(save_buffer));
+	
     el_list = ds_list_find_value(frame_list,j);
     buffer_write(save_buffer,buffer_u32,ds_list_size(el_list));
     
@@ -82,6 +87,7 @@ with (seqcontrol)
         ds_list_add(info,controller.maxframes-1);
         ds_list_add(info,-1);
         ds_list_add(info,controller.maxframes);
+		ds_list_add(info, t_checkpointlist);
         ds_list_add(objectlist,info);
         ds_list_add(selectedlayerlist[| 1],objectlist);
         

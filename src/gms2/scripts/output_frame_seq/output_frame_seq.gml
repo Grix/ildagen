@@ -94,28 +94,14 @@ for (k = 0; k < ds_list_size(layer_list); k++)
         //yup, draw object
         el_buffer = ds_list_find_value(objectlist,1);
         fetchedframe = (correctframe-frametime) mod object_maxframes;
-        buffer_seek(el_buffer,buffer_seek_start,0);
-        buffer_ver = buffer_read(el_buffer,buffer_u8);
-        if (buffer_ver != 52)
-        {
-            show_message_new("Error: Unexpected idbyte in buffer for output_frame_seq. Things might get ugly. Contact developer.");
-            t_dac[| 4] = output_buffer;
+        
+		if (!seek_to_correct_frame(el_buffer, fetchedframe, objectlist))
+		{
+			t_dac[| 4] = output_buffer;
             t_dac[| 5] = output_buffer2;
             t_dac[| 6] = output_buffer_ready;
             t_dac[| 7] = output_buffer_next_size;
             exit;
-        }
-        buffer_maxframes = buffer_read(el_buffer,buffer_u32);
-        
-        //skip to correct frame
-        for (i = 0; i < fetchedframe;i++)
-        {
-            numofel = buffer_read(el_buffer,buffer_u32);
-            for (u = 0; u < numofel; u++)
-            {
-                numofdata = buffer_read(el_buffer,buffer_u32)-20;
-                buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*3.25);
-            }
         }
             
         buffer_maxelements = buffer_read(el_buffer,buffer_u32);

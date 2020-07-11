@@ -65,27 +65,11 @@ for (j = 0; j < ds_list_size(layer_list); j++)
         //draw object
         el_buffer = ds_list_find_value(objectlist,1);
         fetchedframe = (correctframe-frametime) mod object_maxframes;
-        buffer_seek(el_buffer,buffer_seek_start,0);
-        buffer_ver = buffer_read(el_buffer,buffer_u8);
-        if (buffer_ver != 52)
-        {
-            show_message_new("Error: Unexpected byte. Things might get ugly. Contact developer.");
-            exit;
-        }
-        buffer_maxframes = buffer_read(el_buffer,buffer_u32);
         
-        el_list = ds_list_create(); 
+		if (!seek_to_correct_frame(el_buffer, fetchedframe, objectlist))
+			exit;
         
-        //skip to correct frame
-        for (i = 0; i < fetchedframe;i++)
-        {
-            numofel = buffer_read(el_buffer,buffer_u32);
-            for (u = 0; u < numofel; u++)
-            {
-                numofdata = buffer_read(el_buffer,buffer_u32)-20;
-                buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*3.25);
-            }
-        }
+        //el_list = ds_list_create(); why is this here?
             
         buffer_maxelements = buffer_read(el_buffer,buffer_u32);
         
@@ -254,27 +238,12 @@ if (controller.onion)
 		        //draw object
 		        el_buffer = ds_list_find_value(objectlist,1);
 		        fetchedframe = (correctframe-frametime) mod object_maxframes;
-		        buffer_seek(el_buffer,buffer_seek_start,0);
-		        buffer_ver = buffer_read(el_buffer,buffer_u8);
-		        if (buffer_ver != 52)
-		        {
-		            show_message_new("Error: Unexpected byte. Things might get ugly. Contact developer.");
-		            exit;
-		        }
-		        buffer_maxframes = buffer_read(el_buffer,buffer_u32);
+		        
+				if (!seek_to_correct_frame(el_buffer, fetchedframe, objectlist))
+					exit;
         
-		        el_list = ds_list_create(); 
+		        //el_list = ds_list_create(); //why is this here?
         
-		        //skip to correct frame
-		        for (i = 0; i < fetchedframe;i++)
-		        {
-		            numofel = buffer_read(el_buffer,buffer_u32);
-		            for (u = 0; u < numofel; u++)
-		            {
-		                numofdata = buffer_read(el_buffer,buffer_u32)-20;
-		                buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*3.25);
-		            }
-		        }
             
 		        buffer_maxelements = buffer_read(el_buffer,buffer_u32);
         

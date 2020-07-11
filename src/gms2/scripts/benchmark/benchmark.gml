@@ -2,6 +2,7 @@
 
 //tesing benchmark
 
+//todo test buffer slignment, is it better to align to 4 in frame buffers?
 
 /*log("---")
 blah1 = buffer_create(10000, buffer_fast, 1);

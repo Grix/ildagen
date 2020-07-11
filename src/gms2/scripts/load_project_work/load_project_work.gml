@@ -33,6 +33,7 @@ if (idbyte == 104) or(idbyte == 103) or (idbyte == 101) or (idbyte == 102)
             ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
             ds_list_add(objectinfolist,-1);
             ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
+			ds_list_add(objectinfolist, create_checkpoint_list(objectbuffer));
             
             ds_list_add(layertemp[| 1],objectlist);
         }

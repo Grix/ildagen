@@ -50,25 +50,9 @@ for (j = 0; j < ds_list_size(filelist); j++)
 	//draw object
 	el_buffer = ds_list_find_value(objectlist, 1);
 	fetchedframe = frame mod object_maxframes;
-	buffer_seek(el_buffer,buffer_seek_start,0);
-	buffer_ver = buffer_read(el_buffer,buffer_u8);
-	if (buffer_ver != 52)
-	{
-		show_message_new("Error: Unexpected version id reading buffer in refresh_seq_surface: "+string(buffer_ver)+". Things might get ugly. Contact developer.");
+	
+	if (!seek_to_correct_frame(el_buffer, fetchedframe, objectlist))
 		exit;
-	}
-	buffer_maxframes = buffer_read(el_buffer,buffer_u32);
-        
-	//skip to correct frame
-	for (i = 0; i < fetchedframe;i++)
-	{
-		numofel = buffer_read(el_buffer,buffer_u32);
-		for (u = 0; u < numofel; u++)
-		{
-		    numofdata = buffer_read(el_buffer,buffer_u32)-20;
-		    buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*3.25);
-		}
-	}
             
 	buffer_maxelements = buffer_read(el_buffer,buffer_u32);
         
@@ -284,25 +268,8 @@ if (controller.onion)
 			if (objectlist[| 4] == 0 && fetchedframe < (frame mod object_maxframes))
 				continue; // is not looping, so don't wrap to start
 				
-			buffer_seek(el_buffer,buffer_seek_start,0);
-			buffer_ver = buffer_read(el_buffer,buffer_u8);
-			if (buffer_ver != 52)
-			{
-				show_message_new("Error: Unexpected version id reading buffer in refresh_seq_surface: "+string(buffer_ver)+". Things might get ugly. Contact developer.");
+			if (!seek_to_correct_frame(el_buffer, fetchedframe, objectlist))
 				exit;
-			}
-			buffer_maxframes = buffer_read(el_buffer,buffer_u32);
-        
-			//skip to correct frame
-			for (i = 0; i < fetchedframe;i++)
-			{
-				numofel = buffer_read(el_buffer,buffer_u32);
-				for (u = 0; u < numofel; u++)
-				{
-				    numofdata = buffer_read(el_buffer,buffer_u32)-20;
-				    buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*3.25);
-				}
-			}
             
 			buffer_maxelements = buffer_read(el_buffer,buffer_u32);
         

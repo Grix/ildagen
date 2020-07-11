@@ -80,27 +80,13 @@ for (j = global.loading_current; j < global.loading_end;j++)
             //yup, draw object
             el_buffer = ds_list_find_value(objectlist,1);
             fetchedframe = (correctframe-frametime) mod object_maxframes;
-            buffer_seek(el_buffer,buffer_seek_start,0);
-            buffer_ver = buffer_read(el_buffer,buffer_u8);
-            if (buffer_ver != 52)
-            {
-                show_message_new("Error: Unexpected idbyte in buffer for export_project_work(). Things might get ugly. Contact developer.");
-                global.loading_exportproject = 0;
+			
+			if (!seek_to_correct_frame(el_buffer, fetchedframe, objectlist))
+			{
+				global.loading_exportproject = 0;
                 room_goto(rm_seq);
-                exit;
-            }
-            buffer_maxframes = buffer_read(el_buffer,buffer_u32);
-            
-            //skip to correct frame
-            for (i = 0; i < fetchedframe;i++)
-            {
-                numofel = buffer_read(el_buffer,buffer_u32);
-                for (u = 0; u < numofel; u++)
-                {
-                    numofdata = buffer_read(el_buffer,buffer_u32)-20;
-                    buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*3.25);
-                }
-            }
+				exit;
+			}
                 
             buffer_maxelements = buffer_read(el_buffer,buffer_u32);
             

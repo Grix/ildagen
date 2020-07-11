@@ -55,30 +55,15 @@ for (j = 0; j < ds_list_size(filelist); j++)
 	//draw object
 	el_buffer = ds_list_find_value(objectlist,1);
 	fetchedframe = frame mod object_maxframes;
-	buffer_seek(el_buffer,buffer_seek_start,0);
-	buffer_ver = buffer_read(el_buffer,buffer_u8);
-	if (buffer_ver != 52)
+	if (!seek_to_correct_frame(el_buffer, fetchedframe, objectlist))
 	{
-	    show_message_new("Error: Unexpected idbyte in buffer for output_frame_live. Things might get ugly. Contact developer.");
 	    controller.dac[| 4] = output_buffer;
 	    controller.dac[| 5] = output_buffer2;
 	    controller.dac[| 6] = output_buffer_ready;
 	    controller.dac[| 7] = output_buffer_next_size;
 	    exit;
 	}
-	buffer_maxframes = buffer_read(el_buffer,buffer_u32);
-        
-	//skip to correct frame
-	for (i = 0; i < fetchedframe;i++)
-	{
-	    numofel = buffer_read(el_buffer,buffer_u32);
-	    for (u = 0; u < numofel; u++)
-	    {
-	        numofdata = buffer_read(el_buffer,buffer_u32)-20;
-	        buffer_seek(el_buffer,buffer_seek_relative,50+numofdata*3.25);
-	    }
-	}
-            
+	
 	buffer_maxelements = buffer_read(el_buffer,buffer_u32);
         
 	//make into lists

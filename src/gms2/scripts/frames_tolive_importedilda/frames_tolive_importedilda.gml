@@ -6,8 +6,13 @@ buffer_seek(save_buffer,buffer_seek_start,0);
 buffer_write(save_buffer,buffer_u8,52);
 buffer_write(save_buffer,buffer_u32,ds_list_size(ild_list));
 
+var t_checkpointlist = ds_list_create();
+
 for (j = 0; j < ds_list_size(ild_list);j++)
 {
+	if (j % 100 == 0 && j != 0)
+		ds_list_add(t_checkpointlist, buffer_tell(save_buffer));
+	
     buffer_write(save_buffer,buffer_u32,1);
 
     ind_list = ds_list_find_value(ild_list,j);
@@ -44,6 +49,7 @@ with (livecontrol)
     ds_list_add(info,0);
     ds_list_add(info,-1);
     ds_list_add(info,controller.maxframes_parse);
+	ds_list_add(info, t_checkpointlist);
     ds_list_add(objectlist,info);
 	ds_list_add(objectlist,find_next_available_shortcut());
 	ds_list_add(objectlist,(controller.maxframes_parse == 1));
