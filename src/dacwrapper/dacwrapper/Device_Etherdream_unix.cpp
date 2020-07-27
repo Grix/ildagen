@@ -40,6 +40,7 @@ bool Device_Etherdream::CloseDevice(int cardNum)
 	if (!ready) 
 		return false;
 
+	etherdream_stop(etherdream_get(cardNum));
 	etherdream_disconnect(etherdream_get(cardNum));
     return true;
 }
@@ -51,8 +52,7 @@ bool Device_Etherdream::CloseAll()
 
 	for (int i = 0; i < 16; i++)
 	{
-		etherdream_stop(etherdream_get(i));
-		etherdream_disconnect(etherdream_get(i));
+		CloseDevice(i);
 	}
 
 	ready = false;
@@ -62,21 +62,26 @@ bool Device_Etherdream::CloseAll()
 
 bool Device_Etherdream::Stop(int cardNum)
 {
-	if (!ready) return false;
-	return (etherdream_stop(etherdream_get(cardNum)) == 0);
-}
-
-bool Device_Etherdream::OutputFrame(int cardNum, const struct etherdream_point* data, int numPoints, uint16_t PPS)
-{
+	//if (!ready) return false;
+	//return (etherdream_stop(etherdream_get(cardNum)) == 0);
+	
 	if (!ready) return false;
 
 	int thisFrameNum = ++frameNum[cardNum];
     
     struct etherdream* ed = etherdream_get(cardNum);
-    const struct etherdream_point* dat = new struct etherdream_point[1];
-    int int1 = 2;
-    int int2 = 0;
-    int int3 = 0;
+    struct etherdream_point* dat = new struct etherdream_point[100];
+	for (int i = 0; i < 100; i++)
+	{
+		dat[i].x = 0;
+		dat[i].y = 0;
+		dat[i].r = 0;
+		dat[i].g = 0;
+		dat[i].b = 0;
+		dat[i].i = 0;
+		dat[i].u1 = 0;
+		dat[i].u2 = 0;
+	}
 
 	std::lock_guard<std::mutex> lock(frameLock[cardNum]);
 
@@ -86,7 +91,31 @@ bool Device_Etherdream::OutputFrame(int cardNum, const struct etherdream_point* 
 			break;
 		else if (etherdream_is_ready(ed) == 1)
         {
-            return etherdream_write(ed, dat, int1, int2, int3);//(etherdream_write(ed, data, numPoints, (int)PPS, -1) == 0);
+            return etherdream_write(ed, dat, 100, 10000, -1);
+		}
+		std::this_thread::sleep_for(std::chrono::microseconds(100));
+	}
+
+	return false;
+}
+
+bool Device_Etherdream::OutputFrame(int cardNum, const struct etherdream_point* data, int numPoints, uint16_t PPS)
+{
+	if (!ready) return false;
+
+	int thisFrameNum = ++frameNum[cardNum];
+    
+    struct etherdream* ed = etherdream_get(cardNum);
+
+	std::lock_guard<std::mutex> lock(frameLock[cardNum]);
+
+	for (int i = 0; i < 1000; i++)
+	{
+		if (frameNum[cardNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
+			break;
+		else if (etherdream_is_ready(ed) == 1)
+        {
+            return (etherdream_write(ed, data, numPoints, (int)PPS, -1) == 0);
 		}
 		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
@@ -96,5 +125,7 @@ bool Device_Etherdream::OutputFrame(int cardNum, const struct etherdream_point* 
 
 void Device_Etherdream::GetName(int cardNum, char* name)
 {
-    name = "Etherdream"; //todo add index/name
+	sprintf(name, "Etherdream %d", cardNum);
+	//strcpy_s(name, 32, "Etherdream");
+    //name = "Etherdream"; //todo add index/name
 }

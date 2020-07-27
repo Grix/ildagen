@@ -62,9 +62,9 @@
 		8E7A31A32083D6DC00416B44 /* LaserdockDeviceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LaserdockDeviceManager.cpp; path = ../dacwrapper/LaserdockDeviceManager.cpp; sourceTree = "<group>"; };
 		8E7A31A42083D6DC00416B44 /* LaserdockDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaserdockDeviceManager.h; path = ../dacwrapper/LaserdockDeviceManager.h; sourceTree = "<group>"; };
 		8E7A31AF2083D6E400416B44 /* libusb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libusb.h; path = ../dacwrapper/libusb.h; sourceTree = "<group>"; };
-		8EA62ED6209F80860087E229 /* etherdream_common */ = {isa = PBXFileReference; lastKnownFileType = folder; path = etherdream_common; sourceTree = "<group>"; };
-		8EA62ED7209F80860087E229 /* etherdream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = etherdream.c; sourceTree = "<group>"; };
-		8EA62ED8209F80860087E229 /* etherdream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = etherdream.h; sourceTree = "<group>"; };
+		8EA62ED6209F80860087E229 /* etherdream_common */ = {isa = PBXFileReference; lastKnownFileType = folder; name = etherdream_common; path = ../dacwrapper/etherdream_common; sourceTree = "<group>"; };
+		8EA62ED7209F80860087E229 /* etherdream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = etherdream.c; path = ../dacwrapper/etherdream.c; sourceTree = "<group>"; };
+		8EA62ED8209F80860087E229 /* etherdream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = etherdream.h; path = ../dacwrapper/etherdream.h; sourceTree = "<group>"; };
 		8EDAE47A20840C5A003AB75E /* libusb-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libusb-1.0.0.dylib"; sourceTree = "<group>"; };
 		8EE0D8822324267D006267DE /* idn-hello.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "idn-hello.h"; path = "../dacwrapper/idn-hello.h"; sourceTree = "<group>"; };
 		8EE0D8832324267D006267DE /* idn-stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "idn-stream.h"; path = "../dacwrapper/idn-stream.h"; sourceTree = "<group>"; };
@@ -189,6 +189,7 @@
 				TargetAttributes = {
 					8E7A31872083D57300416B44 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = Y62YL762Z5;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -198,6 +199,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 8E7A317F2083D57300416B44;
@@ -325,15 +327,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = Y62YL762Z5;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 2;
+				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = "/Users/gitle/Documents/ildagen/src/dacwrapper/dacwrapper_xcode/**";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -342,15 +347,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = Y62YL762Z5;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 2;
+				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = "/Users/gitle/Documents/ildagen/src/dacwrapper/dacwrapper_xcode/**";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

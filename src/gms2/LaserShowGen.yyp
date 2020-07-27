@@ -4607,6 +4607,14 @@
             }
         },
         {
+            "Key": "8542f559-697a-4e94-82b7-9f12bcea05ba",
+            "Value": {
+                "id": "95febad9-ad80-40bc-9d12-ac2202b55e8d",
+                "resourcePath": "objects\\obj_customsimulation\\obj_customsimulation.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "855df1b3-f605-477e-b4c0-dcf6975a08e8",
             "Value": {
                 "id": "5f1dee48-8fcb-4628-a068-f8afeaf318e2",

@@ -1,6 +1,5 @@
 TODO
 - customizable dpi scaling factor
-- fix slow performance on seeking in long timeline objects. Automatic split, or checkpoint list?
 - simulation settings (more projectors etc)
 - arbitrary animation easing function
 - merge properties and edit menu

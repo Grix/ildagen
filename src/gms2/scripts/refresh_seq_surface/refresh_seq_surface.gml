@@ -95,7 +95,9 @@ for (j = 0; j < ds_list_size(layer_list); j++)
 				xo_raw = buffer_read(el_buffer,buffer_f32);
 				yo_raw =  buffer_read(el_buffer,buffer_f32);
                 xo = view_wport[4]/2-view_hport[4]/2+xo_raw*t_scaley;
+				xo += t_preview_x_offset;
                 yo = yo_raw*t_scaley;  
+				yo += t_preview_y_offset;
                 buffer_seek(el_buffer,buffer_seek_relative,42);
                 
                 apply_envelope_frame(t_scaley);
