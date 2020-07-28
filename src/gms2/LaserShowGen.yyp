@@ -3031,6 +3031,14 @@
             }
         },
         {
+            "Key": "589d1186-60f1-48ef-a565-3990d2c2007b",
+            "Value": {
+                "id": "8048ebe5-6f96-4fa4-86d5-2c432c664eb8",
+                "resourcePath": "sprites\\spr_projectoroffset\\spr_projectoroffset.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "58b53098-3a40-4650-860d-36388a98a7eb",
             "Value": {
                 "id": "9ab551d0-01e1-42e5-9af3-5d3d16b44601",
@@ -7268,6 +7276,14 @@
                 "id": "3423182c-f3e5-48f6-a616-3699b14aec34",
                 "resourcePath": "scripts\\import_ildalive_end\\import_ildalive_end.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "d14b67db-f68b-41dc-a7cd-69f79f3f0eaf",
+            "Value": {
+                "id": "bb6b2f44-b086-48c6-bddb-c87072b0c9d9",
+                "resourcePath": "sprites\\spr_tt_layeroffsets\\spr_tt_layeroffsets.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

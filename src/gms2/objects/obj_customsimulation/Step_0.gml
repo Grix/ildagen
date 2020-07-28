@@ -84,13 +84,15 @@ else if (mouse_y == clamp(mouse_y, y, y+list_height))
             if (mouse_check_button_pressed(mb_left))
             {
                 selected = i;
+				if (surface_exists(surf_projectorlist))
+					surface_free(surf_projectorlist);
             }
             exit;
         }
     }
 }
-else if (mouse_y == clamp(mouse_y, y, y+canvas_width)) 
-    &&  (mouse_x == clamp(mouse_x, x+canvas_x, x+canvas_x+canvas_width))
+else if (mouse_y == clamp(mouse_y, y-10, y+canvas_width+10)) 
+    &&  (mouse_x == clamp(mouse_x, x+canvas_x-10, x+canvas_x+canvas_width+10))
 {
 	if (selected < ds_list_size(seqcontrol.layer_list))
 	{

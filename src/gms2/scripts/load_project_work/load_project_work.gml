@@ -75,7 +75,6 @@ if (idbyte == 104) or(idbyte == 103) or (idbyte == 101) or (idbyte == 102)
             ds_list_add(layertemp, buffer_read(load_buffer,buffer_u8)); //hidden
             ds_list_add(layertemp, buffer_read(load_buffer,buffer_string)); //name
 			var t_x_offset = buffer_read(load_buffer,buffer_f32); //preview x offset
-			t_x_offset = ds_list_size(layer_list) == 1 ? 20000 : -20000;
 			var t_y_offset = buffer_read(load_buffer,buffer_f32); //preview y offset
 			var t_x_angle = buffer_read(load_buffer,buffer_f32);
 			var t_y_fov = buffer_read(load_buffer,buffer_f32);

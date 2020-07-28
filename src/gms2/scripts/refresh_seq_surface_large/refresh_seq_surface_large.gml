@@ -33,6 +33,11 @@ for (j = 0; j < ds_list_size(layer_list); j++)
 	
 	if (_layer[| 2])
 		continue;
+		
+	var t_preview_x_offset = _layer[| 6]*t_scaley;
+	var t_preview_y_offset = _layer[| 7]*t_scaley;
+	var t_preview_angle_offset = _layer[| 8];
+	var t_preview_fov_offset = _layer[| 9];
     
     elementlist = _layer[| 1];
     for (m = 0; m < ds_list_size(elementlist); m++)
@@ -87,6 +92,8 @@ for (j = 0; j < ds_list_size(layer_list); j++)
             {
                 xo = view_wport[4]/2-(view_hport[4]+view_hport[1])/2+buffer_read(el_buffer,buffer_f32)*t_scaley;
                 yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
+				xo += t_preview_x_offset;
+				yo += t_preview_y_offset;
                 buffer_seek(el_buffer,buffer_seek_relative,42);
                 
                 apply_envelope_frame(t_scaley);
@@ -171,15 +178,15 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                         if (xpp == xp) and (ypp == yp) and !(blp)
                         {
                             draw_set_alpha(0.9);
-                            draw_line_colour(t_centerx,t_centery,xxp,yyp,c,c_black);
+                            draw_line_colour(t_centerx+t_preview_x_offset,t_centery+t_preview_y_offset,xxp+t_preview_x_offset,yyp+t_preview_y_offset,c,c_black);
                             draw_set_alpha(0.7);
                         }
                         else
                         {
                             pdir_p = point_direction(t_centerx,t_centery,xo+ xpp*t_scaley,yo+ ypp*t_scaley);
-                            xxp_p = t_centerx+cos(degtorad(-pdir_p))*t_scalediag;
-                            yyp_p = t_centery+sin(degtorad(-pdir_p))*t_scalediag;
-                            draw_triangle_colour(t_centerx,t_centery,xxp_p,yyp_p,xxp,yyp,c,c_black,c_black,0);
+                            xxp_p = t_centerx+t_preview_x_offset+cos(degtorad(-pdir_p))*t_scalediag;
+                            yyp_p = t_centery+t_preview_y_offset+sin(degtorad(-pdir_p))*t_scalediag;
+                            draw_triangle_colour(t_centerx+t_preview_x_offset,t_centery+t_preview_y_offset,xxp_p,yyp_p,xxp+t_preview_x_offset,yyp+t_preview_y_offset,c,c_black,c_black,0);
                         }
                     }
                 }
@@ -259,6 +266,8 @@ if (controller.onion)
 		            {
 		                xo = view_wport[4]/2-(view_hport[4]+view_hport[1])/2+buffer_read(el_buffer,buffer_f32)*t_scaley;
 		                yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
+						xo += t_preview_x_offset;
+						yo += t_preview_y_offset;
 		                buffer_seek(el_buffer,buffer_seek_relative,42);
                 
 		                apply_envelope_frame(t_scaley);

@@ -1,5 +1,3 @@
-
-
 var t_plist = seqcontrol.layer_list;
 
 if (!surface_exists(surf_projectorlist))
@@ -14,29 +12,25 @@ if (!surface_exists(surf_projectorlist))
         for (i = 0; i < ds_list_size(t_plist); i++)
         {
             var t_thisplist = t_plist[| i];
-            /*if (ds_list_find_index(t_plist,controller.dac) == i) && false
+			var t_text = t_thisplist[| 4] + " (X = "+ string(round(t_thisplist[| 6])) + ", Y = "+ string(round(t_thisplist[| 7]))+")";
+			
+            if (selected == i)
             {
                 draw_set_color(controller.c_gold);
                 draw_set_alpha(0.4);
-                gpu_set_blendenable(true);
                 draw_rectangle(0,t_ypos+1,list_width,t_ypos+itemh,0);
-                gpu_set_blendenable(false);
                 draw_set_alpha(1);
                 draw_set_colour(c_black);
-                draw_sprite(spr_checkbox,1,5,t_ypos+4);
-                draw_text(35, t_ypos+itemh/2, ds_list_find_value(t_plist[| i], 1));
+				draw_text(10, t_ypos+itemh/2, t_text);
             }
-            else*/
-            
-            var t_text = t_thisplist[| 4] + "(X = "+ string(round(t_thisplist[| 6])) + ", Y = "+ string(round(t_thisplist[| 7]))+")";
-            draw_text(10, t_ypos+itemh/2, t_text);
+            else
+				draw_text(10, t_ypos+itemh/2, t_text);
             
             t_ypos += itemh;
             draw_line(0, t_ypos, list_width, t_ypos);
             
         }
         draw_set_valign(fa_top);
-        //gpu_set_blendenable(true);
     surface_reset_target();
     scrollh = t_ypos;
 }
@@ -62,8 +56,29 @@ draw_rectangle(x,y,x+list_width,y+list_height,1);
 draw_set_color(c_black);
 
 draw_rectangle(x+canvas_x,y, x+canvas_x+canvas_width, y+canvas_width, 0);
-if (selected < ds_list_size(t_plist))
+
+for (i = 0; i < ds_list_size(t_plist); i++)
 {
-	var t_thisplist = t_plist[| selected];
-	draw_sprite(spr_anchor, 0, x+canvas_x+canvas_width/2+canvas_width/$ffff*t_thisplist[| 6], y+canvas_width/2+canvas_width/$ffff*t_thisplist[| 7]);
+    var t_thisplist = t_plist[| i];
+	
+    if (selected == i)
+	{
+		draw_set_alpha(1);
+		draw_sprite(spr_projectoroffset, 0, x+canvas_x+canvas_width/2+canvas_width/$ffff*t_thisplist[| 6], y+canvas_width/2+canvas_width/$ffff*t_thisplist[| 7]);
+		draw_set_color(c_gray);
+		draw_set_halign(fa_middle);
+		draw_text(x+canvas_x+canvas_width/2+canvas_width/$ffff*t_thisplist[| 6], y+canvas_width/2+canvas_width/$ffff*t_thisplist[| 7]-27, string(i+1));
+	}	
+	else
+	{
+		draw_set_alpha(0.5);
+		draw_sprite(spr_projectoroffset, 0, x+canvas_x+canvas_width/2+canvas_width/$ffff*t_thisplist[| 6], y+canvas_width/2+canvas_width/$ffff*t_thisplist[| 7]);
+		draw_set_color(c_gray);
+		draw_set_halign(fa_middle);
+		draw_text(x+canvas_x+canvas_width/2+canvas_width/$ffff*t_thisplist[| 6], y+canvas_width/2+canvas_width/$ffff*t_thisplist[| 7]-27, string(i+1));
+	}	
 }
+
+draw_set_alpha(1);
+draw_set_color(c_black);
+draw_set_halign(fa_left);

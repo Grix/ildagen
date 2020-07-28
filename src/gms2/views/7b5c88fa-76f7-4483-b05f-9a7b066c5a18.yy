@@ -19,7 +19,8 @@
         "629ee37f-6c08-4738-a717-99efbaa65908",
         "ef3eba32-9447-44c6-a7d1-62c694a3b21c",
         "aad0dc0c-3e62-49db-8209-f61ddf6c7094",
-        "f8414f25-f354-44e9-8aaa-5deb48270eb6"
+        "f8414f25-f354-44e9-8aaa-5deb48270eb6",
+        "d14b67db-f68b-41dc-a7cd-69f79f3f0eaf"
     ],
     "filterType": "GMSprite",
     "folderName": "texttiles",
