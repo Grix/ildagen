@@ -62,6 +62,7 @@ if (new_id == getint)
         }
 		case "add_fadein":
 		case "add_fadeout":
+		case "add_strobe":
 		{
             var t_parameter = ds_map_find_value(argument[0], "value")*controller.projectfps;
 			
@@ -110,10 +111,15 @@ if (new_id == getint)
 					t_start = t_object[| 0] - 1;
 					t_end = t_start + t_parameter + 2;
 				}
-				else// if (dialog == "add_fadeout")
+				else if (dialog == "add_fadeout")
 				{
 					t_end = t_object[| 0] + ds_list_find_value(t_object[| 2], 0) + 1;
 					t_start = t_end - t_parameter - 1;
+				}
+				else if (dialog == "add_strobe")
+				{
+					t_start = t_object[| 0] - 1;
+					t_end = t_object[| 0] + ds_list_find_value(t_object[| 2], 0) + 1;
 				}
 				t_valuestart = find_envelope_value(t_datalist, t_timelist, t_start);
 				t_valueend = find_envelope_value(t_datalist, t_timelist, t_end);
@@ -140,6 +146,7 @@ if (new_id == getint)
 				
 				ds_list_insert(t_timelist, t_index, t_end);
 				ds_list_insert(t_datalist, t_index, t_valueend);
+				
 				if (dialog == "add_fadein")
 				{
 					ds_list_insert(t_timelist, t_index, t_end-1);
@@ -154,6 +161,52 @@ if (new_id == getint)
 					ds_list_insert(t_timelist, t_index, t_start+1);
 					ds_list_insert(t_datalist, t_index, 0);
 				}
+				else if  (dialog == "add_strobe")
+				{
+					if (t_parameter <= 0) 
+						t_parameter = 1;
+					
+					u = t_end-1;
+					while (true)
+					{
+						u -= t_parameter/2;
+						if (u <= t_start+2)
+						{
+							ds_list_insert(t_timelist, t_index, t_start+1);
+							ds_list_insert(t_datalist, t_index, 0);	
+							break;
+						}
+						ds_list_insert(t_timelist, t_index, u);
+						ds_list_insert(t_datalist, t_index, 0);
+						ds_list_insert(t_timelist, t_index, u-1);
+						ds_list_insert(t_datalist, t_index, 64);
+						u -= t_parameter/2;
+						if (u <= t_start+2)
+						{
+							ds_list_insert(t_timelist, t_index, t_start+1);
+							ds_list_insert(t_datalist, t_index, 64);	
+							break;
+						}
+						ds_list_insert(t_timelist, t_index, u);
+						ds_list_insert(t_datalist, t_index, 64);
+						ds_list_insert(t_timelist, t_index, u-1);
+						ds_list_insert(t_datalist, t_index, 0);
+					}
+					/*for (u = t_end-t_parameter-1; u >= t_start+1; u -= t_parameter)
+					{
+						ds_list_insert(t_timelist, t_index, u+t_parameter-1);
+						ds_list_insert(t_datalist, t_index, 0);
+						ds_list_insert(t_timelist, t_index, u+t_parameter/2);
+						ds_list_insert(t_datalist, t_index, 0);
+						ds_list_insert(t_timelist, t_index, u+t_parameter/2-1);
+						ds_list_insert(t_datalist, t_index, 64);
+						ds_list_insert(t_timelist, t_index, u);
+						ds_list_insert(t_datalist, t_index, 64);
+					}*/
+					ds_list_insert(t_timelist, t_index, t_start+1);
+					ds_list_insert(t_datalist, t_index, 64);
+				}
+				
 				ds_list_insert(t_timelist, t_index, t_start);
 				ds_list_insert(t_datalist, t_index, t_valuestart);
 				
