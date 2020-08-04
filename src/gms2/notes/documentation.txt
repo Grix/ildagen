@@ -1,10 +1,8 @@
 TODO
 - customizable dpi scaling factor
-- simulation settings (more projectors etc)
 - arbitrary animation easing function
-- merge properties and edit menu
 - fix previewing while laser on
-- investigate and fix problem of dac falling out and having to rescan. Automatic rescan on failure?
+- investigate and fix problem of dac (laserdock?) falling out and having to rescan. Automatic rescan on failure?
 - add custom anchor to timeline mode rotation envelope
 - BPM sync indicator/quantization in all modes
 - pause individual files in live
@@ -21,6 +19,7 @@ TODO
 - audio_loudness_previous_frame
 - shaking stuff (email 2017-11-18)
 - Support for other glyphs in the text tool
+- more simulation settings (projector angle, fov etc)
 
 
 SETTINGSCONTROL

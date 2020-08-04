@@ -50,18 +50,16 @@ tlsurf_y = 137; //start of grid area, seen from outside surface
 
 c_gold = make_colour_rgb(255,220,0);
 
-menu_string = "   File      Properties      Edit      View      Settings      About   ";
+menu_string = "   File      Edit      View      Settings      About   ";
 menu_width_start[0] = 0;
 menu_width[0] = string_width("   File   ");
 menu_width_start[1] = menu_width[0];
-menu_width[1] = string_width("   Properties   ");
+menu_width[1] = string_width("   Edit   ");
 menu_width_start[2] = menu_width_start[1]+menu_width[1];
-menu_width[2] = string_width("   Edit   ");
+menu_width[2] = string_width("   View   ");
 menu_width_start[3] = menu_width_start[2]+menu_width[2];
-menu_width[3] = string_width("   View   ");
+menu_width[3] = string_width("   Settings   ");
 menu_width_start[4] = menu_width_start[3]+menu_width[3];
-menu_width[4] = string_width("   Settings   ");
+menu_width[4] = string_width("   About   ");
 menu_width_start[5] = menu_width_start[4]+menu_width[4];
-menu_width[5] = string_width("   About   ");
-menu_width_start[6] = menu_width_start[5]+menu_width[5];
 

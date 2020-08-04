@@ -1,4 +1,4 @@
-ddobj = instance_create_layer(controller.menu_width_start[3]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
+ddobj = instance_create_layer(controller.menu_width_start[2]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 with (ddobj)
 {
     num = 5;

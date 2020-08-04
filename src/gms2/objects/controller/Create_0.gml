@@ -186,8 +186,8 @@ tlh = 42;
 tlorigo_x = 0;
 tlorigo_y = 515;
 ini_open("settings.ini");
-var t_dpi_scaling = ini_read_real("main", "dpi_scaling_override", -1);
-if (t_dpi_scaling == -1)
+var t_dpi_scaling = ini_read_real("main", "dpi_scaling_override", 0);
+if (t_dpi_scaling == 0 || t_dpi_scaling == -1)
 	dpi_multiplier = ceil(display_get_height()/1700);
 else
 	dpi_multiplier = t_dpi_scaling;
@@ -362,22 +362,20 @@ colorfunc_string_2 = "";
 colorfunc_string_3 = "";
 blankfunc_string = "";
 
-menu_string = "   File      Properties      Edit      Tools      View      Settings      About   ";
+menu_string = "   File      Edit      Tools      View      Settings      About   ";
 menu_width_start[0] = 0;
 menu_width[0] = string_width("   File   ");
 menu_width_start[1] = menu_width[0];
-menu_width[1] = string_width("   Properties   ");
+menu_width[1] = string_width("   Edit   ");
 menu_width_start[2] = menu_width_start[1]+menu_width[1];
-menu_width[2] = string_width("   Edit   ");
+menu_width[2] = string_width("   Tools   ");
 menu_width_start[3] = menu_width_start[2]+menu_width[2];
-menu_width[3] = string_width("   Tools   ");
+menu_width[3] = string_width("   View   ");
 menu_width_start[4] = menu_width_start[3]+menu_width[3];
-menu_width[4] = string_width("   View   ");
+menu_width[4] = string_width("   Settings   ");
 menu_width_start[5] = menu_width_start[4]+menu_width[4];
-menu_width[5] = string_width("   Settings   ");
+menu_width[5] = string_width("   About   ");
 menu_width_start[6] = menu_width_start[5]+menu_width[5];
-menu_width[6] = string_width("   About   ");
-menu_width_start[7] = menu_width_start[6]+menu_width[6];
 
 randomize();
 

@@ -495,14 +495,6 @@
             }
         },
         {
-            "Key": "0c3136b5-c07a-49e4-b734-9b64469c57e9",
-            "Value": {
-                "id": "40402b10-b5fd-4540-a671-46a95dd37f9b",
-                "resourcePath": "scripts\\dropdown_menu_ilda_properties\\dropdown_menu_ilda_properties.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "0c91ace8-5874-496a-aee8-1970000aa72f",
             "Value": {
                 "id": "46a609ba-3195-466a-8265-653b85b8e1ea",
@@ -1779,14 +1771,6 @@
             "Value": {
                 "id": "f61bd47f-3257-474f-89b4-dad3111fbc65",
                 "resourcePath": "scripts\\dropdown_res\\dropdown_res.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "2e6a711d-141c-4728-ad3e-51d8fadd83f4",
-            "Value": {
-                "id": "738ce177-56b6-4d3a-bfb9-76ee448d0420",
-                "resourcePath": "scripts\\dropdown_menu_seq_properties\\dropdown_menu_seq_properties.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3236,14 +3220,6 @@
                 "id": "197fd470-85d1-4c68-b4ad-5c8f86171401",
                 "resourcePath": "objects\\obj_blankoffselect\\obj_blankoffselect.yy",
                 "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "5dc0d8a7-6992-4d85-b31d-5bca302056d2",
-            "Value": {
-                "id": "9da74436-2a69-4548-a137-54430fecc5b0",
-                "resourcePath": "scripts\\dropdown_menu_set_properties\\dropdown_menu_set_properties.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -5999,14 +5975,6 @@
             }
         },
         {
-            "Key": "abe0264a-b57d-4bf6-96c6-e7b6ebd8afb5",
-            "Value": {
-                "id": "d7ffda6e-d9e3-4dc6-a3dc-fd0a0bed4f19",
-                "resourcePath": "scripts\\dropdown_menu_live_properties\\dropdown_menu_live_properties.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "abfd5bfb-1202-43a5-b74a-3241a7dafa70",
             "Value": {
                 "id": "ffba18d3-6e14-4961-85ae-a73229a3502b",
@@ -7671,6 +7639,14 @@
             }
         },
         {
+            "Key": "dd352c6a-9e24-4602-ada2-7849bf624e9d",
+            "Value": {
+                "id": "6ea60eee-be25-4f14-bf75-99ce836faa0d",
+                "resourcePath": "objects\\obj_dpiscaling\\obj_dpiscaling.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "dd4eff13-9235-452c-a4b1-b8a60e22168b",
             "Value": {
                 "id": "1d59ce53-5b35-498e-910d-d89f7cb0ef8d",
@@ -9201,7 +9177,6 @@
         "f0f11bbc-4906-41eb-b492-445b1f46ef90",
         "162f00ca-f2c5-4f56-93ed-92db17f419af",
         "1c80e47a-b481-4e25-a4ab-b86569a0513b",
-        "0c3136b5-c07a-49e4-b734-9b64469c57e9",
         "6e71eaa5-9d14-44e3-b96e-67060e9b3656",
         "8cba5d55-0f2d-4839-afdd-3be1af991fb2",
         "2bb3e01b-c153-4b94-95f4-ed322dd831e5",
@@ -9273,7 +9248,6 @@
         "e07a3450-6b5f-4b44-b91d-150d3e64e96d",
         "bb5b31c0-e2b2-4361-9fab-4f4b49b34e46",
         "249d1e70-74ca-4bfc-a1f9-5e19900203ae",
-        "2e6a711d-141c-4728-ad3e-51d8fadd83f4",
         "e5526f34-e98c-423e-ba01-d93e8a7e17d4",
         "3863f449-5f2f-422c-a278-c8b8cbc2550b",
         "f9e529e4-ee70-437a-8d72-2b39d7a333a6",
@@ -9323,7 +9297,6 @@
         "d7c35dcb-2f71-4604-962f-4d0fce2861a2",
         "43362492-0a90-469f-bc51-a2be5b25a255",
         "31648af4-8edc-4b76-94f6-eda3da69b935",
-        "5dc0d8a7-6992-4d85-b31d-5bca302056d2",
         "85e989c2-ad34-4da6-bd11-5af077002210",
         "ff592ba0-ba96-4576-b315-31245ab1a989",
         "86927c0d-b280-47cb-901f-2100c71d1abc",
@@ -9352,7 +9325,6 @@
         "189f40b7-6857-47f5-87f7-f0381c56a26c",
         "9ad41102-5e12-4297-b231-b63a19cfbb23",
         "ff5827ac-efbb-4d5c-81b3-0c9d735992a4",
-        "abe0264a-b57d-4bf6-96c6-e7b6ebd8afb5",
         "0ba5fe5c-9982-40f5-a4ee-b058e3628feb",
         "5abe5057-36bd-49fa-86a4-bfb23c711203",
         "157133c8-66fe-46bf-85d1-5335571d4b75",

@@ -13,21 +13,17 @@ if (mouse_y < 0)
     }
     else if (mouse_x > menu_width_start[1]) and (mouse_x < menu_width_start[2])
     {
-        dropdown_menu_live_properties();
+        dropdown_menu_live_edit();
     }
     else if (mouse_x > menu_width_start[2]) and (mouse_x < menu_width_start[3])
     {
-        dropdown_menu_live_edit();
+        dropdown_menu_ilda_view();
     }
     else if (mouse_x > menu_width_start[3]) and (mouse_x < menu_width_start[4])
     {
-        dropdown_menu_ilda_view();
-    }
-    else if (mouse_x > menu_width_start[4]) and (mouse_x < menu_width_start[5])
-    {
         dropdown_menu_ilda_settings();
     }
-    else if (mouse_x > menu_width_start[5]) and (mouse_x < menu_width_start[6])
+    else if (mouse_x > menu_width_start[4]) and (mouse_x < menu_width_start[5])
     {
         dropdown_menu_ilda_about();
     }

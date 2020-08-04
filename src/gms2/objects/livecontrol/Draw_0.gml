@@ -129,13 +129,6 @@ else if (view_current == 3)
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[4],t_ypos+1,menu_width_start[5],t_ypos+t_height-3,0);
         }
-        else if (mouse_x > menu_width_start[5]) && (mouse_x < menu_width_start[6])
-        {
-			controller.tooltip = ".";
-            draw_rectangle(menu_width_start[5],t_ypos+1,menu_width_start[6],t_ypos+t_height-3,1);
-            draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[5],t_ypos+1,menu_width_start[6],t_ypos+t_height-3,0);
-        }
         draw_set_alpha(1);
     }
 }
