@@ -1,7 +1,5 @@
 TODO
-- customizable dpi scaling factor
 - arbitrary animation easing function
-- fix previewing while laser on
 - investigate and fix problem of dac (laserdock?) falling out and having to rescan. Automatic rescan on failure?
 - add custom anchor to timeline mode rotation envelope
 - BPM sync indicator/quantization in all modes

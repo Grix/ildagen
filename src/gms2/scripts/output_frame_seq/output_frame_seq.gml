@@ -18,7 +18,8 @@ output_buffer_next_size = t_dac[| 7];
 if (output_buffer_ready)
 {
     dac_send_frame(t_dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps/controller.fpsmultiplier);
-    frame_surf_refresh = false;
+    if (!controller.preview_while_laser_on)
+		frame_surf_refresh = false;
     output_buffer_ready = false;
     controller.laseronfirst = false;
     

@@ -12,7 +12,8 @@ if (output_buffer_ready)
         
     dac_send_frame(dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps/fpsmultiplier);
 	
-	frame_surf_refresh = false;
+	if (!preview_while_laser_on)
+		frame_surf_refresh = false;
     output_buffer_ready = false;
     laseronfirst = false;
     

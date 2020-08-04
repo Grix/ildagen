@@ -7,7 +7,7 @@ if (view_current == 4)
 	draw_clear(c_black);
 	
     //draws laser preview
-    if  (!controller.laseron) and 
+    if  (!controller.laseron || controller.preview_while_laser_on) and 
         ((frame_surf_refresh == 1) | !surface_exists(frame_surf) || !surface_exists(frame3d_surf))
     {
         refresh_live_surface();
@@ -20,7 +20,7 @@ if (view_current == 4)
     {
         draw_set_color(c_white);
         draw_set_halign(fa_center);
-        draw_text(view_wport[4]/2,view_hport[2]/2,"Laser output active: "+string(controller.dac[| 1]));
+        draw_text(view_wport[4]/2,min(view_hport[2]/2, 64),"Laser output active: "+string(controller.dac[| 1]));
         draw_set_halign(fa_left);
     }
     else
