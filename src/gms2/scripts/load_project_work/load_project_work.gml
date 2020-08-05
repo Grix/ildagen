@@ -209,6 +209,8 @@ if (songload)
 																		FMODGMS_MODE_CREATESAMPLE,
 																		buffer_get_address(t_exInfo));
    
+	force_audio_reparse = false;
+   
     if (song == -1) 
     {
         show_message_new("Failed to load audio: "+FMODGMS_Util_GetErrorMessage());
@@ -224,6 +226,21 @@ if (songload)
         apply_audio_settings();
 		fmod_set_pos(play_sndchannel, 0);
 		
+		song_samplerate = FMODGMS_Snd_Get_DefaultFrequency(song);
+		
+		songlength = fmod_get_length(song);
+		
+		if (!parsingaudioload)
+		{
+			parsinglistsize = buffer_read(load_buffer,buffer_u32);
+			
+			if (songlength/1000*60*3*0.75 > parsinglistsize)
+			{
+				force_audio_reparse = true;
+			}
+		}
+			
+		
 		if (parsingaudio)
 		{
 			song_parse = FMODGMS_Snd_LoadSound_Ext(buffer_get_address(song_buffer),	FMODGMS_MODE_DEFAULT | 
@@ -234,9 +251,6 @@ if (songload)
 																					buffer_get_address(t_exInfo));
 		}
 		
-		song_samplerate = FMODGMS_Snd_Get_DefaultFrequency(song);
-		
-		songlength = fmod_get_length(song);
 		if (length < songlength/1000*projectfps)
 		{
 		    length = ceil(songlength/1000*projectfps);
@@ -256,12 +270,28 @@ if (songload)
     //audio data
     if (!parsingaudioload)
     {
-        parsinglistsize = buffer_read(load_buffer,buffer_u32);
 		if (idbyte == 104)
 		{
-		    audio_buffer = buffer_create(parsinglistsize, buffer_fast, 1);
-		    buffer_copy(load_buffer, buffer_tell(load_buffer), parsinglistsize, audio_buffer, 0);
-		    buffer_seek(load_buffer, buffer_seek_relative, parsinglistsize);
+			if (force_audio_reparse)
+			{
+				parsingaudio = 1;
+				song_parse = FMODGMS_Snd_LoadSound_Ext(buffer_get_address(song_buffer),	FMODGMS_MODE_DEFAULT | 
+																						FMODGMS_MODE_ACCURATETIME |
+																						FMODGMS_MODE_OPENMEMORY_POINT | 
+																						FMODGMS_MODE_CREATESTREAM |
+																						FMODGMS_MODE_OPENONLY, 
+																						buffer_get_address(t_exInfo));
+				for (i = 0; i < parsinglistsize; i++)
+	            {
+	                buffer_read(load_buffer,buffer_u8); //skip
+	            }        	
+			}
+			else
+			{
+			    audio_buffer = buffer_create(parsinglistsize, buffer_fast, 1);
+			    buffer_copy(load_buffer, buffer_tell(load_buffer), parsinglistsize, audio_buffer, 0);
+			    buffer_seek(load_buffer, buffer_seek_relative, parsinglistsize);
+			}
 		}
         else if (idbyte == 103)
         {

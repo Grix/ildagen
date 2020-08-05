@@ -314,7 +314,7 @@ if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	    {
 	        for (u=0; u <= t_tlw; u++)
 	        {
-	            var nearesti = round((t_tlx+u*t_tlzoom/t_tlw)/projectfps*30)*3;
+	            var nearesti = round((t_tlx+u*t_tlzoom/t_tlw)/projectfps*60)*3;
             
 	            if (nearesti > buffer_get_size(audio_buffer)-3 || nearesti < 0)
 	                break;

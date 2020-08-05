@@ -1,3 +1,3 @@
 draw_self();
 
-draw_text(x-100,y+3,"Scaling: "+string(value));
+draw_text(x-70,y+3,"Scaling: "+string(value));

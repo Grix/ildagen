@@ -8,7 +8,7 @@ var t_length = t_numPoints*t_multiplier;
 
 if (parsingaudio_pos == 0)
 {
-	audio_buffer = buffer_create(fmod_get_length(song_parse)/1000*30*3+9, buffer_fast, 1);
+	audio_buffer = buffer_create(fmod_get_length(song_parse)/1000*60*3+9, buffer_fast, 1);
 	parsebuffer = buffer_create(t_length, buffer_fixed, 1);
 	bufferIn = buffer_create(t_numPoints*4, buffer_fixed, 4);
 	bufferOut = buffer_create(t_numPoints, buffer_fixed, 4);
@@ -70,7 +70,7 @@ while (get_timer()-t_time < (1/35)*1000000) //30+ fps target
 		t_s += buffer_peek(bufferOut, t_i*4, buffer_f32);
 	buffer_write(audio_buffer, buffer_u8, min(t_s/35, 1)*255);
 	
-	parsingaudio_pos += 1/30;
+	parsingaudio_pos += 1/60;
 }
 
 timeline_surf_length = 0;

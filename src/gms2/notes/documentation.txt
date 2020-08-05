@@ -1,6 +1,7 @@
 TODO
 - arbitrary animation easing function
 - investigate and fix problem of dac (laserdock?) falling out and having to rescan. Automatic rescan on failure?
+- investigate and fix sometimes crash when rescanning dacs (laserdock again? update to new sdk?)
 - add custom anchor to timeline mode rotation envelope
 - BPM sync indicator/quantization in all modes
 - pause individual files in live
