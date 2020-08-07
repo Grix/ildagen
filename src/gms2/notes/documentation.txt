@@ -6,11 +6,11 @@ TODO
 - BPM sync indicator/quantization in all modes
 - pause individual files in live
 - update web
+- more simulation settings (more projectors per layer, projector angle, fov etc)
 - benchmark frame buffers, better to align to 4?
 - set fixed scanrate instead of fps when optimization off
 - reapply combine shapes
 - split objects
-- mac notarization
 - color offset and dwell etc based on time instead of points
 - double check and fix maxpoints_static calculation
 - motion controller
@@ -18,7 +18,6 @@ TODO
 - audio_loudness_previous_frame
 - shaking stuff (email 2017-11-18)
 - Support for other glyphs in the text tool
-- more simulation settings (projector angle, fov etc)
 
 
 SETTINGSCONTROL

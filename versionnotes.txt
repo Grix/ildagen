@@ -1,9 +1,8 @@
-v1.8.5 (2020-05-28)
-- Added free demo show to timeline mode.
-- Added scrollbar to live grid.
-- Can stretch rather than pad when changing number of frames in editor mode.
-- Fix some problems with rotation envelope in timeline mode and hue slider in live mode.
-- Added muting of layers in timeline mode.
-- Signed and notarized macOS application.
-- Support for color shifting and X/Y swapping when playing unoptimized ILDA files.
-- Misc. other bugfixes and GUI improvements
+v1.8.6 (2020-08-07)
+- Fix Ether Dream not working on Mac and Linux.
+- Fix possible crash when changing length of animation in editor mode.
+- Add customizable position offsets to the simulated projector preview in timeline mode.
+- Add shortcuts in timeline mode object menus for fade-in, fade-out, and strobe effects.
+- Fix possible crash when playing files with special empty frames on DACs.
+- Improved performance when playing very long files in timeline and live mode.
+- Add setting for overriding scaling settings for high DPI screens.

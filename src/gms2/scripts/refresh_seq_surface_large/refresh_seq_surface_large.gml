@@ -37,7 +37,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
 	var t_preview_x_offset = _layer[| 6]*t_scaley;
 	var t_preview_y_offset = _layer[| 7]*t_scaley;
 	var t_preview_angle_offset = _layer[| 8];
-	var t_preview_fov_offset = _layer[| 9];
+	var t_preview_mirror_x = _layer[| 9];
     
     elementlist = _layer[| 1];
     for (m = 0; m < ds_list_size(elementlist); m++)

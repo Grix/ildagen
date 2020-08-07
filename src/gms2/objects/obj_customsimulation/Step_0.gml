@@ -103,6 +103,8 @@ else if (mouse_y == clamp(mouse_y, y-10, y+canvas_width+10))
 			controller.tooltip = "Click and drag the projector to change the position of the simulated projector for the selected layer.";
             if (mouse_check_button_pressed(mb_left))
             {
+				//if (keyboard_check_control())
+				//	t_thisplist[| 9] = !t_thisplist[| 9];
                 moving = 2;
 				mouse_yprevious = mouse_y;
 				mouse_xprevious = mouse_x;

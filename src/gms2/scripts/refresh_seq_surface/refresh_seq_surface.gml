@@ -39,7 +39,7 @@ for (j = 0; j < ds_list_size(layer_list); j++)
 	var t_preview_x_offset = _layer[| 6]*t_scaley;
 	var t_preview_y_offset = _layer[| 7]*t_scaley;
 	var t_preview_angle_offset = _layer[| 8];
-	var t_preview_fov_offset = _layer[| 9];
+	var t_preview_mirror_x = _layer[| 9];
     
     elementlist = _layer[| 1];
     for (m = 0; m < ds_list_size(elementlist); m++)
@@ -98,6 +98,11 @@ for (j = 0; j < ds_list_size(layer_list); j++)
 				xo += t_preview_x_offset;
                 yo = yo_raw*t_scaley;  
 				yo += t_preview_y_offset;
+				/*if (t_preview_mirror_x)
+				{
+					xo_mirror = view_wport[4]/2-view_hport[4]/2+xo_raw*t_scaley;
+					xo_mirror -= t_preview_x_offset;
+				}*/
                 buffer_seek(el_buffer,buffer_seek_relative,42);
                 
                 apply_envelope_frame(t_scaley);
@@ -130,9 +135,15 @@ for (j = 0; j < ds_list_size(layer_list); j++)
                         if ((xp == xpp) and (yp == ypp) and !blp)
                         {
                             draw_point(xo+xp*t_scaley,yo+yp*t_scaley);
+							//if (t_preview_mirror_x)
+							//	draw_point(xo_mirror+xp*t_scaley,yo+yp*t_scaley);
                         }
                         else
+						{
                             draw_line_width(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley, controller.dpi_multiplier);
+							//if (t_preview_mirror_x)
+							//	draw_line_width(xo_mirror+ xpp*t_scaley,yo+ ypp*t_scaley,xo_mirror+ xp*t_scaley,yo+ yp*t_scaley, controller.dpi_multiplier);
+						}
                     }
                 }
                 

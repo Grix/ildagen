@@ -10,7 +10,7 @@ if (room == rm_ilda)
         "Enter)    Remake selected object, or finalize curve\n"+
         "Left/Right Arrows)    Go to previous/next frame\n"+
         "Space)    Play/Pause\n"+
-        "Ctrl+Mouse)    Select object\n"+
+        "Ctrl + Mouse click)    Select object\n"+
         "Tab)    Enter timeline mode\n"+
         "I)    Send frames from editor mode to timeline mode\n"+
 		"L)    Send frames from editor mode to live mode\n"+
@@ -50,7 +50,9 @@ else if (room == rm_seq)
         image_index = 1;
         controller.tooltip = "Click here to open the full manual. Keyboard controls:\n\n"+
         "Mouse)    Select object or time on timeline (Ctrl to select multiple)\n"+
-        "Left/Right Arrows)    Cycle between frames\n"+
+		"Ctrl + Mouse click)    Select multiple objects on timeline\n"+
+		"Ctrl + Mouse drag)    Drag timeline to scroll (horizontally or vertically)\n"+
+        "Left/Right Arrows)    Go to next/previous frame\n"+
         "Space)    Play/Pause\n"+
         "Tab)    Enter frame editor mode\n"+
         "I)    Send frames from editor mode to timeline mode\n"+
