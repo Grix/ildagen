@@ -1,4 +1,6 @@
 TODO
+- fix crash when shaking is enabled and adding text
+- custom drawn movement animation
 - arbitrary animation easing function
 - investigate and fix problem of dac (laserdock?) falling out and having to rescan. Automatic rescan on failure?
 - investigate and fix sometimes crash when rescanning dacs (laserdock again? update to new sdk?)
@@ -11,8 +13,10 @@ TODO
 - set fixed scanrate instead of fps when optimization off
 - reapply combine shapes
 - split objects
+- fix 1 point dots not showing, see line 52 in refresh_surfaces
 - color offset and dwell etc based on time instead of points
 - double check and fix maxpoints_static calculation
+- remember ilda font on restart
 - motion controller
 - AUTOMATIC live mode
 - audio_loudness_previous_frame

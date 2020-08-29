@@ -24,7 +24,7 @@ with (controller)
                     {
                         if (ds_list_empty(temp_frame_list))
                             startframe = i;
-                        ds_list_add(temp_frame_list,ds_list_find_value(el_list_temp,u))
+                        ds_list_add(temp_frame_list,ds_list_find_value(el_list_temp,u));
                         temp_undo_list = ds_list_create();
                         ds_list_copy(temp_undo_list,ds_list_find_value(el_list_temp,u));
                         ds_list_add(temp_undo_list,i);

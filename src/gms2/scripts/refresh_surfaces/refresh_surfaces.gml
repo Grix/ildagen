@@ -49,7 +49,7 @@ if (viewmode == 0) or (viewmode == 2)
                 else
                     draw_set_color(c_white);
                     
-                if (abs(xp-nxp) < 8) && (abs(yp-nyp) < 8) && !(ds_list_find_value(new_list,nextpos-2))
+                if (abs(xp-nxp) < 8) && (abs(yp-nyp) < 8) && !(ds_list_find_value(new_list,nextpos-2)) // the last expression causes some dots to be invisible, but otherwise many ild files have ugly dots in them too. todo.
                 {
                     draw_rectangle(xo+xp/t_div-2,yo+yp/t_div-2,xo+xp/t_div+2,yo+yp/t_div+2,0);
                 }
