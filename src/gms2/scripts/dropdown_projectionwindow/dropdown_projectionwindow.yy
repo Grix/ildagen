@@ -1,8 +1,12 @@
 {
-    "id": "6f18c98e-13fd-47ed-b179-9435286a72c0",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dropdown_projectionwindow",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dd_options",
+    "path": "folders/Scripts/dropdown/dd_options.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dropdown_projectionwindow",
+  "tags": [],
+  "resourceType": "GMScript",
 }

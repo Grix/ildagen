@@ -3,5 +3,10 @@
 /// @argType    
 /// @returnType real
 /// @hidden     false
+function ML_NoException_CurParser() {
 
-return ML_NoException(global._ML_CURRENTPARSER_);
+	return ML_NoException(global._ML_CURRENTPARSER_);
+
+
+
+}

@@ -1,8 +1,12 @@
 {
-    "id": "c2458283-fe5a-45ad-9535-288733c102bb",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "process_dialog_ilda",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dialogs",
+    "path": "folders/Scripts/dialogs.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "process_dialog_ilda",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -203,8 +203,31 @@ if (view_current == 4 || view_current == 5)
             
                 if (objmoving == 1)
                 {
-                    draw_arrow(	mean(rectxmin/t_scale, rectxmax/t_scale), t_y+mean(rectymin/t_scale,rectymax/t_scale),
-								mean(xpnew1/t_scale, xpnew2/t_scale), t_y+mean(ypnew1/t_scale,ypnew2/t_scale),12);
+					if (editing_type == 1)
+					{
+						var t_segment_xp = mean(rectxmin/t_scale, rectxmax/t_scale);
+						var t_segment_yp = t_y+mean(rectymin/t_scale,rectymax/t_scale);
+							
+						for (i=0; i < ds_list_size(edit_recording_list); i+= 5)
+					    {
+							var t_segment_x = mean(rectxmin/t_scale, rectxmax/t_scale) + edit_recording_list[| i+0]/t_scale;
+							var t_segment_y = t_y+mean(rectymin/t_scale,rectymax/t_scale) + edit_recording_list[| i+1]/t_scale;
+							
+							if (t_segment_xp == t_segment_x && t_segment_yp == t_segment_y)
+								continue;
+							
+							if (i + 5 >= ds_list_size(edit_recording_list)) //last point is arrow
+								draw_arrow(t_segment_xp, t_segment_yp, t_segment_x, t_segment_y, 12); //todo fix, doesn't show
+							else
+								draw_line_width(t_segment_xp, t_segment_yp, t_segment_x, t_segment_y, dpi_multiplier);
+												
+							t_segment_xp = t_segment_x;
+							t_segment_yp = t_segment_y;
+					    }
+					}
+					else
+						draw_arrow(	mean(rectxmin/t_scale, rectxmax/t_scale), t_y+mean(rectymin/t_scale,rectymax/t_scale),
+									mean(xpnew1/t_scale, xpnew2/t_scale), t_y+mean(ypnew1/t_scale,ypnew2/t_scale),12);
                 }
 				
 				draw_set_alpha(1);

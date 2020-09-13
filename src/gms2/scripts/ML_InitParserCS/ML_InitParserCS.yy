@@ -1,8 +1,12 @@
 {
-    "id": "db08a927-9897-40d8-8a60-8be4d1e49c19",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_InitParserCS",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Helperfunctions",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_InitParserCS",
+  "tags": [],
+  "resourceType": "GMScript",
 }

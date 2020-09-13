@@ -1,8 +1,12 @@
 {
-    "id": "d433b635-c26f-4ed0-b6b4-9e1bf761415a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiF_Create",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "functions",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiF_Create",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "ee4ac1c6-01aa-460f-bb8f-05165b6e3677",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiS_GetRettype",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "functions_fullname",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions_fullname.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiS_GetRettype",
+  "tags": [],
+  "resourceType": "GMScript",
 }

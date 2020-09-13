@@ -1,8 +1,12 @@
 {
-    "id": "d58e17b1-4e96-440b-890a-fa595a53793e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "FMODGMS_Util_BeatsToSamples",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "FMODGMS",
+    "path": "folders/Scripts/FMODGMS.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "FMODGMS_Util_BeatsToSamples",
+  "tags": [],
+  "resourceType": "GMScript",
 }

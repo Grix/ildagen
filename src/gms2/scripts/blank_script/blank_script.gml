@@ -1,2 +1,7 @@
-//
-return 0;
+function blank_script() {
+	//
+	return 0;
+
+
+
+}

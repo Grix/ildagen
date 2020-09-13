@@ -1,8 +1,12 @@
 {
-    "id": "3d9e31cd-d0be-4eb2-88cd-50f9b9140bbf",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_RemBinaryOperStr",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Binary",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Binary.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_RemBinaryOperStr",
+  "tags": [],
+  "resourceType": "GMScript",
 }

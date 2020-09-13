@@ -1,8 +1,12 @@
 {
-    "id": "0270490d-bd56-4b84-9b3a-07222aa5cb3e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_ilda_maxdwell",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "menu",
+    "path": "folders/Scripts/dropdown/dd_ilda/menu.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_ilda_maxdwell",
+  "tags": [],
+  "resourceType": "GMScript",
 }

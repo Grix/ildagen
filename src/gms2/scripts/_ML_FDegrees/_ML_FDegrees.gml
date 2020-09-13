@@ -1,1 +1,6 @@
-return radtodeg(argument0);
+function _ML_FDegrees(argument0) {
+	return radtodeg(argument0);
+
+
+
+}

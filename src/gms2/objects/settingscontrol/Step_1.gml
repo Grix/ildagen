@@ -9,7 +9,7 @@ if (controller.laseron)
     {
         if (controller.laseron)
         {
-            if (!ds_exists(controller.dac,ds_type_list))
+            if (!ds_list_exists(controller.dac))
             {
                 show_message_new("Error, DAC data missing");
                 controller.laseron = false;
@@ -23,7 +23,7 @@ if (controller.laseron)
     {
         with (controller)
         {
-            if (!ds_exists(dac,ds_type_list))
+            if (!ds_list_exists(dac))
             {
                 show_message_new("Error, DAC data missing");
                 laseron = false;

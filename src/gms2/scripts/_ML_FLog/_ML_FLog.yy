@@ -1,8 +1,12 @@
 {
-    "id": "082e0066-015c-4ad3-99c4-3d040c429cf8",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_FLog",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "math",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions/math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_FLog",
+  "tags": [],
+  "resourceType": "GMScript",
 }

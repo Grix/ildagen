@@ -4,4 +4,9 @@
 /// @argType    r
 /// @returnType string
 /// @hidden     true
-return ds_list_find_value(argument0, ML_LITOP_STR_P2);
+function _ML_LiTOp_GetSecondName(argument0) {
+	return ds_list_find_value(argument0, ML_LITOP_STR_P2);
+
+
+
+}

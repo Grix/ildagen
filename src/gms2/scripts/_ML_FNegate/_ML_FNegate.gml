@@ -1,1 +1,6 @@
-return -argument[0];
+function _ML_FNegate() {
+	return -argument[0];
+
+
+
+}

@@ -1,8 +1,12 @@
 {
-    "id": "7fb565a5-c53e-4f20-82b3-7d47ca67177d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_FTan",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "math",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions/math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_FTan",
+  "tags": [],
+  "resourceType": "GMScript",
 }

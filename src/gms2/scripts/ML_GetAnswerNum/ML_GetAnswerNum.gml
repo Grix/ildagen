@@ -4,5 +4,10 @@
 /// @argType    r
 /// @returnType real
 /// @hidden     false
+function ML_GetAnswerNum(argument0) {
 
-return ML_ResObj_GetAnswerNum(_ML_LiP_GetResultObject(argument0));
+	return ML_ResObj_GetAnswerNum(_ML_LiP_GetResultObject(argument0));
+
+
+
+}

@@ -6,10 +6,15 @@
 /// @argType    r, a, r
 /// @returnType void
 /// @hidden     true
+function _ML_EC_DataInBuff(argument0, argument1, argument2) {
 
-var buff = argument0;
-var data = argument1;
-var type = argument2;
+	var buff = argument0;
+	var data = argument1;
+	var type = argument2;
 
-buffer_write(buff, buffer_u8, type);
-buffer_write(buff, type, data);
+	buffer_write(buff, buffer_u8, type);
+	buffer_write(buff, type, data);
+
+
+
+}

@@ -1,8 +1,12 @@
 {
-    "id": "56a0172e-02f6-42c2-b5ad-7e1abdda68b7",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_ClearTernaryOper",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Ternary",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Ternary.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_ClearTernaryOper",
+  "tags": [],
+  "resourceType": "GMScript",
 }

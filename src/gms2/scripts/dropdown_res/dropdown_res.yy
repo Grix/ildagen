@@ -1,8 +1,12 @@
 {
-    "id": "2e1b98ac-ee23-450d-b2eb-02ead0a509e8",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dropdown_res",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dd_ilda",
+    "path": "folders/Scripts/dropdown/dd_ilda.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dropdown_res",
+  "tags": [],
+  "resourceType": "GMScript",
 }

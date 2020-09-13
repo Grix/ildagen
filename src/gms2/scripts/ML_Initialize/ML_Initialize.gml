@@ -3,5 +3,10 @@
 /// @argType    
 /// @returnType void
 /// @hidden     true
+function ML_Initialize() {
 
-global._ML_CURRENTPARSER_ = -1;
+	global._ML_CURRENTPARSER_ = -1;
+
+
+
+}

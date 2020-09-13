@@ -1,8 +1,12 @@
 {
-    "id": "6e71eaa5-9d14-44e3-b96e-67060e9b3656",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dropdown_menu_ilda_edit",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "menu",
+    "path": "folders/Scripts/dropdown/dd_ilda/menu.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dropdown_menu_ilda_edit",
+  "tags": [],
+  "resourceType": "GMScript",
 }

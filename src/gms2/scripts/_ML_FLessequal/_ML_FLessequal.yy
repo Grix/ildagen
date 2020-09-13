@@ -1,8 +1,12 @@
 {
-    "id": "48fb802a-253b-4285-a046-561212a5c290",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_FLessequal",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Helperfunctions",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_FLessequal",
+  "tags": [],
+  "resourceType": "GMScript",
 }

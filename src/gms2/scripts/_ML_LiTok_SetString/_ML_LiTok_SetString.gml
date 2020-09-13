@@ -5,4 +5,9 @@
 /// @argType    r,s
 /// @returnType void
 /// @hidden     true
-ds_list_replace(argument0, ML_LITOK_STR, argument1);
+function _ML_LiTok_SetString(argument0, argument1) {
+	ds_list_replace(argument0, ML_LITOK_STR, argument1);
+
+
+
+}

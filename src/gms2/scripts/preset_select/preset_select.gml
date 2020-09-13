@@ -1,2 +1,7 @@
-controller.projector = controller.profiletoselect;
-load_profile();
+function preset_select() {
+	controller.projector = controller.profiletoselect;
+	load_profile();
+
+
+
+}

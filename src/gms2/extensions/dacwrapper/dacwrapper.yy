@@ -1,550 +1,110 @@
 {
-    "id": "9e729640-f691-4915-adbb-92931c5bcbd8",
-    "modelName": "GMExtension",
-    "mvc": "1.2",
-    "name": "dacwrapper",
-    "IncludedResources": [
-        "Included Files\\dacwrapper.dll",
-        "Included Files\\RiyaNetServer.dll"
-    ],
-    "androidPermissions": [
-        
-    ],
-    "androidProps": false,
-    "androidactivityinject": "",
-    "androidclassname": "",
-    "androidinject": "",
-    "androidmanifestinject": "",
-    "androidsourcedir": "",
-    "author": "",
-    "classname": "",
-    "copyToTargets": 194,
-    "date": "2017-51-14 08:09:35",
-    "description": "",
-    "exportToGame": true,
-    "extensionName": "",
-    "files": [
-        {
-            "id": "11211c5b-f53d-4d99-ae59-eeba64fcd284",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 1048640,
-            "filename": "RiyaNetServer.dll",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                
-            ],
-            "origname": "extensions\\RiyaNetServer.dll",
-            "uncompress": false
-        },
-        {
-            "id": "a40f173c-c847-4906-9f2a-d419da5b6dc2",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 64,
-            "filename": "EtherDream.dll",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                
-            ],
-            "origname": "extensions\\EtherDream.dll",
-            "uncompress": false
-        },
-        {
-            "id": "5de31079-0003-40df-9526-60a0285c2c98",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                {
-                    "id": "b02e487a-55eb-48fb-addc-bd63946c00c1",
-                    "modelName": "GMProxyFile",
-                    "mvc": "1.0",
-                    "TargetMask": 1,
-                    "proxyName": "libdacwrapper.dylib"
-                },
-                {
-                    "id": "4b60c97c-e118-4eab-8c89-0c42408ec17b",
-                    "modelName": "GMProxyFile",
-                    "mvc": "1.0",
-                    "TargetMask": 7,
-                    "proxyName": "libdacwrapper.so"
-                }
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 194,
-            "filename": "dacwrapper.dll",
-            "final": "FreeDacwrapper",
-            "functions": [
-                {
-                    "id": "6841e542-0835-4642-b803-51a59b11b550",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": -1,
-                    "args": [
-                        
-                    ],
-                    "externalName": "InitDacwrapper",
-                    "help": "",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "InitDacwrapper",
-                    "returnType": 2
-                },
-                {
-                    "id": "fe7a35b5-fec4-40a4-8472-dd6275408b9c",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 0,
-                    "args": [
-                        
-                    ],
-                    "externalName": "FreeDacwrapper",
-                    "help": "",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "FreeDacwrapper",
-                    "returnType": 2
-                },
-                {
-                    "id": "886fde93-e3fa-4576-8ca8-da076f4c6b81",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": -1,
-                    "args": [
-                        
-                    ],
-                    "externalName": "ScanDevices",
-                    "help": "dacwrapper_scandevices()",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "dacwrapper_scandevices",
-                    "returnType": 2
-                },
-                {
-                    "id": "8b0b24e8-bf3f-4a60-9906-6fcbe805c0aa",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 1,
-                    "args": [
-                        2
-                    ],
-                    "externalName": "DeviceOpen",
-                    "help": "dacwrapper_opendevice(num)",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "dacwrapper_opendevice",
-                    "returnType": 2
-                },
-                {
-                    "id": "2722c1ed-ffe8-4708-bb60-bca200988285",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 4,
-                    "args": [
-                        2,
-                        2,
-                        2,
-                        1
-                    ],
-                    "externalName": "OutputFrame",
-                    "help": "dacwrapper_outputframe(num, pps, size, address)",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "dacwrapper_outputframe",
-                    "returnType": 2
-                },
-                {
-                    "id": "cadf2719-21b9-4b65-bce3-cab6ba95c1e7",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 1,
-                    "args": [
-                        2
-                    ],
-                    "externalName": "Stop",
-                    "help": "dacwrapper_stop(num)",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "dacwrapper_stop",
-                    "returnType": 2
-                },
-                {
-                    "id": "7baa393c-ebf6-497d-950a-cd392fba2adc",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 1,
-                    "args": [
-                        2
-                    ],
-                    "externalName": "GetName",
-                    "help": "dacwrapper_getname(num)",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "dacwrapper_getname",
-                    "returnType": 1
-                },
-                {
-                    "id": "6c56e040-b1db-476f-b2e9-9a4fe90e70b2",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 2,
-                    "args": [
-                        2,
-                        1
-                    ],
-                    "externalName": "SetName",
-                    "help": "dacwrapper_setname(num,name)",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "dacwrapper_setname",
-                    "returnType": 2
-                },
-                {
-                    "id": "623595e4-2d86-4b5a-96c2-14059ee49ced",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 1,
-                    "args": [
-                        2
-                    ],
-                    "externalName": "GetFirmwareVersion",
-                    "help": "dacwrapper_getfirmware(num)",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "dacwrapper_getfirmware",
-                    "returnType": 2
-                },
-                {
-                    "id": "12e0b64a-5790-4a62-9360-30151dc02be6",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 0,
-                    "args": [
-                        
-                    ],
-                    "externalName": "ReturnOne",
-                    "help": "dacwrapper_returnone()",
-                    "hidden": false,
-                    "kind": 1,
-                    "name": "dacwrapper_returnone",
-                    "returnType": 2
-                }
-            ],
-            "init": "InitDacwrapper",
-            "kind": 1,
-            "order": [
-                "6841e542-0835-4642-b803-51a59b11b550",
-                "fe7a35b5-fec4-40a4-8472-dd6275408b9c",
-                "886fde93-e3fa-4576-8ca8-da076f4c6b81",
-                "8b0b24e8-bf3f-4a60-9906-6fcbe805c0aa",
-                "2722c1ed-ffe8-4708-bb60-bca200988285",
-                "cadf2719-21b9-4b65-bce3-cab6ba95c1e7",
-                "7baa393c-ebf6-497d-950a-cd392fba2adc",
-                "6c56e040-b1db-476f-b2e9-9a4fe90e70b2",
-                "623595e4-2d86-4b5a-96c2-14059ee49ced",
-                "12e0b64a-5790-4a62-9360-30151dc02be6"
-            ],
-            "origname": "extensions\\dacwrapper.dll",
-            "uncompress": false
-        },
-        {
-            "id": "cde19827-9680-4d43-8a51-c582048e81db",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 64,
-            "filename": "EasyLase.dll",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                
-            ],
-            "origname": "extensions\\EasyLase.dll",
-            "uncompress": false
-        },
-        {
-            "id": "d0482832-ad88-4da3-8c7c-7d19dc3c9c62",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 64,
-            "filename": "EzAudDac.dll",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                
-            ],
-            "origname": "extensions\\EzAudDac.dll",
-            "uncompress": false
-        },
-        {
-            "id": "3e264ab6-da49-4377-93b5-830ffaaf2c93",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 64,
-            "filename": "OLSC_EasyLase.dll",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                
-            ],
-            "origname": "extensions\\OLSC_EasyLase.dll",
-            "uncompress": false
-        },
-        {
-            "id": "841093cd-c887-40ec-b6c4-f454e1a37a02",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 64,
-            "filename": "OLSC_EzAudDac.dll",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                
-            ],
-            "origname": "extensions\\OLSC_EzAudDac.dll",
-            "uncompress": false
-        },
-        {
-            "id": "2f8e34ab-4e00-484c-8dfe-193cdac67032",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 64,
-            "filename": "SDL.dll",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                
-            ],
-            "origname": "extensions\\SDL.dll",
-            "uncompress": false
-        },
-        {
-            "id": "e678751a-1c36-4aa2-b129-a04ac24ca229",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 64,
-            "filename": "ftd2xx.dll",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                
-            ],
-            "origname": "extensions\\ftd2xx.dll",
-            "uncompress": false
-        },
-        {
-            "id": "8fc6de74-15e5-43a9-ba82-ea4522403239",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 144150372447944768,
-            "filename": "EzAudDacDEFAULT.ini",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 4,
-            "order": [
-                
-            ],
-            "origname": "extensions\\EzAudDacDEFAULT.ini",
-            "uncompress": false
-        },
-        {
-            "id": "385e7746-1287-42d6-9005-70b6aa2a34d6",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 2,
-            "filename": "libusb-1.0.0.dylib",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                
-            ],
-            "origname": "",
-            "uncompress": false
-        },
-        {
-            "id": "91e2484a-effe-4530-98d7-a8a642b1263d",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 64,
-            "filename": "OLSD.dll",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                
-            ],
-            "origname": "",
-            "uncompress": false
-        },
-        {
-            "id": "6cda25f1-634e-4e2e-a0e2-d6367aec3d45",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 35184372088896,
-            "filename": "OLSC.dll",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                
-            ],
-            "origname": "",
-            "uncompress": false
-        }
-    ],
-    "gradleinject": "",
-    "helpfile": "",
-    "installdir": "",
-    "iosProps": false,
-    "iosSystemFrameworkEntries": [
-        
-    ],
-    "iosThirdPartyFrameworkEntries": [
-        
-    ],
-    "iosdelegatename": null,
-    "iosplistinject": "",
-    "license": "Free to use, also for commercial games.",
-    "maccompilerflags": "",
-    "maclinkerflags": "",
-    "macsourcedir": "",
-    "options": null,
-    "optionsFile": "options.json",
-    "packageID": "",
-    "productID": "",
-    "sourcedir": "",
-    "supportedTargets": 194,
-    "tvosProps": false,
-    "tvosSystemFrameworkEntries": [
-        
-    ],
-    "tvosThirdPartyFrameworkEntries": [
-        
-    ],
-    "tvosclassname": null,
-    "tvosdelegatename": null,
-    "tvosmaccompilerflags": null,
-    "tvosmaclinkerflags": null,
-    "tvosplistinject": null,
-    "version": "0.2.0"
+  "optionsFile": "options.json",
+  "options": [],
+  "exportToGame": true,
+  "supportedTargets": 194,
+  "extensionVersion": "0.2.0",
+  "packageId": "",
+  "productId": "",
+  "author": "",
+  "date": "2017-09-14T08:51:35",
+  "license": "Free to use, also for commercial games.",
+  "description": "",
+  "helpfile": "",
+  "iosProps": false,
+  "tvosProps": false,
+  "androidProps": false,
+  "installdir": "",
+  "files": [
+    {"filename":"RiyaNetServer.dll","origname":"extensions\\RiyaNetServer.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":1048640,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+    {"filename":"EtherDream.dll","origname":"extensions\\EtherDream.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":64,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+    {"filename":"dacwrapper.dll","origname":"extensions\\dacwrapper.dll","init":"InitDacwrapper","final":"FreeDacwrapper","kind":1,"uncompress":false,"functions":[
+        {"externalName":"InitDacwrapper","kind":12,"help":"","hidden":false,"returnType":2,"argCount":-1,"args":[],"resourceVersion":"1.0","name":"InitDacwrapper","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"FreeDacwrapper","kind":12,"help":"","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"FreeDacwrapper","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"ScanDevices","kind":12,"help":"dacwrapper_scandevices()","hidden":false,"returnType":2,"argCount":-1,"args":[],"resourceVersion":"1.0","name":"dacwrapper_scandevices","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"DeviceOpen","kind":12,"help":"dacwrapper_opendevice(num)","hidden":false,"returnType":2,"argCount":1,"args":[
+            2,
+          ],"resourceVersion":"1.0","name":"dacwrapper_opendevice","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"OutputFrame","kind":12,"help":"dacwrapper_outputframe(num, pps, size, address)","hidden":false,"returnType":2,"argCount":4,"args":[
+            2,
+            2,
+            2,
+            1,
+          ],"resourceVersion":"1.0","name":"dacwrapper_outputframe","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"Stop","kind":12,"help":"dacwrapper_stop(num)","hidden":false,"returnType":2,"argCount":1,"args":[
+            2,
+          ],"resourceVersion":"1.0","name":"dacwrapper_stop","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"GetName","kind":12,"help":"dacwrapper_getname(num)","hidden":false,"returnType":1,"argCount":1,"args":[
+            2,
+          ],"resourceVersion":"1.0","name":"dacwrapper_getname","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"SetName","kind":12,"help":"dacwrapper_setname(num,name)","hidden":false,"returnType":2,"argCount":2,"args":[
+            2,
+            1,
+          ],"resourceVersion":"1.0","name":"dacwrapper_setname","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"GetFirmwareVersion","kind":12,"help":"dacwrapper_getfirmware(num)","hidden":false,"returnType":2,"argCount":1,"args":[
+            2,
+          ],"resourceVersion":"1.0","name":"dacwrapper_getfirmware","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"ReturnOne","kind":1,"help":"dacwrapper_returnone()","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"dacwrapper_returnone","tags":[],"resourceType":"GMExtensionFunction",},
+      ],"constants":[],"ProxyFiles":[
+        {"TargetMask":1,"resourceVersion":"1.0","name":"libdacwrapper.dylib","tags":[],"resourceType":"GMProxyFile",},
+        {"TargetMask":7,"resourceVersion":"1.0","name":"libdacwrapper.so","tags":[],"resourceType":"GMProxyFile",},
+      ],"copyToTargets":194,"order":[
+        {"name":"InitDacwrapper","path":"extensions/dacwrapper/dacwrapper.yy",},
+        {"name":"FreeDacwrapper","path":"extensions/dacwrapper/dacwrapper.yy",},
+        {"name":"dacwrapper_scandevices","path":"extensions/dacwrapper/dacwrapper.yy",},
+        {"name":"dacwrapper_opendevice","path":"extensions/dacwrapper/dacwrapper.yy",},
+        {"name":"dacwrapper_outputframe","path":"extensions/dacwrapper/dacwrapper.yy",},
+        {"name":"dacwrapper_stop","path":"extensions/dacwrapper/dacwrapper.yy",},
+        {"name":"dacwrapper_getname","path":"extensions/dacwrapper/dacwrapper.yy",},
+        {"name":"dacwrapper_setname","path":"extensions/dacwrapper/dacwrapper.yy",},
+        {"name":"dacwrapper_getfirmware","path":"extensions/dacwrapper/dacwrapper.yy",},
+        {"name":"dacwrapper_returnone","path":"extensions/dacwrapper/dacwrapper.yy",},
+      ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+    {"filename":"EasyLase.dll","origname":"extensions\\EasyLase.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":64,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+    {"filename":"EzAudDac.dll","origname":"extensions\\EzAudDac.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":64,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+    {"filename":"OLSC_EasyLase.dll","origname":"extensions\\OLSC_EasyLase.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":64,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+    {"filename":"OLSC_EzAudDac.dll","origname":"extensions\\OLSC_EzAudDac.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":64,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+    {"filename":"SDL.dll","origname":"extensions\\SDL.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":64,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+    {"filename":"ftd2xx.dll","origname":"extensions\\ftd2xx.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":64,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+    {"filename":"EzAudDacDEFAULT.ini","origname":"extensions\\EzAudDacDEFAULT.ini","init":"","final":"","kind":4,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":144150372447944768,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+    {"filename":"libusb-1.0.0.dylib","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":2,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+    {"filename":"OLSD.dll","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":64,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+    {"filename":"OLSC.dll","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":35184372088896,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+  ],
+  "classname": "",
+  "tvosclassname": null,
+  "tvosdelegatename": null,
+  "iosdelegatename": null,
+  "androidclassname": "",
+  "sourcedir": "",
+  "androidsourcedir": "",
+  "macsourcedir": "",
+  "maccompilerflags": "",
+  "tvosmaccompilerflags": null,
+  "maclinkerflags": "",
+  "tvosmaclinkerflags": null,
+  "iosplistinject": "",
+  "tvosplistinject": null,
+  "androidinject": "",
+  "androidmanifestinject": "",
+  "androidactivityinject": "",
+  "gradleinject": "",
+  "iosSystemFrameworkEntries": [],
+  "tvosSystemFrameworkEntries": [],
+  "iosThirdPartyFrameworkEntries": [],
+  "tvosThirdPartyFrameworkEntries": [],
+  "IncludedResources": [
+    "Included Files\\dacwrapper.dll",
+    "Included Files\\RiyaNetServer.dll",
+  ],
+  "androidPermissions": [],
+  "copyToTargets": 194,
+  "parent": {
+    "name": "Extensions",
+    "path": "folders/Extensions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dacwrapper",
+  "tags": [],
+  "resourceType": "GMExtension",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "2d9b9bdb-20a8-4f1b-8e1c-f700bd99144e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_LastExceptionString",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ExceptionHandling",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/ExceptionHandling.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_LastExceptionString",
+  "tags": [],
+  "resourceType": "GMScript",
 }

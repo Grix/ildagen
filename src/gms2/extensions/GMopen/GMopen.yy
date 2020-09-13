@@ -1,187 +1,87 @@
 {
-    "id": "b8341357-321c-4d44-affc-38e098efc70c",
-    "modelName": "GMExtension",
-    "mvc": "1.2",
-    "name": "GMopen",
-    "IncludedResources": [
-        
-    ],
-    "androidPermissions": [
-        
-    ],
-    "androidProps": true,
-    "androidactivityinject": "",
-    "androidclassname": "",
-    "androidinject": "",
-    "androidmanifestinject": "",
-    "androidsourcedir": "",
-    "author": "",
-    "classname": "",
-    "copyToTargets": 64,
-    "date": "2017-51-14 08:09:35",
-    "description": "",
-    "exportToGame": true,
-    "extensionName": "",
-    "files": [
-        {
-            "id": "b22dc9d0-53f6-4bdf-9341-02ce0c55c6c6",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 810553408,
-            "filename": "GMopen.dll",
-            "final": "",
-            "functions": [
-                {
-                    "id": "ad44abf4-3201-4c55-ad43-ccffdbb670d2",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 1,
-                    "args": [
-                        1
-                    ],
-                    "externalName": "OpenInExplorer",
-                    "help": "open_in_explorer(path)",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "open_in_explorer",
-                    "returnType": 2
-                },
-                {
-                    "id": "3a9d3672-d475-4ab9-8447-a65408d855f3",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 1,
-                    "args": [
-                        2
-                    ],
-                    "externalName": "GetColor",
-                    "help": "get_color_win(default)",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "get_color_win",
-                    "returnType": 2
-                },
-                {
-                    "id": "9d5a301d-65ed-4acb-989f-2de55c46e0b1",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 3,
-                    "args": [
-                        1,
-                        1,
-                        2
-                    ],
-                    "externalName": "ShowMessage",
-                    "help": "show_message_win(message, caption, flags)",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "show_message_win",
-                    "returnType": 2
-                },
-                {
-                    "id": "3626e4de-43f6-4971-8462-28febbe65974",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 3,
-                    "args": [
-                        1,
-                        1,
-                        2
-                    ],
-                    "externalName": "ShowQuestion",
-                    "help": "show_question_win(message, caption, flags)",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "show_question_win",
-                    "returnType": 2
-                },
-                {
-                    "id": "f012b50a-1ec9-4e89-b347-2c1ab35dc59a",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 4,
-                    "args": [
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    "externalName": "RegisterCallbacks",
-                    "help": "",
-                    "hidden": false,
-                    "kind": 12,
-                    "name": "RegisterCallbacks",
-                    "returnType": 2
-                },
-                {
-                    "id": "f3eeea2f-46d9-49eb-b13a-b19b718e5927",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 0,
-                    "args": [
-                        1
-                    ],
-                    "externalName": "WindowMaximize",
-                    "help": "window_maximize(handle)",
-                    "hidden": false,
-                    "kind": 1,
-                    "name": "window_maximize",
-                    "returnType": 2
-                }
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                "ad44abf4-3201-4c55-ad43-ccffdbb670d2",
-                "3a9d3672-d475-4ab9-8447-a65408d855f3",
-                "9d5a301d-65ed-4acb-989f-2de55c46e0b1",
-                "3626e4de-43f6-4971-8462-28febbe65974",
-                "f012b50a-1ec9-4e89-b347-2c1ab35dc59a",
-                "f3eeea2f-46d9-49eb-b13a-b19b718e5927"
-            ],
-            "origname": "extensions\\GMopen.dll",
-            "uncompress": false
-        }
-    ],
-    "gradleinject": "",
-    "helpfile": "",
-    "installdir": "",
-    "iosProps": true,
-    "iosSystemFrameworkEntries": [
-        
-    ],
-    "iosThirdPartyFrameworkEntries": [
-        
-    ],
-    "iosdelegatename": null,
-    "iosplistinject": "",
-    "license": "Free to use, also for commercial games.",
-    "maccompilerflags": "",
-    "maclinkerflags": "",
-    "macsourcedir": "",
-    "options": null,
-    "optionsFile": "options.json",
-    "packageID": "",
-    "productID": "",
-    "sourcedir": "",
-    "supportedTargets": 598172980216044,
-    "tvosProps": false,
-    "tvosSystemFrameworkEntries": [
-        
-    ],
-    "tvosThirdPartyFrameworkEntries": [
-        
-    ],
-    "tvosclassname": null,
-    "tvosdelegatename": null,
-    "tvosmaccompilerflags": null,
-    "tvosmaclinkerflags": null,
-    "tvosplistinject": null,
-    "version": "1.0.0"
+  "optionsFile": "options.json",
+  "options": [],
+  "exportToGame": true,
+  "supportedTargets": 598172980216044,
+  "extensionVersion": "1.0.0",
+  "packageId": "",
+  "productId": "",
+  "author": "",
+  "date": "2017-09-14T08:51:35",
+  "license": "Free to use, also for commercial games.",
+  "description": "",
+  "helpfile": "",
+  "iosProps": true,
+  "tvosProps": false,
+  "androidProps": true,
+  "installdir": "",
+  "files": [
+    {"filename":"GMopen.dll","origname":"extensions\\GMopen.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[
+        {"externalName":"OpenInExplorer","kind":12,"help":"open_in_explorer(path)","hidden":false,"returnType":2,"argCount":1,"args":[
+            1,
+          ],"resourceVersion":"1.0","name":"open_in_explorer","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"GetColor","kind":12,"help":"get_color_win(default)","hidden":false,"returnType":2,"argCount":1,"args":[
+            2,
+          ],"resourceVersion":"1.0","name":"get_color_win","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"ShowMessage","kind":12,"help":"show_message_win(message, caption, flags)","hidden":false,"returnType":2,"argCount":3,"args":[
+            1,
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"show_message_win","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"ShowQuestion","kind":12,"help":"show_question_win(message, caption, flags)","hidden":false,"returnType":2,"argCount":3,"args":[
+            1,
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"show_question_win","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"RegisterCallbacks","kind":12,"help":"","hidden":false,"returnType":2,"argCount":4,"args":[
+            1,
+            1,
+            1,
+            1,
+          ],"resourceVersion":"1.0","name":"RegisterCallbacks","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"WindowMaximize","kind":1,"help":"window_maximize(handle)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+          ],"resourceVersion":"1.0","name":"window_maximize","tags":[],"resourceType":"GMExtensionFunction",},
+      ],"constants":[],"ProxyFiles":[],"copyToTargets":810553408,"order":[
+        {"name":"open_in_explorer","path":"extensions/GMopen/GMopen.yy",},
+        {"name":"get_color_win","path":"extensions/GMopen/GMopen.yy",},
+        {"name":"show_message_win","path":"extensions/GMopen/GMopen.yy",},
+        {"name":"show_question_win","path":"extensions/GMopen/GMopen.yy",},
+        {"name":"RegisterCallbacks","path":"extensions/GMopen/GMopen.yy",},
+        {"name":"window_maximize","path":"extensions/GMopen/GMopen.yy",},
+      ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+  ],
+  "classname": "",
+  "tvosclassname": null,
+  "tvosdelegatename": null,
+  "iosdelegatename": null,
+  "androidclassname": "",
+  "sourcedir": "",
+  "androidsourcedir": "",
+  "macsourcedir": "",
+  "maccompilerflags": "",
+  "tvosmaccompilerflags": null,
+  "maclinkerflags": "",
+  "tvosmaclinkerflags": null,
+  "iosplistinject": "",
+  "tvosplistinject": null,
+  "androidinject": "",
+  "androidmanifestinject": "",
+  "androidactivityinject": "",
+  "gradleinject": "",
+  "iosSystemFrameworkEntries": [],
+  "tvosSystemFrameworkEntries": [],
+  "iosThirdPartyFrameworkEntries": [],
+  "tvosThirdPartyFrameworkEntries": [],
+  "IncludedResources": [],
+  "androidPermissions": [],
+  "copyToTargets": 64,
+  "parent": {
+    "name": "Extensions",
+    "path": "folders/Extensions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "GMopen",
+  "tags": [],
+  "resourceType": "GMExtension",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "f35defce-428f-46dc-9e74-01aea78f5064",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "load_live_project_work",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "files",
+    "path": "folders/Scripts/files.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "load_live_project_work",
+  "tags": [],
+  "resourceType": "GMScript",
 }

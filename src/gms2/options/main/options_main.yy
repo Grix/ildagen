@@ -1,0 +1,16 @@
+{
+  "option_gameguid": "{62473780-C74E-47E2-A7EF-4EF7A79A4438}",
+  "option_game_speed": 60,
+  "option_mips_for_3d_textures": false,
+  "option_draw_colour": 4294967295,
+  "option_window_colour": 255,
+  "option_steam_app_id": "0",
+  "option_sci_usesci": false,
+  "option_author": "Gitle Mikkelsen",
+  "option_lastchanged": "10 October 2017 18:51:56",
+  "option_spine_licence": false,
+  "resourceVersion": "1.2",
+  "name": "Main",
+  "tags": [],
+  "resourceType": "GMMainOptions",
+}

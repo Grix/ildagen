@@ -1,8 +1,12 @@
 {
-    "id": "fd6cdebc-88dd-42bd-8ddb-2886ab882b76",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiOp_GetPrec",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "operators",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions/operators.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiOp_GetPrec",
+  "tags": [],
+  "resourceType": "GMScript",
 }

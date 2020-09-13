@@ -1,8 +1,12 @@
 {
-    "id": "f5613d7c-0043-446d-aab6-61883d52a61e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_seq_exportilda",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "menu",
+    "path": "folders/Scripts/dropdown/dd_seq/menu.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_seq_exportilda",
+  "tags": [],
+  "resourceType": "GMScript",
 }

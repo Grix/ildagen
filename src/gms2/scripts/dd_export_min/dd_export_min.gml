@@ -1,9 +1,14 @@
-controller.exp_optimize = 0;
+function dd_export_min() {
+	controller.exp_optimize = 0;
 
-if (!controller.opt_warning_flag) and (!controller.exp_optimize)
-{
-    controller.opt_warning_flag = 1;
-    show_message_new("NB: Unoptimized files are meant only for simulation or to be optimized in third party programs. Attempting to play an unoptimized file directly on a projector can damage the scanners.");
-}
+	if (!controller.opt_warning_flag) and (!controller.exp_optimize)
+	{
+	    controller.opt_warning_flag = 1;
+	    show_message_new("NB: Unoptimized files are meant only for simulation or to be optimized in third party programs. Attempting to play an unoptimized file directly on a projector can damage the scanners.");
+	}
     
-save_profile();
+	save_profile();
+
+
+
+}

@@ -1,8 +1,12 @@
 {
-    "id": "db974077-adfe-44fd-befd-cc26d7d55500",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "make_frame",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "output",
+    "path": "folders/Scripts/output.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "make_frame",
+  "tags": [],
+  "resourceType": "GMScript",
 }

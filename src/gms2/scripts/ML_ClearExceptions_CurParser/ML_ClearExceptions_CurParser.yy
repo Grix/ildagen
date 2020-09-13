@@ -1,8 +1,12 @@
 {
-    "id": "79f67f4a-7f7a-4e80-a4de-1f3f70fd2070",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_ClearExceptions_CurParser",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ExceptionHandling",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/ExceptionHandling.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_ClearExceptions_CurParser",
+  "tags": [],
+  "resourceType": "GMScript",
 }

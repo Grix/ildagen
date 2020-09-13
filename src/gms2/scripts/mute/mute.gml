@@ -1,8 +1,13 @@
-//toggles muted audio
+function mute() {
+	//toggles muted audio
 
-if (seqcontrol.song == -1)
-    exit;
+	if (seqcontrol.song == -1)
+	    exit;
 
-seqcontrol.muted = !seqcontrol.muted;
+	seqcontrol.muted = !seqcontrol.muted;
 
-FMODGMS_Chan_Set_Mute(seqcontrol.play_sndchannel, seqcontrol.muted);
+	FMODGMS_Chan_Set_Mute(seqcontrol.play_sndchannel, seqcontrol.muted);
+
+
+
+}

@@ -4,5 +4,10 @@
 /// @argType    r
 /// @returnType real
 /// @hidden     false
+function ML_NoException(argument0) {
 
-return (_ML_LiP_GetErrorFlags(argument0) == 0);
+	return (_ML_LiP_GetErrorFlags(argument0) == 0);
+
+
+
+}

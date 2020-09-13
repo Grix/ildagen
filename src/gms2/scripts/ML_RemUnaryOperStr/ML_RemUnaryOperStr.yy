@@ -1,8 +1,12 @@
 {
-    "id": "721543ea-2947-4a19-9ee7-e31a4330db48",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_RemUnaryOperStr",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Unary",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Unary.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_RemUnaryOperStr",
+  "tags": [],
+  "resourceType": "GMScript",
 }

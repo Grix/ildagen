@@ -1,8 +1,12 @@
 {
-    "id": "2c62ad49-88e1-4607-9006-7baf122128b9",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "func_startofframe_blank",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ilda",
+    "path": "folders/Scripts/ilda.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "func_startofframe_blank",
+  "tags": [],
+  "resourceType": "GMScript",
 }

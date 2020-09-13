@@ -1,8 +1,12 @@
 {
-    "id": "7d59acaa-bcac-41c2-92fe-64bfa3a24ec9",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_FConditional",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Helperfunctions",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_FConditional",
+  "tags": [],
+  "resourceType": "GMScript",
 }

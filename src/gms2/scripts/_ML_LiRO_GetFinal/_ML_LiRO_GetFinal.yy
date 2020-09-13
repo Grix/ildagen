@@ -1,8 +1,12 @@
 {
-    "id": "72b176f7-2ae5-4bde-bfe9-7e54bdc3c256",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiRO_GetFinal",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ResultObject",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/ResultObject.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiRO_GetFinal",
+  "tags": [],
+  "resourceType": "GMScript",
 }

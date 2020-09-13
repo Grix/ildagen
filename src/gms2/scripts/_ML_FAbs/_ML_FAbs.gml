@@ -1,1 +1,6 @@
-return abs(argument0);
+function _ML_FAbs(argument0) {
+	return abs(argument0);
+
+
+
+}

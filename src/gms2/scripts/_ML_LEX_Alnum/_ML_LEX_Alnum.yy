@@ -1,8 +1,12 @@
 {
-    "id": "dd4eff13-9235-452c-a4b1-b8a60e22168b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LEX_Alnum",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "lexer",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/lexer.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LEX_Alnum",
+  "tags": [],
+  "resourceType": "GMScript",
 }

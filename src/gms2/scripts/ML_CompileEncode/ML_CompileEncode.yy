@@ -1,8 +1,12 @@
 {
-    "id": "286b7f93-8474-4031-b59b-24e31aab8b25",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_CompileEncode",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Compilation",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Compilation.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_CompileEncode",
+  "tags": [],
+  "resourceType": "GMScript",
 }

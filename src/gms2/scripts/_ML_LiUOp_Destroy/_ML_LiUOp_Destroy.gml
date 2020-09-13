@@ -4,4 +4,9 @@
 /// @argType    r
 /// @returnType void
 /// @hidden     true
-_ML_LiF_Destroy(argument0);
+function _ML_LiUOp_Destroy(argument0) {
+	_ML_LiF_Destroy(argument0);
+
+
+
+}

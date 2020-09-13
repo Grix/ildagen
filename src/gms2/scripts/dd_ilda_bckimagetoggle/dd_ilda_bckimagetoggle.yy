@@ -1,8 +1,12 @@
 {
-    "id": "9621956e-4570-4285-8b17-6fced4411459",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_ilda_bckimagetoggle",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "menu",
+    "path": "folders/Scripts/dropdown/dd_ilda/menu.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_ilda_bckimagetoggle",
+  "tags": [],
+  "resourceType": "GMScript",
 }

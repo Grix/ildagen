@@ -1,8 +1,12 @@
 {
-    "id": "c30dfb19-0218-433d-917d-cf403ef47cde",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiAOp_Destroy",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "assign",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions/operators/assign.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiAOp_Destroy",
+  "tags": [],
+  "resourceType": "GMScript",
 }

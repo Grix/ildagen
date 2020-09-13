@@ -18,7 +18,7 @@ if (room = rm_ilda)
             frame_surf_refresh = true;
             dac_blank_and_center(dac);
         }
-        else if (ds_exists(dac, ds_type_list))
+        else if (ds_list_exists(dac))
         {
             laseron = true;
             laseronfirst = true;
@@ -44,7 +44,7 @@ else if (room = rm_seq)
             seqcontrol.frame_surf_refresh = true;
             close_dacs();
         }
-        else if (ds_exists(dac, ds_type_list))
+        else if (ds_list_exists(dac))
         {
             laseron = true;
             laseronfirst = true;
@@ -72,7 +72,7 @@ else if (room = rm_options)
                 frame_surf_refresh = true;
                 dac_blank_and_center(dac);
             }
-            else if (ds_exists(dac, ds_type_list))
+            else if (ds_list_exists(dac))
             {
                 laseron = true;
                 laseronfirst = true;
@@ -90,7 +90,7 @@ else if (room = rm_options)
                 seqcontrol.frame_surf_refresh = true;
                 close_dacs();
             }
-            else if (ds_exists(dac, ds_type_list))
+            else if (ds_list_exists(dac))
             {
                 laseron = true;
                 laseronfirst = true;
@@ -113,7 +113,7 @@ else if (room = rm_live)
             livecontrol.frame_surf_refresh = true;
             close_dacs();
         }
-        else if (ds_exists(dac, ds_type_list))
+        else if (ds_list_exists(dac))
         {
             laseron = true;
             laseronfirst = true;

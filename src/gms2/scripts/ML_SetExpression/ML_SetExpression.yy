@@ -1,8 +1,12 @@
 {
-    "id": "963c59fe-2652-4de4-b996-1b6680142a71",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_SetExpression",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "BuildFunctions",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_SetExpression",
+  "tags": [],
+  "resourceType": "GMScript",
 }

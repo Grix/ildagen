@@ -1,8 +1,12 @@
 {
-    "id": "9de18818-a598-470e-8e96-01cdb802b872",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "clear_all",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ilda",
+    "path": "folders/Scripts/ilda.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "clear_all",
+  "tags": [],
+  "resourceType": "GMScript",
 }

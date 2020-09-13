@@ -5,4 +5,9 @@
 /// @argType    r, any
 /// @returnType void
 /// @hidden     true
-ds_list_replace(argument0, ML_LIRO_CALCULATED, argument1);
+function _ML_LiRO_SetCalculated(argument0, argument1) {
+	ds_list_replace(argument0, ML_LIRO_CALCULATED, argument1);
+
+
+
+}

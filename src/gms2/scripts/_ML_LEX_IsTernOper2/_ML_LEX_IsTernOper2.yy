@@ -1,8 +1,12 @@
 {
-    "id": "94a49616-63e3-421d-9db7-f0306d7f066d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LEX_IsTernOper2",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "lexer",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/lexer.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LEX_IsTernOper2",
+  "tags": [],
+  "resourceType": "GMScript",
 }

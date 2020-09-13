@@ -1,8 +1,12 @@
 {
-    "id": "f686de13-ac07-4bdc-9bc7-f947767c74a8",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "export_ilda_html5_work",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "exportilda",
+    "path": "folders/Scripts/files/exportilda.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "export_ilda_html5_work",
+  "tags": [],
+  "resourceType": "GMScript",
 }

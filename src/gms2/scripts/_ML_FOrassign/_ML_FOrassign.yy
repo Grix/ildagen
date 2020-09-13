@@ -1,8 +1,12 @@
 {
-    "id": "c99a267e-85fc-43c9-b99a-16aed4e4962c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_FOrassign",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Helperfunctions",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_FOrassign",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,4 +1,9 @@
-with (seqcontrol) 
-{
-    save_project();
+function dd_seq_saveproject() {
+	with (seqcontrol) 
+	{
+	    save_project();
+	}
+
+
+
 }

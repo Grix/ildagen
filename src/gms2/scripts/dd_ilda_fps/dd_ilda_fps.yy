@@ -1,8 +1,12 @@
 {
-    "id": "03745cfe-fb78-4842-9e45-f27a746ad990",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_ilda_fps",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "menu",
+    "path": "folders/Scripts/dropdown/dd_ilda/menu.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_ilda_fps",
+  "tags": [],
+  "resourceType": "GMScript",
 }

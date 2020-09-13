@@ -1,8 +1,12 @@
 {
-    "id": "4f02ae45-bf34-4548-bd34-367b0004f455",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_ilda_viewtimeline",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "menu",
+    "path": "folders/Scripts/dropdown/dd_ilda/menu.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_ilda_viewtimeline",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "50aef226-95be-40fb-8563-d4c8907da5ae",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LEX_Alpha",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "lexer",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/lexer.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LEX_Alpha",
+  "tags": [],
+  "resourceType": "GMScript",
 }

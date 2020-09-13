@@ -1,8 +1,12 @@
 {
-    "id": "34da44b2-f480-4892-89d2-9c0a48e51fce",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_AddUnarySig",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Unary",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Unary.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_AddUnarySig",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -4,4 +4,9 @@
 /// @argType    r
 /// @returnType real
 /// @hidden     true
-return ds_list_find_value(argument0, ML_LIOP_PREC);
+function _ML_LiOp_GetPrec(argument0) {
+	return ds_list_find_value(argument0, ML_LIOP_PREC);
+
+
+
+}

@@ -1,8 +1,12 @@
 {
-    "id": "24613e6c-7736-42bf-bc18-bf47437a75f4",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "output_frame_live",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dacs",
+    "path": "folders/Scripts/dacs.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "output_frame_live",
+  "tags": [],
+  "resourceType": "GMScript",
 }

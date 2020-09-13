@@ -1,8 +1,12 @@
 {
-    "id": "458b8b8e-6128-4421-8f1a-92c7b97d0ab8",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_PARSE_EvalToken",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Parsing",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/Parsing.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_PARSE_EvalToken",
+  "tags": [],
+  "resourceType": "GMScript",
 }

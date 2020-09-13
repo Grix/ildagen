@@ -1,131 +1,63 @@
 {
-    "id": "36d24759-27d2-4ead-a453-d863688492ce",
-    "modelName": "GMExtension",
-    "mvc": "1.2",
-    "name": "filesaver",
-    "IncludedResources": [
-        
-    ],
-    "androidPermissions": [
-        
-    ],
-    "androidProps": false,
-    "androidactivityinject": "",
-    "androidclassname": "",
-    "androidinject": "",
-    "androidmanifestinject": "",
-    "androidsourcedir": "",
-    "author": "",
-    "classname": "",
-    "copyToTargets": 32,
-    "date": "2017-51-14 08:09:35",
-    "description": "",
-    "exportToGame": true,
-    "extensionName": "",
-    "files": [
-        {
-            "id": "4a075fa0-ab2c-4755-9a2e-ea37818b221a",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 32,
-            "filename": "FileSaver.js",
-            "final": "",
-            "functions": [
-                {
-                    "id": "3dd0a533-42e9-41b5-aa01-c88f13ed9276",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 1,
-                    "args": [
-                        1
-                    ],
-                    "externalName": "",
-                    "help": "",
-                    "hidden": false,
-                    "kind": 11,
-                    "name": "filesaver_save",
-                    "returnType": 2
-                },
-                {
-                    "id": "6e073ca1-5e56-493b-b3b3-b631e3982caa",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 2,
-                    "args": [
-                        2,
-                        2
-                    ],
-                    "externalName": "",
-                    "help": "",
-                    "hidden": false,
-                    "kind": 11,
-                    "name": "filesaver_toArray",
-                    "returnType": 2
-                },
-                {
-                    "id": "f6599b0c-b3f2-481c-a600-83057a39a6c9",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": -1,
-                    "args": [
-                        
-                    ],
-                    "externalName": "filesaver_clearArray",
-                    "help": "",
-                    "hidden": false,
-                    "kind": 10,
-                    "name": "filesaver_clearArray",
-                    "returnType": 0
-                }
-            ],
-            "init": "",
-            "kind": 5,
-            "order": [
-                
-            ],
-            "origname": "extensions\\FileSaver.js",
-            "uncompress": false
-        }
-    ],
-    "gradleinject": "",
-    "helpfile": "",
-    "installdir": "",
-    "iosProps": false,
-    "iosSystemFrameworkEntries": [
-        
-    ],
-    "iosThirdPartyFrameworkEntries": [
-        
-    ],
-    "iosdelegatename": null,
-    "iosplistinject": "",
-    "license": "Free to use, also for commercial games.",
-    "maccompilerflags": "",
-    "maclinkerflags": "",
-    "macsourcedir": "",
-    "options": null,
-    "optionsFile": "options.json",
-    "packageID": "",
-    "productID": "",
-    "sourcedir": "",
-    "supportedTargets": 32,
-    "tvosProps": false,
-    "tvosSystemFrameworkEntries": [
-        
-    ],
-    "tvosThirdPartyFrameworkEntries": [
-        
-    ],
-    "tvosclassname": null,
-    "tvosdelegatename": null,
-    "tvosmaccompilerflags": null,
-    "tvosmaclinkerflags": null,
-    "tvosplistinject": null,
-    "version": "1.0.0"
+  "optionsFile": "options.json",
+  "options": [],
+  "exportToGame": true,
+  "supportedTargets": 32,
+  "extensionVersion": "1.0.0",
+  "packageId": "",
+  "productId": "",
+  "author": "",
+  "date": "2017-09-14T08:51:35",
+  "license": "Free to use, also for commercial games.",
+  "description": "",
+  "helpfile": "",
+  "iosProps": false,
+  "tvosProps": false,
+  "androidProps": false,
+  "installdir": "",
+  "files": [
+    {"filename":"FileSaver.js","origname":"extensions\\FileSaver.js","init":"","final":"","kind":5,"uncompress":false,"functions":[
+        {"externalName":"","kind":11,"help":"","hidden":false,"returnType":2,"argCount":1,"args":[
+            1,
+          ],"resourceVersion":"1.0","name":"filesaver_save","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"","kind":11,"help":"","hidden":false,"returnType":2,"argCount":2,"args":[
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"filesaver_toArray","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"filesaver_clearArray","kind":10,"help":"","hidden":false,"returnType":0,"argCount":-1,"args":[],"resourceVersion":"1.0","name":"filesaver_clearArray","tags":[],"resourceType":"GMExtensionFunction",},
+      ],"constants":[],"ProxyFiles":[],"copyToTargets":32,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+  ],
+  "classname": "",
+  "tvosclassname": null,
+  "tvosdelegatename": null,
+  "iosdelegatename": null,
+  "androidclassname": "",
+  "sourcedir": "",
+  "androidsourcedir": "",
+  "macsourcedir": "",
+  "maccompilerflags": "",
+  "tvosmaccompilerflags": null,
+  "maclinkerflags": "",
+  "tvosmaclinkerflags": null,
+  "iosplistinject": "",
+  "tvosplistinject": null,
+  "androidinject": "",
+  "androidmanifestinject": "",
+  "androidactivityinject": "",
+  "gradleinject": "",
+  "iosSystemFrameworkEntries": [],
+  "tvosSystemFrameworkEntries": [],
+  "iosThirdPartyFrameworkEntries": [],
+  "tvosThirdPartyFrameworkEntries": [],
+  "IncludedResources": [],
+  "androidPermissions": [],
+  "copyToTargets": 32,
+  "parent": {
+    "name": "Extensions",
+    "path": "folders/Extensions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "filesaver",
+  "tags": [],
+  "resourceType": "GMExtension",
 }

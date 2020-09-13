@@ -1,8 +1,12 @@
 {
-    "id": "b549d2c3-82c6-4117-b408-790bd5135db5",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "seq_fromilda",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dd_seq",
+    "path": "folders/Scripts/dropdown/dd_seq.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "seq_fromilda",
+  "tags": [],
+  "resourceType": "GMScript",
 }

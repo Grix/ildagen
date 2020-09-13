@@ -6,3 +6,8 @@
 /// @argType    r, r, r
 /// @returnType real
 /// @hidden     true
+function ML_CompileEncode() {
+
+
+
+}

@@ -5,5 +5,10 @@
 /// @argType    r, r
 /// @returnType string
 /// @hidden     false
+function ML_GetAnswerType(argument0, argument1) {
 
-return ML_ResObj_GetAnswerType(_ML_LiP_GetResultObject(argument0), argument1);
+	return ML_ResObj_GetAnswerType(_ML_LiP_GetResultObject(argument0), argument1);
+
+
+
+}

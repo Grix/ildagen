@@ -1,9 +1,14 @@
-//checks control bytes at pos i
+function is_wrong(argument0) {
+	//checks control bytes at pos i
 
-if (get_byte() != argument0)
-{
-    show_message_new("Unexpected byte: "+string(i)+" = "+string(get_byte)+". Is this a valid ILDA file?");
-    return 0;
+	if (get_byte() != argument0)
+	{
+	    show_message_new("Unexpected byte: "+string(i)+" = "+string(get_byte)+". Is this a valid ILDA file?");
+	    return 0;
+	}
+	else 
+	    return 1;
+
+
+
 }
-else 
-    return 1;

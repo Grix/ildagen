@@ -1,8 +1,12 @@
 {
-    "id": "dfa5da5c-fdc8-4999-9350-88f9674ef48c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_VM_GetVarReal",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Variable Map",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Variable Map.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_VM_GetVarReal",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -5,7 +5,12 @@
 /// @argType    r,s
 /// @returnType r
 /// @hidden     true
+function _ML_AddFunctionSig(argument0, argument1) {
 
 
-var ind = _ML_LiS_Create(argument0, argument1);
-return ind;
+	var ind = _ML_LiS_Create(argument0, argument1);
+	return ind;
+
+
+
+}

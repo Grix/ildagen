@@ -1,8 +1,12 @@
 {
-    "id": "cf313baf-9c9f-46ce-becb-41c6a283caff",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_seq_env_disable",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dd_seq",
+    "path": "folders/Scripts/dropdown/dd_seq.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_seq_env_disable",
+  "tags": [],
+  "resourceType": "GMScript",
 }

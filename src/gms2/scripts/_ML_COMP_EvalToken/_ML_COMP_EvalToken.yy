@@ -1,8 +1,12 @@
 {
-    "id": "8dbe3818-0f18-41bc-b7c3-6b2e555cba23",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_COMP_EvalToken",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "compile",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/compile.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_COMP_EvalToken",
+  "tags": [],
+  "resourceType": "GMScript",
 }

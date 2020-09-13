@@ -5,5 +5,10 @@
 /// @argType    r, r
 /// @returnType auto
 /// @hidden     false
+function ML_ResObj_GetAnswer(argument0, argument1) {
 
-return _ML_LiRO_Get(argument0, argument1);
+	return _ML_LiRO_Get(argument0, argument1);
+
+
+
+}

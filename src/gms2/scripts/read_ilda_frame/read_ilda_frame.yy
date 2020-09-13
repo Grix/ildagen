@@ -1,8 +1,12 @@
 {
-    "id": "cc85ca03-6719-476f-959f-0155cc332486",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "read_ilda_frame",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "importilda",
+    "path": "folders/Scripts/files/importilda.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "read_ilda_frame",
+  "tags": [],
+  "resourceType": "GMScript",
 }

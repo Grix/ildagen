@@ -1,8 +1,12 @@
 {
-    "id": "e7971711-90b8-49bb-9194-845d405dacd4",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_ilda_loadframes",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "menu",
+    "path": "folders/Scripts/dropdown/dd_ilda/menu.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_ilda_loadframes",
+  "tags": [],
+  "resourceType": "GMScript",
 }

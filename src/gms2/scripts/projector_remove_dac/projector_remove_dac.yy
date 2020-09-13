@@ -1,8 +1,12 @@
 {
-    "id": "d40c1080-c063-4721-9e11-692b872263ce",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "projector_remove_dac",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dd_options",
+    "path": "folders/Scripts/dropdown/dd_options.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "projector_remove_dac",
+  "tags": [],
+  "resourceType": "GMScript",
 }

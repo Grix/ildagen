@@ -4,6 +4,11 @@
 /// @argType    s
 /// @returnType r
 /// @hidden     true
-//checks  if character is controll 
-var v = ord(argument0);
-return (v <= 31);
+function _ML_LEX_Cntrl(argument0) {
+	//checks  if character is controll 
+	var v = ord(argument0);
+	return (v <= 31);
+
+
+
+}

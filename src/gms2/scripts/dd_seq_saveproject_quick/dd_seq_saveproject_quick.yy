@@ -1,8 +1,12 @@
 {
-    "id": "d0d8da8d-c4cc-4a74-9909-cc19e9c2a3d7",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_seq_saveproject_quick",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "menu",
+    "path": "folders/Scripts/dropdown/dd_seq/menu.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_seq_saveproject_quick",
+  "tags": [],
+  "resourceType": "GMScript",
 }

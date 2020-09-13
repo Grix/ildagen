@@ -4,4 +4,9 @@
 /// @argType    r
 /// @returnType string
 /// @hidden     true
-return ds_list_find_value(argument0, ML_LIP_ERRSTRING);
+function _ML_LiP_GetErrorString(argument0) {
+	return ds_list_find_value(argument0, ML_LIP_ERRSTRING);
+
+
+
+}

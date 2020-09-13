@@ -1,8 +1,12 @@
 {
-    "id": "3a48ff02-5fb6-494f-8107-028810883832",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "seq_dialog_string",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dialogs",
+    "path": "folders/Scripts/dialogs.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "seq_dialog_string",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -4,4 +4,9 @@
 /// @argType    r
 /// @returnType real
 /// @hidden     false
-return ML_ResObj_HasAnswer(_ML_LiP_GetResultObject(argument0));
+function ML_HasAnswer(argument0) {
+	return ML_ResObj_HasAnswer(_ML_LiP_GetResultObject(argument0));
+
+
+
+}

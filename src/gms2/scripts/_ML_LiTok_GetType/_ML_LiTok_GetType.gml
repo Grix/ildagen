@@ -4,4 +4,9 @@
 /// @argType    r
 /// @returnType r
 /// @hidden     true
-return ds_list_find_value(argument0, ML_LITOK_TYPE);
+function _ML_LiTok_GetType(argument0) {
+	return ds_list_find_value(argument0, ML_LITOK_TYPE);
+
+
+
+}

@@ -1,8 +1,12 @@
 {
-    "id": "fd8a05e0-6d42-4890-b0c2-9aa399e5e82a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_ClearVariable",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Variable",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Variable.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_ClearVariable",
+  "tags": [],
+  "resourceType": "GMScript",
 }

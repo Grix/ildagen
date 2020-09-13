@@ -32,7 +32,7 @@ minroomspeed = 7.5;
 
 if (laseron)
 {
-    if (!ds_exists(dac,ds_type_list))
+    if (!ds_list_exists(dac))
     {
         show_message_new("Error, DAC data missing");
         laseron = false;

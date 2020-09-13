@@ -123,6 +123,7 @@ emptyliststring = ds_list_write(list);
 ds_list_destroy(list);
 radialgrid_surf = -1;
 squaregrid_surf = -1;
+edit_recording_list = -1;
 
 c_gold = make_colour_rgb(255,220,0);
 c_ltltgray = make_colour_rgb(236,236,236);
@@ -188,7 +189,7 @@ tlorigo_y = 515;
 ini_open("settings.ini");
 var t_dpi_scaling = ini_read_real("main", "dpi_scaling_override", 0);
 if (t_dpi_scaling == 0 || t_dpi_scaling == -1)
-	dpi_multiplier = ceil(display_get_height()/1700);
+	dpi_multiplier = min( ceil(display_get_height()/(735*2.1)), ceil(display_get_width()/(1350*2)) );
 else
 	dpi_multiplier = t_dpi_scaling;
 ini_close();
@@ -274,6 +275,7 @@ bez_moving = 0;
 font_size = 20;
 font_spacing = 1;
 preview_testframe = 0; //0: testframe, 1: editor mode, 2: timeline mode
+editing_type = 0; //0: A to B, 1: Record/Custom
 
 resolution = "auto";
 framepoints = 0;
@@ -392,5 +394,25 @@ verify_serial(false);
 telem();
 
 ex_patch_window_close_capture(1);
+
+exception_unhandled_handler(function(ex)
+{
+    if (file_exists("crash.txt")) 
+		file_delete("crash.txt");
+    var _f = file_text_open_write("crash.txt");
+    file_text_write_string(_f, string(ex));
+    file_text_close(_f);
+	
+	// todo report to db
+	
+	show_message("ERROR: LaserShowGen has unfortunately encountered a problem and must close. This bug has been logged and reported (anonymously) to the developer, and we will work to fix this problem in future releases.\n\nIf you wish to save your unsaved work, you will now be asked for a file location. NB: Please don't overwrite your existing file as the crash may cause problems in the new backup file.");
+	
+	if (room == rm_seq)
+		save_project();
+	else if (room == rm_live)
+		save_live_project();
+	else
+		save_frames();
+});
 
 

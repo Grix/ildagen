@@ -1,8 +1,12 @@
 {
-    "id": "797a98c6-4431-4831-93ce-fa36a4c5a174",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_LastExceptionPosition_CurParser",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ExceptionHandling",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/ExceptionHandling.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_LastExceptionPosition_CurParser",
+  "tags": [],
+  "resourceType": "GMScript",
 }

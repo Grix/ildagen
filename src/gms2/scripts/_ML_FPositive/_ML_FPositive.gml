@@ -1,1 +1,6 @@
-return +argument[0];
+function _ML_FPositive() {
+	return +argument[0];
+
+
+
+}

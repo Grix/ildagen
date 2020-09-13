@@ -4,4 +4,9 @@
 /// @argType    r
 /// @returnType void
 /// @hidden     false
-_ML_LiP_Destroy(argument0);
+function ML_DestroyParser(argument0) {
+	_ML_LiP_Destroy(argument0);
+
+
+
+}

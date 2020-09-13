@@ -1,8 +1,12 @@
 {
-    "id": "04e3975d-6458-4fc1-974e-eaf40361537d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_FPermutation",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "math",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions/math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_FPermutation",
+  "tags": [],
+  "resourceType": "GMScript",
 }

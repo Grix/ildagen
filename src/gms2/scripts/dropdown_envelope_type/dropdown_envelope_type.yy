@@ -1,8 +1,12 @@
 {
-    "id": "398c0f30-10b2-44c5-b049-dbaa0d19fe65",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dropdown_envelope_type",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dd_seq",
+    "path": "folders/Scripts/dropdown/dd_seq.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dropdown_envelope_type",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "4e11a9bf-c222-41ac-8246-f248e52093ad",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_OpAddRoots",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Operators",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_OpAddRoots",
+  "tags": [],
+  "resourceType": "GMScript",
 }

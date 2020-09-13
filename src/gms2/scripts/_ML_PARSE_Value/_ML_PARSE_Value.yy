@@ -1,8 +1,12 @@
 {
-    "id": "6ff0efe7-c9a3-41bb-9e6c-de4b4b004632",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_PARSE_Value",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Parsing",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/Parsing.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_PARSE_Value",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "845c05ae-4443-4b2f-8486-9ad46e8f43b9",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_text_font",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dd_ilda",
+    "path": "folders/Scripts/dropdown/dd_ilda.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_text_font",
+  "tags": [],
+  "resourceType": "GMScript",
 }

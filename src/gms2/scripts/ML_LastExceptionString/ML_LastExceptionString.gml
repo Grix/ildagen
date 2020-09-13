@@ -4,5 +4,10 @@
 /// @argType    r
 /// @returnType s
 /// @hidden     false
+function ML_LastExceptionString(argument0) {
 
-return _ML_LiP_GetErrorString(argument0);
+	return _ML_LiP_GetErrorString(argument0);
+
+
+
+}

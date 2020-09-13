@@ -1,8 +1,12 @@
 {
-    "id": "1211c738-b81d-47e9-b434-326bf1393013",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_FSqrt",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "math",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions/math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_FSqrt",
+  "tags": [],
+  "resourceType": "GMScript",
 }

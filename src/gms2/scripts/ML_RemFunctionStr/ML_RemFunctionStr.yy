@@ -1,8 +1,12 @@
 {
-    "id": "ba3ee4b3-5ffc-4c49-b62d-d4a7e2b6dc9a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_RemFunctionStr",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Functions",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_RemFunctionStr",
+  "tags": [],
+  "resourceType": "GMScript",
 }

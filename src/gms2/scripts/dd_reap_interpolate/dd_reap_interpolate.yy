@@ -1,8 +1,12 @@
 {
-    "id": "809640b2-e682-444e-aacd-63c53c548c75",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_reap_interpolate",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dd_ilda",
+    "path": "folders/Scripts/dropdown/dd_ilda.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_reap_interpolate",
+  "tags": [],
+  "resourceType": "GMScript",
 }

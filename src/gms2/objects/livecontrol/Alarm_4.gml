@@ -18,7 +18,7 @@ while (ds_list_size(undo_list) > 20)
     {
         //undo delete object
         undolisttemp = real(string_digits(undo));
-		if (!ds_exists(undolisttemp,ds_type_list))
+		if (!ds_list_exists(undolisttemp))
             exit;
         objectlist = ds_list_find_value(undolisttemp,0);
         infolist = objectlist[| 2];

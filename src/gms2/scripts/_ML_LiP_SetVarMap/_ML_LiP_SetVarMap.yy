@@ -1,8 +1,12 @@
 {
-    "id": "b446e35b-e8b7-4142-898d-61d6ecefc654",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiP_SetVarMap",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "setters",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/parser/setters.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiP_SetVarMap",
+  "tags": [],
+  "resourceType": "GMScript",
 }

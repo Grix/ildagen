@@ -1,8 +1,12 @@
 {
-    "id": "94f253f5-a5ed-4d1f-b5d2-bf30756dcbf8",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiP_SetFunctionString",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "setters",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/parser/setters.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiP_SetFunctionString",
+  "tags": [],
+  "resourceType": "GMScript",
 }

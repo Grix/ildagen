@@ -1,8 +1,12 @@
 {
-    "id": "b77ee4f4-3900-4a80-844b-a4b94bfe5912",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiP_Create",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "parser",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/parser.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiP_Create",
+  "tags": [],
+  "resourceType": "GMScript",
 }

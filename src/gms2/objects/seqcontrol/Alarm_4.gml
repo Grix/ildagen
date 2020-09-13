@@ -12,7 +12,7 @@ while (ds_list_size(undo_list) > 20)
     {
         //undo create object (delete)
         undolisttemp = real(string_digits(undo));
-        if (!ds_exists(undolisttemp,ds_type_list))
+        if (!ds_list_exists(undolisttemp))
             exit;
         ds_list_destroy(undolisttemp);
     }
@@ -20,7 +20,7 @@ while (ds_list_size(undo_list) > 20)
     {
         //undo split
         undolisttemp = real(string_digits(undo));
-		if (!ds_exists(undolisttemp,ds_type_list))
+		if (!ds_list_exists(undolisttemp))
             exit;
         ds_list_destroy(ds_list_find_value(undolisttemp,0));
         ds_list_destroy(undolisttemp);
@@ -29,7 +29,7 @@ while (ds_list_size(undo_list) > 20)
     {
         //undo delete object
         undolisttemp = real(string_digits(undo));
-        if (!ds_exists(undolisttemp,ds_type_list))
+        if (!ds_list_exists(undolisttemp))
             exit;
         objectlist = ds_list_find_value(undolisttemp,1);
         infolist = ds_list_find_value(objectlist, 2);
@@ -45,7 +45,7 @@ while (ds_list_size(undo_list) > 20)
     {
         //undo resize object
         undolisttemp = real(string_digits(undo));
-        if (!ds_exists(undolisttemp,ds_type_list))
+        if (!ds_list_exists(undolisttemp))
             exit;
         ds_list_destroy(undolisttemp);
     }
@@ -53,7 +53,7 @@ while (ds_list_size(undo_list) > 20)
     {
         //undo move object
         undolisttemp = real(string_digits(undo));
-        if (!ds_exists(undolisttemp,ds_type_list))
+        if (!ds_list_exists(undolisttemp))
             exit;
         ds_list_destroy(undolisttemp);
     }
@@ -61,7 +61,7 @@ while (ds_list_size(undo_list) > 20)
     {
         //undo marker clear
         undolisttemp = real(string_digits(undo));
-        if (!ds_exists(undolisttemp,ds_type_list))
+        if (!ds_list_exists(undolisttemp))
             exit;
         ds_list_destroy(undolisttemp);
     }
@@ -69,9 +69,13 @@ while (ds_list_size(undo_list) > 20)
     {
         //undo envelope data clear
         undolisttemp = real(string_digits(undo));
-		if (!ds_exists(undolisttemp,ds_type_list))
+		if (!ds_list_exists(undolisttemp))
+            exit;
+		if (!ds_list_exists(ds_list_find_value(undolisttemp,0)))
             exit;
         ds_list_destroy( ds_list_find_value(undolisttemp,0) );
+		if (!ds_list_exists(ds_list_find_value(undolisttemp,1)))
+            exit;
         ds_list_destroy( ds_list_find_value(undolisttemp,1) );
         ds_list_destroy( undolisttemp);
     }

@@ -5,4 +5,9 @@
 /// @argType    r,r
 /// @returnType auto
 /// @hidden     true
-return ds_list_find_value(_ML_LiRO_GetAll(argument0), argument1);
+function _ML_LiRO_Get(argument0, argument1) {
+	return ds_list_find_value(_ML_LiRO_GetAll(argument0), argument1);
+
+
+
+}

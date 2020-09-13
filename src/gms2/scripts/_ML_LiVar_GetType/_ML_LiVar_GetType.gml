@@ -4,4 +4,9 @@
 /// @argType    r
 /// @returnType string
 /// @hidden     true
-return ds_list_find_value(argument0, ML_LIVAR_TYPE);
+function _ML_LiVar_GetType(argument0) {
+	return ds_list_find_value(argument0, ML_LIVAR_TYPE);
+
+
+
+}

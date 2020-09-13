@@ -1,83 +1,45 @@
 {
-    "id": "138d57b9-f62c-4f6e-abc3-ea08866365fd",
-    "modelName": "GMObject",
-    "mvc": "1.0",
-    "name": "obj_exportproject",
-    "eventList": [
-        {
-            "id": "0347ca9f-e2c7-477b-ab9d-80b49893cbf1",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 3,
-            "m_owner": "138d57b9-f62c-4f6e-abc3-ea08866365fd"
-        },
-        {
-            "id": "66e07089-c610-44de-bd42-7b87337fef6f",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 5,
-            "eventtype": 6,
-            "m_owner": "138d57b9-f62c-4f6e-abc3-ea08866365fd"
-        },
-        {
-            "id": "8591904f-b90b-4440-adb1-ae497c692dce",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 4,
-            "eventtype": 6,
-            "m_owner": "138d57b9-f62c-4f6e-abc3-ea08866365fd"
-        },
-        {
-            "id": "94e056cd-a6a4-4c26-bcfb-e1e377fa108f",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 10,
-            "eventtype": 7,
-            "m_owner": "138d57b9-f62c-4f6e-abc3-ea08866365fd"
-        }
-    ],
-    "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "overriddenProperties": null,
-    "parentObjectId": "3a371281-f66f-4d33-bdff-214f55b04d62",
-    "persistent": false,
-    "physicsAngularDamping": 0.1,
-    "physicsDensity": 0.5,
-    "physicsFriction": 0.2,
-    "physicsGroup": 0,
-    "physicsKinematic": false,
-    "physicsLinearDamping": 0.1,
-    "physicsObject": false,
-    "physicsRestitution": 0.1,
-    "physicsSensor": false,
-    "physicsShape": 0,
-    "physicsShapePoints": [
-        {
-            "id": "52a8ccc2-f53c-4ca6-8f7b-0cd04d6601c8",
-            "modelName": "GMPoint",
-            "mvc": "1.0",
-            "x": 0,
-            "y": 0
-        },
-        {
-            "id": "0745a92d-afc2-4162-b17c-6a5467fa77d3",
-            "modelName": "GMPoint",
-            "mvc": "1.0",
-            "x": 16,
-            "y": 16
-        }
-    ],
-    "physicsStartAwake": true,
-    "properties": null,
-    "solid": false,
-    "spriteId": "8695c7d4-a86f-4ff1-a948-46a08ac21007",
-    "visible": false
+  "spriteId": {
+    "name": "spr_export",
+    "path": "sprites/spr_export/spr_export.yy",
+  },
+  "solid": false,
+  "visible": false,
+  "spriteMaskId": null,
+  "persistent": false,
+  "parentObjectId": {
+    "name": "obj_section0_parent",
+    "path": "objects/obj_section0_parent/obj_section0_parent.yy",
+  },
+  "physicsObject": false,
+  "physicsSensor": false,
+  "physicsShape": 0,
+  "physicsGroup": 0,
+  "physicsDensity": 0.5,
+  "physicsRestitution": 0.1,
+  "physicsLinearDamping": 0.1,
+  "physicsAngularDamping": 0.1,
+  "physicsFriction": 0.2,
+  "physicsStartAwake": true,
+  "physicsKinematic": false,
+  "physicsShapePoints": [
+    {"x":0.0,"y":0.0,},
+    {"x":16.0,"y":16.0,},
+  ],
+  "eventList": [
+    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"parent":{"name":"obj_exportproject","path":"objects/obj_exportproject/obj_exportproject.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":5,"eventType":6,"collisionObjectId":null,"parent":{"name":"obj_exportproject","path":"objects/obj_exportproject/obj_exportproject.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":4,"eventType":6,"collisionObjectId":null,"parent":{"name":"obj_exportproject","path":"objects/obj_exportproject/obj_exportproject.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":10,"eventType":7,"collisionObjectId":null,"parent":{"name":"obj_exportproject","path":"objects/obj_exportproject/obj_exportproject.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+  ],
+  "properties": [],
+  "overriddenProperties": [],
+  "parent": {
+    "name": "seq",
+    "path": "folders/Objects/buttons/seq.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "obj_exportproject",
+  "tags": [],
+  "resourceType": "GMObject",
 }

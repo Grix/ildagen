@@ -1,8 +1,12 @@
 {
-    "id": "4b704be6-8f5b-480f-bc0e-b37b3b2bcc68",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiP_GetTernOps2Table",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "getters",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/parser/getters.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiP_GetTernOps2Table",
+  "tags": [],
+  "resourceType": "GMScript",
 }

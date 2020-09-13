@@ -1,8 +1,12 @@
 {
-    "id": "164b6fcc-7967-4c9c-bf28-6c813c0537d7",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiP_SetErrorPos",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "setters",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/parser/setters.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiP_SetErrorPos",
+  "tags": [],
+  "resourceType": "GMScript",
 }

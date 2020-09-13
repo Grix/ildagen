@@ -1,8 +1,12 @@
 {
-    "id": "7369ed01-5a37-4d50-8c99-e35c51cd920b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_FExp",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "math",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions/math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_FExp",
+  "tags": [],
+  "resourceType": "GMScript",
 }

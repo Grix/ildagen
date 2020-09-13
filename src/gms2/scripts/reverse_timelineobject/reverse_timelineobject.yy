@@ -1,8 +1,12 @@
 {
-    "id": "ca9d4b20-b2e0-493a-8597-5ffe172c7001",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "reverse_timelineobject",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "seq",
+    "path": "folders/Scripts/seq.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "reverse_timelineobject",
+  "tags": [],
+  "resourceType": "GMScript",
 }

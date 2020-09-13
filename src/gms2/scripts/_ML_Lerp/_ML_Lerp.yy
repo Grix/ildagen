@@ -1,8 +1,12 @@
 {
-    "id": "cbd50042-88f4-4cb8-9c9a-ebba0e10290b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_Lerp",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Helperfunctions",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_Lerp",
+  "tags": [],
+  "resourceType": "GMScript",
 }

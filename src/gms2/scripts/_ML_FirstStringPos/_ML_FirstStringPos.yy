@@ -1,8 +1,12 @@
 {
-    "id": "f11c7bf6-9d61-451c-b835-638f05e30ea2",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_FirstStringPos",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "lexer",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/lexer.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_FirstStringPos",
+  "tags": [],
+  "resourceType": "GMScript",
 }

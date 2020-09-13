@@ -1,8 +1,12 @@
 {
-    "id": "92e2b614-3071-4e77-aad7-00e4067933dd",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_VM_SetVar",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Variable Map",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Variable Map.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_VM_SetVar",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,2 +1,7 @@
-with (controller)
-    frames_toseq();
+function seq_fromilda() {
+	with (controller)
+	    frames_toseq();
+
+
+
+}

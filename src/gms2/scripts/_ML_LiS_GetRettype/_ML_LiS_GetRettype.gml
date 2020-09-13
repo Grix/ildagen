@@ -4,4 +4,9 @@
 /// @argType    r
 /// @returnType string
 /// @hidden     true
-return ds_list_find_value(argument0, ML_LIS_RETTYPE);
+function _ML_LiS_GetRettype(argument0) {
+	return ds_list_find_value(argument0, ML_LIS_RETTYPE);
+
+
+
+}

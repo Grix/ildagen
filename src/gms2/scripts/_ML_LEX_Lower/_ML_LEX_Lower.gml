@@ -4,5 +4,10 @@
 /// @argType    s
 /// @returnType r
 /// @hidden     true
-v = ord(argument0);
-return (v >= 97 && v <= 122);
+function _ML_LEX_Lower(argument0) {
+	v = ord(argument0);
+	return (v >= 97 && v <= 122);
+
+
+
+}

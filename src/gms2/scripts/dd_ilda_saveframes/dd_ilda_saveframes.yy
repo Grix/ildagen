@@ -1,8 +1,12 @@
 {
-    "id": "946e40cd-13d2-4625-8895-20507a0fa7c6",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_ilda_saveframes",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "menu",
+    "path": "folders/Scripts/dropdown/dd_ilda/menu.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_ilda_saveframes",
+  "tags": [],
+  "resourceType": "GMScript",
 }

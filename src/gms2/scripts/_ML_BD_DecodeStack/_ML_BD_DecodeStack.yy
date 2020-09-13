@@ -1,8 +1,12 @@
 {
-    "id": "f1301750-3cf6-4eb6-968f-a00fa6590ad9",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_BD_DecodeStack",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "bufferdecode",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Compilation/detail/bufferdecode.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_BD_DecodeStack",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "bd076cc5-ce10-49dc-a99b-629c38722b02",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "get_bytes",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "importilda",
+    "path": "folders/Scripts/files/importilda.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "get_bytes",
+  "tags": [],
+  "resourceType": "GMScript",
 }

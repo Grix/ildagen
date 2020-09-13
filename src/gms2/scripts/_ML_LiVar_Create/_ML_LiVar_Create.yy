@@ -1,8 +1,12 @@
 {
-    "id": "6022bfe9-baa8-43e4-bfce-fbb29160c6c6",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiVar_Create",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "variables",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/variables.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiVar_Create",
+  "tags": [],
+  "resourceType": "GMScript",
 }

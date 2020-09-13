@@ -1,8 +1,12 @@
 {
-    "id": "6e46bf51-1c88-412c-ad23-525be3b3902a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "refresh_3dsurfaces",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ilda",
+    "path": "folders/Scripts/ilda.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "refresh_3dsurfaces",
+  "tags": [],
+  "resourceType": "GMScript",
 }

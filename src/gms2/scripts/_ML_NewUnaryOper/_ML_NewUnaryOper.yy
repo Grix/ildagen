@@ -1,8 +1,12 @@
 {
-    "id": "1251539a-806c-4c54-b134-cfcfd4d17b7f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_NewUnaryOper",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Unary",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Unary.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_NewUnaryOper",
+  "tags": [],
+  "resourceType": "GMScript",
 }

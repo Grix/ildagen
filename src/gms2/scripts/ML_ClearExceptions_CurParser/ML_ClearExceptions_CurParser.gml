@@ -3,5 +3,10 @@
 /// @argType    
 /// @returnType void
 /// @hidden     false
+function ML_ClearExceptions_CurParser() {
 
-ML_ClearExceptions(global._ML_CURRENTPARSER_);
+	ML_ClearExceptions(global._ML_CURRENTPARSER_);
+
+
+
+}

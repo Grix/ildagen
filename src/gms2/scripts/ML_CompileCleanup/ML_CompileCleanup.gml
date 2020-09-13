@@ -4,7 +4,12 @@
 /// @argType    r
 /// @returnType void
 /// @hidden     false
-var compile = argument0;
+function ML_CompileCleanup(argument0) {
+	var compile = argument0;
 
-_ML_TokCleanUp(compile);
-ds_list_destroy(compile);
+	_ML_TokCleanUp(compile);
+	ds_list_destroy(compile);
+
+
+
+}

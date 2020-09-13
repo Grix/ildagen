@@ -1,8 +1,12 @@
 {
-    "id": "3b320560-786d-4804-beb5-24a307f69239",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_FComma",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Helperfunctions",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_FComma",
+  "tags": [],
+  "resourceType": "GMScript",
 }

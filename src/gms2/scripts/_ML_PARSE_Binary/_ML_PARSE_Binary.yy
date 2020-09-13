@@ -1,8 +1,12 @@
 {
-    "id": "f6498a33-457e-4d7a-9bdd-b0d669cb783f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_PARSE_Binary",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Parsing",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/Parsing.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_PARSE_Binary",
+  "tags": [],
+  "resourceType": "GMScript",
 }

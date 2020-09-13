@@ -4,4 +4,9 @@
 /// @argType    r
 /// @returnType real
 /// @hidden     false
-return _ML_LiRO_GetCalculated(argument0);
+function ML_ResObj_HasAnswer(argument0) {
+	return _ML_LiRO_GetCalculated(argument0);
+
+
+
+}

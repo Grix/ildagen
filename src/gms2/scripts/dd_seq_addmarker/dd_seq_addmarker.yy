@@ -1,8 +1,12 @@
 {
-    "id": "d30ebe7f-8ece-43e4-bd59-d2e8545d0084",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_seq_addmarker",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "menu",
+    "path": "folders/Scripts/dropdown/dd_seq/menu.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_seq_addmarker",
+  "tags": [],
+  "resourceType": "GMScript",
 }

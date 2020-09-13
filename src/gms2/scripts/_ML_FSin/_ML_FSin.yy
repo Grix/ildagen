@@ -1,8 +1,12 @@
 {
-    "id": "56095698-f518-40d8-bcfd-d8c3cb9ccb4f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_FSin",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "math",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions/math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_FSin",
+  "tags": [],
+  "resourceType": "GMScript",
 }

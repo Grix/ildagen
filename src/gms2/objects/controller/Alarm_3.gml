@@ -26,26 +26,26 @@ while (ds_list_size(undo_list) > 50)
     }
     else if (string_char_at(undo,0) == "v")
     {
-        if (!ds_exists(real(string_digits(undo)),ds_type_list))
+        if (!ds_list_exists(real(string_digits(undo))))
             continue;
         ds_list_destroy(real(string_digits(undo)));
     }
     else if (string_char_at(undo,0) == "b")
     {
-        if (!ds_exists(real(string_digits(undo)),ds_type_list))
+        if (!ds_list_exists(real(string_digits(undo))))
             continue;
         ds_list_destroy(real(string_digits(undo)));
     }
     else if (string_char_at(undo,0) == "k")
     {
         //undo reapply elements
-        if (!ds_exists(real(string_digits(undo)),ds_type_list))
+        if (!ds_list_exists(real(string_digits(undo))))
             continue;
         tempundolist = real(string_digits(undo));
         for (u = 0;u < ds_list_size(tempundolist);u++)
         {
             list = ds_list_find_value(tempundolist,u);
-            if (ds_exists(list,ds_type_list))
+            if (ds_list_exists(list))
                 ds_list_destroy(list);
         }
         ds_list_destroy(tempundolist);
@@ -53,20 +53,20 @@ while (ds_list_size(undo_list) > 50)
     else if (string_char_at(undo,0) == "l")
     {
         //undo delete
-        if (!ds_exists(real(string_digits(undo)),ds_type_list))
+        if (!ds_list_exists(real(string_digits(undo))))
             continue;
         tempundolist = real(string_digits(undo));
         for (u = 0;u < ds_list_size(tempundolist);u++)
         {
             list = ds_list_find_value(tempundolist,u);
-            if (ds_exists(list,ds_type_list))
+            if (ds_list_exists(list))
                 ds_list_destroy(list);
         }
         ds_list_destroy(tempundolist);
     }
 	else if (string_char_at(undo,0) == "s")
 	{
-		if (!ds_exists(real(string_digits(undo)),ds_type_list))
+		if (!ds_list_exists(real(string_digits(undo))))
 	        exit;
 	    //undo stretch maxframes
 	    tempundolist = real(string_digits(undo));	

@@ -1,8 +1,12 @@
 {
-    "id": "a8670b35-ecc2-4970-bd68-e8763c598a20",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiRO_AddToken",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ResultObject",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/ResultObject.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiRO_AddToken",
+  "tags": [],
+  "resourceType": "GMScript",
 }

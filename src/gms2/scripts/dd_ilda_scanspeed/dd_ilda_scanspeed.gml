@@ -1,1 +1,6 @@
-ilda_dialog_num("scanspeed","Enter the scan rate in points per second",controller.opt_scanspeed);
+function dd_ilda_scanspeed() {
+	ilda_dialog_num("scanspeed","Enter the scan rate in points per second",controller.opt_scanspeed);
+
+
+
+}

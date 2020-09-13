@@ -4,4 +4,9 @@
 /// @argType    r
 /// @returnType real
 /// @hidden     true
-return ds_list_find_value(argument0, ML_LIOP_ASSOC);
+function _ML_LiOp_GetAssoc(argument0) {
+	return ds_list_find_value(argument0, ML_LIOP_ASSOC);
+
+
+
+}

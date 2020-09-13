@@ -1,8 +1,12 @@
 {
-    "id": "cc8ca5fa-57a3-452a-a7e3-05affbd2bb89",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_FBitnegate",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Helperfunctions",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_FBitnegate",
+  "tags": [],
+  "resourceType": "GMScript",
 }

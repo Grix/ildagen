@@ -1,19 +1,23 @@
-with (livecontrol)
-{
-	for (i = 1; i <= 9; i++)
+function find_next_available_shortcut() {
+	with (livecontrol)
 	{
-		var t_found = false;
-		for (j = 0; j < ds_list_size(filelist); j++)
+		for (i = 1; i <= 9; i++)
 		{
-			if (ds_list_find_value(filelist[| j], 3) == ord(string(i)))
+			var t_found = false;
+			for (j = 0; j < ds_list_size(filelist); j++)
 			{
-				t_found = true;
-				break;
+				if (ds_list_find_value(filelist[| j], 3) == ord(string(i)))
+				{
+					t_found = true;
+					break;
+				}
 			}
+			if (!t_found)
+				return ord(string(i));
 		}
-		if (!t_found)
-			return ord(string(i));
-	}
 			
-	return 0;
+		return 0;
+	}
+
+
 }

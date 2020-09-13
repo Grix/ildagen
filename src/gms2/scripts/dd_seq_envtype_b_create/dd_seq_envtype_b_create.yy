@@ -1,8 +1,12 @@
 {
-    "id": "43362492-0a90-469f-bc51-a2be5b25a255",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_seq_envtype_b_create",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "envelopetypes",
+    "path": "folders/Scripts/dropdown/dd_seq/envelopetypes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_seq_envtype_b_create",
+  "tags": [],
+  "resourceType": "GMScript",
 }

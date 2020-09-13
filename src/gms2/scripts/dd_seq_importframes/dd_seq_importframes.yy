@@ -1,8 +1,12 @@
 {
-    "id": "5cc96a8a-9213-4d0d-932a-c16a97d70341",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_seq_importframes",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "menu",
+    "path": "folders/Scripts/dropdown/dd_seq/menu.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_seq_importframes",
+  "tags": [],
+  "resourceType": "GMScript",
 }

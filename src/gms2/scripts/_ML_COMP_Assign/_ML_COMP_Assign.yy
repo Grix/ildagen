@@ -1,8 +1,12 @@
 {
-    "id": "746fa6af-1b85-41ff-997d-35c07359740a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_COMP_Assign",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "compile",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/compile.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_COMP_Assign",
+  "tags": [],
+  "resourceType": "GMScript",
 }

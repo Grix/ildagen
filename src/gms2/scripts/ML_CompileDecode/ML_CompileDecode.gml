@@ -5,3 +5,8 @@
 /// @argType    r, r
 /// @returnType real
 /// @hidden     true
+function ML_CompileDecode() {
+
+
+
+}

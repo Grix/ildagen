@@ -1,8 +1,12 @@
 {
-    "id": "085e5c5a-9e42-46af-90e0-a807cbbad25a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_AddBinaryOper",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Binary",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Binary.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_AddBinaryOper",
+  "tags": [],
+  "resourceType": "GMScript",
 }

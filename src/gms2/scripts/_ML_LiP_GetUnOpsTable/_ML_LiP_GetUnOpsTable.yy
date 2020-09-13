@@ -1,8 +1,12 @@
 {
-    "id": "d387ce36-e234-4e87-b20f-b28a36a6db27",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiP_GetUnOpsTable",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "getters",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/parser/getters.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiP_GetUnOpsTable",
+  "tags": [],
+  "resourceType": "GMScript",
 }

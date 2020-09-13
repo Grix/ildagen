@@ -1,8 +1,12 @@
 {
-    "id": "bab99d90-a417-4fc2-a63e-2462612ca165",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "FMODGMS_Util_SamplesToSeconds",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "FMODGMS",
+    "path": "folders/Scripts/FMODGMS.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "FMODGMS_Util_SamplesToSeconds",
+  "tags": [],
+  "resourceType": "GMScript",
 }

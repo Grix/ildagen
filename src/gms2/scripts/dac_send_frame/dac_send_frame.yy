@@ -1,8 +1,12 @@
 {
-    "id": "35ac1fc3-26ac-4f6d-8197-84a33bb39979",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dac_send_frame",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dacs",
+    "path": "folders/Scripts/dacs.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dac_send_frame",
+  "tags": [],
+  "resourceType": "GMScript",
 }

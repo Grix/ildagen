@@ -1,8 +1,12 @@
 {
-    "id": "e556d695-76d6-4d63-8437-653be0c27b6c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiS_Create",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "functions_fullname",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions_fullname.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiS_Create",
+  "tags": [],
+  "resourceType": "GMScript",
 }

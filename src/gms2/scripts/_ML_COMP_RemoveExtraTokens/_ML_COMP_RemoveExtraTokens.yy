@@ -1,8 +1,12 @@
 {
-    "id": "e56f85fc-ad45-4cd4-ba98-8fff8e35c03a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_COMP_RemoveExtraTokens",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "compile",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/compile.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_COMP_RemoveExtraTokens",
+  "tags": [],
+  "resourceType": "GMScript",
 }

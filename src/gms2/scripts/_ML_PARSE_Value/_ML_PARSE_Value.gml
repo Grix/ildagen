@@ -5,4 +5,9 @@
 /// @argType    r,r
 /// @returnType auto
 /// @hidden     true
-ds_stack_push(argument1, argument0);
+function _ML_PARSE_Value(argument0, argument1) {
+	ds_stack_push(argument1, argument0);
+
+
+
+}

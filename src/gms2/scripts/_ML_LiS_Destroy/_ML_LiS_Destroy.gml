@@ -4,4 +4,9 @@
 /// @argType    r
 /// @returnType void
 /// @hidden     true
-ds_list_destroy(argument0);
+function _ML_LiS_Destroy(argument0) {
+	ds_list_destroy(argument0);
+
+
+
+}

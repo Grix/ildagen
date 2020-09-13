@@ -1,8 +1,12 @@
 {
-    "id": "4da168af-723e-4ef3-b960-b13eeae7819d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_AddTernarySig",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Ternary",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Ternary.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_AddTernarySig",
+  "tags": [],
+  "resourceType": "GMScript",
 }

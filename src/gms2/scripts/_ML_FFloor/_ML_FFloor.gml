@@ -1,1 +1,6 @@
-return floor(argument0);
+function _ML_FFloor(argument0) {
+	return floor(argument0);
+
+
+
+}

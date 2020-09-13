@@ -1,8 +1,12 @@
 {
-    "id": "df3d4183-fb72-44b7-a265-32ec4911bb15",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_seq_loaddemoproject",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "menu",
+    "path": "folders/Scripts/dropdown/dd_seq/menu.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_seq_loaddemoproject",
+  "tags": [],
+  "resourceType": "GMScript",
 }

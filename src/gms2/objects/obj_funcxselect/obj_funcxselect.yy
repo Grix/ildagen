@@ -1,83 +1,45 @@
 {
-    "id": "b9f2efef-8f3c-4c61-b0dd-9a6569eb7179",
-    "modelName": "GMObject",
-    "mvc": "1.0",
-    "name": "obj_funcxselect",
-    "eventList": [
-        {
-            "id": "6f9a1bb3-d38e-4d76-8b87-0b35975d1c7d",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "b9f2efef-8f3c-4c61-b0dd-9a6569eb7179"
-        },
-        {
-            "id": "88ab912b-f750-4d62-9961-0399d88447fb",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 3,
-            "m_owner": "b9f2efef-8f3c-4c61-b0dd-9a6569eb7179"
-        },
-        {
-            "id": "0e388795-7020-4d14-bdd0-75cfa21700b5",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 4,
-            "eventtype": 6,
-            "m_owner": "b9f2efef-8f3c-4c61-b0dd-9a6569eb7179"
-        },
-        {
-            "id": "573cd914-8d3c-4ffe-9594-ef3fcc411edf",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 8,
-            "m_owner": "b9f2efef-8f3c-4c61-b0dd-9a6569eb7179"
-        }
-    ],
-    "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "overriddenProperties": null,
-    "parentObjectId": "3a371281-f66f-4d33-bdff-214f55b04d62",
-    "persistent": false,
-    "physicsAngularDamping": 0.1,
-    "physicsDensity": 0.5,
-    "physicsFriction": 0.2,
-    "physicsGroup": 0,
-    "physicsKinematic": false,
-    "physicsLinearDamping": 0.1,
-    "physicsObject": false,
-    "physicsRestitution": 0.1,
-    "physicsSensor": false,
-    "physicsShape": 0,
-    "physicsShapePoints": [
-        {
-            "id": "5ce8f65e-ac62-4c26-b4c7-bb986313ce69",
-            "modelName": "GMPoint",
-            "mvc": "1.0",
-            "x": 0,
-            "y": 0
-        },
-        {
-            "id": "7eb50d63-4eb8-430a-9fc1-1412cfb1566e",
-            "modelName": "GMPoint",
-            "mvc": "1.0",
-            "x": 16,
-            "y": 16
-        }
-    ],
-    "physicsStartAwake": true,
-    "properties": null,
-    "solid": false,
-    "spriteId": "a2c33a2c-045e-4187-8ecc-5e9531e979bc",
-    "visible": true
+  "spriteId": {
+    "name": "spr_funcx",
+    "path": "sprites/spr_funcx/spr_funcx.yy",
+  },
+  "solid": false,
+  "visible": true,
+  "spriteMaskId": null,
+  "persistent": false,
+  "parentObjectId": {
+    "name": "obj_section0_parent",
+    "path": "objects/obj_section0_parent/obj_section0_parent.yy",
+  },
+  "physicsObject": false,
+  "physicsSensor": false,
+  "physicsShape": 0,
+  "physicsGroup": 0,
+  "physicsDensity": 0.5,
+  "physicsRestitution": 0.1,
+  "physicsLinearDamping": 0.1,
+  "physicsAngularDamping": 0.1,
+  "physicsFriction": 0.2,
+  "physicsStartAwake": true,
+  "physicsKinematic": false,
+  "physicsShapePoints": [
+    {"x":0.0,"y":0.0,},
+    {"x":16.0,"y":16.0,},
+  ],
+  "eventList": [
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"parent":{"name":"obj_funcxselect","path":"objects/obj_funcxselect/obj_funcxselect.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"parent":{"name":"obj_funcxselect","path":"objects/obj_funcxselect/obj_funcxselect.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":4,"eventType":6,"collisionObjectId":null,"parent":{"name":"obj_funcxselect","path":"objects/obj_funcxselect/obj_funcxselect.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"parent":{"name":"obj_funcxselect","path":"objects/obj_funcxselect/obj_funcxselect.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+  ],
+  "properties": [],
+  "overriddenProperties": [],
+  "parent": {
+    "name": "shape",
+    "path": "folders/Objects/buttons/ilda/shape.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "obj_funcxselect",
+  "tags": [],
+  "resourceType": "GMObject",
 }

@@ -1,6 +1,11 @@
-//gets x pos in bezier curve
-//args: t,starty
+function bezier_y(argument0) {
+	//gets x pos in bezier curve
+	//args: t,starty
 
-t = argument0;
+	t = argument0;
 
-return ((ay*t*t*t)+(by*t*t)+(cy*t)+starty);
+	return ((ay*t*t*t)+(by*t*t)+(cy*t)+starty);
+
+
+
+}

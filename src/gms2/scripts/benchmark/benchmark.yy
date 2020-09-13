@@ -1,8 +1,12 @@
 {
-    "id": "aacbc5c4-9a04-47cf-bf80-8bca7a29e481",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "benchmark",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "benchmark",
+  "tags": [],
+  "resourceType": "GMScript",
 }

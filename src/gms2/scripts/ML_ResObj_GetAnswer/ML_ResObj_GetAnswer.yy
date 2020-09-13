@@ -1,8 +1,12 @@
 {
-    "id": "06f4bd4a-cbf4-475d-801f-3fa08cf20172",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ML_ResObj_GetAnswer",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "MATH_LOGICAL_PARSER",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ML_ResObj_GetAnswer",
+  "tags": [],
+  "resourceType": "GMScript",
 }

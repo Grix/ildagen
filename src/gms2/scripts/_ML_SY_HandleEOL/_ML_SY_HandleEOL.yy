@@ -1,8 +1,12 @@
 {
-    "id": "47cc3973-6002-4a26-bca9-1e1e93ea5a57",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_SY_HandleEOL",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "shunting_yard",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/shunting_yard.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_SY_HandleEOL",
+  "tags": [],
+  "resourceType": "GMScript",
 }

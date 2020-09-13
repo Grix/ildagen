@@ -4,4 +4,9 @@
 /// @argType    r
 /// @returnType real
 /// @hidden     true
-return ds_list_find_value(argument0, ML_LIVAR_READONLY);
+function _ML_LiVar_GetReadonly(argument0) {
+	return ds_list_find_value(argument0, ML_LIVAR_READONLY);
+
+
+
+}

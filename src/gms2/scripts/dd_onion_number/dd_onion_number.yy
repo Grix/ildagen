@@ -1,8 +1,12 @@
 {
-    "id": "4a226575-b218-4079-9bdb-43a860eab245",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_onion_number",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dd_ilda",
+    "path": "folders/Scripts/dropdown/dd_ilda.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_onion_number",
+  "tags": [],
+  "resourceType": "GMScript",
 }

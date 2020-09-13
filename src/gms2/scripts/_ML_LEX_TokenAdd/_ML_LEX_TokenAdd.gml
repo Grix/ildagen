@@ -6,8 +6,13 @@
 /// @argType    r,s,r
 /// @returnType r
 /// @hidden     true
+function _ML_LEX_TokenAdd(argument0, argument1, argument2) {
 
-var ind = _ML_LiTok_Create(argument1, argument2);
-ds_list_add(argument0, ind);
+	var ind = _ML_LiTok_Create(argument1, argument2);
+	ds_list_add(argument0, ind);
 
-return ind;
+	return ind;
+
+
+
+}

@@ -1,8 +1,12 @@
 {
-    "id": "155ccf74-9474-4e33-9c59-ddcfea780656",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "undo_ilda",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ilda",
+    "path": "folders/Scripts/ilda.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "undo_ilda",
+  "tags": [],
+  "resourceType": "GMScript",
 }

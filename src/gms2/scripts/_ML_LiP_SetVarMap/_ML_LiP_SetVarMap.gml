@@ -5,4 +5,9 @@
 /// @argType    r, r
 /// @returnType void
 /// @hidden     true
-ds_list_replace(argument0, ML_LIP_VARMAP, argument1);
+function _ML_LiP_SetVarMap(argument0, argument1) {
+	ds_list_replace(argument0, ML_LIP_VARMAP, argument1);
+
+
+
+}

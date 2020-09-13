@@ -1,8 +1,12 @@
 {
-    "id": "cdbb4a6e-2b24-4aa6-bb30-e4ca727ff86c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dd_seq_add_envelope",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dd_seq",
+    "path": "folders/Scripts/dropdown/dd_seq.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dd_seq_add_envelope",
+  "tags": [],
+  "resourceType": "GMScript",
 }

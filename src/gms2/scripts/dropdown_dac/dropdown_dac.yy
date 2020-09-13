@@ -1,8 +1,12 @@
 {
-    "id": "8df70d33-365a-4f56-a700-b179a707a18c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dropdown_dac",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dd_options",
+    "path": "folders/Scripts/dropdown/dd_options.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dropdown_dac",
+  "tags": [],
+  "resourceType": "GMScript",
 }

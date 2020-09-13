@@ -1,1 +1,6 @@
-return degtorad(argument0);
+function _ML_FRadians(argument0) {
+	return degtorad(argument0);
+
+
+
+}

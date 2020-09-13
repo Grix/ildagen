@@ -1,1 +1,6 @@
-ilda_dialog_num("onion_number","Enter the number of previous frames to preview",controller.onion_number);
+function dd_onion_number() {
+	ilda_dialog_num("onion_number","Enter the number of previous frames to preview",controller.onion_number);
+
+
+
+}

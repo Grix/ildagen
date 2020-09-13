@@ -4,5 +4,10 @@
 /// @argType    r
 /// @returnType auto
 /// @hidden     false
+function ML_ResObj_GetFinalAnswer(argument0) {
 
-return _ML_LiRO_GetFinal(argument0);
+	return _ML_LiRO_GetFinal(argument0);
+
+
+
+}

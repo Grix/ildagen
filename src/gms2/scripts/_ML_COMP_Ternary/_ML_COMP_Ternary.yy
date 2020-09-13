@@ -1,8 +1,12 @@
 {
-    "id": "cc90eaaf-ca47-459e-9333-44798adc6ad8",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_COMP_Ternary",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "compile",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/compile.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_COMP_Ternary",
+  "tags": [],
+  "resourceType": "GMScript",
 }

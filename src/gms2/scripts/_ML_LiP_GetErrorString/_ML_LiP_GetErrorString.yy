@@ -1,8 +1,12 @@
 {
-    "id": "1beb67e3-5f3e-48a5-94a7-4acf7cc6f845",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LiP_GetErrorString",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "getters",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/parser/getters.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LiP_GetErrorString",
+  "tags": [],
+  "resourceType": "GMScript",
 }

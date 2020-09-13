@@ -1,8 +1,12 @@
 {
-    "id": "fb4e119c-bb12-4b51-a457-6ca65c3ed1e5",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "_ML_LEX_IsAssignoper",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "lexer",
+    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/lexer.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "_ML_LEX_IsAssignoper",
+  "tags": [],
+  "resourceType": "GMScript",
 }
