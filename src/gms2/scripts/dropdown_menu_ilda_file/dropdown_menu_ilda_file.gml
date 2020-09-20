@@ -2,7 +2,6 @@ function dropdown_menu_ilda_file() {
 	ddobj = instance_create_layer(controller.menu_width_start[0]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 	with (ddobj)
 	{
-		ds_exists(undefined, ds_type_list); //NBNBN TODO todo
 	    num = 8;
 	    ds_list_add(desc_list,"New");
 	    ds_list_add(desc_list,"Save frames (Ctrl-S)"); //todo quicksave
