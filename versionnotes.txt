@@ -1,3 +1,8 @@
+v1.8.7 (2020-09-27) *Not yet released on Mac and Linux
+- Add possibility of drawing a custom path along which to animate movement etc.
+- Fix possible crash when creating animated text
+- Better crash handling with possiblity of saving unsaved work and automatically report bug.
+
 v1.8.6 (2020-08-07)
 - Fix Ether Dream not working on Mac and Linux.
 - Fix possible crash when changing length of animation in editor mode.
