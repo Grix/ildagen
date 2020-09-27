@@ -1,5 +1,5 @@
-version = "1.8.6";
-versiondate = "2020-08-07";
+version = "1.8.7";
+versiondate = "2020-09-27";
 
 if (debug_mode)
 {

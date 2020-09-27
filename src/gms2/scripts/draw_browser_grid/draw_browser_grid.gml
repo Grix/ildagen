@@ -81,16 +81,16 @@ function draw_browser_grid() {
 	ypos_perm = (ceil(ds_list_size(filelist)/t_cells_per_row)) * t_cell_size;
 	scrollbarw = clamp(t_gridheight/(ypos_perm+t_gridheight)*(t_gridheight-1),32,t_gridheight-1);
 	var scrolly_x1 = t_width-1;
-	var scrolly_x2 = scrolly_x1+scrollbarwidth-1;
+	var scrolly_x2 = scrolly_x1+scrollbarwidth;
 	var scrolly_y1 = round(t_ystart+scrollbary+(scrollbary*scrollbarw/t_gridheight));
 	var scrolly_y2 = round(scrolly_y1+scrollbarw);
 	draw_set_color(c_white);
 	draw_rectangle(scrolly_x1, t_ystart+scrollbary-1, scrolly_x2-1, t_ystart+scrollbary+t_gridheight-1, 0);
 	draw_set_colour(c_gray);
-	draw_rectangle(scrolly_x1+1,scrolly_y1+1,scrolly_x2,scrolly_y2-1,0);
+	draw_rectangle(scrolly_x1,scrolly_y1,scrolly_x2,scrolly_y2,0);
 	draw_set_colour(c_black);
 	draw_rectangle(scrolly_x1,scrolly_y1,scrolly_x2,scrolly_y2,1);
-	draw_rectangle(scrolly_x1, t_ystart+scrollbary-1, scrolly_x2, t_ystart+scrollbary+t_gridheight, 1);
+	draw_rectangle(scrolly_x1, t_ystart+scrollbary, scrolly_x2, t_ystart+scrollbary+t_gridheight, 1);
 
 	gpu_set_blendenable(true);
 

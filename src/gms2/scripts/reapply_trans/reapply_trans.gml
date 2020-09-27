@@ -140,7 +140,10 @@ function reapply_trans() {
 	            }
 	            else if (anifunc = "easeinout")
 	            {
-					t = t < 0.5 ? 2 * t*t  : 1 - power(-2 * t+2, 2) / 2;
+					if (t < 0.5)
+						t = 2 * t*t;
+					else
+						t =  1 - power(-2 * t+2, 2) / 2;
 					//return x < 0.5 ? 4 * x * x * x : 1 - pow(-2 * x + 2, 3) / 2;
 	                /*t = sin(t*pi-pi/2);
 	                t += 1;
@@ -153,14 +156,14 @@ function reapply_trans() {
 						t = 1;
 					if (t < 0)
 						t = 0;
-					var t_index = floor(ds_list_size(edit_recording_list) * t / 5) * 5;
-					if (t_index >= ds_list_size(edit_recording_list))
-						t_index = ds_list_size(edit_recording_list)-5;
-					anixtrans = edit_recording_list[| t_index+0];
-					aniytrans = edit_recording_list[| t_index+1];
-					scalex = edit_recording_list[| t_index+2];
-					scaley = edit_recording_list[| t_index+3];
-					anirot = edit_recording_list[| t_index+4];
+					index = floor(ds_list_size(edit_recording_list) * t / 5) * 5;
+					if (index >= ds_list_size(edit_recording_list))
+						index = ds_list_size(edit_recording_list)-5;
+					anixtrans = edit_recording_list[| index+0];
+					aniytrans = edit_recording_list[| index+1];
+					scalex = edit_recording_list[| index+2];
+					scaley = edit_recording_list[| index+3];
+					anirot = edit_recording_list[| index+4];
 					t = 1;
 				}
                 
