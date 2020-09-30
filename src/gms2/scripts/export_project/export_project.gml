@@ -10,7 +10,7 @@ function export_project() {
 	    FMODGMS_Chan_PauseChannel(play_sndchannel);
 	}
 
-	file_loc = get_save_filename_ext("ILDA Files|*.ild","example.ild","","Select ILDA file location");
+	file_loc = get_save_filename_ext("ILDA Files|*.ild","example"+string(current_hour) + "" + string(current_minute)+".ild","","Select ILDA file location");
 	keyboard_clear(keyboard_lastkey);
 	mouse_clear(mouse_lastbutton);
 	if !string_length(file_loc)

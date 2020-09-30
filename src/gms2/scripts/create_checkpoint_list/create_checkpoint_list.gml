@@ -22,7 +22,7 @@ function create_checkpoint_list(argument0) {
 		for (var t_u = 0; t_u < t_numofel; t_u++)
 		{
 			var t_numofdata = buffer_read(t_buffer,buffer_u32)-20;
-			buffer_seek(t_buffer,buffer_seek_relative,50+t_numofdata*3.25);
+			buffer_seek(t_buffer,buffer_seek_relative,50+t_numofdata*13/4);
 		}
 	}
 

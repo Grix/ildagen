@@ -1,4 +1,7 @@
 TODO
+- undo marker creation/movement and adding envelopes
+- mouse dragging prioritizes objects in timeline instead of markers and end/begin
+- save default filename add date
 - quicksave in editor mode
 - arbitrary animation easing function
 - investigate and fix problem of dac (laserdock?) falling out and having to rescan. Automatic rescan on failure?
@@ -7,6 +10,7 @@ TODO
 - BPM sync indicator/quantization in all modes
 - pause individual files in live
 - update web
+- redo
 - more simulation settings (more projectors per layer, projector angle, fov etc)
 - benchmark frame buffers, better to align to 4?
 - set fixed scanrate instead of fps when optimization off

@@ -336,7 +336,7 @@ function handle_mousecontrol_seq() {
 			            for (u = 0; u < numofel; u++)
 			            {
 			                numofdata = buffer_read(t_oldbuffer,buffer_u32)-20;
-			                buffer_seek(t_oldbuffer,buffer_seek_relative,50+numofdata*3.25);
+			                buffer_seek(t_oldbuffer,buffer_seek_relative,50+numofdata*13/4);
 			            }
 			        }
             
@@ -346,9 +346,9 @@ function handle_mousecontrol_seq() {
 					{
 						numofdata = buffer_read(t_oldbuffer,buffer_u32);
 						buffer_write(el_buffer, buffer_u32, numofdata);
-						buffer_copy(t_oldbuffer, buffer_tell(t_oldbuffer), 50+(numofdata-20)*3.25, el_buffer, buffer_tell(el_buffer));
-						buffer_seek(el_buffer, buffer_seek_relative, 50+(numofdata-20)*3.25);
-						buffer_seek(t_oldbuffer, buffer_seek_relative, 50+(numofdata-20)*3.25);
+						buffer_copy(t_oldbuffer, buffer_tell(t_oldbuffer), 50+(numofdata-20)*13/4, el_buffer, buffer_tell(el_buffer));
+						buffer_seek(el_buffer, buffer_seek_relative, 50+(numofdata-20)*13/4);
+						buffer_seek(t_oldbuffer, buffer_seek_relative, 50+(numofdata-20)*13/4);
 					}
 				}
 			

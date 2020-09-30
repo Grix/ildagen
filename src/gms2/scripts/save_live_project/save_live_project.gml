@@ -5,7 +5,7 @@ function save_live_project() {
     
 	save_buffer = buffer_create(1,buffer_grow,1);
 
-	file_loc = get_save_filename_ext("LSG Live Grids|*.igl","example.igl","","Select LaserShowGen live grid file location");
+	file_loc = get_save_filename_ext("LSG Live Grids|*.igl","example"+string(current_hour) + "" + string(current_minute)+".igl","","Select LaserShowGen live grid file location");
 	keyboard_clear(keyboard_lastkey);
 	mouse_clear(mouse_lastbutton);
 	if !string_length(file_loc) 

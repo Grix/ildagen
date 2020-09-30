@@ -42,7 +42,7 @@ function reverse_timelineobject() {
 			    for (u = 0; u < numofel; u++)
 			    {
 			        numofdata = buffer_read(el_buffer_old,buffer_u32)-20;
-			        buffer_seek(el_buffer_old,buffer_seek_relative,50+numofdata*3.25);
+			        buffer_seek(el_buffer_old,buffer_seek_relative,50+numofdata*13/4);
 			    }
 			}
             
@@ -52,9 +52,9 @@ function reverse_timelineobject() {
 			{
 				numofdata = buffer_read(el_buffer_old,buffer_u32);
 				buffer_write(el_buffer_new, buffer_u32, numofdata);
-				buffer_copy(el_buffer_old, buffer_tell(el_buffer_old), 50+(numofdata-20)*3.25, el_buffer_new, buffer_tell(el_buffer_new));
-				buffer_seek(el_buffer_new, buffer_seek_relative, 50+(numofdata-20)*3.25);
-				buffer_seek(el_buffer_old, buffer_seek_relative, 50+(numofdata-20)*3.25);
+				buffer_copy(el_buffer_old, buffer_tell(el_buffer_old), 50+(numofdata-20)*13/4, el_buffer_new, buffer_tell(el_buffer_new));
+				buffer_seek(el_buffer_new, buffer_seek_relative, 50+(numofdata-20)*13/4);
+				buffer_seek(el_buffer_old, buffer_seek_relative, 50+(numofdata-20)*13/4);
 			}
 		}
 	

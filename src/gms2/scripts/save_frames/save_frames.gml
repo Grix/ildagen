@@ -2,7 +2,7 @@ function save_frames() {
 	//exports the frames from the ilda editor into an igf file
 	placing_status = 0;
 
-	file_loc = get_save_filename_ext("LSG frames|*.igf","example.igf","","Select LaserShowGen frames file location");
+	file_loc = get_save_filename_ext("LSG frames|*.igf","example"+string(current_hour) + "" + string(current_minute)+".igf","","Select LaserShowGen frames file location");
 	keyboard_clear(keyboard_lastkey);
 	mouse_clear(mouse_lastbutton);
 	if !string_length(file_loc) 
