@@ -1,13 +1,11 @@
+v1.8.8 (2020-10-04) *Not yet released on Mac and Linux
+- Fixed or mitigated several possible crashes in all modes.
+- Creating/moving markers and creating layers and envelopes in timeline mode can now be undone.
+- Fix editor mode text tool not working if alternative ILDA file palette enabled.
+- Somewhat improved copy/paste behavior of multiple items in timeline mode.
+- Markers have lower priority than items on timeline when dragging/selecting them with the mouse.
+
 v1.8.7 (2020-09-27) *Not yet released on Mac and Linux
 - Add possibility of drawing a custom path along which to animate movement etc.
-- Fix possible crash when creating animated text
+- Fix possible crash when creating animated text.
 - Better crash handling with possiblity of saving unsaved work and automatically report bug.
-
-v1.8.6 (2020-08-07)
-- Fix Ether Dream not working on Mac and Linux.
-- Fix possible crash when changing length of animation in editor mode.
-- Add customizable position offsets to the simulated projector preview in timeline mode.
-- Add shortcuts in timeline mode object menus for fade-in, fade-out, and strobe effects.
-- Fix possible crash when playing files with special empty frames on DACs.
-- Improved performance when playing very long files in timeline and live mode.
-- Add setting for overriding scaling settings for high DPI screens.

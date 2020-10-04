@@ -6,16 +6,26 @@ function seq_paste_object() {
 	if (ds_list_size(copy_list) != 0)
 	{
 	    ds_list_clear(somaster_list);
+		
+		if (selectedx > endframe)
+			endframe = selectedx;
+		pos_ref = endframe+500;
+	    layer_ref = ds_list_size(layer_list)-1;
+		for (i = 0; i < ds_list_size(copy_list); i++)
+	    {
+			var t_pos_ref = copy_list[| i][| ds_list_size(copy_list[| i])-1];
+	        var t_layer_ref = copy_list[| i][| ds_list_size(copy_list[| i])-2];
+			
+			if (t_pos_ref < pos_ref)
+				pos_ref = t_pos_ref;
+			if (t_layer_ref < layer_ref)
+				layer_ref = t_layer_ref;
+		}
     
 	    for (i = 0; i < ds_list_size(copy_list); i++)
 	    {
 	        copy_list_new = ds_list_create();
-	        ds_list_copy(copy_list_new,ds_list_find_value(copy_list,i)); 
-	        if (i == 0)
-	        {
-	            pos_ref = copy_list_new[| ds_list_size(copy_list_new)-1];
-	            layer_ref = copy_list_new[| ds_list_size(copy_list_new)-2];
-	        }
+	        ds_list_copy(copy_list_new,ds_list_find_value(copy_list,i));
 	        postemp = copy_list_new[| ds_list_size(copy_list_new)-1];
 	        ds_list_delete(copy_list_new,ds_list_size(copy_list_new)-1);
 	        layertemp = copy_list_new[| ds_list_size(copy_list_new)-1];
@@ -50,6 +60,6 @@ function seq_paste_object() {
 		timeline_surf_length = 0;
 	}
 
-
+	// todo check for collisions and reposition
 
 }

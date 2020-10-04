@@ -1,7 +1,4 @@
 TODO
-- undo marker creation/movement and adding envelopes
-- mouse dragging prioritizes objects in timeline instead of markers and end/begin
-- save default filename add date
 - quicksave in editor mode
 - arbitrary animation easing function
 - investigate and fix problem of dac (laserdock?) falling out and having to rescan. Automatic rescan on failure?
