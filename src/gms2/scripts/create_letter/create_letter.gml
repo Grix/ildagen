@@ -1,5 +1,10 @@
 function create_letter() {
 	letter_list = ds_list_find_value(font_list,ord(letter)-33);
+	if (!ds_list_exists(letter_list))
+	{
+		show_message_new("Error loading font data. Please load a new font or contact the developer to report the bug");
+		return 0;
+	}
     
 	checkpoints = (ds_list_size(letter_list)-20)/4;
 	blanknew = 1;

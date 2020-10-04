@@ -8,7 +8,7 @@ function load_frames_live(argument0) {
 	}
 
 	file_loc = argument0;
-	if !string_length(file_loc) 
+	if (string_length(file_loc) < 1 || !is_string(file_loc)) 
 	    exit;
 
 	//file_copy(file_loc, "temp/temp.igf");

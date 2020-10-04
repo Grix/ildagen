@@ -395,7 +395,7 @@ telem();
 
 ex_patch_window_close_capture(1);
 
-exception_unhandled_handler(function(ex)
+/*exception_unhandled_handler(function(ex)
 {
     var _f = file_text_open_append("crash.txt");
     file_text_write_string(_f, string(ex));
@@ -414,4 +414,4 @@ exception_unhandled_handler(function(ex)
 		save_frames();
 });
 
-
+*/

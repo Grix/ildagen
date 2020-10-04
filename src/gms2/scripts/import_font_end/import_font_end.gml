@@ -1,6 +1,6 @@
 function import_font_end() {
 	with(controller)
-	    {
+	{
 	    ds_list_copy(font_list,ild_list);
     
 	    buffer_delete(ild_file);
@@ -8,12 +8,12 @@ function import_font_end() {
         
 	    //interpolate
 	    for (i = 0; i < ds_list_size(font_list); i++)
-	        {
+	    {
 	        new_list = ds_list_find_value(font_list,i);
 	        checkpoints = ((ds_list_size(new_list)-20)/4);
         
 	        for (j = 0; j < (checkpoints-1);j++)
-	            {
+	        {
 	            temppos = 20+j*4;
             
 	            //if  (ds_list_find_value(new_list,temppos+8) == 1)
@@ -22,10 +22,10 @@ function import_font_end() {
 	            if  (ds_list_find_value(new_list,temppos+7) == 0) &&
 	                (ds_list_find_value(new_list,temppos+8) == 0) &&
 	                (ds_list_find_value(new_list,temppos+9) == 0)
-	                    {
-	                    ds_list_replace(new_list,temppos+2,1);
-	                    continue;
-	                    }
+	            {
+	                ds_list_replace(new_list,temppos+2,1);
+	                continue;
+	            }
                 
 	            length = point_distance( ds_list_find_value(new_list,temppos)
 	                                    ,ds_list_find_value(new_list,temppos+1)
@@ -44,7 +44,7 @@ function import_font_end() {
 	            tempc = ds_list_find_value(new_list,temppos+7);
                    
 	            repeat(floor(stepscount))
-	                {
+	            {
 	                newx = tempx0+tempvectx*(stepscount);
 	                newy = tempy0+tempvecty*(stepscount);
 	                ds_list_insert(new_list,temppos+4,tempc);
@@ -54,15 +54,23 @@ function import_font_end() {
 	                j++;
 	                checkpoints++;
 	                stepscount--;
-	                }
-            
 	            }
+            
 	        }
+	    }
         
 	    el_id++;
 	    font_type = 0;
-	    }
+	}
     
+	if (maxframes_parse < 65 || maxframes_parse > 100)
+		show_message_new("Warning: Unexpected number of frames in the ILD file. Is this a valid font file such as arial.ild? Other fonts can be found in the LaserBoy zip distribution in LaserShowGen's installation folder, at LaserBoy_Current.zip\\LaserBoy\\ild\\fonts\\");
+	
+	if (ttlpalette == 0)
+		pal_list = pal_list_ilda;
+	else
+		pal_list = pal_list_ttl;
+	
 	global.loading_importfont = 0;
 	room_goto(rm_ilda);
 

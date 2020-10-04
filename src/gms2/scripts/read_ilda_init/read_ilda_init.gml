@@ -2,6 +2,8 @@ function read_ilda_init(argument0) {
 	//initializes parsing of an ilda file
 	//arg0 is scanner number
 	//return 1 if successful
+	
+	
 
 	filename = argument0;
 	if (string_length(filename))

@@ -13,7 +13,7 @@ function export_project() {
 	file_loc = get_save_filename_ext("ILDA Files|*.ild","example"+string(current_hour) + "" + string(current_minute)+".ild","","Select ILDA file location");
 	keyboard_clear(keyboard_lastkey);
 	mouse_clear(mouse_lastbutton);
-	if !string_length(file_loc)
+	if (string_length(file_loc) < 1 || !is_string(file_loc)) 
 	    exit;
     
 	if (filename_ext(file_loc) != ".ild")

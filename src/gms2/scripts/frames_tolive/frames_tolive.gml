@@ -29,6 +29,8 @@ function frames_tolive() {
 			ds_list_add(t_checkpointlist, buffer_tell(save_buffer));
 	
 	    el_list = ds_list_find_value(frame_list,j);
+		if (!ds_list_exists(el_list))
+			continue;
 	    buffer_write(save_buffer,buffer_u32,ds_list_size(el_list));
     
 	    for (i = 0; i < ds_list_size(el_list);i++)

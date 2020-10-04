@@ -33,10 +33,10 @@ if (view_current == 4)
     }
 	else if (largepreview)
     {
-        if (viewmode != 0)
+        if (viewmode != 0 && surface_exists(frame3d_surf_large))
             draw_surface_part(frame3d_surf_large,0,0,view_wport[4],view_hport[4]+view_hport[1],0,0);
             
-        if (viewmode != 1)
+        if (viewmode != 1 && surface_exists(frame_surf_large))
             draw_surface_part(frame_surf_large,0,0,view_wport[4],view_hport[4]+view_hport[1],0,0);
 			
 		draw_set_alpha(0.8);
@@ -45,10 +45,10 @@ if (view_current == 4)
     }
     else
     {
-        if (viewmode != 0)
+        if (viewmode != 0 && surface_exists(frame3d_surf))
             draw_surface_part(frame3d_surf,0,0,view_wport[4],view_hport[4],0,0);
             
-        if (viewmode != 1)
+        if (viewmode != 1 && surface_exists(frame_surf))
             draw_surface_part(frame_surf,0,0,view_wport[4],view_hport[4],0,0);
 			
 		draw_set_alpha(0.8);
@@ -83,10 +83,10 @@ else if (view_current == 1)
 	        frame_surf_refresh = false;
 	    }
 	
-        if (viewmode != 0)
+        if (viewmode != 0 && surface_exists(frame3d_surf_large))
             draw_surface_part(frame3d_surf_large,0,0,view_wport[4],view_hport[4]+view_hport[1],0,camera_get_view_y(view_camera[1])-view_hport[4]);
             
-        if (viewmode != 1)
+        if (viewmode != 1 && surface_exists(frame_surf_large))
             draw_surface_part(frame_surf_large,0,0,view_wport[4],view_hport[4]+view_hport[1],0,camera_get_view_y(view_camera[1])-view_hport[4]);
     }
 	else

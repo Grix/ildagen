@@ -235,8 +235,8 @@ function handle_mousecontrol_seq() {
 	        objecttomove = ds_list_find_value(somaster_list,i);
 	        infolisttomove = ds_list_find_value(objecttomove,2);
 			stretch += (mouse_x-mouse_xprevious)*tlzoom/tlw;
-			if (infolisttomove[| 2] + stretch/infolisttomove[| 0]*infolisttomove[| 2] < 1)
-				stretch = (1 - infolisttomove[| 2])/infolisttomove[| 2]*infolisttomove[| 0];
+			if (infolisttomove[| 2] + stretch/(infolisttomove[| 0]+1)*infolisttomove[| 2] < 1)
+				stretch = (1 - infolisttomove[| 2])/infolisttomove[| 2]*(infolisttomove[| 0]+1);
         
 	        draw_mouseline = 1;
 	    }
@@ -303,7 +303,7 @@ function handle_mousecontrol_seq() {
             
 				//set up lists
 				var t_newlength = max(infolisttomove[| 0]+tempstretch, 1);
-				var t_newmaxframes = max(infolisttomove[| 2]+floor(tempstretch/infolisttomove[| 0]*infolisttomove[| 2]), 1);
+				var t_newmaxframes = max(infolisttomove[| 2]+floor(tempstretch/(infolisttomove[| 0]+1)*infolisttomove[| 2]), 1);
 				var t_oldbuffer = objecttomove[| 1];
 				new_objectlist = ds_list_create();
 				ds_list_add(new_objectlist, objecttomove[| 0]);
@@ -402,6 +402,10 @@ function handle_mousecontrol_seq() {
 	    if (mouse_check_button_released(mb_left))
 	    {
 	        ds_list_replace(marker_list,markertomove,round(ds_list_find_value(marker_list,markertomove)));
+			var t_undolist = ds_list_create();
+			ds_list_add(t_undolist, round(ds_list_find_value(marker_list,markertomove)));
+			ds_list_add(t_undolist, previous_marker_pos);
+			ds_list_add(undo_list, "h"+string(t_undolist));
 	        moving_object = 0;
 	    }
 	    exit;
@@ -670,48 +674,9 @@ function handle_mousecontrol_seq() {
 	    }
 	}
 
-
-	//endframe
-	if (mouse_x == clamp(mouse_x,endframex-2,endframex+2))                         
-	{
-	    controller.scrollcursor_flag = 1;
-	    controller.tooltip = "Drag to adjust the end of the project";
-		mouseonsomelayer = 1;
-	    if (mouse_check_button_pressed(mb_left))
-	    {
-	        mouse_xprevious = mouse_x;
-	        moving_object = 4;
-	    }
-	    exit;
-	}
-	//start marker is further down, as it is has lower priority because it is moved less often
     
 	draw_cursorline = 0;    
 
-	//markers
-	for (i = 0; i < ds_list_size(marker_list); i++)
-	{
-	    var tlwdivtlzoom = tlw/tlzoom;   
-	    var markerpostemp = (ds_list_find_value(marker_list,i)-tlx)*tlwdivtlzoom;
-	    if (mouse_x == clamp(mouse_x,markerpostemp-2,markerpostemp+2))                         
-	    {
-	        mouseonsomelayer = 1;
-	        controller.scrollcursor_flag = 1;
-	        controller.tooltip = "Drag to adjust the marker. Ctrl+Click to delete marker.";
-	        if (mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
-	        {
-	            if (keyboard_check_control())
-	                ds_list_delete(marker_list,i);
-	            else
-	            {
-	                markertomove = i;
-	                mouse_xprevious = mouse_x;
-	                moving_object = 5;
-	            }
-	        }
-	        exit;
-	    }
-	}
 
 	//layers
 	var tempstarty = tls-layerbary;
@@ -742,6 +707,7 @@ function handle_mousecontrol_seq() {
 	                ds_list_add(newlayer,0);
 					ds_list_add(newlayer,0); 
 	                ds_list_add(newlayer,0);
+					ds_list_add(undo_list, "q"+string(newlayer));
 					timeline_surf_length = 0;
 	            }
 	        }
@@ -1039,6 +1005,49 @@ function handle_mousecontrol_seq() {
 	    }
 	}
 
+
+	//endframe
+	if (mouse_x == clamp(mouse_x,endframex-2,endframex+2))                         
+	{
+	    controller.scrollcursor_flag = 1;
+	    controller.tooltip = "Drag to adjust the end of the project";
+		mouseonsomelayer = 1;
+	    if (mouse_check_button_pressed(mb_left))
+	    {
+	        mouse_xprevious = mouse_x;
+	        moving_object = 4;
+	    }
+	    exit;
+	}
+	
+	//markers
+	for (i = 0; i < ds_list_size(marker_list); i++)
+	{
+	    var tlwdivtlzoom = tlw/tlzoom;   
+	    var markerpostemp = (ds_list_find_value(marker_list,i)-tlx)*tlwdivtlzoom;
+	    if (mouse_x == clamp(mouse_x,markerpostemp-2,markerpostemp+2))                         
+	    {
+	        mouseonsomelayer = 1;
+	        controller.scrollcursor_flag = 1;
+	        controller.tooltip = "Drag to adjust the marker. Ctrl+Click to delete marker.";
+	        if (mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
+	        {
+	            if (keyboard_check_control())
+				{
+					ds_list_add(undo_list, "j"+string(marker_list[| i]));
+	                ds_list_delete(marker_list,i);
+				}
+	            else
+	            {
+	                markertomove = i;
+					previous_marker_pos = marker_list[| i];
+	                mouse_xprevious = mouse_x;
+	                moving_object = 5;
+	            }
+	        }
+	        exit;
+	    }
+	}
 
 
 	//startframe

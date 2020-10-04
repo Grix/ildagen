@@ -88,6 +88,12 @@ function refresh_seq_surface() {
 	            numofinds = buffer_read(el_buffer,buffer_u32);
 	            var repeatnum = (numofinds-20)/4-1;
 	            var buffer_start_pos = buffer_tell(el_buffer);
+				
+				if ((repeatnum+1)*13 >= buffer_get_size(el_buffer)+buffer_start_pos+50) // sanity check
+				{
+					show_message_new("Error drawing frame. Please contact the developer and report the bug using the top menu: \"About\"->\"Contact developer\"");
+					break;
+				}
             
 	            //2d
 	            gpu_set_blendenable(0);

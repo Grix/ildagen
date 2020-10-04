@@ -2,7 +2,7 @@ function load_audio() {
 	var t_songfile_loc = get_open_filename_ext("Audio files|*.mp3;*.aiff;*.asf;*.asx;*.flac;*.fsb;*.it;*.m3u;*.midi;*.mod;*.mp2;*.ogg;*.pls;*.s3m;*.wav;*.wax;*.wma;*.xm","","","Select audio file");
 	keyboard_clear(keyboard_lastkey);
 	mouse_clear(mouse_lastbutton);
-	if !string_length(t_songfile_loc) 
+	if (string_length(t_songfile_loc) < 1 || !is_string(t_songfile_loc)) 
 	{
 	    log("cancelled audio load");
 	    exit;

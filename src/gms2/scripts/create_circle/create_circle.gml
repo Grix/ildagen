@@ -253,6 +253,7 @@ function create_circle() {
 	}
 	else
 	{
+		n = 0;
 		//COLOR
 	    if (colormode == "solid")
 	    {

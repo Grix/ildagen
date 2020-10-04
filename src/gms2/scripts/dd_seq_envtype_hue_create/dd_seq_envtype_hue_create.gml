@@ -8,5 +8,5 @@ function dd_seq_envtype_hue_create() {
 	ds_list_add(envelope,0);
 	seqcontrol.timeline_surf_length = 0;
 
-
+	ds_list_add(seqcontrol.undo_list, "p"+string(envelope));
 }

@@ -25,6 +25,7 @@ function import_font() {
 	        return 0;
 	    }
         
+		pal_list = pal_list_ilda;
         
 	    i = 0;
 	    if !is_wrong($49)

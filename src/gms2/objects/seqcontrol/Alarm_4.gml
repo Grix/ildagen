@@ -1,7 +1,7 @@
 /// @description clean undo
 
 alarm[4] = 1200;
-
+// todo clean marker move
 while (ds_list_size(undo_list) > 20)
 {
     log("cleaning undo list");

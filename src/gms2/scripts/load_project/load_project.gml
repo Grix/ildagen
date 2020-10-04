@@ -1,7 +1,7 @@
 function load_project(argument0) {
 	//loads project igp file
 	file_loc = argument0;
-	if !string_length(file_loc) 
+	if (string_length(file_loc) < 1 || !is_string(file_loc)) 
 	    exit;
     
 	clear_project();

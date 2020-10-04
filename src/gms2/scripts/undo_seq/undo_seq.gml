@@ -156,6 +156,89 @@ function undo_seq() {
 			ds_list_add(somaster_list, t_listtoreverse);
 			reverse_timelineobject(false);
 	    }
+		else if (string_char_at(undo,0) == "k")
+	    {
+	        //undo create marker
+	        var t_markerpos = real(string_digits(undo));
+			for (i = 0; i < ds_list_size(marker_list); i++)
+			{
+				if (marker_list[| i] = t_markerpos)
+					ds_list_delete(marker_list, i);
+			}
+			exit;
+		}
+		else if (string_char_at(undo,0) == "j")
+	    {
+	        //undo delete marker
+	        var t_markerpos = real(string_digits(undo));
+			ds_list_add(marker_list, t_markerpos);
+			exit;
+		}
+		else if (string_char_at(undo,0) == "h")
+	    {
+	        //undo move marker
+	        undolisttemp = real(string_digits(undo));
+			if (!ds_list_exists(undolisttemp))
+	            exit;
+			var t_markerpos = undolisttemp[| 0];
+			for (i = 0; i < ds_list_size(marker_list); i++)
+			{
+				if (marker_list[| i] = t_markerpos)
+					ds_list_delete(marker_list, i);
+			}
+			t_markerpos = undolisttemp[| 1];
+			ds_list_add(marker_list, t_markerpos);
+			ds_list_destroy(undolisttemp);
+			exit;
+		}
+		else if (string_char_at(undo,0) == "p")
+	    {
+	        //undo create envelope
+	        var t_envelopetodelete = real(string_digits(undo));
+			if (!ds_list_exists(t_envelopetodelete))
+	            exit;
+				
+			for (i = 0; i < ds_list_size(layer_list); i++)
+			{
+				var t_envelope_list = layer_list[| i][| 0];
+				for (j = 0; j < ds_list_size(t_envelope_list); j++)
+				{
+					if (t_envelope_list[| j] == t_envelopetodelete)
+					{
+						if (ds_list_exists(t_envelopetodelete[| 1]))
+							ds_list_destroy(t_envelopetodelete[| 1]);
+						if (ds_list_exists(t_envelopetodelete[| 2]))
+							ds_list_destroy(t_envelopetodelete[| 2]);
+						ds_list_destroy(t_envelopetodelete);
+						ds_list_delete(t_envelope_list, j);
+					}
+				}
+			}
+	    }
+		else if (string_char_at(undo,0) == "q")
+	    {
+	        //undo create layer
+	        var t_layertodelete = real(string_digits(undo));
+			if (!ds_list_exists(t_layertodelete) || ds_list_size(t_layertodelete[| 1]) > 0)
+	            exit;
+				
+			for (i = 0; i < ds_list_size(layer_list); i++)
+			{
+				if (layer_list[| i] == t_layertodelete)
+				{
+					if (ds_list_exists(t_layertodelete[| 0]))
+						ds_list_destroy(t_layertodelete[| 0]);
+					if (ds_list_exists(t_layertodelete[| 1]))
+						ds_list_destroy(t_layertodelete[| 1]);
+					if (ds_list_exists(t_layertodelete[| 5]))
+						ds_list_destroy(t_layertodelete[| 5]);
+					ds_list_destroy(t_layertodelete);
+					ds_list_delete(layer_list, i);
+				}
+			}
+	    }
+		else
+			exit;
     
 	    frame_surf_refresh = 1;
 	    selectedlayer = 0;
