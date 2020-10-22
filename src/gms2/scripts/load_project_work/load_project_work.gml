@@ -163,6 +163,7 @@ function load_project_work() {
 	            ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
 	            ds_list_add(objectinfolist,-1);
 	            ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
+				ds_list_add(objectinfolist,create_checkpoint_list(new_objectbuffer));
             
 	            ds_list_add(layertemp[| 1],objectlist);
 	        }

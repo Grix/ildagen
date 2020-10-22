@@ -18,8 +18,15 @@ function refresh_surfaces() {
 	    draw_clear_alpha(c_white,0);
     
 	    draw_set_alpha(1);
-	    for (i = 0;i < ds_list_size(el_list);i++)
+	    for (i = 0; i < ds_list_size(el_list); i++)
 	    {
+			if (!ds_list_exists(el_list[| i]))
+			{
+				ds_list_delete(el_list, i);
+				i--;
+				continue;
+			}
+			
 	        new_list = ds_list_find_value(el_list,i);
         
 	        xo = ds_list_find_value(new_list,0)/t_div;

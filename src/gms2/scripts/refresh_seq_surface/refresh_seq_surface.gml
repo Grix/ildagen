@@ -57,6 +57,17 @@ function refresh_seq_surface() {
 			
 	        infolist =  ds_list_find_value(objectlist,2);
 	        frametime = round(ds_list_find_value(objectlist,0));
+			if (!ds_list_exists(infolist))
+			{
+				// ERROR: missing list? try to recreate
+				var t_newinfo = ds_list_create();
+				ds_list_add(t_newinfo,0);
+			    ds_list_add(t_newinfo,-1);
+			    ds_list_add(t_newinfo,1);
+				ds_list_add(t_newinfo, create_checkpoint_list(save_buffer));
+				ds_list_replace(objectlist, 2, t_newinfo);
+				infolist = t_newinfo;
+			}
 	        object_length = ds_list_find_value(infolist,0);
 	        object_maxframes = ds_list_find_value(infolist,2);
         

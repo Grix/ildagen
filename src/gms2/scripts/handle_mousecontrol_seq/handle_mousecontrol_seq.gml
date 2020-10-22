@@ -353,6 +353,8 @@ function handle_mousecontrol_seq() {
 				}
 			
 				buffer_resize(el_buffer, buffer_tell(el_buffer));
+				
+				ds_list_add(newinfolist, create_checkpoint_list(el_buffer));
             
 	            undolisttemp = ds_list_create();
 		        ds_list_add(undolisttemp,new_objectlist);

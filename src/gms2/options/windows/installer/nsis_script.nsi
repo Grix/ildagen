@@ -133,14 +133,15 @@ Section `${APP_NAME}`
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
 
-  ;${unregisterExtension} ".igf" "LaserShowGen Frames"
-  ;${unregisterExtension} ".igp" "LaserShowGen Timeline Project"
-  ;${unregisterExtension} ".ild" "ILDA Laser Frames"
-  ;${unregisterExtension} ".igl" "LaserShowGen Live Grid"
-  ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igf" "LaserShowGen Frames"
-  ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igp" "LaserShowGen Timeline Project"
-  ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".ild" "ILDA Laser Frames"
-  ${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igl" "LaserShowGen Live Grid"
+  ; OPENING FILES WITH EXPLORER CAUSES BUG (CANT SAVE FILES)
+  ${unregisterExtension} ".igf" "LaserShowGen Frames"
+  ${unregisterExtension} ".igp" "LaserShowGen Timeline Project"
+  ${unregisterExtension} ".ild" "ILDA Laser Frames"
+  ${unregisterExtension} ".igl" "LaserShowGen Live Grid"
+  ;${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igf" "LaserShowGen Frames"
+  ;${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igp" "LaserShowGen Timeline Project"
+  ;${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".ild" "ILDA Laser Frames"
+  ;${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igl" "LaserShowGen Live Grid"
   
   ; Put file there
   File "${LICENSE_NAME}"
@@ -180,8 +181,6 @@ SectionEnd
 
 Section "Uninstall"
 
-  ;${unregisterExtension} ".igf" "LasershowGen Frames"
-  ;${unregisterExtension} ".igp" "LasershowGen Project"
   ${unregisterExtension} ".igf" "LaserShowGen Frames"
   ${unregisterExtension} ".igp" "LaserShowGen Timeline Project"
   ${unregisterExtension} ".ild" "ILDA Laser Frames"

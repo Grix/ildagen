@@ -94,6 +94,7 @@ function split_timelineobject() {
 	        ds_list_add(infolist, splitafternum-1);
 	        ds_list_add(infolist, -1);
 	        ds_list_add(infolist, splitafternum);
+			ds_list_add(infolist, create_checkpoint_list(object1));
         
 	        ds_list_add(objectlist1, frametime);
 	        ds_list_add(objectlist1, object1);
@@ -103,6 +104,7 @@ function split_timelineobject() {
 	        ds_list_add(infolist, maxframes-splitafternum-1);
 	        ds_list_add(infolist, -1);
 	        ds_list_add(infolist, maxframes-splitafternum);
+			ds_list_add(infolist, create_checkpoint_list(object2));
         
 	        ds_list_add(objectlist2, frametime+splitafternum);
 	        ds_list_add(objectlist2, object2);

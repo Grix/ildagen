@@ -44,8 +44,15 @@ function reapply_trans() {
 	        for (i = scope_start; i <= scope_end; i++)
 	        {
 	            el_list_temp = ds_list_find_value(frame_list,i);
-	            for (u = 0;u < ds_list_size(el_list_temp);u++)
+	            for (u = 0; u < ds_list_size(el_list_temp); u++)
 	            {
+					if (!ds_list_exists( el_list_temp[| u]))
+					{
+						ds_list_delete(el_list_temp, u);
+						u--;
+						continue;
+					}
+					
 	                if (ds_list_find_value( el_list_temp[| u],9) == selectedelement)
 	                {
 	                    if (ds_list_empty(temp_frame_list))

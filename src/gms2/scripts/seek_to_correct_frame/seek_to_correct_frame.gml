@@ -5,6 +5,9 @@ function seek_to_correct_frame(argument0, argument1, argument2) {
 	var t_frame = argument1;
 	var t_buffer = argument0;
 	var t_infolist = argument2[| 2];
+	if (ds_list_size(t_infolist) == 3)
+		ds_list_add(t_infolist, create_checkpoint_list(t_buffer));
+		
 	var t_checkpointlist = ds_list_find_value(t_infolist, 3);
 
 	buffer_seek(t_buffer,buffer_seek_start,0);
