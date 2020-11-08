@@ -110,42 +110,42 @@ function reapply_trans() {
 	        {
 	            t = i/(ds_list_size(temp_frame_list)-0.99);
 	            t = (t*anirep)%1;
-	            if (anifunc = "tri")
+	            if (anifunc == "tri")
 	            {
 	                t *= 2;
 	                if (t > 1)
 	                    t = 1-(t%1);
 	            }
-	            else if (anifunc = "sine")
+	            else if (anifunc == "sine")
 	            {
 	                t = sin(t*pi*2);
 	                t *= -1;
 	                t += 1;
 	                t /= 2;
 	            }
-				else if (anifunc = "cos")
+				else if (anifunc == "cos")
 	            {
 	                t = cos(t*pi*2);
 	                t *= -1;
 	                t += 1;
 	                t /= 2;
 	            }
-	            else if (anifunc = "easeout")
+	            else if (anifunc == "easeout")
 	            {
 	                //t = sin(t*pi/2);
 					t = 1 - power(1 - t, 2);
 	            }
-	            else if (anifunc = "easein")
+	            else if (anifunc == "easein")
 	            {
 	                //t = 1-cos(t*pi/2);
 					t = t*t;
 	            }
-	            else if (anifunc = "bounce")
+	            else if (anifunc == "bounce")
 	            {
 	                //t = sin(t*pi);
 					t = 1 - ((t-0.5)*(t-0.5)*4);
 	            }
-	            else if (anifunc = "easeinout")
+	            else if (anifunc == "easeinout")
 	            {
 					if (t < 0.5)
 						t = 2 * t*t;
