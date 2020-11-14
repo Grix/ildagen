@@ -1,5 +1,5 @@
 function dd_live_tolive() {
-	with (livecontrol)
+	with (controller)
 		frames_tolive();
 
 

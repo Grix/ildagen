@@ -64,7 +64,7 @@ function refresh_seq_surface() {
 				ds_list_add(t_newinfo,0);
 			    ds_list_add(t_newinfo,-1);
 			    ds_list_add(t_newinfo,1);
-				ds_list_add(t_newinfo, create_checkpoint_list(save_buffer));
+				ds_list_add(t_newinfo, create_checkpoint_list(objectlist[| 1]));
 				ds_list_replace(objectlist, 2, t_newinfo);
 				infolist = t_newinfo;
 			}

@@ -2,6 +2,7 @@ function load_frame_settings() {
 	file_loc = "lsgtestpattern.igf";
     
 	load_buffer = buffer_load(file_loc);
+	//TODO check if this fails in macos?
 	buffer_seek(load_buffer,buffer_seek_start,0);
 	idbyte = buffer_read(load_buffer,buffer_u8);
 	if (idbyte != 52)

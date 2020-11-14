@@ -8,7 +8,6 @@ function save_live_project_work() {
 	        return 0;
 	    }
         
-	    //layer objects
 	    objectlist = ds_list_find_value(filelist, i);
 	    tempframe = ds_list_find_value(objectlist,0);
 	    tempbuffer = ds_list_find_value(objectlist,1);
