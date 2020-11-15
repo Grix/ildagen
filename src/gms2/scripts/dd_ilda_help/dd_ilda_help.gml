@@ -1,12 +1,8 @@
 function dd_ilda_help() {
-	if (os_browser == browser_not_a_browser)
-	{
-		if (os_type == os_windows)
-			url_open_new("help.pdf");
-		else
-			url_open("https://github.com/Grix/ildagen/raw/master/help.pdf");
-	}
-	else
-	    url_open_new("help.pdf");
-
+	//var t_documentpath = program_directory + "help.pdf";
+	//log(t_documentpath);
+	//if (file_exists(t_documentpath))
+	//	url_open_ext(t_documentpath, "");
+	//else
+		url_open_new(@"https://github.com/Grix/ildagen/raw/master/help.pdf");
 }
