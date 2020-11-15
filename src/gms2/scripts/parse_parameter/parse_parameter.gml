@@ -16,14 +16,14 @@ function parse_parameter() {
 	    if (filename_ext(t_parameter) == ".igf")
 	    {
 			t_showwarning = true;
-			show_message_new("Warning: File was opened directly from the file browser, this can cause problems when saving new files. Please restart LaserShowGen and open your file using the menu buttons");
+			show_message_new("Warning: File was opened directly from the OS file browser, this can cause problems when saving new files. Please restart LaserShowGen and open your file using the menu buttons");
 	        load_frames(t_parameter);
 	        exit;
 	    }
 	    else if (filename_ext(t_parameter) == ".igp")
 	    {
 			t_showwarning = true;
-			show_message_new("Warning: File was opened directly from the file browser, this can cause problems when saving new files. Please restart LaserShowGen and open your file using the menu buttons");
+			show_message_new("Warning: File was opened directly from the OS file browser, this can cause problems when saving new files. Please restart LaserShowGen and open your file using the menu buttons");
 			with (seqcontrol)
 				load_project(t_parameter);
 	        exit;
@@ -31,7 +31,7 @@ function parse_parameter() {
 		else if (filename_ext(t_parameter) == ".igl")
 	    {
 			t_showwarning = true;
-			show_message_new("Warning: File was opened directly from the file browser, this can cause problems when saving new files. Please restart LaserShowGen and open your file using the menu buttons");
+			show_message_new("Warning: File was opened directly from the OS file browser, this can cause problems when saving new files. Please restart LaserShowGen and open your file using the menu buttons");
 			with (livecontrol)
 				load_live_project(t_parameter);
 	        exit;
@@ -44,6 +44,6 @@ function parse_parameter() {
 	}
 
 	if (t_showwarning)
-		show_message_new("Warning: File was opened directly from the file browser, this can cause problems when saving new files. Please restart LaserShowGen and open your file using the menu buttons");
+		show_message_new("Warning: File was opened directly from the OS file browser, this can cause problems when saving new files. Please restart LaserShowGen and open your file using the menu buttons");
 
 }

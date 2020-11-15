@@ -6,7 +6,10 @@ function read_hershey_ini() {
 	ds_list_clear(hershey_index_list);
 	cnt = 0;
 
-	ini_open("hershey.ini");
+	var t_dir = "";
+	if (os_type == os_macosx)
+		t_dir = "datafiles/"
+	ini_open(t_dir+"hershey.ini");
 
 	for (i = 0; i < 2352; i++)
 	    {

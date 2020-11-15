@@ -9,6 +9,4 @@ function dd_ilda_help() {
 	else
 	    url_open_new("help.pdf");
 
-
-
 }

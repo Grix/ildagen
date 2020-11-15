@@ -1,5 +1,4 @@
 TODO
-- BUG: minitimeline in editor mode is at half speed after 30->60 resolution change
 - BUG: Contact author and manual menu choices don't work. Chrome? Email 2020-11-04
 - quicksave in editor mode
 - arbitrary animation easing function

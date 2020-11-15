@@ -1,7 +1,11 @@
 function init_palette() {
 	pal_list_ilda = ds_list_create();
 	pal_list_ttl = ds_list_create();
-	ini_open("palette.ini");
+	
+	var t_dir = "";
+	if (os_type == os_macosx)
+		t_dir = "datafiles/"
+	ini_open(t_dir+"palette.ini");
 	for (j = 0; j <= 191; j++)
 	{
 	    ds_list_add(pal_list_ilda, ini_read_real("pal", string(j), 0));

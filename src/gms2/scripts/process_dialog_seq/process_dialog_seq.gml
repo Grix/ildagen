@@ -233,7 +233,10 @@ function process_dialog_seq() {
 		
 			case "loaddemo":
 	        {
-				load_project("demo_show.igp")
+				var t_dir = "";
+				if (os_type == os_macosx)
+					t_dir = "datafiles/"
+				load_project(t_dir+"demo_show.igp")
 	            break;
 	        };
           

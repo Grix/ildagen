@@ -77,7 +77,7 @@ function refresh_minitimeline_surf() {
 	    var t_tlhalf = (t_tlh-15)/2;
 	    for (u=0; u <= t_tlw; u++)
 	    {
-	        var nearesti = round((tlx+u*tlzoom/t_tlw)/projectfps*30)*3;
+	        var nearesti = round((tlx+u*tlzoom/t_tlw)/projectfps*60)*3;
         
 	        if (nearesti > buffer_get_size(seqcontrol.audio_buffer)-3 || nearesti < 0)
 	            break;
