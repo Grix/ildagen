@@ -1,6 +1,6 @@
 {
   "option_linux_display_name": "LaserShowGen",
-  "option_linux_version": "1.8.8",
+  "option_linux_version": "1.8.9",
   "option_linux_maintainer_email": "gitle@bitlasers.com",
   "option_linux_homepage": "https://bitlasers.com/lasershowgen-sw/",
   "option_linux_short_desc": "LaserShowGen",

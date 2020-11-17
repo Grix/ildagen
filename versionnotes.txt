@@ -1,11 +1,11 @@
-v1.8.8 (2020-10-04) *Not yet released on Linux
+v1.8.9 (2020-11-17)
+- Fixed or mitigated more possible crashes.
+- Fixed certain features involving included files not working in macOS, such as loading demo show.
+- Fix audio preview below canvas in editor mode being stretched out of alignment.
+
+v1.8.8 (2020-10-04)
 - Fixed or mitigated several possible crashes in all modes.
 - Creating/moving markers and creating layers and envelopes in timeline mode can now be undone.
 - Fix editor mode text tool not working if alternative ILDA file palette enabled.
 - Somewhat improved copy/paste behavior of multiple items in timeline mode.
 - Markers have lower priority than items on timeline when dragging/selecting them with the mouse.
-
-v1.8.7 (2020-09-27) *Not yet released on Linux
-- Add possibility of drawing a custom path along which to animate movement etc.
-- Fix possible crash when creating animated text.
-- Better crash handling with possiblity of saving unsaved work and automatically report bug.

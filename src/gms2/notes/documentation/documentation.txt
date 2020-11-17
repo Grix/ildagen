@@ -1,5 +1,4 @@
 TODO
-- BUG: Contact author and manual menu choices don't work. Chrome? Email 2020-11-04
 - quicksave in editor mode
 - arbitrary animation easing function
 - investigate and fix problem of dac (laserdock?) falling out and having to rescan. Automatic rescan on failure?
