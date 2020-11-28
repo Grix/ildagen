@@ -50,10 +50,9 @@ function seq_cut_object() {
 	                0);
 	    ds_list_add(copy_list,copy_list_new);
 	    ds_list_add(copy_buffer,copy_buffer_new);
-    
-	    seq_delete_object();
 	}
 
-
+	
+    seq_delete_object();
 
 }

@@ -1,6 +1,10 @@
 TODO
 - quicksave in editor mode
+- normalized speed option for path animation
+- midi output on timeline, to trigger events in f.ex the radiator
 - arbitrary animation easing function
+- midi input for live mode trigger etc.
+- add default setting profiles into older settings file retroactively if they don't exist
 - investigate and fix problem of dac (laserdock?) falling out and having to rescan. Automatic rescan on failure?
 - investigate and fix sometimes crash when rescanning dacs (laserdock again? update to new sdk?)
 - add custom anchor to timeline mode rotation envelope

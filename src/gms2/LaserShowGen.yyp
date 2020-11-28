@@ -1023,12 +1023,12 @@
     "name": "Default",
     "children": [],
   },
-  "RoomOrder": [
-    {"name":"rm_ilda","path":"rooms/rm_ilda/rm_ilda.yy",},
-    {"name":"rm_seq","path":"rooms/rm_seq/rm_seq.yy",},
-    {"name":"rm_live","path":"rooms/rm_live/rm_live.yy",},
-    {"name":"rm_options","path":"rooms/rm_options/rm_options.yy",},
-    {"name":"rm_loading","path":"rooms/rm_loading/rm_loading.yy",},
+  "RoomOrderNodes": [
+    {"roomId":{"name":"rm_ilda","path":"rooms/rm_ilda/rm_ilda.yy",},},
+    {"roomId":{"name":"rm_seq","path":"rooms/rm_seq/rm_seq.yy",},},
+    {"roomId":{"name":"rm_live","path":"rooms/rm_live/rm_live.yy",},},
+    {"roomId":{"name":"rm_options","path":"rooms/rm_options/rm_options.yy",},},
+    {"roomId":{"name":"rm_loading","path":"rooms/rm_loading/rm_loading.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":0,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
@@ -1120,10 +1120,10 @@
     {"targets":461609314234257646,"resourceVersion":"1.0","name":"audiogroup_default","resourceType":"GMAudioGroup",},
   ],
   "TextureGroups": [
-    {"isScaled":false,"autocrop":true,"border":2,"mipsToGenerate":0,"targets":461609314234257646,"resourceVersion":"1.0","name":"Default","resourceType":"GMTextureGroup",},
-    {"isScaled":false,"autocrop":true,"border":2,"mipsToGenerate":0,"targets":9223372036854775807,"resourceVersion":"1.0","name":"hershey","resourceType":"GMTextureGroup",},
-    {"isScaled":false,"autocrop":true,"border":2,"mipsToGenerate":0,"targets":9223372036854775807,"resourceVersion":"1.0","name":"options","resourceType":"GMTextureGroup",},
-    {"isScaled":false,"autocrop":true,"border":2,"mipsToGenerate":0,"targets":9223372036854775807,"resourceVersion":"1.0","name":"ads","resourceType":"GMTextureGroup",},
+    {"isScaled":false,"autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":461609314234257646,"resourceVersion":"1.0","name":"Default","resourceType":"GMTextureGroup",},
+    {"isScaled":false,"autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":9223372036854775807,"resourceVersion":"1.0","name":"hershey","resourceType":"GMTextureGroup",},
+    {"isScaled":false,"autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":9223372036854775807,"resourceVersion":"1.0","name":"options","resourceType":"GMTextureGroup",},
+    {"isScaled":false,"autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":9223372036854775807,"resourceVersion":"1.0","name":"ads","resourceType":"GMTextureGroup",},
   ],
   "IncludedFiles": [
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"font_arial.ild","resourceType":"GMIncludedFile",},
@@ -1136,9 +1136,9 @@
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"hershey.ini","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2.3.0.529",
+    "IDEVersion": "2.3.1.536",
   },
-  "resourceVersion": "1.3",
+  "resourceVersion": "1.4",
   "name": "LaserShowGen",
   "tags": [],
   "resourceType": "GMProject",

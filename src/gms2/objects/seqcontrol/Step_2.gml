@@ -95,7 +95,7 @@ if (keyboard_check_control())
     {
         if (!ds_list_empty(somaster_list))
         {
-            //COPY
+            //CUT
             seq_cut_object();
         }
     }
@@ -103,7 +103,7 @@ if (keyboard_check_control())
     {
         if (selectedlayer >= 0) and (selectedx >= 0)
         {
-            //COPY
+            //PASTE
             seq_paste_object();
         }
     }
