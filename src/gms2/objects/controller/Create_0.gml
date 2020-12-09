@@ -407,11 +407,20 @@ exception_unhandled_handler(function(ex)
 	show_message("ERROR: LaserShowGen has unfortunately encountered a problem and must close. This bug has been logged and reported (anonymously) to the developer, and we will work to fix this problem in future releases.\n\nIf you wish to save your unsaved work, you will now be asked for a file location. NB: Please don't overwrite your existing file as the crash may cause problems in the new backup file.");
 	
 	if (room == rm_seq)
-		save_project();
+	{
+		with (seqcontrol)
+			save_project_noloading();
+	}
 	else if (room == rm_live)
-		save_live_project();
+	{
+		with (livecontrol)
+			save_live_project_noloading();
+	}
 	else
-		save_frames();
+	{
+		with (controller)
+			save_frames();
+	}
 });
 
 

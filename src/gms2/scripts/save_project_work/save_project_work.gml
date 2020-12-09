@@ -24,6 +24,17 @@ function save_project_work() {
 	        tempframe = ds_list_find_value(objectlist,0);
 	        tempbuffer = ds_list_find_value(objectlist,1);
 	        tempinfolist = ds_list_find_value(objectlist,2);
+			if (!ds_list_exists(tempinfolist))
+			{
+				// ERROR: missing list? try to recreate
+				var t_newinfo = ds_list_create();
+				ds_list_add(t_newinfo,0);
+			    ds_list_add(t_newinfo,-1);
+			    ds_list_add(t_newinfo,1);
+				ds_list_add(t_newinfo, create_checkpoint_list(objectlist[| 1]));
+				ds_list_replace(objectlist, 2, t_newinfo);
+				tempinfolist = t_newinfo;
+			}
 	        buffer_write(save_buffer, buffer_u32, tempframe);
 	        buffer_write(save_buffer, buffer_u32, buffer_get_size(tempbuffer));
 	        buffer_copy(tempbuffer, 0, buffer_get_size(tempbuffer), save_buffer, buffer_tell(save_buffer));
@@ -128,5 +139,5 @@ function save_project_work() {
 	room_goto(rm_seq);
 
 
-
+	return 1;
 }

@@ -18,6 +18,12 @@ function handle_mousecontrol_seq() {
 
 	if (moving_object == 1)
 	{
+		if (ds_list_size(somaster_list) == 0)
+		{
+	        moving_object = 0;
+	        exit;
+	    }
+		
 	    controller.tooltip = "Drag object to any position on any timeline";
 	    draw_mouseline = 1;
 	    mouse_ypreviousflag = 0;
@@ -25,6 +31,12 @@ function handle_mousecontrol_seq() {
 	    for (i = 0; i < ds_list_size(somaster_list); i++)
 	    {
 	        objecttomove = ds_list_find_value(somaster_list,i);
+			if (!ds_list_exists(objecttomove))
+			{
+		        moving_object = 0;
+		        exit;
+		    }
+		
 	        infolisttomove = ds_list_find_value(objecttomove,2);
 	        layertomove = -1;
 	        layertomove_index = -1;
@@ -145,10 +157,21 @@ function handle_mousecontrol_seq() {
 	else if (moving_object == 2)
 	{
 	    //resizing object on timeline
+		if (ds_list_size(somaster_list) == 0)
+		{
+	        moving_object = 0;
+	        exit;
+	    }
+		
 	    controller.scrollcursor_flag = 1;
 	    for (i = 0; i < ds_list_size(somaster_list); i++)
 	    {
 	        objecttomove = ds_list_find_value(somaster_list,i);
+			if (!ds_list_exists(objecttomove))
+			{
+		        moving_object = 0;
+		        exit;
+		    }
 	        infolisttomove = ds_list_find_value(objecttomove,2);
         
 	        draw_mouseline = 1;
@@ -227,6 +250,12 @@ function handle_mousecontrol_seq() {
 	else if (moving_object == 8)
 	{
 	    //stretching object on timeline
+		if (ds_list_size(somaster_list) == 0)
+		{
+	        moving_object = 0;
+	        exit;
+	    }
+		
 	    controller.scrollcursor_flag = 1;
 		timeline_surf_length = 0;
 	
