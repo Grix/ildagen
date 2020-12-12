@@ -159,6 +159,9 @@ function reapply_trans() {
 				
 				if (editing_type == 1 && ds_list_exists(edit_recording_list) && !ds_list_empty(edit_recording_list))
 				{
+					if (editing_path_normalized)
+						edit_recording_list = normalize_editing_path(edit_recording_list);
+					
 					if (t > 1)
 						t = 1;
 					if (t < 0)

@@ -102,7 +102,7 @@ function refresh_seq_surface() {
 				
 				if ((repeatnum+1)*13 >= buffer_get_size(el_buffer)+buffer_start_pos+50) // sanity check
 				{
-					show_message_new("Error drawing frame. Please contact the developer and report the bug using the top menu: \"About\"->\"Contact developer\"");
+					throw("Error drawing frame. Please contact the developer and report the bug using the top menu: \"About\"->\"Contact developer\"");
 					break;
 				}
             

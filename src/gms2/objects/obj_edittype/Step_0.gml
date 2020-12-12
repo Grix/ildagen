@@ -11,5 +11,5 @@ else
     image_index = 0;
 
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
-    controller.tooltip = "Toggles drawing a custom path, rather than a straight line, for animating movement etc.";
+    controller.tooltip = "Toggles drawing a custom path, rather than a straight line, for animating movement etc.\nRight click for options.";
 
