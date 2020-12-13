@@ -169,11 +169,25 @@ function reapply_trans() {
 					index = floor(ds_list_size(edit_recording_list) * t / 5) * 5;
 					if (index >= ds_list_size(edit_recording_list))
 						index = ds_list_size(edit_recording_list)-5;
-					anixtrans = edit_recording_list[| index+0];
-					aniytrans = edit_recording_list[| index+1];
-					scalex = edit_recording_list[| index+2];
-					scaley = edit_recording_list[| index+3];
-					anirot = edit_recording_list[| index+4];
+						
+					if (index >= ds_list_size(edit_recording_list)-9/* || checkpoints > ds_list_size(edit_recording_list)/5*2*/)
+					{
+						anixtrans = edit_recording_list[| index+0];
+						aniytrans = edit_recording_list[| index+1];
+						scalex = edit_recording_list[| index+2];
+						scaley = edit_recording_list[| index+3];
+						anirot = edit_recording_list[| index+4];
+					}
+					else
+					{
+						var t_lerpfactor = ((ds_list_size(edit_recording_list) * t) % 5) / 5;
+						anixtrans = lerp(edit_recording_list[| index+0], edit_recording_list[| index+5+0], t_lerpfactor);
+						aniytrans = lerp(edit_recording_list[| index+1], edit_recording_list[| index+5+1], t_lerpfactor);
+						scalex = lerp(edit_recording_list[| index+2], edit_recording_list[| index+5+2], t_lerpfactor);
+						scaley = lerp(edit_recording_list[| index+3], edit_recording_list[| index+5+3], t_lerpfactor);
+						anirot = lerp(edit_recording_list[| index+4], edit_recording_list[| index+5+4], t_lerpfactor);
+					}
+					
 					t = 1;
 				}
                 

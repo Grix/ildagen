@@ -276,7 +276,7 @@ font_size = 20;
 font_spacing = 1;
 preview_testframe = 0; //0: testframe, 1: editor mode, 2: timeline mode
 editing_type = 0; //0: A to B, 1: Record/Custom
-editing_path_normalized = false;
+editing_path_normalized = true;
 
 resolution = "auto";
 framepoints = 0;

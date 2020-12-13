@@ -1,12 +1,13 @@
 
 function normalize_editing_path(t_list){
 	// normalize the pace of the recorded editing path
-	var t_total_translation = 0;
-	var t_total_scale = 0;
-	var t_total_rotation = 0;
 	
 	if (ds_list_exists(t_list) && !ds_list_empty(t_list))
 	{
+		var t_total_translation = 0;
+		var t_total_scale = 0;
+		var t_total_rotation = 0;
+		
 		var t_newlist = ds_list_create();
 		
 		for (var t_i = 5; t_i < ds_list_size(t_list)-4; t_i += 5)
@@ -32,21 +33,26 @@ function normalize_editing_path(t_list){
 		var t_scaley = t_list[| 3];
 		var t_rot = t_list[| 4];
 		
+		var t_j_1 = 5;
+		var t_j_2 = 5;
+		var t_j_3 = 5;
+		var t_temp_translation = 0;
+		var t_temp_scale = 0;
+		var t_temp_rotation = 0;
+		
 		for (var t_i = 5; t_i < ds_list_size(t_list)-9; t_i += 5)
 		{
-			var t_temp_translation = 0;
-			var t_temp_scale = 0;
-			var t_temp_rotation = 0;
 			if (t_total_translation != 0)
 			{
-				for (var t_j = 5; t_j < ds_list_size(t_list)-4; t_j += 5)
+				for (; t_j_1 < ds_list_size(t_list)-4; t_j_1 += 5)
 				{
-					var t_point_distance = point_distance(t_list[| t_j+0], t_list[| t_j+1], t_list[| t_j-5+0], t_list[| t_j-5+1]);
+					var t_point_distance = point_distance(t_list[| t_j_1+0], t_list[| t_j_1+1], t_list[| t_j_1-5+0], t_list[| t_j_1-5+1]);
 					t_temp_translation += t_point_distance;
 					if (t_temp_translation > t_translation)
 					{
-						t_x = lerp(t_list[| t_j+0], t_list[| t_j-5+0], (t_temp_translation-t_translation)/t_point_distance);
-						t_y = lerp(t_list[| t_j+1], t_list[| t_j-5+1], (t_temp_translation-t_translation)/t_point_distance);
+						t_x = lerp(t_list[| t_j_1+0], t_list[| t_j_1-5+0], (t_temp_translation-t_translation)/t_point_distance);
+						t_y = lerp(t_list[| t_j_1+1], t_list[| t_j_1-5+1], (t_temp_translation-t_translation)/t_point_distance);
+						t_temp_translation -= t_point_distance;
 						break;
 					}
 				} 
@@ -56,14 +62,15 @@ function normalize_editing_path(t_list){
 			
 			if (t_total_scale != 0)
 			{
-				for (var t_j = 5; t_j < ds_list_size(t_list)-4; t_j += 5)
+				for (; t_j_2 < ds_list_size(t_list)-4; t_j_2 += 5)
 				{
-					var t_point_distance = point_distance(t_list[| t_j+2], t_list[| t_j+3], t_list[| t_j-5+2], t_list[| t_j-5+3]);
+					var t_point_distance = point_distance(t_list[| t_j_2+2], t_list[| t_j_2+3], t_list[| t_j_2-5+2], t_list[| t_j_2-5+3]);
 					t_temp_scale += t_point_distance;
 					if (t_temp_scale > t_scale)
 					{
-						t_scalex = lerp(t_list[| t_j+2], t_list[| t_j-5+2], (t_temp_scale-t_scale)/t_point_distance);
-						t_scaley = lerp(t_list[| t_j+3], t_list[| t_j-5+3], (t_temp_scale-t_scale)/t_point_distance);
+						t_scalex = lerp(t_list[| t_j_2+2], t_list[| t_j_2-5+2], (t_temp_scale-t_scale)/t_point_distance);
+						t_scaley = lerp(t_list[| t_j_2+3], t_list[| t_j_2-5+3], (t_temp_scale-t_scale)/t_point_distance);
+						t_temp_scale -= t_point_distance;
 						break;
 					}
 				} 
@@ -73,13 +80,14 @@ function normalize_editing_path(t_list){
 			
 			if (t_total_rotation != 0)
 			{
-				for (var t_j = 5; t_j < ds_list_size(t_list)-4; t_j += 5)
+				for (; t_j_3 < ds_list_size(t_list)-4; t_j_3 += 5)
 				{
-					var t_point_distance = t_list[| t_j+4] - t_list[| t_j-5+4];
+					var t_point_distance = abs(t_list[| t_j_3+4] - t_list[| t_j_3-5+4]);
 					t_temp_rotation += t_point_distance;
 					if (t_temp_rotation > t_rotation)
 					{
-						t_rot = lerp(t_list[| t_j+4], t_list[| t_j-5+4], (t_temp_rotation-t_rotation)/t_point_distance);
+						t_rot = lerp(t_list[| t_j_3+4], t_list[| t_j_3-5+4], (t_temp_rotation-t_rotation)/t_point_distance);
+						t_temp_rotation -= t_point_distance;
 						break;
 					}
 				} 
