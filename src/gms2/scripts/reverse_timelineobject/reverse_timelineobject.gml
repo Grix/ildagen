@@ -61,6 +61,10 @@ function reverse_timelineobject() {
 		buffer_resize(el_buffer_new, buffer_tell(el_buffer_new));
 
 		objectlist[| 1] = el_buffer_new;
+		
+		if (ds_list_exists(objectlist[| 2][| 3]))
+			ds_list_destroy(objectlist[| 2][| 3]);
+		ds_list_replace(objectlist[| 2],3,create_checkpoint_list(el_buffer_new));
 	
 		if (argument_count < 1 || argument[0] == true) // don't save undo if arg1 = false
 		{

@@ -118,6 +118,8 @@ function frames_toseq() {
 	            surface_free(ds_list_find_value(infolist,1));
 	        ds_list_replace(infolist,1,-1);
 	        ds_list_replace(infolist,2,controller.maxframes);
+			if (ds_list_exists(infolist[| 3]))
+				ds_list_destroy(infolist[| 3]);
 			ds_list_replace(infolist,3,create_checkpoint_list(controller.save_buffer));
         
 	        infolisttemp = infolist;

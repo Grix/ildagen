@@ -331,7 +331,7 @@ function handle_mousecontrol_seq() {
 	            }
             
 				//set up lists
-				var t_newlength = max(infolisttomove[| 0]+tempstretch, 1);
+				var t_newlength = max(infolisttomove[| 0]+round(tempstretch), 1);
 				var t_newmaxframes = max(infolisttomove[| 2]+floor(tempstretch/(infolisttomove[| 0]+1)*infolisttomove[| 2]), 1);
 				var t_oldbuffer = objecttomove[| 1];
 				new_objectlist = ds_list_create();

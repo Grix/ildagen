@@ -1,6 +1,4 @@
 TODO
-- fix bug after reversing object longer than 100 frames
-- fix stretching tl object not rounded the nearest frame
 - quicksave in editor mode
 - normalized speed option for path animation
 - midi output on timeline, to trigger events in f.ex the radiator
