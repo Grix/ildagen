@@ -1,6 +1,11 @@
 if (view_current != 0)
 	exit;
 
+if (controller.fillframes == 1) 
+	image_index = 0;
+else 
+	image_index = 1;
+
 if (controller.anienable == 1) or (controller.maxframes == 1)
     draw_set_alpha(0.6);
 

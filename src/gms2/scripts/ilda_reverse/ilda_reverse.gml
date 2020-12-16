@@ -15,6 +15,7 @@ function ilda_reverse() {
 		}
 		ds_list_destroy(t_tempframelist); //todo undo
 		frame_surf_refresh = 1;
+		update_semasterlist_flag = 1;
 	}
 
 

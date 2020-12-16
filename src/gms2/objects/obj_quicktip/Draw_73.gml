@@ -27,4 +27,16 @@ if (view_current == camera || camera == -1)
 	}
 	draw_rectangle(button_ok_x1,button_ok_y1,button_ok_x2,button_ok_y2, 1);
 	draw_text(button_ok_x1+50, button_ok_y1+7, "OK");
+	
+	if (room == rm_ilda)
+	{
+		if (mouse_x == clamp(mouse_x, button_youtube_x1, button_youtube_x2) && mouse_y == clamp(mouse_y, button_youtube_y1, button_youtube_y2))
+		{
+			draw_set_color(c_ltgray);
+			draw_rectangle(button_youtube_x1,button_youtube_y1,button_youtube_x2,button_youtube_y2, 0);
+			draw_set_color(c_black);
+		}
+		draw_rectangle(button_youtube_x1,button_youtube_y1,button_youtube_x2,button_youtube_y2, 1);
+		draw_text(button_youtube_x1+20, button_youtube_y1+7, "Video tutorial");
+	}
 }

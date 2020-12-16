@@ -5,9 +5,9 @@ function update_semasterlist() {
 	el_list = frame_list[| frame];
 
 	xmax = 0;
-	xmin = $ffff;
+	xmin = $fffff;
 	ymax = 0;
-	ymin = $ffff;
+	ymin = $fffff;
 	for (u = 0; u < ds_list_size(el_list);u++)
 	{
 	    templist = ds_list_find_value(el_list,u);

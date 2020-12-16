@@ -26,9 +26,32 @@ button_ok_x2 = x+width-20;
 button_ok_y1 = y+height+30;
 button_ok_y2 = y+height+55;
 
-button_x1 = button_ok_x1-200;
-button_x2 = button_ok_x2-200;
-button_y1 = button_ok_y1;
-button_y2 = button_ok_y2;
+if (room == rm_ilda)
+{
+	button_ok_x1 += 30;
+	button_ok_x2 += 30;
+	button_youtube_x1 = button_ok_x1-130;
+	button_youtube_x2 = button_ok_x2-130;
+	button_youtube_y1 = button_ok_y1;
+	button_youtube_y2 = button_ok_y2;
+
+	button_x1 = button_youtube_x1-130;
+	button_x2 = button_youtube_x2-130;
+	button_y1 = button_youtube_y1;
+	button_y2 = button_youtube_y2;
+}
+else
+{
+	button_x1 = button_ok_x1-200;
+	button_x2 = button_ok_x2-200;
+	button_y1 = button_ok_y1;
+	button_y2 = button_ok_y2;
+	
+	button_youtube_x1 = 0;
+	button_youtube_x2 = 1;
+	button_youtube_y1 = 0;
+	button_youtube_y2 = 1;
+
+}
 
 yprev = y;

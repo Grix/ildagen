@@ -143,7 +143,7 @@ if (view_current == 4 || view_current == 5)
         
         //selected elements
         draw_set_color(c_aqua);
-        if !(ds_list_empty(semaster_list))
+        if !(ds_list_empty(semaster_list) || (rectxmax == 0 && rectxmin == $fffff && rectymax == 0 && rectymin == $fffff))
         {
             
             draw_sprite_ext(spr_anchor,0,round(anchorx/t_scale), round(t_y+anchory/t_scale), dpi_multiplier, dpi_multiplier, 0, c_white, 1);

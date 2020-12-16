@@ -107,11 +107,12 @@ function handle_trans() {
 	}
 	else if !(keyboard_check_control()) and (!object_select_hovering)
 	{
+		if (rectxmax == 0 && rectxmin == $fffff && rectymax == 0 && rectymin == $fffff)
+			return 0;
 		if (t_mouse_x > t_wport4 or t_mouse_y > t_wport4)
-			exit;
-		
+			return 0;
 		if (instance_exists(obj_dropdown))
-			exit;
+			return 0;
 		
 		var t_resizex = clamp(rectxmax/$ffff*t_wport4, 0, t_wport4-22);
 		var t_resizey = clamp(rectymax/$ffff*t_wport4, 0, t_wport4-22);

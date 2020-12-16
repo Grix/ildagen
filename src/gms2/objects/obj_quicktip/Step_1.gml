@@ -21,6 +21,15 @@ else if (mouse_x == clamp(mouse_x, button_x1, button_x2) && mouse_y == clamp(mou
 		instance_destroy();
 	}
 }
+else if (room == rm_ilda && mouse_x == clamp(mouse_x, button_youtube_x1, button_youtube_x2) && mouse_y == clamp(mouse_y, button_youtube_y1, button_youtube_y2))
+{
+	controller.tooltip = ".";
+	if (mouse_check_button(mb_left))
+	{
+		url_open("https://www.youtube.com/watch?v=l4a1p9EG1Y8");
+		instance_destroy();
+	}
+}
 
 if (mouse_check_button_pressed(mb_left))
 {
