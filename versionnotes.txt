@@ -1,4 +1,4 @@
-v1.8.19 (2020-12-17) *Not yet released on macOS
+v1.8.19 (2020-12-17) *Not yet released on macOS and Linux
 - Fix more crashes, including one when playing certain timeline object that had been reversed.
 - Now linearizes the speed of custom animation paths by default (toggleable in context menu).
 - Fix audio in timeline mode not working on Linux.
