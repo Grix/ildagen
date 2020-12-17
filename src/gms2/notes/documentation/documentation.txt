@@ -1,4 +1,6 @@
 TODO
+- fix unable to load settings frame file on mac
+- add libfmod.so.10 to included files for linux
 - quicksave in editor mode
 - normalized speed option for path animation
 - midi output on timeline, to trigger events in f.ex the radiator

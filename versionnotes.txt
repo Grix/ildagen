@@ -1,11 +1,11 @@
+v1.8.19 (2020-12-17) *Not yet released on macOS
+- Fix more crashes, including one when playing certain timeline object that had been reversed.
+- Now linearizes the speed of custom animation paths by default (toggleable in context menu).
+- Fix audio in timeline mode not working on Linux.
+- Fix only one item pasted when multiple items were cut, in timeline mode.
+- Fix emergency file saving after a crash not working in timeline and live modes.
+
 v1.8.9 (2020-11-17)
 - Fixed or mitigated more possible crashes.
 - Fixed certain features involving included files not working in macOS, such as loading demo show.
 - Fix audio preview below canvas in editor mode being stretched out of alignment.
-
-v1.8.8 (2020-10-04)
-- Fixed or mitigated several possible crashes in all modes.
-- Creating/moving markers and creating layers and envelopes in timeline mode can now be undone.
-- Fix editor mode text tool not working if alternative ILDA file palette enabled.
-- Somewhat improved copy/paste behavior of multiple items in timeline mode.
-- Markers have lower priority than items on timeline when dragging/selecting them with the mouse.
