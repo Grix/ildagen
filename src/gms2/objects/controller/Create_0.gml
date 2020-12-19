@@ -28,8 +28,8 @@ if (os_browser == browser_not_a_browser)
 }
 
 var t_dir = "";
-if (os_type == os_macosx)
-	t_dir = "datafiles/"
+//if (os_type == os_macosx)
+//	t_dir = "datafiles/"
 if (!file_exists(t_dir+"settings.ini") && !file_exists("settings.ini"))
 	file_copy(t_dir+"settings_default.ini", "settings.ini");
 

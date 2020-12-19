@@ -4,8 +4,8 @@ function read_hershey_index_ini(argument0) {
 	frame_list_parse = ds_list_create();
 
 	var t_dir = "";
-	if (os_type == os_macosx)
-		t_dir = "datafiles/"
+//if (os_type == os_macosx)
+//	t_dir = "datafiles/"
 	ini_open(t_dir+"hershey.ini");
 
 	maxglyphpoints = ini_read_real(string(argument0),"n",0);

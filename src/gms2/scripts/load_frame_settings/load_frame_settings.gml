@@ -1,7 +1,7 @@
 function load_frame_settings() {
 	var t_dir = "";
-	if (os_type == os_macosx)
-		t_dir = "datafiles/"
+//if (os_type == os_macosx)
+//	t_dir = "datafiles/"
 	file_loc = t_dir+"lsgtestpattern.igf";
     
 	load_buffer = buffer_load(file_loc);

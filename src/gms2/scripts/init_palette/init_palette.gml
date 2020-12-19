@@ -3,8 +3,8 @@ function init_palette() {
 	pal_list_ttl = ds_list_create();
 	
 	var t_dir = "";
-	if (os_type == os_macosx)
-		t_dir = "datafiles/"
+//if (os_type == os_macosx)
+//	t_dir = "datafiles/"
 	ini_open(t_dir+"palette.ini");
 	for (j = 0; j <= 191; j++)
 	{
