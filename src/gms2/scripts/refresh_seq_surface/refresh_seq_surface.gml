@@ -125,47 +125,52 @@ function refresh_seq_surface() {
                 
 	                apply_envelope_frame(t_scaley);
                     
-	                xp = buffer_read(el_buffer,buffer_f32);
-	                yp = buffer_read(el_buffer,buffer_f32);
-	                bl = buffer_read(el_buffer,buffer_bool);
-	                c = buffer_read(el_buffer,buffer_u32);
+					
+					if (repeatnum >= 0)
+					{
+		                xp = buffer_read(el_buffer,buffer_f32);
+		                yp = buffer_read(el_buffer,buffer_f32);
+		                bl = buffer_read(el_buffer,buffer_bool);
+		                c = buffer_read(el_buffer,buffer_u32);
                 
-	                apply_envelope_point();
+		                apply_envelope_point();
                 
-	                surface_set_target(frame_surf);
+		                surface_set_target(frame_surf);
                 
-	                repeat (repeatnum)
-	                {
-	                    xpp = xp;
-	                    ypp = yp;
-	                    blp = bl;
+		                repeat (repeatnum)
+		                {
+		                    xpp = xp;
+		                    ypp = yp;
+		                    blp = bl;
                     
-	                    xp = buffer_read(el_buffer,buffer_f32);
-	                    yp = buffer_read(el_buffer,buffer_f32);
-	                    bl = buffer_read(el_buffer,buffer_bool);
-	                    c = buffer_read(el_buffer,buffer_u32);
+		                    xp = buffer_read(el_buffer,buffer_f32);
+		                    yp = buffer_read(el_buffer,buffer_f32);
+		                    bl = buffer_read(el_buffer,buffer_bool);
+		                    c = buffer_read(el_buffer,buffer_u32);
                     
-	                    apply_envelope_point();
+		                    apply_envelope_point();
                     
-	                    if (!bl)
-	                    {
-	                        draw_set_color(c);
-	                        if ((xp == xpp) and (yp == ypp) and !blp)
-	                        {
-	                            draw_point(xo+xp*t_scaley,yo+yp*t_scaley);
-								//if (t_preview_mirror_x)
-								//	draw_point(xo_mirror+xp*t_scaley,yo+yp*t_scaley);
-	                        }
-	                        else
-							{
-	                            draw_line_width(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley, controller.dpi_multiplier);
-								//if (t_preview_mirror_x)
-								//	draw_line_width(xo_mirror+ xpp*t_scaley,yo+ ypp*t_scaley,xo_mirror+ xp*t_scaley,yo+ yp*t_scaley, controller.dpi_multiplier);
-							}
-	                    }
-	                }
+		                    if (!bl)
+		                    {
+		                        draw_set_color(c);
+		                        if ((xp == xpp) and (yp == ypp) and !blp)
+		                        {
+		                            draw_point(xo+xp*t_scaley,yo+yp*t_scaley);
+									//if (t_preview_mirror_x)
+									//	draw_point(xo_mirror+xp*t_scaley,yo+yp*t_scaley);
+		                        }
+		                        else
+								{
+		                            draw_line_width(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley, controller.dpi_multiplier);
+									//if (t_preview_mirror_x)
+									//	draw_line_width(xo_mirror+ xpp*t_scaley,yo+ ypp*t_scaley,xo_mirror+ xp*t_scaley,yo+ yp*t_scaley, controller.dpi_multiplier);
+								}
+		                    }
+		                }
+						
+						surface_reset_target();
+					}
                 
-	                surface_reset_target();
 	            }
 	            gpu_set_blendenable(1);
                 
@@ -180,54 +185,58 @@ function refresh_seq_surface() {
                 
 	                apply_envelope_frame(t_scaley);
                 
-	                xp = buffer_read(el_buffer,buffer_f32);
-	                yp = buffer_read(el_buffer,buffer_f32);
-	                bl = buffer_read(el_buffer,buffer_bool);
-	                c = buffer_read(el_buffer,buffer_u32);
+					if (repeatnum >= 0)
+					{
+		                xp = buffer_read(el_buffer,buffer_f32);
+		                yp = buffer_read(el_buffer,buffer_f32);
+		                bl = buffer_read(el_buffer,buffer_bool);
+		                c = buffer_read(el_buffer,buffer_u32);
                 
-	                apply_envelope_point();
+		                apply_envelope_point();
                 
-	                gpu_set_blendmode(bm_add);
-	                draw_set_alpha(0.7);
-	                surface_set_target(frame3d_surf);
-                
-	                repeat (repeatnum)
-	                {
-	                    xpp = xp;
-	                    ypp = yp;
-	                    blp = bl;
+		                gpu_set_blendmode(bm_add);
+		                draw_set_alpha(0.7);
+						surface_set_target(frame3d_surf);
+						
+		                repeat (repeatnum)
+		                {
+		                    xpp = xp;
+		                    ypp = yp;
+		                    blp = bl;
                     
-	                    xp = buffer_read(el_buffer,buffer_f32);
-	                    yp = buffer_read(el_buffer,buffer_f32);
-	                    bl = buffer_read(el_buffer,buffer_bool);
-	                    c = buffer_read(el_buffer,buffer_u32);
+		                    xp = buffer_read(el_buffer,buffer_f32);
+		                    yp = buffer_read(el_buffer,buffer_f32);
+		                    bl = buffer_read(el_buffer,buffer_bool);
+		                    c = buffer_read(el_buffer,buffer_u32);
                     
-	                    apply_envelope_point();
+		                    apply_envelope_point();
                     
-	                    if (!bl)
-	                    {
-	                        pdir = point_direction(t_centerx, t_centery, xo+ xp*t_scaley,yo+ yp*t_scaley);
-	                        xxp = t_centerx+cos(degtorad(-pdir))*t_scalediag;
-	                        yyp = t_centery+sin(degtorad(-pdir))*t_scalediag;
+		                    if (!bl)
+		                    {
+		                        pdir = point_direction(t_centerx, t_centery, xo+ xp*t_scaley,yo+ yp*t_scaley);
+		                        xxp = t_centerx+cos(degtorad(-pdir))*t_scalediag;
+		                        yyp = t_centery+sin(degtorad(-pdir))*t_scalediag;
                         
-	                        if (xpp == xp) and (ypp == yp) and !(blp)
-	                        {
-	                            draw_set_alpha(0.9);
-	                            draw_line_colour(t_centerx+t_preview_x_offset, t_centery+t_preview_y_offset, xxp+t_preview_x_offset,yyp+t_preview_y_offset,c,c_black);
-	                            draw_set_alpha(0.7);
-	                        }
-	                        else
-	                        {
-	                            pdir_p = point_direction(t_centerx,t_centery,xo+ xpp*t_scaley,yo+ ypp*t_scaley);
-	                            xxp_p = t_centerx+t_preview_x_offset+cos(degtorad(-pdir_p))*t_scalediag;
-	                            yyp_p = t_centery+t_preview_y_offset+sin(degtorad(-pdir_p))*t_scalediag;
-	                            draw_triangle_colour(t_centerx+t_preview_x_offset, t_centery+t_preview_y_offset, xxp_p,yyp_p,xxp+t_preview_x_offset,yyp+t_preview_y_offset,c,c_black,c_black,0);
-	                        }
-	                    }
-	                }
-	                gpu_set_blendmode(bm_normal);
-	                draw_set_alpha(1);
-	                surface_reset_target();  
+		                        if (xpp == xp) and (ypp == yp) and !(blp)
+		                        {
+		                            draw_set_alpha(0.9);
+		                            draw_line_colour(t_centerx+t_preview_x_offset, t_centery+t_preview_y_offset, xxp+t_preview_x_offset,yyp+t_preview_y_offset,c,c_black);
+		                            draw_set_alpha(0.7);
+		                        }
+		                        else
+		                        {
+		                            pdir_p = point_direction(t_centerx,t_centery,xo+ xpp*t_scaley,yo+ ypp*t_scaley);
+		                            xxp_p = t_centerx+t_preview_x_offset+cos(degtorad(-pdir_p))*t_scalediag;
+		                            yyp_p = t_centery+t_preview_y_offset+sin(degtorad(-pdir_p))*t_scalediag;
+		                            draw_triangle_colour(t_centerx+t_preview_x_offset, t_centery+t_preview_y_offset, xxp_p,yyp_p,xxp+t_preview_x_offset,yyp+t_preview_y_offset,c,c_black,c_black,0);
+		                        }
+		                    }
+		                }
+						
+		                gpu_set_blendmode(bm_normal);
+		                draw_set_alpha(1);
+		                surface_reset_target();  
+					}
 	            }
 	        }
 	    }
@@ -306,41 +315,44 @@ function refresh_seq_surface() {
                 
 			                apply_envelope_frame(t_scaley);
                     
-			                xp = buffer_read(el_buffer,buffer_f32);
-			                yp = buffer_read(el_buffer,buffer_f32);
-			                bl = buffer_read(el_buffer,buffer_bool);
-			                c = buffer_read(el_buffer,buffer_u32);
+							if (repeatnum >= 0)
+							{
+				                xp = buffer_read(el_buffer,buffer_f32);
+				                yp = buffer_read(el_buffer,buffer_f32);
+				                bl = buffer_read(el_buffer,buffer_bool);
+				                c = buffer_read(el_buffer,buffer_u32);
                 
-			                apply_envelope_point();
+				                apply_envelope_point();
                 
-			                surface_set_target(frame_surf);
+				                surface_set_target(frame_surf);
                 
-			                repeat (repeatnum)
-			                {
-			                    xpp = xp;
-			                    ypp = yp;
-			                    blp = bl;
+				                repeat (repeatnum)
+				                {
+				                    xpp = xp;
+				                    ypp = yp;
+				                    blp = bl;
                     
-			                    xp = buffer_read(el_buffer,buffer_f32);
-			                    yp = buffer_read(el_buffer,buffer_f32);
-			                    bl = buffer_read(el_buffer,buffer_bool);
-			                    c = buffer_read(el_buffer,buffer_u32);
+				                    xp = buffer_read(el_buffer,buffer_f32);
+				                    yp = buffer_read(el_buffer,buffer_f32);
+				                    bl = buffer_read(el_buffer,buffer_bool);
+				                    c = buffer_read(el_buffer,buffer_u32);
                     
-			                    apply_envelope_point();
+				                    apply_envelope_point();
                     
-			                    if (!bl)
-			                    {
-			                        draw_set_color(c);
-			                        if ((xp == xpp) and (yp == ypp) and !blp)
-			                        {
-			                            draw_point(xo+xp*t_scaley,yo+yp*t_scaley);
-			                        }
-			                        else
-			                            draw_line(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley);
-			                    }
-			                }
+				                    if (!bl)
+				                    {
+				                        draw_set_color(c);
+				                        if ((xp == xpp) and (yp == ypp) and !blp)
+				                        {
+				                            draw_point(xo+xp*t_scaley,yo+yp*t_scaley);
+				                        }
+				                        else
+				                            draw_line(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley);
+				                    }
+				                }
                 
-			                surface_reset_target();
+				                surface_reset_target();
+							}
 			            }
 			            gpu_set_blendenable(1);
 			        }

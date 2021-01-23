@@ -113,6 +113,8 @@ GMEXPORT double ScanDevices()
 	{
 	}
 
+	std::this_thread::sleep_for(std::chrono::milliseconds(10));
+
 	try
 	{
 		int numHelios = heliosDevice->Init();
@@ -127,6 +129,8 @@ GMEXPORT double ScanDevices()
 	catch (...)
 	{
 	}
+
+	std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
 	try
 	{
@@ -143,6 +147,8 @@ GMEXPORT double ScanDevices()
 	{
 	}
 
+	std::this_thread::sleep_for(std::chrono::milliseconds(10));
+
 	try
 	{
 		int numIdn = idnDevice->Init();
@@ -157,7 +163,6 @@ GMEXPORT double ScanDevices()
 	catch (...)
 	{
 	}
-
 
 	return (double)numDevices;
 }

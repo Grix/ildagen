@@ -57,7 +57,7 @@ LaserdockDeviceManagerPrivate::LaserdockDeviceManagerPrivate(LaserdockDeviceMana
 
 bool LaserdockDeviceManagerPrivate::initialize_usb() {
     int rc;
-    rc = libusb_init(&m_libusb_ctx);
+    rc = libusb_init(NULL/*&m_libusb_ctx*/);
     if (rc < 0)
     {
         fprintf(stderr, "Error initializing libusb: %d\n", /*libusb_error_name(rc)*/rc);

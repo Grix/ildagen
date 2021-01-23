@@ -40,43 +40,41 @@ function make_screenshot(argument0, argument1) {
 	    yo = buffer_read(el_buffer,buffer_f32)/$FFFF*t_size;  
 	    buffer_seek(el_buffer,buffer_seek_relative,42);
         
-	    xp = buffer_read(el_buffer,buffer_f32);
-	    yp = buffer_read(el_buffer,buffer_f32);
-	    bl = buffer_read(el_buffer,buffer_bool);
-	    c = buffer_read(el_buffer,buffer_u32);
+		if (repeatnum >= 0)
+		{
+		    xp = buffer_read(el_buffer,buffer_f32);
+		    yp = buffer_read(el_buffer,buffer_f32);
+		    bl = buffer_read(el_buffer,buffer_bool);
+		    c = buffer_read(el_buffer,buffer_u32);
     
-	    repeat (repeatnum)
-	    {
-	        xpp = xp;
-	        ypp = yp;
-	        blp = bl;
+		    repeat (repeatnum)
+		    {
+		        xpp = xp;
+		        ypp = yp;
+		        blp = bl;
         
-	        xp = buffer_read(el_buffer,buffer_f32);
-	        yp = buffer_read(el_buffer,buffer_f32);
-	        bl = buffer_read(el_buffer,buffer_bool);
-	        c = buffer_read(el_buffer,buffer_u32);
+		        xp = buffer_read(el_buffer,buffer_f32);
+		        yp = buffer_read(el_buffer,buffer_f32);
+		        bl = buffer_read(el_buffer,buffer_bool);
+		        c = buffer_read(el_buffer,buffer_u32);
         
-	        if (!bl)
-	        {
-	            draw_set_color(c);
-	            if ((xp == xpp) and (yp == ypp) and !blp)
-	            {
-	                draw_rectangle(xo+xp/$FFFF*t_size+1, yo+yp/$FFFF*t_size+1,xo+xp/$FFFF*t_size-1, yo+yp/$FFFF*t_size-1, 0);
-	            }
-	            else
-	                draw_line(xo+xpp/$FFFF*t_size, yo+ypp/$FFFF*t_size, xo+xp/$FFFF*t_size, yo+yp/$FFFF*t_size);
-	        }
-	    }
-        
+		        if (!bl)
+		        {
+		            draw_set_color(c);
+		            if ((xp == xpp) and (yp == ypp) and !blp)
+		            {
+		                draw_rectangle(xo+xp/$FFFF*t_size+1, yo+yp/$FFFF*t_size+1,xo+xp/$FFFF*t_size-1, yo+yp/$FFFF*t_size-1, 0);
+		            }
+		            else
+		                draw_line(xo+xpp/$FFFF*t_size, yo+ypp/$FFFF*t_size, xo+xp/$FFFF*t_size, yo+yp/$FFFF*t_size);
+		        }
+		    }
+		}
 	}
     
 	gpu_set_blendenable(1);
 	surface_reset_target();
 
 	return temp_surf;
-    
-    
-
-
 
 }

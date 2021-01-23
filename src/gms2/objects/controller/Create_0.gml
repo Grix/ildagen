@@ -1,5 +1,5 @@
 version = "1.8.10";
-versiondate = "2020-12-17";
+versiondate = "2020-12-20";
 
 if (debug_mode)
 {
@@ -423,5 +423,3 @@ exception_unhandled_handler(function(ex)
 			save_frames();
 	}
 });
-
-

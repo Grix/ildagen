@@ -176,8 +176,8 @@ bool Device_Etherdream::OutputFrame(int cardNum, const EAD_Pnt_s* data, int Byte
 
 void Device_Etherdream::GetName(int cardNum, char* name)
 {
-	if (!ready) 
-		sprintf(name, "Etherdream");
+	if (!ready)
+		sprintf_s(name, 12, "Etherdream");
 
 	EtherDreamGetDeviceName(&cardNum, name, 64);
 }

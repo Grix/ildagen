@@ -81,74 +81,77 @@ function refresh_live_surface() {
 			
 			    buffer_seek(el_buffer,buffer_seek_relative,42);
                 
-			    xp = buffer_read(el_buffer,buffer_f32);
-			    yp = buffer_read(el_buffer,buffer_f32);
-			    bl = buffer_read(el_buffer,buffer_bool);
-			    c = buffer_read(el_buffer,buffer_u32);
+				if (repeatnum >= 0)
+				{
+				    xp = buffer_read(el_buffer,buffer_f32);
+				    yp = buffer_read(el_buffer,buffer_f32);
+				    bl = buffer_read(el_buffer,buffer_bool);
+				    c = buffer_read(el_buffer,buffer_u32);
 			
-				if (env_rotabs)
-			    {
-			        angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
-			        dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
-			        xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
-			        yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
-			    }
+					if (env_rotabs)
+				    {
+				        angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
+				        dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
+				        xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
+				        yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
+				    }
 					
 			
-			    surface_set_target(frame_surf);
+				    surface_set_target(frame_surf);
                 
-			    repeat (repeatnum)
-			    {
-			        xpp = xp;
-			        ypp = yp;
-			        blp = bl;
+				    repeat (repeatnum)
+				    {
+				        xpp = xp;
+				        ypp = yp;
+				        blp = bl;
                     
-			        xp = buffer_read(el_buffer,buffer_f32);
-			        yp = buffer_read(el_buffer,buffer_f32);
-			        bl = buffer_read(el_buffer,buffer_bool);
-			        c = buffer_read(el_buffer,buffer_u32);
+				        xp = buffer_read(el_buffer,buffer_f32);
+				        yp = buffer_read(el_buffer,buffer_f32);
+				        bl = buffer_read(el_buffer,buffer_bool);
+				        c = buffer_read(el_buffer,buffer_u32);
 				
-			        if (!bl)
-			        {
-						if (env_hue)
-			            {
-			                c = make_colour_hsv((colour_get_hue(c)+env_hue_val+255) % 255,colour_get_saturation(c),colour_get_value(c));
-			            }
-			            if (env_a)
-			            {
-			                c = merge_colour(c,c_black,env_a_val);
-			            }
-			            if (env_r)
-			            {
-			                c = (c & $FFFF00) | ((c & $FF)*env_r_val);
-			            }
-			            if (env_g)
-			            {
-			                c = (c & $FF00FF) | ((((c >> 8) & $FF)*env_g_val) << 8);
-			            }
-			            if (env_b)
-			            {
-			                c = (c & $00FFFF) | (((c >> 16)*env_b_val) << 16);
-			            }
-			            if (env_rotabs)
-			            {
-			                angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
-			                dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
-			                xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
-			                yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
-			            }
+				        if (!bl)
+				        {
+							if (env_hue)
+				            {
+				                c = make_colour_hsv((colour_get_hue(c)+env_hue_val+255) % 255,colour_get_saturation(c),colour_get_value(c));
+				            }
+				            if (env_a)
+				            {
+				                c = merge_colour(c,c_black,env_a_val);
+				            }
+				            if (env_r)
+				            {
+				                c = (c & $FFFF00) | ((c & $FF)*env_r_val);
+				            }
+				            if (env_g)
+				            {
+				                c = (c & $FF00FF) | ((((c >> 8) & $FF)*env_g_val) << 8);
+				            }
+				            if (env_b)
+				            {
+				                c = (c & $00FFFF) | (((c >> 16)*env_b_val) << 16);
+				            }
+				            if (env_rotabs)
+				            {
+				                angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
+				                dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
+				                xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
+				                yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
+				            }
 					
-			            draw_set_color(c);
-			            if ((xp == xpp) and (yp == ypp) and !blp)
-			            {
-			                draw_rectangle(xo+xp*t_scaley-1,yo+yp*t_scaley-1,xo+xp*t_scaley+1,yo+yp*t_scaley+1, 0);
-			            }
-			            else
-			                draw_line_width(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley, controller.dpi_multiplier);
-			        }
-			    }
+				            draw_set_color(c);
+				            if ((xp == xpp) and (yp == ypp) and !blp)
+				            {
+				                draw_rectangle(xo+xp*t_scaley-1,yo+yp*t_scaley-1,xo+xp*t_scaley+1,yo+yp*t_scaley+1, 0);
+				            }
+				            else
+				                draw_line_width(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley, controller.dpi_multiplier);
+				        }
+				    }
                 
-			    surface_reset_target();
+				    surface_reset_target();
+				}
 			}
 			gpu_set_blendenable(1);
                 
@@ -160,88 +163,91 @@ function refresh_live_surface() {
 			    xo = view_wport[4]/2-view_hport[4]/2+buffer_read(el_buffer,buffer_f32)*t_scaley;
 			    yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
 			    buffer_seek(el_buffer,buffer_seek_relative,42);
-                
-			    xp = buffer_read(el_buffer,buffer_f32);
-			    yp = buffer_read(el_buffer,buffer_f32);
-			    bl = buffer_read(el_buffer,buffer_bool);
-			    c = buffer_read(el_buffer,buffer_u32);
+				
+				if (repeatnum >= 0)
+				{
+				    xp = buffer_read(el_buffer,buffer_f32);
+				    yp = buffer_read(el_buffer,buffer_f32);
+				    bl = buffer_read(el_buffer,buffer_bool);
+				    c = buffer_read(el_buffer,buffer_u32);
 			
-				if (env_rotabs)
-			    {
-			        angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
-			        dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
-			        xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
-			        yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
-			    }
+					if (env_rotabs)
+				    {
+				        angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
+				        dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
+				        xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
+				        yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
+				    }
                 
-			    gpu_set_blendmode(bm_add);
-			    draw_set_alpha(0.7);
-			    surface_set_target(frame3d_surf);
+				    gpu_set_blendmode(bm_add);
+				    draw_set_alpha(0.7);
+				    surface_set_target(frame3d_surf);
                 
-			    repeat (repeatnum)
-			    {
-			        xpp = xp;
-			        ypp = yp;
-			        blp = bl;
+				    repeat (repeatnum)
+				    {
+				        xpp = xp;
+				        ypp = yp;
+				        blp = bl;
                     
-			        xp = buffer_read(el_buffer,buffer_f32);
-			        yp = buffer_read(el_buffer,buffer_f32);
-			        bl = buffer_read(el_buffer,buffer_bool);
-			        c = buffer_read(el_buffer,buffer_u32);
+				        xp = buffer_read(el_buffer,buffer_f32);
+				        yp = buffer_read(el_buffer,buffer_f32);
+				        bl = buffer_read(el_buffer,buffer_bool);
+				        c = buffer_read(el_buffer,buffer_u32);
 				
                     
-			        if (!bl)
-			        {
-						if (env_hue)
-			            {
-			                c = make_colour_hsv((colour_get_hue(c)+env_hue_val+255) % 255,colour_get_saturation(c),colour_get_value(c));
-			            }
-			            if (env_a)
-			            {
-			                c = merge_colour(c,c_black,env_a_val);
-			            }
-			            if (env_r)
-			            {
-			                c = (c & $FFFF00) | ((c & $FF)*env_r_val);
-			            }
-			            if (env_g)
-			            {
-			                c = (c & $FF00FF) | ((((c >> 8) & $FF)*env_g_val) << 8);
-			            }
-			            if (env_b)
-			            {
-			                c = (c & $00FFFF) | (((c >> 16)*env_b_val) << 16);
-			            }
-			            if (env_rotabs)
-			            {
-			                angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
-			                dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
-			                xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
-			                yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
-			            }
+				        if (!bl)
+				        {
+							if (env_hue)
+				            {
+				                c = make_colour_hsv((colour_get_hue(c)+env_hue_val+255) % 255,colour_get_saturation(c),colour_get_value(c));
+				            }
+				            if (env_a)
+				            {
+				                c = merge_colour(c,c_black,env_a_val);
+				            }
+				            if (env_r)
+				            {
+				                c = (c & $FFFF00) | ((c & $FF)*env_r_val);
+				            }
+				            if (env_g)
+				            {
+				                c = (c & $FF00FF) | ((((c >> 8) & $FF)*env_g_val) << 8);
+				            }
+				            if (env_b)
+				            {
+				                c = (c & $00FFFF) | (((c >> 16)*env_b_val) << 16);
+				            }
+				            if (env_rotabs)
+				            {
+				                angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
+				                dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
+				                xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
+				                yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
+				            }
 					
-			            pdir = point_direction(t_centerx, t_centery, xo+ xp*t_scaley,yo+ yp*t_scaley);
-			            xxp = t_centerx+cos(degtorad(-pdir))*t_scalediag;
-			            yyp = t_centery+sin(degtorad(-pdir))*t_scalediag;
+				            pdir = point_direction(t_centerx, t_centery, xo+ xp*t_scaley,yo+ yp*t_scaley);
+				            xxp = t_centerx+cos(degtorad(-pdir))*t_scalediag;
+				            yyp = t_centery+sin(degtorad(-pdir))*t_scalediag;
                         
-			            if (xpp == xp) and (ypp == yp) and !(blp)
-			            {
-			                draw_set_alpha(0.9);
-			                draw_line_colour(t_centerx, t_centery, xxp,yyp,c,c_black);
-			                draw_set_alpha(0.7);
-			            }
-			            else
-			            {
-			                pdir_p = point_direction(t_centerx,t_centery,xo+ xpp*t_scaley,yo+ ypp*t_scaley);
-			                xxp_p = t_centerx+cos(degtorad(-pdir_p))*t_scalediag;
-			                yyp_p = t_centery+sin(degtorad(-pdir_p))*t_scalediag;
-			                draw_triangle_colour(t_centerx,t_centery,xxp_p,yyp_p,xxp,yyp,c,c_black,c_black,0);
-			            }
-			        }
-			    }
-			    gpu_set_blendmode(bm_normal);
-			    draw_set_alpha(1);
-			    surface_reset_target();  
+				            if (xpp == xp) and (ypp == yp) and !(blp)
+				            {
+				                draw_set_alpha(0.9);
+				                draw_line_colour(t_centerx, t_centery, xxp,yyp,c,c_black);
+				                draw_set_alpha(0.7);
+				            }
+				            else
+				            {
+				                pdir_p = point_direction(t_centerx,t_centery,xo+ xpp*t_scaley,yo+ ypp*t_scaley);
+				                xxp_p = t_centerx+cos(degtorad(-pdir_p))*t_scalediag;
+				                yyp_p = t_centery+sin(degtorad(-pdir_p))*t_scalediag;
+				                draw_triangle_colour(t_centerx,t_centery,xxp_p,yyp_p,xxp,yyp,c,c_black,c_black,0);
+				            }
+				        }
+				    }
+				    gpu_set_blendmode(bm_normal);
+				    draw_set_alpha(1);
+				    surface_reset_target();  
+				}
 			}
 		}
 	}
@@ -289,37 +295,40 @@ function refresh_live_surface() {
 					    yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
 					    buffer_seek(el_buffer,buffer_seek_relative,42);
                 
-					    xp = buffer_read(el_buffer,buffer_f32);
-					    yp = buffer_read(el_buffer,buffer_f32);
-					    bl = buffer_read(el_buffer,buffer_bool);
-					    c = buffer_read(el_buffer,buffer_u32);
+						if (repeatnum >= 0)
+						{
+						    xp = buffer_read(el_buffer,buffer_f32);
+						    yp = buffer_read(el_buffer,buffer_f32);
+						    bl = buffer_read(el_buffer,buffer_bool);
+						    c = buffer_read(el_buffer,buffer_u32);
 		
-					    surface_set_target(frame_surf);
+						    surface_set_target(frame_surf);
                 
-					    repeat (repeatnum)
-					    {
-					        xpp = xp;
-					        ypp = yp;
-					        blp = bl;
+						    repeat (repeatnum)
+						    {
+						        xpp = xp;
+						        ypp = yp;
+						        blp = bl;
                     
-					        xp = buffer_read(el_buffer,buffer_f32);
-					        yp = buffer_read(el_buffer,buffer_f32);
-					        bl = buffer_read(el_buffer,buffer_bool);
-					        c = buffer_read(el_buffer,buffer_u32);
+						        xp = buffer_read(el_buffer,buffer_f32);
+						        yp = buffer_read(el_buffer,buffer_f32);
+						        bl = buffer_read(el_buffer,buffer_bool);
+						        c = buffer_read(el_buffer,buffer_u32);
                     
-					        if (!bl)
-					        {
-					            draw_set_color(c);
-					            if ((xp == xpp) and (yp == ypp) and !blp)
-					            {
-					                draw_point(xo+xp*t_scaley,yo+yp*t_scaley);
-					            }
-					            else
-					                draw_line(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley);
-					        }
-					    }
+						        if (!bl)
+						        {
+						            draw_set_color(c);
+						            if ((xp == xpp) and (yp == ypp) and !blp)
+						            {
+						                draw_point(xo+xp*t_scaley,yo+yp*t_scaley);
+						            }
+						            else
+						                draw_line(xo+ xpp*t_scaley,yo+ ypp*t_scaley,xo+ xp*t_scaley,yo+ yp*t_scaley);
+						        }
+						    }
                 
-					    surface_reset_target();
+						    surface_reset_target();
+						}
 					}
 					gpu_set_blendenable(1);
                 
