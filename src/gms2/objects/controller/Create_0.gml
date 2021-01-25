@@ -332,6 +332,7 @@ aniwave_offset = 0;
 anifunc = "saw";
 aniwave_amp = 10000;
 anirep = 1;
+anireverse = false;
 
 rot = 0;
 anirot = 0;

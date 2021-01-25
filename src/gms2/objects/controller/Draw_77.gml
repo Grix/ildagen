@@ -1,6 +1,6 @@
 if (room == rm_loading)
 {
-	window_set_cursor(cr_hourglass);
+	window_check_set_cursor(cr_hourglass);
 	exit;
 }
 
@@ -8,27 +8,30 @@ if (room == rm_loading)
 if (instance_exists(obj_dropdown) && !instance_exists(obj_ad))
 {
 	if (obj_dropdown.selected != noone)
-		window_set_cursor(cr_handpoint);
+		window_check_set_cursor(cr_handpoint);
 	else
-		window_set_cursor(cr_default);
+		window_check_set_cursor(cr_default);
 	exit;
 }
 
+
 if (scrollcursor_flag == 1)
-    window_set_cursor(cr_size_we);
+    window_check_set_cursor(cr_size_we);
 else if (scrollcursor_flag == 2)
-    window_set_cursor(cr_size_ns);
+    window_check_set_cursor(cr_size_ns);
+else if (tooltip != "")
+	window_check_set_cursor(cr_handpoint);	
 else
 {
     if (placing == "text") && (room == rm_ilda)
-        window_set_cursor(cr_beam);
+        window_check_set_cursor(cr_beam);
 	else
-		window_set_cursor(cr_default);
+		window_check_set_cursor(cr_default);
 		
     if (objmoving)
-		window_set_cursor(cr_handpoint);
+		window_check_set_cursor(cr_handpoint);
     if (room == rm_ilda) && (keyboard_check(ord("E")) && (placing_status != 2))
-        window_set_cursor(cr_handpoint);
+        window_check_set_cursor(cr_handpoint);
 }
 	
 if (tooltip != "")
@@ -43,12 +46,6 @@ if (tooltip != "")
         draw_text_transformed(5,5+view_yport[4],tooltip, dpi_multiplier, dpi_multiplier, 0);
 		draw_set_color(c_black);
     }
-	if (scrollcursor_flag == 1)
-		window_set_cursor(cr_size_we);
-	else if (scrollcursor_flag == 2)
-		window_set_cursor(cr_size_ns);
-	else
-		window_set_cursor(cr_handpoint);
 		
 	tooltip = "";
 }

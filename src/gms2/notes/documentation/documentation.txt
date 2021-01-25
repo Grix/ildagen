@@ -1,6 +1,5 @@
 TODO
 - test new fix in zero point elements (left.igf) in YYC
-- fix high CPU when showing tooltip (cursor changing?)
 - add inverse checkbox to animation functions
 - quicksave in editor mode
 - undo reversing in editor mode
@@ -10,6 +9,7 @@ TODO
 - add default setting profiles into older settings file retroactively if they don't exist
 - investigate and fix problem of dac (laserdock?) falling out and having to rescan. Automatic rescan on failure?
 - investigate and fix sometimes crash when rescanning dacs (laserdock again? but also when not dac connected)
+- fix laserdock not being detected (related to crash above? libusb_get_device_list return -99)
 - add custom anchor to timeline mode rotation envelope
 - BPM sync indicator/quantization in all modes
 - pause individual files in live
