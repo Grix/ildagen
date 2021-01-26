@@ -108,8 +108,20 @@ function reapply_trans() {
 	        }
 	        else
 	        {
-	            t = i/(ds_list_size(temp_frame_list)-0.99);
-	            t = (t*anirep)%1;
+	            t = i/(ds_list_size(temp_frame_list)-1);
+				
+				if (anireverse)
+					t = 1-t;
+					
+	            t = (t*anirep);
+				if (t > 1 || t < 0)
+				{
+					if (t % 1 == 0)
+						t = 1;
+					else
+						t = t % 1;
+				}
+				
 	            if (anifunc == "tri")
 	            {
 	                t *= 2;

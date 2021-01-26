@@ -285,8 +285,20 @@ function create_element() {
 	    }
 	    else
 	    {
-	        t = ((frame-scope_start)/(scope_end-scope_start))%1;
-	        t = (t*anirep)%1;
+	        t = ((frame-scope_start)/(scope_end-scope_start+1))%1;
+			
+			if (anireverse)
+				t = 1-t;
+					
+	        t = (t*anirep);
+			if (t > 1 || t < 0)
+			{
+				if (t % 1 == 0)
+					t = 1;
+				else
+					t = t % 1;
+			}
+			
 	        if (anifunc == "tri")
 	        {
 	            t *= 2;
@@ -545,7 +557,19 @@ function create_element() {
 	        else
 	        {
 	            t = ((frame-scope_start)/(scope_end-scope_start+1))%1;
-	            t = (t*anirep)%1;
+				
+				if (anireverse)
+					t = 1-t;
+					
+		        t = (t*anirep);
+				if (t > 1 || t < 0)
+				{
+					if (t % 1 == 0)
+						t = 1;
+					else
+						t = t % 1;
+				}
+				
 	            if (anifunc == "tri")
 	            {
 	                t *= 2;
