@@ -79,9 +79,8 @@ function draw_preview_element() {
 	    {
 	        ratiox = sin(degtorad(point_direction(t_startx,t_starty,t_endx,t_endy)));
 	        ratioy = cos(degtorad(point_direction(t_startx,t_starty,t_endx,t_endy)));
-	        pointx[i] = t_startx+vector[0]*i+wave_amp_r*sin(wave_offset_r+ pi*2/(cp-1)*i*wave_period)*ratiox/128;
-	        pointy[i] = t_starty+vector[1]*i+wave_amp_r*sin(wave_offset_r+ pi*2/(cp-1)*i*wave_period)*ratioy/128;
-			// todo the amplitude is a little bit off, fix
+	        pointx[i] = t_startx+vector[0]*i+wave_amp_r*sin(wave_offset_r+ pi*2/(cp-1)*i*wave_period)*ratiox/$ffff*view_wport[4];
+	        pointy[i] = t_starty+vector[1]*i+wave_amp_r*sin(wave_offset_r+ pi*2/(cp-1)*i*wave_period)*ratioy/$ffff*view_wport[4];
 	    }
 	    for (i = 0; i < (cp-1); i++)
 	        draw_line(pointx[i],pointy[i],pointx[i+1],pointy[i+1]);

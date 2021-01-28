@@ -1,15 +1,13 @@
 TODO
 - test new fix in zero point elements (left.igf) in YYC
-- add inverse checkbox to animation functions
 - quicksave in editor mode
+- implement new modulo method used in anirep, in element creation cycles like dots and blanking
 - undo reversing in editor mode
 - midi output on timeline, to trigger events in f.ex the radiator
 - arbitrary animation easing function
 - midi input for live mode trigger etc.
 - add default setting profiles into older settings file retroactively if they don't exist
 - investigate and fix problem of dac (laserdock?) falling out and having to rescan. Automatic rescan on failure?
-- investigate and fix sometimes crash when rescanning dacs (laserdock again? but also when not dac connected)
-- fix laserdock not being detected (related to crash above? libusb_get_device_list return -99)
 - add custom anchor to timeline mode rotation envelope
 - BPM sync indicator/quantization in all modes
 - pause individual files in live
