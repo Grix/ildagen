@@ -101,7 +101,7 @@ else if (view_current == 0)
 	//draw_clear(controller.c_ltltgray);
 	
 	//separator lines
-	var t_w0 = camera_get_view_width(view_camera[0]);
+	var t_w0 = max(1, camera_get_view_width(view_camera[0]));
 	var t_x0 = camera_get_view_x(view_camera[0]);
 	var t_y0 = camera_get_view_y(view_camera[0]);
 	draw_set_color(c_ltgray);
@@ -151,7 +151,7 @@ else if (view_current == 3)
 {
     //menu
 	var t_ypos = camera_get_view_y(view_camera[3]);
-	var t_height = camera_get_view_height(view_camera[3]);
+	var t_height = max(1, camera_get_view_height(view_camera[3]));
 	//gpu_set_blendenable(false);
 	//draw_clear(controller.c_ltltgray);
 	draw_line(0, t_ypos+t_height-1, view_wport[3], t_ypos+t_height-1);

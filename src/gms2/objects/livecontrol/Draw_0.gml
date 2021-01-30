@@ -88,7 +88,7 @@ else if (view_current == 3)
 	draw_set_color(c_black);
 	draw_set_alpha(1);
 	var t_ypos = camera_get_view_y(view_camera[3]);
-	var t_height = camera_get_view_height(view_camera[3]);
+	var t_height = max(1, camera_get_view_height(view_camera[3]));
 	draw_line(0, t_ypos+t_height-1, view_wport[3], t_ypos+t_height-1);
     draw_text(0,t_ypos+4,menu_string);
     if (mouse_y < 0)   

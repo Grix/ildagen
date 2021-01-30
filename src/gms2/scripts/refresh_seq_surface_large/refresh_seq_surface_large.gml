@@ -97,8 +97,10 @@ function refresh_seq_surface_large() {
 	            //2d
 	            if (viewmode != 1)
 	            {
-	                xo = view_wport[4]/2-(view_hport[4]+view_hport[1])/2+buffer_read(el_buffer,buffer_f32)*t_scaley;
-	                yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
+					xo_raw = buffer_read(el_buffer,buffer_f32);
+					yo_raw =  buffer_read(el_buffer,buffer_f32);
+	                xo = view_wport[4]/2-(view_hport[4]+view_hport[1])/2+xo_raw*t_scaley;
+	                yo = yo_raw*t_scaley;  
 					xo += t_preview_x_offset;
 					yo += t_preview_y_offset;
 	                buffer_seek(el_buffer,buffer_seek_relative,42);
@@ -149,8 +151,10 @@ function refresh_seq_surface_large() {
 	            {
 	                buffer_seek(el_buffer,buffer_seek_start,buffer_start_pos);
                 
-	                xo = view_wport[4]/2-(view_hport[4]+view_hport[1])/2+buffer_read(el_buffer,buffer_f32)*t_scaley;
-	                yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
+					xo_raw = buffer_read(el_buffer,buffer_f32);
+					yo_raw =  buffer_read(el_buffer,buffer_f32);
+	                xo = view_wport[4]/2-(view_hport[4]+view_hport[1])/2+xo_raw*t_scaley;
+	                yo = yo_raw*t_scaley;  
 	                buffer_seek(el_buffer,buffer_seek_relative,42);
                 
 	                apply_envelope_frame(t_scaley);
@@ -277,8 +281,10 @@ function refresh_seq_surface_large() {
 			            //2d
 			            if (viewmode != 1)
 			            {
-			                xo = view_wport[4]/2-(view_hport[4]+view_hport[1])/2+buffer_read(el_buffer,buffer_f32)*t_scaley;
-			                yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
+							xo_raw = buffer_read(el_buffer,buffer_f32);
+							yo_raw =  buffer_read(el_buffer,buffer_f32);
+			                xo = view_wport[4]/2-(view_hport[4]+view_hport[1])/2+xo_raw*t_scaley;
+			                yo = yo_raw*t_scaley;  
 							xo += t_preview_x_offset;
 							yo += t_preview_y_offset;
 			                buffer_seek(el_buffer,buffer_seek_relative,42);

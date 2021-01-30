@@ -1,5 +1,5 @@
 function apply_envelope_point() {
-	gml_pragma("forceinline");
+	//gml_pragma("forceinline");
 
 	//apply envelope transforms to point data
 	if (env_hue)

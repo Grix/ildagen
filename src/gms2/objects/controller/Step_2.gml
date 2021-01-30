@@ -235,18 +235,18 @@ if (ds_list_size(el_list) > 0)
     else if (keyboard_check(ord("Q")))
     {
         nearestdist = 32*dpi_multiplier;
-		log(mouse_x,mouse_y-camera_get_view_y(view_camera[4]));
+		//log(mouse_x,mouse_y-camera_get_view_y(view_camera[4]));
         for (i = 0;i < ds_list_size(el_list);i++)
         {
             templist =  ds_list_find_value(el_list,i);
-			log(i, ds_list_find_value(templist,0)/$ffff*view_wport[4], ds_list_find_value(templist,1)/$ffff*view_wport[4]);
+			//log(i, ds_list_find_value(templist,0)/$ffff*view_wport[4], ds_list_find_value(templist,1)/$ffff*view_wport[4]);
 			if (point_distance(ds_list_find_value(templist,0)/$ffff*view_wport[4],ds_list_find_value(templist,1)/$ffff*view_wport[4],mouse_x,mouse_y-camera_get_view_y(view_camera[4])) < nearestdist)
             {
                 obj_cursor.x = ds_list_find_value(templist,0)/$ffff*view_wport[4];
                 obj_cursor.y = ds_list_find_value(templist,1)/$ffff*view_wport[4];
                 nearestdist = point_distance(obj_cursor.x,obj_cursor.y,mouse_x,mouse_y-camera_get_view_y(view_camera[4]));
             }
-			log(i, ds_list_find_value(templist,2)/$ffff*view_wport[4], ds_list_find_value(templist,3)/$ffff*view_wport[4]);
+			//log(i, ds_list_find_value(templist,2)/$ffff*view_wport[4], ds_list_find_value(templist,3)/$ffff*view_wport[4]);
 			if (point_distance(ds_list_find_value(templist,2)/$ffff*view_wport[4],ds_list_find_value(templist,3)/$ffff*view_wport[4],mouse_x,mouse_y-camera_get_view_y(view_camera[4])) < nearestdist)
             {
                 obj_cursor.x = ds_list_find_value(templist,2)/$ffff*view_wport[4];

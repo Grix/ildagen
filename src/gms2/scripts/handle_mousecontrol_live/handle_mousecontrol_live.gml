@@ -2,7 +2,7 @@ function handle_mousecontrol_live() {
 	//vertical scroll moving
 	if (scroll_moving == 2)
 	{
-		var t_gridheight = camera_get_view_height(view_camera[1]);
+		var t_gridheight = max(1, camera_get_view_height(view_camera[1]));
 	    scrollbary += (device_mouse_raw_y(0)-mouse_yprevious)/controller.dpi_multiplier*(ypos_perm+t_gridheight)/(t_gridheight-1);
 	    if (scrollbary < 0) 
 			scrollbary = 0;
@@ -28,7 +28,7 @@ function handle_mousecontrol_live() {
 	or (instance_exists(obj_dropdown))
 	    exit;
 
-	var t_width = camera_get_view_width(view_get_camera(1))-scrollbarwidth+1;
+	var t_width = max(1, camera_get_view_width(view_get_camera(1))-scrollbarwidth+1);
 	var t_ystart = camera_get_view_y(view_get_camera(1))-scrollbary;
 	var t_cells_per_row = ceil(t_width / target_width_per_cell);
 	var t_cell_size = t_width / t_cells_per_row;
@@ -40,7 +40,7 @@ function handle_mousecontrol_live() {
 	highlightfile = -1;
 
 	// scroll
-	var t_gridheight = camera_get_view_height(view_camera[1]);
+	var t_gridheight = max(1, camera_get_view_height(view_camera[1]));
 	var scrolly_y1 = round(t_ystart+scrollbary+(scrollbary*scrollbarw/t_gridheight));
 	if (mouse_y == clamp(mouse_y,scrolly_y1, scrolly_y1+scrollbarw)) && (mouse_x == clamp(mouse_x,t_width,t_width+scrollbarwidth))
 	{
