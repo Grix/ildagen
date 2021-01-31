@@ -6,6 +6,12 @@ if (playing == 1)
     framehr += delta_time/1000000*controller.projectfps;
     frame = round(framehr);
 	
+	if (frameprev > frame)
+		frameprev = frame;
+	
+	frametotal = frame;
+	frametotalhr = framehr;
+	
     if (frame != frameprev)
     {
         frame_surf_refresh = 1;
@@ -31,8 +37,17 @@ if (playing == 1)
 		}
     }
 }
+else
+{
+	frametotalhr += delta_time/1000000*controller.projectfps;
+    frametotal = round(frametotalhr);
+	if (frametotal != frameprev)
+    {
+		frame_surf_refresh = 1;
+	}
+}
 
-frameprev = frame;
+frameprev = frametotal;
 
 minroomspeed = 7.5;
 

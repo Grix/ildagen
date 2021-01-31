@@ -76,7 +76,7 @@ function refresh_live_surface() {
 			gpu_set_blendenable(0);
 			if (viewmode != 1)
 			{
-			    xo = view_wport[4]/2-view_hport[4]/2+(t_raw_xo+env_xtrans_val)*t_scaley;
+			    xo = view_wport[4]/2-view_hport[4]/2 + (t_raw_xo+env_xtrans_val)*t_scaley;
 			    yo = (t_raw_yo+env_ytrans_val)*t_scaley; 
 			
 			    buffer_seek(el_buffer,buffer_seek_relative,42);
@@ -160,8 +160,11 @@ function refresh_live_surface() {
 			{
 			    buffer_seek(el_buffer,buffer_seek_start,buffer_start_pos);
                 
-			    xo = view_wport[4]/2-view_hport[4]/2+buffer_read(el_buffer,buffer_f32)*t_scaley;
-			    yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
+				var t_raw_xo = buffer_read(el_buffer,buffer_f32);
+				var t_raw_yo = buffer_read(el_buffer,buffer_f32);
+				
+			    xo = view_wport[4]/2-view_hport[4]/2 + (t_raw_xo+env_xtrans_val)*t_scaley;
+			    yo = (t_raw_yo+env_ytrans_val)*t_scaley;  
 			    buffer_seek(el_buffer,buffer_seek_relative,42);
 				
 				if (repeatnum >= 0)
@@ -291,8 +294,14 @@ function refresh_live_surface() {
 					gpu_set_blendenable(0);
 					if (viewmode != 1)
 					{
-					    xo = view_wport[4]/2-view_hport[4]/2+buffer_read(el_buffer,buffer_f32)*t_scaley;
-					    yo = buffer_read(el_buffer,buffer_f32)*t_scaley;  
+						var t_raw_xo = buffer_read(el_buffer,buffer_f32);
+						var t_raw_yo = buffer_read(el_buffer,buffer_f32);
+						var t_actualanchor_x = $8000 - t_raw_xo;
+						var t_actualanchor_y = $8000 - t_raw_yo;
+						
+					    xo = view_wport[4]/2-view_hport[4]/2 + (t_raw_xo+env_xtrans_val)*t_scaley;
+					    yo = (t_raw_yo+env_ytrans_val)*t_scaley;  
+						
 					    buffer_seek(el_buffer,buffer_seek_relative,42);
                 
 						if (repeatnum >= 0)
@@ -301,6 +310,14 @@ function refresh_live_surface() {
 						    yp = buffer_read(el_buffer,buffer_f32);
 						    bl = buffer_read(el_buffer,buffer_bool);
 						    c = buffer_read(el_buffer,buffer_u32);
+							
+							if (env_rotabs)
+						    {
+						        angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
+						        dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
+						        xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
+						        yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
+						    }
 		
 						    surface_set_target(frame_surf);
                 
@@ -317,6 +334,34 @@ function refresh_live_surface() {
                     
 						        if (!bl)
 						        {
+									if (env_hue)
+						            {
+						                c = make_colour_hsv((colour_get_hue(c)+env_hue_val+255) % 255,colour_get_saturation(c),colour_get_value(c));
+						            }
+						            if (env_a)
+						            {
+						                c = merge_colour(c,c_black,env_a_val);
+						            }
+						            if (env_r)
+						            {
+						                c = (c & $FFFF00) | ((c & $FF)*env_r_val);
+						            }
+						            if (env_g)
+						            {
+						                c = (c & $FF00FF) | ((((c >> 8) & $FF)*env_g_val) << 8);
+						            }
+						            if (env_b)
+						            {
+						                c = (c & $00FFFF) | (((c >> 16)*env_b_val) << 16);
+						            }
+						            if (env_rotabs)
+						            {
+						                angle = degtorad(point_direction(t_actualanchor_x, t_actualanchor_y, xp, yp));
+						                dist = point_distance(t_actualanchor_x, t_actualanchor_y, xp, yp);
+						                xp = t_actualanchor_x+cos(env_rotabs_val-angle)*dist;
+						                yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
+						            }
+									
 						            draw_set_color(c);
 						            if ((xp == xpp) and (yp == ypp) and !blp)
 						            {

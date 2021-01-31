@@ -80,6 +80,11 @@ function output_frame_live() {
 		    }
 		
 			//modifier transforms
+	        if (env_rotabs)
+	        {
+	            var t_actualanchor_x = $8000 - ds_list_find_value(ind_list,0);
+	            var t_actualanchor_y = $8000 - ds_list_find_value(ind_list,1);
+	        }
 	        if (env_xtrans)
 	        {
 	            ds_list_replace(ind_list,0,ds_list_find_value(ind_list,0) + env_xtrans_val);
@@ -87,11 +92,6 @@ function output_frame_live() {
 	        if (env_ytrans)
 	        {
 	            ds_list_replace(ind_list,1,ds_list_find_value(ind_list,1) + env_ytrans_val);
-	        }
-	        if (env_rotabs)
-	        {
-	            var t_actualanchor_x = $8000 - ds_list_find_value(ind_list,0);
-	            var t_actualanchor_y = $8000 - ds_list_find_value(ind_list,1);
 	        }
             
 		    for (u = 10; u < 20; u++)
