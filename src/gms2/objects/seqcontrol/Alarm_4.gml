@@ -33,11 +33,14 @@ while (ds_list_size(undo_list) > 20)
             exit;
         objectlist = ds_list_find_value(undolisttemp,1);
         infolist = ds_list_find_value(objectlist, 2);
-        if (surface_exists(ds_list_find_value(infolist,1)))
-            surface_free(ds_list_find_value(infolist,1));
-        //if buffer exists
-            buffer_delete(ds_list_find_value(objectlist,1));
-        ds_list_destroy(infolist);
+		if (!is_undefined(infolist))
+		{
+	        if (!is_undefined(ds_list_find_value(infolist,1)) && surface_exists(ds_list_find_value(infolist,1)))
+	            surface_free(ds_list_find_value(infolist,1));
+	        ds_list_destroy(infolist);
+		}
+	    if (buffer_exists(ds_list_find_value(objectlist,1)))
+			buffer_delete(ds_list_find_value(objectlist,1));
         ds_list_destroy(objectlist);
         ds_list_destroy(undolisttemp);
     }

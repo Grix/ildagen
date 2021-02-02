@@ -22,6 +22,12 @@ function load_frames_seq(argument0) {
 		show_message_new("Could not open file");
 		exit;
 	}
+	
+	if (buffer_get_size(load_buffer) == 0)
+	{
+		show_message_new("File is empty, is this a valid LaserShowGen file?");
+		exit;
+	}
 
 	buffer_seek(load_buffer,buffer_seek_start,0);
 	idbyte = buffer_read(load_buffer,buffer_u8);

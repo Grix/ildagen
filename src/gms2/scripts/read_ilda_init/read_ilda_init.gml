@@ -3,8 +3,6 @@ function read_ilda_init(argument0) {
 	//arg0 is scanner number
 	//return 1 if successful
 	
-	
-
 	filename = argument0;
 	if (string_length(filename))
 	{
@@ -13,6 +11,12 @@ function read_ilda_init(argument0) {
 		if (ild_file == -1)
 		{
 			show_message_new("Could not open file");
+			return 0;
+		}
+		
+		if (buffer_get_size(ild_file) < 8)
+		{
+			show_message_new("File is too small, is this a valid ILDA file?");
 			return 0;
 		}
 	

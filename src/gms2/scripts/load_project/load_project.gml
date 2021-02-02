@@ -14,6 +14,12 @@ function load_project(argument0) {
 		show_message_new("Could not open file at path: "+file_loc);
 		exit;
 	}
+	
+	if (buffer_get_size(load_buffer) == 0)
+	{
+		show_message_new("File is empty, is this a valid LaserShowGen file?");
+		exit;
+	}
     
 	idbyte = buffer_read(load_buffer,buffer_u8);
 	if (idbyte != 104) and (idbyte != 103) and (idbyte != 100) and (idbyte != 101) and (idbyte != 102)
