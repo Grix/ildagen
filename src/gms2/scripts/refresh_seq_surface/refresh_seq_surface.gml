@@ -2,9 +2,9 @@ function refresh_seq_surface() {
 	//refreshes the laser show preview surface in the sequencer mode room
 
 	if (!surface_exists(frame_surf))
-	    frame_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_hport[4]))));
+	    frame_surf = surface_create(max(1, power(2, ceil(log2(view_wport[4])))), max(1, power(2, ceil(log2(view_hport[4])))));
 	if (!surface_exists(frame3d_surf))
-	    frame3d_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_hport[4]))));
+	    frame3d_surf = surface_create(max(1, power(2, ceil(log2(view_wport[4])))), max(1, power(2, ceil(log2(view_hport[4])))));
 
 	if (viewmode != 1)
 	{
@@ -67,6 +67,9 @@ function refresh_seq_surface() {
 				ds_list_add(t_newinfo, create_checkpoint_list(objectlist[| 1]));
 				ds_list_replace(objectlist, 2, t_newinfo);
 				infolist = t_newinfo;
+				
+				http_post_string(   "http://www.bitlasers.com/lasershowgen/bugreport.php",
+	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING infolist in refresh_seq_surface. Undefined: "+string(is_undefined(infolist))+", frametime: "+string(frametime)+", element num: "+string(m));
 			}
 	        object_length = ds_list_find_value(infolist,0);
 	        object_maxframes = ds_list_find_value(infolist,2);

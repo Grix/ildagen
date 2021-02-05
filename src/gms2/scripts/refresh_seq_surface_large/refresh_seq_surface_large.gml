@@ -1,9 +1,9 @@
 function refresh_seq_surface_large() {
 	//refreshes the laser show preview surface in the sequencer mode room
 	if (!surface_exists(frame_surf_large))
-	    frame_surf_large = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_hport[4]+view_hport[1]))));
+	    frame_surf_large = surface_create(max(1, power(2, ceil(log2(view_wport[4])))), max(1, power(2, ceil(log2(view_hport[4]+view_hport[1])))));
 	if (!surface_exists(frame3d_surf_large))
-	    frame3d_surf_large = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_hport[4]+view_hport[1]))));
+	    frame3d_surf_large = surface_create(max(1, power(2, ceil(log2(view_wport[4])))), max(1, power(2, ceil(log2(view_hport[4]+view_hport[1])))));
 
 	if (viewmode != 1)
 	{

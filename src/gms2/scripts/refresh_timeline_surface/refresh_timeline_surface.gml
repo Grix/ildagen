@@ -3,13 +3,13 @@ function refresh_timeline_surface() {
 
 	if (!surface_exists(timeline_surf))
 	{
-	    timeline_surf = surface_create(power(2, ceil(log2(tlw+512))), max(1, power(2, ceil(log2(view_hport[1]/controller.dpi_multiplier)))));
+	    timeline_surf = surface_create(max(1, power(2, ceil(log2(tlw+512)))), max(1, power(2, ceil(log2(view_hport[1]/controller.dpi_multiplier)))));
 		timeline_surf_pos = tlx;
 		timeline_surf_length = 0;
 	}
 	if (!surface_exists(timeline_surf_audio))
 	{
-	    timeline_surf_audio = surface_create(power(2, ceil(log2(tlw+512))), 128);
+	    timeline_surf_audio = surface_create(max(1, power(2, ceil(log2(tlw+512)))), 128);
 		timeline_surf_pos = tlx;
 		timeline_surf_length = 0;
 	}
@@ -30,9 +30,9 @@ function refresh_timeline_surface() {
 	if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	{
 		if (!surface_exists(timeline_surf_temp))
-			timeline_surf_temp = surface_create(power(2, ceil(log2(tlw+512))), max(1, power(2, ceil(log2(view_hport[1]/controller.dpi_multiplier)))));
+			timeline_surf_temp = surface_create(max(1, power(2, ceil(log2(tlw+512)))), max(1, power(2, ceil(log2(view_hport[1]/controller.dpi_multiplier)))));
 		if (!surface_exists(timeline_surf_audio_temp))
-			timeline_surf_audio_temp = surface_create(power(2, ceil(log2(tlw+512))), 128);
+			timeline_surf_audio_temp = surface_create(max(1, power(2, ceil(log2(tlw+512)))), 128);
 	
 		if (timeline_surf_length*tlwdivtlzoom + t_tlw > surface_get_width(timeline_surf))
 		{

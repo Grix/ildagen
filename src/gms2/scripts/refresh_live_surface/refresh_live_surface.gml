@@ -1,8 +1,8 @@
 function refresh_live_surface() {
 	if (!surface_exists(frame_surf))
-	    frame_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_hport[4]))));
+	    frame_surf = surface_create(max(1, power(2, ceil(log2(view_wport[4])))), max(1, power(2, ceil(log2(view_hport[4])))));
 	if (!surface_exists(frame3d_surf))
-	    frame3d_surf = surface_create(power(2, ceil(log2(view_wport[4]))), power(2, ceil(log2(view_hport[4]))));
+	    frame3d_surf = surface_create(max(1, power(2, ceil(log2(view_wport[4])))), max(1, power(2, ceil(log2(view_hport[4])))));
 	
 	
 	if (viewmode != 1)

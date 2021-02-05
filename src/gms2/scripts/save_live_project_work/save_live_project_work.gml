@@ -22,6 +22,9 @@ function save_live_project_work() {
 			ds_list_add(t_newinfo, create_checkpoint_list(objectlist[| 1]));
 			ds_list_replace(objectlist, 2, t_newinfo);
 			tempinfolist = t_newinfo;
+			
+			http_post_string(   "http://www.bitlasers.com/lasershowgen/bugreport.php",
+	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING infolist in save_live_project_work. Undefined: "+string(is_undefined(tempinfolist))+", file: "+string(i));
 		}
 	    buffer_write(save_buffer, buffer_u32, tempframe);
 	    buffer_write(save_buffer, buffer_u32, buffer_get_size(tempbuffer));
