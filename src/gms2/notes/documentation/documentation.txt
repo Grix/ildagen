@@ -1,8 +1,8 @@
 TODO
-- test new fix in zero point elements (left.igf) in YYC
 - quicksave in editor mode
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
 - undo reversing in editor mode
+- fix first point in live mode not rotating in preview when applying rotation slider (works in laser output)
 - midi output on timeline, to trigger events in f.ex the radiator
 - arbitrary animation easing function
 - midi input for live mode trigger etc.

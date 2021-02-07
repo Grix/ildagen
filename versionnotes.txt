@@ -1,13 +1,10 @@
+v1.8.12 (2021-02-07)
+- Fix preview in Live Mode not always matching with laser output.
+- Fix or mitigate several possible crashes.
+
 v1.8.11 (2021-01-28)
 - Add checkbox to reverse the animation function.
 - Fix LaserCube not being detected properly or crashing at scan, on a few Windows systems.
 - Fix crash in timeline during playback of certain files with elements of size 0.
 - Fix high CPU and possible cursor graphical glitches when hovering mouse over buttons in Windows.
 - Fix wave object preview while drawing sometimes having wrong amplitude.
-
-v1.8.10 (2020-12-17)
-- Fix more crashes, including one when playing certain timeline object that had been reversed.
-- Now linearizes the speed of custom animation paths by default (toggleable in context menu).
-- Fix audio in timeline mode not working on Linux.
-- Fix only one item pasted when multiple items were cut, in timeline mode.
-- Fix emergency file saving after a crash not working in timeline and live modes.

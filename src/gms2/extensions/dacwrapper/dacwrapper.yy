@@ -99,7 +99,7 @@
     "Included Files\\RiyaNetServer.dll",
   ],
   "androidPermissions": [],
-  "copyToTargets": 64,
+  "copyToTargets": 194,
   "iosCocoaPods": "",
   "tvosCocoaPods": "",
   "iosCocoaPodDependencies": "",

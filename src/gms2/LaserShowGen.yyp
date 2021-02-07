@@ -432,6 +432,7 @@
     {"id":{"name":"_ML_LiP_SetFunctionString","path":"scripts/_ML_LiP_SetFunctionString/_ML_LiP_SetFunctionString.yy",},"order":0,},
     {"id":{"name":"_ML_LiP_SetVarMap","path":"scripts/_ML_LiP_SetVarMap/_ML_LiP_SetVarMap.yy",},"order":1,},
     {"id":{"name":"_ML_LiP_SetErrorFlags","path":"scripts/_ML_LiP_SetErrorFlags/_ML_LiP_SetErrorFlags.yy",},"order":2,},
+    {"id":{"name":"building_macos","path":"notes/building_macos/building_macos.yy",},"order":1,},
     {"id":{"name":"_ML_LiP_SetErrorPos","path":"scripts/_ML_LiP_SetErrorPos/_ML_LiP_SetErrorPos.yy",},"order":3,},
     {"id":{"name":"_ML_LiP_SetErrorString","path":"scripts/_ML_LiP_SetErrorString/_ML_LiP_SetErrorString.yy",},"order":4,},
     {"id":{"name":"_ML_LiRO_Create","path":"scripts/_ML_LiRO_Create/_ML_LiRO_Create.yy",},"order":0,},
