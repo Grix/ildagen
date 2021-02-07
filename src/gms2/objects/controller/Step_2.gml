@@ -123,6 +123,13 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 
 el_list = frame_list[| frame];
 
+if (!ds_list_exists(el_list))
+{
+	// BUG
+	http_post_string(   "http://www.bitlasers.com/lasershowgen/bugreport.php",
+	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "ERROR: el_list doesn't exist. frame="+string(frame)+", framelistsize="+string(ds_list_size(frame_list))+", maxframes="+string(maxframes));
+}
+
 if (placing == "hershey")
     hershey_handle_scroll();
     

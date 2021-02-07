@@ -51,7 +51,11 @@ function import_font() {
         
 	    ild_list = ds_list_create();
     
-	    read_ilda_header_first();
+	    if (read_ilda_header_first())
+		{
+			show_message_new("Failed loading font due to invalid header. Is this a valid ILDA file?");
+			return 0;
+		}
 	    read_ilda_frame();
     
 	    //todo catch errors
