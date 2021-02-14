@@ -336,10 +336,14 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 			{
 				olscEasylaseBuffer[i].x = bufferAddress[currentPos++] - 0x8000;
 				olscEasylaseBuffer[i].y = bufferAddress[currentPos++] - 0x8000;
-				olscEasylaseBuffer[i].r = (bufferAddress[currentPos++] << 8) - 0x80;
+				olscEasylaseBuffer[i].r = (bufferAddress[currentPos++] << 7);
+				olscEasylaseBuffer[i].g = (bufferAddress[currentPos++] << 7);
+				olscEasylaseBuffer[i].b = (bufferAddress[currentPos++] << 7);
+				olscEasylaseBuffer[i].i = (bufferAddress[currentPos++] << 7);
+				/*olscEasylaseBuffer[i].r = (bufferAddress[currentPos++] << 8) - 0x80;
 				olscEasylaseBuffer[i].g = (bufferAddress[currentPos++] << 8) - 0x80;
 				olscEasylaseBuffer[i].b = (bufferAddress[currentPos++] << 8) - 0x80;
-				olscEasylaseBuffer[i].i = (bufferAddress[currentPos++] << 8) - 0x80;
+				olscEasylaseBuffer[i].i = (bufferAddress[currentPos++] << 8) - 0x80;*/
 			}
 			olscEasylaseDevice->OutputFrame(cardNum, scanRate, frameSize, &olscEasylaseBuffer[0]);
 		}
