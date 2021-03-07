@@ -53,7 +53,7 @@ function delete_object() {
 	frame_surf_refresh = 1;
 	ds_list_clear(semaster_list);
 	ilda_cancel();
-
+	clean_redo_list();
 
 
 }

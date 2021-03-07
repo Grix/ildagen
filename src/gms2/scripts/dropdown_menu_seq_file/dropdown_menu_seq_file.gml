@@ -7,7 +7,7 @@ function dropdown_menu_seq_file() {
 	    ds_list_add(desc_list,"Save project (Ctrl-S)");
 		ds_list_add(desc_list,"Save project as...");
 	    ds_list_add(desc_list,"Load project...");
-		ds_list_add(desc_list,"(NEW) Load demo show");
+		ds_list_add(desc_list,"Load demo show");
 	    ds_list_add(desc_list,"Export project as ILDA file...");
 	    ds_list_add(desc_list,"Import ILDA file to timeline...");
 	    ds_list_add(desc_list,"Import LaserShowGen frames file to timeline...");

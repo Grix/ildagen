@@ -4,6 +4,7 @@ function create_element() {
 	lastpointadded = 0
 	framepre = frame;
 	placing_status = 0;
+	clean_redo_list();
         
 	if (maxframes == 1) and (anienable)
 	{

@@ -28,7 +28,7 @@ function check_mouseactions() {
 	    exit;
 	}
 	
-	if (objmoving != 0)
+	if (objmoving != 0 || bez_moving != 0)
 		exit;
 
 	if ((mouse_x > tlorigo_x+2) && (mouse_x < tlorigo_x+tlw-2) && 

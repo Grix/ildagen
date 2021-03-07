@@ -599,6 +599,7 @@ function process_dialog_ilda() {
 	              }
                   
 	              dd_scope_reset();
+				  clean_redo_list();
               
 	              break;
 	          }
@@ -609,6 +610,7 @@ function process_dialog_ilda() {
 	              refresh_minitimeline_flag = 1;
 				  frame_surf_refresh = 1;
 				  update_semasterlist_flag = 1;
+				  clean_redo_list();
               
 	              var t_newmaxframes = ds_map_find_value(argument[0], "value");
               

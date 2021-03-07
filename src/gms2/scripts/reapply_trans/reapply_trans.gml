@@ -273,6 +273,7 @@ function reapply_trans() {
 
 	frame_surf_refresh = 1;
 	update_semasterlist_flag = 1;
+	clean_redo_list();
 	ds_list_add(undo_list,"k"+string(temp_undof_list));
 
 

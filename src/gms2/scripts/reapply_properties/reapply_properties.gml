@@ -1,6 +1,7 @@
 function reapply_properties() {
 	//reapplies the object properties
 	ilda_cancel();
+	clean_redo_list();
 	var t_loop = false;
 
 	//PREPARING FUNCTIONS

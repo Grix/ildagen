@@ -39,6 +39,7 @@ function paste_object() {
 
 	el_id++;
 	update_semasterlist_flag = 1;
+	clean_redo_list();
 	frame_surf_refresh = 1;
 
 

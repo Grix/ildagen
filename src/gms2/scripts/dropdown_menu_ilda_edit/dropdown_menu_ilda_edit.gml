@@ -2,11 +2,15 @@ function dropdown_menu_ilda_edit() {
 	ddobj = instance_create_layer(controller.menu_width_start[1]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 	with (ddobj)
 	{
-	    num = 11;
+	    num = 12;
 	    ds_list_add(desc_list,"Undo (Ctrl+Z)");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,undo_ilda);
 	    ds_list_add(hl_list,!ds_list_empty(controller.undo_list));
+		ds_list_add(desc_list,"Redo (Ctrl+Y)");
+	    ds_list_add(sep_list,0);
+	    ds_list_add(scr_list,redo_ilda);
+	    ds_list_add(hl_list,!ds_list_empty(controller.redo_list));
 	    ds_list_add(desc_list,"Cut (Ctrl+X)");
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,cut_object);

@@ -1,5 +1,6 @@
 function clear_all() {
 	ilda_cancel();
+	clean_redo_list();
 	ds_list_clear(semaster_list);
 
 	for (j = 0;j < ds_list_size(frame_list);j++)
@@ -97,7 +98,6 @@ function clear_all() {
 
 
 	frame_surf_refresh = 1;
-
 
 
 

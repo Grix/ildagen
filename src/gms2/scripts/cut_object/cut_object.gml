@@ -63,6 +63,7 @@ function cut_object() {
 	ds_list_clear(semaster_list);
 	frame_surf_refresh = 1;
 	update_semasterlist_flag = 1;
+	clean_redo_list();
 
 	ilda_cancel();
 

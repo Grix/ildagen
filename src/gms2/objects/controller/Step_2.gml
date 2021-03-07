@@ -165,6 +165,11 @@ else if (keyboard_check_control() && keyboard_check_pressed(ord("Z")))
 {
     undo_ilda();
 }
+
+else if (keyboard_check_control() && keyboard_check_pressed(ord("Y")))
+{
+    redo_ilda();
+}
         
 else if (keyboard_check_pressed(ord("0")))
 {

@@ -77,6 +77,8 @@ function frames_fromseq() {
 	    ds_list_clear(semaster_list);
 	    frame = 0;
 	    framehr = 0;
+		
+		clean_redo_list();
     
 	    ds_map_destroy(el_idmap);
 	}

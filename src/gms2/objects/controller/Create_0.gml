@@ -100,6 +100,7 @@ alarm[3] = 120;
 
 el_list = ds_list_create();
 undo_list = ds_list_create();
+redo_list = ds_list_create();
 frame_surf = -1;
 frame3d_surf = -1;
 frame_list = ds_list_create();

@@ -27,6 +27,7 @@ function handle_trans() {
 	        reapply_trans();
         
 	        update_semasterlist_flag = 1;
+			clean_redo_list();
 	    }
 	}
 	else if (objmoving == 2)    
