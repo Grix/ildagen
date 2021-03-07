@@ -2,7 +2,7 @@ function check_elementselect() {
 	//if (obj_cursor.x != clamp(obj_cursor.x,0,512)) && (obj_cursor.y != clamp(obj_cursor.y,0,512))
 	//    exit;
 
-	if (laseron)
+	if (laseron && !preview_while_laser_on)
 		exit;
     
 	var t_ellistsize = ds_list_size(el_list);
