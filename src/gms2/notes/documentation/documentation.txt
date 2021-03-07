@@ -1,6 +1,4 @@
 TODO
-- fix being able to seek in timeline while dragging object
-- hold shift to snap to angle when rotating
 - auto-move anchor after moving/resizing
 - resize in one direction, like in projection area editor
 - fix overlapping rotate/scale icons with very thin objects close to edge

@@ -336,6 +336,7 @@ anireverse = false;
 
 rot = 0;
 anirot = 0;
+anirot_raw = 0;
 scalex = 1;
 scaley = 1;
 aniscalex = 1;

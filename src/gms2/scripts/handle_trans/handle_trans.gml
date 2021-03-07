@@ -50,11 +50,14 @@ function handle_trans() {
 	    mouseangle = point_direction(obj_cursor.x,obj_cursor.y,anchorx/$ffff*t_wport4,anchory/$ffff*t_wport4);
     
 	    if ((mouseangleprevious-mouseangle) > 180)
-	        anirot -= 360;
+	        anirot_raw -= 360;
 	    else if ((mouseangleprevious-mouseangle) < -180)
-	        anirot += 360;
+	        anirot_raw += 360;
         
-	    anirot += mouseangleprevious-mouseangle;
+	    anirot_raw += mouseangleprevious-mouseangle;
+		anirot = anirot_raw;
+		if (keyboard_check(vk_shift))
+			anirot = round(anirot/15)*15;
 		
 		if (editing_type == 1 && ds_list_exists(edit_recording_list))
 		{
