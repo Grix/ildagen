@@ -1,12 +1,12 @@
 TODO
-- auto-move anchor after moving/resizing
-- resize in one direction, like in projection area editor
-- fix overlapping rotate/scale icons with very thin objects close to edge
+- improve resizing, rotation. Add resizing boxes to all sides and corners for free control.
 - zoom stuck on mac (big sur only?
 - ctrl+z not working in macos 2019? Opens zoom instead. (see email 2021-02-18)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
 - undo reversing in editor mode
 - redo
+- compress buffers when saving in live mode and editor mode
+- fix mismatch between mouse and cursor when window is too narrow.
 - quicksave in editor mode
 - fix first point in live mode not rotating in preview when applying rotation slider (works in laser output)
 - midi output on timeline, to trigger events in f.ex the radiator

@@ -39,9 +39,11 @@ function save_project_work() {
 	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING infolist in save_project_work. Undefined: "+string(is_undefined(tempinfolist))+", frametime: "+string(tempframe)+", element num: "+string(j));
 			}
 	        buffer_write(save_buffer, buffer_u32, tempframe);
-	        buffer_write(save_buffer, buffer_u32, buffer_get_size(tempbuffer));
-	        buffer_copy(tempbuffer, 0, buffer_get_size(tempbuffer), save_buffer, buffer_tell(save_buffer));
-	        buffer_seek(save_buffer, buffer_seek_relative, buffer_get_size(tempbuffer));
+			var t_compressedbuffer = buffer_compress(tempbuffer, 0, buffer_get_size(tempbuffer));
+	        buffer_write(save_buffer, buffer_u32, buffer_get_size(t_compressedbuffer));
+	        buffer_copy(t_compressedbuffer, 0, buffer_get_size(t_compressedbuffer), save_buffer, buffer_tell(save_buffer));
+	        buffer_seek(save_buffer, buffer_seek_relative, buffer_get_size(t_compressedbuffer));
+			buffer_delete(t_compressedbuffer);
 	        buffer_write(save_buffer, buffer_u32, ds_list_find_value(tempinfolist,0));
 	        buffer_write(save_buffer, buffer_u32, ds_list_find_value(tempinfolist,2));
 	    }
@@ -123,10 +125,10 @@ function save_project_work() {
 	    buffer_write(save_buffer,buffer_u32,ds_list_find_value(marker_list,i));
 	}
     
-	buffer_resize(save_buffer,buffer_tell(save_buffer));
+	//buffer_resize(save_buffer,buffer_tell(save_buffer));
 
 	//export
-	buffer_save(save_buffer,file_loc);
+	buffer_save_ext(save_buffer,file_loc, 0, buffer_tell(save_buffer));
 
 	var t_time = get_timer();
 	while ((get_timer() - t_time) > 4095)

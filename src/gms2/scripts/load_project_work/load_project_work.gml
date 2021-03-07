@@ -1,5 +1,5 @@
 function load_project_work() {
-	if (idbyte == 104) or(idbyte == 103) or (idbyte == 101) or (idbyte == 102)
+	if (idbyte == 105) or (idbyte == 104) or (idbyte == 103) or (idbyte == 101) or (idbyte == 102)
 	{
 	    for (j = global.loading_current; j < global.loading_end;j++)
 	    {
@@ -25,9 +25,16 @@ function load_project_work() {
             
 	            objectbuffersize = buffer_read(load_buffer,buffer_u32);
 	            objectbuffer = buffer_create(objectbuffersize,buffer_fixed,1);
-	            ds_list_add(objectlist,objectbuffer);
-	            buffer_copy(load_buffer,buffer_tell(load_buffer),objectbuffersize,objectbuffer,0);
-	            buffer_seek(load_buffer,buffer_seek_relative,objectbuffersize);
+		        buffer_copy(load_buffer,buffer_tell(load_buffer),objectbuffersize,objectbuffer,0);
+				if (idbyte >= 105)
+				{
+					// Decompress object buffer
+					var t_objectbuffer_decompressed = buffer_decompress(objectbuffer);
+					buffer_delete(objectbuffer);
+					objectbuffer = t_objectbuffer_decompressed;
+				}
+				ds_list_add(objectlist,objectbuffer);
+		        buffer_seek(load_buffer,buffer_seek_relative,objectbuffersize);
             
 	            objectinfolist = ds_list_create();
 	            ds_list_add(objectlist,objectinfolist);
@@ -272,7 +279,7 @@ function load_project_work() {
 	    //audio data
 	    if (!parsingaudioload)
 	    {
-			if (idbyte == 104)
+			if (idbyte >= 104)
 			{
 				if (force_audio_reparse)
 				{
