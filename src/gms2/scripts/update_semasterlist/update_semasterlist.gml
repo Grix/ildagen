@@ -34,6 +34,8 @@ function update_semasterlist() {
 	rectxmin = xmin;
 	rectymax = ymax;
 	rectymin = ymin;
+	anchorx = (rectxmax+rectxmin) / 2;
+	anchory = (rectymax+rectymin) / 2;
 
 	update_semasterlist_flag = 0;
 

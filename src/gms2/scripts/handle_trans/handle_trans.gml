@@ -148,7 +148,8 @@ function handle_trans() {
 	            objmoving = 1;
 	            anixtrans = 0;
 	            aniytrans = 0;
-	            anirot = 0;
+	            anirot_raw = 0;
+				anirot = 0;
 	            scalex = 1;
 	            scaley = 1;
 	            mouse_xprevious = obj_cursor.x;
@@ -174,7 +175,8 @@ function handle_trans() {
 	            objmoving = 3;
 	            anixtrans = 0;
 	            aniytrans = 0;
-	            anirot = 0;
+				anirot_raw = 0;
+				anirot = 0;
 	            scalex = 1;
 	            scaley = 1;
 	            mouseangleprevious = point_direction(obj_cursor.x,obj_cursor.y,anchorx/$ffff*t_wport4,anchory/$ffff*t_wport4);
@@ -203,7 +205,8 @@ function handle_trans() {
 	            objmoving = 4;
 	            anixtrans = 0;
 	            aniytrans = 0;
-	            anirot = 0;
+				anirot_raw = 0;
+				anirot = 0;
 	            scalex = 1;
 	            scaley = 1;
 	            mouse_xprevious = obj_cursor.x;
@@ -217,7 +220,8 @@ function handle_trans() {
 	        {
 	            anixtrans = 0;
 	            aniytrans = 0;
-	            anirot = 0;
+				anirot_raw = 0;
+				anirot = 0;
 	            ilda_dialog_num("aniscale","Enter the scaling multiplier (F.ex. 1 is no change, 2 is double the size)",1);
 	        }
 	    }
