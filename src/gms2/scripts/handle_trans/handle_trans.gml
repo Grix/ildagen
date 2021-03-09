@@ -120,8 +120,14 @@ function handle_trans() {
 		
 		var t_resizex = clamp(rectxmax/$ffff*t_wport4, 0, t_wport4-22);
 		var t_resizey = clamp(rectymax/$ffff*t_wport4, 0, t_wport4-22);
+		
 		var t_rotatex = clamp(rectxmin/$ffff*t_wport4, 22, t_wport4);
 		var t_rotatey = clamp(rectymax/$ffff*t_wport4, 0, t_wport4-22);
+		
+		if (t_rotatex > 100 && t_rotatex > t_resizex-8)
+			t_rotatex = t_resizex-8;
+		else if (t_resizex < t_rotatex+8)
+			t_resizex = t_rotatex+8;
 	
 	
 	    if	(t_mouse_x == clamp(t_mouse_x, anchorx/$ffff*t_wport4-10*dpi_multiplier, anchorx/$ffff*t_wport4+10*dpi_multiplier)) and 

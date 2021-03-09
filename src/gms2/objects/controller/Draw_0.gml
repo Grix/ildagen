@@ -148,8 +148,14 @@ if (view_current == 4 || view_current == 5)
             
             draw_sprite_ext(spr_anchor,0,round(anchorx/t_scale), round(t_y+anchory/t_scale), dpi_multiplier, dpi_multiplier, 0, c_white, 1);
             draw_set_alpha(0.6);
-            draw_sprite_ext(spr_rotate,0,clamp(rectxmin/t_scale, 22, view_wport[4]), clamp(t_y+rectymax/t_scale, t_y, t_y+view_wport[4]-22), dpi_multiplier, dpi_multiplier, 0, c_white, 1);
-            draw_sprite_ext(spr_resize,0,clamp(rectxmax/t_scale, 0, view_wport[4]-22), clamp(t_y+rectymax/t_scale, t_y, t_y+view_wport[4]-22), dpi_multiplier, dpi_multiplier, 0, c_white, 1);
+			var t_rotate_sprite_x = clamp(rectxmin/t_scale, 22, view_wport[4]);
+			var t_resize_sprite_x = clamp(rectxmax/t_scale, 0, view_wport[4]-22);
+			if (t_rotate_sprite_x > 100 && t_rotate_sprite_x > t_resize_sprite_x-8)
+				t_rotate_sprite_x = t_resize_sprite_x-8;
+			else if (t_resize_sprite_x < t_rotate_sprite_x+8)
+				t_resize_sprite_x = t_rotate_sprite_x+8;
+            draw_sprite_ext(spr_rotate, 0, t_rotate_sprite_x, clamp(t_y+rectymax/t_scale, t_y, t_y+view_wport[4]-22), dpi_multiplier, dpi_multiplier, 0, c_white, 1);
+            draw_sprite_ext(spr_resize, 0, t_resize_sprite_x, clamp(t_y+rectymax/t_scale, t_y, t_y+view_wport[4]-22), dpi_multiplier, dpi_multiplier, 0, c_white, 1);
             draw_set_alpha(1);
             
             draw_rectangle(rectxmin/t_scale, t_y+rectymin/t_scale, rectxmax/t_scale, t_y+rectymax/t_scale,1);

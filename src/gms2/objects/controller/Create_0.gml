@@ -399,30 +399,34 @@ telem();
 
 ex_patch_window_close_capture(1);
 
-exception_unhandled_handler(function(ex)
+if (!debug_mode)
 {
-    var _f = file_text_open_append("crash.txt");
-    file_text_write_string(_f, string(ex));
-    file_text_close(_f);
-	
-	http_post_string(   "http://www.bitlasers.com/lasershowgen/bugreport.php",
-	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+string_replace_all(string_replace_all(string(ex),"\"",""),"'",""));
-	
-	show_message("ERROR: LaserShowGen has unfortunately encountered a problem and must close. This bug has been logged and reported (anonymously) to the developer, and we will work to fix this problem in future releases.\n\nIf you wish to save your unsaved work, you will now be asked for a file location. NB: Please don't overwrite your existing file as the crash may cause problems in the new backup file.");
-	
-	if (room == rm_seq)
+	log("Creating exception handler");
+	exception_unhandled_handler(function(ex)
 	{
-		with (seqcontrol)
-			save_project_noloading();
-	}
-	else if (room == rm_live)
-	{
-		with (livecontrol)
-			save_live_project_noloading();
-	}
-	else
-	{
-		with (controller)
-			save_frames();
-	}
-});
+	    var _f = file_text_open_append("crash.txt");
+	    file_text_write_string(_f, string(ex));
+	    file_text_close(_f);
+	
+		http_post_string(   "http://www.bitlasers.com/lasershowgen/bugreport.php",
+		                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+string_replace_all(string_replace_all(string(ex),"\"",""),"'",""));
+	
+		show_message("ERROR: LaserShowGen has unfortunately encountered a problem and must close. This bug has been logged and reported (anonymously) to the developer, and we will work to fix this problem in future releases.\n\nIf you wish to save your unsaved work, you will now be asked for a file location. NB: Please don't overwrite your existing file as the crash may cause problems in the new backup file.");
+	
+		if (room == rm_seq)
+		{
+			with (seqcontrol)
+				save_project_noloading();
+		}
+		else if (room == rm_live)
+		{
+			with (livecontrol)
+				save_live_project_noloading();
+		}
+		else
+		{
+			with (controller)
+				save_frames();
+		}
+	});
+}
