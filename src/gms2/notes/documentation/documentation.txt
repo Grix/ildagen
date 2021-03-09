@@ -5,6 +5,7 @@ TODO
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
 - undo reversing in editor mode
 - redo
+- undo stretching maxframes in editor mode
 - compress buffers when saving in live mode and editor mode
 - fix mismatch between mouse and cursor when window is too narrow.
 - quicksave in editor mode

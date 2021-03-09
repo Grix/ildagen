@@ -77,4 +77,5 @@ while (ds_list_size(redo_list) > 0)
 		refresh_minitimeline_flag = 1;
 	}
 }
+
 }

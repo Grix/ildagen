@@ -2,7 +2,7 @@
 
 alarm[3] = 1200;
 
-while (ds_list_size(undo_list) > 50)
+while (ds_list_size(undo_list) > (30 + max(0, 100 - maxframes/5)))
 {
     show_debug_message("cleaning undo list");
     undo = ds_list_find_value(undo_list,0);

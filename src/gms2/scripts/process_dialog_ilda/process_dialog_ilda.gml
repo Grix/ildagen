@@ -604,8 +604,12 @@ function process_dialog_ilda() {
 	              break;
 	          }
 			  case "maxframes_stretch":
-	          {
-	              ds_list_add(undo_list,"s"+string(frame_list)) //todo
+	          { 
+				  /*var t_undo_buffer = buffer_create(2, buffer_grow, 1);
+				  buffer_write(t_undo_buffer, buffer_string, string(frame_list));
+				  var t_compressed_buffer = buffer_compress(t_undo_buffer, 0, buffer_tell(t_undo_buffer));
+	              ds_list_add(undo_list,"s"+string(t_compressed_buffer));
+				  buffer_delete(t_undo_buffer);*/ //TODO
               
 	              refresh_minitimeline_flag = 1;
 				  frame_surf_refresh = 1;
