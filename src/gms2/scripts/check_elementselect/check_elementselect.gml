@@ -1,6 +1,8 @@
 function check_elementselect() {
 	//if (obj_cursor.x != clamp(obj_cursor.x,0,512)) && (obj_cursor.y != clamp(obj_cursor.y,0,512))
 	//    exit;
+	
+	var t_scale = 1/$ffff*view_wport[4];
 
 	if (laseron && !preview_while_laser_on)
 		exit;
@@ -26,12 +28,12 @@ function check_elementselect() {
 	for (i = 0;i < t_ellistsize; i++)
 	{
 	    t_templist = ds_grid_get(t_order_grid, 1, i);
-	    xo = ds_list_find_value(t_templist, 0) / $ffff*view_wport[4];
-	    yo = ds_list_find_value(t_templist, 1) / $ffff*view_wport[4];
-	    rectxmin2 = xo + (ds_list_find_value(t_templist, 4)/$ffff*view_wport[4]);
-	    rectymin2 = yo + (ds_list_find_value(t_templist, 6)/$ffff*view_wport[4]);
-	    rectxmax2 = xo + (ds_list_find_value(t_templist, 5)/$ffff*view_wport[4]);
-	    rectymax2 = yo + (ds_list_find_value(t_templist, 7)/$ffff*view_wport[4]);
+	    xo = ds_list_find_value(t_templist, 0)*t_scale;
+	    yo = ds_list_find_value(t_templist, 1)*t_scale;
+	    rectxmin2 = clamp(xo + (ds_list_find_value(t_templist, 4)*t_scale), 3, view_wport[4]-3);
+	    rectymin2 = clamp(yo + (ds_list_find_value(t_templist, 6)*t_scale), 3, view_wport[4]-3);
+	    rectxmax2 = clamp(xo + (ds_list_find_value(t_templist, 5)*t_scale), 3, view_wport[4]-3);
+	    rectymax2 = clamp(yo + (ds_list_find_value(t_templist, 7)*t_scale), 3, view_wport[4]-3);
     
 	    if	(obj_cursor.x == clamp(obj_cursor.x,rectxmin2-5,rectxmax2+5)) && 
 			(obj_cursor.y == clamp(obj_cursor.y,rectymin2-5,rectymax2+5))

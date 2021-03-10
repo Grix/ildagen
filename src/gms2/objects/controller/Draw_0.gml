@@ -39,7 +39,7 @@ if (view_current == 4 || view_current == 5)
 	
 	var t_y = camera_get_view_y(view_camera[4]);
     
-    if (!laseron)
+    if (!laseron || preview_while_laser_on)
     {
         if (bckimage)
         {
@@ -145,8 +145,10 @@ if (view_current == 4 || view_current == 5)
         draw_set_color(c_aqua);
         if !(ds_list_empty(semaster_list) || (rectxmax == 0 && rectxmin == $fffff && rectymax == 0 && rectymin == $fffff))
         {
-            
-            draw_sprite_ext(spr_anchor,0,round(anchorx/t_scale), round(t_y+anchory/t_scale), dpi_multiplier, dpi_multiplier, 0, c_white, 1);
+			var t_alpha = 1;
+			if (anchorx != clamp(anchorx, 0, $ffff-8*t_scale) || anchory != clamp(anchory, 0, $ffff-8*t_scale))
+				t_alpha = 0.6;
+            draw_sprite_ext(spr_anchor,0,round(clamp(anchorx, 0, $ffff-8*t_scale)/t_scale), round(t_y+clamp(anchory, 0, $ffff-8*t_scale)/t_scale), dpi_multiplier, dpi_multiplier, 0, c_white, t_alpha);
             draw_set_alpha(0.6);
 			var t_rotate_sprite_x = clamp(rectxmin/t_scale, 22, view_wport[4]);
 			var t_resize_sprite_x = clamp(rectxmax/t_scale, 0, view_wport[4]-22);
@@ -158,7 +160,7 @@ if (view_current == 4 || view_current == 5)
             draw_sprite_ext(spr_resize, 0, t_resize_sprite_x, clamp(t_y+rectymax/t_scale, t_y, t_y+view_wport[4]-22), dpi_multiplier, dpi_multiplier, 0, c_white, 1);
             draw_set_alpha(1);
             
-            draw_rectangle(rectxmin/t_scale, t_y+rectymin/t_scale, rectxmax/t_scale, t_y+rectymax/t_scale,1);
+            draw_rectangle(clamp(rectxmin,3*t_scale, $ffff-3*t_scale)/t_scale, t_y+clamp(rectymin,3*t_scale, $ffff-3*t_scale)/t_scale, clamp(rectxmax,3*t_scale, $ffff-3*t_scale)/t_scale, t_y+clamp(rectymax,3*t_scale, $ffff-3*t_scale)/t_scale,1);
             
             if (objmoving == 1) || (objmoving == 3) || (objmoving == 4)
             {

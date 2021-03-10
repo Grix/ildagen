@@ -1,29 +1,33 @@
 TODO
-- improve resizing, rotation. Add resizing boxes to all sides and corners for free control.
+- improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
 - zoom stuck on mac (big sur only?
 - ctrl+z not working in macos 2019? Opens zoom instead. (see email 2021-02-18)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
+- copy/paste envelope sections
 - undo reversing in editor mode
 - redo in timeline and live mode
 - undo stretching maxframes in editor mode
 - compress buffers when saving in live mode and editor mode
+- experiment with better scaling (higher res sprites? better detection on macs?)
 - fix mismatch between mouse and cursor when window is too narrow.
 - quicksave in editor mode
 - fix first point in live mode not rotating in preview when applying rotation slider (works in laser output)
 - midi output on timeline, to trigger events in f.ex the radiator
 - arbitrary animation easing function
 - midi input for live mode trigger etc.
+- reapply combine shapes
+- split objects
 - add default setting profiles into older settings file retroactively if they don't exist
 - investigate and fix problem of dac (laserdock?) falling out and having to rescan. Automatic rescan on failure?
 - add custom anchor to timeline mode rotation envelope
 - BPM sync indicator/quantization in all modes
 - pause individual files in live
 - update web
+- zoom in editor mode timeline
+- zoom in editor mode canvas
 - more simulation settings (more projectors per layer, projector angle, fov etc)
 - benchmark frame buffers, better to align to 4?
 - set fixed scanrate instead of fps when optimization off
-- reapply combine shapes
-- split objects
 - fix 1 point dots not showing, see line 52 in refresh_surfaces
 - color offset and dwell etc based on time instead of points
 - double check and fix maxpoints_static calculation
