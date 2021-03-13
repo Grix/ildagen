@@ -30,8 +30,8 @@ if (room == rm_loading)
             import_font_end();
     }
 }
-    
-if (room == rm_ilda) && (keyboard_check(ord("Z")) && !keyboard_check_control())
+
+if (room == rm_ilda && keyboard_check(ord("Z")) && !keyboard_check_control())
 {
 	obj_cursor.x = mouse_x;
 	obj_cursor.y = mouse_y-camera_get_view_y(view_camera[4]);

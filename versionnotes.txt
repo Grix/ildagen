@@ -1,10 +1,9 @@
-v1.8.12 (2021-02-07)
-- Fix preview in Live Mode not always matching with laser output.
-- Fix or mitigate several possible crashes.
-
-v1.8.11 (2021-01-28)
-- Add checkbox to reverse the animation function.
-- Fix LaserCube not being detected properly or crashing at scan, on a few Windows systems.
-- Fix crash in timeline during playback of certain files with elements of size 0.
-- Fix high CPU and possible cursor graphical glitches when hovering mouse over buttons in Windows.
-- Fix wave object preview while drawing sometimes having wrong amplitude.
+v1.8.13 (2021-03-13) *Not yet released on macOS
+- Can now redo after undo-ing in editor mode.
+- macOS: Fix buggy keyboard shortcuts (CMD+Z erronously enabled zoom function, and other problems).
+- Fix wrong colors/blanking with Easylase DAC.
+- Automatically center resize/rotate anchor when selecting objects in editor mode.
+- Fix overlapping/missing move/rotate/resize buttons when selected object is near edge or outside canvas.
+- Greatly reduced size of timeline project .igp files, and RAM use while saving.
+- Angles are rounded to notches when holding SHIFT while rotating an editor mode object.
+- Other minor bug fixes.

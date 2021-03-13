@@ -1,5 +1,5 @@
-version = "1.8.12";
-versiondate = "BETA 2021-03-09";
+version = "1.8.13";
+versiondate = "2021-03-12";
 
 if (debug_mode)
 {
@@ -19,7 +19,9 @@ FStemp = game_save_id;
 if (os_type == os_windows) 
 	FStemp+="temp\\";
 else
+{
 	FStemp+="temp/"; //sometimes fails when linux? todo hardcode ~/.config/LaserShowGen/temp/
+}
 if (os_browser == browser_not_a_browser)
 {
     if (directory_exists("temp"))
