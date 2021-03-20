@@ -1,6 +1,6 @@
-v1.8.13 (2021-03-13) *Not yet released on macOS
+v1.8.13 (2021-03-13)
 - Can now redo after undo-ing in editor mode.
-- macOS: Fix buggy keyboard shortcuts (CMD+Z erroneously enabled zoom function, and other problems).
+- macOS: Fix CMD+Z keyboard shortcut activating zoom, and some other buggy keyboard behavior.
 - Fix wrong colors/blanking with Easylase DAC.
 - Automatically center resize/rotate anchor when selecting objects in editor mode.
 - Fix overlapping/missing move/rotate/resize buttons when selected object is near edge or outside canvas.
