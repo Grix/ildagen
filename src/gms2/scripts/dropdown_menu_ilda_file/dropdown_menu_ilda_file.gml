@@ -2,7 +2,7 @@ function dropdown_menu_ilda_file() {
 	ddobj = instance_create_layer(controller.menu_width_start[0]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 	with (ddobj)
 	{
-	    num = 8;
+	    num = 10;
 	    ds_list_add(desc_list,"New");
 	    ds_list_add(desc_list,"Save frames (Ctrl-S)"); //todo quicksave
 	    ds_list_add(desc_list,"Load frames");
@@ -10,12 +10,16 @@ function dropdown_menu_ilda_file() {
 	    ds_list_add(desc_list,"Import ILDA file to editor");
 	    ds_list_add(desc_list,"Send frames to timeline mode (I)");
 		ds_list_add(desc_list,"Send frames to live mode (L)");
+		ds_list_add(desc_list,"Load Timeline Mode project");
+		ds_list_add(desc_list,"Load Live Mode grid");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(sep_list,1);
 	    ds_list_add(sep_list,0);
 	    ds_list_add(sep_list,1);
 	    ds_list_add(sep_list,0);
 	    ds_list_add(sep_list,1);
+		ds_list_add(sep_list,0);
+		ds_list_add(sep_list,1);
 		ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,dd_ilda_clear);
 	    ds_list_add(scr_list,dd_ilda_saveframes);
@@ -24,12 +28,16 @@ function dropdown_menu_ilda_file() {
 	    ds_list_add(scr_list,dd_ilda_importilda);
 	    ds_list_add(scr_list,frames_toseq);
 		ds_list_add(scr_list,frames_tolive);
+		ds_list_add(scr_list,dd_ilda_loadseq);
+		ds_list_add(scr_list,dd_ilda_loadlive);
 	    ds_list_add(hl_list,1);
 	    ds_list_add(hl_list,1);
 	    ds_list_add(hl_list,1);
 	    ds_list_add(hl_list,1);
 	    ds_list_add(hl_list,1);
 	    ds_list_add(hl_list,1);
+		ds_list_add(hl_list,1);
+		ds_list_add(hl_list,1);
 		ds_list_add(hl_list,1);
 	    ds_list_add(desc_list,"Exit");
 	    ds_list_add(sep_list,1);

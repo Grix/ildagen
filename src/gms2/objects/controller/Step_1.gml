@@ -2,6 +2,11 @@
 
 if (room != rm_ilda) 
 	exit;
+	
+if (livecontrol.loadprojectflag)
+	room_goto(rm_live);
+else if (seqcontrol.loadprojectflag)
+	room_goto(rm_seq);
 
 if (playing == 1)
 {

@@ -126,7 +126,7 @@ el_list = frame_list[| frame];
 if (!ds_list_exists(el_list))
 {
 	// BUG
-	http_post_string(   "http://www.bitlasers.com/lasershowgen/bugreport.php",
+	http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
 	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "ERROR: el_list doesn't exist. frame="+string(frame)+", framelistsize="+string(ds_list_size(frame_list))+", maxframes="+string(maxframes));
 }
 
@@ -416,7 +416,7 @@ if (keyboard_check_pressed(vk_tab))
 {
     if (os_browser != browser_not_a_browser)
     {
-        show_message_new("Sorry, the timeline is not available in the web version yet");
+        show_message_new("Sorry, the timeline/live mode is not available in the web version yet");
         exit;
     }
     ilda_cancel();

@@ -410,7 +410,7 @@ if (!debug_mode)
 	    file_text_write_string(_f, string(ex));
 	    file_text_close(_f);
 	
-		http_post_string(   "http://www.bitlasers.com/lasershowgen/bugreport.php",
+		http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
 		                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+string_replace_all(string_replace_all(string(ex),"\"",""),"'",""));
 	
 		show_message("ERROR: LaserShowGen has unfortunately encountered a problem and must close. This bug has been logged and reported (anonymously) to the developer, and we will work to fix this problem in future releases.\n\nIf you wish to save your unsaved work, you will now be asked for a file location. NB: Please don't overwrite your existing file as the crash may cause problems in the new backup file.");

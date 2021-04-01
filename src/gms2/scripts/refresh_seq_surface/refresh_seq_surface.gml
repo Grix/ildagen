@@ -68,7 +68,7 @@ function refresh_seq_surface() {
 				ds_list_replace(objectlist, 2, t_newinfo);
 				infolist = t_newinfo;
 				
-				http_post_string(   "http://www.bitlasers.com/lasershowgen/bugreport.php",
+				http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
 	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING infolist in refresh_seq_surface. Undefined: "+string(is_undefined(infolist))+", frametime: "+string(frametime)+", element num: "+string(m));
 			}
 	        object_length = ds_list_find_value(infolist,0);

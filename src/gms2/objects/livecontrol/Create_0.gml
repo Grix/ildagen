@@ -39,6 +39,7 @@ masterred = 1;
 masterblue = 1;
 mastergreen = 1;
 masterabsrot = pi;
+loadprojectflag = false;
 
 browser_surf = -1;
 frame_surf = -1;
