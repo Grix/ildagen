@@ -589,6 +589,32 @@ function handle_mousecontrol_seq() {
 	    }
 	    exit;
 	}
+	else if (moving_object == 9)
+	{
+	    //selecting points from envelope, for context menu (delete/move/duplicate etc)
+	    if (mouse_check_button_released(mb_right))
+	    {			
+			envelopexpos = round(tlx+mouse_x/tlw*tlzoom);
+			
+			dropdown_envelope_menu();
+			moving_object = 10;
+	    }
+	    exit;
+	}
+	else if (moving_object == 10)
+	{
+		// dropdown menu is open, do nothing but need the variable flag for drawing the highlight square	
+		if (!instance_exists(obj_dropdown))
+			moving_object = 0;
+	}
+	else if (moving_object == 11)
+	{
+		// moving envelope section
+	}
+	else if (moving_object == 12)
+	{
+		// duplicating envelope section
+	}
     
 	//horizontal scroll moving
 	else if (scroll_moving == 1)
@@ -958,6 +984,7 @@ function handle_mousecontrol_seq() {
 	                    {
 	                        selectedenvelope = envelope;
 	                        env_list_to_delete = envelope_list;
+							envelopexpos = xposprev;
 	                        dropdown_envelope_menu();
 	                    }
 	                }
@@ -983,8 +1010,8 @@ function handle_mousecontrol_seq() {
 	                }
 	                else
 	                {
-	                    controller.tooltip = "Click or drag the mouse to place points on the envelope graph.\nHold [D] and drag the mouse to delete points.\nRight click for menu.";
-						if (mouse_check_button_pressed(mb_left))
+	                    controller.tooltip = "Click or drag the left mouse to place points on the envelope graph.\nClick and drag right mouse to duplicate/move/delete envelope section.\nRight click for menu.";
+						if (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right) )
 	                    {
 	                        //adding/modifying/deleting point
 	                        var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
@@ -1008,24 +1035,25 @@ function handle_mousecontrol_seq() {
 	                        mouse_yprevious = mouse_y;
 	                        ypos_env = ypos;
 	                        envelopetoedit = envelope;
-	                        moving_object = 6;
-						
-							time_list = ds_list_find_value(envelopetoedit,1);
-							data_list = ds_list_find_value(envelopetoedit,2);
-							envelope_undolist = ds_list_create();
-							var t_list1 = ds_list_create();
-							var t_list2 = ds_list_create();
-							ds_list_copy(t_list1,time_list);
-							ds_list_copy(t_list2,data_list);
-							ds_list_add(envelope_undolist,t_list1);
-							ds_list_add(envelope_undolist,t_list2);
-							ds_list_add(envelope_undolist,envelopetoedit);
-	                    }
-	                    else if  mouse_check_button_pressed(mb_right) 
-	                    {
 	                        selectedenvelope = envelope;
 	                        env_list_to_delete = envelope_list;
-	                        dropdown_envelope_menu();
+							if (mouse_check_button_pressed(mb_right))
+								moving_object = 9;
+							else
+							{
+								moving_object = 6;
+								
+								time_list = ds_list_find_value(envelopetoedit,1);
+								data_list = ds_list_find_value(envelopetoedit,2);
+								envelope_undolist = ds_list_create();
+								var t_list1 = ds_list_create();
+								var t_list2 = ds_list_create();
+								ds_list_copy(t_list1,time_list);
+								ds_list_copy(t_list2,data_list);
+								ds_list_add(envelope_undolist,t_list1);
+								ds_list_add(envelope_undolist,t_list2);
+								ds_list_add(envelope_undolist,envelopetoedit);
+							}
 	                    }
 	                }
 	                exit;

@@ -87,6 +87,7 @@ loadprojectflag = false;
 
 somaster_list_prevsize = 0;
 envelope_undolist = -1;
+envelopexpos = 0;
 
 startframe = 0;
 endframe = 2600;

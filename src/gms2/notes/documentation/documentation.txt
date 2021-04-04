@@ -1,13 +1,12 @@
 TODO
 - improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
-- zoom stuck on mac (big sur only?
-- ctrl+z not working in macos 2019? Opens zoom instead. (see email 2021-02-18)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
-- copy/paste envelope sections
+- copy/paste/move envelope sections
 - undo reversing in editor mode
 - redo in timeline and live mode
 - undo stretching maxframes in editor mode
 - compress buffers when saving in live mode and editor mode
+- ether dream falling out after a few seconds of output, on big sur and win10 (see email 2021-04-01)
 - experiment with better scaling (higher res sprites? better detection on macs?)
 - fix mismatch between mouse and cursor when window is too narrow.
 - quicksave in editor mode

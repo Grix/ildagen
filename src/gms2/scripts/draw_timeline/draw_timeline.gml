@@ -147,19 +147,20 @@ function draw_timeline() {
 		{
 		    if (t_ypos > tlh+16-64+tlsurf_y) and (t_ypos < lbsh+tlsurf_y)
 		    {
+		        envelope = ds_list_find_value(envelope_list,j);
+		        type = ds_list_find_value(envelope,0);
+		        disabled = ds_list_find_value(envelope,3);
+		        hidden = ds_list_find_value(envelope,4);
+				
 				if (selectedlayer == i)
 				{
 				    draw_set_colour(c_maroon);
 				    var drawcursorxcorrected = (selectedx-tlx)/tlzoom*tlw;
 				    if (drawcursorxcorrected == clamp(drawcursorxcorrected,0,tlw))
-				        draw_line(drawcursorxcorrected,t_ypos-1,drawcursorxcorrected,t_ypos+63);
+				        draw_line(drawcursorxcorrected,t_ypos-1,drawcursorxcorrected,t_ypos + ((hidden == 0) ? 62 : 15));
 				    draw_set_colour(c_black);
 				}
 			
-		        envelope = ds_list_find_value(envelope_list,j);
-		        type = ds_list_find_value(envelope,0);
-		        disabled = ds_list_find_value(envelope,3);
-		        hidden = ds_list_find_value(envelope,4);
 		        if (hidden)
 		        {
 		            var typedraw = ds_map_find_value(env_type_map,type);
@@ -195,6 +196,22 @@ function draw_timeline() {
 		                draw_set_colour(c_red);
 		                draw_set_alpha(0.3);
 		                draw_rectangle(mouse_xprevious,t_ypos,mouse_x,t_ypos+63,0);
+		                draw_set_colour(c_black);
+		                draw_set_alpha(1);
+		            }
+					else if (moving_object == 9) and (envelopetoedit == envelope)
+		            {
+		                draw_set_colour(c_gray);
+		                draw_set_alpha(0.3);
+		                draw_rectangle(mouse_xprevious,t_ypos,mouse_x,t_ypos+63,0);
+		                draw_set_colour(c_black);
+		                draw_set_alpha(1);
+		            }
+					else if (moving_object >= 10) and (moving_object <= 12) and (envelopetoedit == envelope)
+		            {
+		                draw_set_colour(c_gray);
+		                draw_set_alpha(0.3);
+		                draw_rectangle(mouse_xprevious,t_ypos,(envelopexpos - tlx)*tlw/tlzoom,t_ypos+63,0);
 		                draw_set_colour(c_black);
 		                draw_set_alpha(1);
 		            }
