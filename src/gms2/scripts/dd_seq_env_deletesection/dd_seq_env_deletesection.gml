@@ -14,29 +14,23 @@ function dd_seq_env_deletesection() {
 		ds_list_add(t_undolist,t_list2);
 		ds_list_add(t_undolist,envelopetoedit);
 		
-		var t_xpos = envelopexpos;
-		if (xposprev < t_xpos)
-		    for (u = 0; u < ds_list_size(time_list); u++)
+		if (xposprev > envelopexpos)
+		{
+			var t_temp = xposprev;
+			xposprev = envelopexpos;
+			envelopexpos = t_temp;
+		}
+		
+		for (u = 0; u < ds_list_size(time_list); u++)
+		{
+		    var t_xpos_loop = ds_list_find_value(time_list,u);
+		    if (t_xpos_loop == clamp(t_xpos_loop, xposprev+1, envelopexpos-1))
 		    {
-		        var t_xpos_loop = ds_list_find_value(time_list,u);
-		        if (t_xpos_loop == clamp(t_xpos_loop, xposprev+1, t_xpos-1))
-		        {
-		            ds_list_delete(data_list,u);
-		            ds_list_delete(time_list,u);
-		            u--;
-		        }
+		        ds_list_delete(data_list,u);
+		        ds_list_delete(time_list,u);
+		        u--;
 		    }
-		else
-		    for (u = 0; u < ds_list_size(time_list); u++)
-		    {
-		        var t_xpos_loop = ds_list_find_value(time_list,u);
-		        if (t_xpos_loop == clamp(t_xpos_loop, t_xpos+1, xposprev-1))
-		        {
-		            ds_list_delete(data_list,u);
-		            ds_list_delete(time_list,u);
-		            u--;
-		        }
-		    }
+		}
 		moving_object = 0;
 		timeline_surf_length = 0;
 		

@@ -84,6 +84,7 @@ stretch_flag = 0;
 objecttomove = 0;
 previous_marker_pos = 0;
 loadprojectflag = false;
+moving_object_ready = false;
 
 somaster_list_prevsize = 0;
 envelope_undolist = -1;

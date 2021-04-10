@@ -606,14 +606,175 @@ function handle_mousecontrol_seq() {
 		// dropdown menu is open, do nothing but need the variable flag for drawing the highlight square	
 		if (!instance_exists(obj_dropdown))
 			moving_object = 0;
+			
+		exit;
 	}
 	else if (moving_object == 11)
 	{
 		// moving envelope section
+		if (keyboard_check(vk_escape))
+		{
+			moving_object = 0;
+			exit;
+		}
+		
+		if (moving_object_ready && (mouse_check_button_pressed(mb_right) || mouse_check_button_pressed(mb_left)))
+	    {		
+			time_list = ds_list_find_value(envelopetoedit,1);
+			data_list = ds_list_find_value(envelopetoedit,2);
+		
+			var t_undolist = ds_list_create();
+			var t_list1 = ds_list_create();
+			var t_list2 = ds_list_create();
+			ds_list_copy(t_list1,time_list);
+			ds_list_copy(t_list2,data_list);
+			ds_list_add(t_undolist,t_list1);
+			ds_list_add(t_undolist,t_list2);
+			ds_list_add(t_undolist,envelopetoedit);
+		
+			if (xposprev > envelopexpos)
+			{
+				var t_temp = xposprev;
+				xposprev = envelopexpos;
+				envelopexpos = t_temp;
+			}
+			
+			// find points in section, and delete it
+			var t_datalist_section = ds_list_create();
+			var t_timelist_section = ds_list_create();
+			for (u = 0; u < ds_list_size(time_list); u++)
+			{
+			    var t_xpos_loop = ds_list_find_value(time_list,u);
+			    if (t_xpos_loop == clamp(t_xpos_loop, xposprev+1, envelopexpos-1))
+			    {
+					ds_list_add(t_timelist_section, time_list[| u] - xposprev);
+					ds_list_add(t_datalist_section, data_list[| u]);
+			        ds_list_delete(time_list,u);
+			        ds_list_delete(data_list,u);
+			        u--;
+			    }
+			}
+			
+			// then add moved data elsewhere (first deleting existing data there)
+			if (!ds_list_empty(t_datalist_section))
+			{
+				var t_newxposprev = round(tlx+mouse_x/tlw*tlzoom);
+				var t_newxpos = t_newxposprev + (envelopexpos - xposprev);
+			
+				for (u = 0; u < ds_list_size(time_list); u++)
+				{
+				    var t_xpos_loop = ds_list_find_value(time_list,u);
+				    if (t_xpos_loop == clamp(t_xpos_loop, t_newxposprev, t_newxpos))
+				    {
+				        ds_list_delete(time_list,u);
+				        ds_list_delete(data_list,u);
+				        u--;
+				    }
+				}
+				var t_index = 0;
+				while (t_index <= ds_list_size(time_list)-1 && time_list[| t_index] < t_timelist_section[| 0]+t_newxposprev)
+					t_index++;
+					
+				for (u = 0; u < ds_list_size(t_timelist_section); u++)
+				{
+					ds_list_insert(time_list, t_index, t_timelist_section[| u] + t_newxposprev);
+					ds_list_insert(data_list, t_index, t_datalist_section[| u]);
+					t_index++;
+				}
+			}
+			
+			ds_list_destroy(t_datalist_section);
+			ds_list_destroy(t_timelist_section);
+				
+			moving_object = 0;
+			timeline_surf_length = 0;
+		
+			ds_list_add(seqcontrol.undo_list,"e"+string(t_undolist));
+		}
+		moving_object_ready = true;
+		exit;
 	}
 	else if (moving_object == 12)
 	{
 		// duplicating envelope section
+		if (keyboard_check(vk_escape))
+		{
+			moving_object = 0;
+			exit;
+		}
+		
+		if (moving_object_ready && (mouse_check_button_pressed(mb_right) || mouse_check_button_pressed(mb_left)))
+	    {		
+			time_list = ds_list_find_value(envelopetoedit,1);
+			data_list = ds_list_find_value(envelopetoedit,2);
+		
+			var t_undolist = ds_list_create();
+			var t_list1 = ds_list_create();
+			var t_list2 = ds_list_create();
+			ds_list_copy(t_list1,time_list);
+			ds_list_copy(t_list2,data_list);
+			ds_list_add(t_undolist,t_list1);
+			ds_list_add(t_undolist,t_list2);
+			ds_list_add(t_undolist,envelopetoedit);
+		
+			if (xposprev > envelopexpos)
+			{
+				var t_temp = xposprev;
+				xposprev = envelopexpos;
+				envelopexpos = t_temp;
+			}
+			
+			// find points in section
+			var t_datalist_section = ds_list_create();
+			var t_timelist_section = ds_list_create();
+			for (u = 0; u < ds_list_size(time_list); u++)
+			{
+			    var t_xpos_loop = ds_list_find_value(time_list,u);
+			    if (t_xpos_loop == clamp(t_xpos_loop, xposprev+1, envelopexpos-1))
+			    {
+					ds_list_add(t_timelist_section, time_list[| u] - xposprev);
+					ds_list_add(t_datalist_section, data_list[| u]);
+			    }
+			}
+			
+			// then add moved data elsewhere (first deleting existing data there)
+			if (!ds_list_empty(t_datalist_section))
+			{
+				var t_newxposprev = round(tlx+mouse_x/tlw*tlzoom);
+				var t_newxpos = t_newxposprev + (envelopexpos - xposprev);
+			
+				for (u = 0; u < ds_list_size(time_list); u++)
+				{
+				    var t_xpos_loop = ds_list_find_value(time_list,u);
+				    if (t_xpos_loop == clamp(t_xpos_loop, t_newxposprev, t_newxpos))
+				    {
+				        ds_list_delete(time_list,u);
+				        ds_list_delete(data_list,u);
+				        u--;
+				    }
+				}
+				var t_index = 0;
+				while (t_index <= ds_list_size(time_list)-1 && time_list[| t_index] < t_timelist_section[| 0]+t_newxposprev)
+					t_index++;
+					
+				for (u = 0; u < ds_list_size(t_timelist_section); u++)
+				{
+					ds_list_insert(time_list, t_index, t_timelist_section[| u] + t_newxposprev);
+					ds_list_insert(data_list, t_index, t_datalist_section[| u]);
+					t_index++;
+				}
+			}
+			
+			ds_list_destroy(t_datalist_section);
+			ds_list_destroy(t_timelist_section);
+				
+			moving_object = 0;
+			timeline_surf_length = 0;
+		
+			ds_list_add(seqcontrol.undo_list,"e"+string(t_undolist));
+		}
+		moving_object_ready = true;
+		exit;
 	}
     
 	//horizontal scroll moving

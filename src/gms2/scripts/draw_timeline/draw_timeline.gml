@@ -190,31 +190,42 @@ function draw_timeline() {
                         
 		        draw_set_colour(c_black);
 		        gpu_set_blendenable(1);
-		            draw_text(t_stringx+5, t_ypos+45, typedraw);
-		            if (moving_object == 7) and (envelopetoedit == envelope)
-		            {
-		                draw_set_colour(c_red);
-		                draw_set_alpha(0.3);
-		                draw_rectangle(mouse_xprevious,t_ypos,mouse_x,t_ypos+63,0);
-		                draw_set_colour(c_black);
-		                draw_set_alpha(1);
-		            }
-					else if (moving_object == 9) and (envelopetoedit == envelope)
-		            {
-		                draw_set_colour(c_gray);
-		                draw_set_alpha(0.3);
-		                draw_rectangle(mouse_xprevious,t_ypos,mouse_x,t_ypos+63,0);
-		                draw_set_colour(c_black);
-		                draw_set_alpha(1);
-		            }
-					else if (moving_object >= 10) and (moving_object <= 12) and (envelopetoedit == envelope)
-		            {
-		                draw_set_colour(c_gray);
-		                draw_set_alpha(0.3);
-		                draw_rectangle(mouse_xprevious,t_ypos,(envelopexpos - tlx)*tlw/tlzoom,t_ypos+63,0);
-		                draw_set_colour(c_black);
-		                draw_set_alpha(1);
-		            }
+		        draw_text(t_stringx+5, t_ypos+45, typedraw);
+		        if (moving_object == 7) and (envelopetoedit == envelope)
+		        {
+		            draw_set_colour(c_red);
+		            draw_set_alpha(0.3);
+		            draw_rectangle(mouse_xprevious,t_ypos,mouse_x,t_ypos+63,0);
+		            draw_set_colour(c_black);
+		            draw_set_alpha(1);
+		        }
+				else if (moving_object == 9) and (envelopetoedit == envelope)
+		        {
+		            draw_set_colour(c_gray);
+		            draw_set_alpha(0.3);
+		            draw_rectangle(mouse_xprevious,t_ypos,mouse_x,t_ypos+63,0);
+		            draw_set_colour(c_black);
+		            draw_set_alpha(1);
+		        }
+				else if (moving_object == 10) and (envelopetoedit == envelope)
+		        {
+		            draw_set_colour(c_gray);
+		            draw_set_alpha(0.3);
+		            draw_rectangle(mouse_xprevious,t_ypos,(envelopexpos - tlx)*tlw/tlzoom,t_ypos+63,0);
+		            draw_set_colour(c_black);
+		            draw_set_alpha(1);
+		        }
+				else if (moving_object == 11 || moving_object == 12) and (envelopetoedit == envelope)
+		        {
+					var t_newxposprev = round(tlx+mouse_x/tlw*tlzoom);
+					var t_newxpos = t_newxposprev + (envelopexpos - xposprev);
+				
+		            draw_set_colour(make_color_rgb(230,230,230));
+		            draw_set_alpha(1);
+		            draw_rectangle(t_newxposprev*tlw/tlzoom,t_ypos,t_newxpos*tlw/tlzoom,t_ypos+62,0);
+		            draw_set_colour(c_black);
+		            draw_set_alpha(1);
+		        }
 		        gpu_set_blendenable(0);
 		        mouse_on_button_ver = (mouse_y == clamp(mouse_y,8+t_ypos,40+t_ypos));
 		        draw_sprite(spr_deletelayer,
