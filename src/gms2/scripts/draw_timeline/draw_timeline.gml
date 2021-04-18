@@ -217,14 +217,65 @@ function draw_timeline() {
 		        }
 				else if (moving_object == 11 || moving_object == 12) and (envelopetoedit == envelope)
 		        {
-					var t_newxposprev = round(tlx+mouse_x/tlw*tlzoom);
+					var t_newxposprev = round(/*tlx+*/mouse_x/tlw*tlzoom);
 					var t_newxpos = t_newxposprev + (envelopexpos - xposprev);
 				
 		            draw_set_colour(make_color_rgb(230,230,230));
-		            draw_set_alpha(1);
 		            draw_rectangle(t_newxposprev*tlw/tlzoom,t_ypos,t_newxpos*tlw/tlzoom,t_ypos+62,0);
 		            draw_set_colour(c_black);
-		            draw_set_alpha(1);
+					
+					// draw preview of selected envelope section
+					type = ds_list_find_value(envelopetoedit,0);
+					var default_value = t_ypos+32;
+		            if (type != "x") and (type != "y") and (type != "hue")
+		                default_value = t_ypos;
+					time_list = ds_list_find_value(envelopetoedit,1);
+					data_list = ds_list_find_value(envelopetoedit,2);
+					if (xposprev > envelopexpos)
+					{
+						var t_temp = xposprev;
+						xposprev = envelopexpos;
+						envelopexpos = t_temp;
+					}
+					//binary search algo, set t_index to the list index just before visible area
+		            var imin = 0;
+		            var imax = ds_list_size(time_list)-1;
+		            var imid;
+		            while (imin <= imax)
+		            {
+		                imid = floor(mean(imin,imax));
+		                if (ds_list_find_value(time_list,imid) <= xposprev)
+		                {
+		                    var valnext = ds_list_find_value(time_list,imid+1);
+		                    if (is_undefined(valnext)) or (valnext >= xposprev)
+		                        break;
+		                    else
+		                        imin = imid+1;
+		                }
+		                else
+		                    imax = imid-1;
+		            }
+		            var t_index = imid;
+					if (t_index != 0 && t_index < ds_list_size(time_list)-1)
+						t_index += 1;
+					log(t_index, imid);
+		            var t_env_y;
+		            var t_env_x;
+		            //draw envelope graph
+		            while ( (ds_list_find_value(time_list,t_index)) <= envelopexpos)
+		            {
+		                t_env_y = t_ypos+ds_list_find_value(data_list,t_index);
+		                t_env_x = (ds_list_find_value(time_list,t_index) - xposprev + t_newxposprev)*tlwdivtlzoom;
+
+						if (ds_list_find_value(time_list,t_index+1) <= envelopexpos)
+						{
+			                draw_line(  t_env_x, t_env_y,
+			                            (ds_list_find_value(time_list,t_index+1) - xposprev + t_newxposprev)*tlwdivtlzoom,
+			                            t_ypos+ds_list_find_value(data_list,t_index+1));
+						}
+						draw_rectangle( t_env_x-1,t_env_y-1,t_env_x+1,t_env_y+1,0);
+		                t_index++;
+		            }
 		        }
 		        gpu_set_blendenable(0);
 		        mouse_on_button_ver = (mouse_y == clamp(mouse_y,8+t_ypos,40+t_ypos));
