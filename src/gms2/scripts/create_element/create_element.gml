@@ -303,7 +303,9 @@ function create_element() {
 	        if (anifunc == "tri")
 	        {
 	            t *= 2;
-	            if (t > 1)
+	            if (t == 2)
+					t = 0;
+	            else if (t > 1)
 	                t = 1-(t%1);
 	        }
 	        else if (anifunc == "sine")
@@ -574,7 +576,9 @@ function create_element() {
 	            if (anifunc == "tri")
 	            {
 	                t *= 2;
-	                if (t > 1)
+	                if (t == 2)
+						t = 0;
+	                else if (t > 1)
 	                    t = 1-(t%1);
 	            }
 	            else if (anifunc == "sine")

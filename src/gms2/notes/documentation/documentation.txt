@@ -1,7 +1,7 @@
 TODO
+- rebuild etherdream.dll vs2019 for etherdream bug (and mac newest xcode?)
 - improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
-- copy/paste/move envelope sections
 - undo reversing in editor mode
 - redo in timeline and live mode
 - undo stretching maxframes in editor mode
