@@ -1,9 +1,12 @@
+v1.9.0
+- Can now move or duplicate sections of timeline envelopes.
+- Fix Ether Dream DAC sometimes losing connection.
+- Fix last frame of a triangle wave animation function being wrong.
+- Other minor changes.
+
 v1.8.13 (2021-03-13)
 - Can now redo after undo-ing in editor mode.
 - macOS: Fix CMD+Z keyboard shortcut activating zoom, and some other buggy keyboard behavior.
 - Fix wrong colors/blanking with Easylase DAC.
 - Automatically center resize/rotate anchor when selecting objects in editor mode.
-- Fix overlapping/missing move/rotate/resize buttons when selected object is near edge or outside canvas.
-- Greatly reduced size of timeline project .igp files, and RAM use while saving.
-- Angles are rounded to notches when holding SHIFT while rotating an editor mode object.
-- Other minor bug fixes.
+[..]
