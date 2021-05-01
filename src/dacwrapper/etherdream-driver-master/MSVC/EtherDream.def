@@ -1,0 +1,36 @@
+LIBRARY   EtherDream
+DESCRIPTION j4DAC card interface for laser shows using easy lase API
+EXPORTS
+	EasyLaseClose					@1
+	EasyLaseDMXIn					@2
+	EasyLaseDMXOut					@3
+	EasyLaseGetCardNum				@4
+	EasyLaseGetDMX					@5
+	EasyLaseGetDebugInfo			@6
+	EasyLaseGetLastError			@7
+	EasyLaseGetStatus				@8
+	EasyLaseReConnect				@9
+	EasyLaseSend					@10
+	EasyLaseStop					@11
+	EasyLaseWriteDMX				@12
+	EasyLaseWriteFrame				@13
+	EasyLaseWriteFrameNR			@14
+	EasyLaseWriteFrameUncompressed	@15
+	EasyLaseWriteTTL				@16
+	EtherDreamClose					@17
+	EtherDreamCloseDevice			@18
+	EtherDreamGetCardNum			@19
+	EtherDreamGetDeviceName			@20
+	EtherDreamGetStatus				@21
+	EtherDreamGetVersion			@22
+	EtherDreamOpenDevice			@23
+	EtherDreamReadDMX				@24
+	EtherDreamStop					@25
+	EtherDreamWriteDMX				@26
+	EtherDreamWriteFrame			@27
+	EzAudDacClose					@28
+	EzAudDacGetCardNum				@29
+	EzAudDacGetStatus				@30
+	EzAudDacStop					@31
+	EzAudDacWriteFrame				@32
+	EzAudDacWriteFrameNR			@33

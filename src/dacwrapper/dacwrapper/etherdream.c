@@ -616,7 +616,31 @@ static void *dac_loop(void *dv) {
 
 		res = dac_send_data(d, b->data + b->idx, cap, b->pps);
 		if (res < 0)
-			break;
+		{
+			trace(d, "Lost connection, trying to reconnect.\n");
+			close(d->conn.dc_sock);
+			
+			// Initialize buffer
+			d->frame_buffer_read = 0;
+			d->frame_buffer_fullness = 0;
+			memset(d->buffer, 0, sizeof(d->buffer));
+
+			// Connect to the DAC
+			if (dac_connect(d) < 0) {
+				trace(d, "!! DAC connection failed.\n");
+				return -1;
+			}
+
+			d->state = ST_READY;
+
+			int res = pthread_create(&d->workerthread, NULL, dac_loop, d);
+			if (res) {
+				trace(d, "!! Begin thread error: %s\n", strerror(res));
+				return -1;
+			}
+			
+			return;
+		}
 
 		pthread_mutex_lock(&d->mutex);
 
