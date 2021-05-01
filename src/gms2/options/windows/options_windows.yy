@@ -1,7 +1,7 @@
 {
   "option_windows_display_name": "LaserShowGen",
   "option_windows_executable_name": "${project_name}",
-  "option_windows_version": "1.8.10.0",
+  "option_windows_version": "1.9.0.0",
   "option_windows_company_info": "Gitle Mikkelsen",
   "option_windows_product_info": "LaserShowGen",
   "option_windows_copyright_info": "Gitle Mikkelsen",
@@ -13,7 +13,7 @@
   "option_windows_use_splash": false,
   "option_windows_start_fullscreen": false,
   "option_windows_allow_fullscreen_switching": false,
-  "option_windows_interpolate_pixels": false,
+  "option_windows_interpolate_pixels": true,
   "option_windows_vsync": false,
   "option_windows_resize_window": true,
   "option_windows_borderless": false,

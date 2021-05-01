@@ -29,6 +29,7 @@ if (room == rm_ilda)
         "H)    Highlight all objects\n"+
         "Ctrl)    Move all color sliders, or center symmetric sliders\n"+
         "Ctrl+Z)    Undo\n"+
+		"Ctrl+Y)    Redo\n"+
         "Ctrl+C)    Copy selected objects\n"+
         "Ctrl+X)    Cut selected objects\n"+
         "Ctrl+V)    Paste\n"+
