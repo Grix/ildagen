@@ -628,7 +628,7 @@ static void *dac_loop(void *dv) {
 			// Connect to the DAC
 			if (dac_connect(d) < 0) {
 				trace(d, "!! DAC connection failed.\n");
-				return -1;
+				return 0;
 			}
 
 			d->state = ST_READY;
@@ -636,10 +636,10 @@ static void *dac_loop(void *dv) {
 			int res = pthread_create(&d->workerthread, NULL, dac_loop, d);
 			if (res) {
 				trace(d, "!! Begin thread error: %s\n", strerror(res));
-				return -1;
+				return 0;
 			}
 			
-			return;
+			return 0;
 		}
 
 		pthread_mutex_lock(&d->mutex);
