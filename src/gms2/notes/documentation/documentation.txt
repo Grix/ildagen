@@ -8,7 +8,7 @@ TODO
 - undo stretching maxframes in editor mode
 - compress buffers when saving in live mode and editor mode
 - better detection of screen size in mac retina
-- ether dream falling out after a few seconds of output, on big sur and win10 (see email 2021-04-01)
+- save settings like color and parameters to igf file and timeline object
 - experiment with better scaling (higher res sprites? better detection on macs?)
 - fix mismatch between mouse and cursor when window is too narrow.
 - quicksave in editor mode
