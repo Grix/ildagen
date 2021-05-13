@@ -22,4 +22,5 @@ if (value == 0)
 else
 	controller.dpi_multiplier = value;
 	
+controller.dpi_scaling = value;
 controller.forceresize = true;

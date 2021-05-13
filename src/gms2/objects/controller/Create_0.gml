@@ -190,11 +190,11 @@ tlh = 42;
 tlorigo_x = 0;
 tlorigo_y = 515;
 ini_open("settings.ini");
-var t_dpi_scaling = ini_read_real("main", "dpi_scaling_override", 0);
-if (t_dpi_scaling == 0 || t_dpi_scaling == -1)
-	dpi_multiplier = min( ceil(display_get_height()/(735*2.1)), ceil(display_get_width()/(1350*2)) );
+dpi_scaling = ini_read_real("main", "dpi_scaling_override", 0);
+if (dpi_scaling == 0 || dpi_scaling == -1)
+	dpi_multiplier = min( ceil(display_get_height()/(735*2.05)), ceil(display_get_width()/(1350*2)) );
 else
-	dpi_multiplier = t_dpi_scaling;
+	dpi_multiplier = dpi_scaling;
 ini_close();
 default_window_w = 1350*dpi_multiplier;
 default_window_h = 735*dpi_multiplier;

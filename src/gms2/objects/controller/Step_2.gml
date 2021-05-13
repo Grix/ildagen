@@ -70,6 +70,8 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 && !(t_windowheight == 0 || t_windowwidth == 0)
 || forceresize
 {
+	if (dpi_scaling == 0 || dpi_scaling == -1)
+		dpi_multiplier = min( ceil(t_windowheight/(735*2.05)), ceil(t_windowwidth/(1350*2)) );
 	
 	//if (window_get_height() < default_window_h || window_get_width() < default_window_w)
 	//	window_set_size(default_window_w, default_window_h);
