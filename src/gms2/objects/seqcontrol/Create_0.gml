@@ -19,6 +19,7 @@ surface_list = ds_list_create();
 somaster_list = ds_list_create();
 somoving_list = ds_list_create();
 undo_list = ds_list_create();
+redo_list = ds_list_create();
 audio_buffer = -1;
 parsebuffer = -1;
 bufferIn = -1;

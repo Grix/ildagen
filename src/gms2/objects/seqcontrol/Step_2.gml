@@ -114,6 +114,10 @@ if (keyboard_check_control())
     {
         undo_seq();
     }
+	else if (keyboard_check_pressed(ord("Y")))
+    {
+        redo_seq();
+    }
 }
 
 else if (keyboard_check_pressed(ord("S")))

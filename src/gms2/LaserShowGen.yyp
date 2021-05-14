@@ -177,6 +177,7 @@
     {"id":{"name":"ML_ClearExceptions_CurParser","path":"scripts/ML_ClearExceptions_CurParser/ML_ClearExceptions_CurParser.yy",},"order":4,},
     {"id":{"name":"ML_RaiseException_CurParser","path":"scripts/ML_RaiseException_CurParser/ML_RaiseException_CurParser.yy",},"order":5,},
     {"id":{"name":"ML_NoException","path":"scripts/ML_NoException/ML_NoException.yy",},"order":6,},
+    {"id":{"name":"redo_seq","path":"scripts/redo_seq/redo_seq.yy",},"order":32,},
     {"id":{"name":"ML_LastExceptionPosition","path":"scripts/ML_LastExceptionPosition/ML_LastExceptionPosition.yy",},"order":7,},
     {"id":{"name":"ML_LastExceptionString","path":"scripts/ML_LastExceptionString/ML_LastExceptionString.yy",},"order":8,},
     {"id":{"name":"dd_seq_env_deletesection","path":"scripts/dd_seq_env_deletesection/dd_seq_env_deletesection.yy",},"order":17,},

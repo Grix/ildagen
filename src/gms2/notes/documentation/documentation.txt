@@ -1,5 +1,4 @@
 TODO
-- build dacwrapper newest xcode for etherdream bug?
 - improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
 - undo reversing in editor mode
@@ -9,7 +8,7 @@ TODO
 - compress buffers when saving in live mode and editor mode
 - better detection of screen size in mac retina
 - save settings like color and parameters to igf file and timeline object
-- experiment with better scaling (higher res sprites? better detection on macs?)
+- experiment with better scaling (higher res sprites?)
 - fix mismatch between mouse and cursor when window is too narrow.
 - quicksave in editor mode
 - fix first point in live mode not rotating in preview when applying rotation slider (works in laser output)
