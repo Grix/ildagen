@@ -175,6 +175,12 @@ function undo_seq() {
 	            _layer = layertop[| 1];
 	            if (ds_list_find_index(_layer, objectlist) != -1)
 	            {
+					redolisttemp = ds_list_create();
+	                ds_list_add(redolisttemp,objectlist);
+	                ds_list_add(redolisttemp,_layer);
+	                ds_list_add(redolisttemp,objectlist[| 0]);
+					ds_list_add(redo_list,"m"+string(redolisttemp));
+					
 	                ds_list_delete(_layer, ds_list_find_index(_layer, objectlist));
 	                ds_list_replace(objectlist, 0, frametime); 
 	                ds_list_add(layerlisttemp, objectlist);
@@ -188,7 +194,9 @@ function undo_seq() {
 	        undolisttemp = real(string_digits(undo));
 			if (!ds_list_exists(undolisttemp))
 	            exit;
-	        ds_list_destroy(marker_list);
+				
+	        ds_list_add(redo_list,"l"+string(marker_list));
+			
 	        marker_list = undolisttemp;
 	    }
 	    else if (string_char_at(undo,0) == "e")
@@ -205,8 +213,13 @@ function undo_seq() {
 	        else
 	        {
 	            var t_selectedenvelope = ds_list_find_value(undolisttemp,2);
-	            ds_list_destroy( ds_list_find_value(t_selectedenvelope,1) );
-	            ds_list_destroy( ds_list_find_value(t_selectedenvelope,2) );
+				
+				var t_redolist = ds_list_create();
+				ds_list_add(t_redolist,ds_list_find_value(t_selectedenvelope,1));
+				ds_list_add(t_redolist,ds_list_find_value(t_selectedenvelope,2));
+				ds_list_add(t_redolist,t_selectedenvelope);
+				ds_list_add(redo_list,"e"+string(t_redolist));
+				
 	            ds_list_replace( t_selectedenvelope,1,ds_list_find_value(undolisttemp,0) );
 	            ds_list_replace( t_selectedenvelope,2,ds_list_find_value(undolisttemp,1) );
 	        }
@@ -219,6 +232,7 @@ function undo_seq() {
 			ds_list_clear(somaster_list);
 			ds_list_add(somaster_list, t_listtoreverse);
 			reverse_timelineobject(false);
+			ds_list_add(redo_list, "a"+string(t_listtoreverse));
 	    }
 		else if (string_char_at(undo,0) == "k")
 	    {
@@ -227,7 +241,10 @@ function undo_seq() {
 			for (i = 0; i < ds_list_size(marker_list); i++)
 			{
 				if (marker_list[| i] = t_markerpos)
+				{
 					ds_list_delete(marker_list, i);
+					ds_list_add(redo_list, "j"+string(t_markerpos));
+				}
 			}
 			exit;
 		}
@@ -236,6 +253,7 @@ function undo_seq() {
 	        //undo delete marker
 	        var t_markerpos = real(string_digits(undo));
 			ds_list_add(marker_list, t_markerpos);
+			ds_list_add(redo_list, "k"+string(t_markerpos));
 			exit;
 		}
 		else if (string_char_at(undo,0) == "h")
@@ -252,6 +270,12 @@ function undo_seq() {
 			}
 			t_markerpos = undolisttemp[| 1];
 			ds_list_add(marker_list, t_markerpos);
+			
+			var t_redolist = ds_list_create();
+			ds_list_add(t_redolist, undolisttemp[| 1]);
+			ds_list_add(t_redolist, undolisttemp[| 0]);
+			ds_list_add(redo_list, "h"+string(t_redolist));
+			
 			ds_list_destroy(undolisttemp);
 			exit;
 		}
