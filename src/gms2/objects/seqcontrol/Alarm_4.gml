@@ -2,7 +2,7 @@
 
 alarm[4] = 1200;
 // todo clean marker move
-while (ds_list_size(undo_list) > 20)
+while (ds_list_size(undo_list) > 30)
 {
     log("cleaning undo list");
     undo = ds_list_find_value(undo_list,0);
@@ -25,6 +25,16 @@ while (ds_list_size(undo_list) > 20)
         ds_list_destroy(ds_list_find_value(undolisttemp,0));
         ds_list_destroy(undolisttemp);
     }
+	else if (string_char_at(undo,0) == "z")
+	{
+		//undo merge (only in redo now, opposite of split)
+		undolisttemp = real(string_digits(undo));
+		if (!ds_list_exists(undolisttemp))
+		    exit;
+		ds_list_destroy(ds_list_find_value(undolisttemp,1));
+		ds_list_destroy(ds_list_find_value(undolisttemp,2));
+        ds_list_destroy(undolisttemp);
+	}
     else if (string_char_at(undo,0) == "d")
     {
         //undo delete object
@@ -82,6 +92,55 @@ while (ds_list_size(undo_list) > 20)
         ds_list_destroy( ds_list_find_value(undolisttemp,1) );
         ds_list_destroy( undolisttemp);
     }
+	else if (string_char_at(undo,0) == "a")
+	{
+		// nothing
+	}
+	else if (string_char_at(undo,0) == "k")
+	{
+		// nothing
+	}
+	else if (string_char_at(undo,0) == "j")
+	{
+		// nothing
+	}
+	else if (string_char_at(undo,0) == "h")
+	{
+	    //undo move marker
+	    undolisttemp = real(string_digits(undo));
+		if (!ds_list_exists(undolisttemp))
+	        exit;
+		ds_list_destroy(undolisttemp);
+	}
+	else if (string_char_at(undo,0) == "p")
+	{
+		// nothing
+	}
+	else if (string_char_at(undo,0) == "x")
+	{
+		// undo delete envelope
+		undolisttemp = real(string_digits(undo));
+		if (!ds_list_exists(undolisttemp))
+	        exit;
+			
+		var t_envelope = undolisttemp[| 0];
+		if (!ds_list_exists(t_envelope))
+	        exit;
+			
+		ds_list_destroy(ds_list_find_value(t_envelope,1));
+	    ds_list_destroy(ds_list_find_value(t_envelope,2));
+	    ds_list_destroy(t_envelope);
+		
+		ds_list_destroy(undolisttemp);
+	}
+	else if (string_char_at(undo,0) == "q")
+	{
+		// nothing
+	}
+	else if (string_char_at(undo,0) == "w")
+	{
+		// nothing
+	}
 }
 
 

@@ -33,6 +33,7 @@ function seq_delete_object_noundo() {
 	}
     
 	ds_list_clear(somaster_list);
+	clean_redo_list_seq();
 	frame_surf_refresh = 1;
 
 

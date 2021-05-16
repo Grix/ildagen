@@ -93,6 +93,7 @@ function frames_toseq_importedilda() {
 	    ds_list_add(undo_list,"c"+string(undolisttemp));
 	
 		timeline_surf_length = 0;
+		clean_redo_list_seq();
 		frame_surf_refresh = 1;
 	}
     

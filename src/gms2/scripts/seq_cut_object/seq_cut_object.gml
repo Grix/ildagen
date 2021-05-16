@@ -2,6 +2,8 @@ function seq_cut_object() {
 	//cut timeline object
 	if (seqcontrol.selectedlayer == -1) or (ds_list_empty(seqcontrol.somaster_list))
 	    exit;
+		
+	clean_redo_list_seq();
 
 	//clean old clipboard
 	for (i = 0; i < ds_list_size(copy_list); i++)

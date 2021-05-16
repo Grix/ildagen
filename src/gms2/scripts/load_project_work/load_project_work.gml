@@ -338,6 +338,7 @@ function load_project_work() {
 
 	projectorlist_update();
 	timeline_surf_length = 0;
+	clean_redo_list_seq();
 
 	global.loading_loadproject = 0;
 

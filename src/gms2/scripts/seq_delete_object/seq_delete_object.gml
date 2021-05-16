@@ -2,6 +2,8 @@ function seq_delete_object() {
 	//delete timeline object
 	if ds_list_empty(seqcontrol.somaster_list)
 	    exit;
+		
+	clean_redo_list_seq();
     
 	for (k = 0; k < ds_list_size(somaster_list); k++)
 	{

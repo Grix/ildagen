@@ -44,6 +44,7 @@ function process_dialog_seq() {
 	            //todo: check for collisions
 			
 				timeline_surf_length = 0;
+				clean_redo_list_seq();
             
 	            break;
 	        }
@@ -215,6 +216,7 @@ function process_dialog_seq() {
 				}
 			
 				seqcontrol.timeline_surf_length = 0;
+				clean_redo_list_seq();
 				break;
 			}
 	        case "projectclear":
@@ -252,12 +254,15 @@ function process_dialog_seq() {
 	            selectedenvelope_index = ds_list_find_index(env_list_to_delete,selectedenvelope);
 	            if (selectedenvelope_index == -1) 
 	                exit;
+					
+				var t_undo_list = ds_list_create();
+				ds_list_add(t_undo_list, selectedenvelope);
+				ds_list_add(t_undo_list, env_list_to_delete);
+				ds_list_add(undo_list, "x"+string(t_undo_list));
             
-	            ds_list_destroy(ds_list_find_value(selectedenvelope,1));
-	            ds_list_destroy(ds_list_find_value(selectedenvelope,2));
-	            ds_list_destroy(selectedenvelope);
 	            ds_list_delete(env_list_to_delete,selectedenvelope_index);
 				timeline_surf_length = 0;
+				clean_redo_list_seq();
             
 	            break;
 	        }
@@ -270,6 +275,7 @@ function process_dialog_seq() {
 	                exit;
 	            num_objects = ds_list_size(_layer[| 1]);
 	            ds_list_clear(somaster_list);
+				clean_redo_list_seq();
 	            repeat (num_objects)   
 	            {
 	                ds_list_add(somaster_list,ds_list_find_value(_layer[| 1],0));
@@ -302,6 +308,7 @@ function process_dialog_seq() {
 	            selectedx = 0;
 				timeline_surf_length = 0;
 				frame_surf_refresh = 1;
+				clean_redo_list_seq();
             
 	            break;
 	        }  

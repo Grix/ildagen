@@ -293,16 +293,38 @@ function undo_seq() {
 				{
 					if (t_envelope_list[| j] == t_envelopetodelete)
 					{
-						if (ds_list_exists(t_envelopetodelete[| 1]))
-							ds_list_destroy(t_envelopetodelete[| 1]);
-						if (ds_list_exists(t_envelopetodelete[| 2]))
-							ds_list_destroy(t_envelopetodelete[| 2]);
-						ds_list_destroy(t_envelopetodelete);
 						ds_list_delete(t_envelope_list, j);
+						
+						var t_redo_list = ds_list_create();
+						ds_list_add(t_redo_list, t_envelopetodelete);
+						ds_list_add(t_redo_list, t_envelope_list);
+						ds_list_add(redo_list, "x"+string(t_redo_list));
+						timeline_surf_length = 0;
+						break;
 					}
 				}
 			}
 	    }
+		else if (string_char_at(undo,0) == "x")
+	    {
+			// undo delete envelope
+			undolisttemp = real(string_digits(undo));
+			if (!ds_list_exists(undolisttemp))
+	            exit;
+				
+			var t_envelope = undolisttemp[| 0];
+			if (!ds_list_exists(t_envelope))
+	            exit;
+			var t_layer_envelope_list = undolisttemp[| 1];
+			if (!ds_list_exists(t_layer_envelope_list))
+	            exit;
+				
+			ds_list_add(t_layer_envelope_list, t_envelope);
+			timeline_surf_length = 0;
+			ds_list_add(redo_list, "p"+string(t_envelope));
+			
+			ds_list_destroy(undolisttemp);
+		}
 		else if (string_char_at(undo,0) == "q")
 	    {
 	        //undo create layer
@@ -322,9 +344,33 @@ function undo_seq() {
 						ds_list_destroy(t_layertodelete[| 5]);
 					ds_list_destroy(t_layertodelete);
 					ds_list_delete(layer_list, i);
+					timeline_surf_length = 0;
+					
+					ds_list_add(redo_list, "w");
+					
+					break;
 				}
 			}
 	    }
+		else if (string_char_at(undo,0) == "w")
+	    {
+			// restore layer (empty only)
+			newlayer = ds_list_create();
+		    ds_list_add(layer_list,newlayer);
+		    ds_list_add(newlayer,ds_list_create()); //envelope list
+		    ds_list_add(newlayer,ds_list_create()); //objects list
+		    ds_list_add(newlayer,0); 
+		    ds_list_add(newlayer,0);
+		    ds_list_add(newlayer,"Layer "+string(controller.el_id));
+		    controller.el_id++;
+		    ds_list_add(newlayer,ds_list_create()); //dac list
+			ds_list_add(newlayer,0); 
+		    ds_list_add(newlayer,0);
+			ds_list_add(newlayer,0); 
+		    ds_list_add(newlayer,0);
+			ds_list_add(redo_list, "q"+string(newlayer));
+			timeline_surf_length = 0;
+		}
 		else
 			exit;
     

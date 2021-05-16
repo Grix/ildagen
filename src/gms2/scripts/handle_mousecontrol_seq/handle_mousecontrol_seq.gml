@@ -21,6 +21,7 @@ function handle_mousecontrol_seq() {
 		if (ds_list_size(somaster_list) == 0)
 		{
 	        moving_object = 0;
+			clean_redo_list_seq();
 	        exit;
 	    }
 		
@@ -34,6 +35,7 @@ function handle_mousecontrol_seq() {
 			if (!ds_list_exists(objecttomove))
 			{
 		        moving_object = 0;
+				clean_redo_list_seq();
 		        exit;
 		    }
 		
@@ -52,6 +54,7 @@ function handle_mousecontrol_seq() {
 	        if (layertomove == -1)
 	        {
 	            moving_object = 0;
+				clean_redo_list_seq();
 	            exit;
 	        }
             
@@ -83,6 +86,7 @@ function handle_mousecontrol_seq() {
         
 	    if (mouse_check_button_released(mb_left))
 	    {
+			clean_redo_list_seq();
 	        for (i = 0; i < ds_list_size(somaster_list); i++)
 	        {
 	            objecttomove = ds_list_find_value(somaster_list,i);
@@ -159,6 +163,7 @@ function handle_mousecontrol_seq() {
 	    //resizing object on timeline
 		if (ds_list_size(somaster_list) == 0)
 		{
+			clean_redo_list_seq();
 	        moving_object = 0;
 	        exit;
 	    }
@@ -169,6 +174,7 @@ function handle_mousecontrol_seq() {
 	        objecttomove = ds_list_find_value(somaster_list,i);
 			if (!ds_list_exists(objecttomove))
 			{
+				clean_redo_list_seq();
 		        moving_object = 0;
 		        exit;
 		    }
@@ -182,6 +188,7 @@ function handle_mousecontrol_seq() {
     
 	    if (mouse_check_button_released(mb_left))
 	    {
+			clean_redo_list_seq();
 			frame_surf_refresh = 1;
 		
 	        for (i = 0; i < ds_list_size(somaster_list); i++)
@@ -253,6 +260,7 @@ function handle_mousecontrol_seq() {
 		if (ds_list_size(somaster_list) == 0)
 		{
 	        moving_object = 0;
+			clean_redo_list_seq();
 	        exit;
 	    }
 		
@@ -274,6 +282,7 @@ function handle_mousecontrol_seq() {
     
 	    if (mouse_check_button_released(mb_left))
 	    {
+			clean_redo_list_seq();
 			frame_surf_refresh = 1;
 	        for (i = 0; i < ds_list_size(somaster_list); i++)
 	        {
@@ -406,6 +415,7 @@ function handle_mousecontrol_seq() {
 	    mouse_xprevious = mouse_x;
 	    if (mouse_check_button_released(mb_left))
 	    {
+			clean_redo_list_seq();
 	        startframe = round(startframe);
 	        moving_object = 0;
 	    }
@@ -419,6 +429,7 @@ function handle_mousecontrol_seq() {
 	    mouse_xprevious = mouse_x;
 	    if (mouse_check_button_released(mb_left))
 	    {
+			clean_redo_list_seq();
 	        endframe = round(endframe);
 	        moving_object = 0;
 	    }
@@ -432,6 +443,7 @@ function handle_mousecontrol_seq() {
 	    mouse_xprevious = mouse_x;
 	    if (mouse_check_button_released(mb_left))
 	    {
+			clean_redo_list_seq();
 	        ds_list_replace(marker_list,markertomove,round(ds_list_find_value(marker_list,markertomove)));
 			var t_undolist = ds_list_create();
 			ds_list_add(t_undolist, round(ds_list_find_value(marker_list,markertomove)));
@@ -456,6 +468,7 @@ function handle_mousecontrol_seq() {
 		var t_ypos = clamp(round(mouse_y-ypos_env),0,t_env_rowheight);
 		if (mouse_check_button_pressed(mb_left) || mouse_check_button_released(mb_left) || abs(xposprev-t_xpos) > 7/tlwdivtlzoom)
 		{
+			clean_redo_list_seq();
 		    //adding/editing point
 		
 			while (ds_list_find_index(time_list, t_xpos) != -1)
@@ -548,6 +561,7 @@ function handle_mousecontrol_seq() {
 	    //deleting points from envelope
 	    if (mouse_check_button_released(mb_left))
 	    {			
+			clean_redo_list_seq();
 	        time_list = ds_list_find_value(envelopetoedit,1);
 	        data_list = ds_list_find_value(envelopetoedit,2);
 		
@@ -614,6 +628,7 @@ function handle_mousecontrol_seq() {
 		// moving envelope section
 		if (keyboard_check(vk_escape))
 		{
+			clean_redo_list_seq();
 			moving_object = 0;
 			exit;
 		}
@@ -689,6 +704,7 @@ function handle_mousecontrol_seq() {
 			moving_object = 0;
 			timeline_surf_length = 0;
 		
+			clean_redo_list_seq();
 			ds_list_add(seqcontrol.undo_list,"e"+string(t_undolist));
 		}
 		moving_object_ready = true;
@@ -699,6 +715,7 @@ function handle_mousecontrol_seq() {
 		// duplicating envelope section
 		if (keyboard_check(vk_escape))
 		{
+			clean_redo_list_seq();
 			moving_object = 0;
 			exit;
 		}
@@ -771,6 +788,7 @@ function handle_mousecontrol_seq() {
 			moving_object = 0;
 			timeline_surf_length = 0;
 		
+			clean_redo_list_seq();
 			ds_list_add(seqcontrol.undo_list,"e"+string(t_undolist));
 		}
 		moving_object_ready = true;
@@ -1166,7 +1184,7 @@ function handle_mousecontrol_seq() {
 	                    {
 	                        selectedenvelope = envelope;
 	                        env_list_to_delete = envelope_list;
-	                        seq_dialog_yesno("envelopedelete","Are you sure you want to delete this envelope? (Cannot be undone)");
+	                        seq_dialog_yesno("envelopedelete","Are you sure you want to delete this envelope?");
 	                    }
 	                }
 	                else

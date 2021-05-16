@@ -11,6 +11,7 @@ function dd_seq_env_clear() {
 	ds_list_clear(ds_list_find_value(seqcontrol.selectedenvelope,1));
 	ds_list_clear(ds_list_find_value(seqcontrol.selectedenvelope,2));
 	seqcontrol.timeline_surf_length = 0;
+	clean_redo_list_seq();
 
 
 }

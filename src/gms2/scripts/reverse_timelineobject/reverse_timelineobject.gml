@@ -72,9 +72,7 @@ function reverse_timelineobject() {
 		}
 	}
 
+	clean_redo_list_seq();
 	timeline_surf_length = 0;
-
-
-
 
 }

@@ -2,6 +2,8 @@ function seq_paste_object() {
 	//paste timeline object
 	if (!ds_list_exists(copy_list)) or (!ds_list_empty(seqcontrol.somaster_list)) or (ds_list_empty(seqcontrol.layer_list)) or (seqcontrol.selectedlayer = -1)
 	    exit;
+		
+	clean_redo_list_seq();
     
 	if (ds_list_size(copy_list) != 0)
 	{

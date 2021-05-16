@@ -2,6 +2,7 @@ function seq_copy_object() {
 	//copy timeline object
 	if (seqcontrol.selectedlayer == -1) or (ds_list_empty(seqcontrol.somaster_list))
 	    exit;
+		
 
 	//clean old clipboard
 	for (i = 0; i < ds_list_size(copy_list); i++)

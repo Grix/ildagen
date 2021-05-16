@@ -18,6 +18,7 @@ function remove_audio() {
 	audio_buffer = -1;
 	parsingaudio = 0;
 	timeline_surf_length = 0;
+	clean_redo_list_seq();
 
 
 

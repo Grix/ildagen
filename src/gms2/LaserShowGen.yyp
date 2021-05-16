@@ -495,6 +495,7 @@
     {"id":{"name":"spr_edittype","path":"sprites/spr_edittype/spr_edittype.yy",},"order":68,},
     {"id":{"name":"dd_ilda_vieweditor","path":"scripts/dd_ilda_vieweditor/dd_ilda_vieweditor.yy",},"order":28,},
     {"id":{"name":"dd_ilda_maxdist","path":"scripts/dd_ilda_maxdist/dd_ilda_maxdist.yy",},"order":29,},
+    {"id":{"name":"clean_redo_list_seq","path":"scripts/clean_redo_list_seq/clean_redo_list_seq.yy",},"order":33,},
     {"id":{"name":"dd_ilda_scanspeed","path":"scripts/dd_ilda_scanspeed/dd_ilda_scanspeed.yy",},"order":30,},
     {"id":{"name":"dd_ilda_maxdwell","path":"scripts/dd_ilda_maxdwell/dd_ilda_maxdwell.yy",},"order":31,},
     {"id":{"name":"dd_ilda_maxdwell_blank","path":"scripts/dd_ilda_maxdwell_blank/dd_ilda_maxdwell_blank.yy",},"order":32,},
