@@ -11,7 +11,20 @@ function undo_live() {
 	    {
 	        //undo create object (delete)
 	        selectedfile = real(string_digits(undo));
-			live_delete_object_noundo();
+	
+			redolisttemp = ds_list_create();
+			ds_list_add(redolisttemp,filelist[| selectedfile]);
+			ds_list_add(redolisttemp,selectedfile);
+			ds_list_add(redo_list,"d"+string(redolisttemp));
+	
+			ds_list_delete(filelist, selectedfile);
+	
+			selectedfile = -1;
+			if (surface_exists(browser_surf))
+				surface_free(browser_surf);
+			browser_surf = -1;
+			playing = 0;
+			frame_surf_refresh = 1;
 	    }
 	    else if (string_char_at(undo,0) == "d")
 	    {
@@ -22,8 +35,10 @@ function undo_live() {
 	        objectlist = ds_list_find_value(undolisttemp,0);
 	        var t_index = ds_list_find_value(undolisttemp,1);
 
-		
 	        ds_list_insert(filelist,t_index,objectlist);
+			
+			ds_list_add(redo_list, "c"+string(t_index));
+			
 	        ds_list_destroy(undolisttemp);
 	    }
 	
@@ -34,7 +49,5 @@ function undo_live() {
 		frame = 0;
 	    playing = 0;
 	}
-
-
 
 }

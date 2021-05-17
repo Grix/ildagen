@@ -68,6 +68,7 @@ function frames_tolive_importedilda() {
 		browser_surf = -1;
 		frame = 0;
 	    playing = 0;
+		clean_redo_live();
 	}
 
 

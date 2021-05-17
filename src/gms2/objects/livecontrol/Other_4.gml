@@ -14,3 +14,4 @@ frame_surf_refresh = 1;
 if (loadprojectflag)
 	dd_live_loadproject();
 loadprojectflag = false;
+clean_redo_live();

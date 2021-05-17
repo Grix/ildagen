@@ -89,7 +89,7 @@ function frames_tolive() {
 		browser_surf = -1;
 		frame = 0;
 	    playing = 0;
-	
+		clean_redo_live();
 	}
 
 	with (seqcontrol)

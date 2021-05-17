@@ -28,6 +28,7 @@ selectedfile = -1; // index of filelist, -1 if none selected
 highlightfile = -1;
 stop_at_play = false;
 undo_list = ds_list_create();
+redo_list = ds_list_create();
 filelist = ds_list_create();
 el_list = -1;
 

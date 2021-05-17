@@ -107,6 +107,10 @@ if (keyboard_check_control())
     {
         undo_live();
     }
+	else if (keyboard_check_pressed(ord("Y")))
+    {
+        redo_live();
+    }
 }
 
 else if (keyboard_check_pressed(vk_escape))

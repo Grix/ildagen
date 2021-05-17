@@ -14,6 +14,7 @@ function live_delete_object() {
 		browser_surf = -1;
 		playing = 0;
 		frame_surf_refresh = 1;
+		clean_redo_live();
 	}
 
 

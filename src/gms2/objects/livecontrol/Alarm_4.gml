@@ -29,7 +29,6 @@ while (ds_list_size(undo_list) > 20)
 		if (buffer_exists(objectlist[| 1]))
 		    buffer_delete(objectlist[| 1]);
                 
-		ds_list_find_value(objectlist,0);
 		ds_list_destroy(infolist);
 		ds_list_destroy(objectlist);
             

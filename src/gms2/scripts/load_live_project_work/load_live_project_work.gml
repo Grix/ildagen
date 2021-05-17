@@ -54,7 +54,7 @@ function load_live_project_work() {
 	global.loading_loadliveproject = 0;
 
 	room_goto(rm_live);
-
+	clean_redo_live();
 
 
 }

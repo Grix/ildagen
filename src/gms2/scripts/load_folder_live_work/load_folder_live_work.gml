@@ -12,6 +12,7 @@ function load_folder_live_work() {
 	else
 	{
 		global.loading_importfolderlive = 0;
+		clean_redo_live();
 		file_find_close();
 	}
 

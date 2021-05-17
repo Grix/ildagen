@@ -48,6 +48,6 @@ function clear_live_project() {
 	frame = 0;
 	playing = 0;
 	filepath = "";
-
+	clean_redo_live();
 
 }
