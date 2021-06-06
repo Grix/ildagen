@@ -14,7 +14,7 @@
     <ProjectGuid>{01625F4D-C99D-41A9-BCB3-10C8BD176AE1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>dacwrapper</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -42,6 +42,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>D:\Qt\5.15.2\msvc2019\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Qt\5.15.2\msvc2019\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -54,11 +56,15 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;DACWRAPPER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalOptions>/Zc:preprocessor %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libusb-1.0.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libusb-1.0.lib;Ws2_32.lib;Qt5Core.lib;Qt5Network.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -87,6 +93,7 @@
     <ClCompile Include="Device_Helios.cpp" />
     <ClCompile Include="Device_IDN.cpp" />
     <ClCompile Include="Device_LaserDock.cpp" />
+    <ClCompile Include="Device_LaserDockNetwork.cpp" />
     <ClCompile Include="Device_OLSC.cpp" />
     <ClCompile Include="Device_OLSC_Easylase.cpp" />
     <ClCompile Include="Device_OLSC_EzAudDac.cpp" />
@@ -97,6 +104,9 @@
     <ClCompile Include="LaserdockDeviceManager.cpp" />
     <ClCompile Include="LaserdockDeviceManager_desktop.cpp" />
     <ClCompile Include="LaserdockDevice_desktop.cpp" />
+    <ClCompile Include="LaserDockNetworkDevice.cpp" />
+    <ClCompile Include="ldNetworkHardware.cpp" />
+    <ClCompile Include="ldNetworkHardwareManager.cpp" />
     <ClCompile Include="plt-windows.c" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +116,7 @@
     <ClInclude Include="Device_Helios.h" />
     <ClInclude Include="Device_IDN.h" />
     <ClInclude Include="Device_LaserDock.h" />
+    <ClInclude Include="Device_LaserDockNetwork.h" />
     <ClInclude Include="Device_OLSC.h" />
     <ClInclude Include="Device_OLSC_Easylase.h" />
     <ClInclude Include="Device_OLSC_EzAudDac.h" />
@@ -118,7 +129,14 @@
     <ClInclude Include="LaserdockDeviceManager.h" />
     <ClInclude Include="LaserdockDeviceManager_p.h" />
     <ClInclude Include="LaserdockDevice_p.h" />
+    <ClInclude Include="LaserDockNetworkDevice.h" />
+    <ClInclude Include="ldNetworkHardware.h" />
+    <ClInclude Include="ldNetworkHardwareManager.h" />
+    <ClInclude Include="ldSharedQueue.h" />
     <ClInclude Include="plt-windows.h" />
+    <ClInclude Include="wobjectcpp.h" />
+    <ClInclude Include="wobjectdefs.h" />
+    <ClInclude Include="wobjectimpl.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="libusb-1.0.lib" />
