@@ -30,6 +30,15 @@ for(var i = 0; i < num; i++)
         draw_set_color(text_color);
     else
         draw_set_color(c_white);
+		
+	if (!ds_list_exists(desc_list))
+	{
+		http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
+	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING desc_list in obj_Dropdown draw. Num: "+string(num)+", room: "+room_get_name(room));
+		instance_destroy();
+		exit;
+	}
+		
     draw_text_transformed(floor(x1+item_padding), floor(y1+item_padding-2-5*(controller.dpi_multiplier-1)), ds_list_find_value(desc_list,i), controller.dpi_multiplier, controller.dpi_multiplier, 0);
     
     if(i == selected)

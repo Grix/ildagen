@@ -2,7 +2,7 @@ function dropdown_menu_seq_file() {
 	ddobj = instance_create_layer(controller.menu_width_start[0],0,"foreground",obj_dropdown);
 	with (ddobj)
 	{
-	    num = 9;
+	    num = 10;
 	    ds_list_add(desc_list,"New Project");
 	    ds_list_add(desc_list,"Save project (Ctrl-S)");
 		ds_list_add(desc_list,"Save project as...");

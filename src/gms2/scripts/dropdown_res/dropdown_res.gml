@@ -2,7 +2,7 @@ function dropdown_res() {
 
 	ddobj = instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-view_hport[3],"foreground",obj_dropdown);
 	with (ddobj)
-	    {
+	{
 	    num = 5;
 	    event_user(1);
 	    ds_list_add(desc_list,"Auto");
@@ -31,7 +31,7 @@ function dropdown_res() {
 	    else if (controller.resolution == controller.opt_maxdist) highlighted = 3;
 	    else highlighted = 4;
 	    ds_list_replace(hl_list,highlighted,1);
-	    }
+	}
     
 
 

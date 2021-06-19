@@ -63,7 +63,7 @@ function import_font_end() {
 	    font_type = 0;
 	}
     
-	if (maxframes_parse < 65 || maxframes_parse > 100)
+	if (ds_list_size(font_list) < 65 || ds_list_size(font_list) > 100)
 		show_message_new("Warning: Unexpected number of frames in the ILD file. Is this a valid font file such as arial.ild? Other fonts can be found in the LaserBoy zip distribution in LaserShowGen's installation folder, at LaserBoy_Current.zip\\LaserBoy\\ild\\fonts\\");
 	
 	if (ttlpalette == 0)

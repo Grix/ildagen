@@ -1,7 +1,7 @@
 function dropdown_export() {
 	ddobj = instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-view_hport[3],"foreground",obj_dropdown);
 	with (ddobj)
-	    {
+	{
 	    num = 4;
 	    event_user(1);
 	    ds_list_add(desc_list,"Optimized ILDA output");
@@ -20,7 +20,7 @@ function dropdown_export() {
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,dd_export_format0);
 	    ds_list_add(hl_list,(controller.exp_format == 0));
-	    }
+	}
     
 
 

@@ -4,7 +4,7 @@ if (controller.dialog_open)
     exit;
 
 if (instance_number(obj_dropdown) <= 1)
-controller.alarm[6] = 2;
+	controller.alarm[6] = 2;
 
 if (rdy)
 {

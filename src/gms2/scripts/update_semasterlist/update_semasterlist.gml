@@ -11,6 +11,15 @@ function update_semasterlist() {
 	for (u = 0; u < ds_list_size(el_list);u++)
 	{
 	    templist = ds_list_find_value(el_list,u);
+		if (!ds_list_exists(templist))
+		{
+			http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
+	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING el_list in update_semasterlist. index: "+string(is_undefined(u))+", total elements: "+string(ds_list_size(el_list)));
+			
+			ds_list_delete(el_list, u);
+			u--;
+			continue;
+		};
 	    elid_temp = ds_list_find_value(templist,9);
     
 	    for (j = 0;j < ds_list_size(semaster_list);j++)
