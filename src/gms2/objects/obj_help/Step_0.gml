@@ -62,6 +62,7 @@ else if (room == rm_seq)
         "D)    Hold to delete points in envelopes when dragging mouse\n\n"+
         "Delete)    Delete selected object\n"+
         "Ctrl+Z)    Undo\n"+
+		"Ctrl+Y)    Redo\n"+
         "Ctrl+C)    Copy selected objects\n"+
         "Ctrl+X)    Cut selected objects\n"+
         "Ctrl+V)    Paste\n"+
@@ -94,6 +95,7 @@ else if (room == rm_live)
 		"R)    Toggle restarting/resuming when playing selected object\n"+
         "P)    Toggle 3D frame previewing\n"+
         "Ctrl+Z)    Undo\n"+
+		"Ctrl+Y)    Redo\n"+
 		"U)    Toggle laser DAC output\n"+
         "Esc)    Stop laser DAC output\n\n"+
         "M)    Reset window size\n"+

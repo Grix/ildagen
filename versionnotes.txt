@@ -1,12 +1,6 @@
-v1.9.0
-- Can now move or duplicate sections of timeline envelopes.
-- Fix Ether Dream DAC sometimes losing connection.
-- Fix last frame of a triangle wave animation function being wrong.
-- Other minor changes.
-
-v1.8.13 (2021-03-13)
-- Can now redo after undo-ing in editor mode.
-- macOS: Fix CMD+Z keyboard shortcut activating zoom, and some other buggy keyboard behavior.
-- Fix wrong colors/blanking with Easylase DAC.
-- Automatically center resize/rotate anchor when selecting objects in editor mode.
-[..]
+v1.9.1
+- Improved undo and redo functionality in timeline and live mode.
+- Fix possible crash when playing certain imported ILDA files in live mode.
+- Better detection of automatic graphics DPI scaling. (Can be overridden in settings)
+- Improve idle CPU usage in macOS.
+- Mitigated several other obscure crashes.

@@ -2,11 +2,15 @@ function dropdown_menu_seq_edit() {
 	ddobj = instance_create_layer(seqcontrol.menu_width_start[1]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 	with (ddobj)
 	{
-	    num = 9;
+	    num = 10;
 	    ds_list_add(desc_list,"Undo (Ctrl+Z)");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,undo_seq);
 	    ds_list_add(hl_list,ds_list_size(seqcontrol.undo_list));
+		ds_list_add(desc_list,"Redo (Ctrl+Y)");
+	    ds_list_add(sep_list,0);
+	    ds_list_add(scr_list,redo_seq);
+	    ds_list_add(hl_list,ds_list_size(seqcontrol.redo_list));
 	    ds_list_add(desc_list,"Send selected frames to editor mode");
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,dd_seq_fromseq);
@@ -34,7 +38,7 @@ function dropdown_menu_seq_edit() {
 	    ds_list_add(desc_list,"Split object (S)");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,split_timelineobject);
-	    ds_list_add(hl_list,1);
+	    ds_list_add(hl_list,ds_list_size(seqcontrol.somaster_list));
 	    ds_list_add(desc_list,"Deselect");
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,dd_seq_deselect);

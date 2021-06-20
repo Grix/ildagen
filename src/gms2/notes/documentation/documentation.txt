@@ -1,9 +1,9 @@
 TODO
+- fix ctrl+key shortcuts in linux? Not working?
 - improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
 - undo reversing in editor mode
 - x64 windows
-- redo in timeline and live mode
 - undo stretching maxframes in editor mode
 - compress buffers when saving in live mode and editor mode
 - better detection of screen size in mac retina
