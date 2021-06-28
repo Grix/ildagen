@@ -76,7 +76,7 @@ private:
     //signals:
     void ConnectedDevicesActiveChanged(bool active) W_SIGNAL(deviceCountChanged, active)
 
-private:// slots:
+public:// slots:
     void init(); W_SLOT(init)
     void ConnectedDevicesActiveUpdate(bool active); W_SLOT(ConnectedDevicesActiveUpdate)
     void networkDeviceDisconnectCheck(); W_SLOT(networkDeviceDisconnectCheck)

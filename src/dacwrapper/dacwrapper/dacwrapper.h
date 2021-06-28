@@ -12,6 +12,7 @@
 #endif
 #include "Device_Helios.h"
 #include "Device_LaserDock.h"
+#include "Device_LaserDockNetwork.h"
 #include "Device_IDN.h"
 #include <string>
 #include <thread>
@@ -26,8 +27,9 @@
 
 #define MAX_FRAME_SIZE 0x1000
 
-Device_LaserDock* laserDockDevice;
 Device_Helios* heliosDevice;
+Device_LaserDock* laserDockDevice;
+Device_LaserDockNetwork* laserDockNetworkDevice;
 Device_Etherdream* etherDreamDevice;
 Device_IDN* idnDevice;
 #ifdef _WIN32

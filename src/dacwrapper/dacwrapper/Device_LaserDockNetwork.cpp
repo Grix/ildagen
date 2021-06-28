@@ -86,6 +86,7 @@ int Device_LaserDockNetwork::_Initialize()
 	if (inited)
 		return false; //already inited
 
+	laserdockDeviceManager->networkDeviceCheck();
 
 	laserdockDevices = laserdockDeviceManager->devices();
 

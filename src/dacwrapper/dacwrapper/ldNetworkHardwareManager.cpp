@@ -19,8 +19,9 @@ ldNetworkHardwareManager::ldNetworkHardwareManager(QObject *parent)
     //set_isActive(false);
     moveToThread(&m_managerworkerthread);
     m_managerworkerthread.start();
-    QTimer::singleShot(0,this, &ldNetworkHardwareManager::init);
+    //QTimer::singleShot(0,this, &ldNetworkHardwareManager::init);
     m_currentBufferConfig = &m_wifi_server_device_config;
+    init();
 }
 
 ldNetworkHardwareManager::~ldNetworkHardwareManager()
@@ -428,6 +429,10 @@ void ldNetworkHardwareManager::networkDeviceCheck()
     // periodically we send out a ping for any lasercube devices on the network
     LaserdockNetworkDevice::RequestDeviceAlive(*m_pingskt);
 
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+    readPendingDeviceResponses();
+
     // Check for any network hardware that has been found but not yet initialized.
     // The hardware is not immediately placed in the m_networkHardwares anymore, as this caused issues
     // due to the initialization of network hardware not able to be completed immediately over
@@ -607,8 +612,9 @@ void ldNetworkHardwareManager::init()
     m_pingskt = new QUdpSocket();
 
     connect(this, &ldNetworkHardwareManager::deviceCountChanged, this, &ldNetworkHardwareManager::updateCheckTimerState);
-    connect(m_checkTimer, &QTimer::timeout, this, &ldNetworkHardwareManager::networkDeviceCheck);
-    connect(this,&ldNetworkHardwareManager::ConnectedDevicesActiveChanged,this,&ldNetworkHardwareManager::ConnectedDevicesActiveUpdate);
+    //connect(m_checkTimer, &QTimer::timeout, this, &ldNetworkHardwareManager::networkDeviceCheck);
+    networkDeviceCheck();
+    connect(this, &ldNetworkHardwareManager::ConnectedDevicesActiveChanged, this, &ldNetworkHardwareManager::ConnectedDevicesActiveUpdate);
 
 
 
@@ -619,8 +625,13 @@ void ldNetworkHardwareManager::init()
     connect(m_pingskt, &QUdpSocket::readyRead,this, &ldNetworkHardwareManager::readPendingDeviceResponses);
 
     m_checkTimer->setInterval(500);
+    m_checkTimer->start();
 
     updateCheckTimerState();
+
+    //test
+    networkDeviceCheck();
+
 
     /*connect(this,&ldNetworkHardwareManager::isActiveChanged,this,[&](){
         if (isActive) {
@@ -631,6 +642,8 @@ void ldNetworkHardwareManager::init()
             QTimer::singleShot(0, m_checkTimer, &QTimer::stop);
         }
     });*/
+
+    fprintf(stderr, "Inited ldnetworkhardwaremanager\n");
 }
 
 #include "wobjectimpl.h"
