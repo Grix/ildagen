@@ -4,7 +4,7 @@ Device_LaserDockNetwork::Device_LaserDockNetwork()
 {
 	ready = false;
 
-	laserdockDeviceManager = new ldNetworkHardwareManager();
+	//laserdockDeviceManager = new ldNetworkHardwareManager();
 }
 
 
@@ -86,14 +86,15 @@ int Device_LaserDockNetwork::_Initialize()
 	if (inited)
 		return false; //already inited
 
-	laserdockDeviceManager->networkDeviceCheck();
+	//laserdockDeviceManager->networkDeviceCheck();
+	int numDevices = deviceController.FindDevices();
 
-	laserdockDevices = laserdockDeviceManager->devices();
+	//laserdockDevices = laserdockDeviceManager->devices();
 
 	//while (laserdockDevices.size() > LASERDOCK_MAX_DEVICES)
 	//	laserdockDevices.pop_back();
 
-	for (unsigned int i = 0; i < laserdockDevices.size(); i++)
+	for (unsigned int i = 0; i < numDevices; i++)
 	{
 		/*if (!laserdockDevices[i]->enable_output())
 		{
@@ -109,7 +110,7 @@ int Device_LaserDockNetwork::_Initialize()
 		
 	inited = true;
 
-	return laserdockDevices.size();
+	return numDevices;
 }
 
 bool Device_LaserDockNetwork::_SendFrame(int devNum, LaserdockSample* data, uint32_t length, uint32_t rate)
@@ -125,16 +126,16 @@ bool Device_LaserDockNetwork::_SendFrame(int devNum, LaserdockSample* data, uint
 	if (rate != previousRate[devNum]) //update rate if different from last frame
 	{
 		uint32_t maxRate;
-		if (!laserdockDevices[devNum]->params.device->max_dac_rate(&maxRate))
-			return false;
-		if (rate > maxRate)
-			return false;
+		//if (!laserdockDevices[devNum]->params.device->max_dac_rate(&maxRate))
+		//	return false;
+		//if (rate > maxRate)
+		//	return false;
 		previousRate[devNum] = rate;
-		if (!laserdockDevices[devNum]->params.device->set_dac_rate(rate))
-			return false;
+		//if (!laserdockDevices[devNum]->params.device->set_dac_rate(rate))
+		//	return false;
 	}
 
-	return laserdockDevices[devNum]->send(data, length);
+	//return laserdockDevices[devNum]->send(data, length);
 }
 
 bool Device_LaserDockNetwork::_Stop(int devNum)
@@ -149,7 +150,7 @@ bool Device_LaserDockNetwork::_Stop(int devNum)
 	blankPoint.y = 0x800;
 	blankPoint.rg = 0;
 	blankPoint.b = 0;
-	laserdockDevices[devNum]->send(&blankPoint, 8);
+	//laserdockDevices[devNum]->send(&blankPoint, 8);
 
 	return true;
 

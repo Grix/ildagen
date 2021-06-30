@@ -42,13 +42,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>D:\Qt\5.15.2\msvc2019\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>D:\Qt\5.15.2\msvc2019\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>D:\Qt\5.15.2\msvc2019\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>D:\Qt\5.15.2\msvc2019\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -66,7 +66,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libusb-1.0.lib;Ws2_32.lib;Qt5Core.lib;Qt5Network.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libusb-1.0.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -86,7 +86,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libusb-1.0.lib;Ws2_32.lib;Qt5Core.lib;Qt5Network.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libusb-1.0.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -102,13 +102,11 @@
     <ClCompile Include="Device_RIYA.cpp" />
     <ClCompile Include="HeliosDac.cpp" />
     <ClCompile Include="idn.cpp" />
+    <ClCompile Include="LaserCubeNetwork.cpp" />
     <ClCompile Include="LaserdockDevice.cpp" />
     <ClCompile Include="LaserdockDeviceManager.cpp" />
     <ClCompile Include="LaserdockDeviceManager_desktop.cpp" />
     <ClCompile Include="LaserdockDevice_desktop.cpp" />
-    <ClCompile Include="LaserDockNetworkDevice.cpp" />
-    <ClCompile Include="ldNetworkHardware.cpp" />
-    <ClCompile Include="ldNetworkHardwareManager.cpp" />
     <ClCompile Include="plt-windows.c" />
   </ItemGroup>
   <ItemGroup>
@@ -127,18 +125,12 @@
     <ClInclude Include="idn-hello.h" />
     <ClInclude Include="idn-stream.h" />
     <ClInclude Include="idn.h" />
+    <ClInclude Include="LaserCubeNetwork.h" />
     <ClInclude Include="LaserdockDevice.h" />
     <ClInclude Include="LaserdockDeviceManager.h" />
     <ClInclude Include="LaserdockDeviceManager_p.h" />
     <ClInclude Include="LaserdockDevice_p.h" />
-    <ClInclude Include="LaserDockNetworkDevice.h" />
-    <ClInclude Include="ldNetworkHardware.h" />
-    <ClInclude Include="ldNetworkHardwareManager.h" />
-    <ClInclude Include="ldSharedQueue.h" />
     <ClInclude Include="plt-windows.h" />
-    <ClInclude Include="wobjectcpp.h" />
-    <ClInclude Include="wobjectdefs.h" />
-    <ClInclude Include="wobjectimpl.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="libusb-1.0.lib" />

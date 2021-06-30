@@ -81,17 +81,11 @@
     <ClCompile Include="plt-windows.c">
       <Filter>Source Files\Idn</Filter>
     </ClCompile>
-    <ClCompile Include="LaserDockNetworkDevice.cpp">
-      <Filter>Source Files\Laserdock</Filter>
-    </ClCompile>
-    <ClCompile Include="ldNetworkHardwareManager.cpp">
-      <Filter>Source Files\Laserdock</Filter>
-    </ClCompile>
-    <ClCompile Include="ldNetworkHardware.cpp">
-      <Filter>Source Files\Laserdock</Filter>
-    </ClCompile>
     <ClCompile Include="Device_LaserDockNetwork.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LaserCubeNetwork.cpp">
+      <Filter>Source Files\Laserdock</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,29 +146,11 @@
     <ClInclude Include="plt-windows.h">
       <Filter>Header Files\Idn</Filter>
     </ClInclude>
-    <ClInclude Include="LaserDockNetworkDevice.h">
-      <Filter>Header Files\Laserdock</Filter>
-    </ClInclude>
-    <ClInclude Include="ldSharedQueue.h">
-      <Filter>Header Files\Laserdock</Filter>
-    </ClInclude>
-    <ClInclude Include="wobjectimpl.h">
-      <Filter>Header Files\Laserdock</Filter>
-    </ClInclude>
-    <ClInclude Include="wobjectcpp.h">
-      <Filter>Header Files\Laserdock</Filter>
-    </ClInclude>
-    <ClInclude Include="wobjectdefs.h">
-      <Filter>Header Files\Laserdock</Filter>
-    </ClInclude>
-    <ClInclude Include="ldNetworkHardwareManager.h">
-      <Filter>Header Files\Laserdock</Filter>
-    </ClInclude>
-    <ClInclude Include="ldNetworkHardware.h">
-      <Filter>Header Files\Laserdock</Filter>
-    </ClInclude>
     <ClInclude Include="Device_LaserDockNetwork.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LaserCubeNetwork.h">
+      <Filter>Header Files\Laserdock</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

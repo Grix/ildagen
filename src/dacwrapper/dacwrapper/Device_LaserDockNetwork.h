@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ldNetworkHardwareManager.h"
+#include "LaserCubeNetwork.h"
 #include <thread>
 #include <chrono>
 #include <mutex>
@@ -32,8 +32,9 @@ public:
 
 private:
 
-	std::vector<ldNetworkHardware*> laserdockDevices;
-	ldNetworkHardwareManager* laserdockDeviceManager;
+	//std::vector<ldNetworkHardware*> laserdockDevices;
+	//ldNetworkHardwareManager* laserdockDeviceManager;
+	LaserCubeNetwork deviceController;
 	bool inited;
 	int previousRate[LASERDOCK_MAX_DEVICES];
 	bool outputEnabled[LASERDOCK_MAX_DEVICES];
