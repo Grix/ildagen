@@ -115,7 +115,7 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 	FD_ZERO(&rfdsPrm);
 	FD_SET(pingSocketFd, &rfdsPrm);
 
-	unsigned msTimeout = 5000;
+	unsigned msTimeout = 1000;
 
 	// Remember start time
 	uint32_t usStart = plt_getMonoTimeUS();
@@ -158,7 +158,7 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 			fprintf(stderr, "recvfrom() failed (error: %d)", plt_sockGetLastError());
 			break;
 		}
-		devices.push_back(std::make_unique<LaserCubeNetworkDevice>((int)&recvSockAddr.sin_addr));
+		devices.push_back(std::make_unique<LaserCubeNetworkDevice>(recvSockAddr.sin_addr.S_un.S_addr));
 	}
 
 	// Close socket
@@ -171,7 +171,22 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 	return devices.size() != 0;
 }
 
-LaserCubeNetwork::LaserCubeNetworkDevice::LaserCubeNetworkDevice(int ipAddress)
+bool LaserCubeNetwork::OpenDevice(unsigned int deviceNum)
+{
+	return devices[deviceNum]->OpenDevice();
+}
+
+bool LaserCubeNetwork::StopOutput(unsigned int deviceNum)
+{
+	return devices[deviceNum]->StopOutput();
+}
+
+bool LaserCubeNetwork::SendData(unsigned int deviceNum, LaserCubeNetworkSample* data, size_t count)
+{
+	return devices[deviceNum]->SendData(data, count);
+}
+
+LaserCubeNetwork::LaserCubeNetworkDevice::LaserCubeNetworkDevice(unsigned long ipAddress)
 {
     cmdSocketAddr.sin_family = AF_INET;
     cmdSocketAddr.sin_port = htons(LDN_CMD_PORT);
@@ -185,17 +200,94 @@ LaserCubeNetwork::LaserCubeNetworkDevice::LaserCubeNetworkDevice(int ipAddress)
 
 bool LaserCubeNetwork::LaserCubeNetworkDevice::OpenDevice()
 {
-	int cmdSocketFd = plt_sockOpen(AF_INET, SOCK_DGRAM, 0);
+	cmdSocketFd = plt_sockOpen(AF_INET, SOCK_DGRAM, 0);
 	if (cmdSocketFd < 0)
 	{
 		fprintf(stderr, "laserdock network cmd socket open failed (error: %d)", plt_sockGetLastError());
 		return false;
 	}
 
-	int dataSocketFd = plt_sockOpen(AF_INET, SOCK_DGRAM, 0);
+	dataSocketFd = plt_sockOpen(AF_INET, SOCK_DGRAM, 0);
 	if (dataSocketFd < 0)
 	{
 		fprintf(stderr, "laserdock network data socket open failed (error: %d)", plt_sockGetLastError());
 		return false;
 	}
+
+	std::thread receiveResponseHandlerThread(&LaserCubeNetwork::LaserCubeNetworkDevice::ReceiveResponseHandler, this);
+	receiveResponseHandlerThread.detach();
+	std::thread frameHandlerThread(&LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler, this);
+	frameHandlerThread.detach();
+
+	char off = 0;
+	SendCommand(LDN_CMD_ENABLE_BUFFER_SIZE_RESPONSE_ON_DATA, &off);
 }
+
+bool LaserCubeNetwork::LaserCubeNetworkDevice::SendData(LaserCubeNetworkSample* data, size_t count)
+{
+	//todo mutex
+	memcpy_s(frameBuffer, sizeof(frameBuffer), data, sizeof(LaserCubeNetworkSample) * count);
+	messageNumber = 0;
+	totalFrameSize = count;
+	frameNumber++;
+	if (!outputEnabled)
+	{
+		char on = 0;
+		outputEnabled = SendCommand(LDN_CMD_SET_OUTPUT, &on) && SendCommand(LDN_CMD_SET_OUTPUT, &on);
+	}
+	dataLeft = count;
+
+	return true;
+}
+
+bool LaserCubeNetwork::LaserCubeNetworkDevice::SendCommand(unsigned char command, char* data, int dataLength)
+{
+	char buffer[8] = { command };
+	memcpy_s(buffer + 1, 7, data, dataLength);
+	int sentBytes = sendto(cmdSocketFd, buffer, 1 + dataLength, 0, (const sockaddr*)&cmdSocketAddr, sizeof(cmdSocketAddr));
+
+	return (sentBytes == 1 + dataLength);
+}
+
+bool LaserCubeNetwork::LaserCubeNetworkDevice::StopOutput()
+{
+	char off = 0;
+	outputEnabled = false;
+	return SendCommand(LDN_CMD_SET_OUTPUT, &off) && SendCommand(LDN_CMD_SET_OUTPUT, &off); // send twice just in case
+}
+
+void LaserCubeNetwork::LaserCubeNetworkDevice::ReceiveResponseHandler()
+{
+	char buffer[1500];
+	while (1) //todo quit when freeing
+	{
+		struct sockaddr* recvAddrPre = (struct sockaddr*)&cmdSocketAddr;
+		socklen_t recvAddrSize = sizeof(cmdSocketAddr);
+
+		int numBytes = recvfrom(cmdSocketFd, buffer, sizeof(buffer), 0, recvAddrPre, &recvAddrSize);
+		if (numBytes > 0)
+		{
+		}
+	}
+}
+
+void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
+{
+	while (1) //todo quit when freeing
+	{
+		if (!outputEnabled)
+		{
+			StopOutput();
+		}
+		else if (dataLeft > 0)
+		{
+			char buffer[1500] = { LDN_CMD_SAMPLE_DATA, 0x00, messageNumber++ % 255, frameNumber++ % 255 };
+			int pointsToSend = dataLeft > 140 ? 140 : dataLeft;
+			memcpy_s(buffer + 4, 1500, frameBuffer + (totalFrameSize - dataLeft) * sizeof(LaserCubeNetworkSample), pointsToSend * sizeof(LaserCubeNetworkSample));
+			int sentBytes = sendto(dataSocketFd, buffer, 4 + pointsToSend * sizeof(LaserCubeNetworkSample), 0, (const sockaddr*)&dataSocketAddr, sizeof(dataSocketAddr));
+			dataLeft -= pointsToSend;
+		}
+		std::this_thread::sleep_for(std::chrono::microseconds(50));
+	}
+}
+

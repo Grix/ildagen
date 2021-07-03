@@ -15,16 +15,8 @@ public:
 	Device_LaserDockNetwork();
 	~Device_LaserDockNetwork();
 
-	typedef struct
-	{
-		uint16_t rg;	//lower byte is red, top byte is green
-		uint16_t b;		//lower byte is blue
-		uint16_t x;		//12bit?
-		uint16_t y;		//12bit?
-	} LaserDockPoint;
-
 	int Init();
-	bool OutputFrame(int devNum, int rate, int frameSize, LaserDockPoint* bufferAddress);
+	bool OutputFrame(int devNum, int rate, int frameSize, LaserCubeNetwork::LaserCubeNetworkSample* bufferAddress);
 	bool OpenDevice(int cardNum);
 	bool Stop(int devNum);
 	bool CloseAll();
@@ -32,8 +24,6 @@ public:
 
 private:
 
-	//std::vector<ldNetworkHardware*> laserdockDevices;
-	//ldNetworkHardwareManager* laserdockDeviceManager;
 	LaserCubeNetwork deviceController;
 	bool inited;
 	int previousRate[LASERDOCK_MAX_DEVICES];
@@ -46,7 +36,7 @@ private:
 	//Data buffer struct can be found in LaserdockDevice.h.
 	//Length is number of points
 	//Rate is points per second
-	bool _SendFrame(int devNum, LaserdockSample* data, uint32_t length, uint32_t rate);
+	bool _SendFrame(int devNum, LaserCubeNetwork::LaserCubeNetworkSample* data, uint32_t length, uint32_t rate);
 
 	//stop output until sendFrame is called again
 	bool _Stop(int devNum);

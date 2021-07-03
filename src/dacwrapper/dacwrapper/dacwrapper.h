@@ -1,5 +1,6 @@
 //dac wrapper for LasershowGen main header file
 #ifdef _WIN32
+#define NOMINMAX
 #include <winsock2.h> // For IDN, need to declare this first, before windows.h used by other classes
 #include <ws2tcpip.h> // ^
 #include "Device_Etherdream.h"

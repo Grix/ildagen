@@ -27,7 +27,7 @@ int Device_LaserDockNetwork::Init()
 	return result;
 }
 
-bool Device_LaserDockNetwork::OutputFrame(int devNum, int rate, int frameSize, LaserDockPoint* bufferAddress)
+bool Device_LaserDockNetwork::OutputFrame(int devNum, int rate, int frameSize, LaserCubeNetwork::LaserCubeNetworkSample* bufferAddress)
 {
 	if (!ready) return false;
 
@@ -39,7 +39,7 @@ bool Device_LaserDockNetwork::OutputFrame(int devNum, int rate, int frameSize, L
 	{
 		if (frameNum[devNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;
-		else if (_SendFrame(devNum, (LaserdockSample*)bufferAddress, frameSize, rate))
+		else if (_SendFrame(devNum, bufferAddress, frameSize, rate))
 		{
 			return true;
 		}
@@ -86,13 +86,7 @@ int Device_LaserDockNetwork::_Initialize()
 	if (inited)
 		return false; //already inited
 
-	//laserdockDeviceManager->networkDeviceCheck();
 	int numDevices = deviceController.FindDevices();
-
-	//laserdockDevices = laserdockDeviceManager->devices();
-
-	//while (laserdockDevices.size() > LASERDOCK_MAX_DEVICES)
-	//	laserdockDevices.pop_back();
 
 	for (unsigned int i = 0; i < numDevices; i++)
 	{
@@ -103,8 +97,8 @@ int Device_LaserDockNetwork::_Initialize()
 		}
 		else
 		{*/
-			previousRate[i] = 0;
-			outputEnabled[i] = true;
+		deviceController.OpenDevice(i);
+		previousRate[i] = 0;
 		//}
 	}
 		
@@ -113,15 +107,10 @@ int Device_LaserDockNetwork::_Initialize()
 	return numDevices;
 }
 
-bool Device_LaserDockNetwork::_SendFrame(int devNum, LaserdockSample* data, uint32_t length, uint32_t rate)
+bool Device_LaserDockNetwork::_SendFrame(int devNum, LaserCubeNetwork::LaserCubeNetworkSample* data, uint32_t length, uint32_t rate)
 {
 	if (!inited)
 		return false;
-
-	//if (!outputEnabled[devNum]) //enable output if currently disabled
-	//	if (!laserdockDevices[devNum]->enable_output())
-	//		return false;
-	//outputEnabled[devNum] = true;
 
 	if (rate != previousRate[devNum]) //update rate if different from last frame
 	{
@@ -135,7 +124,7 @@ bool Device_LaserDockNetwork::_SendFrame(int devNum, LaserdockSample* data, uint
 		//	return false;
 	}
 
-	//return laserdockDevices[devNum]->send(data, length);
+	return deviceController.SendData(devNum, data, length);
 }
 
 bool Device_LaserDockNetwork::_Stop(int devNum)
@@ -144,23 +133,17 @@ bool Device_LaserDockNetwork::_Stop(int devNum)
 		return false;
 
 	//disabling then enabling output doesn't always work, this is a workaround
-
-	LaserdockSample blankPoint;
+	/*LaserCubeNetwork::LaserCubeNetworkSample blankPoint;
 	blankPoint.x = 0x800;
 	blankPoint.y = 0x800;
-	blankPoint.rg = 0;
+	blankPoint.r = 0;
+	blankPoint.g = 0;
 	blankPoint.b = 0;
-	//laserdockDevices[devNum]->send(&blankPoint, 8);
+	deviceController.SendData(devNum, &blankPoint, 1);*/
+
+	deviceController.StopOutput(devNum);
 
 	return true;
-
-	/*if (laserdockDevice->disable_output())
-	{
-	outputEnabled = false;
-	return true;
-	}
-	else
-	return false;*/
 }
 
 bool Device_LaserDockNetwork::_FreeAll()

@@ -302,18 +302,17 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 	else if (dacType == 9)	//LaserDockNetwork
 	{
 		int currentPos = 0;
-		Device_LaserDockNetwork::LaserDockPoint laserDockBuffer[MAX_FRAME_SIZE];
+		LaserCubeNetwork::LaserCubeNetworkSample laserDockBuffer[MAX_FRAME_SIZE];
 		for (int i = 0; i < frameSize; i++)
 		{
 			laserDockBuffer[i].x = bufferAddress[currentPos++] >> 4;
 			laserDockBuffer[i].y = bufferAddress[currentPos++] >> 4;
-			uint16_t* r = bufferAddress + currentPos++;
-			uint16_t* g = bufferAddress + currentPos++;
-			laserDockBuffer[i].rg = (((uint8_t)*g << 8) | (uint8_t)*r);
-			laserDockBuffer[i].b = (uint8_t)bufferAddress[currentPos++];// << 8;
+			laserDockBuffer[i].r = bufferAddress[currentPos++] << 4;
+			laserDockBuffer[i].g = bufferAddress[currentPos++] << 4;
+			laserDockBuffer[i].b = bufferAddress[currentPos++] << 4;
 			currentPos++;
 		}
-		laserDockNetworkDevice->OutputFrame(cardNum, scanRate, frameSize * 8, &laserDockBuffer[0]);
+		laserDockNetworkDevice->OutputFrame(cardNum, scanRate, frameSize, &laserDockBuffer[0]);
 	}
 	#ifdef _WIN32
 		else if (dacType == 1)	//EtherDream

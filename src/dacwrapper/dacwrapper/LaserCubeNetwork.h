@@ -6,7 +6,10 @@
 
 #include <stdio.h>
 #include <vector>
+#include <thread>
+#include <algorithm>
 #include "LaserdockDevice.h"
+
 #if defined(_WIN32) || defined(WIN32)
 #include "plt-windows.h"
 #else
@@ -24,32 +27,55 @@
 #define LDN_CMD_SET_OUTPUT 0x80
 #define LDN_CMD_GET_RINGBUFFER_EMPTY_SAMPLE_COUNT 0x8a
 #define LDN_CMD_SAMPLE_DATA 0xa9
+#define LDN_CMD_SET_RATE
 
 class LaserCubeNetwork
 {
 public:
+
+	struct LaserCubeNetworkSample
+	{
+		uint16_t x; // each 12bit
+		uint16_t y;
+		uint16_t r;
+		uint16_t g;
+		uint16_t b;
+	};
+
 	LaserCubeNetwork();
 	int FindDevices();
 	bool OpenDevice(unsigned int deviceNum);
 	bool SendCommand(unsigned int deviceNum, unsigned char command, unsigned char data);
-	bool SendData(unsigned int deviceNum, LaserdockSample*, size_t count);
+	bool SendData(unsigned int deviceNum, LaserCubeNetworkSample* data, size_t count);
 	bool StopOutput(unsigned int deviceNum);
 	bool Close(unsigned int deviceNum);
+
 
 private:
 	class LaserCubeNetworkDevice
 	{
 	public:
-		LaserCubeNetworkDevice(int ipAddress);
+		LaserCubeNetworkDevice(unsigned long ipAddress);
 		bool OpenDevice();
-		bool SendCommand(unsigned char command, unsigned char data);
-		bool SendData(LaserdockSample*, size_t count);
+		bool SendCommand(unsigned char command, char* data, int dataLength = 1);
+		bool SendData(LaserCubeNetworkSample* data, size_t count);
 		bool StopOutput();
 		bool Close();
 
 	private:
+		void ReceiveResponseHandler();
+		void FrameHandler();
+
 		sockaddr_in cmdSocketAddr;
 		sockaddr_in dataSocketAddr;
+		int cmdSocketFd;
+		int dataSocketFd;
+		int dataLeft = 0;
+		LaserCubeNetworkSample frameBuffer[10000];
+		int messageNumber = 0;
+		int totalFrameSize = 0;
+		int frameNumber = 0;
+		bool outputEnabled = false;
 	};
 
 	bool FindDevicesOnInterface(const char* ifName, uint32_t adapterIpAddr);
