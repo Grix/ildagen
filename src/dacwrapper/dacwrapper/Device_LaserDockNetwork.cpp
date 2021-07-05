@@ -35,15 +35,18 @@ bool Device_LaserDockNetwork::OutputFrame(int devNum, int rate, int frameSize, L
 
 	std::lock_guard<std::mutex> lock(frameLock[devNum]);
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 500; i++)
 	{
 		if (frameNum[devNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
 			break;
 		else if (_SendFrame(devNum, bufferAddress, frameSize, rate))
 		{
+			fprintf(stderr, "SENT FRAME REQUEST %d\n", thisFrameNum);
 			return true;
 		}
-		//std::this_thread::sleep_for(std::chrono::microseconds(100));
+		else
+			fprintf(stderr, "FAILED FRAME REQUEST %d\n", thisFrameNum);
+		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
 
 	return false;
@@ -112,7 +115,7 @@ bool Device_LaserDockNetwork::_SendFrame(int devNum, LaserCubeNetwork::LaserCube
 	if (!inited)
 		return false;
 
-	if (rate != previousRate[devNum]) //update rate if different from last frame
+	/*if (rate != previousRate[devNum]) //update rate if different from last frame
 	{
 		uint32_t maxRate;
 		//if (!laserdockDevices[devNum]->params.device->max_dac_rate(&maxRate))
@@ -122,9 +125,9 @@ bool Device_LaserDockNetwork::_SendFrame(int devNum, LaserCubeNetwork::LaserCube
 		previousRate[devNum] = rate;
 		//if (!laserdockDevices[devNum]->params.device->set_dac_rate(rate))
 		//	return false;
-	}
+	}*/
 
-	return deviceController.SendData(devNum, data, length);
+	return deviceController.SendData(devNum, data, length, rate);
 }
 
 bool Device_LaserDockNetwork::_Stop(int devNum)

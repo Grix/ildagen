@@ -25,7 +25,7 @@ public:
 private:
 
 	LaserCubeNetwork deviceController;
-	bool inited;
+	bool inited = false;
 	int previousRate[LASERDOCK_MAX_DEVICES];
 	bool outputEnabled[LASERDOCK_MAX_DEVICES];
 

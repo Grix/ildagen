@@ -8,7 +8,8 @@
 #include <vector>
 #include <thread>
 #include <algorithm>
-#include "LaserdockDevice.h"
+#include <mutex>
+#include <queue>
 
 #if defined(_WIN32) || defined(WIN32)
 #include "plt-windows.h"
@@ -25,9 +26,10 @@
 #define LDN_CMD_GET_FULL_INFO 0x77
 #define LDN_CMD_ENABLE_BUFFER_SIZE_RESPONSE_ON_DATA 0x78
 #define LDN_CMD_SET_OUTPUT 0x80
-#define LDN_CMD_GET_RINGBUFFER_EMPTY_SAMPLE_COUNT 0x8a
-#define LDN_CMD_SAMPLE_DATA 0xa9
-#define LDN_CMD_SET_RATE
+#define LDN_CMD_GET_RINGBUFFER_EMPTY_SAMPLE_COUNT 0x8A
+#define LDN_CMD_SAMPLE_DATA 0xA9
+#define LDN_CMD_SET_RATE 0x82
+#define LDN_CMD_CLEAR_RINGBUFFER 0x8D
 
 class LaserCubeNetwork
 {
@@ -45,38 +47,55 @@ public:
 	LaserCubeNetwork();
 	int FindDevices();
 	bool OpenDevice(unsigned int deviceNum);
-	bool SendCommand(unsigned int deviceNum, unsigned char command, unsigned char data);
-	bool SendData(unsigned int deviceNum, LaserCubeNetworkSample* data, size_t count);
+	//bool SendCommand(unsigned int deviceNum, unsigned char command, unsigned char data);
+	bool GetStatus(unsigned int deviceNum, unsigned int requiredFreeBufferSpace);
+	bool SendData(unsigned int deviceNum, LaserCubeNetworkSample* data, size_t count, int rate);
 	bool StopOutput(unsigned int deviceNum);
-	bool Close(unsigned int deviceNum);
+	//bool Close(unsigned int deviceNum);
 
 
 private:
+
+	struct FrameInfo
+	{
+		LaserCubeNetwork::LaserCubeNetworkSample dataBuffer[5000];
+		int rate;
+		int numPoints;
+	};
+
 	class LaserCubeNetworkDevice
 	{
 	public:
-		LaserCubeNetworkDevice(unsigned long ipAddress);
+		LaserCubeNetworkDevice(unsigned long ipAddress, char* infoPacketBuffer);
+		~LaserCubeNetworkDevice();
 		bool OpenDevice();
 		bool SendCommand(unsigned char command, char* data, int dataLength = 1);
-		bool SendData(LaserCubeNetworkSample* data, size_t count);
+		bool GetStatus(unsigned int requiredFreeBufferSpace);
+		bool SendData(LaserCubeNetworkSample* data, size_t count, int rate);
 		bool StopOutput();
-		bool Close();
+		//bool Close();
 
 	private:
-		void ReceiveResponseHandler();
+		void MiscUdpHandler();
 		void FrameHandler();
 
 		sockaddr_in cmdSocketAddr;
 		sockaddr_in dataSocketAddr;
 		int cmdSocketFd;
 		int dataSocketFd;
-		int dataLeft = 0;
-		LaserCubeNetworkSample frameBuffer[10000];
+		std::queue<FrameInfo*> frameQueue;
 		int messageNumber = 0;
-		int totalFrameSize = 0;
 		int frameNumber = 0;
 		bool outputEnabled = false;
+		int currentRate = -1;
+		bool stopThreads = false;
+		unsigned int freeBufferSpace = 6000;
+		unsigned int maxBufferSpace = 6000;
+		std::mutex frameLock;
+
+		const int commandRepeatCount = 2;
 	};
+
 
 	bool FindDevicesOnInterface(const char* ifName, uint32_t adapterIpAddr);
 
