@@ -10,6 +10,8 @@
 #include <algorithm>
 #include <mutex>
 #include <queue>
+#include <iostream>
+#include <fstream>
 
 #if defined(_WIN32) || defined(WIN32)
 #include "plt-windows.h"
@@ -78,6 +80,7 @@ private:
 	private:
 		void MiscUdpHandler();
 		void FrameHandler();
+		void LogHandler();
 
 		sockaddr_in cmdSocketAddr;
 		sockaddr_in dataSocketAddr;
@@ -91,7 +94,9 @@ private:
 		bool stopThreads = false;
 		unsigned int freeBufferSpace = 6000;
 		unsigned int maxBufferSpace = 6000;
+		unsigned int localBufferSize = 0;
 		std::mutex frameLock;
+		std::chrono::system_clock::time_point previousBufferSpaceTime;
 
 		const int commandRepeatCount = 2;
 	};

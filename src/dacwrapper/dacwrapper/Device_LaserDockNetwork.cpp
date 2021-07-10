@@ -41,11 +41,11 @@ bool Device_LaserDockNetwork::OutputFrame(int devNum, int rate, int frameSize, L
 			break;
 		else if (_SendFrame(devNum, bufferAddress, frameSize, rate))
 		{
-			fprintf(stderr, "SENT FRAME REQUEST %d\n", thisFrameNum);
+			//fprintf(stderr, "SENT FRAME REQUEST %d\n", thisFrameNum);
 			return true;
 		}
-		else
-			fprintf(stderr, "FAILED FRAME REQUEST %d\n", thisFrameNum);
+		//else
+			//fprintf(stderr, "FAILED FRAME REQUEST %d\n", thisFrameNum);
 		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
 

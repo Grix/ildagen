@@ -251,6 +251,8 @@ bool LaserCubeNetwork::LaserCubeNetworkDevice::OpenDevice()
 	receiveResponseHandlerThread.detach();
 	std::thread frameHandlerThread(&LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler, this);
 	frameHandlerThread.detach();
+	//std::thread logHandlerThread(&LaserCubeNetwork::LaserCubeNetworkDevice::LogHandler, this);
+	//logHandlerThread.detach();
 
 	char val = 1;
 	SendCommand(LDN_CMD_ENABLE_BUFFER_SIZE_RESPONSE_ON_DATA, &val);
@@ -267,10 +269,14 @@ bool LaserCubeNetwork::LaserCubeNetworkDevice::SendData(LaserCubeNetworkSample* 
 	if (count > 5000)
 		return true;
 
+	//if (freeBufferSpace * 0.7 < count || frameQueue.size() > 10)
+	//	return false;
+
 	FrameInfo* newFrame = new FrameInfo();
 	newFrame->numPoints = count;
 	newFrame->rate = rate;
 	memcpy_s(newFrame->dataBuffer, sizeof(newFrame->dataBuffer), data, sizeof(LaserCubeNetworkSample) * count);
+	localBufferSize += count;
 	frameQueue.push(newFrame);
 	
 	if (!outputEnabled)
@@ -322,7 +328,13 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::MiscUdpHandler()
 			if (buffer[0] == (char)LDN_CMD_GET_RINGBUFFER_EMPTY_SAMPLE_COUNT)
 			{
 				std::lock_guard<std::mutex> lock(frameLock);
+
+				//auto currentTime = std::chrono::system_clock::now();
+				//freeBufferSpace += std::chrono::duration_cast<std::chrono::microseconds>(currentTime - previousBufferSpaceTime).count() / 1000000.0 * currentRate;
+				//fprintf(stderr, "UPDATE BUFFER SIZE: expected %d, got: %d\n", freeBufferSpace, *(unsigned short*)(&buffer[2]));
+
 				freeBufferSpace = *(unsigned short*)(&buffer[2]);
+				previousBufferSpaceTime = std::chrono::system_clock::now();
 			}
 		}
 
@@ -333,31 +345,42 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::MiscUdpHandler()
 void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 {
 	// Send new point data when queued
-	auto previousTime = std::chrono::system_clock::now();
+	previousBufferSpaceTime = std::chrono::system_clock::now();
 
 	while (!stopThreads)
 	{
-		if (frameQueue.size() > 0 && ((maxBufferSpace - freeBufferSpace) + frameQueue.front()->numPoints * frameQueue.size()) > (frameQueue.front()->numPoints * 2.5)) // buffering 3 frames locally before starting send
+		if (frameQueue.size() > 0
+			&& ((maxBufferSpace - freeBufferSpace) + localBufferSize > 2500/* || frameQueue.size() > 3*/) )//+ frameQueue.front()->numPoints * frameQueue.size()) > (frameQueue.front()->numPoints * 2.5)) // buffering 3 frames locally before starting send
 		{
 			//if (!GetStatus(dataLeft))
 			//	return false;
 
-			fprintf(stderr, "TRANSMIT FRAME: %d, remote buf: %d, local buf: %d", frameNumber, (maxBufferSpace - freeBufferSpace), frameQueue.size());
-
-			FrameInfo* frame = frameQueue.front();
-			frameQueue.pop();
+			//fprintf(stderr, "TRANSMIT FRAME: %d, remote buf: %d, local buf: %d\n", frameNumber, (maxBufferSpace - freeBufferSpace), frameQueue.size());
 
 			std::lock_guard<std::mutex> lock(frameLock);
+			FrameInfo* frame = frameQueue.front();
 			frameNumber++;
 			int dataLeft = frame->numPoints;
+
+			while (freeBufferSpace < dataLeft)
+			{
+				std::this_thread::sleep_for(std::chrono::microseconds(1000));
+				auto currentTime = std::chrono::system_clock::now();
+				freeBufferSpace += std::chrono::duration_cast<std::chrono::microseconds>(currentTime - previousBufferSpaceTime).count() / 1000000.0 * currentRate;
+				if (freeBufferSpace > maxBufferSpace)
+					freeBufferSpace = maxBufferSpace;
+				previousBufferSpaceTime = currentTime;
+			}
+
 			while (dataLeft > 0)
 			{
-				char buffer[1500] = { LDN_CMD_SAMPLE_DATA, 0x00, messageNumber++ % 255, frameNumber++ % 255 };
+				char buffer[1500] = { LDN_CMD_SAMPLE_DATA, 0x00, messageNumber++ % 255, frameNumber % 255 };
 				int pointsToSend = dataLeft > 140 ? 140 : dataLeft;
 				memcpy_s(buffer + 4, 1500-4, &frame->dataBuffer[frame->numPoints - dataLeft], pointsToSend * sizeof(LaserCubeNetworkSample));
 				int sentBytes = sendto(dataSocketFd, buffer, 4 + pointsToSend * sizeof(LaserCubeNetworkSample), 0, (const sockaddr*)&dataSocketAddr, sizeof(dataSocketAddr));
 				dataLeft -= pointsToSend;
 				freeBufferSpace -= pointsToSend;
+				localBufferSize -= pointsToSend;
 				if (dataLeft == 0)
 				{
 					// Update rate
@@ -367,16 +390,47 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 							currentRate = frame->rate;
 					}
 				}
-				std::this_thread::sleep_for(std::chrono::microseconds(50));
+				std::this_thread::sleep_for(std::chrono::microseconds(1));
 			}
+			frameQueue.pop();
 			delete frame;
 		}
-		std::this_thread::sleep_for(std::chrono::microseconds(100));
+		std::this_thread::sleep_for(std::chrono::microseconds(1000));
 		auto currentTime = std::chrono::system_clock::now();
-		freeBufferSpace += std::chrono::duration_cast<std::chrono::microseconds>(currentTime - previousTime).count() / 1000000.0 * currentRate;
+		freeBufferSpace += std::chrono::duration_cast<std::chrono::microseconds>(currentTime - previousBufferSpaceTime).count() / 1000000.0 * currentRate;
 		if (freeBufferSpace > maxBufferSpace)
 			freeBufferSpace = maxBufferSpace;
-		previousTime = currentTime;
+		previousBufferSpaceTime = currentTime;
+
+		while (localBufferSize > 5000)
+		{
+			FrameInfo* frame = frameQueue.front();
+			localBufferSize -= frame->numPoints;
+			frameQueue.pop();
+			delete frame;
+		}
 	}
+}
+
+void LaserCubeNetwork::LaserCubeNetworkDevice::LogHandler()
+{
+	// logging for debug. Not used in release
+	auto startTime = std::chrono::system_clock::now();
+	std::ofstream myfile;
+	myfile.open("C:\\Users\\gitle\\AppData\\Roaming\\LaserShowGen\\lclog.csv");
+	myfile << "time,num_free,num_queued" << std::endl;
+	while (!stopThreads)
+	{
+		try
+		{
+			std::this_thread::sleep_for(std::chrono::microseconds(2000));
+			int localSize = 0;
+			if (frameQueue.size() > 0)
+				localSize = frameQueue.front()->numPoints * frameQueue.size();
+			myfile << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - startTime).count() << "," << freeBufferSpace << "," << localSize << std::endl;
+		}
+		catch (std::exception e) {};
+	}
+	myfile.close();
 }
 
