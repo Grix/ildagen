@@ -37,6 +37,8 @@
 		8EE0D8892324267D006267DE /* idn.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EE0D8852324267D006267DE /* idn.h */; };
 		8EE0D88C23242693006267DE /* plt-posix.c in Sources */ = {isa = PBXBuildFile; fileRef = 8EE0D88A23242693006267DE /* plt-posix.c */; };
 		8EE0D88D23242693006267DE /* plt-posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EE0D88B23242693006267DE /* plt-posix.h */; };
+		F1919EF1269B510D00E5A1D2 /* LaserCubeNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1919EF0269B510C00E5A1D2 /* LaserCubeNetwork.cpp */; };
+		F1919EF2269B510D00E5A1D2 /* Device_LaserDockNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1919EED269B510900E5A1D2 /* Device_LaserDockNetwork.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,10 @@
 		8EE0D8852324267D006267DE /* idn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = idn.h; path = ../dacwrapper/idn.h; sourceTree = "<group>"; };
 		8EE0D88A23242693006267DE /* plt-posix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "plt-posix.c"; path = "../dacwrapper/plt-posix.c"; sourceTree = "<group>"; };
 		8EE0D88B23242693006267DE /* plt-posix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "plt-posix.h"; path = "../dacwrapper/plt-posix.h"; sourceTree = "<group>"; };
+		F1919EED269B510900E5A1D2 /* Device_LaserDockNetwork.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Device_LaserDockNetwork.cpp; path = /Users/macowner/ildagen/src/dacwrapper/dacwrapper_xcode/Device_LaserDockNetwork.cpp; sourceTree = "<absolute>"; };
+		F1919EEE269B510A00E5A1D2 /* Device_LaserDockNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Device_LaserDockNetwork.h; path = /Users/macowner/ildagen/src/dacwrapper/dacwrapper_xcode/Device_LaserDockNetwork.h; sourceTree = "<absolute>"; };
+		F1919EEF269B510B00E5A1D2 /* LaserCubeNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LaserCubeNetwork.h; path = /Users/macowner/ildagen/src/dacwrapper/dacwrapper_xcode/LaserCubeNetwork.h; sourceTree = "<absolute>"; };
+		F1919EF0269B510C00E5A1D2 /* LaserCubeNetwork.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LaserCubeNetwork.cpp; path = /Users/macowner/ildagen/src/dacwrapper/dacwrapper_xcode/LaserCubeNetwork.cpp; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,10 @@
 			children = (
 				8E7A31892083D57300416B44 /* Products */,
 				8E7A318F2083D68900416B44 /* dacwrapper.cpp */,
+				F1919EED269B510900E5A1D2 /* Device_LaserDockNetwork.cpp */,
+				F1919EEE269B510A00E5A1D2 /* Device_LaserDockNetwork.h */,
+				F1919EF0269B510C00E5A1D2 /* LaserCubeNetwork.cpp */,
+				F1919EEF269B510B00E5A1D2 /* LaserCubeNetwork.h */,
 				8E7A31902083D68900416B44 /* dacwrapper.h */,
 				8E7A31932083D6BF00416B44 /* Device_Helios.cpp */,
 				8E7A31942083D6BF00416B44 /* Device_Helios.h */,
@@ -217,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1919EF2269B510D00E5A1D2 /* Device_LaserDockNetwork.cpp in Sources */,
 				8E7A31912083D68900416B44 /* dacwrapper.cpp in Sources */,
 				8E4FF6DD209F792D0088C085 /* Device_Etherdream_unix.cpp in Sources */,
 				8E7A31A72083D6DC00416B44 /* LaserdockDevice_desktop.cpp in Sources */,
@@ -228,6 +239,7 @@
 				8E7A31A92083D6DC00416B44 /* LaserdockDevice.cpp in Sources */,
 				8E7A31AD2083D6DC00416B44 /* LaserdockDeviceManager.cpp in Sources */,
 				8EA62ED9209F80860087E229 /* etherdream.c in Sources */,
+				F1919EF1269B510D00E5A1D2 /* LaserCubeNetwork.cpp in Sources */,
 				8E7A31952083D6BF00416B44 /* Device_Helios.cpp in Sources */,
 				8E02613E2325003200323762 /* Device_IDN.cpp in Sources */,
 			);

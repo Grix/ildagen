@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:dacwrapper.xcodeproj">
+      location = "group:/Users/macowner/ildagen/src/dacwrapper/dacwrapper_xcode/Device_LaserDockNetwork.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/macowner/ildagen/src/dacwrapper/dacwrapper_xcode/Device_LaserDockNetwork.h">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/macowner/ildagen/src/dacwrapper/dacwrapper_xcode/LaserCubeNetwork.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/macowner/ildagen/src/dacwrapper/dacwrapper_xcode/LaserCubeNetwork.h">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

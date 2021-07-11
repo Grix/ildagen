@@ -159,7 +159,11 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 			break;
 		}
 		//todo extract more info from packet
-		devices.push_back(std::make_unique<LaserCubeNetworkDevice>(recvSockAddr.sin_addr.S_un.S_addr, buffer));
+		#ifdef WIN32
+                devices.push_back(std::make_unique<LaserCubeNetworkDevice>(recvSockAddr.sin_addr.S_un.S_addr, buffer));
+        #else
+                devices.push_back(std::make_unique<LaserCubeNetworkDevice>(recvSockAddr.sin_addr.s_addr, buffer));
+        #endif
 	}
 
 	// Close socket
@@ -257,6 +261,8 @@ bool LaserCubeNetwork::LaserCubeNetworkDevice::OpenDevice()
 	char val = 1;
 	SendCommand(LDN_CMD_ENABLE_BUFFER_SIZE_RESPONSE_ON_DATA, &val);
 	SendCommand(LDN_CMD_CLEAR_RINGBUFFER, 0, 0);
+    
+    return true;
 }
 
 bool LaserCubeNetwork::LaserCubeNetworkDevice::GetStatus(unsigned int requiredFreeBufferSpace)
@@ -275,7 +281,7 @@ bool LaserCubeNetwork::LaserCubeNetworkDevice::SendData(LaserCubeNetworkSample* 
 	FrameInfo* newFrame = new FrameInfo();
 	newFrame->numPoints = count;
 	newFrame->rate = rate;
-	memcpy_s(newFrame->dataBuffer, sizeof(newFrame->dataBuffer), data, sizeof(LaserCubeNetworkSample) * count);
+	memcpy(newFrame->dataBuffer, data, sizeof(LaserCubeNetworkSample) * count);
 	localBufferSize += count;
 	frameQueue.push(newFrame);
 	
@@ -290,9 +296,9 @@ bool LaserCubeNetwork::LaserCubeNetworkDevice::SendData(LaserCubeNetworkSample* 
 
 bool LaserCubeNetwork::LaserCubeNetworkDevice::SendCommand(unsigned char command, char* data, int dataLength)
 {
-	char buffer[8] = { command };
+	char buffer[8] = { (char)command };
 	if (data != 0)
-		memcpy_s(buffer + 1, 7, data, dataLength);
+		memcpy(buffer + 1, data, dataLength);
 	int sentBytes = 0;
 	for (int i = 0; i < commandRepeatCount; i++)
 		sentBytes = sendto(cmdSocketFd, buffer, 1 + dataLength, 0, (const sockaddr*)&cmdSocketAddr, sizeof(cmdSocketAddr));
@@ -374,9 +380,9 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 
 			while (dataLeft > 0)
 			{
-				char buffer[1500] = { LDN_CMD_SAMPLE_DATA, 0x00, messageNumber++ % 255, frameNumber % 255 };
+				char buffer[1500] = { (char)LDN_CMD_SAMPLE_DATA, 0x00, (char)(messageNumber++ % 255), (char)(frameNumber % 255) };
 				int pointsToSend = dataLeft > 140 ? 140 : dataLeft;
-				memcpy_s(buffer + 4, 1500-4, &frame->dataBuffer[frame->numPoints - dataLeft], pointsToSend * sizeof(LaserCubeNetworkSample));
+				memcpy(buffer + 4, &frame->dataBuffer[frame->numPoints - dataLeft], pointsToSend * sizeof(LaserCubeNetworkSample));
 				int sentBytes = sendto(dataSocketFd, buffer, 4 + pointsToSend * sizeof(LaserCubeNetworkSample), 0, (const sockaddr*)&dataSocketAddr, sizeof(dataSocketAddr));
 				dataLeft -= pointsToSend;
 				freeBufferSpace -= pointsToSend;
