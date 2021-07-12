@@ -74,10 +74,10 @@
 		8EE0D8852324267D006267DE /* idn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = idn.h; path = ../dacwrapper/idn.h; sourceTree = "<group>"; };
 		8EE0D88A23242693006267DE /* plt-posix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "plt-posix.c"; path = "../dacwrapper/plt-posix.c"; sourceTree = "<group>"; };
 		8EE0D88B23242693006267DE /* plt-posix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "plt-posix.h"; path = "../dacwrapper/plt-posix.h"; sourceTree = "<group>"; };
-		F1919EED269B510900E5A1D2 /* Device_LaserDockNetwork.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Device_LaserDockNetwork.cpp; path = /Users/macowner/ildagen/src/dacwrapper/dacwrapper_xcode/Device_LaserDockNetwork.cpp; sourceTree = "<absolute>"; };
-		F1919EEE269B510A00E5A1D2 /* Device_LaserDockNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Device_LaserDockNetwork.h; path = /Users/macowner/ildagen/src/dacwrapper/dacwrapper_xcode/Device_LaserDockNetwork.h; sourceTree = "<absolute>"; };
-		F1919EEF269B510B00E5A1D2 /* LaserCubeNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LaserCubeNetwork.h; path = /Users/macowner/ildagen/src/dacwrapper/dacwrapper_xcode/LaserCubeNetwork.h; sourceTree = "<absolute>"; };
-		F1919EF0269B510C00E5A1D2 /* LaserCubeNetwork.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LaserCubeNetwork.cpp; path = /Users/macowner/ildagen/src/dacwrapper/dacwrapper_xcode/LaserCubeNetwork.cpp; sourceTree = "<absolute>"; };
+		F1919EED269B510900E5A1D2 /* Device_LaserDockNetwork.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Device_LaserDockNetwork.cpp; path = "../dacwrapper/Device_LaserDockNetwork.cpp"; sourceTree = "<group>"; };
+		F1919EEE269B510A00E5A1D2 /* Device_LaserDockNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Device_LaserDockNetwork.h; path = "../dacwrapper/Device_LaserDockNetwork.h"; sourceTree = "<group>"; };
+		F1919EEF269B510B00E5A1D2 /* LaserCubeNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LaserCubeNetwork.h; path = "../dacwrapper/LaserCubeNetwork.h"; sourceTree = "<group>"; };
+		F1919EF0269B510C00E5A1D2 /* LaserCubeNetwork.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LaserCubeNetwork.cpp; path = "../dacwrapper/LaserCubeNetwork.cpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

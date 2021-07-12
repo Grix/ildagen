@@ -282,6 +282,7 @@ bool LaserCubeNetwork::LaserCubeNetworkDevice::SendData(LaserCubeNetworkSample* 
 	newFrame->numPoints = count;
 	newFrame->rate = rate;
 	memcpy(newFrame->dataBuffer, data, sizeof(LaserCubeNetworkSample) * count);
+	std::lock_guard<std::mutex> lock(frameLock);
 	localBufferSize += count;
 	frameQueue.push(newFrame);
 	
@@ -356,7 +357,7 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 	while (!stopThreads)
 	{
 		if (frameQueue.size() > 0
-			&& ((maxBufferSpace - freeBufferSpace) + localBufferSize > 2500/* || frameQueue.size() > 3*/) )//+ frameQueue.front()->numPoints * frameQueue.size()) > (frameQueue.front()->numPoints * 2.5)) // buffering 3 frames locally before starting send
+			&& ((maxBufferSpace - freeBufferSpace) + localBufferSize > 2500)) // buffering 2500 samples locally before starting send
 		{
 			//if (!GetStatus(dataLeft))
 			//	return false;
@@ -396,7 +397,7 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 							currentRate = frame->rate;
 					}
 				}
-				std::this_thread::sleep_for(std::chrono::microseconds(1));
+				std::this_thread::sleep_for(std::chrono::microseconds(550)); // max ~20 packets per 10 ms
 			}
 			frameQueue.pop();
 			delete frame;
@@ -410,6 +411,7 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 
 		while (localBufferSize > 5000)
 		{
+			std::lock_guard<std::mutex> lock(frameLock);
 			FrameInfo* frame = frameQueue.front();
 			localBufferSize -= frame->numPoints;
 			frameQueue.pop();
