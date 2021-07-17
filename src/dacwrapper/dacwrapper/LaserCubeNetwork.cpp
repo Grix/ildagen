@@ -381,6 +381,7 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 
 			while (dataLeft > 0)
 			{
+				auto sendTime = std::chrono::system_clock::now();
 				char buffer[1500] = { (char)LDN_CMD_SAMPLE_DATA, 0x00, (char)(messageNumber++ % 255), (char)(frameNumber % 255) };
 				int pointsToSend = dataLeft > 140 ? 140 : dataLeft;
 				memcpy(buffer + 4, &frame->dataBuffer[frame->numPoints - dataLeft], pointsToSend * sizeof(LaserCubeNetworkSample));
@@ -397,7 +398,7 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 							currentRate = frame->rate;
 					}
 				}
-				std::this_thread::sleep_for(std::chrono::microseconds(550)); // max ~20 packets per 10 ms
+				std::this_thread::sleep_for(std::chrono::microseconds(550 - std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - sendTime).count())); // max ~20 packets per 10 ms
 			}
 			frameQueue.pop();
 			delete frame;
@@ -432,10 +433,7 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::LogHandler()
 		try
 		{
 			std::this_thread::sleep_for(std::chrono::microseconds(2000));
-			int localSize = 0;
-			if (frameQueue.size() > 0)
-				localSize = frameQueue.front()->numPoints * frameQueue.size();
-			myfile << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - startTime).count() << "," << freeBufferSpace << "," << localSize << std::endl;
+			myfile << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - startTime).count() << "," << freeBufferSpace << "," << localBufferSize << std::endl;
 		}
 		catch (std::exception e) {};
 	}

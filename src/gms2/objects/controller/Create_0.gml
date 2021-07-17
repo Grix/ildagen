@@ -1,5 +1,5 @@
-version = "1.9.1";
-versiondate = "2021-06-20";
+version = "1.9.2rc0";
+versiondate = "2021-07-17";
 
 if (debug_mode)
 {
