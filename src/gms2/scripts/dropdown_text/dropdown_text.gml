@@ -17,7 +17,4 @@ function dropdown_text() {
 	    ds_list_add(scr_list,dd_text_spacing);
 	    ds_list_add(hl_list,1);
 	}
-
-
-
 }

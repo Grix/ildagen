@@ -44,7 +44,13 @@ function handle_mousecontrol_seq() {
 	        layertomove_index = -1;
 	        for (j = 0; j < ds_list_size(layer_list); j++)
 	        {
-	            elementlist = ds_list_find_value(layer_list[| j], 1);
+				if (!ds_list_exists(layer_list[| j]))
+				{
+					http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
+		                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "ERROR: layerlist not found in handle_mousecontrol_seq, j="+string(j));
+					continue;
+				}
+				elementlist = ds_list_find_value(layer_list[| j], 1);
 	            if (ds_list_find_index(elementlist,objecttomove) != -1)
 	            {
 	                layertomove = elementlist;

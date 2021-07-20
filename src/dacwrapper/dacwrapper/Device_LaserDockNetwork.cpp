@@ -35,11 +35,13 @@ bool Device_LaserDockNetwork::OutputFrame(int devNum, int rate, int frameSize, L
 
 	std::lock_guard<std::mutex> lock(frameLock[devNum]);
 
-	for (int i = 0; i < 500; i++)
+	return _SendFrame(devNum, bufferAddress, frameSize, rate);
+
+	/*for (int i = 0; i < 500; i++)
 	{
-		if (frameNum[devNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
-			break;
-		else if (_SendFrame(devNum, bufferAddress, frameSize, rate))
+		//if (frameNum[devNum] > thisFrameNum) //if newer frame is waiting to be transfered, cancel this one
+		//	break;
+		//else if (_SendFrame(devNum, bufferAddress, frameSize, rate))
 		{
 			//fprintf(stderr, "SENT FRAME REQUEST %d\n", thisFrameNum);
 			return true;
@@ -49,7 +51,7 @@ bool Device_LaserDockNetwork::OutputFrame(int devNum, int rate, int frameSize, L
 		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
 
-	return false;
+	return false;*/
 }
 
 bool Device_LaserDockNetwork::OpenDevice(int devNum)

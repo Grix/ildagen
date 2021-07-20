@@ -9,6 +9,8 @@ LaserCubeNetwork::LaserCubeNetwork()
 
 int LaserCubeNetwork::FindDevices() 
 {
+	devices.clear();
+
 	struct addrinfo* servinfo;              // Will point to the results
 	struct addrinfo hints;                  // Hints about the caller-supported socket types
 	memset(&hints, 0, sizeof hints);        // Make sure the struct is empty
@@ -32,8 +34,9 @@ int LaserCubeNetwork::FindDevices()
 		// Invoke callback on interface
 		struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ifa_addr;
 
-		if (FindDevicesOnInterface(ifa->ifa_name, (uint32_t)(ifSockAddr->sin_addr.s_addr));
-			break;
+		FindDevicesOnInterface(ifa->ifa_name, (uint32_t)(ifSockAddr->sin_addr.s_addr));
+		//if (FindDevicesOnInterface(ifa->ifa_name, (uint32_t)(ifSockAddr->sin_addr.s_addr));
+		//	break;
 	}
 
 	// Interface list is dynamically allocated and must be freed
@@ -55,8 +58,9 @@ int LaserCubeNetwork::FindDevices()
 		// Invoke callback on interface
 		struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ai_addr;
 
-		if (FindDevicesOnInterface(ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr)))
-			break;
+		FindDevicesOnInterface(ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr));
+		//if (FindDevicesOnInterface(ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr)))
+		//	break;
 	}
 
 	// Interface list is dynamically allocated and must be freed
@@ -139,7 +143,7 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 		if (numReady < 0)
 		{
 			fprintf(stderr, "select() failed (error: %d)", plt_sockGetLastError());
-			break;
+			continue;
 		}
 		else if (numReady == 0)
 		{
@@ -156,7 +160,7 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 		if (nBytes < 0 || buffer[0] != LDN_CMD_GET_FULL_INFO || ntohs(recvSockAddr.sin_port) != LDN_CMD_PORT)
 		{
 			fprintf(stderr, "recvfrom() failed (error: %d)", plt_sockGetLastError());
-			break;
+			continue;
 		}
 		//todo extract more info from packet
 		#ifdef WIN32
@@ -218,16 +222,18 @@ LaserCubeNetwork::LaserCubeNetworkDevice::~LaserCubeNetworkDevice()
 	StopOutput();
 	std::this_thread::sleep_for(std::chrono::microseconds(1000));
 	stopThreads = true;
-	std::this_thread::sleep_for(std::chrono::microseconds(1000));
+	std::this_thread::sleep_for(std::chrono::microseconds(20000));
 	if (cmdSocketFd >= 0)
 	{
 		if (plt_sockClose(cmdSocketFd)) 
 			fprintf(stderr, "close() failed (error: %d)", plt_sockGetLastError());
+		cmdSocketFd = -1;
 	}
 	if (dataSocketFd >= 0)
 	{
 		if (plt_sockClose(dataSocketFd))
 			fprintf(stderr, "close() failed (error: %d)", plt_sockGetLastError());
+		dataSocketFd = -1;
 	}
 }
 
@@ -313,6 +319,7 @@ bool LaserCubeNetwork::LaserCubeNetworkDevice::StopOutput()
 	while (frameQueue.size() > 0)
 		frameQueue.pop();
 	outputEnabled = false;
+	localBufferSize = 0;
 	SendCommand(LDN_CMD_CLEAR_RINGBUFFER, 0, 0);
 	char off = 0;
 	return SendCommand(LDN_CMD_SET_OUTPUT, &off);

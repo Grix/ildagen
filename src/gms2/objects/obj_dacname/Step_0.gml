@@ -1,7 +1,7 @@
 if (instance_exists(obj_dropdown))
     exit;
 visible = false;
-if (controller.dac != -1)
+if (controller.dac != -1 && ds_list_exists(controller.dac))
 {
     visible = (controller.dac[| 3] != -1);
 }
