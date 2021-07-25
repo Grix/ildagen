@@ -78,7 +78,8 @@ private:
 		//bool Close();
 
 	private:
-		void MiscUdpHandler();
+		void ReceiveUdpHandler();
+		void PeriodicCommandUdpHandler();
 		void FrameHandler();
 		void LogHandler();
 
@@ -97,6 +98,8 @@ private:
 		unsigned int localBufferSize = 0;
 		std::mutex frameLock;
 		std::chrono::system_clock::time_point previousBufferSpaceTime;
+		std::chrono::microseconds limitLeeway;
+		std::chrono::system_clock::time_point previousLeewayRefreshTime;
 
 		const int commandRepeatCount = 2;
 	};

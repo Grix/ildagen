@@ -13,15 +13,16 @@ function optimize_middle_output() {
 	mid_x = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*($8000/$ffff)+$8000*(x_scale_top+(x_scale_bottom-x_scale_top)*($8000/$ffff));
 	mid_y = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*($8000/$ffff)+$8000*(y_scale_left+(y_scale_right-y_scale_left)*($8000/$ffff));
 
-	repeat (maxpointswanted)
+	repeat (maxpointswanted * controller.fpsmultiplier)
 	{
 	    //writing point
 	    buffer_write(output_buffer,buffer_u16,mid_x);
 	    buffer_write(output_buffer,buffer_u16,mid_y);
-	    buffer_write(output_buffer,buffer_u32,0);
-	    buffer_write(output_buffer,buffer_u32,0);
+	    buffer_write(output_buffer,buffer_u16,0);
+	    buffer_write(output_buffer,buffer_u16,0);
+	    buffer_write(output_buffer,buffer_u16,0);
+	    buffer_write(output_buffer,buffer_u16,0);
 	}
-
-
+	output_buffer_next_size *= controller.fpsmultiplier;
 
 }

@@ -4,9 +4,19 @@ if (!visible)
     exit;
 
 if (mouse_x > (x+23))
-    value += 1;
+{
+	if (value == 1 || value == 1.5)
+		value += 0.5;
+	else
+		value += 1;
+}
 else
-    value -= 1;
+{
+	if (value == 2 || value == 1.5)
+		value -= 0.5;
+	else
+		value -= 1;
+}
 	
 if (value < 0)
 	value = 0;

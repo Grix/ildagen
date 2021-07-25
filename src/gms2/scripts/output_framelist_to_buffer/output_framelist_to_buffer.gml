@@ -26,60 +26,64 @@ function output_framelist_to_buffer() {
 	{
 	    //writing point
         
-		if (!controller.swapxy)
-		{
-		    if (controller.invert_x)
-		        buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+0]);
-		    else
-		        buffer_write(output_buffer,buffer_u16, list_raw[| i+0]);
-            
-		    if (controller.invert_y)
-		        buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+1]);
-		    else
-		        buffer_write(output_buffer,buffer_u16, list_raw[| i+1]);
-		}
+		if (controller.invert_x)
+			xp = $FFFF - list_raw[| i+0];
 		else
-		{
-			if (controller.invert_y)
-		        buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+1]);
-		    else
-		        buffer_write(output_buffer,buffer_u16, list_raw[| i+1]);
-				
-			if (controller.invert_x)
-		        buffer_write(output_buffer,buffer_u16, $FFFF - list_raw[| i+0]);
-		    else
-		        buffer_write(output_buffer,buffer_u16, list_raw[| i+0]);
-		}
+			xp = list_raw[| i+0];
+            
+		if (controller.invert_y)
+			yp = $FFFF - list_raw[| i+1];
+		else
+			yp = list_raw[| i+1];
             
 		var t_index = i+t_redshift+3;
 		if (t_index >= 0 && t_index < t_list_raw_size)
-			buffer_write(output_buffer,buffer_u16,t_red_lowerbound + (list_raw[| t_index] & $FF) * t_red_scale);
+			cr = t_red_lowerbound + (list_raw[| t_index] & $FF) * t_red_scale;
 		else
-			buffer_write(output_buffer,buffer_u16, 0);
+			cr = 0;
 				
 		t_index = i+t_greenshift+3;
 		if (t_index >= 0 && t_index < t_list_raw_size)
-			buffer_write(output_buffer,buffer_u16,t_green_lowerbound + ((list_raw[| t_index] >> 8) & $FF) * t_green_scale);
+			cg = t_green_lowerbound + ((list_raw[| t_index] >> 8) & $FF) * t_green_scale;
 		else
-			buffer_write(output_buffer,buffer_u16, 0);
+			cg = 0;
 				
 		t_index = i+t_blueshift+3;
 		if (t_index >= 0 && t_index < t_list_raw_size)
-			buffer_write(output_buffer,buffer_u16,t_blue_lowerbound + (list_raw[| t_index] >> 16) * t_blue_scale);
+			cb = t_blue_lowerbound + (list_raw[| t_index] >> 16) * t_blue_scale;
 		else
-			buffer_write(output_buffer,buffer_u16, 0);
+			cb = 0;
 				
 		t_index = i+t_blankshift+2;
 	    if (t_index >= 0 && t_index < t_list_raw_size)
 		{
 			if (list_raw[| t_index])
-				buffer_write(output_buffer,buffer_u16,0); 
+				bl = 0;
 		    else
-		        buffer_write(output_buffer,buffer_u16,255);
+				bl = 255;
 		}
 		else
-			buffer_write(output_buffer,buffer_u16,0); 
+			bl = 0;
+			
+		repeat (controller.fpsmultiplier)
+		{
+			if (!controller.swapxy)
+			{
+				buffer_write(output_buffer,buffer_u16, xp);
+				buffer_write(output_buffer,buffer_u16, yp);
+			}
+			else
+			{
+				buffer_write(output_buffer,buffer_u16, yp);
+				buffer_write(output_buffer,buffer_u16, xp);
+			}
+			buffer_write(output_buffer,buffer_u16, cr);
+			buffer_write(output_buffer,buffer_u16, cg);
+			buffer_write(output_buffer,buffer_u16, cb);
+			buffer_write(output_buffer,buffer_u16, bl);
+		}
 	}
+	output_buffer_next_size *= controller.fpsmultiplier;
     
 	ds_list_destroy(list_raw);
 

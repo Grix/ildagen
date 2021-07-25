@@ -27,11 +27,11 @@ function make_frame() {
 	// slow framerate if frame is too complex
 	if (controller.enable_dynamic_fps)
 	{
-		if ((controller.opt_maxdist/t_lengthwanted) < 0.12)
+		/*if ((controller.opt_maxdist/t_lengthwanted) < 0.12)
 		{
 			controller.fpsmultiplier = 4;
-		}
-		else if ((controller.opt_maxdist/t_lengthwanted) < 0.25)
+		}*/
+		if ((controller.opt_maxdist/t_lengthwanted) < 0.33333)
 		{
 			controller.fpsmultiplier = 3;
 		}
