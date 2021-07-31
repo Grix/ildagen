@@ -263,12 +263,12 @@ bool LaserCubeNetwork::LaserCubeNetworkDevice::OpenDevice()
 	receiveResponseHandlerThread.detach();
 	std::thread frameHandlerThread(&LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler, this);
 	frameHandlerThread.detach();
-	std::thread periodicCommandHandlerThread(&LaserCubeNetwork::LaserCubeNetworkDevice::PeriodicCommandUdpHandler, this);
-	periodicCommandHandlerThread.detach();
-	std::thread logHandlerThread(&LaserCubeNetwork::LaserCubeNetworkDevice::LogHandler, this);
-	logHandlerThread.detach();
+	//std::thread periodicCommandHandlerThread(&LaserCubeNetwork::LaserCubeNetworkDevice::PeriodicCommandUdpHandler, this);
+	//periodicCommandHandlerThread.detach();
+	//std::thread logHandlerThread(&LaserCubeNetwork::LaserCubeNetworkDevice::LogHandler, this);
+	//logHandlerThread.detach();
 
-	char val = 0;
+	char val = 1;
 	SendCommand(LDN_CMD_ENABLE_BUFFER_SIZE_RESPONSE_ON_DATA, &val);
 	SendCommand(LDN_CMD_CLEAR_RINGBUFFER, 0, 0);
     
@@ -347,25 +347,32 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::ReceiveUdpHandler()
 		//SendCommand(LDN_CMD_GET_FULL_INFO, 0, 0);
 
 		// Handle response udp packets
-		struct sockaddr* recvAddrPre = (struct sockaddr*)&cmdSocketAddr;
-		socklen_t recvAddrSize = sizeof(cmdSocketAddr);
-		int numBytes = recvfrom(cmdSocketFd, buffer, sizeof(buffer), 0, recvAddrPre, &recvAddrSize);
+		struct sockaddr* recvAddrPre = (struct sockaddr*)&dataSocketAddr;
+		socklen_t recvAddrSize = sizeof(dataSocketAddr);
+		int numBytes = recvfrom(dataSocketFd, buffer, sizeof(buffer), 0, recvAddrPre, &recvAddrSize);
 		if (numBytes > 0)
 		{
 			if (buffer[0] == (char)LDN_CMD_GET_RINGBUFFER_EMPTY_SAMPLE_COUNT)
 			{
-				std::lock_guard<std::mutex> lock(frameLock);
+				std::unique_lock<std::mutex> lock(frameLock, std::try_to_lock);
+				if (lock.owns_lock())
+				{
+					//auto currentTime = std::chrono::system_clock::now();
+					//freeBufferSpace += std::chrono::duration_cast<std::chrono::microseconds>(currentTime - previousBufferSpaceTime).count() / 1000000.0 * currentRate;
+					//fprintf(stderr, "UPDATE BUFFER SIZE: expected %d, got: %d\n", freeBufferSpace, *(unsigned short*)(&buffer[2]));
 
-				//auto currentTime = std::chrono::system_clock::now();
-				//freeBufferSpace += std::chrono::duration_cast<std::chrono::microseconds>(currentTime - previousBufferSpaceTime).count() / 1000000.0 * currentRate;
-				fprintf(stderr, "UPDATE BUFFER SIZE: expected %d, got: %d\n", freeBufferSpace, *(unsigned short*)(&buffer[2]));
-
-				//freeBufferSpace = *(unsigned short*)(&buffer[2]);
-				//previousBufferSpaceTime = std::chrono::system_clock::now();
+					// REMOVED FOR NOW DUE TO CAUSING DROPOUTS, todo investigate
+					//freeBufferSpace = *(unsigned short*)(&buffer[2]);
+					//previousBufferSpaceTime = std::chrono::system_clock::now();
+				}
+				else
+				{
+					//fprintf(stderr, "FAILED TO ACQUIRE BUFFER SIZE LOCK\n");
+				}
 			}
 		}
 
-		std::this_thread::sleep_for(std::chrono::microseconds(1));
+		std::this_thread::sleep_for(std::chrono::microseconds(10));
 	}
 }
 
@@ -374,7 +381,7 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::PeriodicCommandUdpHandler()
 {
 	while (!stopThreads)
 	{
-		SendCommand(LDN_CMD_GET_RINGBUFFER_EMPTY_SAMPLE_COUNT, 0, 0);
+		//SendCommand(LDN_CMD_GET_RINGBUFFER_EMPTY_SAMPLE_COUNT, 0, 0);
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(200));
 	}
@@ -396,21 +403,21 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 				if (freeBufferSpace > maxBufferSpace)
 					freeBufferSpace = maxBufferSpace;
 				previousBufferSpaceTime = currentTime;
-				fprintf(stderr, "ADJUST BUFFER SIZE, to: %d\n", freeBufferSpace);
+				//fprintf(stderr, "ADJUST BUFFER SIZE, to: %d\n", freeBufferSpace);
 			}
 
-			if ((maxBufferSpace - freeBufferSpace) + localBufferSize > currentRate * 0.1) // too much data buffered
+			if ((maxBufferSpace - freeBufferSpace) + localBufferSize > currentRate * 0.15) // too much data buffered
 			{
 				std::lock_guard<std::mutex> lock(frameLock);
 				FrameInfo* frame = frameQueue.front();
 				localBufferSize -= frame->numPoints;
-				fprintf(stderr, "SKIP FRAME, remote buf: %d, local buf: %d\n", (maxBufferSpace - freeBufferSpace), localBufferSize);
+				//fprintf(stderr, "SKIP FRAME, remote buf: %d, local buf: %d\n", (maxBufferSpace - freeBufferSpace), localBufferSize);
 				frameQueue.pop();
 				delete frame;
 			}
 			else if ((maxBufferSpace - freeBufferSpace) + localBufferSize > currentRate * 0.05) // buffering ~50ms of data before playing
 			{
-				fprintf(stderr, "TRANSMIT FRAME: %d, remote buf: %d, local buf: %d\n", frameNumber, (maxBufferSpace - freeBufferSpace), localBufferSize);
+				//fprintf(stderr, "TRANSMIT FRAME: %d, remote buf: %d, local buf: %d\n", frameNumber, (maxBufferSpace - freeBufferSpace), localBufferSize);
 
 				{
 					std::lock_guard<std::mutex> lock(frameLock);
@@ -454,7 +461,7 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 				std::this_thread::sleep_for(std::chrono::microseconds(4000));
 			}
 		}
-		std::this_thread::sleep_for(std::chrono::microseconds(10));
+		std::this_thread::sleep_for(std::chrono::microseconds(500));
 	}
 }
 

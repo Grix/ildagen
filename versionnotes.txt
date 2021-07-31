@@ -1,3 +1,7 @@
+v1.9.2
+- Add support for Wifi LaserCube. (In beta mode, please report any issues)
+- Allow scaling zoom of 1.5x instead of just 2x or 3x.
+
 v1.9.1
 - Improved undo and redo functionality in timeline and live mode.
 - Fix possible crash when playing certain imported ILDA files in live mode.
