@@ -70,7 +70,7 @@ int LaserCubeNetwork::FindDevices()
 	if (devices.size() > 0)
 		inited = true;
 
-	return devices.size() != 0;
+	return devices.size();
 }
 
 bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapterIpAddr)
@@ -126,6 +126,8 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 	// Remember start time
 	uint32_t usStart = plt_getMonoTimeUS();
 
+	std::vector<unsigned long> foundIps;
+
 	while (1)
 	{
 		// Calculate time left
@@ -165,10 +167,27 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 			continue;
 		}
 		//todo extract more info from packet
+		bool skip = false;
 		#ifdef WIN32
-                devices.push_back(std::make_unique<LaserCubeNetworkDevice>(recvSockAddr.sin_addr.S_un.S_addr, buffer));
+			for (auto foundIp : foundIps)
+			{
+				if (foundIp == recvSockAddr.sin_addr.S_un.S_addr)
+					skip = true;
+			}
+			if (skip)
+				continue;
+			foundIps.push_back(recvSockAddr.sin_addr.S_un.S_addr);
+            devices.push_back(std::make_unique<LaserCubeNetworkDevice>(recvSockAddr.sin_addr.S_un.S_addr, buffer));
         #else
-                devices.push_back(std::make_unique<LaserCubeNetworkDevice>(recvSockAddr.sin_addr.s_addr, buffer));
+			for (auto foundIp : foundIps)
+			{
+				if (foundIp == recvSockAddr.sin_addr.s_addr)
+					skip = true;
+			}
+			if (skip)
+				continue;
+			foundIps.push_back(recvSockAddr.sin_addr.s_addr);
+            devices.push_back(std::make_unique<LaserCubeNetworkDevice>(recvSockAddr.sin_addr.s_addr, buffer));
         #endif
 	}
 
