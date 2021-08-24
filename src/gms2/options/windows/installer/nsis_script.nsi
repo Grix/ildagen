@@ -6,12 +6,8 @@
 ; It will install example2.nsi into a directory that the user selects,
 
 ;--------------------------------
-!include MUI2.nsh 
-
-!include "FileAssociation.nsh"
-
 !ifndef FULL_VERSION
-!define FULL_VERSION      "1.8.5"
+!define FULL_VERSION      "1.0.0.0"
 !endif
 !ifndef SOURCE_DIR
 !define SOURCE_DIR        "C:\source\temp\InstallerTest\runner"
@@ -25,15 +21,15 @@
 !endif
 
 !ifndef COMPANY_NAME
-!define COMPANY_NAME      "Gitle Mikkelsen"
+!define COMPANY_NAME      ""
 !endif
 
 !ifndef COPYRIGHT_TXT
-!define COPYRIGHT_TXT     "(c) Copyright 2020"
+!define COPYRIGHT_TXT     "(c)Copyright 2013"
 !endif
 
 !ifndef FILE_DESC
-!define FILE_DESC         "LaserShowGen by Gitle Mikkelsen"
+!define FILE_DESC         "Created with GameMaker:Studio"
 !endif
 
 !ifndef LICENSE_NAME
@@ -59,12 +55,42 @@
 !define APP_NAME        "${PRODUCT_NAME}"
 !define SHORT_NAME        "${PRODUCT_NAME}"
 
+!ifndef EXE_NAME
+!define EXE_NAME "${PRODUCT_NAME}"
+!endif
+
+;..................................................................................................
+;Following two definitions required. Uninstall log will use these definitions.
+;You may use these definitions also, when you want to set up the InstallDirRagKey,
+;store the language selection, store Start Menu folder etc.
+;Enter the windows uninstall reg sub key to add uninstall information to Add/Remove Programs also.
+
+!define INSTDIR_REG_ROOT "HKLM"
+!define INSTDIR_REG_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}"
+;..................................................................................................
+
+;..................................................................................................
+;..................................................................................................
+
 ;;USAGE:
 !define MIN_FRA_MAJOR "2"
 !define MIN_FRA_MINOR "0"
 !define MIN_FRA_BUILD "*"
 
 !addplugindir   "."
+
+#************************************* Include NSIS Headers ***********************************#
+
+!include MUI.nsh
+#
+#
+;..................................................................................................
+;include the Uninstall log header
+!include AdvUninstLog.nsh
+;..................................................................................................
+
+
+
 
 ;--------------------------------
 
@@ -81,7 +107,7 @@ InstallDir "$PROGRAMFILES\${APP_NAME}"
 
 ; Registry key to check for directory (so if you install again, it will 
 ; overwrite the old one automatically)
-InstallDirRegKey HKCU "Software\Runner" "Install_Dir"
+InstallDirRegKey ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}" "InstallDir"
 
 ; Request application privileges for Windows Vista
 RequestExecutionLevel admin
@@ -108,6 +134,12 @@ VIAddVersionKey /LANG=1033 "FileDescription" "${FILE_DESC}"
 ;--------------------------------
 
 ; Pages
+;..................................................................................................
+;Specify the preferred uninstaller operation mode, either unattended or interactive.
+;You have to type either !insertmacro UNATTENDED_UNINSTALL, or !insertmacro INTERACTIVE_UNINSTALL.
+;Be aware only one of the following two macros has to be inserted, neither both, neither none.
+
+  !insertmacro UNATTENDED_UNINSTALL
 !insertmacro MUI_PAGE_LICENSE "${LICENSE_NAME}"
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
@@ -115,13 +147,16 @@ VIAddVersionKey /LANG=1033 "FileDescription" "${FILE_DESC}"
     # These indented statements modify settings for MUI_PAGE_FINISH
     !define MUI_FINISHPAGE_NOAUTOCLOSE
     !define MUI_FINISHPAGE_RUN_TEXT "Start ${PRODUCT_NAME}"
-    !define MUI_FINISHPAGE_RUN "$INSTDIR\${PRODUCT_NAME}.exe"
+    !define MUI_FINISHPAGE_RUN "$INSTDIR\${EXE_NAME}.exe"
 !insertmacro MUI_PAGE_FINISH
 
-Var DirectXSetupError
+Var VCRedistSetupError
 
-UninstPage uninstConfirm
-UninstPage instfiles
+  !insertmacro MUI_UNPAGE_WELCOME
+  !insertmacro MUI_UNPAGE_CONFIRM
+  !insertmacro MUI_UNPAGE_INSTFILES
+  !insertmacro MUI_UNPAGE_FINISH
+
 
 !insertmacro MUI_LANGUAGE "English"
 ;--------------------------------
@@ -132,37 +167,45 @@ Section `${APP_NAME}`
   
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
-
-  ; OPENING FILES WITH EXPLORER CAUSES BUG (CANT SAVE FILES)
-  ${unregisterExtension} ".igf" "LaserShowGen Frames"
-  ${unregisterExtension} ".igp" "LaserShowGen Timeline Project"
-  ${unregisterExtension} ".ild" "ILDA Laser Frames"
-  ${unregisterExtension} ".igl" "LaserShowGen Live Grid"
-  ;${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igf" "LaserShowGen Frames"
-  ;${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igp" "LaserShowGen Timeline Project"
-  ;${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".ild" "ILDA Laser Frames"
-  ;${registerExtension} "$INSTDIR\${PRODUCT_NAME}.exe" ".igl" "LaserShowGen Live Grid"
   
-  ; Put file there
+  !insertmacro UNINSTALL.LOG_OPEN_INSTALL
+
   File "${LICENSE_NAME}"
   File /r "${SOURCE_DIR}\*.*"
-  
-  ; Write the uninstall keys for Windows
-  WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\${SHORT_NAME}" "DisplayName" "${APP_NAME}"
-  WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\${SHORT_NAME}" "UninstallString" '"$INSTDIR\uninstall.exe"'
-  WriteRegDWORD SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\${SHORT_NAME}" "NoModify" 1
-  WriteRegDWORD SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\${SHORT_NAME}" "NoRepair" 1
-  WriteUninstaller "uninstall.exe"
 
+  !insertmacro UNINSTALL.LOG_CLOSE_INSTALL
+
+  WriteRegStr ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}" "InstallDir" "$INSTDIR"
+  WriteRegStr ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}" "DisplayName" "${APP_NAME}"
+  ;Same as create shortcut you need to use ${UNINST_EXE} instead of anything else.
+  WriteRegStr ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}" "UninstallString" "${UNINST_EXE}"
+  WriteRegDWORD ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}"  "NoModify" 1
+  WriteRegDWORD ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}"  "NoRepair" 1
+
+
+SectionEnd
+
+Section "Visual C++ Redistributable" SEC_VCREDIST
+SectionIn RO
+
+SetOutPath "$TEMP"
+File "${MAKENSIS}\vcredist_x86_2015.exe"
+DetailPrint "Running Visual Studio 2015 x86 Redistributable Setup..."
+ExecWait '"$TEMP\vcredist_x86_2015.exe" /quiet /norestart' $VCRedistSetupError
+DetailPrint "end VS2015 x86"
+Delete "$TEMP\vcredist_x86_2015.exe"
+
+SetOutPath "$INSTDIR"
 SectionEnd
 
 ; Optional section (can be disabled by the user)
 Section "Start Menu Shortcuts"
 
-  CreateDirectory "$SMPROGRAMS\${APP_NAME}"
-  CreateShortCut "$SMPROGRAMS\${APP_NAME}\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
-  CreateShortCut "$SMPROGRAMS\${APP_NAME}\${APP_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" "" "$INSTDIR\${PRODUCT_NAME}.exe" 
-  CreateShortCut "$SMPROGRAMS\${APP_NAME}\${APP_NAME} License.lnk" "notepad.exe" "$INSTDIR\License.txt"
+    CreateDirectory "$SMPROGRAMS\${APP_NAME}"
+    CreateShortcut "$SMPROGRAMS\${APP_NAME}\${APP_NAME}.lnk" "$INSTDIR\${EXE_NAME}.exe"
+    ;create shortcut for uninstaller always use ${UNINST_EXE} instead of uninstall.exe
+    CreateShortcut "$SMPROGRAMS\${APP_NAME}\uninstall.lnk" "${UNINST_EXE}"
+    CreateShortCut "$SMPROGRAMS\${APP_NAME}\${APP_NAME} License.lnk" "notepad.exe" "$INSTDIR\License.txt"
   
 SectionEnd
 
@@ -170,57 +213,54 @@ SectionEnd
 ; Optional section (can be enabled by the user)
 Section /o "Desktop shortcut"
 
-  CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
+  CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${EXE_NAME}.exe" ""
   
 SectionEnd
 
 
-;--------------------------------
+Function .onInit
 
-; Uninstaller
+        ;prepare log always within .onInit function
+        !insertmacro UNINSTALL.LOG_PREPARE_INSTALL
 
-Section "Uninstall"
+FunctionEnd
 
-  ${unregisterExtension} ".igf" "LaserShowGen Frames"
-  ${unregisterExtension} ".igp" "LaserShowGen Timeline Project"
-  ${unregisterExtension} ".ild" "ILDA Laser Frames"
-  ${unregisterExtension} ".igl" "LaserShowGen Live Grid"
 
-  ; Remove registry keys
-  DeleteRegKey SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\${SHORT_NAME}"
+Function .onInstSuccess
 
-  ; Remove files and uninstaller (everything)
-  RMDir /r "$INSTDIR"
+         ;create/update log always within .onInstSuccess function
+         !insertmacro UNINSTALL.LOG_UPDATE_INSTALL
 
-  ; Remove desktop icon
-  Delete "$DESKTOP\${APP_NAME}.lnk" 
+FunctionEnd
 
-  ; Remove shortcuts, if any
-  Delete "$SMPROGRAMS\${APP_NAME}\*.*"
+#######################################################################################
 
-  ; Remove directories used
-  RMDir "$SMPROGRAMS\${APP_NAME}"
-  RMDir "$INSTDIR"
+Section UnInstall
+
+         ;begin uninstall, especially for MUI could be added in UN.onInit function instead
+         ;!insertmacro UNINSTALL.LOG_BEGIN_UNINSTALL
+
+         ;uninstall from path, must be repeated for every install logged path individual
+         !insertmacro UNINSTALL.LOG_UNINSTALL "$INSTDIR"
+
+         ;uninstall from path, must be repeated for every install logged path individual
+         !insertmacro UNINSTALL.LOG_UNINSTALL "$APPDATA\${APP_NAME}"
+
+         ;end uninstall, after uninstall from all logged paths has been performed
+         !insertmacro UNINSTALL.LOG_END_UNINSTALL
+
+        Delete "$SMPROGRAMS\${APP_NAME}\${APP_NAME}.lnk"
+        Delete "$SMPROGRAMS\${APP_NAME}\uninstall.lnk"
+        RmDir "$SMPROGRAMS\${APP_NAME}"
+
+        DeleteRegKey /ifempty ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}"
 
 SectionEnd
 
 
-;--------------------------------
-;
-; This should be the LAST section available....
-;
-Section "DirectX Install" SEC_DIRECTX
- 
- SectionIn RO
- 
- SetOutPath "$TEMP"
- File "${MAKENSIS}\dxwebsetup.exe"
- DetailPrint "Running DirectX Setup..."
- ExecWait '"$TEMP\dxwebsetup.exe" /Q' $DirectXSetupError
- DetailPrint "Finished DirectX Setup"
- 
- Delete "$TEMP\dxwebsetup.exe"
- 
- SetOutPath "$INSTDIR"
- 
-SectionEnd
+Function UN.onInit
+
+         ;begin uninstall, could be added on top of uninstall section instead
+         !insertmacro UNINSTALL.LOG_BEGIN_UNINSTALL
+
+FunctionEnd

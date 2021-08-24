@@ -123,6 +123,8 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 	free_scalable_surfaces();
 }
 
+if (frame >= ds_list_size(frame_list) || frame < 0)
+	frame = clamp(frame, 0, ds_list_size(frame_list)-1);
 el_list = frame_list[| frame];
 
 if (!ds_list_exists(el_list))

@@ -7,8 +7,10 @@ LaserCubeNetwork::LaserCubeNetwork()
 
 }
 
-int LaserCubeNetwork::FindDevices() 
+int LaserCubeNetwork::FindDevices(FILE* _logFile) 
 {
+	logFile = _logFile;
+
 	devices.clear();
 
 	struct addrinfo* servinfo;              // Will point to the results
@@ -28,6 +30,7 @@ int LaserCubeNetwork::FindDevices()
 	// Walk through all interfaces
 	for (struct ifaddrs* ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
 	{
+		fprintf(logFile, "Found interface.\n");
 		if (ifa->ifa_addr == NULL) continue;
 		if (ifa->ifa_addr->sa_family != AF_INET) continue;
 
@@ -52,6 +55,7 @@ int LaserCubeNetwork::FindDevices()
 	// Walk through all interfaces (servinfo points to a linked list of struct addrinfos)
 	for (struct addrinfo* ifa = servinfo; ifa != NULL; ifa = ifa->ai_next)
 	{
+		fprintf(logFile, "Found interface.\n");
 		if (ifa->ai_addr == NULL) continue;
 		if (ifa->ai_addr->sa_family != AF_INET) continue;
 
@@ -79,17 +83,22 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 	pingSocketAddr.sin_port = htons(LDN_CMD_PORT);
 	pingSocketAddr.sin_addr.s_addr = 0xFFFFFFFF;
 
+
+	fprintf(logFile, "Interface usable: %s, %s. Scanning...\n", ifName, inet_ntoa(*((in_addr*)&adapterIpAddr)));
+
 	// Create socket
 	pingSocketFd = plt_sockOpen(AF_INET, SOCK_DGRAM, 0);
 	if (pingSocketFd < 0)
 	{
 		fprintf(stderr, "socket() failed (error: %d)", plt_sockGetLastError());
+		fprintf(logFile, "socket() failed (error: %d)\n", plt_sockGetLastError());
 		return false;
 	}
 	// Allow broadcast on socket
 	if (plt_sockSetBroadcast(pingSocketFd) < 0)
 	{
 		fprintf(stderr, "setsockopt(broadcast) failed (error: %d)", plt_sockGetLastError());
+		fprintf(logFile, "setsockopt(broadcast) failed (error: %d)\n", plt_sockGetLastError());
 		return false;
 	}
 	// Bind to local interface (any! port)
@@ -102,6 +111,7 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 	if (bind(pingSocketFd, (struct sockaddr*)&bindSockAddr, sizeof(bindSockAddr)) < 0)
 	{
 		fprintf(stderr, "bind() failed (error: %d)", plt_sockGetLastError());
+		fprintf(logFile, "bind() failed (error: %d)\n", plt_sockGetLastError());
 		return false;
 	}
 	// Send ping broadcast
@@ -110,10 +120,13 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 	if (bytesSent < 0)
 	{
 		fprintf(stderr, "sendto() failed (error: %d)", plt_sockGetLastError());
+		fprintf(logFile, "sendto() failed (error: %d)\n", plt_sockGetLastError());
 		return false;
 	}
 	// Another one just in case
 	bytesSent = sendto(pingSocketFd, packet, sizeof(packet), 0, (struct sockaddr*)&pingSocketAddr, sizeof(pingSocketAddr));
+
+	fprintf(logFile, "Send scan request to %s\n", inet_ntoa(pingSocketAddr.sin_addr));
 
 	// Receive response(s)
 
@@ -147,6 +160,7 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 		if (numReady < 0)
 		{
 			fprintf(stderr, "select() failed (error: %d)", plt_sockGetLastError());
+			fprintf(logFile, "select() failed (error: %d)", plt_sockGetLastError());
 			continue;
 		}
 		else if (numReady == 0)
@@ -164,6 +178,7 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 		if (nBytes < 0 || buffer[0] != LDN_CMD_GET_FULL_INFO || ntohs(recvSockAddr.sin_port) != LDN_CMD_PORT)
 		{
 			fprintf(stderr, "recvfrom() failed (error: %d)", plt_sockGetLastError());
+			fprintf(logFile, "recvfrom() failed (error: %d)", plt_sockGetLastError());
 			continue;
 		}
 		//todo extract more info from packet
@@ -176,6 +191,8 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 			}
 			if (skip)
 				continue;
+
+			fprintf(logFile, "Found device: %s\n", recvSockAddr.sin_addr);
 			foundIps.push_back(recvSockAddr.sin_addr.S_un.S_addr);
             devices.push_back(std::make_unique<LaserCubeNetworkDevice>(recvSockAddr.sin_addr.S_un.S_addr, buffer));
         #else
@@ -186,6 +203,7 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 			}
 			if (skip)
 				continue;
+			fprintf(logFile, "Found device: %s\n", recvSockAddr.sin_addr);
 			foundIps.push_back(recvSockAddr.sin_addr.s_addr);
             devices.push_back(std::make_unique<LaserCubeNetworkDevice>(recvSockAddr.sin_addr.s_addr, buffer));
         #endif
@@ -195,7 +213,10 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 	if (pingSocketFd >= 0)
 	{
 		if (plt_sockClose(pingSocketFd))
+		{
 			fprintf(stderr, "close() failed (error: %d)", plt_sockGetLastError());
+			fprintf(logFile, "close() failed (error: %d)", plt_sockGetLastError());
+		}
 	}
 
 	return devices.size() != 0;

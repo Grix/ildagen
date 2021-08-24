@@ -25,6 +25,7 @@ public:
     static LaserdockDeviceManager& getInstance();
 
     std::vector<std::unique_ptr<LaserdockDevice> > get_laserdock_devices();
+    std::unique_ptr<LaserdockDevice> reopen_device();
 
     // helper methods
     void print_laserdock_devices();

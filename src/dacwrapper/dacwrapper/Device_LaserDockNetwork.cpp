@@ -18,6 +18,15 @@ int Device_LaserDockNetwork::Init()
 {
 	CloseAll();
 
+	char filename[100];
+#ifdef WIN32
+	sprintf(filename, "C:\\Users\\gitle\\LSG_LDWIFI_log.txt");
+#else
+	sprintf(filename, "%s\\LSG_LDWIFI_log.txt", getenv("HOME"));
+#endif
+	logFile = fopen(filename, "a");
+	fprintf(logFile, "Inited LaserDock Network.\n");
+
 	ready = true;
 	int result = _Initialize();
 
@@ -72,6 +81,9 @@ bool Device_LaserDockNetwork::CloseAll()
 {
 	if (!ready) return false;
 
+	if (logFile != 0)
+		fclose(logFile);
+
 	_FreeAll();
 	ready = false;
 	return true;
@@ -91,7 +103,7 @@ int Device_LaserDockNetwork::_Initialize()
 	if (inited)
 		return false; //already inited
 
-	int numDevices = deviceController.FindDevices();
+	int numDevices = deviceController.FindDevices(logFile);
 
 	for (unsigned int i = 0; i < numDevices; i++)
 	{

@@ -47,7 +47,7 @@ public:
 	};
 
 	LaserCubeNetwork();
-	int FindDevices();
+	int FindDevices(FILE* _logFile);
 	bool OpenDevice(unsigned int deviceNum);
 	//bool SendCommand(unsigned int deviceNum, unsigned char command, unsigned char data);
 	bool GetStatus(unsigned int deviceNum, unsigned int requiredFreeBufferSpace);
@@ -64,6 +64,8 @@ private:
 		int rate;
 		int numPoints;
 	};
+
+	FILE* logFile;
 
 	class LaserCubeNetworkDevice
 	{

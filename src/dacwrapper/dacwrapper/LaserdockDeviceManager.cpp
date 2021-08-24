@@ -25,6 +25,33 @@ std::vector<std::unique_ptr<LaserdockDevice> > LaserdockDeviceManager::get_laser
     return d->get_devices();
 }
 
+std::unique_ptr<LaserdockDevice> LaserdockDeviceManager::reopen_device()
+{
+    libusb_device** libusb_device_list;
+    ssize_t cnt = libusb_get_device_list(NULL, &libusb_device_list);
+    ssize_t i = 0;
+
+    if (cnt < 0) {
+        libusb_free_device_list(libusb_device_list, 1); // probably not necessary
+        return 0;
+    }
+
+    for (i = 0; i < cnt; i++) {
+        libusb_device* libusb_device = libusb_device_list[i];
+        if (d->is_laserdock(libusb_device)) {
+            std::unique_ptr<LaserdockDevice> d(new LaserdockDevice(libusb_device));
+            if (d->status() == LaserdockDevice::Status::INITIALIZED)
+            {
+                libusb_free_device_list(libusb_device_list, cnt);
+                return std::move(d);
+            }
+        }
+    }
+
+    libusb_free_device_list(libusb_device_list, cnt);
+    return 0;
+}
+
 void LaserdockDeviceManager::print_laserdock_devices() {
     std::vector<std::unique_ptr<LaserdockDevice> > devices = get_laserdock_devices();
     for(const std::unique_ptr<LaserdockDevice> &device : devices) {

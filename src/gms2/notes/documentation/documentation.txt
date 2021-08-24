@@ -1,4 +1,6 @@
 TODO
+- add toggle or push setting for live mode object playing
+- add midi cc and nrpn
 - fix ctrl+key shortcuts in linux? Not working?
 - fix crash sometimes when moving tl object between layers while undo/redo layer creation/deletion
 - improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
@@ -19,6 +21,7 @@ TODO
 - midi input for live mode trigger etc.
 - reapply combine shapes
 - split objects
+- add back file registering when yyg fixes file parameter opening
 - add default setting profiles into older settings file retroactively if they don't exist
 - investigate and fix problem of dac (laserdock?) falling out and having to rescan. Automatic rescan on failure?
 - add custom anchor to timeline mode rotation envelope
