@@ -65,7 +65,9 @@ private:
 		int numPoints;
 	};
 
+#ifdef LDN_LOG
 	FILE* logFile;
+#endif
 
 	class LaserCubeNetworkDevice
 	{
@@ -107,7 +109,7 @@ private:
 	};
 
 
-	bool FindDevicesOnInterface(const char* ifName, uint32_t adapterIpAddr);
+	bool FindDevicesOnInterface(const char* ifName, uint32_t adapterIpAddr, std::vector<unsigned long>* foundIps);
 
 	sockaddr_in pingSocketAddr;
 	int pingSocketFd;

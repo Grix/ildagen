@@ -16,15 +16,6 @@ int Device_LaserDock::Init()
 {
 	CloseAll();
 
-	char filename[100];
-#ifdef WIN32
-	sprintf(filename, "C:\\Users\\gitle\\LSG_LDUSB_log.txt");
-#else
-	sprintf(filename, "%s\\LSG_LDUSB_log.txt", getenv("HOME"));
-#endif
-	logFile = fopen(filename, "a");
-	fprintf(logFile, "Inited LaserDock USB\n");
-
 	ready = true;
 	int result = _Initialize();
 
@@ -73,9 +64,6 @@ bool Device_LaserDock::Stop(int devNum)
 bool Device_LaserDock::CloseAll()
 {
 	if (!ready) return false;
-
-	if (logFile != 0)
-		fclose(logFile);
 
 	_FreeAll();
 	ready = false;
@@ -134,18 +122,14 @@ bool Device_LaserDock::_SendFrame(int devNum, uint8_t* data, uint32_t length, ui
 
 	if (laserdockDevices[devNum]->send(data, length) == false)
 	{
-		fprintf(logFile, "Failed to send LaserDock USB packet, reopening... ");
 		auto reopenedDevice = laserdockDeviceManager->reopen_device();
 		if (reopenedDevice != 0)
 		{
-			fprintf(logFile, "Success.\n");
 			laserdockDevices[devNum] = std::move(reopenedDevice);
 			laserdockDevices[devNum]->enable_output();
 			previousRate[devNum] = 0;
 			outputEnabled[devNum] = true;
 		}
-		else
-			fprintf(logFile, "Failed.\n");
 	}
 
 	if (rate != previousRate[devNum]) //update rate if different from last frame

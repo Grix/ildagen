@@ -39,8 +39,6 @@ private:
 	int previousRate[LASERDOCK_MAX_DEVICES];
 	bool outputEnabled[LASERDOCK_MAX_DEVICES];
 
-	FILE* logFile = 0;
-
 	//opens connection, call before any other function
 	int _Initialize();
 

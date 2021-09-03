@@ -8,6 +8,8 @@
 
 #define LASERDOCK_MAX_DEVICES 8
 
+//#define LDN_LOG
+
 class Device_LaserDockNetwork
 {
 public:
