@@ -143,6 +143,7 @@ bool Device_LaserDock::_SendFrame(int devNum, uint8_t* data, uint32_t length, ui
 		if (!laserdockDevices[devNum]->set_dac_rate(rate))
 			return false;
 	}
+	return true;
 }
 
 bool Device_LaserDock::_Stop(int devNum)

@@ -60,14 +60,13 @@
     "eventStubScript": null,
     "parent": {"name":"spr_loop","path":"sprites/spr_loop/spr_loop.yy",},
     "resourceVersion": "1.3",
-    "name": "spr_loop",
+    "name": "",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"75f5fa12-9a38-4af0-8275-1b065a151d7a","tags":[],"resourceType":"GMImageLayer",},
   ],
-  "nineSlice": null,
   "parent": {
     "name": "Sprites",
     "path": "folders/Sprites.yy",

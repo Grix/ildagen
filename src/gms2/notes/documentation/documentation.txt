@@ -161,6 +161,7 @@ filelist
 		is_loop
 		is_exclusive
 		is_resuming (instead of restarting on play)
+		is_hold (hold to play instead of push toggle) (=2 if clicked this frame)
 		
 		
 Fonts

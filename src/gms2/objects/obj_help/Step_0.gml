@@ -93,6 +93,7 @@ else if (room == rm_live)
 		"X)    Toggle exclusive playback of selected object\n"+
 		"O)    Toggle looping of selected object\n"+
 		"R)    Toggle restarting/resuming when playing selected object\n"+
+		"H)    Toggle whether to push and hold to play or toggle playing in selected object\n"+
         "P)    Toggle 3D frame previewing\n"+
         "Ctrl+Z)    Undo\n"+
 		"Ctrl+Y)    Redo\n"+

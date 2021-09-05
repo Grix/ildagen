@@ -34,13 +34,17 @@ function load_live_project_work() {
 			{
 				ds_list_add(objectlist,buffer_read(load_buffer,buffer_bool));
 				ds_list_add(objectlist,buffer_read(load_buffer,buffer_bool));
-				buffer_read(load_buffer,buffer_u32);
+				ds_list_add(objectlist,buffer_read(load_buffer,buffer_u8));
+				buffer_read(load_buffer,buffer_bool);
+				buffer_read(load_buffer,buffer_bool);
+				buffer_read(load_buffer,buffer_bool);
 				buffer_read(load_buffer,buffer_u32);
 				buffer_read(load_buffer,buffer_u32);
 				buffer_read(load_buffer,buffer_u32);
 			}
 			else
 			{
+				ds_list_add(objectlist,0);
 				ds_list_add(objectlist,0);
 				ds_list_add(objectlist,0);
 			}

@@ -123,6 +123,12 @@ function handle_mousecontrol_live() {
 			
 				dropdown_live_file();
 			}
+			
+			if (mouse_check_button(mb_left))
+			{
+				if (filelist[| i][| 7] != 0)
+					filelist[| i][| 7] = 2;
+			}
 		}
 	}
 

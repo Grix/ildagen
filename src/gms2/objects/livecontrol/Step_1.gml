@@ -17,22 +17,38 @@ if (playing == 1)
         frame_surf_refresh = 1;
 		for (i = 0; i < ds_list_size(filelist); i++)
 		{
-			if (!ds_list_find_value(filelist[| i], 0))
+			var t_objectlist = filelist[| i];
+			
+			if (t_objectlist[| 7] != 0)
+			{
+				if (keyboard_check(t_objectlist[| 3]) || t_objectlist[| 7] == 2)
+					t_objectlist[| 0] = true;
+				else
+				{
+					t_objectlist[| 0] = false;
+					if (!t_objectlist[| 6])
+						t_objectlist[| 2][| 0] = 0; // restart if not set to resume
+				}
+				
+				t_objectlist[| 7] = 1;
+			}
+			
+			if (!ds_list_find_value(t_objectlist, 0))
 				continue;
 			
-			ds_list_set(ds_list_find_value(filelist[| i], 2), 0, ds_list_find_value(ds_list_find_value(filelist[| i], 2), 0)+(frame-frameprev));
+			ds_list_set(ds_list_find_value(t_objectlist, 2), 0, ds_list_find_value(ds_list_find_value(t_objectlist, 2), 0)+(frame-frameprev));
 			
 			
-			var t_pos = ds_list_find_value(ds_list_find_value(filelist[| i], 2), 0);
-			var t_maxframes = ds_list_find_value(ds_list_find_value(filelist[| i], 2), 2);
+			var t_pos = ds_list_find_value(ds_list_find_value(t_objectlist, 2), 0);
+			var t_maxframes = ds_list_find_value(ds_list_find_value(t_objectlist, 2), 2);
 			
 			if (t_pos >= t_maxframes && t_maxframes > 1)
 			|| (t_maxframes == 1) 
 			{
-				if (ds_list_find_value(filelist[| i], 4))
-					ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0); //loop
+				if (ds_list_find_value(t_objectlist, 4))
+					ds_list_set(ds_list_find_value(t_objectlist, 2), 0, 0); //loop
 				else
-					ds_list_set(filelist[| i], 0, false); //stop
+					ds_list_set(t_objectlist, 0, false); //stop
 			}
 		}
     }

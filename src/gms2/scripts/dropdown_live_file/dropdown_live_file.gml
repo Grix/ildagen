@@ -38,6 +38,15 @@ function dropdown_live_file() {
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,live_toggle_resume);
 	    ds_list_add(hl_list,1);
+		var label = "";
+		if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 7))
+			label += "Set toggle playing (H)";
+		else
+			label += "Set push to play (H)";
+		ds_list_add(desc_list,label);
+	    ds_list_add(sep_list,0);
+	    ds_list_add(scr_list,live_toggle_hold);
+	    ds_list_add(hl_list,1);
 		ds_list_add(desc_list,"Change keyboard shortcut...");
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,live_change_shortcut);

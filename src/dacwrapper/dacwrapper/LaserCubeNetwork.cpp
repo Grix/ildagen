@@ -215,7 +215,7 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 			foundIps->push_back(recvSockAddr.sin_addr.S_un.S_addr);
             devices.push_back(std::make_unique<LaserCubeNetworkDevice>(recvSockAddr.sin_addr.S_un.S_addr, buffer));
         #else
-			for (auto foundIp : foundIps)
+			for (auto foundIp : *foundIps)
 			{
 				if (foundIp == recvSockAddr.sin_addr.s_addr)
 					skip = true;
@@ -225,7 +225,7 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 #ifdef LDN_LOG
 			fprintf(logFile, "Found device: %s\n", inet_ntoa(recvSockAddr.sin_addr));
 #endif
-			foundIps.push_back(recvSockAddr.sin_addr.s_addr);
+			foundIps->push_back(recvSockAddr.sin_addr.s_addr);
             devices.push_back(std::make_unique<LaserCubeNetworkDevice>(recvSockAddr.sin_addr.s_addr, buffer));
         #endif
 	}

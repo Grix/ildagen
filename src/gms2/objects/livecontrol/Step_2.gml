@@ -167,6 +167,12 @@ else if (keyboard_check_pressed(ord("O")))
 		live_toggle_loop();
 }
 
+else if (keyboard_check_pressed(ord("H")))
+{
+	 if (selectedfile != -1)
+		live_toggle_hold();
+}
+
 else if (keyboard_check_pressed(ord("0")))
 {
 	frame_surf_refresh = 1;

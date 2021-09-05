@@ -56,6 +56,7 @@ function frames_tolive_importedilda() {
 		ds_list_add(objectlist,(ds_list_size(controller.ild_list) == 1));
 		ds_list_add(objectlist,0);
 		ds_list_add(objectlist,0);
+		ds_list_add(objectlist,0);
 	
 	    ds_list_add(filelist,objectlist);
 		selectedfile = ds_list_size(filelist)-1;

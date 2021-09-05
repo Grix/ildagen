@@ -202,6 +202,7 @@ function load_frames_live(argument0) {
 	ds_list_add(objectlist, (tempmaxframes == 1));
 	ds_list_add(objectlist,0);
 	ds_list_add(objectlist,0);
+	ds_list_add(objectlist,0);
 
 	ds_list_add(filelist,objectlist);
     

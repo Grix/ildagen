@@ -9,7 +9,6 @@ function save_live_project_work() {
 	    }
         
 	    objectlist = ds_list_find_value(filelist, i);
-	    tempframe = ds_list_find_value(objectlist,0);
 	    tempbuffer = ds_list_find_value(objectlist,1);
 	    tempinfolist = ds_list_find_value(objectlist,2);
 		if (!ds_list_exists(tempinfolist))
@@ -26,7 +25,7 @@ function save_live_project_work() {
 			http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
 	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING infolist in save_live_project_work. Undefined: "+string(is_undefined(tempinfolist))+", file: "+string(i));
 		}
-	    buffer_write(save_buffer, buffer_u32, tempframe);
+	    buffer_write(save_buffer, buffer_u32, objectlist[| 0]);
 	    buffer_write(save_buffer, buffer_u32, buffer_get_size(tempbuffer));
 	    buffer_copy(tempbuffer, 0, buffer_get_size(tempbuffer), save_buffer, buffer_tell(save_buffer));
 	    buffer_seek(save_buffer, buffer_seek_relative, buffer_get_size(tempbuffer));
@@ -36,7 +35,10 @@ function save_live_project_work() {
 		buffer_write(save_buffer, buffer_bool, objectlist[| 4]);
 		buffer_write(save_buffer, buffer_bool, objectlist[| 5]);
 		buffer_write(save_buffer, buffer_bool, objectlist[| 6]);
-		buffer_write(save_buffer, buffer_u32, 0); // spares
+		buffer_write(save_buffer, buffer_u8, objectlist[| 7]);
+		buffer_write(save_buffer, buffer_bool, 0); // spares
+		buffer_write(save_buffer, buffer_bool, 0);
+		buffer_write(save_buffer, buffer_bool, 0);
 		buffer_write(save_buffer, buffer_u32, 0);
 		buffer_write(save_buffer, buffer_u32, 0);
 		buffer_write(save_buffer, buffer_u32, 0);

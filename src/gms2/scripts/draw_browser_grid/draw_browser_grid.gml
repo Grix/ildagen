@@ -45,6 +45,10 @@ function draw_browser_grid() {
 		{
 			draw_sprite(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32+32);
 		}
+		if (objectlist[| 7])
+		{
+			draw_sprite(spr_hold, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32+48);
+		}
 		
 		// timeline
 		if (ds_list_find_value(objectlist, 0))

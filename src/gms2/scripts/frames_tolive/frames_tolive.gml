@@ -76,6 +76,7 @@ function frames_tolive() {
 		ds_list_add(objectlist,(controller.maxframes == 1));
 		ds_list_add(objectlist,0);
 		ds_list_add(objectlist,0);
+		ds_list_add(objectlist,0);
 	
 	    ds_list_add(filelist,objectlist);
 	
