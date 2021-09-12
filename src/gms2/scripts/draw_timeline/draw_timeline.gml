@@ -132,9 +132,18 @@ function draw_timeline() {
 			draw_set_colour($bbbbbb);
 			draw_rectangle(t_stringx,t_ypos+3,t_stringx+t_stringlength+5,t_ypos+17,1);
                     
-			draw_set_colour(c_black);
 			gpu_set_blendenable(true);
+			
+				if (moving_object == 13 && selectedlayer == i)
+				{
+					draw_set_colour($666666);
+					floatingcursorxcorrected = (floatingcursorx-tlx)/tlzoom*tlw;
+					draw_rectangle(mouse_x,t_ypos+5,floatingcursorxcorrected,t_ypos+42,1);
+				}
+				
+			draw_set_colour(c_black);
 			draw_text(t_stringx+5, t_ypos+4, t_name);
+			
 			gpu_set_blendenable(false);
 		}
 

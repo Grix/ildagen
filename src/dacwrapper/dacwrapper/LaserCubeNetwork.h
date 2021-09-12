@@ -22,6 +22,8 @@
 #include <netdb.h>
 #endif
 
+//#define LDN_LOG
+
 #define LDN_ALIVE_PORT 45456
 #define LDN_CMD_PORT 45457
 #define LDN_DATA_PORT 45458

@@ -800,6 +800,39 @@ function handle_mousecontrol_seq() {
 		moving_object_ready = true;
 		exit;
 	}
+	else if (moving_object == 13)
+	{
+		// selecting multiple objects by dragging
+		
+		var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
+		var t_layer = layer_list[| selectedlayer][| 1];
+		for (i = 0; i < ds_list_size(t_layer); i++)
+		{
+			if (ds_list_find_index(somaster_list, t_layer[| i]) != -1)
+				continue;
+				
+			var t_objectx = t_layer[| i][| 0];
+			var t_objectx2 = t_objectx + t_layer[| i][| 2][| 0];
+			log(i, t_objectx, t_objectx2, t_xpos);
+				
+			if (t_xpos < floatingcursorx)
+			{
+				if ((t_objectx > t_xpos && t_objectx < floatingcursorx) || (t_objectx2 > t_xpos && t_objectx2 < floatingcursorx))
+					ds_list_add(somaster_list, t_layer[| i]);
+			}
+			else
+			{
+				if ((t_objectx < t_xpos && t_objectx > floatingcursorx) || (t_objectx2 < t_xpos && t_objectx2 > floatingcursorx))
+					ds_list_add(somaster_list, t_layer[| i]);
+			}
+		}
+		
+		if (!mouse_check_button(mb_left))
+		{
+			moving_object = 0;
+		}
+		exit;
+	}
     
 	//horizontal scroll moving
 	else if (scroll_moving == 1)
@@ -1034,11 +1067,16 @@ function handle_mousecontrol_seq() {
 	                            if (keyboard_check_control())
 	                            {
 	                                if (ds_list_find_index(somaster_list,objectlist) != -1)
-	                                {
 	                                    ds_list_delete(somaster_list,ds_list_find_index(somaster_list,objectlist));
-	                                }
-	                                ds_list_insert(somaster_list,0,objectlist);
+									else
+										ds_list_insert(somaster_list,0,objectlist);
+										
 	                                ds_list_copy(somoving_list,somaster_list);
+									
+									floatingcursory = ypos-1;
+									selectedlayer = i;
+									moving_object = 13;
+									exit;
 	                            }
 	                            else
 	                            {
@@ -1120,8 +1158,15 @@ function handle_mousecontrol_seq() {
 	                if (mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
 	                {
 	                    selectedlayer = i;
-	                    selectedx = floatingcursorx;
-	                    ds_list_clear(somaster_list);
+						if (!keyboard_check_control())
+						{
+		                    selectedx = floatingcursorx;
+		                    ds_list_clear(somaster_list);
+						}
+						else
+						{
+							moving_object = 13;
+						}
 	                }
 	                else if (mouse_check_button_pressed(mb_right))
 	                {

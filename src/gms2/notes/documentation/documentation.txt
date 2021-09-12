@@ -1,5 +1,4 @@
 TODO
-- add hold ctrl and drag over to select multiple objects on timeline
 - fix lasercube multiple detection
 - add toggle or push setting for live mode object playing
 - add midi cc and nrpn
