@@ -111,7 +111,8 @@ private:
 		int freeBufferSpaceLastFrames[100];
 		bool forceSendToggle = false;
 		int skipAllowedAt0 = 1;*/
-		bool forceSendToggle = false;
+		int forceSendExceptAtZero = 1;
+		int skipCounter = 0;
 
 		//bool isWarmedUp = false;
 		int warmupCounter = 0;
