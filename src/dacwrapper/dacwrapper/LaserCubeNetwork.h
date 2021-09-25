@@ -88,6 +88,7 @@ private:
 		void PeriodicCommandUdpHandler();
 		void FrameHandler();
 		void LogHandler();
+		void WarmupHandler();
 
 		sockaddr_in cmdSocketAddr;
 		sockaddr_in dataSocketAddr;
@@ -102,6 +103,21 @@ private:
 		unsigned int freeBufferSpace = 6000;
 		unsigned int maxBufferSpace = 6000;
 		unsigned int localBufferSize = 0;
+
+		bool skipNextFrame = false;
+		bool isStopped = true;
+		bool isReplyQueueDone = true;
+		/*int skipTestCounter = 0;
+		int freeBufferSpaceLastFrames[100];
+		bool forceSendToggle = false;
+		int skipAllowedAt0 = 1;*/
+		bool forceSendToggle = false;
+
+		//bool isWarmedUp = false;
+		int warmupCounter = 0;
+		const int requiredWarmupPackages = 300;
+
+
 		std::mutex frameLock;
 		std::chrono::system_clock::time_point previousBufferSpaceTime;
 		std::chrono::microseconds limitLeeway;
@@ -117,5 +133,6 @@ private:
 	int pingSocketFd;
 	std::vector<std::unique_ptr<LaserCubeNetworkDevice>> devices;
 	bool inited = false;
+	bool isWaitingForReply = false;
 };
 

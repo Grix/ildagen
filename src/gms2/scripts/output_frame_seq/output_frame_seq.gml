@@ -8,7 +8,7 @@ function output_frame_seq() {
 	if (t_dac_index == -1)
 	    exit;
 	
-	minroomspeed = max(projectfps,7.5);
+	//minroomspeed = max(projectfps,7.5);
     
 	output_buffer = t_dac[| 4];
 	output_buffer2 = t_dac[| 5];

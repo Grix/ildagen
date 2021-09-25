@@ -55,14 +55,14 @@ GMEXPORT double ScanDevices()
 
 		try
 		{
-			int numOLSCEasylase = olscEasylaseDevice->Init();
+			/*int numOLSCEasylase = olscEasylaseDevice->Init();
 			fprintf(stderr, "Found %d Easylase\n", numOLSCEasylase);
 			for (int i = 0; i < numOLSCEasylase; i++)
 			{
 				char* name = new char[64];
 				olscEasylaseDevice->GetName(i, name);
 				dacs[numDevices++] = { 5, i, name };
-			}
+			}*/
 		}
 		catch (...)
 		{
@@ -70,14 +70,14 @@ GMEXPORT double ScanDevices()
 
 		try
 		{
-			int numOLSCEzAudDac = olscEzAudDacDevice->Init();
+			/*int numOLSCEzAudDac = olscEzAudDacDevice->Init();
 			fprintf(stderr, "Found %d EZAud\n", numOLSCEzAudDac);
 			for (int i = 0; i < numOLSCEzAudDac; i++)
 			{
 				char* name = new char[64];
 				olscEzAudDacDevice->GetName(i, name);
 				dacs[numDevices++] = { 6, i, name };
-			}
+			}*/
 		}
 		catch (...)
 		{

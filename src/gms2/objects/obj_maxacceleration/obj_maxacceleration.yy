@@ -37,7 +37,7 @@
     "path": "folders/Objects/buttons/settings.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_scanrate",
+  "name": "obj_maxacceleration",
   "tags": [],
   "resourceType": "GMObject",
 }
