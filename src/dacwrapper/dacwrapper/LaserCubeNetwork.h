@@ -79,7 +79,7 @@ private:
 		bool OpenDevice();
 		bool SendCommand(unsigned char command, char* data, int dataLength = 1);
 		bool GetStatus(unsigned int requiredFreeBufferSpace);
-		bool SendData(LaserCubeNetworkSample* data, size_t count, int rate);
+		bool SendData(LaserCubeNetwork::LaserCubeNetworkSample* data, size_t count, int rate);
 		bool StopOutput();
 		//bool Close();
 

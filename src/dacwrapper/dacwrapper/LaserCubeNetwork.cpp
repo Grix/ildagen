@@ -354,7 +354,7 @@ bool LaserCubeNetwork::LaserCubeNetworkDevice::GetStatus(unsigned int requiredFr
 	return (freeBufferSpace > requiredFreeBufferSpace);
 }
 
-bool LaserCubeNetwork::LaserCubeNetworkDevice::SendData(LaserCubeNetworkSample* data, size_t count, int rate)
+bool LaserCubeNetwork::LaserCubeNetworkDevice::SendData(LaserCubeNetwork::LaserCubeNetworkSample* data, size_t count, int rate)
 {
 	if (count > 5000) // not supported by lasercube
 		return true;
@@ -374,7 +374,7 @@ bool LaserCubeNetwork::LaserCubeNetworkDevice::SendData(LaserCubeNetworkSample* 
 	FrameInfo* newFrame = new FrameInfo();
 	newFrame->numPoints = count;
 	newFrame->rate = rate;
-	memcpy(newFrame->dataBuffer, data, sizeof(LaserCubeNetworkSample) * count);
+	memcpy(newFrame->dataBuffer, data, sizeof(LaserCubeNetwork::LaserCubeNetworkSample) * count);
 	std::lock_guard<std::mutex> lock(frameLock);
 	localBufferSize += count;
 	frameQueue.push(newFrame);
@@ -557,7 +557,7 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 				std::lock_guard<std::mutex> lock(frameLock);
 				FrameInfo* frame = frameQueue.front();
 				localBufferSize -= frame->numPoints;
-				fprintf(stderr, "SKIP FRAME, remote buf: %d, local buf: %d\n", (maxBufferSpace - freeBufferSpace), localBufferSize);
+				//fprintf(stderr, "SKIP FRAME, remote buf: %d, local buf: %d\n", (maxBufferSpace - freeBufferSpace), localBufferSize);
 				frameQueue.pop();
 				delete frame;
 
@@ -571,7 +571,7 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 
 			if (((maxBufferSpace - freeBufferSpace) + localBufferSize > currentRate * 0.07) /* || ((forceSendExceptAtZero % 2) != 0)*/) // buffering ~50ms of data before playing
 			{
-				fprintf(stderr, "TRANSMIT FRAME: %d, remote buf: %d, local buf: %d, local queue: %d\n", frameNumber, (maxBufferSpace - freeBufferSpace), localBufferSize, frameQueue.size());
+				//fprintf(stderr, "TRANSMIT FRAME: %d, remote buf: %d, local buf: %d, local queue: %d\n", frameNumber, (maxBufferSpace - freeBufferSpace), localBufferSize, frameQueue.size());
 
 				auto timeStart = std::chrono::system_clock::now();
 
@@ -628,12 +628,11 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 							{
 								if (recvfrom(dataSocketFd, buffer2, sizeof(buffer2), 0, recvAddrPre, &recvAddrSize) >= 0)
 								{
-									// REMOVED FOR NOW DUE TO CAUSING DROPOUTS, todo investigate
 									//if (dataLeft == 0)
 									{
 										freeBufferSpace = *(unsigned short*)(&buffer2[2]);
 										previousBufferSpaceTime = std::chrono::system_clock::now();
-										fprintf(stderr, "RECEIVE SIZE: %d, remote buf: %d, local buf: %d\n", frameNumber, (maxBufferSpace - freeBufferSpace), localBufferSize);
+										//fprintf(stderr, "RECEIVE SIZE: %d, remote buf: %d, local buf: %d\n", frameNumber, (maxBufferSpace - freeBufferSpace), localBufferSize);
 
 										if ((maxBufferSpace - freeBufferSpace) > currentRate * 0.12)
 										{
@@ -701,7 +700,7 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 			}
 
 			//forceSendToggle = !forceSendToggle;
-			forceSendExceptAtZero = (forceSendExceptAtZero + 1) % 5;
+			//forceSendExceptAtZero = (forceSendExceptAtZero + 1) % 5;
 			if (skipCounter > 100)
 			{
 				skipNextFrame = true;
