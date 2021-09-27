@@ -1,4 +1,5 @@
 TODO
+- fix lasercube flipped x in macos and linux dacwrapper
 - fix lasercube multiple detection
 - add toggle or push setting for live mode object playing
 - add midi cc and nrpn

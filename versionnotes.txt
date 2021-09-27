@@ -1,10 +1,11 @@
+v1.9.3
+- Able to more easily select and deselect multiple timeline objects (hold CTRL and drag mouse over).
+- Fix possibly glitchy laser output in Timeline Mode and settings preview with dynamic FPS.
+- Fix not being able to detect more than one LaserCube Network device.
+- More stable LaserCube/LaserDock connection and output (both USB and network type).
+- Fix DAC/projector scanning not working at all on a few computers due to missing C++ runtime.
+- Option for "push to play" rather than "toggle play" for files in Live Mode.
+
 v1.9.2
 - Add support for Wifi LaserCube. (In beta mode, please report any issues)
 - Allow scaling zoom of 1.5x instead of just 2x or 3x.
-
-v1.9.1
-- Improved undo and redo functionality in timeline and live mode.
-- Fix possible crash when playing certain imported ILDA files in live mode.
-- Better detection of automatic graphics DPI scaling. (Can be overridden in settings)
-- Improve idle CPU usage in macOS.
-- Mitigated several other obscure crashes.
