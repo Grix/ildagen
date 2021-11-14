@@ -178,7 +178,7 @@ function output_frame_live() {
 
 	assemble_frame_dac();
 
-	if (room = rm_options)
+	if (room == rm_options)
 	{
 	    for (i = 0; i < blindzone_el_lists; i++)
 	    {

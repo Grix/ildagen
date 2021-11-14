@@ -28,6 +28,7 @@ effect_list = ds_list_create();
 ilda_list = ds_list_create();
 buffer_list = ds_list_create();
 marker_list = ds_list_create();
+jump_button_list = ds_list_create();
 timeline_surf = -1;
 timeline_surf_temp = -1;
 timeline_surf_audio_temp = -1;

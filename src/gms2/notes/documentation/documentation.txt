@@ -1,7 +1,10 @@
 TODO
+- add keyboard shortcuts to timeline mode to jump to positions.
+- add possibility for assigning different projectors to live modes files
+- fix random crashes in timeline etc (clue in oct 31 bug report with unexpected string var?)
+- change fps setting to +/- control in settings instead of just button
+- add possibility to show cursor in editor when laser is on.
 - fix lasercube flipped x in macos and linux dacwrapper
-- fix lasercube multiple detection
-- add toggle or push setting for live mode object playing
 - add midi cc and nrpn
 - fix ctrl+key shortcuts in linux? Not working?
 - fix crash sometimes when moving tl object between layers while undo/redo layer creation/deletion

@@ -10,7 +10,7 @@ function refresh_surfaces() {
 	if (!surface_exists(frame3d_surf))
 	    frame3d_surf = surface_create(max(1, power(2, ceil(log2(view_wport[4])))), max(1, power(2, ceil(log2(view_wport[4])))));
 
-	var t_div = $ffff/view_wport[4];
+	var t_div = $ffff/max(1, view_wport[4]);
 
 	if (viewmode == 0) or (viewmode == 2)
 	{

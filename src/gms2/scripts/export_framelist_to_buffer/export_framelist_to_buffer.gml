@@ -61,7 +61,7 @@ function export_framelist_to_buffer() {
 	        cr = t_red_lowerbound + (list_raw[| i+t_redshift+3] & $FF) * t_red_scale;
 	        cg = t_green_lowerbound + ((list_raw[| i+t_greenshift+3] >> 8) & $FF) * t_green_scale;
 	        cb = t_blue_lowerbound + (list_raw[| i+t_blueshift+3] >> 16) * t_blue_scale;
-	        bl = list_raw[| i+t_blankshift+2]
+	        bl = list_raw[| i+t_blankshift+2];
 	    }
         
 	    xp -= $8000;

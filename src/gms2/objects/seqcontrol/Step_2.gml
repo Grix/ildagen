@@ -197,9 +197,6 @@ else if (keyboard_check_pressed(ord("0")))
     }
 }
 
-if (largepreview)
-	exit;
-
 else if (keyboard_check_pressed(vk_delete))
 {
     if (!ds_list_empty(somaster_list))
@@ -207,6 +204,59 @@ else if (keyboard_check_pressed(vk_delete))
         seq_delete_object();
     }
 }
+
+else if (keyboard_check_pressed(ord("J")))
+{
+	var t_found = false;
+	for (i = 0; i < ds_list_size(jump_button_list); i += 2)
+	{
+		if (jump_button_list[| i+1] == tlpos*projectfps/1000)
+		{
+			ds_list_delete(jump_button_list, i);
+			ds_list_delete(jump_button_list, i);
+			t_found = true;
+			break;
+		}
+	}
+	
+	if (!t_found)
+	{
+		ds_list_add(jump_button_list, -1);
+		ds_list_add(jump_button_list, tlpos*projectfps/1000);
+	}
+}
+else
+{
+	// check jump buttons
+	for (i = 0; i < ds_list_size(jump_button_list); i += 2)
+	{
+		if (jump_button_list[| i] == -1)
+		{
+			if (keyboard_check_pressed(vk_anykey))
+			{
+				if (keyboard_check_pressed(ord(string_upper(string_char_at(keyboard_string,string_length(keyboard_string))))))
+				{
+					jump_button_list[| i] = ord(string_upper(string_char_at(keyboard_string,string_length(keyboard_string))));
+				}
+				else
+				{
+					jump_button_list[| i] = 0;
+				}
+			}
+		}
+		else if (jump_button_list[| i] > 0)
+		{
+			if (keyboard_check_pressed(jump_button_list[| i]))
+			{
+				tlpos = jump_button_list[| i + 1]/projectfps*1000;
+				frame_surf_refresh = 1;
+			}
+		}
+	}
+}
+
+if (largepreview)
+	exit;
     
 handle_mousecontrol_seq();
 

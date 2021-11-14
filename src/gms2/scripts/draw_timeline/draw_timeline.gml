@@ -40,6 +40,26 @@ function draw_timeline() {
 		    draw_rectangle(markerpostemp,tls-2,markerpostemp+1,tlsurf_y+lbsh,0);
 		}
 	}
+	
+	// jump points
+	for (i = 0; i < ds_list_size(jump_button_list); i += 2)
+	{
+		if (jump_button_list[| i+1] == clamp(jump_button_list[| i+1], tlx, tlx+tlzoom))
+		{
+		    var markerpostemp = (jump_button_list[| i+1]-tlx)*tlwdivtlzoom;
+		    //draw_rectangle(markerpostemp,tlsurf_y,markerpostemp+1,tlh-1+tlsurf_y,0);
+			
+			draw_set_alpha(0.8);
+			draw_set_colour(c_orange);
+		    draw_rectangle(markerpostemp,tls-2,markerpostemp+1,tlsurf_y+lbsh,0);
+			
+			draw_set_colour(c_maroon);
+			if (jump_button_list[| i] == -1)
+				draw_text(markerpostemp+4,tlsurf_y+lbsh-20,"[ Press shortcut button... ]");
+			else
+				draw_text(markerpostemp+4,tlsurf_y+lbsh-20,"[ " + chr(jump_button_list[| i]) + " ]");
+		}
+	}
 
 	//scope fog main
 	gpu_set_blendenable(true);

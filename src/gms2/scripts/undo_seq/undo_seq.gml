@@ -52,8 +52,8 @@ function undo_seq() {
 	        objectlist2 = ds_list_find_value(undolisttemp,2);
 	        if (!ds_list_exists(objectlist1) || !ds_list_exists(objectlist2) || !ds_list_exists(objectlist))
 	        {
-	            ds_list_destroy(undolisttemp);
-	            ds_list_destroy(objectlist);
+	            //ds_list_destroy(undolisttemp);
+	            //ds_list_destroy(objectlist);
 	            exit;
 	        }
         
@@ -87,8 +87,8 @@ function undo_seq() {
 	        objectlist2 = ds_list_find_value(undolisttemp,2);
 	        if (!ds_list_exists(objectlist1) || !ds_list_exists(objectlist2) || !ds_list_exists(objectlist))
 	        {
-	            ds_list_destroy(undolisttemp);
-	            ds_list_destroy(objectlist);
+	            //ds_list_destroy(undolisttemp);
+	            //ds_list_destroy(objectlist);
 	            exit;
 	        }
         
@@ -121,7 +121,7 @@ function undo_seq() {
 	        layerlisttemp = ds_list_find_value(undolisttemp,0);
 	        if (!ds_list_exists(layerlisttemp))
 	        {
-	            ds_list_destroy(undolisttemp);
+	            //ds_list_destroy(undolisttemp);
 	            exit;
 	        }
 			
@@ -141,7 +141,7 @@ function undo_seq() {
 	        infolist = undolisttemp[| 0];
 	        if (!ds_list_exists(infolist))
 	        {
-	            ds_list_destroy(undolisttemp);
+	            //ds_list_destroy(undolisttemp);
 	            exit;
 	        }
 			
@@ -165,7 +165,7 @@ function undo_seq() {
 	        frametime = ds_list_find_value(undolisttemp,2);
 	        if (!ds_list_exists(layerlisttemp) || !ds_list_exists(objectlist))
 	        {
-	            ds_list_destroy(undolisttemp);
+	            //ds_list_destroy(undolisttemp);
 	            exit;
 	        }
             

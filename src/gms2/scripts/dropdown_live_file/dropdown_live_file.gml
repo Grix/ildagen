@@ -2,7 +2,7 @@ function dropdown_live_file() {
 	ddobj = instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-view_hport[3],"foreground",obj_dropdown);
 	with (ddobj)
 	{
-	    num = 6;
+	    num = 7;
 	    ds_list_add(desc_list,"Delete (Del)");
 	    ds_list_add(desc_list,"Open in frame editor");
 	    ds_list_add(sep_list,0);

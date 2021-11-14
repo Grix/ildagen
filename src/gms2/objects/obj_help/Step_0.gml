@@ -59,7 +59,8 @@ else if (room == rm_seq)
         "I)    Send frames from editor mode to timeline mode\n"+
         "L)    Insert marker on timeline\n"+
         "P)    Toggle 3D frame previewing\n"+
-        "D)    Hold to delete points in envelopes when dragging mouse\n\n"+
+        "D)    Hold to delete points in envelopes when dragging mouse\n"+
+		"J)    Create a jump point (where you can press a button to jump to this timeline position)\n\n"+
         "Delete)    Delete selected object\n"+
         "Ctrl+Z)    Undo\n"+
 		"Ctrl+Y)    Redo\n"+
