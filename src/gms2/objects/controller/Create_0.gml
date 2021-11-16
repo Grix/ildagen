@@ -1,6 +1,8 @@
 version = "1.9.3";
 versiondate = "2021-11-14 (test1)";
 
+gc_enable(false);
+
 if (debug_mode)
 {
     show_debug_overlay(1);

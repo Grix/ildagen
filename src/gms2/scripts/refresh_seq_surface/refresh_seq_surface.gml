@@ -105,7 +105,9 @@ function refresh_seq_surface() {
 				
 				if ((repeatnum+1)*13 >= buffer_get_size(el_buffer)+buffer_start_pos+50) // sanity check
 				{
-					throw("Error drawing frame. Please contact the developer and report the bug using the top menu: \"About\"->\"Contact developer\"");
+					show_message_new("Error drawing frame. Please contact the developer and report the bug using the top menu: \"About\"->\"Contact developer\"");
+					http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
+	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"Error drawing frame.. repeatnum: "+string(repeatnum));
 					break;
 				}
             

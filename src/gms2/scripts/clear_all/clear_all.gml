@@ -62,7 +62,8 @@ function clear_all() {
 	        for (u = 0;u < ds_list_size(tempundolist)-1;u++)
 	        {
 	            list = ds_list_find_value(tempundolist,u);
-	            ds_list_destroy(list);
+				if (ds_list_exists(list))
+					ds_list_destroy(list);
 	        }
 	        ds_list_destroy(tempundolist);
 	    }
@@ -75,7 +76,8 @@ function clear_all() {
 	        for (u = 0;u < ds_list_size(tempundolist)-1;u++)
 	        {
 	            list = ds_list_find_value(tempundolist,u);
-	            ds_list_destroy(list);
+				if (ds_list_exists(list))
+					ds_list_destroy(list);
 	        }
 	        ds_list_destroy(tempundolist);
 	    }

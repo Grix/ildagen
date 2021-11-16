@@ -126,6 +126,7 @@
     {"id":{"name":"spr_blank","path":"sprites/spr_blank/spr_blank.yy",},"order":51,},
     {"id":{"name":"spr_comingsoon","path":"sprites/spr_comingsoon/spr_comingsoon.yy",},"order":52,},
     {"id":{"name":"spr_laserareasettings","path":"sprites/spr_laserareasettings/spr_laserareasettings.yy",},"order":53,},
+    {"id":{"name":"obj_fps2","path":"objects/obj_fps2/obj_fps2.yy",},"order":35,},
     {"id":{"name":"spr_projectionzones_mode","path":"sprites/spr_projectionzones_mode/spr_projectionzones_mode.yy",},"order":54,},
     {"id":{"name":"spr_dacscan","path":"sprites/spr_dacscan/spr_dacscan.yy",},"order":55,},
     {"id":{"name":"spr_ad1","path":"sprites/spr_ad1/spr_ad1.yy",},"order":56,},

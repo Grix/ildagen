@@ -37,7 +37,7 @@
     "path": "folders/Objects/buttons/settings.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_greenshift",
+  "name": "obj_fps2",
   "tags": [],
   "resourceType": "GMObject",
 }
