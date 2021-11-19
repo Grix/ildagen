@@ -33,12 +33,12 @@ function read_ilda_header() {
 	i += 17;
 
 	//24
-	if (get_bytes() != 0)
+	/*if (get_bytes() != 0)
 	{
 	    frame_list_parse = ds_list_create();
 	    maxpoints = get_bytes();
 	}
-	else
+	else*/
 	{
 	    if (i >= file_size-32)// or (frame_number >= maxframes_parse)
 	    {

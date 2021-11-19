@@ -309,6 +309,16 @@ function process_dialog_seq() {
 				timeline_surf_length = 0;
 				frame_surf_refresh = 1;
 				clean_redo_list_seq();
+				
+				for (i = 0; i < ds_list_size(undo_list); i++)
+				{
+					if (undo_list[| i] == "q" + string(_layer))
+					{
+						ds_list_delete(undo_list, i);
+						i--;
+					}
+				}
+				
             
 	            break;
 	        }  
