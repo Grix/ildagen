@@ -273,9 +273,12 @@ function process_dialog_seq() {
 	            selectedlayer = ds_list_find_index(layer_list,_layer);
 	            if (selectedlayer == -1)
 	                exit;
+					
+				clean_seq_undo();
+				clean_redo_list_seq();
+					
 	            num_objects = ds_list_size(_layer[| 1]);
 	            ds_list_clear(somaster_list);
-				clean_redo_list_seq();
 	            repeat (num_objects)   
 	            {
 	                ds_list_add(somaster_list,ds_list_find_value(_layer[| 1],0));
@@ -308,16 +311,6 @@ function process_dialog_seq() {
 	            selectedx = 0;
 				timeline_surf_length = 0;
 				frame_surf_refresh = 1;
-				clean_redo_list_seq();
-				
-				for (i = 0; i < ds_list_size(undo_list); i++)
-				{
-					if (undo_list[| i] == "q" + string(_layer))
-					{
-						ds_list_delete(undo_list, i);
-						i--;
-					}
-				}
 				
             
 	            break;

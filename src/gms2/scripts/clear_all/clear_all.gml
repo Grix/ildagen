@@ -1,6 +1,7 @@
 function clear_all() {
 	ilda_cancel();
 	clean_redo_list();
+	clean_ilda_undo();
 	ds_list_clear(semaster_list);
 
 	for (j = 0;j < ds_list_size(frame_list);j++)
@@ -19,71 +20,6 @@ function clear_all() {
 	el_list = ds_list_create();
 	ds_list_add(frame_list,el_list);
 
-	//clear undo
-	while (ds_list_size(undo_list))
-	{
-	    undo = ds_list_find_value(undo_list,0);
-	    ds_list_delete(undo_list,0);
-
-	    if (is_real(undo))
-	    {
-	        //nothing
-	    }
-	    else if (string_char_at(undo,0) == "a")
-	    {
-	        //nothing
-	    }
-	    else if (string_char_at(undo,0) == "r")
-	    {
-	        //nothing
-	    }
-	    else if (string_char_at(undo,0) == "d")
-	    {
-	        //nothing
-	    }
-	    else if (string_char_at(undo,0) == "v")
-	    {
-	        if (!ds_list_exists(real(string_digits(undo))))
-	            continue;
-	        ds_list_destroy(real(string_digits(undo)));
-	    }
-	    else if (string_char_at(undo,0) == "b")
-	    {
-	        if (!ds_list_exists(real(string_digits(undo))))
-	            continue;
-	        ds_list_destroy(real(string_digits(undo)));
-	    }
-	    else if (string_char_at(undo,0) == "k")
-	    {
-	        //undo reapply elements
-	        if (!ds_list_exists(real(string_digits(undo))))
-	            continue;
-	        tempundolist = real(string_digits(undo));
-	        for (u = 0;u < ds_list_size(tempundolist)-1;u++)
-	        {
-	            list = ds_list_find_value(tempundolist,u);
-				if (ds_list_exists(list))
-					ds_list_destroy(list);
-	        }
-	        ds_list_destroy(tempundolist);
-	    }
-	    else if (string_char_at(undo,0) == "l")
-	    {
-	        //undo delete
-	        if (!ds_list_exists(real(string_digits(undo))))
-	            continue;
-	        tempundolist = real(string_digits(undo));
-	        for (u = 0;u < ds_list_size(tempundolist)-1;u++)
-	        {
-	            list = ds_list_find_value(tempundolist,u);
-				if (ds_list_exists(list))
-					ds_list_destroy(list);
-	        }
-	        ds_list_destroy(tempundolist);
-	    }
-	}
-	ds_list_destroy(undo_list);
-	undo_list = ds_list_create();
 
 	framepoints = 0;
 	frame = 0;

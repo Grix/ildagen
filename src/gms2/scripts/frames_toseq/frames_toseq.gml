@@ -96,6 +96,10 @@ function frames_toseq() {
         
 	        infolisttemp = info;
 	        selectedx += controller.maxframes;
+			
+			undolisttemp = ds_list_create();
+			ds_list_add(undolisttemp,objectlist);
+			ds_list_add(undo_list,"c"+string(undolisttemp));
 	    }
 	    else
 	    {
@@ -123,11 +127,10 @@ function frames_toseq() {
 			ds_list_replace(infolist,3,create_checkpoint_list(controller.save_buffer));
         
 	        infolisttemp = infolist;
+			
+			clean_seq_undo();
 	    }
         
-	    undolisttemp = ds_list_create();
-	    ds_list_add(undolisttemp,objectlist);
-	    ds_list_add(undo_list,"c"+string(undolisttemp));
 	}
     
 	with (seqcontrol)

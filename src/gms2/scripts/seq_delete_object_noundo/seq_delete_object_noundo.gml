@@ -28,6 +28,7 @@ function seq_delete_object_noundo() {
 	            selectedlayer = c;
 	            ds_list_destroy(infolist);
 	            ds_list_destroy(objectlist);
+				
 	        }
 	    }
 	}

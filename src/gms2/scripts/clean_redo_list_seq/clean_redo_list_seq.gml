@@ -39,17 +39,17 @@ function clean_redo_list_seq(){
 	        redolisttemp = real(string_digits(redo));
 	        if (!ds_list_exists(redolisttemp))
 	            exit;
-	        objectlist = ds_list_find_value(redolisttemp,1);
-	        infolist = ds_list_find_value(objectlist, 2);
-			if (!is_undefined(infolist))
+	        var t_objectlist = ds_list_find_value(redolisttemp,1);
+	        var t_infolist = ds_list_find_value(t_objectlist, 2);
+			if (!is_undefined(t_infolist))
 			{
-		        if (!is_undefined(ds_list_find_value(infolist,1)) && surface_exists(ds_list_find_value(infolist,1)))
-		            surface_free(ds_list_find_value(infolist,1));
-		        ds_list_destroy(infolist);
+		        if (!is_undefined(ds_list_find_value(t_infolist,1)) && surface_exists(ds_list_find_value(t_infolist,1)))
+		            surface_free(ds_list_find_value(t_infolist,1));
+		        ds_list_destroy(t_infolist);
 			}
-		    if (buffer_exists(ds_list_find_value(objectlist,1)))
-				buffer_delete(ds_list_find_value(objectlist,1));
-	        ds_list_destroy(objectlist);
+		    if (buffer_exists(ds_list_find_value(t_objectlist,1)))
+				buffer_delete(ds_list_find_value(t_objectlist,1));
+	        ds_list_destroy(t_objectlist);
 	        ds_list_destroy(redolisttemp);
 	    }
 	    else if (string_char_at(redo,0) == "r")

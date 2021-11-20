@@ -78,7 +78,7 @@ function redo_seq() {
 	    }
 		else if (string_char_at(redo,0) == "z")
 	    {
-	        //redo merge (only in undo now, opposite of split)
+	        //redo merge (only in redo now, opposite of split)
 	        redolisttemp = real(string_digits(redo));
 			if (!ds_list_exists(redolisttemp))
 	            exit;
@@ -96,7 +96,7 @@ function redo_seq() {
 	        {
 	            layertop = layer_list[| j];
 	            _layer = layertop[| 1];
-	            if (ds_list_find_index(_layer, objectlist1) != -1)
+	            if (ds_list_find_index(_layer, objectlist) != -1)
 	            {
 	                ds_list_delete(_layer, ds_list_find_index(_layer, objectlist));
 	                ds_list_add(_layer, objectlist1);
