@@ -37,6 +37,7 @@ function save_project_work() {
 				
 				http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
 	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING infolist in save_project_work. Undefined: "+string(is_undefined(tempinfolist))+", frametime: "+string(tempframe)+", element num: "+string(j));
+			
 			}
 	        buffer_write(save_buffer, buffer_u32, tempframe);
 			var t_compressedbuffer = buffer_compress(tempbuffer, 0, buffer_get_size(tempbuffer));

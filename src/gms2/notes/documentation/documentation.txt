@@ -1,16 +1,15 @@
 TODO
-- add keyboard shortcuts to timeline mode to jump to positions.
+- add keyboard shortcuts to timeline mode to jump to positions (button).
 - add possibility for assigning different projectors to live modes files
 - fix random crashes in timeline etc. IDs OF LISTS ARE REUSED.
 - add possibility to show cursor in editor when laser is on.
 - fix lasercube flipped x in macos and linux dacwrapper
 - add midi cc and nrpn
 - fix ctrl+key shortcuts in linux? Not working?
-- fix crash sometimes when moving tl object between layers while undo/redo layer creation/deletion. ID OF DELETED LAYER LIST IS REUSED.
 - improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
-- undo reversing in editor mode
 - x64 windows
+- add playlists for playing multiple timeline shows in a row.
 - improve projection mapping settings box (f.ex. not possible to resize sides when very small? and context menu not working when clicking on the box)
 - undo stretching maxframes in editor mode
 - compress buffers when saving in live mode and editor mode

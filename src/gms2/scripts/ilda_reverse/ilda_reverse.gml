@@ -1,4 +1,4 @@
-function ilda_reverse() {
+function ilda_reverse(is_undoing = false) {
 	//reverse animation of scope
 	with (controller)
 	{
@@ -16,7 +16,12 @@ function ilda_reverse() {
 		ds_list_destroy(t_tempframelist); //todo undo
 		frame_surf_refresh = 1;
 		update_semasterlist_flag = 1;
-		clean_redo_list();
+		
+		if (!is_undoing)
+		{
+			clean_redo_list();
+			ds_list_add(undo_list,"e");
+		}
 	}
 
 

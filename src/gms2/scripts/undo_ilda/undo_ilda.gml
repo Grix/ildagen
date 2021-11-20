@@ -197,6 +197,12 @@ function undo_ilda() {
 	
 			refresh_minitimeline_flag = 1;
 		}
+		else if (string_char_at(undo,0) == "e")
+		{
+		    //undo reverse
+			ilda_reverse(true);
+			ds_list_add(redo_list,"e");
+		}
     
     
 		frame_surf_refresh = 1;
