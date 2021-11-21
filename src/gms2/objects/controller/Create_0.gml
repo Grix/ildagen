@@ -1,7 +1,7 @@
-version = "1.9.3";
-versiondate = "2021-11-14 (test1)";
+version = "1.9.4";
+versiondate = "2021-11-21";
 
-gc_enable(false);
+//gc_enable(false);
 
 if (debug_mode)
 {
