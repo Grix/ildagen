@@ -28,7 +28,7 @@ ini_write_real("main", "dpi_scaling_override", value);
 ini_close();
 
 if (value == 0)
-	controller.dpi_multiplier = ceil(display_get_height()/1700);
+	controller.dpi_multiplier = clamp(ceil(display_get_height()/1700), 1, 3);
 else
 	controller.dpi_multiplier = value;
 	

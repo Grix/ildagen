@@ -8,6 +8,7 @@ function make_screenshot(argument0, argument1) {
 	el_buffer = argument0;
 	var t_size = argument1;
 
+
 	temp_surf = surface_create(power(2, ceil(log2(t_size))),power(2, ceil(log2(t_size))));
 
 	buffer_seek(el_buffer,buffer_seek_start,0);

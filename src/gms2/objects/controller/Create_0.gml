@@ -194,7 +194,7 @@ tlorigo_y = 515;
 ini_open("settings.ini");
 dpi_scaling = ini_read_real("main", "dpi_scaling_override", 0);
 if (dpi_scaling == 0 || dpi_scaling == -1)
-	dpi_multiplier = min( ceil(display_get_height()/(735*2.05)), ceil(display_get_width()/(1350*2)) );
+	dpi_multiplier = clamp(min( ceil(display_get_height()/(735*2.05)), ceil(display_get_width()/(1350*2)) ),1,3);
 else
 	dpi_multiplier = dpi_scaling;
 ini_close();

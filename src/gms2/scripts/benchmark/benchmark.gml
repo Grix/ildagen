@@ -1,4 +1,7 @@
 function benchmark() {
+	/*var t_zero = 0;
+	var t_const = 100;
+	 minitimeline_surf = surface_create(t_const/t_zero, clamp(infinity, 1, 8192));*/
 	
 	//show_message_new("test");
 

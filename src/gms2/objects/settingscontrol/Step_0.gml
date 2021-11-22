@@ -9,7 +9,7 @@ if (window_get_height() != (view_hport[3]+view_hport[0]) || window_get_width() !
 	//	window_set_size(controller.default_window_w, controller.default_window_h);
 	
 	if (controller.dpi_scaling == 0 || controller.dpi_scaling == -1)
-		controller.dpi_multiplier = min( ceil(window_get_height()/(735*2.05)), ceil(window_get_width()/(1350*2)) );
+		controller.dpi_multiplier = clamp(min( ceil(window_get_height()/(735*2.05)), ceil(window_get_width()/(1350*2)) ), 1, 3);
 	
 	log("Resized window");
 	controller.forceresize = false;

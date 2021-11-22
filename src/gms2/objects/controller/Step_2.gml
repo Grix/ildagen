@@ -52,6 +52,9 @@ else
 	view_visible[5] = false;
 }
 
+default_window_w = 1350*dpi_multiplier;
+default_window_h = 735*dpi_multiplier;
+
 if (room != rm_ilda) 
 	exit;
 	
@@ -71,7 +74,9 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 || forceresize
 {
 	if (dpi_scaling == 0 || dpi_scaling == -1)
-		dpi_multiplier = min( ceil(t_windowheight/(735*2.05)), ceil(t_windowwidth/(1350*2)) );
+		dpi_multiplier = clamp(min( ceil(t_windowheight/(735*2.05)), ceil(t_windowwidth/(1350*2)) ),1,3);
+		
+	
 	
 	//if (window_get_height() < default_window_h || window_get_width() < default_window_w)
 	//	window_set_size(default_window_w, default_window_h);
