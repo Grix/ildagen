@@ -7,4 +7,4 @@ itemh = 24;
 moving = 0;
 
 surf_playlist = -1;
-
+mouseover_addbutton = false;

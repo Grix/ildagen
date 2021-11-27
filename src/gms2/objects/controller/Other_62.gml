@@ -7,7 +7,7 @@ if (ds_map_find_value(async_load, "id") == updateget)
     {
         versionnew = ds_map_find_value(async_load, "result");
         log("Checking version");
-        if (versionnew != version)
+        if (string_length(string(versionnew)) < 10 && versionnew != version)
         {
 			//if (os_type == os_macosx)
 			//	ilda_dialog_yesno("updatefound","New version available: "+versionnew+", would you like to download and install?");

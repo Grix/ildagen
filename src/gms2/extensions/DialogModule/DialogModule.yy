@@ -448,7 +448,7 @@
     "Rooms\\rm_example",
   ],
   "androidPermissions": [],
-  "copyToTargets": 128,
+  "copyToTargets": 194,
   "iosCocoaPods": "",
   "tvosCocoaPods": "",
   "iosCocoaPodDependencies": "",

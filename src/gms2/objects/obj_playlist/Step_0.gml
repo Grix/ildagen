@@ -38,6 +38,19 @@ if (scrollh > list_height)
 else if (mouse_y == clamp(mouse_y, y, y+list_height*controller.dpi_multiplier)) 
     &&  (mouse_x == clamp(mouse_x, x, x+list_width*controller.dpi_multiplier))
 {
+	if (mouse_x == clamp(mouse_x, x + (list_width - 24)*controller.dpi_multiplier, x + (list_width - 8)*controller.dpi_multiplier) && mouse_y == clamp(mouse_y, y + (list_height - 24)*controller.dpi_multiplier, y + (list_height - 8)*controller.dpi_multiplier))
+	{
+		controller.tooltip = "Click to add a project to the playlist.";
+		if (mouse_check_button_pressed(mb_left))
+		{
+			dd_seq_playlist_add();
+		}
+		mouseover_addbutton = true;
+		exit;
+	}
+	else
+		mouseover_addbutton = false;
+	
     if (mouse_wheel_up())
     {
         scrollx -= itemh;

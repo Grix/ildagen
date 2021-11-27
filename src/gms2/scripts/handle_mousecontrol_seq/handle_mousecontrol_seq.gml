@@ -893,8 +893,9 @@ function handle_mousecontrol_seq() {
 	{
 	    tlxtemp = tlx+mouse_x/tlw*tlzoom;
 	    tlzoom *= 1.2;
-	    tlx -= mouse_x/tlw*tlzoom/10;
-	    tlx = tlxtemp-mouse_x/tlw*tlzoom;
+	    //tlx -= mouse_x/tlw*tlzoom/10;
+	    //tlx = tlxtemp-mouse_x/tlw*tlzoom;
+		tlx -= tlzoom*0.1;
 	    if (tlx < 0) 
 	        tlx = 0;
 		if (tlx+tlzoom > length)

@@ -75,5 +75,12 @@ var t_rightx = view_wport[4];
 draw_set_color(controller.c_ltltgray);
 draw_text_transformed(t_rightx - (list_width+5)*controller.dpi_multiplier, 15, "Playlist:", controller.dpi_multiplier, controller.dpi_multiplier, 0);
 	
+if (mouseover_addbutton)
+	draw_set_alpha(0.8);
+else
+	draw_set_alpha(1);
 
+draw_sprite_stretched(spr_addlayer, 0, x + (list_width - 24)*controller.dpi_multiplier, y + (list_height- 24)*controller.dpi_multiplier, 16*controller.dpi_multiplier, 16*controller.dpi_multiplier);
+
+draw_set_alpha(1);
 draw_set_color(c_black);
