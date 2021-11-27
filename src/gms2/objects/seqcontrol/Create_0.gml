@@ -40,6 +40,7 @@ frame3d_surf_large = -1;
 copy_list = ds_list_create();
 copy_buffer = ds_list_create();
 env_type_map = ds_map_create();
+playlist_list = ds_list_create();
 
 high_performance = false;
 frame_surf_refresh = 0;

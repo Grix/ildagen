@@ -515,7 +515,7 @@ function process_dialog_ilda() {
               
 	            case "scopestart":
 	          {
-	              scope_start = clamp(ds_map_find_value(argument[0], "value")-1,0,scope_end);
+	              scope_start = clamp(round(ds_map_find_value(argument[0], "value"))-1,0,scope_end);
 	              frame = scope_start;
 	              framehr = scope_start;
 	              frame_surf_refresh = 1;
@@ -526,7 +526,7 @@ function process_dialog_ilda() {
               
 	            case "scopeend":
 	          {
-	              scope_end = clamp(ds_map_find_value(argument[0], "value")-1,scope_start,maxframes-1);
+	              scope_end = clamp(round(ds_map_find_value(argument[0], "value"))-1,scope_start,maxframes-1);
 	              refresh_minitimeline_flag = 1;
               
 	              break;
@@ -560,7 +560,7 @@ function process_dialog_ilda() {
               
 	              refresh_minitimeline_flag = 1;
               
-	              maxframes = ds_map_find_value(argument[0], "value");
+	              maxframes = round(ds_map_find_value(argument[0], "value"));
               
 	              if (maxframes < 1) 
 					maxframes = 1;
@@ -616,7 +616,7 @@ function process_dialog_ilda() {
 				  update_semasterlist_flag = 1;
 				  clean_redo_list();
               
-	              var t_newmaxframes = ds_map_find_value(argument[0], "value");
+	              var t_newmaxframes = round(ds_map_find_value(argument[0], "value"));
               
 	              if (t_newmaxframes < 1) 
 					t_newmaxframes = 1;

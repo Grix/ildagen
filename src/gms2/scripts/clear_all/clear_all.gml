@@ -7,6 +7,8 @@ function clear_all() {
 	for (j = 0;j < ds_list_size(frame_list);j++)
 	{
 	    el_list = ds_list_find_value(frame_list,j);
+		if (!ds_list_exists(el_list))
+			continue;
 	    for (i = 0;i < ds_list_size(el_list);i++)
 	    {
 	        list_id = ds_list_find_value(el_list,i);
