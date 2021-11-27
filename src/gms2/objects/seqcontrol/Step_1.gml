@@ -8,10 +8,21 @@ if (playing == 1)
     var t_tlpos_prev = tlpos;
     tlpos += delta_time/1000*playbackspeed;
     
-    if loop && (t_tlpos_prev <= endframe/projectfps*1000) && (tlpos > endframe/projectfps*1000) //if crossed the end marker
-    {
-        tlpos = startframe/projectfps*1000;
-    }
+	if ((t_tlpos_prev <= endframe/projectfps*1000) && (tlpos > endframe/projectfps*1000))
+	{
+		//if crossed the end marker
+	    
+		if (!ds_list_empty(playlist_list))
+		{
+			playlist_start_next_flag = true;
+			load_project(playlist_list[| 0]);
+			exit;
+		}
+		else if (loop)
+	    {
+	        tlpos = startframe/projectfps*1000;
+		}
+	}
     
     if (song != -1) && (t_tlpos_prev <= length/projectfps*1000) && (tlpos > length/projectfps*1000)
     {

@@ -41,6 +41,7 @@ copy_list = ds_list_create();
 copy_buffer = ds_list_create();
 env_type_map = ds_map_create();
 playlist_list = ds_list_create();
+playlist_start_next_flag = false;
 
 high_performance = false;
 frame_surf_refresh = 0;

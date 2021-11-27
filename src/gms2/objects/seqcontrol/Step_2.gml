@@ -80,6 +80,29 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 	free_scalable_surfaces();
 }
 
+if (playlist_start_next_flag)
+{
+	playlist_start_next_flag = false;
+	
+	if (loop)
+	{
+		if (!ds_list_empty(playlist_list))
+		{
+			ds_list_add(playlist_list, playlist_list[| 0]);
+		}
+	}
+	
+	playlist_list_to_select = 0;
+	dd_seq_playlist_remove();
+		
+	playing = 1;
+    if (seqcontrol.song != -1)
+    {
+		FMODGMS_Chan_ResumeChannel(play_sndchannel);
+        fmod_set_pos(play_sndchannel,clamp(((tlpos+audioshift)-10),0,songlength));
+    }
+}
+
 if (instance_exists(obj_dropdown))
     exit;
     
