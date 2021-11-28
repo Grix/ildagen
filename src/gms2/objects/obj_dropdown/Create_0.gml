@@ -1,6 +1,9 @@
+force_destroy = false;
+
 if (controller.dialog_open) 
     instance_destroy();
 controller.menu_open = 1;
+
 
 rdy = 0;
 selected = noone;

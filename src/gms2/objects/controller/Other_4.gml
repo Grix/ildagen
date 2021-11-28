@@ -4,7 +4,8 @@ if (laseron)
 refresh_minitimeline_flag = 1;
 frame_surf_refresh = 1;
 update_semasterlist_flag = 1;
-laseron = false;
+if (!seqcontrol.playlist_start_next_flag)
+	laseron = false;
 menu_open = 0;
 dialog_open = 0;
 playing = false;

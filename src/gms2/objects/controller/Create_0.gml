@@ -1,5 +1,5 @@
-version = "1.9.4";
-versiondate = "2021-11-21";
+version = "1.9.5";
+versiondate = "2021-11-29";
 
 //gc_enable(false);
 
@@ -400,6 +400,10 @@ if (os_browser == browser_not_a_browser)
 
 verify_serial(false);
 telem();
+
+var t_resolution_log = file_text_open_append("resolution_log.txt");
+file_text_write_string(t_resolution_log, string(window_get_width()) + "," + string(window_get_height()) + "," + string(display_get_width()) + "," + string(display_get_height()) + "," + string(display_get_dpi_x()) + "\n");
+file_text_close(t_resolution_log);
 
 ex_patch_window_close_capture(1);
 

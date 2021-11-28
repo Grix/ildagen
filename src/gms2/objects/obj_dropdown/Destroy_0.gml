@@ -1,6 +1,6 @@
 //if (room != rm_seq) controller.menu_open = 0;
 
-if (controller.dialog_open)
+if (controller.dialog_open && !force_destroy)
     exit;
 
 if (instance_number(obj_dropdown) <= 1)

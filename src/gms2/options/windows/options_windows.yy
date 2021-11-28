@@ -1,7 +1,7 @@
 {
   "option_windows_display_name": "LaserShowGen",
   "option_windows_executable_name": "${project_name}",
-  "option_windows_version": "1.9.4.0",
+  "option_windows_version": "1.9.5.0",
   "option_windows_company_info": "Gitle Mikkelsen",
   "option_windows_product_info": "LaserShowGen",
   "option_windows_copyright_info": "Gitle Mikkelsen",

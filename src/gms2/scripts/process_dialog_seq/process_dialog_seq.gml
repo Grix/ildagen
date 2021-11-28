@@ -3,13 +3,14 @@
 /// @param map
 function process_dialog_seq() {
 
+	controller.dialog_open = 0;
+	controller.menu_open = 0;
+	
 	if (!ds_exists(argument[0], ds_type_map))
 	    exit;
 
 	//Get integer
 	new_id = ds_map_find_value(argument[0], "id");
-	controller.dialog_open = 0;
-	controller.menu_open = 0;
 
 	keyboard_clear(keyboard_lastkey);
 	mouse_clear(mouse_lastbutton);
