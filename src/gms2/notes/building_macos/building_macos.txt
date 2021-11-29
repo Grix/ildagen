@@ -1,7 +1,7 @@
 1. run build in gms
 2. cancel when xcode project has been created
 3. add hardened runtime capability
-4. set scheme to release
+4. replace splash.png because it's default by error
 5. project -> archive
 6. distribute with dev id
 7. create dmg

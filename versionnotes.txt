@@ -1,13 +1,10 @@
-v.1.9.4
+v1.9.5
+- Add playlist feature for playing multiple timeline shows after one another.
+- Fix bug where menus or dialog windows sometimes did not show up on some computers.
+- Fix more possible crashes.
+
+v1.9.4
 - Fix several possible crashes and other bugs.
 - Add custom keyboard shortcuts to jump to specific Timeline Mode positions during playback.
 - Fix missing menu item for selecting keyboard shortcut for Live Mode files.
 - Add undo/redo functionality for reversing of Editor Mode animation.
-
-v1.9.3
-- Able to more easily select and deselect multiple timeline objects (hold CTRL and drag mouse over).
-- Fix possibly glitchy laser output in Timeline Mode and settings preview with dynamic FPS.
-- Fix not being able to detect more than one LaserCube WiFi device.
-- More stable LaserCube/LaserDock connection and output (both USB and network type).
-- Fix DAC/projector scanning not working at all on a few computers due to missing C++ runtime.
-- Option for "push to play" rather than "toggle play" for files in Live Mode.
