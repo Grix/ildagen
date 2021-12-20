@@ -3,7 +3,7 @@ function import_ildalive_end() {
 	{
 	    frames_tolive_importedilda();
     
-	    ds_list_destroy(ild_list);
+	    ds_list_destroy(ild_list); ild_list=-1;
 	}
     
 	global.loading_importildalive = 0;

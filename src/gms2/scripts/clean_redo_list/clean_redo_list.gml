@@ -45,7 +45,9 @@ while (ds_list_size(redo_list) > 0)
         {
             list = ds_list_find_value(tempredolist,u);
             if (ds_list_exists(list))
-                ds_list_destroy(list);
+			{
+                ds_list_destroy(list); list = -1;
+			}
         }
         ds_list_destroy(tempredolist);
     }
@@ -59,7 +61,9 @@ while (ds_list_size(redo_list) > 0)
         {
             list = ds_list_find_value(tempredolist,u);
             if (ds_list_exists(list))
-                ds_list_destroy(list);
+            {
+                ds_list_destroy(list); list = -1;
+			}
         }
         ds_list_destroy(tempredolist);
     }

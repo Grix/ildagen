@@ -26,7 +26,7 @@ function undo_ilda() {
 					    ds_list_copy(temp_redo_list,list_id);
 					    ds_list_add(temp_redo_list,j);
 					    ds_list_add(temp_redof_list,temp_redo_list);
-		                ds_list_destroy(list_id);
+		                ds_list_destroy(list_id); list_id = -1;
 		                ds_list_delete(el_list,i);
 		            }
 		        }
@@ -77,7 +77,7 @@ function undo_ilda() {
 		    anicolor1 = ds_list_find_value(tempundolist,2);
 		    anicolor2 = ds_list_find_value(tempundolist,1);
 		    anienddotscolor = ds_list_find_value(tempundolist,0);
-		    ds_list_destroy(tempundolist);
+		    ds_list_destroy(tempundolist);  tempundolist = -1;
 		    update_anicolors();
 		}
 		else if (string_char_at(undo,0) == "b")
@@ -91,7 +91,7 @@ function undo_ilda() {
 			ds_list_add(tempredolist,color1);
 			ds_list_add(redo_list,"b"+string(tempredolist));
 				
-		    tempundolist = real(string_digits(undo));
+		    tempundolist = real(string_digits(undo)); tempundolist = -1;
 		    color1 = ds_list_find_value(tempundolist,2);
 		    color2 = ds_list_find_value(tempundolist,1);
 		    enddotscolor = ds_list_find_value(tempundolist,0);
@@ -133,7 +133,7 @@ function undo_ilda() {
 		            }
 		        }
 		    }
-		    ds_list_destroy(tempundolist);
+		    ds_list_destroy(tempundolist); tempundolist = -1;
 			
 			ds_list_add(redo_list,"k"+string(temp_redof_list));
 		}
@@ -162,7 +162,7 @@ function undo_ilda() {
 					}
 		        }
 		    }
-		    ds_list_destroy(tempundolist);
+		    ds_list_destroy(tempundolist); tempundolist = -1;
 		}
 		else if (string_char_at(undo,0) == "s")
 		{

@@ -63,7 +63,7 @@ function frames_toseq_importedilda() {
 	        buffer_write(save_buffer,buffer_bool,ds_list_find_value(ind_list,u+2));
 	        buffer_write(save_buffer,buffer_u32,ds_list_find_value(ind_list,u+3));
 	    }
-	    ds_list_destroy(ind_list);
+	    ds_list_destroy(ind_list); ild_list[| j] = -1;
 	}
 	//remove excess size
 	buffer_resize(save_buffer,buffer_tell(save_buffer));
@@ -97,7 +97,7 @@ function frames_toseq_importedilda() {
 		frame_surf_refresh = 1;
 	}
     
-	ds_list_destroy(ild_list);
+	ds_list_destroy(ild_list); ild_list = -1;
 
 
 

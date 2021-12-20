@@ -17,7 +17,7 @@ function undo_seq() {
 	        objectlist = ds_list_find_value(undolisttemp,0);
 	        if (!ds_list_exists(objectlist))
 	        {
-	            ds_list_destroy(undolisttemp);
+	            ds_list_destroy(undolisttemp); undolisttemp = -1;
 	            exit;
 	        }
 			
@@ -39,7 +39,7 @@ function undo_seq() {
 			
 	        ds_list_clear(somaster_list);
 			
-	        ds_list_destroy(undolisttemp);
+	        ds_list_destroy(undolisttemp);undolisttemp = -1;
 	    }
 	    else if (string_char_at(undo,0) == "s")
 	    {
@@ -74,7 +74,7 @@ function undo_seq() {
 	                ds_list_add(redo_list, "z"+string(redolisttemp));
 	            }
 	        }
-	        ds_list_destroy(undolisttemp);
+	        ds_list_destroy(undolisttemp);undolisttemp = -1;
 	    }
 		else if (string_char_at(undo,0) == "z")
 	    {
@@ -342,7 +342,7 @@ function undo_seq() {
 						ds_list_destroy(t_layertodelete[| 1]);
 					if (ds_list_exists(t_layertodelete[| 5]))
 						ds_list_destroy(t_layertodelete[| 5]);
-					ds_list_destroy(t_layertodelete);
+					ds_list_destroy(t_layertodelete); t_layertodelete = -1;
 					ds_list_delete(layer_list, i);
 					timeline_surf_length = 0;
 					

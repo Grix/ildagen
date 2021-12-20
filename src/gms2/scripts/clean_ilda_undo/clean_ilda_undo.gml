@@ -48,7 +48,9 @@ with (controller)
 	        {
 	            list = ds_list_find_value(tempundolist,u);
 	            if (ds_list_exists(list))
-	                ds_list_destroy(list);
+	            {
+					ds_list_destroy(list); list = -1;
+				}
 	        }
 	        ds_list_destroy(tempundolist);
 	    }
@@ -62,7 +64,9 @@ with (controller)
 	        {
 	            list = ds_list_find_value(tempundolist,u);
 	            if (ds_list_exists(list))
-	                ds_list_destroy(list);
+	            {
+					ds_list_destroy(list); list = -1;
+				}
 	        }
 	        ds_list_destroy(tempundolist);
 	    }

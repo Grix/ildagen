@@ -389,8 +389,8 @@ function make_frame_onlyblank() {
 	    }
 	}
   
-	ds_list_destroy(order_list);
-	ds_list_destroy(polarity_list);
+	ds_list_destroy(order_list); order_list = -1;
+	ds_list_destroy(polarity_list); polarity_list =-1;
 
   
 	//log("make_frame",get_timer() - timerbm);

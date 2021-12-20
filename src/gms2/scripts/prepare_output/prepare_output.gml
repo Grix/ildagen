@@ -110,10 +110,10 @@ function prepare_output() {
 
 	if ((ds_list_size(el_list)-ds_list_size(t_list_empties)) <= 0)
 	{
-	    ds_list_destroy(order_list);
-	    ds_list_destroy(polarity_list);
-	    ds_list_destroy(t_list_empties);
-	    ds_list_destroy(list_raw);
+	    ds_list_destroy(order_list); order_list = -1;
+		ds_list_destroy(polarity_list); polarity_list =-1;
+		ds_list_destroy(t_list_empties); t_list_empties = -1;
+		ds_list_destroy(list_raw); list_raw = -1;
 	    return 0;
 	}
        
@@ -180,7 +180,7 @@ function prepare_output() {
 	    }
 	}
 
-	ds_list_destroy(t_list_empties);
+	ds_list_destroy(t_list_empties); t_list_empties = -1;
 
 	//numrawpoints += maxpoints_dots;
 

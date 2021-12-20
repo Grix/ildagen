@@ -1,4 +1,7 @@
 TODO
+- increase size of LASER ON text in canvas, and move FPS indicator text away from top left corner
+- add static names for lasercubes (f.ex. using serial number)
+- fix crash if scanning for lasercubes when they are already in use by another program like laseros
 - add button for keyboard shortcuts to timeline mode to jump to positions.
 - add possibility for assigning different projectors to live modes files.
 - add possibility to show cursor in editor when laser is on.
@@ -7,8 +10,6 @@ TODO
 - fix ctrl+key shortcuts in linux? Not working?
 - improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
-- x64 windows
-- add playlists for playing multiple timeline shows in a row.
 - improve projection mapping settings box (f.ex. not possible to resize sides when very small? and context menu not working when clicking on the box)
 - undo stretching maxframes in editor mode
 - compress buffers when saving in live mode and editor mode
@@ -17,6 +18,8 @@ TODO
 - experiment with better scaling (higher res sprites?)
 - fix mismatch between mouse and cursor when window is too narrow.
 - quicksave in editor mode
+- add dmx
+- x64 windows
 - fix first point in live mode not rotating in preview when applying rotation slider (works in laser output)
 - midi output on timeline, to trigger events in f.ex the radiator
 - arbitrary animation easing function

@@ -416,7 +416,7 @@ function create_element() {
 	        if (!create_line())
 	        {
 	            ilda_cancel();
-	            ds_list_destroy(new_list);
+	            ds_list_destroy(new_list); new_list = -1;
 	            if (autoresflag)
 	                resolution = "auto";
 	            frame = framepre;
@@ -429,7 +429,7 @@ function create_element() {
 	        if (!create_circle())
 	        {
 	            ilda_cancel();
-	            ds_list_destroy(new_list);
+	            ds_list_destroy(new_list); new_list = -1;
 	            if (autoresflag)
 	                resolution = "auto";
 	            frame = framepre;
@@ -442,7 +442,7 @@ function create_element() {
 	        if (!create_wave())
 	        {
 	            ilda_cancel();
-	            ds_list_destroy(new_list);
+	            ds_list_destroy(new_list); new_list = -1;
 	            if (autoresflag)
 	                resolution = "auto";
 	            frame = framepre;
@@ -455,7 +455,7 @@ function create_element() {
 	        if (!create_free())
 	        {
 	            ilda_cancel();
-	            ds_list_destroy(new_list);
+	            ds_list_destroy(new_list); new_list = -1;
 	            if (autoresflag)
 	                resolution = "auto";
 	            frame = framepre;
@@ -468,7 +468,7 @@ function create_element() {
 	        if (!create_curve())
 	        {
 	            ilda_cancel();
-	            ds_list_destroy(new_list);
+	            ds_list_destroy(new_list); new_list = -1;
 	            if (autoresflag)
 	                resolution = "auto";
 	            frame = framepre;
@@ -481,7 +481,7 @@ function create_element() {
 	        if (!create_letter())
 	        {
 	            ilda_cancel();
-	            ds_list_destroy(new_list);
+	            ds_list_destroy(new_list); new_list = -1;
 	            if (autoresflag)
 	                resolution = "auto";
 	            frame = framepre;
@@ -493,7 +493,7 @@ function create_element() {
 	        if (!create_hershey())
 	        {
 	            ilda_cancel();
-	            ds_list_destroy(new_list);
+	            ds_list_destroy(new_list); new_list = -1;
 	            if (autoresflag)
 	                resolution = "auto";
 	            frame = framepre;
@@ -506,7 +506,7 @@ function create_element() {
 	        if (!create_func())
 	        {
 	            ilda_cancel();
-	            ds_list_destroy(new_list);
+	            ds_list_destroy(new_list); new_list = -1;
 	            if (autoresflag)
 	                resolution = "auto";
 	            frame = framepre;
@@ -690,7 +690,7 @@ function create_element() {
 	            if (!create_line())
 	            {
 	                ilda_cancel();
-	                ds_list_destroy(new_list);
+	                ds_list_destroy(new_list); new_list = -1;
 	                if (autoresflag)
 	                    resolution = "auto";
 	                frame = framepre;
@@ -703,7 +703,7 @@ function create_element() {
 	            if (!create_circle())
 	            {
 	                ilda_cancel();
-	                ds_list_destroy(new_list);
+	                ds_list_destroy(new_list); new_list = -1;
 	                frame = framepre;                
 	                if (autoresflag)
 	                    resolution = "auto";
@@ -716,7 +716,7 @@ function create_element() {
 	            if (!create_wave())
 	            {
 	                ilda_cancel();
-	                ds_list_destroy(new_list);                
+	                ds_list_destroy(new_list);  new_list = -1;             
 	                if (autoresflag)
 	                    resolution = "auto";
 	                frame = framepre;
@@ -729,7 +729,7 @@ function create_element() {
 	            if (!create_free())
 	            {
 	                ilda_cancel();
-	                ds_list_destroy(new_list);                
+	                ds_list_destroy(new_list);  new_list = -1;           
 	                if (autoresflag)
 	                    resolution = "auto";
 	                frame = framepre;
@@ -742,7 +742,7 @@ function create_element() {
 	            if (!create_curve())
 	            {
 	                ilda_cancel();
-	                ds_list_destroy(new_list);                
+	                ds_list_destroy(new_list);   new_list = -1;              
 	                if (autoresflag)
 	                    resolution = "auto";
 	                frame = framepre;
@@ -755,7 +755,7 @@ function create_element() {
 	            if (!create_letter())
 	            {
 	                ilda_cancel();
-	                ds_list_destroy(new_list);                
+	                ds_list_destroy(new_list);   new_list = -1;              
 	                if (autoresflag)
 	                    resolution = "auto";
 	                frame = framepre;
@@ -767,7 +767,7 @@ function create_element() {
 	            if (!create_hershey())
 	            {
 	                ilda_cancel();
-	                ds_list_destroy(new_list);
+	                ds_list_destroy(new_list); new_list = -1;
 	                if (autoresflag)
 	                    resolution = "auto";
 	                frame = framepre;
@@ -780,7 +780,7 @@ function create_element() {
 	            if (!create_func())
 	            {
 	                ilda_cancel();
-	                ds_list_destroy(new_list);                
+	                ds_list_destroy(new_list);    new_list = -1;             
 	                if (autoresflag)
 	                    resolution = "auto";
 	                frame = framepre;

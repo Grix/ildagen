@@ -478,8 +478,8 @@ function make_frame() {
 	    }
 	}
   
-	ds_list_destroy(order_list);
-	ds_list_destroy(polarity_list);
+	ds_list_destroy(order_list); order_list = -1;
+	ds_list_destroy(polarity_list); polarity_list =-1;
 
 	//final removal or adding of ending points to match perfectly
 	if (ds_list_size(list_raw)/4-1 > t_totalpointswanted)

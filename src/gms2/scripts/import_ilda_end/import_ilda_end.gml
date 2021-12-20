@@ -35,7 +35,7 @@ function import_ilda_end() {
 		            ds_list_copy(templist,ds_list_find_value(ild_list,i));
 		            ds_list_add(ds_list_find_value(frame_list,i),templist);
 		        }
-		        ds_list_destroy(ds_list_find_value(ild_list,i));
+		        ds_list_destroy(ds_list_find_value(ild_list,i)); ild_list[|i] = -1;
 		    }
 	    }
 	    else
@@ -55,7 +55,7 @@ function import_ilda_end() {
 	        }
 	        for (i = 0;i < ds_list_size(ild_list);i++)
 	        {
-	            ds_list_destroy(ds_list_find_value(ild_list,i));
+	            ds_list_destroy(ds_list_find_value(ild_list,i)); ild_list[| i] = -1;
 	        }
 	    }
 	    ds_list_add(undo_list,el_id);
@@ -63,7 +63,7 @@ function import_ilda_end() {
 	    frame_surf_refresh = 1;
 	    refresh_minitimeline_flag = 1;
     
-	    ds_list_destroy(ild_list);
+	    ds_list_destroy(ild_list); ild_list = -1;
     
 	    scope_end = maxframes-1;
 	    refresh_minitimeline_flag = 1;

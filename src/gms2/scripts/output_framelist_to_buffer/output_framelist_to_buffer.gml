@@ -85,7 +85,7 @@ function output_framelist_to_buffer() {
 	}
 	output_buffer_next_size *= controller.fpsmultiplier;
     
-	ds_list_destroy(list_raw);
+	ds_list_destroy(list_raw); list_raw = -1;
 
 	//log("output_framelist_to_buffer",get_timer() - timerbm);
 

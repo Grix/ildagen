@@ -25,11 +25,11 @@ function clear_project() {
 	        envelope = ds_list_find_value(envelope_list,0);
 	        ds_list_destroy(ds_list_find_value(envelope,1));
 	        ds_list_destroy(ds_list_find_value(envelope,2));
-	        ds_list_destroy(envelope);
+	        ds_list_destroy(envelope); envelope = -1;
 	        ds_list_delete(envelope_list,0);
 	    }
-	    ds_list_destroy(envelope_list);
-	    ds_list_destroy(_layer);
+	    ds_list_destroy(envelope_list); envelope_list = -1;
+	    ds_list_destroy(_layer); _layer = -1;
 	    ds_list_delete(layer_list,0);
 	}
 

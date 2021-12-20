@@ -39,7 +39,7 @@ function undo_live() {
 			
 			ds_list_add(redo_list, "c"+string(t_index));
 			
-	        ds_list_destroy(undolisttemp);
+	        ds_list_destroy(undolisttemp); undolisttemp = -1;
 	    }
 	
 		frame_surf_refresh = 1;

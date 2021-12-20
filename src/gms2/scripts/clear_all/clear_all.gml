@@ -12,9 +12,9 @@ function clear_all() {
 	    for (i = 0;i < ds_list_size(el_list);i++)
 	    {
 	        list_id = ds_list_find_value(el_list,i);
-	        ds_list_destroy(list_id);
+	        ds_list_destroy(list_id); list_id = -1;
 	    }
-	    ds_list_destroy(el_list);
+	    ds_list_destroy(el_list); el_list = -1;
 	}
 	ds_list_destroy(frame_list);
 

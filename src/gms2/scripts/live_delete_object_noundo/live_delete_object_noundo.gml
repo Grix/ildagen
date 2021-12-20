@@ -12,8 +12,8 @@ function live_delete_object_noundo() {
 	        buffer_delete(objectlist[| 1]);
                 
 	    ds_list_find_value(objectlist,0);
-	    ds_list_destroy(infolist);
-	    ds_list_destroy(objectlist);
+	    ds_list_destroy(infolist); infolist = -1;
+	    ds_list_destroy(objectlist); objectlist = -1;
 	
 		ds_list_delete(filelist, selectedfile);
 	

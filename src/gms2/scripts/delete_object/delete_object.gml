@@ -21,7 +21,7 @@ function delete_object() {
 	                    ds_list_copy(temp_undo_list,list_id);
 	                    ds_list_add(temp_undo_list,j);
 	                    ds_list_add(temp_undof_list,temp_undo_list);
-	                    ds_list_destroy(list_id);
+	                    ds_list_destroy(list_id); list_id = -1;
 	                    ds_list_delete(el_list,i);
 	                }
 	            }
@@ -40,7 +40,7 @@ function delete_object() {
 	                ds_list_copy(temp_undo_list,list_id);
 	                ds_list_add(temp_undo_list,frame);
 	                ds_list_add(temp_undof_list,temp_undo_list);
-	                ds_list_destroy(list_id);
+	                ds_list_destroy(list_id); list_id = -1;
 	                ds_list_delete(el_list,i);
 	            }
 	        }

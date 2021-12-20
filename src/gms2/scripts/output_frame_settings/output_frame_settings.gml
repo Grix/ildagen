@@ -67,7 +67,7 @@ function output_frame_settings() {
 
 	for (i = 0; i < blindzone_el_lists; i++)
 	{
-	    ds_list_destroy(el_list[| ds_list_size(el_list)-1]);
+	    ds_list_destroy(el_list[| ds_list_size(el_list)-1]); 
 	    ds_list_delete(el_list, ds_list_size(el_list)-1);
 	}
 

@@ -12,7 +12,7 @@ function clean_redo_list_seq(){
 	        redolisttemp = real(string_digits(redo));
 	        if (!ds_list_exists(redolisttemp))
 	            exit;
-	        ds_list_destroy(redolisttemp);
+	        ds_list_destroy(redolisttemp); redolisttemp = -1;
 	    }
 	    else if (string_char_at(redo,0) == "s")
 	    {
@@ -21,7 +21,7 @@ function clean_redo_list_seq(){
 			if (!ds_list_exists(redolisttemp))
 	            exit;
 	        ds_list_destroy(ds_list_find_value(redolisttemp,0));
-	        ds_list_destroy(redolisttemp);
+	        ds_list_destroy(redolisttemp); redolisttemp = -1;
 	    }
 		else if (string_char_at(redo,0) == "z")
 		{
@@ -31,7 +31,7 @@ function clean_redo_list_seq(){
 			    exit;
 			ds_list_destroy(ds_list_find_value(redolisttemp,1));
 			ds_list_destroy(ds_list_find_value(redolisttemp,2));
-	        ds_list_destroy(redolisttemp);
+	        ds_list_destroy(redolisttemp); redolisttemp = -1;
 		}
 	    else if (string_char_at(redo,0) == "d")
 	    {
@@ -45,12 +45,12 @@ function clean_redo_list_seq(){
 			{
 		        if (!is_undefined(ds_list_find_value(t_infolist,1)) && surface_exists(ds_list_find_value(t_infolist,1)))
 		            surface_free(ds_list_find_value(t_infolist,1));
-		        ds_list_destroy(t_infolist);
+		        ds_list_destroy(t_infolist); t_infolist = -1;
 			}
 		    if (buffer_exists(ds_list_find_value(t_objectlist,1)))
 				buffer_delete(ds_list_find_value(t_objectlist,1));
-	        ds_list_destroy(t_objectlist);
-	        ds_list_destroy(redolisttemp);
+	        ds_list_destroy(t_objectlist); t_objectlist = -1;
+	        ds_list_destroy(redolisttemp); redolisttemp = -1;
 	    }
 	    else if (string_char_at(redo,0) == "r")
 	    {

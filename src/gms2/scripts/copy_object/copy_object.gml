@@ -1,8 +1,8 @@
 function copy_object() {
 	if (ds_list_empty(controller.semaster_list)) exit;
 
-	if (copy_list != -1)
-	    ds_list_destroy(copy_list);
+	if (ds_list_exists(copy_list))
+		ds_list_destroy(copy_list);
     
 	copy_list = ds_list_create();
 

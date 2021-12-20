@@ -192,7 +192,7 @@ function output_frame_live() {
 	{
 	    ds_list_destroy(ds_list_find_value(el_list,i));
 	}
-	ds_list_destroy(el_list);
+	ds_list_destroy(el_list); el_list = -1;
 
 	output_buffer_ready = true;
 	controller.dac[| 4] = output_buffer;

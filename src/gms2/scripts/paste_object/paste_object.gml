@@ -15,7 +15,7 @@ function paste_object() {
 	    framei = frame+ds_list_find_value(list,ds_list_size(list)-1)-firstframe;
 	    if (framei > maxframes-1)
 	    {
-	        ds_list_destroy(list);
+	        ds_list_destroy(list); list = -1;
 	        continue;
 	    }
     

@@ -179,9 +179,9 @@ function load_frames_seq(argument0) {
 	                buffer_write(save_buffer,buffer_bool,ds_list_find_value(ind_list,u+2));
 	                buffer_write(save_buffer,buffer_u32,ds_list_find_value(ind_list,u+3));
 	            }
-	            ds_list_destroy(ind_list);
+	            ds_list_destroy(ind_list);tempel_list = -1; ind_list=-1;
 	        }
-	        ds_list_destroy(tempel_list);
+	        ds_list_destroy(tempel_list);tempel_list=-1;
 	    }
 	    //remove excess size
 	    buffer_resize(save_buffer,buffer_tell(save_buffer));
@@ -222,7 +222,7 @@ function load_frames_seq(argument0) {
 	ds_list_add(undolisttemp,objectlist);
 	ds_list_add(undo_list,"c"+string(undolisttemp));
      
-	ds_list_destroy(temp_list);
+	ds_list_destroy(temp_list); temp_list=-1;
 
 	room_goto(rm_seq);
 

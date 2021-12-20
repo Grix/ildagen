@@ -21,7 +21,7 @@ function scan_dacs() {
 	            buffer_delete(t_dac[| 4]);
 	        if (buffer_exists(t_dac[| 5]))
 	            buffer_delete(t_dac[| 5]);
-	        ds_list_destroy(t_dac);
+	        ds_list_destroy(t_dac); t_dac = -1;
 	    }
 	}
 

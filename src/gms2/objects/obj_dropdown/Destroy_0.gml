@@ -8,9 +8,9 @@ if (instance_number(obj_dropdown) <= 1)
 
 if (rdy)
 {
-    ds_list_destroy(desc_list);
-    ds_list_destroy(sep_list);
-    ds_list_destroy(scr_list);
-    ds_list_destroy(hl_list);
+    ds_list_destroy(desc_list); desc_list = -1;
+    ds_list_destroy(sep_list); sep_list = -1;
+    ds_list_destroy(scr_list); scr_list = -1;
+    ds_list_destroy(hl_list); hl_list = -1;
 }
 

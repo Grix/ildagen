@@ -165,7 +165,9 @@ function handle_trans() {
 	            mouse_xprevious = obj_cursor.x;
 	            mouse_yprevious = obj_cursor.y;
 				if (ds_list_exists(edit_recording_list))
-					ds_list_destroy(edit_recording_list);
+				{
+					ds_list_destroy(edit_recording_list); edit_recording_list = -1;
+				}
 				if (editing_type == 1)
 					edit_recording_list = ds_list_create();
 	        }
@@ -191,7 +193,9 @@ function handle_trans() {
 	            scaley = 1;
 	            mouseangleprevious = point_direction(obj_cursor.x,obj_cursor.y,anchorx/t_scale,anchory/t_scale);
 				if (ds_list_exists(edit_recording_list))
-					ds_list_destroy(edit_recording_list);
+				{
+					ds_list_destroy(edit_recording_list); edit_recording_list = -1;
+				}
 				if (editing_type == 1)
 					edit_recording_list = ds_list_create();
 	        }
@@ -222,7 +226,9 @@ function handle_trans() {
 	            mouse_xprevious = obj_cursor.x;
 	            mouse_yprevious = obj_cursor.y;
 				if (ds_list_exists(edit_recording_list))
-					ds_list_destroy(edit_recording_list);
+				{
+					ds_list_destroy(edit_recording_list); edit_recording_list = -1;
+				}
 				if (editing_type == 1)
 					edit_recording_list = ds_list_create();
 	        }

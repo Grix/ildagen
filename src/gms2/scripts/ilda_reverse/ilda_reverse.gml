@@ -13,7 +13,7 @@ function ilda_reverse(is_undoing = false) {
 			frame_list[| j] = t_tempframelist[| t_i];
 			t_i++;
 		}
-		ds_list_destroy(t_tempframelist); //todo undo
+		ds_list_destroy(t_tempframelist); t_tempframelist = -1;
 		frame_surf_refresh = 1;
 		update_semasterlist_flag = 1;
 		

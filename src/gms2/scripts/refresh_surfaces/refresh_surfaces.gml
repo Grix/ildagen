@@ -131,9 +131,9 @@ function refresh_surfaces() {
 	    {
 	        if (prepare_output())
 	        {
-	            ds_list_destroy(order_list);
-	            ds_list_destroy(polarity_list);
-	            ds_list_destroy(list_raw);
+	            ds_list_destroy(order_list); order_list = -1;
+	            ds_list_destroy(polarity_list); polarity_list = -1;
+	            ds_list_destroy(list_raw); list_raw = -1;
             
 	            var t_totalpointswanted = floor(opt_scanspeed/projectfps);
 	            var t_litpointswanted = t_totalpointswanted - maxpoints_static - maxpoints_dots - 3;

@@ -26,8 +26,8 @@ function seq_delete_object_noundo() {
                 
 	            selectedx = ds_list_find_value(objectlist,0);
 	            selectedlayer = c;
-	            ds_list_destroy(infolist);
-	            ds_list_destroy(objectlist);
+	            ds_list_destroy(infolist); infolist = -1;
+	            ds_list_destroy(objectlist); objectlist = -1; somaster_list[|k] = -1;
 				
 	        }
 	    }

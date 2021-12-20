@@ -704,8 +704,8 @@ function handle_mousecontrol_seq() {
 				}
 			}
 			
-			ds_list_destroy(t_datalist_section);
-			ds_list_destroy(t_timelist_section);
+			ds_list_destroy(t_datalist_section); t_datalist_section = -1;
+			ds_list_destroy(t_timelist_section); t_timelist_section = -1;
 				
 			moving_object = 0;
 			timeline_surf_length = 0;
@@ -788,8 +788,8 @@ function handle_mousecontrol_seq() {
 				}
 			}
 			
-			ds_list_destroy(t_datalist_section);
-			ds_list_destroy(t_timelist_section);
+			ds_list_destroy(t_datalist_section); t_datalist_section = -1;
+			ds_list_destroy(t_timelist_section); t_timelist_section = -1;
 				
 			moving_object = 0;
 			timeline_surf_length = 0;
