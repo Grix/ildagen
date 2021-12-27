@@ -102,6 +102,7 @@ int Device_LaserDock::_Initialize()
 		{
 			previousRate[i] = 0;
 			outputEnabled[i] = true;
+			//laserdockDevices[i]->print();
 		}
 	}
 		

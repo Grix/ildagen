@@ -22,10 +22,14 @@ if (view_current == 4)
 	gpu_set_blendenable(true);
     if (controller.laseron && !controller.preview_while_laser_on)
     {
-        draw_set_color(c_white);
         draw_set_halign(fa_center);
-        draw_text(view_wport[4]/2,min(view_hport[2]/2, 64),"Laser output active: "+string(controller.dac[| 1]));
-        draw_set_halign(fa_left);
+		draw_set_valign(fa_center);
+		draw_set_color(c_red);
+		draw_set_font(fnt_big);
+        draw_text(view_wport[4]/2,min(view_hport[2]/2, 64),"Laser output active:\n"+string(controller.dac[| 1]));
+        draw_set_font(fnt_tooltip);
+		draw_set_halign(fa_left);
+		draw_set_valign(fa_top);
 		
 		draw_set_alpha(0.8);
 	    draw_set_color(c_ltgray);
@@ -55,11 +59,11 @@ if (view_current == 4)
 	    draw_set_color(c_ltgray);
 	    draw_text(12,view_hport[4]-20,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1));
     }
-	draw_text(12,7,"FPS: "+string(projectfps/controller.fpsmultiplier));
+	draw_text(300,view_hport[4]-20,"FPS: "+string(projectfps/controller.fpsmultiplier));
 	if (playing && (fps != projectfps/controller.fpsmultiplier) && controller.laseron)
 	{
 	    draw_set_color(c_red);
-	    draw_text(32,7,"Warning: Dropping frames. Actual FPS: "+string(fps));
+	    draw_text(400,view_hport[4]-20,"Warning: Dropping frames. Actual FPS: "+string(fps));
 	}
 	draw_set_color(c_black);
 }

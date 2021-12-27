@@ -723,6 +723,7 @@
     {"id":{"name":"func_color_reapply","path":"scripts/func_color_reapply/func_color_reapply.yy",},"order":36,},
     {"id":{"name":"func_blank","path":"scripts/func_blank/func_blank.yy",},"order":37,},
     {"id":{"name":"func_blank_reapply","path":"scripts/func_blank_reapply/func_blank_reapply.yy",},"order":38,},
+    {"id":{"name":"fnt_big","path":"fonts/fnt_big/fnt_big.yy",},"order":3,},
     {"id":{"name":"ilda_reverse","path":"scripts/ilda_reverse/ilda_reverse.yy",},"order":39,},
     {"id":{"name":"merge_elements","path":"scripts/merge_elements/merge_elements.yy",},"order":40,},
     {"id":{"name":"dd_seq_playlist_add","path":"scripts/dd_seq_playlist_add/dd_seq_playlist_add.yy",},"order":23,},

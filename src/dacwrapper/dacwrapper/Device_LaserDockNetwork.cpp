@@ -95,9 +95,9 @@ bool Device_LaserDockNetwork::CloseAll()
 
 void Device_LaserDockNetwork::GetName(int devNum, char* name)
 {
-	memcpy(name, "LaserCube  ", 12);
-	name[11] = (char)((int)(devNum)+48);
-	name[12] = '\0';
+	memcpy(name, "LaserCube ", 10);
+	memcpy(name + 10, deviceController.GetSerialNumber(devNum), 12);
+	name[22] = '\0';
 }
 
 //Previously external. TODO clean up this mess of redundant functions:

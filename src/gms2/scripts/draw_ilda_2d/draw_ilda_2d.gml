@@ -6,8 +6,14 @@ function draw_ilda_2d() {
 	if (laseron && !preview_while_laser_on)
 	{
 	    draw_set_halign(fa_center);
-	    draw_text_transformed(view_wport[4]/2,t_y+view_wport[4]/2,"Laser output active: "+string(dac[| 1]), dpi_multiplier, dpi_multiplier, 0);
-	    draw_set_halign(fa_left);
+		draw_set_valign(fa_center);
+		draw_set_color(c_red);
+		draw_set_font(fnt_big);
+	    draw_text_transformed(view_wport[4]/2,t_y+view_wport[4]/2,"Laser output active:\n"+string(dac[| 1]), dpi_multiplier, dpi_multiplier, 0);
+	    draw_set_font(fnt_tooltip);
+		draw_set_color(c_white);
+		draw_set_halign(fa_left);
+		draw_set_valign(fa_top);
 	    exit;
 	}
 

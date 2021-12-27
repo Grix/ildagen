@@ -203,7 +203,7 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 		#ifdef WIN32
 			for (auto foundIp : *foundIps)
 			{
-				if (foundIp == recvSockAddr.sin_addr.S_un.S_addr)
+				if (foundIp == *(unsigned int*)&buffer[32]/*recvSockAddr.sin_addr.S_un.S_addr*/)
 					skip = true;
 			}
 			if (skip)
@@ -212,8 +212,8 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 #ifdef LDN_LOG
 			fprintf(logFile, "Found device: %s\n", inet_ntoa(recvSockAddr.sin_addr));
 #endif
-			foundIps->push_back(recvSockAddr.sin_addr.S_un.S_addr);
-            devices.push_back(std::make_unique<LaserCubeNetworkDevice>(recvSockAddr.sin_addr.S_un.S_addr, buffer));
+			foundIps->push_back(*(unsigned int*)&buffer[32]);
+            devices.push_back(std::make_unique<LaserCubeNetworkDevice>(*(unsigned int*)&buffer[32], buffer));
         #else
 			for (auto foundIp : *foundIps)
 			{
@@ -265,6 +265,11 @@ bool LaserCubeNetwork::SendData(unsigned int deviceNum, LaserCubeNetworkSample* 
 	return devices[deviceNum]->SendData(data, count, rate);
 }
 
+char* LaserCubeNetwork::GetSerialNumber(unsigned int deviceNum)
+{
+	return devices[deviceNum]->serialNumber;
+}
+
 LaserCubeNetwork::LaserCubeNetworkDevice::LaserCubeNetworkDevice(unsigned long ipAddress, char* infoPacketBuffer)
 {
     cmdSocketAddr.sin_family = AF_INET;
@@ -275,10 +280,12 @@ LaserCubeNetwork::LaserCubeNetworkDevice::LaserCubeNetworkDevice(unsigned long i
 	dataSocketAddr.sin_port = htons(LDN_DATA_PORT);
 	dataSocketAddr.sin_addr.s_addr = ipAddress;
 
-	if (infoPacketBuffer[2] == 0) //version 0 info packet
+	//if (infoPacketBuffer[2] == 0) //version 0 info packet
 	{
 		maxBufferSpace = *(unsigned short*)&infoPacketBuffer[21];
 		freeBufferSpace = maxBufferSpace;
+		for (int i = 0; i < 6; i++)
+			sprintf(&serialNumber[i*2], "%02X", (unsigned char)infoPacketBuffer[26 + i]);
 	}
 }
 

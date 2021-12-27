@@ -56,6 +56,7 @@ public:
 	bool GetStatus(unsigned int deviceNum, unsigned int requiredFreeBufferSpace);
 	bool SendData(unsigned int deviceNum, LaserCubeNetworkSample* data, size_t count, int rate);
 	bool StopOutput(unsigned int deviceNum);
+	char* GetSerialNumber(unsigned int deviceNum);
 	//bool Close(unsigned int deviceNum);
 
 
@@ -84,6 +85,8 @@ private:
 		bool StopOutput();
 		//bool Close();
 
+		char serialNumber[12];
+
 	private:
 		void ReceiveUdpHandler();
 		void PeriodicCommandUdpHandler();
@@ -93,8 +96,8 @@ private:
 
 		sockaddr_in cmdSocketAddr;
 		sockaddr_in dataSocketAddr;
-		int cmdSocketFd;
-		int dataSocketFd;
+		int cmdSocketFd = -1;
+		int dataSocketFd = -1;
 		std::queue<FrameInfo*> frameQueue;
 		int messageNumber = 0;
 		int frameNumber = 0;
