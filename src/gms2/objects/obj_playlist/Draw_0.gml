@@ -2,7 +2,7 @@ if (view_current != 4)
 	exit;
 	
 	
-list_height = (view_hport[4]-60)/controller.dpi_multiplier;
+list_height = (view_hport[4]-58*controller.dpi_multiplier)/controller.dpi_multiplier;
 
 draw_set_alpha(1);
 if (!surface_exists(surf_playlist))
@@ -43,7 +43,7 @@ if (!surface_exists(surf_playlist))
 }
 
 x = view_wport[4] - (list_width+20+10)*controller.dpi_multiplier;
-y = 38;
+y = 36*controller.dpi_multiplier;
 
 draw_surface_part_ext(surf_playlist, 0, round(scrollx), list_width, list_height, x, y, controller.dpi_multiplier, controller.dpi_multiplier, c_white, 0.7);
 
@@ -73,7 +73,7 @@ draw_rectangle(x,y,x+list_width*controller.dpi_multiplier,y+list_height*controll
 
 var t_rightx = view_wport[4];
 draw_set_color(controller.c_ltltgray);
-draw_text_transformed(t_rightx - (list_width+5)*controller.dpi_multiplier, 15, "Playlist:", controller.dpi_multiplier, controller.dpi_multiplier, 0);
+draw_text_transformed(t_rightx - (list_width+5)*controller.dpi_multiplier, 14, "Playlist:", controller.dpi_multiplier, controller.dpi_multiplier, 0);
 	
 if (mouseover_addbutton)
 	draw_set_alpha(0.8);

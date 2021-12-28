@@ -1,9 +1,7 @@
 TODO
-- increase size of LASER ON text in canvas, and move FPS indicator text away from top left corner
 - add static names for lasercubes (f.ex. using serial number)
 - fix crash if scanning for lasercubes when they are already in use by another program like laseros
 - add button for keyboard shortcuts to timeline mode to jump to positions.
-- fix deselecting multiple selected objects in timeline mode when right clicking.
 - add possibility for assigning different projectors to live modes files.
 - add possibility to show cursor in editor when laser is on.
 - fix lasercube flipped x in macos and linux dacwrapper

@@ -85,7 +85,7 @@ private:
 		bool StopOutput();
 		//bool Close();
 
-		char serialNumber[12];
+		char serialNumber[13];
 
 	private:
 		void ReceiveUdpHandler();
