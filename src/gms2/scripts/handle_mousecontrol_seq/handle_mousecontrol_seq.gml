@@ -1137,10 +1137,13 @@ function handle_mousecontrol_seq() {
 	                        else if mouse_check_button_pressed(mb_right)
 	                        {
 	                            //right clicked on object
-	                            if (!keyboard_check_control())
-	                                ds_list_clear(somaster_list);
 	                            if (ds_list_find_index(somaster_list,objectlist) != -1)
-	                                ds_list_delete(somaster_list,ds_list_find_index(somaster_list,objectlist));
+									ds_list_delete(somaster_list,ds_list_find_index(somaster_list,objectlist));
+								else
+								{
+									if (!keyboard_check_control())
+										ds_list_clear(somaster_list);
+								}
 	                            ds_list_insert(somaster_list,0,objectlist);
 								timeline_surf_length = 0;
 	                            dropdown_seqobject();

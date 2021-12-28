@@ -17,6 +17,7 @@ TODO
 - better detection of screen size in mac retina
 - save settings like color and parameters to igf file and timeline object
 - experiment with better scaling (higher res sprites?)
+- make large preview work with dpi scaling > 1
 - fix mismatch between mouse and cursor when window is too narrow.
 - quicksave in editor mode
 - add dmx
