@@ -1,6 +1,5 @@
-if (view_current != 4)
+if (view_current != 4 || seqcontrol.largepreview)
 	exit;
-	
 	
 list_height = (view_hport[4]-58*controller.dpi_multiplier)/controller.dpi_multiplier;
 

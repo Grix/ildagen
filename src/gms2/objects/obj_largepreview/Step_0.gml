@@ -1,4 +1,4 @@
-_visible = (controller.dpi_multiplier == 1);
+//_visible = (controller.dpi_multiplier == 1);
 
 if (instance_exists(obj_dropdown) || !_visible)
     exit;

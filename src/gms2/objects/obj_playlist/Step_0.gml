@@ -11,7 +11,7 @@ if (moving == 1)
     exit;
 }
 
-if (instance_exists(obj_dropdown))
+if (instance_exists(obj_dropdown) || seqcontrol.largepreview)
     exit;
     
 if (scrollh > list_height)

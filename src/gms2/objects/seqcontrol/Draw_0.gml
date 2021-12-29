@@ -33,8 +33,15 @@ if (view_current == 4)
 		
 		draw_set_alpha(0.8);
 	    draw_set_color(c_ltgray);
-	    draw_text(12,view_hport[4]-20,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1));
-    }
+	    draw_text_transformed(12,view_hport[4]-20*controller.dpi_multiplier,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1),controller.dpi_multiplier, controller.dpi_multiplier, 0);
+		draw_text_transformed(300,view_hport[4]-20*controller.dpi_multiplier,"FPS: "+string(projectfps/controller.fpsmultiplier),controller.dpi_multiplier, controller.dpi_multiplier, 0);
+    
+		if (playing && (fps != projectfps/controller.fpsmultiplier) && controller.laseron)
+		{
+		    draw_set_color(c_red);
+		    draw_text_transformed(300 + 100*controller.dpi_multiplier,view_hport[4]-20*controller.dpi_multiplier,"Warning: Dropping frames. Actual FPS: "+string(fps),controller.dpi_multiplier, controller.dpi_multiplier, 0);
+		}
+	}
 	else if (largepreview)
     {
         if (viewmode != 0 && surface_exists(frame3d_surf_large))
@@ -45,8 +52,15 @@ if (view_current == 4)
 			
 		draw_set_alpha(0.8);
 	    draw_set_color(c_ltgray);
-	    draw_text(12,7+16,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1));
-    }
+	    draw_text_transformed(12,7+16,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1),controller.dpi_multiplier, controller.dpi_multiplier, 0);
+		draw_text_transformed(300,7+16,"FPS: "+string(projectfps/controller.fpsmultiplier),controller.dpi_multiplier, controller.dpi_multiplier, 0);
+    
+		if (playing && (fps != projectfps/controller.fpsmultiplier) && controller.laseron)
+		{
+		    draw_set_color(c_red);
+		    draw_text_transformed(300+100*controller.dpi_multiplier,7+16,"Warning: Dropping frames. Actual FPS: "+string(fps),controller.dpi_multiplier, controller.dpi_multiplier, 0);
+		}
+	}
     else
     {
         if (viewmode != 0 && surface_exists(frame3d_surf))
@@ -57,13 +71,14 @@ if (view_current == 4)
 			
 		draw_set_alpha(0.8);
 	    draw_set_color(c_ltgray);
-	    draw_text(12,view_hport[4]-20,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1));
-    }
-	draw_text(300,view_hport[4]-20,"FPS: "+string(projectfps/controller.fpsmultiplier));
-	if (playing && (fps != projectfps/controller.fpsmultiplier) && controller.laseron)
-	{
-	    draw_set_color(c_red);
-	    draw_text(400,view_hport[4]-20,"Warning: Dropping frames. Actual FPS: "+string(fps));
+	    draw_text_transformed(12,view_hport[4]-20*controller.dpi_multiplier,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1),controller.dpi_multiplier, controller.dpi_multiplier, 0);
+		draw_text_transformed(300,view_hport[4]-20*controller.dpi_multiplier,"FPS: "+string(projectfps/controller.fpsmultiplier),controller.dpi_multiplier, controller.dpi_multiplier, 0);
+		
+		if (playing && (fps != projectfps/controller.fpsmultiplier) && controller.laseron)
+		{
+		    draw_set_color(c_red);
+		    draw_text_transformed(300+100*controller.dpi_multiplier,view_hport[4]-20*controller.dpi_multiplier,"Warning: Dropping frames. Actual FPS: "+string(fps),controller.dpi_multiplier, controller.dpi_multiplier, 0);
+		}
 	}
 	draw_set_color(c_black);
 }
