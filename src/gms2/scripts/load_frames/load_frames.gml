@@ -208,7 +208,7 @@ function load_frames(argument0) {
 	ds_list_clear(semaster_list);
 	frame = 0;
 	framehr = 0;
-
+	//filepath = file_loc;
 
 
 }

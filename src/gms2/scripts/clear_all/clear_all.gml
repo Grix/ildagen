@@ -29,6 +29,7 @@ function clear_all() {
 	maxframes = 1;
 	scope_start = 0;
 	scope_end = maxframes-1;
+	filepath = "";
 	refresh_minitimeline_flag = 1;
 	if (laseron)
 	{

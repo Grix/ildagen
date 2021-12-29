@@ -2,9 +2,10 @@ function dropdown_menu_ilda_file() {
 	ddobj = instance_create_layer(controller.menu_width_start[0]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 	with (ddobj)
 	{
-	    num = 10;
+	    num = 11;
 	    ds_list_add(desc_list,"New");
-	    ds_list_add(desc_list,"Save frames (Ctrl-S)"); //todo quicksave
+	    ds_list_add(desc_list,"Save frames (Ctrl-S)");
+	    ds_list_add(desc_list,"Save frames as...");
 	    ds_list_add(desc_list,"Load frames");
 	    ds_list_add(desc_list,"Export frames as ILDA file");
 	    ds_list_add(desc_list,"Import ILDA file to editor");
@@ -15,6 +16,7 @@ function dropdown_menu_ilda_file() {
 	    ds_list_add(sep_list,0);
 	    ds_list_add(sep_list,1);
 	    ds_list_add(sep_list,0);
+	    ds_list_add(sep_list,0);
 	    ds_list_add(sep_list,1);
 	    ds_list_add(sep_list,0);
 	    ds_list_add(sep_list,1);
@@ -22,6 +24,7 @@ function dropdown_menu_ilda_file() {
 		ds_list_add(sep_list,1);
 		ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,dd_ilda_clear);
+	    ds_list_add(scr_list,save_frames_quick);
 	    ds_list_add(scr_list,dd_ilda_saveframes);
 	    ds_list_add(scr_list,dd_ilda_loadframes);
 	    ds_list_add(scr_list,dd_ilda_exportilda);
@@ -30,6 +33,7 @@ function dropdown_menu_ilda_file() {
 		ds_list_add(scr_list,frames_tolive);
 		ds_list_add(scr_list,dd_ilda_loadseq);
 		ds_list_add(scr_list,dd_ilda_loadlive);
+	    ds_list_add(hl_list,1);
 	    ds_list_add(hl_list,1);
 	    ds_list_add(hl_list,1);
 	    ds_list_add(hl_list,1);

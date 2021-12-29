@@ -173,6 +173,7 @@ update_semasterlist_flag = 0;
 doubleclick = 0;
 last_room = rm_seq;
 releasenotes = "";
+filepath = "";
 
 sgridshow = 0;
 rgridshow = 0;

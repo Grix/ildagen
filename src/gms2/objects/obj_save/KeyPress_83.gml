@@ -12,11 +12,5 @@ with (controller)
     ds_list_clear(bez_list);
 }
 
-with (controller) 
-{
-    if (os_browser == browser_not_a_browser)
-        save_frames();
-    else 
-        ilda_dialog_string("saveframes","Enter the name of the LaserShowGen frames IGF file","example"+string(current_hour) + "" + string(current_minute)+".igf");
-}
+save_frames_quick();
 
