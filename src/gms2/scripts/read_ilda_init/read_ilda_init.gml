@@ -41,7 +41,7 @@ function read_ilda_init(argument0) {
 	if !is_wrong($0)
 	    return 0;i=0;
 
-
+	warning_suppress = false;
 	filename = "";
 
 	i = 0;

@@ -174,6 +174,7 @@ doubleclick = 0;
 last_room = rm_seq;
 releasenotes = "";
 filepath = "";
+warning_suppress = false;
 
 sgridshow = 0;
 rgridshow = 0;

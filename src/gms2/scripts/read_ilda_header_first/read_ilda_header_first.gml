@@ -14,13 +14,17 @@ function read_ilda_header_first() {
 	    i+=8;
 	    repeat(bytes)
 	        i+=3;
-	    show_message_new("Palette detected but parsing is not supported yet, using default palette.");
+	    if (!warning_suppress)
+			show_message_new("Custom palette detected but parsing of such is not supported yet, using default palette instead.");
+	    warning_suppress = true;
 	    return 0;
 	}
 	else 
 	{
-	    show_message_new("We don't support this format yet, try converting to ILDA format 0, 1, 4 or 5."); 
-	    format=5; 
+		if (!warning_suppress)
+			show_message_new("We don't support this format yet, try converting to ILDA format 0, 1, 4 or 5."); 
+	    warning_suppress = true;
+		format=5; 
 	    errorflag=1; 
 	    return 1;
 	}
