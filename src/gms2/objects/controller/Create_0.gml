@@ -1,5 +1,5 @@
-version = "1.9.5";
-versiondate = "2021-11-29";
+version = "1.9.6";
+versiondate = "2022-01-02";
 
 //gc_enable(false);
 

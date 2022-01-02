@@ -1,10 +1,13 @@
+v1.9.6
+- Fix large simulated preview not being available when having a window scaling setting higher than 1.
+- Add various keyboard shortcuts.
+- Add serial number to network LaserCube names so that they can be uniquely identified and remembered between sessions.
+- Fix unable to right-click on multiple objects in timeline mode because all but one would get deselected.
+- Fix a possible crash or silent error after importing some ILDA files in timeline mode.
+- Add quicksaving, and displaying of currently opened file, to editor mode.
+- Other misc. minor improvements.
+
 v1.9.5
 - Add playlist feature for playing multiple timeline shows after one another.
 - Fix bug where menus or dialog windows sometimes did not show up on some computers.
 - Fix more possible crashes.
-
-v1.9.4
-- Fix several possible crashes and other bugs.
-- Add custom keyboard shortcuts to jump to specific Timeline Mode positions during playback.
-- Fix missing menu item for selecting keyboard shortcut for Live Mode files.
-- Add undo/redo functionality for reversing of Editor Mode animation.
