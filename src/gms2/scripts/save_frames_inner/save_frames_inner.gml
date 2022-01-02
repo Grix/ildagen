@@ -4,6 +4,7 @@ function save_frames_inner(t_file_loc) {
 
 	file_loc = t_file_loc;
 	keyboard_clear(keyboard_lastkey);
+	keyboard_clear(vk_control);
 	mouse_clear(mouse_lastbutton);
 	if (string_length(file_loc) < 1 || !is_string(file_loc)) 
 	    exit;
@@ -27,11 +28,14 @@ function save_frames_inner(t_file_loc) {
 	        ind_list = ds_list_find_value(el_list,i);
 			if (!ds_list_exists(ind_list))
 			{
-				show_message_new("Unexpected error, attempting to salvage data.");
+				if (!controller.bug_report_suppress)
+				{
+					controller.bug_report_suppress = true;
+					show_message_new("Unexpected error, attempting to salvage data.");
 				
-				http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
-	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING ind_list in save_frames. el_list id: "+string(is_undefined(ind_list))+", id: "+string(i));
-				
+					http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
+				            "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING ind_list in save_frames. el_list id: "+string(is_undefined(ind_list))+", id: "+string(i));
+				}
 				ind_list = ds_list_create();
 				repeat (20)
 					ds_list_add(ind_list, 0);

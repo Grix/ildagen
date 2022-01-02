@@ -11,6 +11,7 @@ function dd_ilda_importilda() {
 	ilda_cancel();
 	import_ilda(get_open_filename_ext("ILDA files|*.ild","","","Select ILDA file"));
 	keyboard_clear(keyboard_lastkey);
+	keyboard_clear(vk_control);
 	mouse_clear(mouse_lastbutton);
 
 

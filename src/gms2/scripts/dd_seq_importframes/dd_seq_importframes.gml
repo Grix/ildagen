@@ -8,6 +8,7 @@ function dd_seq_importframes() {
 	with (seqcontrol)
 	    load_frames_seq(get_open_filename_ext("LSG frames|*.igf","","","Select LaserShowGen frames file"));
 	keyboard_clear(keyboard_lastkey);
+	keyboard_clear(vk_control);
 	mouse_clear(mouse_lastbutton);
 
 

@@ -38,11 +38,11 @@ if (view_current == 4)
 	draw_set_alpha(0.8);
 	draw_set_color(c_ltgray);
 	draw_set_halign(fa_right);
-	draw_text(view_wport[4] - 12,7,"FPS: "+string(controller.projectfps/controller.fpsmultiplier));
+	draw_text_transformed(view_wport[4] - 16,7,"FPS: "+string(controller.projectfps/controller.fpsmultiplier),controller.dpi_multiplier, controller.dpi_multiplier, 0);
 	if (playing && (fps != controller.projectfps/controller.fpsmultiplier) && controller.laseron)
 	{
 	    draw_set_color(c_red);
-	    draw_text(view_wport[4] - 12,24,"Warning: Dropping frames. Actual FPS: "+string(fps));
+	    draw_text_transformed(view_wport[4] - 16,24*controller.dpi_multiplier,"Warning: Dropping frames. Actual FPS: "+string(fps),controller.dpi_multiplier, controller.dpi_multiplier, 0);
 	}
 	draw_set_color(c_black);
 	draw_set_halign(fa_left);

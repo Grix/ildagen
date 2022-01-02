@@ -13,6 +13,7 @@ function process_dialog_seq() {
 	new_id = ds_map_find_value(argument[0], "id");
 
 	keyboard_clear(keyboard_lastkey);
+	keyboard_clear(vk_control);
 	mouse_clear(mouse_lastbutton);
 
 	if (new_id == getint)
@@ -230,6 +231,7 @@ function process_dialog_seq() {
 	        {
 	            load_project(get_open_filename_ext("LSG project|*.igp","","","Select LaserShowGen project file"));
 				keyboard_clear(keyboard_lastkey);
+				keyboard_clear(vk_control);
 				mouse_clear(mouse_lastbutton);
 	            break;
 	        }

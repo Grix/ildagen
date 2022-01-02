@@ -71,6 +71,8 @@ function import_ilda_end() {
 	}
     
 	global.loading_importilda = 0;
+	if (filepath == "")
+		filepath = filename + "*";
 	room_goto(rm_ilda);
 
 	return 1;

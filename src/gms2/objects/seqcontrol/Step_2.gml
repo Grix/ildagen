@@ -144,6 +144,23 @@ if (keyboard_check_control())
     {
         redo_seq();
     }
+	
+	else if (keyboard_check_pressed(ord("1")))
+	{
+		startframe = tlx + mouse_x*tlzoom/tlw;//tlpos*projectfps/1000;
+		if (startframe < 0)
+			startframe = 0;
+	}
+	else if (keyboard_check_pressed(ord("2")))
+	{
+		endframe = tlx + mouse_x*tlzoom/tlw;//tlpos*projectfps/1000;
+		if (endframe <= startframe)
+			endframe = startframe+1;
+	}
+	else if (keyboard_check_pressed(ord("N")))
+	{
+	    dd_seq_clearproject();
+	}
 }
 
 else if (keyboard_check_pressed(ord("S")))
@@ -251,6 +268,7 @@ else if (keyboard_check_pressed(ord("J")))
 		ds_list_add(jump_button_list, tlpos*projectfps/1000);
 	}
 }
+
 else
 {
 	// check jump buttons

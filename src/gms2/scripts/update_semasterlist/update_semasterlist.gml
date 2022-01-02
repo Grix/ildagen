@@ -13,9 +13,12 @@ function update_semasterlist() {
 	    templist = ds_list_find_value(el_list,u);
 		if (!ds_list_exists(templist))
 		{
-			http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
-	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING el_list in update_semasterlist. index: "+string(u)+", total elements: "+string(ds_list_size(el_list))); // in a crash report, u was NOT undefined
-			
+			if (!controller.bug_report_suppress)
+			{
+				controller.bug_report_suppress = true;
+				http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
+		                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING el_list in update_semasterlist. index: "+string(u)+", total elements: "+string(ds_list_size(el_list))); // in a crash report, u was NOT undefined
+			}
 			ds_list_delete(el_list, u);
 			u--;
 			continue;

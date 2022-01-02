@@ -3,14 +3,14 @@ function save_frames_quick() {
 	{
 		if (os_browser == browser_not_a_browser)
 		{
-			if (filepath == "")
+			if (filepath == "" || filename_ext(filepath) != ".igf")
 				save_frames();
 			else
 				save_frames_inner(controller.filepath);
 		}
 		else
 		{
-			if (filepath == "")
+			if (filepath == "" || filename_ext(filepath) != ".igf")
 				ilda_dialog_string("saveframes","Enter the name of the LaserShowGen frames IGF file","example"+string(current_hour) + "" + string(current_minute)+".igf");
 			else
 			{

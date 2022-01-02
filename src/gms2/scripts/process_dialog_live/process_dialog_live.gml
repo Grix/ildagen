@@ -13,6 +13,7 @@ function process_dialog_live() {
 	new_id = ds_map_find_value(argument[0], "id");
 
 	keyboard_clear(keyboard_lastkey);
+	keyboard_clear(vk_control);
 	mouse_clear(mouse_lastbutton);
 
 	if (new_id == getint)
@@ -31,6 +32,7 @@ function process_dialog_live() {
 			{
 				load_live_project(get_open_filename_ext("LSG Live Grid|*.igl","","","Select LaserShowGen Live grid file"));
 				keyboard_clear(keyboard_lastkey);
+				keyboard_clear(vk_control);
 				mouse_clear(mouse_lastbutton);
 				break;
 			}

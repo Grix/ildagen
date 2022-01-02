@@ -72,6 +72,6 @@ function frames_tolive_importedilda() {
 		clean_redo_live();
 	}
 
-
+	ds_list_destroy(ild_list); ild_list = -1;
 
 }

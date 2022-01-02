@@ -12,6 +12,7 @@ function save_project() {
 
 	file_loc = get_save_filename_ext("LSG Projects|*.igp","example"+string(current_hour) + "" + string(current_minute)+".igp","","Select LaserShowGen project file location");
 	keyboard_clear(keyboard_lastkey);
+	keyboard_clear(vk_control);
 	mouse_clear(mouse_lastbutton);
 	if (string_length(file_loc) < 1 || !is_string(file_loc)) 
 	    exit;

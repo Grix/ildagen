@@ -42,7 +42,7 @@ function read_ilda_init(argument0) {
 	    return 0;i=0;
 
 	warning_suppress = false;
-	filename = "";
+	//filename = "";
 
 	i = 0;
 	format = 0;

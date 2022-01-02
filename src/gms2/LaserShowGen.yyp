@@ -142,6 +142,7 @@
     {"id":{"name":"bck_hershey3","path":"sprites/bck_hershey3/bck_hershey3.yy",},"order":63,},
     {"id":{"name":"spr_resume","path":"sprites/spr_resume/spr_resume.yy",},"order":64,},
     {"id":{"name":"spr_loop","path":"sprites/spr_loop/spr_loop.yy",},"order":65,},
+    {"id":{"name":"obj_filename","path":"objects/obj_filename/obj_filename.yy",},"order":18,},
     {"id":{"name":"spr_exclusive","path":"sprites/spr_exclusive/spr_exclusive.yy",},"order":66,},
     {"id":{"name":"spr_projectoroffset","path":"sprites/spr_projectoroffset/spr_projectoroffset.yy",},"order":67,},
     {"id":{"name":"ML_Initialize","path":"scripts/ML_Initialize/ML_Initialize.yy",},"order":0,},

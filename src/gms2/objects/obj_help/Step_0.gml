@@ -2,7 +2,7 @@ if (instance_exists(obj_dropdown))
     exit;
 if (room == rm_ilda)
 {
-    if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
+    if (keyboard_check_control() && keyboard_check(vk_f1)) || ((mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom)))
     {
         image_index = 1;
         controller.tooltip = "Click here to open the full manual. Keyboard controls:\n\n"+
@@ -46,7 +46,7 @@ if (room == rm_ilda)
 }
 else if (room == rm_seq)
 {
-    if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
+    if (keyboard_check_control() && keyboard_check(vk_f1)) || ((mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom)))
     {
         image_index = 1;
         controller.tooltip = "Click here to open the full manual. Keyboard controls:\n\n"+
@@ -61,6 +61,8 @@ else if (room == rm_seq)
         "P)    Toggle 3D frame previewing\n"+
         "D)    Hold to delete points in envelopes when dragging mouse\n"+
 		"J)    Create a jump point (where you can press a button to jump to this timeline position)\n\n"+
+		"Ctrl+1)    Set start positione\n"+
+		"Ctrl+2)    Set end position\n\n"+
         "Delete)    Delete selected object\n"+
         "Ctrl+Z)    Undo\n"+
 		"Ctrl+Y)    Redo\n"+
@@ -73,16 +75,18 @@ else if (room == rm_seq)
 		"U)    Toggle laser DAC output\n"+
         "Esc)    Stop laser DAC output\n"+
         "0)    Jump to first frame\n"+
-        "Mouse wheel or F7/F8)    Scroll/Zoom (where applicable)\n\n"+
+        "Mouse wheel or F7/F8)    Zoom in timeline\n\n"+
+        "Shift + Mouse wheel or F7/F8)    Scroll horizontally in timeline\n\n"+
         "M)    Reset window size\n"+
         "F11)    Toggle fullscreen\n"+
-        "F1)    Show manual";
+        "F1)    Show manual\n" +
+		"Ctrl+F1)   Show this keyboard shortcut tooltip.";
     } 
     else image_index = 0;
 }
 else if (room == rm_live)
 {
-    if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
+     if (keyboard_check_control() && keyboard_check(vk_f1)) || ((mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom)))
     {
         image_index = 1;
         controller.tooltip = "Click here to open the full manual. Keyboard controls:\n\n"+
@@ -101,13 +105,15 @@ else if (room == rm_live)
 		"U)    Toggle laser DAC output\n"+
         "Esc)    Stop laser DAC output\n\n"+
         "M)    Reset window size\n"+
-        "F11)    Toggle fullscreen";
+        "F11)    Toggle fullscreen\n" +
+        "F1)    Show manual\n" +
+		"Ctrl+F1)   Show this keyboard shortcut tooltip.";
     } 
     else image_index = 0;
 }
 else
 {
-    if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
+     if (keyboard_check_control() && keyboard_check(vk_f1)) || ((mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom)))
     {
         controller.tooltip = "Click here to open the full manual.";
         image_index = 1;

@@ -111,6 +111,10 @@ if (keyboard_check_control())
     {
         redo_live();
     }
+	else if (keyboard_check_pressed(ord("N")))
+	{
+	    dd_live_clearproject();
+	}
 }
 
 else if (keyboard_check_pressed(vk_escape))

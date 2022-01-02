@@ -175,6 +175,7 @@ last_room = rm_seq;
 releasenotes = "";
 filepath = "";
 warning_suppress = false;
+bug_report_suppress = false;
 
 sgridshow = 0;
 rgridshow = 0;

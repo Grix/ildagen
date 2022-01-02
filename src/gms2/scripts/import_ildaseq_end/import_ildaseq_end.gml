@@ -3,7 +3,10 @@ function import_ildaseq_end() {
 	{
 	    frames_toseq_importedilda();
     
-	    ds_list_destroy(ild_list); ild_list=-1;
+		if (ild_list != -1)
+		{
+			ds_list_destroy(ild_list); ild_list=-1;
+		}
 	}
     
 	global.loading_importildaseq = 0;

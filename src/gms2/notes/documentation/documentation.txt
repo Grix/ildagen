@@ -6,6 +6,7 @@ TODO
 - add possibility to show cursor in editor when laser is on.
 - fix lasercube flipped x in macos and linux dacwrapper
 - add midi cc and nrpn
+- undo moving startframe/endframe etc in timeline
 - fix ctrl+key shortcuts in linux? Not working?
 - improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
@@ -17,7 +18,6 @@ TODO
 - experiment with better scaling (higher res sprites?)
 - make large preview work with dpi scaling > 1
 - fix mismatch between mouse and cursor when window is too narrow.
-- quicksave in editor mode
 - add dmx
 - x64 windows
 - fix first point in live mode not rotating in preview when applying rotation slider (works in laser output)

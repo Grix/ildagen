@@ -46,8 +46,12 @@ function handle_mousecontrol_seq() {
 	        {
 				if (!ds_list_exists(layer_list[| j]))
 				{
-					http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
-		                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "ERROR: layerlist not found in handle_mousecontrol_seq, j="+string(j));
+					if (!controller.bug_report_suppress)
+					{
+						controller.bug_report_suppress = true;
+						http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
+					            "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "ERROR: layerlist not found in handle_mousecontrol_seq, j="+string(j));
+					}
 					continue;
 				}
 				elementlist = ds_list_find_value(layer_list[| j], 1);
@@ -415,6 +419,7 @@ function handle_mousecontrol_seq() {
 	else if (moving_object == 3)
 	{
 	    //moving startframe
+		// todo undo
 	    controller.scrollcursor_flag = 1;
 	    startframe += (mouse_x-mouse_xprevious)*tlzoom/tlw;
 	    if (startframe < 0) startframe = 0;
@@ -881,21 +886,37 @@ function handle_mousecontrol_seq() {
     
 	if (mouse_wheel_up() or keyboard_check_pressed(vk_f7))
 	{
-	    tlxtemp = tlx+mouse_x/tlw*tlzoom;
-	    tlzoom *= 0.8;
-	    if (tlzoom < 20) 
-	        tlzoom = 20;
-	    tlx = tlxtemp-mouse_x/tlw*tlzoom;
+		if (keyboard_check(vk_shift))
+		{
+			tlx -= tlzoom/10;
+		}
+		else
+		{
+		    tlxtemp = tlx+mouse_x/tlw*tlzoom;
+		    tlzoom *= 0.8;
+		    if (tlzoom < 20) 
+		        tlzoom = 20;
+		    tlx = tlxtemp-mouse_x/tlw*tlzoom;
+		}
+		if (tlx < 0) 
+	        tlx = 0;
 		if (tlx+tlzoom > length)
 			length = tlx+tlzoom;
 	}
 	else if (mouse_wheel_down() or keyboard_check_pressed(vk_f8))
 	{
-	    tlxtemp = tlx+mouse_x/tlw*tlzoom;
-	    tlzoom *= 1.2;
-	    //tlx -= mouse_x/tlw*tlzoom/10;
-	    //tlx = tlxtemp-mouse_x/tlw*tlzoom;
-		tlx -= tlzoom*0.1;
+		if (keyboard_check(vk_shift))
+		{
+			tlx += tlzoom/10;
+		}
+		else
+		{
+		    tlxtemp = tlx+mouse_x/tlw*tlzoom;
+		    tlzoom *= 1.2;
+		    //tlx -= mouse_x/tlw*tlzoom/10;
+		    //tlx = tlxtemp-mouse_x/tlw*tlzoom;
+			tlx -= tlzoom*0.1;
+		}
 	    if (tlx < 0) 
 	        tlx = 0;
 		if (tlx+tlzoom > length)

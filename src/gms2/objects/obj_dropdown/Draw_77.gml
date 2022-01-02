@@ -33,8 +33,12 @@ for(var i = 0; i < num; i++)
 		
 	if (!ds_list_exists(desc_list))
 	{
-		http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
-	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING desc_list in obj_Dropdown draw. Num: "+string(num)+", room: "+room_get_name(room));
+		if (!controller.bug_report_suppress)
+		{
+			controller.bug_report_suppress = true;
+			http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
+		                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING desc_list in obj_Dropdown draw. Num: "+string(num)+", room: "+room_get_name(room));
+		}
 		instance_destroy();
 		exit;
 	}

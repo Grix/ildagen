@@ -68,9 +68,12 @@ function refresh_seq_surface() {
 				ds_list_replace(objectlist, 2, t_newinfo);
 				infolist = t_newinfo;*/
 				
-				http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
-	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING infolist in refresh_seq_surface. Undefined: "+string(is_undefined(infolist))+", frametime: "+string(frametime)+", element num: "+string(m));
-			
+				if (!controller.bug_report_suppress)
+				{
+					controller.bug_report_suppress = true;
+					http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
+			                "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING infolist in refresh_seq_surface. Undefined: "+string(is_undefined(infolist))+", frametime: "+string(frametime)+", element num: "+string(m));
+				}
 				continue;
 			
 			}
@@ -108,9 +111,13 @@ function refresh_seq_surface() {
 				
 				if ((repeatnum+1)*13 >= buffer_get_size(el_buffer)+buffer_start_pos+50) // sanity check
 				{
-					show_message_new("Error drawing frame. Please contact the developer and report the bug using the top menu: \"About\"->\"Contact developer\"");
-					http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
-	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"Error drawing frame.. repeatnum: "+string(repeatnum));
+					if (!controller.bug_report_suppress)
+					{
+						controller.bug_report_suppress = true;
+						show_message_new("Error drawing frame. Please contact the developer and report the bug using the top menu: \"About\"->\"Contact developer\"");
+						http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
+				            "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"Error drawing frame.. repeatnum: "+string(repeatnum));
+					}
 					break;
 				}
             

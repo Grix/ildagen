@@ -135,8 +135,12 @@ el_list = frame_list[| frame];
 if (!ds_list_exists(el_list))
 {
 	// BUG
-	http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
-	                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "ERROR: el_list doesn't exist. frame="+string(frame)+", framelistsize="+string(ds_list_size(frame_list))+", maxframes="+string(maxframes));
+	if (!controller.bug_report_suppress)
+	{
+		controller.bug_report_suppress = true;
+		http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
+			                "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "ERROR: el_list doesn't exist. frame="+string(frame)+", framelistsize="+string(ds_list_size(frame_list))+", maxframes="+string(maxframes));
+	}
 	frame_list[| frame] = ds_list_create();
 	el_list = frame_list[| frame];
 }
@@ -180,6 +184,11 @@ else if (keyboard_check_control() && keyboard_check_pressed(ord("Z")))
 else if (keyboard_check_control() && keyboard_check_pressed(ord("Y")))
 {
     redo_ilda();
+}
+
+else if (keyboard_check_control() && keyboard_check_pressed(ord("N")))
+{
+    dd_ilda_clear();
 }
         
 else if (keyboard_check_pressed(ord("0")))

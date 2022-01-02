@@ -8,6 +8,7 @@ function process_dialog_ilda() {
 	menu_open = 0;
 
 	keyboard_clear(keyboard_lastkey);
+	keyboard_clear(vk_control);
 	mouse_clear(mouse_lastbutton);
 
 	if (!ds_exists(argument[0], ds_type_map))
@@ -456,8 +457,9 @@ function process_dialog_ilda() {
 	            case "loadfile":
 	          {
 	              load_frames(get_open_filename_ext("LSG frames|*.igf","","","Select LaserShowGen frames file"));
-	              keyboard_clear(keyboard_lastkey);
-				mouse_clear(mouse_lastbutton);
+					keyboard_clear(keyboard_lastkey);
+					keyboard_clear(vk_control);
+					mouse_clear(mouse_lastbutton);
 	              break;
 	          }
             

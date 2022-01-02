@@ -1,4 +1,4 @@
-if (instance_exists(obj_dropdown))
+if (keyboard_check_control())
     exit;
     
 if (os_browser != browser_not_a_browser)

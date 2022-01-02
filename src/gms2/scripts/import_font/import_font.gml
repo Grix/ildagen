@@ -6,6 +6,7 @@ function import_font() {
 	{
 	    filename = get_open_filename_ext("ILDA font file|*.ild|All files|*","",program_directory,"Select ILDA font file")
 	    keyboard_clear(keyboard_lastkey);
+		keyboard_clear(vk_control);
 		mouse_clear(mouse_lastbutton);
 		if string_length(filename)
 	    {

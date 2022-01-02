@@ -15,6 +15,7 @@ function show_message_new() {
 	    show_message_async(argument[0]);
 	
 	keyboard_clear(keyboard_lastkey);
+	keyboard_clear(vk_control);
 	mouse_clear(mouse_lastbutton);
 
 

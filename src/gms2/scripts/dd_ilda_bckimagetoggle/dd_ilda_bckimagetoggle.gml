@@ -12,6 +12,7 @@ function dd_ilda_bckimagetoggle() {
 	{
 	    bckfile = get_open_filename("Image files|*.png;*.jpg;*.gif","");
 		keyboard_clear(keyboard_lastkey);
+		keyboard_clear(vk_control);
 		mouse_clear(mouse_lastbutton);
 	    if string_length(bckfile) 
 	    {
