@@ -347,6 +347,13 @@ function create_element() {
 	            t += 1;
 	            t /= 2;*/
 	        }
+			if (anifunc == "step")
+	            {
+					if (t < 0.5)
+						t = 0;
+	                else 
+	                    t = 1;
+	            }
             
 	        shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
 	        gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
@@ -619,6 +626,13 @@ function create_element() {
 	                /*t = sin(t*pi-pi/2);
 	                t += 1;
 	                t /= 2;*/
+	            }
+				if (anifunc == "step")
+	            {
+					if (t < 0.5)
+						t = 0;
+	                else 
+	                    t = 1;
 	            }
                 
 	            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);

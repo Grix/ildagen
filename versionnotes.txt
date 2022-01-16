@@ -1,3 +1,7 @@
+v1.9.7
+- Add new step (square wave) animation type in editor mode.
+- Fix crash when undoing after having selected color in editor mode.
+
 v1.9.6
 - Fix large simulated preview not being available when having a window scaling setting higher than 1.
 - Add various keyboard shortcuts.
@@ -5,9 +9,3 @@ v1.9.6
 - Fix unable to right-click on multiple objects in timeline mode because all but one would get deselected.
 - Fix a possible crash or silent error after importing some ILDA files in timeline mode.
 - Add quicksaving, and displaying of currently opened file, to editor mode.
-- Other misc. minor improvements.
-
-v1.9.5
-- Add playlist feature for playing multiple timeline shows after one another.
-- Fix bug where menus or dialog windows sometimes did not show up on some computers.
-- Fix more possible crashes.

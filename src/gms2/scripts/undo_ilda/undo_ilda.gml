@@ -91,7 +91,7 @@ function undo_ilda() {
 			ds_list_add(tempredolist,color1);
 			ds_list_add(redo_list,"b"+string(tempredolist));
 				
-		    tempundolist = real(string_digits(undo)); tempundolist = -1;
+		    tempundolist = real(string_digits(undo));
 		    color1 = ds_list_find_value(tempundolist,2);
 		    color2 = ds_list_find_value(tempundolist,1);
 		    enddotscolor = ds_list_find_value(tempundolist,0);

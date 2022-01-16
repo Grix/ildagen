@@ -170,6 +170,13 @@ function reapply_trans() {
 	                t += 1;
 	                t /= 2;*/
 	            }
+				if (anifunc == "step")
+	            {
+					if (t < 0.5)
+						t = 0;
+	                else 
+	                    t = 1;
+	            }
 				
 				if (editing_type == 1 && ds_list_exists(edit_recording_list) && !ds_list_empty(edit_recording_list))
 				{
