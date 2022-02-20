@@ -1,5 +1,6 @@
 TODO
 - square wave animation function
+- fix when element outside canvas, frame is exported to ild with 0 points.
 - add static names for lasercubes (f.ex. using serial number)
 - fix crash if scanning for lasercubes when they are already in use by another program like laseros
 - add button for keyboard shortcuts to timeline mode to jump to positions.
