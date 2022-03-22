@@ -14,7 +14,10 @@ function process_dialog_seq() {
 
 	keyboard_clear(keyboard_lastkey);
 	keyboard_clear(vk_control);
+	keyboard_clear(91);
+	keyboard_clear(92);
 	mouse_clear(mouse_lastbutton);
+	io_clear();
 
 	if (new_id == getint)
 	{ 

@@ -200,6 +200,7 @@
     {"id":{"name":"ML_RemFunction","path":"scripts/ML_RemFunction/ML_RemFunction.yy",},"order":6,},
     {"id":{"name":"ML_DestroyParser","path":"scripts/ML_DestroyParser/ML_DestroyParser.yy",},"order":2,},
     {"id":{"name":"ML_AddBinaryOper","path":"scripts/ML_AddBinaryOper/ML_AddBinaryOper.yy",},"order":0,},
+    {"id":{"name":"libdlgmodule","path":"extensions/libdlgmodule/libdlgmodule.yy",},"order":6,},
     {"id":{"name":"_ML_AddBinarySig","path":"scripts/_ML_AddBinarySig/_ML_AddBinarySig.yy",},"order":1,},
     {"id":{"name":"_ML_NewBinaryOper","path":"scripts/_ML_NewBinaryOper/_ML_NewBinaryOper.yy",},"order":2,},
     {"id":{"name":"ML_RemBinaryOperStr","path":"scripts/ML_RemBinaryOperStr/ML_RemBinaryOperStr.yy",},"order":3,},
@@ -1042,7 +1043,6 @@
     {"id":{"name":"normalize_editing_path","path":"scripts/normalize_editing_path/normalize_editing_path.yy",},"order":41,},
     {"id":{"name":"exPatchWindowClose","path":"extensions/exPatchWindowClose/exPatchWindowClose.yy",},"order":4,},
     {"id":{"name":"FMODGMS","path":"extensions/FMODGMS/FMODGMS.yy",},"order":5,},
-    {"id":{"name":"DialogModule","path":"extensions/DialogModule/DialogModule.yy",},"order":6,},
   ],
   "Options": [
     {"name":"HTML5","path":"options/html5/options_html5.yy",},

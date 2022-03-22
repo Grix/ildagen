@@ -40,8 +40,8 @@ if (!file_exists(t_dir+"settings.ini") && !file_exists("settings.ini"))
 log("save location:",FStemp);
 
 // Dialog module settings
-widget_set_caption(window_get_caption());
-widget_set_owner(window_handle());
+//widget_set_caption(window_get_caption());
+//widget_set_owner(window_handle());
 
 //declarations and setup
 //math_set_epsilon(0.00001);
@@ -176,6 +176,7 @@ releasenotes = "";
 filepath = "";
 warning_suppress = false;
 bug_report_suppress = false;
+force_io_reset = false;
 
 sgridshow = 0;
 rgridshow = 0;

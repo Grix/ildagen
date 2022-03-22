@@ -3,7 +3,11 @@
 /// @param id
 /// @param  question string
 function seq_dialog_yesno() {
-	if (controller.dialog_open) exit;
+	
+	log("KEYBOARD: " + string(keyboard_check(ord("O"))));
+	log("force_io_reset: " + string(controller.force_io_reset));
+	
+	if (controller.dialog_open || controller.force_io_reset) exit;
 	with (seqcontrol)
 	{
 	    controller.dialog_open = 1;
@@ -16,8 +20,18 @@ function seq_dialog_yesno() {
 			getint = current_time;
 			t_map[? "id"] = getint;
 			t_map[? "status"] = show_question(argument[1]);
+			
+			keyboard_clear(keyboard_lastkey);
+			keyboard_clear(vk_control);
+			keyboard_clear(91);
+			keyboard_clear(92);
+			mouse_clear(mouse_lastbutton);
+			io_clear();
 		
 			process_dialog_seq(t_map);
+			log("\nKEYBOARD: " + string(keyboard_check(ord("O"))));
+			log("force_io_reset: " + string(controller.force_io_reset));
+			//controller.force_io_reset = true;
 		
 			ds_map_destroy(t_map);
 		}

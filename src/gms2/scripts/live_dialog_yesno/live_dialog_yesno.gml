@@ -10,7 +10,7 @@ function live_dialog_yesno() {
 	    dialog = argument[0];
 	    //getint = show_question_new(argument1);
 	
-		if (os_browser == browser_not_a_browser)
+		/*if (os_browser == browser_not_a_browser)
 		{
 			var t_map = ds_map_create();
 			getint = current_time;
@@ -21,7 +21,7 @@ function live_dialog_yesno() {
 		
 			ds_map_destroy(t_map);
 		}
-		else
+		else*/
 		    return (show_question_new(argument[1]));
 	}
 
