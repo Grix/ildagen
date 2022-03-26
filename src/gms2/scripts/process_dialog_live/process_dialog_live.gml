@@ -5,16 +5,19 @@ function process_dialog_live() {
 
 	controller.dialog_open = 0;
 	controller.menu_open = 0;
+
+	keyboard_clear(keyboard_lastkey);
+	keyboard_clear(vk_control);
+	keyboard_clear(91);
+	keyboard_clear(92);
+	mouse_clear(mouse_lastbutton);
+	io_clear();
 	
 	if (!ds_exists(argument[0], ds_type_map))
 	    exit;
 
 	//Get integer
 	new_id = ds_map_find_value(argument[0], "id");
-
-	keyboard_clear(keyboard_lastkey);
-	keyboard_clear(vk_control);
-	mouse_clear(mouse_lastbutton);
 
 	if (new_id == getint)
 	{ 

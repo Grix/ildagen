@@ -9,7 +9,10 @@ function process_dialog_ilda() {
 
 	keyboard_clear(keyboard_lastkey);
 	keyboard_clear(vk_control);
+	keyboard_clear(91);
+	keyboard_clear(92);
 	mouse_clear(mouse_lastbutton);
+	io_clear();
 
 	if (!ds_exists(argument[0], ds_type_map))
 	    exit;

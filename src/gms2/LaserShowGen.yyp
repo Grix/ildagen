@@ -978,6 +978,7 @@
     {"id":{"name":"obj_previewlaseron","path":"objects/obj_previewlaseron/obj_previewlaseron.yy",},"order":3,},
     {"id":{"name":"obj_onlyblanking","path":"objects/obj_onlyblanking/obj_onlyblanking.yy",},"order":4,},
     {"id":{"name":"obj_autoupdate","path":"objects/obj_autoupdate/obj_autoupdate.yy",},"order":5,},
+    {"id":{"name":"libdlgmodule_linux","path":"extensions/libdlgmodule_linux/libdlgmodule_linux.yy",},"order":7,},
     {"id":{"name":"obj_inverty","path":"objects/obj_inverty/obj_inverty.yy",},"order":6,},
     {"id":{"name":"obj_swapxy","path":"objects/obj_swapxy/obj_swapxy.yy",},"order":7,},
     {"id":{"name":"obj_invertx","path":"objects/obj_invertx/obj_invertx.yy",},"order":8,},

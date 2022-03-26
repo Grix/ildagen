@@ -19,7 +19,7 @@
     {"filename":"libdlgmod.dll","origname":"extensions\\DialogModule.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[
         {"externalName":"show_message","kind":12,"help":"show_message(str)","hidden":false,"returnType":2,"argCount":1,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"show_message_lib","tags":[],"resourceType":"GMExtensionFunction",},
+          ],"resourceVersion":"1.0","name":"show_message","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"show_question","kind":12,"help":"show_question(str)","hidden":false,"returnType":2,"argCount":1,"args":[
             1,
           ],"resourceVersion":"1.0","name":"show_question","tags":[],"resourceType":"GMExtensionFunction",},
@@ -206,7 +206,7 @@
         {"TargetMask":7,"resourceVersion":"1.0","name":"libdlgmod_arm.so","tags":[],"resourceType":"GMProxyFile",},
         {"TargetMask":7,"resourceVersion":"1.0","name":"libdlgmod_arm64.so","tags":[],"resourceType":"GMProxyFile",},
       ],"copyToTargets":202375362,"order":[
-        {"name":"show_message_lib","path":"extensions/libdlgmodule/libdlgmodule.yy",},
+        {"name":"show_message","path":"extensions/libdlgmodule/libdlgmodule.yy",},
         {"name":"show_question","path":"extensions/libdlgmodule/libdlgmodule.yy",},
         {"name":"show_error_lib","path":"extensions/libdlgmodule/libdlgmodule.yy",},
         {"name":"get_password","path":"extensions/libdlgmodule/libdlgmodule.yy",},
@@ -290,7 +290,7 @@
     "Included Files\\icon.png",
   ],
   "androidPermissions": [],
-  "copyToTargets": 202375362,
+  "copyToTargets": 66,
   "iosCocoaPods": "",
   "tvosCocoaPods": "",
   "iosCocoaPodDependencies": "",
