@@ -89,6 +89,7 @@ objecttomove = 0;
 previous_marker_pos = 0;
 loadprojectflag = false;
 moving_object_ready = false;
+intensity_scale = 1;
 
 somaster_list_prevsize = 0;
 envelope_undolist = -1;

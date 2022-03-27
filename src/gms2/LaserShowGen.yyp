@@ -916,6 +916,7 @@
     {"id":{"name":"obj_c_solid","path":"objects/obj_c_solid/obj_c_solid.yy",},"order":3,},
     {"id":{"name":"obj_c_gradient","path":"objects/obj_c_gradient/obj_c_gradient.yy",},"order":4,},
     {"id":{"name":"obj_c_dash","path":"objects/obj_c_dash/obj_c_dash.yy",},"order":5,},
+    {"id":{"name":"obj_tl_intensity_scale","path":"objects/obj_tl_intensity_scale/obj_tl_intensity_scale.yy",},"order":12,},
     {"id":{"name":"obj_rainbow","path":"objects/obj_rainbow/obj_rainbow.yy",},"order":6,},
     {"id":{"name":"obj_c_func","path":"objects/obj_c_func/obj_c_func.yy",},"order":7,},
     {"id":{"name":"redo_ilda","path":"scripts/redo_ilda/redo_ilda.yy",},"order":43,},

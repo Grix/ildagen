@@ -12,6 +12,8 @@ function ready_envelope_applying(argument0) {
 	env_r = 0;
 	env_g = 0;
 	env_b = 0;
+	
+	env_a_val = 0;
 
 	var t_envelope_list = argument0;
 	for (u = 0; u < ds_list_size(t_envelope_list); u++)
@@ -76,6 +78,11 @@ function ready_envelope_applying(argument0) {
 	    }
 	}
 
+	if (seqcontrol.intensity_scale != 1)
+	{
+		env_a = 1;
+		env_a_val = 1-((1 - env_a_val)*seqcontrol.intensity_scale);
+	}
 
 
 }

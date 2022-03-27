@@ -10,9 +10,9 @@ function output_framelist_to_buffer() {
 	var t_red_lowerbound = round(controller.red_scale_lower*255);
 	var t_green_lowerbound = round(controller.green_scale_lower*255);
 	var t_blue_lowerbound = round(controller.blue_scale_lower*255);
-	var t_red_scale = controller.red_scale*(255-t_red_lowerbound)/255;
-	var t_green_scale = controller.green_scale*(255-t_green_lowerbound)/255;
-	var t_blue_scale = controller.blue_scale*(255-t_blue_lowerbound)/255;
+	var t_red_scale = controller.red_scale*(255-t_red_lowerbound)/255 * controller.intensity_master_scale;
+	var t_green_scale = controller.green_scale*(255-t_green_lowerbound)/255 * controller.intensity_master_scale;
+	var t_blue_scale = controller.blue_scale*(255-t_blue_lowerbound)/255 * controller.intensity_master_scale;
 
 	//safe_bottom_boundary = abs(min(controller.opt_redshift,controller.opt_greenshift,controller.opt_blueshift,controller.opt_blankshift));
 	//safe_top_boundary = t_list_raw_size-max(controller.opt_redshift,controller.opt_greenshift,controller.opt_blueshift,controller.opt_blankshift);
@@ -38,19 +38,19 @@ function output_framelist_to_buffer() {
             
 		var t_index = i+t_redshift+3;
 		if (t_index >= 0 && t_index < t_list_raw_size)
-			cr = (t_red_lowerbound + (list_raw[| t_index] & $FF) * t_red_scale)*controller.intensity_master_scale;
+			cr = (t_red_lowerbound + (list_raw[| t_index] & $FF) * t_red_scale);
 		else
 			cr = 0;
 				
 		t_index = i+t_greenshift+3;
 		if (t_index >= 0 && t_index < t_list_raw_size)
-			cg = (t_green_lowerbound + ((list_raw[| t_index] >> 8) & $FF) * t_green_scale)*controller.intensity_master_scale;
+			cg = (t_green_lowerbound + ((list_raw[| t_index] >> 8) & $FF) * t_green_scale);
 		else
 			cg = 0;
 				
 		t_index = i+t_blueshift+3;
 		if (t_index >= 0 && t_index < t_list_raw_size)
-			cb = (t_blue_lowerbound + (list_raw[| t_index] >> 16) * t_blue_scale)*controller.intensity_master_scale;
+			cb = (t_blue_lowerbound + (list_raw[| t_index] >> 16) * t_blue_scale);
 		else
 			cb = 0;
 				
