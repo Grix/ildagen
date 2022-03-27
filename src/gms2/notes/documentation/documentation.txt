@@ -1,5 +1,4 @@
 TODO
-- fix on mac, confirmation dialog appears repeatedly when clicking no
 - add warning when project is not saved in a while.
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)
 - add backup saving to background, asking to restore if program didn't shut down correctly
@@ -23,6 +22,7 @@ TODO
 - fix mismatch between mouse and cursor when window is too narrow.
 - add dmx
 - x64 windows
+- mac dialogs keep keyboard buttons pressed, io_reset() doesn't work
 - fix first point in live mode not rotating in preview when applying rotation slider (works in laser output)
 - midi output on timeline, to trigger events in f.ex the radiator
 - arbitrary animation easing function

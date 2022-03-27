@@ -255,6 +255,7 @@ projector = 0;
 red_scale = 1;
 blue_scale = 1;
 green_scale = 1;
+intensity_master_scale = 1;
 red_scale_lower = 0;
 blue_scale_lower = 0;
 green_scale_lower = 0;

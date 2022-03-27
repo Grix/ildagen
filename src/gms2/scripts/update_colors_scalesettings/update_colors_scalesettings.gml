@@ -10,6 +10,9 @@ function update_colors_scalesettings() {
 	    bluey_lower = round(y+52-controller.blue_scale_lower*52);
 	}
 
-
+	with (obj_masterintensityscale)
+	{
+		intensity_upper = y+54-controller.intensity_master_scale*52;
+	}
 
 }

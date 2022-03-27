@@ -26,6 +26,7 @@ function load_profile_temp() {
 	    red_scale = t_profilemap[? "red_scale"];
 	    green_scale = t_profilemap[? "green_scale"];
 	    blue_scale = t_profilemap[? "blue_scale"];
+	    intensity_master_scale = t_profilemap[? "intensity_master_scale"];
 	    red_scale_lower = t_profilemap[? "red_scale_lower"];
 	    green_scale_lower = t_profilemap[? "green_scale_lower"];
 	    blue_scale_lower = t_profilemap[? "blue_scale_lower"];

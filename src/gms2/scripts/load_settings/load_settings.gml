@@ -23,6 +23,7 @@ function load_settings() {
 	            ini_write_real("projector_0", "red_scale", 1);
 	            ini_write_real("projector_0", "green_scale", 1);
 	            ini_write_real("projector_0", "blue_scale", 1);
+	            ini_write_real("projector_0", "intensity_master_scale", 1);
 	            ini_write_real("projector_0", "red_scale_lower", 0);
 	            ini_write_real("projector_0", "green_scale_lower", 0);
 	            ini_write_real("projector_0", "blue_scale_lower", 0);
@@ -65,6 +66,7 @@ function load_settings() {
 	            ds_map_add(t_profilemap, "red_scale", ini_read_real(t_projectorstring, "red_scale", 1));
 	            ds_map_add(t_profilemap, "green_scale", ini_read_real(t_projectorstring, "green_scale", 1));
 	            ds_map_add(t_profilemap, "blue_scale", ini_read_real(t_projectorstring, "blue_scale", 1));
+	            ds_map_add(t_profilemap, "intensity_master_scale", ini_read_real(t_projectorstring, "intensity_master_scale", 1));
 	            ds_map_add(t_profilemap, "red_scale_lower", ini_read_real(t_projectorstring, "red_scale_lower", 0));
 	            ds_map_add(t_profilemap, "green_scale_lower", ini_read_real(t_projectorstring, "green_scale_lower", 0));
 	            ds_map_add(t_profilemap, "blue_scale_lower", ini_read_real(t_projectorstring, "blue_scale_lower", 0));

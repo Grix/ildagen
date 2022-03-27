@@ -331,6 +331,13 @@ function process_dialog_ilda() {
 	              save_profile();
 	              break;
 	          }
+	            case "intensity_master_scale":
+	          {
+	              intensity_master_scale = clamp(ds_map_find_value(argument[0], "value")/100,0,1);
+	              update_colors_scalesettings();
+	              save_profile();
+	              break;
+	          }
 	            case "red_scale_lower":
 	          {
 	              red_scale_lower = clamp(ds_map_find_value(argument[0], "value")/100,0,1);

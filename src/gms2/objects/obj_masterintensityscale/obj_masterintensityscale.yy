@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_longcolorselect",
-    "path": "sprites/spr_longcolorselect/spr_longcolorselect.yy",
+    "name": "spr_verticalslider",
+    "path": "sprites/spr_verticalslider/spr_verticalslider.yy",
   },
   "solid": false,
   "visible": true,
@@ -38,7 +38,7 @@
     "path": "folders/Objects/buttons/settings.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_colorscale",
+  "name": "obj_masterintensityscale",
   "tags": [],
   "resourceType": "GMObject",
 }

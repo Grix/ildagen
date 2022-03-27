@@ -41,6 +41,7 @@ function save_settings() {
 	            ini_write_real(t_projectorstring, "red_scale", t_profilemap[? "red_scale"]);
 	            ini_write_real(t_projectorstring, "green_scale", t_profilemap[? "green_scale"]);
 	            ini_write_real(t_projectorstring, "blue_scale", t_profilemap[? "blue_scale"]);
+	            ini_write_real(t_projectorstring, "intensity_master_scale", t_profilemap[? "intensity_master_scale"]);
 	            ini_write_real(t_projectorstring, "red_scale_lower", t_profilemap[? "red_scale_lower"]);
 	            ini_write_real(t_projectorstring, "green_scale_lower", t_profilemap[? "green_scale_lower"]);
 	            ini_write_real(t_projectorstring, "blue_scale_lower", t_profilemap[? "blue_scale_lower"]);

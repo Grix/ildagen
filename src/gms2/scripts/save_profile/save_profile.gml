@@ -19,6 +19,7 @@ function save_profile() {
 	    t_profilemap[? "red_scale"] = red_scale;
 	    t_profilemap[? "green_scale"] = green_scale;
 	    t_profilemap[? "blue_scale"] = blue_scale;
+	    t_profilemap[? "intensity_master_scale"] = intensity_master_scale;
 	    t_profilemap[? "red_scale_lower"] = red_scale_lower;
 	    t_profilemap[? "green_scale_lower"] = green_scale_lower;
 	    t_profilemap[? "blue_scale_lower"] = blue_scale_lower;

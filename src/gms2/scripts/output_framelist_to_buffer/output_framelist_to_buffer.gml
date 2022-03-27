@@ -38,19 +38,19 @@ function output_framelist_to_buffer() {
             
 		var t_index = i+t_redshift+3;
 		if (t_index >= 0 && t_index < t_list_raw_size)
-			cr = t_red_lowerbound + (list_raw[| t_index] & $FF) * t_red_scale;
+			cr = (t_red_lowerbound + (list_raw[| t_index] & $FF) * t_red_scale)*controller.intensity_master_scale;
 		else
 			cr = 0;
 				
 		t_index = i+t_greenshift+3;
 		if (t_index >= 0 && t_index < t_list_raw_size)
-			cg = t_green_lowerbound + ((list_raw[| t_index] >> 8) & $FF) * t_green_scale;
+			cg = (t_green_lowerbound + ((list_raw[| t_index] >> 8) & $FF) * t_green_scale)*controller.intensity_master_scale;
 		else
 			cg = 0;
 				
 		t_index = i+t_blueshift+3;
 		if (t_index >= 0 && t_index < t_list_raw_size)
-			cb = t_blue_lowerbound + (list_raw[| t_index] >> 16) * t_blue_scale;
+			cb = (t_blue_lowerbound + (list_raw[| t_index] >> 16) * t_blue_scale)*controller.intensity_master_scale;
 		else
 			cb = 0;
 				
