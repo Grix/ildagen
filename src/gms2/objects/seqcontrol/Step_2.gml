@@ -161,6 +161,11 @@ if (keyboard_check_control())
 	{
 	    dd_seq_clearproject();
 	}
+	else if (keyboard_check_pressed(ord("W")))
+	{
+		last_save_time = 3600*1000000*100; //  100 hours, long time
+	}
+	
 }
 
 else if (keyboard_check_pressed(ord("S")))
@@ -298,6 +303,14 @@ else
 		}
 	}
 }
+
+if (!ds_list_empty(layer_list) && !ds_list_empty(layer_list[| 0][| 1]))
+{
+	if (get_timer() > (last_save_time + 600*1000000))
+		controller.tooltip = "NB: It has been more than 10 minutes since you last saved your project.\nPlease save your work, or press Ctrl+W to dismiss this warning.";
+}
+else
+	last_save_time = get_timer();
 
 if (largepreview)
 	exit;

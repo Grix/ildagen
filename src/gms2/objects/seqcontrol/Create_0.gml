@@ -43,6 +43,7 @@ env_type_map = ds_map_create();
 playlist_list = ds_list_create();
 playlist_start_next_flag = false;
 
+last_save_time = get_timer();
 high_performance = false;
 frame_surf_refresh = 0;
 image_speed = 0;

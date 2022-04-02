@@ -46,6 +46,7 @@ function save_project_noloading() {
 	    buffer_write(save_buffer,buffer_u8,0);
 	buffer_write(save_buffer,buffer_u32,ds_list_size(layer_list)); //pos 50
 
+	last_save_time = get_timer();
 
 	var t_return = 0;
 	while (t_return == 0)
