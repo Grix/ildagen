@@ -213,7 +213,7 @@ function handle_trans() {
 				 t_mouse_y > t_resizey+2*dpi_multiplier &&
 				 t_mouse_y < t_resizey+20*dpi_multiplier)
 	    {
-	        tooltip = "Click and drag to resize the selected object around the anchor.\nHold Ctrl to resize X and Y the same amount.\nRight click to enter precise scaling amount.\nIf animation is enabled, the change will be animated."
+	        tooltip = "Click and drag to resize the selected object around the anchor.\nHold "+get_ctrl_string()+" to resize X and Y the same amount.\nRight click to enter precise scaling amount.\nIf animation is enabled, the change will be animated."
 			if (mouse_check_button_pressed(mb_left)) 
 	        {
 	            objmoving = 4;

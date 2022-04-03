@@ -1071,7 +1071,7 @@ function handle_mousecontrol_seq() {
 						if (mouse_x > ((frametime-tlx)/tlzoom*tlw) && mouse_x < ((frametime+object_length+1-tlx)/tlzoom*tlw)+3)
 	                    {
 	                        //mouse over object
-	                        controller.tooltip = "Click to select this object. [Ctrl]+Click to select multiple objects.\nDrag to move object. Drag the far edge to adjust duration by looping.\nHold [Shift] and drag the far edge to adjust duration by stretching.\nDouble-click to edit frames\nRight click for more actions";
+	                        controller.tooltip = "Click to select this object. ["+get_ctrl_string()+"]+Click to select multiple objects.\nDrag to move object. Drag the far edge to adjust duration by looping.\nHold [Shift] and drag the far edge to adjust duration by stretching.\nDouble-click to edit frames\nRight click for more actions";
 	                        if (mouse_x > ((frametime+object_length+0.7-tlx)/tlzoom*tlw))
 							{
 	                            controller.scrollcursor_flag = 1;
@@ -1342,7 +1342,7 @@ function handle_mousecontrol_seq() {
 	    {
 	        mouseonsomelayer = 1;
 	        controller.scrollcursor_flag = 1;
-	        controller.tooltip = "Drag to adjust the marker. Ctrl+Click to delete marker.";
+	        controller.tooltip = "Drag to adjust the marker. "+get_ctrl_string()+"+Click to delete marker.";
 	        if (mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
 	        {
 	            if (keyboard_check_control())
@@ -1381,7 +1381,7 @@ function handle_mousecontrol_seq() {
 	{
 	    draw_mouseline = 1;
 	    //playback pos
-	    controller.tooltip = "Click to set playback position. Hold [Ctrl] and drag mouse to scroll timeline.";
+	    controller.tooltip = "Click to set playback position. Hold ["+get_ctrl_string()+"] and drag mouse to scroll timeline.";
 	    if (mouse_check_button(mb_left) && !keyboard_check_control())
 	    {
 	        tlpos = round(tlx+mouse_x/tlw*tlzoom)/projectfps*1000;

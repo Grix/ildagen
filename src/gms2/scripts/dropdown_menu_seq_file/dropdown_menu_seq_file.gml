@@ -3,14 +3,14 @@ function dropdown_menu_seq_file() {
 	with (ddobj)
 	{
 	    num = 11;
-	    ds_list_add(desc_list,"New Project (Ctrl + N)");
-	    ds_list_add(desc_list,"Save project (Ctrl + S)");
+	    ds_list_add(desc_list,"New Project ("+get_ctrl_string()+" + N)");
+	    ds_list_add(desc_list,"Save project ("+get_ctrl_string()+" + S)");
 		ds_list_add(desc_list,"Save project as...");
-	    ds_list_add(desc_list,"Load project... (Ctrl + O)");
+	    ds_list_add(desc_list,"Load project... ("+get_ctrl_string()+" + O)");
 		ds_list_add(desc_list,"Add project to playlist...");
 		ds_list_add(desc_list,"Load demo show");
 	    ds_list_add(desc_list,"Export project as ILDA file...");
-	    ds_list_add(desc_list,"Import ILDA file to timeline... (Ctrl + I)");
+	    ds_list_add(desc_list,"Import ILDA file to timeline... ("+get_ctrl_string()+" + I)");
 	    ds_list_add(desc_list,"Import LaserShowGen frames file to timeline...");
 	    ds_list_add(desc_list,"Send frames from editor mode to timeline (I)");
 	    ds_list_add(sep_list,0);

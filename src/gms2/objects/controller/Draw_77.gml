@@ -14,12 +14,14 @@ if (instance_exists(obj_dropdown) && !instance_exists(obj_ad))
 	exit;
 }
 
+var t_tooltip_is_warning = string_pos("NB: It has been", tooltip) != 0;
+
 
 if (scrollcursor_flag == 1)
     window_check_set_cursor(cr_size_we);
 else if (scrollcursor_flag == 2)
     window_check_set_cursor(cr_size_ns);
-else if (tooltip != "")
+else if (tooltip != "" && !t_tooltip_is_warning)
 	window_check_set_cursor(cr_handpoint);	
 else
 {
@@ -41,7 +43,7 @@ if (tooltip != "")
         draw_set_alpha(0.8);
         draw_set_color(c_black);
         draw_rectangle(0,view_yport[4],string_width(tooltip)*dpi_multiplier+20,string_height(tooltip)*dpi_multiplier+10+view_hport[3],0);
-        if (string_pos("NB: It has been", tooltip) != 0)
+        if (t_tooltip_is_warning)
 			draw_set_color(c_orange);
 		else
 			draw_set_color(c_white);

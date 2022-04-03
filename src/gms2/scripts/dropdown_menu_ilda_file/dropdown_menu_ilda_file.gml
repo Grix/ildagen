@@ -3,12 +3,12 @@ function dropdown_menu_ilda_file() {
 	with (ddobj)
 	{
 	    num = 11;
-	    ds_list_add(desc_list,"New (Ctrl + N)");
-	    ds_list_add(desc_list,"Save frames (Ctrl + S)");
+	    ds_list_add(desc_list,"New ("+get_ctrl_string()+" + N)");
+	    ds_list_add(desc_list,"Save frames ("+get_ctrl_string()+" + S)");
 	    ds_list_add(desc_list,"Save frames as...");
-	    ds_list_add(desc_list,"Load frames... (Ctrl + O)");
+	    ds_list_add(desc_list,"Load frames... ("+get_ctrl_string()+" + O)");
 	    ds_list_add(desc_list,"Export frames as ILDA file...");
-	    ds_list_add(desc_list,"Import ILDA file to editor... (Ctrl + I)");
+	    ds_list_add(desc_list,"Import ILDA file to editor... ("+get_ctrl_string()+" + I)");
 	    ds_list_add(desc_list,"Send frames to timeline mode (I)");
 		ds_list_add(desc_list,"Send frames to live mode (L)");
 		ds_list_add(desc_list,"Load Timeline Mode project...");

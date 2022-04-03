@@ -3,11 +3,11 @@ function dropdown_menu_live_file() {
 	with (ddobj)
 	{
 	    num = 9;
-	    ds_list_add(desc_list,"New grid (Ctrl + N)");
-	    ds_list_add(desc_list,"Save grid (Ctrl + S)");
+	    ds_list_add(desc_list,"New grid ("+get_ctrl_string()+" + N)");
+	    ds_list_add(desc_list,"Save grid ("+get_ctrl_string()+" + S)");
 		ds_list_add(desc_list,"Save grid as...");
-	    ds_list_add(desc_list,"Load grid... (Ctrl + O)");
-	    ds_list_add(desc_list,"Import ILDA file... (Ctrl + I)");
+	    ds_list_add(desc_list,"Load grid... ("+get_ctrl_string()+" + O)");
+	    ds_list_add(desc_list,"Import ILDA file... ("+get_ctrl_string()+" + I)");
 	    ds_list_add(desc_list,"Import LaserShowGen frames file...");
 		ds_list_add(desc_list,"Import folder...");
 	    ds_list_add(desc_list,"Send frames from editor mode (L)");

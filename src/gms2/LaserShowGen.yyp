@@ -643,6 +643,7 @@
     {"id":{"name":"dd_live_fromlive","path":"scripts/dd_live_fromlive/dd_live_fromlive.yy",},"order":6,},
     {"id":{"name":"dd_live_importilda","path":"scripts/dd_live_importilda/dd_live_importilda.yy",},"order":7,},
     {"id":{"name":"dd_live_loadframes","path":"scripts/dd_live_loadframes/dd_live_loadframes.yy",},"order":8,},
+    {"id":{"name":"get_ctrl_string","path":"scripts/get_ctrl_string/get_ctrl_string.yy",},"order":35,},
     {"id":{"name":"dd_live_loadfolder","path":"scripts/dd_live_loadfolder/dd_live_loadfolder.yy",},"order":9,},
     {"id":{"name":"dd_live_loadproject","path":"scripts/dd_live_loadproject/dd_live_loadproject.yy",},"order":10,},
     {"id":{"name":"dropdown_menu_live_stop_at_play","path":"scripts/dropdown_menu_live_stop_at_play/dropdown_menu_live_stop_at_play.yy",},"order":11,},

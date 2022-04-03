@@ -77,7 +77,7 @@ if (instance_exists(obj_dropdown))
     
 if (keyboard_check_control())
 {
-    //CTRL+*
+    //"+get_ctrl_string()+"+*
     /*if (keyboard_check_pressed(ord("C")))
     {
         if (!ds_list_empty(somaster_list))

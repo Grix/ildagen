@@ -307,7 +307,7 @@ else if (moving == 10)
 else if (moving == 11)
 {
     //upper left corner
-	controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+	controller.tooltip = "Drag corner to shape projection window.\nHold "+get_ctrl_string()+" to drag more slowly.";
     if (keyboard_check_control())
     {
 		controller.scale_top_left += ((mouse_y-mouse_yprevious));
@@ -331,7 +331,7 @@ else if (moving == 11)
 else if (moving == 12)
 {
     //upper right corner
-	controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+	controller.tooltip = "Drag corner to shape projection window.\nHold "+get_ctrl_string()+" to drag more slowly.";
     if (keyboard_check_control())
     {
 		controller.scale_top_right += ((mouse_y-mouse_yprevious));
@@ -355,7 +355,7 @@ else if (moving == 12)
 else if (moving == 13)
 {
     //lower left corner
-	controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+	controller.tooltip = "Drag corner to shape projection window.\nHold "+get_ctrl_string()+" to drag more slowly.";
     if (keyboard_check_control())
     {
 		controller.scale_bottom_left += ((mouse_y-mouse_yprevious));
@@ -379,7 +379,7 @@ else if (moving == 13)
 else if (moving == 14)
 {
     //lower right corner
-	controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+	controller.tooltip = "Drag corner to shape projection window.\nHold "+get_ctrl_string()+" to drag more slowly.";
     if (keyboard_check_control())
     {
 		controller.scale_bottom_right += ((mouse_y-mouse_yprevious));
@@ -417,7 +417,7 @@ else
             if (mouse_x < (x+t_list[| i+0]/$FFFF*256+5))
             {   
                 controller.scrollcursor_flag = 1;
-                controller.tooltip = "Drag side to resize blind zone.\nHold CTRL to drag more slowly.";
+                controller.tooltip = "Drag side to resize blind zone.\nHold "+get_ctrl_string()+" to drag more slowly.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mouse_xprevious = mouse_x;
@@ -430,7 +430,7 @@ else
             else if (mouse_x > (x+t_list[| i+1]/$FFFF*256-5))
             {   
                 controller.scrollcursor_flag = 1;
-                controller.tooltip = "Drag side to resize blind zone.\nHold CTRL to drag more slowly.";
+                controller.tooltip = "Drag side to resize blind zone.\nHold "+get_ctrl_string()+" to drag more slowly.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mouse_xprevious = mouse_x;
@@ -443,7 +443,7 @@ else
             else if (mouse_y < (y+t_list[| i+2]/$FFFF*256+5))
             {   
                 controller.scrollcursor_flag = 2;
-                controller.tooltip = "Drag side to resize blind zone.\nHold CTRL to drag more slowly.";
+                controller.tooltip = "Drag side to resize blind zone.\nHold "+get_ctrl_string()+" to drag more slowly.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mouse_xprevious = mouse_x;
@@ -456,7 +456,7 @@ else
             else if (mouse_y > (y+t_list[| i+3]/$FFFF*256-5))
             {   
                 controller.scrollcursor_flag = 2;
-                controller.tooltip = "Drag side to resize blind zone.\nHold CTRL to drag more slowly.";
+                controller.tooltip = "Drag side to resize blind zone.\nHold "+get_ctrl_string()+" to drag more slowly.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mouse_xprevious = mouse_x;
@@ -469,7 +469,7 @@ else
             }
             else
             {
-                controller.tooltip = "Drag to move this blind zone.\nHold CTRL to drag more slowly.\nRight click for more options.";
+                controller.tooltip = "Drag to move this blind zone.\nHold "+get_ctrl_string()+" to drag more slowly.\nRight click for more options.";
                 if (mouse_check_button_pressed(mb_left))
                 {
                     mouse_xprevious = mouse_x;
@@ -501,7 +501,7 @@ else
 	            if (mouse_x < (x+controller.scale_left_top/$FFFF*256+5))
 	            {   
 	                controller.scrollcursor_flag = 1;
-	                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
+	                controller.tooltip = "Drag side to resize projection window.\nHold "+get_ctrl_string()+" to drag more slowly.";
 	                if (mouse_check_button_pressed(mb_left))
 	                {
 	                    mouse_xprevious = mouse_x;
@@ -513,7 +513,7 @@ else
 	            else if (mouse_x > (x+controller.scale_right_top/$FFFF*256-5))
 	            {   
 	                controller.scrollcursor_flag = 1;
-	                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
+	                controller.tooltip = "Drag side to resize projection window.\nHold "+get_ctrl_string()+" to drag more slowly.";
 	                if (mouse_check_button_pressed(mb_left))
 	                {
 	                    mouse_xprevious = mouse_x;
@@ -525,7 +525,7 @@ else
 	            else if (mouse_y < (y+controller.scale_top_left/$FFFF*256+5))
 	            {   
 	                controller.scrollcursor_flag = 2;
-	                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
+	                controller.tooltip = "Drag side to resize projection window.\nHold "+get_ctrl_string()+" to drag more slowly.";
 	                if (mouse_check_button_pressed(mb_left))
 	                {
 	                    mouse_xprevious = mouse_x;
@@ -537,7 +537,7 @@ else
 	            else if (mouse_y > (y+controller.scale_bottom_left/$FFFF*256-5))
 	            {   
 	                controller.scrollcursor_flag = 2;
-	                controller.tooltip = "Drag side to resize projection window.\nHold CTRL to drag more slowly.";
+	                controller.tooltip = "Drag side to resize projection window.\nHold "+get_ctrl_string()+" to drag more slowly.";
 	                if (mouse_check_button_pressed(mb_left))
 	                {
 	                    mouse_xprevious = mouse_x;
@@ -548,7 +548,7 @@ else
 	            }
 	            else
 	            {
-	                controller.tooltip = "Drag to move projection window.\nHold CTRL to drag more slowly.\nRight click for more options.";
+	                controller.tooltip = "Drag to move projection window.\nHold "+get_ctrl_string()+" to drag more slowly.\nRight click for more options.";
 	                if (mouse_check_button_pressed(mb_left))
 	                {
 	                    mouse_xprevious = mouse_x;
@@ -570,7 +570,7 @@ else
 			if (point_distance(	mouse_x, mouse_y,
 								x+controller.scale_left_top/$ffff*256, y+controller.scale_top_left/$ffff*256) < 6)
 			{
-				controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+				controller.tooltip = "Drag corner to shape projection window.\nHold "+get_ctrl_string()+" to drag more slowly.";
 				if (mouse_check_button_pressed(mb_left))
 	            {
 	                mouse_xprevious = mouse_x;
@@ -582,7 +582,7 @@ else
 			else if (point_distance(	mouse_x, mouse_y,
 								x+controller.scale_right_top/$ffff*256, y+controller.scale_top_right/$ffff*256) < 6)
 			{
-				controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+				controller.tooltip = "Drag corner to shape projection window.\nHold "+get_ctrl_string()+" to drag more slowly.";
 				if (mouse_check_button_pressed(mb_left))
 	            {
 	                mouse_xprevious = mouse_x;
@@ -594,7 +594,7 @@ else
 			else if (point_distance(	mouse_x, mouse_y,
 								x+controller.scale_left_bottom/$ffff*256, y+controller.scale_bottom_left/$ffff*256) < 6)
 			{
-				controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+				controller.tooltip = "Drag corner to shape projection window.\nHold "+get_ctrl_string()+" to drag more slowly.";
 				if (mouse_check_button_pressed(mb_left))
 	            {
 	                mouse_xprevious = mouse_x;
@@ -606,7 +606,7 @@ else
 			else if (point_distance(	mouse_x, mouse_y,
 								x+controller.scale_right_bottom/$ffff*256, y+controller.scale_bottom_right/$ffff*256) < 6)
 			{
-				controller.tooltip = "Drag corner to shape projection window.\nHold CTRL to drag more slowly.";
+				controller.tooltip = "Drag corner to shape projection window.\nHold "+get_ctrl_string()+" to drag more slowly.";
 				if (mouse_check_button_pressed(mb_left))
 	            {
 	                mouse_xprevious = mouse_x;

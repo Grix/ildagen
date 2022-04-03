@@ -1,11 +1,9 @@
+v1.9.8
+- Fix possible bug on macOS where some keyboard shortcuts made dialog windows reappear over and over.
+- Add master intensity/brightness slider in settings and timeline windows.
+- Show warning if user has not saved timeline project in a long time.
+- Fix text showing "Ctrl" instead of "Cmd" for macOS keyboard shortcuts.
+
 v1.9.7
 - Add new step (square wave) animation type in editor mode.
 - Fix crash when undoing after having selected color in editor mode.
-
-v1.9.6
-- Fix large simulated preview not being available when having a window scaling setting higher than 1.
-- Add various keyboard shortcuts.
-- Add serial number to network LaserCube names so that they can be uniquely identified and remembered between sessions.
-- Fix unable to right-click on multiple objects in timeline mode because all but one would get deselected.
-- Fix a possible crash or silent error after importing some ILDA files in timeline mode.
-- Add quicksaving, and displaying of currently opened file, to editor mode.

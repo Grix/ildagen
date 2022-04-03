@@ -3,11 +3,11 @@ function dropdown_menu_seq_edit() {
 	with (ddobj)
 	{
 	    num = 10;
-	    ds_list_add(desc_list,"Undo (Ctrl+Z)");
+	    ds_list_add(desc_list,"Undo ("+get_ctrl_string()+"+Z)");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,undo_seq);
 	    ds_list_add(hl_list,ds_list_size(seqcontrol.undo_list));
-		ds_list_add(desc_list,"Redo (Ctrl+Y)");
+		ds_list_add(desc_list,"Redo ("+get_ctrl_string()+"+Y)");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,redo_seq);
 	    ds_list_add(hl_list,ds_list_size(seqcontrol.redo_list));
@@ -15,15 +15,15 @@ function dropdown_menu_seq_edit() {
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,dd_seq_fromseq);
 	    ds_list_add(hl_list,ds_list_size(seqcontrol.somaster_list));
-	    ds_list_add(desc_list,"Cut (Ctrl+X)");
+	    ds_list_add(desc_list,"Cut ("+get_ctrl_string()+"+X)");
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,seq_cut_object);
 	    ds_list_add(hl_list,ds_list_size(seqcontrol.somaster_list));
-	    ds_list_add(desc_list,"Copy (Ctrl+C");
+	    ds_list_add(desc_list,"Copy ("+get_ctrl_string()+"+C");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,seq_copy_object);
 	    ds_list_add(hl_list,ds_list_size(seqcontrol.somaster_list));
-	    ds_list_add(desc_list,"Paste (Ctrl+V)");
+	    ds_list_add(desc_list,"Paste ("+get_ctrl_string()+"+V)");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,seq_paste_object);
 	    ds_list_add(hl_list,ds_list_size(seqcontrol.copy_list));

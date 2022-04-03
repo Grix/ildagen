@@ -3,11 +3,11 @@ function dropdown_menu_live_edit() {
 	with (ddobj)
 	{
 	    num = 5;
-	    ds_list_add(desc_list,"Undo (Ctrl+Z)");
+	    ds_list_add(desc_list,"Undo ("+get_ctrl_string()+"+Z)");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,undo_live);
 	    ds_list_add(hl_list,ds_list_size(livecontrol.undo_list));
-		ds_list_add(desc_list,"Redo (Ctrl+Y)");
+		ds_list_add(desc_list,"Redo ("+get_ctrl_string()+"+Y)");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,redo_live);
 	    ds_list_add(hl_list,ds_list_size(livecontrol.redo_list));
