@@ -232,6 +232,7 @@ if (keyboard_check_control() && keyboard_check_pressed(ord("V")))
 {
     paste_object();
 }
+
     
 if (keyboard_check(ord("S"))) || (sgridshow == 1)
 {

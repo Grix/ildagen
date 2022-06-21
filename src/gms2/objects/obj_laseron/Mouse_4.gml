@@ -33,8 +33,11 @@ if (room = rm_ilda)
 }
 else if (room = rm_seq)
 { 
-    if (!verify_serial(true))
-        exit;
+	if (!seqcontrol.show_is_demo)
+	{
+	    if (!verify_serial(true))
+	        exit;
+	}
         
     with (controller)
     {

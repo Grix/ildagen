@@ -217,6 +217,7 @@ function load_frames_seq(argument0) {
 	timeline_surf_length = 0;
 	clean_redo_list_seq();
 	frame_surf_refresh = 1;
+	show_is_demo = false;
     
 	undolisttemp = ds_list_create();
 	ds_list_add(undolisttemp,objectlist);

@@ -91,6 +91,7 @@ previous_marker_pos = 0;
 loadprojectflag = false;
 moving_object_ready = false;
 intensity_scale = 1;
+show_is_demo = false;
 
 somaster_list_prevsize = 0;
 envelope_undolist = -1;

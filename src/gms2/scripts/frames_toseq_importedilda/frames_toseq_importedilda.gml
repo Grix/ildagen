@@ -95,6 +95,7 @@ function frames_toseq_importedilda() {
 		timeline_surf_length = 0;
 		clean_redo_list_seq();
 		frame_surf_refresh = 1;
+		show_is_demo = false;
 	}
     
 	ds_list_destroy(ild_list); ild_list = -1;

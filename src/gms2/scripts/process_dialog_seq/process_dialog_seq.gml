@@ -244,7 +244,8 @@ function process_dialog_seq() {
 				var t_dir = "";
 //if (os_type == os_macosx)
 //	t_dir = "datafiles/"
-				load_project(t_dir+"demo_show.igp")
+				load_project(t_dir+"demo_show.igp");
+				seqcontrol.show_is_demo = true;
 	            break;
 	        };
           

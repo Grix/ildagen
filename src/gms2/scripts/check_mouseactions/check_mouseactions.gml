@@ -34,10 +34,21 @@ function check_mouseactions() {
 	if ((mouse_x > tlorigo_x+2) && (mouse_x < tlorigo_x+tlw-2) && 
 	    (mouse_y > tlorigo_y) && (mouse_y < tlorigo_y + tlh))
 	{
-	    tooltip = "Click to jump to this frame. Hold Shift and drag mouse to set editing scope.";
+	    tooltip = "Click to jump to this frame.\nHold Shift and drag mouse to set editing scope.\nPress key 1 or 2 to set start or end frame of scope.";
 	    framecursor_prev = round(lerp(0,maxframes-1, (mouse_x-tlorigo_x)/(tlw-tlorigo_x)));
 	    show_framecursor_prev = true;
-	    if (mouse_check_button(mb_left))
+		
+		if (keyboard_check_pressed(ord("1")))
+		{
+			scope_start = min(scope_end, framecursor_prev);
+			refresh_minitimeline_flag = 1;
+		}
+		else if (keyboard_check_pressed(ord("2")))
+		{
+			scope_end = max(scope_start, framecursor_prev);
+			refresh_minitimeline_flag = 1;
+		}
+	    else if (mouse_check_button(mb_left))
 	    {
 	        if (keyboard_check(vk_shift))
 	        {

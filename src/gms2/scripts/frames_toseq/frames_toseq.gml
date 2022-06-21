@@ -139,6 +139,7 @@ function frames_toseq() {
 			FMODGMS_Chan_PauseChannel(play_sndchannel);
 	    playing = 0;
 		timeline_surf_length = 0;
+		show_is_demo = false;
 	}
     
 	room_goto(rm_seq);

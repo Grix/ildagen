@@ -1,10 +1,12 @@
-TODO- fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)
+TODO
+- fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)
 - add backup saving to background, asking to restore if program didn't shut down correctly
 - fix crash if scanning for lasercubes when they are already in use by another program like laseros (Not reproducible?)
+- update web
+- update linux
 - add button for keyboard shortcuts to timeline mode to jump to positions.
 - add possibility for assigning different projectors to live modes files.
 - add possibility to show cursor in editor when laser is on.
-- fix lasercube flipped x in macos and linux dacwrapper
 - add midi cc and nrpn
 - undo moving startframe/endframe etc in timeline
 - fix ctrl+key shortcuts in linux? Not working?
@@ -33,7 +35,6 @@ TODO- fix when element outside canvas, frame is exported to ild with 0 points. (
 - add custom anchor to timeline mode rotation envelope
 - BPM sync indicator/quantization in all modes
 - pause individual files in live
-- update web
 - zoom in editor mode timeline
 - zoom in editor mode canvas
 - more simulation settings (more projectors per layer, projector angle, fov etc)
