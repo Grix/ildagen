@@ -1,5 +1,5 @@
-version = "1.9.8";
-versiondate = "2022-04-03";
+version = "1.9.9";
+versiondate = "2022-06-21";
 
 //gc_enable(false);
 
@@ -207,6 +207,7 @@ default_window_h = 735*dpi_multiplier;
 log("window size", default_window_w, default_window_h);
 
 tooltip = "";
+tooltip_warning = "";
 bckimage = 0;
 onion = 0;
 onion_dropoff = 0.7;

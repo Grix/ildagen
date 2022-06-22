@@ -306,8 +306,8 @@ else
 
 if (!ds_list_empty(layer_list) && !ds_list_empty(layer_list[| 0][| 1]))
 {
-	if (get_timer() > (last_save_time + 600*1000000))
-		controller.tooltip = "NB: It has been more than 10 minutes since you last saved your project.\nPlease save your work, or press "+get_ctrl_string()+"+W to dismiss this warning.";
+	if (get_timer() > (last_save_time + 10*1000000))
+		controller.tooltip_warning = "NB: It has been more than 10 minutes since you last saved your project.\nPlease save your work, or press "+get_ctrl_string()+"+W to dismiss this warning.";
 }
 else
 	last_save_time = get_timer();
