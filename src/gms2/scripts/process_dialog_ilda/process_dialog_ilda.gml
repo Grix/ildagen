@@ -527,7 +527,10 @@ function process_dialog_ilda() {
               
 	            case "scopestart":
 	          {
-	              scope_start = clamp(round(ds_map_find_value(argument[0], "value"))-1,0,scope_end);
+				  var t_value = round(ds_map_find_value(argument[0], "value"))-1;
+				  if (t_value > scope_end)
+					show_message_new("NB: Start of scope cannot be later than the end of scope.");
+	              scope_start = clamp(t_value,0,scope_end);
 	              frame = scope_start;
 	              framehr = scope_start;
 	              frame_surf_refresh = 1;
@@ -538,7 +541,10 @@ function process_dialog_ilda() {
               
 	            case "scopeend":
 	          {
-	              scope_end = clamp(round(ds_map_find_value(argument[0], "value"))-1,scope_start,maxframes-1);
+				  var t_value = round(ds_map_find_value(argument[0], "value"))-1;
+				  if (t_value < scope_start)
+					show_message_new("NB: End of scope cannot be earlier than the start of scope.");
+	              scope_end = clamp(t_value,scope_start,maxframes-1);
 	              refresh_minitimeline_flag = 1;
               
 	              break;
