@@ -1,4 +1,9 @@
 TODO
+- pink markers in minitimeline in editor mode
+- add point count to timeline mode preview
+- option to disable warning messages
+- ability to select multiple items in editor by dragging mouse
+- customizable cutoff for frequency in timeline audio preview, or turning on/off colors
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)
 - add duty cycle parameter to strobe shortcut in timeline mode, (and step function in editor mode?)
 - add backup saving to background, asking to restore if program didn't shut down correctly

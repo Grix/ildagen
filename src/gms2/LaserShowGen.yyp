@@ -64,6 +64,7 @@
     {"id":{"name":"spr_clearmarker","path":"sprites/spr_clearmarker/spr_clearmarker.yy",},"order":7,},
     {"id":{"name":"spr_largepreview","path":"sprites/spr_largepreview/spr_largepreview.yy",},"order":8,},
     {"id":{"name":"spr_tt_primarycol","path":"sprites/spr_tt_primarycol/spr_tt_primarycol.yy",},"order":0,},
+    {"id":{"name":"obj_disablewarning","path":"objects/obj_disablewarning/obj_disablewarning.yy",},"order":37,},
     {"id":{"name":"spr_tt_secondarycol","path":"sprites/spr_tt_secondarycol/spr_tt_secondarycol.yy",},"order":1,},
     {"id":{"name":"spr_tt_dotcolor","path":"sprites/spr_tt_dotcolor/spr_tt_dotcolor.yy",},"order":2,},
     {"id":{"name":"spr_tt_projection","path":"sprites/spr_tt_projection/spr_tt_projection.yy",},"order":3,},

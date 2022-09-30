@@ -25,7 +25,7 @@ if (room = rm_ilda)
         }
         else
         {
-            show_message_new("No DACs found. Please go to settings and set up the connection (Click SCAN).");
+			show_message_new("No DACs found. Please go to settings and set up the connection (Click SCAN).");
             ilda_cancel();
             room_goto(rm_options);
         }
@@ -55,7 +55,7 @@ else if (room = rm_seq)
         }
         else
         {
-            show_message_new("No DACs found. Please go to settings and set up the connection (Click SCAN).");
+			show_message_new("No DACs found. Please go to settings and set up the connection (Click SCAN).");
             if (seqcontrol.song != -1) 
                 FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
             seqcontrol.playing = 0;
@@ -82,7 +82,7 @@ else if (room = rm_options)
             }
             else
             {
-                show_message_new("No DACs found. Please set up the connection (Click SCAN).");
+				show_message_new("No DACs found. Please set up the connection (Click SCAN).");
             }
         }
         else
@@ -101,7 +101,7 @@ else if (room = rm_options)
             }
             else
             {
-                show_message_new("No DACs found. Please set up the connection (Click SCAN).");
+				show_message_new("No DACs found. Please set up the connection (Click SCAN).");
             }
         }
     }
@@ -124,7 +124,7 @@ else if (room = rm_live)
         }
         else
         {
-            show_message_new("No DACs found. Please go to settings and set up the connection (Click SCAN).");
+			show_message_new("No DACs found. Please go to settings and set up the connection (Click SCAN).");
             livecontrol.playing = 0;
             room_goto(rm_options);
         }

@@ -71,7 +71,8 @@ function save_frames_inner(t_file_loc) {
 	while ((get_timer() - t_time) > 4095)
 	    j = 0;
     
-	show_message_new("LaserShowGen frames saved to "+string(file_loc));
+	if (!controller.warning_disable)
+		show_message_new("LaserShowGen frames saved to "+string(file_loc));
 
 	buffer_delete(save_buffer);
 	filepath = file_loc;

@@ -18,10 +18,28 @@ function refresh_minitimeline_surf() {
 			draw_line(t_tlw-1, -1, t_tlw-1, t_tlh);
 			draw_line(-1, t_tlh-1, t_tlw, t_tlh-1);
 	    draw_set_alpha(0.2);
-	        if (seqcontrol.selectedx >= 0)
-	            tlx = seqcontrol.selectedx;
-	        else
-	            tlx = ds_list_find_value(abs(seqcontrol.selectedx), 0);
+			if (ds_list_empty(seqcontrol.somaster_list) or (ds_list_size(seqcontrol.somaster_list) > 1))
+			{
+		        if (seqcontrol.selectedx >= 0)
+		            tlx = seqcontrol.selectedx;
+		        else
+		            tlx = ds_list_find_value(abs(seqcontrol.selectedx), 0);
+			}
+			else
+			{
+				var t_objectlist = ds_list_find_value(seqcontrol.somaster_list,0);
+				if (!ds_list_exists(t_objectlist))
+				{
+					if (seqcontrol.selectedx >= 0)
+			            tlx = seqcontrol.selectedx;
+			        else
+			            tlx = ds_list_find_value(abs(seqcontrol.selectedx), 0);
+				}
+				else
+				{
+					tlx = t_objectlist[| 0];
+				}
+			}
 	        projectfps = seqcontrol.projectfps;;
 	        //var drawtime = ceil(tlx/projectfps);
 	        tlzoom = maxframes;

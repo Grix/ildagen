@@ -13,6 +13,7 @@ function save_settings() {
 			ini_write_real("main", "tab_cycles_all", tab_cycles_all);
 			ini_write_real("main", "enable_dynamic_fps", enable_dynamic_fps);
 			ini_write_real("main", "preview_while_laser_on", preview_while_laser_on);
+			ini_write_real("main", "warning_disable", warning_disable);
 			/*ini_write_real("main", "window_width", window_get_width());
 			ini_write_real("main", "window_height", window_get_height());
 			ini_write_real("main", "window_x", window_get_x());

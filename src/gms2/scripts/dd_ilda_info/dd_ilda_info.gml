@@ -1,17 +1,13 @@
 function dd_ilda_info() {
-	if !(controller.regflag)
+	if (verify_serial(false))
 	{
-	    if file_exists("serial")
-	    {
-	        controller.registeredstring = "Pro edition registered. Thank you for purchasing!";
-	        controller.regflag = 1;
-	    }
-	    else
-	    {
-	        controller.registeredstring = "Free Edition.";
-	        controller.regflag = 1;
-	    }
+	    controller.registeredstring = "Pro edition registered. Thank you for purchasing!";
 	}
+	else
+	{
+	    controller.registeredstring = "Free Edition.";
+	}
+	
     
 	controller.message = 
 	"LaserShowGen - Laser show editor and player\n"+

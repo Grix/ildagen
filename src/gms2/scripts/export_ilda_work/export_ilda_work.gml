@@ -96,7 +96,8 @@ function export_ilda_work() {
 	while ((get_timer() - t_time) > 4095)
 	    j = 0;
 
-	show_message_new("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));
+	if (!controller.warning_disable)
+		show_message_new("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));
 
 	buffer_delete(ilda_buffer);
 

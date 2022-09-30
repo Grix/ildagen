@@ -82,7 +82,11 @@ function handle_mousecontrol_live() {
 				if (doubleclick && selectedfile == i)
 				{
 					//edit object
-	                live_dialog_yesno("fromlive","You are about to open these frames in the editor mode. This will discard any unsaved changes in the editor. Continue? (Cannot be undone)");
+	                if (!controller.warning_disable)
+						live_dialog_yesno("fromlive","This will discard unsaved changes in the frames editor. Continue? (Cannot be undone)");
+					else
+						with (livecontrol)
+							frames_fromlive();
 				}        
 				else
 				{

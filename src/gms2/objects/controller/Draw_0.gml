@@ -17,18 +17,32 @@ if (view_current == 4 || view_current == 5)
     if (surface_exists(minitimeline_surf))
         draw_surface_part_ext(minitimeline_surf,0,0,tlw,tlh+1,tlorigo_x,tlorigo_y, dpi_multiplier, dpi_multiplier, c_white, 1);
 	
+	//markers timeline
+	draw_set_alpha(0.9);
+	draw_set_colour(c_fuchsia);
+	for (i = 0; i < ds_list_size(seqcontrol.marker_list); i++)
+	{
+		if (ds_list_find_value(seqcontrol.marker_list,i) == clamp(ds_list_find_value(seqcontrol.marker_list,i),tlx,tlx+tlzoom))
+		{
+		    var markerpostemp = (ds_list_find_value(seqcontrol.marker_list,i)-tlx)*tlw/tlzoom;
+		    //draw_rectangle(markerpostemp,tlsurf_y,markerpostemp+1,tlh-1+tlsurf_y,0);
+		    draw_line_width(markerpostemp,tlorigo_y-1,markerpostemp,tlorigo_y+tlh-15*dpi_multiplier,2*dpi_multiplier);
+		}
+	}
+	
+	draw_set_color(c_black);
 	gpu_set_blendenable(true);
 	
     if (maxframes > 1)
     {
         cursorlinex = lerp(2,tlw-2,frame/(maxframes-1));
-        draw_line_width(cursorlinex,tlorigo_y,cursorlinex,tlorigo_y+tlh-13*dpi_multiplier, dpi_multiplier);
+        draw_line_width(cursorlinex,tlorigo_y-1,cursorlinex,tlorigo_y+tlh-15*dpi_multiplier, dpi_multiplier);
         if (show_framecursor_prev)
         {
             draw_set_alpha(0.6);
             draw_set_color(c_teal);
             cursorlinex = lerp(2,tlw-2,framecursor_prev/(maxframes-1));
-            draw_line_width(cursorlinex,tlorigo_y,cursorlinex,tlorigo_y+tlh, dpi_multiplier);
+            draw_line_width(cursorlinex,tlorigo_y-1,cursorlinex,tlorigo_y+tlh, dpi_multiplier);
             draw_set_alpha(1);
         }
     }

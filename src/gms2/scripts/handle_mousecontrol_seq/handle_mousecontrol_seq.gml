@@ -1117,8 +1117,12 @@ function handle_mousecontrol_seq() {
 	                            if (doubleclick)
 	                            {
 	                                //edit object
-	                                seq_dialog_yesno("fromseq","You are about to open these frames in the editor mode. This will discard any unsaved changes in the editor. Continue? (Cannot be undone)");
-	                            }
+	                                if (!controller.warning_disable)
+										seq_dialog_yesno("fromseq","You are about to open the selected object in the editor mode. This will discard any unsaved changes currently in the editor. Continue? (Cannot be undone)");
+									else
+										with (seqcontrol)
+											frames_fromseq();
+								}
 	                            else
 	                            {
 	                                if (mouse_x > ((frametime+object_length+0.7-tlx)/tlzoom*tlw)-1)

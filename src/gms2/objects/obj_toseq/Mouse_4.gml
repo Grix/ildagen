@@ -17,8 +17,11 @@ with (controller)
     
     if (ds_list_size(seqcontrol.somaster_list) == 1)
     {
-        ilda_dialog_yesno("toseqreplace","This will replace the selected timeline object with these frames. Continue? (Cannot be undone)");
-    }
+        if (!controller.warning_disable)
+			ilda_dialog_yesno("toseqreplace","This will replace the selected timeline object with these frames. Continue? (Cannot be undone)");
+		else
+			frames_toseq();
+	}
     else
         frames_toseq();
 }

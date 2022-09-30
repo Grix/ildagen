@@ -9,7 +9,11 @@ if (os_browser != browser_not_a_browser)
 
 if (room == rm_ilda)
 {
-    ilda_dialog_yesno("loadfile","This will replace your current frames, all unsaved work will be lost. Continue? (Cannot be undone)");
+	if (!controller.warning_disable)
+		ilda_dialog_yesno("loadfile","This will replace your current frames, all unsaved work will be lost. Continue? (Cannot be undone)");
+	else
+		with (controller)
+			load_frames(get_open_filename_ext("LSG frames|*.igf","","","Select LaserShowGen frames file"));
 	keyboard_clear(keyboard_lastkey);
 	keyboard_clear(vk_control);
 	mouse_clear(mouse_lastbutton);

@@ -175,8 +175,10 @@ last_room = rm_seq;
 releasenotes = "";
 filepath = "";
 warning_suppress = false;
+warning_disable = false;
 bug_report_suppress = false;
 force_io_reset = false;
+
 
 sgridshow = 0;
 rgridshow = 0;
