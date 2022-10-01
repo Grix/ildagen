@@ -1,6 +1,9 @@
 function refresh_seq_surface() {
 	//refreshes the laser show preview surface in the sequencer mode room
 
+	//framepoints = 0;
+	//frame_complexity = 0;
+
 	if (!surface_exists(frame_surf))
 	    frame_surf = surface_create(clamp(power(2, ceil(log2(view_wport[4]))), 1, 8192), clamp(power(2, ceil(log2(view_hport[4]))), 1, 8192));
 	if (!surface_exists(frame3d_surf))
@@ -167,6 +170,8 @@ function refresh_seq_surface() {
                     
 		                    if (!bl)
 		                    {
+								//framepoints++;
+								
 		                        draw_set_color(c);
 		                        if ((xp == xpp) and (yp == ypp) and !blp)
 		                        {
@@ -181,6 +186,8 @@ function refresh_seq_surface() {
 									//	draw_line_width(xo_mirror+ xpp*t_scaley,yo+ ypp*t_scaley,xo_mirror+ xp*t_scaley,yo+ yp*t_scaley, controller.dpi_multiplier);
 								}
 		                    }
+							//else if (!controller.exp_optimize)
+							//	framepoints++;
 		                }
 						
 						surface_reset_target();
@@ -231,6 +238,7 @@ function refresh_seq_surface() {
                     
 		                    if (!bl)
 		                    {
+								
 		                        pdir = point_direction(t_centerx, t_centery, xo+ xp*t_scaley,yo+ yp*t_scaley);
 		                        xxp = t_centerx+cos(degtorad(-pdir))*t_scalediag;
 		                        yyp = t_centery+sin(degtorad(-pdir))*t_scalediag;
@@ -249,6 +257,7 @@ function refresh_seq_surface() {
 		                            draw_triangle_colour(t_centerx+t_preview_x_offset, t_centery+t_preview_y_offset, xxp_p,yyp_p,xxp+t_preview_x_offset,yyp+t_preview_y_offset,c,c_black,c_black,0);
 		                        }
 		                    }
+							
 		                }
 						
 		                gpu_set_blendmode(bm_normal);
@@ -393,6 +402,46 @@ function refresh_seq_surface() {
 	draw_set_alpha(1);
 	draw_set_color(c_black);
 
-
+	
+	//find point count
+	// too complex to find, not all layers is necessarily drawn at once, so misleading etc.
+	/*if (controller.exp_optimize && (!controller.laseron || !controller.preview_while_laser_on))
+	{
+	    if (!controller.opt_onlyblanking)
+	    {
+	        if (prepare_output())
+	        {
+	            ds_list_destroy(order_list); order_list = -1;
+	            ds_list_destroy(polarity_list); polarity_list = -1;
+	            ds_list_destroy(list_raw); list_raw = -1;
+            
+	            var t_totalpointswanted = floor(controller.opt_scanspeed/projectfps);
+	            var t_litpointswanted = t_totalpointswanted - maxpoints_static - maxpoints_dots - 3;
+	            if (t_litpointswanted == 0) 
+	                t_litpointswanted = 1;
+	            if (lit_length != 0)
+	            {
+	                var t_lengthwanted = abs(lit_length/t_litpointswanted);
+                
+	                if (t_lengthwanted > 2000)//controller.opt_maxdist) TODO create setting
+	                    frame_complexity = 1;
+	                else if (t_lengthwanted > 2000*0.5)
+	                    frame_complexity = 2;
+	            }
+	            else
+	            {
+	                if (t_litpointswanted < 0)
+	                    frame_complexity = 2;
+	            }
+            
+	            framepoints += maxpoints_static;
+	        }
+	    }
+	    else
+	        prepare_output_onlyblank();
+	}
+	else
+	    prepare_output_unopt();
+	*/
 
 }

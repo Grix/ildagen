@@ -67,6 +67,32 @@ function process_dialog_seq() {
             
 	            break;
 	        }
+	        case "fft_cutoff_bass_low":
+	        {
+	            seqcontrol.audio_fft_bass_low_cutoff = clamp(real(ds_map_find_value(argument[0], "value")), 0, 2048);
+				seq_dialog_num("fft_cutoff_bass_high", "Enter higher bass window cutoff (range 0-2048, default 5)", seqcontrol.audio_fft_bass_high_cutoff);
+	            break;
+	        }
+			case "fft_cutoff_bass_high":
+	        {
+	            seqcontrol.audio_fft_bass_high_cutoff = clamp(real(ds_map_find_value(argument[0], "value")), 0, 2048);
+				seq_dialog_num("fft_cutoff_treble_low", "Enter lower treble window cutoff (range 0-2048, default 40)", seqcontrol.audio_fft_treble_low_cutoff);
+	            break;
+	        }
+			case "fft_cutoff_treble_low":
+	        {
+	            seqcontrol.audio_fft_treble_low_cutoff = clamp(real(ds_map_find_value(argument[0], "value")), 0, 2048);
+				seq_dialog_num("fft_cutoff_treble_high", "Enter higher treble window cutoff (range 0-2048, default 150)", seqcontrol.audio_fft_treble_high_cutoff);
+	            break;
+	        }
+			case "fft_cutoff_treble_high":
+	        {
+	            seqcontrol.audio_fft_treble_high_cutoff = clamp(real(ds_map_find_value(argument[0], "value")), 0, 2048);
+				with (seqcontrol)
+					load_audio();
+	            break;
+	        }
+			
 			case "add_fadein":
 			case "add_fadeout":
 			case "add_strobe":

@@ -92,6 +92,10 @@ loadprojectflag = false;
 moving_object_ready = false;
 intensity_scale = 1;
 show_is_demo = false;
+audio_fft_bass_low_cutoff = 0;
+audio_fft_bass_high_cutoff = 5;
+audio_fft_treble_low_cutoff = 40;
+audio_fft_treble_high_cutoff = 150;
 
 somaster_list_prevsize = 0;
 envelope_undolist = -1;
@@ -124,6 +128,8 @@ c_gold = make_colour_rgb(255,220,0);
 
 playing = 0;
 deltatime = 0;
+//framepoints = 0;
+//frame_complexity = 0;
 
 ds_map_add(env_type_map,"x","X");
 ds_map_add(env_type_map,"y","Y");

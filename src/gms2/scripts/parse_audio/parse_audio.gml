@@ -62,14 +62,16 @@ function parse_audio() {
 
 		buffer_write(audio_buffer, buffer_u8, min(t_w/6000, 1)*255);
 	
+		var t_height = audio_fft_bass_high_cutoff-audio_fft_bass_low_cutoff;
 		var t_s = 0;
-		for (var t_i = 0; t_i < 5; t_i++)
+		for (var t_i = audio_fft_bass_low_cutoff; t_i < audio_fft_bass_high_cutoff; t_i++)
 			t_s += buffer_peek(bufferOut, t_i*4, buffer_f32);
-		buffer_write(audio_buffer, buffer_u8, min(t_s/5, 1)*255);
+		buffer_write(audio_buffer, buffer_u8, min(t_s/5*(5/t_height), 1)*255);
 		t_s = 0;
-		for (var t_i = 40; t_i < 150; t_i++)
+		t_height = audio_fft_treble_high_cutoff-audio_fft_treble_low_cutoff;
+		for (var t_i = audio_fft_treble_low_cutoff; t_i < audio_fft_treble_high_cutoff; t_i++)
 			t_s += buffer_peek(bufferOut, t_i*4, buffer_f32);
-		buffer_write(audio_buffer, buffer_u8, min(t_s/35, 1)*255);
+		buffer_write(audio_buffer, buffer_u8, min(t_s/35*(35/t_height), 1)*255);
 	
 		parsingaudio_pos += 1/60;
 	}

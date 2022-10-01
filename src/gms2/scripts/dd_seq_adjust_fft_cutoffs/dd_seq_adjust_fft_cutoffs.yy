@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "assemble_frame_dac",
+  "name": "dd_seq_adjust_fft_cutoffs",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "dacs",
-    "path": "folders/Scripts/dacs.yy",
+    "name": "dd_seq",
+    "path": "folders/Scripts/dropdown/dd_seq.yy",
   },
 }

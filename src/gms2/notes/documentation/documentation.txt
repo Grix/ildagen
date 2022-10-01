@@ -1,6 +1,6 @@
 TODO
+- option to specify ip of network dacs instead of search /  fix broadcast to all interfaces when scanning dacs
 - pink markers in minitimeline in editor mode
-- add point count to timeline mode preview
 - option to disable warning messages
 - ability to select multiple items in editor by dragging mouse
 - customizable cutoff for frequency in timeline audio preview, or turning on/off colors

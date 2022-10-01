@@ -1385,7 +1385,11 @@ function handle_mousecontrol_seq() {
 	{
 	    draw_mouseline = 1;
 	    //playback pos
-	    controller.tooltip = "Click to set playback position. Hold ["+get_ctrl_string()+"] and drag mouse to scroll timeline.";
+	    controller.tooltip = "Click to set playback position. Hold ["+get_ctrl_string()+"] and drag mouse to scroll timeline.\nRight click to set custom audio analysis frequency thresholds.";
+		if (mouse_check_button_pressed(mb_right))
+		{
+			dropdown_audio_timeline();
+		}
 	    if (mouse_check_button(mb_left) && !keyboard_check_control())
 	    {
 	        tlpos = round(tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
