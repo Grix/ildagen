@@ -525,7 +525,7 @@ std::vector<int>* idnHelloScan(const char* ifName, uint32_t adapterIpAddr)
 		struct sockaddr_in sendSockAddr;
 		sendSockAddr.sin_family = AF_INET;
 		sendSockAddr.sin_port = htons(IDNVAL_HELLO_UDP_PORT);
-		sendSockAddr.sin_addr.s_addr = INADDR_BROADCAST;
+		sendSockAddr.sin_addr.s_addr = adapterIpAddr | (255 << (8 * 3));//INADDR_BROADCAST;
 
 		IDNHDR_PACKET sendPacketHdr;
 		sendPacketHdr.command = IDNCMD_SCAN_REQUEST;

@@ -225,6 +225,12 @@ GMEXPORT double DeviceOpen(double doubleNum)
 	}
 }
 
+// tries to open network dac from specified IP. return new total number of devices
+/*GMEXPORT double DeviceOpenFromIp(char* hostname)
+{
+	//todo
+}*/
+
 //prepares buffer and outputs frame to specified device
 GMEXPORT double OutputFrame(double num,  double scanRate, double frameSize, uint16_t* bufferAddress)
 {

@@ -85,7 +85,7 @@ bool LaserCubeNetwork::FindDevicesOnInterface(const char* ifName, uint32_t adapt
 {
 	pingSocketAddr.sin_family = AF_INET;
 	pingSocketAddr.sin_port = htons(LDN_CMD_PORT);
-	pingSocketAddr.sin_addr.s_addr = 0xFFFFFFFF;
+	pingSocketAddr.sin_addr.s_addr = adapterIpAddr | (255 << (8*3));//0xFFFFFFFF;
 
 #ifdef LDN_LOG
 	fprintf(logFile, "Interface usable: %s, %d. Scanning...\n", ifName, adapterIpAddr);

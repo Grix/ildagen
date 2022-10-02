@@ -22,6 +22,7 @@ public:
 	bool Stop(int devNum);
 	bool CloseAll();
 	void GetName(int devNum, char* name);
+	bool TryOpenFromIp(char* hostname);
 
 private:
 
