@@ -93,11 +93,18 @@ function process_dialog_seq() {
 	            break;
 	        }
 			
-			case "add_fadein":
-			case "add_fadeout":
 			case "add_strobe":
 			{
-	            var t_parameter = ds_map_find_value(argument[0], "value")*controller.projectfps;
+				strobe_period = ds_map_find_value(argument[0], "value")*controller.projectfps;
+				seq_dialog_num("add_strobe_dutycycle", "Choose the duty cycle of the strobing (on/off ratio, from 0 to 1):", 0.5); 	
+				break;
+			}
+			
+			case "add_fadein":
+			case "add_fadeout":
+			case "add_strobe_dutycycle":
+			{
+	            var t_parameter = ds_map_find_value(argument[0], "value");
 			
 				for (i = 0; i < ds_list_size(somaster_list); i++)
 				{
@@ -141,15 +148,17 @@ function process_dialog_seq() {
 					var t_start, t_end, t_valuestart, t_valueend;
 					if (dialog == "add_fadein")
 					{
+						t_parameter *= controller.projectfps;
 						t_start = t_object[| 0] - 1;
 						t_end = t_start + t_parameter + 2;
 					}
 					else if (dialog == "add_fadeout")
 					{
+						t_parameter *= controller.projectfps;
 						t_end = t_object[| 0] + ds_list_find_value(t_object[| 2], 0) + 1;
 						t_start = t_end - t_parameter - 1;
 					}
-					else if (dialog == "add_strobe")
+					else if (dialog == "add_strobe_dutycycle")
 					{
 						t_start = t_object[| 0] - 1;
 						t_end = t_object[| 0] + ds_list_find_value(t_object[| 2], 0) + 1;
@@ -194,15 +203,16 @@ function process_dialog_seq() {
 						ds_list_insert(t_timelist, t_index, t_start+1);
 						ds_list_insert(t_datalist, t_index, 0);
 					}
-					else if  (dialog == "add_strobe")
+					else if  (dialog == "add_strobe_dutycycle")
 					{
-						if (t_parameter <= 0) 
-							t_parameter = 1;
+						if (strobe_period <= 0) 
+							strobe_period = 1;
+						t_parameter = clamp(t_parameter, 0, 1);
 					
 						u = t_end-1;
 						while (true)
 						{
-							u -= t_parameter/2;
+							u -= strobe_period * (t_parameter);
 							if (u <= t_start+2)
 							{
 								ds_list_insert(t_timelist, t_index, t_start+1);
@@ -213,7 +223,7 @@ function process_dialog_seq() {
 							ds_list_insert(t_datalist, t_index, 0);
 							ds_list_insert(t_timelist, t_index, u-1);
 							ds_list_insert(t_datalist, t_index, 64);
-							u -= t_parameter/2;
+							u -= strobe_period * (1-t_parameter);
 							if (u <= t_start+2)
 							{
 								ds_list_insert(t_timelist, t_index, t_start+1);
@@ -225,13 +235,13 @@ function process_dialog_seq() {
 							ds_list_insert(t_timelist, t_index, u-1);
 							ds_list_insert(t_datalist, t_index, 0);
 						}
-						/*for (u = t_end-t_parameter-1; u >= t_start+1; u -= t_parameter)
+						/*for (u = t_end-strobe_period-1; u >= t_start+1; u -= strobe_period)
 						{
-							ds_list_insert(t_timelist, t_index, u+t_parameter-1);
+							ds_list_insert(t_timelist, t_index, u+strobe_period-1);
 							ds_list_insert(t_datalist, t_index, 0);
-							ds_list_insert(t_timelist, t_index, u+t_parameter/2);
+							ds_list_insert(t_timelist, t_index, u+strobe_period/2);
 							ds_list_insert(t_datalist, t_index, 0);
-							ds_list_insert(t_timelist, t_index, u+t_parameter/2-1);
+							ds_list_insert(t_timelist, t_index, u+strobe_period/2-1);
 							ds_list_insert(t_datalist, t_index, 64);
 							ds_list_insert(t_timelist, t_index, u);
 							ds_list_insert(t_datalist, t_index, 64);
