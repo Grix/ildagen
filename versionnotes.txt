@@ -1,10 +1,11 @@
+v1.9.10
+- Improve detection of LaserCube and IDN network DACs on some computers.
+- Add duty cycle parameter to the timeline mode strobe generation tool.
+- Timeline markers are now visible in the mini timeline in the editor mode too.
+- Add ability to customize the frequency thresholds for the audio visualization in timelines.
+- Add optional setting to skip common confirmation/warning messages.
+
 v1.9.9
 - Make demo timeline show playable on DACs in the free version.
 - Add keyboard shortcut keys 1 and 2 for seting start and end of editor mode scope.
 - Misc. other minor changes.
-
-v1.9.8
-- Fix possible bug on macOS where some keyboard shortcuts made dialog windows reappear over and over.
-- Add master intensity/brightness slider in settings and timeline windows.
-- Show warning if user has not saved timeline project in a long time.
-- Fix text showing "Ctrl" instead of "Cmd" for macOS keyboard shortcuts.
