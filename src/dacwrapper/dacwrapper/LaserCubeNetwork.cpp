@@ -26,7 +26,7 @@ int LaserCubeNetwork::FindDevices(FILE* _logFile)
 
 	std::vector<unsigned long> foundIps;
 
-#ifdef __linux__ 
+#ifndef WIN32 
 	//int rcAddrInfo = getaddrinfo(NULL, "45457", &hints, &servinfo);
 	struct ifaddrs* ifaddr;
 	if (getifaddrs(&ifaddr) == -1) return errno;

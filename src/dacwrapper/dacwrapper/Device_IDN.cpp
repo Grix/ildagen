@@ -33,7 +33,7 @@ int Device_IDN::Init()
 	int numDevices = 0;
 	std::vector<int> allIpAddrs;
 
-	#ifdef __linux__ 
+	#ifndef WIN32 
 	//int rcAddrInfo = getaddrinfo(NULL, "7255", &hints, &servinfo);
 		struct ifaddrs *ifaddr;
 		    if(getifaddrs(&ifaddr) == -1) return errno;
