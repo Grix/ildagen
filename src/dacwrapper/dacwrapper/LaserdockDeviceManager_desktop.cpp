@@ -5,6 +5,8 @@
 
 #include "LaserdockDevice.h"
 
+#include <stdio.h>
+
 std::vector<std::unique_ptr<LaserdockDevice> > LaserdockDeviceManagerPrivate::get_devices() {
     std::vector<std::unique_ptr<LaserdockDevice>> laserdockDevices;
 
