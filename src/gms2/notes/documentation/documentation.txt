@@ -8,16 +8,18 @@ TODO
 - add backup saving to background, asking to restore if program didn't shut down correctly
 - fix crash if scanning for lasercubes when they are already in use by another program like laseros (Not reproducible?)
 - update web
-- update linux (flatpak instead of zip?)
+- update linux (flatpak instead of zip?), and notify about dependecies such as the one for dialog module
 - add button for keyboard shortcuts to timeline mode to jump to positions.
 - add possibility for assigning different projectors to live modes files.
 - add possibility to show cursor in editor when laser is on.
 - add midi cc and nrpn
+- ability to easily add shaking effect to multiple objects on timeline mode. Envelope?
 - undo moving startframe/endframe etc in timeline
 - fix ctrl+key shortcuts in linux? Not working?
 - improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
 - improve projection mapping settings box (f.ex. not possible to resize sides when very small? and context menu not working when clicking on the box)
+- zoom in editor mode timeline
 - undo stretching maxframes in editor mode
 - compress buffers when saving in live mode and editor mode
 - better detection of screen size in mac retina
@@ -40,7 +42,6 @@ TODO
 - add custom anchor to timeline mode rotation envelope
 - BPM sync indicator/quantization in all modes
 - pause individual files in live
-- zoom in editor mode timeline
 - zoom in editor mode canvas
 - more simulation settings (more projectors per layer, projector angle, fov etc)
 - benchmark frame buffers, better to align to 4?
