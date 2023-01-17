@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import biplist
 import os.path
+import plistlib
 
 #
 # Example settings file for dmgbuild
@@ -21,14 +21,15 @@ application = defines.get('app', './LaserShowGen.app')
 appname = os.path.basename(application)
 
 def icon_from_app(app_path):
-    plist_path = os.path.join(app_path, 'Contents', 'Info.plist')
-    plist = biplist.readPlist(plist_path)
-    icon_name = plist['CFBundleIconFile']
-    icon_root,icon_ext = os.path.splitext(icon_name)
+    plist_path = os.path.join(app_path, "Contents", "Info.plist")
+    with open(plist_path, "rb") as f:
+        plist = plistlib.load(f)
+    icon_name = plist["CFBundleIconFile"]
+    icon_root, icon_ext = os.path.splitext(icon_name)
     if not icon_ext:
-        icon_ext = '.icns'
+        icon_ext = ".icns"
     icon_name = icon_root + icon_ext
-    return os.path.join(app_path, 'Contents', 'Resources', icon_name)
+    return os.path.join(app_path, "Contents", "Resources", icon_name)
 
 # .. Basics ....................................................................
 

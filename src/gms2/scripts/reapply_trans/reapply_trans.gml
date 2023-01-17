@@ -110,8 +110,6 @@ function reapply_trans() {
 	        {
 	            t = i/(ds_list_size(temp_frame_list)-1);
 				
-				if (anireverse)
-					t = 1-t;
 					
 	            t = (t*anirep);
 				if (t > 1 || t < 0)
@@ -177,6 +175,9 @@ function reapply_trans() {
 	                else 
 	                    t = 1;
 	            }
+				
+				if (anireverse)
+					t = 1-t;
 				
 				if (editing_type == 1 && ds_list_exists(edit_recording_list) && !ds_list_empty(edit_recording_list))
 				{

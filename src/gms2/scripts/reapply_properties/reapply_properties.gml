@@ -319,8 +319,6 @@ function reapply_properties() {
 	        {
 	            t = i/(ds_list_size(temp_frame_list)-1);    
 				
-				if (anireverse)
-					t = 1-t;
 					
 	            t = (t*anirep);
 				if (t > 1 || t < 0)
@@ -386,6 +384,10 @@ function reapply_properties() {
 	                else 
 	                    t = 1;
 	            }
+				
+				
+				if (anireverse)
+					t = 1-t;
 			
 	            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
 	            gaussoffsetx = reap_trans*shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);

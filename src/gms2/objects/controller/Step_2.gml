@@ -74,8 +74,12 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 || forceresize
 {
 	if (dpi_scaling == 0 || dpi_scaling == -1)
+	{
 		dpi_multiplier = clamp(min( ceil(t_windowheight/(735*2.05)), ceil(t_windowwidth/(1350*2)) ),1,3);
-		
+		if (dpi_multiplier == 1 && t_windowheight > 1450)
+			dpi_multiplier = 1.5;
+	}
+		//1462: mac with 1600 vert.res.
 	
 	
 	//if (window_get_height() < default_window_h || window_get_width() < default_window_w)
@@ -231,6 +235,17 @@ if (keyboard_check_control() && keyboard_check_pressed(ord("A")))
 if (keyboard_check_control() && keyboard_check_pressed(ord("V")))
 {
     paste_object();
+}
+
+if (keyboard_check(vk_shift) && keyboard_check_pressed(ord("1")))
+{
+	scope_start = min(scope_end, frame);
+	refresh_minitimeline_flag = 1;
+}
+else if (keyboard_check(vk_shift) && keyboard_check_pressed(ord("2")))
+{
+	scope_end = max(scope_start, frame);
+	refresh_minitimeline_flag = 1;
 }
 
     

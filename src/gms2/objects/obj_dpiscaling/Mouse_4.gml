@@ -28,7 +28,14 @@ ini_write_real("main", "dpi_scaling_override", value);
 ini_close();
 
 if (value == 0)
-	controller.dpi_multiplier = clamp(ceil(display_get_height()/1700), 1, 3);
+{
+	var t_windowwidth = window_get_width();
+	var t_windowheight = window_get_height();
+	
+	controller.dpi_multiplier = clamp(min( ceil(t_windowheight/(735*2.05)), ceil(t_windowwidth/(1350*2)) ),1,3);
+	if (controller.dpi_multiplier == 1 && t_windowheight > 1460)
+		controller.dpi_multiplier = 1.5;
+}
 else
 	controller.dpi_multiplier = value;
 	

@@ -1,11 +1,11 @@
+v1.9.11
+- Fix macOS bug that makes program unresponsive when trying to open/save files.
+- Change the editor mode animation function "reverse" option actually be the inverse rather than reverse.
+- Add keyboard shortcut SHIFT+1 and SHIFT+2 to set current frame as scope start or end in editor mode.
+
 v1.9.10
 - Improve detection of LaserCube and IDN network DACs on some computers.
 - Add duty cycle parameter to the timeline mode strobe generation tool.
 - Timeline markers are now visible in the mini timeline in the editor mode too.
 - Add ability to customize the frequency thresholds for the audio visualization in timelines.
 - Add optional setting to skip common confirmation/warning messages.
-
-v1.9.9
-- Make demo timeline show playable on DACs in the free version.
-- Add keyboard shortcut keys 1 and 2 for seting start and end of editor mode scope.
-- Misc. other minor changes.

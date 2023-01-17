@@ -287,9 +287,6 @@ function create_element() {
 	    else
 	    {
 	        t = ((frame-scope_start)/(scope_end-scope_start+1))%1;
-			
-			if (anireverse)
-				t = 1-t;
 					
 	        t = (t*anirep);
 			if (t > 1 || t < 0)
@@ -348,12 +345,15 @@ function create_element() {
 	            t /= 2;*/
 	        }
 			if (anifunc == "step")
-	            {
-					if (t < 0.5)
-						t = 0;
-	                else 
-	                    t = 1;
-	            }
+	        {
+				if (t < 0.5)
+					t = 0;
+	            else 
+	                t = 1;
+	        }
+			
+			if (anireverse)
+				t = 1-t;
             
 	        shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
 	        gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);
@@ -568,8 +568,6 @@ function create_element() {
 	        {
 	            t = ((frame-scope_start)/(scope_end-scope_start+1))%1;
 				
-				if (anireverse)
-					t = 1-t;
 					
 		        t = (t*anirep);
 				if (t > 1 || t < 0)
@@ -634,6 +632,9 @@ function create_element() {
 	                else 
 	                    t = 1;
 	            }
+				
+				if (anireverse)
+					t = 1-t;
                 
 	            shaking_sdev_r = lerp(shaking_sdev,anishaking_sdev,t);
 	            gaussoffsetx = shaking*clamp(random_gaussian(0,shaking_sdev_r),-shaking_sdev_r*3,shaking_sdev_r*3);

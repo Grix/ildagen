@@ -1,6 +1,6 @@
 TODO
 - copy/paste layers (duplicate only maybe?)
-- keyboard shortcut for setting current frame as scope end/start
+- undo setting of scope
 - length of item is not updated when sending/overwriting timeline line from editor mode
 - ability to select multiple items in editor by dragging mouse
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)
@@ -26,6 +26,7 @@ TODO
 - save settings like color and parameters to igf file and timeline object
 - experiment with better scaling (higher res sprites?)
 - make large preview work with dpi scaling > 1
+- automatic playback of show when opening software, for headless computer setup. 
 - fix mismatch between mouse and cursor when window is too narrow.
 - add dmx
 - x64 windows
