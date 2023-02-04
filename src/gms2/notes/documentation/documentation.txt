@@ -1,6 +1,7 @@
 TODO
 - copy/paste layers (duplicate only maybe?)
 - undo setting of scope
+- remove resizing of projection mapping when dragging the blue rectangle towards the edges. Makes it too easy to accidentally make the projection window tiny.
 - length of item is not updated when sending/overwriting timeline line from editor mode
 - ability to select multiple items in editor by dragging mouse
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)

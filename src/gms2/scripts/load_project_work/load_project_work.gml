@@ -213,10 +213,10 @@ function load_project_work() {
 		while (!file_exists(controller.FStemp+"temp_songbuffer") && (get_timer() - t_time) > 5000000)
 			j = 0;
 		
-		song = FMODGMS_Snd_LoadSound_Ext(controller.FStemp+"temp_songbuffer",			FMODGMS_MODE_DEFAULT | 
-																			FMODGMS_MODE_ACCURATETIME |
-																			FMODGMS_MODE_CREATESAMPLE,
-																			buffer_get_address(t_exInfo));
+		song = FMODGMS_Snd_LoadSound_Ext(controller.FStemp+"temp_songbuffer",	FMODGMS_MODE_DEFAULT | 
+																				FMODGMS_MODE_ACCURATETIME |
+																				FMODGMS_MODE_CREATESAMPLE,
+																				buffer_get_address(t_exInfo));
    
 		force_audio_reparse = false;
    
