@@ -7,7 +7,7 @@ function show_question_new() {
 	if (os_browser == browser_not_a_browser)
 	{ // not used, see *_dialog_yesno
 		if (os_type == os_windows)
-			t_ret = show_question_win(string(argument[0]), "LaserShowGen", $00040000);
+			t_ret = show_question_async(string(argument[0]));
 		else
 			t_ret = show_question_async(argument[0]);
 	}

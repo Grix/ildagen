@@ -39,6 +39,14 @@ function process_dialog_live() {
 				mouse_clear(mouse_lastbutton);
 				break;
 			}
+			case "loadliveproject_known_filename":
+			{
+				load_live_project(controller.known_filename_of_load);
+				keyboard_clear(keyboard_lastkey);
+				keyboard_clear(vk_control);
+				mouse_clear(mouse_lastbutton);
+				break;
+			}
 			case "clearproject":
 			{
 				clear_live_project();

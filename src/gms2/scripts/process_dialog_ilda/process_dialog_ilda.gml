@@ -98,7 +98,7 @@ function process_dialog_ilda() {
 					if (os_type == os_windows)
 					{
 						file = http_get_file("https://github.com/Grix/ildagen/releases/download/v"+versionnew+"/LaserShowGen-"+versionnew+"-Installer.exe","temp\\update.exe");
-						show_message_new("Download started, program will exit and installation start shortly..");
+						show_message_new("Download started. Please click OK and the program will exit and installation start shortly..");
 					}
 					else if (os_type == os_macosx)
 						url_open("https://github.com/Grix/ildagen/releases/download/v"+versionnew+"/LaserShowGen-"+versionnew+"-Mac.dmg");
@@ -467,6 +467,15 @@ function process_dialog_ilda() {
 	            case "loadfile":
 	          {
 	              load_frames(get_open_filename_ext("LSG frames|*.igf","","","Select LaserShowGen frames file"));
+					keyboard_clear(keyboard_lastkey);
+					keyboard_clear(vk_control);
+					mouse_clear(mouse_lastbutton);
+	              break;
+	          }
+			  
+			    case "loadfile_known_filename":
+	          {
+	              load_frames(known_filename_of_load);
 					keyboard_clear(keyboard_lastkey);
 					keyboard_clear(vk_control);
 					mouse_clear(mouse_lastbutton);

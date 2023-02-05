@@ -1,5 +1,5 @@
-/// @description seq_dialog_yesno(id, question string)
-/// @function seq_dialog_yesno
+/// @description live_dialog_yesno(id, question string)
+/// @function live_dialog_yesno
 /// @param id
 /// @param  question string
 function live_dialog_yesno() {

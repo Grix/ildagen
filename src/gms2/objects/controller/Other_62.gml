@@ -41,7 +41,7 @@ else if (ds_map_find_value(async_load, "id") == file)
         {
             if (alarm[4] == -1)
             {
-                show_message_new("Launching installer");
+                //show_message_new("Launching installer");
                 url_open_new(FStemp+"update.exe");
                 alarm[4] = 60;
             }

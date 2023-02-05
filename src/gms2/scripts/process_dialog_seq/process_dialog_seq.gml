@@ -275,6 +275,15 @@ function process_dialog_seq() {
 	            break;
 	        }
 		
+	        case "loadproject_known_filename":
+	        {
+	            load_project(controller.known_filename_of_load);
+				keyboard_clear(keyboard_lastkey);
+				keyboard_clear(vk_control);
+				mouse_clear(mouse_lastbutton);
+	            break;
+	        }
+		
 			case "loaddemo":
 	        {
 				var t_dir = "";

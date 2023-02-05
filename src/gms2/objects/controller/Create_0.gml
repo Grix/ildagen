@@ -39,8 +39,10 @@ if (!file_exists(t_dir+"settings.ini") && !file_exists("settings.ini"))
 
 log("save location:",FStemp);
 
-// Dialog module settings
-//widget_set_caption(window_get_caption());
+file_dropper_init();
+
+// Dialog module settings, causes crash?
+//widget_set_caption("LaserShowGen");
 //widget_set_owner(window_handle());
 
 //declarations and setup
@@ -179,6 +181,7 @@ warning_disable = false;
 bug_report_suppress = false;
 force_io_reset = false;
 
+known_filename_of_load = "";
 
 sgridshow = 0;
 rgridshow = 0;
@@ -409,11 +412,12 @@ if (os_browser == browser_not_a_browser)
 verify_serial(false);
 telem();
 
-var t_resolution_log = file_text_open_append("resolution_log.txt");
-file_text_write_string(t_resolution_log, string(window_get_width()) + "," + string(window_get_height()) + "," + string(display_get_width()) + "," + string(display_get_height()) + "," + string(display_get_dpi_x()) + "\n");
-file_text_close(t_resolution_log);
+//var t_resolution_log = file_text_open_append("resolution_log.txt");
+//file_text_write_string(t_resolution_log, string(window_get_width()) + "," + string(window_get_height()) + "," + string(display_get_width()) + "," + string(display_get_height()) + "," + string(display_get_dpi_x()) + "\n");
+//file_text_close(t_resolution_log);
 
-ex_patch_window_close_capture(1);
+//ex_patch_window_close_capture(1);
+window_command_hook(window_command_close);
 
 if (!debug_mode)
 {

@@ -1,4 +1,4 @@
-if (ex_patch_window_close_event())
+if (window_command_check(window_command_close))
     exit_confirm();
     
 if (keyboard_check_pressed(ord("M")))
