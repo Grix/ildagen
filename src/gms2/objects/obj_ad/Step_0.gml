@@ -15,7 +15,7 @@ if (window_mouse_get_x() >= (x+660*controller.dpi_multiplier)) && (window_mouse_
 }
 else if (window_mouse_get_x() >= x) && (window_mouse_get_x() <= (x+700*controller.dpi_multiplier)) && (window_mouse_get_y() >= (y+20*controller.dpi_multiplier)) && (window_mouse_get_y() <= (y+420*controller.dpi_multiplier))
 {
-    controller.tooltip = "More info.";
+    controller.tooltip = "Click to open website with more info.";
     if (mouse_check_button_pressed(mb_left))
     {
         if (ad == spr_ad1)
@@ -26,6 +26,8 @@ else if (window_mouse_get_x() >= x) && (window_mouse_get_x() <= (x+700*controlle
             url_open_new("https://bitlasers.com/helios-laser-dac/");
         else if (ad == spr_ad4)
             url_open_new("http://pages.bitlasers.com/lasershowgen/advertising");
+        else if (ad == spr_ad5)
+            url_open_new("https://lasershowtraining.com/");
     
         ddobj = instance_create_layer(0,0,"foreground",obj_dropdown);
         with (ddobj)

@@ -728,6 +728,7 @@
     {"id":{"name":"square_grid_refresh","path":"scripts/square_grid_refresh/square_grid_refresh.yy",},"order":28,},
     {"id":{"name":"check_mouseactions","path":"scripts/check_mouseactions/check_mouseactions.yy",},"order":29,},
     {"id":{"name":"handle_trans","path":"scripts/handle_trans/handle_trans.yy",},"order":30,},
+    {"id":{"name":"spr_ad5","path":"sprites/spr_ad5/spr_ad5.yy",},"order":70,},
     {"id":{"name":"reapply_properties","path":"scripts/reapply_properties/reapply_properties.yy",},"order":31,},
     {"id":{"name":"reapply_trans","path":"scripts/reapply_trans/reapply_trans.yy",},"order":32,},
     {"id":{"name":"func_startofframe","path":"scripts/func_startofframe/func_startofframe.yy",},"order":33,},

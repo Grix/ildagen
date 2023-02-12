@@ -121,6 +121,26 @@ else if (moving == 5)
 		controller.scale_left_top += ((mouse_x-mouse_xprevious)/256*$ffff);
 		controller.scale_left_bottom += ((mouse_x-mouse_xprevious)/256*$ffff);
     }
+	if (controller.scale_left_top < 0)
+		controller.scale_right_top += (-controller.scale_left_top);
+	if (controller.scale_left_bottom < 0)
+		controller.scale_right_bottom += (-controller.scale_left_bottom);
+		
+	if (controller.scale_right_top > $ffff)
+		controller.scale_left_top -= (controller.scale_right_top - $ffff); 
+	if (controller.scale_right_bottom > $ffff)
+		controller.scale_left_bottom -= (controller.scale_right_bottom - $ffff);
+		
+	if (controller.scale_top_left < 0)
+		controller.scale_bottom_left += (-controller.scale_top_left);
+	if (controller.scale_top_right < 0)
+		controller.scale_bottom_right += (-controller.scale_top_right);
+		
+	if (controller.scale_bottom_left > $ffff)
+		controller.scale_top_left -= (controller.scale_bottom_left - $ffff); 
+	if (controller.scale_bottom_right > $ffff)
+		controller.scale_top_right -= (controller.scale_bottom_right - $ffff);
+	
 	controller.scale_left_top = clamp(controller.scale_left_top, 0, $ffff);
 	controller.scale_left_bottom = clamp(controller.scale_left_bottom, 0, $ffff);
 	controller.scale_bottom_left = clamp(controller.scale_bottom_left, 0, $ffff);
@@ -555,6 +575,8 @@ else
 	                    mouse_yprevious = mouse_y;
 	                    moving = 5;
 	                }
+					else if (mouse_check_button_pressed(mb_right))
+						dropdown_projectionwindow();
 	            }
 			}
 			else if (mouse_x > x) && (mouse_y > y) && (mouse_x < x+256) && (mouse_y < y+256)
@@ -613,6 +635,8 @@ else
 	                mouse_yprevious = mouse_y;
 	                moving = 14;
 	            }
+				else if (mouse_check_button_pressed(mb_right))
+					dropdown_projectionwindow();
 	            exit;
 			}
 			else if (mouse_x > x) && (mouse_y > y) && (mouse_x < x+256) && (mouse_y < y+256)
