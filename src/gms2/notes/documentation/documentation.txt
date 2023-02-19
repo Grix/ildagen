@@ -1,4 +1,5 @@
 TODO
+- fix glitchy creation on timeline envelopes when using drop-down menu instead of ENV button
 - copy/paste layers (duplicate only maybe?)
 - undo setting of scope
 - remove resizing of projection mapping when dragging the blue rectangle towards the edges. Makes it too easy to accidentally make the projection window tiny.
