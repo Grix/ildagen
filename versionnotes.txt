@@ -3,4 +3,4 @@ v1.9.11
 - Change the editor mode animation function "reverse" option actually be the inverse rather than reverse.
 - Add keyboard shortcut SHIFT+1 and SHIFT+2 to set current frame as scope start or end in editor mode.
 - On Windows, files can now be dragged onto the LSG window to load/import them.
-- Move to 64-bit for Windows. The following DACs are NOT yet supported on 64-bit: EasyLase, RIYA, OLSC, sound cards. Please stay on 1.9.10 if you use these DACs.
+- Move to 64-bit for Windows. NB: The following DACs are NOT yet supported on 64-bit: EasyLase, RIYA, OLSC, sound cards. Please stay on 1.9.10 if you use these DACs.

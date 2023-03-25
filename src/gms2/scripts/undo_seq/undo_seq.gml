@@ -371,6 +371,17 @@ function undo_seq() {
 			ds_list_add(redo_list, "q"+string(newlayer));
 			timeline_surf_length = 0;
 		}
+		else if (string_char_at(undo,0) == "g")
+	    {
+			// undo duplicate layer
+			undolisttemp = real(string_digits(undo));
+			if (!ds_list_exists(undolisttemp))
+	            exit;
+				
+			layertodelete = undolisttemp[| 0];
+			layer_delete_inner();
+			ds_list_add(redo_list, "g"+string(undolisttemp[| 1]));
+		}
 		else
 			exit;
     

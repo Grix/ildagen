@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "undo_seq",
+  "name": "layer_duplicate",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

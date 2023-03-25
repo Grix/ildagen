@@ -28,7 +28,7 @@ bld/
 
 
 gms2_2
-
+gms2_win32
 
 # Visual Studio 2015 cache/options directory
 .vs/

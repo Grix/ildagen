@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "undo_seq",
+  "name": "layer_delete_inner",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

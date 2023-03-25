@@ -369,6 +369,12 @@ function redo_seq() {
 			ds_list_add(undo_list, "q"+string(newlayer));
 			timeline_surf_length = 0;
 		}
+		else if (string_char_at(redo,0) == "g")
+	    {
+	        // redo duplicate layer
+	        selectedlayer = real(string_digits(redo));
+			layer_duplicate();
+		}
 		else
 			exit;
     
