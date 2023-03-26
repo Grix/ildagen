@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "dd_seq_addmarker",
+  "name": "add_timeline_jump_point",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "menu",
-    "path": "folders/Scripts/dropdown/dd_seq/menu.yy",
+    "name": "seq",
+    "path": "folders/Scripts/seq.yy",
   },
 }

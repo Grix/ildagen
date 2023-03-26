@@ -300,6 +300,13 @@ function process_dialog_seq() {
             
 	            break;
 	        }
+			
+	        case "clear_jump_points":
+	        {
+	            ds_list_clear(seqcontrol.jump_button_list);
+            
+	            break;
+	        }
             
 	        case "envelopedelete":
 	        {

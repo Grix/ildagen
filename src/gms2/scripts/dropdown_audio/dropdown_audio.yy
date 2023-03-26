@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "dd_seq_addmarker",
+  "name": "dropdown_audio",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "menu",
-    "path": "folders/Scripts/dropdown/dd_seq/menu.yy",
+    "name": "dd_seq",
+    "path": "folders/Scripts/dropdown/dd_seq.yy",
   },
 }

@@ -990,21 +990,7 @@ function handle_mousecontrol_seq() {
 	            controller.tooltip = "Click to create a new layer";
 	            if (mouse_check_button_pressed(mb_left))
 	            {
-	                newlayer = ds_list_create();
-	                ds_list_add(layer_list,newlayer);
-	                ds_list_add(newlayer,ds_list_create()); //envelope list
-	                ds_list_add(newlayer,ds_list_create()); //objects list
-	                ds_list_add(newlayer,0); 
-	                ds_list_add(newlayer,0);
-	                ds_list_add(newlayer,"Layer "+string(controller.el_id));
-	                controller.el_id++;
-	                ds_list_add(newlayer,ds_list_create()); //dac list
-					ds_list_add(newlayer,0); 
-	                ds_list_add(newlayer,0);
-					ds_list_add(newlayer,0); 
-	                ds_list_add(newlayer,0);
-					ds_list_add(undo_list, "q"+string(newlayer));
-					timeline_surf_length = 0;
+					add_layer();
 	            }
 	        }
 	        else
@@ -1388,7 +1374,12 @@ function handle_mousecontrol_seq() {
 	    controller.tooltip = "Click to set playback position. Hold ["+get_ctrl_string()+"] and drag mouse to scroll timeline.\nRight click to set custom audio analysis frequency thresholds.";
 		if (mouse_check_button_pressed(mb_right))
 		{
-			dropdown_audio_timeline();
+			tlpos = round(tlx+mouse_x/tlw*tlzoom)/projectfps*1000;
+			
+			if (mouse_y < tls)
+				dropdown_audio_timeline();
+			else
+				dropdown_timeline();
 		}
 	    if (mouse_check_button(mb_left) && !keyboard_check_control())
 	    {
