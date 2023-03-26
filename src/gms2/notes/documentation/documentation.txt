@@ -1,10 +1,5 @@
 TODO
-- fix canceling dialog of numeric input, actually sets the input to 1.
-- fix glitchy creation on timeline envelopes when using drop-down menu instead of ENV button
-- copy/paste layers (duplicate only maybe?)
 - undo setting of scope
-- remove resizing of projection mapping when dragging the blue rectangle towards the edges. Makes it too easy to accidentally make the projection window tiny.
-- length of item is not updated when sending/overwriting timeline line from editor mode
 - ability to select multiple items in editor by dragging mouse
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)
 - add duty cycle parameter to step function in editor mode
@@ -12,7 +7,6 @@ TODO
 - fix crash if scanning for lasercubes when they are already in use by another program like laseros (Not reproducible?)
 - update web
 - update linux (flatpak instead of zip?), and notify about dependecies such as the one for dialog module
-- add button for keyboard shortcuts to timeline mode to jump to positions.
 - add possibility for assigning different projectors to live modes files.
 - add possibility to show cursor in editor when laser is on.
 - add midi cc and nrpn

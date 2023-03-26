@@ -1,3 +1,11 @@
+v1.9.12
+- Add ability to easily duplicate whole timeline layers.
+- Fix issue that pressing "Cancel" on numeric input popups acted the same as pressing "Ok" with a value of 0.
+- Improved some context menus in the timeline mode with more features that previously only had keyboard shortcuts.
+- Fix issues when creating an envelope layer using the context menu instead of the ENV. button.
+- Fix length of object on timeline not being updated when overwriting it with a different animation from the editor mode.
+- Minor improvements on the projection window settings UI.
+
 v1.9.11
 - Fix macOS bug that makes program unresponsive when trying to open/save files.
 - Change the editor mode animation function "reverse" option actually be the inverse rather than reverse.

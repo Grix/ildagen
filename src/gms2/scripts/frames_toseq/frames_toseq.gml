@@ -120,6 +120,8 @@ function frames_toseq() {
 	        var infolist = ds_list_find_value(objectlist,2);
 	        if (surface_exists(ds_list_find_value(infolist,1)))
 	            surface_free(ds_list_find_value(infolist,1));
+			if (infolist[| 0] == infolist[| 2]-1)
+				ds_list_replace(infolist, 0, controller.maxframes-1);
 	        ds_list_replace(infolist,1,-1);
 	        ds_list_replace(infolist,2,controller.maxframes);
 			if (ds_list_exists(infolist[| 3]))
