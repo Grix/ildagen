@@ -4,7 +4,10 @@ function update_check() {
 	log("Checking for updates")
 	updatereceived = 0;
 
-	ini_filename = "settings.ini";
+	if (os_type != os_linux)
+		ini_filename = "settings.ini";
+	else
+		ini_filename = game_save_id + "settings.ini";
 	if (file_exists(ini_filename))
 	{
 	    ini_open(ini_filename);
@@ -19,7 +22,10 @@ function update_check() {
 	{
 	    //ilda_dialog_yesno("update","Would you like to enable automatic checking for updates? (Requires internet connection)");
 	    updatecheckenabled = true;
-	    ini_filename = "settings.ini";
+	    	if (os_type != os_linux)
+			ini_filename = "settings.ini";
+		else
+			ini_filename = game_save_id + "settings.ini";
 	    ini_open(ini_filename);
 	    ini_write_real("main","updatecheck",updatecheckenabled);
 	    ini_close();

@@ -25,7 +25,7 @@ bld/
 *.zip
 *.7z
 *.dmg
-
+*.AppImage
 
 gms2_2
 gms2_win32

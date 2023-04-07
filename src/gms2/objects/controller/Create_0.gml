@@ -24,6 +24,7 @@ else
 {
 	FStemp+="temp/"; //sometimes fails when linux? todo hardcode ~/.config/LaserShowGen/temp/
 }
+
 if (os_browser == browser_not_a_browser)
 {
     if (directory_exists("temp"))
@@ -34,8 +35,16 @@ if (os_browser == browser_not_a_browser)
 var t_dir = "";
 //if (os_type == os_macosx)
 //	t_dir = "datafiles/"
-if (!file_exists(t_dir+"settings.ini") && !file_exists("settings.ini"))
-	file_copy(t_dir+"settings_default.ini", "settings.ini");
+if (os_type != os_linux)
+{
+	if (!file_exists(t_dir+"settings.ini") && !file_exists("settings.ini"))
+		file_copy(t_dir+"settings_default.ini", "settings.ini");
+}
+else
+{
+	if (!file_exists(game_save_id + "settings.ini"))
+		file_copy("settings_default.ini", game_save_id + "settings.ini");
+}
 
 log("save location:",FStemp);
 
@@ -200,7 +209,10 @@ tlw = 512;
 tlh = 42;
 tlorigo_x = 0;
 tlorigo_y = 515;
-ini_open("settings.ini");
+if (os_type != os_linux)
+	ini_open("settings.ini");
+else
+	ini_open(game_save_id + "settings.ini");
 dpi_scaling = ini_read_real("main", "dpi_scaling_override", 0);
 if (dpi_scaling == 0 || dpi_scaling == -1)
 	dpi_multiplier = clamp(min( ceil(display_get_height()/(735*2.05)), ceil(display_get_width()/(1350*2)) ),1,3);

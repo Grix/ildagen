@@ -3,7 +3,10 @@ function save_settings() {
 
 	with (controller)
 	{
-	    ini_open("settings.ini");
+	    if (os_type != os_linux)
+			ini_open("settings.ini");
+		else
+			ini_open(game_save_id + "settings.ini");
     
 	        ini_write_real("main", "projector", projector);
 	        ini_write_real("main", "show_tooltip", show_tooltip);

@@ -6,9 +6,12 @@ for (var t_i = 0; t_i < ds_list_size(controller.quicktip_closed_list); t_i++)
 }
 
 var t_close = false;
-ini_open("settings.ini");
-	if (ini_read_real("quicktips", "tip_viewed_"+string(tip_id), 0))
-		t_close = true;
+if (os_type != os_linux)
+	ini_open("settings.ini");
+else
+	ini_open(game_save_id + "settings.ini");
+if (ini_read_real("quicktips", "tip_viewed_"+string(tip_id), 0))
+	t_close = true;
 ini_close();
 
 if (t_close)

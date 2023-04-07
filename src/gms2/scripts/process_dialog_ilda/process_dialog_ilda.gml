@@ -24,7 +24,10 @@ function process_dialog_ilda() {
 	    /*if (dialog == "update")
 	    {
 	        updatecheckenabled = ds_map_find_value(argument[0], "status");
-	        ini_filename = "settings.ini";
+	        if (os_type != os_linux)
+				ini_filename = "settings.ini";
+			else
+				ini_filename = game_save_id + "settings.ini";
 	        ini_open(ini_filename);
 	        ini_write_real("main","updatecheck",updatecheckenabled);
 	        ini_close();
@@ -53,17 +56,20 @@ function process_dialog_ilda() {
                 
 	                if (ds_list_size(profile_list) == 0)
 	                {
-	                    ini_open("settings.ini");
-	                        num = 0;
-	                        while (1)
-	                        {
-	                            var t_projectorstring = "projector_"+string(num);
-	                            if (ini_section_exists(t_projectorstring))
-	                                ini_section_delete(t_projectorstring);
-	                            else
-	                                break;
-	                            num++;
-	                        }
+		                if (os_type != os_linux)
+							ini_open("settings.ini");
+						else
+							ini_open(game_save_id + "settings.ini");
+	                    num = 0;
+	                    while (1)
+	                    {
+	                        var t_projectorstring = "projector_"+string(num);
+	                        if (ini_section_exists(t_projectorstring))
+	                            ini_section_delete(t_projectorstring);
+	                        else
+	                            break;
+	                        num++;
+	                    }
 	                    ini_close();
 	                    load_settings();
 	                }
@@ -783,7 +789,10 @@ function process_dialog_ilda() {
 	            case ("serial"):
 	            {
 	                serial = ds_map_find_value(argument[0], "result");
-	                controller.serialfile = file_text_open_write("serial");
+					if (os_type != os_linux)
+						controller.serialfile = file_text_open_write("serial");
+					else
+						controller.serialfile = file_text_open_write(game_save_id + "serial");
 	                file_text_write_string(controller.serialfile,string_lettersdigits(controller.serial));
 	                file_text_close(controller.serialfile);
 	                verify_serial(true);

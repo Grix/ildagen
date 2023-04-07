@@ -23,7 +23,10 @@ if (value < 0)
 if (value > 3)
 	value = 3;
 	
-ini_open("settings.ini");
+if (os_type != os_linux)
+	ini_open("settings.ini");
+else
+	ini_open(game_save_id + "settings.ini");
 ini_write_real("main", "dpi_scaling_override", value);
 ini_close();
 

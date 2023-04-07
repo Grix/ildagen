@@ -14,7 +14,10 @@ else if (mouse_x == clamp(mouse_x, button_x1, button_x2) && mouse_y == clamp(mou
 	controller.tooltip = ".";
 	if (mouse_check_button(mb_left))
 	{
-		ini_open("settings.ini");
+		if (os_type != os_linux)
+			ini_open("settings.ini");
+		else
+			ini_open(game_save_id + "settings.ini");
 		ini_write_real("quicktips", "tip_viewed_"+string(tip_id), 1);
 		ini_close();
 		ds_list_add(controller.quicktip_closed_list, tip_id);

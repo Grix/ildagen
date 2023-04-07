@@ -3,7 +3,7 @@
   "resourceVersion": "1.0",
   "name": "Linux",
   "option_linux_display_name": "LaserShowGen",
-  "option_linux_version": "1.9.10",
+  "option_linux_version": "1.9.12",
   "option_linux_maintainer_email": "gitle@bitlasers.com",
   "option_linux_homepage": "https://bitlasers.com/lasershowgen-sw/",
   "option_linux_short_desc": "LaserShowGen",

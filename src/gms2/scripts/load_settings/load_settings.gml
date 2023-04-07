@@ -1,9 +1,12 @@
 function load_settings() {
 	with (controller)
 	{
-	    ini_open("settings.ini");
+	    if (os_type != os_linux)
+			ini_open("settings.ini");
+		else
+			ini_open(game_save_id + "settings.ini");
     
-	        if (!ini_section_exists("projector_0"))
+			if (!ini_section_exists("projector_0"))
 	        {
 	            ini_write_string("projector_0", "name", "default");
 	            ini_write_real("projector_0", "scanrate", 20000);
