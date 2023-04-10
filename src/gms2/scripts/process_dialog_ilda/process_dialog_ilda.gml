@@ -109,7 +109,7 @@ function process_dialog_ilda() {
 					else if (os_type == os_macosx)
 						url_open("https://github.com/Grix/ildagen/releases/download/v"+versionnew+"/LaserShowGen-"+versionnew+"-Mac.dmg");
 					else if (os_type == os_linux)
-						url_open("https://github.com/Grix/ildagen/releases/download/v"+versionnew+"/LaserShowGen-"+versionnew+"-Linux.zip");
+						url_open("https://github.com/Grix/ildagen/releases/download/v"+versionnew+"/LaserShowGen-"+versionnew+"-Linux.AppImage");
 				
 	                break;
 	            }    
