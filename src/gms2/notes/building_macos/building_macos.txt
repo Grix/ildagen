@@ -32,7 +32,9 @@ spctl -a -vv /Applications/MyApp.app
 
 ON NEW MAC:
 Install xcode
-Open xcode settings, add apple developer account. generate developer ID certificate
+Open xcode settings, add apple developer account. generate developer ID application certificate
 Follow gms setting up for mac guide
 Open apple developer website, add provision for new mac under "devices" page
 On website, add new profile for developer id signature, download to mac and import to xcode when exporting archived build
+
+If in trouble, use mac gamemaker IDE instead of remote via windows IDE.
