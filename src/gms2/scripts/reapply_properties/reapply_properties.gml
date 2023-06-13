@@ -535,16 +535,16 @@ function reapply_properties() {
 	                //blending
 	                if (color_blendmode == 1)
 	                {
-	                    cr = clamp(colour_get_red(ds_list_find_value(new_list,listpos+3))   +colour_get_red(c),0,255);
-	                    cg = clamp(colour_get_green(ds_list_find_value(new_list,listpos+3)) +colour_get_green(c),0,255);
-	                    cb = clamp(colour_get_blue(ds_list_find_value(new_list,listpos+3))  +colour_get_blue(c),0,255);
+	                    cr = clamp(color_get_red(ds_list_find_value(new_list,listpos+3))   +color_get_red(c),0,255);
+	                    cg = clamp(color_get_green(ds_list_find_value(new_list,listpos+3)) +color_get_green(c),0,255);
+	                    cb = clamp(color_get_blue(ds_list_find_value(new_list,listpos+3))  +color_get_blue(c),0,255);
 	                    c = make_colour_rgb(cr,cg,cb);
 	                }
 	                else if (color_blendmode == 2)
 	                {
-	                    cr = clamp(colour_get_red(ds_list_find_value(new_list,listpos+3))   -colour_get_red(c),0,255);
-	                    cg = clamp(colour_get_green(ds_list_find_value(new_list,listpos+3)) -colour_get_green(c),0,255);
-	                    cb = clamp(colour_get_blue(ds_list_find_value(new_list,listpos+3))  -colour_get_blue(c),0,255);
+	                    cr = clamp(color_get_red(ds_list_find_value(new_list,listpos+3))   -color_get_red(c),0,255);
+	                    cg = clamp(color_get_green(ds_list_find_value(new_list,listpos+3)) -color_get_green(c),0,255);
+	                    cb = clamp(color_get_blue(ds_list_find_value(new_list,listpos+3))  -color_get_blue(c),0,255);
 	                    c = make_colour_rgb(cr,cg,cb);
 	                }
                 

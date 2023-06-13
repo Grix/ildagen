@@ -1,5 +1,5 @@
 function dd_ilda_maxframes() {
-	ilda_dialog_num("maxframes","Enter the new number of total frames in the animation (will pad or cut off the end)",controller.maxframes);
+	ilda_dialog_num("maxframes","Enter the new number of total frames in the animation (will pad or cut off the end). Warning: Cannot be undone automatically.",controller.maxframes);
 
 
 

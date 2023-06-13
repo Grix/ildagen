@@ -17,6 +17,7 @@
   "iosProps": true,
   "tvosProps": false,
   "androidProps": true,
+  "html5Props": false,
   "installdir": "",
   "files": [
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","filename":"file_dropper.dll","origname":"extensions\\file_dropper.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[
@@ -49,6 +50,7 @@
         {"name":"file_dropper_init","path":"extensions/file_dropper/file_dropper.yy",},
       ],},
   ],
+  "HTML5CodeInjection": "",
   "classname": "",
   "tvosclassname": "",
   "tvosdelegatename": "",

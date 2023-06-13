@@ -48,7 +48,7 @@ else
 
 log("save location:",FStemp);
 
-file_dropper_init();
+file_dropper_init();  // Causes problems in HTML5 export
 
 // Dialog module settings, causes crash?
 //widget_set_caption("LaserShowGen");
@@ -429,7 +429,7 @@ telem();
 //file_text_close(t_resolution_log);
 
 //ex_patch_window_close_capture(1);
-window_command_hook(window_command_close);
+window_command_hook(window_command_close);  // Causes problems in HTML5 export
 
 if (!debug_mode)
 {

@@ -1,5 +1,5 @@
 function dd_ilda_maxframes_stretch() {
-	ilda_dialog_num("maxframes_stretch","Enter the new number of total frames in the animation (will stretch the current animation to fit).",controller.maxframes);
+	ilda_dialog_num("maxframes_stretch","Enter the new number of total frames in the animation (will stretch the current animation to fit). Warning: Cannot be undone automatically.",controller.maxframes);
 
 
 

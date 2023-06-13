@@ -33,7 +33,7 @@ if (view_current == 4)
 		
 		draw_set_alpha(0.8);
 	    draw_set_color(c_ltgray);
-	    draw_text_transformed(12,view_hport[4]-20*controller.dpi_multiplier,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1),controller.dpi_multiplier, controller.dpi_multiplier, 0);
+	    draw_text_transformed(12,view_hport[4]-20*controller.dpi_multiplier,"Frame: "+string(frameprev-startframe+1)+" / "+string(endframe-startframe+1),controller.dpi_multiplier, controller.dpi_multiplier, 0);
 		draw_text_transformed(300,view_hport[4]-20*controller.dpi_multiplier,"FPS: "+string(projectfps/controller.fpsmultiplier),controller.dpi_multiplier, controller.dpi_multiplier, 0);
     
 		if (playing && (fps != projectfps/controller.fpsmultiplier) && controller.laseron)
@@ -52,7 +52,7 @@ if (view_current == 4)
 			
 		draw_set_alpha(0.8);
 	    draw_set_color(c_ltgray);
-	    draw_text_transformed(12,7+16,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1),controller.dpi_multiplier, controller.dpi_multiplier, 0);
+	    draw_text_transformed(12,7+16,"Frame: "+string(frameprev-startframe+1)+" / "+string(endframe-startframe+1),controller.dpi_multiplier, controller.dpi_multiplier, 0);
 		draw_text_transformed(300,7+16,"FPS: "+string(projectfps/controller.fpsmultiplier),controller.dpi_multiplier, controller.dpi_multiplier, 0);
     
 		if (playing && (fps != projectfps/controller.fpsmultiplier) && controller.laseron)
@@ -79,7 +79,7 @@ if (view_current == 4)
 			
 		draw_set_alpha(0.8);
 	    draw_set_color(c_ltgray);
-	    draw_text_transformed(12,view_hport[4]-20*controller.dpi_multiplier,"Frame: "+string(frameprev-startframe+1)+"/"+string(endframe-startframe+1),controller.dpi_multiplier, controller.dpi_multiplier, 0);
+	    draw_text_transformed(12,view_hport[4]-20*controller.dpi_multiplier,"Frame: "+string(frameprev-startframe+1)+" / "+string(endframe-startframe+1),controller.dpi_multiplier, controller.dpi_multiplier, 0);
 		draw_text_transformed(300,view_hport[4]-20*controller.dpi_multiplier,"FPS: "+string(projectfps/controller.fpsmultiplier),controller.dpi_multiplier, controller.dpi_multiplier, 0);
 		
 		if (playing && (fps != projectfps/controller.fpsmultiplier) && controller.laseron)

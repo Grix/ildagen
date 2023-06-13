@@ -89,12 +89,12 @@ function func_startofframe_blank() {
 	    ML_VM_SetVarReal(parser_cb,"frame",t);
 	    ML_VM_SetVarReal(parser_cb,"anchorx",anchorx);
 	    ML_VM_SetVarReal(parser_cb,"anchory",anchory);
-	    ML_VM_SetVarReal(parser_cb,"pri_red",colour_get_red(color1_r));
-	    ML_VM_SetVarReal(parser_cb,"pri_green",colour_get_green(color1_r));
-	    ML_VM_SetVarReal(parser_cb,"pri_blue",colour_get_blue(color1_r));
-	    ML_VM_SetVarReal(parser_cb,"sec_red",colour_get_red(color2_r));
-	    ML_VM_SetVarReal(parser_cb,"sec_green",colour_get_green(color2_r));
-	    ML_VM_SetVarReal(parser_cb,"sec_blue",colour_get_blue(color2_r));
+	    ML_VM_SetVarReal(parser_cb,"pri_red",color_get_red(color1_r));
+	    ML_VM_SetVarReal(parser_cb,"pri_green",color_get_green(color1_r));
+	    ML_VM_SetVarReal(parser_cb,"pri_blue",color_get_blue(color1_r));
+	    ML_VM_SetVarReal(parser_cb,"sec_red",color_get_red(color2_r));
+	    ML_VM_SetVarReal(parser_cb,"sec_green",color_get_green(color2_r));
+	    ML_VM_SetVarReal(parser_cb,"sec_blue",color_get_blue(color2_r));
 		ML_VM_SetVarReal(parser_shape,"audio_loudness", func_audioloudness/7000);
 	}
 

@@ -141,23 +141,23 @@ function export_project_work() {
 	                    if (env_r)
 	                    {
 	                        c = ds_list_find_value(ind_list,ds_list_size(ind_list)-1);
-	                        ds_list_replace(ind_list,ds_list_size(ind_list)-1,make_colour_rgb(  colour_get_red(c)*env_r_val,
-	                                                                                            colour_get_green(c),
-	                                                                                            colour_get_blue(c)));
+	                        ds_list_replace(ind_list,ds_list_size(ind_list)-1,make_colour_rgb(  color_get_red(c)*env_r_val,
+	                                                                                            color_get_green(c),
+	                                                                                            color_get_blue(c)));
 	                    }
 	                    if (env_g)
 	                    {
 	                        c = ds_list_find_value(ind_list,ds_list_size(ind_list)-1);
-	                        ds_list_replace(ind_list,ds_list_size(ind_list)-1,make_colour_rgb(  colour_get_red(c),
-	                                                                                            colour_get_green(c)*env_g_val,
-	                                                                                            colour_get_blue(c)));
+	                        ds_list_replace(ind_list,ds_list_size(ind_list)-1,make_colour_rgb(  color_get_red(c),
+	                                                                                            color_get_green(c)*env_g_val,
+	                                                                                            color_get_blue(c)));
 	                    }
 	                    if (env_b)
 	                    {
 	                        c = ds_list_find_value(ind_list,ds_list_size(ind_list)-1);
-	                        ds_list_replace(ind_list,ds_list_size(ind_list)-1,make_colour_rgb(  colour_get_red(c),
-	                                                                                            colour_get_green(c),
-	                                                                                            colour_get_blue(c)*env_b_val));
+	                        ds_list_replace(ind_list,ds_list_size(ind_list)-1,make_colour_rgb(  color_get_red(c),
+	                                                                                            color_get_green(c),
+	                                                                                            color_get_blue(c)*env_b_val));
 	                    }
 						if (env_rotabs)
 		                {

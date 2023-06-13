@@ -153,6 +153,8 @@ function undo_ilda() {
 		            var t_frame = ds_list_find_value(list,ds_list_size(list)-1);
 		            ds_list_delete(list,ds_list_size(list)-1);
 		            var t_el_list = ds_list_find_value(frame_list,t_frame);
+					if (!ds_list_exists(t_el_list))
+						continue;
 		            ds_list_add(t_el_list,list);
 					
 					if (list[| 9] != tempelid)

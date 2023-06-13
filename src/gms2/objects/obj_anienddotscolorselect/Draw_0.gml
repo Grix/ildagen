@@ -7,9 +7,9 @@ draw_self();
 if (moving)
 {
     activecolor = controller.anienddotscolor;
-    redy = round(y+23-(colour_get_red(activecolor)/255*23));
-    greeny = round(y+23-(colour_get_green(activecolor)/255*23));
-    bluey = round(y+23-(colour_get_blue(activecolor)/255*23));
+    redy = round(y+23-(color_get_red(activecolor)/255*23));
+    greeny = round(y+23-(color_get_green(activecolor)/255*23));
+    bluey = round(y+23-(color_get_blue(activecolor)/255*23));
 }
 draw_sprite(spr_anicolorselectred,(moving == 1),redx,redy);
 draw_sprite(spr_anicolorselectgreen,(moving == 2),greenx,greeny);

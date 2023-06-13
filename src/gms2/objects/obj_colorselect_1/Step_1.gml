@@ -34,16 +34,16 @@ else
     if (moving == 1) or ((moving) and keyboard_check_control())
     {
 		red = clamp(255 - (mouse_y-bbox_top)/25*255, 0, 255);
-        controller.color1 = make_colour_rgb(red,colour_get_green(controller.color1),colour_get_blue(controller.color1));
+        controller.color1 = make_colour_rgb(red,color_get_green(controller.color1),color_get_blue(controller.color1));
     }
     if (moving == 2) or ((moving) and keyboard_check_control())
     {
         green = clamp(255 - (mouse_y-bbox_top)/25*255, 0, 255);
-        controller.color1 = make_colour_rgb(colour_get_red(controller.color1),green,colour_get_blue(controller.color1));
+        controller.color1 = make_colour_rgb(color_get_red(controller.color1),green,color_get_blue(controller.color1));
     }
     if (moving == 3) or ((moving) and keyboard_check_control())
     {
         blue = clamp(255 - (mouse_y-bbox_top)/25*255, 0, 255);
-        controller.color1 = make_colour_rgb(colour_get_red(controller.color1),colour_get_green(controller.color1),blue);
+        controller.color1 = make_colour_rgb(color_get_red(controller.color1),color_get_green(controller.color1),blue);
     }
 }

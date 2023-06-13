@@ -283,36 +283,36 @@ function process_dialog_ilda() {
 	              //COLOR
 	            case "c1r":
 	          {
-	              color1 = make_colour_rgb(clamp(ds_map_find_value(argument[0], "value"),0,255),colour_get_green(color1),colour_get_blue(color1));
+	              color1 = make_colour_rgb(clamp(ds_map_find_value(argument[0], "value"),0,255),color_get_green(color1),color_get_blue(color1));
 	              break;
 	          }
 	            case "c1g":
 	          {
-	              color1 = make_colour_rgb(colour_get_red(color1),clamp(ds_map_find_value(argument[0], "value"),0,255),colour_get_blue(color1));
+	              color1 = make_colour_rgb(color_get_red(color1),clamp(ds_map_find_value(argument[0], "value"),0,255),color_get_blue(color1));
               
 	              break;
 	          }
 	            case "c1b":
 	          {
-	              color1 = make_colour_rgb(colour_get_red(color1),colour_get_green(color1),clamp(ds_map_find_value(argument[0], "value"),0,255));
+	              color1 = make_colour_rgb(color_get_red(color1),color_get_green(color1),clamp(ds_map_find_value(argument[0], "value"),0,255));
               
 	              break;
 	          }
 	            case "c2r":
 	          {
-	              color2 = make_colour_rgb(clamp(ds_map_find_value(argument[0], "value"),0,255),colour_get_green(color2),colour_get_blue(color2));
+	              color2 = make_colour_rgb(clamp(ds_map_find_value(argument[0], "value"),0,255),color_get_green(color2),color_get_blue(color2));
               
 	              break;
 	          }
 	            case "c2g":
 	          {
-	              color2 = make_colour_rgb(colour_get_red(color2),clamp(ds_map_find_value(argument[0], "value"),0,255),colour_get_blue(color2));
+	              color2 = make_colour_rgb(color_get_red(color2),clamp(ds_map_find_value(argument[0], "value"),0,255),color_get_blue(color2));
               
 	              break;
 	          }
 	            case "c2b":
 	          {
-	              color2 = make_colour_rgb(colour_get_red(color2),colour_get_green(color2),clamp(ds_map_find_value(argument[0], "value"),0,255));
+	              color2 = make_colour_rgb(color_get_red(color2),color_get_green(color2),clamp(ds_map_find_value(argument[0], "value"),0,255));
               
 	              break;
 	          }
@@ -372,74 +372,74 @@ function process_dialog_ilda() {
 	          }
 	            case "c3r":
 	          {
-	              enddotscolor = make_colour_rgb(clamp(ds_map_find_value(argument[0], "value"),0,255),colour_get_green(enddotscolor),colour_get_blue(enddotscolor));
+	              enddotscolor = make_colour_rgb(clamp(ds_map_find_value(argument[0], "value"),0,255),color_get_green(enddotscolor),color_get_blue(enddotscolor));
               
 	              break;
 	          }
 	            case "c3g":
 	          {
-	              enddotscolor = make_colour_rgb(colour_get_red(enddotscolor),clamp(ds_map_find_value(argument[0], "value"),0,255),colour_get_blue(enddotscolor));
+	              enddotscolor = make_colour_rgb(color_get_red(enddotscolor),clamp(ds_map_find_value(argument[0], "value"),0,255),color_get_blue(enddotscolor));
               
 	              break;
 	          }
 	            case "c3b":
 	          {
-	              enddotscolor = make_colour_rgb(colour_get_red(enddotscolor),colour_get_green(enddotscolor),clamp(ds_map_find_value(argument[0], "value"),0,255));
+	              enddotscolor = make_colour_rgb(color_get_red(enddotscolor),color_get_green(enddotscolor),clamp(ds_map_find_value(argument[0], "value"),0,255));
               
 	              break;
 	          }
 	              //ANI COLOR
 	            case "ac1r":
 	          {
-	              anicolor1 = make_colour_rgb(clamp(ds_map_find_value(argument[0], "value"),0,255),colour_get_green(anicolor1),colour_get_blue(anicolor1));
+	              anicolor1 = make_colour_rgb(clamp(ds_map_find_value(argument[0], "value"),0,255),color_get_green(anicolor1),color_get_blue(anicolor1));
               
 	              break;
 	          }
 	            case "ac1g":
 	          {
-	              anicolor1 = make_colour_rgb(colour_get_red(anicolor1),clamp(ds_map_find_value(argument[0], "value"),0,255),colour_get_blue(anicolor1));
+	              anicolor1 = make_colour_rgb(color_get_red(anicolor1),clamp(ds_map_find_value(argument[0], "value"),0,255),color_get_blue(anicolor1));
               
 	              break;
 	          }
 	            case "ac1b":
 	          {
-	              anicolor1 = make_colour_rgb(colour_get_red(anicolor1),colour_get_green(anicolor1),clamp(ds_map_find_value(argument[0], "value"),0,255));
+	              anicolor1 = make_colour_rgb(color_get_red(anicolor1),color_get_green(anicolor1),clamp(ds_map_find_value(argument[0], "value"),0,255));
               
 	              break;
 	          }
 	            case "ac2r":
 	          {
-	              anicolor2 = make_colour_rgb(clamp(ds_map_find_value(argument[0], "value"),0,255),colour_get_green(anicolor2),colour_get_blue(anicolor2));
+	              anicolor2 = make_colour_rgb(clamp(ds_map_find_value(argument[0], "value"),0,255),color_get_green(anicolor2),color_get_blue(anicolor2));
               
 	              break;
 	          }
 	            case "ac2g":
 	          {
-	              anicolor2 = make_colour_rgb(colour_get_red(anicolor2),clamp(ds_map_find_value(argument[0], "value"),0,255),colour_get_blue(anicolor2));
+	              anicolor2 = make_colour_rgb(color_get_red(anicolor2),clamp(ds_map_find_value(argument[0], "value"),0,255),color_get_blue(anicolor2));
               
 	              break;
 	          }
 	            case "ac2b":
 	          {
-	              anicolor2 = make_colour_rgb(colour_get_red(anicolor2),colour_get_green(anicolor2),clamp(ds_map_find_value(argument[0], "value"),0,255));
+	              anicolor2 = make_colour_rgb(color_get_red(anicolor2),color_get_green(anicolor2),clamp(ds_map_find_value(argument[0], "value"),0,255));
               
 	              break;
 	          }
 	            case "ac3r":
 	          {
-	              anienddotscolor = make_colour_rgb(clamp(ds_map_find_value(argument[0], "value"),0,255),colour_get_green(anienddotscolor),colour_get_blue(anienddotscolor));
+	              anienddotscolor = make_colour_rgb(clamp(ds_map_find_value(argument[0], "value"),0,255),color_get_green(anienddotscolor),color_get_blue(anienddotscolor));
               
 	              break;
 	          }
 	            case "ac3g":
 	          {
-	              anienddotscolor = make_colour_rgb(colour_get_red(anienddotscolor),clamp(ds_map_find_value(argument[0], "value"),0,255),colour_get_blue(anienddotscolor));
+	              anienddotscolor = make_colour_rgb(color_get_red(anienddotscolor),clamp(ds_map_find_value(argument[0], "value"),0,255),color_get_blue(anienddotscolor));
               
 	              break;
 	          }
 	            case "ac3b":
 	          {
-	              anienddotscolor = make_colour_rgb(colour_get_red(anienddotscolor),colour_get_green(anienddotscolor),clamp(ds_map_find_value(argument[0], "value"),0,255));
+	              anienddotscolor = make_colour_rgb(color_get_red(anienddotscolor),color_get_green(anienddotscolor),clamp(ds_map_find_value(argument[0], "value"),0,255));
               
 	              break;
 	          }

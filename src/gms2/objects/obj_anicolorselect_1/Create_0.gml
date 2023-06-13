@@ -2,9 +2,11 @@ image_speed = 0;
 moving = 0;
 
 activecolor = controller.anicolor1;
-redy = y+23-(colour_get_red(activecolor)/255*23);
-greeny = y+23-(colour_get_green(activecolor)/255*23);
-bluey = y+23-(colour_get_blue(activecolor)/255*23);
+if (is_undefined(activecolor))
+	activecolor = c_white;
+redy = y+23-(color_get_red(activecolor)/255*23);
+greeny = y+23-(color_get_green(activecolor)/255*23);
+bluey = y+23-(color_get_blue(activecolor)/255*23);
 
 redx = x;
 greenx = x+16;

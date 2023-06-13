@@ -2,6 +2,8 @@ TODO
 - undo setting of scope
 - ability to select multiple items in editor by dragging mouse
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)
+- naming of tiles in Live mode.
+- rearranging of tiles in Live Mode.
 - add backup saving to background, asking to restore if program didn't shut down correctly
 - fix crash if scanning for lasercubes when they are already in use by another program like laseros (Not reproducible?)
 - update web
