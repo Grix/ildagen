@@ -1,5 +1,6 @@
 TODO
 - undo setting of scope
+- add "send to timeline" button to live mode
 - ability to select multiple items in editor by dragging mouse
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)
 - naming of tiles in Live mode.
