@@ -169,6 +169,12 @@ filelist
 		is_exclusive
 		is_resuming (instead of restarting on play)
 		is_hold (hold to play instead of push toggle) (=2 if clicked this frame)
+		name
+		dac_list (not used yet)
+            dacs...
+                num (index in dac_list)
+                name
+                profile name
 		
 		
 Fonts

@@ -1,5 +1,5 @@
 function load_live_project_work() {
-	if (idbyte == 200 || idbyte == 201)
+	if (idbyte == 200 || idbyte == 201 || idbyte == 202)
 	{
 	    for (j = global.loading_current; j < global.loading_end;j++)
 	    {
@@ -30,7 +30,7 @@ function load_live_project_work() {
 	        ds_list_add(objectlist,round(buffer_read(load_buffer,buffer_u32)));
 			ds_list_add(objectlist,buffer_read(load_buffer,buffer_bool));
 		
-			if (idbyte == 201)
+			if (idbyte >= 201)
 			{
 				ds_list_add(objectlist,buffer_read(load_buffer,buffer_bool));
 				ds_list_add(objectlist,buffer_read(load_buffer,buffer_bool));
@@ -47,6 +47,28 @@ function load_live_project_work() {
 				ds_list_add(objectlist,0);
 				ds_list_add(objectlist,0);
 				ds_list_add(objectlist,0);
+			}
+			
+			if (idbyte >= 202)
+			{
+				ds_list_add(objectlist,buffer_read(load_buffer,buffer_string));
+				
+				var t_daclist = ds_list_create();
+	            ds_list_add(objectlist, t_daclist);
+	            numofdacs = buffer_read(load_buffer,buffer_u8);
+	            repeat (numofdacs)
+	            {
+	                var t_thisdaclist = ds_list_create();
+	                ds_list_add(t_daclist, t_thisdaclist);
+	                ds_list_add(t_thisdaclist, -1);
+	                ds_list_add(t_thisdaclist, buffer_read(load_buffer,buffer_string));
+	                ds_list_add(t_thisdaclist, buffer_read(load_buffer,buffer_string));
+	            }
+			}
+			else
+			{
+				ds_list_add(objectlist,"");
+				ds_list_add(objectlist,ds_list_create());
 			}
 		
 			ds_list_add(filelist, objectlist);

@@ -77,6 +77,8 @@ function frames_tolive() {
 		ds_list_add(objectlist,0);
 		ds_list_add(objectlist,0);
 		ds_list_add(objectlist,0);
+		ds_list_add(objectlist,"");
+		ds_list_add(objectlist,ds_list_create());
 	
 	    ds_list_add(filelist,objectlist);
 	

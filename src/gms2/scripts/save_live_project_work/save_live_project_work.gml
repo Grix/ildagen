@@ -46,6 +46,15 @@ function save_live_project_work() {
 		buffer_write(save_buffer, buffer_u32, 0);
 		buffer_write(save_buffer, buffer_u32, 0);
 		buffer_write(save_buffer, buffer_u32, 0);
+		buffer_write(save_buffer, buffer_string, objectlist[| 8]);
+		var t_thisdaclist = objectlist[| 9];
+	    buffer_write(save_buffer,buffer_u8,ds_list_size(t_thisdaclist));
+	    for (k = 0; k < ds_list_size(t_thisdaclist); k++)
+	    {
+	        var t_thisdac = t_thisdaclist[| k];
+	        buffer_write(save_buffer, buffer_string, string(t_thisdac[| 1])); //dac name
+	        buffer_write(save_buffer, buffer_string, string(t_thisdac[| 2])); //profile name
+	    }
 	}
     
 	buffer_resize(save_buffer,buffer_tell(save_buffer));

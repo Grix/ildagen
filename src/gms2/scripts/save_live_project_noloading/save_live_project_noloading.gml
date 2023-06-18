@@ -25,7 +25,7 @@ function save_live_project_noloading() {
 	global.loading_end = ds_list_size(filelist);
 	global.loading_current = global.loading_start;
     
-	buffer_write(save_buffer,buffer_u8,201); //version / ID
+	buffer_write(save_buffer,buffer_u8,202); //version / ID
 	buffer_write(save_buffer,buffer_u8,controller.projectfps); //fps
 	buffer_write(save_buffer,buffer_u8,0);
 	buffer_write(save_buffer,buffer_u8,0);

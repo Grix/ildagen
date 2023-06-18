@@ -1,6 +1,7 @@
 function draw_browser_grid() {
 	draw_set_alpha(1);
 	draw_set_color(c_black);
+	draw_set_font(fnt_bold);
 	draw_surface_part(browser_surf, 0, scrollbary, camera_get_view_width(view_camera[1]), camera_get_view_height(view_camera[1]), camera_get_view_x(view_camera[1]), camera_get_view_y(view_camera[1]));
 
 	var t_width = max(1, camera_get_view_width(view_camera[1])-scrollbarwidth+1);
@@ -35,19 +36,19 @@ function draw_browser_grid() {
 		
 		if (objectlist[| 4])
 		{
-			draw_sprite(spr_loop, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32);
+			draw_sprite(spr_loop, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+35);
 		}
 		if (objectlist[| 5])
 		{
-			draw_sprite(spr_exclusive, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32+16);
+			draw_sprite(spr_exclusive, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+35+16);
 		}
 		if (objectlist[| 6])
 		{
-			draw_sprite(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32+32);
+			draw_sprite(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+35+32);
 		}
 		if (objectlist[| 7])
 		{
-			draw_sprite(spr_hold, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+32+48);
+			draw_sprite(spr_hold, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+35+48);
 		}
 		
 		// timeline
@@ -76,6 +77,14 @@ function draw_browser_grid() {
 			draw_set_color(c_white);
 			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+3, chr(objectlist[| 3]));
 		}
+		
+		if (objectlist[| 8] != "")
+		{
+			draw_set_color(c_white);
+			draw_set_halign(fa_right);
+			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+19, objectlist[| 8]);
+			draw_set_halign(fa_left);
+		}
 	}
 
 	// scrollbar
@@ -98,5 +107,6 @@ function draw_browser_grid() {
 
 	gpu_set_blendenable(true);
 
+	draw_set_font(fnt_tooltip);
 
 }

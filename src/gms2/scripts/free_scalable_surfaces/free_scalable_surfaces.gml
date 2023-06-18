@@ -34,7 +34,10 @@ function free_scalable_surfaces() {
 			objectlist = filelist[| i];
 			var t_infolist = objectlist[| 2];
 			if (surface_exists(t_infolist[| 1]))
+			{
 				surface_free(t_infolist[| 1]);
+				t_infolist[| 1] = -1;
+			}
 		}
 		if (surface_exists(frame_surf))
 			surface_free(frame_surf);
