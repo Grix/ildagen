@@ -80,12 +80,14 @@ function draw_browser_grid() {
 		
 		if (objectlist[| 8] != "")
 		{
-			draw_set_color(c_white);
-			draw_set_halign(fa_right);
+			draw_set_color(c_ltgray);
+			draw_set_font(fnt_tooltip);
 			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+19, objectlist[| 8]);
-			draw_set_halign(fa_left);
 		}
 	}
+	
+
+	draw_set_font(fnt_tooltip);
 
 	// scrollbar
 	gpu_set_blendenable(false);
@@ -106,7 +108,5 @@ function draw_browser_grid() {
 	draw_rectangle(scrolly_x1, t_ystart+scrollbary, scrolly_x2-1, t_ystart+scrollbary+t_gridheight-1, 1);
 
 	gpu_set_blendenable(true);
-
-	draw_set_font(fnt_tooltip);
 
 }

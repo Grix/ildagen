@@ -61,16 +61,14 @@ function process_dialog_live() {
 	   {
 	     if ds_map_find_value(argument[0], "result") != ""
 	      {
-	        /*switch (dialog)
+	        switch (dialog)
 	        {
-	            case ("layer_rename"):
+	            case ("set_name"):
 	            {
-	                var t_thisprojlist = seqcontrol.layer_list[| settingscontrol.projectortoselect];
-	                t_thisprojlist[| 4] = ds_map_find_value(argument[0], "result");
-	                projectorlist_update();
+					livecontrol.filelist[| livecontrol.selectedfile][| 8] = string(ds_map_find_value(argument[0], "result"));
 	                break;
 	            }
-	        }*/
+	        }
 	      }
 	   }
 	}

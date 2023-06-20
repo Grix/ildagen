@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "live_toggle_exclusive",
+  "name": "live_dialog_string",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "live",
-    "path": "folders/Scripts/live.yy",
+    "name": "dialogs",
+    "path": "folders/Scripts/dialogs.yy",
   },
 }

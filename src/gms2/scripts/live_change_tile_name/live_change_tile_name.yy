@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "live_toggle_exclusive",
+  "name": "live_change_tile_name",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
