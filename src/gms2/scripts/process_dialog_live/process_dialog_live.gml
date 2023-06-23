@@ -52,6 +52,12 @@ function process_dialog_live() {
 				clear_live_project();
 				break;
 			}
+			case "toseqreplace":
+	        {
+	            frames_toseq_live();
+                
+	            break;
+	        }
 	      }
 	    }
 	}

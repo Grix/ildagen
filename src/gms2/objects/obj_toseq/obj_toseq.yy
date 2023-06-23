@@ -38,7 +38,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "ilda",
-    "path": "folders/Objects/buttons/ilda.yy",
+    "name": "buttons",
+    "path": "folders/Objects/buttons.yy",
   },
 }
