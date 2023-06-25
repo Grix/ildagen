@@ -46,7 +46,7 @@ function frames_toseq_live() {
 		    ds_list_add(t_objectlist, t_buffer);
     
 		    var t_info = ds_list_create();
-		    ds_list_add(t_info, t_file[| 2][| 0]);
+		    ds_list_add(t_info, t_file[| 2][| 2]-1);
 		    ds_list_add(t_info, -1);
 		    ds_list_add(t_info, t_file[| 2][| 2]);
 			ds_list_add(t_info, create_checkpoint_list(t_buffer));
@@ -88,7 +88,7 @@ function frames_toseq_live() {
 	        surface_free(ds_list_find_value(t_infolist, 1));
 			
 		if (t_infolist[| 0] == t_infolist[| 2]-1)
-			ds_list_replace(t_infolist, 0, t_file[| 2][| 0]);
+			ds_list_replace(t_infolist, 0, t_file[| 2][| 2]-1);
 		ds_list_replace(t_infolist, 1, -1);
 		ds_list_replace(t_infolist, 2, t_file[| 2][| 2]);
 		

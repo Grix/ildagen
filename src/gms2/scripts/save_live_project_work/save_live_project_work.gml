@@ -67,7 +67,7 @@ function save_live_project_work() {
 	    j = 0;
     
 	if (!controller.warning_disable)
-		show_message_new("LaserShowGen Live grid saved to "+string(file_loc));
+		show_message_new("LaserShowGen grid saved to "+string(file_loc));
 
 	buffer_delete(save_buffer);
 

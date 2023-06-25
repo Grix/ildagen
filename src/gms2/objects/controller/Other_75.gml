@@ -64,7 +64,7 @@ if (async_load[? "event_type"] == "file_drop")
 				if (!controller.warning_disable)
 				{
 					known_filename_of_load = t_filename;
-					live_dialog_yesno("loadliveproject_known_filename","Loading this file will replace your current live grid, all unsaved work will be lost. Continue? (Cannot be undone)");
+					live_dialog_yesno("loadliveproject_known_filename","Loading this file will replace all tiles in your current grid, all unsaved work will be lost. Continue? (Cannot be undone)");
 				}
 				else
 					with (livecontrol)

@@ -1,3 +1,3 @@
-message = "This is the live mode window, where you can trigger playback of your laser files on demand. To start, you need to add some files to the grid view. You can do this with the buttons in the bottom right, or in the 'File' menu above. Then, simply click on the added file in the grid, or use the keyboard shortcut seen in the corner, to play it. You can right click on the file for more options.";
+message = "This is the grid view, where you can organize your laser files and trigger playback on demand. To start, you need to add some files to the grid. You can do this with the buttons in the bottom right, or in the 'File' menu above. Then, simply click on the added file in the grid, or use the keyboard shortcut seen in the corner, to play it. You can right click on the file for more options. You can also send the file from the grid to the editor or timeline mode by selecting it and then using the 'Send to..' buttons to the right.";
 tip_id = 20;
 camera = 1;

@@ -9,7 +9,7 @@ function save_live_project_quick() {
 		file_loc = filepath;
 	else
 	{
-		file_loc = get_save_filename_ext("LSG Live Grid|*.igl","example"+string(current_hour) + "" + string(current_minute)+".igl","","Select LaserShowGen Live grid file location");
+		file_loc = get_save_filename_ext("LSG Grid File|*.igl","example"+string(current_hour) + "" + string(current_minute)+".igl","","Select LaserShowGen grid file location");
 		keyboard_clear(keyboard_lastkey);
 		keyboard_clear(vk_control);
 		mouse_clear(mouse_lastbutton);

@@ -10,9 +10,9 @@ function dropdown_menu_ilda_file() {
 	    ds_list_add(desc_list,"Export frames as ILDA file...");
 	    ds_list_add(desc_list,"Import ILDA file to editor... ("+get_ctrl_string()+" + I)");
 	    ds_list_add(desc_list,"Send frames to timeline mode (I)");
-		ds_list_add(desc_list,"Send frames to live mode (L)");
+		ds_list_add(desc_list,"Send frames to grid view (L)");
 		ds_list_add(desc_list,"Load Timeline Mode project...");
-		ds_list_add(desc_list,"Load Live Mode grid...");
+		ds_list_add(desc_list,"Load Grid...");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(sep_list,1);
 	    ds_list_add(sep_list,0);

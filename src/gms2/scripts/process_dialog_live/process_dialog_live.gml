@@ -33,7 +33,7 @@ function process_dialog_live() {
 	        }  
 			case "loadliveproject":
 			{
-				load_live_project(get_open_filename_ext("LSG Live Grid|*.igl","","","Select LaserShowGen Live grid file"));
+				load_live_project(get_open_filename_ext("LSG Grid File|*.igl","","","Select LaserShowGen grid file"));
 				keyboard_clear(keyboard_lastkey);
 				keyboard_clear(vk_control);
 				mouse_clear(mouse_lastbutton);

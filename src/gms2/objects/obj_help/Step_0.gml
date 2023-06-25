@@ -13,7 +13,7 @@ if (room == rm_ilda)
         ""+get_ctrl_string()+" + Mouse click)    Select object\n"+
         "Tab)    Enter timeline mode\n"+
         "I)    Send frames from editor mode to timeline mode\n"+
-		"L)    Send frames from editor mode to live mode\n"+
+		"L)    Send frames from editor mode to the grid view\n"+
         "Delete)    Delete selected object\n"+
         "P)    Toggle 3D frame previewing\n"+
         "Shift)    Force horizontal or vertical lines when drawing\n"+
@@ -93,7 +93,8 @@ else if (room == rm_live)
         "Mouse)    Select file\n"+
         "Space)    Play/Pause\n"+
         "Tab)    Enter editor mode\n"+
-		"L)    Send frames from editor mode to live mode\n"+
+		"L)    Send frames from editor mode to the grid view\n"+
+        "I)    Send the selected frames from the grid view to the timeline mode\n"+
         "Delete)    Delete selected object\n"+
 		"X)    Toggle exclusive playback of selected object\n"+
 		"O)    Toggle looping of selected object\n"+

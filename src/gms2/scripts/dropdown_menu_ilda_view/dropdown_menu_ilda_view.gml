@@ -9,7 +9,7 @@ function dropdown_menu_ilda_view() {
 	    num = 5;
 	    ds_list_add(desc_list,"Editor Mode" + ((room != rm_ilda) ? " (Tab)" : ""));
 	    ds_list_add(desc_list,"Timeline Mode" + ((room == rm_ilda && controller.last_room == rm_seq) ? " (Tab)" : ""));
-		ds_list_add(desc_list,"Live Mode" + ((room == rm_ilda && controller.last_room == rm_live) ? " (Tab)" : ""));
+		ds_list_add(desc_list,"Grid View" + ((room == rm_ilda && controller.last_room == rm_live) ? " (Tab)" : ""));
 	    ds_list_add(desc_list,"Toggle fullscreen (F11)");
 	    ds_list_add(desc_list,"Reset window size (M)");
 	    ds_list_add(sep_list,0);

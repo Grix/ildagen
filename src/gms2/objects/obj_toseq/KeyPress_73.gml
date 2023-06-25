@@ -1,4 +1,4 @@
-if (keyboard_check_control() || !visible)
+if (keyboard_check_control() || !_visible)
 	exit;
 
 if (os_browser != browser_not_a_browser)

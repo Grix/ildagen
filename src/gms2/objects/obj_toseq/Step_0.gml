@@ -11,6 +11,12 @@ if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and
 else image_index = 0;
 
 if (room == rm_ilda || room == rm_seq)
-	visible = true;
+{
+	_visible = true;
+	sprite_index = spr_toseq;
+}
 else if (room == rm_live)
-	visible = livecontrol.selectedfile != -1;
+{
+	_visible = livecontrol.selectedfile != -1;
+	sprite_index = spr_toseq_live;
+}

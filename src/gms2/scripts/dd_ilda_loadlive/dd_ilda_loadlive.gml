@@ -4,7 +4,7 @@ function dd_ilda_loadlive(){
 
 	if (os_browser != browser_not_a_browser)
     {
-        show_message_new("Sorry, the live mode is not available in the web version yet");
+        show_message_new("Sorry, the grid view is not available in the web version yet");
         exit;
     }
     ilda_cancel();

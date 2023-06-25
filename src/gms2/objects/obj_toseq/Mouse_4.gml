@@ -1,4 +1,4 @@
-if (instance_exists(obj_dropdown) || !visible)
+if (instance_exists(obj_dropdown) || !_visible)
     exit;
 
 if (os_browser != browser_not_a_browser)

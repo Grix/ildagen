@@ -1,6 +1,5 @@
 TODO
 - undo setting of scope
-- add "send to timeline" button to live mode
 - ability to select multiple items in editor by dragging mouse
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)
 - naming of tiles in Live mode.
@@ -179,3 +178,4 @@ filelist
 		
 Fonts
 Text tiles are drawn with paint.net, font Arial, sizes 10 and 12, color pure black
+text on buttons are capitalized segoe UI semibold size 7 med paint.net aliasing mode "sharp", color pure black (not sure but very similar)

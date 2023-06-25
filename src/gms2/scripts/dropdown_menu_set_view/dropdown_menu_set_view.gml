@@ -6,7 +6,7 @@ function dropdown_menu_set_view() {
 	    event_user(1);
 	    ds_list_add(desc_list,"Editor Mode (Tab)");
 	    ds_list_add(desc_list,"Timeline Mode");
-		ds_list_add(desc_list,"Live Mode");
+		ds_list_add(desc_list,"Grid View");
 	    ds_list_add(desc_list,"Toggle fullscreen (F11)");
 	    ds_list_add(desc_list,"Reset window size (M)");
 	    ds_list_add(sep_list,0);

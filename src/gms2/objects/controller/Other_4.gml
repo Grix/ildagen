@@ -26,7 +26,7 @@ if (room == rm_ilda)
 else if (room == rm_seq)
     window_set_caption("LaserShowGen - Timeline Mode");
 else if (room == rm_live)
-    window_set_caption("LaserShowGen - Live Mode");
+    window_set_caption("LaserShowGen - Grid View");
 else if (room == rm_options)
     window_set_caption("LaserShowGen - Settings");
 else if (room == rm_loading)
