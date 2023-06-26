@@ -1,6 +1,8 @@
 TODO
+- make pasted objects align with grid in editor mode
 - undo setting of scope
 - ability to select multiple items in editor by dragging mouse
+- fix ctrl+key shortcuts in linux
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)
 - rearranging of tiles in Live Mode.
 - add backup saving to background, asking to restore if program didn't shut down correctly
@@ -11,7 +13,6 @@ TODO
 - add midi cc and nrpn
 - ability to easily add shaking effect to multiple objects on timeline mode. Envelope?
 - undo moving startframe/endframe etc in timeline
-- fix ctrl+key shortcuts in linux? Not working?
 - improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
 - zoom in editor mode timeline
