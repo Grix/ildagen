@@ -1,3 +1,11 @@
+v1.10.0
+- Changed name of Live Mode to Grid View.
+- Button for sending file directly from the Grid View to the Timeline mode, so that it can be used as a file browser.
+- Ability to give names to tiles in the Grid View, to organize them better.
+- Fix possible crash after undo-ing in editor mode just after having changed length of animation. 
+- Fix another possible but rare crash when playing file.
+- Tab-key works now toggles between the two previous views, instead of between the previous view and the editor mode.
+
 v1.9.12
 - Add ability to easily duplicate whole timeline layers.
 - Fix issue that pressing "Cancel" on numeric input popups acted the same as pressing "Ok" with a value of 0. (Only fixed on Windows so far)
@@ -5,10 +13,3 @@ v1.9.12
 - Fix issues when creating an envelope layer using the context menu instead of the ENV. button.
 - Fix length of object on timeline not being updated when overwriting it with a different animation from the editor mode.
 - Minor improvements on the projection window settings UI.
-
-v1.9.11
-- Fix macOS bug that makes program unresponsive when trying to open/save files.
-- Change the editor mode animation function "reverse" option actually be the inverse rather than reverse.
-- Add keyboard shortcut SHIFT+1 and SHIFT+2 to set current frame as scope start or end in editor mode.
-- On Windows, files can now be dragged onto the LSG window to load/import them.
-- Move to 64-bit for Windows. NB: The following DACs are NOT yet supported on 64-bit: EasyLase, RIYA, OLSC, sound cards. Please stay on 1.9.10 if you use these DACs.
