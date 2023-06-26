@@ -461,10 +461,10 @@ if (keyboard_check_pressed(vk_tab))
     if (seqcontrol.song != -1)
         FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
         
-	if (controller.tab_cycles_all == 1)
+if (controller.tab_cycles_all == 1)
 		room_goto(rm_seq);
 	else
-		room_goto(last_room);
+		room_goto(controller.last_room_2);
 }
 
 if (update_semasterlist_flag)

@@ -1,3 +1,9 @@
+if (room != rm_loading && last_room != room)
+{
+	last_room_2 = last_room;
+	last_room = room;
+}
+
 if (laseron)
     dac_blank_and_center_all();
 

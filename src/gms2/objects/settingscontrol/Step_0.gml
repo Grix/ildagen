@@ -38,7 +38,12 @@ if (t_windowheight != (view_hport[3]+view_hport[0]) || t_windowwidth != view_wpo
 }
 
 if (keyboard_check_pressed(vk_tab))
-    room_goto(rm_ilda);
+{
+	if (controller.tab_cycles_all == 1)
+		room_goto(rm_ilda);
+	else
+		room_goto(controller.last_room_2);
+}
     
 
 if (keyboard_check_pressed(vk_escape))

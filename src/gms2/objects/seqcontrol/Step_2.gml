@@ -225,7 +225,7 @@ else if (keyboard_check_pressed(vk_tab))
 	if (controller.tab_cycles_all == 1)
 		room_goto(rm_live);
 	else
-		room_goto(rm_ilda);
+		room_goto(controller.last_room_2);
 }
     
 else if (keyboard_check_pressed(ord("P")))

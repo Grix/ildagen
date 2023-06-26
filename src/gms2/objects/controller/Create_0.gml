@@ -1,5 +1,5 @@
-version = "1.9.12";
-versiondate = "2023-03-27";
+version = "1.10.0";
+versiondate = "2023-06-25";
 
 //gc_enable(false);
 
@@ -142,7 +142,7 @@ squaregrid_surf = -1;
 edit_recording_list = -1;
 
 c_gold = make_colour_rgb(255,220,0);
-c_ltltgray = make_colour_rgb(236,236,236);
+c_ltltgray = make_colour_rgb(239,235,235);
 
 window_set_color(c_ltltgray);
 
@@ -183,6 +183,7 @@ resizing_moving = 0;
 update_semasterlist_flag = 0;
 doubleclick = 0;
 last_room = rm_seq;
+last_room_2 = rm_ilda;
 releasenotes = "";
 filepath = "";
 warning_suppress = false;
