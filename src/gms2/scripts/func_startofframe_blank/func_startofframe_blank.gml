@@ -95,7 +95,7 @@ function func_startofframe_blank() {
 	    ML_VM_SetVarReal(parser_cb,"sec_red",color_get_red(color2_r));
 	    ML_VM_SetVarReal(parser_cb,"sec_green",color_get_green(color2_r));
 	    ML_VM_SetVarReal(parser_cb,"sec_blue",color_get_blue(color2_r));
-		ML_VM_SetVarReal(parser_shape,"audio_loudness", func_audioloudness/7000);
+		ML_VM_SetVarReal(parser_cb,"audio_loudness", func_audioloudness/7000);
 	}
 
 
