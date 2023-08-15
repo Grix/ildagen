@@ -1,6 +1,4 @@
 TODO
-- audio_loudness not working in color or blanking functions
-- make pasted objects align with grid in editor mode
 - undo setting of scope
 - ability to select multiple items in editor by dragging mouse
 - fix ctrl+key shortcuts in linux

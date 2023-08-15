@@ -27,7 +27,6 @@
 //  06/2017 Dirk Apitz, created
 // -------------------------------------------------------------------------------------------------
 
-#pragma once
 
 #ifndef PLT_WINDOWS_H
 #define PLT_WINDOWS_H
@@ -35,22 +34,10 @@
 
 // Standard libraries
 #include <stdint.h>
-//#include "idn.h" for log functions
 
 // Platform headers
-//#include <winsock2.h>
+#include <winsock2.h>
 #include <ws2tcpip.h>
-
-
-//#include "plt-windows.c"
-// -------------------------------------------------------------------------------------------------
-//  Variables
-// -------------------------------------------------------------------------------------------------
-
-extern int plt_monoValid;
-extern LARGE_INTEGER plt_monoCtrFreq;
-extern LARGE_INTEGER plt_monoCtrRef;
-extern uint32_t plt_monoTimeUS;
 
 
 // -------------------------------------------------------------------------------------------------
@@ -59,6 +46,8 @@ extern uint32_t plt_monoTimeUS;
 
 typedef unsigned long in_addr_t;
 
+typedef void(*IFADDR_CALLBACK_PFN)(void* callbackArg, const char* ifName, uint32_t ifIP4Addr);
+
 
 // -------------------------------------------------------------------------------------------------
 //  Inline functions
@@ -66,19 +55,26 @@ typedef unsigned long in_addr_t;
 
 inline static int plt_validateMonoTime()
 {
-    if(!plt_monoValid)
+    extern int plt_monoValid;
+    extern LARGE_INTEGER plt_monoCtrFreq;
+    extern LARGE_INTEGER plt_monoCtrRef;
+    extern uint32_t plt_monoTimeUS;
+
+    extern void logError(const char* fmt, ...);
+
+    if (!plt_monoValid)
     {
         // Get performance counter frequency
-        if(QueryPerformanceFrequency(&plt_monoCtrFreq) == 0)
+        if (QueryPerformanceFrequency(&plt_monoCtrFreq) == 0)
         {
-            //logError("QueryPerformanceFrequency() error = %d", (int)GetLastError());
+            logError("QueryPerformanceFrequency() error = %d", (int)GetLastError());
             return -1;
         }
 
         // Initialize performance counter reference
-        if(QueryPerformanceCounter(&plt_monoCtrRef) == 0)
+        if (QueryPerformanceCounter(&plt_monoCtrRef) == 0)
         {
-            //logError("QueryPerformanceCounter() error = %d", (int)GetLastError());
+            logError("QueryPerformanceCounter() error = %d", (int)GetLastError());
             return -1;
         }
 
@@ -92,6 +88,9 @@ inline static int plt_validateMonoTime()
 
 inline static uint32_t plt_getMonoTimeUS(void)
 {
+    extern LARGE_INTEGER plt_monoCtrFreq;
+    extern LARGE_INTEGER plt_monoCtrRef;
+    extern uint32_t plt_monoTimeUS;
 
     // Get current time
     LARGE_INTEGER pctNow;
@@ -105,17 +104,32 @@ inline static uint32_t plt_getMonoTimeUS(void)
 }
 
 
-inline static int plt_usleep(unsigned usec)
+inline static int plt_ifAddrListVisitor(IFADDR_CALLBACK_PFN pfnCallback, void* callbackArg)
 {
-    HANDLE timer;
-    LARGE_INTEGER ft;
+    extern void logError(const char* fmt, ...);
 
-    // Convert to 100 nanosecond interval, negative value indicates relative time
-    ft.QuadPart = -(10 * (__int64)usec);
-    timer = CreateWaitableTimer(NULL, TRUE, NULL);
-    SetWaitableTimer(timer, &ft, 0, NULL, NULL, 0);
-    WaitForSingleObject(timer, INFINITE);
-    CloseHandle(timer);
+    struct addrinfo* servinfo;              // Will point to the results
+    struct addrinfo hints;                  // Hints about the caller-supported socket types
+    memset(&hints, 0, sizeof hints);        // Make sure the struct is empty
+    hints.ai_flags = AI_PASSIVE;            // Intention to use address with the bind function
+    hints.ai_family = AF_INET;              // IPv4
+
+    int rcAddrInfo = getaddrinfo("", "", &hints, &servinfo);
+    if (rcAddrInfo != 0) return rcAddrInfo;
+
+    // Walk through all interfaces (servinfo points to a linked list of struct addrinfos)
+    for (struct addrinfo* ifa = servinfo; ifa != NULL; ifa = ifa->ai_next)
+    {
+        if (ifa->ai_addr == NULL) continue;
+        if (ifa->ai_addr->sa_family != AF_INET) continue;
+
+        // Invoke callback on interface
+        struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ai_addr;
+        pfnCallback(callbackArg, ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr));
+    }
+
+    // Interface list is dynamically allocated and must be freed
+    freeaddrinfo(servinfo);
 
     return 0;
 }
@@ -155,8 +169,8 @@ inline static int plt_sockClose(int fdSocket)
 
 inline static int plt_sockSetBroadcast(int fdSocket)
 {
-	char bcastOptStr[] = "1";
-	return setsockopt(fdSocket, SOL_SOCKET, SO_BROADCAST, bcastOptStr, sizeof(bcastOptStr));
+    char bcastOptStr[] = "1";
+    return setsockopt(fdSocket, SOL_SOCKET, SO_BROADCAST, bcastOptStr, sizeof(bcastOptStr));
 }
 
 

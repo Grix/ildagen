@@ -1,8 +1,10 @@
 #pragma once
 
 #include "idn.h"
+#include "idnServerList.h"
 #include <mutex>
 #include <vector>
+#include <string>
 
 #include <stdio.h>
 #include <stdarg.h>
@@ -40,6 +42,7 @@ public:
 private:
 
 	IDNCONTEXT* contexts[16];
+	std::string hostnames[16];
 	in_addr_t helloServerAddr = 0;
 
 	bool ready;

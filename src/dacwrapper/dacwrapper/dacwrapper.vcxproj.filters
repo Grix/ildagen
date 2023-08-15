@@ -78,7 +78,7 @@
     <ClCompile Include="Device_IDN.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="plt-windows.c">
+    <ClCompile Include="plt-windows.cpp">
       <Filter>Source Files\Idn</Filter>
     </ClCompile>
     <ClCompile Include="Device_LaserDockNetwork.cpp">
@@ -86,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="LaserCubeNetwork.cpp">
       <Filter>Source Files\Laserdock</Filter>
+    </ClCompile>
+    <ClCompile Include="idnServerList.cpp">
+      <Filter>Source Files\Idn</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="LaserCubeNetwork.h">
       <Filter>Header Files\Laserdock</Filter>
+    </ClInclude>
+    <ClInclude Include="idnServerList.h">
+      <Filter>Header Files\Idn</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -19,10 +19,10 @@ function paste_object() {
 	        continue;
 	    }
     
-	    ds_list_replace(list,0,ds_list_find_value(list,0)+2500);
-	    ds_list_replace(list,1,ds_list_find_value(list,1)+2500);
-	    ds_list_replace(list,2,ds_list_find_value(list,2)+2500);
-	    ds_list_replace(list,3,ds_list_find_value(list,3)+2500);
+	    ds_list_replace(list,0,ds_list_find_value(list,0)+$FFFF/controller.sgridnum);
+	    ds_list_replace(list,1,ds_list_find_value(list,1)+$FFFF/controller.sgridnum);
+	    ds_list_replace(list,2,ds_list_find_value(list,2)+$FFFF/controller.sgridnum);
+	    ds_list_replace(list,3,ds_list_find_value(list,3)+$FFFF/controller.sgridnum);
 	    ds_list_delete(list,ds_list_size(list)-1);
     
 	    if (tempelid != ds_list_find_value(list,9))

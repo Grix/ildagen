@@ -25,20 +25,21 @@
 //  Change History:
 //
 //  09/2017 Dirk Apitz, created
-// ----
-/*
+// -------------------------------------------------------------------------------------------------
+
 // Standard libraries
 #include <stdint.h>
 
 // Platform headers
-#include "plt-windows.h"
+#include <windows.h>
 
 
 // -------------------------------------------------------------------------------------------------
 //  Variables
 // -------------------------------------------------------------------------------------------------
 
-int plt_monoValid = 0;
+/*int plt_monoValid = 0;
 LARGE_INTEGER plt_monoCtrFreq;
 LARGE_INTEGER plt_monoCtrRef;
-uint32_t plt_monoTimeUS = 0;*/
+uint32_t plt_monoTimeUS = 0;
+*/
