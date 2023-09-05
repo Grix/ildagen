@@ -30,6 +30,12 @@ public:
 		std::uint8_t i;	//8 bit (from 0 to 0xFF)
 	} IdnPoint;
 
+	typedef struct
+	{
+
+		std::string name;
+	} IdnService;
+
 	int Init();
 	bool OutputFrame(int cardNum, int rate, int frameSize, IdnPoint* bufferAddress);
 	bool OpenDevice(int cardNum);
@@ -42,7 +48,6 @@ public:
 private:
 
 	IDNCONTEXT* contexts[16];
-	std::string hostnames[16];
 	in_addr_t helloServerAddr = 0;
 
 	bool ready;

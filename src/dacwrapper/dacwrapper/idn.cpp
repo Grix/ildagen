@@ -138,6 +138,7 @@ int idnOpenFrameXYRGB(void* context)
 	// IDN-Stream channel message header. Note: Remaining fields populated on push
 	IDNHDR_CHANNEL_MESSAGE* channelMsgHdr = (IDNHDR_CHANNEL_MESSAGE*)& packetHdr[1];
 	uint16_t contentID = IDNFLG_CONTENTID_CHANNELMSG;
+	contentID |= (((ctx->serviceId - 1) & 0x3F) << 8); // channel ID
 
 	// Insert channel config header every 200 ms
 	unsigned now = plt_getMonoTimeUS();
@@ -148,7 +149,7 @@ int idnOpenFrameXYRGB(void* context)
 		IDNHDR_CHANNEL_CONFIG* channelConfigHdr = (IDNHDR_CHANNEL_CONFIG*)sampleChunkHdr;
 		channelConfigHdr->wordCount = 4;
 		channelConfigHdr->flags = IDNFLG_CHNCFG_ROUTING;
-		channelConfigHdr->serviceID = 0;
+		channelConfigHdr->serviceID = ctx->serviceId;
 		channelConfigHdr->serviceMode = IDNVAL_SMOD_LPGRF_DISCRETE;
 
 		// Standard IDTF-to-IDN descriptors
@@ -165,6 +166,8 @@ int idnOpenFrameXYRGB(void* context)
 		// Move sample chunk start and set flag in contentID field
 		sampleChunkHdr = (IDNHDR_SAMPLE_CHUNK*)& descriptors[8];
 		contentID |= IDNFLG_CONTENTID_CONFIG_LSTFRG;
+
+		ctx->cfgTimestamp = now;
 	}
 	channelMsgHdr->contentID = htons(contentID);
 
@@ -296,6 +299,7 @@ int idnPushFrameXYRGB(void* context)
 	IDNHDR_PACKET* packetHdr = (IDNHDR_PACKET*)ctx->bufferPtr;
 	IDNHDR_CHANNEL_MESSAGE* channelMsgHdr = (IDNHDR_CHANNEL_MESSAGE*)& packetHdr[1];
 	uint16_t contentID = ntohs(channelMsgHdr->contentID);
+	contentID |= (((ctx->serviceId - 1) & 0x3F) << 8); // channel ID
 
 	// IDN channel message header: Set timestamp; Update internal timestamps.
 	//unsigned now = plt_getMonoTimeUS();
@@ -308,7 +312,7 @@ int idnPushFrameXYRGB(void* context)
 	//printf("frameduration: %d\n", frameDuration);
 //#endif
 
-	// Message header: Calculate message length. Must not exceed 0xFF00 octets !!
+	// Message header: Calculate message length. Must not exceed 0xFF00 octets !! In LSG, never does
 	unsigned msgLength = ctx->payload - (uint8_t*)channelMsgHdr;
 	/*if (msgLength > MAX_IDN_MESSAGE_LEN)
 	{
@@ -400,6 +404,7 @@ int idnSendVoid(void* context)
 	// IDN-Stream channel message header
 	IDNHDR_CHANNEL_MESSAGE* channelMsgHdr = (IDNHDR_CHANNEL_MESSAGE*)& packetHdr[1];
 	uint16_t contentID = IDNFLG_CONTENTID_CHANNELMSG | IDNVAL_CNKTYPE_VOID;
+	contentID |= (((ctx->serviceId - 1) & 0x3F) << 8); // channel ID
 	channelMsgHdr->contentID = htons(contentID);
 
 	// Pointer to the end of the buffer for message length and packet length calculation
@@ -431,13 +436,14 @@ int idnSendClose(void* context)
 	// IDN-Stream channel message header
 	IDNHDR_CHANNEL_MESSAGE* channelMsgHdr = (IDNHDR_CHANNEL_MESSAGE*)& packetHdr[1];
 	uint16_t contentID = IDNFLG_CONTENTID_CHANNELMSG | IDNFLG_CONTENTID_CONFIG_LSTFRG | IDNVAL_CNKTYPE_VOID;
+	contentID |= (((ctx->serviceId - 1) & 0x3F) << 8); // channel ID
 	channelMsgHdr->contentID = htons(contentID);
 
 	// IDN-Stream channel config header (close channel)
 	IDNHDR_CHANNEL_CONFIG* channelConfigHdr = (IDNHDR_CHANNEL_CONFIG*)& channelMsgHdr[1];
 	channelConfigHdr->wordCount = 0;
 	channelConfigHdr->flags = IDNFLG_CHNCFG_CLOSE;
-	channelConfigHdr->serviceID = 0;
+	channelConfigHdr->serviceID = ctx->serviceId;
 	channelConfigHdr->serviceMode = 0;
 
 	// Pointer to the end of the buffer for message length and packet length calculation

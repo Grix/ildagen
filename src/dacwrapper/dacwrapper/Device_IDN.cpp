@@ -32,7 +32,6 @@ int Device_IDN::Init()
 	hints.ai_family = AF_INET;              // IPv4
 	
 	int numDevices = 0;
-	std::vector<int> allIpAddrs;
 
 #ifndef WIN32 
 	//int rcAddrInfo = getaddrinfo(NULL, "7255", &hints, &servinfo);
@@ -86,16 +85,34 @@ int Device_IDN::Init()
 	}
 	else
 	{
-		int num = 0;
-		for (IDNSL_SERVER_INFO* serverInfo = firstServerInfo; serverInfo; serverInfo = serverInfo->next)
+		for (IDNSL_SERVER_INFO* serverInfo = firstServerInfo; serverInfo != 0; serverInfo = serverInfo->next)
 		{
 			for (unsigned int i = 0; i < serverInfo->addressCount; i++)
 			{
-				if (serverInfo->addressTable[i].errorFlags == 0 && num < 16)
+				if (serverInfo->addressTable[i].errorFlags == 0 && numDevices < 16)
 				{
-					allIpAddrs.push_back(serverInfo->addressTable[i].addr.S_un.S_addr);
-					hostnames[num] = std::string(serverInfo->hostName);
-					num++;
+					bool found = false;
+					int contextId = 0;
+					for (; contextId < numDevices; contextId++) // Check for duplicate entries
+					{
+						if (contexts[contextId]->serverSockAddr.sin_addr.S_un.S_addr == serverInfo->addressTable[i].addr.S_un.S_addr) // todo: and name / unit id?
+							found = true;
+					}
+					if (!found)
+					{
+						for (unsigned int j = 0; j < serverInfo->serviceCount && numDevices < 16; j++)
+						{
+							IDNCONTEXT* ctx = new IDNCONTEXT{ 0 };
+							ctx->serverSockAddr.sin_family = AF_INET;
+							ctx->serverSockAddr.sin_port = htons(IDN_PORT);
+							ctx->serverSockAddr.sin_addr.s_addr = serverInfo->addressTable[i].addr.S_un.S_addr;
+							ctx->name = std::string(serverInfo->hostName).append(" - ").append(serverInfo->serviceTable[j].serviceName);
+							ctx->serviceId = serverInfo->serviceTable[j].serviceID;
+
+							contexts[numDevices++] = ctx;
+						}
+
+					}
 				}
 			}
 		}
@@ -103,59 +120,7 @@ int Device_IDN::Init()
 		freeIDNServerList(firstServerInfo);  // Server list is dynamically allocated and must be freed
 	}
 
-	//if (plt_sockCleanup()) logError("Socket cleanup failed (error: %d)", plt_sockGetLastError());
-
-
-
-	/*int rcAddrInfo = getaddrinfo("", "7255", &hints, &servinfo);
-	if (rcAddrInfo != 0)
-		{
-			fprintf(stderr, "IDN getaddrinfo failed: %d\n", rcAddrInfo);
-			return 0;
-		}
-		    
-	// Walk through all interfaces (servinfo points to a linked list of struct addrinfos)
-	for (struct addrinfo* ifa = servinfo; ifa != NULL; ifa = ifa->ai_next)
-	{
-		if (ifa->ai_addr == NULL) continue;
-		if (ifa->ai_addr->sa_family != AF_INET) continue;
-			
-		// Invoke callback on interface
-		struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ai_addr;
-
-			
-		// Start check whether address is an IDN-hello server
-		std::vector<int>* ipAddrs = idnHelloScan(ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr));
-		for (int ipAddr : *ipAddrs)
-		{
-			bool found = false;
-			for (int _ipAddr : allIpAddrs)
-			{
-			if (_ipAddr == ipAddr)
-				found = true;
-			}
-			if (!found)
-			allIpAddrs.push_back(ipAddr);
-		}
-		delete ipAddrs;
-	}
-
-    
-	// Interface list is dynamically allocated and must be freed
-	freeaddrinfo(servinfo);*/
 #endif
-
-	
-    
-    for (int ipAddr : allIpAddrs)
-    {
-        IDNCONTEXT *ctx = new IDNCONTEXT{ 0 };
-        ctx->serverSockAddr.sin_family = AF_INET;
-        ctx->serverSockAddr.sin_port = htons(IDN_PORT);
-        ctx->serverSockAddr.sin_addr.s_addr = ipAddr;
-        
-        contexts[numDevices++] = ctx;
-    }
 
 	return numDevices;
 }
@@ -174,25 +139,28 @@ bool Device_IDN::OutputFrame(int cardNum, int rate, int frameSize, IdnPoint* buf
 			break;
 		else if (true) // buffer status check would be here for other dacs
 		{
-			if (idnOpenFrameXYRGB(contexts[cardNum]))
-				return false;
-
-			contexts[cardNum]->usFrameTime = 1000000 / ((double)frameSize/rate);
-			contexts[cardNum]->scanSpeed = rate;
-			contexts[cardNum]->jitterFreeFlag = 1;
-
-			idnPutSampleXYRGB(contexts[cardNum], 0, 0, 0, 0, 0);
-			for (int i = 0; i < frameSize; i++)
+			if (frameSize > 0)
 			{
-				if (idnPutSampleXYRGB(contexts[cardNum], bufferAddress[i].x, bufferAddress[i].y, bufferAddress[i].r, bufferAddress[i].g, bufferAddress[i].b))
+				if (idnOpenFrameXYRGB(contexts[cardNum]))
 					return false;
-			}
-			idnPutSampleXYRGB(contexts[cardNum], 0, 0, 0, 0, 0);
 
-			if (idnPushFrameXYRGB(contexts[cardNum]))
-				return false;
-			else
-				return true;
+				contexts[cardNum]->usFrameTime = 1000000 / ((double)frameSize / rate);
+				contexts[cardNum]->scanSpeed = rate;
+				contexts[cardNum]->jitterFreeFlag = 1;
+
+				//idnPutSampleXYRGB(contexts[cardNum], bufferAddress[0].x, bufferAddress[0].y, 0, 0, 0);
+				for (int i = 0; i < frameSize; i++)
+				{
+					if (idnPutSampleXYRGB(contexts[cardNum], bufferAddress[i].x, bufferAddress[i].y, bufferAddress[i].r, bufferAddress[i].g, bufferAddress[i].b))
+						return false;
+				}
+				//idnPutSampleXYRGB(contexts[cardNum], bufferAddress[0].x, bufferAddress[0].y, 0, 0, 0);
+
+				if (idnPushFrameXYRGB(contexts[cardNum]))
+					return false;
+				else
+					return true;
+			}
 		}
 		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}
@@ -302,27 +270,27 @@ bool Device_IDN::GetName(int cardNum, char* name)
 	if (!ready)
 		return false;
 
-	memcpy(name, "IDN   : ", 8);
-	memcpy(name + 4, std::to_string(cardNum + 1).c_str(), (cardNum + 1) > 9 ? 2 : 1);
+	memcpy(name, "IDN: ", 6);
+	//memcpy(name + 4, std::to_string(cardNum + 1).c_str(), (cardNum + 1) > 9 ? 2 : 1); // numbering, not needed
 
-	int length = hostnames[cardNum].length();
-	if (length > 0)
+	int length = contexts[cardNum]->name.length();
+	if (length > 3) // Empty name has 3 chars
 	{
-		// Use hostname from IDN serverinfo
-		if (length + 8 > 31)
-			length = 31 - 8;
-		memcpy(name + 8, hostnames[cardNum].c_str(), length + 1);
+		// Use name of IDN service
+		if (length + 5 > 31)
+			length = 31 - 5;
+		memcpy(name + 5, contexts[cardNum]->name.c_str(), length + 1);
 	}
 	else
 	{
 		// Use IP address
 		char ip[32];
 		inet_ntop(AF_INET, &contexts[cardNum]->serverSockAddr.sin_addr.s_addr, ip, 32);
-		memcpy(name + 8, ip, 17);
+		memcpy(name + 5, ip, 17);
 	}
     name[32] = 0; // Just in case
 
-	return true;//(heliosDevice->GetName(cardNum, name) == 1);
+	return true;
 }
 
 bool Device_IDN::SetName(int cardNum, char* name)
@@ -330,7 +298,7 @@ bool Device_IDN::SetName(int cardNum, char* name)
 	if (!ready)
 		return false;
 
-	return false;//(heliosDevice->SetName(cardNum, name) == 1);
+	return false; // not supported for this DAC
 }
 
 double Device_IDN::GetFirmwareVersion(int cardNum)

@@ -10,6 +10,7 @@
 #include "idn-stream.h"
 #include "idn-hello.h"
 #include <vector>
+#include <string>
 
 
 #ifndef IDN_H
@@ -115,6 +116,9 @@ typedef struct
 	// IDN-Stream related
 	IDNHDR_SAMPLE_CHUNK* sampleChunkHdr;    // Current sample chunk header
 	uint32_t sampleCnt;                     // Current number of samples
+
+	std::string name;
+	int serviceId;
 
 } IDNCONTEXT;
 
