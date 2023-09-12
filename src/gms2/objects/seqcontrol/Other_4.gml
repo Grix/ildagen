@@ -8,3 +8,5 @@ clean_redo_list_seq();
 if (loadprojectflag)
 	dd_seq_loadproject();
 loadprojectflag = false;
+
+update_dac_list_isused();

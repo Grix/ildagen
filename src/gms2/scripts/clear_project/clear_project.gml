@@ -39,6 +39,6 @@ function clear_project() {
 	selectedx = 0;
 	selectedlayer = 0;
 	last_save_time = get_timer();
-
+	update_dac_list_isused();
 
 }

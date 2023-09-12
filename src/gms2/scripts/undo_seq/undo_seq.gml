@@ -370,6 +370,7 @@ function undo_seq() {
 		    ds_list_add(newlayer,0);
 			ds_list_add(redo_list, "q"+string(newlayer));
 			timeline_surf_length = 0;
+			update_dac_list_isused();
 		}
 		else if (string_char_at(undo,0) == "g")
 	    {

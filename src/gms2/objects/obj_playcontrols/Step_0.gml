@@ -62,6 +62,7 @@ else if (room == rm_seq)
             controller.tooltip = "Play. Shortcut: [Space bar]";
             if (mouse_check_button_pressed(mb_left))
             {
+				update_dac_list_isused();
                 seqcontrol.playing = 1;
                 if (seqcontrol.song != -1)
                 {

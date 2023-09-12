@@ -118,6 +118,7 @@ dac_list
         output_buffer2
         output_buffer_ready
         output_buffer_next_size
+		isUsed
     
 blindzone_list
     start x

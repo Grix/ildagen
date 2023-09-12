@@ -42,4 +42,5 @@ function layer_delete_inner(){
 	timeline_surf_length = 0;
 	frame_surf_refresh = 1;
 				
+	update_dac_list_isused();
 }

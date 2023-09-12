@@ -73,5 +73,6 @@ function layer_duplicate() {
 	
 	timeline_surf_length = 0;
 	clean_redo_list_seq();
+	update_dac_list_isused();
 
 }

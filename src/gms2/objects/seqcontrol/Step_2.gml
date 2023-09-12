@@ -102,6 +102,8 @@ if (playlist_start_next_flag)
 	playlist_list_to_select = 0;
 	dd_seq_playlist_remove();
 		
+		
+	update_dac_list_isused();
 	playing = 1;
     if (seqcontrol.song != -1)
     {
@@ -200,6 +202,9 @@ else if (keyboard_check_pressed(vk_escape))
 else if (keyboard_check_pressed(vk_space))
 {
     playing = !playing;
+	if (playing)
+		update_dac_list_isused();
+		
     if (seqcontrol.song != -1)
     {
         if (playing)

@@ -1,5 +1,5 @@
 /// @description output_frame_live(daclist)
-/// @function output_frame_seq
+/// @function output_frame_live
 /// @param daclist
 function output_frame_live() {
 

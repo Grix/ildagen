@@ -143,7 +143,7 @@ int idnOpenFrameXYRGB(void* context)
 	// Insert channel config header every 200 ms
 	unsigned now = plt_getMonoTimeUS();
 	IDNHDR_SAMPLE_CHUNK* sampleChunkHdr = (IDNHDR_SAMPLE_CHUNK*)& channelMsgHdr[1];
-	if ((ctx->frameCnt == 0) || ((now - ctx->cfgTimestamp) > 200000))
+	//if ((ctx->frameCnt == 0) || ((now - ctx->cfgTimestamp) > 200000)) always add header for now, causes problems in IDN toolbox otherwise
 	{
 		// IDN-Stream channel configuration header
 		IDNHDR_CHANNEL_CONFIG* channelConfigHdr = (IDNHDR_CHANNEL_CONFIG*)sampleChunkHdr;

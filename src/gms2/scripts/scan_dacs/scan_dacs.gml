@@ -42,6 +42,8 @@ function scan_dacs() {
 	    ds_list_add(newdac,buffer_create(48000,buffer_fixed,2));
 	    ds_list_add(newdac,false);
 	    ds_list_add(newdac,0);
+	    ds_list_add(newdac,false);
+		
 	    ds_list_add(controller.dac_list,newdac);
 	}
 
