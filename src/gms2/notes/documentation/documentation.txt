@@ -1,4 +1,6 @@
 TODO
+- fix lasercube id not reaching 255 (see email sep.25)
+- remember fps between startups
 - undo setting of scope
 - ability to select multiple items in editor by dragging mouse
 - fix ctrl+key shortcuts in linux

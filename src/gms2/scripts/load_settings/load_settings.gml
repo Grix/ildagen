@@ -99,6 +99,8 @@ function load_settings() {
 			enable_dynamic_fps = ini_read_real("main", "enable_dynamic_fps", 1);
 			preview_while_laser_on = ini_read_real("main", "preview_while_laser_on", 0);
 			warning_disable = ini_read_real("main", "warning_disable", 0);
+			projectfps = ini_read_real("main", "fps", 60);
+			seqcontrol.projectfps = projectfps;
 		
 			/*if (!ini_read_real("main", "window_width", 0))
 			{

@@ -381,7 +381,6 @@ anishaking_sdev = 1000;
 scope_start = 0;
 scope_end = 0;
 objmoving = 0;
-projectfps = 30;
 fpsmultiplier = 1;
 endx = 0;
 endy = 0;
@@ -418,8 +417,7 @@ init_palette();
 if (os_browser == browser_not_a_browser)
 {
     update_check();
-    alarm[7] = 2; // parse parameters after everything has inited
-    load_settings();
+    alarm[7] = 2; // parse parameters and load settings after everything has inited
 }
 
 verify_serial(false);

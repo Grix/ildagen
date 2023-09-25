@@ -47,11 +47,11 @@ public:
 
 private:
 
-	IDNCONTEXT* contexts[16];
+	IDNCONTEXT* contexts[32];
 	in_addr_t helloServerAddr = 0;
 
 	bool ready;
-	int frameNum[16];
-	std::mutex frameLock[16];
+	int frameNum[32];
+	std::mutex frameLock[32];
 };
 

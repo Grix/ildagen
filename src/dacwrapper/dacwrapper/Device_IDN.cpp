@@ -16,7 +16,7 @@ int Device_IDN::Init()
 {
 	ready = true;
 
-	for (int i = 0; i < 16; i++)
+	for (int i = 0; i < 32; i++)
 	{
 		contexts[i] = NULL;
 	}
@@ -89,7 +89,7 @@ int Device_IDN::Init()
 		{
 			for (unsigned int i = 0; i < serverInfo->addressCount; i++)
 			{
-				if (serverInfo->addressTable[i].errorFlags == 0 && numDevices < 16)
+				if (serverInfo->addressTable[i].errorFlags == 0 && numDevices < 32)
 				{
 					bool found = false;
 					int contextId = 0;
@@ -100,7 +100,7 @@ int Device_IDN::Init()
 					}
 					if (!found)
 					{
-						for (unsigned int j = 0; j < serverInfo->serviceCount && numDevices < 16; j++)
+						for (unsigned int j = 0; j < serverInfo->serviceCount && numDevices < 32; j++)
 						{
 							IDNCONTEXT* ctx = new IDNCONTEXT{ 0 };
 							ctx->serverSockAddr.sin_family = AF_INET;
@@ -236,7 +236,7 @@ bool Device_IDN::CloseAll()
 {
 	if (!ready) return false;
 
-	for (int i = 0; i < 16; i++)
+	for (int i = 0; i < 32; i++)
 	{
 		frameNum[i]++;
 		if (contexts[i] != NULL)

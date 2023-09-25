@@ -488,7 +488,7 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::WarmupHandler()
 		frame.dataBuffer[i].b = 0;
 	}
 
-	char buffer[1500] = { (char)LDN_CMD_SAMPLE_DATA, 0x00, (char)(messageNumber++ % 255), (char)(frameNumber % 255) };
+	char buffer[1500] = { (char)LDN_CMD_SAMPLE_DATA, 0x00, (char)(messageNumber++ % 256), (char)(frameNumber % 256) };
 	char buffer2[1500];
 
 	while (!stopThreads)
@@ -498,7 +498,9 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::WarmupHandler()
 			//char on = 1;
 			//outputEnabled = SendCommand(LDN_CMD_SET_OUTPUT, &on);
 
+#ifdef DEBUG
 			fprintf(stderr, "TRANSMIT FRAME (WARMUP): %d, remote buf: %d, local buf: %d\n", frameNumber, (maxBufferSpace - freeBufferSpace), localBufferSize);
+#endif
 
 			int dataLeft = 140;
 			int pointsToSend = dataLeft;
@@ -529,7 +531,9 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::WarmupHandler()
 					{
 						freeBufferSpace = *(unsigned short*)(&buffer2[2]);
 						previousBufferSpaceTime = std::chrono::system_clock::now();
+#ifdef DEBUG
 						fprintf(stderr, "RECEIVE SIZE (WARMUP): %d, remote buf: %d, local buf: %d\n", frameNumber, (maxBufferSpace - freeBufferSpace), localBufferSize);
+#endif
 						//warmupCounter++;
 					}
 					else
