@@ -40,11 +40,21 @@ function check_mouseactions() {
 		
 		if (keyboard_check_pressed(ord("1")))
 		{
+			var t_undolist = ds_list_create();
+			ds_list_add(t_undolist, scope_start);
+			ds_list_add(t_undolist, scope_end);
+			ds_list_add(undo_list,"c"+string(t_undolist));
+					
 			scope_start = min(scope_end, framecursor_prev);
 			refresh_minitimeline_flag = 1;
 		}
 		else if (keyboard_check_pressed(ord("2")))
 		{
+			var t_undolist = ds_list_create();
+			ds_list_add(t_undolist, scope_start);
+			ds_list_add(t_undolist, scope_end);
+			ds_list_add(undo_list,"c"+string(t_undolist));
+			
 			scope_end = max(scope_start, framecursor_prev);
 			refresh_minitimeline_flag = 1;
 		}
@@ -52,6 +62,11 @@ function check_mouseactions() {
 	    {
 	        if (keyboard_check(vk_shift))
 	        {
+				var t_undolist = ds_list_create();
+				ds_list_add(t_undolist, scope_start);
+				ds_list_add(t_undolist, scope_end);
+				ds_list_add(undo_list,"c"+string(t_undolist));
+			
 	            scope_start = framecursor_prev;
 	            scope_moving = true;
 	        }

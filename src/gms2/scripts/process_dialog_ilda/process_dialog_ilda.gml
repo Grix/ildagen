@@ -545,6 +545,12 @@ function process_dialog_ilda() {
 				  var t_value = round(ds_map_find_value(argument[0], "value"))-1;
 				  if (t_value > scope_end)
 					show_message_new("NB: Start of scope cannot be later than the end of scope.");
+					
+					var t_undolist = ds_list_create();
+					ds_list_add(t_undolist, scope_start);
+					ds_list_add(t_undolist, scope_end);
+					ds_list_add(undo_list,"c"+string(t_undolist));
+					
 	              scope_start = clamp(t_value,0,scope_end);
 	              frame = scope_start;
 	              framehr = scope_start;
@@ -559,6 +565,12 @@ function process_dialog_ilda() {
 				  var t_value = round(ds_map_find_value(argument[0], "value"))-1;
 				  if (t_value < scope_start)
 					show_message_new("NB: End of scope cannot be earlier than the start of scope.");
+				
+					var t_undolist = ds_list_create();
+					ds_list_add(t_undolist, scope_start);
+					ds_list_add(t_undolist, scope_end);
+					ds_list_add(undo_list,"c"+string(t_undolist));
+				
 	              scope_end = clamp(t_value,scope_start,maxframes-1);
 	              refresh_minitimeline_flag = 1;
               
@@ -631,7 +643,7 @@ function process_dialog_ilda() {
 	                  framehr = maxframes-1;
 	              }
                   
-	              dd_scope_reset();
+	              dd_scope_reset(false);
 				  clean_redo_list();
               
 	              break;
@@ -683,7 +695,7 @@ function process_dialog_ilda() {
 	                  framehr = maxframes-1;
 	              }
                   
-	              dd_scope_reset();
+	              dd_scope_reset(false);
               
 	              break;
 	          }

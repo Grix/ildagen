@@ -1,7 +1,7 @@
 1. run build in gms
 2. cancel when xcode project has been created
 3. add hardened runtime capability
-4. replace splash.png because it's default by error
+4. replace splash.png because it's default by error (maybe fixed in newer GM?)
 4. set minimum deployment: 10.13
 5. project -> archive
 6. distribute with dev id
@@ -14,6 +14,7 @@ installting dmgbuild
 
 sudo python -m ensurepip --default-pip
 sudo pip install dmgbuild
+copy settings.py to the folder
 
 creating dmg 
 

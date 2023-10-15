@@ -205,6 +205,22 @@ function undo_ilda() {
 			ilda_reverse(true);
 			ds_list_add(redo_list,"e");
 		}
+		else if (string_char_at(undo,0) == "c")
+		{
+		    //undo set scope
+			if (!ds_list_exists(real(string_digits(undo))))
+		        exit;
+		    tempundolist = real(string_digits(undo));
+			
+			var t_redolist = ds_list_create();
+			ds_list_add(t_redolist, scope_start);
+			ds_list_add(t_redolist, scope_end);
+			ds_list_add(redo_list,"c"+string(t_redolist));
+			
+			scope_start = clamp(tempundolist[| 0], 0, maxframes-1);
+			scope_end = clamp(tempundolist[| 1], scope_start, maxframes-1);
+			refresh_minitimeline_flag = 1;
+		}
     
     
 		frame_surf_refresh = 1;

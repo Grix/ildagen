@@ -83,6 +83,12 @@ with (controller)
 	
 			refresh_minitimeline_flag = 1;
 		}
+		else if (string_char_at(undo,0) == "c")
+	    {
+	        if (!ds_list_exists(real(string_digits(undo))))
+	            continue;
+	        ds_list_destroy(real(string_digits(undo)));
+	    }
 	}
 }
 

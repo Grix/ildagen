@@ -1,7 +1,7 @@
 TODO
-- fix lasercube id not reaching 255 (see email sep.25)
-- remember fps between startups
 - undo setting of scope
+- undo moving startframe/endframe etc in timeline
+
 - ability to select multiple items in editor by dragging mouse
 - fix ctrl+key shortcuts in linux
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)
@@ -15,7 +15,6 @@ TODO
 - add possibility to show cursor in editor when laser is on.
 - add midi cc and nrpn
 - ability to easily add shaking effect to multiple objects on timeline mode. Envelope?
-- undo moving startframe/endframe etc in timeline
 - improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
 - zoom in editor mode timeline
