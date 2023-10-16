@@ -1,12 +1,8 @@
+v1.10.2
+- Add undo/redo-ing for changing scope in editor mode, and start/end in timeline mode.
+- Fix small bug in LaserCube communication causing every 256th frame to be non-conformant. 
+
 v1.10.1
 - Fix several bugs for IDN, such as support for multiple devices, service mapping, and names.
 - Fix audio_loudness keyword not working in color or blanking function modes in the editor mode.
 - Make pasted objects align to the square grid size in the editor mode.
-
-v1.10.0
-- Changed name of Live Mode to Grid View.
-- Button for sending file directly from the Grid View to the Timeline mode, so that it can be used as a file browser.
-- Ability to give names to tiles in the Grid View, to organize them better.
-- Fix possible crash after undo-ing in editor mode just after having changed length of animation. 
-- Fix another possible but rare crash when playing file.
-- Tab-key works now toggles between the two previous views, instead of between the previous view and the editor mode.
