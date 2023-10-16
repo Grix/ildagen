@@ -376,6 +376,21 @@ function redo_seq() {
 	        selectedlayer = real(string_digits(redo));
 			layer_duplicate();
 		}
+		else if (string_char_at(undo,0) == "i")
+		{
+		    // redo set start/end
+			if (!ds_list_exists(real(string_digits(redo))))
+		        exit;
+		    redolisttemp = real(string_digits(redo));
+			
+			var t_redolist = ds_list_create();
+			ds_list_add(t_redolist, startframe);
+			ds_list_add(t_redolist, endframe);
+			ds_list_add(undo_list,"i"+string(t_redolist));
+			
+			startframe = max(redolisttemp[| 0], 0);
+			endframe = max(redolisttemp[| 1], startframe+1);
+		}
 		else
 			exit;
     

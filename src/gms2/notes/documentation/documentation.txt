@@ -1,7 +1,4 @@
 TODO
-- undo setting of scope
-- undo moving startframe/endframe etc in timeline
-
 - ability to select multiple items in editor by dragging mouse
 - fix ctrl+key shortcuts in linux
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)

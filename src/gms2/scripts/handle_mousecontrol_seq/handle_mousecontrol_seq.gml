@@ -1317,6 +1317,10 @@ function handle_mousecontrol_seq() {
 		mouseonsomelayer = 1;
 	    if (mouse_check_button_pressed(mb_left))
 	    {
+			var t_undolist = ds_list_create();
+			ds_list_add(t_undolist, startframe);
+			ds_list_add(t_undolist, endframe);
+			ds_list_add(undo_list,"i"+string(t_undolist));
 	        mouse_xprevious = mouse_x;
 	        moving_object = 4;
 	    }
@@ -1361,6 +1365,10 @@ function handle_mousecontrol_seq() {
 		mouseonsomelayer = 1;
 	    if (mouse_check_button_pressed(mb_left))
 	    {
+			var t_undolist = ds_list_create();
+			ds_list_add(t_undolist, startframe);
+			ds_list_add(t_undolist, endframe);
+			ds_list_add(undo_list,"i"+string(t_undolist));
 	        mouse_xprevious = mouse_x;
 	        moving_object = 3;
 	    }

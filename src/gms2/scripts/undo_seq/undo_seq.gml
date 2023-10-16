@@ -383,6 +383,21 @@ function undo_seq() {
 			layer_delete_inner();
 			ds_list_add(redo_list, "g"+string(undolisttemp[| 1]));
 		}
+		else if (string_char_at(undo,0) == "i")
+		{
+		    //undo set start/end
+			if (!ds_list_exists(real(string_digits(undo))))
+		        exit;
+		    undolisttemp = real(string_digits(undo));
+			
+			var t_redolist = ds_list_create();
+			ds_list_add(t_redolist, startframe);
+			ds_list_add(t_redolist, endframe);
+			ds_list_add(redo_list,"i"+string(t_redolist));
+			
+			startframe = max(undolisttemp[| 0], 0);
+			endframe = max(undolisttemp[| 1], startframe+1);
+		}
 		else
 			exit;
     

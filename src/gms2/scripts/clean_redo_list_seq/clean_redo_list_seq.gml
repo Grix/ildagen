@@ -139,5 +139,11 @@ function clean_redo_list_seq(){
 		{
 			// nothing
 		}
+		else if (string_char_at(redo,0) == "i")
+		{
+	        if (!ds_list_exists(real(string_digits(redo))))
+	            continue;
+	        ds_list_destroy(real(string_digits(redo)));
+	    }
 	}
 }

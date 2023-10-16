@@ -153,12 +153,22 @@ if (keyboard_check_control())
 	
 	else if (keyboard_check_pressed(ord("1")))
 	{
+		var t_undolist = ds_list_create();
+		ds_list_add(t_undolist, startframe);
+		ds_list_add(t_undolist, endframe);
+		ds_list_add(undo_list,"i"+string(t_undolist));
+		
 		startframe = tlx + mouse_x*tlzoom/tlw;//tlpos*projectfps/1000;
 		if (startframe < 0)
 			startframe = 0;
 	}
 	else if (keyboard_check_pressed(ord("2")))
 	{
+		var t_undolist = ds_list_create();
+		ds_list_add(t_undolist, startframe);
+		ds_list_add(t_undolist, endframe);
+		ds_list_add(undo_list,"i"+string(t_undolist));
+		
 		endframe = tlx + mouse_x*tlzoom/tlw;//tlpos*projectfps/1000;
 		if (endframe <= startframe)
 			endframe = startframe+1;
