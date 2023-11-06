@@ -18,7 +18,7 @@
   "option_linux_sync": false,
   "option_linux_resize_window": true,
   "option_linux_scale": 1,
-  "option_linux_texture_page": "2048x2048",
+  "option_linux_texture_page": "4096x4096",
   "option_linux_enable_steam": false,
   "option_linux_disable_sandbox": true,
 }

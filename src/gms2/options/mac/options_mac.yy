@@ -6,8 +6,8 @@
   "option_mac_app_id": "lasershowgen",
   "option_mac_version": "1.10.0",
   "option_mac_output_dir": "~/gamemakerstudio2/ildagen",
-  "option_mac_team_id": "Y62YL762Z5",
-  "option_mac_signing_identity": "Developer ID Application: Gitle Mikkelsen (Y62YL762Z5)",
+  "option_mac_team_id": "",
+  "option_mac_signing_identity": "",
   "option_mac_copyright": "(c)2020 Gitle Mikkelsen",
   "option_mac_splash_png": "splash/splash.png",
   "option_mac_icon_png": "${options_dir}/mac/icons/1024.png",
@@ -31,4 +31,5 @@
   "option_mac_x86_64": true,
   "option_mac_arm64": true,
   "option_mac_apple_sign_in": false,
+  "option_mac_min_version": "10.13",
 }
