@@ -34,8 +34,53 @@ int Device_IDN::Init()
 	int numDevices = 0;
 
 #ifndef WIN32 
+    
+    // Find all IDN servers
+    unsigned msTimeout = 500;
+    IDNSL_SERVER_INFO* firstServerInfo;
+    int rcGetList = getIDNServerList(&firstServerInfo, 0, msTimeout);
+    if (rcGetList != 0)
+    {
+        logError("getIDNServerList() failed (error: %d)", rcGetList);
+    }
+    else
+    {
+        for (IDNSL_SERVER_INFO* serverInfo = firstServerInfo; serverInfo != 0; serverInfo = serverInfo->next)
+        {
+            for (unsigned int i = 0; i < serverInfo->addressCount; i++)
+            {
+                if (serverInfo->addressTable[i].errorFlags == 0 && numDevices < 32)
+                {
+                    bool found = false;
+                    int contextId = 0;
+                    for (; contextId < numDevices; contextId++) // Check for duplicate entries
+                    {
+                        if (contexts[contextId]->serverSockAddr.sin_addr.s_addr == serverInfo->addressTable[i].addr.s_addr) // todo: and name / unit id?
+                            found = true;
+                    }
+                    if (!found)
+                    {
+                        for (unsigned int j = 0; j < serverInfo->serviceCount && numDevices < 32; j++)
+                        {
+                            IDNCONTEXT* ctx = new IDNCONTEXT{ 0 };
+                            ctx->serverSockAddr.sin_family = AF_INET;
+                            ctx->serverSockAddr.sin_port = htons(IDN_PORT);
+                            ctx->serverSockAddr.sin_addr.s_addr = serverInfo->addressTable[i].addr.s_addr;
+                            ctx->name = std::string(serverInfo->hostName).append(" - ").append(serverInfo->serviceTable[j].serviceName);
+                            ctx->serviceId = serverInfo->serviceTable[j].serviceID;
+
+                            contexts[numDevices++] = ctx;
+                        }
+
+                    }
+                }
+            }
+        }
+        
+        freeIDNServerList(firstServerInfo);  // Server list is dynamically allocated and must be freed
+    }
 	//int rcAddrInfo = getaddrinfo(NULL, "7255", &hints, &servinfo);
-	struct ifaddrs *ifaddr;
+	/*struct ifaddrs *ifaddr;
 		if(getifaddrs(&ifaddr) == -1) return errno;
 
 		// Walk through all interfaces
@@ -64,7 +109,7 @@ int Device_IDN::Init()
 		}
 
 		// Interface list is dynamically allocated and must be freed
-		freeifaddrs(ifaddr);
+		freeifaddrs(ifaddr);*/
 #else
 	
 	// Initialize platform sockets

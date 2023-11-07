@@ -109,6 +109,7 @@ typedef struct _INTERFACE_NODE
 
     int fdSocket;                               // Broadcast socket file descriptor
     uint16_t scanSequenceNum;                   // Broadcast scan sequence number
+    uint32_t ipAddr;
 
 } INTERFACE_NODE;
 
@@ -226,6 +227,8 @@ static void createInterfaceNode(void *callbackArg, const char *ifName, uint32_t 
             logError("socket() failed (error: %d)", plt_sockGetLastError());
             break;
         }
+        
+        ifNode->ipAddr = ifIP4Addr;
 
         // Remember interface name
         snprintf(ifNode->ifName, sizeof(ifNode->ifName), ifName ? ifName : "<?>");
@@ -657,12 +660,11 @@ static int sendBroadcastRequest(SCAN_CONTEXT *scanCtx, INTERFACE_NODE *ifNode)
 {
     // Remember request packet sequence number
     ifNode->scanSequenceNum = scanCtx->sequenceNum++;
-
     // Use network broadcast address (to find all servers)
     struct sockaddr_in remoteSockAddr;
     remoteSockAddr.sin_family      = AF_INET;
     remoteSockAddr.sin_port        = htons(IDNVAL_HELLO_UDP_PORT);
-    remoteSockAddr.sin_addr.s_addr = INADDR_BROADCAST;
+    remoteSockAddr.sin_addr.s_addr = ifNode->ipAddr | (255 << (8 * 3));//INADDR_BROADCAST;
 
     // Populate IDN-Hello request packet
     IDNHDR_PACKET reqPacketHdr;

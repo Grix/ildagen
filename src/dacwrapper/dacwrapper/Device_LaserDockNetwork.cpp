@@ -82,6 +82,7 @@ bool Device_LaserDockNetwork::TryOpenFromIp(char* hostname)
 		// todo
 		return false;
 	}
+    return false;
 }
 
 bool Device_LaserDockNetwork::Stop(int devNum)
