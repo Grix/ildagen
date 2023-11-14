@@ -12,19 +12,23 @@
 
 installting dmgbuild
 
-sudo python -m ensurepip --default-pip
-sudo pip install dmgbuild
+python3 -m ensurepip --default-pip
+pip3 install dmgbuild
 copy settings.py to the folder
 
 creating dmg 
 
-dmgbuild -s settings.py "LaserShowGen" LaserShowGen-1.9.0-Mac.dmg
+python3 -m dmgbuild -s settings.py "LaserShowGen" LaserShowGen-1.9.0-Mac.dmg
 
 sign/notarize
 
 codesign -s "Developer ID Application: Gitle Mikkelsen (Y62YL762Z5)" --timestamp LaserShowGen-1.8.5-Mac.dmg 
-xcrun altool --notarize-app --primary-bundle-id "lasershowgen" -u "gitle@bitlasers.com" -p "@keychain:altool" -t osx -f ./LaserShowGen-1.8.5-Mac.dmg 
+		//xcrun altool --notarize-app --primary-bundle-id "lasershowgen" -u "gitle@bitlasers.com" -p "@keychain:altool" -t osx -f ./LaserShowGen-1.8.5-Mac.dmg 
+xcrun notarytool submit ./LaserShowGen-1.8.5-Mac.dmg --username gitle@bitlasers.com --team-id Y62YL762Z5 --password wmvf-cllb-xboz-mmza --wait
+xcrun notarytool log ID --apple-id gitle@bitlasers.com --team-id Y62YL762Z5 --password wmvf-cllb-xboz-mmza
 xcrun stapler staple ./LaserShowGen-1.8.5-Mac.dmg
+
+notarytool app-specific password: wmvf-cllb-xboz-mmza
 
 verify:
 spctl -a -vv -t install MyApp.dmg
