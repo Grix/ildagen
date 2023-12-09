@@ -8,6 +8,7 @@ TODO
 - text turns gray when in rainbow color tool
 - fix crash if scanning for lasercubes when they are already in use by another program like laseros (Not reproducible?)
 - update web
+- fix crash on app close on macos after having used IDN dac
 - add possibility for assigning different projectors to live modes files.
 - add possibility to show cursor in editor when laser is on.
 - add midi cc and nrpn
