@@ -32,7 +32,6 @@ xcrun notarytool submit ./LaserShowGen-1.8.5-Mac.dmg --username gitle@bitlasers.
 xcrun notarytool log ID --apple-id gitle@bitlasers.com --team-id Y62YL762Z5 --password **
 xcrun stapler staple ./LaserShowGen-1.8.5-Mac.dmg
 
-notarytool app-specific password: wmvf-cllb-xboz-mmza
 
 verify:
 spctl -a -vv -t install MyApp.dmg
