@@ -1,6 +1,7 @@
 TODO
 - ability to select multiple items in editor by dragging mouse
 - fix ctrl+key shortcuts in linux
+- included set of ILDA files / beams 
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)
 - rearranging of tiles in Live Mode.
 - fix opening web on linux (not working on my kubuntu with firefox)

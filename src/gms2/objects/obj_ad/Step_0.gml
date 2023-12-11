@@ -27,7 +27,7 @@ else if (window_mouse_get_x() >= x) && (window_mouse_get_x() <= (x+700*controlle
         else if (ad == spr_ad4)
             url_open_new("http://pages.bitlasers.com/lasershowgen/advertising");
         else if (ad == spr_ad5)
-            url_open_new("https://lasershowtraining.com/");
+            url_open_new("https://www.youtube.com/watch?v=I00X4zkfnw8&list=PLzkfJ3w9T9qe0SorZS5TmtwDL1SOY8OMG");
     
         ddobj = instance_create_layer(0,0,"foreground",obj_dropdown);
         with (ddobj)

@@ -1,16 +1,20 @@
-1. run build in gms
-2. cancel when xcode project has been created
+1. run build in gms (create executable)
+2. open xcode project in /Users/gitle2/GameMakerStudio2/ildagen/GM_MAC/LaserShowGen/LaserShowGen
 3. add hardened runtime capability
-4. replace splash.png because it's default by error (maybe fixed in newer GM?)
-4. set minimum deployment: 10.13
+4. change "only build for active architecture" to no.
+5. Fix bundle identifier setting if there is a warning when compiling.
 5. project -> archive
 6. distribute with dev id
+
+codesign --remove-signature LaserShowGen.app
+codesign -s "Developer ID Application: Gitle Mikkelsen (Y62YL762Z5)" --deep --options runtime --timestamp LaserShowGen.app
+
+
 7. create dmg
 8. sign and notarize
-9. wait for confirmation email
 10. staple
 
-installting dmgbuild
+installing dmgbuild
 
 python3 -m ensurepip --default-pip
 pip3 install dmgbuild
@@ -24,8 +28,8 @@ sign/notarize
 
 codesign -s "Developer ID Application: Gitle Mikkelsen (Y62YL762Z5)" --timestamp LaserShowGen-1.8.5-Mac.dmg 
 		//xcrun altool --notarize-app --primary-bundle-id "lasershowgen" -u "gitle@bitlasers.com" -p "@keychain:altool" -t osx -f ./LaserShowGen-1.8.5-Mac.dmg 
-xcrun notarytool submit ./LaserShowGen-1.8.5-Mac.dmg --username gitle@bitlasers.com --team-id Y62YL762Z5 --password wmvf-cllb-xboz-mmza --wait
-xcrun notarytool log ID --apple-id gitle@bitlasers.com --team-id Y62YL762Z5 --password wmvf-cllb-xboz-mmza
+xcrun notarytool submit ./LaserShowGen-1.8.5-Mac.dmg --username gitle@bitlasers.com --team-id Y62YL762Z5 --password ** --wait
+xcrun notarytool log ID --apple-id gitle@bitlasers.com --team-id Y62YL762Z5 --password **
 xcrun stapler staple ./LaserShowGen-1.8.5-Mac.dmg
 
 notarytool app-specific password: wmvf-cllb-xboz-mmza
