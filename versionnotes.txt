@@ -2,6 +2,7 @@ v1.10.2
 - Add undo/redo-ing for changing scope in editor mode, and start/end in timeline mode.
 - Fix small bug in LaserCube communication causing every 256th frame to be non-conformant. 
 - Fix dialog popups on macOS not working on older macOS versions.
+- Remember default FPS settings between startups.
 
 v1.10.1
 - Fix several bugs for IDN, such as support for multiple devices, service mapping, and names.
