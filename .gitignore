@@ -317,3 +317,5 @@ verify_serial.gml
 verify_numexports.gml
 
 xcuserdata/
+
+*.p12

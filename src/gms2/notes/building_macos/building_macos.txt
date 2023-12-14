@@ -1,7 +1,6 @@
 1. run build in gms (create executable)
 2. open xcode project in /Users/gitle2/GameMakerStudio2/ildagen/GM_MAC/LaserShowGen/LaserShowGen
 3. add hardened runtime capability
-4. change "only build for active architecture" to no.
 5. Fix bundle identifier setting if there is a warning when compiling.
 5. project -> archive
 6. distribute with dev id
@@ -9,22 +8,21 @@
 codesign --remove-signature LaserShowGen.app
 codesign -s "Developer ID Application: Gitle Mikkelsen (Y62YL762Z5)" --deep --options runtime --timestamp LaserShowGen.app
 
-
 7. create dmg
-8. sign and notarize
+8. sign and notarize (see below)
 10. staple
 
-installing dmgbuild
+installing dmgbuild:
 
 python3 -m ensurepip --default-pip
 pip3 install dmgbuild
 copy settings.py to the folder
 
-creating dmg 
+creating dmg:
 
 python3 -m dmgbuild -s settings.py "LaserShowGen" LaserShowGen-1.9.0-Mac.dmg
 
-sign/notarize
+sign/notarize:
 
 codesign -s "Developer ID Application: Gitle Mikkelsen (Y62YL762Z5)" --timestamp LaserShowGen-1.8.5-Mac.dmg 
 		//xcrun altool --notarize-app --primary-bundle-id "lasershowgen" -u "gitle@bitlasers.com" -p "@keychain:altool" -t osx -f ./LaserShowGen-1.8.5-Mac.dmg 
@@ -34,6 +32,7 @@ xcrun stapler staple ./LaserShowGen-1.8.5-Mac.dmg
 
 
 verify:
+
 spctl -a -vv -t install MyApp.dmg
 spctl -a -vv /Applications/MyApp.app
 
