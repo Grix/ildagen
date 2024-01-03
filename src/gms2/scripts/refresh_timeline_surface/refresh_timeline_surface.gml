@@ -91,11 +91,10 @@ function refresh_timeline_surface() {
 						}
                 
 		                frametime = ds_list_find_value(objectlist,0);
-		                infolist = ds_list_find_value(objectlist,2);
 						if (moving_object == 8) && (objecttomove == objectlist)
-							duration = ds_list_find_value(infolist,0) + stretch;
+							duration = ds_list_find_value(objectlist,2) + stretch;
 						else
-							duration = ds_list_find_value(infolist,0);
+							duration = ds_list_find_value(objectlist,2);
                 
 		                if (frametime <= t_tlx+t_tlzoom) and (frametime+duration >= t_tlx)
 		                {
@@ -109,14 +108,14 @@ function refresh_timeline_surface() {
 		                    draw_set_colour(c_white);
 							if ((duration+1)*tlwdivtlzoom > 3)
 							{
-			                    if (!surface_exists(infolist[| 1]))
-			                        infolist[| 1] = make_screenshot(objectlist[| 1], 27);
-			                    draw_surface_part(infolist[| 1],0,0,floor(clamp((duration+1)*tlwdivtlzoom,0,32))-1,32,framestartx+1,ypos_perm+8);
+			                    if (!surface_exists(objectlist[| 3]))
+			                        objectlist[| 3] = make_screenshot(objectlist[| 1], 27);
+			                    draw_surface_part(objectlist[| 3],0,0,floor(clamp((duration+1)*tlwdivtlzoom,0,32))-1,32,framestartx+1,ypos_perm+8);
 							}
 							if (moving_object == 8) && (objecttomove == objectlist)
-								maxframes = infolist[| 2] + stretch/infolist[| 0]*infolist[| 2];
+								maxframes = objectlist[| 4] + stretch/objectlist[| 2]*objectlist[| 4];
 							else
-								maxframes = infolist[| 2];
+								maxframes = objectlist[| 4];
 						
 		                    draw_set_colour(c_black);
 		                    if (maxframes != 1)

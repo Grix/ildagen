@@ -39,7 +39,6 @@ function handle_mousecontrol_seq() {
 		        exit;
 		    }
 		
-	        infolisttomove = ds_list_find_value(objecttomove,2);
 	        layertomove = -1;
 	        layertomove_index = -1;
 	        for (j = 0; j < ds_list_size(layer_list); j++)
@@ -100,7 +99,6 @@ function handle_mousecontrol_seq() {
 	        for (i = 0; i < ds_list_size(somaster_list); i++)
 	        {
 	            objecttomove = ds_list_find_value(somaster_list,i);
-	            infolisttomove = ds_list_find_value(objecttomove,2);
 	            layertomove = -1;
 	            for (j = 0; j < ds_list_size(layer_list); j++)
 	            {
@@ -127,7 +125,7 @@ function handle_mousecontrol_seq() {
 	                {
 	                    loopcount--;
 	                    t_loop = 0;
-	                    tempxend = tempxstart + ds_list_find_value(ds_list_find_value(objecttomove,2),0);
+	                    tempxend = tempxstart + objecttomove[| 2];
 	                    for ( u = 0; u < ds_list_size(layertomove); u++)
 	                    {
 	                        if (ds_list_find_value(layertomove,u) == objecttomove) 
@@ -188,10 +186,9 @@ function handle_mousecontrol_seq() {
 		        moving_object = 0;
 		        exit;
 		    }
-	        infolisttomove = ds_list_find_value(objecttomove,2);
         
 	        draw_mouseline = 1;
-	        ds_list_replace(infolisttomove,0,max(0,ds_list_find_value(infolisttomove,0)+(mouse_x-mouse_xprevious)*tlzoom/tlw));
+	        ds_list_replace(objecttomove, 2, max(0, ds_list_find_value(objecttomove,2) + (mouse_x-mouse_xprevious)*tlzoom/tlw));
 	    }
         
 	    mouse_xprevious = mouse_x;    
@@ -204,7 +201,6 @@ function handle_mousecontrol_seq() {
 	        for (i = 0; i < ds_list_size(somaster_list); i++)
 	        {
 	            objecttomove = ds_list_find_value(somaster_list,i);
-	            infolisttomove = ds_list_find_value(objecttomove,2);
 	            layertomove = -1;
 	            for (j = 0; j < ds_list_size(layer_list); j++)
 	            {
@@ -218,7 +214,7 @@ function handle_mousecontrol_seq() {
 	                exit;
 	            }
 			
-	            templength = round(ds_list_find_value(infolisttomove,0));
+	            templength = round(ds_list_find_value(objecttomove,2));
 	            if (!keyboard_check_control())
 	            {
 	                tempxstart = round(ds_list_find_value(objecttomove,0));
@@ -248,14 +244,14 @@ function handle_mousecontrol_seq() {
 	                        templength = tempxstart2-tempxstart-1;
 	                        if (templength < 1) 
 	                        {
-	                            templength = round(ds_list_find_value(infolisttomove,0));
+	                            templength = round(ds_list_find_value(objecttomove,2));
 	                            t_loop = 0;
 	                        }
 	                    }
 	                }
 	            }
             
-	            ds_list_replace(infolisttomove,0,templength);
+	            ds_list_replace(objecttomove, 2, templength);
             
 	            ds_list_add(undo_list,"r"+string(undolisttemp));
             
@@ -280,10 +276,9 @@ function handle_mousecontrol_seq() {
 	    for (i = 0; i < ds_list_size(somaster_list); i++)
 	    {
 	        objecttomove = ds_list_find_value(somaster_list,i);
-	        infolisttomove = ds_list_find_value(objecttomove,2);
 			stretch += (mouse_x-mouse_xprevious)*tlzoom/tlw;
-			if (infolisttomove[| 2] + stretch/(infolisttomove[| 0]+1)*infolisttomove[| 2] < 1)
-				stretch = (1 - infolisttomove[| 2])/infolisttomove[| 2]*(infolisttomove[| 0]+1);
+			if (objecttomove[| 4] + stretch/(objecttomove[| 2]+1)*objecttomove[| 4] < 1)
+				stretch = (1 - objecttomove[| 4])/objecttomove[| 4]*(objecttomove[| 2]+1);
         
 	        draw_mouseline = 1;
 	    }
@@ -297,7 +292,6 @@ function handle_mousecontrol_seq() {
 	        for (i = 0; i < ds_list_size(somaster_list); i++)
 	        {
 	            objecttomove = ds_list_find_value(somaster_list,i);
-	            infolisttomove = ds_list_find_value(objecttomove,2);
 	            layertomove = -1;
 	            for (j = 0; j < ds_list_size(layer_list); j++)
 	            {
@@ -314,7 +308,7 @@ function handle_mousecontrol_seq() {
 	            tempstretch = stretch;
 	            if (!keyboard_check_control())
 	            {
-					templength = round(ds_list_find_value(infolisttomove,0));
+					templength = round(ds_list_find_value(objecttomove,2));
 	                tempxstart = round(ds_list_find_value(objecttomove,0));
 	                //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
 	                loopcount = 5;
@@ -340,9 +334,9 @@ function handle_mousecontrol_seq() {
 	                        //collision:
 	                        t_loop = 1;
 	                        tempstretch = tempxstart2-tempxstart-templength-1;
-							if (infolisttomove[| 2] + tempstretch < 1)
+							if (objecttomove[| 4] + tempstretch < 1)
 							{
-								tempstretch = 1 - infolisttomove[| 2];
+								tempstretch = 1 - objecttomove[| 4];
 								t_loop = 0;
 							}
 	                    }
@@ -350,8 +344,8 @@ function handle_mousecontrol_seq() {
 	            }
             
 				//set up lists
-				var t_newlength = max(infolisttomove[| 0]+round(tempstretch), 1);
-				var t_newmaxframes = max(infolisttomove[| 2]+floor(tempstretch/(infolisttomove[| 0]+1)*infolisttomove[| 2]), 1);
+				var t_newlength = max(objecttomove[| 2]+round(tempstretch), 1);
+				var t_newmaxframes = max(objecttomove[| 4]+floor(tempstretch/(objecttomove[| 2]+1)*objecttomove[| 4]), 1);
 				var t_oldbuffer = objecttomove[| 1];
 				new_objectlist = ds_list_create();
 				ds_list_add(new_objectlist, objecttomove[| 0]);
@@ -359,11 +353,9 @@ function handle_mousecontrol_seq() {
 				buffer_write(el_buffer, buffer_u8, 52);
 				buffer_write(el_buffer, buffer_u32, t_newmaxframes);
 				ds_list_add(new_objectlist, el_buffer);
-				newinfolist = ds_list_create();
-				ds_list_add(new_objectlist, newinfolist);
-				ds_list_add(newinfolist, t_newlength);
-				ds_list_add(newinfolist, -1);
-				ds_list_add(newinfolist, t_newmaxframes);
+				ds_list_add(new_objectlist, t_newlength);
+				ds_list_add(new_objectlist, -1);
+				ds_list_add(new_objectlist, t_newmaxframes);
 				//set up frame buffer
 				for (n = 0; n < t_newmaxframes; n++) //todo this can be optimized
 				{
@@ -402,7 +394,7 @@ function handle_mousecontrol_seq() {
 			
 				buffer_resize(el_buffer, buffer_tell(el_buffer));
 				
-				ds_list_add(newinfolist, create_checkpoint_list(el_buffer));
+				ds_list_add(new_objectlist, create_checkpoint_list(el_buffer));
             
 	            undolisttemp = ds_list_create();
 		        ds_list_add(undolisttemp,new_objectlist);
@@ -1049,9 +1041,8 @@ function handle_mousecontrol_seq() {
 							continue;
 						}
                     
-	                    infolist =  ds_list_find_value(objectlist,2);
 	                    frametime = ds_list_find_value(objectlist,0);
-	                    object_length = ds_list_find_value(infolist,0);
+	                    object_length = ds_list_find_value(objectlist,2);
 	                    draw_mouseline = 1;
                     
 						if (mouse_x > ((frametime-tlx)/tlzoom*tlw) && mouse_x < ((frametime+object_length+1-tlx)/tlzoom*tlw)+3)
@@ -1118,7 +1109,7 @@ function handle_mousecontrol_seq() {
 											//resize object
 											moving_object_flag = 2;
 											undolisttemp = ds_list_create();
-		                                    ds_list_add(undolisttemp,infolist);
+		                                    ds_list_add(undolisttemp,objectlist);
 		                                    ds_list_add(undolisttemp,object_length);
 										}
 										else 

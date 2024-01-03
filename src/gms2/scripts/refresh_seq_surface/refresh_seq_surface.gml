@@ -58,30 +58,9 @@ function refresh_seq_surface() {
 				continue;
 			}
 			
-	        infolist =  ds_list_find_value(objectlist,2);
 	        frametime = round(ds_list_find_value(objectlist,0));
-			if (!ds_list_exists(infolist))
-			{
-				// ERROR: missing list?
-				/*var t_newinfo = ds_list_create();
-				ds_list_add(t_newinfo,0);
-			    ds_list_add(t_newinfo,-1);
-			    ds_list_add(t_newinfo,1);
-				ds_list_add(t_newinfo, create_checkpoint_list(objectlist[| 1]));
-				ds_list_replace(objectlist, 2, t_newinfo);
-				infolist = t_newinfo;*/
-				
-				if (!controller.bug_report_suppress)
-				{
-					controller.bug_report_suppress = true;
-					http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
-			                "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING infolist in refresh_seq_surface. Undefined: "+string(is_undefined(infolist))+", frametime: "+string(frametime)+", element num: "+string(m));
-				}
-				continue;
-			
-			}
-	        object_length = ds_list_find_value(infolist,0);
-	        object_maxframes = ds_list_find_value(infolist,2);
+	        object_length = ds_list_find_value(objectlist,2);
+	        object_maxframes = ds_list_find_value(objectlist,4);
         
 	        if (correctframe != clamp(correctframe, frametime, frametime+object_length))
 	            continue;
@@ -298,10 +277,9 @@ function refresh_seq_surface() {
 						continue;
 					}
 			
-			        infolist =  ds_list_find_value(objectlist,2);
 			        frametime = round(ds_list_find_value(objectlist,0));
-			        object_length = ds_list_find_value(infolist,0);
-			        object_maxframes = ds_list_find_value(infolist,2);
+			        object_length = ds_list_find_value(objectlist,2);
+			        object_maxframes = ds_list_find_value(objectlist,4);
         
 			        if (correctframe != clamp(correctframe, frametime, frametime+object_length))
 			            continue;

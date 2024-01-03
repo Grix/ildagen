@@ -62,10 +62,9 @@ function export_project_work() {
 					continue;
 				}
             
-	            infolist =  ds_list_find_value(objectlist,2);
 	            frametime = round(ds_list_find_value(objectlist,0));
-	            object_length = ds_list_find_value(infolist,0);
-	            object_maxframes = ds_list_find_value(infolist,2);
+	            object_length = ds_list_find_value(objectlist,2);
+	            object_maxframes = ds_list_find_value(objectlist,4);
             
 	            if (correctframe != clamp(correctframe, frametime, frametime+object_length))
 	                continue;

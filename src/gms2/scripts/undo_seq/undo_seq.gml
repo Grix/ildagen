@@ -138,19 +138,19 @@ function undo_seq() {
 	        undolisttemp = real(string_digits(undo));
 			if (!ds_list_exists(undolisttemp))
 	            exit;
-	        infolist = undolisttemp[| 0];
-	        if (!ds_list_exists(infolist))
+	        var t_objectlist = undolisttemp[| 0];
+	        if (!ds_list_exists(t_objectlist))
 	        {
 	            //ds_list_destroy(undolisttemp);
 	            exit;
 	        }
 			
 			redolisttemp = ds_list_create();
-	        ds_list_add(redolisttemp,infolist);
-	        ds_list_add(redolisttemp,infolist[| 0]);
+	        ds_list_add(redolisttemp,t_objectlist);
+	        ds_list_add(redolisttemp,t_objectlist[| 2]);
 	        ds_list_add(redo_list,"r"+string(redolisttemp));
 			
-	        ds_list_replace(infolist,0,undolisttemp[| 1]);
+	        ds_list_replace(t_objectlist, 2, undolisttemp[| 1]);
 			
 	        ds_list_destroy(undolisttemp);
 	    }

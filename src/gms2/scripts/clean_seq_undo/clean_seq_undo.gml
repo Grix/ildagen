@@ -45,13 +45,8 @@ with (seqcontrol)
 	        if (!ds_list_exists(undolisttemp))
 	            exit;
 	        var t_objectlist = ds_list_find_value(undolisttemp,1);
-	        var t_infolist = ds_list_find_value(t_objectlist, 2);
-			if (!is_undefined(t_infolist))
-			{
-		        if (!is_undefined(ds_list_find_value(t_infolist,1)) && surface_exists(ds_list_find_value(t_infolist,1)))
-		            surface_free(ds_list_find_value(t_infolist,1));
-		        ds_list_destroy(t_infolist);
-			}
+		    if (!is_undefined(ds_list_find_value(t_objectlist,3)) && surface_exists(ds_list_find_value(t_objectlist,3)))
+		        surface_free(ds_list_find_value(t_objectlist,3));
 		    if (buffer_exists(ds_list_find_value(t_objectlist,1)))
 				buffer_delete(ds_list_find_value(t_objectlist,1));
 	        ds_list_destroy(t_objectlist);

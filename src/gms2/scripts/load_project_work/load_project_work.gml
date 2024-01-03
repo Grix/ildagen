@@ -21,7 +21,7 @@ function load_project_work() {
 	        for (i = 0; i < numofobjects;i++)
 	        {
 	            objectlist = ds_list_create();
-	            ds_list_add(objectlist,round(buffer_read(load_buffer,buffer_u32)));
+	            ds_list_add(objectlist, round(buffer_read(load_buffer,buffer_u32)));
             
 	            objectbuffersize = buffer_read(load_buffer,buffer_u32);
 	            objectbuffer = buffer_create(objectbuffersize,buffer_fixed,1);
@@ -33,15 +33,13 @@ function load_project_work() {
 					buffer_delete(objectbuffer);
 					objectbuffer = t_objectbuffer_decompressed;
 				}
-				ds_list_add(objectlist,objectbuffer);
-		        buffer_seek(load_buffer,buffer_seek_relative,objectbuffersize);
+				ds_list_add(objectlist, objectbuffer);
+		        buffer_seek(load_buffer, buffer_seek_relative,objectbuffersize);
             
-	            objectinfolist = ds_list_create();
-	            ds_list_add(objectlist,objectinfolist);
-	            ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
-	            ds_list_add(objectinfolist,-1);
-	            ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
-				ds_list_add(objectinfolist, create_checkpoint_list(objectbuffer));
+	            ds_list_add(objectlist, round(buffer_read(load_buffer,buffer_u32)));
+	            ds_list_add(objectlist, -1);
+	            ds_list_add(objectlist, round(buffer_read(load_buffer,buffer_u32)));
+				ds_list_add(objectlist, create_checkpoint_list(objectbuffer));
             
 	            ds_list_add(layertemp[| 1],objectlist);
 	        }
@@ -165,12 +163,10 @@ function load_project_work() {
 	            }
 	            buffer_delete(objectbuffer);
             
-	            objectinfolist = ds_list_create();
-	            ds_list_add(objectlist,objectinfolist);
-	            ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
-	            ds_list_add(objectinfolist,-1);
-	            ds_list_add(objectinfolist,round(buffer_read(load_buffer,buffer_u32)));
-				ds_list_add(objectinfolist,create_checkpoint_list(new_objectbuffer));
+	            ds_list_add(objectlist, round(buffer_read(load_buffer,buffer_u32)));
+	            ds_list_add(objectlist, -1);
+	            ds_list_add(objectlist, round(buffer_read(load_buffer,buffer_u32)));
+				ds_list_add(objectlist, create_checkpoint_list(new_objectbuffer));
             
 	            ds_list_add(layertemp[| 1],objectlist);
 	        }

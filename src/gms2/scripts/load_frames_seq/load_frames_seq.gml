@@ -198,19 +198,15 @@ function load_frames_seq(argument0) {
 	if (selectedx >= 0)
 	{
 	    objectlist = ds_list_create();
-	    ds_list_add(objectlist,selectedx);
-	    ds_list_add(objectlist,save_buffer);
-    
-	    info = ds_list_create();
-	    ds_list_add(info,tempmaxframes-1);
-	    ds_list_add(info,-1);
-	    ds_list_add(info,tempmaxframes);
-		ds_list_add(info, create_checkpoint_list(save_buffer));
-	    ds_list_add(objectlist,info);
+	    ds_list_add(objectlist, selectedx);
+	    ds_list_add(objectlist, save_buffer);
+	    ds_list_add(objectlist, tempmaxframes-1);
+	    ds_list_add(objectlist, -1);
+	    ds_list_add(objectlist, tempmaxframes);
+		ds_list_add(objectlist, create_checkpoint_list(save_buffer));
     
 	    ds_list_add(selectedlayerlist[| 1],objectlist);
     
-	    infolisttemp = info;
 	    selectedx += tempmaxframes;
 	}
 

@@ -33,18 +33,17 @@ function process_dialog_seq() {
 	            objectlist = ds_list_find_value(somaster_list,0);
 				if (!ds_list_exists(objectlist))
 					break;
-	            infolisttomove = ds_list_find_value(objectlist,2);
 	            newduration = round(ds_map_find_value(argument[0], "value"));
 	            if (newduration < 1) 
 	                newduration = 1;
 	            newduration--;
             
 	            undolisttemp = ds_list_create();
-	            ds_list_add(undolisttemp,infolisttomove);
-	            ds_list_add(undolisttemp,infolisttomove[| 0]);
+	            ds_list_add(undolisttemp,objectlist);
+	            ds_list_add(undolisttemp,objectlist[| 2]);
 	            ds_list_add(undo_list,"r"+string(undolisttemp));
             
-	            ds_list_replace(infolisttomove,0,newduration);
+	            ds_list_replace(objectlist, 2, newduration);
             
 	            //todo: check for collisions
 			

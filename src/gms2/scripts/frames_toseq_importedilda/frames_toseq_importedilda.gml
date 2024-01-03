@@ -13,21 +13,7 @@ function frames_toseq_importedilda() {
 	    playing = 0;
 	}
     
-	//check for overlaps
-	/*with (seqcontrol)
-	{
-	    _layer = ds_list_find_value(layer_list,selectedlayer);
-	    for (j = 1; j < ds_list_size(_layer); j += 3)
-	    {
-	        infolist = ds_list_find_value(_layer,j+2);
-	        frametime = ds_list_find_value(_layer,j);
-	        if (selectedx+controller.ds_list_size(ild_list) = clamp(frametime,tlx,tlx+tlzoom)) 
-	        {
-	            //frametime-tlx
-	            //frametime-tlx+ds_list_find_value(infolist,0);
-	        }
-	    }
-	}*/
+	//todo check for overlaps
     
 	save_buffer = buffer_create(1,buffer_grow,1);
 	buffer_seek(save_buffer,buffer_seek_start,0);
@@ -74,15 +60,12 @@ function frames_toseq_importedilda() {
 	    selectedlayerlist = ds_list_find_value(layer_list,selectedlayer);
     
 	    objectlist = ds_list_create();
-	    ds_list_add(objectlist,selectedx);
-	    ds_list_add(objectlist,controller.save_buffer);
-    
-	    info = ds_list_create();
-	    ds_list_add(info,ds_list_size(controller.ild_list)-1);
-	    ds_list_add(info,-1);
-	    ds_list_add(info,ds_list_size(controller.ild_list));
-		ds_list_add(info, t_checkpointlist);
-	    ds_list_add(objectlist,info);
+	    ds_list_add(objectlist, selectedx);
+	    ds_list_add(objectlist, controller.save_buffer);
+	    ds_list_add(objectlist, ds_list_size(controller.ild_list)-1);
+	    ds_list_add(objectlist, -1);
+	    ds_list_add(objectlist, ds_list_size(controller.ild_list));
+		ds_list_add(objectlist, t_checkpointlist);
         
 	    ds_list_add(selectedlayerlist[| 1],objectlist);
     

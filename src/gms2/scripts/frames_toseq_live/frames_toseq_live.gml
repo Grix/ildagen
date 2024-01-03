@@ -16,20 +16,6 @@ function frames_toseq_live() {
 	}
 
 	//todo check for overlaps
-	/*with (seqcontrol)
-	{
-	    _layer = ds_list_find_value(layer_list,selectedlayer);
-	    for (j = 1; j < ds_list_size(_layer); j += 3)
-	    {
-	        infolist = ds_list_find_value(_layer,j+2);
-	        frametime = ds_list_find_value(_layer,j);
-	        if (selectedx+controller.maxframes = clamp(frametime,tlx,tlx+tlzoom)) 
-	        {
-	            //frametime-tlx
-	            //frametime-tlx+ds_list_find_value(infolist,0);
-	        }
-	    }
-	}*/
 	
 	var t_file = livecontrol.filelist[| livecontrol.selectedfile];
 	

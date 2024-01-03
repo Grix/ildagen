@@ -1,5 +1,8 @@
 TODO
+- wider DAC list
+- new optimization for seamless transitions using bezier curve?
 - ability to select multiple items in editor by dragging mouse
+- use ds_list pooling to improve reliability due to reused index GM shenanigans 
 - fix ctrl+key shortcuts in linux
 - included set of ILDA files / beams 
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)
@@ -61,36 +64,35 @@ SEQCONTROL
 
 layer_list
     layers...
-        envelope_list
+       0 envelope_list
             envelopes...
-                type
-                env_time_list
-                env_data_list
-                disabled
-                hidden
-        element_list
+              0  type
+              1  env_time_list
+              2  env_data_list
+              3  disabled
+              4  hidden
+       1 element_list
             layer elements...
-                xpos on timeline
-                frame buffers
-                info list..
-                    length
-                    screenshot surface
-                    maxframes
-					frame buffer checkpoint list..
-						index of frame 100
-						index of frame 200
-        muted
-        hidden
-        name
-        dac_list
+                0 xpos on timeline
+                1 frame buffers
+                2 length
+                3 screenshot surface
+                4 maxframes
+				5 frame buffer checkpoint list..
+					index of frame 100
+					index of frame 200
+       2 muted
+       3 hidden
+       4 name
+       5 dac_list
             dacs...
                 num (index in dac_list)
                 name
                 profile name
-		preview_projector_offset_x
-		preview_projector_offset_y
-		preview_projector_offset_angle
-		preview_projector_offset_fov_offset (0 = 20 degrees)
+	   6 preview_projector_offset_x
+	   7 preview_projector_offset_y
+	   8 preview_projector_offset_angle
+	   9 preview_projector_offset_fov_offset (0 = 20 degrees)
                 
 somaster_list
     layer elements.. (see above)

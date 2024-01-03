@@ -11,8 +11,7 @@ function dd_seq_object_duration() {
 			exit;
 		}
 	
-	    infolisttomove = ds_list_find_value(objectlist,2); 
-	    seq_dialog_num("objectduration","Enter the number of frames these object(s) should last on the timeline. If the number of frames is larger than the object itself, it will loop.",infolisttomove[| 0]+1);
+	    seq_dialog_num("objectduration","Enter the number of frames these object(s) should last on the timeline. If the number of frames is larger than the object itself, it will loop.",objectlist[| 2]+1);
 	}
 
 

@@ -12,9 +12,8 @@ function split_timelineobject() {
 			continue;
 		}
 	    correctframe = round(tlpos/1000*projectfps);
-	    infolist =  ds_list_find_value(objectlist,2);
 	    frametime = ds_list_find_value(objectlist,0);
-	    object_length = ds_list_find_value(infolist,2);
+	    object_length = ds_list_find_value(objectlist,4);
     
 	    if ( (correctframe > frametime) && (correctframe < (frametime+object_length)) )
 	    {
@@ -88,27 +87,22 @@ function split_timelineobject() {
 	        }
         
 	        objectlist1 = ds_list_create();
-	        objectlist2 = ds_list_create();
-        
-	        infolist = ds_list_create();
-	        ds_list_add(infolist, splitafternum-1);
-	        ds_list_add(infolist, -1);
-	        ds_list_add(infolist, splitafternum);
-			ds_list_add(infolist, create_checkpoint_list(object1));
         
 	        ds_list_add(objectlist1, frametime);
 	        ds_list_add(objectlist1, object1);
-	        ds_list_add(objectlist1, infolist);
-        
-	        infolist = ds_list_create();
-	        ds_list_add(infolist, maxframes-splitafternum-1);
-	        ds_list_add(infolist, -1);
-	        ds_list_add(infolist, maxframes-splitafternum);
-			ds_list_add(infolist, create_checkpoint_list(object2));
+	        ds_list_add(objectlist1, splitafternum-1);
+	        ds_list_add(objectlist1, -1);
+	        ds_list_add(objectlist1, splitafternum);
+			ds_list_add(objectlist1, create_checkpoint_list(object1));
+			
+	        objectlist2 = ds_list_create();
         
 	        ds_list_add(objectlist2, frametime+splitafternum);
 	        ds_list_add(objectlist2, object2);
-	        ds_list_add(objectlist2, infolist);
+	        ds_list_add(objectlist2, maxframes-splitafternum-1);
+	        ds_list_add(objectlist2, -1);
+	        ds_list_add(objectlist2, maxframes-splitafternum);
+			ds_list_add(objectlist2, create_checkpoint_list(object2));
         
 	        for (j = 0; j < ds_list_size(layer_list); j++)
 	        {

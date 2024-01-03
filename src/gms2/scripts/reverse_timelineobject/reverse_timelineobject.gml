@@ -11,7 +11,7 @@ function reverse_timelineobject() {
 			continue;
 		}
     
-		ds_list_replace(objectlist[| 2], 1, -1); //erase screenshot
+		ds_list_replace(objectlist, 3, -1); //erase screenshot
 	
 	    el_buffer_new = buffer_create(16,buffer_grow,1);
 	    el_buffer_old = objectlist[| 1];
@@ -62,9 +62,9 @@ function reverse_timelineobject() {
 
 		objectlist[| 1] = el_buffer_new;
 		
-		if (ds_list_exists(objectlist[| 2][| 3]))
-			ds_list_destroy(objectlist[| 2][| 3]);
-		ds_list_replace(objectlist[| 2],3,create_checkpoint_list(el_buffer_new));
+		if (ds_list_exists(objectlist[| 5]))
+			ds_list_destroy(objectlist[| 5]);
+		ds_list_replace(objectlist, 5, create_checkpoint_list(el_buffer_new));
 	
 		if (argument_count < 1 || argument[0] == true) // don't save undo if arg1 = false
 		{

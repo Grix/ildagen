@@ -23,34 +23,14 @@ function save_project_work() {
 			}
 	        tempframe = ds_list_find_value(objectlist,0);
 	        tempbuffer = ds_list_find_value(objectlist,1);
-	        tempinfolist = ds_list_find_value(objectlist,2);
-			if (!ds_list_exists(tempinfolist))
-			{
-				// ERROR: missing list? try to recreate
-				var t_newinfo = ds_list_create();
-				ds_list_add(t_newinfo,0);
-			    ds_list_add(t_newinfo,-1);
-			    ds_list_add(t_newinfo,1);
-				ds_list_add(t_newinfo, create_checkpoint_list(objectlist[| 1]));
-				ds_list_replace(objectlist, 2, t_newinfo);
-				tempinfolist = t_newinfo;
-				
-				if (!controller.bug_report_suppress)
-				{
-					controller.bug_report_suppress = true;
-						http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
-			                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+"MISSING infolist in save_project_work. Undefined: "+string(is_undefined(tempinfolist))+", frametime: "+string(tempframe)+", element num: "+string(j));
-			
-				}
-			}
 	        buffer_write(save_buffer, buffer_u32, tempframe);
 			var t_compressedbuffer = buffer_compress(tempbuffer, 0, buffer_get_size(tempbuffer));
 	        buffer_write(save_buffer, buffer_u32, buffer_get_size(t_compressedbuffer));
 	        buffer_copy(t_compressedbuffer, 0, buffer_get_size(t_compressedbuffer), save_buffer, buffer_tell(save_buffer));
 	        buffer_seek(save_buffer, buffer_seek_relative, buffer_get_size(t_compressedbuffer));
 			buffer_delete(t_compressedbuffer);
-	        buffer_write(save_buffer, buffer_u32, ds_list_find_value(tempinfolist,0));
-	        buffer_write(save_buffer, buffer_u32, ds_list_find_value(tempinfolist,2));
+	        buffer_write(save_buffer, buffer_u32, ds_list_find_value(objectlist,2));
+	        buffer_write(save_buffer, buffer_u32, ds_list_find_value(objectlist,4));
 	    }
         
 	    //saving envelope info

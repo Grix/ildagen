@@ -16,17 +16,15 @@ function seq_delete_object_noundo() {
 					break;
 				}
 	            ds_list_delete(layerlisttemp,ds_list_find_index(layerlisttemp,objectlist));
-	            infolist = objectlist[| 2];
         
-	            if (surface_exists(infolist[| 1]))
-	                surface_free(infolist[| 1]);
+	            if (surface_exists(objectlist[| 3]))
+	                surface_free(objectlist[| 3]);
             
 	            if (buffer_exists(objectlist[| 1]))
 	                buffer_delete(objectlist[| 1]);
                 
 	            selectedx = ds_list_find_value(objectlist,0);
 	            selectedlayer = c;
-	            ds_list_destroy(infolist); infolist = -1;
 	            ds_list_destroy(objectlist); objectlist = -1; somaster_list[|k] = -1;
 				
 	        }

@@ -17,20 +17,6 @@ function frames_toseq() {
 	framehr = 0;
     
 	//todo check for overlaps
-	/*with (seqcontrol)
-	{
-	    _layer = ds_list_find_value(layer_list,selectedlayer);
-	    for (j = 1; j < ds_list_size(_layer); j += 3)
-	    {
-	        infolist = ds_list_find_value(_layer,j+2);
-	        frametime = ds_list_find_value(_layer,j);
-	        if (selectedx+controller.maxframes = clamp(frametime,tlx,tlx+tlzoom)) 
-	        {
-	            //frametime-tlx
-	            //frametime-tlx+ds_list_find_value(infolist,0);
-	        }
-	    }
-	}*/
 
 	save_buffer = buffer_create(16,buffer_grow,1);
 
@@ -81,20 +67,17 @@ function frames_toseq() {
 	    if (ds_list_empty(somaster_list) or (ds_list_size(somaster_list) > 1))
 	    {
 	        objectlist = ds_list_create();
-	        ds_list_add(objectlist,selectedx);
-	        ds_list_add(objectlist,controller.save_buffer);
-        
-	        info = ds_list_create();
-	        ds_list_add(info,controller.maxframes-1);
-	        ds_list_add(info,-1);
-	        ds_list_add(info,controller.maxframes);
-			ds_list_add(info, t_checkpointlist);
-	        ds_list_add(objectlist,info);
-	        ds_list_add(selectedlayerlist[| 1],objectlist);
+	        ds_list_add(objectlist, selectedx);
+	        ds_list_add(objectlist, controller.save_buffer);
+	        ds_list_add(objectlist, controller.maxframes-1);
+	        ds_list_add(objectlist, -1);
+	        ds_list_add(objectlist, controller.maxframes);
+			ds_list_add(objectlist, t_checkpointlist);
+			
+	        ds_list_add(selectedlayerlist[| 1], objectlist);
         
 	        ds_list_add(somaster_list,objectlist);
         
-	        infolisttemp = info;
 	        selectedx += controller.maxframes;
 			
 			undolisttemp = ds_list_create();
@@ -117,19 +100,17 @@ function frames_toseq() {
 				buffer_delete(ds_list_find_value(objectlist,1));
 	        ds_list_replace(objectlist,1,controller.save_buffer);
         
-	        var infolist = ds_list_find_value(objectlist,2);
-	        if (surface_exists(ds_list_find_value(infolist,1)))
-	            surface_free(ds_list_find_value(infolist,1));
-			if (infolist[| 0] == infolist[| 2]-1)
-				ds_list_replace(infolist, 0, controller.maxframes-1);
-	        ds_list_replace(infolist,1,-1);
-	        ds_list_replace(infolist,2,controller.maxframes);
-			if (ds_list_exists(infolist[| 3]))
-				ds_list_destroy(infolist[| 3]);
-			ds_list_replace(infolist,3,create_checkpoint_list(controller.save_buffer));
-        
-	        infolisttemp = infolist;
+	        if (surface_exists(ds_list_find_value(objectlist,3)))
+	            surface_free(ds_list_find_value(objectlist,3));
+	        ds_list_replace(objectlist,3,-1);
 			
+			if (objectlist[| 2] == objectlist[| 4]-1)
+				ds_list_replace(objectlist, 2, controller.maxframes-1);
+	        ds_list_replace(objectlist, 4, controller.maxframes);
+			if (ds_list_exists(objectlist[| 5]))
+				ds_list_destroy(objectlist[| 5]);
+			ds_list_replace(objectlist, 5, create_checkpoint_list(controller.save_buffer));
+        
 			clean_seq_undo();
 	    }
         

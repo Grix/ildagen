@@ -35,13 +35,10 @@ function layer_duplicate() {
 		var t_framebuffer = buffer_create(buffer_get_size(t_layer[| 1][| t_i][| 1]), buffer_grow, 1);
 		buffer_copy(t_layer[| 1][| t_i][| 1], 0, buffer_get_size(t_layer[| 1][| t_i][| 1]), t_framebuffer, 0);
 		ds_list_add(t_new_element, t_framebuffer);
-		
-		var t_info_list = ds_list_create();
-		ds_list_add(t_info_list, t_layer[| 1][| t_i][| 2][| 0]);
-		ds_list_add(t_info_list, -1);
-		ds_list_add(t_info_list, t_layer[| 1][| t_i][| 2][| 2]);
-		ds_list_add(t_info_list, create_checkpoint_list(t_framebuffer));
-		ds_list_add(t_new_element, t_info_list);
+		ds_list_add(t_new_element, t_layer[| 1][| t_i][| 2][| 0]);
+		ds_list_add(t_new_element, -1);
+		ds_list_add(t_new_element, t_layer[| 1][| t_i][| 2][| 2]);
+		ds_list_add(t_new_element, create_checkpoint_list(t_framebuffer));
 		
 		
 		ds_list_add(t_new_element_list, t_new_element);
