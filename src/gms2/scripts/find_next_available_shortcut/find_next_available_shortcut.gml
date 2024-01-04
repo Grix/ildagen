@@ -6,7 +6,7 @@ function find_next_available_shortcut() {
 			var t_found = false;
 			for (j = 0; j < ds_list_size(filelist); j++)
 			{
-				if (ds_list_find_value(filelist[| j], 3) == ord(string(i)))
+				if (ds_list_find_value(filelist[| j], 6) == ord(string(i)))
 				{
 					t_found = true;
 					break;

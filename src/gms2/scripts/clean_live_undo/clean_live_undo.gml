@@ -30,7 +30,7 @@ with (livecontrol)
 			if (buffer_exists(t_objectlist[| 1]))
 			    buffer_delete(t_objectlist[| 1]);
 			
-			var t_dac_list = t_objectlist[| 9];
+			var t_dac_list = t_objectlist[| 12];
 			num_objects = ds_list_size(t_dac_list);
 			repeat (num_objects)  
 			    ds_list_destroy(ds_list_find_value(t_dac_list,0));

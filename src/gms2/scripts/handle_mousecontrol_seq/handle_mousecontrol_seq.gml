@@ -135,7 +135,7 @@ function handle_mousecontrol_seq() {
 	                        if (tempxstart2 > tempxend) //if object is ahead
 	                            continue;
         
-	                        tempxend2 = tempxstart2 + ds_list_find_value(ds_list_find_value(ds_list_find_value(layertomove,u),2),0);
+	                        tempxend2 = tempxstart2 + ds_list_find_value(ds_list_find_value(layertomove,u), 2);
 	                        if (tempxend2 < tempxstart) //if object is behind
 	                            continue;
                         
@@ -235,7 +235,7 @@ function handle_mousecontrol_seq() {
 	                        if (tempxstart2 > tempxend) //if object is ahead
 	                            continue;
         
-	                        tempxend2 = tempxstart2 + ds_list_find_value(ds_list_find_value(ds_list_find_value(layertomove,u),2),0);
+	                        tempxend2 = tempxstart2 + ds_list_find_value(ds_list_find_value(layertomove,u), 2);
 	                        if (tempxend2 < tempxstart) //if object is behind
 	                            continue;
                             
@@ -327,7 +327,7 @@ function handle_mousecontrol_seq() {
 	                        if (tempxstart2 > tempxend) //if object is ahead
 	                            continue;
 						
-	                        tempxend2 = tempxstart2 + ds_list_find_value(ds_list_find_value(ds_list_find_value(layertomove,u),2),0);
+	                        tempxend2 = tempxstart2 + ds_list_find_value(ds_list_find_value(layertomove,u), 2);
 	                        if (tempxend2 < tempxstart) //if object is behind
 	                            continue;
 							

@@ -71,7 +71,7 @@ function process_dialog_live() {
 	        {
 	            case ("set_name"):
 	            {
-					livecontrol.filelist[| livecontrol.selectedfile][| 8] = string(ds_map_find_value(argument[0], "result"));
+					livecontrol.filelist[| livecontrol.selectedfile][| 11] = string(ds_map_find_value(argument[0], "result"));
 	                break;
 	            }
 	        }

@@ -15,8 +15,8 @@ function seq_paste_object() {
 	    layer_ref = ds_list_size(layer_list)-1;
 		for (i = 0; i < ds_list_size(copy_list); i++)
 	    {
-			var t_pos_ref = copy_list[| i][| ds_list_size(copy_list[| i])-1];
-	        var t_layer_ref = copy_list[| i][| ds_list_size(copy_list[| i])-2];
+			var t_pos_ref = copy_list[| i][| 0];
+	        var t_layer_ref = copy_list[| i][| 6];
 			
 			if (t_pos_ref < pos_ref)
 				pos_ref = t_pos_ref;
@@ -54,7 +54,7 @@ function seq_paste_object() {
 	        ds_list_add(undo_list,"c"+string(undolisttemp));
         
 	        if (i == 0)
-	            selectedxbump = (ds_list_find_value(copy_list_new,0)+1);
+	            selectedxbump = (ds_list_find_value(copy_list_new,2)+1);
 	    }
         
 	    selectedx += selectedxbump;
