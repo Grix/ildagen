@@ -1,4 +1,4 @@
-list_width = 200;
+list_width = 250;
 list_height = 150;
 scrollx = 0;
 scrollw = 32;
