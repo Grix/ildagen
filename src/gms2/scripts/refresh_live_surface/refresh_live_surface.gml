@@ -27,7 +27,7 @@ function refresh_live_surface() {
 	var t_exclusive_active = false;
 	for (j = 0; j < ds_list_size(filelist); j++)
 	{
-		if (ds_list_find_value(filelist[| j], 5) != 0)
+		if (ds_list_find_value(filelist[| j], 8) != 0)
 		{
 			t_exclusive_active = true;
 			break;
@@ -38,12 +38,11 @@ function refresh_live_surface() {
 	{
 		objectlist = filelist[| j];
 	
-		if (!objectlist[| 0] || (t_exclusive_active && objectlist[| 5] == 0)) // is not playing
+		if (!objectlist[| 0] || (t_exclusive_active && objectlist[| 8] == 0)) // is not playing
 			continue;
 
-		infolist =  ds_list_find_value(objectlist, 2);
-		object_maxframes = ds_list_find_value(infolist, 2);
-	    frame = infolist[| 0];
+		object_maxframes = objectlist[| 4];
+	    frame = objectlist[| 2];
 	
 		//modifier transforms
 	    ready_envelope_applying_live();
@@ -268,9 +267,8 @@ function refresh_live_surface() {
 				if (!objectlist[| 0]) // is not playing
 					continue;
 
-				infolist =  ds_list_find_value(objectlist, 2);
-				object_maxframes = ds_list_find_value(infolist, 2);
-			    frame = infolist[| 0];
+				object_maxframes = objectlist[| 4];
+			    frame = objectlist[| 2];
         
 				//draw object
 				el_buffer = ds_list_find_value(objectlist, 1);

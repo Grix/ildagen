@@ -154,13 +154,13 @@ function process_dialog_seq() {
 					else if (dialog == "add_fadeout")
 					{
 						t_parameter *= controller.projectfps;
-						t_end = t_object[| 0] + ds_list_find_value(t_object[| 2], 0) + 1;
+						t_end = t_object[| 0] + ds_list_find_value(t_object, 2) + 1;
 						t_start = t_end - t_parameter - 1;
 					}
 					else if (dialog == "add_strobe_dutycycle")
 					{
 						t_start = t_object[| 0] - 1;
-						t_end = t_object[| 0] + ds_list_find_value(t_object[| 2], 0) + 1;
+						t_end = t_object[| 0] + ds_list_find_value(t_object, 2) + 1;
 					}
 					t_valuestart = find_envelope_value(t_datalist, t_timelist, t_start);
 					t_valueend = find_envelope_value(t_datalist, t_timelist, t_end);

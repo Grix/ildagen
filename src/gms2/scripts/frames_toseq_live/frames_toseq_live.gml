@@ -30,17 +30,14 @@ function frames_toseq_live() {
 			var t_buffer = buffer_create(buffer_get_size(t_file[| 1]), buffer_fixed, 1);
 			buffer_copy(t_file[| 1], 0, buffer_get_size(t_file[| 1]), t_buffer, 0);
 		    ds_list_add(t_objectlist, t_buffer);
-    
-		    var t_info = ds_list_create();
-		    ds_list_add(t_info, t_file[| 2][| 2]-1);
-		    ds_list_add(t_info, -1);
-		    ds_list_add(t_info, t_file[| 2][| 2]);
-			ds_list_add(t_info, create_checkpoint_list(t_buffer));
-		    ds_list_add(t_objectlist,t_info);
+		    ds_list_add(t_objectlist, t_file[| 4]-1);
+		    ds_list_add(t_objectlist, -1);
+		    ds_list_add(t_objectlist, t_file[| 4]);
+			ds_list_add(t_objectlist, create_checkpoint_list(t_buffer));
     
 		    ds_list_add(seqcontrol.selectedlayerlist[| 1], t_objectlist);
     
-		    seqcontrol.selectedx += t_file[| 2][| 2];
+		    seqcontrol.selectedx += t_file[| 4];
 		
 			undolisttemp = ds_list_create();
 			ds_list_add(undolisttemp,t_objectlist);
@@ -68,19 +65,17 @@ function frames_toseq_live() {
 			
 	    ds_list_replace(t_objectlist, 1, t_buffer);
 		
-		var t_infolist = ds_list_find_value(t_objectlist,2);
-		
-		 if (surface_exists(ds_list_find_value(t_infolist, 1)))
-	        surface_free(ds_list_find_value(t_infolist, 1));
+		 if (surface_exists(ds_list_find_value(t_objectlist, 3)))
+	        surface_free(ds_list_find_value(t_objectlist, 3));
 			
-		if (t_infolist[| 0] == t_infolist[| 2]-1)
-			ds_list_replace(t_infolist, 0, t_file[| 2][| 2]-1);
-		ds_list_replace(t_infolist, 1, -1);
-		ds_list_replace(t_infolist, 2, t_file[| 2][| 2]);
+		if (t_objectlist[| 2] == t_objectlist[| 4]-1)
+			ds_list_replace(t_objectlist, 2, t_file[| 4]-1);
+		ds_list_replace(t_objectlist, 3, -1);
+		ds_list_replace(t_objectlist, 4, t_file[| 4]);
 		
-		if (ds_list_exists(t_infolist[| 3]))
-			ds_list_destroy(t_infolist[| 3]);
-		ds_list_replace(t_infolist, 3, create_checkpoint_list(t_buffer));
+		if (ds_list_exists(t_objectlist[| 5]))
+			ds_list_destroy(t_objectlist[| 5]);
+		ds_list_replace(t_objectlist, 5, create_checkpoint_list(t_buffer));
 		
 		
 		clean_seq_undo();

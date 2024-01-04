@@ -70,9 +70,9 @@ function handle_mousecontrol_live() {
 		
 			objectlist = filelist[| i];
 			var t_shortcut = "";
-			if (objectlist[| 3] > 0)
+			if (objectlist[| 6] > 0)
 			{
-				t_shortcut += chr(objectlist[| 3]);
+				t_shortcut += chr(objectlist[| 6]);
 			}
 		
 			controller.tooltip = "Click to select and play this file ("+t_shortcut+").\nDoubleclick to open in editor mode.\nRight click for options.";
@@ -91,10 +91,10 @@ function handle_mousecontrol_live() {
 				else
 				{
 					selectedfile = i;
-					if (ds_list_find_value(filelist[| i], 0))
+					if (ds_list_find_value(objectlist, 0))
 					{
 						// stop
-						ds_list_set(filelist[| i], 0, false);
+						ds_list_set(objectlist, 0, false);
 					}
 					else
 					{
@@ -107,15 +107,14 @@ function handle_mousecontrol_live() {
 							}
 						}
 						playing = 1;
-						ds_list_set(filelist[| i], 0, true);
+						ds_list_set(objectlist, 0, true);
 					
-						if (ds_list_find_value(filelist[| i], 6) == 0) // if restart instead of resume
-							ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);
+						if (ds_list_find_value(objectlist, 9) == 0) // if restart instead of resume
+							ds_list_set(objectlist, 2, 0);
 						else 
 						{
-							var t_infolist = ds_list_find_value(filelist[| i], 2);
-							if (ds_list_find_value(t_infolist, 0) >= ds_list_find_value(t_infolist, 2))
-								ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);
+							if (ds_list_find_value(objectlist, 2) >= ds_list_find_value(objectlist, 4))
+								ds_list_set(objectlist, 2, 0);
 						}
 					}
 					frame_surf_refresh = 1;
@@ -130,8 +129,8 @@ function handle_mousecontrol_live() {
 			
 			if (mouse_check_button(mb_left))
 			{
-				if (filelist[| i][| 7] != 0)
-					filelist[| i][| 7] = 2;
+				if (objectlist[| 10] != 0)
+					objectlist[| 10] = 2;
 			}
 		}
 	}

@@ -21,17 +21,14 @@ function clean_redo_live(){
 			if (!ds_list_exists(redolisttemp))
 	            exit;
 	        objectlist = ds_list_find_value(redolisttemp,0);
-	        infolist = objectlist[| 2];
         
-			if (surface_exists(infolist[| 1]))
-			    surface_free(infolist[| 1]);
+			if (surface_exists(objectlist[| 3]))
+			    surface_free(objectlist[| 3]);
             
 			if (buffer_exists(objectlist[| 1]))
 			    buffer_delete(objectlist[| 1]);
-                
-			ds_list_destroy(infolist);
 			
-			var t_dac_list = objectlist[| 9];
+			var t_dac_list = objectlist[| 12];
 			num_objects = ds_list_size(t_dac_list);
 			repeat (num_objects)  
 			    ds_list_destroy(ds_list_find_value(t_dac_list,0));

@@ -38,7 +38,6 @@ frame3d_surf = -1;
 frame_surf_large = -1;
 frame3d_surf_large = -1;
 copy_list = ds_list_create();
-copy_buffer = ds_list_create();
 env_type_map = ds_map_create();
 playlist_list = ds_list_create();
 playlist_start_next_flag = false;

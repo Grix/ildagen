@@ -46,12 +46,10 @@ function frames_tolive_importedilda() {
 		objectlist = ds_list_create();
 	    ds_list_add(objectlist,false);
 	    ds_list_add(objectlist,controller.save_buffer);
-		info = ds_list_create();
-	    ds_list_add(info,0);
-	    ds_list_add(info,-1);
-	    ds_list_add(info,ds_list_size(controller.ild_list));
-		ds_list_add(info, t_checkpointlist);
-	    ds_list_add(objectlist,info);
+	    ds_list_add(objectlist,0);
+	    ds_list_add(objectlist,-1);
+	    ds_list_add(objectlist,ds_list_size(controller.ild_list));
+		ds_list_add(objectlist, t_checkpointlist);
 		ds_list_add(objectlist,find_next_available_shortcut());
 		ds_list_add(objectlist,(ds_list_size(controller.ild_list) == 1));
 		ds_list_add(objectlist,0);

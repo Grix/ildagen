@@ -158,22 +158,21 @@ LIVECONTROL
 
 filelist
     elements...
-        is_playing
-        frame buffers
-        info list..
-            position
-            screenshot surface
-            maxframes
-			frame buffer checkpoint list..
+        0 is_playing
+        1 frame buffers
+        2 position
+        3 screenshot surface
+        4 maxframes
+		5 frame buffer checkpoint list..
 				index of frame 100
 				index of frame 200
-		keyboard shortcut
-		is_loop
-		is_exclusive
-		is_resuming (instead of restarting on play)
-		is_hold (hold to play instead of push toggle) (=2 if clicked this frame)
-		name
-		dac_list (not used yet)
+		6 keyboard shortcut
+		7 is_loop
+		8 is_exclusive
+		9 is_resuming (instead of restarting on play)
+		10 is_hold (hold to play instead of push toggle) (=2 if clicked this frame)
+		11 name
+		12 dac_list (not used yet)
             dacs...
                 num (index in dac_list)
                 name

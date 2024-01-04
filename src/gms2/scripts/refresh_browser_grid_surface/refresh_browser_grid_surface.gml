@@ -37,11 +37,9 @@ function refresh_browser_grid_surface() {
 			t_column = i mod t_cells_per_row;
 			t_row = i div t_cells_per_row;
 		
-			var t_infolist = objectlist[| 2];
-	
-			if (!surface_exists(t_infolist[| 1]))
-				t_infolist[| 1] = make_screenshot(objectlist[| 1], t_cell_size-1);
-			draw_surface_part(t_infolist[| 1],0,0,t_cell_size-1,t_cell_size-1, t_column*t_cell_size+1, t_row*t_cell_size+1);
+			if (!surface_exists(objectlist[| 3]))
+				objectlist[| 3] = make_screenshot(objectlist[| 1], t_cell_size-1);
+			draw_surface_part(objectlist[| 3],0,0,t_cell_size-1,t_cell_size-1, t_column*t_cell_size+1, t_row*t_cell_size+1);
 		
 		}
 

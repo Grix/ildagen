@@ -196,23 +196,23 @@ else
 {
 	for (i = 0; i < ds_list_size(filelist); i++)
 	{
-		if (ds_list_find_value(filelist[| i], 3) == -1)
+		if (ds_list_find_value(filelist[| i], 6) == -1)
 		{
 			if (keyboard_check_pressed(vk_anykey))
 			{
 				if (keyboard_check_pressed(ord(string_upper(string_char_at(keyboard_string,string_length(keyboard_string))))))
 				{
-					ds_list_set(filelist[| i], 3, ord(string_upper(string_char_at(keyboard_string,string_length(keyboard_string)))));
+					ds_list_set(filelist[| i], 6, ord(string_upper(string_char_at(keyboard_string,string_length(keyboard_string)))));
 				}
 				else
 				{
-					ds_list_set(filelist[| i], 3, 0);
+					ds_list_set(filelist[| i], 6, 0);
 				}
 			}
 		}
-		else if (ds_list_find_value(filelist[| i], 3) > 0)
+		else if (ds_list_find_value(filelist[| i], 6) > 0)
 		{
-			if (keyboard_check_pressed(ds_list_find_value(filelist[| i], 3)))
+			if (keyboard_check_pressed(ds_list_find_value(filelist[| i], 6)))
 			{
 				if (ds_list_find_value(filelist[| i], 0))
 				{
@@ -233,13 +233,12 @@ else
 					playing = 1;
 					ds_list_set(filelist[| i], 0, true);
 						
-					if (ds_list_find_value(filelist[| i], 6) == 0) // if restart instead of resume
-						ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);
+					if (ds_list_find_value(filelist[| i], 9) == 0) // if restart instead of resume
+						ds_list_set(filelist[| i], 2, 0);
 					else 
 					{
-						var t_infolist = ds_list_find_value(filelist[| i], 2);
-						if (ds_list_find_value(t_infolist, 0) >= ds_list_find_value(t_infolist, 2))
-							ds_list_set(ds_list_find_value(filelist[| i], 2), 0, 0);
+						if (ds_list_find_value(filelist[| i], 2) >= ds_list_find_value(filelist[| i], 4))
+							ds_list_set(filelist[| i], 2, 0);
 					}
 				}
 				frame_surf_refresh = 1;

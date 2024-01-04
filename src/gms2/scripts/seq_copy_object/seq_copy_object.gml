@@ -9,15 +9,12 @@ function seq_copy_object() {
 	{
 	    if (ds_list_exists(ds_list_find_value(copy_list,i)))
 	    {
-	        if (surface_exists(ds_list_find_value(ds_list_find_value(copy_list,i),1)))
-	            surface_free(ds_list_find_value(ds_list_find_value(copy_list,i),1));
+	        if (buffer_exists(ds_list_find_value( ds_list_find_value(copy_list,i), 0)))
+	            buffer_delete(ds_list_find_value( ds_list_find_value(copy_list,i), 0));
 	        ds_list_destroy(ds_list_find_value(copy_list,i));
-	        if (buffer_exists(ds_list_find_value(copy_buffer,i)))
-	            buffer_delete(ds_list_find_value(copy_buffer,i));
 	    }
 	}
 	ds_list_clear(copy_list);
-	ds_list_clear(copy_buffer);
 
 	for (i = 0; i < ds_list_size(somaster_list); i++)
 	{
@@ -40,21 +37,24 @@ function seq_copy_object() {
 	        }
 	    }
 	    copy_list_new = ds_list_create();
-	    ds_list_copy(copy_list_new,ds_list_find_value(objectlist,2)); 
-	    ds_list_add(copy_list_new,layertemp);
-	    ds_list_add(copy_list_new,ds_list_find_value(objectlist,0));
+		ds_list_add(copy_list_new, objectlist[| 0]);
 	    copy_buffer_new = buffer_create(1,buffer_grow,1);
 	    buffer_copy(ds_list_find_value(objectlist,1),
 	                0,
 	                buffer_get_size(ds_list_find_value(objectlist,1)),
 	                copy_buffer_new,
 	                0);
-	    ds_list_add(copy_list,copy_list_new);
-	    ds_list_add(copy_buffer,copy_buffer_new);
+		ds_list_add(copy_list_new, copy_buffer_new);
+		ds_list_add(copy_list_new, objectlist[| 2]);
+		ds_list_add(copy_list_new, -1);
+		ds_list_add(copy_list_new, objectlist[| 4]);
+		ds_list_add(copy_list_new, -1);
+		ds_list_add(copy_list_new, layertemp);
+	    ds_list_add(copy_list, copy_list_new);
     
 	    if (i == 0)
 	    {
-	        selectedx = ds_list_find_value( objectlist,0) + ds_list_find_value(ds_list_find_value(objectlist,2),0)+1;
+	        selectedx = ds_list_find_value(objectlist,0) + ds_list_find_value(objectlist,2)+1;
 	    }
 	}
 

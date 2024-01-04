@@ -54,7 +54,7 @@ function draw_browser_grid() {
 		// timeline
 		if (ds_list_find_value(objectlist, 0))
 		{
-			var t_positionratio = (ds_list_find_value(objectlist[| 2], 0)+1) / ds_list_find_value(objectlist[| 2], 2);
+			var t_positionratio = (objectlist[| 2]+1) / objectlist[| 4];
 			draw_set_color(c_green);
 			draw_rectangle(t_column*t_cell_size+1, t_ystart+t_row*t_cell_size+t_cell_size-7, t_column*t_cell_size+(t_cell_size-2)*t_positionratio, t_ystart+t_row*t_cell_size+t_cell_size-1, 0);
 		}

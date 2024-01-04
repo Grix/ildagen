@@ -19,34 +19,34 @@ if (playing == 1)
 		{
 			var t_objectlist = filelist[| i];
 			
-			if (t_objectlist[| 7] != 0)
+			if (t_objectlist[| 10] != 0)
 			{
-				if (keyboard_check(t_objectlist[| 3]) || t_objectlist[| 7] == 2)
+				if (keyboard_check(t_objectlist[| 6]) || t_objectlist[| 10] == 2)
 					t_objectlist[| 0] = true;
 				else
 				{
 					t_objectlist[| 0] = false;
-					if (!t_objectlist[| 6])
-						t_objectlist[| 2][| 0] = 0; // restart if not set to resume
+					if (!t_objectlist[| 9])
+						t_objectlist[| 2] = 0; // restart if not set to resume
 				}
 				
-				t_objectlist[| 7] = 1;
+				t_objectlist[| 10] = 1;
 			}
 			
 			if (!ds_list_find_value(t_objectlist, 0))
 				continue;
 			
-			ds_list_set(ds_list_find_value(t_objectlist, 2), 0, ds_list_find_value(ds_list_find_value(t_objectlist, 2), 0)+(frame-frameprev));
+			ds_list_set(t_objectlist, 2, ds_list_find_value(t_objectlist, 2)+(frame-frameprev));
 			
 			
-			var t_pos = ds_list_find_value(ds_list_find_value(t_objectlist, 2), 0);
-			var t_maxframes = ds_list_find_value(ds_list_find_value(t_objectlist, 2), 2);
+			var t_pos = ds_list_find_value(t_objectlist, 2);
+			var t_maxframes = ds_list_find_value(t_objectlist, 4);
 			
 			if (t_pos >= t_maxframes && t_maxframes > 1)
 			|| (t_maxframes == 1) 
 			{
-				if (ds_list_find_value(t_objectlist, 4))
-					ds_list_set(ds_list_find_value(t_objectlist, 2), 0, 0); //loop
+				if (ds_list_find_value(t_objectlist, 7))
+					ds_list_set(t_objectlist, 2, 0); //loop
 				else
 					ds_list_set(t_objectlist, 0, false); //stop
 			}

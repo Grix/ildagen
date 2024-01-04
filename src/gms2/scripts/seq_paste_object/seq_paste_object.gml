@@ -26,17 +26,14 @@ function seq_paste_object() {
     
 	    for (i = 0; i < ds_list_size(copy_list); i++)
 	    {
-	        copy_list_new = ds_list_create();
-	        ds_list_copy(copy_list_new,ds_list_find_value(copy_list,i));
-	        postemp = copy_list_new[| ds_list_size(copy_list_new)-1];
-	        ds_list_delete(copy_list_new,ds_list_size(copy_list_new)-1);
-	        layertemp = copy_list_new[| ds_list_size(copy_list_new)-1];
-	        ds_list_delete(copy_list_new,ds_list_size(copy_list_new)-1);
-        
+			var t_copy_list_old = copy_list[| i];
+			postemp = t_copy_list_old[| 0];
+			layertemp = t_copy_list_old[| 6];
+			
 	        copy_buffer_new = buffer_create(1,buffer_grow,1);
-	        buffer_copy(ds_list_find_value(copy_buffer,i),
+	        buffer_copy(t_copy_list_old[| 1],
 	                    0,
-	                    buffer_get_size(ds_list_find_value(copy_buffer,i)),
+	                    buffer_get_size(t_copy_list_old[| 1]),
 	                    copy_buffer_new,
 	                    0);
         
@@ -46,7 +43,10 @@ function seq_paste_object() {
 	        if (new_pos < 0) new_pos = 0;
 	        ds_list_add(new_objectlist,new_pos);
 	        ds_list_add(new_objectlist,copy_buffer_new);
-	        ds_list_add(new_objectlist,copy_list_new);
+	        ds_list_add(new_objectlist,t_copy_list_old[| 2]);
+	        ds_list_add(new_objectlist,-1);
+	        ds_list_add(new_objectlist,t_copy_list_old[| 4]);
+	        ds_list_add(new_objectlist,create_checkpoint_list(copy_buffer_new));
 	        ds_list_add(layerlisttemp,new_objectlist);
         
 	        undolisttemp = ds_list_create();

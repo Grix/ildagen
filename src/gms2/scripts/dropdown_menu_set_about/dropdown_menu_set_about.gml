@@ -4,7 +4,7 @@ function dropdown_menu_set_about() {
 	{
 	    num = 5;
 	    event_user(1);
-	    ds_list_add(desc_list,"Info");
+	    ds_list_add(desc_list,"Information");
 	    ds_list_add(desc_list,"Open manual");
 	    ds_list_add(desc_list,"Contact developer");
 	    ds_list_add(desc_list,"Check for updates");
