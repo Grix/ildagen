@@ -89,7 +89,7 @@ function prepare_output_points() {
 		    ypp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
 	        opt_dist = point_distance(xp_prev,yp_prev,xpp,ypp);
         
-	        if (opt_dist < 250) //connecting segments
+	        if (opt_dist < 280) //connecting segments
 	        {
 	            angle_next = point_direction(xp,yp, xpp,ypp);
 	            angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
@@ -142,9 +142,22 @@ function prepare_output_points() {
 	        yp_prev = ypp;
 			bl_prev = 0;
 	    }
+		else
+		{
+			if (controller.opt_per_point)
+			{
+				// Add more delay if sharp corner within the element
+				angle_next = point_direction(xp,yp, xp_prev,yp_prev);
+			    angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
+        
+			    var t_corner_dwell =  round(controller.opt_maxdwell * abs(angle_difference( angle_prev, angle_next )/180));
+				
+				maxpoints_static += floor(t_corner_dwell);
+			}
+		}
 	
 	    opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
-    
+		
 	    if (opt_dist < 2)
 	    {
 	        maxpoints_dots++;

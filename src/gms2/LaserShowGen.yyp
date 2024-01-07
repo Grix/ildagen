@@ -810,6 +810,7 @@
     {"id":{"name":"read_ilda_header","path":"scripts/read_ilda_header/read_ilda_header.yy",},"order":2,},
     {"id":{"name":"read_ilda_frame","path":"scripts/read_ilda_frame/read_ilda_frame.yy",},"order":3,},
     {"id":{"name":"read_ilda_work","path":"scripts/read_ilda_work/read_ilda_work.yy",},"order":4,},
+    {"id":{"name":"ds_list_pool","path":"scripts/ds_list_pool/ds_list_pool.yy",},"order":36,},
     {"id":{"name":"read_ilda_init","path":"scripts/read_ilda_init/read_ilda_init.yy",},"order":5,},
     {"id":{"name":"get_bytes","path":"scripts/get_bytes/get_bytes.yy",},"order":6,},
     {"id":{"name":"get_byte_signed","path":"scripts/get_byte_signed/get_byte_signed.yy",},"order":7,},

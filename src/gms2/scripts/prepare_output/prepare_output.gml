@@ -71,7 +71,7 @@ function prepare_output() {
 	        {
 	            t_order = i;
 	            t_pol = 0;
-	            if (t_dist < 250)
+	            if (t_dist < 280)
 	                break;
 	            t_lowestdist = t_dist;
 	        }
@@ -87,7 +87,7 @@ function prepare_output() {
 	            {
 	                t_order = i;
 	                t_pol = 1;
-	                if (t_dist < 250)
+	                if (t_dist < 280)
 	                    break;
 	                t_lowestdist = t_dist;
 	            }
@@ -150,7 +150,7 @@ function prepare_output() {
 	    //BLANKING
 	    opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
     
-	    if (opt_dist < 250) //connecting segments
+	    if (opt_dist < 280) //connecting segments
 	    {
 	        var t_true_dwell = controller.opt_maxdwell;
 	        maxpoints_static += (   (controller.opt_maxdwell_blank)

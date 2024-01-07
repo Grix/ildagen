@@ -167,7 +167,7 @@ function make_frame() {
             
 	            opt_dist = point_distance(xp_prev,yp_prev,xpp,ypp);
                 
-	            if (opt_dist < 250) //connecting segments
+	            if (opt_dist < 280) //connecting segments
 	            {
 	                angle_next = point_direction(xp,yp, xpp,ypp);
 	                angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
@@ -313,6 +313,25 @@ function make_frame() {
 				bl_prev = 0;
 			
 	        } //end if bl_prev
+			else
+			{
+				if (controller.opt_per_point)
+				{
+					// Add more delay if sharp corner within the element
+					angle_next = point_direction(xp,yp, xp_prev,yp_prev);
+			        angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
+        
+			        var t_corner_dwell =  round(controller.opt_maxdwell * abs(angle_difference( angle_prev, angle_next )/180));
+				
+					repeat(floor(t_corner_dwell))
+					{
+						ds_list_add(list_raw,xp_prev);
+				        ds_list_add(list_raw,yp_prev);
+				        ds_list_add(list_raw,0);
+				        ds_list_add(list_raw,c_prev);
+					}
+				}
+			}
 			
 			opt_dist = point_distance(xp,yp,xp_prev,yp_prev);
 			
@@ -381,7 +400,7 @@ function make_frame() {
 	//BLANKING
 	opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
 
-	if (opt_dist < 250) //connecting segments
+	if (opt_dist < 280) //connecting segments
 	{
 	    t_true_dwell_falling = controller.opt_maxdwell; //worst case
                             

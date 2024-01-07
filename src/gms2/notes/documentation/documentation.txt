@@ -1,8 +1,10 @@
 TODO
 - wider DAC list
-- new optimization for seamless transitions using bezier curve?
+- new optimization for seamless transitions using bezier curve, and curve check every point
+- better default optimization settings
 - ability to select multiple items in editor by dragging mouse
 - use ds_list pooling to improve reliability due to reused index GM shenanigans 
+- record mac address for license, for better piracy detection
 - fix ctrl+key shortcuts in linux
 - included set of ILDA files / beams 
 - fix when element outside canvas, frame is exported to ild with 0 points. (fixed?)

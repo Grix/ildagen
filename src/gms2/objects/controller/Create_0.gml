@@ -288,7 +288,7 @@ scale_top_left = $2000;
 scale_top_right = $2000;
 scale_bottom_left = $DFFF;
 scale_bottom_right = $DFFF;
-
+opt_per_point = true;
 
 placing = "line";
 placing_select_last = "line";

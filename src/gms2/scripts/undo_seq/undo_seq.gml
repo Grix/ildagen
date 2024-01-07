@@ -119,6 +119,7 @@ function undo_seq() {
 	            exit;
 	        objectlist = ds_list_find_value(undolisttemp,1);
 	        layerlisttemp = ds_list_find_value(undolisttemp,0);
+			
 	        if (!ds_list_exists(layerlisttemp))
 	        {
 	            //ds_list_destroy(undolisttemp);
