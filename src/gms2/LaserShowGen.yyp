@@ -246,6 +246,7 @@
     {"id":{"name":"ML_VM_HasNoPVar","path":"scripts/ML_VM_HasNoPVar/ML_VM_HasNoPVar.yy",},"order":3,},
     {"id":{"name":"ML_VM_GetPVarList","path":"scripts/ML_VM_GetPVarList/ML_VM_GetPVarList.yy",},"order":4,},
     {"id":{"name":"ML_VM_GetVar","path":"scripts/ML_VM_GetVar/ML_VM_GetVar.yy",},"order":5,},
+    {"id":{"name":"make_frame_bezier","path":"scripts/make_frame_bezier/make_frame_bezier.yy",},"order":13,},
     {"id":{"name":"ML_VM_GetVarString","path":"scripts/ML_VM_GetVarString/ML_VM_GetVarString.yy",},"order":6,},
     {"id":{"name":"ML_VM_GetVarReal","path":"scripts/ML_VM_GetVarReal/ML_VM_GetVarReal.yy",},"order":7,},
     {"id":{"name":"ML_VM_SetVar","path":"scripts/ML_VM_SetVar/ML_VM_SetVar.yy",},"order":8,},

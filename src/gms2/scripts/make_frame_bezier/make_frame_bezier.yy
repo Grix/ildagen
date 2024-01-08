@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "assemble_frame_ilda",
+  "name": "make_frame_bezier",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "exportilda",
-    "path": "folders/Scripts/files/exportilda.yy",
+    "name": "output",
+    "path": "folders/Scripts/output.yy",
   },
 }
