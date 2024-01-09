@@ -336,10 +336,7 @@ function create_element() {
 	        }
 	        else if (anifunc == "easeinout")
 	        {
-				if (t < 0.5)
-					t = 2 * t*t;
-				else
-					t =  1 - power(-2 * t+2, 2) / 2;
+				t = ease_in_out(t);
 	            /*t = sin(t*pi-pi/2);
 	            t += 1;
 	            t /= 2;*/
@@ -617,10 +614,7 @@ function create_element() {
 	            }
 	            else if (anifunc == "easeinout")
 	            {
-					if (t < 0.5)
-						t = 2 * t*t;
-					else
-						t =  1 - power(-2 * t+2, 2) / 2;
+					t = ease_in_out(t);
 	                /*t = sin(t*pi-pi/2);
 	                t += 1;
 	                t /= 2;*/

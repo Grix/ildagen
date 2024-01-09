@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "make_frame_unopt",
+  "name": "ease_in_out",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "output",
-    "path": "folders/Scripts/output.yy",
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
   },
 }

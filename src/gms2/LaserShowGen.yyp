@@ -258,6 +258,7 @@
     {"id":{"name":"_ML_FFloor","path":"scripts/_ML_FFloor/_ML_FFloor.yy",},"order":1,},
     {"id":{"name":"_ML_FFrac","path":"scripts/_ML_FFrac/_ML_FFrac.yy",},"order":2,},
     {"id":{"name":"_ML_FRound","path":"scripts/_ML_FRound/_ML_FRound.yy",},"order":3,},
+    {"id":{"name":"ease_in_out","path":"scripts/ease_in_out/ease_in_out.yy",},"order":37,},
     {"id":{"name":"_ML_FSin","path":"scripts/_ML_FSin/_ML_FSin.yy",},"order":4,},
     {"id":{"name":"_ML_FCos","path":"scripts/_ML_FCos/_ML_FCos.yy",},"order":5,},
     {"id":{"name":"_ML_FTan","path":"scripts/_ML_FTan/_ML_FTan.yy",},"order":6,},

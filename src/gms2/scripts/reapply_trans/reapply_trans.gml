@@ -159,10 +159,7 @@ function reapply_trans() {
 	            }
 	            else if (anifunc == "easeinout")
 	            {
-					if (t < 0.5)
-						t = 2 * t*t;
-					else
-						t =  1 - power(-2 * t+2, 2) / 2;
+					t = ease_in_out(t);
 					//return x < 0.5 ? 4 * x * x * x : 1 - pow(-2 * x + 2, 3) / 2;
 	                /*t = sin(t*pi-pi/2);
 	                t += 1;

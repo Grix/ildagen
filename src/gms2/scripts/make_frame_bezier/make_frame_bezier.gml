@@ -237,10 +237,10 @@ function make_frame_bezier() {
 					
 					var t_x_prev_bez = xp_prev;
 					var t_y_prev_bez = yp_prev;
-					for (var t_i = 0; t_i <= 5; t_i++)
+					for (var t_j = 0; t_j <= 4; t_j++)
 					{
-						var t_x_next_bez = bezier_x(t_i/5);
-						var t_y_next_bez = bezier_y(t_i/5);
+						var t_x_next_bez = bezier_x(t_j/4);
+						var t_y_next_bez = bezier_y(t_j/4);
 						t_bezier_length += point_distance(t_x_prev_bez, t_y_prev_bez, t_x_next_bez, t_y_next_bez);
 						t_x_prev_bez = t_x_next_bez;
 						t_y_prev_bez = t_y_next_bez;
@@ -292,8 +292,9 @@ function make_frame_bezier() {
 					
 					for (k = 0; k <= t_quantumsteps; k++)
 	                {
-	                    ds_list_add(list_raw,bezier_x(k / t_quantumsteps));
-	                    ds_list_add(list_raw,bezier_y(k / t_quantumsteps));
+						var t_t = ease_in_out(k / t_quantumsteps);
+	                    ds_list_add(list_raw,bezier_x(t_t));
+	                    ds_list_add(list_raw,bezier_y(t_t));
 	                    ds_list_add(list_raw,1);
 	                    ds_list_add(list_raw,0);
 	                }
@@ -464,7 +465,94 @@ function make_frame_bezier() {
 	yp = mid_y;
 
 	//BLANKING
-	opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
+	if (opt_dist < 280) //connecting segments
+	{            
+		//dwell on blanking start
+		t_true_dwell_falling = controller.opt_maxdwell; //worst case
+                            
+	    //dwell on blanking start
+	    repeat (controller.opt_maxdwell_blank)
+	    {
+	        ds_list_add(list_raw,xp_prev);
+	        ds_list_add(list_raw,yp_prev);
+	        ds_list_add(list_raw,0);
+	        ds_list_add(list_raw,c_prev);
+	    }
+	    repeat (t_true_dwell_falling - controller.opt_maxdwell_blank )
+	    {
+	        ds_list_add(list_raw,xp_prev);
+	        ds_list_add(list_raw,yp_prev);
+	        ds_list_add(list_raw,1);
+	        ds_list_add(list_raw,0);
+	    }
+	}
+	else //not connecting segments
+	{
+		var t_dist_prev = point_distance(xp_prev_prev, yp_prev_prev, xp_prev, yp_prev);
+                        
+		var t_bezier_prev_x;
+		var t_bezier_prev_y;
+					
+		if (t_dist_prev >= 1)
+		{
+			t_bezier_prev_x = xp_prev + (xp_prev - xp_prev_prev) / t_dist_prev * 5000;
+			t_bezier_prev_y = yp_prev + (yp_prev - yp_prev_prev) / t_dist_prev * 5000;
+		}
+		else
+		{
+			t_bezier_prev_x = xp_prev;
+			t_bezier_prev_y = yp_prev;
+		}
+					
+		bezier_coeffs(xp_prev, yp_prev, t_bezier_prev_x, t_bezier_prev_y, xp, yp, xp, yp);
+					
+		var t_bezier_length = 0;
+					
+		var t_x_prev_bez = xp_prev;
+		var t_y_prev_bez = yp_prev;
+		for (var t_j = 0; t_j <= 4; t_j++)
+		{
+			var t_x_next_bez = bezier_x(t_j/4);
+			var t_y_next_bez = bezier_y(t_j/4);
+			t_bezier_length += point_distance(t_x_prev_bez, t_y_prev_bez, t_x_next_bez, t_y_next_bez);
+			t_x_prev_bez = t_x_next_bez;
+			t_y_prev_bez = t_y_next_bez;
+		}
+		opt_dist = t_bezier_length;
+					
+                
+		//dwell on blanking start
+		repeat (controller.opt_maxdwell_blank)
+		{
+		    ds_list_add(list_raw,xp_prev);
+		    ds_list_add(list_raw,yp_prev);
+		    ds_list_add(list_raw,(c_prev == 0));
+		    ds_list_add(list_raw,c_prev);
+		}
+		repeat (controller.opt_maxdwell_blank)
+		{
+		    ds_list_add(list_raw,xp_prev);
+		    ds_list_add(list_raw,yp_prev);
+		    ds_list_add(list_raw,1);
+		    ds_list_add(list_raw,0);
+		}
+                    
+		new_dot = 1;
+					
+		// travel in the bezier curve
+		var t_quantumsteps = ceil(opt_dist / a_ballistic);
+					
+		for (k = 0; k <= t_quantumsteps; k++)
+		{
+			var t_t = ease_in_out(k / t_quantumsteps);
+		    ds_list_add(list_raw,bezier_x(t_t));
+		    ds_list_add(list_raw,bezier_y(t_t));
+		    ds_list_add(list_raw,1);
+		    ds_list_add(list_raw,0);
+		}
+	}
+	
+	/*opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
 
 	if (opt_dist < 280) //connecting segments
 	{
@@ -561,7 +649,7 @@ function make_frame_bezier() {
 	        ds_list_add(list_raw,1);
 	        ds_list_add(list_raw,0);
 	    }
-	}
+	}*/
   
 	ds_list_destroy(order_list); order_list = -1;
 	ds_list_destroy(polarity_list); polarity_list =-1;
