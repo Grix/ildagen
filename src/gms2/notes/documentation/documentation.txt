@@ -2,6 +2,7 @@ TODO
 - wider DAC list
 - new optimization for seamless transitions using bezier curve, and curve check every point
 - better default optimization settings
+- crash on exit IDN on mac in dacwrapper. See error below*
 - ability to select multiple items in editor by dragging mouse
 - use ds_list pooling to improve reliability due to reused index GM shenanigans 
 - record mac address for license, for better piracy detection
@@ -56,6 +57,10 @@ TODO
 - audio_loudness_previous_frame
 - shaking stuff (email 2017-11-18)
 - Support for other glyphs in the text tool
+
+*free(contexts[i]->bufferPtr); on line 292 Device_IDN.cpp
+malloc: *** error for object 0x7fc6d6f14000: pointer being freed was not allocated
+
 
 
 SETTINGSCONTROL

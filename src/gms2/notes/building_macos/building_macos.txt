@@ -2,7 +2,7 @@
 2. open xcode project in /Users/gitle2/GameMakerStudio2/ildagen/GM_MAC/LaserShowGen/LaserShowGen
 3. add hardened runtime capability
 5. Fix bundle identifier setting if there is a warning when compiling.
-5. project -> archive
+5. project -> archive . select provision profile in wizard signing step
 6. distribute with dev id
 
 codesign --remove-signature LaserShowGen.app

@@ -809,7 +809,7 @@ function handle_mousecontrol_seq() {
 				continue;
 				
 			var t_objectx = t_layer[| i][| 0];
-			var t_objectx2 = t_objectx + t_layer[| i][| 2][| 0];
+			var t_objectx2 = t_objectx + t_layer[| i][| 2];
 				
 			if (t_xpos < floatingcursorx)
 			{
