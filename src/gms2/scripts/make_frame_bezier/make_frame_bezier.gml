@@ -1,3 +1,8 @@
+// TODO FOR THIS: 
+// Fix case where bezier control points are outside frame (continue line line 237 and also at final back to middle segment)
+// Adjust prepare_output to calculate blanking points from bezier too
+
+
 function make_frame_bezier() {
 	if (debug_mode)
 	    log("make_frame_bezier");
@@ -220,10 +225,20 @@ function make_frame_bezier() {
 					var t_bezier_next_x;
 	                var t_bezier_next_y;
 					
+					var t_extra_dwell_next = 0;
+					
 					if (t_dist_next >= 1)
 					{
-						t_bezier_next_x = xpp + (xpp - xp) / t_dist_next * 5000;
-		                t_bezier_next_y = ypp + (ypp - yp) / t_dist_next * 5000;
+						t_bezier_next_x = xpp + (xpp - xp) / t_dist_next * 8000;
+		                t_bezier_next_y = ypp + (ypp - yp) / t_dist_next * 8000;
+						if (t_bezier_next_x > $ffff || t_bezier_next_x < 0 || t_bezier_next_y > $ffff || t_bezier_next_y < 0)
+						{
+							var t_bezier_next_x_fixed = clamp(t_bezier_next_x, 0, $ffff);
+							var t_bezier_next_y_fixed = clamp(t_bezier_next_y, 0, $ffff);
+							t_extra_dwell_next = floor(point_distance(t_bezier_next_x, t_bezier_next_y, t_bezier_next_x_fixed, t_bezier_next_y_fixed) * controller.opt_maxdwell);
+							//t_extra_dwell_next *= point_direction
+							//TODO
+						}
 					}
 					else
 					{

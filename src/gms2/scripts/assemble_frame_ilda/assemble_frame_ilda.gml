@@ -46,7 +46,7 @@ function assemble_frame_ilda() {
 	            return false;
 	        }
         
-	        make_frame_bezier();
+	        make_frame();
 	    }
 	}
 	else

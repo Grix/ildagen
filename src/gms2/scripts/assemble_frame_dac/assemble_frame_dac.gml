@@ -29,7 +29,7 @@ function assemble_frame_dac() {
 	            }
 	            else
 	            {
-	                make_frame_bezier();
+	                make_frame();
 					output_framelist_to_buffer();
 	            }
 	        }
