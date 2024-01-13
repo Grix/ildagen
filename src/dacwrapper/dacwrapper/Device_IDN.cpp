@@ -289,7 +289,7 @@ bool Device_IDN::CloseAll()
 			idnSendClose(contexts[i]);
 
 			if (contexts[i]->bufferPtr) 
-				free(contexts[i]->bufferPtr);
+				delete contexts[i]->bufferPtr;
 
 			// Close socket
 			if (contexts[i]->fdSocket >= 0)

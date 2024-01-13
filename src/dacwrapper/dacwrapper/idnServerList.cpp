@@ -110,6 +110,7 @@ typedef struct _INTERFACE_NODE
     int fdSocket;                               // Broadcast socket file descriptor
     uint16_t scanSequenceNum;                   // Broadcast scan sequence number
     uint32_t ipAddr;
+    uint32_t ipMask;
 
 } INTERFACE_NODE;
 
@@ -206,7 +207,7 @@ static void logInfo(const char *fmt, ...)
 //  Interface list management
 // -------------------------------------------------------------------------------------------------
 
-static void createInterfaceNode(void *callbackArg, const char *ifName, uint32_t ifIP4Addr)
+static void createInterfaceNode(void *callbackArg, const char *ifName, uint32_t ifIP4Addr, uint32_t ifIP4Mask)
 {
     SCAN_CONTEXT *scanCtx = (SCAN_CONTEXT *)callbackArg;
 
@@ -229,6 +230,7 @@ static void createInterfaceNode(void *callbackArg, const char *ifName, uint32_t 
         }
         
         ifNode->ipAddr = ifIP4Addr;
+        ifNode->ipMask = ifIP4Mask;
 
         // Remember interface name
         snprintf(ifNode->ifName, sizeof(ifNode->ifName), ifName ? ifName : "<?>");

@@ -2,8 +2,10 @@ TODO
 - wider DAC list
 - new optimization for seamless transitions using bezier curve, and curve check every point
 - better default optimization settings
-- crash on exit IDN on mac in dacwrapper. See error below*
+- fix small gap at start or end of some segments. Especially noticeable in fonts etc.
+- crash on exit IDN on mac/linux in dacwrapper. See error below*
 - ability to select multiple items in editor by dragging mouse
+- update windows/linux dacwrapper to use netmask on IDN broadcast.
 - use ds_list pooling to improve reliability due to reused index GM shenanigans 
 - record mac address for license, for better piracy detection
 - fix ctrl+key shortcuts in linux

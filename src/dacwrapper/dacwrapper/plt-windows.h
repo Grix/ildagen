@@ -46,7 +46,7 @@
 
 typedef unsigned long in_addr_t;
 
-typedef void(*IFADDR_CALLBACK_PFN)(void* callbackArg, const char* ifName, uint32_t ifIP4Addr);
+typedef void(*IFADDR_CALLBACK_PFN)(void* callbackArg, const char* ifName, uint32_t ifIP4Addr, uint32_t ifIP4Mask);
 
 
 // -------------------------------------------------------------------------------------------------
@@ -125,7 +125,7 @@ inline static int plt_ifAddrListVisitor(IFADDR_CALLBACK_PFN pfnCallback, void* c
 
         // Invoke callback on interface
         struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ai_addr;
-        pfnCallback(callbackArg, ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr));
+        pfnCallback(callbackArg, ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr), 0xFFFFFFFF); //TODO mask
     }
 
     // Interface list is dynamically allocated and must be freed
