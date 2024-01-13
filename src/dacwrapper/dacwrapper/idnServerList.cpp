@@ -666,7 +666,7 @@ static int sendBroadcastRequest(SCAN_CONTEXT *scanCtx, INTERFACE_NODE *ifNode)
     struct sockaddr_in remoteSockAddr;
     remoteSockAddr.sin_family      = AF_INET;
     remoteSockAddr.sin_port        = htons(IDNVAL_HELLO_UDP_PORT);
-    remoteSockAddr.sin_addr.s_addr = ifNode->ipAddr | (255 << (8 * 3));//INADDR_BROADCAST;
+    remoteSockAddr.sin_addr.s_addr = ifNode->ipAddr | ~ifNode->ipMask; //| (255 << (8 * 3));//INADDR_BROADCAST;
 
     // Populate IDN-Hello request packet
     IDNHDR_PACKET reqPacketHdr;

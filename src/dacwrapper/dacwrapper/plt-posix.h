@@ -50,7 +50,7 @@
 #define MT_NANO (+1.0E-9)
 #define MT_GIGA UINT64_C(1000000000)
 
-typedef void (* IFADDR_CALLBACK_PFN)(void *callbackArg, const char *ifName, uint32_t ifIP4Addr);
+typedef void (* IFADDR_CALLBACK_PFN)(void *callbackArg, const char *ifName, uint32_t ifIP4Addr, uint32_t ifIP4Mask);
 
 // TODO create a list of timers,
 static double mt_timebase = 0.0;
@@ -217,7 +217,8 @@ inline static int plt_ifAddrListVisitor(IFADDR_CALLBACK_PFN pfnCallback, void *c
 
         // Invoke callback on interface
         struct sockaddr_in *ifSockAddr = (struct sockaddr_in *)ifa->ifa_addr;
-        pfnCallback(callbackArg, ifa->ifa_name, (uint32_t)(ifSockAddr->sin_addr.s_addr));
+        struct sockaddr_in *ifSockMask = (struct sockaddr_in *)ifa->ifa_netmask;
+        pfnCallback(callbackArg, ifa->ifa_name, (uint32_t)(ifSockAddr->sin_addr.s_addr), (uint32_t)(ifSockMask->sin_addr.s_addr));
     }
 
     // Interface list is dynamically allocated and must be freed
