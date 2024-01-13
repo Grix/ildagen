@@ -29,6 +29,7 @@ function load_project(argument0) {
 	}
     
 	projectfps = buffer_read(load_buffer,buffer_u8);
+	controller.projectfps = projectfps;
 	songload = buffer_read(load_buffer,buffer_u8);
 	parsingaudioload = buffer_read(load_buffer,buffer_u8);
 	startframe = buffer_read(load_buffer,buffer_u32);

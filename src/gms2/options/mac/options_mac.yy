@@ -4,7 +4,7 @@
   "name": "macOS",
   "option_mac_display_name": "LaserShowGen",
   "option_mac_app_id": "lasershowgen",
-  "option_mac_version": "1.10.2",
+  "option_mac_version": "1.10.3",
   "option_mac_output_dir": "~/gamemakerstudio2/ildagen",
   "option_mac_team_id": "Y62YL762Z5",
   "option_mac_signing_identity": "Developer ID Application: Gitle Mikkelsen (Y62YL762Z5)",

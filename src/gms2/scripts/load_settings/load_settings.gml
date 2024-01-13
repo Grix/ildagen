@@ -10,8 +10,8 @@ function load_settings() {
 	        {
 	            ini_write_string("projector_0", "name", "default");
 	            ini_write_real("projector_0", "scanrate", 20000);
-	            ini_write_real("projector_0", "maxdist", 250);
-	            ini_write_real("projector_0", "maxdwell", 2);
+	            ini_write_real("projector_0", "maxdist", 150);
+	            ini_write_real("projector_0", "maxdwell", 4);
 	            ini_write_real("projector_0", "maxdwell_blank", 1);
 	            ini_write_real("projector_0", "blankshift", 0);
 	            ini_write_real("projector_0", "redshift", 0);
@@ -30,14 +30,14 @@ function load_settings() {
 	            ini_write_real("projector_0", "red_scale_lower", 0);
 	            ini_write_real("projector_0", "green_scale_lower", 0);
 	            ini_write_real("projector_0", "blue_scale_lower", 0);
-	            ini_write_real("projector_0", "scale_top_left", $2000);
-				ini_write_real("projector_0", "scale_top_right", $2000);
-				ini_write_real("projector_0", "scale_bottom_left", $dfff);
-				ini_write_real("projector_0", "scale_bottom_right", $dfff);
-				ini_write_real("projector_0", "scale_left_top", $2000);
-				ini_write_real("projector_0", "scale_left_bottom", $2000);
-				ini_write_real("projector_0", "scale_right_top", $dfff);
-				ini_write_real("projector_0", "scale_right_bottom", $dfff);
+	            ini_write_real("projector_0", "scale_top_left", $1000);
+				ini_write_real("projector_0", "scale_top_right", $1000);
+				ini_write_real("projector_0", "scale_bottom_left", $efff);
+				ini_write_real("projector_0", "scale_bottom_right", $efff);
+				ini_write_real("projector_0", "scale_left_top", $1000);
+				ini_write_real("projector_0", "scale_left_bottom", $1000);
+				ini_write_real("projector_0", "scale_right_top", $efff);
+				ini_write_real("projector_0", "scale_right_bottom", $efff);
 				ini_write_real("projector_0", "ttlpalette", 0);
 	            ini_write_string("projector_0", "blindzones", emptyliststring);
 	        }
@@ -53,7 +53,7 @@ function load_settings() {
 	            var t_profilemap = ds_map_create();
 	            ds_map_add(t_profilemap, "name", ini_read_string(t_projectorstring, "name", "name_error"));
 	            ds_map_add(t_profilemap, "scanrate", ini_read_real(t_projectorstring, "scanrate", 20000));
-	            ds_map_add(t_profilemap, "maxdwell", ini_read_real(t_projectorstring, "maxdwell", 2));
+	            ds_map_add(t_profilemap, "maxdwell", ini_read_real(t_projectorstring, "maxdwell", 4));
 	            ds_map_add(t_profilemap, "maxdwell_blank", ini_read_real(t_projectorstring, "maxdwell_blank", 1));
 	            ds_map_add(t_profilemap, "blankshift", ini_read_real(t_projectorstring, "blankshift", 0));
 	            ds_map_add(t_profilemap, "redshift", ini_read_real(t_projectorstring, "redshift", 0));
@@ -73,14 +73,14 @@ function load_settings() {
 	            ds_map_add(t_profilemap, "red_scale_lower", ini_read_real(t_projectorstring, "red_scale_lower", 0));
 	            ds_map_add(t_profilemap, "green_scale_lower", ini_read_real(t_projectorstring, "green_scale_lower", 0));
 	            ds_map_add(t_profilemap, "blue_scale_lower", ini_read_real(t_projectorstring, "blue_scale_lower", 0));
-	            ds_map_add(t_profilemap, "scale_top_left", ini_read_real(t_projectorstring, "scale_top_left", $2000));
-				ds_map_add(t_profilemap, "scale_top_right", ini_read_real(t_projectorstring, "scale_top_right", $2000));
-				ds_map_add(t_profilemap, "scale_bottom_left", ini_read_real(t_projectorstring, "scale_bottom_left", $dfff));
-				ds_map_add(t_profilemap, "scale_bottom_right", ini_read_real(t_projectorstring, "scale_bottom_right", $dfff));
-				ds_map_add(t_profilemap, "scale_left_top", ini_read_real(t_projectorstring, "scale_left_top", $2000));
-				ds_map_add(t_profilemap, "scale_left_bottom", ini_read_real(t_projectorstring, "scale_left_bottom", $2000));
-				ds_map_add(t_profilemap, "scale_right_top", ini_read_real(t_projectorstring, "scale_right_top", $dfff));
-				ds_map_add(t_profilemap, "scale_right_bottom", ini_read_real(t_projectorstring, "scale_right_bottom", $dfff));
+	            ds_map_add(t_profilemap, "scale_top_left", ini_read_real(t_projectorstring, "scale_top_left", $1000));
+				ds_map_add(t_profilemap, "scale_top_right", ini_read_real(t_projectorstring, "scale_top_right", $1000));
+				ds_map_add(t_profilemap, "scale_bottom_left", ini_read_real(t_projectorstring, "scale_bottom_left", $efff));
+				ds_map_add(t_profilemap, "scale_bottom_right", ini_read_real(t_projectorstring, "scale_bottom_right", $efff));
+				ds_map_add(t_profilemap, "scale_left_top", ini_read_real(t_projectorstring, "scale_left_top", $1000));
+				ds_map_add(t_profilemap, "scale_left_bottom", ini_read_real(t_projectorstring, "scale_left_bottom", $1000));
+				ds_map_add(t_profilemap, "scale_right_top", ini_read_real(t_projectorstring, "scale_right_top", $efff));
+				ds_map_add(t_profilemap, "scale_right_bottom", ini_read_real(t_projectorstring, "scale_right_bottom", $efff));
 				ds_map_add(t_profilemap, "ttlpalette", ini_read_real(t_projectorstring, "ttlpalette", 0));
 	            ds_map_add(t_profilemap, "blindzones", ini_read_string(t_projectorstring, "blindzones", emptyliststring));
 	            ds_list_add(profile_list,t_profilemap);
@@ -99,7 +99,7 @@ function load_settings() {
 			enable_dynamic_fps = ini_read_real("main", "enable_dynamic_fps", 1);
 			preview_while_laser_on = ini_read_real("main", "preview_while_laser_on", 0);
 			warning_disable = ini_read_real("main", "warning_disable", 0);
-			projectfps = ini_read_real("main", "fps", 60);
+			projectfps = ini_read_real("main", "fps", 50);
 			seqcontrol.projectfps = projectfps;
 		
 			/*if (!ini_read_real("main", "window_width", 0))
