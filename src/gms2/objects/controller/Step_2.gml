@@ -1,5 +1,6 @@
-if (window_command_check(window_command_close)) // Causes problems in HTML5 export
+if (window_command_check(window_command_close)) // NB: Causes problems in HTML5 export
     exit_confirm();
+	
     
 if (keyboard_check_pressed(ord("M")))
 {

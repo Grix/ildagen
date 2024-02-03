@@ -2,7 +2,7 @@ function dropdown_live_file() {
 	ddobj = instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-view_hport[3],"foreground",obj_dropdown);
 	with (ddobj)
 	{
-	    num = 8;
+	    num = 9;
 	    ds_list_add(desc_list,"Delete (Del)");
 	    ds_list_add(desc_list,"Open in frame editor");
 	    ds_list_add(sep_list,0);
@@ -50,6 +50,10 @@ function dropdown_live_file() {
 		ds_list_add(desc_list,"Change keyboard shortcut...");
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,live_change_shortcut);
+	    ds_list_add(hl_list,1);
+		ds_list_add(desc_list,"Change MIDI shortcut...");
+	    ds_list_add(sep_list,0);
+	    ds_list_add(scr_list,live_change_midi_shortcut);
 	    ds_list_add(hl_list,1);
 		ds_list_add(desc_list,"Set name...");
 	    ds_list_add(sep_list,0);

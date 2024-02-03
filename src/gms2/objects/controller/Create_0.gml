@@ -190,8 +190,8 @@ warning_suppress = false;
 warning_disable = false;
 bug_report_suppress = false;
 force_io_reset = false;
-
 known_filename_of_load = "";
+
 
 sgridshow = 0;
 rgridshow = 0;
@@ -413,6 +413,14 @@ menu_width_start[6] = menu_width_start[5]+menu_width[5];
 randomize();
 
 init_palette();
+
+rtmidi_init();
+var t_num_midi = rtmidi_probe_ins();
+if (t_num_midi > 0)
+{
+	log(rtmidi_name_in(0));
+	rtmidi_set_inport(0);
+}
 
 if (os_browser == browser_not_a_browser)
 {

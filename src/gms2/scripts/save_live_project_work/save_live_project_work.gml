@@ -24,7 +24,7 @@ function save_live_project_work() {
 		buffer_write(save_buffer, buffer_bool, 0); // spares
 		buffer_write(save_buffer, buffer_bool, 0);
 		buffer_write(save_buffer, buffer_bool, 0);
-		buffer_write(save_buffer, buffer_u32, 0);
+		buffer_write(save_buffer, buffer_u32, objectlist[| 13]);
 		buffer_write(save_buffer, buffer_u32, 0);
 		buffer_write(save_buffer, buffer_u32, 0);
 		buffer_write(save_buffer, buffer_string, objectlist[| 11]);

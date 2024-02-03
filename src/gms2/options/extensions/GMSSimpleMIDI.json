@@ -1,0 +1,9 @@
+{
+  "extensionId": {
+    "name": "GMSSimpleMIDI",
+    "path": "extensions/GMSSimpleMIDI/GMSSimpleMIDI.yy"
+  },
+  "resourceVersion": "1.0",
+  "resourceType": "GMExtensionConfigSet",
+  "configurables": null
+}

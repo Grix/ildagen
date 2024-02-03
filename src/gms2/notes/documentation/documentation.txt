@@ -6,6 +6,8 @@ TODO
 - crash on exit IDN on mac/linux in dacwrapper. See error below*
 - ability to select multiple items in editor by dragging mouse
 - update windows/linux dacwrapper to use netmask on IDN broadcast.
+- master fps control on live mode for live modulation of speed.
+- BPM-based timing (enter lengths of objects etc in bars instead of frames etc)
 - use ds_list pooling to improve reliability due to reused index GM shenanigans 
 - record mac address for license, for better piracy detection
 - fix ctrl+key shortcuts in linux
@@ -186,7 +188,7 @@ filelist
                 num (index in dac_list)
                 name
                 profile name
-		
+		13 midi key shortcut
 		
 Fonts
 Text tiles are drawn with paint.net, font Arial, sizes 10 and 12, color pure black

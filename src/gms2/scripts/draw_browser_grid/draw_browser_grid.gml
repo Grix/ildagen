@@ -84,6 +84,17 @@ function draw_browser_grid() {
 			draw_set_font(fnt_tooltip);
 			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+19, objectlist[| 11]);
 		}
+		
+		if (objectlist[| 13] == -1)
+		{
+			draw_set_color(controller.c_gold);
+			draw_text(t_column*t_cell_size+22, t_ystart+t_row*t_cell_size+3, "Press MIDI key...");
+		}
+		else if (objectlist[| 13] > 0)
+		{
+			draw_set_color(c_white);
+			draw_text(t_column*t_cell_size+22, t_ystart+t_row*t_cell_size+3, "MIDI: "+string(objectlist[| 13]));
+		}
 	}
 	
 

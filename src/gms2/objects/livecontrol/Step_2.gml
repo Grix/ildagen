@@ -246,6 +246,8 @@ else
 		}
 	}
 }
+
+handle_midi_input_live();
     
 handle_mousecontrol_live();
 
