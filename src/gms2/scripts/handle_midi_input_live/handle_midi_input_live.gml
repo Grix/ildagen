@@ -66,7 +66,7 @@ function handle_midi_input_live(){
 			}
 			if (t_ccid == masterhue_midi_shortcut)
 			{
-				masterhue = rtmidi_get_message(2) / 127;
+				masterhue = rtmidi_get_message(2) / 127 * 255;
 			}
 			if (t_ccid == masterx_midi_shortcut)
 			{
