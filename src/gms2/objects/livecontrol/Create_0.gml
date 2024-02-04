@@ -14,6 +14,7 @@ scrollbarw = 0;
 ypos_perm = 0;
 scrollbarwidth = 18;
 scroll_moving = 0;
+selected_slider = -1;
 
 alarm[4] = 300;
 

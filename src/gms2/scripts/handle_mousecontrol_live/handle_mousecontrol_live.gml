@@ -72,10 +72,18 @@ function handle_mousecontrol_live() {
 			var t_shortcut = "";
 			if (objectlist[| 6] > 0)
 			{
+				t_shortcut += "keyboard key ";
 				t_shortcut += chr(objectlist[| 6]);
 			}
+			if (objectlist[| 13] > 0)
+			{
+				if (string_length(t_shortcut) != 0)
+					t_shortcut += " or ";
+				t_shortcut += "MIDI key ";
+				t_shortcut += midi_get_note_name(objectlist[| 13]);
+			}
 		
-			controller.tooltip = "Click to select and play this file ("+t_shortcut+").\nDoubleclick to open in editor mode.\nRight click for options.";
+			controller.tooltip = "Click to select and play this file ("+t_shortcut+").\nDouble-click to open in editor mode.\nRight click for options, such as assigning keyboard or MIDI trigger key, and changing playback modes.";
 		
 			if (mouse_check_button_pressed(mb_left))
 			{

@@ -70,11 +70,11 @@ function handle_midi_input_live(){
 			}
 			if (t_ccid == masterx_midi_shortcut)
 			{
-				masterx = ((rtmidi_get_message(2) / 127) - 0.5) * $8000;
+				masterx = ((rtmidi_get_message(2) / 127) - 0.5) * $8000 * 2;
 			}
 			if (t_ccid == mastery_midi_shortcut)
 			{
-				mastery = ((rtmidi_get_message(2) / 127) - 0.5) * $8000;
+				mastery = ((rtmidi_get_message(2) / 127) - 0.5) * $8000 * 2;
 			}
 			if (t_ccid == masterabsrot_midi_shortcut)
 			{

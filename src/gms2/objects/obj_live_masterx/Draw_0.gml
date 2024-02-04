@@ -6,3 +6,19 @@ draw_sprite(spr_knob,(moving > 0),x+clamp(livecontrol.masterx+$8000,0,$ffff)/$ff
 
 draw_text(x+80,y+9,"X offset");
 
+if (livecontrol.masterx_midi_shortcut == -1)
+{
+	draw_set_font(fnt_small);
+	draw_set_color(c_maroon);
+	draw_text(x+5, y-5, "Turn a MIDI slider/knob...");
+	draw_set_color(c_black);
+	draw_set_font(fnt_tooltip);
+}
+else if (livecontrol.masterx_midi_shortcut > 0)
+{
+	draw_set_font(fnt_small);
+	draw_set_color(c_green);
+	draw_text(x+5, y-5, "MIDI CC: "+string(livecontrol.masterx_midi_shortcut));
+	draw_set_color(c_black);
+	draw_set_font(fnt_tooltip);
+}
