@@ -191,7 +191,7 @@ warning_disable = false;
 bug_report_suppress = false;
 force_io_reset = false;
 known_filename_of_load = "";
-
+has_midi = false;
 
 sgridshow = 0;
 rgridshow = 0;
@@ -420,6 +420,7 @@ if (t_num_midi > 0)
 {
 	log(rtmidi_name_in(0));
 	rtmidi_set_inport(0);
+	has_midi = true;
 }
 
 if (os_browser == browser_not_a_browser)

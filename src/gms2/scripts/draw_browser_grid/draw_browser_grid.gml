@@ -67,12 +67,15 @@ function draw_browser_grid() {
 			draw_set_alpha(1);
 		}
 		
+		var t_skip_drawing_shortcut = (objectlist[| 6] == -1) || (objectlist[| 13] == -1);
+		
+		
 		if (objectlist[| 6] == -1)
 		{
 			draw_set_color(controller.c_gold);
 			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+3, "Press key...");
 		}
-		else if (objectlist[| 6] > 0)
+		else if (objectlist[| 6] > 0 && !t_skip_drawing_shortcut)
 		{
 			draw_set_color(c_white);
 			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+3, chr(objectlist[| 6]));
@@ -90,10 +93,10 @@ function draw_browser_grid() {
 			draw_set_color(controller.c_gold);
 			draw_text(t_column*t_cell_size+22, t_ystart+t_row*t_cell_size+3, "Press MIDI key...");
 		}
-		else if (objectlist[| 13] > 0)
+		else if (objectlist[| 13] > 0 && !t_skip_drawing_shortcut)
 		{
-			draw_set_color(c_white);
-			draw_text(t_column*t_cell_size+22, t_ystart+t_row*t_cell_size+3, "MIDI: "+string(objectlist[| 13]));
+			draw_set_color(c_teal);
+			draw_text(t_column*t_cell_size+22, t_ystart+t_row*t_cell_size+3, midi_get_note_name(objectlist[| 13]));
 		}
 	}
 	

@@ -40,6 +40,21 @@ masterred = 1;
 masterblue = 1;
 mastergreen = 1;
 masterabsrot = pi;
+
+masterx_midi_shortcut = 0;
+mastery_midi_shortcut = 0;
+masteralpha_midi_shortcut = 0;
+masterhue_midi_shortcut = 0;
+masterred_midi_shortcut = 0;
+masterblue_midi_shortcut = 0;
+mastergreen_midi_shortcut = 0;
+masterabsrot_midi_shortcut = 0;
+
+if (controller.has_midi)
+{
+	masteralpha_midi_shortcut = 7; // volume ID
+}
+
 loadprojectflag = false;
 
 browser_surf = -1;
