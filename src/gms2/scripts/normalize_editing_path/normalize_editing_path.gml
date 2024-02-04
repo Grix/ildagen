@@ -2,13 +2,13 @@
 function normalize_editing_path(t_list){
 	// normalize the pace of the recorded editing path
 	
-	if (ds_list_exists(t_list) && !ds_list_empty(t_list))
+	if (ds_list_exists_pool(t_list) && !ds_list_empty(t_list))
 	{
 		var t_total_translation = 0;
 		var t_total_scale = 0;
 		var t_total_rotation = 0;
 		
-		var t_newlist = ds_list_create();
+		var t_newlist = ds_list_create_pool();
 		
 		for (var t_i = 5; t_i < ds_list_size(t_list)-4; t_i += 5)
 		{
@@ -108,5 +108,5 @@ function normalize_editing_path(t_list){
 		return t_newlist;
 	}
 	else
-		return ds_list_create();
+		return ds_list_create_pool();
 }

@@ -23,7 +23,7 @@ function frames_toseq() {
 	buffer_write(save_buffer,buffer_u8,52);
 	buffer_write(save_buffer,buffer_u32,maxframes);
 
-	var t_checkpointlist = ds_list_create();
+	var t_checkpointlist = ds_list_create_pool();
 
 	for (j = 0; j < maxframes;j++)
 	{
@@ -66,7 +66,7 @@ function frames_toseq() {
         
 	    if (ds_list_empty(somaster_list) or (ds_list_size(somaster_list) > 1))
 	    {
-	        objectlist = ds_list_create();
+	        objectlist = ds_list_create_pool();
 	        ds_list_add(objectlist, selectedx);
 	        ds_list_add(objectlist, controller.save_buffer);
 	        ds_list_add(objectlist, controller.maxframes-1);
@@ -80,14 +80,14 @@ function frames_toseq() {
         
 	        selectedx += controller.maxframes;
 			
-			undolisttemp = ds_list_create();
+			undolisttemp = ds_list_create_pool();
 			ds_list_add(undolisttemp,objectlist);
 			ds_list_add(undo_list,"c"+string(undolisttemp));
 	    }
 	    else
 	    {
 	        objectlist = ds_list_find_value(somaster_list,0);
-			if (!ds_list_exists(objectlist))
+			if (!ds_list_exists_pool(objectlist))
 			{
 				ds_list_delete(somaster_list, 0);
 				{
@@ -107,8 +107,8 @@ function frames_toseq() {
 			if (objectlist[| 2] == objectlist[| 4]-1)
 				ds_list_replace(objectlist, 2, controller.maxframes-1);
 	        ds_list_replace(objectlist, 4, controller.maxframes);
-			if (ds_list_exists(objectlist[| 5]))
-				ds_list_destroy(objectlist[| 5]);
+			if (ds_list_exists_pool(objectlist[| 5]))
+				ds_list_free_pool(objectlist[| 5]);
 			ds_list_replace(objectlist, 5, create_checkpoint_list(controller.save_buffer));
         
 			clean_seq_undo();

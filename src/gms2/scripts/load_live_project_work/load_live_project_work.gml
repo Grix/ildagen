@@ -11,7 +11,7 @@ function load_live_project_work() {
 	        }
         
 	        //object data
-	        objectlist = ds_list_create();
+	        objectlist = ds_list_create_pool();
 	        ds_list_add(objectlist, round(buffer_read(load_buffer,buffer_u32)));
             
 	        objectbuffersize = buffer_read(load_buffer,buffer_u32);
@@ -53,12 +53,12 @@ function load_live_project_work() {
 			{
 				ds_list_add(objectlist,buffer_read(load_buffer,buffer_string));
 				
-				var t_daclist = ds_list_create();
+				var t_daclist = ds_list_create_pool();
 	            ds_list_add(objectlist, t_daclist);
 	            numofdacs = buffer_read(load_buffer,buffer_u8);
 	            repeat (numofdacs)
 	            {
-	                var t_thisdaclist = ds_list_create();
+	                var t_thisdaclist = ds_list_create_pool();
 	                ds_list_add(t_daclist, t_thisdaclist);
 	                ds_list_add(t_thisdaclist, -1);
 	                ds_list_add(t_thisdaclist, buffer_read(load_buffer,buffer_string));
@@ -68,7 +68,7 @@ function load_live_project_work() {
 			else
 			{
 				ds_list_add(objectlist,"");
-				ds_list_add(objectlist,ds_list_create());
+				ds_list_add(objectlist,ds_list_create_pool());
 			}
 			
 			ds_list_add(objectlist, t_midi_key);

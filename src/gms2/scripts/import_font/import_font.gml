@@ -50,7 +50,7 @@ function import_font() {
 	    i = 0;
 	    format = 0;
         
-	    ild_list = ds_list_create();
+	    ild_list = ds_list_create_pool();
     
 	    if (read_ilda_header_first())
 		{

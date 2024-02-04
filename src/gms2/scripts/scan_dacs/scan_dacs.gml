@@ -15,13 +15,13 @@ function scan_dacs() {
 	for (i = 0; i < ds_list_size(controller.dac_list); i++)
 	{
 	    var t_dac = controller.dac_list[| i];
-	    if (ds_list_exists(t_dac))
+	    if (ds_list_exists_pool(t_dac))
 	    {
 	        if (buffer_exists(t_dac[| 4]))
 	            buffer_delete(t_dac[| 4]);
 	        if (buffer_exists(t_dac[| 5]))
 	            buffer_delete(t_dac[| 5]);
-	        ds_list_destroy(t_dac); t_dac = -1;
+	        ds_list_free_pool(t_dac); t_dac = -1;
 	    }
 	}
 
@@ -33,7 +33,7 @@ function scan_dacs() {
 	    if (!t_result)
 	        continue;
         
-	    var newdac = ds_list_create();
+	    var newdac = ds_list_create_pool();
 	    ds_list_add(newdac,i);
 	    ds_list_add(newdac,dacwrapper_getname(i));
 	    ds_list_add(newdac,-1);

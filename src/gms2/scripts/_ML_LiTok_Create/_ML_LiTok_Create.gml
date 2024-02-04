@@ -6,7 +6,7 @@
 /// @returnType real
 /// @hidden     true
 function _ML_LiTok_Create(argument0, argument1) {
-	var l = ds_list_create();
+	var l = ds_list_create_pool();
 	ds_list_add(l, ML_TT_UNKNOWN); //type
 	ds_list_add(l, argument0); //string
 	ds_list_add(l, argument1); //pos

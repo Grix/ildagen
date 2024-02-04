@@ -38,7 +38,7 @@ function output_frame_seq() {
     
 	buffer_seek(output_buffer, buffer_seek_start, 0);
 
-	el_list = ds_list_create(); 
+	el_list = ds_list_create_pool(); 
 	//check which should be drawn
 	for (k = 0; k < ds_list_size(layer_list); k++)
 	{
@@ -49,7 +49,7 @@ function output_frame_seq() {
 	    var t_daclist = ds_list_find_value(layer_list[| k], 5);
 	    if (ds_list_size(t_daclist) == 0)
 	    {
-	        if (ds_list_exists(controller.dac))
+	        if (ds_list_exists_pool(controller.dac))
 	            t_found = true;
 	    }
 	    for (m = 0; m < ds_list_size(t_daclist); m++)
@@ -69,7 +69,7 @@ function output_frame_seq() {
 	    {
 	        objectlist = ds_list_find_value(_layer,m);
 		
-			if (!ds_list_exists(objectlist))
+			if (!ds_list_exists_pool(objectlist))
 			{
 				ds_list_delete(_layer, m);
 				if (m > 0)
@@ -111,7 +111,7 @@ function output_frame_seq() {
 	        for (i = 0; i < buffer_maxelements;i++)
 	        {
 	            numofinds = buffer_read(el_buffer,buffer_u32);
-	            ind_list = ds_list_create();
+	            ind_list = ds_list_create_pool();
 	            ds_list_add(el_list,ind_list);
 	            for (u = 0; u < 10; u++)
 	            {
@@ -191,7 +191,7 @@ function output_frame_seq() {
 	    blindzone_el_lists = 0;
 	    for (i = 0; i < ds_list_size(controller.blindzone_list); i += 4)
 	    {
-	        var blindzone_el = ds_list_create();
+	        var blindzone_el = ds_list_create_pool();
 	        blindzone_el[| 19] = 0; //fills up to 19 with 0
 	        blindzone_el[| 10] = true;
 	        ds_list_add(blindzone_el, controller.blindzone_list[| i + 0]);
@@ -225,7 +225,7 @@ function output_frame_seq() {
 	{
 	    for (i = 0; i < blindzone_el_lists; i++)
 	    {
-	        ds_list_destroy(el_list[| ds_list_size(el_list)-1]);
+	        ds_list_free_pool(el_list[| ds_list_size(el_list)-1]);
 	        ds_list_delete(el_list, ds_list_size(el_list)-1);
 	    }
 	}
@@ -233,9 +233,9 @@ function output_frame_seq() {
 	//cleanup
 	for (i = 0;i < ds_list_size(el_list);i++)
 	{
-	    ds_list_destroy(ds_list_find_value(el_list,i));
+	    ds_list_free_pool(ds_list_find_value(el_list,i));
 	}
-	ds_list_destroy(el_list); el_list = -1;
+	ds_list_free_pool(el_list); el_list = -1;
 
 	output_buffer_ready = true;
 

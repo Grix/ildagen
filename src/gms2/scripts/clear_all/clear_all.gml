@@ -7,19 +7,19 @@ function clear_all() {
 	for (j = 0;j < ds_list_size(frame_list);j++)
 	{
 	    el_list = ds_list_find_value(frame_list,j);
-		if (!ds_list_exists(el_list))
+		if (!ds_list_exists_pool(el_list))
 			continue;
 	    for (i = 0;i < ds_list_size(el_list);i++)
 	    {
 	        list_id = ds_list_find_value(el_list,i);
-	        ds_list_destroy(list_id); list_id = -1;
+	        ds_list_free_pool(list_id); list_id = -1;
 	    }
-	    ds_list_destroy(el_list); el_list = -1;
+	    ds_list_free_pool(el_list); el_list = -1;
 	}
-	ds_list_destroy(frame_list);
+	ds_list_free_pool(frame_list);
 
-	frame_list = ds_list_create();
-	el_list = ds_list_create();
+	frame_list = ds_list_create_pool();
+	el_list = ds_list_create_pool();
 	ds_list_add(frame_list,el_list);
 
 

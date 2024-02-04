@@ -7,11 +7,11 @@
 function _ML_LiRO_Destroy(argument0) {
 
 	var ind = argument0;
-	ds_list_destroy(_ML_LiRO_GetAll(ind));
-	ds_list_destroy(_ML_LiRO_GetAllType(ind));
+	ds_list_free_pool(_ML_LiRO_GetAll(ind));
+	ds_list_free_pool(_ML_LiRO_GetAllType(ind));
 
 
-	ds_list_destroy(ind);
+	ds_list_free_pool(ind);
 
 
 

@@ -5,7 +5,7 @@ function dac_blank_and_center() {
 
 	var t_dac = argument[0];
 
-	if (!ds_list_exists(t_dac))
+	if (!ds_list_exists_pool(t_dac))
 	    exit;
     
 	dacwrapper_stop(t_dac[| 0]);

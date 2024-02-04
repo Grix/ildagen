@@ -153,7 +153,7 @@ if (keyboard_check_control())
 	
 	else if (keyboard_check_pressed(ord("1")))
 	{
-		var t_undolist = ds_list_create();
+		var t_undolist = ds_list_create_pool();
 		ds_list_add(t_undolist, startframe);
 		ds_list_add(t_undolist, endframe);
 		ds_list_add(undo_list,"i"+string(t_undolist));
@@ -164,7 +164,7 @@ if (keyboard_check_control())
 	}
 	else if (keyboard_check_pressed(ord("2")))
 	{
-		var t_undolist = ds_list_create();
+		var t_undolist = ds_list_create_pool();
 		ds_list_add(t_undolist, startframe);
 		ds_list_add(t_undolist, endframe);
 		ds_list_add(undo_list,"i"+string(t_undolist));

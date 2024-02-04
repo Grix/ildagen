@@ -24,13 +24,13 @@ function clear_project() {
 	    repeat (num_objects)   
 	    {
 	        envelope = ds_list_find_value(envelope_list,0);
-	        ds_list_destroy(ds_list_find_value(envelope,1));
-	        ds_list_destroy(ds_list_find_value(envelope,2));
-	        ds_list_destroy(envelope); envelope = -1;
+	        ds_list_free_pool(ds_list_find_value(envelope,1));
+	        ds_list_free_pool(ds_list_find_value(envelope,2));
+	        ds_list_free_pool(envelope); envelope = -1;
 	        ds_list_delete(envelope_list,0);
 	    }
-	    ds_list_destroy(envelope_list); envelope_list = -1;
-	    ds_list_destroy(_layer); _layer = -1;
+	    ds_list_free_pool(envelope_list); envelope_list = -1;
+	    ds_list_free_pool(_layer); _layer = -1;
 	    ds_list_delete(layer_list,0);
 	}
 

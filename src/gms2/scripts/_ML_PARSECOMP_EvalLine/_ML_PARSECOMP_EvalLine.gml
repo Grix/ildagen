@@ -15,7 +15,7 @@ function _ML_PARSECOMP_EvalLine(argument0, argument1, argument2) {
 	var tok, lhs, lhs_val, lhs_type;
 	var rpn_size = ds_list_size(rpn);
 	var tok_index = 0;
-	var temptokens = ds_list_create();
+	var temptokens = ds_list_create_pool();
 
 	while (tok_index < rpn_size && expression_terminator == false && ML_NoException(parser)) {
 	    //tok = ds_queue_dequeue(rpn);
@@ -36,7 +36,7 @@ function _ML_PARSECOMP_EvalLine(argument0, argument1, argument2) {
 	ds_stack_destroy(args);
 
 	_ML_TokCleanUp(temptokens);
-	ds_list_destroy(temptokens);
+	ds_list_free_pool(temptokens);
 	return tok_index;
 
 

@@ -28,7 +28,7 @@ function make_screenshot(argument0, argument1) {
 	draw_set_alpha(1);
 	gpu_set_blendenable(0);
 
-	el_list = ds_list_create(); 
+	el_list = ds_list_create_pool(); 
 
 	var t_i
 	for (t_i = 0; t_i < buffer_maxelements; t_i++)

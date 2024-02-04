@@ -5,9 +5,9 @@ function dd_seq_env_deletesection() {
 		time_list = ds_list_find_value(envelopetoedit,1);
 		data_list = ds_list_find_value(envelopetoedit,2);
 		
-		var t_undolist = ds_list_create();
-		var t_list1 = ds_list_create();
-		var t_list2 = ds_list_create();
+		var t_undolist = ds_list_create_pool();
+		var t_list1 = ds_list_create_pool();
+		var t_list2 = ds_list_create_pool();
 		ds_list_copy(t_list1,time_list);
 		ds_list_copy(t_list2,data_list);
 		ds_list_add(t_undolist,t_list1);

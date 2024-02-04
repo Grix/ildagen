@@ -156,13 +156,13 @@ function reapply_properties() {
 	    if (ds_list_size(frame_list) < maxframes)
 	        repeat (maxframes - ds_list_size(frame_list))
 	        {
-	            templist = ds_list_create();
+	            templist = ds_list_create_pool();
 	            if (fillframes)
 	            {
 	                tempelcount = ds_list_size(ds_list_find_value(frame_list,ds_list_size(frame_list)-1));
 	                for (u = 0;u < tempelcount;u++)
 	                {
-	                    tempellist = ds_list_create();
+	                    tempellist = ds_list_create_pool();
 	                    ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(frame_list,ds_list_size(frame_list)-1),u));
 	                    ds_list_add(templist,tempellist);
 	                }
@@ -190,14 +190,14 @@ function reapply_properties() {
 	        resolution = 250;
 	}
 
-	temp_undof_list = ds_list_create();
+	temp_undof_list = ds_list_create_pool();
     
 	for (l = 0; l < ds_list_size(semaster_list); l++)
 	{
 	    selectedelement = ds_list_find_value(semaster_list,l);
 
 	    //find elements
-	    temp_frame_list = ds_list_create();
+	    temp_frame_list = ds_list_create_pool();
 	    if (fillframes)
 	    {
 	        for (i = scope_start;i <= scope_end;i++)
@@ -210,7 +210,7 @@ function reapply_properties() {
 	                    if (ds_list_empty(temp_frame_list))
 	                        startframe = i;
 	                    ds_list_add(temp_frame_list,ds_list_find_value(el_list_temp,u))
-	                    temp_undo_list = ds_list_create();
+	                    temp_undo_list = ds_list_create_pool();
 	                    ds_list_copy(temp_undo_list,ds_list_find_value(el_list_temp,u));
 	                    ds_list_add(temp_undo_list,i);
 	                    ds_list_add(temp_undof_list,temp_undo_list);
@@ -228,7 +228,7 @@ function reapply_properties() {
 	                if (ds_list_empty(temp_frame_list))
 	                    startframe = frame;
 	                ds_list_add(temp_frame_list,ds_list_find_value(el_list_temp,u))
-	                temp_undo_list = ds_list_create();
+	                temp_undo_list = ds_list_create_pool();
 	                ds_list_copy(temp_undo_list,ds_list_find_value(el_list_temp,u));
 	                ds_list_add(temp_undo_list,frame);
 	                ds_list_add(temp_undof_list,temp_undo_list);

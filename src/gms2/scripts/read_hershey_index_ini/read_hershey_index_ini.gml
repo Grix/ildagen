@@ -1,7 +1,7 @@
 function read_hershey_index_ini(argument0) {
 	//reads a hershey font file and returns the index font list
 
-	frame_list_parse = ds_list_create();
+	frame_list_parse = ds_list_create_pool();
 
 	var t_dir = "";
 //if (os_type == os_macosx)

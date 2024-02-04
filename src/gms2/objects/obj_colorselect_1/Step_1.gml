@@ -11,7 +11,7 @@ if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and
 
 if (moving == 4)
 {
-    tempundolist = ds_list_create();
+    tempundolist = ds_list_create_pool();
     ds_list_add(tempundolist,controller.enddotscolor);
     ds_list_add(tempundolist,controller.color2);
     ds_list_add(tempundolist,controller.color1);

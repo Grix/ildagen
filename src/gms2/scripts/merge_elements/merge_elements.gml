@@ -1,5 +1,5 @@
 function merge_elements() {
-	temp_undof_list = ds_list_create();
+	temp_undof_list = ds_list_create_pool();
 
 	for (i = scope_start; i <= scope_end; i++)
 	{
@@ -14,7 +14,7 @@ function merge_elements() {
 		if (!t_found)
 			continue;
 
-		new_list = ds_list_create();
+		new_list = ds_list_create_pool();
 		repeat(9)
 			ds_list_add(new_list, 0);
 		ds_list_add(new_list, el_id); 

@@ -134,7 +134,7 @@ function export_framelist_to_buffer() {
 	    }
 	}
     
-	ds_list_destroy(list_raw); list_raw = -1;
+	ds_list_free_pool(list_raw); list_raw = -1;
 
 
 

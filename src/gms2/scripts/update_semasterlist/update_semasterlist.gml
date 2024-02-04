@@ -11,7 +11,7 @@ function update_semasterlist() {
 	for (u = 0; u < ds_list_size(el_list);u++)
 	{
 	    templist = ds_list_find_value(el_list,u);
-		if (!ds_list_exists(templist))
+		if (!ds_list_exists_pool(templist))
 		{
 			if (!controller.bug_report_suppress)
 			{

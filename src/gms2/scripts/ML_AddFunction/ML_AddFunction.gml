@@ -29,13 +29,13 @@ function ML_AddFunction() {
 	*/
 
 	var o, c, tlist;
-	tlist = ds_list_create();
+	tlist = ds_list_create_pool();
 	c = argument_count - 4;
 	for (var i = 0; i < c; ++i) {
 	    ds_list_add(tlist,argument[i+4]);
 	}
 	o = ML_AddFunctionArgList(argument[0], argument[1], argument[2], argument[3], tlist);
-	ds_list_destroy(tlist);
+	ds_list_free_pool(tlist);
 	return o;
 
 

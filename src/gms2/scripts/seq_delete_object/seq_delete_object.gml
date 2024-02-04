@@ -13,7 +13,7 @@ function seq_delete_object() {
 	        if (ds_list_find_index(layerlisttemp,ds_list_find_value(somaster_list,k)) != -1)    
 	        {
 	            objectlist = ds_list_find_value(somaster_list,k);
-				if (!ds_list_exists(objectlist))
+				if (!ds_list_exists_pool(objectlist))
 				{
 					ds_list_delete(somaster_list, k);
 					if (k > 0)
@@ -21,7 +21,7 @@ function seq_delete_object() {
 					continue;
 				}
             
-	            undolisttemp = ds_list_create();
+	            undolisttemp = ds_list_create_pool();
 	            ds_list_add(undolisttemp,layerlisttemp);
 	            ds_list_add(undolisttemp,objectlist);
 	            ds_list_add(undo_list,"d"+string(undolisttemp));

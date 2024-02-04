@@ -20,7 +20,7 @@ with (livecontrol)
 	    {
 	        //undo delete object
 	        undolisttemp = real(string_digits(undo));
-			if (!ds_list_exists(undolisttemp))
+			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        var t_objectlist = ds_list_find_value(undolisttemp,0);
         
@@ -33,12 +33,12 @@ with (livecontrol)
 			var t_dac_list = t_objectlist[| 12];
 			num_objects = ds_list_size(t_dac_list);
 			repeat (num_objects)  
-			    ds_list_destroy(ds_list_find_value(t_dac_list,0));
-			ds_list_destroy(t_dac_list);
+			    ds_list_free_pool(ds_list_find_value(t_dac_list,0));
+			ds_list_free_pool(t_dac_list);
 			
-			ds_list_destroy(t_objectlist);
+			ds_list_free_pool(t_objectlist);
             
-	        ds_list_destroy(undolisttemp);
+	        ds_list_free_pool(undolisttemp);
 	    }
 	}
 }

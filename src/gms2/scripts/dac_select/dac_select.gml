@@ -10,7 +10,7 @@ function dac_select() {
 	    var t_newdac = argument[0];
 	    dac = dac_list[| t_newdac];
     
-	    if (!ds_list_exists(dac))
+	    if (!ds_list_exists_pool(dac))
 	    {
 	        dac = -1;
 	        return 0;

@@ -14,7 +14,7 @@ function projector_add_dac_dd() {
 	}
 
 
-	var t_newdaclist = ds_list_create();
+	var t_newdaclist = ds_list_create_pool();
 	ds_list_add(t_newdaclist, t_dac);
 	ds_list_add(t_newdaclist, string(ds_list_find_value(controller.dac_list[| t_dac], 1)));
 	ds_list_add(t_newdaclist, "");

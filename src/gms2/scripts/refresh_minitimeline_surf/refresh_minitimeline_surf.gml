@@ -28,7 +28,7 @@ function refresh_minitimeline_surf() {
 			else
 			{
 				var t_objectlist = ds_list_find_value(seqcontrol.somaster_list,0);
-				if (!ds_list_exists(t_objectlist))
+				if (!ds_list_exists_pool(t_objectlist))
 				{
 					if (seqcontrol.selectedx >= 0)
 			            tlx = seqcontrol.selectedx;

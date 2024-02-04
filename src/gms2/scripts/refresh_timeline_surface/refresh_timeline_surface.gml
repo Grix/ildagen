@@ -82,7 +82,7 @@ function refresh_timeline_surface() {
 		            {
 		                objectlist = elementlist[| j];
 				
-						if (!ds_list_exists(objectlist))
+						if (!ds_list_exists_pool(objectlist))
 						{
 							ds_list_delete(elementlist, j);
 							if (j > 0)
@@ -191,7 +191,7 @@ function refresh_timeline_surface() {
 		                if (type != "x") and (type != "y") and (type != "hue")
 		                    default_value = ypos_perm;
 		                draw_set_colour(c_green);
-		                if (ds_list_exists(time_list) && ds_list_size(time_list))
+		                if (ds_list_exists_pool(time_list) && ds_list_size(time_list))
 		                {
 		                    //binary search algo, set t_index to the list index just before visible area
 		                    var imin = 0;

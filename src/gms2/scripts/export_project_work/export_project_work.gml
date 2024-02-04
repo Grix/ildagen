@@ -40,7 +40,7 @@ function export_project_work() {
 	    buffer_write(ilda_buffer,buffer_u8,0); //scanner
 	    buffer_write(ilda_buffer,buffer_u8,0); //0
         
-	    el_list = ds_list_create(); 
+	    el_list = ds_list_create_pool(); 
 	    //check which should be drawn
 	    for (k = 0; k < ds_list_size(layer_list); k++)
 	    {
@@ -54,7 +54,7 @@ function export_project_work() {
 	        for (m = 0; m < ds_list_size(_layer); m++)
 	        {
 	            objectlist = ds_list_find_value(_layer,m);
-				if (!ds_list_exists(objectlist))
+				if (!ds_list_exists_pool(objectlist))
 				{
 					ds_list_delete(_layer, m);
 					if (m > 0)
@@ -94,7 +94,7 @@ function export_project_work() {
 	            for (i = 0; i < buffer_maxelements;i++)
 	            {
 	                numofinds = buffer_read(el_buffer,buffer_u32);
-	                ind_list = ds_list_create();
+	                ind_list = ds_list_create_pool();
 	                ds_list_add(el_list,ind_list);
 	                for (u = 0; u < 10; u++)
 	                {
@@ -179,9 +179,9 @@ function export_project_work() {
 	    //cleanup
 	    for (i = 0;i < ds_list_size(el_list);i++)
 	    {
-	        ds_list_destroy(ds_list_find_value(el_list,i));
+	        ds_list_free_pool(ds_list_find_value(el_list,i));
 	    }
-	    ds_list_destroy(el_list);
+	    ds_list_free_pool(el_list);
     
 	    if (get_timer()-global.loadingtimeprev >= 100000)
 	    {

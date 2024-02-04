@@ -44,7 +44,7 @@ function refresh_seq_surface_large() {
 	    for (m = 0; m < ds_list_size(elementlist); m++)
 	    {
 	        objectlist = elementlist[| m];
-			if (!ds_list_exists(objectlist))
+			if (!ds_list_exists_pool(objectlist))
 			{
 				ds_list_delete(elementlist, m);
 				if (m > 0)
@@ -74,7 +74,7 @@ function refresh_seq_surface_large() {
 			if (!seek_to_correct_frame(el_buffer, fetchedframe, objectlist))
 				exit;
         
-	        //el_list = ds_list_create(); why is this here?
+	        //el_list = ds_list_create_pool(); why is this here?
             
 	        buffer_maxelements = buffer_read(el_buffer,buffer_u32);
         
@@ -240,7 +240,7 @@ function refresh_seq_surface_large() {
 			    for (m = 0; m < ds_list_size(elementlist); m++)
 			    {
 			        objectlist = elementlist[| m];
-					if (!ds_list_exists(objectlist))
+					if (!ds_list_exists_pool(objectlist))
 					{
 						ds_list_delete(elementlist, m);
 						if (m > 0)
@@ -270,7 +270,7 @@ function refresh_seq_surface_large() {
 					if (!seek_to_correct_frame(el_buffer, fetchedframe, objectlist))
 						exit;
         
-			        //el_list = ds_list_create(); //why is this here?
+			        //el_list = ds_list_create_pool(); //why is this here?
         
             
 			        buffer_maxelements = buffer_read(el_buffer,buffer_u32);

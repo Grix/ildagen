@@ -3,7 +3,7 @@ function reverse_timelineobject() {
 	for (i = 0; i < ds_list_size(somaster_list); i++)
 	{
 	    objectlist = somaster_list[| i];
-		if (!ds_list_exists(objectlist))
+		if (!ds_list_exists_pool(objectlist))
 		{
 			ds_list_delete(somaster_list, i);
 			if (i > 0)
@@ -62,8 +62,8 @@ function reverse_timelineobject() {
 
 		objectlist[| 1] = el_buffer_new;
 		
-		if (ds_list_exists(objectlist[| 5]))
-			ds_list_destroy(objectlist[| 5]);
+		if (ds_list_exists_pool(objectlist[| 5]))
+			ds_list_free_pool(objectlist[| 5]);
 		ds_list_replace(objectlist, 5, create_checkpoint_list(el_buffer_new));
 	
 		if (argument_count < 1 || argument[0] == true) // don't save undo if arg1 = false

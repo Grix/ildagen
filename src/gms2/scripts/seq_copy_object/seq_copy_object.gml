@@ -7,11 +7,11 @@ function seq_copy_object() {
 	//clean old clipboard
 	for (i = 0; i < ds_list_size(copy_list); i++)
 	{
-	    if (ds_list_exists(ds_list_find_value(copy_list,i)))
+	    if (ds_list_exists_pool(ds_list_find_value(copy_list,i)))
 	    {
 	        if (buffer_exists(ds_list_find_value( ds_list_find_value(copy_list,i), 0)))
 	            buffer_delete(ds_list_find_value( ds_list_find_value(copy_list,i), 0));
-	        ds_list_destroy(ds_list_find_value(copy_list,i));
+	        ds_list_free_pool(ds_list_find_value(copy_list,i));
 	    }
 	}
 	ds_list_clear(copy_list);
@@ -20,7 +20,7 @@ function seq_copy_object() {
 	{
 	    layertemp = 0;
 	    objectlist = ds_list_find_value(somaster_list,i);
-		if (!ds_list_exists(objectlist))
+		if (!ds_list_exists_pool(objectlist))
 		{
 			ds_list_delete(somaster_list, i);
 			if (i > 0)
@@ -36,7 +36,7 @@ function seq_copy_object() {
 	            break;
 	        }
 	    }
-	    copy_list_new = ds_list_create();
+	    copy_list_new = ds_list_create_pool();
 		ds_list_add(copy_list_new, objectlist[| 0]);
 	    copy_buffer_new = buffer_create(1,buffer_grow,1);
 	    buffer_copy(ds_list_find_value(objectlist,1),

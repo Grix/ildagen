@@ -53,7 +53,7 @@ function _ML_ShuntingYard(argument0, argument1, argument2) {
 	        _ML_SY_HandleFunction(token, curstack);
 	        ++curlevel;
 	        curstack = ds_stack_create();
-	        curoutput = ds_list_create();
+	        curoutput = ds_list_create_pool();
 	        curargnum = 0;
 	        curparenthesis = -1;
 	    break;
@@ -109,7 +109,7 @@ function _ML_ShuntingYard(argument0, argument1, argument2) {
 	    case ML_TT_RIGHTP:
 	        if (_ML_SY_HandleRightPar(parser, token, curoutput, curstack, curargnum, alloutput, allstack, curlevel)) {
 	            ds_stack_destroy(curstack);
-	            ds_list_destroy(curoutput);
+	            ds_list_free_pool(curoutput);
 	            curoutput = ds_stack_pop(alloutput);
 	            curstack = ds_stack_pop(allstack);
 	            curargnum = ds_stack_pop(allargnum);
@@ -149,7 +149,7 @@ function _ML_ShuntingYard(argument0, argument1, argument2) {
 	}
 	ds_stack_destroy(allstack);
 	repeat (ds_stack_size(alloutput)) {
-	    ds_list_destroy(ds_stack_pop(alloutput));
+	    ds_list_free_pool(ds_stack_pop(alloutput));
 	}
 	ds_stack_destroy(alloutput);
 	ds_stack_destroy(allargnum);

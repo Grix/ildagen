@@ -12,7 +12,7 @@ function undo_live() {
 	        //undo create object (delete)
 	        selectedfile = real(string_digits(undo));
 	
-			redolisttemp = ds_list_create();
+			redolisttemp = ds_list_create_pool();
 			ds_list_add(redolisttemp,filelist[| selectedfile]);
 			ds_list_add(redolisttemp,selectedfile);
 			ds_list_add(redo_list,"d"+string(redolisttemp));
@@ -30,7 +30,7 @@ function undo_live() {
 	    {
 	        //undo delete object
 	        undolisttemp = real(string_digits(undo));
-			if (!ds_list_exists(undolisttemp))
+			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        objectlist = ds_list_find_value(undolisttemp,0);
 	        var t_index = ds_list_find_value(undolisttemp,1);
@@ -39,7 +39,7 @@ function undo_live() {
 			
 			ds_list_add(redo_list, "c"+string(t_index));
 			
-	        ds_list_destroy(undolisttemp); undolisttemp = -1;
+	        ds_list_free_pool(undolisttemp); undolisttemp = -1;
 	    }
 	
 		frame_surf_refresh = 1;

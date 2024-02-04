@@ -31,8 +31,8 @@ function _ML_Interpret_Detail(argument0, argument1, argument2) {
 	_ML_LiRO_Clear(res_obj);
 	if (!ML_NoException(parser)) return 0;
 
-	tokenlist = ds_list_create();
-	rpn = ds_list_create();
+	tokenlist = ds_list_create_pool();
+	rpn = ds_list_create_pool();
 
 	do {
 	    _ML_LexicalAnalysis(parser, tokenlist, func_string);
@@ -48,9 +48,9 @@ function _ML_Interpret_Detail(argument0, argument1, argument2) {
 
 
 	//cleanup
-	ds_list_destroy(rpn);
+	ds_list_free_pool(rpn);
 	_ML_TokCleanUp(tokenlist);
-	ds_list_destroy(tokenlist);
+	ds_list_free_pool(tokenlist);
 
 
 

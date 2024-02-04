@@ -39,7 +39,7 @@ function read_ilda_header() {
 	//24
 	/*if (get_bytes() != 0)
 	{
-	    frame_list_parse = ds_list_create();
+	    frame_list_parse = ds_list_create_pool();
 	    maxpoints = get_bytes();
 	}
 	else*/
@@ -50,7 +50,7 @@ function read_ilda_header() {
 	    }
 	    else 
 	    {
-	        frame_list_parse = ds_list_create();
+	        frame_list_parse = ds_list_create_pool();
 	        maxpoints = get_bytes();
 	    }
 	}

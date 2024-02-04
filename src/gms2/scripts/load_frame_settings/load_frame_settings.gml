@@ -15,13 +15,13 @@ function load_frame_settings() {
 	//load
 
 	buffer_read(load_buffer,buffer_u32); //not needed
-	el_list = ds_list_create();
+	el_list = ds_list_create_pool();
 
 	numofelems = buffer_read(load_buffer,buffer_u32);
 	for (i = 0; i < numofelems;i++)
 	{
 	    numofinds = buffer_read(load_buffer,buffer_u32);
-	    ind_list = ds_list_create();
+	    ind_list = ds_list_create_pool();
 	    ds_list_add(el_list,ind_list);
     
 	    for (u = 0; u < 9; u++)

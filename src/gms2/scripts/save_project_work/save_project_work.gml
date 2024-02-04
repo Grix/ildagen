@@ -14,7 +14,7 @@ function save_project_work() {
 	    for (j = 0; j < ds_list_size(_layer[| 1]); j++)
 	    {
 	        objectlist = ds_list_find_value(_layer[| 1],j);
-			if (!ds_list_exists(objectlist))
+			if (!ds_list_exists_pool(objectlist))
 			{
 				ds_list_delete(_layer[| 1], j);
 				if (j > 0)

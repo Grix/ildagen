@@ -11,13 +11,13 @@ function import_ilda_end() {
 	        repeat (ildlistsize - maxframes)
 	        {
 	            maxframes++;
-	            templist = ds_list_create();
+	            templist = ds_list_create_pool();
 	            if (fillframes)
 	            {
 	                tempelcount = ds_list_size(ds_list_find_value(frame_list,framelistsize-1));
 	                for (u = 0;u < tempelcount;u++)
 	                {
-	                    tempellist = ds_list_create();
+	                    tempellist = ds_list_create_pool();
 	                    ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(frame_list,framelistsize-1),u));
 	                    ds_list_add(templist,tempellist);
 	                }
@@ -31,11 +31,11 @@ function import_ilda_end() {
 		    {
 		        if (!ds_list_empty(ds_list_find_value(ild_list,i)))
 		        {
-		            templist = ds_list_create();
+		            templist = ds_list_create_pool();
 		            ds_list_copy(templist,ds_list_find_value(ild_list,i));
 		            ds_list_add(ds_list_find_value(frame_list,i),templist);
 		        }
-		        ds_list_destroy(ds_list_find_value(ild_list,i)); ild_list[|i] = -1;
+		        ds_list_free_pool(ds_list_find_value(ild_list,i)); ild_list[|i] = -1;
 		    }
 	    }
 	    else
@@ -44,18 +44,18 @@ function import_ilda_end() {
 	        {
 	            if (!ds_list_empty(ds_list_find_value(ild_list,i%ildlistsize)))
 	            {
-	                templist = ds_list_create();
+	                templist = ds_list_create_pool();
 	                ds_list_copy(templist,ds_list_find_value(ild_list,i%ildlistsize));
 	                ds_list_add(ds_list_find_value(frame_list,i),templist);
 	            }
 	            /*if (ildlistsize > framelistsize)
 	                {
-	                ds_list_destroy(ds_list_find_value(ild_list,i%ildlistsize));
+	                ds_list_free_pool(ds_list_find_value(ild_list,i%ildlistsize));
 	                }*/
 	        }
 	        for (i = 0;i < ds_list_size(ild_list);i++)
 	        {
-	            ds_list_destroy(ds_list_find_value(ild_list,i)); ild_list[| i] = -1;
+	            ds_list_free_pool(ds_list_find_value(ild_list,i)); ild_list[| i] = -1;
 	        }
 	    }
 	    ds_list_add(undo_list,el_id);
@@ -63,7 +63,7 @@ function import_ilda_end() {
 	    frame_surf_refresh = 1;
 	    refresh_minitimeline_flag = 1;
     
-	    ds_list_destroy(ild_list); ild_list = -1;
+	    ds_list_free_pool(ild_list); ild_list = -1;
     
 	    scope_end = maxframes-1;
 	    refresh_minitimeline_flag = 1;

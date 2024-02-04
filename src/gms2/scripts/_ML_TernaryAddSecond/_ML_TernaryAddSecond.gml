@@ -12,7 +12,7 @@ function _ML_TernaryAddSecond(argument0, argument1, argument2) {
 	if (ds_map_exists(P_TERNOPER2,argument1)) {
 	    entry = ds_map_find_value(P_TERNOPER2, argument1);
 	} else {
-	    entry = ds_list_create();
+	    entry = ds_list_create_pool();
 	    ds_map_add(P_TERNOPER2, argument1, entry);
 	}
 	ds_list_add(entry, argument2);

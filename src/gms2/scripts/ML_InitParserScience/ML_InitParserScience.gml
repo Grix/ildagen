@@ -80,9 +80,9 @@ function ML_InitParserScience(argument0) {
 	    ML_AddBinaryOper(ind, ",",1,_ML_FComma, ML_VAL_REAL, ML_VAL_REAL, ML_VAL_REAL, ML_O_LEFTASSOC);
     
     
-	    var li1real = ds_list_create();
+	    var li1real = ds_list_create_pool();
 	    ds_list_add(li1real, ML_VAL_REAL);
-	    var li2real = ds_list_create();
+	    var li2real = ds_list_create_pool();
 	    ds_list_add(li2real, ML_VAL_REAL);
 	    ds_list_add(li2real, ML_VAL_REAL);
         
@@ -108,8 +108,8 @@ function ML_InitParserScience(argument0) {
 	    ML_AddFunctionArgList(ind, "log2", _ML_FLog2, ML_VAL_REAL, li1real);
 	    ML_AddFunctionArgList(ind, "logn", _ML_FLogn, ML_VAL_REAL, li2real);
     
-	    ds_list_destroy(li1real);
-	    ds_list_destroy(li2real);
+	    ds_list_free_pool(li1real);
+	    ds_list_free_pool(li2real);
     
 	    ML_AddVariable(ind, "pi",pi,ML_VAL_REAL, true);
 	    ML_AddVariable(ind, "e",exp(1),ML_VAL_REAL, true);

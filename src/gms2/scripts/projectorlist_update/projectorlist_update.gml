@@ -24,7 +24,7 @@ function projectorlist_update() {
 	        }
 	        if (t_found == -1)
 	        {
-	            ds_list_destroy(t_thisdaclist);
+	            ds_list_free_pool(t_thisdaclist);
 	            ds_list_delete(t_daclist,j);
 	            j--;
 	            t_warn = true;

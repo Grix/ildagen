@@ -23,10 +23,10 @@ with (controller)
 }
     
 //items
-desc_list = ds_list_create();
-sep_list = ds_list_create();
-scr_list = ds_list_create();
-hl_list = ds_list_create();
+desc_list = ds_list_create_pool();
+sep_list = ds_list_create_pool();
+scr_list = ds_list_create_pool();
+hl_list = ds_list_create_pool();
 
 //font
 font = fnt_tooltip;

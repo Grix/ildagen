@@ -25,7 +25,7 @@ function frames_toseq_live() {
 	{
 		if (seqcontrol.selectedx >= 0)
 		{
-		    var t_objectlist = ds_list_create();
+		    var t_objectlist = ds_list_create_pool();
 		    ds_list_add(t_objectlist,seqcontrol.selectedx);
 			var t_buffer = buffer_create(buffer_get_size(t_file[| 1]), buffer_fixed, 1);
 			buffer_copy(t_file[| 1], 0, buffer_get_size(t_file[| 1]), t_buffer, 0);
@@ -39,7 +39,7 @@ function frames_toseq_live() {
     
 		    seqcontrol.selectedx += t_file[| 4];
 		
-			undolisttemp = ds_list_create();
+			undolisttemp = ds_list_create_pool();
 			ds_list_add(undolisttemp,t_objectlist);
 			ds_list_add(seqcontrol.undo_list,"c"+string(undolisttemp));
 		}
@@ -48,7 +48,7 @@ function frames_toseq_live() {
 	{
 		
 		var t_objectlist = ds_list_find_value(seqcontrol.somaster_list, 0);
-		if (!ds_list_exists(t_objectlist))
+		if (!ds_list_exists_pool(t_objectlist))
 		{
 			ds_list_delete(seqcontrol.somaster_list, 0);
 			{
@@ -73,8 +73,8 @@ function frames_toseq_live() {
 		ds_list_replace(t_objectlist, 3, -1);
 		ds_list_replace(t_objectlist, 4, t_file[| 4]);
 		
-		if (ds_list_exists(t_objectlist[| 5]))
-			ds_list_destroy(t_objectlist[| 5]);
+		if (ds_list_exists_pool(t_objectlist[| 5]))
+			ds_list_free_pool(t_objectlist[| 5]);
 		ds_list_replace(t_objectlist, 5, create_checkpoint_list(t_buffer));
 		
 		

@@ -10,17 +10,17 @@ function load_project_work() {
 	            return 0;
 	        }
             
-	        var layertemp = ds_list_create();
-	        var t_env_list = ds_list_create();
+	        var layertemp = ds_list_create_pool();
+	        var t_env_list = ds_list_create_pool();
 	        ds_list_add(layertemp, t_env_list);
-	        ds_list_add(layertemp, ds_list_create());
+	        ds_list_add(layertemp, ds_list_create_pool());
 	        ds_list_add(layer_list, layertemp);
         
 	        //object data
 	        numofobjects = buffer_read(load_buffer,buffer_u32);
 	        for (i = 0; i < numofobjects;i++)
 	        {
-	            objectlist = ds_list_create();
+	            objectlist = ds_list_create_pool();
 	            ds_list_add(objectlist, round(buffer_read(load_buffer,buffer_u32)));
             
 	            objectbuffersize = buffer_read(load_buffer,buffer_u32);
@@ -48,20 +48,20 @@ function load_project_work() {
 	        numofenvelopes = buffer_read(load_buffer,buffer_u32);
 	        repeat (numofenvelopes)
 	        {
-	            var t_env = ds_list_create();
+	            var t_env = ds_list_create_pool();
 	            ds_list_add(t_env_list,t_env);
             
 	            ds_list_add(t_env,buffer_read(load_buffer,buffer_string));
             
 	            var t_time_list_size = buffer_read(load_buffer,buffer_u32);
-	            var t_time_list = ds_list_create();
+	            var t_time_list = ds_list_create_pool();
 	            ds_list_add(t_env,t_time_list);
 	            repeat (t_time_list_size)
 	            {
 	                ds_list_add(t_time_list,real(buffer_read(load_buffer,buffer_u32)));
 	            }
 	            var t_data_list_size = buffer_read(load_buffer,buffer_u32);
-	            var t_data_list = ds_list_create();
+	            var t_data_list = ds_list_create_pool();
 	            ds_list_add(t_env,t_data_list);
 	            repeat (t_data_list_size)
 	                ds_list_add(t_data_list,real(buffer_read(load_buffer,buffer_u8)));
@@ -87,12 +87,12 @@ function load_project_work() {
 	            repeat (12)
 	                buffer_read(load_buffer,buffer_u32); //reserved
                 
-	            var t_daclist = ds_list_create();
+	            var t_daclist = ds_list_create_pool();
 	            ds_list_add(layertemp, t_daclist);
 	            numofdacs = buffer_read(load_buffer,buffer_u8);
 	            repeat (numofdacs)
 	            {
-	                var t_thisdaclist = ds_list_create();
+	                var t_thisdaclist = ds_list_create_pool();
 	                ds_list_add(t_daclist, t_thisdaclist);
 	                ds_list_add(t_thisdaclist, -1);
 	                ds_list_add(t_thisdaclist, buffer_read(load_buffer,buffer_string));
@@ -109,7 +109,7 @@ function load_project_work() {
 	            ds_list_add(layertemp, 0);
 	            ds_list_add(layertemp, 0);
 	            ds_list_add(layertemp, "Layer "+string(j+1));
-	            ds_list_add(layertemp, ds_list_create());
+	            ds_list_add(layertemp, ds_list_create_pool());
 				ds_list_add(layertemp, 0);
 	            ds_list_add(layertemp, 0);
 				ds_list_add(layertemp, 0);
@@ -127,15 +127,15 @@ function load_project_work() {
 	            global.loadingtimeprev = get_timer();
 	            return 0;
 	        }
-	        layertemp = ds_list_create();
-	        ds_list_add(layertemp,ds_list_create());
-	        ds_list_add(layertemp,ds_list_create());
+	        layertemp = ds_list_create_pool();
+	        ds_list_add(layertemp,ds_list_create_pool());
+	        ds_list_add(layertemp,ds_list_create_pool());
 	        ds_list_add(layer_list,layertemp);
         
 	        numofobjects = buffer_read(load_buffer,buffer_u32);
 	        for (i = 0; i < numofobjects;i++)
 	        {
-	            objectlist = ds_list_create();
+	            objectlist = ds_list_create_pool();
 	            ds_list_add(objectlist,round(buffer_read(load_buffer,buffer_u32)));
             
 	            objectbuffersize = buffer_read(load_buffer,buffer_u32);
@@ -174,7 +174,7 @@ function load_project_work() {
 	        ds_list_add(layertemp, 0);
 	        ds_list_add(layertemp, 0);
 	        ds_list_add(layertemp, "Layer "+string(j+1));
-	        ds_list_add(layertemp, ds_list_create());
+	        ds_list_add(layertemp, ds_list_create_pool());
 			ds_list_add(layertemp, 0);
 	        ds_list_add(layertemp, 0);
 			ds_list_add(layertemp, 0);

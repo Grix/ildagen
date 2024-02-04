@@ -8,14 +8,14 @@ function paste_object() {
 
 	for (u = 0;u < ds_list_size(copy_list);u++)
 	{
-	    list = ds_list_create();
+	    list = ds_list_create_pool();
 	    ds_list_copy(list,ds_list_find_value(copy_list,u));
 	    if (u == 0)
 	        firstframe = ds_list_find_value(list,ds_list_size(list)-1);
 	    framei = frame+ds_list_find_value(list,ds_list_size(list)-1)-firstframe;
 	    if (framei > maxframes-1)
 	    {
-	        ds_list_destroy(list); list = -1;
+	        ds_list_free_pool(list); list = -1;
 	        continue;
 	    }
     

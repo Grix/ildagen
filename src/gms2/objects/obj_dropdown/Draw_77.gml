@@ -31,7 +31,7 @@ for(var i = 0; i < num; i++)
     else
         draw_set_color(c_white);
 		
-	if (!ds_list_exists(desc_list))
+	if (!ds_list_exists_pool(desc_list))
 	{
 		if (!controller.bug_report_suppress)
 		{

@@ -28,66 +28,66 @@ with (controller)
 	    }
 	    else if (string_char_at(undo,0) == "v")
 	    {
-	        if (!ds_list_exists(real(string_digits(undo))))
+	        if (!ds_list_exists_pool(real(string_digits(undo))))
 	            continue;
-	        ds_list_destroy(real(string_digits(undo)));
+	        ds_list_free_pool(real(string_digits(undo)));
 	    }
 	    else if (string_char_at(undo,0) == "b")
 	    {
-	        if (!ds_list_exists(real(string_digits(undo))))
+	        if (!ds_list_exists_pool(real(string_digits(undo))))
 	            continue;
-	        ds_list_destroy(real(string_digits(undo)));
+	        ds_list_free_pool(real(string_digits(undo)));
 	    }
 	    else if (string_char_at(undo,0) == "k")
 	    {
 	        //undo reapply elements
-	        if (!ds_list_exists(real(string_digits(undo))))
+	        if (!ds_list_exists_pool(real(string_digits(undo))))
 	            continue;
 	        tempundolist = real(string_digits(undo));
 	        for (u = 0;u < ds_list_size(tempundolist);u++)
 	        {
 	            list = ds_list_find_value(tempundolist,u);
-	            if (ds_list_exists(list))
+	            if (ds_list_exists_pool(list))
 	            {
-					ds_list_destroy(list); list = -1;
+					ds_list_free_pool(list); list = -1;
 				}
 	        }
-	        ds_list_destroy(tempundolist);
+	        ds_list_free_pool(tempundolist);
 	    }
 	    else if (string_char_at(undo,0) == "l")
 	    {
 	        //undo delete
-	        if (!ds_list_exists(real(string_digits(undo))))
+	        if (!ds_list_exists_pool(real(string_digits(undo))))
 	            continue;
 	        tempundolist = real(string_digits(undo));
 	        for (u = 0;u < ds_list_size(tempundolist);u++)
 	        {
 	            list = ds_list_find_value(tempundolist,u);
-	            if (ds_list_exists(list))
+	            if (ds_list_exists_pool(list))
 	            {
-					ds_list_destroy(list); list = -1;
+					ds_list_free_pool(list); list = -1;
 				}
 	        }
-	        ds_list_destroy(tempundolist);
+	        ds_list_free_pool(tempundolist);
 	    }
 		else if (string_char_at(undo,0) == "s")
 		{
-			if (!ds_list_exists(real(string_digits(undo))))
+			if (!ds_list_exists_pool(real(string_digits(undo))))
 		        exit;
 		    //undo stretch maxframes
 		    tempundolist = real(string_digits(undo));	
 	
 			for (u = 0; u < ds_list_size(tempundolist); u++)
-				ds_list_destroy(tempundolist[| u]);
-			ds_list_destroy(tempundolist);
+				ds_list_free_pool(tempundolist[| u]);
+			ds_list_free_pool(tempundolist);
 	
 			refresh_minitimeline_flag = 1;
 		}
 		else if (string_char_at(undo,0) == "c")
 	    {
-	        if (!ds_list_exists(real(string_digits(undo))))
+	        if (!ds_list_exists_pool(real(string_digits(undo))))
 	            continue;
-	        ds_list_destroy(real(string_digits(undo)));
+	        ds_list_free_pool(real(string_digits(undo)));
 	    }
 	}
 }

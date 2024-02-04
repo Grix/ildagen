@@ -1,6 +1,6 @@
 function seq_paste_object() {
 	//paste timeline object
-	if (!ds_list_exists(copy_list)) or (!ds_list_empty(seqcontrol.somaster_list)) or (ds_list_empty(seqcontrol.layer_list)) or (seqcontrol.selectedlayer = -1)
+	if (!ds_list_exists_pool(copy_list)) or (!ds_list_empty(seqcontrol.somaster_list)) or (ds_list_empty(seqcontrol.layer_list)) or (seqcontrol.selectedlayer = -1)
 	    exit;
 		
 	clean_redo_list_seq();
@@ -38,7 +38,7 @@ function seq_paste_object() {
 	                    0);
         
 	        layerlisttemp = ds_list_find_value(layer_list[| clamp(selectedlayer+layertemp-layer_ref,0,ds_list_size(layer_list)-1)], 1);
-	        new_objectlist = ds_list_create();
+	        new_objectlist = ds_list_create_pool();
 	        new_pos = selectedx + postemp - pos_ref;
 	        if (new_pos < 0) new_pos = 0;
 	        ds_list_add(new_objectlist,new_pos);
@@ -49,7 +49,7 @@ function seq_paste_object() {
 	        ds_list_add(new_objectlist,create_checkpoint_list(copy_buffer_new));
 	        ds_list_add(layerlisttemp,new_objectlist);
         
-	        undolisttemp = ds_list_create();
+	        undolisttemp = ds_list_create_pool();
 	        ds_list_add(undolisttemp,new_objectlist);
 	        ds_list_add(undo_list,"c"+string(undolisttemp));
         

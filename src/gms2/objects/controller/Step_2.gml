@@ -137,7 +137,7 @@ if (frame >= ds_list_size(frame_list) || frame < 0)
 	frame = clamp(frame, 0, ds_list_size(frame_list)-1);
 el_list = frame_list[| frame];
 
-if (!ds_list_exists(el_list))
+if (!ds_list_exists_pool(el_list))
 {
 	// BUG
 	if (!controller.bug_report_suppress)
@@ -146,7 +146,7 @@ if (!ds_list_exists(el_list))
 		http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
 			                "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "ERROR: el_list doesn't exist. frame="+string(frame)+", framelistsize="+string(ds_list_size(frame_list))+", maxframes="+string(maxframes));
 	}
-	frame_list[| frame] = ds_list_create();
+	frame_list[| frame] = ds_list_create_pool();
 	el_list = frame_list[| frame];
 }
 
@@ -240,7 +240,7 @@ if (keyboard_check_control() && keyboard_check_pressed(ord("V")))
 
 if (keyboard_check(vk_shift) && keyboard_check_pressed(ord("1")))
 {
-	var t_undolist = ds_list_create();
+	var t_undolist = ds_list_create_pool();
 	ds_list_add(t_undolist, scope_start);
 	ds_list_add(t_undolist, scope_end);
 	ds_list_add(undo_list,"c"+string(t_undolist));
@@ -250,7 +250,7 @@ if (keyboard_check(vk_shift) && keyboard_check_pressed(ord("1")))
 }
 else if (keyboard_check(vk_shift) && keyboard_check_pressed(ord("2")))
 {
-	var t_undolist = ds_list_create();
+	var t_undolist = ds_list_create_pool();
 	ds_list_add(t_undolist, scope_start);
 	ds_list_add(t_undolist, scope_end);
 	ds_list_add(undo_list,"c"+string(t_undolist));

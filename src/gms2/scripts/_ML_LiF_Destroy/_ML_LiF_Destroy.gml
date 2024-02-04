@@ -13,7 +13,7 @@ function _ML_LiF_Destroy(argument0) {
 	    ind = ds_map_find_next(ActualFunctions, ind);
 	}
 	ds_map_destroy(ActualFunctions);
-	ds_list_destroy(argument0);
+	ds_list_free_pool(argument0);
 
 
 

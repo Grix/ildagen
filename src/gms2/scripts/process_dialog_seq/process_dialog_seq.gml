@@ -31,14 +31,14 @@ function process_dialog_seq() {
 	                exit;
             
 	            objectlist = ds_list_find_value(somaster_list,0);
-				if (!ds_list_exists(objectlist))
+				if (!ds_list_exists_pool(objectlist))
 					break;
 	            newduration = round(ds_map_find_value(argument[0], "value"));
 	            if (newduration < 1) 
 	                newduration = 1;
 	            newduration--;
             
-	            undolisttemp = ds_list_create();
+	            undolisttemp = ds_list_create_pool();
 	            ds_list_add(undolisttemp,objectlist);
 	            ds_list_add(undolisttemp,objectlist[| 2]);
 	            ds_list_add(undo_list,"r"+string(undolisttemp));
@@ -109,7 +109,7 @@ function process_dialog_seq() {
 				{
 					var t_object = somaster_list[| i];
 					var t_layer = find_layer_of_object(t_object);
-					if (!ds_list_exists(t_layer))
+					if (!ds_list_exists_pool(t_layer))
 						continue;
 					
 					var t_envelopelist = t_layer[| 0];
@@ -124,20 +124,20 @@ function process_dialog_seq() {
 					}
 					if (t_envelope == -1)
 					{
-						t_envelope = ds_list_create();
+						t_envelope = ds_list_create_pool();
 						ds_list_add(t_envelopelist,t_envelope);
 						ds_list_add(t_envelope,"a");
-						ds_list_add(t_envelope,ds_list_create());
-						ds_list_add(t_envelope,ds_list_create());
+						ds_list_add(t_envelope,ds_list_create_pool());
+						ds_list_add(t_envelope,ds_list_create_pool());
 						ds_list_add(t_envelope,0);
 						ds_list_add(t_envelope,0);
 					}
 					var t_timelist = t_envelope[| 1];
 					var t_datalist = t_envelope[| 2];
 				
-					var t_undolist = ds_list_create();
-					var t_list1 = ds_list_create();
-					var t_list2 = ds_list_create();
+					var t_undolist = ds_list_create_pool();
+					var t_list1 = ds_list_create_pool();
+					var t_list2 = ds_list_create_pool();
 					ds_list_copy(t_list1,t_timelist);
 					ds_list_copy(t_list2,t_datalist);
 					ds_list_add(t_undolist,t_list1);
@@ -313,7 +313,7 @@ function process_dialog_seq() {
 	            if (selectedenvelope_index == -1) 
 	                exit;
 					
-				var t_undo_list = ds_list_create();
+				var t_undo_list = ds_list_create_pool();
 				ds_list_add(t_undo_list, selectedenvelope);
 				ds_list_add(t_undo_list, env_list_to_delete);
 				ds_list_add(undo_list, "x"+string(t_undo_list));

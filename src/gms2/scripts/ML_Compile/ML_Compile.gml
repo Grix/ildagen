@@ -29,11 +29,11 @@ function ML_Compile(argument0, argument1) {
 
 	var compile;
 
-	newrpn = ds_list_create();
+	newrpn = ds_list_create_pool();
 	if (!ML_NoException(parser)) return newrpn;
 
-	tokenlist = ds_list_create();
-	rpn = ds_list_create();
+	tokenlist = ds_list_create_pool();
+	rpn = ds_list_create_pool();
 	var important_tokens = ds_map_create();
 
 
@@ -51,8 +51,8 @@ function ML_Compile(argument0, argument1) {
 	} else {
 	    _ML_COMP_RemoveExtraTokens(tokenlist, important_tokens);
 	}
-	ds_list_destroy(rpn);
-	ds_list_destroy(tokenlist);
+	ds_list_free_pool(rpn);
+	ds_list_free_pool(tokenlist);
 	ds_map_destroy(important_tokens);
 	return newrpn;
 

@@ -6,7 +6,7 @@ function draw_preview_hershey() {
 	/*
 	hershey_file = file_bin_open("hershey",0);
 
-	frame_list_parse = ds_list_create();
+	frame_list_parse = ds_list_create_pool();
 
 	file_bin_seek(hershey_file,ds_list_find_value(hershey_index_list,hershey_selected));
 
@@ -88,7 +88,7 @@ function draw_preview_hershey() {
     
 	surface_reset_target();   
      
-	ds_list_destroy(new_list);
+	ds_list_free_pool(new_list);
     
 
 

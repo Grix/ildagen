@@ -7,7 +7,7 @@ function frames_tolive_importedilda() {
 	buffer_write(save_buffer,buffer_u8,52);
 	buffer_write(save_buffer,buffer_u32,ds_list_size(ild_list));
 
-	var t_checkpointlist = ds_list_create();
+	var t_checkpointlist = ds_list_create_pool();
 
 	for (j = 0; j < ds_list_size(ild_list);j++)
 	{
@@ -35,7 +35,7 @@ function frames_tolive_importedilda() {
 	        buffer_write(save_buffer,buffer_bool,ds_list_find_value(ind_list,u+2));
 	        buffer_write(save_buffer,buffer_u32,ds_list_find_value(ind_list,u+3));
 	    }
-	    ds_list_destroy(ind_list); ild_list[| j] = -1;
+	    ds_list_free_pool(ind_list); ild_list[| j] = -1;
 	}
 	//remove excess size
 	buffer_resize(save_buffer,buffer_tell(save_buffer));
@@ -43,7 +43,7 @@ function frames_tolive_importedilda() {
 	//send to live
 	with (livecontrol)
 	{
-		objectlist = ds_list_create();
+		objectlist = ds_list_create_pool();
 	    ds_list_add(objectlist,false);
 	    ds_list_add(objectlist,controller.save_buffer);
 	    ds_list_add(objectlist,0);
@@ -56,7 +56,7 @@ function frames_tolive_importedilda() {
 		ds_list_add(objectlist,0);
 		ds_list_add(objectlist,0);
 		ds_list_add(objectlist,"");
-		ds_list_add(objectlist,ds_list_create());
+		ds_list_add(objectlist,ds_list_create_pool());
 		ds_list_add(objectlist,0);
 	
 	    ds_list_add(filelist,objectlist);
@@ -73,6 +73,6 @@ function frames_tolive_importedilda() {
 		clean_redo_live();
 	}
 
-	ds_list_destroy(ild_list); ild_list = -1;
+	ds_list_free_pool(ild_list); ild_list = -1;
 
 }

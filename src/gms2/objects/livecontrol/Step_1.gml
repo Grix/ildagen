@@ -69,7 +69,7 @@ minroomspeed = 7.5;
 
 if (controller.laseron)
 {
-    if (!ds_list_exists(controller.dac))
+    if (!ds_list_exists_pool(controller.dac))
     {
         show_message_new("Error, DAC data missing");
         controller.laseron = false;

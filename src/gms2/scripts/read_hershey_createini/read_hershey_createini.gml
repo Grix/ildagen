@@ -1,8 +1,8 @@
 function read_hershey_createini() {
 	//reads a hershey font file
-	/*if (ds_list_exists(hershey_list))
+	/*if (ds_list_exists_pool(hershey_list))
 	    exit;
-	hershey_list = ds_list_create();
+	hershey_list = ds_list_create_pool();
 	ds_list_clear(hershey_index_list);
 	cnt = 0;
 
@@ -16,7 +16,7 @@ function read_hershey_createini() {
     
 	    hershey_string = "";
     
-	    frame_list_parse = ds_list_create();
+	    frame_list_parse = ds_list_create_pool();
     
 	    file_bin_seek(hershey_file,file_bin_position(hershey_file)+5);
 	    ds_list_add(hershey_index_list,file_bin_position(hershey_file));

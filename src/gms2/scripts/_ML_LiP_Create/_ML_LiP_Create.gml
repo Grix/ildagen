@@ -7,7 +7,7 @@
 /// @hidden     true
 function _ML_LiP_Create(argument0, argument1) {
 
-	var ind = ds_list_create();
+	var ind = ds_list_create_pool();
 	ds_list_add(ind, ds_map_create()); //binops 0
 	ds_list_add(ind, ds_map_create()); //unop 1
 	ds_list_add(ind, ds_map_create()); //assign 2

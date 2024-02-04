@@ -11,7 +11,7 @@ function handle_trans() {
 		if (obj_cursor.y > camera_get_view_y(view_camera[0]))
 			aniytrans += (obj_cursor.y-mouse_yprevious)*t_scale;
 			
-		if (editing_type == 1 && ds_list_exists(edit_recording_list))
+		if (editing_type == 1 && ds_list_exists_pool(edit_recording_list))
 		{
 			ds_list_add(edit_recording_list, anixtrans);
 			ds_list_add(edit_recording_list, aniytrans);
@@ -61,7 +61,7 @@ function handle_trans() {
 		if (keyboard_check(vk_shift))
 			anirot = round(anirot/11.25)*11.25;
 		
-		if (editing_type == 1 && ds_list_exists(edit_recording_list))
+		if (editing_type == 1 && ds_list_exists_pool(edit_recording_list))
 		{
 			ds_list_add(edit_recording_list, anixtrans);
 			ds_list_add(edit_recording_list, aniytrans);
@@ -92,7 +92,7 @@ function handle_trans() {
 	        scaley+= (obj_cursor.x-mouse_xprevious)/max(1,(rectymax-rectymin)/t_scale)*2;
 	    }  
 		
-		if (editing_type == 1 && ds_list_exists(edit_recording_list))
+		if (editing_type == 1 && ds_list_exists_pool(edit_recording_list))
 		{
 			ds_list_add(edit_recording_list, anixtrans);
 			ds_list_add(edit_recording_list, aniytrans);
@@ -164,12 +164,12 @@ function handle_trans() {
 	            scaley = 1;
 	            mouse_xprevious = obj_cursor.x;
 	            mouse_yprevious = obj_cursor.y;
-				if (ds_list_exists(edit_recording_list))
+				if (ds_list_exists_pool(edit_recording_list))
 				{
-					ds_list_destroy(edit_recording_list); edit_recording_list = -1;
+					ds_list_free_pool(edit_recording_list); edit_recording_list = -1;
 				}
 				if (editing_type == 1)
-					edit_recording_list = ds_list_create();
+					edit_recording_list = ds_list_create_pool();
 	        }
 	        else if (mouse_check_button_pressed(mb_right)) 
 	        {
@@ -192,12 +192,12 @@ function handle_trans() {
 	            scalex = 1;
 	            scaley = 1;
 	            mouseangleprevious = point_direction(obj_cursor.x,obj_cursor.y,anchorx/t_scale,anchory/t_scale);
-				if (ds_list_exists(edit_recording_list))
+				if (ds_list_exists_pool(edit_recording_list))
 				{
-					ds_list_destroy(edit_recording_list); edit_recording_list = -1;
+					ds_list_free_pool(edit_recording_list); edit_recording_list = -1;
 				}
 				if (editing_type == 1)
-					edit_recording_list = ds_list_create();
+					edit_recording_list = ds_list_create_pool();
 	        }
 	        else if (mouse_check_button_pressed(mb_right)) 
 	        {
@@ -225,12 +225,12 @@ function handle_trans() {
 	            scaley = 1;
 	            mouse_xprevious = obj_cursor.x;
 	            mouse_yprevious = obj_cursor.y;
-				if (ds_list_exists(edit_recording_list))
+				if (ds_list_exists_pool(edit_recording_list))
 				{
-					ds_list_destroy(edit_recording_list); edit_recording_list = -1;
+					ds_list_free_pool(edit_recording_list); edit_recording_list = -1;
 				}
 				if (editing_type == 1)
-					edit_recording_list = ds_list_create();
+					edit_recording_list = ds_list_create_pool();
 	        }
 	        else if (mouse_check_button_pressed(mb_right)) 
 	        {

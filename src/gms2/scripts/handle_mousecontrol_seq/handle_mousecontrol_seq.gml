@@ -32,7 +32,7 @@ function handle_mousecontrol_seq() {
 	    for (i = 0; i < ds_list_size(somaster_list); i++)
 	    {
 	        objecttomove = ds_list_find_value(somaster_list,i);
-			if (!ds_list_exists(objecttomove))
+			if (!ds_list_exists_pool(objecttomove))
 			{
 		        moving_object = 0;
 				clean_redo_list_seq();
@@ -43,7 +43,7 @@ function handle_mousecontrol_seq() {
 	        layertomove_index = -1;
 	        for (j = 0; j < ds_list_size(layer_list); j++)
 	        {
-				if (!ds_list_exists(layer_list[| j]))
+				if (!ds_list_exists_pool(layer_list[| j]))
 				{
 					if (!controller.bug_report_suppress)
 					{
@@ -180,7 +180,7 @@ function handle_mousecontrol_seq() {
 	    for (i = 0; i < ds_list_size(somaster_list); i++)
 	    {
 	        objecttomove = ds_list_find_value(somaster_list,i);
-			if (!ds_list_exists(objecttomove))
+			if (!ds_list_exists_pool(objecttomove))
 			{
 				clean_redo_list_seq();
 		        moving_object = 0;
@@ -347,7 +347,7 @@ function handle_mousecontrol_seq() {
 				var t_newlength = max(objecttomove[| 2]+round(tempstretch), 1);
 				var t_newmaxframes = max(objecttomove[| 4]+floor(tempstretch/(objecttomove[| 2]+1)*objecttomove[| 4]), 1);
 				var t_oldbuffer = objecttomove[| 1];
-				new_objectlist = ds_list_create();
+				new_objectlist = ds_list_create_pool();
 				ds_list_add(new_objectlist, objecttomove[| 0]);
 				el_buffer = buffer_create(1, buffer_grow, 1);
 				buffer_write(el_buffer, buffer_u8, 52);
@@ -396,7 +396,7 @@ function handle_mousecontrol_seq() {
 				
 				ds_list_add(new_objectlist, create_checkpoint_list(el_buffer));
             
-	            undolisttemp = ds_list_create();
+	            undolisttemp = ds_list_create_pool();
 		        ds_list_add(undolisttemp,new_objectlist);
 		        ds_list_add(undo_list,"c"+string(undolisttemp));
 			
@@ -448,7 +448,7 @@ function handle_mousecontrol_seq() {
 	    {
 			clean_redo_list_seq();
 	        ds_list_replace(marker_list,markertomove,round(ds_list_find_value(marker_list,markertomove)));
-			var t_undolist = ds_list_create();
+			var t_undolist = ds_list_create_pool();
 			ds_list_add(t_undolist, round(ds_list_find_value(marker_list,markertomove)));
 			ds_list_add(t_undolist, previous_marker_pos);
 			ds_list_add(undo_list, "h"+string(t_undolist));
@@ -553,7 +553,7 @@ function handle_mousecontrol_seq() {
 	    if (mouse_check_button_released(mb_left))
 		{
 	        moving_object = 0;
-			if (ds_list_exists(envelope_undolist))
+			if (ds_list_exists_pool(envelope_undolist))
 				ds_list_add(seqcontrol.undo_list,"e"+string(envelope_undolist));
 		}
 		
@@ -568,9 +568,9 @@ function handle_mousecontrol_seq() {
 	        time_list = ds_list_find_value(envelopetoedit,1);
 	        data_list = ds_list_find_value(envelopetoedit,2);
 		
-			var t_undolist = ds_list_create();
-			var t_list1 = ds_list_create();
-			var t_list2 = ds_list_create();
+			var t_undolist = ds_list_create_pool();
+			var t_list1 = ds_list_create_pool();
+			var t_list2 = ds_list_create_pool();
 			ds_list_copy(t_list1,time_list);
 			ds_list_copy(t_list2,data_list);
 			ds_list_add(t_undolist,t_list1);
@@ -641,9 +641,9 @@ function handle_mousecontrol_seq() {
 			time_list = ds_list_find_value(envelopetoedit,1);
 			data_list = ds_list_find_value(envelopetoedit,2);
 		
-			var t_undolist = ds_list_create();
-			var t_list1 = ds_list_create();
-			var t_list2 = ds_list_create();
+			var t_undolist = ds_list_create_pool();
+			var t_list1 = ds_list_create_pool();
+			var t_list2 = ds_list_create_pool();
 			ds_list_copy(t_list1,time_list);
 			ds_list_copy(t_list2,data_list);
 			ds_list_add(t_undolist,t_list1);
@@ -658,8 +658,8 @@ function handle_mousecontrol_seq() {
 			}
 			
 			// find points in section, and delete it
-			var t_datalist_section = ds_list_create();
-			var t_timelist_section = ds_list_create();
+			var t_datalist_section = ds_list_create_pool();
+			var t_timelist_section = ds_list_create_pool();
 			for (u = 0; u < ds_list_size(time_list); u++)
 			{
 			    var t_xpos_loop = ds_list_find_value(time_list,u);
@@ -701,8 +701,8 @@ function handle_mousecontrol_seq() {
 				}
 			}
 			
-			ds_list_destroy(t_datalist_section); t_datalist_section = -1;
-			ds_list_destroy(t_timelist_section); t_timelist_section = -1;
+			ds_list_free_pool(t_datalist_section); t_datalist_section = -1;
+			ds_list_free_pool(t_timelist_section); t_timelist_section = -1;
 				
 			moving_object = 0;
 			timeline_surf_length = 0;
@@ -728,9 +728,9 @@ function handle_mousecontrol_seq() {
 			time_list = ds_list_find_value(envelopetoedit,1);
 			data_list = ds_list_find_value(envelopetoedit,2);
 		
-			var t_undolist = ds_list_create();
-			var t_list1 = ds_list_create();
-			var t_list2 = ds_list_create();
+			var t_undolist = ds_list_create_pool();
+			var t_list1 = ds_list_create_pool();
+			var t_list2 = ds_list_create_pool();
 			ds_list_copy(t_list1,time_list);
 			ds_list_copy(t_list2,data_list);
 			ds_list_add(t_undolist,t_list1);
@@ -745,8 +745,8 @@ function handle_mousecontrol_seq() {
 			}
 			
 			// find points in section
-			var t_datalist_section = ds_list_create();
-			var t_timelist_section = ds_list_create();
+			var t_datalist_section = ds_list_create_pool();
+			var t_timelist_section = ds_list_create_pool();
 			for (u = 0; u < ds_list_size(time_list); u++)
 			{
 			    var t_xpos_loop = ds_list_find_value(time_list,u);
@@ -785,8 +785,8 @@ function handle_mousecontrol_seq() {
 				}
 			}
 			
-			ds_list_destroy(t_datalist_section); t_datalist_section = -1;
-			ds_list_destroy(t_timelist_section); t_timelist_section = -1;
+			ds_list_free_pool(t_datalist_section); t_datalist_section = -1;
+			ds_list_free_pool(t_timelist_section); t_timelist_section = -1;
 				
 			moving_object = 0;
 			timeline_surf_length = 0;
@@ -1033,7 +1033,7 @@ function handle_mousecontrol_seq() {
 	                {
 	                    objectlist = elementlist[| m];
 					
-						if (!ds_list_exists(objectlist))
+						if (!ds_list_exists_pool(objectlist))
 						{
 							ds_list_delete(elementlist, m);
 							if (m > 0)
@@ -1108,7 +1108,7 @@ function handle_mousecontrol_seq() {
 										{
 											//resize object
 											moving_object_flag = 2;
-											undolisttemp = ds_list_create();
+											undolisttemp = ds_list_create_pool();
 		                                    ds_list_add(undolisttemp,objectlist);
 		                                    ds_list_add(undolisttemp,object_length);
 										}
@@ -1126,7 +1126,7 @@ function handle_mousecontrol_seq() {
 	                                    //drag object
 	                                    moving_object_flag = 1;
                                     
-	                                    undolisttemp = ds_list_create();
+	                                    undolisttemp = ds_list_create_pool();
 	                                    ds_list_add(undolisttemp,objectlist);
 	                                    ds_list_add(undolisttemp,elementlist);
 	                                    ds_list_add(undolisttemp,frametime);
@@ -1191,7 +1191,7 @@ function handle_mousecontrol_seq() {
 	    ypos += t_rowheight;
     
 	    //envelopes
-	    if (i == ds_list_size(layer_list) || !ds_list_exists(_layer)) 
+	    if (i == ds_list_size(layer_list) || !ds_list_exists_pool(_layer)) 
 	        break;
     
 	    envelope_list = _layer[| 0];
@@ -1280,9 +1280,9 @@ function handle_mousecontrol_seq() {
 								
 								time_list = ds_list_find_value(envelopetoedit,1);
 								data_list = ds_list_find_value(envelopetoedit,2);
-								envelope_undolist = ds_list_create();
-								var t_list1 = ds_list_create();
-								var t_list2 = ds_list_create();
+								envelope_undolist = ds_list_create_pool();
+								var t_list1 = ds_list_create_pool();
+								var t_list2 = ds_list_create_pool();
 								ds_list_copy(t_list1,time_list);
 								ds_list_copy(t_list2,data_list);
 								ds_list_add(envelope_undolist,t_list1);
@@ -1308,7 +1308,7 @@ function handle_mousecontrol_seq() {
 		mouseonsomelayer = 1;
 	    if (mouse_check_button_pressed(mb_left))
 	    {
-			var t_undolist = ds_list_create();
+			var t_undolist = ds_list_create_pool();
 			ds_list_add(t_undolist, startframe);
 			ds_list_add(t_undolist, endframe);
 			ds_list_add(undo_list,"i"+string(t_undolist));
@@ -1356,7 +1356,7 @@ function handle_mousecontrol_seq() {
 		mouseonsomelayer = 1;
 	    if (mouse_check_button_pressed(mb_left))
 	    {
-			var t_undolist = ds_list_create();
+			var t_undolist = ds_list_create_pool();
 			ds_list_add(t_undolist, startframe);
 			ds_list_add(t_undolist, endframe);
 			ds_list_add(undo_list,"i"+string(t_undolist));

@@ -1,8 +1,8 @@
 function read_hershey_ini() {
 	//reads a hershey font file
-	/*if (ds_list_exists(hershey_list))
+	/*if (ds_list_exists_pool(hershey_list))
 	    exit;
-	hershey_list = ds_list_create();
+	hershey_list = ds_list_create_pool();
 	ds_list_clear(hershey_index_list);
 	cnt = 0;
 
@@ -13,7 +13,7 @@ function read_hershey_ini() {
 
 	for (i = 0; i < 2352; i++)
 	    {
-	    frame_list_parse = ds_list_create();
+	    frame_list_parse = ds_list_create_pool();
 
 	    maxglyphpoints = ini_read_real(string(i),"n",0);
 	    hershey_string = ini_read_string(string(i),"s","");

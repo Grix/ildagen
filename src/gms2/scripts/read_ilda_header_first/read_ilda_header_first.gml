@@ -43,7 +43,7 @@ function read_ilda_header_first() {
 	bytes = get_bytes(); //24
 	if (bytes != 0)
 	{
-	    frame_list_parse = ds_list_create();
+	    frame_list_parse = ds_list_create_pool();
 	    maxpoints = bytes;
 	}
 	else

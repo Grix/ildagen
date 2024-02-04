@@ -6,7 +6,7 @@ function handle_midi_input_live(){
 	if (t_midi_msg_size <= 0)
 		return;
 		
-	var t_keys = ds_list_create();
+	var t_keys = ds_list_create_pool();
 	
 	do
 	{
@@ -90,7 +90,7 @@ function handle_midi_input_live(){
 	// Key triggers
 	if (ds_list_empty(t_keys))
 	{
-		ds_list_destroy(t_keys);
+		ds_list_free_pool(t_keys);
 		return;
 	}
 	
@@ -137,5 +137,5 @@ function handle_midi_input_live(){
 		}
 	}
 	
-	ds_list_destroy(t_keys);
+	ds_list_free_pool(t_keys);
 }

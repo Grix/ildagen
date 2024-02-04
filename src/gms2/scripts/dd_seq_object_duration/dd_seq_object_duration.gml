@@ -5,7 +5,7 @@ function dd_seq_object_duration() {
 	        exit;
         
 	    objectlist = ds_list_find_value(somaster_list,0);
-		if (!ds_list_exists(objectlist))
+		if (!ds_list_exists_pool(objectlist))
 		{
 			ds_list_delete(somaster_list, 0);
 			exit;

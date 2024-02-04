@@ -47,7 +47,7 @@ function read_ilda_init(argument0) {
 	i = 0;
 	format = 0;
     
-	ild_list = ds_list_create();
+	ild_list = ds_list_create_pool();
 
 	do
 	{

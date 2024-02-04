@@ -4,7 +4,7 @@ function import_font_end() {
 	    ds_list_copy(font_list,ild_list);
     
 	    buffer_delete(ild_file);
-	    ds_list_destroy(ild_list); ild_list=-1;
+	    ds_list_free_pool(ild_list); ild_list=-1;
         
 	    //interpolate
 	    for (i = 0; i < ds_list_size(font_list); i++)

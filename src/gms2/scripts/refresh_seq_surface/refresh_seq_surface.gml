@@ -50,7 +50,7 @@ function refresh_seq_surface() {
 	    {
 	        objectlist = elementlist[| m];
 		
-			if (!ds_list_exists(objectlist))
+			if (!ds_list_exists_pool(objectlist))
 			{
 				ds_list_delete(elementlist, m);
 				if (m > 0)
@@ -269,7 +269,7 @@ function refresh_seq_surface() {
 			    {
 			        objectlist = elementlist[| m];
 		
-					if (!ds_list_exists(objectlist))
+					if (!ds_list_exists_pool(objectlist))
 					{
 						ds_list_delete(elementlist, m);
 						if (m > 0)
@@ -389,9 +389,9 @@ function refresh_seq_surface() {
 	    {
 	        if (prepare_output())
 	        {
-	            ds_list_destroy(order_list); order_list = -1;
-	            ds_list_destroy(polarity_list); polarity_list = -1;
-	            ds_list_destroy(list_raw); list_raw = -1;
+	            ds_list_free_pool(order_list); order_list = -1;
+	            ds_list_free_pool(polarity_list); polarity_list = -1;
+	            ds_list_free_pool(list_raw); list_raw = -1;
             
 	            var t_totalpointswanted = floor(controller.opt_scanspeed/projectfps);
 	            var t_litpointswanted = t_totalpointswanted - maxpoints_static - maxpoints_dots - 3;

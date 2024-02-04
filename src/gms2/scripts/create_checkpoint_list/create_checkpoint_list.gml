@@ -2,7 +2,7 @@
 function create_checkpoint_list(argument0) {
 	var t_buffer = argument0;
 
-	var t_checkpointlist = ds_list_create();
+	var t_checkpointlist = ds_list_create_pool();
 
 	buffer_seek(t_buffer,buffer_seek_start,0);
 	var t_buffer_ver = buffer_read(t_buffer,buffer_u8);

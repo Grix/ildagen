@@ -1,34 +1,34 @@
 //alarm[0] = 2;
 alarm[4] = 3000;
 
-layer_list = ds_list_create();
-_layer = ds_list_create();
+layer_list = ds_list_create_pool();
+_layer = ds_list_create_pool();
 ds_list_add(layer_list,_layer);
-ds_list_add(_layer,ds_list_create()); //envelope list
-ds_list_add(_layer,ds_list_create()); //elements list
+ds_list_add(_layer,ds_list_create_pool()); //envelope list
+ds_list_add(_layer,ds_list_create_pool()); //elements list
 ds_list_add(_layer,0); 
 ds_list_add(_layer,0);
 ds_list_add(_layer,"Layer 1");
-ds_list_add(_layer,ds_list_create()); //dac 
+ds_list_add(_layer,ds_list_create_pool()); //dac 
 ds_list_add(_layer,0); //preview offsets
 ds_list_add(_layer,0);
 ds_list_add(_layer,0);
 ds_list_add(_layer,0);
 
-surface_list = ds_list_create();
-somaster_list = ds_list_create();
-somoving_list = ds_list_create();
-undo_list = ds_list_create();
-redo_list = ds_list_create();
+surface_list = ds_list_create_pool();
+somaster_list = ds_list_create_pool();
+somoving_list = ds_list_create_pool();
+undo_list = ds_list_create_pool();
+redo_list = ds_list_create_pool();
 audio_buffer = -1;
 parsebuffer = -1;
 bufferIn = -1;
 bufferOut = -1;
-effect_list = ds_list_create();
-ilda_list = ds_list_create();
-buffer_list = ds_list_create();
-marker_list = ds_list_create();
-jump_button_list = ds_list_create();
+effect_list = ds_list_create_pool();
+ilda_list = ds_list_create_pool();
+buffer_list = ds_list_create_pool();
+marker_list = ds_list_create_pool();
+jump_button_list = ds_list_create_pool();
 timeline_surf = -1;
 timeline_surf_temp = -1;
 timeline_surf_audio_temp = -1;
@@ -37,9 +37,9 @@ frame_surf = -1;
 frame3d_surf = -1;
 frame_surf_large = -1;
 frame3d_surf_large = -1;
-copy_list = ds_list_create();
+copy_list = ds_list_create_pool();
 env_type_map = ds_map_create();
-playlist_list = ds_list_create();
+playlist_list = ds_list_create_pool();
 playlist_start_next_flag = false;
 
 last_save_time = get_timer();

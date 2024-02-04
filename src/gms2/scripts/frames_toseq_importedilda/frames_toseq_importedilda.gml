@@ -21,7 +21,7 @@ function frames_toseq_importedilda() {
 	buffer_write(save_buffer,buffer_u8,52);
 	buffer_write(save_buffer,buffer_u32,ds_list_size(ild_list));
 
-	var t_checkpointlist = ds_list_create();
+	var t_checkpointlist = ds_list_create_pool();
 
 	for (j = 0; j < ds_list_size(ild_list);j++)
 	{
@@ -49,7 +49,7 @@ function frames_toseq_importedilda() {
 	        buffer_write(save_buffer,buffer_bool,ds_list_find_value(ind_list,u+2));
 	        buffer_write(save_buffer,buffer_u32,ds_list_find_value(ind_list,u+3));
 	    }
-	    ds_list_destroy(ind_list); ild_list[| j] = -1;
+	    ds_list_free_pool(ind_list); ild_list[| j] = -1;
 	}
 	//remove excess size
 	buffer_resize(save_buffer,buffer_tell(save_buffer));
@@ -59,7 +59,7 @@ function frames_toseq_importedilda() {
 	{
 	    selectedlayerlist = ds_list_find_value(layer_list,selectedlayer);
     
-	    objectlist = ds_list_create();
+	    objectlist = ds_list_create_pool();
 	    ds_list_add(objectlist, selectedx);
 	    ds_list_add(objectlist, controller.save_buffer);
 	    ds_list_add(objectlist, ds_list_size(controller.ild_list)-1);
@@ -71,7 +71,7 @@ function frames_toseq_importedilda() {
     
 	    selectedx += ds_list_size(controller.ild_list);
     
-	    undolisttemp = ds_list_create();
+	    undolisttemp = ds_list_create_pool();
 	    ds_list_add(undolisttemp,objectlist);
 	    ds_list_add(undo_list,"c"+string(undolisttemp));
 	
@@ -81,7 +81,7 @@ function frames_toseq_importedilda() {
 		show_is_demo = false;
 	}
     
-	ds_list_destroy(ild_list); ild_list = -1;
+	ds_list_free_pool(ild_list); ild_list = -1;
 
 
 

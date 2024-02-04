@@ -31,14 +31,14 @@ function frames_fromseq() {
 	    maxframes = buffer_read(load_buffer,buffer_u32);
 	    for (j = 0; j < maxframes;j++)
 	    {
-	        el_list = ds_list_create();
+	        el_list = ds_list_create_pool();
 	        ds_list_add(frame_list,el_list);
         
 	        numofelems = buffer_read(load_buffer,buffer_u32);
 	        for (i = 0; i < numofelems;i++)
 	        {
 	            numofinds = buffer_read(load_buffer,buffer_u32);
-	            ind_list = ds_list_create();
+	            ind_list = ds_list_create_pool();
 	            ds_list_add(el_list,ind_list);
             
 	            for (u = 0; u < 9; u++)

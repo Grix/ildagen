@@ -11,8 +11,8 @@ with (controller)
         selectedelement = ds_list_find_value(semaster_list,c);
         
         //find elements
-        temp_undof_list = ds_list_create();
-        temp_frame_list = ds_list_create();
+        temp_undof_list = ds_list_create_pool();
+        temp_frame_list = ds_list_create_pool();
         if (fillframes)
         {
             for (i = scope_start;i <= scope_end;i++)
@@ -25,7 +25,7 @@ with (controller)
                         if (ds_list_empty(temp_frame_list))
                             startframe = i;
                         ds_list_add(temp_frame_list,ds_list_find_value(el_list_temp,u));
-                        temp_undo_list = ds_list_create();
+                        temp_undo_list = ds_list_create_pool();
                         ds_list_copy(temp_undo_list,ds_list_find_value(el_list_temp,u));
                         ds_list_add(temp_undo_list,i);
                         ds_list_add(temp_undof_list,temp_undo_list);
@@ -43,7 +43,7 @@ with (controller)
                     if (ds_list_empty(temp_frame_list))
                         startframe = frame;
                     ds_list_add(temp_frame_list,ds_list_find_value(el_list_temp,u))
-                    temp_undo_list = ds_list_create();
+                    temp_undo_list = ds_list_create_pool();
                     ds_list_copy(temp_undo_list,ds_list_find_value(el_list_temp,u));
                     ds_list_add(temp_undo_list,frame);
                     ds_list_add(temp_undof_list,temp_undo_list);

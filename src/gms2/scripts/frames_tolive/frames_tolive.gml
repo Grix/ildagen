@@ -21,7 +21,7 @@ function frames_tolive() {
 	buffer_write(save_buffer,buffer_u8,52);
 	buffer_write(save_buffer,buffer_u32,maxframes);
 
-	var t_checkpointlist = ds_list_create();
+	var t_checkpointlist = ds_list_create_pool();
 
 	for (j = 0; j < maxframes;j++)
 	{
@@ -29,7 +29,7 @@ function frames_tolive() {
 			ds_list_add(t_checkpointlist, buffer_tell(save_buffer));
 	
 	    el_list = ds_list_find_value(frame_list,j);
-		if (!ds_list_exists(el_list))
+		if (!ds_list_exists_pool(el_list))
 			continue;
 	    buffer_write(save_buffer,buffer_u32,ds_list_size(el_list));
     
@@ -63,7 +63,7 @@ function frames_tolive() {
 	//send to live
 	with (livecontrol)
 	{
-		objectlist = ds_list_create();
+		objectlist = ds_list_create_pool();
 	    ds_list_add(objectlist,false);
 	    ds_list_add(objectlist,controller.save_buffer);
 	    ds_list_add(objectlist,0);
@@ -76,7 +76,7 @@ function frames_tolive() {
 		ds_list_add(objectlist,0);
 		ds_list_add(objectlist,0);
 		ds_list_add(objectlist,"");
-		ds_list_add(objectlist,ds_list_create());
+		ds_list_add(objectlist,ds_list_create_pool());
 		ds_list_add(objectlist,0);
 	
 	    ds_list_add(filelist,objectlist);

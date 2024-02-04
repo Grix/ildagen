@@ -4,7 +4,7 @@ function split_timelineobject() {
 	for (i = 0; i < ds_list_size(somaster_list); i++)
 	{
 	    objectlist = somaster_list[| i];
-		if (!ds_list_exists(objectlist))
+		if (!ds_list_exists_pool(objectlist))
 		{
 			ds_list_delete(somaster_list, i);
 			if (i > 0)
@@ -86,7 +86,7 @@ function split_timelineobject() {
 	            }
 	        }
         
-	        objectlist1 = ds_list_create();
+	        objectlist1 = ds_list_create_pool();
         
 	        ds_list_add(objectlist1, frametime);
 	        ds_list_add(objectlist1, object1);
@@ -95,7 +95,7 @@ function split_timelineobject() {
 	        ds_list_add(objectlist1, splitafternum);
 			ds_list_add(objectlist1, create_checkpoint_list(object1));
 			
-	        objectlist2 = ds_list_create();
+	        objectlist2 = ds_list_create_pool();
         
 	        ds_list_add(objectlist2, frametime+splitafternum);
 	        ds_list_add(objectlist2, object2);
@@ -115,7 +115,7 @@ function split_timelineobject() {
 	                    ds_list_delete(_layer, ds_list_find_index(_layer, objectlist));
 	                    ds_list_add(_layer, objectlist1);
 	                    ds_list_add(_layer, objectlist2);
-	                    undolisttemp = ds_list_create();
+	                    undolisttemp = ds_list_create_pool();
 	                    ds_list_add(undolisttemp, objectlist);
 	                    ds_list_add(undolisttemp, objectlist1);
 	                    ds_list_add(undolisttemp, objectlist2);

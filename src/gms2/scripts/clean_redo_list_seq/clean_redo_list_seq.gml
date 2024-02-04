@@ -10,80 +10,80 @@ function clean_redo_list_seq(){
 	    {
 	        //redo create object (delete)
 	        redolisttemp = real(string_digits(redo));
-	        if (!ds_list_exists(redolisttemp))
+	        if (!ds_list_exists_pool(redolisttemp))
 	            exit;
-	        ds_list_destroy(redolisttemp); redolisttemp = -1;
+	        ds_list_free_pool(redolisttemp); redolisttemp = -1;
 	    }
 	    else if (string_char_at(redo,0) == "s")
 	    {
 	        //redo split
 	        redolisttemp = real(string_digits(redo));
-			if (!ds_list_exists(redolisttemp))
+			if (!ds_list_exists_pool(redolisttemp))
 	            exit;
-	        ds_list_destroy(ds_list_find_value(redolisttemp,0));
-	        ds_list_destroy(redolisttemp); redolisttemp = -1;
+	        ds_list_free_pool(ds_list_find_value(redolisttemp,0));
+	        ds_list_free_pool(redolisttemp); redolisttemp = -1;
 	    }
 		else if (string_char_at(redo,0) == "z")
 		{
 			//redo merge (only in redo now, opposite of split)
 			redolisttemp = real(string_digits(redo));
-			if (!ds_list_exists(redolisttemp))
+			if (!ds_list_exists_pool(redolisttemp))
 			    exit;
-			ds_list_destroy(ds_list_find_value(redolisttemp,1));
-			ds_list_destroy(ds_list_find_value(redolisttemp,2));
-	        ds_list_destroy(redolisttemp); redolisttemp = -1;
+			ds_list_free_pool(ds_list_find_value(redolisttemp,1));
+			ds_list_free_pool(ds_list_find_value(redolisttemp,2));
+	        ds_list_free_pool(redolisttemp); redolisttemp = -1;
 		}
 	    else if (string_char_at(redo,0) == "d")
 	    {
 	        //redo delete object
 	        redolisttemp = real(string_digits(redo));
-	        if (!ds_list_exists(redolisttemp))
+	        if (!ds_list_exists_pool(redolisttemp))
 	            exit;
 	        var t_objectlist = ds_list_find_value(redolisttemp,1);
 		    if (!is_undefined(ds_list_find_value(t_objectlist,3)) && surface_exists(ds_list_find_value(t_objectlist,3)))
 		        surface_free(ds_list_find_value(t_objectlist,3));
 		    if (buffer_exists(ds_list_find_value(t_objectlist,1)))
 				buffer_delete(ds_list_find_value(t_objectlist,1));
-	        ds_list_destroy(t_objectlist); t_objectlist = -1;
-	        ds_list_destroy(redolisttemp); redolisttemp = -1;
+	        ds_list_free_pool(t_objectlist); t_objectlist = -1;
+	        ds_list_free_pool(redolisttemp); redolisttemp = -1;
 	    }
 	    else if (string_char_at(redo,0) == "r")
 	    {
 	        //redo resize object
 	        redolisttemp = real(string_digits(redo));
-	        if (!ds_list_exists(redolisttemp))
+	        if (!ds_list_exists_pool(redolisttemp))
 	            exit;
-	        ds_list_destroy(redolisttemp);
+	        ds_list_free_pool(redolisttemp);
 	    }
 	    else if (string_char_at(redo,0) == "m")
 	    {
 	        //redo move object
 	        redolisttemp = real(string_digits(redo));
-	        if (!ds_list_exists(redolisttemp))
+	        if (!ds_list_exists_pool(redolisttemp))
 	            exit;
-	        ds_list_destroy(redolisttemp);
+	        ds_list_free_pool(redolisttemp);
 	    }
 	    else if (string_char_at(redo,0) == "l")
 	    {
 	        //redo marker clear
 	        redolisttemp = real(string_digits(redo));
-	        if (!ds_list_exists(redolisttemp))
+	        if (!ds_list_exists_pool(redolisttemp))
 	            exit;
-	        ds_list_destroy(redolisttemp);
+	        ds_list_free_pool(redolisttemp);
 	    }
 	    else if (string_char_at(redo,0) == "e")
 	    {
 	        //redo envelope data clear
 	        redolisttemp = real(string_digits(redo));
-			if (!ds_list_exists(redolisttemp))
+			if (!ds_list_exists_pool(redolisttemp))
 	            exit;
-			if (!ds_list_exists(ds_list_find_value(redolisttemp,0)))
+			if (!ds_list_exists_pool(ds_list_find_value(redolisttemp,0)))
 	            exit;
-	        ds_list_destroy( ds_list_find_value(redolisttemp,0) );
-			if (!ds_list_exists(ds_list_find_value(redolisttemp,1)))
+	        ds_list_free_pool( ds_list_find_value(redolisttemp,0) );
+			if (!ds_list_exists_pool(ds_list_find_value(redolisttemp,1)))
 	            exit;
-	        ds_list_destroy( ds_list_find_value(redolisttemp,1) );
-	        ds_list_destroy( redolisttemp);
+	        ds_list_free_pool( ds_list_find_value(redolisttemp,1) );
+	        ds_list_free_pool( redolisttemp);
 	    }
 		else if (string_char_at(redo,0) == "a")
 		{
@@ -101,9 +101,9 @@ function clean_redo_list_seq(){
 		{
 		    //redo move marker
 		    redolisttemp = real(string_digits(redo));
-			if (!ds_list_exists(redolisttemp))
+			if (!ds_list_exists_pool(redolisttemp))
 		        exit;
-			ds_list_destroy(redolisttemp);
+			ds_list_free_pool(redolisttemp);
 		}
 		else if (string_char_at(redo,0) == "p")
 		{
@@ -113,18 +113,18 @@ function clean_redo_list_seq(){
 		{
 			// redo delete envelope
 			redolisttemp = real(string_digits(redo));
-			if (!ds_list_exists(redolisttemp))
+			if (!ds_list_exists_pool(redolisttemp))
 		        exit;
 			
 			var t_envelope = redolisttemp[| 0];
-			if (!ds_list_exists(t_envelope))
+			if (!ds_list_exists_pool(t_envelope))
 		        exit;
 			
-			ds_list_destroy(ds_list_find_value(t_envelope,1));
-		    ds_list_destroy(ds_list_find_value(t_envelope,2));
-		    ds_list_destroy(t_envelope);
+			ds_list_free_pool(ds_list_find_value(t_envelope,1));
+		    ds_list_free_pool(ds_list_find_value(t_envelope,2));
+		    ds_list_free_pool(t_envelope);
 		
-			ds_list_destroy(redolisttemp);
+			ds_list_free_pool(redolisttemp);
 		}
 		else if (string_char_at(redo,0) == "q")
 		{
@@ -136,9 +136,9 @@ function clean_redo_list_seq(){
 		}
 		else if (string_char_at(redo,0) == "i")
 		{
-	        if (!ds_list_exists(real(string_digits(redo))))
+	        if (!ds_list_exists_pool(real(string_digits(redo))))
 	            continue;
-	        ds_list_destroy(real(string_digits(redo)));
+	        ds_list_free_pool(real(string_digits(redo)));
 	    }
 	}
 }

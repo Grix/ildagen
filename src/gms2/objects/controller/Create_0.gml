@@ -1,6 +1,9 @@
 version = "1.10.3";
 versiondate = "2024-01-13";
 
+global.list_pool = ds_stack_create();
+global.list_pool_is_taken = ds_map_create();
+
 //gc_enable(false);
 
 if (debug_mode)
@@ -113,30 +116,30 @@ parser_cb = ML_InitParserScience(varmap);
     
 alarm[3] = 120;
 
-el_list = ds_list_create();
-undo_list = ds_list_create();
-redo_list = ds_list_create();
+el_list = ds_list_create_pool();
+undo_list = ds_list_create_pool();
+redo_list = ds_list_create_pool();
 frame_surf = -1;
 frame3d_surf = -1;
-frame_list = ds_list_create();
+frame_list = ds_list_create_pool();
 ds_list_add(frame_list,el_list);
-free_list = ds_list_create();
-bez_list = ds_list_create();
-font_list = ds_list_create();
-snap_list = ds_list_create();
+free_list = ds_list_create_pool();
+bez_list = ds_list_create_pool();
+font_list = ds_list_create_pool();
+snap_list = ds_list_create_pool();
 minitimeline_surf = -1;
 hershey_preview_surf = -1;
 copy_list = -1;
-semaster_list = ds_list_create();
-hershey_index_list = ds_list_create();
+semaster_list = ds_list_create_pool();
+hershey_index_list = ds_list_create_pool();
 hershey_list = -1;
 menu_surf = -1;
-dac_list = ds_list_create();
-blindzone_list = ds_list_create();
-profile_list = ds_list_create();
-list = ds_list_create();
+dac_list = ds_list_create_pool();
+blindzone_list = ds_list_create_pool();
+profile_list = ds_list_create_pool();
+list = ds_list_create_pool();
 emptyliststring = ds_list_write(list);
-ds_list_destroy(list);
+ds_list_free_pool(list);
 radialgrid_surf = -1;
 squaregrid_surf = -1;
 edit_recording_list = -1;
@@ -385,7 +388,7 @@ fpsmultiplier = 1;
 endx = 0;
 endy = 0;
 
-quicktip_closed_list = ds_list_create();
+quicktip_closed_list = ds_list_create_pool();
 
 shapefunc_cp = 100;
 shapefunc_string_x = "";

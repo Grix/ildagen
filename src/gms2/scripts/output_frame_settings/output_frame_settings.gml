@@ -28,7 +28,7 @@ function output_frame_settings() {
 	blindzone_el_lists = 0;
 	for (i = 0; i < ds_list_size(controller.blindzone_list); i += 4)
 	{
-	    var blindzone_el = ds_list_create();
+	    var blindzone_el = ds_list_create_pool();
 	    blindzone_el[| 19] = 0; //fills up to 19 with 0
 	    blindzone_el[| 10] = true;
 	    ds_list_add(blindzone_el, controller.blindzone_list[| i + 0]);
@@ -67,7 +67,7 @@ function output_frame_settings() {
 
 	for (i = 0; i < blindzone_el_lists; i++)
 	{
-	    ds_list_destroy(el_list[| ds_list_size(el_list)-1]); 
+	    ds_list_free_pool(el_list[| ds_list_size(el_list)-1]); 
 	    ds_list_delete(el_list, ds_list_size(el_list)-1);
 	}
 

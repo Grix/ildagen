@@ -20,7 +20,7 @@ function refresh_surfaces() {
 	    draw_set_alpha(1);
 	    for (i = 0; i < ds_list_size(el_list); i++)
 	    {
-			if (!ds_list_exists(el_list[| i]))
+			if (!ds_list_exists_pool(el_list[| i]))
 			{
 				ds_list_delete(el_list, i);
 				i--;
@@ -131,9 +131,9 @@ function refresh_surfaces() {
 	    {
 	        if (prepare_output())
 	        {
-	            ds_list_destroy(order_list); order_list = -1;
-	            ds_list_destroy(polarity_list); polarity_list = -1;
-	            ds_list_destroy(list_raw); list_raw = -1;
+	            ds_list_free_pool(order_list); order_list = -1;
+	            ds_list_free_pool(polarity_list); polarity_list = -1;
+	            ds_list_free_pool(list_raw); list_raw = -1;
             
 	            var t_totalpointswanted = floor(opt_scanspeed/projectfps);
 	            var t_litpointswanted = t_totalpointswanted - maxpoints_static - maxpoints_dots - 3;

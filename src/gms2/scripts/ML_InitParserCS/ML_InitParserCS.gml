@@ -91,12 +91,12 @@ function ML_InitParserCS(argument0) {
 	    ML_AddBinaryOper(ind,",",1,_ML_FComma, ML_VAL_STRING, ML_VAL_REAL, ML_VAL_STRING, ML_O_RIGHTASSOC);
 	    ML_AddBinaryOper(ind,",",1,_ML_FComma, ML_VAL_STRING, ML_VAL_STRING, ML_VAL_STRING, ML_O_RIGHTASSOC);
     
-	    var li = ds_list_create();
+	    var li = ds_list_create_pool();
 	    ds_list_add(li, ML_VAL_REAL);
 	    ML_AddFunctionArgList(ind, "string",_ML_FMakeString,ML_VAL_STRING, li);
 	    ds_list_replace(li, 0, ML_VAL_STRING);
 	    ML_AddFunctionArgList(ind, "real",_ML_FMakeReal,ML_VAL_REAL, li);
-	    ds_list_destroy(li);
+	    ds_list_free_pool(li);
     
 	return ind;
 

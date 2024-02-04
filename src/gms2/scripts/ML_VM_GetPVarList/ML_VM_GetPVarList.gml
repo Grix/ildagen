@@ -26,7 +26,7 @@ function ML_VM_GetPVarList(argument0, argument1) {
 	var s, list, v, k, ind;
 	var P_VARIABLE =  _ML_LiP_GetVariableTable(argument0);
 	s = ds_map_size(P_VARIABLE);
-	list = ds_list_create();
+	list = ds_list_create_pool();
 	k = argument1;
 
 	if (s > 0) {

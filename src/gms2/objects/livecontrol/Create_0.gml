@@ -28,9 +28,9 @@ frameprev = -1;
 selectedfile = -1; // index of filelist, -1 if none selected
 highlightfile = -1;
 stop_at_play = false;
-undo_list = ds_list_create();
-redo_list = ds_list_create();
-filelist = ds_list_create();
+undo_list = ds_list_create_pool();
+redo_list = ds_list_create_pool();
+filelist = ds_list_create_pool();
 el_list = -1;
 
 masterx = 0;

@@ -12,11 +12,11 @@ function live_delete_object_noundo() {
 		var t_dac_list = objectlist[| 12];
 		num_objects = ds_list_size(t_dac_list);
 		repeat (num_objects)  
-			ds_list_destroy(ds_list_find_value(t_dac_list,0));
-		ds_list_destroy(t_dac_list);
+			ds_list_free_pool(ds_list_find_value(t_dac_list,0));
+		ds_list_free_pool(t_dac_list);
 				
 	    ds_list_find_value(objectlist,0);
-	    ds_list_destroy(objectlist); objectlist = -1;
+	    ds_list_free_pool(objectlist); objectlist = -1;
 	
 		ds_list_delete(filelist, selectedfile);
 	

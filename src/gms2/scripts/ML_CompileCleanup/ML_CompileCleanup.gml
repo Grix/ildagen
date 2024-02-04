@@ -8,7 +8,7 @@ function ML_CompileCleanup(argument0) {
 	var compile = argument0;
 
 	_ML_TokCleanUp(compile);
-	ds_list_destroy(compile);
+	ds_list_free_pool(compile);
 
 
 

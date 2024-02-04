@@ -8,7 +8,7 @@ function seq_delete_object_noundo() {
 	        if (ds_list_find_index(layerlisttemp,ds_list_find_value(somaster_list,k)) != -1)    
 	        {
 	            objectlist = ds_list_find_value(somaster_list,k);
-				if (!ds_list_exists(objectlist))
+				if (!ds_list_exists_pool(objectlist))
 				{
 					ds_list_delete(somaster_list,k);
 					if (k > 0)
@@ -25,7 +25,7 @@ function seq_delete_object_noundo() {
                 
 	            selectedx = ds_list_find_value(objectlist,0);
 	            selectedlayer = c;
-	            ds_list_destroy(objectlist); objectlist = -1; somaster_list[|k] = -1;
+	            ds_list_free_pool(objectlist); objectlist = -1; somaster_list[|k] = -1;
 				
 	        }
 	    }

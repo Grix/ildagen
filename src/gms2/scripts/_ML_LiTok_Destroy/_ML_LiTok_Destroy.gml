@@ -5,7 +5,7 @@
 /// @returnType void
 /// @hidden     true
 function _ML_LiTok_Destroy(argument0) {
-	ds_list_destroy(argument0);
+	ds_list_free_pool(argument0);
 
 
 

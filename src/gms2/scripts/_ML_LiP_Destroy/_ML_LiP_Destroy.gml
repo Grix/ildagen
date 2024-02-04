@@ -23,7 +23,7 @@ function _ML_LiP_Destroy(argument0) {
 	_ML_LiRO_Destroy(_ML_LiP_GetResultObject(ind));
 	ds_map_destroy(_ML_LiP_GetOperatorRoots(ind));
 
-	ds_list_destroy(ind);
+	ds_list_free_pool(ind);
 
 
 

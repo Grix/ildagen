@@ -33,7 +33,7 @@ function load_frames_live(argument0) {
 	    exit;
 	}
     
-	temp_list = ds_list_create();
+	temp_list = ds_list_create_pool();
 
 	//load
 	if (idbyte == 0) or (idbyte == 50) or (idbyte == 51)
@@ -43,14 +43,14 @@ function load_frames_live(argument0) {
 	        tempmaxframes = buffer_read(load_buffer,buffer_s32);
 	        for (j = 0; j < tempmaxframes;j++)
 	        {
-	            tempel_list = ds_list_create();
+	            tempel_list = ds_list_create_pool();
 	            ds_list_add(temp_list,tempel_list);
             
 	            numofelems = buffer_read(load_buffer,buffer_s32);
 	            for (i = 0; i < numofelems;i++)
 	            {
 	                numofinds = buffer_read(load_buffer,buffer_s32);
-	                ind_list = ds_list_create();
+	                ind_list = ds_list_create_pool();
 	                ds_list_add(tempel_list,ind_list);
 	                for (u = 0; u < 50; u++)
 	                    ds_list_add(ind_list,buffer_read(load_buffer,buffer_s32));
@@ -73,14 +73,14 @@ function load_frames_live(argument0) {
 	        tempmaxframes = buffer_read(load_buffer,buffer_u32);
 	        for (j = 0; j < tempmaxframes;j++)
 	        {
-	            tempel_list = ds_list_create();
+	            tempel_list = ds_list_create_pool();
 	            ds_list_add(temp_list,tempel_list);
             
 	            numofelems = buffer_read(load_buffer,buffer_u32);
 	            for (i = 0; i < numofelems;i++)
 	            {
 	                numofinds = buffer_read(load_buffer,buffer_u32);
-	                ind_list = ds_list_create();
+	                ind_list = ds_list_create_pool();
 	                ds_list_add(tempel_list,ind_list);
                 
 	                for (u = 0; u < 10; u++)
@@ -109,14 +109,14 @@ function load_frames_live(argument0) {
 	        tempmaxframes = buffer_read(load_buffer,buffer_u32);
 	        for (j = 0; j < tempmaxframes;j++)
 	        {
-	            tempel_list = ds_list_create();
+	            tempel_list = ds_list_create_pool();
 	            ds_list_add(temp_list,tempel_list);
             
 	            numofelems = buffer_read(load_buffer,buffer_u32);
 	            for (i = 0; i < numofelems;i++)
 	            {
 	                numofinds = buffer_read(load_buffer,buffer_u32);
-	                ind_list = ds_list_create();
+	                ind_list = ds_list_create_pool();
 	                ds_list_add(tempel_list,ind_list);
                 
 	                for (u = 0; u < 10; u++)
@@ -175,9 +175,9 @@ function load_frames_live(argument0) {
 	                buffer_write(save_buffer,buffer_bool,ds_list_find_value(ind_list,u+2));
 	                buffer_write(save_buffer,buffer_u32,ds_list_find_value(ind_list,u+3));
 	            }
-	            ds_list_destroy(ind_list); tempel_list[|i] = -1; ind_list = -1;
+	            ds_list_free_pool(ind_list); tempel_list[|i] = -1; ind_list = -1;
 	        }
-	        ds_list_destroy(tempel_list); tempel_list = -1;
+	        ds_list_free_pool(tempel_list); tempel_list = -1;
 	    }
 	    //remove excess size
 	    buffer_resize(save_buffer,buffer_tell(save_buffer));
@@ -189,7 +189,7 @@ function load_frames_live(argument0) {
 	}
 
 	//send to live
-	objectlist = ds_list_create();
+	objectlist = ds_list_create_pool();
 	ds_list_add(objectlist,0);
 	ds_list_add(objectlist,save_buffer);
 	ds_list_add(objectlist,0);
@@ -202,7 +202,7 @@ function load_frames_live(argument0) {
 	ds_list_add(objectlist,0);
 	ds_list_add(objectlist,0);
 	ds_list_add(objectlist,"");
-	ds_list_add(objectlist,ds_list_create());
+	ds_list_add(objectlist,ds_list_create_pool());
 	ds_list_add(objectlist,0);
 
 	ds_list_add(filelist,objectlist);
@@ -218,7 +218,7 @@ function load_frames_live(argument0) {
 	frame = 0;
 	playing = 0;
      
-	ds_list_destroy(temp_list); temp_list=-1;
+	ds_list_free_pool(temp_list); temp_list=-1;
 
 
 

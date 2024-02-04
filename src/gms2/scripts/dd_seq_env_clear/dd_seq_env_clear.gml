@@ -1,7 +1,7 @@
 function dd_seq_env_clear() {
-	var t_undolist = ds_list_create();
-	var t_list1 = ds_list_create();
-	var t_list2 = ds_list_create();
+	var t_undolist = ds_list_create_pool();
+	var t_list1 = ds_list_create_pool();
+	var t_list2 = ds_list_create_pool();
 	ds_list_copy(t_list1,ds_list_find_value(seqcontrol.selectedenvelope,1));
 	ds_list_copy(t_list2,ds_list_find_value(seqcontrol.selectedenvelope,2));
 	ds_list_add(t_undolist,t_list1);

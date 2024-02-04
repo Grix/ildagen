@@ -15,13 +15,13 @@ function reapply_trans() {
 		{
 	        repeat (maxframes - ds_list_size(frame_list))
 	        {
-	            templist = ds_list_create();
+	            templist = ds_list_create_pool();
 	            if (fillframes)
 	            {
 	                tempelcount = ds_list_size(ds_list_find_value(frame_list,ds_list_size(frame_list)-1));
 	                for (u = 0;u < tempelcount;u++)
 	                {
-	                    tempellist = ds_list_create();
+	                    tempellist = ds_list_create_pool();
 	                    ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(frame_list,ds_list_size(frame_list)-1),u));
 	                    ds_list_add(templist,tempellist);
 	                }
@@ -31,14 +31,14 @@ function reapply_trans() {
 		}
 	}
 
-	temp_undof_list = ds_list_create();
+	temp_undof_list = ds_list_create_pool();
 
 	for (c = 0; c < ds_list_size(semaster_list); c++)
 	{
 	    selectedelement = ds_list_find_value(semaster_list,c);
     
 	    //find elements
-	    temp_frame_list = ds_list_create();
+	    temp_frame_list = ds_list_create_pool();
 	    if (fillframes)
 	    {
 	        for (i = scope_start; i <= scope_end; i++)
@@ -46,7 +46,7 @@ function reapply_trans() {
 	            el_list_temp = ds_list_find_value(frame_list,i);
 	            for (u = 0; u < ds_list_size(el_list_temp); u++)
 	            {
-					if (!ds_list_exists( el_list_temp[| u]))
+					if (!ds_list_exists_pool( el_list_temp[| u]))
 					{
 						ds_list_delete(el_list_temp, u);
 						u--;
@@ -58,7 +58,7 @@ function reapply_trans() {
 	                    if (ds_list_empty(temp_frame_list))
 	                        startframe = i;
 	                    ds_list_add(temp_frame_list, el_list_temp[| u])
-	                    temp_undo_list = ds_list_create();
+	                    temp_undo_list = ds_list_create_pool();
 	                    ds_list_copy(temp_undo_list, el_list_temp[| u]);
 	                    ds_list_add(temp_undo_list,i);
 	                    ds_list_add(temp_undof_list,temp_undo_list);
@@ -76,7 +76,7 @@ function reapply_trans() {
 	                if (ds_list_empty(temp_frame_list))
 	                    startframe = frame;
 	                ds_list_add(temp_frame_list, el_list_temp[| u])
-	                temp_undo_list = ds_list_create();
+	                temp_undo_list = ds_list_create_pool();
 	                ds_list_copy(temp_undo_list, el_list_temp[| u]);
 	                ds_list_add(temp_undo_list,frame);
 	                ds_list_add(temp_undof_list,temp_undo_list);
@@ -176,7 +176,7 @@ function reapply_trans() {
 				if (anireverse)
 					t = 1-t;
 				
-				if (editing_type == 1 && ds_list_exists(edit_recording_list) && !ds_list_empty(edit_recording_list))
+				if (editing_type == 1 && ds_list_exists_pool(edit_recording_list) && !ds_list_empty(edit_recording_list))
 				{
 					if (editing_path_normalized)
 						edit_recording_list = normalize_editing_path(edit_recording_list);

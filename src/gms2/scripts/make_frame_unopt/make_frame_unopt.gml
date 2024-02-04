@@ -110,8 +110,8 @@ function make_frame_unopt() {
 	    bl_prev = 1;
 	}
   
-	ds_list_destroy(order_list); order_list = -1;
-	ds_list_destroy(polarity_list); polarity_list =-1;
+	ds_list_free_pool(order_list); order_list = -1;
+	ds_list_free_pool(polarity_list); polarity_list =-1;
 
 	//log("make_frame",get_timer() - timerbm);
 

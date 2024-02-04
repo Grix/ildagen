@@ -18,7 +18,7 @@ function clean_redo_live(){
 	    {
 	        //redo delete object
 	        redolisttemp = real(string_digits(redo));
-			if (!ds_list_exists(redolisttemp))
+			if (!ds_list_exists_pool(redolisttemp))
 	            exit;
 	        var t_objectlist = ds_list_find_value(redolisttemp,0);
         
@@ -31,12 +31,12 @@ function clean_redo_live(){
 			var t_dac_list = t_objectlist[| 12];
 			num_objects = ds_list_size(t_dac_list);
 			repeat (num_objects)  
-			    ds_list_destroy(ds_list_find_value(t_dac_list,0));
-			ds_list_destroy(t_dac_list);
+			    ds_list_free_pool(ds_list_find_value(t_dac_list,0));
+			ds_list_free_pool(t_dac_list);
 			
-			ds_list_destroy(t_objectlist);
+			ds_list_free_pool(t_objectlist);
             
-	        ds_list_destroy(redolisttemp);
+	        ds_list_free_pool(redolisttemp);
 	    }
 	}
 	

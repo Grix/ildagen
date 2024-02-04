@@ -1,6 +1,6 @@
 function init_palette() {
-	pal_list_ilda = ds_list_create();
-	pal_list_ttl = ds_list_create();
+	pal_list_ilda = ds_list_create_pool();
+	pal_list_ttl = ds_list_create_pool();
 	
 	var t_dir = "";
 //if (os_type == os_macosx)

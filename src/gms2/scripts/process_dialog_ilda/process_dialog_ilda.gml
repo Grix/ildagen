@@ -546,7 +546,7 @@ function process_dialog_ilda() {
 				  if (t_value > scope_end)
 					show_message_new("NB: Start of scope cannot be later than the end of scope.");
 					
-					var t_undolist = ds_list_create();
+					var t_undolist = ds_list_create_pool();
 					ds_list_add(t_undolist, scope_start);
 					ds_list_add(t_undolist, scope_end);
 					ds_list_add(undo_list,"c"+string(t_undolist));
@@ -566,7 +566,7 @@ function process_dialog_ilda() {
 				  if (t_value < scope_start)
 					show_message_new("NB: End of scope cannot be earlier than the start of scope.");
 				
-					var t_undolist = ds_list_create();
+					var t_undolist = ds_list_create_pool();
 					ds_list_add(t_undolist, scope_start);
 					ds_list_add(t_undolist, scope_end);
 					ds_list_add(undo_list,"c"+string(t_undolist));
@@ -616,13 +616,13 @@ function process_dialog_ilda() {
 	              if (ds_list_size(frame_list) < maxframes)
 	                  repeat (maxframes - ds_list_size(frame_list))
 	                  {
-	                      templist = ds_list_create();
+	                      templist = ds_list_create_pool();
 	                      if (fillframes)
 	                      {
 	                          tempelcount = ds_list_size(ds_list_find_value(frame_list,ds_list_size(frame_list)-1));
 	                          for (u = 0;u < tempelcount;u++)
 	                          {
-	                              tempellist = ds_list_create();
+	                              tempellist = ds_list_create_pool();
 	                              ds_list_copy(tempellist,ds_list_find_value(ds_list_find_value(frame_list,ds_list_size(frame_list)-1),u));
 	                              ds_list_add(templist,tempellist);
 	                          }
@@ -634,8 +634,8 @@ function process_dialog_ilda() {
 	                  {
 	                      el_list_temp = ds_list_find_value(frame_list,ds_list_size(frame_list)-1);
 	                      //for (u = 0;u < ds_list_size(el_list_temp);u++)
-	                      //    ds_list_destroy(ds_list_find_value(el_list_temp,u));
-	                      ds_list_destroy(el_list_temp);
+	                      //    ds_list_free_pool(ds_list_find_value(el_list_temp,u));
+	                      ds_list_free_pool(el_list_temp);
 	                  }*/
 	              if (frame > maxframes) 
 	              {
@@ -668,11 +668,11 @@ function process_dialog_ilda() {
 	              else if (t_newmaxframes > $ffff) 
 					t_newmaxframes = $ffff;
 				
-				  var t_newframelist = ds_list_create();
+				  var t_newframelist = ds_list_create_pool();
 				
 				  for (u = 0; u < t_newmaxframes; u++)
 				  {
-					  var t_newlist = ds_list_create();
+					  var t_newlist = ds_list_create_pool();
 					  ds_list_add(t_newframelist, t_newlist);
 				  
 					  var t_oldlistindex = floor(u * maxframes / t_newmaxframes);
@@ -680,7 +680,7 @@ function process_dialog_ilda() {
 					  var t_elcount = ds_list_size(t_oldlist);
 					  for (v = 0; v < t_elcount; v++)
 					  {
-						  var t_newellist = ds_list_create();
+						  var t_newellist = ds_list_create_pool();
 						  ds_list_copy(t_newellist, ds_list_find_value(t_oldlist, v));
 						  ds_list_add(t_newlist, t_newellist);
 					  }

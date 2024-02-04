@@ -12,7 +12,7 @@ function redo_ilda() {
 
 		if (is_real(redo)) //redo create
 		{
-			temp_undof_list = ds_list_create();
+			temp_undof_list = ds_list_create_pool();
 			
 		    for (j = 0;j < ds_list_size(frame_list);j++)
 		    {
@@ -22,11 +22,11 @@ function redo_ilda() {
 		            if (ds_list_find_value(ds_list_find_value(el_list,i),9) == redo)
 		            {
 		                list_id = ds_list_find_value(el_list,i);
-						temp_undo_list = ds_list_create();
+						temp_undo_list = ds_list_create_pool();
 					    ds_list_copy(temp_undo_list,list_id);
 					    ds_list_add(temp_undo_list,j);
 					    ds_list_add(temp_undof_list,temp_undo_list);
-		                ds_list_destroy(list_id);
+		                ds_list_free_pool(list_id);
 		                ds_list_delete(el_list,i);
 		            }
 		        }
@@ -64,10 +64,10 @@ function redo_ilda() {
 		}
 		else if (string_char_at(redo,0) == "v")
 		{
-		    if (!ds_list_exists(real(string_digits(redo))))
+		    if (!ds_list_exists_pool(real(string_digits(redo))))
 		        exit;
 				
-			tempundolist = ds_list_create();
+			tempundolist = ds_list_create_pool();
 		    ds_list_add(tempundolist, anienddotscolor);
 		    ds_list_add(tempundolist, anicolor2);
 		    ds_list_add(tempundolist, anicolor1);
@@ -77,15 +77,15 @@ function redo_ilda() {
 		    anicolor1 = ds_list_find_value(tempredolist,2);
 		    anicolor2 = ds_list_find_value(tempredolist,1);
 		    anienddotscolor = ds_list_find_value(tempredolist,0);
-		    ds_list_destroy(tempredolist);
+		    ds_list_free_pool(tempredolist);
 		    update_anicolors();
 		}
 		else if (string_char_at(redo,0) == "b")
 		{
-		    if (!ds_list_exists(real(string_digits(redo))))
+		    if (!ds_list_exists_pool(real(string_digits(redo))))
 		        exit;
 				
-			tempundolist = ds_list_create();
+			tempundolist = ds_list_create_pool();
 			ds_list_add(tempundolist,enddotscolor);
 			ds_list_add(tempundolist,color2);
 			ds_list_add(tempundolist,color1);
@@ -95,28 +95,28 @@ function redo_ilda() {
 		    color1 = ds_list_find_value(tempredolist,2);
 		    color2 = ds_list_find_value(tempredolist,1);
 		    enddotscolor = ds_list_find_value(tempredolist,0);
-		    ds_list_destroy(tempredolist);
+		    ds_list_free_pool(tempredolist);
 		    update_colors();
 		}
 		else if (string_char_at(redo,0) == "k")
 		{
 		    //redo reapply elements
-		    if (!ds_list_exists(real(string_digits(redo))))
+		    if (!ds_list_exists_pool(real(string_digits(redo))))
 		        exit;
 				
-			temp_undof_list = ds_list_create();
+			temp_undof_list = ds_list_create_pool();
 				
 		    tempredolist = real(string_digits(redo));
 		    for (u = 0;u < ds_list_size(tempredolist);u++)
 		    {
 		        list = ds_list_find_value(tempredolist,u);
-		        if (ds_list_exists(list))
+		        if (ds_list_exists_pool(list))
 		        {
 		            tempid = ds_list_find_value(list,9);
 		            var t_frame = ds_list_find_value(list,ds_list_size(list)-1);
 		            ds_list_delete(list,ds_list_size(list)-1);
 		            var t_el_list = ds_list_find_value(frame_list,round(t_frame));
-		            if (ds_list_exists(t_el_list))
+		            if (ds_list_exists_pool(t_el_list))
 		            {
 		                for (i = 0;i < ds_list_size(t_el_list);i++)
 		                {
@@ -133,13 +133,13 @@ function redo_ilda() {
 		            }
 		        }
 		    }
-		    ds_list_destroy(tempredolist);
+		    ds_list_free_pool(tempredolist);
 			
 			ds_list_add(undo_list,"k"+string(temp_undof_list));
 		}
 		else if (string_char_at(redo,0) == "l")
 		{
-		    if (!ds_list_exists(real(string_digits(redo))))
+		    if (!ds_list_exists_pool(real(string_digits(redo))))
 		        exit;
 		    //redo delete
 			var tempelid = -1;
@@ -147,7 +147,7 @@ function redo_ilda() {
 		    for (u = 0;u < ds_list_size(tempredolist);u++)
 		    {
 		        list = ds_list_find_value(tempredolist,u);
-		        if (ds_list_exists(list))
+		        if (ds_list_exists_pool(list))
 		        {
 		            tempid = ds_list_find_value(list,9);
 		            var t_frame = ds_list_find_value(list,ds_list_size(list)-1);
@@ -162,7 +162,7 @@ function redo_ilda() {
 					}
 		        }
 		    }
-		    ds_list_destroy(tempredolist);
+		    ds_list_free_pool(tempredolist);
 		}
 		else if (string_char_at(redo,0) == "s")
 		{
@@ -185,11 +185,11 @@ function redo_ilda() {
 			    for (i = 0;i < ds_list_size(el_list);i++)
 			    {
 			        list_id = ds_list_find_value(el_list,i);
-			        ds_list_destroy(list_id);
+			        ds_list_free_pool(list_id);
 			    }
-			    ds_list_destroy(el_list);
+			    ds_list_free_pool(el_list);
 			}
-			ds_list_destroy(frame_list);
+			ds_list_free_pool(frame_list);
 				
 			var t_decompressed_buffer = buffer_decompress(t_compressed_buffer);
 			frame_list = ds_list_*/
@@ -205,11 +205,11 @@ function redo_ilda() {
 		else if (string_char_at(redo,0) == "c")
 		{
 		    //redo set scope
-			if (!ds_list_exists(real(string_digits(redo))))
+			if (!ds_list_exists_pool(real(string_digits(redo))))
 		        exit;
 		    tempredolist = real(string_digits(redo));
 			
-			var t_undolist = ds_list_create();
+			var t_undolist = ds_list_create_pool();
 			ds_list_add(t_undolist, scope_start);
 			ds_list_add(t_undolist, scope_end);
 			ds_list_add(undo_list,"c"+string(t_undolist));

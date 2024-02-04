@@ -1,4 +1,50 @@
 function benchmark() {
+	
+	repeat(100)
+		ds_list_create();
+	
+	var t_start = get_timer();
+	
+	repeat(100)
+		var list = ds_list_create();
+	
+	log("ds_list_create", get_timer()-t_start);
+	
+	repeat(1000)
+		ds_list_add(list, random(20));
+	
+	t_start = get_timer();
+	
+	ds_list_destroy(list);
+	
+	log("ds_list_destroy", get_timer()-t_start);
+	
+	repeat(100)
+		ds_list_create_pool();
+	
+	t_start = get_timer();
+	
+	repeat(100)
+		var list = ds_list_create_pool();
+	
+	log("ds_list_create_pool", get_timer()-t_start);
+	
+	repeat(1000)
+		ds_list_add(list, random(20));
+	
+	t_start = get_timer();
+	
+	ds_list_free_pool(list);
+	
+	log("ds_list_free_pool", get_timer()-t_start);
+	
+	t_start = get_timer();
+	
+	repeat(100)
+		var list = ds_list_create_pool();
+	
+	log("ds_list_create_pool (again)", get_timer()-t_start);
+	
 	/*var t_zero = 0;
 	var t_const = 100;
 	 minitimeline_surf = surface_create(t_const/t_zero, clamp(infinity, 1, 8192));*/

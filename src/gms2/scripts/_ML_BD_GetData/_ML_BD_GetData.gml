@@ -21,7 +21,7 @@ function _ML_BD_GetData(argument0, argument1) {
 	} else {
 	    switch (type) {
 	    case ds_type_list + $80:
-	        ret[0] = ds_list_create();
+	        ret[0] = ds_list_create_pool();
 	        _ML_BD_DecodeList(ret[0], b);
 	    break;
 	    case ds_type_priority + $80:

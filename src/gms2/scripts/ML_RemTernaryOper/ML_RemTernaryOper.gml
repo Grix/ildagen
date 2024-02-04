@@ -23,7 +23,7 @@ function ML_RemTernaryOper(argument0, argument1) {
 	    ds_list_delete(entry, i);
 	}
 	if (ds_list_empty(entry)) {
-	    ds_list_destroy(entry);
+	    ds_list_free_pool(entry);
 	    ds_map_delete(P_TERNOPER2, str2);
 	}
 	_ML_OpRemRoots(argument0, str1);

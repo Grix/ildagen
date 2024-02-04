@@ -5,7 +5,7 @@ function import_ildalive_end() {
     
 	    if (ild_list != -1)
 		{
-			ds_list_destroy(ild_list); ild_list=-1;
+			ds_list_free_pool(ild_list); ild_list=-1;
 		}
 	}
     

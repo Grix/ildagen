@@ -12,12 +12,12 @@ function undo_seq() {
 	    {
 	        //undo create object (delete)
 	        undolisttemp = real(string_digits(undo));
-			if (!ds_list_exists(undolisttemp))
+			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        objectlist = ds_list_find_value(undolisttemp,0);
-	        if (!ds_list_exists(objectlist))
+	        if (!ds_list_exists_pool(objectlist))
 	        {
-	            ds_list_destroy(undolisttemp); undolisttemp = -1;
+	            ds_list_free_pool(undolisttemp); undolisttemp = -1;
 	            exit;
 	        }
 			
@@ -28,7 +28,7 @@ function undo_seq() {
 		        {
 		            ds_list_delete(layerlisttemp,ds_list_find_index(layerlisttemp,objectlist));
 					
-					redolisttemp = ds_list_create();
+					redolisttemp = ds_list_create_pool();
 			        ds_list_add(redolisttemp,layerlisttemp);
 			        ds_list_add(redolisttemp,objectlist);
 			        ds_list_add(redo_list,"d"+string(redolisttemp));
@@ -39,21 +39,21 @@ function undo_seq() {
 			
 	        ds_list_clear(somaster_list);
 			
-	        ds_list_destroy(undolisttemp);undolisttemp = -1;
+	        ds_list_free_pool(undolisttemp);undolisttemp = -1;
 	    }
 	    else if (string_char_at(undo,0) == "s")
 	    {
 	        //undo split
 	        undolisttemp = real(string_digits(undo));
-			if (!ds_list_exists(undolisttemp))
+			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        objectlist = ds_list_find_value(undolisttemp,0);
 	        objectlist1 = ds_list_find_value(undolisttemp,1);
 	        objectlist2 = ds_list_find_value(undolisttemp,2);
-	        if (!ds_list_exists(objectlist1) || !ds_list_exists(objectlist2) || !ds_list_exists(objectlist))
+	        if (!ds_list_exists_pool(objectlist1) || !ds_list_exists_pool(objectlist2) || !ds_list_exists_pool(objectlist))
 	        {
-	            //ds_list_destroy(undolisttemp);
-	            //ds_list_destroy(objectlist);
+	            //ds_list_free_pool(undolisttemp);
+	            //ds_list_free_pool(objectlist);
 	            exit;
 	        }
         
@@ -67,28 +67,28 @@ function undo_seq() {
 	                ds_list_delete(_layer, ds_list_find_index(_layer, objectlist2));
 	                ds_list_add(_layer, objectlist);
 					
-					redolisttemp = ds_list_create();
+					redolisttemp = ds_list_create_pool();
 	                ds_list_add(redolisttemp, objectlist);
 	                ds_list_add(redolisttemp, objectlist1);
 	                ds_list_add(redolisttemp, objectlist2);
 	                ds_list_add(redo_list, "z"+string(redolisttemp));
 	            }
 	        }
-	        ds_list_destroy(undolisttemp);undolisttemp = -1;
+	        ds_list_free_pool(undolisttemp);undolisttemp = -1;
 	    }
 		else if (string_char_at(undo,0) == "z")
 	    {
 	        //undo merge (only in redo now, opposite of split)
 	        undolisttemp = real(string_digits(undo));
-			if (!ds_list_exists(undolisttemp))
+			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        objectlist = ds_list_find_value(undolisttemp,0);
 	        objectlist1 = ds_list_find_value(undolisttemp,1);
 	        objectlist2 = ds_list_find_value(undolisttemp,2);
-	        if (!ds_list_exists(objectlist1) || !ds_list_exists(objectlist2) || !ds_list_exists(objectlist))
+	        if (!ds_list_exists_pool(objectlist1) || !ds_list_exists_pool(objectlist2) || !ds_list_exists_pool(objectlist))
 	        {
-	            //ds_list_destroy(undolisttemp);
-	            //ds_list_destroy(objectlist);
+	            //ds_list_free_pool(undolisttemp);
+	            //ds_list_free_pool(objectlist);
 	            exit;
 	        }
         
@@ -102,71 +102,71 @@ function undo_seq() {
 	                ds_list_add(_layer, objectlist1);
 	                ds_list_add(_layer, objectlist2);
 					
-					redolisttemp = ds_list_create();
+					redolisttemp = ds_list_create_pool();
 	                ds_list_add(redolisttemp, objectlist);
 	                ds_list_add(redolisttemp, objectlist1);
 	                ds_list_add(redolisttemp, objectlist2);
 	                ds_list_add(redo_list, "s"+string(redolisttemp));
 	            }
 	        }
-	        ds_list_destroy(undolisttemp);
+	        ds_list_free_pool(undolisttemp);
 	    }
 	    else if (string_char_at(undo,0) == "d")
 	    {
 	        //undo delete object
 	        undolisttemp = real(string_digits(undo));
-			if (!ds_list_exists(undolisttemp))
+			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        objectlist = ds_list_find_value(undolisttemp,1);
 	        layerlisttemp = ds_list_find_value(undolisttemp,0);
 			
-	        if (!ds_list_exists(layerlisttemp))
+	        if (!ds_list_exists_pool(layerlisttemp))
 	        {
-	            //ds_list_destroy(undolisttemp);
+	            //ds_list_free_pool(undolisttemp);
 	            exit;
 	        }
 			
-			redolisttemp = ds_list_create();
+			redolisttemp = ds_list_create_pool();
 		    ds_list_add(redolisttemp,objectlist);
 		    ds_list_add(redo_list,"c"+string(redolisttemp));
             
 	        ds_list_add(layerlisttemp,objectlist);
-	        ds_list_destroy(undolisttemp);
+	        ds_list_free_pool(undolisttemp);
 	    }
 	    else if (string_char_at(undo,0) == "r")
 	    {
 	        //undo resize object
 	        undolisttemp = real(string_digits(undo));
-			if (!ds_list_exists(undolisttemp))
+			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        var t_objectlist = undolisttemp[| 0];
-	        if (!ds_list_exists(t_objectlist))
+	        if (!ds_list_exists_pool(t_objectlist))
 	        {
-	            //ds_list_destroy(undolisttemp);
+	            //ds_list_free_pool(undolisttemp);
 	            exit;
 	        }
 			
-			redolisttemp = ds_list_create();
+			redolisttemp = ds_list_create_pool();
 	        ds_list_add(redolisttemp,t_objectlist);
 	        ds_list_add(redolisttemp,t_objectlist[| 2]);
 	        ds_list_add(redo_list,"r"+string(redolisttemp));
 			
 	        ds_list_replace(t_objectlist, 2, undolisttemp[| 1]);
 			
-	        ds_list_destroy(undolisttemp);
+	        ds_list_free_pool(undolisttemp);
 	    }
 	    else if (string_char_at(undo,0) == "m")
 	    {
 	        //undo move object
 	        undolisttemp = real(string_digits(undo));
-			if (!ds_list_exists(undolisttemp))
+			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        objectlist = ds_list_find_value(undolisttemp,0);
 	        layerlisttemp = ds_list_find_value(undolisttemp,1);
 	        frametime = ds_list_find_value(undolisttemp,2);
-	        if (!ds_list_exists(layerlisttemp) || !ds_list_exists(objectlist))
+	        if (!ds_list_exists_pool(layerlisttemp) || !ds_list_exists_pool(objectlist))
 	        {
-	            //ds_list_destroy(undolisttemp);
+	            //ds_list_free_pool(undolisttemp);
 	            exit;
 	        }
             
@@ -176,7 +176,7 @@ function undo_seq() {
 	            _layer = layertop[| 1];
 	            if (ds_list_find_index(_layer, objectlist) != -1)
 	            {
-					redolisttemp = ds_list_create();
+					redolisttemp = ds_list_create_pool();
 	                ds_list_add(redolisttemp,objectlist);
 	                ds_list_add(redolisttemp,_layer);
 	                ds_list_add(redolisttemp,objectlist[| 0]);
@@ -187,13 +187,13 @@ function undo_seq() {
 	                ds_list_add(layerlisttemp, objectlist);
 	            }
 	        }
-	        ds_list_destroy(undolisttemp);
+	        ds_list_free_pool(undolisttemp);
 	    }
 	    else if (string_char_at(undo,0) == "l")
 	    {
 	        //undo marker clear
 	        undolisttemp = real(string_digits(undo));
-			if (!ds_list_exists(undolisttemp))
+			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 				
 	        ds_list_add(redo_list,"l"+string(marker_list));
@@ -204,18 +204,18 @@ function undo_seq() {
 	    {
 	        //undo envelope data clear/edit
 	        undolisttemp = real(string_digits(undo));
-			if (!ds_list_exists(undolisttemp))
+			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
-	        if (!ds_list_exists(ds_list_find_value(undolisttemp,2)))
+	        if (!ds_list_exists_pool(ds_list_find_value(undolisttemp,2)))
 	        {
-	            ds_list_destroy( ds_list_find_value(undolisttemp,0) );
-	            ds_list_destroy( ds_list_find_value(undolisttemp,1) );
+	            ds_list_free_pool( ds_list_find_value(undolisttemp,0) );
+	            ds_list_free_pool( ds_list_find_value(undolisttemp,1) );
 	        }
 	        else
 	        {
 	            var t_selectedenvelope = ds_list_find_value(undolisttemp,2);
 				
-				var t_redolist = ds_list_create();
+				var t_redolist = ds_list_create_pool();
 				ds_list_add(t_redolist,ds_list_find_value(t_selectedenvelope,1));
 				ds_list_add(t_redolist,ds_list_find_value(t_selectedenvelope,2));
 				ds_list_add(t_redolist,t_selectedenvelope);
@@ -224,7 +224,7 @@ function undo_seq() {
 	            ds_list_replace( t_selectedenvelope,1,ds_list_find_value(undolisttemp,0) );
 	            ds_list_replace( t_selectedenvelope,2,ds_list_find_value(undolisttemp,1) );
 	        }
-	        ds_list_destroy(undolisttemp);
+	        ds_list_free_pool(undolisttemp);
 	    }
 		else if (string_char_at(undo,0) == "a")
 	    {
@@ -261,7 +261,7 @@ function undo_seq() {
 	    {
 	        //undo move marker
 	        undolisttemp = real(string_digits(undo));
-			if (!ds_list_exists(undolisttemp))
+			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 			var t_markerpos = undolisttemp[| 0];
 			for (i = 0; i < ds_list_size(marker_list); i++)
@@ -272,19 +272,19 @@ function undo_seq() {
 			t_markerpos = undolisttemp[| 1];
 			ds_list_add(marker_list, t_markerpos);
 			
-			var t_redolist = ds_list_create();
+			var t_redolist = ds_list_create_pool();
 			ds_list_add(t_redolist, undolisttemp[| 1]);
 			ds_list_add(t_redolist, undolisttemp[| 0]);
 			ds_list_add(redo_list, "h"+string(t_redolist));
 			
-			ds_list_destroy(undolisttemp);
+			ds_list_free_pool(undolisttemp);
 			exit;
 		}
 		else if (string_char_at(undo,0) == "p")
 	    {
 	        //undo create envelope
 	        var t_envelopetodelete = real(string_digits(undo));
-			if (!ds_list_exists(t_envelopetodelete))
+			if (!ds_list_exists_pool(t_envelopetodelete))
 	            exit;
 				
 			for (i = 0; i < ds_list_size(layer_list); i++)
@@ -296,7 +296,7 @@ function undo_seq() {
 					{
 						ds_list_delete(t_envelope_list, j);
 						
-						var t_redo_list = ds_list_create();
+						var t_redo_list = ds_list_create_pool();
 						ds_list_add(t_redo_list, t_envelopetodelete);
 						ds_list_add(t_redo_list, t_envelope_list);
 						ds_list_add(redo_list, "x"+string(t_redo_list));
@@ -310,40 +310,40 @@ function undo_seq() {
 	    {
 			// undo delete envelope
 			undolisttemp = real(string_digits(undo));
-			if (!ds_list_exists(undolisttemp))
+			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 				
 			var t_envelope = undolisttemp[| 0];
-			if (!ds_list_exists(t_envelope))
+			if (!ds_list_exists_pool(t_envelope))
 	            exit;
 			var t_layer_envelope_list = undolisttemp[| 1];
-			if (!ds_list_exists(t_layer_envelope_list))
+			if (!ds_list_exists_pool(t_layer_envelope_list))
 	            exit;
 				
 			ds_list_add(t_layer_envelope_list, t_envelope);
 			timeline_surf_length = 0;
 			ds_list_add(redo_list, "p"+string(t_envelope));
 			
-			ds_list_destroy(undolisttemp);
+			ds_list_free_pool(undolisttemp);
 		}
 		else if (string_char_at(undo,0) == "q")
 	    {
 	        //undo create layer
 	        var t_layertodelete = real(string_digits(undo));
-			if (!ds_list_exists(t_layertodelete) || ds_list_size(t_layertodelete[| 1]) > 0)
+			if (!ds_list_exists_pool(t_layertodelete) || ds_list_size(t_layertodelete[| 1]) > 0)
 	            exit;
 				
 			for (i = 0; i < ds_list_size(layer_list); i++)
 			{
 				if (layer_list[| i] == t_layertodelete)
 				{
-					if (ds_list_exists(t_layertodelete[| 0]))
-						ds_list_destroy(t_layertodelete[| 0]);
-					if (ds_list_exists(t_layertodelete[| 1]))
-						ds_list_destroy(t_layertodelete[| 1]);
-					if (ds_list_exists(t_layertodelete[| 5]))
-						ds_list_destroy(t_layertodelete[| 5]);
-					ds_list_destroy(t_layertodelete); t_layertodelete = -1;
+					if (ds_list_exists_pool(t_layertodelete[| 0]))
+						ds_list_free_pool(t_layertodelete[| 0]);
+					if (ds_list_exists_pool(t_layertodelete[| 1]))
+						ds_list_free_pool(t_layertodelete[| 1]);
+					if (ds_list_exists_pool(t_layertodelete[| 5]))
+						ds_list_free_pool(t_layertodelete[| 5]);
+					ds_list_free_pool(t_layertodelete); t_layertodelete = -1;
 					ds_list_delete(layer_list, i);
 					timeline_surf_length = 0;
 					
@@ -356,15 +356,15 @@ function undo_seq() {
 		else if (string_char_at(undo,0) == "w")
 	    {
 			// restore layer (empty only)
-			newlayer = ds_list_create();
+			newlayer = ds_list_create_pool();
 		    ds_list_add(layer_list,newlayer);
-		    ds_list_add(newlayer,ds_list_create()); //envelope list
-		    ds_list_add(newlayer,ds_list_create()); //objects list
+		    ds_list_add(newlayer,ds_list_create_pool()); //envelope list
+		    ds_list_add(newlayer,ds_list_create_pool()); //objects list
 		    ds_list_add(newlayer,0); 
 		    ds_list_add(newlayer,0);
 		    ds_list_add(newlayer,"Layer "+string(controller.el_id));
 		    controller.el_id++;
-		    ds_list_add(newlayer,ds_list_create()); //dac list
+		    ds_list_add(newlayer,ds_list_create_pool()); //dac list
 			ds_list_add(newlayer,0); 
 		    ds_list_add(newlayer,0);
 			ds_list_add(newlayer,0); 
@@ -377,7 +377,7 @@ function undo_seq() {
 	    {
 			// undo duplicate layer
 			undolisttemp = real(string_digits(undo));
-			if (!ds_list_exists(undolisttemp))
+			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 				
 			layertodelete = undolisttemp[| 0];
@@ -387,11 +387,11 @@ function undo_seq() {
 		else if (string_char_at(undo,0) == "i")
 		{
 		    //undo set start/end
-			if (!ds_list_exists(real(string_digits(undo))))
+			if (!ds_list_exists_pool(real(string_digits(undo))))
 		        exit;
 		    undolisttemp = real(string_digits(undo));
 			
-			var t_redolist = ds_list_create();
+			var t_redolist = ds_list_create_pool();
 			ds_list_add(t_redolist, startframe);
 			ds_list_add(t_redolist, endframe);
 			ds_list_add(redo_list,"i"+string(t_redolist));
