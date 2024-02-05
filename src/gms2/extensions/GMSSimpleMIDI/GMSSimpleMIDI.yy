@@ -57,7 +57,9 @@
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"rtmidi_create_virtual_outport","externalName":"rtmidi_create_virtual_outport","kind":1,"help":"","hidden":false,"returnType":1,"argCount":0,"args":[
             1,
           ],"documentation":"",},
-      ],"constants":[],"ProxyFiles":[],"copyToTargets":64,"usesRunnerInterface":false,"order":[
+      ],"constants":[],"ProxyFiles":[
+        {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"libmidistuff.dylib","TargetMask":1,},
+      ],"copyToTargets":66,"usesRunnerInterface":false,"order":[
         {"name":"rtmidi_init","path":"extensions/GMSSimpleMIDI/GMSSimpleMIDI.yy",},
         {"name":"rtmidi_probe_outs","path":"extensions/GMSSimpleMIDI/GMSSimpleMIDI.yy",},
         {"name":"rtmidi_probe_ins","path":"extensions/GMSSimpleMIDI/GMSSimpleMIDI.yy",},
@@ -103,13 +105,13 @@
   "tvosThirdPartyFrameworkEntries": [],
   "IncludedResources": [],
   "androidPermissions": [],
-  "copyToTargets": 64,
+  "copyToTargets": 66,
   "iosCocoaPods": "",
   "tvosCocoaPods": "",
   "iosCocoaPodDependencies": "",
   "tvosCocoaPodDependencies": "",
   "parent": {
-    "name": "GMSSimpleMIDI",
-    "path": "folders/GMSSimpleMIDI.yy",
+    "name": "Extensions",
+    "path": "folders/Extensions.yy",
   },
 }
