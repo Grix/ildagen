@@ -195,6 +195,8 @@ bug_report_suppress = false;
 force_io_reset = false;
 known_filename_of_load = "";
 has_midi = false;
+midi_input_device = 0;
+midi_output_device = 0;
 
 sgridshow = 0;
 rgridshow = 0;

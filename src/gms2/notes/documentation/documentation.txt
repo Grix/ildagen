@@ -1,6 +1,6 @@
 TODO
 - wider DAC list
-- Fix fps to 60 when laser is off, to ensure smooth UI interaction.
+- Fix fps to 60 when laser is off, to ensure smooth UI interaction. (currently testing in settings room)
 - new optimization for seamless transitions using bezier curve, and curve check every point
 - better default optimization settings
 - fix small gap at start or end of some segments. Especially noticeable in fonts etc.

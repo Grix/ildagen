@@ -43,9 +43,13 @@ if (controller.laseron)
             
         minroomspeed = max(seqcontrol.projectfps,10);
     }
+	
+	_room_speed = max(1,controller.projectfps/controller.fpsmultiplier);
+	while (_room_speed < minroomspeed)
+		_room_speed += controller.projectfps/controller.fpsmultiplier;
 }
+else
+	_room_speed = 60;
 
-_room_speed = max(1,controller.projectfps/controller.fpsmultiplier);
-while (_room_speed < minroomspeed)
-    _room_speed += controller.projectfps/controller.fpsmultiplier;
+
 game_set_speed(_room_speed, gamespeed_fps);
