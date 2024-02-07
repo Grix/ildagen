@@ -8,6 +8,4 @@ function create_text_init() {
 	else
 	    ilda_dialog_string("text","Enter text","");
 
-
-
 }

@@ -165,6 +165,7 @@ refresh_minitimeline_flag = 1;
 letter = "";
 image_speed = 0;
 font_type = -1;
+selected_font_name = "";
 hershey_moving = 0;
 hershey_scrollw = 19;
 hershey_scrollx = 0;
