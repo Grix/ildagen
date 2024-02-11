@@ -245,13 +245,22 @@ function make_frame() {
 	                new_dot = 1;
                     
 	                //travel
-	                opt_vectorx = (xp_prev-xpp)/opt_dist;
-	                opt_vectory = (yp_prev-ypp)/opt_dist;
+	                //opt_vectorx = (xp_prev-xpp)/opt_dist;
+	                //opt_vectory = (yp_prev-ypp)/opt_dist;
                     
 	                //find number of steps and step size
-	                var t_trav_dist = a_ballistic;
+	                //var t_trav_dist = a_ballistic;
 					var t_quantumstepssqrt = ceil(sqrt(opt_dist/t_trav_dist));
-	                var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
+					var t_numsteps = t_quantumstepssqrt * 2;
+					for (k = 0; k <= t_numsteps ; k++)
+	                {
+						var t_t = ease_in_out(k / t_numsteps);
+	                    ds_list_add(list_raw,xp_prev + (xpp - xp_prev) * t_t);
+	                    ds_list_add(list_raw,yp_prev + (ypp - yp_prev) * t_t);
+	                    ds_list_add(list_raw,1);
+	                    ds_list_add(list_raw,0);
+	                }
+	                /*var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
 	                t_trav_dist = opt_dist/t_quantumsteps;
 	                var t_trav_dist_x = -t_trav_dist*(xp_prev-xpp)/opt_dist;
 	                var t_trav_dist_y = -t_trav_dist*(yp_prev-ypp)/opt_dist;
@@ -304,7 +313,7 @@ function make_frame() {
 	                    ds_list_add(list_raw,0);
 	                    ds_list_add(list_raw,c);
 	                }
-                    
+                    */
 	            }
 			
 	            xp_prev = xpp;
@@ -452,13 +461,22 @@ function make_frame() {
 	    }
     
 	    //travel
-	    opt_vectorx = (xp_prev-xp)/opt_dist;
-	    opt_vectory = (yp_prev-yp)/opt_dist;
+	    //opt_vectorx = (xp_prev-xp)/opt_dist;
+	    //opt_vectory = (yp_prev-yp)/opt_dist;
     
 	    //find number of steps and step size
 	    var t_trav_dist = a_ballistic;
 	    var t_quantumstepssqrt = ceil(sqrt(opt_dist/t_trav_dist));
-	    var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
+		var t_numsteps = t_quantumstepssqrt * 2;
+		for (k = 0; k <= t_numsteps ; k++)
+	    {
+			var t_t = ease_in_out(k / t_numsteps);
+	        ds_list_add(list_raw,xp_prev + (xp - xp_prev) * t_t);
+	        ds_list_add(list_raw,yp_prev + (yp - yp_prev) * t_t);
+	        ds_list_add(list_raw,1);
+	        ds_list_add(list_raw,0);
+	    }
+	    /*var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
 	    t_trav_dist = opt_dist/t_quantumsteps;
 	    var t_trav_dist_x = -t_trav_dist*(xp_prev-xp)/opt_dist;
 	    var t_trav_dist_y = -t_trav_dist*(yp_prev-yp)/opt_dist;
@@ -494,7 +512,7 @@ function make_frame() {
 	        ds_list_add(list_raw,t_yp_now);
 	        ds_list_add(list_raw,1);
 	        ds_list_add(list_raw,0);
-	    }
+	    }*/
 	}
   
 	ds_list_free_pool(order_list); order_list = -1;
