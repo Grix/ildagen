@@ -152,7 +152,8 @@ frame_list
             xmax
             ymin
             ymax
-            ..pos 9: el_id
+			for font: unicode ID
+            9: el_id
             is_blindzone
             force_pol0
             ..pos 20: points:

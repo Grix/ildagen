@@ -12,7 +12,6 @@ function output_frame_seq_all() {
 			continue;
 			
 	    output_frame_seq(t_dac);
-	    //minroomspeed = max(projectfps,10); 
 	}
 
 	load_profile(1);

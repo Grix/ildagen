@@ -1,5 +1,4 @@
 function output_frame() {
-	//minroomspeed = max(projectfps,7.5);
 
 	output_buffer = controller.dac[| 4];
 	output_buffer2 = controller.dac[| 5];

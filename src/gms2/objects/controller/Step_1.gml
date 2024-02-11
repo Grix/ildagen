@@ -33,7 +33,6 @@ if (playing == 1)
     }
 }
 
-minroomspeed = 7.5;
 
 if (laseron)
 {
@@ -45,11 +44,13 @@ if (laseron)
     }
     else
         output_frame();
+		
+	minroomspeed = 7.5;
+	_room_speed = projectfps/fpsmultiplier;
+	while (_room_speed < minroomspeed)
+	    _room_speed += projectfps/fpsmultiplier;
 }
-else 
-    fpsmultiplier = 1;
+else
+	_room_speed = 120;
 
-_room_speed = projectfps/fpsmultiplier;
-while (_room_speed < minroomspeed)
-    _room_speed += projectfps/fpsmultiplier;
 game_set_speed(_room_speed, gamespeed_fps);

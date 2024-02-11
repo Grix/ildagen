@@ -275,7 +275,6 @@ if (view_current == 4 || view_current == 5)
             draw_set_color(c_red);
             draw_text_transformed(view_wport[4] - 12*dpi_multiplier, t_y+24*dpi_multiplier,"Warning: Dropping frames. Actual FPS: "+string(fps), dpi_multiplier, dpi_multiplier, 0);
         }
-        draw_set_halign(fa_left);
 		
         if (frame_complexity == 1)
             draw_set_color(c_red);
@@ -283,8 +282,9 @@ if (view_current == 4 || view_current == 5)
             draw_set_color(c_orange);
         else 
             draw_set_color(c_ltgray);
-        draw_text_transformed(view_wport[4]-70*dpi_multiplier, t_y+view_wport[4]-20*dpi_multiplier, "Points: "+string(framepoints), dpi_multiplier, dpi_multiplier, 0);
-        
+        draw_text_transformed(view_wport[4]-12*dpi_multiplier, t_y+view_wport[4]-20*dpi_multiplier, "Points: "+string(framepoints), dpi_multiplier, dpi_multiplier, 0);
+        draw_set_halign(fa_left);
+		
         if (!anienable) && (maxframes < 2)
             draw_set_color(c_gray);
         else 

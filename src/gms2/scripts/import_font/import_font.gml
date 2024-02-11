@@ -4,8 +4,12 @@ function import_font() {
 
 	with(controller)
 	{
-	    filename = get_open_filename_ext("ILDA font file|*.ild|All files|*","",program_directory,"Select ILDA font file")
-	    keyboard_clear(keyboard_lastkey);
+		if (argument_count == 0 || !file_exists(argument0))
+			filename = get_open_filename_ext("ILDA font file|*.ild|All files|*","",program_directory,"Select ILDA font file")
+	    else
+			filename = argument0;
+			
+		keyboard_clear(keyboard_lastkey);
 		keyboard_clear(vk_control);
 		mouse_clear(mouse_lastbutton);
 		if string_length(filename)

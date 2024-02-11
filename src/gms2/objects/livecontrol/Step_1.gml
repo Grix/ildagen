@@ -65,7 +65,7 @@ else
 
 frameprev = frametotal;
 
-minroomspeed = 7.5;
+
 
 if (controller.laseron)
 {
@@ -77,13 +77,15 @@ if (controller.laseron)
     }
     else
         output_frame_live();
+		
+	minroomspeed = 7.5;
+	_room_speed = controller.projectfps/controller.fpsmultiplier;
+	while (_room_speed < minroomspeed)
+		_room_speed += controller.projectfps/controller.fpsmultiplier;
 }
 else 
-    controller.fpsmultiplier = 1;
+    _room_speed = 120;
 
-_room_speed = controller.projectfps/controller.fpsmultiplier;
-while (_room_speed < minroomspeed)
-    _room_speed += controller.projectfps/controller.fpsmultiplier;
 game_set_speed(_room_speed, gamespeed_fps);
 
 

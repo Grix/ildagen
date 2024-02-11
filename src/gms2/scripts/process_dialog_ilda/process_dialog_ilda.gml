@@ -772,7 +772,7 @@ function process_dialog_ilda() {
 	                for (texti = 1; texti <= string_length(text);texti++)
 	                {
 	                    letter = string_char_at(text,texti);
-	                    if (ord(letter) != clamp(ord(letter),33,126))
+	                    if (ord(letter) <= $20)
 	                    {
 	                        for (i = 0;i <= maxframes;i++)
 	                            xdelta[i] += font_size/1.3*256*font_spacing;

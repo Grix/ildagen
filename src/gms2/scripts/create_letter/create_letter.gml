@@ -1,8 +1,16 @@
 function create_letter() {
-	letter_list = ds_list_find_value(font_list,ord(letter)-33);
+	
+	var t_unicodeId = ord(letter);
+	if (ds_map_exists(font_map, t_unicodeId))
+		letter_list = font_map[? t_unicodeId];
+	else
+		letter_list = ds_list_find_value(font_list,ord(letter)-33);
+		
 	if (!ds_list_exists_pool(letter_list))
 	{
-		show_message_new("Error loading font data. Please load a new font or contact the developer to report the bug");
+		if (!warning_suppress)
+			show_message_new("Warning: Font does not contain symbol: " + letter + ". Please load a different font.");
+		warning_suppress = true;
 		return 0;
 	}
     

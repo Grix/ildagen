@@ -3,8 +3,6 @@
 /// @param daclist
 function output_frame_live() {
 
-	//minroomspeed = max(controller.projectfps,7.5);
-    
 	output_buffer = controller.dac[| 4];
 	output_buffer2 = controller.dac[| 5];
 	output_buffer_ready = controller.dac[| 6];

@@ -126,6 +126,7 @@ ds_list_add(frame_list,el_list);
 free_list = ds_list_create_pool();
 bez_list = ds_list_create_pool();
 font_list = ds_list_create_pool();
+font_map = ds_map_create();
 snap_list = ds_list_create_pool();
 minitimeline_surf = -1;
 hershey_preview_surf = -1;

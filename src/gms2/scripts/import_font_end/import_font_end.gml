@@ -1,6 +1,16 @@
 function import_font_end() {
 	with(controller)
 	{
+		ds_map_clear(font_map);
+		for (i = 0; i < ds_list_size(ild_list); i++)
+	    {
+			var t_unicodeId = ild_list[| i][| 8];
+			if (t_unicodeId > 20)
+			{
+				ds_map_add(font_map, t_unicodeId, ild_list[| i]);
+			}
+		}
+		
 	    ds_list_copy(font_list,ild_list);
     
 	    buffer_delete(ild_file);
@@ -63,8 +73,8 @@ function import_font_end() {
 	    font_type = 0;
 	}
     
-	if (ds_list_size(font_list) < 65 || ds_list_size(font_list) > 100)
-		show_message_new("Warning: Unexpected number of frames in the ILD file. Is this a valid font file such as arial.ild? Other fonts can be found in the LaserBoy zip distribution in LaserShowGen's installation folder, at LaserBoy_Current.zip\\LaserBoy\\ild\\fonts\\");
+	if (ds_list_size(font_list) < 65/* || ds_list_size(font_list) > 100*/)
+		show_message_new("Warning: Unexpectedly few number of frames in the ILD file. Some symbols might not work. Is this a valid LaserBoy font file?");
 	
 	if (ttlpalette == 0)
 		pal_list = pal_list_ilda;

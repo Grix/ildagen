@@ -21,19 +21,29 @@ function read_ilda_header() {
 	    repeat(bytes)
 	        i+=3;
 		if (!warning_suppress)
-			show_message_new("Custom palette detected but parsing of such is not supported yet, using default palette instead.");
+			show_message_new("Warning: Custom palette detected but is not supported yet. Using default palette instead.");
 	    warning_suppress = true;
 		return 0;
 	}
 	else 
 	{
 		if (!warning_suppress)
-			show_message_new("We don't support this format yet, try converting to ILDA format 0, 1, 4 or 5."); 
+			show_message_new("We don't support this format yet, try converting to ILDA file format 0, 1, 4 or 5."); 
 	    warning_suppress = true;
 		format=5; 
 	    errorflag=1; 
 	    return 1;
 	}
+	
+	var t_framename = chr(buffer_peek(ild_file, i+1, buffer_u8)) +
+						chr(buffer_peek(ild_file, i+2, buffer_u8)) +
+						chr(buffer_peek(ild_file, i+3, buffer_u8)) +
+						chr(buffer_peek(ild_file, i+4, buffer_u8)) +
+						chr(buffer_peek(ild_file, i+5, buffer_u8)) +
+						chr(buffer_peek(ild_file, i+6, buffer_u8)) +
+						chr(buffer_peek(ild_file, i+7, buffer_u8)) +
+						chr(buffer_peek(ild_file, i+8, buffer_u8));
+	
 	i += 17;
 
 	//24
@@ -59,7 +69,16 @@ function read_ilda_header() {
 	frame_number = get_bytes();
 	i+=6;//32
 
-	repeat (9) ds_list_add(frame_list_parse,0); 
+	repeat (8) ds_list_add(frame_list_parse,0); 
+	try
+	{
+		t_framename = real("0x"+string_lettersdigits(t_framename));
+		ds_list_add(frame_list_parse, t_framename);
+	}
+	catch(t_ex)
+	{
+		ds_list_add(frame_list_parse,0); 
+	}
 	ds_list_add(frame_list_parse,el_id); //id
 	ds_list_add(frame_list_parse,0); 
 	ds_list_add(frame_list_parse,1); //force polarity

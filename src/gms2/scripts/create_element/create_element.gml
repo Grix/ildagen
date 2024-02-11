@@ -836,5 +836,5 @@ function create_element() {
 
 	el_id++;
 
-
+	warning_suppress = false;
 }
