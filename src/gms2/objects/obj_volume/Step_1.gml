@@ -4,6 +4,8 @@ if (instance_exists(obj_dropdown))
 if (moving == 1)
 {
 	seqcontrol.volume = clamp((mouse_x-bbox_left)/1.28, 0, 100);
+	if (keyboard_check_control()) 
+		seqcontrol.volume = 100;
     FMODGMS_Chan_Set_Volume(seqcontrol.play_sndchannel,seqcontrol.volume/100);
 }
     

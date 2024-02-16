@@ -157,6 +157,7 @@ object_select_hovering = 0;
 canrightclick = 1;
 
 check_mouseactions();
+rtmidi_check_message(); // clear midi queue, messages not used in this mode
 
 if (keyboard_check_pressed(vk_space))
 {
@@ -480,3 +481,5 @@ if (controller.tab_cycles_all == 1)
 
 if (update_semasterlist_flag)
     update_semasterlist();
+	
+	

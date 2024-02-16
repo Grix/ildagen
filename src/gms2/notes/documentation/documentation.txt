@@ -3,6 +3,7 @@ TODO
 - Fix fps to 120 when laser is off, to ensure smooth UI interaction. (currently testing in settings room)
 - new optimization for seamless transitions using bezier curve, and curve check every point
 - better default optimization settings
+- add jump button list to seq project file
 - fix small gap at start or end of some segments. Especially noticeable in fonts etc.
 - crash on exit IDN on mac/linux in dacwrapper. See error below*
 - ability to select multiple items in editor by dragging mouse

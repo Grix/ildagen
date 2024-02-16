@@ -90,6 +90,8 @@ previous_marker_pos = 0;
 loadprojectflag = false;
 moving_object_ready = false;
 intensity_scale = 1;
+intensity_scale_midi_shortcut = -2;
+selected_slider = -1;
 show_is_demo = false;
 audio_fft_bass_low_cutoff = 0;
 audio_fft_bass_high_cutoff = 5;
@@ -129,6 +131,11 @@ playing = 0;
 deltatime = 0;
 //framepoints = 0;
 //frame_complexity = 0;
+
+if (controller.has_midi)
+{
+	intensity_scale_midi_shortcut = 7; // volume ID
+}
 
 ds_map_add(env_type_map,"x","X");
 ds_map_add(env_type_map,"y","Y");

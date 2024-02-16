@@ -42,14 +42,14 @@ masterblue = 1;
 mastergreen = 1;
 masterabsrot = pi;
 
-masterx_midi_shortcut = 0;
-mastery_midi_shortcut = 0;
-masteralpha_midi_shortcut = 0;
-masterhue_midi_shortcut = 0;
-masterred_midi_shortcut = 0;
-masterblue_midi_shortcut = 0;
-mastergreen_midi_shortcut = 0;
-masterabsrot_midi_shortcut = 0;
+masterx_midi_shortcut = -2;
+mastery_midi_shortcut = -2;
+masteralpha_midi_shortcut = -2;
+masterhue_midi_shortcut = -2;
+masterred_midi_shortcut = -2;
+masterblue_midi_shortcut = -2;
+mastergreen_midi_shortcut = -2;
+masterabsrot_midi_shortcut = -2;
 
 if (controller.has_midi)
 {
