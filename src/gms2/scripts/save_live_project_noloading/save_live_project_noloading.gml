@@ -27,20 +27,23 @@ function save_live_project_noloading() {
     
 	buffer_write(save_buffer,buffer_u8,202); //version / ID
 	buffer_write(save_buffer,buffer_u8,controller.projectfps); //fps
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u32,0);
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u8,0);
+	buffer_write(save_buffer,buffer_s8,(1-masteralpha)*127);
+	buffer_write(save_buffer,buffer_s8,(1-masterred)*127);
+	buffer_write(save_buffer,buffer_s8,(1-masterblue)*127);
+	buffer_write(save_buffer,buffer_s8,(1-mastergreen)*127);
+	buffer_write(save_buffer,buffer_s8,(255-masterhue));
+	buffer_write(save_buffer,buffer_s8,0);
+	buffer_write(save_buffer,buffer_s8,0);
+	buffer_write(save_buffer,buffer_s8,0);
+	buffer_write(save_buffer,buffer_s8,0);
+	buffer_write(save_buffer,buffer_u8,masteralpha_midi_shortcut + 2);
+	buffer_write(save_buffer,buffer_u8,masterred_midi_shortcut + 2);
+	buffer_write(save_buffer,buffer_u8,mastergreen_midi_shortcut + 2);
+	buffer_write(save_buffer,buffer_u8,masterblue_midi_shortcut + 2);
+	buffer_write(save_buffer,buffer_u8,masterhue_midi_shortcut + 2);
+	buffer_write(save_buffer,buffer_u8,masterx_midi_shortcut + 2);
+	buffer_write(save_buffer,buffer_u8,mastery_midi_shortcut + 2);
+	buffer_write(save_buffer,buffer_u8,masterabsrot_midi_shortcut + 2);
 	buffer_write(save_buffer,buffer_u8,0);
 	repeat (30)
 	    buffer_write(save_buffer,buffer_u8,0);
