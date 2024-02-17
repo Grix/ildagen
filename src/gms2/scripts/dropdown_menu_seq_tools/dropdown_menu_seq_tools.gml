@@ -2,7 +2,7 @@ function dropdown_menu_seq_tools() {
 	ddobj = instance_create_layer(seqcontrol.menu_width_start[2]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 	with (ddobj)
 	{
-	    num = 6;
+	    num = 7;
 	    ds_list_add(desc_list,"Insert timeline marker");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,dd_seq_addmarker);
@@ -22,6 +22,10 @@ function dropdown_menu_seq_tools() {
 		ds_list_add(desc_list,"Add jump point (keyboard shortcut)...");
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,add_timeline_jump_point);
+	    ds_list_add(hl_list,1);
+		ds_list_add(desc_list,"Add jump point (MIDI key)...");
+	    ds_list_add(sep_list,0);
+	    ds_list_add(scr_list,add_timeline_jump_point_midi);
 	    ds_list_add(hl_list,1);
 	    ds_list_add(desc_list,"Clear all jump points");
 	    ds_list_add(sep_list,0);

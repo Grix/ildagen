@@ -29,6 +29,7 @@ ilda_list = ds_list_create_pool();
 buffer_list = ds_list_create_pool();
 marker_list = ds_list_create_pool();
 jump_button_list = ds_list_create_pool();
+jump_button_list_midi = ds_list_create_pool();
 timeline_surf = -1;
 timeline_surf_temp = -1;
 timeline_surf_audio_temp = -1;

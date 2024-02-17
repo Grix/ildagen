@@ -28,17 +28,19 @@ function load_live_project_work() {
 	        ds_list_add(objectlist, round(buffer_read(load_buffer,buffer_u32)));
 			ds_list_add(objectlist, buffer_read(load_buffer,buffer_bool));
 			
-			var t_midi_key = 0;
+			var t_midi_key = -2;
 		
 			if (idbyte >= 201)
 			{
 				ds_list_add(objectlist,buffer_read(load_buffer,buffer_bool));
 				ds_list_add(objectlist,buffer_read(load_buffer,buffer_bool));
 				ds_list_add(objectlist,buffer_read(load_buffer,buffer_u8));
+				var t_has_midi_key = buffer_read(load_buffer,buffer_bool);
 				buffer_read(load_buffer,buffer_bool);
 				buffer_read(load_buffer,buffer_bool);
-				buffer_read(load_buffer,buffer_bool);
-				t_midi_key = t_buffer_read(load_buffer,buffer_u32);
+				t_midi_key = buffer_read(load_buffer,buffer_u32);
+				if (!t_has_midi_key)
+					t_midi_key = -2;
 				buffer_read(load_buffer,buffer_u32);
 				buffer_read(load_buffer,buffer_u32);
 			}

@@ -14,7 +14,7 @@ if (livecontrol.masterblue_midi_shortcut == -1)
 	draw_set_color(c_black);
 	draw_set_font(fnt_tooltip);
 }
-else if (livecontrol.masterblue_midi_shortcut > 0)
+else if (livecontrol.masterblue_midi_shortcut >= 0)
 {
 	draw_set_font(fnt_small);
 	draw_set_color(c_green);

@@ -303,6 +303,7 @@ function process_dialog_seq() {
 	        case "clear_jump_points":
 	        {
 	            ds_list_clear(seqcontrol.jump_button_list);
+	            ds_list_clear(seqcontrol.jump_button_list_midi);
             
 	            break;
 	        }

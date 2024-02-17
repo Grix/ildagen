@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "draw_timeline",
+  "name": "add_timeline_jump_point_midi",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

@@ -101,7 +101,7 @@ function handle_midi_input_live(){
 		{
 			ds_list_set(filelist[| i], 13, t_keys[| 0]);
 		}
-		else if (ds_list_find_value(filelist[| i], 13) > 0)
+		else if (ds_list_find_value(filelist[| i], 13) >= 0)
 		{
 			if (ds_list_find_index(t_keys,ds_list_find_value(filelist[| i], 13)) != -1)
 			{

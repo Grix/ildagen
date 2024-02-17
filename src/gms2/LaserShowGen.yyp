@@ -498,6 +498,7 @@
     {"id":{"name":"FMODGMS_Util_SamplesToBeats","path":"scripts/FMODGMS_Util_SamplesToBeats/FMODGMS_Util_SamplesToBeats.yy",},"order":3,},
     {"id":{"name":"FMODGMS_Snd_TypeToString","path":"scripts/FMODGMS_Snd_TypeToString/FMODGMS_Snd_TypeToString.yy",},"order":4,},
     {"id":{"name":"FMODGMS_Snd_TagDataTypeToString","path":"scripts/FMODGMS_Snd_TagDataTypeToString/FMODGMS_Snd_TagDataTypeToString.yy",},"order":5,},
+    {"id":{"name":"add_timeline_jump_point_midi","path":"scripts/add_timeline_jump_point_midi/add_timeline_jump_point_midi.yy",},"order":42,},
     {"id":{"name":"dd_seq_set_startframe","path":"scripts/dd_seq_set_startframe/dd_seq_set_startframe.yy",},"order":28,},
     {"id":{"name":"FMODGMS_Snd_TagTypeToString","path":"scripts/FMODGMS_Snd_TagTypeToString/FMODGMS_Snd_TagTypeToString.yy",},"order":6,},
     {"id":{"name":"FMODGMS_Effect_TypeToString","path":"scripts/FMODGMS_Effect_TypeToString/FMODGMS_Effect_TypeToString.yy",},"order":7,},

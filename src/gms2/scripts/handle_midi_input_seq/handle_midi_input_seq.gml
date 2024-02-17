@@ -55,47 +55,22 @@ function handle_midi_input_seq(){
 	}
 	
 	// todo
-	/*for (i = 0; i < ds_list_size(filelist); i++)
+	// check jump buttons
+	for (i = 0; i < ds_list_size(jump_button_list_midi); i += 2)
 	{
-		if (ds_list_find_value(filelist[| i], 13) == -1)
+		if (jump_button_list_midi[| i] == -1)
 		{
-			ds_list_set(filelist[| i], 13, t_keys[| 0]);
+			jump_button_list_midi[| i] = t_keys[| 0];
 		}
-		else if (ds_list_find_value(filelist[| i], 13) > 0)
+		else if (jump_button_list_midi[| i] >= 0)
 		{
-			if (ds_list_find_index(t_keys,ds_list_find_value(filelist[| i], 13)) != -1)
+			if (ds_list_find_index(t_keys,jump_button_list_midi[| i]) != -1)
 			{
-				if (ds_list_find_value(filelist[| i], 0))
-				{
-					// stop
-					ds_list_set(filelist[| i], 0, false);
-				}
-				else
-				{
-					// play
-					if (stop_at_play)
-					{
-						for (j = 0; j < ds_list_size(filelist); j++)
-						{
-							ds_list_set(filelist[| j], 0, false);
-						}
-					}
-					
-					playing = 1;
-					ds_list_set(filelist[| i], 0, true);
-						
-					if (ds_list_find_value(filelist[| i], 9) == 0) // if restart instead of resume
-						ds_list_set(filelist[| i], 2, 0);
-					else 
-					{
-						if (ds_list_find_value(filelist[| i], 2) >= ds_list_find_value(filelist[| i], 4))
-							ds_list_set(filelist[| i], 2, 0);
-					}
-				}
+				tlpos = jump_button_list_midi[| i + 1]/projectfps*1000;
 				frame_surf_refresh = 1;
 			}
 		}
-	}*/
+	}
 	
 	ds_list_free_pool(t_keys);
 }
