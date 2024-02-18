@@ -1,16 +1,13 @@
 TODO
-- wider DAC list
-- Fix fps to 120 when laser is off, to ensure smooth UI interaction. (currently testing in settings room)
-- new optimization for seamless transitions using bezier curve, and curve check every point
-- better default optimization settings
+- better default optimization settings, reduce sensitivity for dynamic fps
 - add jump button list to seq project file
 - fix small gap at start or end of some segments. Especially noticeable in fonts etc.
-- crash on exit IDN on mac/linux in dacwrapper. See error below*
+- crash on exit IDN on linux in dacwrapper (fixed in code, only needs to be built).
 - ability to select multiple items in editor by dragging mouse
-- update windows/linux dacwrapper to use netmask on IDN broadcast.
+- update windows dacwrapper to use netmask on IDN broadcast.
 - master fps control on live mode for live modulation of speed.
+- new optimization for seamless transitions using bezier curve
 - BPM-based timing (enter lengths of objects etc in bars instead of frames etc)
-- use ds_list pooling to improve reliability due to reused index GM shenanigans 
 - record mac address for license, for better piracy detection
 - fix ctrl+key shortcuts in linux
 - included set of ILDA files / beams 
@@ -24,7 +21,7 @@ TODO
 - fix crash on app close on macos after having used IDN dac
 - add possibility for assigning different projectors to live modes files.
 - add possibility to show cursor in editor when laser is on.
-- add midi cc and nrpn
+- add midi cc and nrpn output (for Radiator etc)
 - ability to easily add shaking effect to multiple objects on timeline mode. Envelope?
 - improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
@@ -39,9 +36,7 @@ TODO
 - add dmx
 - mac dialogs keep keyboard buttons pressed, io_reset() doesn't work
 - fix first point in live mode not rotating in preview when applying rotation slider (works in laser output)
-- midi output on timeline, to trigger events in f.ex the radiator
 - arbitrary animation easing function
-- midi input for live mode trigger etc.
 - reapply combine shapes
 - split objects in editor mode
 - add back file registering when yyg fixes file parameter opening
@@ -62,11 +57,7 @@ TODO
 - AUTOMATIC live mode
 - audio_loudness_previous_frame
 - shaking stuff (email 2017-11-18)
-- Support for other glyphs in the text tool
-
-*free(contexts[i]->bufferPtr); on line 292 Device_IDN.cpp
-malloc: *** error for object 0x7fc6d6f14000: pointer being freed was not allocated
-
+- Fonts with more glyphs in the text tool (japanese, chinese, korean, cyrillic, hindi, etc)
 
 
 SETTINGSCONTROL

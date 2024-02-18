@@ -36,11 +36,11 @@ function make_frame_bezier() {
 		{
 			controller.fpsmultiplier = 4;
 		}*/
-		if ((controller.opt_maxdist/t_lengthwanted) < 0.33333)
+		if ((controller.opt_maxdist/t_lengthwanted) < 0.1)
 		{
 			controller.fpsmultiplier = 3;
 		}
-		else if ((controller.opt_maxdist/t_lengthwanted) < 0.5)
+		else if ((controller.opt_maxdist/t_lengthwanted) < 0.25)
 		{
 			controller.fpsmultiplier = 2;
 		}

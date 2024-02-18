@@ -143,9 +143,9 @@ function refresh_surfaces() {
 	            {
 	                var t_lengthwanted = abs(lit_length/t_litpointswanted);
                 
-	                if (t_lengthwanted > 2000)//controller.opt_maxdist) TODO create setting
+	                if (t_lengthwanted > controller.opt_maxdist/0.1)
 	                    frame_complexity = 1;
-	                else if (t_lengthwanted > 2000*0.5)
+	                else if (t_lengthwanted > controller.opt_maxdist/0.25)
 	                    frame_complexity = 2;
 	            }
 	            else

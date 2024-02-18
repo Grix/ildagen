@@ -31,11 +31,11 @@ function make_frame() {
 		{
 			controller.fpsmultiplier = 4;
 		}*/
-		if ((controller.opt_maxdist/t_lengthwanted) < 0.33333)
+		if ((controller.opt_maxdist/t_lengthwanted) < 0.1)
 		{
 			controller.fpsmultiplier = 3;
 		}
-		else if ((controller.opt_maxdist/t_lengthwanted) < 0.5)
+		else if ((controller.opt_maxdist/t_lengthwanted) < 0.25)
 		{
 			controller.fpsmultiplier = 2;
 		}
@@ -249,7 +249,7 @@ function make_frame() {
 	                //opt_vectory = (yp_prev-ypp)/opt_dist;
                     
 	                //find number of steps and step size
-	                //var t_trav_dist = a_ballistic;
+	                var t_trav_dist = a_ballistic;
 					var t_quantumstepssqrt = ceil(sqrt(opt_dist/t_trav_dist));
 					var t_numsteps = t_quantumstepssqrt * 2;
 					for (k = 0; k <= t_numsteps ; k++)

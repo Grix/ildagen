@@ -9,7 +9,7 @@ function load_settings() {
 			if (!ini_section_exists("projector_0"))
 	        {
 	            ini_write_string("projector_0", "name", "default");
-	            ini_write_real("projector_0", "scanrate", 20000);
+	            ini_write_real("projector_0", "scanrate", 30000);
 	            ini_write_real("projector_0", "maxdist", 150);
 	            ini_write_real("projector_0", "maxdwell", 4);
 	            ini_write_real("projector_0", "maxdwell_blank", 1);
@@ -52,7 +52,7 @@ function load_settings() {
                 
 	            var t_profilemap = ds_map_create();
 	            ds_map_add(t_profilemap, "name", ini_read_string(t_projectorstring, "name", "name_error"));
-	            ds_map_add(t_profilemap, "scanrate", ini_read_real(t_projectorstring, "scanrate", 20000));
+	            ds_map_add(t_profilemap, "scanrate", ini_read_real(t_projectorstring, "scanrate", 30000));
 	            ds_map_add(t_profilemap, "maxdwell", ini_read_real(t_projectorstring, "maxdwell", 4));
 	            ds_map_add(t_profilemap, "maxdwell_blank", ini_read_real(t_projectorstring, "maxdwell_blank", 1));
 	            ds_map_add(t_profilemap, "blankshift", ini_read_real(t_projectorstring, "blankshift", 0));
