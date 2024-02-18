@@ -8,7 +8,8 @@ function create_checkpoint_list(argument0) {
 	var t_buffer_ver = buffer_read(t_buffer,buffer_u8);
 	if (t_buffer_ver != 52)
 	{
-		show_message_new("Error: Unexpected version id reading buffer in create_checkpoint_list: "+string(t_buffer_ver)+". Things might get ugly. Contact developer.");
+		if (!controller.warning_suppress)
+			show_message_new("Error: Unexpected version id reading buffer in create_checkpoint_list: "+string(t_buffer_ver)+". Things might get ugly. Contact developer.");
 		return t_checkpointlist;
 	}
 	var t_buffer_maxframes = buffer_read(t_buffer,buffer_u32);

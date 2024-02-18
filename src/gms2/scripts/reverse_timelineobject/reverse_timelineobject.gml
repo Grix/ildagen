@@ -20,7 +20,9 @@ function reverse_timelineobject() {
 	    bufferformat = buffer_read(el_buffer_old, buffer_u8);
 		if (bufferformat != 52)
 		{
-			show_message_new("Error: Unexpected version id reading buffer while reversing object: "+string(bufferformat)+". Things might get ugly. Contact developer.");
+			if (!controller.warning_suppress)
+				show_message_new("Error: Unexpected version id reading buffer while reversing object: "+string(bufferformat)+". Things might get ugly. Contact developer.");
+			controller.warning_suppress = true;
 			exit;
 		}
 	    maxframes = buffer_read(el_buffer_old,buffer_u32);

@@ -14,7 +14,9 @@ function seek_to_correct_frame(argument0, argument1, argument2) {
 		var t_buffer_ver = buffer_read(t_buffer,buffer_u8);
 		if (t_buffer_ver != 52)
 		{
-			show_message_new("Error: Unexpected version id reading buffer in seek_to_correct_frame: "+string(t_buffer_ver)+". Things might get ugly. Contact developer.");
+			if (!controller.warning_suppress)
+				show_message_new("Error: Unexpected version id reading buffer in seek_to_correct_frame: "+string(t_buffer_ver)+". Things might get ugly. Contact developer.");
+			controller.warning_suppress = true;
 			return false;
 		}
 		buffer_maxframes = buffer_read(t_buffer,buffer_u32);
@@ -52,7 +54,9 @@ function seek_to_correct_frame(argument0, argument1, argument2) {
 			var t_buffer_ver = buffer_read(t_buffer,buffer_u8);
 			if (t_buffer_ver != 52)
 			{
-				show_message_new("Error: Unexpected version id reading buffer in seek_to_correct_frame: "+string(t_buffer_ver)+". Things might get ugly. Contact developer.");
+				if (!controller.warning_suppress)
+					show_message_new("Error: Unexpected version id reading buffer in seek_to_correct_frame: "+string(t_buffer_ver)+". Things might get ugly. Contact developer.");
+				controller.warning_suppress = true;
 				return false;
 			}
 			buffer_maxframes = buffer_read(t_buffer,buffer_u32);

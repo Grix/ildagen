@@ -195,14 +195,14 @@ function create_letter() {
         
 	        if (blankmode == "dot")
 	        {
-	            ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/64);
-	            ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/64);
+	            ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/38);
+	            ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/38);
 	            ds_list_add(new_list,1);
 	            ds_list_add(new_list,c);
 	            repeat (dotmultiply)
 	            {
-	                ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/64);
-	                ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/64);
+	                ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/38);
+	                ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/38);
 	                ds_list_add(new_list,0);
 	                ds_list_add(new_list,c);
 	            }
@@ -215,13 +215,13 @@ function create_letter() {
 	                {
 	                    if (n)
 	                    {
-	                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+4*(n-1))-$ffff/2)*font_size/64);
-	                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+4*(n-1)+1)-$ffff/2)*font_size/64);
+	                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+4*(n-1))-$ffff/2)*font_size/38);
+	                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+4*(n-1)+1)-$ffff/2)*font_size/38);
 	                    }
 	                    else
 	                    {
-	                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/64);
-	                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/64);
+	                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/38);
+	                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/38);
 	                    }
 	                    ds_list_add(new_list,1);
 	                    ds_list_add(new_list,c);
@@ -230,13 +230,13 @@ function create_letter() {
 	                {
 	                    if (n)
 	                    {
-	                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+4*(n-1))-$ffff/2)*font_size/64);
-	                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+4*(n-1)+1)-$ffff/2)*font_size/64);
+	                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+4*(n-1))-$ffff/2)*font_size/38);
+	                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+4*(n-1)+1)-$ffff/2)*font_size/38);
 	                    }
 	                    else
 	                    {
-	                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/64);
-	                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/64);
+	                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/38);
+	                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/38);
 	                    }
 	                    ds_list_add(new_list,0);
 	                    ds_list_add(new_list,controller.enddotscolor_r);
@@ -245,13 +245,13 @@ function create_letter() {
 	                {
 	                    if (n)
 	                    {
-	                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+4*(n-1))-$ffff/2)*font_size/64);
-	                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+4*(n-1)+1)-$ffff/2)*font_size/64);
+	                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+4*(n-1))-$ffff/2)*font_size/38);
+	                        ds_list_add(new_list,(ds_list_find_value(letter_list,20+4*(n-1)+1)-$ffff/2)*font_size/38);
 	                    }
 	                    else
 	                    {
-	                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/64);
-	                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/64);
+	                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/38);
+	                        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/38);
 	                    }
 	                    ds_list_add(new_list,0);
 	                    ds_list_add(new_list,controller.enddotscolor_r);
@@ -259,14 +259,14 @@ function create_letter() {
 	            }
 	            else
 	            {
-	                ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/64);
-	                ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/64);
+	                ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/38);
+	                ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/38);
 	                ds_list_add(new_list,0);
 	                ds_list_add(new_list,c);
 	                repeat (dotmultiply)
 	                {
-	                    ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/64);
-	                    ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/64);
+	                    ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/38);
+	                    ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/38);
 	                    ds_list_add(new_list,0);
 	                    ds_list_add(new_list,controller.enddotscolor_r);
 	                }
@@ -276,20 +276,20 @@ function create_letter() {
 	    }  
 	    else
 	    {    
-	        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/64);
-	        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/64);
+	        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/38);
+	        ds_list_add(new_list,(ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/38);
 	        ds_list_add(new_list,blank);
 	        ds_list_add(new_list,c);
 	    }
     
-	    if (((ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/64) > xmax)
-	       xmax = ((ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/64);     
-	    if (((ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/64) < xmin)
-	       xmin = ((ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/64);
-	    if (((ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/64) > ymax)
-	       ymax = ((ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/64);     
-	    if (((ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/64) < ymin)
-	       ymin = ((ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/64);
+	    if (((ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/38) > xmax)
+	       xmax = ((ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/38);     
+	    if (((ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/38) < xmin)
+	       xmin = ((ds_list_find_value(letter_list,currentpos)-$ffff/2)*font_size/38);
+	    if (((ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/38) > ymax)
+	       ymax = ((ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/38);     
+	    if (((ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/38) < ymin)
+	       ymin = ((ds_list_find_value(letter_list,currentpos+1)-$ffff/2)*font_size/38);
     
     
 	}
@@ -297,7 +297,7 @@ function create_letter() {
 	ds_list_replace(new_list,0,(ds_list_find_value(new_list,0)-xmin));
 	ds_list_replace(new_list,2,(ds_list_find_value(new_list,2)-xmin));
 
-	xdelta[frame] += xmax-xmin+font_size/4.5*256*font_spacing;
+	xdelta[frame] += xmax-xmin+font_size/4*256*font_spacing;
 
 
 	return 1;

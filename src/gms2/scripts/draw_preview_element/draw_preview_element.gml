@@ -3,9 +3,6 @@ function draw_preview_element() {
 
 	draw_set_color(c_gray);
 
-	if (placing == "font")
-	    exit;
-	
 	var t_startx = startpos[0]/$ffff*view_wport[4];
 	var t_starty = camera_get_view_y(view_camera[4])+startpos[1]/$ffff*view_wport[4];
 
@@ -49,6 +46,12 @@ function draw_preview_element() {
 	    draw_circle(t_startx,t_starty,2,0);
 	    draw_text(t_startx+5,t_starty-10,"startx, starty");
 	    draw_text(obj_cursor.x+8,obj_cursor.y-10,"endx, endy");
+	}
+	else if (placing == "text")
+	{
+		draw_line_width(obj_cursor.x, camera_get_view_y(view_camera[4])+obj_cursor.y-font_size/38/2.7*view_wport[4],
+						obj_cursor.x, camera_get_view_y(view_camera[4])+obj_cursor.y,
+						dpi_multiplier);
 	}
 	else if (placing == "wave")
 	{

@@ -1,10 +1,10 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj__ttlpalette",
+  "name": "obj_fontsize",
   "spriteId": {
-    "name": "spr_checkbox",
-    "path": "sprites/spr_checkbox/spr_checkbox.yy",
+    "name": "spr_plusminusbutton",
+    "path": "sprites/spr_plusminusbutton/spr_plusminusbutton.yy",
   },
   "solid": false,
   "visible": true,
@@ -30,13 +30,14 @@
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":5,"eventType":6,"collisionObjectId":null,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":4,"eventType":6,"collisionObjectId":null,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "settings",
-    "path": "folders/Objects/buttons/settings.yy",
+    "name": "shape",
+    "path": "folders/Objects/buttons/ilda/shape.yy",
   },
 }

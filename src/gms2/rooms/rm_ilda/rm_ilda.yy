@@ -119,6 +119,7 @@
             {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_34F98169","properties":[],"isDnd":false,"objectId":{"name":"obj_enterlive","path":"objects/obj_enterlive/obj_enterlive.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":108.0,"y":3654.0,},
             {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_7C6E0E78","properties":[],"isDnd":false,"objectId":{"name":"obj_tolive","path":"objects/obj_tolive/obj_tolive.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1140.0,"y":580.0,},
             {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_4B6B922D","properties":[],"isDnd":false,"objectId":{"name":"obj_font_selector","path":"objects/obj_font_selector/obj_font_selector.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":644.0,"y":28.0,},
+            {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_442B0749","properties":[],"isDnd":false,"objectId":{"name":"obj_fontsize","path":"objects/obj_fontsize/obj_fontsize.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":650.0,"y":72.0,},
           ],"visible":true,"depth":100,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritVisibility":true,"inheritSubLayers":true,"gridX":2,"gridY":2,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],},
         {"resourceType":"GMRAssetLayer","resourceVersion":"1.0","name":"texttiles","assets":[
             {"resourceType":"GMRSpriteGraphic","resourceVersion":"1.0","name":"graphic_4E8DDF44","spriteId":{"name":"spr_tt_file","path":"sprites/spr_tt_file/spr_tt_file.yy",},"headPosition":-1.0,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"animationSpeed":1.0,"colour":4294967295,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1147.0,"y":527.0,},
@@ -233,6 +234,7 @@
     {"name":"inst_1547E6D6","path":"rooms/rm_ilda/rm_ilda.yy",},
     {"name":"inst_156BEAEF","path":"rooms/rm_ilda/rm_ilda.yy",},
     {"name":"inst_4B6B922D","path":"rooms/rm_ilda/rm_ilda.yy",},
+    {"name":"inst_442B0749","path":"rooms/rm_ilda/rm_ilda.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,

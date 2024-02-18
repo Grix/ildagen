@@ -363,8 +363,10 @@ function handle_mousecontrol_seq() {
 			        buffer_ver = buffer_read(t_oldbuffer,buffer_u8);
 			        if (buffer_ver != 52)
 			        {
-			            show_message_new("Error: Unexpected version id reading buffer while stretching object: "+string(buffer_ver)+". Things might get ugly. Contact developer.");
-			            exit;
+						if (!controller.warning_suppress)
+							show_message_new("Error: Unexpected version id reading buffer while stretching object: "+string(buffer_ver)+". Things might get ugly. Contact developer.");
+			            controller.warning_suppress = true;
+						exit;
 			        }
 			        buffer_maxframes = buffer_read(t_oldbuffer,buffer_u32);
 					fetchedframe = floor(lerp(0, buffer_maxframes-0.001, n/t_newmaxframes));

@@ -15,8 +15,10 @@ function make_screenshot(argument0, argument1) {
 	buffer_ver = buffer_read(el_buffer,buffer_u8);
 	if (buffer_ver != 52)
 	{
-	    show_message_new("Error: Unexpected ID byte in make_screenshot. Things might get ugly. Please contact developer.");
-	    return temp_surf;
+		if (!controller.warning_suppress)
+			show_message_new("Error: Unexpected ID byte in make_screenshot. Things might get ugly. Please contact developer.");
+	    controller.warning_suppress = true;
+		return temp_surf;
 	}
 	buffer_maxframes = buffer_read(el_buffer,buffer_u32);
 	buffer_maxelements = buffer_read(el_buffer,buffer_u32);

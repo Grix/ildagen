@@ -4,8 +4,8 @@ function dropdown_text() {
 	{
 	    num = 3;
 	    event_user(1);
-	    ds_list_add(desc_list,"Set font");
-	    ds_list_add(desc_list,"Set size");
+	    ds_list_add(desc_list,"Load custom font");
+	    ds_list_add(desc_list,"Set font size");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,dd_text_font);

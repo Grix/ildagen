@@ -520,7 +520,7 @@ function process_dialog_ilda() {
 	          }
 	            case "fontsize":
 	          {
-	              font_size = clamp(ds_map_find_value(argument[0], "value"),1,128);
+	              font_size = clamp(ds_map_find_value(argument[0], "value"),0.1,200);
 	              break;
 	          }
 			    case "fontspacing":
