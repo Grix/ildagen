@@ -13,7 +13,7 @@ function refresh_browser_grid_surface() {
 
 		var t_width = max(1, camera_get_view_width(view_camera[1])-scrollbarwidth);
 		var t_height = max(1, surface_get_height(browser_surf));
-		var t_cells_per_row = ceil(t_width / (target_width_per_cell));
+		var t_cells_per_row = num_grid_columns; //ceil(t_width / (target_width_per_cell));
 		var t_cells_per_column = ceil(t_height / (target_width_per_cell));
 		var t_cell_size = t_width / t_cells_per_row;
 

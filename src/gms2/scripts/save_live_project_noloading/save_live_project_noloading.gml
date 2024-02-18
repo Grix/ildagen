@@ -45,7 +45,9 @@ function save_live_project_noloading() {
 	buffer_write(save_buffer,buffer_u8,mastery_midi_shortcut + 2);
 	buffer_write(save_buffer,buffer_u8,masterabsrot_midi_shortcut + 2);
 	buffer_write(save_buffer,buffer_u8,0);
-	repeat (30)
+	
+	buffer_write(save_buffer,buffer_u8,num_grid_columns);
+	repeat (29)
 	    buffer_write(save_buffer,buffer_u8,0);
 	buffer_write(save_buffer,buffer_u32,ds_list_size(filelist)); //pos 50
 

@@ -63,6 +63,7 @@ frame_surf = -1;
 frame3d_surf = -1;
 
 target_width_per_cell = 128;
+num_grid_columns = 8;
 
 tlw = 983; //width of grid area
 tlh = 570; // height of grid area

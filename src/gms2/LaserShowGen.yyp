@@ -1094,6 +1094,7 @@
     {"id":{"name":"rm_loading","path":"rooms/rm_loading/rm_loading.yy",},"order":4,},
     {"id":{"name":"documentation","path":"notes/documentation/documentation.yy",},"order":0,},
     {"id":{"name":"filesaver","path":"extensions/filesaver/filesaver.yy",},"order":0,},
+    {"id":{"name":"obj_num_columns","path":"objects/obj_num_columns/obj_num_columns.yy",},"order":10,},
     {"id":{"name":"Color_Difference_Using_CIE94","path":"extensions/Color_Difference_Using_CIE94/Color_Difference_Using_CIE94.yy",},"order":1,},
     {"id":{"name":"dacwrapper","path":"extensions/dacwrapper/dacwrapper.yy",},"order":2,},
     {"id":{"name":"normalize_editing_path","path":"scripts/normalize_editing_path/normalize_editing_path.yy",},"order":41,},

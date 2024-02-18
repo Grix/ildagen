@@ -30,7 +30,7 @@ function handle_mousecontrol_live() {
 
 	var t_width = max(1, camera_get_view_width(view_get_camera(1))-scrollbarwidth+1);
 	var t_ystart = camera_get_view_y(view_get_camera(1))-scrollbary;
-	var t_cells_per_row = ceil(t_width / target_width_per_cell);
+	var t_cells_per_row = num_grid_columns;//ceil(t_width / target_width_per_cell);
 	var t_cell_size = t_width / t_cells_per_row;
 
 	var t_row;

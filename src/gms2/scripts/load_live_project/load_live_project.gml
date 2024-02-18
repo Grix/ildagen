@@ -54,6 +54,11 @@ function load_live_project(argument0) {
 	masterx_midi_shortcut = buffer_read(load_buffer,buffer_u8) - 2;
 	mastery_midi_shortcut = buffer_read(load_buffer,buffer_u8) - 2;
 	masterabsrot_midi_shortcut = buffer_read(load_buffer,buffer_u8) - 2;
+	buffer_read(load_buffer,buffer_u8);
+	
+	num_grid_columns = buffer_read(load_buffer,buffer_u8);
+	if (num_grid_columns == 0)
+		num_grid_columns = 8;
 	
 	buffer_seek(load_buffer,buffer_seek_start,50);
     

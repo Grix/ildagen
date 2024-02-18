@@ -305,7 +305,7 @@ function draw_timeline() {
 		            var t_index = imid;
 					if (t_index != 0 && t_index < ds_list_size(time_list)-1)
 						t_index += 1;
-					log(t_index, imid);
+					//log(t_index, imid);
 		            var t_env_y;
 		            var t_env_x;
 		            //draw envelope graph

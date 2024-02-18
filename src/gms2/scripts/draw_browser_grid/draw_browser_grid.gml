@@ -6,7 +6,7 @@ function draw_browser_grid() {
 
 	var t_width = max(1, camera_get_view_width(view_camera[1])-scrollbarwidth+1);
 	var t_ystart = camera_get_view_y(view_camera[1])-scrollbary;
-	var t_cells_per_row = ceil(t_width / (target_width_per_cell));
+	var t_cells_per_row = num_grid_columns;//ceil(t_width / (target_width_per_cell));
 	var t_cell_size = t_width / t_cells_per_row;
 
 	if (highlightfile != -1)
@@ -34,19 +34,19 @@ function draw_browser_grid() {
 	
 		objectlist = filelist[| i];
 		
-		if (objectlist[| 7])
+		if (objectlist[| 7] && t_cell_size > 35+16)
 		{
 			draw_sprite(spr_loop, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+35);
 		}
-		if (objectlist[| 8])
+		if (objectlist[| 8] && t_cell_size > 35+32)
 		{
 			draw_sprite(spr_exclusive, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+35+16);
 		}
-		if (objectlist[| 9])
+		if (objectlist[| 9] && t_cell_size > 35+48)
 		{
 			draw_sprite(spr_resume, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+35+32);
 		}
-		if (objectlist[| 10])
+		if (objectlist[| 10] && t_cell_size > 35+72)
 		{
 			draw_sprite(spr_hold, 0, t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+35+48);
 		}
@@ -73,30 +73,34 @@ function draw_browser_grid() {
 		if (objectlist[| 6] == -1)
 		{
 			draw_set_color(controller.c_gold);
-			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+3, "Press key...");
+			draw_text(t_column*t_cell_size+4, t_ystart+t_row*t_cell_size+4, "Press key..");
 		}
 		else if (objectlist[| 6] > 0 && !t_skip_drawing_shortcut)
 		{
 			draw_set_color(c_white);
-			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+3, chr(objectlist[| 6]));
+			draw_text(t_column*t_cell_size+4, t_ystart+t_row*t_cell_size+4, chr(objectlist[| 6]));
 		}
 		
 		if (objectlist[| 11] != "")
 		{
 			draw_set_color(c_ltgray);
 			draw_set_font(fnt_tooltip);
-			draw_text(t_column*t_cell_size+3, t_ystart+t_row*t_cell_size+19, objectlist[| 11]);
+			draw_text(t_column*t_cell_size+4, t_ystart+t_row*t_cell_size+19, objectlist[| 11]);
 		}
 		
 		if (objectlist[| 13] == -1)
 		{
 			draw_set_color(controller.c_gold);
-			draw_text(t_column*t_cell_size+22, t_ystart+t_row*t_cell_size+3, "Press MIDI key...");
+			draw_set_halign(fa_right);
+			draw_text(t_column*t_cell_size+t_cell_size - 4, t_ystart+t_row*t_cell_size+4, "Press MIDI key..");
+			draw_set_halign(fa_left);
 		}
 		else if (objectlist[| 13] > 0 && !t_skip_drawing_shortcut)
 		{
 			draw_set_color(c_teal);
-			draw_text(t_column*t_cell_size+22, t_ystart+t_row*t_cell_size+3, midi_get_note_name(objectlist[| 13]));
+			draw_set_halign(fa_right);
+			draw_text(t_column*t_cell_size+t_cell_size - 4, t_ystart+t_row*t_cell_size+4, midi_get_note_name(objectlist[| 13]));
+			draw_set_halign(fa_left);
 		}
 	}
 	
