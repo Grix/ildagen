@@ -39,6 +39,8 @@
 // Platform headers
 #include <arpa/inet.h>
 
+typedef void (*IFADDR_CALLBACK_PFN)(void* callbackArg, const char* ifName, uint32_t ifIP4Addr, uint32_t ifIP4Mask);
+
 #ifdef __APPLE__
 #include <sys/types.h>
 #include <sys/_types/_timespec.h>
@@ -49,8 +51,6 @@
 #define TIMER_ABSTIME -1
 #define MT_NANO (+1.0E-9)
 #define MT_GIGA UINT64_C(1000000000)
-
-typedef void (* IFADDR_CALLBACK_PFN)(void *callbackArg, const char *ifName, uint32_t ifIP4Addr, uint32_t ifIP4Mask);
 
 // TODO create a list of timers,
 static double mt_timebase = 0.0;

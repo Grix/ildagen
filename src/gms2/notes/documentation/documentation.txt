@@ -1,7 +1,8 @@
 TODO
-- better default optimization settings, reduce sensitivity for dynamic fps
+- update manual
 - add jump button list to seq project file
-- fix small gap at start or end of some segments. Especially noticeable in fonts etc.
+- ability to immediately restart instead of stopping when triggering live mode animation
+- fix small gap at start or end of some segments. Especially noticeable in fonts etc (especially LFI vector).
 - crash on exit IDN on linux in dacwrapper (fixed in code, only needs to be built).
 - ability to select multiple items in editor by dragging mouse
 - update windows dacwrapper to use netmask on IDN broadcast.

@@ -1,13 +1,17 @@
-v1.10.3 (Only released on macOS)
+v1.11.0
+- Add ability to use MIDI controllers to trigger animations and adjust sliders in the live and timeline modes.
+- Text tool user-friendliness improvements, can select built-in fonts with a drop-down menu etc.
+- Support for international (UTF-8) LaserBoy fonts. Most built-in fonts now support symbols like ß, ö, ñ etc.
+- Attempted fix of a sporadic bug that could cause crashes or corruptions in seemingly random situations.
+- Add ability to change the number of columns in the grid mode.
+- Grid mode project files now save the state of the adjustment sliders.
+- Slight change in optimization behavior and default settings.
+- No longer caps the FPS to 60 when laser is off: UI can appear smoother at high refresh rate screens.
+
+v1.10.3
 - Fix audio on timeline projects not working on some Mac computers.
 - Fix error message after closing the program when using IDN on Mac computers.
-- Improved laser optimization, especially on text and imported objects with sharp corners.
+- Improve laser optimization, especially on text and imported objects with sharp corners.
 - Fix IDN DAC scanning not working with obscure IP address netmasks.
 - Overlap parts of drawn circles slightly, to prevent small defects when outputting.
 - Other minor changes.
-
-v1.10.2
-- Add undo/redo-ing for changing scope in editor mode, and start/end in timeline mode.
-- Fix small bug in LaserCube communication causing every 256th frame to be non-conformant. 
-- Fix dialog popups on macOS not working on older macOS versions.
-- Remember default FPS settings between startups.
