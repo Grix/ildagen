@@ -52,7 +52,7 @@ function _ML_LEX_TokenSetType(argument0, argument1, argument2) {
 	        operator = ds_map_find_value(P_TERNOPER, tokenval);
 	    break;
 	    case ML_TT_UNKNOWN:
-	        ML_RaiseException(ML_EXCEPT_UNKNOWNTOKEN, _ML_LiTok_GetPos(tok), 
+	        ML_RaiseException(argument0, ML_EXCEPT_UNKNOWNTOKEN, _ML_LiTok_GetPos(tok), 
 	            "unknown tokentype '" +string(tokenval)+ "' at "+string(_ML_LiTok_GetPos(tok)));
 	        operator = -1;
 	    default:

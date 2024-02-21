@@ -50,7 +50,7 @@ function prepare_output_onlyblank() {
 	        if (ds_list_find_index(t_list_empties, list_id) != -1)
 	            continue;
 			
-			if (ds_list_size(list_id) <= 20)
+			if (ds_list_size(list_id) <= 22)
 			{
 				ds_list_add(t_list_empties, list_id);
 				continue;
