@@ -5,6 +5,8 @@ function create_element() {
 	framepre = frame;
 	placing_status = 0;
 	clean_redo_list();
+	ML_ClearExceptions(parser_cb);
+	ML_ClearExceptions(parser_shape);
         
 	if (maxframes == 1) and (anienable)
 	{

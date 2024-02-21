@@ -1,5 +1,5 @@
 v1.11.1
-- Fix a crash when using the arbitrary function tools with an invalid token in the function.
+- Fix some possible crashes or corruptions when using the arbitrary function tools with an invalid function.
 
 v1.11.0
 - Add ability to use MIDI controllers to trigger animations and adjust sliders in the live and timeline modes.

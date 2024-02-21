@@ -70,7 +70,7 @@ function _ML_LexicalAnalysis(argument0, argument1, argument2) {
 	            }
 	            l = baselength;
 	        } else {
-	            ML_RaiseException(ML_EXCEPT_CHAR,p,"unknown charcter: '"+c+"' at "+string(p));
+	            ML_RaiseException(parser, ML_EXCEPT_CHAR,p,"unknown charcter: '"+c+"' at "+string(p));
 	            l = _ML_FirstStringPos3(str, " ", "(", ")") - 1;
 	        }
 	        if (l <= 0) l = string_length(str);

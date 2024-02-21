@@ -26,14 +26,21 @@ function ML_Execute(argument0, argument1) {
 	var compile = argument1;
 	var result = _ML_LiRO_Create();
 
+	try
+	{
 
-	global._ML_CURRENTPARSER_ = parser;
-	if (ML_NoException(parser)) {
-	    var ans = _ML_ParseCompiled(parser, compile, result);
-	    if (ML_NoException(parser)) {
-	        _ML_LiRO_SetFinal(result, ans);
-	        _ML_LiRO_SetCalculated(result, true);
-	    }
+		global._ML_CURRENTPARSER_ = parser;
+		if (ML_NoException(parser)) {
+		    var ans = _ML_ParseCompiled(parser, compile, result);
+		    if (ML_NoException(parser)) {
+		        _ML_LiRO_SetFinal(result, ans);
+		        _ML_LiRO_SetCalculated(result, true);
+		    }
+		}
+	}
+	catch (exception)
+	{
+		ML_RaiseException(parser, ML_EXCEPT_FUNCTION, -1, "Error during execution of function");
 	}
 
 

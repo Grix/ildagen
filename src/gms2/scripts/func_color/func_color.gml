@@ -53,6 +53,7 @@ function func_color() {
 	    ML_CompileCleanup(compiled_1);
 	    ML_CompileCleanup(compiled_2);
 	    ML_CompileCleanup(compiled_3);
+		ML_ClearExceptions(parser_cb);
 	    return 0;
 	}
 	result_2 = ML_Execute(parser_cb,compiled_2);
@@ -64,6 +65,7 @@ function func_color() {
 	    ML_CompileCleanup(compiled_1);
 	    ML_CompileCleanup(compiled_2);
 	    ML_CompileCleanup(compiled_3);
+		ML_ClearExceptions(parser_cb);
 	    return 0;
 	}
 	result_3 = ML_Execute(parser_cb,compiled_3);
@@ -76,6 +78,7 @@ function func_color() {
 	    ML_CompileCleanup(compiled_1);
 	    ML_CompileCleanup(compiled_2);
 	    ML_CompileCleanup(compiled_3);
+		ML_ClearExceptions(parser_cb);
 	    return 0;
 	}
     

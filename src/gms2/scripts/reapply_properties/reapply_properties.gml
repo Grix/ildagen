@@ -3,6 +3,7 @@ function reapply_properties() {
 	ilda_cancel();
 	clean_redo_list();
 	var t_loop = false;
+	ML_ClearExceptions(parser_cb);
 
 	//PREPARING FUNCTIONS
 	if (colormode == "func")
