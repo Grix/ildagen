@@ -1,3 +1,6 @@
+v1.11.1
+- Fix a crash when using the arbitrary function tools with an invalid token in the function.
+
 v1.11.0
 - Add ability to use MIDI controllers to trigger animations and adjust sliders in the live and timeline modes.
 - Text tool user-friendliness improvements, can select built-in fonts with a drop-down menu etc.
@@ -10,8 +13,4 @@ v1.11.0
 
 v1.10.3
 - Fix audio on timeline projects not working on some Mac computers.
-- Fix error message after closing the program when using IDN on Mac computers.
-- Improve laser optimization, especially on text and imported objects with sharp corners.
-- Fix IDN DAC scanning not working with obscure IP address netmasks.
-- Overlap parts of drawn circles slightly, to prevent small defects when outputting.
-- Other minor changes.
+- [5 other fixes]
