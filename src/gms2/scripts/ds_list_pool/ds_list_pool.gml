@@ -24,6 +24,12 @@ function ds_list_exists_pool(_list)
 function ds_list_free_pool(_list)
 {
 	ds_list_clear(_list);
-	ds_stack_push(global.list_pool, _list);
-	ds_map_delete(global.list_pool_is_taken, _list);
+	if (ds_list_exists_pool(_list))
+	{
+		ds_stack_push(global.list_pool, _list);
+		ds_map_delete(global.list_pool_is_taken, _list);
+	}
+	else
+		log("FOUND DOUBLE DESTROY");
+	
 }
