@@ -17,6 +17,7 @@
   "iosProps": true,
   "tvosProps": false,
   "androidProps": true,
+  "html5Props": false,
   "installdir": "",
   "files": [
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","filename":"window_command_hook.dll","origname":"extensions\\window_command_hook.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[
@@ -156,6 +157,7 @@
         {"name":"window_set_visible_w","path":"extensions/window_command_hook/window_command_hook.yy",},
       ],},
   ],
+  "HTML5CodeInjection": "",
   "classname": "",
   "tvosclassname": "",
   "tvosdelegatename": "",
@@ -184,7 +186,7 @@
   "tvosThirdPartyFrameworkEntries": [],
   "IncludedResources": [],
   "androidPermissions": [],
-  "copyToTargets": 238,
+  "copyToTargets": 64,
   "iosCocoaPods": "",
   "tvosCocoaPods": "",
   "iosCocoaPodDependencies": "",

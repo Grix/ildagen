@@ -1,8 +1,5 @@
 {
-  "extensionId": {
-    "name": "dacwrapper",
-    "path": "extensions/dacwrapper/dacwrapper.yy"
-  },
+  "extensionId": null,
   "resourceVersion": "1.0",
   "resourceType": "GMExtensionConfigSet",
   "configurables": null
