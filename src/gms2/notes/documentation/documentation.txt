@@ -1,4 +1,5 @@
 TODO
+- ds_list_pool doesn't solve anything, either add non-reusable indexes, or clean up other references when deleting objects etc
 - update manual
 - add jump button list to seq project file
 - ability to immediately restart instead of stopping when triggering live mode animation
