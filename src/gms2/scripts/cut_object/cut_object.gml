@@ -3,6 +3,8 @@ function cut_object() {
 
 	if (ds_list_exists_pool(copy_list))
 		ds_list_free_pool(copy_list);
+		
+	add_action_history_ilda("ILDA_cut");
 
 	temp_undof_list = ds_list_create_pool();
 	copy_list = ds_list_create_pool();

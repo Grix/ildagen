@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "merge_elements",
+  "name": "get_action_history_string",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "ilda",
-    "path": "folders/Scripts/ilda.yy",
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
   },
 }

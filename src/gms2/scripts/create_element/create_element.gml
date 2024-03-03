@@ -821,6 +821,7 @@ function create_element() {
 	    resolution = "auto";
 
 	ilda_cancel();
+	add_action_history_ilda("ILDA_create_"+placing);
 	ds_list_add(undo_list,el_id);
 
 	if (func_doaudio)

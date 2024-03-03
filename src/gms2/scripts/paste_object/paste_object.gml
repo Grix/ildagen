@@ -3,6 +3,8 @@ function paste_object() {
 	    exit;
     
 	ds_list_clear(semaster_list);
+	
+	add_action_history_ilda("ILDA_paste");
 
 	var tempelid = -1;
 

@@ -40,6 +40,7 @@ function export_ilda() {
 
 	c_n = 0;
 	c_map = ds_map_create();
+	
 
 	room_goto(rm_loading);
 

@@ -95,6 +95,7 @@ function handle_mousecontrol_seq() {
         
 	    if (mouse_check_button_released(mb_left))
 	    {
+			
 			clean_redo_list_seq();
 	        for (i = 0; i < ds_list_size(somaster_list); i++)
 	        {
@@ -158,6 +159,9 @@ function handle_mousecontrol_seq() {
 	                }
 	            }
                 
+				
+				add_action_history_ilda("SEQ_move");
+	
 	            ds_list_add(undo_list,"m"+string(undolisttemp));
             
 	            ds_list_replace(objecttomove,0,tempxstart);
@@ -251,6 +255,8 @@ function handle_mousecontrol_seq() {
 	                }
 	            }
             
+				add_action_history_ilda("SEQ_resize");
+			
 	            ds_list_replace(objecttomove, 2, templength);
             
 	            ds_list_add(undo_list,"r"+string(undolisttemp));
@@ -398,6 +404,8 @@ function handle_mousecontrol_seq() {
 				
 				ds_list_add(new_objectlist, create_checkpoint_list(el_buffer));
             
+				add_action_history_ilda("SEQ_stretch");
+			
 	            undolisttemp = ds_list_create_pool();
 		        ds_list_add(undolisttemp,new_objectlist);
 		        ds_list_add(undo_list,"c"+string(undolisttemp));
@@ -448,6 +456,7 @@ function handle_mousecontrol_seq() {
 	    mouse_xprevious = mouse_x;
 	    if (mouse_check_button_released(mb_left))
 	    {
+			add_action_history_ilda("SEQ_movemarker");
 			clean_redo_list_seq();
 	        ds_list_replace(marker_list,markertomove,round(ds_list_find_value(marker_list,markertomove)));
 			var t_undolist = ds_list_create_pool();
@@ -1310,6 +1319,7 @@ function handle_mousecontrol_seq() {
 		mouseonsomelayer = 1;
 	    if (mouse_check_button_pressed(mb_left))
 	    {
+			add_action_history_ilda("SEQ_moveendframe");
 			var t_undolist = ds_list_create_pool();
 			ds_list_add(t_undolist, startframe);
 			ds_list_add(t_undolist, endframe);
@@ -1334,6 +1344,7 @@ function handle_mousecontrol_seq() {
 	        {
 	            if (keyboard_check_control())
 				{
+					add_action_history_ilda("SEQ_deletemarker");
 					ds_list_add(undo_list, "j"+string(marker_list[| i]));
 	                ds_list_delete(marker_list,i);
 				}
@@ -1358,6 +1369,7 @@ function handle_mousecontrol_seq() {
 		mouseonsomelayer = 1;
 	    if (mouse_check_button_pressed(mb_left))
 	    {
+			add_action_history_ilda("SEQ_movestartframe");
 			var t_undolist = ds_list_create_pool();
 			ds_list_add(t_undolist, startframe);
 			ds_list_add(t_undolist, endframe);

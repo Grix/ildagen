@@ -40,6 +40,7 @@ function check_mouseactions() {
 		
 		if (keyboard_check_pressed(ord("1")))
 		{
+			add_action_history_ilda("ILDA_setscope");
 			var t_undolist = ds_list_create_pool();
 			ds_list_add(t_undolist, scope_start);
 			ds_list_add(t_undolist, scope_end);
@@ -50,6 +51,7 @@ function check_mouseactions() {
 		}
 		else if (keyboard_check_pressed(ord("2")))
 		{
+			add_action_history_ilda("ILDA_setscope");
 			var t_undolist = ds_list_create_pool();
 			ds_list_add(t_undolist, scope_start);
 			ds_list_add(t_undolist, scope_end);
@@ -62,6 +64,7 @@ function check_mouseactions() {
 	    {
 	        if (keyboard_check(vk_shift))
 	        {
+				add_action_history_ilda("ILDA_setscope");
 				var t_undolist = ds_list_create_pool();
 				ds_list_add(t_undolist, scope_start);
 				ds_list_add(t_undolist, scope_end);

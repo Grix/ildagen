@@ -5,6 +5,8 @@ function live_delete_object() {
 		ds_list_add(undolisttemp,filelist[| selectedfile]);
 		ds_list_add(undolisttemp,selectedfile);
 		ds_list_add(undo_list,"d"+string(undolisttemp));
+		
+		add_action_history_ilda("LIVE_deleteobject");
 	
 		ds_list_delete(filelist, selectedfile);
 	

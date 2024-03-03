@@ -73,6 +73,9 @@ function save_frames_inner(t_file_loc) {
     
 	if (!controller.warning_disable)
 		show_message_new("LaserShowGen frames saved to "+string(file_loc));
+		
+		
+	add_action_history_ilda("ILDA_saveframes");
 
 	buffer_delete(save_buffer);
 	filepath = file_loc;

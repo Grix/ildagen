@@ -215,6 +215,8 @@ function load_frames_seq(argument0) {
 	frame_surf_refresh = 1;
 	show_is_demo = false;
     
+	add_action_history_ilda("SEQ_loadframes");
+	
 	undolisttemp = ds_list_create_pool();
 	ds_list_add(undolisttemp,objectlist);
 	ds_list_add(undo_list,"c"+string(undolisttemp));

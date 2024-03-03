@@ -78,6 +78,8 @@ function frames_fromseq() {
 	    frame = 0;
 	    framehr = 0;
 		
+		add_action_history_ilda("ILDA_frames_fromseq");
+		
 		clean_redo_list();
     
 	    ds_map_destroy(el_idmap);

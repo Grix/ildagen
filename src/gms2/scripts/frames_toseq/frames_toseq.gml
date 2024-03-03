@@ -80,6 +80,8 @@ function frames_toseq() {
         
 	        selectedx += controller.maxframes;
 			
+			add_action_history_ilda("SEQ_frames_toseq");
+			
 			undolisttemp = ds_list_create_pool();
 			ds_list_add(undolisttemp,objectlist);
 			ds_list_add(undo_list,"c"+string(undolisttemp));
@@ -110,6 +112,8 @@ function frames_toseq() {
 			if (ds_list_exists_pool(objectlist[| 5]))
 				ds_list_free_pool(objectlist[| 5]);
 			ds_list_replace(objectlist, 5, create_checkpoint_list(controller.save_buffer));
+			
+			add_action_history_ilda("SEQ_frames_toseq_replace");
         
 			clean_seq_undo();
 	    }

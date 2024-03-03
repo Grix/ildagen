@@ -3,6 +3,8 @@
 function add_layer(){
 	with (seqcontrol)
 	{
+		add_action_history_ilda("SEQ_addlayer");
+		
 		newlayer = ds_list_create_pool();
 		ds_list_add(layer_list,newlayer);
 		ds_list_add(newlayer,ds_list_create_pool()); //envelope list

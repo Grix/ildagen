@@ -73,6 +73,8 @@ function import_font_end() {
 	    font_type = 0;
 	}
     
+	add_action_history_ilda("ILDA_import_font");
+	
 	if (ds_list_size(font_list) < 65/* || ds_list_size(font_list) > 100*/)
 		show_message_new("Warning: Unexpectedly few number of frames in the ILD file. Some symbols might not work. Is this a valid LaserBoy font file?");
 	

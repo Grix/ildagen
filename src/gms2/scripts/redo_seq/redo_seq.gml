@@ -7,6 +7,9 @@ function redo_seq() {
 		timeline_surf_length = 0;
 	    redo = ds_list_find_value(redo_list,ds_list_size(redo_list)-1);
 	    ds_list_delete(redo_list,ds_list_size(redo_list)-1);
+		
+		
+		add_action_history_ilda("SEQ_redo_"+string(redo));
     
 	    if (string_char_at(redo,0) == "c")
 	    {

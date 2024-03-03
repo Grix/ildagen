@@ -3,6 +3,10 @@ function split_timelineobject() {
 	splitted = false;
 	for (i = 0; i < ds_list_size(somaster_list); i++)
 	{
+		
+		add_action_history_ilda("SEQ_split");
+	
+		
 	    objectlist = somaster_list[| i];
 		if (!ds_list_exists_pool(objectlist))
 		{

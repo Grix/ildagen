@@ -40,6 +40,8 @@ ds_list_clear(semaster_list);
 
 if ((keyboard_check(ord("E"))) and (placing_status != 2))
 {
+	add_action_history_ilda("ILDA_samplecolor");
+	
     ds_list_add(undo_list,"bb"+string(color2));
     ds_list_add(undo_list,"b"+string(color1));
     color1 = draw_getpixel(obj_cursor.x,obj_cursor.y+23);

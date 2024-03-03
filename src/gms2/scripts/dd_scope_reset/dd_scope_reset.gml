@@ -6,6 +6,7 @@ function dd_scope_reset(shouldUndo) {
 		ds_list_add(t_undolist, scope_start);
 		ds_list_add(t_undolist, scope_end);
 		ds_list_add(undo_list,"c"+string(t_undolist));
+		add_action_history_ilda("ILDA_scopereset");
 	}
 			
 	controller.scope_start = 0;

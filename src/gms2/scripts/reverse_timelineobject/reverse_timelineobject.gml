@@ -1,7 +1,10 @@
 function reverse_timelineobject() {
 	//reversing timeline objects
+	
 	for (i = 0; i < ds_list_size(somaster_list); i++)
 	{
+		add_action_history_ilda("SEQ_reverse");
+	
 	    objectlist = somaster_list[| i];
 		if (!ds_list_exists_pool(objectlist))
 		{

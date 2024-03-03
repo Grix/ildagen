@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "merge_elements",
+  "name": "clean_element_references",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

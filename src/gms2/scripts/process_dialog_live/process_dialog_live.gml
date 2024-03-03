@@ -23,6 +23,8 @@ function process_dialog_live() {
 	{ 
 	    if ds_map_find_value(argument[0], "status")
 	   {
+		   add_action_history_ilda("LIVE_dialog_"+string(dialog));
+		   
 	      switch (dialog)
 	      {
 	        case "fromlive":

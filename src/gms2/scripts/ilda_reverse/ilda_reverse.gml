@@ -17,6 +17,8 @@ function ilda_reverse(is_undoing = false) {
 		frame_surf_refresh = 1;
 		update_semasterlist_flag = 1;
 		
+		add_action_history_ilda("ILDA_reverse");
+		
 		if (!is_undoing)
 		{
 			clean_redo_list();

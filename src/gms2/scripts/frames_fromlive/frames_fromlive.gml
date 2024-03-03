@@ -69,6 +69,9 @@ function frames_fromlive() {
 	    scope_start = 0;
 	    scope_end = maxframes-1;
 	    el_id++;
+		
+		
+		add_action_history_ilda("ILDA_frames_fromlive");
     
 	    ilda_cancel();
 	    ds_list_clear(semaster_list);

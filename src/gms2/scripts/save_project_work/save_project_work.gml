@@ -123,6 +123,8 @@ function save_project_work() {
 		show_message_new("LaserShowGen timeline project saved to "+string(file_loc));
 
 	buffer_delete(save_buffer);
+	
+	add_action_history_ilda("SEQ_saveproject");
 
 	filepath = file_loc;
 

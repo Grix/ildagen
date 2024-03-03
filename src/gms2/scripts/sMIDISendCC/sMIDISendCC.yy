@@ -6,6 +6,6 @@
   "isCompatibility": false,
   "parent": {
     "name": "helper scripts",
-    "path": "folders/GMSSimpleMIDI/helper scripts.yy",
+    "path": "folders/Scripts/GMSSimpleMIDI/helper scripts.yy",
   },
 }

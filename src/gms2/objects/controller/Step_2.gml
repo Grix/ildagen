@@ -143,8 +143,9 @@ if (!ds_list_exists_pool(el_list))
 	if (!controller.bug_report_suppress)
 	{
 		controller.bug_report_suppress = true;
+		var t_actionhistory = get_action_history_string();
 		http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
-			                "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "ERROR: el_list doesn't exist. frame="+string(frame)+", framelistsize="+string(ds_list_size(frame_list))+", maxframes="+string(maxframes));
+			                "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+t_actionhistory +  "\r\nERROR: el_list doesn't exist. frame="+string(frame)+", framelistsize="+string(ds_list_size(frame_list))+", maxframes="+string(maxframes));
 	}
 	frame_list[| frame] = ds_list_create_pool();
 	el_list = frame_list[| frame];
@@ -241,6 +242,8 @@ if (keyboard_check_control() && keyboard_check_pressed(ord("V")))
 
 if (keyboard_check(vk_shift) && keyboard_check_pressed(ord("1")))
 {
+	add_action_history_ilda("ILDA_setscope");
+	
 	var t_undolist = ds_list_create_pool();
 	ds_list_add(t_undolist, scope_start);
 	ds_list_add(t_undolist, scope_end);
@@ -251,6 +254,8 @@ if (keyboard_check(vk_shift) && keyboard_check_pressed(ord("1")))
 }
 else if (keyboard_check(vk_shift) && keyboard_check_pressed(ord("2")))
 {
+	add_action_history_ilda("ILDA_setscope");
+	
 	var t_undolist = ds_list_create_pool();
 	ds_list_add(t_undolist, scope_start);
 	ds_list_add(t_undolist, scope_end);

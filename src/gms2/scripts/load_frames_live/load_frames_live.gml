@@ -211,6 +211,8 @@ function load_frames_live(argument0) {
 	
 	ds_list_add(undo_list, "c"+string(selectedfile));
 	
+	add_action_history_ilda("LIVE_loadframes");
+	
 	frame_surf_refresh = 1;
 	if (surface_exists(browser_surf))
 		surface_free(browser_surf);

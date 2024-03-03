@@ -74,6 +74,8 @@ function merge_elements() {
 		ds_list_add(el_list, new_list);
 	}
 
+	add_action_history_ilda("ILDA_merge");
+
 	ds_list_add(undo_list,"l"+string(temp_undof_list));
 
 	ds_list_clear(semaster_list);

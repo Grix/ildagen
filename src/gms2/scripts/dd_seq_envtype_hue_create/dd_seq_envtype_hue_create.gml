@@ -10,4 +10,5 @@ function dd_seq_envtype_hue_create() {
 	clean_redo_list_seq();
 
 	ds_list_add(seqcontrol.undo_list, "p"+string(envelope));
+	add_action_history_ilda("SEQ_create_envelope");
 }

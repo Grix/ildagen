@@ -100,6 +100,8 @@ function export_ilda_work() {
 		show_message_new("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));
 
 	buffer_delete(ilda_buffer);
+	
+	add_action_history_ilda("ILDA_exportilda");
 
 	global.loading_exportilda = 0;
 	room_goto(rm_ilda);

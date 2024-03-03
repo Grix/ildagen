@@ -234,6 +234,9 @@ function export_project_work() {
 	var t_time = get_timer();
 	while ((get_timer() - t_time) > 4095)
 	    j = 0;
+		
+		
+	add_action_history_ilda("SEQ_exportilda");
 
 	if (!controller.warning_disable)
 		show_message_new("ILDA file (format "+string(controller.exp_format)+") exported to "+string(file_loc));

@@ -7,6 +7,8 @@ function undo_seq() {
 		timeline_surf_length = 0;
 	    undo = ds_list_find_value(undo_list,ds_list_size(undo_list)-1);
 	    ds_list_delete(undo_list,ds_list_size(undo_list)-1);
+		
+		add_action_history_ilda("SEQ_undo_"+string(undo));
     
 	    if (string_char_at(undo,0) == "c")
 	    {

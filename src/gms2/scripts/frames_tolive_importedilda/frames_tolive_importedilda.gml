@@ -62,6 +62,7 @@ function frames_tolive_importedilda() {
 	    ds_list_add(filelist,objectlist);
 		selectedfile = ds_list_size(filelist)-1;
 	
+		add_action_history_ilda("LIVE_frames_tolive_importedilda");
 		ds_list_add(undo_list, "c"+string(selectedfile));
 	
 		frame_surf_refresh = 1;

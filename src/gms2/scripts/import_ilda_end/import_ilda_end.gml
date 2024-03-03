@@ -62,6 +62,8 @@ function import_ilda_end() {
 	    el_id++;
 	    frame_surf_refresh = 1;
 	    refresh_minitimeline_flag = 1;
+		
+		add_action_history_ilda("ILDA_importilda");
     
 	    ds_list_free_pool(ild_list); ild_list = -1;
     

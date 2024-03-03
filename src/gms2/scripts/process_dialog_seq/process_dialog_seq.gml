@@ -23,6 +23,8 @@ function process_dialog_seq() {
 	{ 
 	    if ds_map_find_value(argument[0], "status")
 	   {
+		   add_action_history_ilda("SEQ_dialog_"+string(dialog));
+		   
 	      switch (dialog)
 	      {
 	        case "objectduration":

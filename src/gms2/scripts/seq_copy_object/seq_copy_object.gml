@@ -3,6 +3,8 @@ function seq_copy_object() {
 	if (seqcontrol.selectedlayer == -1) or (ds_list_empty(seqcontrol.somaster_list))
 	    exit;
 		
+		
+	add_action_history_ilda("SEQ_copy");
 
 	//clean old clipboard
 	for (i = 0; i < ds_list_size(copy_list); i++)

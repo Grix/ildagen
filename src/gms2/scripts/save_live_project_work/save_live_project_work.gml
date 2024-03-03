@@ -53,6 +53,8 @@ function save_live_project_work() {
 	buffer_delete(save_buffer);
 
 	filepath = file_loc;
+	
+	add_action_history_ilda("LIVE_saveproject");
 
 	global.loading_saveliveproject = 0;
 	room_goto(rm_live);

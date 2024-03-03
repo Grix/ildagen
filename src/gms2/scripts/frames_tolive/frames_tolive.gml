@@ -83,6 +83,8 @@ function frames_tolive() {
 	
 		selectedfile = ds_list_size(filelist)-1;
 	
+		add_action_history_ilda("LIVE_frames_tolive");
+	
 		ds_list_add(undo_list, "c"+string(selectedfile));
 	
 		frame_surf_refresh = 1;

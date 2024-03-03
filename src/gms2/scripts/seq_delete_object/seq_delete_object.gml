@@ -7,6 +7,10 @@ function seq_delete_object() {
     
 	for (k = 0; k < ds_list_size(somaster_list); k++)
 	{
+		
+		add_action_history_ilda("SEQ_delete");
+	
+		
 	    for (c = 0; c < ds_list_size(layer_list); c++)
 	    {
 	        layerlisttemp = ds_list_find_value(ds_list_find_value(layer_list,c), 1);

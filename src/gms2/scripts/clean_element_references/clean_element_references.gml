@@ -1,18 +1,13 @@
-function undo_ilda() {
-	with (controller)
+// Script assets have changed for v2.3.0 see
+// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+function clean_element_references(t_elementid){
+	
+	// Go through undo, redo lists and remove dangling references to element (used f.ex if that element is permanently removed)
+	
+	for (var t_i = 0; t_i < ds_list_size(undo_list); t_i++)
 	{
-		if (ds_list_empty(undo_list))
-		    exit;
-
-		ilda_cancel();
-		ds_list_clear(semaster_list);
-    
-		undo = ds_list_find_value(undo_list,ds_list_size(undo_list)-1);
-		ds_list_delete(undo_list,ds_list_size(undo_list)-1);
+		undo = ds_list_find_value(undo_list,t_i);
 		
-		
-		add_action_history_ilda("ILDA_undo_"+string(undo));
-
 		if (is_real(undo)) //undo create
 		{
 			temp_redof_list = ds_list_create_pool();
@@ -224,11 +219,6 @@ function undo_ilda() {
 			scope_end = clamp(tempundolist[| 1], scope_start, maxframes-1);
 			refresh_minitimeline_flag = 1;
 		}
-    
-    
-		frame_surf_refresh = 1;
-		update_semasterlist_flag = 1;
 	}
-
 
 }

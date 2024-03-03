@@ -71,6 +71,8 @@ function frames_toseq_importedilda() {
     
 	    selectedx += ds_list_size(controller.ild_list);
     
+		add_action_history_ilda("SEQ_frames_toseq_importedilda");
+	
 	    undolisttemp = ds_list_create_pool();
 	    ds_list_add(undolisttemp,objectlist);
 	    ds_list_add(undo_list,"c"+string(undolisttemp));

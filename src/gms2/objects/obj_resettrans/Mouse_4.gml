@@ -6,6 +6,8 @@ if (!_visible)
 	
 with (controller)
 {
+	add_action_history_ilda("ILDA_resettrans");
+	
     for (c = 0; c < ds_list_size(semaster_list); c++)
     {
         selectedelement = ds_list_find_value(semaster_list,c);

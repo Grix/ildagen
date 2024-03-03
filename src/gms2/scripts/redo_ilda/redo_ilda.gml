@@ -9,6 +9,8 @@ function redo_ilda() {
     
 		redo = ds_list_find_value(redo_list,ds_list_size(redo_list)-1);
 		ds_list_delete(redo_list,ds_list_size(redo_list)-1);
+		
+		add_action_history_ilda("ILDA_redo_"+string(redo));
 
 		if (is_real(redo)) //redo create
 		{

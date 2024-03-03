@@ -68,6 +68,8 @@ function layer_duplicate() {
 	ds_list_add(t_new_undo_list, selectedlayer);
 	ds_list_add(undo_list, "g"+string(t_new_undo_list));
 	
+	add_action_history_ilda("SEQ_duplicatelayer");
+	
 	timeline_surf_length = 0;
 	clean_redo_list_seq();
 	update_dac_list_isused();

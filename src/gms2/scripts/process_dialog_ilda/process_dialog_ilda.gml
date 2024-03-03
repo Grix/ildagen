@@ -42,6 +42,8 @@ function process_dialog_ilda() {
 
 	    if ds_map_find_value(argument[0], "status")
 	    {
+			add_action_history_ilda("ILDA_dialog_"+string(dialog));
+			
 	        switch (dialog)
 	        {
 	            case "exit":

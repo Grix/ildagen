@@ -39,6 +39,8 @@ function frames_toseq_live() {
     
 		    seqcontrol.selectedx += t_file[| 4];
 		
+			add_action_history_ilda("SEQ_frames_toseq_fromlive");
+		
 			undolisttemp = ds_list_create_pool();
 			ds_list_add(undolisttemp,t_objectlist);
 			ds_list_add(seqcontrol.undo_list,"c"+string(undolisttemp));
@@ -77,6 +79,7 @@ function frames_toseq_live() {
 			ds_list_free_pool(t_objectlist[| 5]);
 		ds_list_replace(t_objectlist, 5, create_checkpoint_list(t_buffer));
 		
+		add_action_history_ilda("SEQ_frames_toseq_fromlive_replace");
 		
 		clean_seq_undo();
 	}

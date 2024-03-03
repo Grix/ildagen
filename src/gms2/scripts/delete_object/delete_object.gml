@@ -2,6 +2,8 @@ function delete_object() {
 	if (ds_list_empty(controller.semaster_list)) exit;
 
 	temp_undof_list = ds_list_create_pool();
+	
+	add_action_history_ilda("ILDA_delete");
 
 	for (c = 0; c < ds_list_size(semaster_list); c++)
 	{

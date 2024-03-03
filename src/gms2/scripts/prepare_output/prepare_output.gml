@@ -62,6 +62,14 @@ function prepare_output() {
 	        xo = list_id[| 0];
 	        yo = list_id[| 1];
 	        t_found = 0;
+			
+			/*if (is_undefined(xo) || is_undefined(yo))
+			{
+				xo = list_id[| 0] = 0;
+				yo = list_id[| 1] = 0;
+				http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
+			                "bug=OS: " + string(os_type) + " VER: "+string(controller.version) +  "\r\n"+t_actionhistory + "\n\rERROR: xo or yo was undefined in prepare_output. xo: "+string(xo)+", yo: "+string(yo) +", tool: "+string(controller.placing));
+			}*/
         
 	        xp = xo+list_id[| 20];
 	        yp = yo+list_id[| 21];

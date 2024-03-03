@@ -1,5 +1,5 @@
 version = "1.11.1";
-versiondate = "2024-02-22";
+versiondate = "2024-03-03";
 
 global.list_pool = ds_stack_create();
 global.list_pool_is_taken = ds_map_create();
@@ -144,6 +144,7 @@ ds_list_free_pool(list);
 radialgrid_surf = -1;
 squaregrid_surf = -1;
 edit_recording_list = -1;
+action_history_list = ds_list_create_pool();
 
 c_gold = make_colour_rgb(255,220,0);
 c_ltltgray = make_colour_rgb(239,235,235);
@@ -455,8 +456,9 @@ if (!debug_mode)
 	    file_text_write_string(_f, string(ex));
 	    file_text_close(_f);
 	
+		var t_actionhistory = get_action_history_string();
 		http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
-		                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+string_replace_all(string_replace_all(string(ex),"\"",""),"'",""));
+		                    "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "\r\n"+t_actionhistory + "\r\n"+string_replace_all(string_replace_all(string(ex),"\"",""),"'",""));
 	
 		show_message("ERROR: LaserShowGen has unfortunately encountered a problem and must close. This bug has been logged and reported (anonymously) to the developer, and we will work to fix this problem in future releases.\n\nIf you wish to save your unsaved work, you will now be asked for a file location. NB: Please don't overwrite your existing file as the crash may cause problems in the new backup file.");
 	
