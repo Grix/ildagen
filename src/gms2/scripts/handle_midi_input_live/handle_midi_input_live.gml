@@ -20,6 +20,13 @@ function handle_midi_input_live(){
 		{
 			// MIDI key pressed
 			ds_list_add(t_keys, rtmidi_get_message(1));
+			ds_list_add(midi_keys_pressed, rtmidi_get_message(1));
+		}
+		if (t_type == 128 || (t_type == 144 && rtmidi_get_message(2) == 0))
+		{
+			// MIDI key released
+			if (ds_list_find_index(midi_keys_pressed, rtmidi_get_message(1)) != -1)
+				ds_list_delete(midi_keys_pressed, ds_list_find_index(midi_keys_pressed, rtmidi_get_message(1)));
 		}
 		else if (t_type == 176)
 		{

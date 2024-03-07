@@ -32,6 +32,7 @@ undo_list = ds_list_create_pool();
 redo_list = ds_list_create_pool();
 filelist = ds_list_create_pool();
 el_list = -1;
+midi_keys_pressed = ds_list_create_pool();
 
 masterx = 0;
 mastery = 0;

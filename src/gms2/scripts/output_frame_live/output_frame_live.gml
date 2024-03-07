@@ -146,7 +146,9 @@ function output_frame_live() {
 	    for (i = 0; i < ds_list_size(controller.blindzone_list); i += 4)
 	    {
 	        var blindzone_el = ds_list_create_pool();
-	        blindzone_el[| 19] = 0; //fills up to 19 with 0
+	        repeat(20)
+				ds_list_add(blindzone_el, 0);
+		    //blindzone_el[| 19] = 0; //fills up to 19 with 0
 	        blindzone_el[| 10] = true;
 	        ds_list_add(blindzone_el, controller.blindzone_list[| i + 0]);
 	        ds_list_add(blindzone_el, controller.blindzone_list[| i + 2]);

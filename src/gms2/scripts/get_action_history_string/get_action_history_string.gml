@@ -4,7 +4,7 @@ function get_action_history_string(){
 	var t_string = "";
 	for (var t_i = 0; t_i < ds_list_size(controller.action_history_list); t_i++)
 	{
-		t_string += string(controller.action_history_list);
+		t_string += string(controller.action_history_list[| t_i]);
 		t_string += ",";
 	}
 	return t_string;

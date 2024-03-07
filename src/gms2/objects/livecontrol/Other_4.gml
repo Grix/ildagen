@@ -13,3 +13,5 @@ if (loadprojectflag)
 	dd_live_loadproject();
 loadprojectflag = false;
 clean_redo_live();
+
+ds_list_clear(midi_keys_pressed);
