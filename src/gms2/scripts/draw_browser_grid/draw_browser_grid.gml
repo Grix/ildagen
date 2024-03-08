@@ -99,7 +99,7 @@ function draw_browser_grid() {
 		{
 			draw_set_color(c_teal);
 			draw_set_halign(fa_right);
-			draw_text(t_column*t_cell_size+t_cell_size - 4, t_ystart+t_row*t_cell_size+4, midi_get_note_name(objectlist[| 13]));
+			draw_text(t_column*t_cell_size+t_cell_size - 4, t_ystart+t_row*t_cell_size+4, string(objectlist[| 13] >> 8) + midi_get_note_name(objectlist[| 13] & $FF));
 			draw_set_halign(fa_left);
 		}
 	}

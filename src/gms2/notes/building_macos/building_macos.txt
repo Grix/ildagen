@@ -5,7 +5,7 @@
 Set build architecture to standard arctitectures (apple silicon + intel)
 Set strip style to non-global symbols, and "strip debug symbols during copy" to no.
 5. project -> archive
-6. distribute with dev id. select provision profile in wizard signing step
+6. distribute with dev id. select provision profile in wizard signing step (air-test-profile)
 codesign --remove-signature LaserShowGen.app
 codesign -s "Developer ID Application: Gitle Mikkelsen (Y62YL762Z5)" --deep --options runtime --timestamp LaserShowGen.app
 7. create dmg

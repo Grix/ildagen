@@ -9,6 +9,8 @@ function clear_project() {
 	ds_list_clear(marker_list);
 	clean_redo_list_seq();
 	clean_seq_undo();
+	ds_list_clear(seqcontrol.jump_button_list);
+	ds_list_clear(seqcontrol.jump_button_list_midi);
     
 	repeat (ds_list_size(layer_list))   
 	{

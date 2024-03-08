@@ -1,15 +1,12 @@
+v1.11.2
+- Fix possible crash when activating output if blind zones have been defined.
+- Fix MIDI input does not take channels into account, causing duplicate keys for Akai pads etc.
+- Fix push-to-play option not working properly for MIDI input in grid mode.
+
 v1.11.1
 - Fix some possible crashes or corruptions when using the arbitrary function tools with an invalid function.
 
 v1.11.0
-- Add ability to use MIDI controllers to trigger animations and adjust sliders in the live and timeline modes.
+- Add ability to use MIDI controllers to trigger animations and adjust sliders in the grid and timeline modes.
 - Text tool user-friendliness improvements, can select built-in fonts with a drop-down menu etc.
-- Support for international (UTF-8) LaserBoy fonts. Most built-in fonts now support symbols like ß, ö, ñ etc.
-- Add ability to change the number of columns in the grid mode.
-- Grid mode project files now save the state of the adjustment sliders.
-- Slight change in optimization behavior and default settings.
-- No longer caps the FPS to 60 when laser is off: UI can appear smoother at high refresh rate screens.
-
-v1.10.3
-- Fix audio on timeline projects not working on some Mac computers.
-- [5 other fixes]
+- [5 other changes]

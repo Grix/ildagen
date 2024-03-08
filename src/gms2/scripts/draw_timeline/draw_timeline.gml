@@ -75,7 +75,7 @@ function draw_timeline() {
 			if (jump_button_list_midi[| i] == -1)
 				draw_text(markerpostemp+4,tlsurf_y+lbsh-20,"[ Press shortcut MIDI key... ]");
 			else
-				draw_text(markerpostemp+4,tlsurf_y+lbsh-20,"[ " + midi_get_note_name(jump_button_list_midi[| i]) + " ]");
+				draw_text(markerpostemp+4,tlsurf_y+lbsh-20,"[ " + string(jump_button_list_midi[| i] >> 8) + midi_get_note_name(jump_button_list_midi[| i] & $FF) + " ]");
 		}
 	}
 

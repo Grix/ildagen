@@ -10,3 +10,5 @@ if (loadprojectflag)
 loadprojectflag = false;
 
 update_dac_list_isused();
+
+ds_list_clear(midi_keys_pressed);
