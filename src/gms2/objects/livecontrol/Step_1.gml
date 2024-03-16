@@ -21,7 +21,7 @@ if (playing == 1)
 			
 			if (t_objectlist[| 10] != 0)
 			{
-				if (keyboard_check(t_objectlist[| 6]) || t_objectlist[| 10] == 2 || ds_list_find_index(midi_keys_pressed, t_objectlist[| 13]) != -1)
+				if ((keyboard_check(t_objectlist[| 6]) && t_objectlist[| 6] > 0) || t_objectlist[| 10] == 2 || ds_list_find_index(midi_keys_pressed, t_objectlist[| 13]) != -1)
 					t_objectlist[| 0] = true;
 				else
 				{
