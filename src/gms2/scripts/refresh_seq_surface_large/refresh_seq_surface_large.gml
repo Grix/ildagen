@@ -173,7 +173,7 @@ function refresh_seq_surface_large() {
                 
 		                apply_envelope_point();
                 
-		                gpu_set_blendmode(bm_add);
+		                gpu_set_blendmode(bm_max);
 		                draw_set_alpha(0.7);
 		                surface_set_target(frame3d_surf_large);
                 

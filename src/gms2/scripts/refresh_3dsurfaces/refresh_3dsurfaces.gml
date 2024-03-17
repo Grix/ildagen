@@ -7,7 +7,7 @@ function refresh_3dsurfaces() {
 	var t_wporthalf = view_wport[4]/2;
 	var t_scalediag = sqrt(view_hport[4]*view_hport[4]+view_wport[4]*view_wport[4])/2;
 
-	gpu_set_blendmode(bm_add);
+	gpu_set_blendmode(bm_max);
 	draw_set_alpha(0.8);
 	draw_set_colour(c_white);
 	for (i = 0;i < ds_list_size(el_list);i++)

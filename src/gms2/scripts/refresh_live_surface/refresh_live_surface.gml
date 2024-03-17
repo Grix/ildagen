@@ -181,7 +181,7 @@ function refresh_live_surface() {
 				        yp = t_actualanchor_y+sin(env_rotabs_val-angle)*dist;
 				    }
                 
-				    gpu_set_blendmode(bm_add);
+				    gpu_set_blendmode(bm_max);
 				    draw_set_alpha(0.7);
 				    surface_set_target(frame3d_surf);
                 
