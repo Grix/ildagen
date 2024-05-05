@@ -1,7 +1,6 @@
 TODO
 - ds_list_pool doesn't solve anything, either add non-reusable indexes, or clean up other references when deleting objects etc
 - update manual
-- suppress warning when editing sampling rate above 30000 multiple times.
 - add jump button list to seq project file
 - ability to immediately restart instead of stopping when triggering live mode animation
 - fix small gap at start or end of some segments. Especially noticeable in fonts etc (especially LFI vector).
