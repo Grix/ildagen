@@ -266,48 +266,91 @@ function refresh_timeline_surface() {
 		
 			gpu_set_blendenable(true);
        
-		    var drawtime = floor(t_tlx/projectfps)-1;
-			if (tlwdivtlzoom > 5) 
-				modulus = 5/projectfps;
-		    else if (tlwdivtlzoom > 0.3) 
-				modulus = 5;
-		    else if (tlwdivtlzoom > 0.05)
-				modulus = 30;
-		    else if (tlwdivtlzoom > 0.02)
-				modulus = 60;
-			else
-				modulus = 300;
-    
-		    draw_set_colour(c_ltgray);
-		    gpu_set_blendenable(true);
-		    while (1)
-		    {
-		        var tempx = round((drawtime*projectfps-t_tlx)*tlwdivtlzoom);
-		        if (tempx > t_tlw+10)
-		            break;
+			if (controller.use_bpm)
+			{
+				// BPM timing
+				var framesPerBeat = projectfps / (controller.bpm / 60);
+				var drawtimeBeat = floor((t_tlx/framesPerBeat)/projectfps)-1;
+				
+				modulus = 1;
+				
+				draw_set_colour(c_ltgray);
+			    gpu_set_blendenable(true);
+			    while (1)
+			    {
+			        var tempx = round((drawtimeBeat*framesPerBeat-t_tlx)*tlwdivtlzoom);
+			        if (tempx > t_tlw+10)
+			            break;
 
-		        if ((drawtime % modulus) == 0)
-		        {
-		            //draw timestamp
-		            draw_set_colour(c_gray);
-		                draw_line(tempx,0,tempx,tlh-2);
-		            draw_set_halign(fa_center);
-		            draw_set_valign(fa_center);
-		            draw_set_colour(c_dkgray);
-		            draw_text(tempx,tlh+8,string_replace(string_format(floor(drawtime/60),2,0)," ","0")+
-		                                ":"+string_replace(string_format(drawtime %60,2,0)," ","0"));
-		            draw_set_halign(fa_left);
-		            draw_set_valign(fa_top);
-		            draw_set_colour(c_ltgray);
-		        }
-		        else
-		        {
-		            if ((drawtime % (modulus/5)) == 0)
-		                draw_line(tempx,0,tempx,tlh-2);
-		        }
-				drawtime++;
-				//todo maybe add frame granulity
-		    }
+			        if ((drawtimeBeat % (modulus*controller.beats_per_bar)) == 0)
+			        {
+			            //draw bar
+			            draw_set_colour(c_gray);
+			                draw_line(tempx,0,tempx,tlh-2);
+			            draw_set_halign(fa_center);
+			            draw_set_valign(fa_center);
+			            draw_set_colour(c_dkgray);
+			            draw_text(tempx,tlh+8,string(round(drawtimeBeat / controller.beats_per_bar)));
+			            draw_set_halign(fa_left);
+			            draw_set_valign(fa_top);
+			            draw_set_colour(c_ltgray);
+			        }
+			        else if (modulus <= 1)
+			        {
+						// draw beat
+			            if ((drawtimeBeat % modulus) == 0)
+			                draw_line(tempx,0,tempx,tlh-2);
+			        }
+					drawtimeBeat++;
+					//todo maybe add frame granulity
+			    }
+			}
+			else
+			{
+				// Not BPM, real time
+			    var drawtime = floor(t_tlx/projectfps)-1;
+				if (tlwdivtlzoom > 5) 
+					modulus = 5/projectfps;
+			    else if (tlwdivtlzoom > 0.3) 
+					modulus = 5;
+			    else if (tlwdivtlzoom > 0.05)
+					modulus = 30;
+			    else if (tlwdivtlzoom > 0.02)
+					modulus = 60;
+				else
+					modulus = 300;
+    
+			    draw_set_colour(c_ltgray);
+			    gpu_set_blendenable(true);
+			    while (1)
+			    {
+			        var tempx = round((drawtime*projectfps-t_tlx)*tlwdivtlzoom);
+			        if (tempx > t_tlw+10)
+			            break;
+
+			        if ((drawtime % modulus) == 0)
+			        {
+			            //draw timestamp
+			            draw_set_colour(c_gray);
+			                draw_line(tempx,0,tempx,tlh-2);
+			            draw_set_halign(fa_center);
+			            draw_set_valign(fa_center);
+			            draw_set_colour(c_dkgray);
+			            draw_text(tempx,tlh+8,string_replace(string_format(floor(drawtime/60),2,0)," ","0")+
+			                                ":"+string_replace(string_format(drawtime %60,2,0)," ","0"));
+			            draw_set_halign(fa_left);
+			            draw_set_valign(fa_top);
+			            draw_set_colour(c_ltgray);
+			        }
+			        else
+			        {
+			            if ((drawtime % (modulus/5)) == 0)
+			                draw_line(tempx,0,tempx,tlh-2);
+			        }
+					drawtime++;
+					//todo maybe add frame granulity
+			    }
+			}
 		
 		    //audio   
 		    if (song != -1)

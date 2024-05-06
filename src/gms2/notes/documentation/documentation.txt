@@ -17,13 +17,12 @@ TODO
 - rearranging of tiles in Live Mode.
 - fix opening web on linux (not working on my kubuntu with firefox)
 - add backup saving to background, asking to restore if program didn't shut down correctly
-- text turns gray when in rainbow color tool
 - fix crash if scanning for lasercubes when they are already in use by another program like laseros (Not reproducible?)
 - update web
-- fix crash on app close on macos after having used IDN dac
 - add possibility for assigning different projectors to live modes files.
 - add possibility to show cursor in editor when laser is on.
 - add midi cc and nrpn output (for Radiator etc)
+- add art-net input in grid mode and output in timeline mode
 - ability to easily add shaking effect to multiple objects on timeline mode. Envelope?
 - improve resizing, rotation. Add resizing boxes to all sides and corners for free control (or just make anchor snap to sides/corners)
 - implement new modulo method used in anirep, in element creation cycles like dots and blanking
@@ -32,12 +31,10 @@ TODO
 - compress buffers when saving in live mode and editor mode
 - save settings like color and parameters to igf file and timeline object
 - experiment with better scaling (higher res sprites?)
-- make large preview work with dpi scaling > 1
 - automatic playback of show when opening software, for headless computer setup. 
 - fix mismatch between mouse and cursor when window is too narrow.
 - add dmx
 - mac dialogs keep keyboard buttons pressed, io_reset() doesn't work
-- fix first point in live mode not rotating in preview when applying rotation slider (works in laser output)
 - arbitrary animation easing function
 - reapply combine shapes
 - split objects in editor mode
@@ -49,7 +46,6 @@ TODO
 - pause individual files in live
 - zoom in editor mode canvas
 - more simulation settings (more projectors per layer, projector angle, fov etc)
-- benchmark frame buffers, better to align to 4?
 - set fixed scanrate instead of fps when optimization off
 - fix 1 point dots not showing, see line 52 in refresh_surfaces
 - color offset and dwell etc based on time instead of points

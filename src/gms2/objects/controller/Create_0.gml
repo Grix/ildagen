@@ -200,6 +200,10 @@ known_filename_of_load = "";
 has_midi = false;
 midi_input_device = 0;
 midi_output_device = 0;
+use_bpm = true;
+bpm = 120;
+bpm_timeline_offset_frames = 0;
+beats_per_bar = 4;
 
 sgridshow = 0;
 rgridshow = 0;
