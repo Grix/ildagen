@@ -10,13 +10,13 @@ function read_ilda_init(argument0) {
 		ild_file = buffer_load(filename);
 		if (ild_file == -1)
 		{
-			show_message_new("Could not open file");
+			show_message_new("Could not open file: "+filename_name(filename));
 			return 0;
 		}
 		
 		if (buffer_get_size(ild_file) < 8)
 		{
-			show_message_new("File is too small, is this a valid ILDA file?");
+			show_message_new("File is too small, is this a valid ILDA file?: " + filename_name(filename));
 			return 0;
 		}
 	

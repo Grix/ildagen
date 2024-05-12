@@ -11,6 +11,9 @@ function read_ilda_frame() {
 	{
 	    repeat(maxpoints)
 	    {
+			if (i+4 >= file_size)
+				break;
+			
 	        //x
 	        byte0 = get_byte();
 	        byte1 = buffer_peek(ild_file, i+1, buffer_u8);
@@ -65,6 +68,9 @@ function read_ilda_frame() {
 	{
 	    repeat(maxpoints)
 	    {
+			if (i+4 >= file_size)
+				break;
+			
 	        //x
 	        byte0 = get_byte();
 	        byte1 = buffer_peek(ild_file, i+1, buffer_u8);
