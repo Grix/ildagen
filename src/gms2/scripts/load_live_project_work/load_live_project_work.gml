@@ -22,13 +22,15 @@ function load_live_project_work() {
             
 	        ds_list_add(objectlist, round(buffer_read(load_buffer,buffer_u32)));
 	        ds_list_add(objectlist, -1);
-	        ds_list_add(objectlist, round(buffer_read(load_buffer,buffer_u32)));
+			var t_maxframes = round(buffer_read(load_buffer,buffer_u32));
+	        ds_list_add(objectlist, t_maxframes);
 			ds_list_add(objectlist, create_checkpoint_list(objectbuffer));
             
 	        ds_list_add(objectlist, round(buffer_read(load_buffer,buffer_u32)));
 			ds_list_add(objectlist, buffer_read(load_buffer,buffer_bool));
 			
 			var t_midi_key = -2;
+			var t_bars_duration = 0;
 		
 			if (idbyte >= 201)
 			{
@@ -41,7 +43,8 @@ function load_live_project_work() {
 				t_midi_key = buffer_read(load_buffer,buffer_u32);
 				if (!t_has_midi_key)
 					t_midi_key = -2;
-				buffer_read(load_buffer,buffer_u32);
+				t_bars_duration = buffer_read(load_buffer,buffer_f16);
+				buffer_read(load_buffer,buffer_u16);
 				buffer_read(load_buffer,buffer_u32);
 			}
 			else
@@ -74,6 +77,9 @@ function load_live_project_work() {
 			}
 			
 			ds_list_add(objectlist, t_midi_key);
+			if (t_bars_duration <= 0)
+				t_bars_duration = ((controller.bpm / 60) * (t_maxframes / controller.projectfps)) / controller.beats_per_bar;
+			ds_list_add(objectlist, t_bars_duration);
 		
 			ds_list_add(filelist, objectlist);
 		}

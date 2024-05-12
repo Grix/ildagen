@@ -58,6 +58,7 @@ function frames_tolive_importedilda() {
 		ds_list_add(objectlist,"");
 		ds_list_add(objectlist,ds_list_create_pool());
 		ds_list_add(objectlist,-2);
+		ds_list_add(objectlist,((controller.bpm / 60) * (ds_list_size(controller.ild_list) / controller.projectfps)) / controller.beats_per_bar);
 	
 	    ds_list_add(filelist,objectlist);
 		selectedfile = ds_list_size(filelist)-1;
