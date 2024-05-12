@@ -11,8 +11,8 @@ function seq_copy_object() {
 	{
 	    if (ds_list_exists_pool(ds_list_find_value(copy_list,i)))
 	    {
-	        if (buffer_exists(ds_list_find_value( ds_list_find_value(copy_list,i), 0)))
-	            buffer_delete(ds_list_find_value( ds_list_find_value(copy_list,i), 0));
+	        if (buffer_exists(ds_list_find_value( ds_list_find_value(copy_list,i), 1)))
+	            buffer_delete(ds_list_find_value( ds_list_find_value(copy_list,i), 1));
 	        ds_list_free_pool(ds_list_find_value(copy_list,i));
 	    }
 	}
