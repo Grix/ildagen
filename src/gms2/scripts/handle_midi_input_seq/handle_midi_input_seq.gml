@@ -43,11 +43,17 @@ function handle_midi_input_seq(){
 			{
 				if (intensity_scale_midi_shortcut == -1)
 					intensity_scale_midi_shortcut = t_ccid;
+				if (volume_midi_shortcut == -1)
+					volume_midi_shortcut = t_ccid;
 			}
 			
 			if (t_ccid == intensity_scale_midi_shortcut)
 			{
 				 intensity_scale = rtmidi_get_message(2) / 127;
+			}
+			if (t_ccid == volume_midi_shortcut)
+			{
+				 volume = rtmidi_get_message(2) / 127 * 100;
 			}
 			
 		}

@@ -48,7 +48,7 @@ function save_live_project_quick() {
 	buffer_write(save_buffer,buffer_u8,masterx_midi_shortcut + 2);
 	buffer_write(save_buffer,buffer_u8,mastery_midi_shortcut + 2);
 	buffer_write(save_buffer,buffer_u8,masterabsrot_midi_shortcut + 2);
-	buffer_write(save_buffer,buffer_u8,0);
+	buffer_write(save_buffer,buffer_u8,speed_adjusted_midi_shortcut + 2);
 	
 	buffer_write(save_buffer,buffer_u8,num_grid_columns);
 	repeat (29)

@@ -19,5 +19,7 @@ function dd_live_slider_change_midi_shortcut(){
 			mastery_midi_shortcut = -1;
 		else if (selected_slider == obj_live_masterabsrot)
 			masterabsrot_midi_shortcut = -1;
+		else if (selected_slider == obj_bpm_adjust)
+			speed_adjusted_midi_shortcut = -1;
 	}
 }

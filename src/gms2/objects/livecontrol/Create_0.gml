@@ -51,6 +51,7 @@ masterred_midi_shortcut = -2;
 masterblue_midi_shortcut = -2;
 mastergreen_midi_shortcut = -2;
 masterabsrot_midi_shortcut = -2;
+speed_adjusted_midi_shortcut = -2;
 
 if (controller.has_midi)
 {

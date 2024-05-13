@@ -8,10 +8,14 @@ function dropdown_seq_slider(){
 	
 	with (ddobj)
 	{
-	    num = 1;
+	    num = 2;
 		ds_list_add(desc_list,"Change MIDI shortcut...");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,dd_seq_slider_change_midi_shortcut);
+	    ds_list_add(hl_list,1);
+	    ds_list_add(desc_list,"Reset to default value");
+	    ds_list_add(sep_list,1);
+	    ds_list_add(scr_list,dd_seq_slider_reset_value);
 	    ds_list_add(hl_list,1);
 	
 	    event_user(1);

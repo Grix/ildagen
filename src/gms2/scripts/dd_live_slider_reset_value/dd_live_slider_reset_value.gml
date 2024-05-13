@@ -19,5 +19,10 @@ function dd_live_slider_reset_value(){
 			mastery = 0;
 		else if (selected_slider == obj_live_masterabsrot)
 			masterabsrot = pi;
+		else if (selected_slider == obj_bpm_adjust)
+		{
+			bpm_adjusted = controller.bpm;
+			speed_adjusted = 1;
+		}
 	}
 }

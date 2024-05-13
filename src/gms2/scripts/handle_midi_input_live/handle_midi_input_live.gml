@@ -55,6 +55,8 @@ function handle_midi_input_live(){
 					mastery_midi_shortcut = t_ccid;
 				else if (masterabsrot_midi_shortcut == -1)
 					masterabsrot_midi_shortcut = t_ccid;
+				else if (speed_adjusted_midi_shortcut == -1)
+					speed_adjusted_midi_shortcut = t_ccid;
 			}
 			
 			if (t_ccid == masteralpha_midi_shortcut)
@@ -88,6 +90,21 @@ function handle_midi_input_live(){
 			if (t_ccid == masterabsrot_midi_shortcut)
 			{
 				masterabsrot = (rtmidi_get_message(2) / 127) * 2 * pi;
+			}
+			if (t_ccid == speed_adjusted_midi_shortcut)
+			{
+				if (controller.use_bpm)
+				{
+					bpm_adjusted = max(controller.bpm * ((rtmidi_get_message(2) / 127) * 2), 5);
+					if (abs(bpm_adjusted - controller.bpm) < 2)
+						bpm_adjusted = controller.bpm;
+				}
+				else
+				{
+					speed_adjusted = max(((rtmidi_get_message(2) / 127) * 2), 0.05);
+					if (abs(speed_adjusted - 1) < 0.02)
+						speed_adjusted = 1;
+				}
 			}
 			
 		}

@@ -93,6 +93,7 @@ loadprojectflag = false;
 moving_object_ready = false;
 intensity_scale = 1;
 intensity_scale_midi_shortcut = -2;
+volume_midi_shortcut = -2;
 selected_slider = -1;
 show_is_demo = false;
 audio_fft_bass_low_cutoff = 0;
