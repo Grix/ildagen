@@ -43,7 +43,7 @@ else if (placing == "curve")
     {
         if (bez_moving == 1)
         {
-			log("moving 2");
+			//log("moving 2");
             ds_list_replace(bez_list,2,ds_list_find_value(bez_list,2)+(window_mouse_get_x()-mouse_xprevious)/view_wport[4]*$ffff);
             ds_list_replace(bez_list,3,ds_list_find_value(bez_list,3)+(window_mouse_get_y()-mouse_yprevious)/view_wport[4]*$ffff);
             mouse_yprevious = window_mouse_get_y();
@@ -51,7 +51,7 @@ else if (placing == "curve")
         }
         else if (bez_moving == 2)
         {
-			log("moving 3");
+			//log("moving 3");
             ds_list_replace(bez_list,4,ds_list_find_value(bez_list,4)+(window_mouse_get_x()-mouse_xprevious)/view_wport[4]*$ffff);
             ds_list_replace(bez_list,5,ds_list_find_value(bez_list,5)+(window_mouse_get_y()-mouse_yprevious)/view_wport[4]*$ffff);
             mouse_yprevious = window_mouse_get_y();
@@ -59,7 +59,7 @@ else if (placing == "curve")
         }
         else if (bez_moving == 3)
         {
-			log("moving 1");
+			//log("moving 1");
             ds_list_replace(bez_list,0,ds_list_find_value(bez_list,0)+(window_mouse_get_x()-mouse_xprevious)/view_wport[4]*$ffff);
             ds_list_replace(bez_list,1,ds_list_find_value(bez_list,1)+(window_mouse_get_y()-mouse_yprevious)/view_wport[4]*$ffff);
             startpos[0] = ds_list_find_value(bez_list,0);
@@ -69,7 +69,7 @@ else if (placing == "curve")
         }
         else if (bez_moving == 4)
         {
-			log("moving 4");
+			//log("moving 4");
             ds_list_replace(bez_list,6,ds_list_find_value(bez_list,6)+(window_mouse_get_x()-mouse_xprevious)/view_wport[4]*$ffff);
             ds_list_replace(bez_list,7,ds_list_find_value(bez_list,7)+(window_mouse_get_y()-mouse_yprevious)/view_wport[4]*$ffff);
             endx = ds_list_find_value(bez_list,6);

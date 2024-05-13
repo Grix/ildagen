@@ -11,8 +11,11 @@ function create_element() {
 	if (maxframes == 1) and (anienable)
 	{
 	    //ds_list_add(controller.undo_list,"a"+string(controller.maxframes))
-	    maxframes = 64;
-	    scope_end = 63;
+		if (controller.use_bpm)
+			maxframes = round(controller.projectfps / (controller.bpm / 60 / controller.beats_per_bar)); // one bar
+		else
+			maxframes = controller.projectfps * 2; // two seconds
+	    scope_end = maxframes-1;
 	    refresh_minitimeline_flag = 1;
     
 	    if (ds_list_size(frame_list) < maxframes)
