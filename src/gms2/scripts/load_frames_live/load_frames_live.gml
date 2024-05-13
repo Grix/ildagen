@@ -204,7 +204,6 @@ function load_frames_live(argument0) {
 	ds_list_add(objectlist,"");
 	ds_list_add(objectlist,ds_list_create_pool());
 	ds_list_add(objectlist,-2);
-	ds_list_add(objectlist,((controller.bpm / 60) * (tempmaxframes / controller.projectfps)) / controller.beats_per_bar);
 
 	ds_list_add(filelist,objectlist);
     

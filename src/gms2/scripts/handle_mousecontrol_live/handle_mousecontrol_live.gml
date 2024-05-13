@@ -10,7 +10,7 @@ function handle_mousecontrol_live() {
 			scrollbary = ypos_perm+1;
     
 	    mouse_yprevious = device_mouse_raw_y(0);
-		//log(mouse_yprevious, scrollbary);
+		log(mouse_yprevious, scrollbary);
     
 	    if (mouse_check_button_released(mb_left))
 	    {

@@ -9,7 +9,7 @@ function output_frame_settings() {
 	{ 
 		//if (debug_mode)
 	    //    log("outputted frame ", dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps/fpsmultiplier, fpsmultiplier, delta_time/1000);
-        //log(delta_time / 1000);
+        log(delta_time / 1000);
 		
 	    dac_send_frame(controller.dac, output_buffer, output_buffer_next_size, output_buffer_next_size*controller.projectfps/controller.fpsmultiplier);
 	    output_buffer_ready = false;

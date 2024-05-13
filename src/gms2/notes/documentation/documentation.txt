@@ -181,7 +181,6 @@ filelist
                 name
                 profile name
 		13 midi key shortcut( = -2 if not in use)
-		14 duration in bars
 		
 Fonts
 Text tiles are drawn with paint.net, font Arial, sizes 10 and 12, color pure black
