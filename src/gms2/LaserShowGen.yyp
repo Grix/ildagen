@@ -861,6 +861,7 @@
     {"id":{"name":"load_frames","path":"scripts/load_frames/load_frames.yy",},"order":2,},
     {"id":{"name":"load_frame_settings","path":"scripts/load_frame_settings/load_frame_settings.yy",},"order":3,},
     {"id":{"name":"load_frames_seq","path":"scripts/load_frames_seq/load_frames_seq.yy",},"order":4,},
+    {"id":{"name":"obj_bpm_adjust","path":"objects/obj_bpm_adjust/obj_bpm_adjust.yy",},"order":11,},
     {"id":{"name":"load_frames_live","path":"scripts/load_frames_live/load_frames_live.yy",},"order":5,},
     {"id":{"name":"load_project","path":"scripts/load_project/load_project.yy",},"order":6,},
     {"id":{"name":"load_project_work","path":"scripts/load_project_work/load_project_work.yy",},"order":7,},

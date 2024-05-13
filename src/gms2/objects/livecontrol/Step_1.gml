@@ -3,7 +3,11 @@ if (room != rm_live) exit;
 
 if (playing == 1)
 {
-    framehr += delta_time/1000000*controller.projectfps;
+	var t_speed_adjust = speed_adjusted;
+	if (controller.use_bpm)
+		t_speed_adjust = bpm_adjusted / controller.bpm;
+		
+    framehr += delta_time/1000000*controller.projectfps * t_speed_adjust;
     frame = round(framehr);
 	
 	if (frameprev > frame)

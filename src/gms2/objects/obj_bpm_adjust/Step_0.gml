@@ -1,5 +1,4 @@
-visible = controller.use_bpm;
-
+//visible = controller.exp_optimize;
 if (!visible)
     exit;
 if (instance_exists(obj_dropdown))
@@ -7,7 +6,7 @@ if (instance_exists(obj_dropdown))
     
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
 {
-    controller.tooltip = "Changes the number of beats per minute (BPM) used for time labels and settings.\nRight click to input exact value.";
+    controller.tooltip = "Adjusts the playback speed to be faster or slower than the base speed.";
     
     if ((mouse_x - bbox_left) > 24)
         image_index = 1;
