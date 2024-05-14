@@ -35,7 +35,12 @@ function process_dialog_seq() {
 	            objectlist = ds_list_find_value(somaster_list,0);
 				if (!ds_list_exists_pool(objectlist))
 					break;
-	            newduration = round(ds_map_find_value(argument[0], "value"));
+					
+				if (controller.use_bpm)
+					newduration = round(ds_map_find_value(argument[0], "value") / (controller.bpm / 60) * controller.projectfps);
+				else
+					newduration = round(ds_map_find_value(argument[0], "value"));
+				
 	            if (newduration < 1) 
 	                newduration = 1;
 	            newduration--;
@@ -105,6 +110,7 @@ function process_dialog_seq() {
 			case "add_fadeout":
 			case "add_strobe_dutycycle":
 			{
+				// todo use beats in bpm mode
 	            var t_parameter = ds_map_find_value(argument[0], "value");
 			
 				for (i = 0; i < ds_list_size(somaster_list); i++)

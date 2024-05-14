@@ -607,7 +607,10 @@ function process_dialog_ilda() {
               
 	              refresh_minitimeline_flag = 1;
               
-	              maxframes = round(ds_map_find_value(argument[0], "value"));
+				  if (controller.use_bpm)
+					maxframes = round(ds_map_find_value(argument[0], "value") / (controller.bpm / 60) * controller.projectfps);
+				  else
+					maxframes = round(ds_map_find_value(argument[0], "value"));
               
 	              if (maxframes < 1) 
 					maxframes = 1;
@@ -663,7 +666,10 @@ function process_dialog_ilda() {
 				  update_semasterlist_flag = 1;
 				  clean_redo_list();
               
-	              var t_newmaxframes = round(ds_map_find_value(argument[0], "value"));
+				  if (controller.use_bpm)
+					var t_newmaxframes = round(ds_map_find_value(argument[0], "value") / (controller.bpm / 60) * controller.projectfps);
+				  else
+					var t_newmaxframes = round(ds_map_find_value(argument[0], "value"));
               
 	              if (t_newmaxframes < 1) 
 					t_newmaxframes = 1;

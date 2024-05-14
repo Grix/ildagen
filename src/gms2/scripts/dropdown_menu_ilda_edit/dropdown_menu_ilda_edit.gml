@@ -35,11 +35,11 @@ function dropdown_menu_ilda_edit() {
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,deselect_object);
 	    ds_list_add(hl_list,!ds_list_empty(controller.semaster_list));
-		ds_list_add(desc_list,"Change number of frames (pad)");
+		ds_list_add(desc_list,"Change total duration (pad)");
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,dd_ilda_maxframes);
 	    ds_list_add(hl_list,1);
-		ds_list_add(desc_list,"Change number of frames (stretch)");
+		ds_list_add(desc_list,"Change total duration (stretch)");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,dd_ilda_maxframes_stretch);
 	    ds_list_add(hl_list,1);

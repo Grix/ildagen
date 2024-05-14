@@ -1,5 +1,9 @@
 if (instance_exists(obj_dropdown))
     exit;
+	
+if (!visible)
+	exit;	
+	
 with (seqcontrol)
 {
     if (mouse_x > (obj_audioshift.x+23))
@@ -11,5 +15,5 @@ with (seqcontrol)
         fmod_set_pos(play_sndchannel,clamp(((tlpos+audioshift)-10),0,songlength));
 }
 
-stringToDraw = "Offset: "+string_format(seqcontrol.audioshift,4,1)+"ms";
+stringToDraw = "Latency: "+string_format(seqcontrol.audioshift,3,1)+"ms";
 

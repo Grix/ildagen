@@ -3,4 +3,4 @@ if (view_current != 0)
 
 draw_self();
 
-draw_text(x+55,y+3,stringToDraw);
+draw_text(x+50,y+3,stringToDraw);

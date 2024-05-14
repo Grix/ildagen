@@ -8,4 +8,4 @@ draw_set_color(c_black);
 
 draw_self();
 
-draw_text(x+55,y+3,stringToDraw);
+draw_text(x+50,y+3,stringToDraw);

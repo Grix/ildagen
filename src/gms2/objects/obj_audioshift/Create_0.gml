@@ -1,4 +1,4 @@
 image_speed = 0;
 
-stringToDraw = "Offset: "+string_format(seqcontrol.audioshift,4,1)+"ms";
+stringToDraw = "Latency: "+string_format(seqcontrol.audioshift,3,1)+"ms";
 
