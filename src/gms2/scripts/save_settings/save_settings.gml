@@ -18,6 +18,9 @@ function save_settings() {
 			ini_write_real("main", "preview_while_laser_on", preview_while_laser_on);
 			ini_write_real("main", "warning_disable", warning_disable);
 			ini_write_real("main", "fps", projectfps);
+			ini_write_real("main", "use_bpm", use_bpm);
+			ini_write_real("main", "bpm", bpm);
+			ini_write_real("main", "beats_per_bar", beats_per_bar);
 			/*ini_write_real("main", "window_width", window_get_width());
 			ini_write_real("main", "window_height", window_get_height());
 			ini_write_real("main", "window_x", window_get_x());

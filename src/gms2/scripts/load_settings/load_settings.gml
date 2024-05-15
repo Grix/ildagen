@@ -100,7 +100,11 @@ function load_settings() {
 			preview_while_laser_on = ini_read_real("main", "preview_while_laser_on", 0);
 			warning_disable = ini_read_real("main", "warning_disable", 0);
 			projectfps = ini_read_real("main", "fps", 50);
+			use_bpm = ini_read_real("main", "use_bpm", false);
+			bpm = ini_read_real("main", "bpm", 120);
+			beats_per_bar = ini_read_real("main", "beats_per_bar", 4);
 			seqcontrol.projectfps = projectfps;
+			livecontrol.bpm_adjusted = bpm;
 		
 			/*if (!ini_read_real("main", "window_width", 0))
 			{

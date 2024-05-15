@@ -7,7 +7,7 @@ if (!_visible)
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
 {
     image_index = 1;
-    controller.tooltip = "Edits the start and end point of placed animation";
+    controller.tooltip = "Set the start and end point of the editing scope. The editing scope delimits new animations and other editing actions.";
 }
 else image_index = 0; 
 

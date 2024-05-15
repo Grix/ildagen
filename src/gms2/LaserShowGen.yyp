@@ -988,7 +988,6 @@
     {"id":{"name":"obj_funcvselect","path":"objects/obj_funcvselect/obj_funcvselect.yy",},"order":16,},
     {"id":{"name":"sMIDISendNoteOn","path":"scripts/sMIDISendNoteOn/sMIDISendNoteOn.yy",},"order":4,},
     {"id":{"name":"obj_colordcselect","path":"objects/obj_colordcselect/obj_colordcselect.yy",},"order":17,},
-    {"id":{"name":"clean_element_references","path":"scripts/clean_element_references/clean_element_references.yy",},"order":45,},
     {"id":{"name":"obj_colortselect","path":"objects/obj_colortselect/obj_colortselect.yy",},"order":18,},
     {"id":{"name":"obj_coloroffselect","path":"objects/obj_coloroffselect/obj_coloroffselect.yy",},"order":19,},
     {"id":{"name":"obj_colorcopytoani","path":"objects/obj_colorcopytoani/obj_colorcopytoani.yy",},"order":20,},

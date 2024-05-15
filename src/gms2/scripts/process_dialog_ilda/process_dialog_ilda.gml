@@ -544,16 +544,20 @@ function process_dialog_ilda() {
               
 	            case "scopestart":
 	          {
-				  var t_value = round(ds_map_find_value(argument[0], "value"))-1;
-				  if (t_value > scope_end)
-					show_message_new("NB: Start of scope cannot be later than the end of scope.");
+				  if (controller.use_bpm)
+					var t_newscope = round(ds_map_find_value(argument[0], "value") / (controller.bpm / 60) * controller.projectfps);
+				  else
+					var t_newscope = round(ds_map_find_value(argument[0], "value"))-1;
+					
+				  if (t_newscope > scope_end)
+					show_message_new("NB: Start of editing scope cannot be later than the end of the scope.");
 					
 					var t_undolist = ds_list_create_pool();
 					ds_list_add(t_undolist, scope_start);
 					ds_list_add(t_undolist, scope_end);
 					ds_list_add(undo_list,"c"+string(t_undolist));
 					
-	              scope_start = clamp(t_value,0,scope_end);
+	              scope_start = clamp(t_newscope,0,scope_end);
 	              frame = scope_start;
 	              framehr = scope_start;
 	              frame_surf_refresh = 1;
@@ -564,16 +568,20 @@ function process_dialog_ilda() {
               
 	            case "scopeend":
 	          {
-				  var t_value = round(ds_map_find_value(argument[0], "value"))-1;
-				  if (t_value < scope_start)
-					show_message_new("NB: End of scope cannot be earlier than the start of scope.");
+				  if (controller.use_bpm)
+					var t_newscope = round(ds_map_find_value(argument[0], "value") / (controller.bpm / 60) * controller.projectfps);
+				  else
+					var t_newscope = round(ds_map_find_value(argument[0], "value"))-1;
+				  
+				  if (t_newscope < scope_start)
+					show_message_new("NB: End of editing scope cannot be earlier than the start of the scope.");
 				
 					var t_undolist = ds_list_create_pool();
 					ds_list_add(t_undolist, scope_start);
 					ds_list_add(t_undolist, scope_end);
 					ds_list_add(undo_list,"c"+string(t_undolist));
 				
-	              scope_end = clamp(t_value,scope_start,maxframes-1);
+	              scope_end = clamp(t_newscope,scope_start,maxframes-1);
 	              refresh_minitimeline_flag = 1;
               
 	              break;
