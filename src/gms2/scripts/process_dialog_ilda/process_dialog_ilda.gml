@@ -445,6 +445,13 @@ function process_dialog_ilda() {
               
 	              break;
 	          }
+			  
+			   case "bpm":
+	          {
+	              bpm = ds_map_find_value(argument[0], "value");
+				  bpm = clamp(bpm, 1, 10000);
+	              break;
+	          }
               
 	            case "aniscale":
 	          {

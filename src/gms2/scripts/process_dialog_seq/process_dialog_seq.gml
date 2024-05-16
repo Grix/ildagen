@@ -73,6 +73,14 @@ function process_dialog_seq() {
             
 	            break;
 	        }
+			case "beats_shift":
+	        {
+	            beats_shift = ds_map_find_value(argument[0], "value");
+	            obj_beatshift.stringToDraw = "Beat offset: "+string_format(seqcontrol.beats_shift,3,2);
+				seqcontrol.timeline_surf_length = 0;
+            
+	            break;
+	        }
 	        case "fft_cutoff_bass_low":
 	        {
 	            seqcontrol.audio_fft_bass_low_cutoff = clamp(real(ds_map_find_value(argument[0], "value")), 0, 2048);

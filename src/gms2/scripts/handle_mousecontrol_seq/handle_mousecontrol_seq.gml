@@ -25,7 +25,7 @@ function handle_mousecontrol_seq() {
 	        exit;
 	    }
 		
-	    controller.tooltip = "Drag object to any position on any timeline";
+	    controller.tooltip = "Drag object to any position on any layer. Hold "+get_ctrl_string()+" to diable snapping.";
 	    draw_mouseline = 1;
 	    mouse_ypreviousflag = 0;
 	    //currently dragging object on timeline
@@ -95,7 +95,6 @@ function handle_mousecontrol_seq() {
         
 	    if (mouse_check_button_released(mb_left))
 	    {
-			
 			clean_redo_list_seq();
 	        for (i = 0; i < ds_list_size(somaster_list); i++)
 	        {
@@ -117,6 +116,12 @@ function handle_mousecontrol_seq() {
             
 	            frame_surf_refresh = 1;
 	            tempxstart = round(ds_list_find_value(objecttomove,0));
+				if (controller.use_bpm && !keyboard_check_control())
+				{
+					// snap to beats
+					var t_framesPerBeat = seqcontrol.projectfps / (controller.bpm / 60);
+					tempxstart = (round(tempxstart / (t_framesPerBeat) - beats_shift) + beats_shift) * (t_framesPerBeat);
+				}
 	            if (!keyboard_check_control())
 	            {
 	                //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
@@ -1017,7 +1022,7 @@ function handle_mousecontrol_seq() {
 	            mouseonsomelayer = 1;
 	            if (mouseover_layer)
 	            {
-	                controller.tooltip = "Click to delete this layer and all its content";
+	                controller.tooltip = "Click to delete this layer and all its content.";
 	                if  mouse_check_button_pressed(mb_left) 
 	                {
 	                    layertodelete = ds_list_find_value(layer_list,i);
@@ -1106,7 +1111,7 @@ function handle_mousecontrol_seq() {
 	                            {
 	                                //edit object
 	                                if (!controller.warning_disable)
-										seq_dialog_yesno("fromseq","You are about to open the selected object in the editor mode. This will discard any unsaved changes currently in the editor. Continue? (Cannot be undone)");
+										seq_dialog_yesno("fromseq","You are about to open the selected object in the editor mode. This will discard any unsaved changes currently in the editor mode. Continue? (Cannot be undone)");
 									else
 										with (seqcontrol)
 											frames_fromseq();

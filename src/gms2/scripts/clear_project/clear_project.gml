@@ -5,6 +5,7 @@ function clear_project() {
 	timeline_surf_length = 0;
 	filepath = "";
 	show_is_demo = false;
+	beats_shift = 0;
 	remove_audio();
 	ds_list_clear(marker_list);
 	clean_redo_list_seq();

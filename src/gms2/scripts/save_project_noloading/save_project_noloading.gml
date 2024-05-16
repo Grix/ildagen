@@ -39,9 +39,9 @@ function save_project_noloading() {
 	buffer_write(save_buffer,buffer_u32,endframe);
 	buffer_write(save_buffer,buffer_s32,audioshift);
 	buffer_write(save_buffer,buffer_bool,loop);
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u8,0);
-	buffer_write(save_buffer,buffer_u8,0);
+	buffer_write(save_buffer,buffer_bool,controller.use_bpm);
+	buffer_write(save_buffer,buffer_u8,controller.bpm);
+	buffer_write(save_buffer,buffer_u8,controller.beats_per_bar);
 	repeat (30)
 	    buffer_write(save_buffer,buffer_u8,0);
 	buffer_write(save_buffer,buffer_u32,ds_list_size(layer_list)); //pos 50

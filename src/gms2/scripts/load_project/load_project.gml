@@ -38,6 +38,20 @@ function load_project(argument0) {
 	
 	if (!playlist_start_next_flag)
 		loop = buffer_read(load_buffer,buffer_bool);
+	else
+		buffer_read(load_buffer,buffer_bool); // skip
+	
+	controller.use_bpm = buffer_read(load_buffer,buffer_bool);
+	if (controller.use_bpm)
+	{
+		controller.bpm = buffer_read(load_buffer,buffer_u8);
+		controller.beats_per_bar = buffer_read(load_buffer,buffer_u8);
+	}
+	else
+	{
+		buffer_read(load_buffer,buffer_u8); // skip
+		buffer_read(load_buffer,buffer_u8);
+	}
 		
 	length = endframe+50;
 	buffer_seek(load_buffer,buffer_seek_start,50);

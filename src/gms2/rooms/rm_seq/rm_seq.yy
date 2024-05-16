@@ -21,6 +21,7 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_quicktip_seq","properties":[],"isDnd":false,"objectId":{"name":"obj_quicktip","path":"objects/obj_quicktip/obj_quicktip.yy",},"inheritCode":false,"hasCreationCode":true,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":324.0,"y":184.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_3D876FA","properties":[],"isDnd":false,"objectId":{"name":"obj_playlist","path":"objects/obj_playlist/obj_playlist.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":928.0,"y":32.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_48429A0C","properties":[],"isDnd":false,"objectId":{"name":"obj_tl_intensity_scale","path":"objects/obj_tl_intensity_scale/obj_tl_intensity_scale.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1016.0,"y":3440.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_3727A449","properties":[],"isDnd":false,"objectId":{"name":"obj_beatshift","path":"objects/obj_beatshift/obj_beatshift.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1016.0,"y":3404.0,},
       ],"visible":true,"depth":-100,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritVisibility":true,"inheritSubLayers":true,"gridX":4,"gridY":4,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"normal","instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_182C9004","properties":[],"isDnd":false,"objectId":{"name":"obj_loadaudio","path":"objects/obj_loadaudio/obj_loadaudio.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1016.0,"y":3296.0,},
@@ -86,6 +87,7 @@
     {"name":"inst_3D876FA","path":"rooms/rm_seq/rm_seq.yy",},
     {"name":"inst_48429A0C","path":"rooms/rm_seq/rm_seq.yy",},
     {"name":"inst_4CF24D8F","path":"rooms/rm_seq/rm_seq.yy",},
+    {"name":"inst_3727A449","path":"rooms/rm_seq/rm_seq.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,

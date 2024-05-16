@@ -100,17 +100,16 @@ audio_fft_bass_low_cutoff = 0;
 audio_fft_bass_high_cutoff = 5;
 audio_fft_treble_low_cutoff = 40;
 audio_fft_treble_high_cutoff = 150;
-
 somaster_list_prevsize = 0;
 envelope_undolist = -1;
 envelopexpos = 0;
-
 startframe = 0;
 endframe = 2600;
 startframex = -1;
 endframex = -1;
 largepreview = 0;
 loop = false;
+beats_shift = 0;
 
 tlsurf_y = 137;
 tlw = 983; //width of timeline

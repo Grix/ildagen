@@ -272,16 +272,24 @@ function refresh_timeline_surface() {
 				var framesPerBeat = projectfps / (controller.bpm / 60);
 				var drawtimeBeat = floor((t_tlx/framesPerBeat)/projectfps)-1;
 				
-				modulus = 1;
+				if (tlwdivtlzoom < 0.05)
+					modulus = 16;
+				else if (tlwdivtlzoom < 0.2)
+					modulus = 4;
+				else
+					modulus = 1;
 				
 				draw_set_colour(c_ltgray);
 			    gpu_set_blendenable(true);
 			    while (1)
 			    {
-			        var tempx = round((drawtimeBeat*framesPerBeat-t_tlx)*tlwdivtlzoom);
+					while (drawtimeBeat < 0)
+						drawtimeBeat++;
+					
+			        var tempx = round(((drawtimeBeat+beats_shift)*framesPerBeat-t_tlx)*tlwdivtlzoom);
 			        if (tempx > t_tlw+10)
 			            break;
-
+						
 			        if ((drawtimeBeat % (modulus*controller.beats_per_bar)) == 0)
 			        {
 			            //draw bar

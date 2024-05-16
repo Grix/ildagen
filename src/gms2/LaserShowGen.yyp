@@ -202,6 +202,7 @@
     {"id":{"name":"dd_seq_env_deletesection","path":"scripts/dd_seq_env_deletesection/dd_seq_env_deletesection.yy",},"order":17,},
     {"id":{"name":"dd_seq_slider_change_midi_shortcut","path":"scripts/dd_seq_slider_change_midi_shortcut/dd_seq_slider_change_midi_shortcut.yy",},"order":31,},
     {"id":{"name":"ML_LastException","path":"scripts/ML_LastException/ML_LastException.yy",},"order":9,},
+    {"id":{"name":"obj_beatshift","path":"objects/obj_beatshift/obj_beatshift.yy",},"order":13,},
     {"id":{"name":"ML_ClearExceptions","path":"scripts/ML_ClearExceptions/ML_ClearExceptions.yy",},"order":10,},
     {"id":{"name":"ML_RaiseException","path":"scripts/ML_RaiseException/ML_RaiseException.yy",},"order":11,},
     {"id":{"name":"ML_InitParserEmpty","path":"scripts/ML_InitParserEmpty/ML_InitParserEmpty.yy",},"order":0,},
