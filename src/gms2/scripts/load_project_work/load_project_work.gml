@@ -331,6 +331,9 @@ function load_project_work() {
 	}
     
 	buffer_delete(load_buffer);
+	
+	if (song != -1)
+		FMODGMS_Chan_Set_Volume(play_sndchannel,volume/100);
 
 	projectorlist_update();
 	timeline_surf_length = 0;

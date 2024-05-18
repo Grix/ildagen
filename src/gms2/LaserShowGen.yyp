@@ -358,6 +358,7 @@
     {"id":{"name":"_ML_LEX_IsTernOper2","path":"scripts/_ML_LEX_IsTernOper2/_ML_LEX_IsTernOper2.yy",},"order":14,},
     {"id":{"name":"_ML_LEX_IsAssignoper","path":"scripts/_ML_LEX_IsAssignoper/_ML_LEX_IsAssignoper.yy",},"order":15,},
     {"id":{"name":"_ML_LEX_IsUnoper","path":"scripts/_ML_LEX_IsUnoper/_ML_LEX_IsUnoper.yy",},"order":16,},
+    {"id":{"name":"dd_change_bpm","path":"scripts/dd_change_bpm/dd_change_bpm.yy",},"order":34,},
     {"id":{"name":"_ML_LEX_IsBinoper","path":"scripts/_ML_LEX_IsBinoper/_ML_LEX_IsBinoper.yy",},"order":17,},
     {"id":{"name":"_ML_LEX_IsFunction","path":"scripts/_ML_LEX_IsFunction/_ML_LEX_IsFunction.yy",},"order":18,},
     {"id":{"name":"_ML_LEX_IsVariable","path":"scripts/_ML_LEX_IsVariable/_ML_LEX_IsVariable.yy",},"order":19,},

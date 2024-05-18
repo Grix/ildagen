@@ -6,6 +6,10 @@ function dd_seq_slider_reset_value(){
 		if (selected_slider == obj_tl_intensity_scale)
 			intensity_scale = 1;
 		else if (selected_slider == obj_volume)
+		{
 			volume = 100;
+			if (song != -1)
+				FMODGMS_Chan_Set_Volume(play_sndchannel,volume/100);
+		}
 	}
 }

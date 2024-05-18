@@ -54,6 +54,8 @@ function handle_midi_input_seq(){
 			if (t_ccid == volume_midi_shortcut)
 			{
 				 volume = rtmidi_get_message(2) / 127 * 100;
+				 if (song != -1)
+					FMODGMS_Chan_Set_Volume(play_sndchannel,volume/100);
 			}
 			
 		}

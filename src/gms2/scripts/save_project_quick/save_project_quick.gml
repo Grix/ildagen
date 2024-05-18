@@ -47,7 +47,9 @@ function save_project_quick() {
 	buffer_write(save_buffer,buffer_bool,controller.use_bpm);
 	buffer_write(save_buffer,buffer_u8,controller.bpm);
 	buffer_write(save_buffer,buffer_u8,controller.beats_per_bar);
-	repeat (30)
+	buffer_write(save_buffer,buffer_f32,beats_shift);
+	buffer_write(save_buffer,buffer_u8,volume);
+	repeat (25)
 	    buffer_write(save_buffer,buffer_u8,0);
 	buffer_write(save_buffer,buffer_u32,ds_list_size(layer_list)); //pos 50
 

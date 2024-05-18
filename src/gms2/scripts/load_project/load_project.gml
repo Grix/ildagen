@@ -46,12 +46,18 @@ function load_project(argument0) {
 	{
 		controller.bpm = buffer_read(load_buffer,buffer_u8);
 		controller.beats_per_bar = buffer_read(load_buffer,buffer_u8);
+		beats_shift = buffer_read(load_buffer,buffer_f32);
 	}
 	else
 	{
 		buffer_read(load_buffer,buffer_u8); // skip
 		buffer_read(load_buffer,buffer_u8);
+		buffer_read(load_buffer,buffer_f32);
 	}
+	
+	volume = buffer_read(load_buffer,buffer_u8);
+	if (volume == 0 || volume > 100)
+		volume = 100;
 		
 	length = endframe+50;
 	buffer_seek(load_buffer,buffer_seek_start,50);
