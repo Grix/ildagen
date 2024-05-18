@@ -127,7 +127,6 @@ function process_dialog_seq() {
 			case "add_fadeout":
 			case "add_strobe_dutycycle":
 			{
-				// todo use beats in bpm mode
 	            var t_parameter = ds_map_find_value(argument[0], "value");
 			
 				for (i = 0; i < ds_list_size(somaster_list); i++)

@@ -194,6 +194,12 @@ else if (keyboard_check_pressed(ord("0")))
 	frame = 0;
     playing = 0;
 	selectedfile = -1;
+	
+	for (i = 0; i < ds_list_size(filelist); i++)
+	{
+		filelist[| i][| 0] = 0;
+		filelist[| i][| 2] = 0;
+	}
 }
 
 else

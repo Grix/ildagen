@@ -114,7 +114,7 @@ else if (room == rm_live)
         case 0: 
         {
             image_index = 1;
-            controller.tooltip = "Play. Shortcut: [Space bar]";
+            controller.tooltip = "Resume all paused files. Shortcut: [Space bar]";
             if (mouse_check_button_pressed(mb_left))
             {
                 livecontrol.playing = 1;
@@ -124,7 +124,7 @@ else if (room == rm_live)
         case 1: 
         {
             image_index = 2;
-            controller.tooltip = "Pause. Shortcut: [Space bar]";
+            controller.tooltip = "Pause all files. Shortcut: [Space bar]";
             if (mouse_check_button_pressed(mb_left))
             {
                 livecontrol.playing = 0;
@@ -134,7 +134,7 @@ else if (room == rm_live)
         case 2: 
         {
             image_index = 3;
-            controller.tooltip = "Stop and set position to start. Shortcut: [0]";
+            controller.tooltip = "Stop and set position of all files to start. Shortcut: [0]";
             if (mouse_check_button_pressed(mb_left))
             {
                 with (livecontrol)
@@ -143,6 +143,12 @@ else if (room == rm_live)
 					frame = 0;
 				    playing = 0;
 					selectedfile = -1;
+					
+					for (i = 0; i < ds_list_size(filelist); i++)
+					{
+						filelist[| i][| 0] = 0;
+						filelist[| i][| 2] = 0;
+					}
                 }
             }
             break;

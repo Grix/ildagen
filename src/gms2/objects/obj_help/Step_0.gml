@@ -34,7 +34,7 @@ if (room == rm_ilda)
         ""+get_ctrl_string()+"+X)    Cut selected objects\n"+
         ""+get_ctrl_string()+"+V)    Paste\n"+
 		"U)    Toggle laser DAC output\n"+
-        "Esc)    Stop laser DAC output\n"+
+        "Esc)    Turn off laser DAC output\n"+
         "Backspace)    Cancel object placing and selection\n"+
         "0)    Jump to first frame\n"+
         "Mouse wheel)    Adjust wave amplitude\n"+
@@ -73,7 +73,7 @@ else if (room == rm_seq)
         "S)    Split selected object at playback cursor position\n\n"+
 		""+get_ctrl_string()+"+S)    Save project\n"+
 		"U)    Toggle laser DAC output\n"+
-        "Esc)    Stop laser DAC output\n"+
+        "Esc)    Turn off laser DAC output\n"+
         "0)    Jump to first frame\n"+
         "Mouse wheel or F7/F8)    Zoom in timeline\n\n"+
         "Shift + Mouse wheel or F7/F8)    Scroll horizontally in timeline\n\n"+
@@ -92,6 +92,7 @@ else if (room == rm_live)
         controller.tooltip = "Click here to open the full manual. Keyboard controls:\n\n"+
         "Mouse)    Select file\n"+
         "Space)    Play/Pause\n"+
+		"0)    Pause and reset position of all objects\n" +
         "Tab)    Enter editor mode\n"+
 		"L)    Send frames from editor mode to the grid view\n"+
         "I)    Send the selected frames from the grid view to the timeline mode\n"+
@@ -104,7 +105,7 @@ else if (room == rm_live)
         ""+get_ctrl_string()+"+Z)    Undo\n"+
 		""+get_ctrl_string()+"+Y)    Redo\n"+
 		"U)    Toggle laser DAC output\n"+
-        "Esc)    Stop laser DAC output\n\n"+
+        "Esc)    Turn off laser DAC output\n\n"+
         "M)    Reset window size\n"+
         "F11)    Toggle fullscreen\n" +
         "F1)    Show manual\n" +
