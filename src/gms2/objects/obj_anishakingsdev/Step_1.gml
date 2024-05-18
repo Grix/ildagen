@@ -12,6 +12,6 @@ if (!visible)
 
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
 {
-    controller.tooltip = "Changes the intensity of the shaking at the end of the animation";
+    controller.tooltip = "Sets the intensity of the shaking at the end of the animation.";
 } 
 

@@ -15,7 +15,7 @@ if (!visible)
 mouse_xprevious = mouse_x;
 
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
-    {
-    controller.tooltip = "Changes wave height at the end of the animation.";
-    } 
+{
+    controller.tooltip = "Sets wave height at the end of the animation.";
+} 
 

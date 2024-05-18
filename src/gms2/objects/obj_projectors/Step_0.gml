@@ -3,7 +3,7 @@ if (moving == 1)
     scrollx += (mouse_y-mouse_yprevious)*scrollh/list_height;
     scrollx = clamp(scrollx,0,scrollh-scrollw);
     mouse_yprevious = mouse_y;
-    controller.tooltip = "Drag to scroll the list of timeline layers.";
+    controller.tooltip = "Drag to scroll the list of timeline mode layers.";
     if (!mouse_check_button(mb_left))
     {
         moving = 0;
@@ -18,7 +18,7 @@ if (scrollh > list_height)
 && (mouse_y == clamp(mouse_y, y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw), y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw)+scrollw)) 
 && (mouse_x == clamp(mouse_x, x+list_width, x+list_width+20))
 {
-    controller.tooltip = "Drag to scroll the list of timeline layers.";
+    controller.tooltip = "Drag to scroll the list of timeline mode layers.";
     if (mouse_check_button_pressed(mb_left))
     {
         moving = 1;
@@ -57,7 +57,7 @@ else if (mouse_y == clamp(mouse_y, y, y+list_height))
         if (t_item == t_item_mouseover)
         {
             //mouse over projector i
-            controller.tooltip = "Right click timeline layer for options.";
+            controller.tooltip = "Right click timeline mode layer for options.";
             if (mouse_check_button_pressed(mb_right))
             {
                 settingscontrol.projectortoselect = i;
@@ -72,7 +72,7 @@ else if (mouse_y == clamp(mouse_y, y, y+list_height))
             if (t_item == t_item_mouseover)
             {
                 //mouse over dac j in projector i
-                controller.tooltip = "Right click the DACs in the timeline layer list for options.";
+                controller.tooltip = "Right click the DACs in the timeline mode layer list for options.";
                 if (mouse_check_button_pressed(mb_right))
                 {
                     settingscontrol.projectortoselect = i;

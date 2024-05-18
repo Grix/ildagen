@@ -7,7 +7,7 @@ if (!visible)
     
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
 {
-    controller.tooltip = "Changes color of ending dots at the end of the animation\n(Sliders represent red, green and blue) ";
+    controller.tooltip = "Sets color of ending dots at the end of the animation.\n(Sliders represent red, green and blue). Right click to set exact value of sliders.\n";
 } 
         
 if (moving == 4)

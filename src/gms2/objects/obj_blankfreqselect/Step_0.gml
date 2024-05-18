@@ -6,7 +6,7 @@ if (!visible)
 
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
 {
-    controller.tooltip = "Changes number of blanking intervals per whole element";
+    controller.tooltip = "Changes number of stroke blanking intervals per whole element.";
     
     if ((mouse_x - bbox_left) > 24)
         image_index = 1;

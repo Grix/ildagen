@@ -3,7 +3,7 @@ if (moving == 1)
     scrollx += (mouse_y-mouse_yprevious)*scrollh/list_height;
     scrollx = clamp(scrollx,0,scrollh-scrollw);
     mouse_yprevious = mouse_y;
-    controller.tooltip = "Drag to scroll the list of DACs.";
+    controller.tooltip = "Drag to scroll the list of DACs/lasers.";
     if (!mouse_check_button(mb_left))
     {
         moving = 0;
@@ -18,7 +18,7 @@ if (scrollh > list_height)
 && (mouse_y == clamp(mouse_y, y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw), y+(scrollx)/(scrollh-scrollw)*(list_height-scrollw)+scrollw)) 
 && (mouse_x == clamp(mouse_x, x+list_width, x+list_width+20))
 {
-    controller.tooltip = "Drag to scroll the list of DACs.";
+    controller.tooltip = "Drag to scroll the list of DACs/lasers.";
     if (mouse_check_button_pressed(mb_left))
     {
         moving = 1;
@@ -52,7 +52,7 @@ else if (mouse_y == clamp(mouse_y, y, y+list_height))
     var t_dac_mouseover = (scrollx + (mouse_y - y)) div itemh;
     if (t_dac_mouseover < ds_list_size(controller.dac_list))
     {
-        controller.tooltip = "Left click to select DAC as default. Right click for options.";
+        controller.tooltip = "Left click to select DAC/laser as default output. Right click for options.";
         if (mouse_check_button_pressed(mb_left))
         {
             dac_select(t_dac_mouseover);

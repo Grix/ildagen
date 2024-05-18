@@ -1,6 +1,9 @@
 function save_profile() {
 	with (controller)
 	{
+		opt_blankshift = round(mean(opt_redshift, opt_greenshift, opt_blueshift));
+		log(opt_blankshift);
+		
 	    var t_profilemap = profile_list[| projector];
 	    t_profilemap[? "scanrate"] = opt_scanspeed;
 	    t_profilemap[? "maxdwell"] = opt_maxdwell;

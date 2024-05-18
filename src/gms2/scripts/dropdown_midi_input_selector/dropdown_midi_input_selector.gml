@@ -1,8 +1,8 @@
 function dropdown_midi_input_selector() {
-	ddobj = instance_create_layer((obj_midi_input_selector.x + 90)*controller.dpi_multiplier,(obj_midi_input_selector.y)*controller.dpi_multiplier,"foreground",obj_dropdown);
+	ddobj = instance_create_layer((obj_midi_input_selector.x + 80)*controller.dpi_multiplier,(obj_midi_input_selector.y)*controller.dpi_multiplier,"foreground",obj_dropdown);
 	with (ddobj)
 	{
-		total_width = (350-90)*controller.dpi_multiplier;
+		total_width = (290-80)*controller.dpi_multiplier;
 		
 	    num = rtmidi_probe_ins();
 		for (var t_i = 0; t_i < num; t_i++)

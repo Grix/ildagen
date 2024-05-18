@@ -1,10 +1,14 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_clearmarkers",
   "spriteId": {
     "name": "spr_clearmarker",
     "path": "sprites/spr_clearmarker/spr_clearmarker.yy",
   },
   "solid": false,
   "visible": false,
+  "managed": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
@@ -27,9 +31,9 @@
     {"x":16.0,"y":16.0,},
   ],
   "eventList": [
-    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"parent":{"name":"obj_clearmarkers","path":"objects/obj_clearmarkers/obj_clearmarkers.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"parent":{"name":"obj_clearmarkers","path":"objects/obj_clearmarkers/obj_clearmarkers.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":4,"eventType":6,"collisionObjectId":null,"parent":{"name":"obj_clearmarkers","path":"objects/obj_clearmarkers/obj_clearmarkers.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":4,"eventType":6,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],
@@ -37,8 +41,4 @@
     "name": "seq",
     "path": "folders/Objects/buttons/seq.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_clearmarkers",
-  "tags": [],
-  "resourceType": "GMObject",
 }

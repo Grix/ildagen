@@ -11,6 +11,6 @@ if (!visible)
 
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
 {
-    controller.tooltip = "Changes the ratio of blanking on and off";
+    controller.tooltip = "Changes the ratio (duty cycle) of blanking on and off.";
 } 
 

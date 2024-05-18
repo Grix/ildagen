@@ -6,7 +6,7 @@ if (!visible)
 
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
 {
-    controller.tooltip = "Sets the number of times to repeat the animation.";
+    controller.tooltip = "Sets the number of times to repeat the animation. Changes will only apply to new animations, not existing ones.";
     
     if ((mouse_x - bbox_left) > 24)
         image_index = 1;

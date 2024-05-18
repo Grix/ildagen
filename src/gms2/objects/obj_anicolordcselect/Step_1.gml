@@ -12,6 +12,6 @@ if (!visible)
 
 if (mouse_x > bbox_left) and (mouse_x < bbox_right) and (mouse_y > bbox_top) and ((mouse_y < bbox_bottom))
 {
-    controller.tooltip = "Changes the ratio of the primary/secondary color at the end of animation";
+    controller.tooltip = "Sets the ratio (duty cycle) of the primary and secondary colors at the end of animation.";
 } 
 

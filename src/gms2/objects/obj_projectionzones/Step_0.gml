@@ -581,7 +581,7 @@ else
 			}
 			else if (mouse_x > x) && (mouse_y > y) && (mouse_x < x+256) && (mouse_y < y+256)
 			{
-				controller.tooltip = "Right click for options";
+				controller.tooltip = "Right click for options.";
 		
 				if (mouse_check_button_pressed(mb_right))
 					dropdown_projectionwindow();
@@ -641,7 +641,7 @@ else
 			}
 			else if (mouse_x > x) && (mouse_y > y) && (mouse_x < x+256) && (mouse_y < y+256)
 			{
-				controller.tooltip = "Right click for options";
+				controller.tooltip = "Right click for options.";
 		
 				if (mouse_check_button_pressed(mb_right))
 					dropdown_projectionwindow();
