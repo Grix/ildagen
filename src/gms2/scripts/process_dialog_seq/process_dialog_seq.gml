@@ -109,7 +109,16 @@ function process_dialog_seq() {
 			
 			case "add_strobe":
 			{
-				strobe_period = ds_map_find_value(argument[0], "value")*controller.projectfps;
+				strobe_period = ds_map_find_value(argument[0], "value");
+				
+				if (controller.use_bpm)
+				{
+					var t_framesPerBeat = projectfps / (controller.bpm / 60);
+					strobe_period *= t_framesPerBeat;
+				}
+				else
+					strobe_period *= projectfps
+				
 				seq_dialog_num("add_strobe_dutycycle", "Choose the duty cycle of the strobing (on/off ratio, from 0 to 1):", 0.5); 	
 				break;
 			}
@@ -163,13 +172,27 @@ function process_dialog_seq() {
 					var t_start, t_end, t_valuestart, t_valueend;
 					if (dialog == "add_fadein")
 					{
-						t_parameter *= controller.projectfps;
+						if (controller.use_bpm)
+						{
+							var t_framesPerBeat = projectfps / (controller.bpm / 60);
+							t_parameter *= t_framesPerBeat;
+						}
+						else
+							t_parameter *= projectfps;
+						
 						t_start = t_object[| 0] - 1;
 						t_end = t_start + t_parameter + 2;
 					}
 					else if (dialog == "add_fadeout")
 					{
-						t_parameter *= controller.projectfps;
+						if (controller.use_bpm)
+						{
+							var t_framesPerBeat = projectfps / (controller.bpm / 60);
+							t_parameter *= t_framesPerBeat;
+						}
+						else
+							t_parameter *= projectfps;
+							
 						t_end = t_object[| 0] + ds_list_find_value(t_object, 2) + 1;
 						t_start = t_end - t_parameter - 1;
 					}

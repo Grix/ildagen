@@ -110,6 +110,7 @@ endframex = -1;
 largepreview = 0;
 loop = false;
 beats_shift = 0;
+doubleclick_mousexprevious = mouse_x;
 
 tlsurf_y = 137;
 tlw = 983; //width of timeline

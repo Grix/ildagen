@@ -24,6 +24,10 @@ if (song != -1)
 
 if (room != rm_seq) exit;
 
+if (doubleclick_mousexprevious != mouse_x)
+	doubleclick = 0;
+doubleclick_mousexprevious = mouse_x;
+
 var t_windowwidth = window_get_width();
 var t_windowheight = window_get_height();
 

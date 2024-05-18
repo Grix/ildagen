@@ -177,6 +177,7 @@
     {"id":{"name":"_ML_BD_DecodeGrid","path":"scripts/_ML_BD_DecodeGrid/_ML_BD_DecodeGrid.yy",},"order":2,},
     {"id":{"name":"_ML_BD_DecodePriority","path":"scripts/_ML_BD_DecodePriority/_ML_BD_DecodePriority.yy",},"order":3,},
     {"id":{"name":"_ML_BD_DecodeQueue","path":"scripts/_ML_BD_DecodeQueue/_ML_BD_DecodeQueue.yy",},"order":4,},
+    {"id":{"name":"spr_ad6","path":"sprites/spr_ad6/spr_ad6.yy",},"order":73,},
     {"id":{"name":"ease_in_out_cubic","path":"scripts/ease_in_out_cubic/ease_in_out_cubic.yy",},"order":38,},
     {"id":{"name":"_ML_BD_DecodeStack","path":"scripts/_ML_BD_DecodeStack/_ML_BD_DecodeStack.yy",},"order":5,},
     {"id":{"name":"dd_select_midi_input","path":"scripts/dd_select_midi_input/dd_select_midi_input.yy",},"order":29,},

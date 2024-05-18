@@ -6,6 +6,7 @@ getstr = -1;
 dialog = "";
 mouse_xprevious = mouse_x;
 mouse_yprevious = mouse_y;
+doubleclick_mousexprevious = mouse_x;
 viewmode = 0;
 doubleclick = 0;
 filepath = "";

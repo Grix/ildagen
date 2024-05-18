@@ -28,6 +28,8 @@ else if (window_mouse_get_x() >= x) && (window_mouse_get_x() <= (x+700*controlle
             url_open_new("http://pages.bitlasers.com/lasershowgen/advertising");
         else if (ad == spr_ad5)
             url_open_new("https://www.youtube.com/watch?v=I00X4zkfnw8&list=PLzkfJ3w9T9qe0SorZS5TmtwDL1SOY8OMG");
+        else if (ad == spr_ad6)
+            url_open_new("https://discord.gg/5ZQUnbentr");
     
         ddobj = instance_create_layer(0,0,"foreground",obj_dropdown);
         with (ddobj)
