@@ -1,12 +1,13 @@
+v2.0.0
+- Added BPM-based timing (turn on in settings window).
+- Fixed a significant crash that could happen sometime after copying and pasting in the timeline mode.
+- Fixed a crash when importing abnormal ILDA files.
+- Added speed adjustment control to grid mode.
+- Volume and speed adjustment can now be bound to MIDI knob in grid mode. 
+- Stop button / 0-key shortcut in grid mode now stops and resets all playing files, rather than pausing.
+- Various minor UI-related fixes and improvements.
+
 v1.11.2
 - Fix possible crash when activating output if blind zones have been defined.
 - Fix MIDI input does not take channels into account, causing duplicate keys for Akai pads etc.
 - Fix push-to-play option not working properly for MIDI input in grid mode.
-
-v1.11.1
-- Fix some possible crashes or corruptions when using the arbitrary function tools with an invalid function.
-
-v1.11.0
-- Add ability to use MIDI controllers to trigger animations and adjust sliders in the grid and timeline modes.
-- Text tool user-friendliness improvements, can select built-in fonts with a drop-down menu etc.
-- [5 other changes]

@@ -645,7 +645,6 @@
     {"id":{"name":"dd_seq_envtype_b_create","path":"scripts/dd_seq_envtype_b_create/dd_seq_envtype_b_create.yy",},"order":15,},
     {"id":{"name":"dd_seq_envtype_rotabs_create","path":"scripts/dd_seq_envtype_rotabs_create/dd_seq_envtype_rotabs_create.yy",},"order":16,},
     {"id":{"name":"dropdown_menu_set_view","path":"scripts/dropdown_menu_set_view/dropdown_menu_set_view.yy",},"order":0,},
-    {"id":{"name":"dropdown_menu_set_about","path":"scripts/dropdown_menu_set_about/dropdown_menu_set_about.yy",},"order":1,},
     {"id":{"name":"dropdown_dacs","path":"scripts/dropdown_dacs/dropdown_dacs.yy",},"order":2,},
     {"id":{"name":"dropdown_blindzone","path":"scripts/dropdown_blindzone/dropdown_blindzone.yy",},"order":3,},
     {"id":{"name":"dropdown_projectionwindow","path":"scripts/dropdown_projectionwindow/dropdown_projectionwindow.yy",},"order":4,},

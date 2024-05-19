@@ -1,12 +1,14 @@
 function dropdown_menu_ilda_about() {
-	if (room == rm_ilda || room == rm_seq || room == rm_options)
-		ddobj = instance_create_layer(controller.menu_width_start[5]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
+	if (room == rm_ilda || room == rm_seq)
+		ddobj = instance_create_layer(controller.menu_width_start[4]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 	else if (room == rm_live)
-		ddobj = instance_create_layer(livecontrol.menu_width_start[4]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
+		ddobj = instance_create_layer(livecontrol.menu_width_start[3]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
+	else
+		ddobj = instance_create_layer(settingscontrol.menu_width_start[1]*controller.dpi_multiplier,0,"foreground",obj_dropdown);
 	with (ddobj)
 	{
 	    num = 5;
-	    ds_list_add(desc_list,"Info");
+	    ds_list_add(desc_list,"Information");
 	    ds_list_add(desc_list,"Open manual");
 	    ds_list_add(desc_list,"Contact developer");
 	    ds_list_add(desc_list,"Check for updates");

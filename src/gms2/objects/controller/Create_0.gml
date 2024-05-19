@@ -1,5 +1,5 @@
-version = "1.11.2";
-versiondate = "2024-03-08";
+version = "2.0.0";
+versiondate = "2024-05-19";
 
 global.list_pool = ds_stack_create();
 global.list_pool_is_taken = ds_map_create();
@@ -407,7 +407,7 @@ colorfunc_string_2 = "";
 colorfunc_string_3 = "";
 blankfunc_string = "";
 
-menu_string = "   File      Edit      Tools      View      Settings      About   ";
+menu_string = "   File      Edit      Tools      View      About   ";
 menu_width_start[0] = 0;
 menu_width[0] = string_width("   File   ");
 menu_width_start[1] = menu_width[0];
@@ -417,10 +417,19 @@ menu_width[2] = string_width("   Tools   ");
 menu_width_start[3] = menu_width_start[2]+menu_width[2];
 menu_width[3] = string_width("   View   ");
 menu_width_start[4] = menu_width_start[3]+menu_width[3];
-menu_width[4] = string_width("   Settings   ");
+menu_width[4] = string_width("   About   ");
 menu_width_start[5] = menu_width_start[4]+menu_width[4];
-menu_width[5] = string_width("   About   ");
-menu_width_start[6] = menu_width_start[5]+menu_width[5];
+
+tab_menu_string = "   Settings      Grid View      Timeline      Editor   ";
+tab_menu_width_start[0] = 0;
+tab_menu_width[0] = string_width("   Editor   ");
+tab_menu_width_start[1] = tab_menu_width[0];
+tab_menu_width[1] = string_width("   Timeline   ");
+tab_menu_width_start[2] = tab_menu_width_start[1]+tab_menu_width[1];
+tab_menu_width[2] = string_width("   Grid View   ");
+tab_menu_width_start[3] = tab_menu_width_start[2]+tab_menu_width[2];
+tab_menu_width[3] = string_width("   Settings   ");
+tab_menu_width_start[4] = tab_menu_width_start[3]+tab_menu_width[3];
 
 randomize();
 

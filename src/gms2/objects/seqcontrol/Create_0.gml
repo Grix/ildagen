@@ -156,7 +156,7 @@ play_sndchannel = FMODGMS_Chan_CreateChannel();
 
 benchmark();
 
-menu_string = "   File      Edit      Tools      View      Settings      About   ";
+menu_string = "   File      Edit      Tools      View      About   ";
 menu_width_start[0] = 0;
 menu_width[0] = string_width("   File   ");
 menu_width_start[1] = menu_width[0];
@@ -166,8 +166,6 @@ menu_width[2] = string_width("   Tools   ");
 menu_width_start[3] = menu_width_start[2]+menu_width[2];
 menu_width[3] = string_width("   View   ");
 menu_width_start[4] = menu_width_start[3]+menu_width[3];
-menu_width[4] = string_width("   Settings   ");
+menu_width[4] = string_width("   About   ");
 menu_width_start[5] = menu_width_start[4]+menu_width[4];
-menu_width[5] = string_width("   About   ");
-menu_width_start[6] = menu_width_start[5]+menu_width[5];
 

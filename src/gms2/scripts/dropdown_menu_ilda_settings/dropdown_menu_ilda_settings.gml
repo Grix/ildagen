@@ -1,4 +1,5 @@
 function dropdown_menu_ilda_settings() {
+	ilda_cancel();
 	dd_goto_options();
 
 

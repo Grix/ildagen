@@ -448,12 +448,18 @@ function process_dialog_ilda() {
 			  
 			   case "bpm":
 	          {
+				  var previous_bpm = bpm;
+				  
 	              bpm = ds_map_find_value(argument[0], "value");
 				  bpm = clamp(bpm, 1, 10000);
 				  if (room == rm_seq)
 					seqcontrol.timeline_surf_length = 0;
 				  else if (room == rm_ilda)
 					refresh_minitimeline_flag = 1;
+					
+				  if (previous_bpm == livecontrol.bpm_adjusted)
+					livecontrol.bpm_adjusted = bpm;
+					
 	              break;
 	          }
               

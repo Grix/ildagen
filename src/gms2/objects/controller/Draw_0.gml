@@ -402,17 +402,20 @@ else if (view_current == 3)
     draw_set_colour(c_black);
 	var t_ypos = camera_get_view_y(view_camera[3]);
 	var t_height = max(1, camera_get_view_height(view_camera[3]));
-	
+	var t_width =  max(1, camera_get_view_width(view_camera[3]));
 	//gpu_set_blendenable(false);
 	//draw_clear(c_ltltgray);
-	draw_line(-1, t_ypos+t_height-1, view_wport[3], t_ypos+t_height-1);
+	draw_line(-1, t_ypos+t_height-1, t_width, t_ypos+t_height-1);
     //gpu_set_blendenable(true);
 	
     //menu
-    draw_text(0, t_ypos+4,menu_string);
+    draw_text(0, t_ypos+4, menu_string);
+	draw_set_halign(fa_right);
+	draw_text(t_width, t_ypos+4, tab_menu_string);
+	draw_set_halign(fa_left);
+    draw_set_colour(c_teal);
     if (mouse_y < 0)
     {
-        draw_set_colour(c_teal);
         if (mouse_x > menu_width_start[0]) && (mouse_x < menu_width_start[1])
         {
 			tooltip = ".";
@@ -448,15 +451,43 @@ else if (view_current == 3)
             draw_set_alpha(0.3);
             draw_rectangle(menu_width_start[4], t_ypos+1,menu_width_start[5], t_ypos+t_height-3,0);
         }
-        else if (mouse_x > menu_width_start[5]) && (mouse_x < menu_width_start[6])
+		
+		else if (mouse_x < t_width-tab_menu_width_start[0]) && (mouse_x > t_width-tab_menu_width_start[1])
         {
 			tooltip = ".";
-            draw_rectangle(menu_width_start[5], t_ypos+1,menu_width_start[6], t_ypos+t_height-3,1);
+            draw_rectangle(t_width-tab_menu_width_start[0], t_ypos+1,t_width-tab_menu_width_start[1], t_ypos+t_height-3,1);
             draw_set_alpha(0.3);
-            draw_rectangle(menu_width_start[5], t_ypos+1,menu_width_start[6], t_ypos+t_height-3,0);
+            draw_rectangle(t_width-tab_menu_width_start[0], t_ypos+1,t_width-tab_menu_width_start[1], t_ypos+t_height-3,0);
         }
-        draw_set_alpha(1);
+        else if (mouse_x < t_width-tab_menu_width_start[1]) && (mouse_x > t_width-tab_menu_width_start[2])
+        {
+			tooltip = ".";
+            draw_rectangle(t_width-tab_menu_width_start[1], t_ypos+1,t_width-tab_menu_width_start[2], t_ypos+t_height-3,1);
+            draw_set_alpha(0.3);
+            draw_rectangle(t_width-tab_menu_width_start[1], t_ypos+1,t_width-tab_menu_width_start[2], t_ypos+t_height-3,0);
+        }
+        else if (mouse_x < t_width-tab_menu_width_start[2]) && (mouse_x > t_width-tab_menu_width_start[3])
+        {
+			tooltip = ".";
+            draw_rectangle(t_width-tab_menu_width_start[2], t_ypos+1,t_width-tab_menu_width_start[3], t_ypos+t_height-3,1);
+            draw_set_alpha(0.3);
+            draw_rectangle(t_width-tab_menu_width_start[2], t_ypos+1,t_width-tab_menu_width_start[3], t_ypos+t_height-3,0);
+        }
+        else if (mouse_x < t_width-tab_menu_width_start[3]) && (mouse_x > t_width-tab_menu_width_start[4])
+        {
+			tooltip = ".";
+            draw_rectangle(t_width-tab_menu_width_start[3], t_ypos+1,t_width-tab_menu_width_start[4], t_ypos+t_height-3,1);
+            draw_set_alpha(0.3);
+            draw_rectangle(t_width-tab_menu_width_start[3], t_ypos+1,t_width-tab_menu_width_start[4], t_ypos+t_height-3,0);
+        }
     }
+	
+	draw_set_alpha(1);
+    draw_rectangle(t_width-tab_menu_width_start[0], t_ypos+1,t_width-tab_menu_width_start[1], t_ypos+t_height-3,1);
+    draw_set_alpha(0.3);
+    draw_rectangle(t_width-tab_menu_width_start[0], t_ypos+1,t_width-tab_menu_width_start[1], t_ypos+t_height-3,0);
+    draw_set_alpha(1);
+	draw_set_color(c_black);
 }
 else if (view_current == 6)
 {
