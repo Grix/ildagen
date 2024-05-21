@@ -8,13 +8,16 @@ function create_element() {
 	ML_ClearExceptions(parser_cb);
 	ML_ClearExceptions(parser_shape);
         
-	if (maxframes == 1) and (anienable)
+	if (maxframes == 1) and (anienable) // if you change this, also change same check in case ("text") in process_dialog_ilda
 	{
 	    //ds_list_add(controller.undo_list,"a"+string(controller.maxframes))
 		if (controller.use_bpm)
 			maxframes = round(controller.projectfps / (controller.bpm / 60 / controller.beats_per_bar)); // one bar
 		else
 			maxframes = controller.projectfps * 2; // two seconds
+			
+		
+			
 	    scope_end = maxframes-1;
 	    refresh_minitimeline_flag = 1;
     

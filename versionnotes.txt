@@ -1,3 +1,6 @@
+v2.0.1
+- Fix possible crash when using the text tool.
+
 v2.0.0
 - Added BPM-based timing (turn on in settings window).
 - Fixed a significant crash that could happen sometime after copying and pasting in the timeline mode.
@@ -5,9 +8,5 @@ v2.0.0
 - Added speed adjustment control to grid mode.
 - Volume and speed adjustment can now be bound to MIDI knob in grid mode. 
 - Stop button / 0-key shortcut in grid mode now stops and resets all playing files, rather than pausing.
+- Fix double-clicking items sometimes not working due to too short click interval needed.
 - Various minor UI-related fixes and improvements.
-
-v1.11.2
-- Fix possible crash when activating output if blind zones have been defined.
-- Fix MIDI input does not take channels into account, causing duplicate keys for Akai pads etc.
-- Fix push-to-play option not working properly for MIDI input in grid mode.

@@ -7,9 +7,7 @@ function seq_paste_object() {
     
 	if (ds_list_size(copy_list) != 0)
 	{
-		
 		add_action_history_ilda("SEQ_paste");
-	
 		
 	    ds_list_clear(somaster_list);
 		

@@ -797,8 +797,17 @@ function process_dialog_ilda() {
 	            case ("text"):
 	            {
 	                text = ds_map_find_value(argument[0], "result");
-
-	                for (i = 0;i <= maxframes;i++)
+					
+					var t_maxframes = maxframes;
+					if (maxframes == 1) and (anienable)
+					{
+						if (controller.use_bpm)
+							t_maxframes = round(controller.projectfps / (controller.bpm / 60 / controller.beats_per_bar)); // one bar
+						else
+							t_maxframes = controller.projectfps * 2; // two seconds
+					}
+					
+	                for (i = 0;i <= t_maxframes;i++)
 	                    xdelta[i] = 0;
                 
 	                //start making elements
