@@ -56,8 +56,12 @@ if ((keyboard_check(ord("E"))) and (placing_status != 2))
 {
 	add_action_history_ilda("ILDA_samplecolor");
 	
-    ds_list_add(undo_list,"bb"+string(color2));
-    ds_list_add(undo_list,"b"+string(color1));
+	var t_tempundolist = ds_list_create_pool();
+    ds_list_add(t_tempundolist,controller.enddotscolor);
+    ds_list_add(t_tempundolist,controller.color2);
+    ds_list_add(t_tempundolist,controller.color1);
+    ds_list_add(controller.undo_list,"b"+string(t_tempundolist));
+	
     color1 = draw_getpixel(obj_cursor.x,obj_cursor.y+23);
     update_colors();
     exit;
