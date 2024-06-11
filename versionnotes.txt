@@ -1,3 +1,7 @@
+v2.0.2
+- Add ability to unbind all MIDI and keyboard shortcuts from sliders and grid mode tiles.
+- Fix possible crash/corruption when undoing use of color picker tool.
+
 v2.0.1
 - Fix possible crash when using the text tool.
 

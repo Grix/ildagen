@@ -55,6 +55,10 @@ function dropdown_live_file() {
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,live_change_midi_shortcut);
 	    ds_list_add(hl_list,1);
+		ds_list_add(desc_list,"Unbind shortcut");
+	    ds_list_add(sep_list,0);
+	    ds_list_add(scr_list,live_unbind_shortcut);
+	    ds_list_add(hl_list,1);
 		ds_list_add(desc_list,"Set name...");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,live_change_tile_name);
