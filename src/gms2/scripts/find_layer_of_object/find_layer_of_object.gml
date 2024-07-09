@@ -1,3 +1,4 @@
+// find layer list of object on the timeline
 function find_layer_of_object(argument0) {
 	for (var t_i = 0; t_i < ds_list_size(seqcontrol.layer_list); t_i++)
 	{

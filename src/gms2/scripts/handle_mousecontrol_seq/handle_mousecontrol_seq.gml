@@ -120,7 +120,7 @@ function handle_mousecontrol_seq() {
 				{
 					// snap to beats
 					var t_framesPerBeat = seqcontrol.projectfps / (controller.bpm / 60);
-					tempxstart = (round(tempxstart / (t_framesPerBeat) - beats_shift) + beats_shift) * (t_framesPerBeat);
+					tempxstart = round((round(tempxstart / (t_framesPerBeat) - beats_shift) + beats_shift) * (t_framesPerBeat));
 				}
 	            if (!keyboard_check_control())
 	            {
@@ -167,7 +167,8 @@ function handle_mousecontrol_seq() {
 				
 				add_action_history_ilda("SEQ_move");
 	
-	            ds_list_add(undo_list,"m"+string(undolisttemp));
+				if (i < ds_list_size(multiple_undo_list))
+					ds_list_add(undo_list,"m"+string(multiple_undo_list[| i]));
             
 	            ds_list_replace(objecttomove,0,tempxstart);
 	            moving_object = 0;
@@ -263,8 +264,9 @@ function handle_mousecontrol_seq() {
 				add_action_history_ilda("SEQ_resize");
 			
 	            ds_list_replace(objecttomove, 2, templength);
-            
-	            ds_list_add(undo_list,"r"+string(undolisttemp));
+					
+				if (i < ds_list_size(multiple_undo_list))
+					ds_list_add(undo_list,"r"+string(multiple_undo_list[| i]));
             
 	            moving_object = 0;
 	        }
@@ -980,7 +982,7 @@ function handle_mousecontrol_seq() {
 
     
 	draw_cursorline = 0;    
-
+	
 
 	//layers
 	var tempstarty = tls-layerbary;
@@ -1124,9 +1126,15 @@ function handle_mousecontrol_seq() {
 										{
 											//resize object
 											moving_object_flag = 2;
-											undolisttemp = ds_list_create_pool();
-		                                    ds_list_add(undolisttemp,objectlist);
-		                                    ds_list_add(undolisttemp,object_length);
+											
+											ds_list_clear(multiple_undo_list);
+											for (var t_i = 0; t_i < ds_list_size(somoving_list); t_i++)
+											{
+												undolisttemp = ds_list_create_pool();
+				                                ds_list_add(undolisttemp,somoving_list[| t_i]);
+				                                ds_list_add(undolisttemp,somoving_list[| t_i][| 2]);
+												ds_list_add(multiple_undo_list, undolisttemp);
+											}
 										}
 										else 
 										{
@@ -1142,10 +1150,21 @@ function handle_mousecontrol_seq() {
 	                                    //drag object
 	                                    moving_object_flag = 1;
                                     
-	                                    undolisttemp = ds_list_create_pool();
-	                                    ds_list_add(undolisttemp,objectlist);
-	                                    ds_list_add(undolisttemp,elementlist);
-	                                    ds_list_add(undolisttemp,frametime);
+										ds_list_clear(multiple_undo_list);
+										for (var t_i = 0; t_i < ds_list_size(somoving_list); t_i++)
+										{
+											undolisttemp = ds_list_create_pool();
+		                                    ds_list_add(undolisttemp,somoving_list[| t_i]);
+											var t_layer = find_layer_of_object(somoving_list[| t_i]);
+											if (!ds_list_exists_pool(t_layer))
+											{
+												log("NB: layer not found");
+												continue;
+											}
+		                                    ds_list_add(undolisttemp, t_layer[| 1]);
+		                                    ds_list_add(undolisttemp,somoving_list[| t_i][| 0]);
+											ds_list_add(multiple_undo_list, undolisttemp);
+										}
                                     
 	                                    mouse_xprevious = mouse_x;
 	                                    mouse_yprevious = mouse_y;

@@ -1,16 +1,12 @@
-v2.0.2
-- Add ability to unbind all MIDI and keyboard shortcuts from sliders and grid mode tiles.
-- Fix possible crash/corruption when undoing use of color picker tool.
+v2.0.3
+- Fix exclusive mode for Grid Mode tiles blocking other tiles even when not playing.
+- Fix possible crash in Timeline Mode when splitting item after moving it if BPM-based timing is enabled.
+- Fix undoing after moving/resizing multiple timeline objects at once only undo-ing one of them.
 
-v2.0.1
-- Fix possible crash when using the text tool.
+v2.0.2
+- Add ability to unbind all MIDI and keyboard shortcuts from sliders and Grid Mode tiles.
+- Fix possible crash/corruption when undoing use of color picker tool in Editor Mode.
 
 v2.0.0
 - Added BPM-based timing (turn on in settings window).
-- Fixed a significant crash that could happen sometime after copying and pasting in the timeline mode.
-- Fixed a crash when importing abnormal ILDA files.
-- Added speed adjustment control to grid mode.
-- Volume and speed adjustment can now be bound to MIDI knob in grid mode. 
-- Stop button / 0-key shortcut in grid mode now stops and resets all playing files, rather than pausing.
-- Fix double-clicking items sometimes not working due to too short click interval needed.
-- Various minor UI-related fixes and improvements.
+[... 7 other changes]

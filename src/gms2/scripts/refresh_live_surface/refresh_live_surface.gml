@@ -27,7 +27,7 @@ function refresh_live_surface() {
 	var t_exclusive_active = false;
 	for (j = 0; j < ds_list_size(filelist); j++)
 	{
-		if (ds_list_find_value(filelist[| j], 8) != 0)
+		if (ds_list_find_value(filelist[| j], 8) != 0 && filelist[| j][| 0])
 		{
 			t_exclusive_active = true;
 			break;

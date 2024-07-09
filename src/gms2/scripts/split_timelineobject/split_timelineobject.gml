@@ -16,7 +16,7 @@ function split_timelineobject() {
 			continue;
 		}
 	    correctframe = round(tlpos/1000*projectfps);
-	    frametime = ds_list_find_value(objectlist,0);
+	    frametime = round(ds_list_find_value(objectlist,0));
 	    object_length = ds_list_find_value(objectlist,4);
     
 	    if ( (correctframe > frametime) && (correctframe < (frametime+object_length)) )

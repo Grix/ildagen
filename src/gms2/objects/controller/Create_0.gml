@@ -1,5 +1,5 @@
-version = "2.0.2";
-versiondate = "2024-06-11";
+version = "2.0.3";
+versiondate = "2024-07-09";
 
 global.list_pool = ds_stack_create();
 global.list_pool_is_taken = ds_map_create();
