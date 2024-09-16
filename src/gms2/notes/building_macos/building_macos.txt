@@ -44,4 +44,6 @@ Follow gms setting up for mac guide
 Open apple developer website, add provision for new mac under "devices" page
 On website, add new profile for developer id signature, download to mac and import to xcode when exporting archived build
 
+if reusing certificate somehow, current macos uses cert with serial id 328a52f1a70d9177 (last of the three with same exp.date)
+
 If in trouble, use mac gamemaker IDE instead of remote via windows IDE.

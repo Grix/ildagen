@@ -38,8 +38,7 @@
 //  Variables
 // -------------------------------------------------------------------------------------------------
 
-/*int plt_monoValid = 0;
+int plt_monoValid = 0;
 LARGE_INTEGER plt_monoCtrFreq;
 LARGE_INTEGER plt_monoCtrRef;
 uint32_t plt_monoTimeUS = 0;
-*/
