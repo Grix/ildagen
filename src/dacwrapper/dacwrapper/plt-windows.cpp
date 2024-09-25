@@ -31,6 +31,7 @@
 #include <stdint.h>
 
 // Platform headers
+#define _WINSOCKAPI_   /* Prevent inclusion of winsock.h in windows.h */
 #include <windows.h>
 
 

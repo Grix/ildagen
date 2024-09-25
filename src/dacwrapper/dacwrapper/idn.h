@@ -45,27 +45,27 @@ typedef struct
 
 #if defined(_WIN32) || defined(WIN32)
 	//#include <windows.h>
-#include <tchar.h>
+	#include <tchar.h>
 #else
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <arpa/inet.h>
+	#include <stdlib.h>
+	#include <unistd.h>
+	#include <string.h>
+	#include <arpa/inet.h>
 #endif
 
 #include <time.h>
 
 #if defined(_WIN32) || defined(WIN32)
 
-#include "plt-windows.h"
+	#include "plt-windows.h"
 
 #else
 
-#include <stdlib.h>
-#include <ifaddrs.h>
+	#include <stdlib.h>
+	#include <ifaddrs.h>
 
-#include "plt-posix.h"
-#include <netdb.h>
+	#include "plt-posix.h"
+	#include <netdb.h>
 
 #endif
 
@@ -81,6 +81,9 @@ typedef struct
 //#define MAX_IDN_MESSAGE_LEN             0x0800      // Message len for fragmentation tests
 
 #define XYRGB_SAMPLE_SIZE               7
+#define XYRGBI_SAMPLE_SIZE              8
+#define XYRGB_HIGHRES_SAMPLE_SIZE       10
+#define EXTENDED_SAMPLE_SIZE			20
 
 
 
@@ -96,14 +99,13 @@ typedef struct
 	unsigned usFrameTime;                   // Time for one frame in microseconds (1000000/frameRate)
 	int jitterFreeFlag;                     // Scan frames only once to exactly match frame rate
 	unsigned scanSpeed;                     // Scan speed in samples per second
-	unsigned colorShift;                    // Color shift in points/samples
 
 	unsigned bufferLen;                     // Length of work buffer
 	uint8_t* bufferPtr;                     // Pointer to work buffer
 
 	uint32_t startTime;                     // System time at stream start (log reference)
 	uint32_t frameCnt;                      // Number of sent frames
-	uint32_t startTimestamp;					// Timestamp of first frame in current active session
+	uint32_t startTimestamp;				// Timestamp of first frame in current active session
 	uint32_t frameTimestamp;                // Timestamp of the last frame
 	uint32_t cfgTimestamp;                  // Timestamp of the last channel configuration
 
@@ -120,6 +122,7 @@ typedef struct
 	std::string name;
 	int serviceId;
 
+
 } IDNCONTEXT;
 
 
@@ -128,12 +131,19 @@ void logInfo(const char* fmt, ...);
 static char int2Hex(unsigned i);
 //void binDump(void* buffer, unsigned length);
 static int idnSend(void* context, IDNHDR_PACKET* packetHdr, unsigned packetLen);
-int idnOpenFrameXYRGB(void* context);
-int idnPutSampleXYRGB(void* context, int16_t x, int16_t y, uint8_t r, uint8_t g, uint8_t b);
-int idnPushFrameXYRGB(void* context);
-int idnSendVoid(void* context);
-int idnSendClose(void* context);
-std::vector<int>* idnHelloScan(const char* ifName, uint32_t ifIP4Addr);
+int idnOpenFrameGeneric(IDNCONTEXT* context, uint16_t* channelDescriptors, size_t numChannelDescriptors, bool forceNewConfig);
+int idnPutSampleGeneric(IDNCONTEXT* context, int8_t* sampleBuffer, size_t sampleBufferSize);
+int idnOpenFrameXYRGB(IDNCONTEXT* context);
+int idnPutSampleXYRGB(IDNCONTEXT* context, int16_t x, int16_t y, uint8_t r, uint8_t g, uint8_t b);
+int idnOpenFrameXYRGBI(IDNCONTEXT* context);
+int idnPutSampleXYRGBI(IDNCONTEXT* context, int16_t x, int16_t y, uint8_t r, uint8_t g, uint8_t b, uint8_t i);
+int idnOpenFrameHighResXYRGB(IDNCONTEXT* context);
+int idnPutSampleHighResXYRGB(IDNCONTEXT* context, int16_t x, int16_t y, int16_t r, int16_t g, int16_t b);
+int idnOpenFrameExtended(IDNCONTEXT* context);
+int idnPutSampleExtended(IDNCONTEXT* context, int16_t x, int16_t y, int16_t r, int16_t g, int16_t b, int16_t i, int16_t u1, int16_t u2, int16_t u3, int16_t u4);
+int idnPushFrame(IDNCONTEXT* context);
+int idnSendVoid(IDNCONTEXT* context);
+int idnSendClose(IDNCONTEXT* context);
 
 
 #endif

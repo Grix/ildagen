@@ -63,8 +63,8 @@ private:
 	etherdreamFuncPtr5 EtherDreamGetStatus;
 
 	bool ready;
-	int frameNum[16];
-	std::mutex frameLock[16];
-	bool stopped[16];
+	int frameNum[32];
+	std::mutex frameLock[32];
+	bool stopped[32];
 };
 

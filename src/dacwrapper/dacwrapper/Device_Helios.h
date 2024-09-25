@@ -23,7 +23,7 @@ private:
 	HeliosDac* heliosDevice;
 
 	bool ready;
-	int frameNum[16];
-	std::mutex frameLock[16];
+	int frameNum[32];
+	std::mutex frameLock[32];
 };
 

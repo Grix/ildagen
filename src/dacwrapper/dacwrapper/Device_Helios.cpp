@@ -18,7 +18,7 @@ int Device_Helios::Init()
 	heliosDevice = new HeliosDac;
 
 
-	for (int i = 0; i < 16; i++)
+	for (int i = 0; i < 32; i++)
 		frameNum[i] = 0;
 
 	ready = true;
@@ -27,6 +27,9 @@ int Device_Helios::Init()
 
 	if (result <= 0)
 		CloseAll();
+
+	if (result > 32)
+		result = 32;
 
 	return result;
 }

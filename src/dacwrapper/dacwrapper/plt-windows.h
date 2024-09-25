@@ -24,6 +24,7 @@
 // -------------------------------------------------------------------------------------------------
 //  Change History:
 //
+//  09/2024 Gitle Mikkelsen, adapted to take into consideration the subnet mask of network interfaces
 //  06/2017 Dirk Apitz, created
 // -------------------------------------------------------------------------------------------------
 
@@ -43,6 +44,7 @@
 
 #pragma comment(lib, "IPHLPAPI.lib")
 #pragma comment(lib, "ws2_32.lib")
+
 
 // -------------------------------------------------------------------------------------------------
 //  Typedefs
@@ -112,16 +114,6 @@ inline static int plt_ifAddrListVisitor(IFADDR_CALLBACK_PFN pfnCallback, void* c
 {
     extern void logError(const char* fmt, ...);
 
-    /*struct addrinfo* servinfo;              // Will point to the results
-    struct addrinfo hints;                  // Hints about the caller-supported socket types
-    memset(&hints, 0, sizeof hints);        // Make sure the struct is empty
-    hints.ai_flags = AI_PASSIVE;            // Intention to use address with the bind function
-    hints.ai_family = AF_INET;              // IPv4
-
-    int rcAddrInfo = getaddrinfo("", "", &hints, &servinfo);
-    if (rcAddrInfo != 0) 
-        return rcAddrInfo;*/
-
     ULONG bufferSize = 0;
     DWORD result = GetAdaptersAddresses(AF_INET, GAA_FLAG_INCLUDE_PREFIX, NULL, NULL, &bufferSize);
     if (result != ERROR_BUFFER_OVERFLOW) {
@@ -151,26 +143,10 @@ inline static int plt_ifAddrListVisitor(IFADDR_CALLBACK_PFN pfnCallback, void* c
                 unsigned int subnetMask = (unsigned int)(0xFFFFFFFF << (32 - prefixLength));
                 subnetMask = htonl(subnetMask);
 
-                pfnCallback(callbackArg, adapter->AdapterName, sockaddr_ipv4->sin_addr.S_un.S_addr, subnetMask); //TODO mask
+                pfnCallback(callbackArg, adapter->AdapterName, sockaddr_ipv4->sin_addr.S_un.S_addr, subnetMask);
             }
         }
     }
-
-
-    // Walk through all interfaces (servinfo points to a linked list of struct addrinfos)
-    /*for (struct addrinfo* ifa = servinfo; ifa != NULL; ifa = ifa->ai_next)
-    {
-        if (ifa->ai_addr == NULL) continue;
-        if (ifa->ai_addr->sa_family != AF_INET) continue;
-
-        // Invoke callback on interface
-        struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ai_addr;
-
-        pfnCallback(callbackArg, ifa->ai_canonname, (uint32_t)(ifSockAddr->sin_addr.s_addr), 0xFFFFFFFF); //TODO mask
-    }
-
-    // Interface list is dynamically allocated and must be freed
-    freeaddrinfo(servinfo);*/
 
     return 0;
 }

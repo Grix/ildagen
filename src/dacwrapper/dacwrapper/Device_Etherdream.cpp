@@ -5,7 +5,7 @@
 Device_Etherdream::Device_Etherdream()
 {
 	ready = false;
-	for (int i = 0; i < 16; i++)
+	for (int i = 0; i < 32; i++)
 		stopped[i] = true;
 }
 
