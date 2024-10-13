@@ -4,6 +4,7 @@
 //  07/2013 Dirk Apitz, created
 //  01/2015 Dirk Apitz, IDN standard draft, separate stream header file
 //  05/2016 Dirk Apitz, separate hello header file
+//  10/2024 Gitle Mikkelsen, extended with more types of data frames, like high res and 8 color channels
 // -------------------------------------------------------------------------------------------------
 
 
@@ -138,9 +139,9 @@ int idnPutSampleXYRGB(IDNCONTEXT* context, int16_t x, int16_t y, uint8_t r, uint
 int idnOpenFrameXYRGBI(IDNCONTEXT* context);
 int idnPutSampleXYRGBI(IDNCONTEXT* context, int16_t x, int16_t y, uint8_t r, uint8_t g, uint8_t b, uint8_t i);
 int idnOpenFrameHighResXYRGB(IDNCONTEXT* context);
-int idnPutSampleHighResXYRGB(IDNCONTEXT* context, int16_t x, int16_t y, int16_t r, int16_t g, int16_t b);
+int idnPutSampleHighResXYRGB(IDNCONTEXT* context, int16_t x, int16_t y, uint16_t r, uint16_t g, uint16_t b);
 int idnOpenFrameExtended(IDNCONTEXT* context);
-int idnPutSampleExtended(IDNCONTEXT* context, int16_t x, int16_t y, int16_t r, int16_t g, int16_t b, int16_t i, int16_t u1, int16_t u2, int16_t u3, int16_t u4);
+int idnPutSampleExtended(IDNCONTEXT* context, int16_t x, int16_t y, uint16_t r, uint16_t g, uint16_t b, uint16_t i, uint16_t u1, uint16_t u2, uint16_t u3, uint16_t u4);
 int idnPushFrame(IDNCONTEXT* context);
 int idnSendVoid(IDNCONTEXT* context);
 int idnSendClose(IDNCONTEXT* context);

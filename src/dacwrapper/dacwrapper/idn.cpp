@@ -479,7 +479,7 @@ int idnOpenFrameHighResXYRGB(IDNCONTEXT* context)
 	return 0;
 }
 
-int idnPutSampleHighResXYRGB(IDNCONTEXT* context, int16_t x, int16_t y, int16_t r, int16_t g, int16_t b)
+int idnPutSampleHighResXYRGB(IDNCONTEXT* context, int16_t x, int16_t y, uint16_t r, uint16_t g, uint16_t b)
 {
 	IDNCONTEXT* ctx = context;
 
@@ -559,7 +559,7 @@ int idnOpenFrameExtended(IDNCONTEXT* context)
 		descriptors[9] = htons(0x4010);     // 16 bit precision
 		descriptors[10] = htons(0x5C10);     // Intensity, legacy signal
 		descriptors[11] = htons(0x4010);     // 16 bit precision
-		descriptors[12] = htons(0x51BD);     // User 1 (Deep blue)
+		descriptors[12] = htons(0x51BD);     // User 1 (Here configured as deep blue)
 		descriptors[13] = htons(0x4010);     // 16 bit precision
 		descriptors[14] = htons(0x5241);     // User 2 (Here configured as yellow)
 		descriptors[15] = htons(0x4010);     // 16 bit precision
@@ -586,7 +586,7 @@ int idnOpenFrameExtended(IDNCONTEXT* context)
 	return 0;
 }
 
-int idnPutSampleExtended(IDNCONTEXT* context, int16_t x, int16_t y, int16_t r, int16_t g, int16_t b, int16_t i, int16_t u1, int16_t u2, int16_t u3, int16_t u4)
+int idnPutSampleExtended(IDNCONTEXT* context, int16_t x, int16_t y, uint16_t r, uint16_t g, uint16_t b, uint16_t i, uint16_t u1, uint16_t u2, uint16_t u3, uint16_t u4)
 {
 	IDNCONTEXT* ctx = context;
 

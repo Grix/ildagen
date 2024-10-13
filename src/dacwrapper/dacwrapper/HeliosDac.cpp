@@ -1054,7 +1054,7 @@ int HeliosDac::HeliosDacIdnDevice::SendFrameExtended(unsigned int pps, std::uint
 
 	for (int i = 0; i < numOfPoints; i++)
 	{
-		if (idnPutSampleExtended(context, points[i].x - 0x8000, points[i].y - 0x8000, points[i].r, points[i].g, points[i].b, points[i].i, points[i].user1, points[i].user2, points[i].user3, points[i].user4))
+		if (idnPutSampleExtended(context, (int16_t)(points[i].x - 0x8000), (int16_t)(points[i].y - 0x8000), points[i].r, points[i].g, points[i].b, points[i].i, points[i].user1, points[i].user2, points[i].user3, points[i].user4))
 			return false;
 	}
 
