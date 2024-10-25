@@ -328,9 +328,15 @@ bool LaserCubeNetwork::LaserCubeNetworkDevice::OpenDevice()
 		return false;
 	}
 
+#ifdef WIN32
+	DWORD ms = 500;
+	setsockopt(cmdSocketFd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&ms, sizeof(ms));
+#else
 	struct timeval tv;
+	tv.tv_sec = 0;
 	tv.tv_usec = 500000;
 	setsockopt(cmdSocketFd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof(tv));
+#endif
 
 	/*std::thread receiveResponseHandlerThread(&LaserCubeNetwork::LaserCubeNetworkDevice::ReceiveUdpHandler, this);
 	receiveResponseHandlerThread.detach();*/

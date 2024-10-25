@@ -13,17 +13,17 @@ git repo: https://github.com/Grix/helios_dac.git
 BASIC USAGE:
 1.	Call OpenDevices() to open devices, returns number of available devices.
 2.	To send a frame to the DAC, first call GetStatus(). The status should be polled until it returns ready.
-    If the function returns ready (1), then you can call WriteFrame() or WriteFrameHighResolution().
+	If the function returns ready (1), then you can call WriteFrame() or WriteFrameHighResolution().
 3.  To stop output, use Stop(). To restart output you must send a new frame as described above.
 4.	When the DAC is no longer needed, destroy the instance (destructors will free everything and close the connection)
 
-When the DAC receives its first frame, it starts outputting it. When a second frame is sent to 
-the DAC while the first frame is being played, the second frame is stored in the DACs memory until the first frame 
+When the DAC receives its first frame, it starts outputting it. When a second frame is sent to
+the DAC while the first frame is being played, the second frame is stored in the DACs memory until the first frame
 finishes playback, at which point the second, buffered frame will start playing. If the DAC finished playback of a frame
 without having received and buffered a second frame, it will by default loop the first frame until a new frame is
 received (but the flag HELIOS_FLAG_SINGLE_MODE will make it stop playback instead).
 The GetStatus() function actually checks whether or not the buffer on the DAC is empty or full. If it is full, the DAC
-cannot receive a new frame until the currently playing frame finishes, freeing up the buffer. This is not applicable 
+cannot receive a new frame until the currently playing frame finishes, freeing up the buffer. This is not applicable
 on IDN network DACs, they will always be ready to receive a new frame.
 */
 
@@ -80,12 +80,12 @@ on IDN network DACs, they will always be ready to receive a new frame.
 #define HELIOS_ERROR_DEVICE_SIGNAL_TOO_LONG	-1005
 // Attempted to call a function that isn't supported for this particular DAC model (for example SetShutter on network DACs, since they handle shutter logic automatically instead of manually)
 #define HELIOS_ERROR_NOT_SUPPORTED			-1006
-// Error during sending on IDN network packet. See console output for more information, or errno on Unix or WSAGetLastError() on Windows.
+// Error during sending network packet for IDN DACs. See console output for more information, or errno on Unix or WSAGetLastError() on Windows.
 #define HELIOS_ERROR_NETWORK				-1007
 
 // Errors from libusb are the libusb error code added to -5000. See libusb.h for libusb error codes.
 #define HELIOS_ERROR_LIBUSB_BASE		-5000
-	
+
 // Bitmask flags used in flags parameter for WriteFrame*(). Can be OR'ed together to enable multiple flags
 // No flags defined.
 #define HELIOS_FLAGS_DEFAULT			0
@@ -108,6 +108,8 @@ on IDN network DACs, they will always be ready to receive a new frame.
 #define EP_BULK_IN	0x81
 #define EP_INT_OUT	0x06
 #define EP_INT_IN	0x83
+
+#define MANAGEMENT_PORT 7355
 
 #ifdef _DEBUG
 #define LIBUSB_LOG_LEVEL LIBUSB_LOG_LEVEL_WARNING
@@ -219,10 +221,10 @@ public:
 	// Returns firmware version of DAC.
 	int GetFirmwareVersion(unsigned int devNum);
 
-	// Gets name of DAC (populates name with max 32 characters).
+	// Gets name of DAC (populates name, with at most 32 characters).
 	int GetName(unsigned int devNum, char* name);
 
-	// Sets name of DAC (name must be max 31 characters incl. null terminator).
+	// Sets name of DAC (Name must be max 20 characters long, or 21 bytes including null terminator).
 	int SetName(unsigned int devNum, char* name);
 
 	// Stops output of DAC until new frame is written (NB: blocks for 100ms).
@@ -231,7 +233,7 @@ public:
 	// Sets shutter level of DAC.
 	// Value 1 = shutter open, value 0 = shutter closed
 	int SetShutter(unsigned int devNum, bool level);
-	
+
 	// Sets debug log level in libusb.
 	int SetLibusbDebugLogLevel(int logLevel);
 
@@ -332,6 +334,8 @@ private:
 		bool closed = true;
 		std::chrono::time_point<std::chrono::high_resolution_clock> statusReadyTime;
 		bool firstFrame = true;
+		int managementSocket = -1;
+		sockaddr_in managementSocketAddr;
 
 		bool frameReady = false;
 		std::mutex frameLock;
