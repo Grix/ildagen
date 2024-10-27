@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E02613E2325003200323762 /* Device_IDN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E02613C2325003200323762 /* Device_IDN.cpp */; };
-		8E02613F2325003200323762 /* Device_IDN.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E02613D2325003200323762 /* Device_IDN.h */; };
 		8E4FF6DD209F792D0088C085 /* Device_Etherdream_unix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E4FF6DB209F792D0088C085 /* Device_Etherdream_unix.cpp */; };
 		8E4FF6DE209F792D0088C085 /* Device_Etherdream_unix.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E4FF6DC209F792D0088C085 /* Device_Etherdream_unix.h */; };
 		8E7A31912083D68900416B44 /* dacwrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E7A318F2083D68900416B44 /* dacwrapper.cpp */; };
@@ -44,8 +42,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8E02613C2325003200323762 /* Device_IDN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Device_IDN.cpp; path = ../dacwrapper/Device_IDN.cpp; sourceTree = "<group>"; };
-		8E02613D2325003200323762 /* Device_IDN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Device_IDN.h; path = ../dacwrapper/Device_IDN.h; sourceTree = "<group>"; };
 		8E4FF6DB209F792D0088C085 /* Device_Etherdream_unix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Device_Etherdream_unix.cpp; path = ../dacwrapper/Device_Etherdream_unix.cpp; sourceTree = "<group>"; };
 		8E4FF6DC209F792D0088C085 /* Device_Etherdream_unix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Device_Etherdream_unix.h; path = ../dacwrapper/Device_Etherdream_unix.h; sourceTree = "<group>"; };
 		8E7A31882083D57300416B44 /* libdacwrapper.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libdacwrapper.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,8 +125,6 @@
 				8EA62ED6209F80860087E229 /* etherdream_common */,
 				8EA62ED7209F80860087E229 /* etherdream.c */,
 				8EA62ED8209F80860087E229 /* etherdream.h */,
-				8E02613C2325003200323762 /* Device_IDN.cpp */,
-				8E02613D2325003200323762 /* Device_IDN.h */,
 				8EE0D8822324267D006267DE /* idn-hello.h */,
 				8EE0D8832324267D006267DE /* idn-stream.h */,
 				8EE0D8842324267D006267DE /* idn.cpp */,
@@ -159,7 +153,6 @@
 				8EE0D88D23242693006267DE /* plt-posix.h in Headers */,
 				8EA62EDA209F80860087E229 /* etherdream.h in Headers */,
 				B6A4EF7C2AD424DF00B845BB /* idnServerList.h in Headers */,
-				8E02613F2325003200323762 /* Device_IDN.h in Headers */,
 				8E7A31962083D6BF00416B44 /* Device_Helios.h in Headers */,
 				8EE0D8892324267D006267DE /* idn.h in Headers */,
 				8E4FF6DE209F792D0088C085 /* Device_Etherdream_unix.h in Headers */,
@@ -249,7 +242,6 @@
 				8EA62ED9209F80860087E229 /* etherdream.c in Sources */,
 				F1919EF1269B510D00E5A1D2 /* LaserCubeNetwork.cpp in Sources */,
 				8E7A31952083D6BF00416B44 /* Device_Helios.cpp in Sources */,
-				8E02613E2325003200323762 /* Device_IDN.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +269,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Gitle Mikkelsen (Y62YL762Z5)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -296,7 +288,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -324,7 +316,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Gitle Mikkelsen (Y62YL762Z5)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -337,7 +329,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
