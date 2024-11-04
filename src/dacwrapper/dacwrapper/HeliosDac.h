@@ -13,9 +13,11 @@ git repo: https://github.com/Grix/helios_dac.git
 BASIC USAGE:
 1.	Call OpenDevices() to open devices, returns number of available devices.
 2.	To send a frame to the DAC, first call GetStatus(). The status should be polled until it returns ready.
-	If the function returns ready (1), then you can call WriteFrame() or WriteFrameHighResolution().
+	If the function returns ready (1), then you can call WriteFrame*().
 3.  To stop output, use Stop(). To restart output you must send a new frame as described above.
 4.	When the DAC is no longer needed, destroy the instance (destructors will free everything and close the connection)
+
+More more information on all functions, see their declarations below.
 
 When the DAC receives its first frame, it starts outputting it. When a second frame is sent to
 the DAC while the first frame is being played, the second frame is stored in the DACs memory until the first frame
@@ -24,15 +26,17 @@ without having received and buffered a second frame, it will by default loop the
 received (but the flag HELIOS_FLAG_SINGLE_MODE will make it stop playback instead).
 The GetStatus() function actually checks whether or not the buffer on the DAC is empty or full. If it is full, the DAC
 cannot receive a new frame until the currently playing frame finishes, freeing up the buffer. This is not applicable
-on IDN network DACs, they will always be ready to receive a new frame.
+on IDN network DACs, they will always be ready to receive a new frame, but by default the GetStatus still simulates 
+the time it would take for the IDN DAC to play the frame, to stay backwards compatible with programs that depend on
+GetStatus() for timing purposes.
 */
 
 #pragma once
 
 #define _WINSOCKAPI_   // Prevent inclusion of winsock.h in windows.h from libusb.h
 #include "libusb.h"
-#include "idn.h"
-#include "idnServerList.h"
+#include "idn/idn.h"
+#include "idn/idnServerList.h"
 #include <cstring>
 #include <cstdint>
 #include <thread>
@@ -44,12 +48,18 @@ on IDN network DACs, they will always be ready to receive a new frame.
 
 #define HELIOS_SDK_VERSION	10
 
-#define HELIOS_MAX_POINTS 0x3FFC
-#define HELIOS_MAX_PPS 100000
-#define HELIOS_MIN_PPS 1
-#define HELIOS_MAX_POINTS_OLD 0xFFF // For original USB model
-#define HELIOS_MAX_PPS_OLD 0xFFFF // For original USB model
-#define HELIOS_MIN_PPS_OLD 7 // For original USB model
+// Frame limits
+// For original USB model
+#define HELIOS_MAX_POINTS	0xFFF
+#define HELIOS_MAX_PPS		0xFFFF
+#define HELIOS_MIN_PPS		7
+// For IDN, max points depend on the complexity of those points
+// In theory, many of these limits could be improved, by enabling frame fragmentation, smarter PPS calculation etc, but I keep it simple to minimize compatibility problems.
+#define HELIOS_MAX_POINTS_IDN			((MAX_IDN_MESSAGE_LEN - 100) / XYRGB_SAMPLE_SIZE)  // 9311
+#define HELIOS_MAX_POINTS_IDN_HIGHRES	((MAX_IDN_MESSAGE_LEN - 100) / XYRGB_HIGHRES_SAMPLE_SIZE) // 6518
+#define HELIOS_MAX_POINTS_IDN_EXT		((MAX_IDN_MESSAGE_LEN - 100) / EXTENDED_SAMPLE_SIZE) // 3259
+#define HELIOS_MAX_PPS_IDN				100000
+#define HELIOS_MIN_PPS_IDN				HELIOS_MIN_PPS // 7
 
 #define HELIOS_SUCCESS		1	
 
@@ -137,7 +147,6 @@ typedef struct
 	std::uint16_t r; // Unsigned 16 bit (valid values from 0 to 0xFFFF). Red.
 	std::uint16_t g; // Unsigned 16 bit (valid values from 0 to 0xFFFF). Green.
 	std::uint16_t b; // Unsigned 16 bit (valid values from 0 to 0xFFFF). Blue.
-	std::uint16_t user1; // Unsigned 16 bit (valid values from 0 to 0xFFFF). Deep blue or custom. Optional.
 } HeliosPointHighRes;
 
 typedef struct
@@ -168,10 +177,20 @@ public:
 	// NB: To re-scan for newly connected DACs after this function has once been called before, you must first call CloseDevices().
 	int OpenDevices();
 
+	// Initializes drivers, opens connection to only USB devices (skips IDN/network scan).
+	// Can be used if you have already implemented an IDN client separately.
+	// Returns number of available devices.
+	// NB: To re-scan for newly connected DACs after this function has once been called before, you must first call CloseDevices().
+	int OpenDevicesOnlyUsb();
+
 	// Closes and frees all devices.
 	int CloseDevices();
 
-	// Writes and outputs a frame to the speficied dac, using the lightweight point structure designed for the original Helios DAC.
+	// Writes and outputs a frame to the speficied dac.
+	// WriteFrame() uses the lightweight point structure designed for the original Helios DAC.
+	// WriteFrameHighResolution() uses a higher resolution point structure supported by newer DAC models. If unsure, this one is recommended.
+	// WriteFrameExtended() has additional optional channels and a higher resolution point structure supported by newer DAC models.
+	// It is safe to call any of these functions even for DACs that don't support higher resolution data. In that case the data will automatically be converted (though at a slight performance cost).
 	// devNum: dac number (0 to n where n+1 is the return value from OpenDevices() ).
 	// pps: rate of output in points per second.
 	// flags: (default is 0)
@@ -179,51 +198,20 @@ public:
 	//	 Bit 1 = if 1, play frame only once, instead of repeating until another frame is written
 	//   Bit 2 = if 1, don't let WriteFrame() block execution while waiting for the transfer to finish 
 	//			(NB: then the function might return 1 even if the transfer fails)
-	//	 Bit 3-7 = reserved
-	// points: pointer to point data. See point structure declaration earlier in this document.
+	//   Bit 3 = IDN (Network) DACs do not provide an actual status feedback, so GetStatus() could in theory just return 1 all the time.
+	//			 However, some programs may depends on the timing of the status signal, so by default an approximate status timing is simulated.
+	//			 If this flag bit is 1, this timing simulation is disabled, and GetStatus() returns 1 as soon as it can.
+	//	 Bit 4-7 = reserved
+	// points: pointer to point data. See point structure declarations earlier in this document.
 	// numOfPoints: number of points in the frame.
 	int WriteFrame(unsigned int devNum, unsigned int pps, std::uint8_t flags, HeliosPoint* points, unsigned int numOfPoints);
-
-	// Writes and outputs a frame to the speficied dac, using a higher resolution point structure supported by newer DAC models.
-	// It is safe to call this function even for DACs that don't support higher resolution data, in that case the data will be converted (though at a slight performance cost)
-	// devNum: dac number (0 to n, where n+1 is the return value from OpenDevices() ).
-	// pps: rate of output in points per second.
-	// flags: (default is 0)
-	//	 Bit 0 (LSB) = if 1, start output immediately, instead of waiting for current frame (if there is one) to finish playing
-	//	 Bit 1 = if 1, play frame only once, instead of repeating until another frame is written
-	//   Bit 2 = if 1, don't let WriteFrame() block execution while waiting for the transfer to finish 
-	//			(NB: then the function might return 1 even if the transfer fails)
-	//	 Bit 3-7 = reserved
-	// points: pointer to point data. See point structure declaration earlier in this document.
-	// numOfPoints: number of points in the frame.
 	int WriteFrameHighResolution(unsigned int devNum, unsigned int pps, unsigned int flags, HeliosPointHighRes* points, unsigned int numOfPoints);
-
-	// Writes and outputs a frame to the speficied dac, with additional optional channels and a higher resolution point structure supported by newer DAC models.
-	// It is safe to call this function even for DACs that don't support higher resolution data, in that case the data will be converted (though at a slight performance cost)
-	// devNum: dac number (0 to n, where n+1 is the return value from OpenDevices() ).
-	// pps: rate of output in points per second.
-	// flags: (default is 0)
-	//	 Bit 0 (LSB) = if 1, start output immediately, instead of waiting for current frame (if there is one) to finish playing
-	//	 Bit 1 = if 1, play frame only once, instead of repeating until another frame is written
-	//   Bit 2 = if 1, don't let WriteFrame() block execution while waiting for the transfer to finish 
-	//			(NB: then the function might return 1 even if the transfer fails)
-	//	 Bit 3-7 = reserved
-	// points: pointer to point data. See point structure declaration earlier in this document.
-	// numOfPoints: number of points in the frame.
 	int WriteFrameExtended(unsigned int devNum, unsigned int pps, unsigned int flags, HeliosPointExt* points, unsigned int numOfPoints);
 
 	// Gets status of DAC, 1 means DAC is ready to receive frame, 0 means it is not.
 	int GetStatus(unsigned int devNum);
 
-	// Returns whether a specific DAC supports the new WriteFrameHighResolution() and WriteFrameExtended() functions. 
-	// The Original Helios USB device does not, at least not all firmware versions. HeliosPRO / IDN devices supports it.
-	// Note that it is safe to call these function even for DACs that don't support higher resolution data, in that case the data will be converted (though at a performance cost).
-	bool GetSupportsHigherResolutions(unsigned int devNum);
-
-	// Returns firmware version of DAC.
-	int GetFirmwareVersion(unsigned int devNum);
-
-	// Gets name of DAC (populates name, with at most 32 characters).
+	// Gets name of DAC (populates name with at most 32 characters).
 	int GetName(unsigned int devNum, char* name);
 
 	// Sets name of DAC (Name must be max 20 characters long, or 21 bytes including null terminator).
@@ -233,20 +221,21 @@ public:
 	int Stop(unsigned int devNum);
 
 	// Sets shutter level of DAC.
+	// This is no longer strictly necessary to call, the library automatically opens the shutter when you write a frame.
 	// Value 1 = shutter open, value 0 = shutter closed
 	int SetShutter(unsigned int devNum, bool level);
 
-	// Gets the maximum point rate in pps (points per second) for this DAC. Can vary between USB and IDN devices.
-	// Note that it is safe to write frames outside this limit, as the frame will get automatically subsampled (at a performance cost)
-	int GetMaxSampleRate(unsigned int devNum);
+	// Returns firmware version of DAC.
+	// For Helios USB, the firmware version is just one simple integer, which is never higher than 255.
+	// For Helios IDN DACs, the firmware version is an integer in this format: AABBCC, which corresponds to vAA.BB.CC. For example 10002 would be v1.0.2.
+	// For non-Helios IDN DACs, this function may not work, as firmware version getting is not a part of the IDN spec. In that case, the function may block for a second and then return a negative number.
+	int GetFirmwareVersion(unsigned int devNum);
 
-	// Gets the minumum point rate in pps (points per second) for this DAC. Can vary between USB and IDN devices.
-	// Note that it is safe to write frames outside this limit, as points will get automatically duplicated to increase pps (at a performance cost)
-	int GetMinSampleRate(unsigned int devNum);
-
-	// Gets the maximum number of points in one frame for this DAC. Can vary between USB and IDN devices.
-	// Note that it is safe to write frames outside this limit, as the frame will get automatically subsampled (at a performance cost)
-	int GetMaxFrameSize(unsigned int devNum);
+	// Returns whether a specific DAC supports the higher resolutions color/postion data of new WriteFrameHighResolution() and WriteFrameExtended() functions. 
+	// The Original Helios USB device does not, at least not all firmware versions. HeliosPRO / IDN devices supports it.
+	// Note that it is safe to call these function even for DACs that don't support higher resolution data, in that case the data will automatically be converted (though at a performance cost).
+	// Returns 1 if yes, 0 if no, and a negative number on error.
+	int GetSupportsHigherResolutions(unsigned int devNum);
 
 	// Sets debug log level in libusb.
 	int SetLibusbDebugLogLevel(int logLevel);
@@ -263,19 +252,18 @@ private:
 
 	public:
 
+		virtual ~HeliosDacDevice() {}
+
 		virtual int SendFrame(unsigned int pps, std::uint8_t flags, HeliosPoint* points, unsigned int numOfPoints) = 0;
 		virtual int SendFrameHighResolution(unsigned int pps, std::uint8_t flags, HeliosPointHighRes* points, unsigned int numOfPoints) = 0;
 		virtual int SendFrameExtended(unsigned int pps, std::uint8_t flags, HeliosPointExt* points, unsigned int numOfPoints) = 0;
 		virtual int GetStatus() = 0;
-		virtual bool GetSupportsHigherResolutions() = 0;
 		virtual int GetFirmwareVersion() = 0;
 		virtual int GetName(char* name) = 0;
 		virtual int SetName(char* name) = 0;
+		virtual int GetSupportsHigherResolutions() = 0;
 		virtual int SetShutter(bool level) = 0;
 		virtual int Stop() = 0;
-		virtual int GetMaxSampleRate() = 0;
-		virtual int GetMinSampleRate() = 0;
-		virtual int GetMaxFrameSize() = 0;
 		virtual int EraseFirmware() = 0;
 
 	};
@@ -292,15 +280,12 @@ private:
 		int SendFrameHighResolution(unsigned int pps, std::uint8_t flags, HeliosPointHighRes* points, unsigned int numOfPoints);
 		int SendFrameExtended(unsigned int pps, std::uint8_t flags, HeliosPointExt* points, unsigned int numOfPoints);
 		int GetStatus();
-		bool GetSupportsHigherResolutions() { return false; } // TODO read capabilities from DAC
+		int GetSupportsHigherResolutions() { return 0; } // TODO read capabilities from DAC
 		int GetFirmwareVersion();
 		int GetName(char* name);
 		int SetName(char* name);
 		int SetShutter(bool level);
 		int Stop();
-		int GetMaxSampleRate() { return HELIOS_MAX_PPS_OLD; } // TODO read exact capabilities from DAC
-		int GetMinSampleRate() { return HELIOS_MIN_PPS_OLD; } // TODO read exact capabilities from DAC
-		int GetMaxFrameSize() { return HELIOS_MAX_POINTS_OLD; } // TODO read exact capabilities from DAC
 		int EraseFirmware();
 
 
@@ -309,6 +294,10 @@ private:
 		int DoFrame();
 		void BackgroundFrameHandler();
 		int SendControl(std::uint8_t* buffer, unsigned int bufferSize);
+
+		unsigned int GetMaxSampleRate() { return HELIOS_MAX_PPS; } // TODO read exact capabilities from DAC
+		unsigned int GetMinSampleRate() { return HELIOS_MIN_PPS; } // TODO read exact capabilities from DAC
+		unsigned int GetMaxFrameSize() { return HELIOS_MAX_POINTS; } // TODO read exact capabilities from DAC
 
 		struct libusb_transfer* interruptTransfer = NULL;
 		struct libusb_device_handle* usbHandle;
@@ -337,21 +326,21 @@ private:
 		int SendFrameHighResolution(unsigned int pps, std::uint8_t flags, HeliosPointHighRes* points, unsigned int numOfPoints);
 		int SendFrameExtended(unsigned int pps, std::uint8_t flags, HeliosPointExt* points, unsigned int numOfPoints);
 		int GetStatus();
-		bool GetSupportsHigherResolutions() { return true; }
+		int GetSupportsHigherResolutions() { return 1; }
 		int GetFirmwareVersion();
 		int GetName(char* name);
 		int SetName(char* name);
 		int SetShutter(bool level);
 		int Stop();
-		int GetMaxSampleRate() { return HELIOS_MAX_PPS; } // TODO read exact capabilities from DAC
-		int GetMinSampleRate() { return HELIOS_MIN_PPS; } // TODO read exact capabilities from DAC
-		int GetMaxFrameSize() { return HELIOS_MAX_POINTS; } // TODO read exact capabilities from DAC
 		int EraseFirmware();
 
 	private:
 
 		int DoFrame();
 		void BackgroundFrameHandler();
+		unsigned int GetMaxSampleRate() { return HELIOS_MAX_PPS_IDN; }
+		unsigned int GetMinSampleRate() { return HELIOS_MIN_PPS_IDN; }
+		unsigned int GetMaxFrameSize(unsigned int bytesPerPoint) { return ((MAX_IDN_MESSAGE_LEN - 100) / bytesPerPoint); }
 
 		IDNCONTEXT* context;
 		int firmwareVersion = 0;
@@ -361,7 +350,6 @@ private:
 		bool firstFrame = true;
 		int managementSocket = -1;
 		sockaddr_in managementSocketAddr = { 0 };
-
 		bool frameReady = false;
 		std::mutex frameLock;
 		int frameResult = -1;
@@ -370,4 +358,5 @@ private:
 	std::vector<std::unique_ptr<HeliosDacDevice>> deviceList;
 	std::mutex threadLock;
 	bool inited = false;
+	bool idnInited = false;
 };
