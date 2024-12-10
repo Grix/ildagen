@@ -88,7 +88,7 @@ if (controller.laseron)
 		_room_speed += controller.projectfps/controller.fpsmultiplier;
 }
 else 
-    _room_speed = 120;
+    _room_speed = 60;
 
 game_set_speed(_room_speed, gamespeed_fps);
 
