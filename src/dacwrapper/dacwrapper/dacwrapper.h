@@ -51,10 +51,11 @@ bool initialized = false;
 int numDevices = 0;
 
 typedef struct {
-	int type;	//1: Etherdream, 2: RIYA, 3: OLSC, 4: Helios, 5: OLSC_Easylase, 6: OLSC_EzAudDac, 7: Laserdock
+	int type;	// 1: Etherdream, 2: RIYA, 3: OLSC, 4: Helios/IDN, 5: OLSC_Easylase, 6: OLSC_EzAudDac, 7: Laserdock, 9: LaserCube Network
 	int cardNum;
 	char* desc;
-}DAC;
+	bool firstFrame = true;
+} DAC;
 
 DAC dacs[32];
 std::mutex dacMutex[32];

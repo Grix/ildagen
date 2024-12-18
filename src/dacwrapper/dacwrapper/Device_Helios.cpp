@@ -48,7 +48,7 @@ bool Device_Helios::OutputFrame(int cardNum, int rate, int frameSize, HeliosPoin
 			break;
 		else if (heliosDevice->GetStatus(cardNum) == 1)
 		{
-			return (heliosDevice->WriteFrame(cardNum, rate, HELIOS_FLAGS_DEFAULT, bufferAddress, frameSize) == HELIOS_SUCCESS);
+			return (heliosDevice->WriteFrame(cardNum, rate, HELIOS_FLAGS_DEFAULT | HELIOS_FLAGS_SINGLE_MODE, bufferAddress, frameSize) == HELIOS_SUCCESS);
 		}
 		std::this_thread::sleep_for(std::chrono::microseconds(100));
 	}

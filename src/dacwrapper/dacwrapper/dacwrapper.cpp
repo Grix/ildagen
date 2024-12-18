@@ -192,6 +192,7 @@ GMEXPORT double DeviceOpen(double doubleNum)
 
 	int dacType = dacs[num].type;
 	int cardNum = dacs[num].cardNum;
+	dacs[num].firstFrame = true;
 
 	try
 	{
@@ -258,6 +259,9 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 
 	if (dacType == 4)	//Helios
 	{
+		if (dacs[num].firstFrame)
+			scanRate *= 1.3;
+
 		int currentPos = 0;
 		HeliosPoint heliosBuffer[MAX_FRAME_SIZE];
 		for (int i = 0; i < frameSize; i++)
@@ -282,7 +286,7 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 			uint16_t* r = bufferAddress + currentPos++;
 			uint16_t* g = bufferAddress + currentPos++;
 			laserDockBuffer[i].rg = (((uint8_t)*g << 8) | (uint8_t)*r);
-			laserDockBuffer[i].b = (uint8_t)bufferAddress[currentPos++];// << 8;
+			laserDockBuffer[i].b = (uint8_t)bufferAddress[currentPos++];
 			currentPos++;
 		}
 		laserDockDevice->OutputFrame(cardNum, scanRate, frameSize * 8, &laserDockBuffer[0]);
@@ -305,6 +309,9 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 	#ifdef _WIN32
 		else if (dacType == 1)	//EtherDream
 		{
+			if (dacs[num].firstFrame)
+				scanRate *= 1.3;
+
 			int currentPos = 0;
 			Device_Etherdream::EAD_Pnt_s etherdreamBuffer[MAX_FRAME_SIZE];
 			for (int i = 0; i < frameSize; i++)
@@ -388,6 +395,9 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 	#else
 		else if (dacType == 1)	//EtherDream
 		{
+			if (dacs[num].firstFrame)
+				scanRate *= 1.3;
+
 			int currentPos = 0;
 			struct etherdream_point etherdreamBuffer[MAX_FRAME_SIZE];
 			for (int i = 0; i < frameSize; i++)
@@ -405,6 +415,7 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 		}
 	#endif
 
+	dacs[num].firstFrame = false;
 }
 
 GMEXPORT double FreeDacwrapper()
@@ -433,6 +444,8 @@ GMEXPORT double Stop(double doubleNum)
 
 	int dacType = dacs[num].type;
 	int cardNum = dacs[num].cardNum;
+
+	dacs[num].firstFrame = true;
 
 	if (dacType == 4)		//Helios
 		return (double)heliosDevice->Stop(cardNum);
