@@ -132,6 +132,9 @@ inline static uint64_t plt_getMonoTimeUS()
     clock_gettime(CLOCK_MONOTONIC, &tsNow);
 #endif
 
+    if (plt_monoRef.tv_sec == 0 && plt_monoRef.tv_nsec == 0)
+        plt_monoRef = tsNow;
+
     // Determine difference to reference time
     if(tsNow.tv_nsec < plt_monoRef.tv_nsec) 
     {
@@ -145,8 +148,8 @@ inline static uint64_t plt_getMonoTimeUS()
     }
 
     // Update internal time and system time reference
-    plt_monoTimeUS += (uint64_t)((tsDiff.tv_sec * 1000000) + (tsDiff.tv_nsec / 1000));
-    plt_monoRef = tsNow;
+    plt_monoTimeUS = (uint64_t)((tsDiff.tv_sec * 1000000) + (tsDiff.tv_nsec / 1000));
+    //plt_monoRef = tsNow;
 
     return plt_monoTimeUS;
 }

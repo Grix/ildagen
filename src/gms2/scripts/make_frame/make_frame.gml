@@ -1,6 +1,6 @@
 function make_frame() {
-	if (debug_mode)
-	    log("make_frame");
+	//if (debug_mode)
+	//    log("make_frame");
     
 	//var timerbm = get_timer();
 

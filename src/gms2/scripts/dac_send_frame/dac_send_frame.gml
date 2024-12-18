@@ -7,8 +7,11 @@
 function dac_send_frame() {
 
 	var t_dac = argument[0];
-	dacwrapper_outputframe(t_dac[| 0], argument[3], argument[2], buffer_get_address(argument[1]));
-
+	var pps = argument[3];
+	if (t_dac[| 9] == true)
+		pps *= 0.7;
+	dacwrapper_outputframe(t_dac[| 0], pps, argument[2], buffer_get_address(argument[1]));
+	t_dac[| 9] = false;
 
 
 }

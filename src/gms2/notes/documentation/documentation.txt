@@ -123,6 +123,7 @@ dac_list
         output_buffer_ready
         output_buffer_next_size
 		isUsed
+		isFirstFrame (after stop, to stretch)
     
 blindzone_list
     start x

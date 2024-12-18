@@ -1,6 +1,6 @@
 function make_frame_unopt() {
-	if (debug_mode)
-	    log("make_frame_unopt");
+	//if (debug_mode)
+	    //log("make_frame_unopt");
     
 	//var timerbm = get_timer();
 

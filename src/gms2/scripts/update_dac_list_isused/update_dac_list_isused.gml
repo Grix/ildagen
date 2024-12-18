@@ -33,4 +33,11 @@ function update_dac_list_isused()
 		}
 	}
 	
+	for (n = 0; n < ds_list_size(controller.dac_list); n++)
+	{
+		var t_dac = controller.dac_list[| n];
+		if (t_dac[| 8] == false)
+			t_dac[| 9] = true;
+	}
+	
 }

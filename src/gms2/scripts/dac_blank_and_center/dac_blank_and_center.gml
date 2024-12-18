@@ -11,6 +11,7 @@ function dac_blank_and_center() {
 	dacwrapper_stop(t_dac[| 0]);
 	t_dac[| 6] = false;
 	t_dac[| 7] = 0;
+	t_dac[| 9] = true;
 
 
 

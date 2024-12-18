@@ -1,6 +1,6 @@
 function output_framelist_to_buffer() {
-	if (debug_mode)
-	    log("output_framelist_to_buffer");
+	//if (debug_mode)
+	//    log("output_framelist_to_buffer");
     
 	//var timerbm = get_timer();
 

@@ -32,17 +32,22 @@ function scan_dacs() {
 	    var t_result = dacwrapper_opendevice(i);
 	    if (!t_result)
 	        continue;
+			
+		var firmware = dacwrapper_getfirmware(i);
+		if (firmware < 0)
+			firmware = 0;
         
 	    var newdac = ds_list_create_pool();
 	    ds_list_add(newdac,i);
 	    ds_list_add(newdac,dacwrapper_getname(i));
 	    ds_list_add(newdac,-1);
-	    ds_list_add(newdac,dacwrapper_getfirmware(i));
+	    ds_list_add(newdac,firmware);
 	    ds_list_add(newdac,buffer_create(48000,buffer_fixed,2));
 	    ds_list_add(newdac,buffer_create(48000,buffer_fixed,2));
 	    ds_list_add(newdac,false);
 	    ds_list_add(newdac,0);
 	    ds_list_add(newdac,false);
+	    ds_list_add(newdac,true);
 		
 	    ds_list_add(controller.dac_list,newdac);
 	}

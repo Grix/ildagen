@@ -1,6 +1,6 @@
 function prepare_output() {
-	if (debug_mode)
-	    log("prepare_output");
+	//if (debug_mode)
+	//    log("prepare_output");
 
 	list_raw = ds_list_create_pool();
 
