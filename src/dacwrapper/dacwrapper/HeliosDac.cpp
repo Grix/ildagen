@@ -39,6 +39,8 @@ int HeliosDac::OpenDevices()
 
 	numDevices += _OpenIdnDevices();
 
+	_SortDeviceList();
+
 	if (numDevices > 0)
 		inited = true;
 
@@ -55,6 +57,8 @@ int HeliosDac::OpenDevicesOnlyUsb()
 
 	unsigned int numDevices = _OpenUsbDevices();
 
+	_SortDeviceList();
+
 	if (numDevices > 0)
 		inited = true;
 
@@ -70,6 +74,8 @@ int HeliosDac::OpenDevicesOnlyNetwork()
 	// TODO: Make option to keep existing DACs in their current indexes, e.g only scan for changes. Currently this function only works after all DACs have been closed.
 
 	unsigned int numDevices = _OpenIdnDevices();
+
+	_SortDeviceList();
 
 	if (numDevices > 0)
 		inited = true;
@@ -230,17 +236,17 @@ int HeliosDac::_OpenIdnDevices()
 					{
 						for (unsigned int j = 0; j < serverInfo->serviceCount && idnContexts.size() < 999; j++)
 						{
-							IDNCONTEXT* ctx = new IDNCONTEXT{ 0 };
-							ctx->serverSockAddr.sin_family = AF_INET;
-							ctx->serverSockAddr.sin_port = htons(IDN_PORT);
-							ctx->serverSockAddr.sin_addr.s_addr = serverInfo->addressTable[i].addr.S_un.S_addr;
-							ctx->name = std::string(serverInfo->hostName).append(" - ").append(serverInfo->serviceTable[j].serviceName);
-							ctx->serviceId = serverInfo->serviceTable[j].serviceID;
-							ctx->closed = true;
-							ctx->packetNumFragments = 1;
-							memcpy(ctx->unitId, serverInfo->unitID, IDNSL_UNITID_LENGTH);
+							IDNCONTEXT* context = new IDNCONTEXT{ 0 };
+							context->serverSockAddr.sin_family = AF_INET;
+							context->serverSockAddr.sin_port = htons(IDN_PORT);
+							context->serverSockAddr.sin_addr.s_addr = serverInfo->addressTable[i].addr.S_un.S_addr;
+							context->name = std::string(serverInfo->hostName).append(" - ").append(serverInfo->serviceTable[j].serviceName);
+							context->serviceId = serverInfo->serviceTable[j].serviceID;
+							context->isStoppedOrTimeout = true;
+							context->packetNumFragments = 1;
+							memcpy(context->unitId, serverInfo->unitID, IDNSL_UNITID_LENGTH);
 
-							idnContexts.push_back(ctx);
+							idnContexts.push_back(context);
 						}
 
 					}
@@ -261,6 +267,23 @@ int HeliosDac::_OpenIdnDevices()
 	}
 
 	return numDevices;
+}
+
+void HeliosDac::_SortDeviceList()
+{
+	int listSize = deviceList.size();
+	for (int i = 0; i < listSize - 1; i++) // Bubble sort
+	{
+		for (int j = 0; j < listSize - i - 1; j++)
+		{
+			char name1[32];
+			char name2[32];
+			deviceList[j]->GetName(name1);
+			deviceList[j + 1]->GetName(name2);
+			if (strcmp(name1, name2) > 0)
+				swap(deviceList[j], deviceList[j + 1]);
+		}
+	}
 }
 
 int HeliosDac::CloseDevices()
@@ -1179,12 +1202,12 @@ HeliosDac::HeliosDacIdnDevice::HeliosDacIdnDevice(IDNCONTEXT* _context)
 	}
 
 #ifdef WIN32
-	DWORD ms = 1000;
+	DWORD ms = 700;
 	setsockopt(managementSocket, SOL_SOCKET, SO_RCVTIMEO, (const char*)&ms, sizeof(ms));
 #else
 	struct timeval tv;
-	tv.tv_sec = 1;
-	tv.tv_usec = 0;
+	tv.tv_sec = 0;
+	tv.tv_usec = 700000;
 	setsockopt(managementSocket, SOL_SOCKET, SO_RCVTIMEO, (const void*)&tv, sizeof(tv));
 #endif
 
@@ -1273,7 +1296,7 @@ int HeliosDac::HeliosDacIdnDevice::SendFrame(unsigned int pps, std::uint8_t flag
 		delete points;
 
 	context->frameReady = true;
-	firstFrame = false;
+	context->isStoppedOrTimeout = false;
 
 	return HELIOS_SUCCESS;
 	/*if ((flags & HELIOS_FLAGS_DONT_BLOCK) != 0)
@@ -1366,7 +1389,7 @@ int HeliosDac::HeliosDacIdnDevice::SendFrameHighResolution(unsigned int pps, std
 		delete points;
 
 	context->frameReady = true;
-	firstFrame = false;
+	context->isStoppedOrTimeout = false;
 
 	return HELIOS_SUCCESS;
 }
@@ -1451,7 +1474,7 @@ int HeliosDac::HeliosDacIdnDevice::SendFrameExtended(unsigned int pps, std::uint
 		delete points;
 
 	context->frameReady = true;
-	firstFrame = false;
+	context->isStoppedOrTimeout = false;
 
 	return HELIOS_SUCCESS;
 }
@@ -1483,7 +1506,7 @@ int HeliosDac::HeliosDacIdnDevice::GetStatus()
 	return true; // No true feedback in IDN
 }
 
-// Sends frame to DAC
+// Sends wave packet to DAC. Needs to be called periodically with good timing, as close to, but not earlier than, context->frameTimestamp.
 int HeliosDac::HeliosDacIdnDevice::DoFrame()
 {
 	if (closed)
@@ -1508,28 +1531,37 @@ void HeliosDac::HeliosDacIdnDevice::BackgroundFrameHandler()
 			context->frameTimestamp = now;
 
 		long timeLeft = context->frameTimestamp - now;
-		if (timeLeft <= 0 && !firstFrame)
-		{
+		if (timeLeft < 0)
 			timeLeft = 0;
-			if (context->timestampIsOk)
-				numLateWaits++;
 
-			if (numLateWaits > 10 && context->packetNumFragments < 6)
-			{
-				context->packetNumFragments++; // Increase max UDP packet size to have better sleep time error margins.
-				printf("IDN - NB: Increased max UDP packet size multiplier to %d to increase sleep error margin.\n", context->packetNumFragments);
-				numLateWaits = -30;
-			}
-
-		}
-		else
+		if (!context->isStoppedOrTimeout)
 		{
-			numLateWaits--;
-			if (numLateWaits < -30)
-				numLateWaits = -30;
+			if (timeLeft == 0)
+			{
+				if (context->sendBufferPosition != (uint8_t*)0)
+					numLateWaits++;
+
+				if (numLateWaits > 10 && context->packetNumFragments < 6)
+				{
+					context->packetNumFragments++; // Increase max UDP packet size to have better sleep time error margins.
+					printf("IDN - NB: Increased max UDP packet size multiplier to %d to increase sleep error margin.\n", context->packetNumFragments);
+					numLateWaits = -30;
+				}
+
+			}
+			else
+			{
+				numLateWaits--;
+				if (numLateWaits < -30)
+					numLateWaits = -30;
+			}
 		}
 
-		if (!useBusyWaiting)
+		if (context->isStoppedOrTimeout)
+		{
+			plt_usleep(500);
+		}
+		else if (!useBusyWaiting)
 		{
 			if (timeLeft > 0)
 				plt_usleep(timeLeft);
@@ -1547,32 +1579,22 @@ void HeliosDac::HeliosDacIdnDevice::BackgroundFrameHandler()
 		if (closed)
 			break;
 
+		if (!context->isStoppedOrTimeout)
+		{
 #ifdef _DEBUG
-		static int debugMessageCount = 0;
-		uint64_t sleepError = (plt_getMonoTimeUS() - now) - timeLeft;
-		context->averageSleepError = (context->averageSleepError * NUM_SLEEP_ERROR_SAMPLES + sleepError) / (NUM_SLEEP_ERROR_SAMPLES + 1);
-		if (!firstFrame && ((debugMessageCount++ % 1000) == 0))
-			printf("IDN timing: Time now: %d, left: %d, sleep err: %d\n", now, timeLeft, context->averageSleepError);
+			static int debugMessageCount = 0;
+			uint64_t sleepError = (plt_getMonoTimeUS() - now) - timeLeft;
+			context->averageSleepError = (context->averageSleepError * NUM_SLEEP_ERROR_SAMPLES + sleepError) / (NUM_SLEEP_ERROR_SAMPLES + 1);
+			if ((debugMessageCount++ % 1000) == 0)
+				printf("IDN timing: Time now: %d, left: %d, sleep err: %d\n", now, timeLeft, context->averageSleepError);
 #endif
 
-		DoFrame();
-	}
-
-	// Device has closed, free resources
-	if (context != NULL)
-	{
-		if (context->bufferPtr)
-			delete context->bufferPtr;
-
-		// Close socket
-		if (context->fdSocket >= 0)
-		{
-			plt_sockClose(context->fdSocket);
+			DoFrame();
 		}
-
-		delete context;
-		context = NULL;
 	}
+
+
+	finishedClosing = true;
 }
 
 
@@ -1698,7 +1720,7 @@ int HeliosDac::HeliosDacIdnDevice::Stop()
 	}
 	SendFrame(1000, HELIOS_FLAGS_DEFAULT, blankFrame, 20);*/
 
-	firstFrame = true;
+	context->isStoppedOrTimeout = true;
 
 	if (idnSendClose(context) == 0)
 		return HELIOS_SUCCESS;
@@ -1759,10 +1781,32 @@ int HeliosDac::HeliosDacIdnDevice::EraseFirmware()
 
 HeliosDac::HeliosDacIdnDevice::~HeliosDacIdnDevice()
 {
-	Stop();
-
 	closed = true;
 	std::lock_guard<std::mutex>lock(frameLock); // Wait until all threads have closed
+	while (!finishedClosing)
+		plt_usleep(100);
+
+	Stop();
+
+	// Device has closed, free resources
+	if (context != NULL)
+	{
+		if (context->bufferPtr)
+			delete context->bufferPtr;
+		if (context->queuedBufferPtr)
+			delete context->queuedBufferPtr;
+		if (context->controlBufferPtr)
+			delete context->controlBufferPtr;
+
+		// Close socket
+		if (context->fdSocket >= 0)
+		{
+			plt_sockClose(context->fdSocket);
+		}
+
+		delete context;
+		context = NULL;
+	}
 
 	if (managementSocket >= 0)
 	{

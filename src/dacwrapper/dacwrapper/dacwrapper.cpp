@@ -260,7 +260,7 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 	if (dacType == 4)	//Helios
 	{
 		if (dacs[num].firstFrame)
-			scanRate *= 1.3;
+			scanRate *= 0.7;
 
 		int currentPos = 0;
 		HeliosPoint heliosBuffer[MAX_FRAME_SIZE];
@@ -310,7 +310,7 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 		else if (dacType == 1)	//EtherDream
 		{
 			if (dacs[num].firstFrame)
-				scanRate *= 1.3;
+				scanRate *= 0.7;
 
 			int currentPos = 0;
 			Device_Etherdream::EAD_Pnt_s etherdreamBuffer[MAX_FRAME_SIZE];
@@ -396,7 +396,7 @@ void OutputFrameThreaded(double doubleNum, double doubleScanRate, double doubleF
 		else if (dacType == 1)	//EtherDream
 		{
 			if (dacs[num].firstFrame)
-				scanRate *= 1.3;
+				scanRate *= 0.7;
 
 			int currentPos = 0;
 			struct etherdream_point etherdreamBuffer[MAX_FRAME_SIZE];

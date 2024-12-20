@@ -6,7 +6,7 @@ function output_frame_seq_all() {
 	{
 	    var t_dac = controller.dac_list[| n];
 		
-		log("DAC: " + string(n) + ": " + string(t_dac[| 8]));
+		//log("DAC: " + string(n) + ": " + string(t_dac[| 8]));
 		
 		if (t_dac[| 8] == false) // whether is used
 			continue;

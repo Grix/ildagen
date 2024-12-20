@@ -108,7 +108,7 @@ typedef struct
 	uint64_t cfgTimestamp;                  // Timestamp of the last channel configuration
 	uint8_t serviceDataMatch;				// SDM flag, change when new config is written
 	uint64_t averageSleepError;			    // Debug info, sleep function inaccuracy statistics
-	unsigned int packetNumFragments;	// Multiple of MTU size to send UDP packets with. 
+	unsigned int packetNumFragments;		// Multiple of MTU size to send UDP packets with. 
 
 	// Buffer related
 	uint8_t bytesPerSample;
@@ -128,8 +128,7 @@ typedef struct
 	uint8_t* queuedBufferPosition;          // Pointer to the end of the buffer
 	//IDNHDR_SAMPLE_CHUNK* queuedFrameSampleChunkHdr;
 	bool frameReady;
-	bool timestampIsOk;
-	bool closed;
+	bool isStoppedOrTimeout;
 
 	std::string name;
 	int serviceId;
