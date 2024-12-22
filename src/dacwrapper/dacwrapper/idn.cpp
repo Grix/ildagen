@@ -337,12 +337,13 @@ int idnPushFrame(IDNCONTEXT* context)
 		}
 		else
 		{
-			// No new frame in queue, underrun. Timeout if this persists for 200 us
-			if (!ctx->isStoppedOrTimeout && (plt_getMonoTimeUS() > (ctx->frameTimestamp + ((uint64_t)ctx->sampleCnt * 1000000ull) / (uint64_t)ctx->scanSpeed + 200)))
+			// No new frame in queue, underrun. Timeout if this persists for 30+ ms
+			if (!ctx->isStoppedOrTimeout && (plt_getMonoTimeUS() > (ctx->frameTimestamp + ((uint64_t)ctx->sampleCnt * 1000000ull) / (uint64_t)ctx->scanSpeed + 30000)))
 			{
 				ctx->isStoppedOrTimeout = true;
 				logError("[IDN] Buffer underrun. Send frames faster, or make them bigger to get more leeway.\n");
 			}
+			plt_usleep(100);
 
 			return -1;
 		}
@@ -464,7 +465,7 @@ int idnPushFrame(IDNCONTEXT* context)
 	// Send the packet
 	if (idnSend(context, packetHdr, ctx->payload - (uint8_t*)packetHdr))
 		return -1;
-		
+
 	return 0;
 }*/
 
@@ -512,7 +513,7 @@ int idnSendClose(IDNCONTEXT* context)
 	// Send the packet (gracefully close session)
 	if (idnSend(context, packetHdr, sizeof(IDNHDR_PACKET)))
 		return -1;
-		
+
 	return 0;
 }
 
