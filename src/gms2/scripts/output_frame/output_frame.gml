@@ -8,8 +8,13 @@ function output_frame() {
 	if (output_buffer_ready)
 	{
 	    if (debug_mode)
-	        log("outputted frame ", dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps/fpsmultiplier, fpsmultiplier, delta_time/1000);
-        
+		{
+	        log("outputted frame ", dac, frame, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps/fpsmultiplier, fpsmultiplier, delta_time/1000);
+			if (frame != frameprev+1 && frame != 0 && controller.playing)
+				log("Skipped frame!!");
+		}
+		
+		
 	    dac_send_frame(dac, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps/fpsmultiplier);
 	
 		if (!preview_while_laser_on)

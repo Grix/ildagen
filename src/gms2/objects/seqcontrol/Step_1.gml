@@ -6,7 +6,19 @@ if (room != rm_seq) exit;
 if (playing == 1)
 {
     var t_tlpos_prev = tlpos;
-    tlpos += delta_time/1000*playbackspeed;
+	
+	var t_deltams = delta_time/1000*playbackspeed;
+	if (!controller.laseron || (fps_real-10 < fps) || t_deltams >= 1000/projectfps*1.99)
+		tlpos += t_deltams;
+	else
+	{
+		if (debug_mode)
+		{
+			if (t_deltams > 1000/projectfps*1.02 || t_deltams < 1000/projectfps*0.98)
+				log("CORRECTED frame from", t_deltams);
+		}
+		tlpos += 1000/projectfps;
+	}
     
 	if ((t_tlpos_prev <= endframe/projectfps*1000) && (tlpos > endframe/projectfps*1000))
 	{

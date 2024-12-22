@@ -17,7 +17,19 @@ if (playing == 1)
             FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
     }
         
-    framehr += delta_time/1000000*seqcontrol.projectfps*seqcontrol.playbackspeed;
+	var t_deltaframe = delta_time/1000000*seqcontrol.projectfps*seqcontrol.playbackspeed;
+	if (!laseron || (fps_real-10 < fps) || t_deltaframe >= 1.99)
+		framehr += t_deltaframe;
+	else
+	{
+		if (debug_mode)
+		{
+			if (t_deltaframe > 1.02 || t_deltaframe < 0.98)
+				log("CORRECTED frame from", t_deltaframe);
+		}
+		framehr += 1;
+	}
+		
     if (framehr > maxframes-0.5)
         framehr -= maxframes;
     frame = clamp(round(framehr),0,maxframes-1);
@@ -44,6 +56,9 @@ if (laseron)
     }
     else
         output_frame();
+		
+	test_numsteps++;
+	test_time += delta_time;
 		
 	minroomspeed = 7.5;
 	_room_speed = projectfps/fpsmultiplier;

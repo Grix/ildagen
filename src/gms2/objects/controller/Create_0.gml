@@ -6,6 +6,9 @@ global.list_pool_is_taken = ds_map_create();
 
 //gc_enable(false);
 
+test_numsteps = 0;
+test_time = 0;
+
 if (debug_mode)
 {
     show_debug_overlay(1);

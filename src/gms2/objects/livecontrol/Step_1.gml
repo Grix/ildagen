@@ -7,7 +7,19 @@ if (playing == 1)
 	if (controller.use_bpm)
 		t_speed_adjust = bpm_adjusted / controller.bpm;
 		
-    framehr += delta_time/1000000*controller.projectfps * t_speed_adjust;
+	var t_deltaframe = delta_time/1000000*controller.projectfps * t_speed_adjust;
+	if (!controller.laseron || (fps_real-10 < fps) || t_deltaframe >= 1.99)
+		framehr += t_deltaframe;
+	else
+	{
+		if (debug_mode)
+		{
+			if (t_deltaframe > 1.02 || t_deltaframe < 0.98)
+				log("CORRECTED frame from", t_deltaframe);
+		}
+		framehr += 1;
+	}
+	
     frame = round(framehr);
 	
 	if (frameprev > frame)
