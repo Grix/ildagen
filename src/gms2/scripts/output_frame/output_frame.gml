@@ -10,7 +10,7 @@ function output_frame() {
 	    if (debug_mode)
 		{
 	        log("outputted frame ", dac, frame, output_buffer, output_buffer_next_size, output_buffer_next_size*projectfps/fpsmultiplier, fpsmultiplier, delta_time/1000);
-			if (frame != frameprev+1 && frame != 0 && controller.playing)
+			if (frame != frameprev+1*controller.fpsmultiplier && frame != 0 && controller.playing)
 				log("Skipped frame!!");
 		}
 		

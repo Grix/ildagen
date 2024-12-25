@@ -42,6 +42,8 @@ function make_frame() {
 		else
 			controller.fpsmultiplier = 1;
 	}
+	else
+		controller.fpsmultiplier = 1;
 	
 	
 	var t_lengthwanted70 = t_lengthwanted*0.7;

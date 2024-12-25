@@ -4,10 +4,10 @@ function make_frame_onlyblank() {
     
 	//var timerbm = get_timer();
 
-	var t_vectorx, t_true_dwell_falling, t_true_dwell_rising;
+	var t_true_dwell_falling, t_true_dwell_rising;
 	var t_blindzonelistsize = ds_list_size(controller.blindzone_list);
-	var t_contflag = false;
-
+	
+	controller.fpsmultiplier = 1;
 
 	xp_prev = mid_x;
 	yp_prev = mid_y;

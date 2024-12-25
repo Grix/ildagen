@@ -5,7 +5,7 @@ function output_frame_seq_all() {
 	if (debug_mode)
 	{
 	    log("outputted frame seq ", tlpos/(1000/projectfps), controller.fpsmultiplier, delta_time/1000);
-		if ((round(tlpos/projectfps*1000) != frameprev+1) && controller.playing)
+		if ((round(tlpos/projectfps*1000) != frameprev+1*controller.fpsmultiplier) && controller.playing)
 			log("Skipped frame!!");
 	}
 

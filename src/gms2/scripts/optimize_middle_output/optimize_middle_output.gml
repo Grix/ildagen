@@ -1,4 +1,8 @@
 function optimize_middle_output() {
+	
+	if (!controller.enable_dynamic_fps)
+		controller.fpsmultiplier = 1;
+	
 	maxpointswanted = floor((1/controller.projectfps)*controller.opt_scanspeed); 
 	output_buffer_next_size = maxpointswanted;
     

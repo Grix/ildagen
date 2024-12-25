@@ -1105,6 +1105,7 @@
     {"id":{"name":"rm_seq","path":"rooms/rm_seq/rm_seq.yy",},"order":1,},
     {"id":{"name":"rm_live","path":"rooms/rm_live/rm_live.yy",},"order":2,},
     {"id":{"name":"rm_options","path":"rooms/rm_options/rm_options.yy",},"order":3,},
+    {"id":{"name":"envelope_paste_section","path":"scripts/envelope_paste_section/envelope_paste_section.yy",},"order":45,},
     {"id":{"name":"rm_loading","path":"rooms/rm_loading/rm_loading.yy",},"order":4,},
     {"id":{"name":"documentation","path":"notes/documentation/documentation.yy",},"order":0,},
     {"id":{"name":"filesaver","path":"extensions/filesaver/filesaver.yy",},"order":0,},

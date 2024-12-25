@@ -8,6 +8,8 @@ function make_frame_unopt() {
 
 	bl_prev = 1;
 	c_prev = 0;
+	
+	controller.fpsmultiplier = 1;
 
 	//parse elements
 	var t_numofelems = ds_list_size(el_list);

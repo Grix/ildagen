@@ -18,16 +18,16 @@ if (playing == 1)
     }
         
 	var t_deltaframe = delta_time/1000000*seqcontrol.projectfps*seqcontrol.playbackspeed;
-	if (!laseron || (fps_real-10 < fps) || t_deltaframe >= 1.99)
+	if (!laseron || (fps_real-10 < fps) || t_deltaframe >= 1.99*controller.fpsmultiplier)
 		framehr += t_deltaframe;
 	else
 	{
 		if (debug_mode)
 		{
-			if (t_deltaframe > 1.02 || t_deltaframe < 0.98)
+			if (t_deltaframe > 1.02*controller.fpsmultiplier || t_deltaframe < 0.98*controller.fpsmultiplier)
 				log("CORRECTED frame from", t_deltaframe);
 		}
-		framehr += 1;
+		framehr += 1*controller.fpsmultiplier;
 	}
 		
     if (framehr > maxframes-0.5)
