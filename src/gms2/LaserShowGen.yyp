@@ -588,7 +588,6 @@
     {"id":{"name":"dd_seq_env_move","path":"scripts/dd_seq_env_move/dd_seq_env_move.yy",},"order":18,},
     {"id":{"name":"get_action_history_string","path":"scripts/get_action_history_string/get_action_history_string.yy",},"order":41,},
     {"id":{"name":"dd_export_min","path":"scripts/dd_export_min/dd_export_min.yy",},"order":34,},
-    {"id":{"name":"dropdown_info","path":"scripts/dropdown_info/dropdown_info.yy",},"order":35,},
     {"id":{"name":"dropdown_object","path":"scripts/dropdown_object/dropdown_object.yy",},"order":36,},
     {"id":{"name":"dropdown_empty","path":"scripts/dropdown_empty/dropdown_empty.yy",},"order":37,},
     {"id":{"name":"dd_goto_options","path":"scripts/dd_goto_options/dd_goto_options.yy",},"order":38,},

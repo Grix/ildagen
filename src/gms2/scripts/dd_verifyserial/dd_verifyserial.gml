@@ -1,5 +1,5 @@
 function dd_verifyserial() {
-	verify_serial(true);
+	verify_serial(true, true);
 
 
 }

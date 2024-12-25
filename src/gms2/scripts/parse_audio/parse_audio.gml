@@ -25,7 +25,7 @@ function parse_audio() {
 	
 		var t_result = FMODGMS_Snd_ReadData(song_parse, t_pcmpos, t_length, buffer_get_address(parsebuffer));
 
-		if (t_result == 0)
+		if (t_result == 0 || (songlength/1000 < parsingaudio_pos))
 		{
 		    parsingaudio = 0;
 		    t_time = 0;

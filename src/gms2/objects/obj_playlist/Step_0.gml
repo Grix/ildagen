@@ -41,7 +41,7 @@ else if (mouse_y == clamp(mouse_y, y, y+list_height*controller.dpi_multiplier))
 	if (mouse_x == clamp(mouse_x, x + (list_width - 24)*controller.dpi_multiplier, x + (list_width - 8)*controller.dpi_multiplier) && mouse_y == clamp(mouse_y, y + (list_height - 24)*controller.dpi_multiplier, y + (list_height - 8)*controller.dpi_multiplier))
 	{
 		controller.tooltip = "Click to add a project to the playlist.";
-		if (mouse_check_button_pressed(mb_left))
+		if (mouse_check_button_pressed(mb_left) && !controller.menu_open)
 		{
 			dd_seq_playlist_add();
 		}
