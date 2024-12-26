@@ -733,15 +733,15 @@ function handle_mousecontrol_seq() {
 	}
 	else if (moving_object == 12)
 	{
-		// duplicating envelope section
-		if (keyboard_check(vk_escape))
+		// pasting envelope section
+		if (keyboard_check(vk_escape) || envelope_copy_duration <= 0)
 		{
 			clean_redo_list_seq();
 			moving_object = 0;
 			exit;
 		}
 		
-		if (moving_object_ready && (mouse_check_button_pressed(mb_right) || mouse_check_button_pressed(mb_left)))
+		if (moving_object_ready && mouse_check_button_pressed(mb_left) && !controller.menu_open)
 	    {		
 			time_list = ds_list_find_value(envelopetoedit,1);
 			data_list = ds_list_find_value(envelopetoedit,2);
@@ -754,57 +754,31 @@ function handle_mousecontrol_seq() {
 			ds_list_add(t_undolist,t_list1);
 			ds_list_add(t_undolist,t_list2);
 			ds_list_add(t_undolist,envelopetoedit);
-		
-			if (xposprev > envelopexpos)
-			{
-				var t_temp = xposprev;
-				xposprev = envelopexpos;
-				envelopexpos = t_temp;
-			}
 			
-			// find points in section
-			var t_datalist_section = ds_list_create_pool();
-			var t_timelist_section = ds_list_create_pool();
+			// add data (first deleting existing data there)
+			var t_newxposprev = round(tlx+mouse_x/tlw*tlzoom);
+			var t_newxpos = t_newxposprev + envelope_copy_duration;
+			
 			for (u = 0; u < ds_list_size(time_list); u++)
 			{
-			    var t_xpos_loop = ds_list_find_value(time_list,u);
-			    if (t_xpos_loop == clamp(t_xpos_loop, xposprev+1, envelopexpos-1))
-			    {
-					ds_list_add(t_timelist_section, time_list[| u] - xposprev);
-					ds_list_add(t_datalist_section, data_list[| u]);
-			    }
-			}
-			
-			// then add moved data elsewhere (first deleting existing data there)
-			if (!ds_list_empty(t_datalist_section))
-			{
-				var t_newxposprev = round(tlx+mouse_x/tlw*tlzoom);
-				var t_newxpos = t_newxposprev + (envelopexpos - xposprev);
-			
-				for (u = 0; u < ds_list_size(time_list); u++)
+				var t_xpos_loop = ds_list_find_value(time_list,u);
+				if (t_xpos_loop == clamp(t_xpos_loop, t_newxposprev, t_newxpos))
 				{
-				    var t_xpos_loop = ds_list_find_value(time_list,u);
-				    if (t_xpos_loop == clamp(t_xpos_loop, t_newxposprev, t_newxpos))
-				    {
-				        ds_list_delete(time_list,u);
-				        ds_list_delete(data_list,u);
-				        u--;
-				    }
+				    ds_list_delete(time_list,u);
+				    ds_list_delete(data_list,u);
+				    u--;
 				}
-				var t_index = 0;
-				while (t_index <= ds_list_size(time_list)-1 && time_list[| t_index] < t_timelist_section[| 0]+t_newxposprev)
-					t_index++;
+			}
+			var t_index = 0;
+			while (t_index <= ds_list_size(time_list)-1 && time_list[| t_index] < envelope_copy_list_time[| 0]+t_newxposprev)
+				t_index++;
 					
-				for (u = 0; u < ds_list_size(t_timelist_section); u++)
-				{
-					ds_list_insert(time_list, t_index, t_timelist_section[| u] + t_newxposprev);
-					ds_list_insert(data_list, t_index, t_datalist_section[| u]);
-					t_index++;
-				}
+			for (u = 0; u < ds_list_size(envelope_copy_list_time); u++)
+			{
+				ds_list_insert(time_list, t_index, envelope_copy_list_time[| u] + t_newxposprev);
+				ds_list_insert(data_list, t_index, envelope_copy_list_data[| u]);
+				t_index++;
 			}
-			
-			ds_list_free_pool(t_datalist_section); t_datalist_section = -1;
-			ds_list_free_pool(t_timelist_section); t_timelist_section = -1;
 				
 			moving_object = 0;
 			timeline_surf_length = 0;

@@ -262,7 +262,7 @@ function draw_timeline() {
 		            draw_set_colour(c_black);
 		            draw_set_alpha(1);
 		        }
-				else if (moving_object == 11 || moving_object == 12) and (envelopetoedit == envelope)
+				else if (moving_object == 11) and (envelopetoedit == envelope)
 		        {
 					var t_newxposprev = round(/*tlx+*/mouse_x/tlw*tlzoom);
 					var t_newxpos = t_newxposprev + (envelopexpos - xposprev);
@@ -271,7 +271,7 @@ function draw_timeline() {
 		            draw_rectangle(t_newxposprev*tlw/tlzoom,t_ypos,t_newxpos*tlw/tlzoom,t_ypos+62,0);
 		            draw_set_colour(c_black);
 					
-					// draw preview of selected envelope section
+					// draw preview of selected envelope section when moving
 					type = ds_list_find_value(envelopetoedit,0);
 					var default_value = t_ypos+32;
 		            if (type != "x") and (type != "y") and (type != "hue")
@@ -322,6 +322,38 @@ function draw_timeline() {
 						}
 						draw_rectangle( t_env_x-1,t_env_y-1,t_env_x+1,t_env_y+1,0);
 		                t_index++;
+		            }
+		        }
+				else if (moving_object == 12) and (envelopetoedit == envelope)
+		        {
+					var t_newxposprev = round(tlx+mouse_x/tlw*tlzoom);
+					var t_newxpos = t_newxposprev + envelope_copy_duration;
+				
+		            draw_set_colour(make_color_rgb(230,230,230));
+		            draw_rectangle(t_newxposprev*tlw/tlzoom,t_ypos,t_newxpos*tlw/tlzoom,t_ypos+62,0);
+		            draw_set_colour(c_black);
+					
+					// draw preview of selected envelope section when pasting
+					type = ds_list_find_value(envelopetoedit,0);
+					var default_value = t_ypos+32;
+		            if (type != "x") and (type != "y") and (type != "hue")
+		                default_value = t_ypos;
+					
+		            var t_env_y;
+		            var t_env_x;
+		            //draw envelope graph
+		            for (var t_index = 0; t_index < ds_list_size(envelope_copy_list_data); t_index++)
+		            {
+		                t_env_y = t_ypos+ds_list_find_value(envelope_copy_list_data,t_index);
+		                t_env_x = (ds_list_find_value(envelope_copy_list_time,t_index) + t_newxposprev)*tlwdivtlzoom;
+
+						if (ds_list_find_value(envelope_copy_list_time,t_index+1) <= envelopexpos)
+						{
+			                draw_line(  t_env_x, t_env_y,
+			                            (ds_list_find_value(envelope_copy_list_time,t_index+1) + t_newxposprev)*tlwdivtlzoom,
+			                            t_ypos+ds_list_find_value(envelope_copy_list_data,t_index+1));
+						}
+						draw_rectangle( t_env_x-1,t_env_y-1,t_env_x+1,t_env_y+1,0);
 		            }
 		        }
 		        gpu_set_blendenable(0);

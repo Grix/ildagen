@@ -6,6 +6,7 @@ function envelope_cut_section(){
 	{
 		ds_list_clear(envelope_copy_list_data);
 		ds_list_clear(envelope_copy_list_time);
+		seqcontrol.envelope_copy_duration = -1;
 		
 		if (xposprev == envelopexpos || !ds_list_exists(envelopetoedit))
 			return;
@@ -28,6 +29,8 @@ function envelope_cut_section(){
 			xposprev = envelopexpos;
 			envelopexpos = t_temp;
 		}
+		
+		seqcontrol.envelope_copy_duration = envelopexpos-xposprev;
 			
 		// find points in section, and delete it
 		for (u = 0; u < ds_list_size(time_list); u++)
