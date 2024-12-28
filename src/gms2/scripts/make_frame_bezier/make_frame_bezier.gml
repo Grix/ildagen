@@ -1,11 +1,11 @@
 // TODO FOR THIS: 
-// Fix case where bezier control points are outside frame (continue line line 237 and also at final back to middle segment)
+// Fix case where bezier control points are outside frame (continue line 237 and also at final back to middle segment)
 // Adjust prepare_output to calculate blanking points from bezier too
 
 
 function make_frame_bezier() {
-	if (debug_mode)
-	    log("make_frame_bezier");
+	//if (debug_mode)
+	//    log("make_frame_bezier");
     
 	//var timerbm = get_timer();
 
@@ -207,7 +207,7 @@ function make_frame_bezier() {
 	            }
 	            else //not connecting segments
 	            {
-					var t_bezier_protrusion_length = clamp(opt_dist / 30000, 0.1, 1) * 10000;
+					var t_bezier_protrusion_length = clamp(opt_dist / 10000, 0.1, 1) * 10000; // todo this should be improved, dependent on angle
 					var t_dist_prev = point_distance(xp_prev_prev, yp_prev_prev, xp_prev, yp_prev);
 	                var t_dist_next = point_distance(xpp, ypp, xp, yp);
                         
@@ -220,9 +220,19 @@ function make_frame_bezier() {
 						t_bezier_prev_x = xp_prev + (xp_prev - xp_prev_prev) / t_dist_prev * t_bezier_protrusion_length;
 		                t_bezier_prev_y = yp_prev + (yp_prev - yp_prev_prev) / t_dist_prev * t_bezier_protrusion_length;
 						
-						// todo this canvas clamping stuff can be simplified/optimized
 						var t_shortening_ratio = 0;
-						if (t_bezier_prev_x > $ffff || t_bezier_prev_y > $ffff)
+						
+						if (t_bezier_prev_y < 0 && (yp_prev - t_bezier_prev_y) != 0)
+							t_shortening_ratio = max(t_shortening_ratio, -t_bezier_prev_y / (yp_prev - t_bezier_prev_y));
+						else if (t_bezier_prev_y > $ffff && (t_bezier_prev_y - $ffff) != 0)
+							t_shortening_ratio = max(t_shortening_ratio, (t_bezier_prev_y - $ffff) / (t_bezier_prev_y - yp_prev));
+						if (t_bezier_prev_x < 0 && (xp_prev - t_bezier_prev_x) != 0)
+							t_shortening_ratio = max(t_shortening_ratio, -t_bezier_prev_x / (xp_prev - t_bezier_prev_x));
+						else if (t_bezier_prev_x > $ffff && (t_bezier_prev_x - $ffff) != 0)
+							t_shortening_ratio = max(t_shortening_ratio, (t_bezier_prev_x - $ffff) / (t_bezier_prev_x - xp_prev));
+							
+						// todo this canvas clamping stuff can be simplified/optimized
+						/*if (t_bezier_prev_x > $ffff || t_bezier_prev_y > $ffff)
 						{
 							t_shortening_ratio = max(t_shortening_ratio, (t_bezier_prev_x - $ffff) / (t_bezier_prev_x - xp_prev));
 							t_shortening_ratio = max(t_shortening_ratio, (t_bezier_prev_y - $ffff) / (t_bezier_prev_y - yp_prev));
@@ -230,8 +240,8 @@ function make_frame_bezier() {
 						if (t_bezier_prev_x < 0 || t_bezier_prev_y < 0)
 						{
 							t_shortening_ratio = max(t_shortening_ratio, (0 - t_bezier_prev_x) / (xp_prev - t_bezier_prev_x));
-							t_shortening_ratio = max(t_shortening_ratio, (0 - t_bezier_prev_y) / (yp_prev - t_bezier_prev_y));
-						}
+							
+						}*/
 					
 						if (t_shortening_ratio > 0)
 						{
@@ -240,10 +250,11 @@ function make_frame_bezier() {
 							
 				            angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
 							angle_blank = point_direction(xpp,ypp, xp_prev,yp_prev);
+							t_shortening_ratio = clamp(t_shortening_ratio, 0, 1);
                 
 				            t_true_dwell_rising =  round(controller.opt_maxdwell * 
-													(1- abs(angle_difference( angle_prev, angle_blank ))/180))
-													* t_shortening_ratio;
+													(1- abs(angle_difference( angle_prev, angle_blank ))/180) 
+													* t_shortening_ratio);
 						}
 					}
 					else
@@ -261,8 +272,19 @@ function make_frame_bezier() {
 						t_bezier_next_x = xpp + (xpp - xp) / t_dist_next * t_bezier_protrusion_length;
 		                t_bezier_next_y = ypp + (ypp - yp) / t_dist_next * t_bezier_protrusion_length;
 						
-						// todo this canvas clamping stuff can be simplified/optimized
 						var t_shortening_ratio = 0;
+						
+						if (t_bezier_next_y < 0 && (ypp - t_bezier_next_y) != 0)
+							t_shortening_ratio = max(t_shortening_ratio, -t_bezier_next_y / (ypp - t_bezier_next_y));
+						else if (t_bezier_next_y > $ffff && (t_bezier_next_y - $ffff) != 0)
+							t_shortening_ratio = max(t_shortening_ratio, (t_bezier_next_y - $ffff) / (t_bezier_next_y - ypp));
+						if (t_bezier_next_x < 0 && (xpp - t_bezier_next_x) != 0)
+							t_shortening_ratio = max(t_shortening_ratio, -t_bezier_next_x / (xpp - t_bezier_next_x));
+						else if (t_bezier_next_x > $ffff && (t_bezier_next_x - $ffff) != 0)
+							t_shortening_ratio = max(t_shortening_ratio, (t_bezier_next_x - $ffff) / (t_bezier_next_x - xpp));
+						
+						// todo this canvas clamping stuff can be simplified/optimized
+						/*var t_shortening_ratio = 0;
 						if (t_bezier_next_x > $ffff || t_bezier_next_y > $ffff)
 						{
 							t_shortening_ratio = max(t_shortening_ratio, (t_bezier_next_x - $ffff) / (t_bezier_next_x - xp_prev));
@@ -272,7 +294,7 @@ function make_frame_bezier() {
 						{
 							t_shortening_ratio = max(t_shortening_ratio, (0 - t_bezier_next_x) / (xp_prev - t_bezier_next_x));
 							t_shortening_ratio = max(t_shortening_ratio, (0 - t_bezier_next_y) / (yp_prev - t_bezier_next_y));
-						}
+						}*/
 					
 						if (t_shortening_ratio > 0)
 						{
@@ -281,10 +303,11 @@ function make_frame_bezier() {
 							
 							angle_next = point_direction(xp,yp, xpp,ypp);
 							angle_blank = point_direction(xpp,ypp, xp_prev,yp_prev);
+							t_shortening_ratio = clamp(t_shortening_ratio, 0, 1);
                 
 				            t_true_dwell_falling =  round(controller.opt_maxdwell * 
-													(1- abs(angle_difference( angle_blank, angle_next ))/180))
-													* t_shortening_ratio;
+													(1- abs(angle_difference( angle_blank, angle_next ))/180)
+													* t_shortening_ratio);
 						}
 					}
 					else
