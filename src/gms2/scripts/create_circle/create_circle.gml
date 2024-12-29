@@ -177,14 +177,14 @@ function create_circle() {
 	    {
 	        if (blankmode == "dot")
 	        {
-	            ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n*1.01))*radius);
-	            ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n*1.01))*radius);
+	            ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
+	            ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
 	            ds_list_add(new_list,1);
 	            ds_list_add(new_list,c);
 	            repeat (dotmultiply)
 	            {
-	                ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n*1.01))*radius);
-	                ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n*1.01))*radius);
+	                ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
+	                ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
 	                ds_list_add(new_list,0);
 	                ds_list_add(new_list,c);
 	            }
@@ -195,36 +195,36 @@ function create_circle() {
 	            {
 	                if (blank)
 	                {
-	                    ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*((n*1.01)-1))*radius);
-	                    ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*((n*1.01)-1))*radius);
+	                    ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n-1))*radius);
+	                    ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n-1))*radius);
 	                    ds_list_add(new_list,1);
 	                    ds_list_add(new_list,c);
 	                }
 	                else
 	                {
-	                    ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*((n*1.01)-1))*radius);
-	                    ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*((n*1.01)-1))*radius);
+	                    ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n-1))*radius);
+	                    ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n-1))*radius);
 	                    ds_list_add(new_list,0);
 	                    ds_list_add(new_list,controller.enddotscolor_r);
 	                }
 	                repeat (dotmultiply)
 	                {
-	                    ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*((n*1.01)-1))*radius);
-	                    ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*((n*1.01)-1))*radius);
+	                    ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n-1))*radius);
+	                    ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n-1))*radius);
 	                    ds_list_add(new_list,0);
 	                    ds_list_add(new_list,controller.enddotscolor_r);
 	                }
 	            }
 	            else
 	            {
-	                ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n*1.01))*radius);
-	                ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n*1.01))*radius);
+	                ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
+	                ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
 	                ds_list_add(new_list,0);
 	                ds_list_add(new_list,c);
 	                repeat (dotmultiply)
 	                {
-	                    ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n*1.01))*radius);
-	                    ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n*1.01))*radius);
+	                    ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
+	                    ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
 	                    ds_list_add(new_list,0);
 	                    ds_list_add(new_list,controller.enddotscolor_r);
 	                }
@@ -234,8 +234,8 @@ function create_circle() {
 	    }  
 	    else
 	    {    
-	        ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*(n*1.01))*radius);
-	        ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*(n*1.01))*radius);
+	        ds_list_add(new_list,cos(startrad+ 2*pi/checkpoints*n)*radius);
+	        ds_list_add(new_list,sin(startrad+ 2*pi/checkpoints*n)*radius);
 	        ds_list_add(new_list,blank);
 	        ds_list_add(new_list,c);
 	    }
