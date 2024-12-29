@@ -231,17 +231,6 @@ function make_frame_bezier() {
 						else if (t_bezier_prev_x > $ffff && (t_bezier_prev_x - $ffff) != 0)
 							t_shortening_ratio = max(t_shortening_ratio, (t_bezier_prev_x - $ffff) / (t_bezier_prev_x - xp_prev));
 							
-						// todo this canvas clamping stuff can be simplified/optimized
-						/*if (t_bezier_prev_x > $ffff || t_bezier_prev_y > $ffff)
-						{
-							t_shortening_ratio = max(t_shortening_ratio, (t_bezier_prev_x - $ffff) / (t_bezier_prev_x - xp_prev));
-							t_shortening_ratio = max(t_shortening_ratio, (t_bezier_prev_y - $ffff) / (t_bezier_prev_y - yp_prev));
-						}
-						if (t_bezier_prev_x < 0 || t_bezier_prev_y < 0)
-						{
-							t_shortening_ratio = max(t_shortening_ratio, (0 - t_bezier_prev_x) / (xp_prev - t_bezier_prev_x));
-							
-						}*/
 					
 						if (t_shortening_ratio > 0)
 						{
@@ -283,18 +272,6 @@ function make_frame_bezier() {
 						else if (t_bezier_next_x > $ffff && (t_bezier_next_x - $ffff) != 0)
 							t_shortening_ratio = max(t_shortening_ratio, (t_bezier_next_x - $ffff) / (t_bezier_next_x - xpp));
 						
-						// todo this canvas clamping stuff can be simplified/optimized
-						/*var t_shortening_ratio = 0;
-						if (t_bezier_next_x > $ffff || t_bezier_next_y > $ffff)
-						{
-							t_shortening_ratio = max(t_shortening_ratio, (t_bezier_next_x - $ffff) / (t_bezier_next_x - xp_prev));
-							t_shortening_ratio = max(t_shortening_ratio, (t_bezier_next_y - $ffff) / (t_bezier_next_y - yp_prev));
-						}
-						if (t_bezier_next_x < 0 || t_bezier_next_y < 0)
-						{
-							t_shortening_ratio = max(t_shortening_ratio, (0 - t_bezier_next_x) / (xp_prev - t_bezier_next_x));
-							t_shortening_ratio = max(t_shortening_ratio, (0 - t_bezier_next_y) / (yp_prev - t_bezier_next_y));
-						}*/
 					
 						if (t_shortening_ratio > 0)
 						{
@@ -359,7 +336,7 @@ function make_frame_bezier() {
 	                new_dot = 1;
 					
 					// travel in the bezier curve
-					var t_quantumsteps = ceil(opt_dist / a_ballistic);
+					var t_quantumsteps = ceil(opt_dist / (a_ballistic*6));
 					
 					for (k = 0; k <= t_quantumsteps; k++)
 	                {
@@ -484,6 +461,7 @@ function make_frame_bezier() {
 	//back to middle
 	xp = mid_x;
 	yp = mid_y;
+	opt_dist = point_distance(xp_prev,yp_prev,xp,yp);
 
 	//BLANKING
 	if (opt_dist < 280) //connecting segments
@@ -509,6 +487,7 @@ function make_frame_bezier() {
 	}
 	else //not connecting segments
 	{
+		var t_bezier_protrusion_length = clamp(opt_dist / 10000, 0.1, 1) * 10000; // todo this should be improved, dependent on angle
 		var t_dist_prev = point_distance(xp_prev_prev, yp_prev_prev, xp_prev, yp_prev);
                         
 		var t_bezier_prev_x;
@@ -518,6 +497,33 @@ function make_frame_bezier() {
 		{
 			t_bezier_prev_x = xp_prev + (xp_prev - xp_prev_prev) / t_dist_prev * 5000;
 			t_bezier_prev_y = yp_prev + (yp_prev - yp_prev_prev) / t_dist_prev * 5000;
+			
+			var t_shortening_ratio = 0;
+						
+			if (t_bezier_prev_y < 0 && (yp_prev - t_bezier_prev_y) != 0)
+				t_shortening_ratio = max(t_shortening_ratio, -t_bezier_prev_y / (yp_prev - t_bezier_prev_y));
+			else if (t_bezier_prev_y > $ffff && (t_bezier_prev_y - $ffff) != 0)
+				t_shortening_ratio = max(t_shortening_ratio, (t_bezier_prev_y - $ffff) / (t_bezier_prev_y - yp_prev));
+			if (t_bezier_prev_x < 0 && (xp_prev - t_bezier_prev_x) != 0)
+				t_shortening_ratio = max(t_shortening_ratio, -t_bezier_prev_x / (xp_prev - t_bezier_prev_x));
+			else if (t_bezier_prev_x > $ffff && (t_bezier_prev_x - $ffff) != 0)
+				t_shortening_ratio = max(t_shortening_ratio, (t_bezier_prev_x - $ffff) / (t_bezier_prev_x - xp_prev));
+						
+					
+			if (t_shortening_ratio > 0)
+			{
+				t_bezier_prev_x = xp_prev + (xp_prev - xp_prev_prev) / t_dist_prev * t_bezier_protrusion_length * (1 - t_shortening_ratio);
+			    t_bezier_prev_y = yp_prev + (yp_prev - yp_prev_prev) / t_dist_prev * t_bezier_protrusion_length * (1 - t_shortening_ratio);
+							
+				angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
+				angle_blank = point_direction(xpp,ypp, xp_prev,yp_prev);
+				t_shortening_ratio = clamp(t_shortening_ratio, 0, 1);
+                
+				t_true_dwell_rising =  round(controller.opt_maxdwell * 
+										(1- abs(angle_difference( angle_prev, angle_blank ))/180) 
+										* t_shortening_ratio);
+			}
+			
 		}
 		else
 		{
@@ -550,6 +556,13 @@ function make_frame_bezier() {
 		    ds_list_add(list_raw,(c_prev == 0));
 		    ds_list_add(list_raw,c_prev);
 		}
+	    repeat (t_true_dwell_rising - controller.opt_maxdwell_blank*2 )
+	    {
+	        ds_list_add(list_raw,xp_prev);
+	        ds_list_add(list_raw,yp_prev);
+	        ds_list_add(list_raw,1);
+	        ds_list_add(list_raw,0);
+	    }
 		repeat (controller.opt_maxdwell_blank)
 		{
 		    ds_list_add(list_raw,xp_prev);
@@ -561,7 +574,7 @@ function make_frame_bezier() {
 		new_dot = 1;
 					
 		// travel in the bezier curve
-		var t_quantumsteps = ceil(opt_dist / a_ballistic);
+		var t_quantumsteps = ceil(opt_dist / (a_ballistic*6));
 					
 		for (k = 0; k <= t_quantumsteps; k++)
 		{
