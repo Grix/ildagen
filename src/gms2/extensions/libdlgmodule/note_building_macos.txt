@@ -1,2 +1,0 @@
-binary from official github has too recent deployment target. To build:
-Download and build SDL2 from source. Edit build.sh to point to those libraries and headers. Add flag to clang for deployment version 10.13. Build.
