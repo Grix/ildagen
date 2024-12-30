@@ -83,9 +83,19 @@ function make_frame() {
 	        currentpos = ds_list_size(list_id)-4;
 	        currentposadjust = -4;
 	    }
+		
+		var t_num_edge_overlaps = 0;
+		if (listsize > 1)
+		{
+			var t_x_first = xo+list_id[| 20+0];
+			var t_y_first = yo+list_id[| 20+1];
+			var t_x_last = xo+list_id[| ds_list_size(list_id)-4+0];
+			var t_y_last = yo+list_id[| ds_list_size(list_id)-4+1];
+			if (abs(t_x_first - t_x_last) < 200 && abs(t_y_first == t_y_last) < 200)
+				t_num_edge_overlaps = min(floor(listsize / 2), ceil(opt_scanspeed/6000));
+		}
     
-	    var t_i;
-	    for (t_i = 1; t_i < listsize; t_i++)
+	    for (var t_i = 1; t_i < listsize; t_i++)
 	    {
 	        currentpos += currentposadjust;
         
@@ -104,15 +114,16 @@ function make_frame() {
 			
 				var t_x = xo+list_id[| currentpos+0];
 				var t_y = $ffff-(yo+list_id[| currentpos+1]);
-		        xp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
-		        yp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
-                
-	            if ((yp > $ffff) || (yp < 0) || (xp > $ffff) || (xp < 0))
+				
+	            if ((t_y > $ffff) || (t_y < 0) || (t_x > $ffff) || (t_x < 0))
 	            {
 	                //list_id[| currentpos+2 ] = 1;
 	                bl_prev = 1;
 	                continue;
 	            }
+				
+		        xp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
+		        yp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
                 
 	            for (jj = 0; jj < t_blindzonelistsize; jj += 4)
 	            {
@@ -148,13 +159,14 @@ function make_frame() {
 				
 				var t_x = xo+list_id[| t_prevpos+0];
 				var t_y = $ffff-(yo+list_id[| t_prevpos+1]);
-		        xpp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
-		        ypp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
-                
-	            if ((ypp >= $ffff) || (ypp <= 0) || (xpp >= $ffff) || (xpp <= 0))
+				
+	            if ((t_y >= $ffff) || (t_y <= 0) || (t_x >= $ffff) || (t_x <= 0))
 	            {
 	                continue;
 	            }
+				
+		        xpp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
+		        ypp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
                 
 	            for (jj = 0; jj < t_blindzonelistsize; jj += 4)
 	            {
@@ -188,14 +200,14 @@ function make_frame() {
 	                repeat (t_true_dwell_falling - controller.opt_maxdwell_blank*2 )
 	                {
 	                    ds_list_add(list_raw,xp_prev);
-	                    ds_list_add(list_raw,yp);
+	                    ds_list_add(list_raw,ypp);
 	                    ds_list_add(list_raw,1);
 	                    ds_list_add(list_raw,0);
 	                }
 	                repeat (controller.opt_maxdwell_blank)
 	                {
-	                    ds_list_add(list_raw,xp);
-	                    ds_list_add(list_raw,yp);
+	                    ds_list_add(list_raw,xpp);
+	                    ds_list_add(list_raw,ypp);
 	                    ds_list_add(list_raw,0);
 	                    ds_list_add(list_raw,c);
 	                }

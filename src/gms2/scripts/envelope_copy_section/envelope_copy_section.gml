@@ -4,6 +4,8 @@ function envelope_copy_section(){
 	
 	with (seqcontrol)
 	{
+		add_action_history_ilda("SEQ_env_copy");
+		
 		ds_list_clear(envelope_copy_list_data);
 		ds_list_clear(envelope_copy_list_time);
 		seqcontrol.envelope_copy_duration = -1;

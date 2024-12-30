@@ -4,6 +4,8 @@ function envelope_paste(){
 	
 	with (seqcontrol)
 	{
+		add_action_history_ilda("SEQ_env_paste");
+		
 		if (seqcontrol.envelope_copy_duration <= 0)
 			break;
 		else if (seqcontrol.envelope_copy_duration == infinity)

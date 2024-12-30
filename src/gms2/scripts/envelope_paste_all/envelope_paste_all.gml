@@ -4,6 +4,8 @@ function envelope_paste_all(){
 
 	with (seqcontrol)
 	{
+		add_action_history_ilda("SEQ_env_paste_all");
+		
 		if (!ds_list_exists(envelopetoedit) || envelope_copy_duration != infinity)
 			return;
 		
