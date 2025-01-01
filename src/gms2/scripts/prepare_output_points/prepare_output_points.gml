@@ -38,17 +38,16 @@ function prepare_output_points() {
 		
 			var t_x = xo+list_id[| currentpos+0];
 			var t_y = $ffff-(yo+list_id[| currentpos+1]);
-	        xp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
-		    yp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
-	        //xp = x_lowerbound+(xo+list_id[| currentpos+0])*x_scale;
-	        //yp = y_lowerbound+($ffff-(yo+list_id[| currentpos+1]))*y_scale;
-       
-	        if ((yp > $ffff) || (yp < 0) || (xp > $ffff) || (xp < 0))
+			
+	        if ((t_y > $ffff) || (t_y < 0) || (t_x > $ffff) || (t_x < 0))
 	        {
 	            //list_id[| currentpos+2 ] = 1;
 	            bl_prev = 1;
 	            continue;
 	        }
+			
+	        xp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
+		    yp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
         
 	        for (jj = 0; jj < t_blindzonelistsize; jj += 4)
 	        {
@@ -99,7 +98,7 @@ function prepare_output_points() {
         
                 
 	            maxpoints_static += ( (controller.opt_maxdwell_blank)*2
-	                                   + abs(t_true_dwell_falling - controller.opt_maxdwell_blank*2) );
+	                                   + max(0, t_true_dwell_falling - controller.opt_maxdwell_blank*2) );
 	        }
 	        else //not connecting segments
 	        {
@@ -131,11 +130,21 @@ function prepare_output_points() {
         
 	            var t_trav_dist = a_ballistic;
 	            var t_quantumstepssqrt = ceil(sqrt(opt_dist/t_trav_dist));
-                 
-	            maxpoints_static += (   2*(controller.opt_maxdwell_blank) 
+				
+				if (i == 0)
+				{
+					maxpoints_static += (  (controller.opt_maxdwell_blank) 
+	                                    +  max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank)
+	                                    +  t_quantumstepssqrt * 2 );
+				}
+				else
+				{
+					 maxpoints_static += (   2*(controller.opt_maxdwell_blank) 
 	                                    +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
 	                                    +  max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank)
-	                                    +  t_quantumstepssqrt+t_quantumstepssqrt-1 );
+	                                    +  t_quantumstepssqrt * 2 );
+				}
+	           
 	        }
         
 	        xp_prev = xpp;

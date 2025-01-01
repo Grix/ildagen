@@ -51,35 +51,34 @@ function make_frame_unopt() {
 	        {
 				var t_x = xo+list_id[| currentpos+0];
 				var t_y = $ffff-(yo+list_id[| currentpos+1]);
-		        xp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
-		        yp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
-            
-	            if ((yp >= $ffff) || (yp <= 0) || (xp >= $ffff) || (xp <= 0))
+				
+				if ((t_y >= $ffff) || (t_y <= 0) || (t_x >= $ffff) || (t_x <= 0))
 	            {
 	                //bl = 1;
 					bl_prev = 1;
 					continue;
 	            }
-	            else 
-				{
-					var t_skipflag = false;
-					for (jj = 0; jj < t_blindzonelistsize; jj += 4)
+				
+		        xp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
+		        yp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
+            
+				var t_skipflag = false;
+				for (jj = 0; jj < t_blindzonelistsize; jj += 4)
+		        {
+		            if ((xp > controller.blindzone_list[| jj+0]) 
+		            &&  (xp < controller.blindzone_list[| jj+1])
+		            &&  (yp < $FFFF-controller.blindzone_list[| jj+2]) 
+		            &&  (yp > $FFFF-controller.blindzone_list[| jj+3]))
 		            {
-		                if ((xp > controller.blindzone_list[| jj+0]) 
-		                &&  (xp < controller.blindzone_list[| jj+1])
-		                &&  (yp < $FFFF-controller.blindzone_list[| jj+2]) 
-		                &&  (yp > $FFFF-controller.blindzone_list[| jj+3]))
-		                {
-		                    //bl = 1;
-							t_skipflag = true;
-							break;
-		                }
+		                //bl = 1;
+						t_skipflag = true;
+						break;
 		            }
-					if (t_skipflag)
-					{
-						bl_prev = 1;
-						continue;
-					}
+		        }
+				if (t_skipflag)
+				{
+					bl_prev = 1;
+					continue;
 				}
 	        }
 	        else

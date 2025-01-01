@@ -55,16 +55,17 @@ function make_frame_onlyblank() {
 			
 	            var t_x = xo+list_id[| currentpos+0];
 				var t_y = $ffff-(yo+list_id[| currentpos+1]);
-		        xp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
-		        yp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
-            
-            
-	            if ((yp >= $ffff) || (yp <= 0) || (xp >= $ffff) || (xp <= 0))
+				
+	            if ((t_y >= $ffff) || (t_y <= 0) || (t_x >= $ffff) || (t_x <= 0))
 	            {
 	                //list_id[| currentpos+2 ] = 1;
 	                bl_prev = 1;
 	                continue;
 	            }
+				
+		        xp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
+		        yp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
+            
             
 	            for (jj = 0; jj < t_blindzonelistsize; jj += 4)
 	            {
@@ -103,13 +104,15 @@ function make_frame_onlyblank() {
 	            var t_prevpos = currentpos-currentposadjust;
 	            var t_x = xo+list_id[| t_prevpos+0];
 				var t_y = $ffff-(yo+list_id[| t_prevpos+1]);
-		        xpp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
-		        ypp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
-            
-	            if ((ypp >= $ffff) || (ypp <= 0) || (xpp >= $ffff) || (xpp <= 0))
+				
+	            if ((t_y >= $ffff) || (t_y <= 0) || (t_x >= $ffff) || (t_x <= 0))
 	            {
 	                continue;
 	            }
+            
+		        xpp = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*(($ffff-t_y)/$ffff)+t_x*(x_scale_top+(x_scale_bottom-x_scale_top)*(($ffff-t_y)/$ffff));
+		        ypp = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*(t_x/$ffff)+t_y*(y_scale_left+(y_scale_right-y_scale_left)*(t_x/$ffff));
+            
             
 	            for (jj = 0; jj < t_blindzonelistsize; jj += 4)
 	            {

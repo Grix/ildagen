@@ -92,7 +92,7 @@ function make_frame() {
 			var t_x_last = xo+list_id[| ds_list_size(list_id)-4+0];
 			var t_y_last = yo+list_id[| ds_list_size(list_id)-4+1];
 			if (abs(t_x_first - t_x_last) < 200 && abs(t_y_first == t_y_last) < 200)
-				t_num_edge_overlaps = min(floor(listsize / 2), ceil(opt_scanspeed/6000));
+				t_num_edge_overlaps = min(floor(listsize / 2), ceil(controller.opt_scanspeed/6000));
 		}
     
 	    for (var t_i = 1; t_i < listsize; t_i++)
@@ -240,21 +240,24 @@ function make_frame() {
 	                                            (1- abs(angle_difference( angle_prev, angle_blank ))/180));
 	                }
                 
-	                //dwell on blanking start
-	                repeat (controller.opt_maxdwell_blank)
-	                {
-	                    ds_list_add(list_raw,xp_prev);
-	                    ds_list_add(list_raw,yp_prev);
-	                    ds_list_add(list_raw,(c_prev == 0));
-	                    ds_list_add(list_raw,c_prev);
-	                }
-	                repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank) )
-	                {
-	                    ds_list_add(list_raw,xp_prev);
-	                    ds_list_add(list_raw,yp_prev);
-	                    ds_list_add(list_raw,1);
-	                    ds_list_add(list_raw,0);
-	                }
+	                //dwell on blanking start, unless it's the start of frame in the middle
+					if (i != 0)
+					{
+		                repeat (controller.opt_maxdwell_blank)
+		                {
+		                    ds_list_add(list_raw,xp_prev);
+		                    ds_list_add(list_raw,yp_prev);
+		                    ds_list_add(list_raw,(c_prev == 0));
+		                    ds_list_add(list_raw,c_prev);
+		                }
+		                repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank) )
+		                {
+		                    ds_list_add(list_raw,xp_prev);
+		                    ds_list_add(list_raw,yp_prev);
+		                    ds_list_add(list_raw,1);
+		                    ds_list_add(list_raw,0);
+		                }
+					}
                     
 	                new_dot = 1;
                     
@@ -312,22 +315,25 @@ function make_frame() {
 	                    ds_list_add(list_raw,1);
 	                    ds_list_add(list_raw,0);
 	                }
-                    
-	                repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank) )
-	                {
-	                    ds_list_add(list_raw,xpp);
-	                    ds_list_add(list_raw,ypp);
-	                    ds_list_add(list_raw,1);
-	                    ds_list_add(list_raw,0);
-	                }
-	                repeat (controller.opt_maxdwell_blank)
-	                {
-	                    ds_list_add(list_raw,xpp);
-	                    ds_list_add(list_raw,ypp);
-	                    ds_list_add(list_raw,0);
-	                    ds_list_add(list_raw,c);
-	                }
                     */
+					//if (i == 0)
+					//{
+		                repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank) )
+		                {
+		                    ds_list_add(list_raw,xpp);
+		                    ds_list_add(list_raw,ypp);
+		                    ds_list_add(list_raw,1);
+		                    ds_list_add(list_raw,0);
+		                }
+		                repeat (controller.opt_maxdwell_blank)
+		                {
+		                    ds_list_add(list_raw,xpp);
+		                    ds_list_add(list_raw,ypp);
+		                    ds_list_add(list_raw,0);
+		                    ds_list_add(list_raw,c);
+		                }
+					//}
+                    
 	            }
 			
 	            xp_prev = xpp;
@@ -342,11 +348,11 @@ function make_frame() {
 				{
 					// Add more delay if sharp corner within the element
 					angle_next = point_direction(xp,yp, xp_prev,yp_prev);
-			        angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
+			        angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev); // todo can increase performance by saving the previous angle like we do positions?
         
 			        var t_corner_dwell =  round(controller.opt_maxdwell * abs(angle_difference( angle_prev, angle_next )/180));
 				
-					repeat(floor(t_corner_dwell))
+					repeat (floor(t_corner_dwell))
 					{
 						ds_list_add(list_raw,xp_prev);
 				        ds_list_add(list_raw,yp_prev);
@@ -361,18 +367,15 @@ function make_frame() {
 			if (opt_dist < 2)
 				opt_dist = t_dotlength;
 		
-	        if (opt_dist+t_totalrem < t_lengthwanted70)
+	        if (opt_dist+t_totalrem < t_lengthwanted70 && t_i != 1 && t_i != listsize-1 && !list_id[| currentpos+currentposadjust+2] && !bl_prev)
 	        {
-	            //skip point
-	            if (t_i != listsize-1 && t_i != 1)
-	            {
-					t_totalrem += opt_dist;//t_lengthwanted;
-					xp_prev = xp;
-					yp_prev = yp;
-	                continue;
-				}
-				else
-					t_totalrem = opt_dist+t_totalrem-t_lengthwanted;
+	            //skip point, unless it's the last one before a blanking
+				t_totalrem += opt_dist;
+				xp_prev_prev = xp_prev;
+				yp_prev_prev = yp_prev;
+				xp_prev = xp;
+				yp_prev = yp;
+	            continue;
 	        }
 	        else if (opt_dist+t_totalrem > t_lengthwanted170)
 			{
@@ -437,8 +440,8 @@ function make_frame() {
 	    }
 	    repeat (t_true_dwell_falling - controller.opt_maxdwell_blank )
 	    {
-	        ds_list_add(list_raw,xp_prev);
-	        ds_list_add(list_raw,yp_prev);
+	        ds_list_add(list_raw,xp);
+	        ds_list_add(list_raw,yp);
 	        ds_list_add(list_raw,1);
 	        ds_list_add(list_raw,0);
 	    }

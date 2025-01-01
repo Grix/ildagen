@@ -23,10 +23,8 @@ function prepare_output() {
 	mid_x = x_lowerbound_top+(x_lowerbound_bottom-x_lowerbound_top)*($8000/$ffff)+$8000*(x_scale_top+(x_scale_bottom-x_scale_top)*($8000/$ffff));
 	mid_y = y_lowerbound_left+(y_lowerbound_right-y_lowerbound_left)*($8000/$ffff)+$8000*(y_scale_left+(y_scale_right-y_scale_left)*($8000/$ffff));
 
-	xp_prev = mid_x;
-	yp_prev = mid_y;
-	xp_prev_prev = mid_x;
-	yp_prev_prev = mid_y;
+	xp_prev = 0;
+	yp_prev = 0;
 	bl_prev = 1;
 	c_prev = 0;
 	new_dot = 1;
@@ -127,6 +125,8 @@ function prepare_output() {
        
 	xp_prev = mid_x;
 	yp_prev = mid_y;
+	xp_prev_prev = mid_x;
+	yp_prev_prev = mid_y;
 
 	//parse elements
 
@@ -162,10 +162,11 @@ function prepare_output() {
 	    {
 	        var t_true_dwell = controller.opt_maxdwell;
 	        maxpoints_static += (   (controller.opt_maxdwell_blank)
-	                                +  abs(t_true_dwell - controller.opt_maxdwell_blank) );
+	                                +  max(0, t_true_dwell - controller.opt_maxdwell_blank) );
 	    }
 	    else
 	    {
+			var t_true_dwell_rising;
 	        if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
 	        {
 	            t_true_dwell_rising = round(controller.opt_maxdwell*0.2);
@@ -184,7 +185,7 @@ function prepare_output() {
              
 	        maxpoints_static += (   (controller.opt_maxdwell_blank) 
 	                                +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
-	                                +  t_quantumstepssqrt+t_quantumstepssqrt-1);
+	                                +  t_quantumstepssqrt * 2);
 	    }
 	}
 
