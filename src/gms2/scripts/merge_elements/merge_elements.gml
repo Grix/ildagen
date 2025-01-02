@@ -25,6 +25,12 @@ function merge_elements() {
 		xmax = 0;
 		ymin = $ffff;
 		xmin = $ffff;
+		
+		var t_x_prev = -10000;
+		var t_y_prev = -10000;
+		var t_first = true;
+		
+		// Todo find optimal order
 	
 		for (j = 0; j < ds_list_size(el_list); j++)
 		{
@@ -42,29 +48,34 @@ function merge_elements() {
 			
 			for (k = 20; k < ds_list_size(t_element); k += 4)
 			{
-				if (k == 20)
+				var t_x = xo + t_element[| k];
+				var t_y = yo + t_element[| k+1];
+				if (!t_first && k == 20 && abs(t_x - t_x_prev) > 200 && abs(t_y - t_y_prev) > 200)
 				{
-					ds_list_add(new_list, xo + t_element[| k]);
-					ds_list_add(new_list, yo + t_element[| k+1]);
+					ds_list_add(new_list, t_x);
+					ds_list_add(new_list, t_y);
 					ds_list_add(new_list, 1);
 					ds_list_add(new_list, c_black);
 				}
-				ds_list_add(new_list, xo + t_element[| k]);
-				ds_list_add(new_list, yo + t_element[| k+1]);
+				ds_list_add(new_list, t_x);
+				ds_list_add(new_list, t_y);
 				ds_list_add(new_list, t_element[| k+2]);
 				ds_list_add(new_list, t_element[| k+3]);
-				if (k == ds_list_size(t_element) - 4)
+				/*if (k == ds_list_size(t_element) - 4)
 				{
 					ds_list_add(new_list, xo + t_element[| k]);
 					ds_list_add(new_list, yo + t_element[| k+1]);
 					ds_list_add(new_list, 1);
 					ds_list_add(new_list, c_black);
-				}
+				}*/
+				t_x_prev = t_x;
+				t_y_prev = t_y;
 			}
 			ds_list_add(t_element, i);
 			ds_list_add(temp_undof_list, t_element);
 			ds_list_delete(el_list, j);
 			j--;
+			t_first = false;
 		}
 	
 		new_list[| 4] = xmin;
