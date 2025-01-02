@@ -84,15 +84,18 @@ function make_frame() {
 	        currentposadjust = -4;
 	    }
 		
+		var t_is_overlapping = false;
 		var t_num_edge_overlaps = 0;
 		if (listsize > 1)
 		{
 			var t_x_first = xo+list_id[| 20+0];
 			var t_y_first = yo+list_id[| 20+1];
+			var t_bl_first = list_id[| 20+2];
 			var t_x_last = xo+list_id[| ds_list_size(list_id)-4+0];
 			var t_y_last = yo+list_id[| ds_list_size(list_id)-4+1];
-			if (abs(t_x_first - t_x_last) < 200 && abs(t_y_first == t_y_last) < 200)
-				t_num_edge_overlaps = min(floor(listsize / 2), ceil(controller.opt_scanspeed/6000));
+			var t_bl_last = list_id[| ds_list_size(list_id)-4+2];
+			if (t_bl_first == 0 && t_bl_last == 0 && abs(t_x_first - t_x_last) < 200 && abs(t_y_first == t_y_last) < 200)
+				t_num_edge_overlaps = min(floor(listsize * 0.3), ceil(controller.opt_scanspeed/1500));
 		}
     
 	    for (var t_i = 1; t_i < listsize; t_i++)
@@ -159,6 +162,7 @@ function make_frame() {
 				
 				var t_x = xo+list_id[| t_prevpos+0];
 				var t_y = $ffff-(yo+list_id[| t_prevpos+1]);
+				var t_c_first = list_id[| t_prevpos+3 ];
 				
 	            if ((t_y >= $ffff) || (t_y <= 0) || (t_x >= $ffff) || (t_x <= 0))
 	            {
@@ -180,6 +184,22 @@ function make_frame() {
 	            }
             
 	            opt_dist = point_distance(xp_prev,yp_prev,xpp,ypp);
+				
+				// todo maybe fix this, smoothly overlapping circles etc
+				if (t_i < t_num_edge_overlaps)
+				{
+					var t_ratio = t_i / t_num_edge_overlaps;
+					if (t_is_overlapping)
+					{
+						if (t_ratio < 0.5)
+							t_ratio = 0;
+						else
+							t_ratio = 0.5+t_ratio/2;
+						t_c_first = merge_color(c, c_black, t_ratio);
+					}
+					else
+						t_c_first = merge_color(c, c_black, 1 - t_ratio);
+				}
                 
 	            if (opt_dist < 280) //connecting segments
 	            {
@@ -209,7 +229,7 @@ function make_frame() {
 	                    ds_list_add(list_raw,xpp);
 	                    ds_list_add(list_raw,ypp);
 	                    ds_list_add(list_raw,0);
-	                    ds_list_add(list_raw,c);
+	                    ds_list_add(list_raw,t_c_first);
 	                }
 	            }
 	            else //not connecting segments
@@ -277,45 +297,6 @@ function make_frame() {
 	                    ds_list_add(list_raw,1);
 	                    ds_list_add(list_raw,0);
 	                }
-	                /*var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
-	                t_trav_dist = opt_dist/t_quantumsteps;
-	                var t_trav_dist_x = -t_trav_dist*(xp_prev-xpp)/opt_dist;
-	                var t_trav_dist_y = -t_trav_dist*(yp_prev-ypp)/opt_dist;
-                    
-	                //travel first and second half of segment
-	                var t_step_dist_x = 0;
-	                var t_step_dist_y = 0;
-	                var t_xp_now = xp_prev;
-	                var t_yp_now = yp_prev;
-                    
-					
-	                for (k = 0; k < t_quantumstepssqrt; k++)
-	                {
-	                    t_step_dist_x += t_trav_dist_x;
-	                    t_step_dist_y += t_trav_dist_y;
-                        
-	                    t_xp_now += t_step_dist_x;
-	                    t_yp_now += t_step_dist_y;
-                        
-	                    ds_list_add(list_raw,t_xp_now);
-	                    ds_list_add(list_raw,t_yp_now);
-	                    ds_list_add(list_raw,1);
-	                    ds_list_add(list_raw,0);
-	                }
-	                for (k = 1; k < t_quantumstepssqrt; k++)
-	                {
-	                    t_step_dist_x -= t_trav_dist_x;
-	                    t_step_dist_y -= t_trav_dist_y;
-                        
-	                    t_xp_now += t_step_dist_x;
-	                    t_yp_now += t_step_dist_y;
-                        
-	                    ds_list_add(list_raw,t_xp_now);
-	                    ds_list_add(list_raw,t_yp_now);
-	                    ds_list_add(list_raw,1);
-	                    ds_list_add(list_raw,0);
-	                }
-                    */
 					//if (i == 0)
 					//{
 		                repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank) )
@@ -330,7 +311,7 @@ function make_frame() {
 		                    ds_list_add(list_raw,xpp);
 		                    ds_list_add(list_raw,ypp);
 		                    ds_list_add(list_raw,0);
-		                    ds_list_add(list_raw,c);
+		                    ds_list_add(list_raw,t_c_first);
 		                }
 					//}
                     
@@ -366,8 +347,24 @@ function make_frame() {
 			
 			if (opt_dist < 2)
 				opt_dist = t_dotlength;
+				
+			// todo maybe fix this, smoothly overlapping circles etc
+			if (t_i < t_num_edge_overlaps)
+			{
+				var t_ratio = t_i / t_num_edge_overlaps;
+				if (t_is_overlapping)
+				{
+					if (t_ratio < 0.5)
+						t_ratio = 0;
+					else
+						t_ratio = 0.5+t_ratio/2;
+					c = merge_color(c, c_black, t_ratio);
+				}
+				else
+					c = merge_color(c, c_black, 1 - t_ratio);
+			}
 		
-	        if (opt_dist+t_totalrem < t_lengthwanted70 && t_i != 1 && t_i != listsize-1 && !list_id[| currentpos+currentposadjust+2] && !bl_prev)
+	        if (opt_dist+t_totalrem < t_lengthwanted70 && (t_is_overlapping > 0 || (t_i != 1 && t_i != listsize-1)) && !list_id[| currentpos+currentposadjust+2] && !bl_prev)
 	        {
 	            //skip point, unless it's the last one before a blanking
 				t_totalrem += opt_dist;
@@ -414,6 +411,24 @@ function make_frame() {
 	        xp_prev = xp;
 	        yp_prev = yp;
 	        c_prev = c;
+			
+			if (t_num_edge_overlaps > 0 && t_i == listsize-1 && !t_is_overlapping)
+			{
+				t_is_overlapping = true;
+				t_num_edge_overlaps *= 2;
+				listsize = min(listsize, t_num_edge_overlaps);
+				t_i = -1;
+				if (polarity_list[| i] == 0)
+			    {
+			        currentpos = 20;
+			        currentposadjust = 4;
+			    }
+			    else
+			    {
+			        currentpos = ds_list_size(list_id)-4;
+			        currentposadjust = -4;
+			    }
+			}
 	    }
         
 	    bl_prev = 1;
@@ -493,43 +508,6 @@ function make_frame() {
 	        ds_list_add(list_raw,1);
 	        ds_list_add(list_raw,0);
 	    }
-	    /*var t_quantumsteps = t_quantumstepssqrt*t_quantumstepssqrt;
-	    t_trav_dist = opt_dist/t_quantumsteps;
-	    var t_trav_dist_x = -t_trav_dist*(xp_prev-xp)/opt_dist;
-	    var t_trav_dist_y = -t_trav_dist*(yp_prev-yp)/opt_dist;
-    
-	    //travel first and second half of segment
-	    var t_step_dist_x = 0;
-	    var t_step_dist_y = 0;
-	    var t_xp_now = xp_prev;
-	    var t_yp_now = yp_prev;
-    
-	    for (k = 0; k < t_quantumstepssqrt; k++)
-	    {
-	        t_step_dist_x += t_trav_dist_x;
-	        t_step_dist_y += t_trav_dist_y;
-        
-	        t_xp_now += t_step_dist_x;
-	        t_yp_now += t_step_dist_y;
-        
-	        ds_list_add(list_raw,t_xp_now);
-	        ds_list_add(list_raw,t_yp_now);
-	        ds_list_add(list_raw,1);
-	        ds_list_add(list_raw,0);
-	    }
-	    for (k = 1; k < t_quantumstepssqrt; k++)
-	    {
-	        t_step_dist_x -= t_trav_dist_x;
-	        t_step_dist_y -= t_trav_dist_y;
-        
-	        t_xp_now += t_step_dist_x;
-	        t_yp_now += t_step_dist_y;
-        
-	        ds_list_add(list_raw,t_xp_now);
-	        ds_list_add(list_raw,t_yp_now);
-	        ds_list_add(list_raw,1);
-	        ds_list_add(list_raw,0);
-	    }*/
 	}
   
 	ds_list_free_pool(order_list); order_list = -1;
