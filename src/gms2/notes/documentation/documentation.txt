@@ -147,6 +147,7 @@ frame_list
             9: el_id
             is_blindzone
             force_pol0
+			overlap_length (written during prepare_output)
             ..pos 20: points:
             x
             y

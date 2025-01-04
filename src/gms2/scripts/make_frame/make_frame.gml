@@ -85,18 +85,8 @@ function make_frame() {
 	    }
 		
 		var t_is_overlapping = false;
-		var t_num_edge_overlaps = 0;
-		if (listsize > 1)
-		{
-			var t_x_first = xo+list_id[| 20+0];
-			var t_y_first = yo+list_id[| 20+1];
-			var t_bl_first = list_id[| 20+2];
-			var t_x_last = xo+list_id[| ds_list_size(list_id)-4+0];
-			var t_y_last = yo+list_id[| ds_list_size(list_id)-4+1];
-			var t_bl_last = list_id[| ds_list_size(list_id)-4+2];
-			if (t_bl_first == 0 && t_bl_last == 0 && abs(t_x_first - t_x_last) < 200 && abs(t_y_first == t_y_last) < 200)
-				t_num_edge_overlaps = min(floor(listsize * 0.3), ceil(controller.opt_scanspeed/1500));
-		}
+		var t_edge_overlap_length = list_id[| 12];
+		var t_edge_overlap_length_so_far = 0;
     
 	    for (var t_i = 1; t_i < listsize; t_i++)
 	    {
@@ -108,6 +98,12 @@ function make_frame() {
 	        {
 	            bl_prev = 1;
 	            new_dot = 1;
+				if (t_is_overlapping)
+				{
+					// This slightly underestimates our point budget and wastes some blanking at end of frame, but cba to fix
+					break;
+				}
+					
 	            continue;
 	        }
 		
@@ -185,10 +181,9 @@ function make_frame() {
             
 	            opt_dist = point_distance(xp_prev,yp_prev,xpp,ypp);
 				
-				// todo maybe fix this, smoothly overlapping circles etc
-				if (t_i < t_num_edge_overlaps)
+				if (t_edge_overlap_length_so_far < t_edge_overlap_length)
 				{
-					var t_ratio = t_i / t_num_edge_overlaps;
+					var t_ratio = t_edge_overlap_length_so_far / t_edge_overlap_length;
 					if (t_is_overlapping)
 					{
 						if (t_ratio < 0.5)
@@ -348,20 +343,26 @@ function make_frame() {
 			if (opt_dist < 2)
 				opt_dist = t_dotlength;
 				
-			// todo maybe fix this, smoothly overlapping circles etc
-			if (t_i < t_num_edge_overlaps)
+			if (t_edge_overlap_length_so_far < t_edge_overlap_length)
 			{
-				var t_ratio = t_i / t_num_edge_overlaps;
+				var t_ratio = t_edge_overlap_length_so_far / t_edge_overlap_length;
 				if (t_is_overlapping)
 				{
 					if (t_ratio < 0.5)
 						t_ratio = 0;
 					else
-						t_ratio = 0.5+t_ratio/2;
+						t_ratio = (t_ratio-0.5)*2;
 					c = merge_color(c, c_black, t_ratio);
 				}
 				else
 					c = merge_color(c, c_black, 1 - t_ratio);
+					
+				t_edge_overlap_length_so_far += opt_dist;
+			}
+			else if (t_is_overlapping)
+			{
+				c_prev = 0;
+				break;
 			}
 		
 	        if (opt_dist+t_totalrem < t_lengthwanted70 && (t_is_overlapping > 0 || (t_i != 1 && t_i != listsize-1)) && !list_id[| currentpos+currentposadjust+2] && !bl_prev)
@@ -372,6 +373,7 @@ function make_frame() {
 				yp_prev_prev = yp_prev;
 				xp_prev = xp;
 				yp_prev = yp;
+				
 	            continue;
 	        }
 	        else if (opt_dist+t_totalrem > t_lengthwanted170)
@@ -412,22 +414,32 @@ function make_frame() {
 	        yp_prev = yp;
 	        c_prev = c;
 			
-			if (t_num_edge_overlaps > 0 && t_i == listsize-1 && !t_is_overlapping)
+			if (t_edge_overlap_length > 0)
 			{
-				t_is_overlapping = true;
-				t_num_edge_overlaps *= 2;
-				listsize = min(listsize, t_num_edge_overlaps);
-				t_i = -1;
-				if (polarity_list[| i] == 0)
-			    {
-			        currentpos = 20;
-			        currentposadjust = 4;
-			    }
-			    else
-			    {
-			        currentpos = ds_list_size(list_id)-4;
-			        currentposadjust = -4;
-			    }
+				if (t_is_overlapping)
+				{
+					if (t_edge_overlap_length_so_far >= t_edge_overlap_length)
+					{
+						break;
+					}
+				}
+				else if (t_i == listsize-1)
+				{
+					t_is_overlapping = true;
+					t_edge_overlap_length *= 2;
+					t_edge_overlap_length_so_far = 0;
+					t_i = -1;
+					if (polarity_list[| i] == 0)
+				    {
+				        currentpos = 20;
+				        currentposadjust = 4;
+				    }
+				    else
+				    {
+				        currentpos = ds_list_size(list_id)-4;
+				        currentposadjust = -4;
+				    }
+				}
 			}
 	    }
         
@@ -516,6 +528,14 @@ function make_frame() {
 	//final removal or adding of ending points to match perfectly
 	if (ds_list_size(list_raw)/4-1 > t_totalpointswanted)
 	{
+		var t_remove_num = min(min(3, (ds_list_size(list_raw)/4-1) - t_totalpointswanted), ds_list_size(list_raw)/4);
+		repeat (t_remove_num)
+		{
+			ds_list_delete(list_raw, ds_list_size(list_raw)-1);
+			ds_list_delete(list_raw, ds_list_size(list_raw)-1);
+			ds_list_delete(list_raw, ds_list_size(list_raw)-1);
+			ds_list_delete(list_raw, ds_list_size(list_raw)-1);
+		}
 	    /*if (controller.opt_warning_flag != 1)
 	    {
 	        //show_message_new("Failed to optimize the file based on the selected scanning speed and FPS. Please reduce the complexity of frame [ "+string(j)+" ] or use the exported file at your own risk");
