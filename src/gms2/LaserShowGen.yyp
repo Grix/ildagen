@@ -1247,7 +1247,7 @@
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"help.pdf","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"LaserBoy_Current.zip","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"lsgtestpattern.igf","CopyToMask":-1,"filePath":"datafiles",},
-    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"settings_default.ini","CopyToMask":-1,"filePath":"datafiles",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"settings_default.ini","CopyToMask":3035426170322551022,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"palette.ini","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Comic Sans.ild","CopyToMask":-1,"filePath":"datafiles/fonts",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Courier New.ild","CopyToMask":-1,"filePath":"datafiles/fonts",},

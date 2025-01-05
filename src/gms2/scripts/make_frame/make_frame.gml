@@ -31,11 +31,11 @@ function make_frame() {
 		{
 			controller.fpsmultiplier = 4;
 		}*/
-		if ((controller.opt_maxdist/t_lengthwanted) < 0.1)
+		if ((controller.opt_maxdist/t_lengthwanted) < 0.08)
 		{
 			controller.fpsmultiplier = 3;
 		}
-		else if ((controller.opt_maxdist/t_lengthwanted) < 0.25)
+		else if ((controller.opt_maxdist/t_lengthwanted) < 0.2)
 		{
 			controller.fpsmultiplier = 2;
 		}
@@ -59,6 +59,9 @@ function make_frame() {
 
 	//parse elements
 	var t_numofelems = ds_list_size(order_list);
+	
+	//log("start, order first: ", order_list[| 0]);
+	//var t_litpoints = 0;
   
 	for (i = 0; i < t_numofelems; i++)
 	{
@@ -226,6 +229,7 @@ function make_frame() {
 	                    ds_list_add(list_raw,0);
 	                    ds_list_add(list_raw,t_c_first);
 	                }
+					//log("connecting on ", i, t_true_dwell_falling);
 	            }
 	            else //not connecting segments
 	            {
@@ -310,6 +314,7 @@ function make_frame() {
 		                }
 					//}
                     
+					//log("NOT connecting on ", i, t_true_dwell_falling + t_true_dwell_rising + t_numsteps);
 	            }
 			
 	            xp_prev = xpp;
@@ -365,7 +370,7 @@ function make_frame() {
 				break;
 			}
 		
-	        if (opt_dist+t_totalrem < t_lengthwanted70 && (t_is_overlapping > 0 || (t_i != 1 && t_i != listsize-1)) && !list_id[| currentpos+currentposadjust+2] && !bl_prev)
+	        if (opt_dist+t_totalrem < t_lengthwanted70 && (t_is_overlapping || (t_i != 1 && t_i != listsize-1)) && !list_id[| currentpos+currentposadjust+2] && !bl_prev)
 	        {
 	            //skip point, unless it's the last one before a blanking
 				t_totalrem += opt_dist;
@@ -379,7 +384,19 @@ function make_frame() {
 	        else if (opt_dist+t_totalrem > t_lengthwanted170)
 			{
 	            //add points
-	            t_totalrem += t_lengthwanted - (opt_dist % t_lengthwanted);
+				var t_stepscount = floor((opt_dist+t_totalrem) / t_lengthwanted);
+				t_totalrem = opt_dist+t_totalrem - t_lengthwanted*(t_stepscount+1);
+				t_vectorx = (xp-xp_prev)/t_stepscount;
+	            t_vectory = (yp-yp_prev)/t_stepscount;
+	            for (u = 0; u < t_stepscount; u++)
+	            {
+					//t_litpoints++;
+	                ds_list_add(list_raw,xp_prev+t_vectorx*(u));
+	                ds_list_add(list_raw,yp_prev+t_vectory*(u));
+	                ds_list_add(list_raw,0);
+	                ds_list_add(list_raw,c);
+	            }
+	            /*t_totalrem += t_lengthwanted - (opt_dist % t_lengthwanted);
 	            if (t_totalrem > t_lengthwanted)
 	            {
 	                t_totalrem -= t_lengthwanted;
@@ -390,11 +407,12 @@ function make_frame() {
 	            t_vectory = (yp-yp_prev)/t_stepscount;
 	            for (u = 1; u < t_stepscount; u++)
 	            {
+					t_litpoints++;
 	                ds_list_add(list_raw,xp_prev+t_vectorx*(u));
 	                ds_list_add(list_raw,yp_prev+t_vectory*(u));
 	                ds_list_add(list_raw,0);
 	                ds_list_add(list_raw,c);
-	            }
+	            }*/
 	        }
 			else
 			{
@@ -403,6 +421,7 @@ function make_frame() {
 			}
         
 	        //normal point, writing
+			//t_litpoints++;
 	        ds_list_add(list_raw,xp);
 	        ds_list_add(list_raw,yp);
 	        ds_list_add(list_raw,0);
@@ -455,6 +474,7 @@ function make_frame() {
 
 	if (opt_dist < 280) //connecting segments
 	{
+		//log("connecting on last");
 	    t_true_dwell_falling = controller.opt_maxdwell; //worst case
                             
 	    //dwell on blanking start
@@ -524,11 +544,13 @@ function make_frame() {
   
 	ds_list_free_pool(order_list); order_list = -1;
 	ds_list_free_pool(polarity_list); polarity_list =-1;
+	
+	//log("result: ", ds_list_size(list_raw)/4, t_lengthwanted, maxpoints_static, lit_length, t_litpoints, t_litpointswanted, t_totalrem);
 
-	//final removal or adding of ending points to match perfectly
+	//final removal or adding of ending points to try to match perfectly
 	if (ds_list_size(list_raw)/4-1 > t_totalpointswanted)
 	{
-		var t_remove_num = min(min(3, (ds_list_size(list_raw)/4-1) - t_totalpointswanted), ds_list_size(list_raw)/4);
+		var t_remove_num = min(min(5, (ds_list_size(list_raw)/4-1) - t_totalpointswanted), ds_list_size(list_raw)/4-3);
 		repeat (t_remove_num)
 		{
 			ds_list_delete(list_raw, ds_list_size(list_raw)-1);

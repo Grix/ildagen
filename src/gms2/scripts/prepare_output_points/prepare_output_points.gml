@@ -99,6 +99,7 @@ function prepare_output_points() {
                 
 	            maxpoints_static += ( (controller.opt_maxdwell_blank)*2
 	                                   + max(0, t_true_dwell_falling - controller.opt_maxdwell_blank*2) );
+									   
 	        }
 	        else //not connecting segments
 	        {
@@ -144,6 +145,7 @@ function prepare_output_points() {
 	                                    +  max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank)
 	                                    +  t_quantumstepssqrt * 2 );
 				}
+				maxpoints_static += 1; // Don't know why but this makes it more accurate.
 	           
 	        }
         
