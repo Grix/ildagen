@@ -394,7 +394,7 @@ function make_frame() {
 	                ds_list_add(list_raw,xp_prev+t_vectorx*(u));
 	                ds_list_add(list_raw,yp_prev+t_vectory*(u));
 	                ds_list_add(list_raw,0);
-	                ds_list_add(list_raw,c);
+	                ds_list_add(list_raw,c); // todo merge_color to interpolate?
 	            }
 	            /*t_totalrem += t_lengthwanted - (opt_dist % t_lengthwanted);
 	            if (t_totalrem > t_lengthwanted)
@@ -447,7 +447,7 @@ function make_frame() {
 					t_is_overlapping = true;
 					t_edge_overlap_length *= 2;
 					t_edge_overlap_length_so_far = 0;
-					t_i = -1;
+					t_i = 0;
 					if (polarity_list[| i] == 0)
 				    {
 				        currentpos = 20;

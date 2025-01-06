@@ -114,7 +114,8 @@ largepreview = 0;
 loop = false;
 beats_shift = 0;
 doubleclick_mousexprevious = mouse_x;
-seqcontrol.envelope_copy_duration = -1;
+envelope_copy_duration = -1;
+song_sync_bad_prev = false;
 
 tlsurf_y = 137;
 tlw = 983; //width of timeline

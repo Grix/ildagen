@@ -48,11 +48,17 @@ if (playing == 1)
 	var t_songpos = fmod_get_pos(play_sndchannel);
     if (song != -1) && t_songpos > 0 && (abs(t_songpos - (tlpos+audioshift)) > 42*controller.fpsmultiplier) && (scroll_moving != 1)
     {
-        //fmod_set_pos(play_sndchannel,(tlpos+audioshift));
-		if (debug_mode)
-			log("Adjusted song pos: ", tlpos/1000, (t_songpos-audioshift+10)/1000);
-		tlpos = t_songpos-audioshift+10;
+		if (song_sync_bad_prev)
+		{
+			//fmod_set_pos(play_sndchannel,(tlpos+audioshift));
+			if (debug_mode)
+				log("Adjusted song pos: ", tlpos/1000, (t_songpos-audioshift+10)/1000);
+			tlpos = t_songpos-audioshift+10;
+		}
+		song_sync_bad_prev = true;
     }
+	else
+		song_sync_bad_prev = false;
 }
 
 if (frameprev != round(tlpos/1000*projectfps))
