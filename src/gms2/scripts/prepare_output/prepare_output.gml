@@ -155,7 +155,7 @@ function prepare_output() {
 			var t_y_first = yo+list_id[| 20+1];
 			var t_x_last = xo+list_id[| t_lastindex+0];
 			var t_y_last = yo+list_id[| t_lastindex+1];
-			if (abs(t_x_first - t_x_last) < 200 && abs(t_y_first == t_y_last) < 200)
+			if (point_distance(t_x_first, t_y_first, t_x_last, t_y_last) < 200)
 			{
 				var t_x_first2 = xo+list_id[| 24+0];
 				var t_y_first2 = yo+list_id[| 24+1];
