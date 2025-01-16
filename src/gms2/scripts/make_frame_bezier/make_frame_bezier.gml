@@ -1,7 +1,5 @@
 // TODO FOR THIS: 
-// Fix case where bezier control points are outside frame (continue line 237 and also at final back to middle segment)
-// Adjust prepare_output to calculate blanking points from bezier too
-
+// Has not yet included improvements from around new years 2024-2025. However improvement were not noticable anyway so maybe abandon project.
 
 function make_frame_bezier() {
 	//if (debug_mode)
