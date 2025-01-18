@@ -102,6 +102,7 @@ if (controller.laseron)
 else 
     _room_speed = 60;
 
-game_set_speed(_room_speed, gamespeed_fps);
+if (game_get_speed(gamespeed_fps) != _room_speed)
+	game_set_speed(_room_speed, gamespeed_fps);
 
 
