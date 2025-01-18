@@ -1,12 +1,15 @@
+v2.1.0
+- Ability to cut/copy/paste from timeline envelopes freely, including across layers.
+- Improved output graphic optimization, including smoother circles and certain sharper tips/corners.
+- More smooth animation playback, avoiding skipped or duplicated frames in certain situations.
+- macOS now uses native file and message dialogs, fixing a few bugs relating to the old dialogs on macOS.
+- Improvements for IDN DACs, such as the Helios network adapter. (Using IDN wave mode)
+- The outside of the projection window now counts as a blind zone, turning off the laser outside bounds.
+- Fix being able to freeze the software if trying to close it from the taskbar in Windows.
+- Fix spurious error message after loading certain music to timeline.
+- Try to reduce excessive CPU use.
+
 v2.0.3
 - Fix exclusive mode for Grid Mode tiles blocking other tiles even when not playing.
 - Fix possible crash in Timeline Mode when splitting item after moving it if BPM-based timing is enabled.
 - Fix undoing after moving/resizing multiple timeline objects at once only undo-ing one of them.
-
-v2.0.2
-- Add ability to unbind all MIDI and keyboard shortcuts from sliders and Grid Mode tiles.
-- Fix possible crash/corruption when undoing use of color picker tool in Editor Mode.
-
-v2.0.0
-- Added BPM-based timing (turn on in settings window).
-[... 7 other changes]
