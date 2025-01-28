@@ -7,7 +7,6 @@ v2.1.0
 - The outside of the projection window now counts as a blind zone, turning off the laser outside bounds.
 - Fix being able to freeze the software if trying to close it from the taskbar in Windows.
 - Fix spurious error message after loading certain music to timeline.
-- Try to reduce excessive CPU use.
 
 v2.0.3
 - Fix exclusive mode for Grid Mode tiles blocking other tiles even when not playing.
