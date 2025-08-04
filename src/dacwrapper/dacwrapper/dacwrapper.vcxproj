@@ -166,6 +166,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="artnet\artnet.c" />
+    <ClCompile Include="artnet\misc.c" />
+    <ClCompile Include="artnet\network.c" />
+    <ClCompile Include="artnet\receive.c" />
+    <ClCompile Include="artnet\tod.c" />
+    <ClCompile Include="artnet\transmit.c" />
     <ClCompile Include="dacwrapper.cpp" />
     <ClCompile Include="Device_Etherdream.cpp" />
     <ClCompile Include="Device_Helios.cpp" />
@@ -175,6 +181,7 @@
     <ClCompile Include="Device_OLSC_Easylase.cpp" />
     <ClCompile Include="Device_OLSC_EzAudDac.cpp" />
     <ClCompile Include="Device_RIYA.cpp" />
+    <ClCompile Include="Dmx.cpp" />
     <ClCompile Include="HeliosDac.cpp" />
     <ClCompile Include="idn.cpp" />
     <ClCompile Include="idnServerList.cpp" />
@@ -186,6 +193,12 @@
     <ClCompile Include="plt-windows.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="artnet\artnet.h" />
+    <ClInclude Include="artnet\common.h" />
+    <ClInclude Include="artnet\misc.h" />
+    <ClInclude Include="artnet\packets.h" />
+    <ClInclude Include="artnet\private.h" />
+    <ClInclude Include="artnet\tod.h" />
     <ClInclude Include="D:\GitHub\helios_dac\sdk\libusb.h" />
     <ClInclude Include="dacwrapper.h" />
     <ClInclude Include="Device_Etherdream.h" />
@@ -196,6 +209,7 @@
     <ClInclude Include="Device_OLSC_Easylase.h" />
     <ClInclude Include="Device_OLSC_EzAudDac.h" />
     <ClInclude Include="Device_RIYA.h" />
+    <ClInclude Include="Dmx.h" />
     <ClInclude Include="HeliosDac.h" />
     <ClInclude Include="idn-hello.h" />
     <ClInclude Include="idn-stream.h" />

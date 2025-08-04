@@ -26,6 +26,8 @@ GMEXPORT double InitDacwrapper()
 	
 	initialized = true;
 
+	dmxDevice = new Dmx();
+
 	return 1.0;
 }
 
@@ -507,4 +509,22 @@ GMEXPORT double GetFirmwareVersion(double doubleNum)
 		return heliosDevice->GetFirmwareVersion(cardNum);
 	else
 		return -1;
+}
+
+GMEXPORT double DmxSetValue(double port, double address, double value)
+{
+	dmxDevice->SetValue((unsigned int)(port + 0.5), (unsigned int)(address + 0.5), (unsigned int)(value + 0.5));
+	return 1;
+}
+
+GMEXPORT double DmxSetEnabled(double enabled)
+{
+	dmxDevice->SetEnabled(enabled > 0.5);
+	return 1;
+}
+
+GMEXPORT double DmxSetIp(char* ip)
+{
+	dmxDevice->SetInterfaceIp(ip);
+	return 1;
 }

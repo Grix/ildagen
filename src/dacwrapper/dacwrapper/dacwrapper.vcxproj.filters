@@ -31,6 +31,12 @@
     <Filter Include="Header Files\Idn">
       <UniqueIdentifier>{352c261c-5421-4b84-9f8d-b7ef46e44242}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Artnet">
+      <UniqueIdentifier>{abb68336-ede8-43cd-b767-95fa96a1dbb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Artnet">
+      <UniqueIdentifier>{9e03a3dd-6e83-4f70-ab3d-7073e5a88e7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dacwrapper.cpp">
@@ -75,9 +81,6 @@
     <ClCompile Include="idn.cpp">
       <Filter>Source Files\Idn</Filter>
     </ClCompile>
-    <ClCompile Include="Device_IDN.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="plt-windows.cpp">
       <Filter>Source Files\Idn</Filter>
     </ClCompile>
@@ -89,6 +92,27 @@
     </ClCompile>
     <ClCompile Include="idnServerList.cpp">
       <Filter>Source Files\Idn</Filter>
+    </ClCompile>
+    <ClCompile Include="artnet\misc.c">
+      <Filter>Source Files\Artnet</Filter>
+    </ClCompile>
+    <ClCompile Include="artnet\network.c">
+      <Filter>Source Files\Artnet</Filter>
+    </ClCompile>
+    <ClCompile Include="artnet\receive.c">
+      <Filter>Source Files\Artnet</Filter>
+    </ClCompile>
+    <ClCompile Include="artnet\tod.c">
+      <Filter>Source Files\Artnet</Filter>
+    </ClCompile>
+    <ClCompile Include="artnet\transmit.c">
+      <Filter>Source Files\Artnet</Filter>
+    </ClCompile>
+    <ClCompile Include="artnet\artnet.c">
+      <Filter>Source Files\Artnet</Filter>
+    </ClCompile>
+    <ClCompile Include="Dmx.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +167,6 @@
     <ClInclude Include="idn-stream.h">
       <Filter>Header Files\Idn</Filter>
     </ClInclude>
-    <ClInclude Include="Device_IDN.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="plt-windows.h">
       <Filter>Header Files\Idn</Filter>
     </ClInclude>
@@ -157,6 +178,27 @@
     </ClInclude>
     <ClInclude Include="idnServerList.h">
       <Filter>Header Files\Idn</Filter>
+    </ClInclude>
+    <ClInclude Include="artnet\private.h">
+      <Filter>Header Files\Artnet</Filter>
+    </ClInclude>
+    <ClInclude Include="artnet\tod.h">
+      <Filter>Header Files\Artnet</Filter>
+    </ClInclude>
+    <ClInclude Include="artnet\common.h">
+      <Filter>Header Files\Artnet</Filter>
+    </ClInclude>
+    <ClInclude Include="artnet\misc.h">
+      <Filter>Header Files\Artnet</Filter>
+    </ClInclude>
+    <ClInclude Include="artnet\packets.h">
+      <Filter>Header Files\Artnet</Filter>
+    </ClInclude>
+    <ClInclude Include="artnet\artnet.h">
+      <Filter>Header Files\Artnet</Filter>
+    </ClInclude>
+    <ClInclude Include="Dmx.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,8 @@
 function benchmark() {
 	
+	dacwrapper_dmx_setenable(1);
+	dacwrapper_dmx_setvalue(5,5);
+	
 	/*var t_zero = 0;
 	var t_const = 100;
 	 minitimeline_surf = surface_create(t_const/t_zero, clamp(infinity, 1, 8192));*/

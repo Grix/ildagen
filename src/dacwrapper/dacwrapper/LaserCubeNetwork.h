@@ -13,6 +13,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <chrono>
 
 #if defined(_WIN32) || defined(WIN32)
 #include "plt-windows.h"

@@ -6,7 +6,7 @@
   "options": [],
   "exportToGame": true,
   "supportedTargets": 194,
-  "extensionVersion": "1.3.0",
+  "extensionVersion": "1.4.0",
   "packageId": "",
   "productId": "",
   "author": "",
@@ -48,6 +48,16 @@
             2,
           ],"documentation":"",},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_returnone","externalName":"ReturnOne","kind":1,"help":"dacwrapper_returnone()","hidden":false,"returnType":2,"argCount":0,"args":[],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_dmx_setenable","externalName":"DmxSetEnabled","kind":1,"help":"dacwrapper_dmx_setenable(enabled)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_dmx_setvalue","externalName":"DmxSetValue","kind":1,"help":"dacwrapper_dmx_setvalue(double address, double value)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_dmx_setip","externalName":"DmxSetIp","kind":1,"help":"dacwrapper_dmx_setip(ip_addr_string)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+          ],"documentation":"",},
       ],"constants":[],"ProxyFiles":[
         {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"libdacwrapper.dylib","TargetMask":1,},
         {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"libdacwrapper.so","TargetMask":7,},

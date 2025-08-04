@@ -17,6 +17,7 @@
 #include <string>
 #include <thread>
 #include <mutex>
+#include "Dmx.h"
 
 #ifdef _WIN32
 	#define GMEXPORT extern "C" __declspec (dllexport)
@@ -37,6 +38,8 @@ Device_Etherdream* etherDreamDevice;
 	Device_OLSC_Easylase* olscEasylaseDevice;
 	Device_OLSC_EzAudDac* olscEzAudDacDevice;
 #endif
+
+Dmx* dmxDevice;
 
 // Needed for IDN plt files, gives redefinition error if moved there
 // EDIT: Never mind lol
@@ -71,3 +74,6 @@ GMEXPORT char* GetName(double dacNum);
 GMEXPORT double SetName(double dacNum, char* name);
 GMEXPORT double GetFirmwareVersion(double dacNum);
 //GMEXPORT double UpdateSettings(uint8_t* bufferAddress);
+GMEXPORT double DmxSetValue(double address, double value);
+GMEXPORT double DmxSetEnabled(double enabled);
+GMEXPORT double DmxSetIp(char* ip);
