@@ -103,6 +103,7 @@ function load_project_work() {
 				ds_list_add(layertemp,t_y_offset);
 				ds_list_add(layertemp,t_x_angle);
 				ds_list_add(layertemp,t_y_fov);
+	            ds_list_add(layertemp, ds_list_create_pool()); //todo load events
 	        }
 	        else
 	        {
@@ -114,6 +115,7 @@ function load_project_work() {
 	            ds_list_add(layertemp, 0);
 				ds_list_add(layertemp, 0);
 	            ds_list_add(layertemp, 0);
+	            ds_list_add(layertemp, ds_list_create_pool()); //todo load events
 	        }
 	    }
 	}
@@ -179,6 +181,7 @@ function load_project_work() {
 	        ds_list_add(layertemp, 0);
 			ds_list_add(layertemp, 0);
 	        ds_list_add(layertemp, 0);
+	        ds_list_add(layertemp, ds_list_create_pool());
 	    }
 	}
     

@@ -1,7 +1,7 @@
 function benchmark() {
 	
-	dacwrapper_dmx_setenable(1);
-	dacwrapper_dmx_setvalue(5,5);
+	//dacwrapper_dmx_setenable(1);
+	//dacwrapper_dmx_setvalue(5,5);
 	
 	/*var t_zero = 0;
 	var t_const = 100;

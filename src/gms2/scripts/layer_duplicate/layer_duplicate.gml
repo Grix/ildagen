@@ -52,9 +52,7 @@ function layer_duplicate() {
 	for (t_i = 0; t_i < ds_list_size(t_layer[| 5]); t_i++)
 	{
 		var t_new_dac = ds_list_create_pool();
-		ds_list_add(t_new_dac, t_layer[| 5][| t_i][| 0]);
-		ds_list_add(t_new_dac, t_layer[| 5][| t_i][| 1]);
-		ds_list_add(t_new_dac, t_layer[| 5][| t_i][| 2]);
+		ds_list_copy(t_new_dac, t_layer[| 5][| t_i]);
 		ds_list_add(t_new_dac_list, t_new_dac);
 	}
 	ds_list_add(newlayer,t_new_dac_list);
@@ -62,6 +60,14 @@ function layer_duplicate() {
 	ds_list_add(newlayer,t_layer[| 7]);
 	ds_list_add(newlayer,t_layer[| 8]); 
 	ds_list_add(newlayer,t_layer[| 9]);
+	
+	var t_new_event_list = ds_list_create_pool();
+	for (t_i = 0; t_i < ds_list_size(t_layer[| 10]); t_i++)
+	{
+		var t_new_event = ds_list_create_pool();
+		ds_list_copy(t_new_event, t_layer[| 10][| t_i]);
+		ds_list_add(t_new_event_list, t_new_event);
+	}
 
 	var t_new_undo_list = ds_list_create_pool();
 	ds_list_add(t_new_undo_list, newlayer);

@@ -5,7 +5,7 @@
 #include <mutex>
 #include "artnet/artnet.h"
 
-#define MAX_UNIVERSES 16
+#define MAX_UNIVERSES 0xFF
 
 class Dmx
 {
@@ -17,7 +17,7 @@ public:
 
 	void SetEnabled(bool enabled);
 
-	void SetValue(unsigned int port, unsigned int address, uint8_t value);
+	void SetValue(unsigned int address, unsigned int index, uint8_t value);
 
 	void SetInterfaceIp(const char* newIp);
 

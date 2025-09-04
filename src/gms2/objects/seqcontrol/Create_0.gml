@@ -2,18 +2,8 @@
 alarm[4] = 3000;
 
 layer_list = ds_list_create_pool();
-_layer = ds_list_create_pool();
-ds_list_add(layer_list,_layer);
-ds_list_add(_layer,ds_list_create_pool()); //envelope list
-ds_list_add(_layer,ds_list_create_pool()); //elements list
-ds_list_add(_layer,0); 
-ds_list_add(_layer,0);
-ds_list_add(_layer,"Layer 1");
-ds_list_add(_layer,ds_list_create_pool()); //dac 
-ds_list_add(_layer,0); //preview offsets
-ds_list_add(_layer,0);
-ds_list_add(_layer,0);
-ds_list_add(_layer,0);
+
+add_layer();
 
 surface_list = ds_list_create_pool();
 somaster_list = ds_list_create_pool();

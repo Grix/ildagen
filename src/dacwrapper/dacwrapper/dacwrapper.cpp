@@ -511,9 +511,9 @@ GMEXPORT double GetFirmwareVersion(double doubleNum)
 		return -1;
 }
 
-GMEXPORT double DmxSetValue(double port, double address, double value)
+GMEXPORT double DmxSetValue(double address, double index, double value)
 {
-	dmxDevice->SetValue((unsigned int)(port + 0.5), (unsigned int)(address + 0.5), (unsigned int)(value + 0.5));
+	dmxDevice->SetValue((unsigned int)(address + 0.5), (unsigned int)(index + 0.5), (unsigned int)(value + 0.5));
 	return 1;
 }
 

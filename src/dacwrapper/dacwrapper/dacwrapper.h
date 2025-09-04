@@ -41,14 +41,6 @@ Device_Etherdream* etherDreamDevice;
 
 Dmx* dmxDevice;
 
-// Needed for IDN plt files, gives redefinition error if moved there
-// EDIT: Never mind lol
-/*#ifdef _WIN32
-int plt_monoValid = 0;
-LARGE_INTEGER plt_monoCtrFreq;
-LARGE_INTEGER plt_monoCtrRef;
-uint32_t plt_monoTimeUS = 0;
-#endif*/
 
 bool initialized = false;
 int numDevices = 0;
@@ -74,6 +66,6 @@ GMEXPORT char* GetName(double dacNum);
 GMEXPORT double SetName(double dacNum, char* name);
 GMEXPORT double GetFirmwareVersion(double dacNum);
 //GMEXPORT double UpdateSettings(uint8_t* bufferAddress);
-GMEXPORT double DmxSetValue(double address, double value);
+GMEXPORT double DmxSetValue(double address, double index, double value);
 GMEXPORT double DmxSetEnabled(double enabled);
 GMEXPORT double DmxSetIp(char* ip);

@@ -30,12 +30,14 @@ void Dmx::SetEnabled(bool enabled)
 	}
 }
 
-void Dmx::SetValue(unsigned int port, unsigned int address, uint8_t value)
+void Dmx::SetValue(unsigned int address, unsigned int index, uint8_t value)
 {
-	if (address < 512)
-		data[port % 16][address] = value;
+	if (index >= 512)
+		return;
 
-	sendUpdate[port % 16] = 2;
+	data[address & 0xFF][index] = value;
+	isInUse[address & 0xFF] = true;
+	sendUpdate[address & 0xFF] = 2;
 }
 
 void Dmx::SetInterfaceIp(const char* newIp)
@@ -100,7 +102,7 @@ void Dmx::TxThread()
 
 			for (int i = 0; i < MAX_UNIVERSES; i++)
 			{
-				if (sendUpdate[i] > 0 || nextForcedUpdate[i] > now)
+				if (isInUse[i] && (sendUpdate[i] > 0 || nextForcedUpdate[i] > now))
 				{
 					artnet_send_dmx(artnet, i, 512, data[i]);
 

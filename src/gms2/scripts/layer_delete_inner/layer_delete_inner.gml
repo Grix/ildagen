@@ -33,6 +33,12 @@ function layer_delete_inner(){
 	repeat (num_objects)  
 	    ds_list_free_pool(ds_list_find_value(t_dac_list,0));
 	ds_list_free_pool(t_dac_list); t_dac_list = -1;
+	
+	var t_event_list = ds_list_find_value(_layer,10);
+	num_objects = ds_list_size(t_event_list);
+	repeat (num_objects)  
+	    ds_list_free_pool(ds_list_find_value(t_event_list,0));
+	ds_list_free_pool(t_event_list); t_event_list = -1;
             
 	ds_list_free_pool(_layer); _layer = -1;
 	ds_list_delete(layer_list,selectedlayer);

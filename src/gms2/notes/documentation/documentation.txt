@@ -61,7 +61,6 @@ TODO
 SETTINGSCONTROL
 
 
-
 SEQCONTROL
 
 layer_list
@@ -95,7 +94,19 @@ layer_list
 	   7 preview_projector_offset_y
 	   8 preview_projector_offset_angle
 	   9 preview_projector_offset_fov_offset (0 = 20 degrees)
-                
+	   10 dmx_element_list
+			dmx elements...
+				0 xpos on timeline
+				1 event type 
+				  case (0 = dmx channel value change):
+				 2 universe id, just counting from 0
+				 3 word index
+				 4 value
+				 5 channel-ID (unique reference, can be defined in settings to make assigning addresses easier). If 0, no ID.
+				 6 change method (0: simple, 1: interpolate, 2: pulse then return to 0)
+				 7 change method parameter (if interpolate, number of frames to interpolate over, if pulse then number of frames the pulse should last)
+                 8 description
+				
 somaster_list
     layer elements.. (see above)
 	
@@ -183,6 +194,8 @@ filelist
                 name
                 profile name
 		13 midi key shortcut( = -2 if not in use)
+		14 description (todo implement)
+		15 thumbnail frame number 
 		
 Fonts
 Text tiles are drawn with paint.net, font Arial, sizes 10 and 12, color pure black
