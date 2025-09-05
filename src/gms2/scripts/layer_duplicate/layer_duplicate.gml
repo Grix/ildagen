@@ -68,6 +68,7 @@ function layer_duplicate() {
 		ds_list_copy(t_new_event, t_layer[| 10][| t_i]);
 		ds_list_add(t_new_event_list, t_new_event);
 	}
+	ds_list_add(newlayer,t_new_event_list);
 
 	var t_new_undo_list = ds_list_create_pool();
 	ds_list_add(t_new_undo_list, newlayer);

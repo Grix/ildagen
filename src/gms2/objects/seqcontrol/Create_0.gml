@@ -2,9 +2,6 @@
 alarm[4] = 3000;
 
 layer_list = ds_list_create_pool();
-
-add_layer();
-
 surface_list = ds_list_create_pool();
 somaster_list = ds_list_create_pool();
 somoving_list = ds_list_create_pool();
@@ -106,6 +103,7 @@ beats_shift = 0;
 doubleclick_mousexprevious = mouse_x;
 envelope_copy_duration = -1;
 song_sync_bad_prev = false;
+layer_new_id = 1;
 
 tlsurf_y = 137;
 tlw = 983; //width of timeline
@@ -129,6 +127,8 @@ playing = 0;
 deltatime = 0;
 //framepoints = 0;
 //frame_complexity = 0;
+
+add_layer();
 
 if (controller.has_midi)
 {

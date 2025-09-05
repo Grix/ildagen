@@ -102,10 +102,17 @@ layer_list
 				 2 universe id, just counting from 0
 				 3 word index
 				 4 value
-				 5 channel-ID (unique reference, can be defined in settings to make assigning addresses easier). If 0, no ID.
-				 6 change method (0: simple, 1: interpolate, 2: pulse then return to 0)
-				 7 change method parameter (if interpolate, number of frames to interpolate over, if pulse then number of frames the pulse should last)
-                 8 description
+				 5 channel-ID (unique reference, can be defined in settings to make assigning addresses easier). If negative, no ID.
+				 6 change method (0: interpolate, 1: strobe)
+				 7 change method parameter 
+					(if interpolate, number of frames to interpolate over - 0 if immediate, negative if same as duration)
+					(if strobe, strobe cycle duration in frames)
+				 8 change method parameter 2
+				    (if interpolation, easing method, not implemented)
+					(if strobe, duty cycle, not implemented)
+                 9 value to return to afterward, negative if no change
+				 10 duration of event in frames (held value if interpolate, loop if strobe)
+				 11 description
 				
 somaster_list
     layer elements.. (see above)

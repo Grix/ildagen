@@ -11,8 +11,8 @@ function add_layer(){
 		ds_list_add(newlayer,ds_list_create_pool()); //objects list
 		ds_list_add(newlayer,0); 
 		ds_list_add(newlayer,0);
-		ds_list_add(newlayer,"Layer "+string(controller.el_id));
-		controller.el_id++;
+		ds_list_add(newlayer,"Layer "+string(layer_new_id));
+		layer_new_id++;
 		ds_list_add(newlayer,ds_list_create_pool()); //dac list
 		ds_list_add(newlayer,0); // projection offsets
 		ds_list_add(newlayer,0);
