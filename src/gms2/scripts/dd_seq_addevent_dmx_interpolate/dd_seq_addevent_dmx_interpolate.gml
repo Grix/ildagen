@@ -11,6 +11,6 @@ function dd_seq_addevent_dmx_interpolate(){
 	{
 		selectedlayerlist = ds_list_find_value(layer_list,selectedlayer);
 	
-		seq_add_dmx_interpolate_event(seqcontrol.tlpos, selectedlayerlist, 1, 0, 255);
+		seq_add_dmx_interpolate_event(selectedx, selectedlayerlist, 1, 0, 255);
 	}
 }

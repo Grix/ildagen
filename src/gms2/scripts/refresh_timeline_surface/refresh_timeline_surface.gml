@@ -119,11 +119,13 @@ function refresh_timeline_surface() {
 						
 		                    draw_set_colour(c_black);
 		                    if (maxframes != 1)
+							{
 		                        for (k = 1; k <= duration/maxframes; k++)
 		                        {
 		                            linex = floor(framestartx+k*maxframes*tlwdivtlzoom);
 		                            draw_line(linex,ypos_perm,linex,ypos_perm+48);
 		                        }
+							}
 		                    if (ds_list_find_index(somaster_list,objectlist) != -1)
 		                    {
 		                        draw_set_colour(c_gold);
@@ -148,6 +150,67 @@ function refresh_timeline_surface() {
 							}
 		                }
 		            }
+					
+					
+					var t_eventlist = _layer[| 10];
+		            for (j = 0; j < ds_list_size(t_eventlist); j++)
+		            {
+		                var t_event = t_eventlist[| j];
+				
+						if (!ds_list_exists_pool(t_event))
+						{
+							ds_list_delete(t_eventlist, j);
+							if (j > 0)
+								j--;
+							continue;
+						}
+						
+						frametime = ds_list_find_value(t_event,0);
+						duration = ds_list_find_value(t_event,2);
+                
+		                if (frametime <= t_tlx+t_tlzoom) and (frametime+duration >= t_tlx)
+		                {
+		                    //draw event on timeline
+		                    framestartx = floor((frametime-t_tlx)*tlwdivtlzoom);
+							frameendx = ceil((frametime-t_tlx+duration+1)*tlwdivtlzoom);
+			                draw_set_colour(c_orange);
+			                    draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+47,0);
+			                draw_set_colour(c_green);
+			                    draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+47,1);
+		                    draw_set_colour(c_black);
+							
+							if ((duration+1)*tlwdivtlzoom > 3)
+							{
+								gpu_set_blendenable(true);
+			                    draw_text(framestartx+1,ypos_perm+8, ds_list_find_value(t_event,11));
+								gpu_set_blendenable(false);
+			                    //draw_surface_part(objectlist[| 3],0,0,floor(clamp((duration+1)*tlwdivtlzoom,0,32))-1,32,framestartx+1,ypos_perm+8);
+							}
+							
+							maxframes = duration;
+						
+		                    /*if (maxframes != 1)
+							{
+		                        for (k = 1; k <= duration/maxframes; k++)
+		                        {
+		                            linex = floor(framestartx+k*maxframes*tlwdivtlzoom);
+		                            draw_line(linex,ypos_perm,linex,ypos_perm+48);
+		                        }
+							}*/
+		                    if (ds_list_find_index(selected_event_master_list,t_event) != -1)
+		                    {
+		                        draw_set_colour(c_gold);
+		                        gpu_set_blendenable(true);
+		                        draw_set_alpha(0.3);
+		                            draw_rectangle(framestartx,ypos_perm+1,frameendx,ypos_perm+47,0);
+		                        draw_set_alpha(1);
+		                        gpu_set_blendenable(false);
+		                        draw_set_colour(c_black);
+		                    }
+							//draw stretching triangle wave
+							
+		                }
+					}
 		        }
                         
 		        ypos_perm += 48;

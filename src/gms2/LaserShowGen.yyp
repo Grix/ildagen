@@ -1108,6 +1108,7 @@
     {"id":{"name":"obj_mute","path":"objects/obj_mute/obj_mute.yy",},"order":13,},
     {"id":{"name":"obj_openeditor","path":"objects/obj_openeditor/obj_openeditor.yy",},"order":14,},
     {"id":{"name":"obj_sendtoeditor","path":"objects/obj_sendtoeditor/obj_sendtoeditor.yy",},"order":15,},
+    {"id":{"name":"dropdown_seqevent","path":"scripts/dropdown_seqevent/dropdown_seqevent.yy",},"order":37,},
     {"id":{"name":"rm_ilda","path":"rooms/rm_ilda/rm_ilda.yy",},"order":0,},
     {"id":{"name":"rm_seq","path":"rooms/rm_seq/rm_seq.yy",},"order":1,},
     {"id":{"name":"rm_live","path":"rooms/rm_live/rm_live.yy",},"order":2,},

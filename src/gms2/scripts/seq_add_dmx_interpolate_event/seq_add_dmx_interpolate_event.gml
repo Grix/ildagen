@@ -20,6 +20,12 @@ function seq_add_dmx_interpolate_event(position, layerlist, universe_id, word_in
 		
 		ds_list_add(t_eventlist, position);
 		ds_list_add(t_eventlist, 0);
+		
+		if (controller.use_bpm)
+			ds_list_add(t_eventlist, (controller.bpm / 60) * controller.projectfps); // one beat
+		else
+			ds_list_add(t_eventlist, 32);
+		
 		ds_list_add(t_eventlist, universe_id);
 		ds_list_add(t_eventlist, word_index);
 		ds_list_add(t_eventlist, value);
@@ -28,16 +34,15 @@ function seq_add_dmx_interpolate_event(position, layerlist, universe_id, word_in
 		ds_list_add(t_eventlist, -1);
 		ds_list_add(t_eventlist, 0);
 		ds_list_add(t_eventlist, -1);
-		if (controller.use_bpm)
-			ds_list_add(t_eventlist, (controller.bpm / 60) * controller.projectfps); // one beat
-		else
-			ds_list_add(t_eventlist, 32);
 		ds_list_add(t_eventlist, string(word_index));
 		
 		if (ds_list_exists(layerlist) && ds_list_exists(layerlist[| 10]))
 			ds_list_add(layerlist[| 10], t_eventlist);
 		else
 			ds_list_destroy(t_eventlist);
+			
+		frame_surf_refresh = 1;
+		timeline_surf_length = 0;
 		
 	}
 	

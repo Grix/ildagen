@@ -88,6 +88,66 @@ function handle_mousecontrol_seq() {
 	            layertomove = newlayertomove[| 1];
 	        }
 	    }
+		
+		for (i = 0; i < ds_list_size(selected_event_master_list); i++)
+	    {
+	        objecttomove = ds_list_find_value(selected_event_master_list,i);
+			if (!ds_list_exists_pool(objecttomove))
+			{
+		        moving_object = 0;
+				clean_redo_list_seq();
+		        exit;
+		    }
+		
+	        layertomove = -1;
+	        layertomove_index = -1;
+	        for (j = 0; j < ds_list_size(layer_list); j++)
+	        {
+				if (!ds_list_exists_pool(layer_list[| j]))
+				{
+					if (!controller.bug_report_suppress)
+					{
+						controller.bug_report_suppress = true;
+						http_post_string(   "https://www.bitlasers.com/lasershowgen/bugreport.php",
+					            "bug=OS: " + string(os_type) + " VER: "+string(controller.version) + "ERROR: layerlist not found in handle_mousecontrol_seq, j="+string(j));
+					}
+					continue;
+				}
+				var t_eventlist = ds_list_find_value(layer_list[| j], 10);
+	            if (ds_list_find_index(t_eventlist,objecttomove) != -1)
+	            {
+	                layertomove = t_eventlist;
+	                layertomove_index = j;
+	            }
+	        }
+	        if (layertomove == -1)
+	        {
+	            moving_object = 0;
+				clean_redo_list_seq();
+	            exit;
+	        }
+            
+	        ds_list_replace(objecttomove,0,max(0,ds_list_find_value(objecttomove,0)+(mouse_x-mouse_xprevious)*tlzoom/tlw));
+        
+	        if (mouse_y > (mouse_yprevious+t_rowheight)) and (layertomove_index < (ds_list_size(layer_list)-1))
+	        {
+	            //move to lower layer
+	            mouse_ypreviousflag = 1;
+	            var newlayertomove = ds_list_find_value(layer_list,layertomove_index+1);
+	            ds_list_add(newlayertomove[| 10],objecttomove);
+	            ds_list_delete(layertomove,ds_list_find_index(layertomove,objecttomove));
+	            layertomove = newlayertomove[| 10];
+	        }
+	        else if (mouse_y < (mouse_yprevious-t_rowheight)) and (layertomove_index > 0)
+	        {
+	            //move to above layer
+	            mouse_ypreviousflag = 1;
+	            var newlayertomove = ds_list_find_value(layer_list,layertomove_index-1);
+	            ds_list_add(newlayertomove[| 10],objecttomove);
+	            ds_list_delete(layertomove,ds_list_find_index(layertomove,objecttomove));
+	            layertomove = newlayertomove[| 10];
+	        }
+	    }
         
 	    mouse_xprevious = mouse_x;
 	    if (mouse_ypreviousflag)
@@ -173,6 +233,85 @@ function handle_mousecontrol_seq() {
 	            ds_list_replace(objecttomove,0,tempxstart);
 	            moving_object = 0;
 	        }
+			
+			for (i = 0; i < ds_list_size(selected_event_master_list); i++)
+	        {
+	            objecttomove = ds_list_find_value(selected_event_master_list,i);
+	            layertomove = -1;
+	            for (j = 0; j < ds_list_size(layer_list); j++)
+	            {
+	                var t_eventlist = ds_list_find_value(layer_list[| j], 10);
+	                if (ds_list_find_index(t_eventlist,objecttomove) != -1)
+	                {
+	                    layertomove = t_eventlist;
+	                }
+	            }
+	            if (layertomove == -1)
+	            {
+	                moving_object = 0;
+	                exit;
+	            }
+            
+	            frame_surf_refresh = 1;
+	            tempxstart = round(ds_list_find_value(objecttomove,0));
+				if (controller.use_bpm && !keyboard_check_control())
+				{
+					// snap to beats
+					var t_framesPerBeat = seqcontrol.projectfps / (controller.bpm / 60);
+					tempxstart = round((round(tempxstart / (t_framesPerBeat) - beats_shift) + beats_shift) * (t_framesPerBeat));
+				}
+	            if (!keyboard_check_control())
+	            {
+	                //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
+	                loopcount = 5;
+	                t_loop = 1;
+	                while (t_loop and loopcount)
+	                {
+	                    loopcount--;
+	                    t_loop = 0;
+	                    tempxend = tempxstart + objecttomove[| 2];
+	                    for ( u = 0; u < ds_list_size(layertomove); u++)
+	                    {
+	                        if (ds_list_find_value(layertomove,u) == objecttomove) 
+	                            continue;
+                            
+	                        tempxstart2 = ds_list_find_value(ds_list_find_value(layertomove,u),0); 
+	                        if (tempxstart2 > tempxend) //if object is ahead
+	                            continue;
+        
+	                        tempxend2 = tempxstart2 + ds_list_find_value(ds_list_find_value(layertomove,u), 2);
+	                        if (tempxend2 < tempxstart) //if object is behind
+	                            continue;
+                        
+	                        //collision:
+	                        t_loop = 1;
+	                        if (tempxstart2 < tempxstart)
+	                        {
+	                            tempxstart = tempxend2+1;
+	                        }
+	                        else
+	                        {
+	                            tempxstart = tempxstart2-1-(tempxend-tempxstart);
+	                        }
+							if (tempxstart < 0)
+							{
+								tempxstart = 0;
+								t_loop = 0;
+							}
+	                    }
+	                }
+	            }
+                
+				
+				add_action_history_ilda("SEQ_move_event");
+	
+				if (i < ds_list_size(multiple_undo_list))
+					ds_list_add(undo_list,"m"+string(multiple_undo_list[| i]));
+            
+	            ds_list_replace(objecttomove,0,tempxstart);
+	            moving_object = 0;
+	        }
+			
 	    }
 	    exit;
 	}
@@ -795,6 +934,7 @@ function handle_mousecontrol_seq() {
 		
 		var t_xpos = round(tlx+mouse_x/tlw*tlzoom);
 		var t_layer = layer_list[| selectedlayer][| 1];
+		var t_layer_events = layer_list[| selectedlayer][| 10];
 		for (i = 0; i < ds_list_size(t_layer); i++)
 		{
 			if (ds_list_find_index(somaster_list, t_layer[| i]) != -1)
@@ -812,6 +952,26 @@ function handle_mousecontrol_seq() {
 			{
 				if ((t_objectx < t_xpos && t_objectx > floatingcursorx) || (t_objectx2 < t_xpos && t_objectx2 > floatingcursorx))
 					ds_list_add(somaster_list, t_layer[| i]);
+			}
+		}
+		
+		for (i = 0; i < ds_list_size(t_layer_events); i++)
+		{
+			if (ds_list_find_index(selected_event_master_list, t_layer_events[| i]) != -1)
+				continue;
+				
+			var t_objectx = t_layer_events[| i][| 0];
+			var t_objectx2 = t_objectx + t_layer_events[| i][| 2];
+				
+			if (t_xpos < floatingcursorx)
+			{
+				if ((t_objectx > t_xpos && t_objectx < floatingcursorx) || (t_objectx2 > t_xpos && t_objectx2 < floatingcursorx))
+					ds_list_add(selected_event_master_list, t_layer_events[| i]);
+			}
+			else
+			{
+				if ((t_objectx < t_xpos && t_objectx > floatingcursorx) || (t_objectx2 < t_xpos && t_objectx2 > floatingcursorx))
+					ds_list_add(selected_event_master_list, t_layer_events[| i]);
 			}
 		}
 		
@@ -1077,9 +1237,11 @@ function handle_mousecontrol_seq() {
 	                                else
 	                                {
 	                                    ds_list_clear(somoving_list);
+	                                    ds_list_clear(selected_event_moving_list);
 	                                    ds_list_insert(somoving_list,0,objectlist);
 	                                }
 	                                ds_list_clear(somaster_list);
+	                                ds_list_clear(selected_event_master_list);
 	                                ds_list_insert(somaster_list,0,objectlist);
 	                            }
                             
@@ -1153,11 +1315,151 @@ function handle_mousecontrol_seq() {
 								else
 								{
 									if (!keyboard_check_control())
+									{
 										ds_list_clear(somaster_list);
+										ds_list_clear(selected_event_master_list);
+									}
 								}
 	                            ds_list_insert(somaster_list,0,objectlist);
 								timeline_surf_length = 0;
 	                            dropdown_seqobject();
+	                        }
+	                        ypos += t_rowheight;
+	                        exit;
+	                    }
+	                }
+					
+					var t_eventlist = _layer[| 10];
+					for (m = 0; m < ds_list_size(t_eventlist); m++)
+	                {
+	                    var t_event = t_eventlist[| m];
+					
+						if (!ds_list_exists_pool(t_event))
+						{
+							ds_list_delete(t_eventlist, m);
+							if (m > 0)
+								m--;
+							continue;
+						}
+                    
+	                    frametime = ds_list_find_value(t_event,0);
+	                    object_length = ds_list_find_value(t_event,2);
+	                    draw_mouseline = 1;
+                    
+						if (mouse_x > ((frametime-tlx)/tlzoom*tlw) && mouse_x < ((frametime+object_length+1-tlx)/tlzoom*tlw)+3)
+	                    {
+	                        //mouse over event
+	                        controller.tooltip = "Click to select this event object. ["+get_ctrl_string()+"]+Click to select multiple objects.\nDrag to move object. Drag the far edge to adjust duration of event.\nRight click for more actions";
+	                        if (mouse_x > ((frametime+object_length+0.7-tlx)/tlzoom*tlw))
+							{
+	                            controller.scrollcursor_flag = 1;
+								if keyboard_check(vk_shift)
+								{
+									stretch_flag = 1;
+									stretch = 0;
+									objecttomove = t_event;
+								}
+							}
+	                        if (mouse_check_button_pressed(mb_left) || t_mac_ctrl_click)
+	                        {
+								timeline_surf_length = 0;
+	                            if (keyboard_check_control())
+	                            {
+	                                if (ds_list_find_index(selected_event_master_list,t_event) != -1)
+	                                    ds_list_delete(selected_event_master_list,ds_list_find_index(selected_event_master_list,t_event));
+									else
+										ds_list_insert(selected_event_master_list,0,t_event);
+										
+	                                ds_list_copy(selected_event_moving_list,selected_event_master_list);
+									
+									floatingcursory = ypos-1;
+									selectedlayer = i;
+									moving_object = 13;
+									exit;
+	                            }
+	                            else
+	                            {
+	                                if (ds_list_find_index(selected_event_master_list,t_event) != -1)
+	                                {
+	                                    ds_list_copy(selected_event_moving_list,selected_event_master_list);
+	                                }
+	                                else
+	                                {
+	                                    ds_list_clear(selected_event_moving_list);
+										ds_list_clear(somoving_list);
+	                                    ds_list_insert(selected_event_moving_list,0,t_event);
+	                                }
+	                                ds_list_clear(selected_event_master_list);
+									ds_list_clear(somaster_list);
+	                                ds_list_insert(selected_event_master_list,0,t_event);
+	                            }
+                            
+	                            if (doubleclick)
+	                            {
+	                                //edit object
+	                                if (!controller.warning_disable)
+										seq_dialog_yesno("fromseq","You are about to open the selected object in the editor mode. This will discard any unsaved changes currently in the editor mode. Continue? (Cannot be undone)");
+									else
+										with (seqcontrol)
+											frames_fromseq();
+								}
+	                            else
+	                            {
+	                                if (mouse_x > ((frametime+object_length+0.7-tlx)/tlzoom*tlw)-1)
+	                                {
+										//resize object
+										moving_object_flag = 2;
+											
+										ds_list_clear(multiple_undo_list);
+										for (var t_i = 0; t_i < ds_list_size(selected_event_moving_list); t_i++)
+										{
+											undolisttemp = ds_list_create_pool();
+				                            ds_list_add(undolisttemp,selected_event_moving_list[| t_i]);
+				                            ds_list_add(undolisttemp,selected_event_moving_list[| t_i][| 2]);
+											ds_list_add(multiple_undo_list, undolisttemp);
+										}
+                                    
+	                                    mouse_xprevious = mouse_x;
+	                                }
+	                                else
+	                                {
+	                                    //drag object
+	                                    moving_object_flag = 1;
+                                    
+										ds_list_clear(multiple_undo_list);
+										for (var t_i = 0; t_i < ds_list_size(selected_event_moving_list); t_i++)
+										{
+											undolisttemp = ds_list_create_pool();
+		                                    ds_list_add(undolisttemp,selected_event_moving_list[| t_i]);
+											var t_layer = find_layer_of_object(selected_event_moving_list[| t_i]);
+											if (!ds_list_exists_pool(t_layer))
+											{
+												log("NB: layer not found");
+												continue;
+											}
+		                                    ds_list_add(undolisttemp, t_layer[| 1]);
+		                                    ds_list_add(undolisttemp,selected_event_moving_list[| t_i][| 0]);
+											ds_list_add(multiple_undo_list, undolisttemp);
+										}
+                                    
+	                                    mouse_xprevious = mouse_x;
+	                                    mouse_yprevious = mouse_y;
+	                                }
+	                            }
+	                        }
+	                        else if mouse_check_button_pressed(mb_right)
+	                        {
+	                            //right clicked on object
+	                            if (ds_list_find_index(selected_event_master_list,t_event) != -1)
+									ds_list_delete(selected_event_master_list,ds_list_find_index(selected_event_master_list,t_event));
+								else
+								{
+									if (!keyboard_check_control())
+										ds_list_clear(selected_event_master_list);
+								}
+	                            ds_list_insert(selected_event_master_list,0,t_event);
+								timeline_surf_length = 0;
+	                            dropdown_seqevent();
 	                        }
 	                        ypos += t_rowheight;
 	                        exit;
@@ -1176,6 +1478,7 @@ function handle_mousecontrol_seq() {
 						{
 		                    selectedx = floatingcursorx;
 		                    ds_list_clear(somaster_list);
+							ds_list_clear(selected_event_master_list);
 						}
 						else
 						{
@@ -1189,6 +1492,7 @@ function handle_mousecontrol_seq() {
 	                    selectedx = floatingcursorx;
 	                    settingscontrol.projectortoselect = i;
 	                    ds_list_clear(somaster_list);
+						ds_list_clear(selected_event_master_list);
 	                    dropdown_layer();
 	                }
 	                exit;

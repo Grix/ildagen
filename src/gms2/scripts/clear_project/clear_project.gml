@@ -16,6 +16,7 @@ function clear_project() {
 	repeat (ds_list_size(layer_list))   
 	{
 	    ds_list_clear(somaster_list);
+		// todo delete event
 	    _layer = ds_list_find_value(layer_list,0);
 	    elementlist = _layer[| 1];
 	    for (j = 0; j < ds_list_size(elementlist); j++)
@@ -38,6 +39,7 @@ function clear_project() {
 	}
 
 	ds_list_clear(somaster_list);
+	ds_list_clear(selected_event_master_list);
     
 	selectedx = 0;
 	selectedlayer = 0;

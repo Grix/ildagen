@@ -99,19 +99,19 @@ layer_list
 				0 xpos on timeline
 				1 event type 
 				  case (0 = dmx channel value change):
-				 2 universe id, just counting from 0
-				 3 word index
-				 4 value
-				 5 channel-ID (unique reference, can be defined in settings to make assigning addresses easier). If negative, no ID.
-				 6 change method (0: interpolate, 1: strobe)
-				 7 change method parameter 
-					(if interpolate, number of frames to interpolate over - 0 if immediate, negative if same as duration)
+				 2 duration of event in frames (held value after interpolate, loop if strobe)
+				 3 universe id, just counting from 0
+				 4 word index
+				 5 value
+				 6 channel-ID (unique reference, can be defined in settings to make assigning addresses easier). If negative, no ID.
+				 7 change method (0: interpolate, 1: strobe)
+				 8 change method parameter 
+					(if interpolate, number of frames to interpolate in - 0 if immediate, negative if same as duration)
 					(if strobe, strobe cycle duration in frames)
-				 8 change method parameter 2
-				    (if interpolation, easing method, not implemented)
+				 9 change method parameter 2
+				    (if interpolate, number of frames to interpolate out - 0 if immediate, negative if same as duration)
 					(if strobe, duty cycle, not implemented)
-                 9 value to return to afterward, negative if no change
-				 10 duration of event in frames (held value if interpolate, loop if strobe)
+                 10 value to return to afterward, negative if no change
 				 11 description
 				
 somaster_list

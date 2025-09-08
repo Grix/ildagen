@@ -42,6 +42,8 @@ function layer_delete_inner(){
             
 	ds_list_free_pool(_layer); _layer = -1;
 	ds_list_delete(layer_list,selectedlayer);
+	
+	ds_list_clear(selected_event_master_list);
             
 	selectedlayer = 0;
 	selectedx = 0;
