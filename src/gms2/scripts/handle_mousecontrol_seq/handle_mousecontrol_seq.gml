@@ -18,7 +18,7 @@ function handle_mousecontrol_seq() {
 
 	if (moving_object == 1)
 	{
-		if (ds_list_size(somaster_list) == 0)
+		if (ds_list_size(somaster_list) == 0 && ds_list_size(selected_event_master_list) == 0)
 		{
 	        moving_object = 0;
 			clean_redo_list_seq();
@@ -1105,10 +1105,12 @@ function handle_mousecontrol_seq() {
 	    {
 	        moving_object_flag = 0;
 	        ds_list_clear(somoving_list);
+	        ds_list_clear(selected_event_moving_list);
 	    }
 	    else if (abs(mouse_xprevious - mouse_x) > 1)
 	    {
 	        ds_list_copy(somaster_list,somoving_list);
+	        ds_list_copy(selected_event_master_list,selected_event_moving_list);
 	        moving_object = moving_object_flag;
 	        exit;
 	    }
@@ -1233,6 +1235,7 @@ function handle_mousecontrol_seq() {
 	                                if (ds_list_find_index(somaster_list,objectlist) != -1)
 	                                {
 	                                    ds_list_copy(somoving_list,somaster_list);
+	                                    ds_list_copy(selected_event_moving_list,selected_event_master_list);
 	                                }
 	                                else
 	                                {
@@ -1381,6 +1384,7 @@ function handle_mousecontrol_seq() {
 	                            {
 	                                if (ds_list_find_index(selected_event_master_list,t_event) != -1)
 	                                {
+										ds_list_copy(somoving_list,somaster_list);
 	                                    ds_list_copy(selected_event_moving_list,selected_event_master_list);
 	                                }
 	                                else
