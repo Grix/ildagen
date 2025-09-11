@@ -10,7 +10,7 @@ function undo_seq() {
 		
 		add_action_history_ilda("SEQ_undo_"+string(undo));
     
-	    if (string_char_at(undo,0) == "c")
+	    if (string_char_at(undo,0) == "c" || string_char_at(undo,0) == "v")
 	    {
 	        //undo create object (delete)
 	        undolisttemp = real(string_digits(undo));
@@ -22,10 +22,14 @@ function undo_seq() {
 	            ds_list_free_pool(undolisttemp); undolisttemp = -1;
 	            exit;
 	        }
+			var t_is_event = (string_char_at(undo,0) == "v");
 			
 			for (c = 0; c < ds_list_size(layer_list); c++)
 		    {
-		        layerlisttemp = ds_list_find_value(ds_list_find_value(layer_list,c), 1);
+				if (t_is_event)
+					layerlisttemp = ds_list_find_value(ds_list_find_value(layer_list,c), 10);
+				else
+					layerlisttemp = ds_list_find_value(ds_list_find_value(layer_list,c), 1);
 		        if (ds_list_find_index(layerlisttemp,objectlist) != -1)    
 		        {
 		            ds_list_delete(layerlisttemp,ds_list_find_index(layerlisttemp,objectlist));
@@ -33,13 +37,17 @@ function undo_seq() {
 					redolisttemp = ds_list_create_pool();
 			        ds_list_add(redolisttemp,layerlisttemp);
 			        ds_list_add(redolisttemp,objectlist);
-			        ds_list_add(redo_list,"d"+string(redolisttemp));
+					if (t_is_event)
+						ds_list_add(redo_list,"V"+string(redolisttemp));
+					else
+						ds_list_add(redo_list,"d"+string(redolisttemp));
 					
 					break;
 		        }
 		    }
 			
 	        ds_list_clear(somaster_list);
+	        ds_list_clear(selected_event_master_list);
 			
 	        ds_list_free_pool(undolisttemp);undolisttemp = -1;
 	    }
@@ -113,7 +121,7 @@ function undo_seq() {
 	        }
 	        ds_list_free_pool(undolisttemp);
 	    }
-	    else if (string_char_at(undo,0) == "d")
+	    else if (string_char_at(undo,0) == "d" || string_char_at(undo,0) == "V")
 	    {
 	        //undo delete object
 	        undolisttemp = real(string_digits(undo));
@@ -128,9 +136,14 @@ function undo_seq() {
 	            exit;
 	        }
 			
+			var t_is_event = (string_char_at(undo,0) == "V");
+			
 			redolisttemp = ds_list_create_pool();
 		    ds_list_add(redolisttemp,objectlist);
-		    ds_list_add(redo_list,"c"+string(redolisttemp));
+			if (t_is_event)
+				ds_list_add(redo_list,"v"+string(redolisttemp));
+			else
+				ds_list_add(redo_list,"c"+string(redolisttemp));
             
 	        ds_list_add(layerlisttemp,objectlist);
 	        ds_list_free_pool(undolisttemp);
@@ -157,7 +170,7 @@ function undo_seq() {
 			
 	        ds_list_free_pool(undolisttemp);
 	    }
-	    else if (string_char_at(undo,0) == "m")
+	    else if (string_char_at(undo,0) == "m" || string_char_at(undo,0) == "M")
 	    {
 	        //undo move object
 	        undolisttemp = real(string_digits(undo));
@@ -171,18 +184,28 @@ function undo_seq() {
 	            //ds_list_free_pool(undolisttemp);
 	            exit;
 	        }
+			
+			var t_is_event = (string_char_at(undo,0) == "M");
             
 	        for (j = 0; j < ds_list_size(layer_list); j++)
 	        {
 	            layertop = layer_list[| j];
-	            _layer = layertop[| 1];
+				
+				if (t_is_event)
+					_layer = layertop[| 10];
+				else
+					_layer = layertop[| 1];
+					
 	            if (ds_list_find_index(_layer, objectlist) != -1)
 	            {
 					redolisttemp = ds_list_create_pool();
 	                ds_list_add(redolisttemp,objectlist);
 	                ds_list_add(redolisttemp,_layer);
 	                ds_list_add(redolisttemp,objectlist[| 0]);
-					ds_list_add(redo_list,"m"+string(redolisttemp));
+					if (t_is_event)
+						ds_list_add(redo_list,"M"+string(redolisttemp));
+					else
+						ds_list_add(redo_list,"m"+string(redolisttemp));
 					
 	                ds_list_delete(_layer, ds_list_find_index(_layer, objectlist));
 	                ds_list_replace(objectlist, 0, frametime); 
@@ -345,6 +368,8 @@ function undo_seq() {
 						ds_list_free_pool(t_layertodelete[| 1]);
 					if (ds_list_exists_pool(t_layertodelete[| 5]))
 						ds_list_free_pool(t_layertodelete[| 5]);
+						if (ds_list_exists_pool(t_layertodelete[| 10]))
+						ds_list_free_pool(t_layertodelete[| 10]);
 					ds_list_free_pool(t_layertodelete); t_layertodelete = -1;
 					ds_list_delete(layer_list, i);
 					timeline_surf_length = 0;
@@ -371,6 +396,7 @@ function undo_seq() {
 		    ds_list_add(newlayer,0);
 			ds_list_add(newlayer,0); 
 		    ds_list_add(newlayer,0);
+			ds_list_add(newlayer,ds_list_create_pool()); //event list
 			ds_list_add(redo_list, "q"+string(newlayer));
 			timeline_surf_length = 0;
 			update_dac_list_isused();

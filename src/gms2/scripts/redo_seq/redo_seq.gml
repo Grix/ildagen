@@ -157,7 +157,7 @@ function redo_seq() {
 			
 	        ds_list_free_pool(redolisttemp);
 	    }
-	    else if (string_char_at(redo,0) == "m")
+	    else if (string_char_at(redo,0) == "m" || string_char_at(redo,0) == "M")
 	    {
 	        //redo move object
 	        redolisttemp = real(string_digits(redo));
@@ -171,18 +171,28 @@ function redo_seq() {
 	            //ds_list_free_pool(redolisttemp);
 	            exit;
 	        }
+			
+			var t_is_event = (string_char_at(redo,0) == "M");
             
 	        for (j = 0; j < ds_list_size(layer_list); j++)
 	        {
 	            layertop = layer_list[| j];
-	            _layer = layertop[| 1];
+				
+				if (t_is_event)
+					_layer = layertop[| 10];
+				else
+					_layer = layertop[| 1];
+					
 	            if (ds_list_find_index(_layer, objectlist) != -1)
 	            {
 					undolisttemp = ds_list_create_pool();
 	                ds_list_add(undolisttemp,objectlist);
 	                ds_list_add(undolisttemp,_layer);
 	                ds_list_add(undolisttemp,objectlist[| 0]);
-					ds_list_add(undo_list,"m"+string(undolisttemp));
+					if (t_is_event)
+						ds_list_add(undo_list,"M"+string(undolisttemp));
+					else
+						ds_list_add(undo_list,"m"+string(undolisttemp));
 					
 	                ds_list_delete(_layer, ds_list_find_index(_layer, objectlist));
 	                ds_list_replace(objectlist, 0, frametime); 
@@ -356,22 +366,7 @@ function redo_seq() {
 		else if (string_char_at(redo,0) == "w")
 	    {
 			// restore layer (empty only)
-			newlayer = ds_list_create_pool();
-		    ds_list_add(layer_list,newlayer);
-		    ds_list_add(newlayer,ds_list_create_pool()); //envelope list
-		    ds_list_add(newlayer,ds_list_create_pool()); //objects list
-		    ds_list_add(newlayer,0); 
-		    ds_list_add(newlayer,0);
-		    ds_list_add(newlayer,"Layer "+string(controller.el_id));
-		    controller.el_id++;
-		    ds_list_add(newlayer,ds_list_create_pool()); //dac list
-			ds_list_add(newlayer,0); 
-		    ds_list_add(newlayer,0);
-			ds_list_add(newlayer,0); 
-		    ds_list_add(newlayer,0);
-			ds_list_add(undo_list, "q"+string(newlayer));
-			timeline_surf_length = 0;
-			update_dac_list_isused();
+			add_layer();
 		}
 		else if (string_char_at(redo,0) == "g")
 	    {

@@ -35,6 +35,7 @@ playlist_list = ds_list_create_pool();
 playlist_start_next_flag = false;
 midi_keys_pressed = ds_list_create_pool();
 multiple_undo_list = ds_list_create_pool();
+multiple_undo_list_event = ds_list_create_pool();
 
 last_save_time = get_timer();
 high_performance = false;

@@ -41,6 +41,10 @@ function seq_add_dmx_interpolate_event(position, layerlist, universe_id, word_in
 		else
 			ds_list_destroy(t_eventlist);
 			
+		undolisttemp = ds_list_create_pool();
+		ds_list_add(undolisttemp,t_eventlist);
+		ds_list_add(undo_list,"v"+string(undolisttemp));
+			
 		frame_surf_refresh = 1;
 		timeline_surf_length = 0;
 		

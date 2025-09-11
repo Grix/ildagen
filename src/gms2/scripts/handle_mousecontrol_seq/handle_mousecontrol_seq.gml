@@ -305,8 +305,8 @@ function handle_mousecontrol_seq() {
 				
 				add_action_history_ilda("SEQ_move_event");
 	
-				if (i < ds_list_size(multiple_undo_list))
-					ds_list_add(undo_list,"m"+string(multiple_undo_list[| i]));
+				if (i < ds_list_size(multiple_undo_list_event))
+					ds_list_add(undo_list,"M"+string(multiple_undo_list_event[| i]));
             
 	            ds_list_replace(objecttomove,0,tempxstart);
 	            moving_object = 0;
@@ -318,7 +318,7 @@ function handle_mousecontrol_seq() {
 	else if (moving_object == 2)
 	{
 	    //resizing object on timeline
-		if (ds_list_size(somaster_list) == 0)
+		if (ds_list_size(somaster_list) == 0 && ds_list_size(selected_event_master_list) == 0)
 		{
 			clean_redo_list_seq();
 	        moving_object = 0;
@@ -329,6 +329,20 @@ function handle_mousecontrol_seq() {
 	    for (i = 0; i < ds_list_size(somaster_list); i++)
 	    {
 	        objecttomove = ds_list_find_value(somaster_list,i);
+			if (!ds_list_exists_pool(objecttomove))
+			{
+				clean_redo_list_seq();
+		        moving_object = 0;
+		        exit;
+		    }
+        
+	        draw_mouseline = 1;
+	        ds_list_replace(objecttomove, 2, max(0, ds_list_find_value(objecttomove,2) + (mouse_x-mouse_xprevious)*tlzoom/tlw));
+	    }
+		
+		for (i = 0; i < ds_list_size(selected_event_master_list); i++)
+	    {
+	        objecttomove = ds_list_find_value(selected_event_master_list,i);
 			if (!ds_list_exists_pool(objecttomove))
 			{
 				clean_redo_list_seq();
@@ -350,18 +364,20 @@ function handle_mousecontrol_seq() {
 	        for (i = 0; i < ds_list_size(somaster_list); i++)
 	        {
 	            objecttomove = ds_list_find_value(somaster_list,i);
-	            layertomove = -1;
+	            /*layertomove = -1;
 	            for (j = 0; j < ds_list_size(layer_list); j++)
 	            {
 	                elementlist = ds_list_find_value(layer_list[| j], 1);
 	                if (ds_list_find_index(elementlist,objecttomove) != -1)
 	                    layertomove = elementlist;
-	            }
+	            }*/
+				layertomove = find_layer_of_object(objecttomove);
 	            if (layertomove == -1)
 	            {
 	                moving_object = 0;
 	                exit;
 	            }
+				layertomove = layertomove[| 1];
 			
 	            templength = round(ds_list_find_value(objecttomove,2));
 	            if (!keyboard_check_control())
@@ -406,6 +422,71 @@ function handle_mousecontrol_seq() {
 					
 				if (i < ds_list_size(multiple_undo_list))
 					ds_list_add(undo_list,"r"+string(multiple_undo_list[| i]));
+            
+	            moving_object = 0;
+	        }
+			
+			for (i = 0; i < ds_list_size(selected_event_master_list); i++)
+	        {
+	            objecttomove = ds_list_find_value(selected_event_master_list,i);
+				layertomove = find_layer_of_object(objecttomove);
+	            /*layertomove = -1;
+	            for (j = 0; j < ds_list_size(layer_list); j++)
+	            {
+	                elementlist = ds_list_find_value(layer_list[| j], 1);
+	                if (ds_list_find_index(elementlist,objecttomove) != -1)
+	                    layertomove = elementlist;
+	            }*/
+	            if (layertomove == -1)
+	            {
+	                moving_object = 0;
+	                exit;
+	            }
+				layertomove = layertomove[| 10];
+			
+	            templength = round(ds_list_find_value(objecttomove,2));
+	            if (!keyboard_check_control())
+	            {
+	                tempxstart = round(ds_list_find_value(objecttomove,0));
+	                //check for collisions with other objects. tempx* is pos. of object being moved, tempx*2 is pos of other objects in layer
+	                loopcount = 5;
+	                t_loop = 1;
+	                while (t_loop and loopcount)
+	                {
+	                    loopcount--;
+	                    t_loop = 0;
+	                    tempxend = tempxstart + templength;
+	                    for ( u = 0; u < ds_list_size(layertomove); u++)
+	                    {
+	                        if (ds_list_find_value(layertomove,u) == objecttomove) 
+	                            continue;
+                            
+	                        tempxstart2 = ds_list_find_value(ds_list_find_value(layertomove,u),0); 
+	                        if (tempxstart2 > tempxend) //if object is ahead
+	                            continue;
+        
+	                        tempxend2 = tempxstart2 + ds_list_find_value(ds_list_find_value(layertomove,u), 2);
+	                        if (tempxend2 < tempxstart) //if object is behind
+	                            continue;
+                            
+	                        //collision:
+	                        t_loop = 1;
+	                        templength = tempxstart2-tempxstart-1;
+	                        if (templength < 1) 
+	                        {
+	                            templength = round(ds_list_find_value(objecttomove,2));
+	                            t_loop = 0;
+	                        }
+	                    }
+	                }
+	            }
+            
+				add_action_history_ilda("SEQ_resize_event");
+			
+	            ds_list_replace(objecttomove, 2, templength);
+					
+				if (i < ds_list_size(multiple_undo_list_event))
+					ds_list_add(undo_list,"r"+string(multiple_undo_list_event[| i]));
             
 	            moving_object = 0;
 	        }
@@ -1398,57 +1479,45 @@ function handle_mousecontrol_seq() {
 	                                ds_list_insert(selected_event_master_list,0,t_event);
 	                            }
                             
-	                            if (doubleclick)
+	                            if (mouse_x > ((frametime+object_length+0.7-tlx)/tlzoom*tlw)-1)
 	                            {
-	                                //edit object
-	                                if (!controller.warning_disable)
-										seq_dialog_yesno("fromseq","You are about to open the selected object in the editor mode. This will discard any unsaved changes currently in the editor mode. Continue? (Cannot be undone)");
-									else
-										with (seqcontrol)
-											frames_fromseq();
-								}
+									//resize object
+									moving_object_flag = 2;
+											
+									ds_list_clear(multiple_undo_list_event);
+									for (var t_i = 0; t_i < ds_list_size(selected_event_moving_list); t_i++)
+									{
+										undolisttemp = ds_list_create_pool();
+				                        ds_list_add(undolisttemp,selected_event_moving_list[| t_i]);
+				                        ds_list_add(undolisttemp,selected_event_moving_list[| t_i][| 2]);
+										ds_list_add(multiple_undo_list_event, undolisttemp);
+									}
+                                    
+	                                mouse_xprevious = mouse_x;
+	                            }
 	                            else
 	                            {
-	                                if (mouse_x > ((frametime+object_length+0.7-tlx)/tlzoom*tlw)-1)
-	                                {
-										//resize object
-										moving_object_flag = 2;
-											
-										ds_list_clear(multiple_undo_list);
-										for (var t_i = 0; t_i < ds_list_size(selected_event_moving_list); t_i++)
+	                                //drag object
+	                                moving_object_flag = 1;
+                                    
+									ds_list_clear(multiple_undo_list_event);
+									for (var t_i = 0; t_i < ds_list_size(selected_event_moving_list); t_i++)
+									{
+										undolisttemp = ds_list_create_pool();
+		                                ds_list_add(undolisttemp,selected_event_moving_list[| t_i]);
+										var t_layer = find_layer_of_object(selected_event_moving_list[| t_i]);
+										if (!ds_list_exists_pool(t_layer))
 										{
-											undolisttemp = ds_list_create_pool();
-				                            ds_list_add(undolisttemp,selected_event_moving_list[| t_i]);
-				                            ds_list_add(undolisttemp,selected_event_moving_list[| t_i][| 2]);
-											ds_list_add(multiple_undo_list, undolisttemp);
+											log("NB: layer not found");
+											continue;
 										}
+		                                ds_list_add(undolisttemp, t_layer[| 10]);
+		                                ds_list_add(undolisttemp,selected_event_moving_list[| t_i][| 0]);
+										ds_list_add(multiple_undo_list_event, undolisttemp);
+									}
                                     
-	                                    mouse_xprevious = mouse_x;
-	                                }
-	                                else
-	                                {
-	                                    //drag object
-	                                    moving_object_flag = 1;
-                                    
-										ds_list_clear(multiple_undo_list);
-										for (var t_i = 0; t_i < ds_list_size(selected_event_moving_list); t_i++)
-										{
-											undolisttemp = ds_list_create_pool();
-		                                    ds_list_add(undolisttemp,selected_event_moving_list[| t_i]);
-											var t_layer = find_layer_of_object(selected_event_moving_list[| t_i]);
-											if (!ds_list_exists_pool(t_layer))
-											{
-												log("NB: layer not found");
-												continue;
-											}
-		                                    ds_list_add(undolisttemp, t_layer[| 1]);
-		                                    ds_list_add(undolisttemp,selected_event_moving_list[| t_i][| 0]);
-											ds_list_add(multiple_undo_list, undolisttemp);
-										}
-                                    
-	                                    mouse_xprevious = mouse_x;
-	                                    mouse_yprevious = mouse_y;
-	                                }
+	                                mouse_xprevious = mouse_x;
+	                                mouse_yprevious = mouse_y;
 	                            }
 	                        }
 	                        else if mouse_check_button_pressed(mb_right)
