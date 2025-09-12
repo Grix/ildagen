@@ -22,7 +22,7 @@ function load_project(argument0) {
 	}
     
 	idbyte = buffer_read(load_buffer,buffer_u8);
-	if (idbyte != 105) and (idbyte != 104) and (idbyte != 103) and (idbyte != 100) and (idbyte != 101) and (idbyte != 102)
+	if (idbyte != 106) and (idbyte != 105) and (idbyte != 104) and (idbyte != 103) and (idbyte != 100) and (idbyte != 101) and (idbyte != 102)
 	{
 	    show_message_new("Unexpected ID byte, is this a valid LaserShowGen project file?");
 	    exit;

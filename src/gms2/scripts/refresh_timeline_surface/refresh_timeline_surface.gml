@@ -182,7 +182,7 @@ function refresh_timeline_surface() {
 							if ((duration+1)*tlwdivtlzoom > 3)
 							{
 								gpu_set_blendenable(true);
-			                    draw_text(framestartx+1,ypos_perm+8, ds_list_find_value(t_event,11));
+			                    draw_text(framestartx+1,ypos_perm+8, ds_list_find_value(t_event,3));
 								gpu_set_blendenable(false);
 			                    //draw_surface_part(objectlist[| 3],0,0,floor(clamp((duration+1)*tlwdivtlzoom,0,32))-1,32,framestartx+1,ypos_perm+8);
 							}

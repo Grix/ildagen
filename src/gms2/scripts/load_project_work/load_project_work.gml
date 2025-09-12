@@ -1,5 +1,5 @@
 function load_project_work() {
-	if (idbyte == 105) or (idbyte == 104) or (idbyte == 103) or (idbyte == 101) or (idbyte == 102)
+	if (idbyte == 106) or (idbyte == 105) or (idbyte == 104) or (idbyte == 103) or (idbyte == 101) or (idbyte == 102)
 	{
 	    for (j = global.loading_current; j < global.loading_end;j++)
 	    {
@@ -15,6 +15,7 @@ function load_project_work() {
 	        ds_list_add(layertemp, t_env_list);
 	        ds_list_add(layertemp, ds_list_create_pool());
 	        ds_list_add(layer_list, layertemp);
+			var t_eventlist = ds_list_create_pool();
         
 	        //object data
 	        numofobjects = buffer_read(load_buffer,buffer_u32);
@@ -43,6 +44,29 @@ function load_project_work() {
             
 	            ds_list_add(layertemp[| 1],objectlist);
 	        }
+			
+			if (idbyte >= 106)
+			{
+				//event data
+		        numofobjects = buffer_read(load_buffer,buffer_u32);
+		        for (i = 0; i < numofobjects;i++)
+		        {
+		            objectlist = ds_list_create_pool();
+					
+					parsinglistsize = buffer_read(load_buffer,buffer_u32);
+					if (parsinglistsize < 12)
+						continue;
+					for (i = 0; i < parsinglistsize; i++)
+					{
+						if (i == 3)
+							ds_list_add(objectlist,buffer_read(load_buffer,buffer_string));
+						else
+							ds_list_add(objectlist,buffer_read(load_buffer,buffer_s32));
+					}
+		            
+		            ds_list_add(t_eventlist,objectlist);
+		        }
+			}
         
 	        //envelopes
 	        numofenvelopes = buffer_read(load_buffer,buffer_u32);
@@ -103,7 +127,7 @@ function load_project_work() {
 				ds_list_add(layertemp,t_y_offset);
 				ds_list_add(layertemp,t_x_angle);
 				ds_list_add(layertemp,t_y_fov);
-	            ds_list_add(layertemp, ds_list_create_pool()); //todo load events
+	            ds_list_add(layertemp, t_eventlist);
 	        }
 	        else
 	        {
@@ -115,7 +139,7 @@ function load_project_work() {
 	            ds_list_add(layertemp, 0);
 				ds_list_add(layertemp, 0);
 	            ds_list_add(layertemp, 0);
-	            ds_list_add(layertemp, ds_list_create_pool()); //todo load events
+	            ds_list_add(layertemp, t_eventlist);
 	        }
 	    }
 	}
@@ -331,6 +355,21 @@ function load_project_work() {
 	for (i = 0; i < parsinglistsize; i++)
 	{
 	    ds_list_add(marker_list,buffer_read(load_buffer,buffer_u32));
+	}
+	
+	if (idbyte >= 106)
+	{
+		// jump points
+		parsinglistsize = buffer_read(load_buffer,buffer_u32);
+		for (i = 0; i < parsinglistsize; i++)
+		{
+		    ds_list_add(jump_button_list,buffer_read(load_buffer,buffer_s32));
+		}
+		parsinglistsize = buffer_read(load_buffer,buffer_u32);
+		for (i = 0; i < parsinglistsize; i++)
+		{
+		    ds_list_add(jump_button_list_midi,buffer_read(load_buffer,buffer_s32));
+		}
 	}
     
 	buffer_delete(load_buffer);

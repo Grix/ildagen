@@ -36,7 +36,7 @@ function save_project_quick() {
 	global.loading_end = ds_list_size(layer_list);
 	global.loading_current = global.loading_start;
     
-	buffer_write(save_buffer,buffer_u8,105); //version / ID
+	buffer_write(save_buffer,buffer_u8,106); //version / ID
 	buffer_write(save_buffer,buffer_u8,projectfps); //fps
 	buffer_write(save_buffer,buffer_u8,(song != -1)); //audio enabled
 	buffer_write(save_buffer,buffer_u8,parsingaudio); //audio still parsing

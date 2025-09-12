@@ -94,25 +94,26 @@ layer_list
 	   7 preview_projector_offset_y
 	   8 preview_projector_offset_angle
 	   9 preview_projector_offset_fov_offset (0 = 20 degrees)
-	   10 dmx_element_list
-			dmx elements...
+	   10 event list
+			events...
 				0 xpos on timeline
 				1 event type 
 				  case (0 = dmx channel value change):
 				 2 duration of event in frames (held value after interpolate, loop if strobe)
-				 3 universe id, just counting from 0
-				 4 word index
-				 5 value
+				 3 description
+				 4 universe id, just counting from 0
+				 5 word index
 				 6 channel-ID (unique reference, can be defined in settings to make assigning addresses easier). If negative, no ID.
-				 7 change method (0: interpolate, 1: strobe)
-				 8 change method parameter 
-					(if interpolate, number of frames to interpolate in - 0 if immediate, negative if same as duration)
-					(if strobe, strobe cycle duration in frames)
-				 9 change method parameter 2
-				    (if interpolate, number of frames to interpolate out - 0 if immediate, negative if same as duration)
-					(if strobe, duty cycle, not implemented)
-                 10 value to return to afterward, negative if no change
-				 11 description
+				 7 main value
+				 8 start value
+				 9 start fade-in time in frames (negative = same as total duration)
+				 10 end value (negative = no change)
+				 11 end fade-out time in frames (negative = same as total duration)
+				 12 effect (0: none, 1: strobe? not implemented)
+				 13 effect parameter (spare)
+				 14 effect parameter (spare)
+				 15 effect parameter (spare)
+				 16 effect parameter (spare)
 				
 somaster_list
     layer elements.. (see above)

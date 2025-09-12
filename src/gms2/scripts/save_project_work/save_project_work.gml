@@ -32,6 +32,29 @@ function save_project_work() {
 	        buffer_write(save_buffer, buffer_u32, ds_list_find_value(objectlist,2));
 	        buffer_write(save_buffer, buffer_u32, ds_list_find_value(objectlist,4));
 	    }
+		
+		//layer events
+	    buffer_write(save_buffer,buffer_u32,ds_list_size(_layer[| 10]));
+	    for (j = 0; j < ds_list_size(_layer[| 10]); j++)
+	    {
+	        objectlist = ds_list_find_value(_layer[| 10],j);
+			if (!ds_list_exists_pool(objectlist))
+			{
+				ds_list_delete(_layer[| 10], j);
+				if (j > 0)
+					j--;
+				continue;
+			}
+	        parsinglistsize = ds_list_size(objectlist);
+			buffer_write(save_buffer,buffer_u32,parsinglistsize);
+			for (k = 0; k < parsinglistsize; k++)
+			{
+				if (k == 3)
+					buffer_write(save_buffer,buffer_string,ds_list_find_value(objectlist,k));
+				else
+					buffer_write(save_buffer,buffer_s32,ds_list_find_value(objectlist,k));
+			}
+	    }
         
 	    //saving envelope info
 	    var t_env_list = ds_list_find_value(_layer,0);
@@ -103,12 +126,27 @@ function save_project_work() {
 	}
     
 	//saving markers
-	buffer_write(save_buffer,buffer_u32,ds_list_size(marker_list));
 	parsinglistsize = ds_list_size(marker_list);
+	buffer_write(save_buffer,buffer_u32,parsinglistsize);
 	for (i = 0; i < parsinglistsize; i++)
 	{
 	    buffer_write(save_buffer,buffer_u32,ds_list_find_value(marker_list,i));
 	}
+	
+	//saving jump points
+	parsinglistsize = ds_list_size(jump_button_list);
+	buffer_write(save_buffer,buffer_u32,parsinglistsize);
+	for (i = 0; i < parsinglistsize; i++)
+	{
+	    buffer_write(save_buffer,buffer_s32,ds_list_find_value(jump_button_list,i));
+	}
+	parsinglistsize = ds_list_size(jump_button_list_midi);
+	buffer_write(save_buffer,buffer_u32,parsinglistsize);
+	for (i = 0; i < parsinglistsize; i++)
+	{
+	    buffer_write(save_buffer,buffer_s32,ds_list_find_value(jump_button_list_midi,i));
+	}
+	
     
 	//buffer_resize(save_buffer,buffer_tell(save_buffer));
 
