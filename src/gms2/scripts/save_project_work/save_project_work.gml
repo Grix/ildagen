@@ -154,11 +154,16 @@ function save_project_work() {
 	buffer_save_ext(save_buffer,file_loc, 0, buffer_tell(save_buffer));
 
 	var t_time = get_timer();
-	while ((get_timer() - t_time) > 4095)
+	while ((get_timer() - t_time) > 50000)
 	    j = 0;
-    
-	if (!controller.warning_disable)
-		show_message_new("LaserShowGen timeline project saved to "+string(file_loc));
+		
+	if (!file_exists(file_loc))
+		show_message_new("Warning: File may not have saved correctly. Please double-check file at "+string(file_loc));
+    else
+	{
+		if (!controller.warning_disable)
+			show_message_new("LaserShowGen timeline project saved to "+string(file_loc));
+	}
 
 	buffer_delete(save_buffer);
 	

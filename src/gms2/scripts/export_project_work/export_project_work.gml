@@ -232,15 +232,19 @@ function export_project_work() {
 	buffer_save(ilda_buffer,file_loc);
 
 	var t_time = get_timer();
-	while ((get_timer() - t_time) > 4095)
+	while ((get_timer() - t_time) > 50000)
 	    j = 0;
 		
-		
 	add_action_history_ilda("SEQ_exportilda");
-
-	if (!controller.warning_disable)
-		show_message_new("ILDA file (format "+string(controller.exp_format)+") exported to "+string(file_loc));
-
+	
+	if (!file_exists(file_loc))
+		show_message_new("Warning: File may not have saved correctly. Please double-check file at "+string(file_loc));
+    else
+	{
+		if (!controller.warning_disable)
+			show_message_new("ILDA file (format "+string(controller.exp_format)+") exported to "+string(file_loc));
+	}
+	
 	global.loading_exportproject = 0;
 
 	buffer_delete(ilda_buffer);

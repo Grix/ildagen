@@ -106,7 +106,7 @@ function export_ilda_html5_work() {
 		filesaver_save(file_loc);
 
 		var t_time = get_timer();
-		while ((get_timer() - t_time) > 4095)
+		while ((get_timer() - t_time) > 50000)
 		    j = 0;
        
 		show_message_new("ILDA file (format "+string(exp_format)+") exported to "+string(file_loc));

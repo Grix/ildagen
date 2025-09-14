@@ -22,7 +22,10 @@ function load_frames(argument0) {
 	idbyte = buffer_read(load_buffer,buffer_u8);
 	if (idbyte != 0) and (idbyte != 50) and (idbyte != 51) and (idbyte != 52)
 	{
-	    show_message_new("Unexpected ID byte: "+string(idbyte)+", is this a valid LaserShowGen frames file?");
+		if (idbyte > 52 && idbyte < 70)
+			show_message_new("Unexpected ID byte: "+string(idbyte)+", is this a valid LaserShowGen frames file? Files saved in newer versions of LSG cannot be opened in this version.");
+		else
+			show_message_new("Unexpected ID byte: "+string(idbyte)+", is this a valid LaserShowGen frames file?");
 	    exit;
 	}
 
