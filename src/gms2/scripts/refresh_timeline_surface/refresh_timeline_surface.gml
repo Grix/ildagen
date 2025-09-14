@@ -361,7 +361,7 @@ function refresh_timeline_surface() {
 			            draw_set_halign(fa_center);
 			            draw_set_valign(fa_center);
 			            draw_set_colour(c_dkgray);
-			            draw_text(tempx,tlh+8,string(round(drawtimeBeat / controller.beats_per_bar)));
+			            draw_text(tempx,tlh+8,string(round((drawtimeBeat) / controller.beats_per_bar) + 1));
 			            draw_set_halign(fa_left);
 			            draw_set_valign(fa_top);
 			            draw_set_colour(c_ltgray);

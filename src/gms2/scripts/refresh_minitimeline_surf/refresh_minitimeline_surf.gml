@@ -67,7 +67,7 @@ function refresh_minitimeline_surf() {
 		            draw_set_alpha(1);
 		            draw_set_halign(fa_center);
 		            draw_set_valign(fa_center);
-		            draw_text(u,t_tlh-7, string(floor(temptime / beats_per_bar))+"."+string(round(temptime % beats_per_bar)));
+		            draw_text(u,t_tlh-7, string(floor(temptime / beats_per_bar) + 1)+"."+string(round(temptime % beats_per_bar) + 1));
 		            draw_set_halign(fa_left);
 		            draw_set_valign(fa_top);
 		            draw_set_alpha(0.2);
