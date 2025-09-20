@@ -26,7 +26,10 @@ GMEXPORT double InitDacwrapper()
 	
 	initialized = true;
 
+	ScanNetworkInterfaces();
 	dmxDevice = new Dmx();
+	if (interfaceIps.size() > 0)
+		dmxDevice->SetInterfaceIp(interfaceIps[0].c_str());
 
 	return 1.0;
 }
@@ -525,6 +528,80 @@ GMEXPORT double DmxSetEnabled(double enabled)
 
 GMEXPORT double DmxSetIp(char* ip)
 {
+	if (ip == NULL)
+		return -1;
+
 	dmxDevice->SetInterfaceIp(ip);
 	return 1;
+}
+
+GMEXPORT double ScanNetworkInterfaces()
+{
+	interfaceIps.clear();
+
+	struct addrinfo* servinfo;              // Will point to the results
+	struct addrinfo hints;                  // Hints about the caller-supported socket types
+	std::memset(&hints, 0, sizeof hints);	// Make sure the struct is empty
+	hints.ai_flags = AI_PASSIVE;            // Intention to use address with the bind function
+	hints.ai_family = AF_INET;              // IPv4
+
+#ifndef WIN32 
+	struct ifaddrs* ifaddr;
+	if (getifaddrs(&ifaddr) == -1) return errno;
+
+	// Walk through all interfaces
+	for (struct ifaddrs* ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
+	{
+		printf("Found DMX interface.\n");
+
+		if (ifa->ifa_addr == NULL) continue;
+		if (ifa->ifa_addr->sa_family != AF_INET) continue;
+
+		// Invoke callback on interface
+		struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ifa_addr;
+
+		char* ipStr = inet_ntoa((ifSockAddr->sin_addr));
+
+		interfaceIps.push_back(ipStr);
+	}
+
+	// Interface list is dynamically allocated and must be freed
+	freeifaddrs(ifaddr);
+#else
+	int rcAddrInfo = getaddrinfo("", "6454", &hints, &servinfo);
+	if (rcAddrInfo != 0)
+	{
+		fprintf(stderr, "DMX interface getaddrinfo failed: %d\n", rcAddrInfo);
+		return 0;
+	}
+
+	// Walk through all interfaces (servinfo points to a linked list of struct addrinfos)
+	for (struct addrinfo* ifa = servinfo; ifa != NULL; ifa = ifa->ai_next)
+	{
+		printf("Found DMX interface.\n");
+
+		if (ifa->ai_addr == NULL) continue;
+		if (ifa->ai_addr->sa_family != AF_INET) continue;
+
+		// Invoke callback on interface
+		struct sockaddr_in* ifSockAddr = (struct sockaddr_in*)ifa->ai_addr;
+
+		char* ipStr = inet_ntoa((ifSockAddr->sin_addr));
+
+		interfaceIps.push_back(ipStr);
+	}
+
+	// Interface list is dynamically allocated and must be freed
+	freeaddrinfo(servinfo);
+#endif
+
+}
+
+GMEXPORT char* GetNetworkInterfaceIp(double _index) 
+{
+	int index = (int)round(_index);
+	if (index < 0 || index >= interfaceIps.size())
+		return "";
+	
+	return (char*)interfaceIps[index].c_str();
 }

@@ -33,6 +33,13 @@ if (playing == 1)
 		else if (loop)
 	    {
 	        tlpos = startframe/projectfps*1000;
+			if (song != -1)
+	        {
+	            FMODGMS_Chan_StopChannel(play_sndchannel);
+	            FMODGMS_Snd_PlaySound(song, play_sndchannel);
+	            apply_audio_settings();
+	            fmod_set_pos(play_sndchannel,clamp(((tlpos+audioshift)-10),0,songlength));
+	        }
 		}
 	}
     

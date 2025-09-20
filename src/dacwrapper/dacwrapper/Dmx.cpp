@@ -46,10 +46,15 @@ void Dmx::SetInterfaceIp(const char* newIp)
 		ip[0] = 0;
 	else
 		strncpy(ip, newIp, 32);
+
+	if (artnet)
+		StartArtnet(); // Restart to apply
 }
 
 int Dmx::StartArtnet()
 {
+	std::lock_guard<std::mutex>lock(lock);
+
 	if (artnet)
 	{
 		artnet_stop(artnet);

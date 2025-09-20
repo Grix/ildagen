@@ -5,7 +5,7 @@
 #include <mutex>
 #include "artnet/artnet.h"
 
-#define MAX_UNIVERSES 0xFF
+#define MAX_UNIVERSES 256
 
 class Dmx
 {
