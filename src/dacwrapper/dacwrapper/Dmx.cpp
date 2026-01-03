@@ -64,7 +64,7 @@ int Dmx::StartArtnet()
 	artnet = artnet_new(ip[0] ? ip : NULL, 0);
 	if (artnet == NULL) {
 		fprintf(stderr, "Failed to create Art-Net node, new\n");
-		return 1;
+		return -1;
 	}
 
 	artnet_set_short_name(artnet, "LaserShowGen");
@@ -91,6 +91,8 @@ int Dmx::StartArtnet()
 		nextForcedUpdate[i] = std::chrono::steady_clock::now() + std::chrono::milliseconds(900);
 	}
 	memset(data, 0, 512 * MAX_UNIVERSES);
+
+	return 0;
 }
 
 void Dmx::TxThread()

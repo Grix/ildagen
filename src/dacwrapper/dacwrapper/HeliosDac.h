@@ -11,24 +11,16 @@ Standard: C++14
 git repo: https://github.com/Grix/helios_dac.git
 
 BASIC USAGE:
-1.	Call OpenDevices() to open devices, returns number of available devices.
-2.	To send a frame to the DAC, first call GetStatus(). The status should be polled until it returns ready.
-	If the function returns ready (1), then you can call WriteFrame*().
-3.  To stop output, use Stop(). To restart output you must send a new frame as described above.
-4.	When the DAC is no longer needed, destroy the instance (destructors will free everything and close the connection)
+1.	Call OpenDevices() to scan and open devices, returns number of available devices.
+2.	To send a new frame, first call GetStatus(). The status should be polled until it returns ready. It can and sometimes will fail to return ready on the first try.
+3.  When GetStatus() has returned ready (1), then you can call one of the WriteFrame*() functions with image data, to output a frame.
+4.  Repeat steps 2-3 continuously while you have data to output.
+5.  To stop output, use Stop(). To restart output you must send a new frame as described above.
+6.	When the DAC(s) are no longer needed, free the connections using CloseDevices().
 
-More more information on all functions, see their declarations below.
+More more information on all functions, see their declarations below. There is also an example C++ app that outputs a simple animation in the Github repo.
+Unless otherwise specified, functions return a negative error code on failure.
 
-When the DAC receives its first frame, it starts outputting it. When a second frame is sent to
-the DAC while the first frame is being played, the second frame is stored in the DACs memory until the first frame
-finishes playback, at which point the second, buffered frame will start playing. If the DAC finished playback of a frame
-without having received and buffered a second frame, it will by default loop the first frame until a new frame is
-received (but the flag HELIOS_FLAG_SINGLE_MODE will make it stop playback instead).
-The GetStatus() function actually checks whether or not the buffer on the DAC is empty or full. If it is full, the DAC
-cannot receive a new frame until the currently playing frame finishes, freeing up the buffer. This is not applicable
-on IDN network DACs, they will always be ready to receive a new frame, but by default the GetStatus still simulates 
-the time it would take for the IDN DAC to play the frame, to stay backwards compatible with programs that depend on
-GetStatus() for timing purposes.
 */
 
 #pragma once
@@ -117,32 +109,28 @@ GetStatus() for timing purposes.
 #define HELIOS_ERROR_NETWORK				-1007
 
 // Errors from libusb are the libusb error code added to -5000. See libusb.h for libusb error codes.
-#define HELIOS_ERROR_LIBUSB_BASE		-5000
+#define HELIOS_ERROR_LIBUSB_BASE			-5000
 
 // ---------------------------------
 
 // Bitmask flags used in flags parameter for WriteFrame*(). Can be OR'ed together to enable multiple flags:
 
-// No flags defined.
-#define HELIOS_FLAGS_DEFAULT		0
-
 // Written frame should start playing immediately, even if previously submitted frames are queued up in the frame buffer.
-// NB: This flag is NOT SUPPORTED by network-enabled DACs and is thus considered deprecated.
+// NB: This flag is not supported by network-enabled DACs and is thus considered deprecated.
 #define HELIOS_FLAGS_START_IMMEDIATELY	(1 << 0)
 
 // Written frame should only be played exactly once, instead of being looped indefinitely if no more frames are written after this one.
-// NB: This flag is not applicable on network (IDN) DACs, they always play the frame only once. Therefore, it is recommended to always 
+// NB: This flag is not yet supported on network (IDN) DACs, they always play the frame only once. Therefore, it is recommended to always 
 // use this flag, and instead implement your own frame looping system if you need to repeat the frame.
 #define HELIOS_FLAGS_SINGLE_MODE		(1 << 1)
 
 // WriteFrame() should not block execution while the frame is transfered to the DAC, instead the transfer is processed a separate thread.
-// NB: This flag is not applicable on network (IDN) DACs, they always schedule transfers in a separate thread, since frames are split up internally.
+// NB: This flag is not applicable on network (IDN) DACs, they always schedule transfers in a separate thread since frames are split up internally.
 #define HELIOS_FLAGS_DONT_BLOCK			(1 << 2)
 
-// For network-enabled DACs, there is no status feedback, so GetStatus() could in theory return true immediately. This flag makes it so.
-// If the flag is NOT defined (default), then a timer simulates the time it would take the DAC to play the frame and makes GetStatus()
-// return false during that time instead. This is done for compatibility reasons if your software depends on this feedback for timing.
-#define HELIOS_FLAGS_DONT_SIMULATE_TIMING	(1 << 3)
+// Default flags. This results in the same behavior for USB and network DACs (network DACs do not support all the flags of the USB models).
+#define HELIOS_FLAGS_DEFAULT		(HELIOS_FLAGS_SINGLE_MODE)
+
 
 // USB properties
 #define HELIOS_VID	0x1209
@@ -220,6 +208,15 @@ public:
 	// NB: To re-scan for newly connected DACs after this function has once been called before, you must first call CloseDevices().
 	int OpenDevicesOnlyNetwork();
 
+	// Scans for new devices and verifies connectivity to existing devices.
+	// Unlike OpenDevices*(), this can be used without first having to close existing devices. Existing device numbers will be preserved.
+	// Devices that are found not to be present any more will be marked as closed (can be checked with GetIsClosed()) but will still be present in the device list.
+	// Because of this, device list is not necessary sorted alphabetically like OpenDevices*() does.
+	// Can be periodically called to implement hot-plugging support. But it should NOT be called at the same time as there is output to the DAC, or it can disrupt the stream.
+	int ReScanDevices();
+	int ReScanDevicesOnlyUsb();
+	int ReScanDevicesOnlyNetwork();
+
 	// Closes and frees all devices.
 	int CloseDevices();
 
@@ -227,24 +224,30 @@ public:
 	// WriteFrame() uses the lightweight point structure designed for the original Helios DAC.
 	// WriteFrameHighResolution() uses a higher resolution point structure supported by newer DAC models. If unsure, this one is recommended.
 	// WriteFrameExtended() has additional optional channels and a higher resolution point structure supported by newer DAC models.
+	// 
 	// It is safe to call any of these functions even for DACs that don't support higher resolution data. In that case the data will automatically be converted (though at a slight performance cost).
-	// You should make frames large enough to account for transfer overheads and timing jitter. Frames should be 10 milliseconds or longer on average, generally speaking.
+	// NB: You should make frames large enough to account for transfer overheads and timing jitter. Recommended to have frames last 10 milliseconds or longer on average, generally speaking.
+	// 
 	// devNum: dac number (0 to n where n+1 is the return value from OpenDevices() ).
 	// pps: rate of output in points per second.
-	// flags: (default is 0)
-	//	 Bit 0 (LSB) = if 1, start output immediately, instead of waiting for current frame (if there is one) to finish playing
+	// flags: (If unsure, use HELIOS_FLAGS_DEFAULT)
+	//	 Bit 0 (LSB) = if 1, start output immediately, instead of waiting for current frame (if there is one) to finish playing. 
+	//			(NB: This flag does not apply to network DACs. For identical behavior of USB DACs, DISABLE this flag (set bit to 0).
 	//	 Bit 1 = if 1, play frame only once, instead of repeating until another frame is written
+	//			(NB: This flag does not apply to network DACs. For identical behavior of USB DACs, ENABLE this flag (set bit to 1).
 	//   Bit 2 = if 1, don't let WriteFrame() block execution while waiting for the transfer to finish 
 	//			(NB: then the function might return 1 even if the transfer fails)
-	//   Bit 3 = IDN (Network) DACs do not provide an actual status feedback, so GetStatus() could in theory just return 1 all the time.
-	//			 However, some programs may depends on the timing of the status signal, so by default an approximate status timing is simulated.
-	//			 If this flag bit is 1, this timing simulation is disabled, and GetStatus() returns 1 as soon as it can.
-	//	 Bit 4-7 = reserved
+	//			(NB: This flag does not apply to network DACs. For identical behavior of USB DACs, ENABLE this flag (set bit to 1).
+	//	 Bit 3-7 = reserved
 	// points: pointer to point data. See point structure declarations earlier in this document.
 	// numOfPoints: number of points in the frame.
 	int WriteFrame(unsigned int devNum, unsigned int pps, std::uint8_t flags, HeliosPoint* points, unsigned int numOfPoints);
 	int WriteFrameHighResolution(unsigned int devNum, unsigned int pps, unsigned int flags, HeliosPointHighRes* points, unsigned int numOfPoints);
 	int WriteFrameExtended(unsigned int devNum, unsigned int pps, unsigned int flags, HeliosPointExt* points, unsigned int numOfPoints);
+
+	// Gets whether the DAC is still connected (1) or not (0). If not, all function calls will fail. 
+	// You can call ReScanDevices*() to attempt to re-establish connection if the DAC has since been reconnected.
+	int GetIsClosed(unsigned int devNum);
 
 	// Gets status of DAC, 1 means DAC is ready to receive frame, 0 means it is not.
 	// You MUST poll this function until it returns true, before every call to WriteFrame*().
@@ -267,7 +270,7 @@ public:
 	// Returns firmware version of DAC.
 	// For Helios USB, the firmware version is just one simple integer, which is never higher than 255.
 	// For Helios IDN DACs, the firmware version is an integer in this format: AABBCC, which corresponds to vAA.BB.CC. For example 10002 would be v1.0.2.
-	// For non-Helios IDN DACs, this function may not work, as firmware version getting is not a part of the IDN spec. In that case, the function may block for a second and then return a negative number.
+	// For non-Helios IDN DACs, this function may not work, as firmware version getting is not a part of the IDN spec. In that case, the function may block for around 0.5s and then return a negative number.
 	int GetFirmwareVersion(unsigned int devNum);
 
 	// Returns whether a specific DAC supports the higher resolutions color/postion data of new WriteFrameHighResolution() and WriteFrameExtended() functions. 
@@ -308,8 +311,13 @@ private:
 		virtual int GetIsUsb() = 0;
 		virtual int SetShutter(bool level) = 0;
 		virtual int Stop() = 0;
+		virtual int Close() = 0;
 		virtual int EraseFirmware() = 0;
+		bool GetIsClosed() { return closed; }
 
+	protected:
+
+		bool closed = true;
 	};
 
 	// Class for USB-connected Helios DACs, for internal use
@@ -331,7 +339,10 @@ private:
 		int SetName(char* name);
 		int SetShutter(bool level);
 		int Stop();
+		int Close();
 		int EraseFirmware();
+
+		libusb_device_handle* GetLibusbHandle();
 
 
 	private:
@@ -349,14 +360,16 @@ private:
 		std::mutex frameLock;
 		bool frameReady = false;
 		int firmwareVersion = 0;
-		char name[32];
-		bool closed = true;
+		char name[32] = { 0 };
 		std::uint8_t* frameBuffer;
 		unsigned int frameBufferSize;
 		int frameResult = -1;
 		bool shutterIsOpen = false;
 		int maxSampleRate = 0xffff;
 		int minSampleRate = 7;
+		const int errorLimitResetValue = 50;
+		int errorLimitCountdown = errorLimitResetValue;
+		bool threadingHasBeenUsed = false;
 	};
 
 	// Class for network (IDN) connected DACs such as HeliosPRO (but also work with other DACs supporting IDN), for internal use
@@ -373,11 +386,13 @@ private:
 		int GetStatus();
 		int GetSupportsHigherResolutions() { return 1; }
 		int GetIsUsb() { return 0; }
+		int GetUnitId(uint8_t* idArray);
 		int GetFirmwareVersion();
 		int GetName(char* name);
 		int SetName(char* name);
 		int SetShutter(bool level);
 		int Stop();
+		int Close();
 		int EraseFirmware();
 
 	private:
@@ -391,22 +406,23 @@ private:
 
 		IDNCONTEXT* context;
 		int firmwareVersion = 0;
-		char name[32];
-		bool closed = true;
+		char name[32] = { 0 };
 		bool useBusyWaiting = false;
 		bool finishedClosing = false;
 
 		int managementSocket = -1;
-		sockaddr_in managementSocketAddr = { 0 };
+		sockaddr_in managementSocketAddr = { 0, 0, 0, 0 };
 		std::mutex frameLock;
 		int frameResult = -1;
 		long numLateWaits = 0;
 
 	};
 
-	int _OpenUsbDevices();
-	int _OpenIdnDevices();
+	int _OpenUsbDevices(bool inPlace);
+	int _OpenIdnDevices(bool inPlace);
 	void _SortDeviceList();
+	void _RemoveNotFoundIdnServers(IDNSL_SERVER_INFO* firstServerInfo);
+	bool _GetIdnServerExists(IDNSL_SERVER_INFO* firstServerInfo);
 
 	std::vector<std::unique_ptr<HeliosDacDevice>> deviceList;
 	std::mutex threadLock;
