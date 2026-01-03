@@ -180,18 +180,12 @@ function reapply_properties() {
 	if (is_string(resolution))
 	{
 	    autoresflag = 1;
-	    if ((placing == "line") && (blankmode == "solid") && (colormode == "solid"))
-	        resolution = opt_maxdist;
-	    else
-	        resolution = 1300;
-        
-	    if (colormode != "solid") or (blankmode != "solid")
-	        resolution = 500;
+	    resolution = 300;
     
 	    if (anienable) and (blankmode != "solid") and ((blank_offset != aniblank_offset) or (blank_dc != aniblank_dc))
-	        resolution = 250;
+	        resolution = 200;
 	    else if (anienable) and (colormode != "solid") and ((color_offset != anicolor_offset) or (color_dc != anicolor_dc))
-	        resolution = 250;
+	        resolution = 200;
 	}
 
 	temp_undof_list = ds_list_create_pool();
@@ -421,7 +415,7 @@ function reapply_properties() {
 	                if (blankmode2 == 0)
 	                    dotfreq = checkpoints/(blank_freq_r);
 	                else
-	                    dotfreq = blank_period_r/512;
+	                    dotfreq = blank_period_r/resolution;
 	                if (dotfreq < 1)
 	                    dotfreq = 1;
 	            }
@@ -430,7 +424,7 @@ function reapply_properties() {
 	                if (blankmode2 == 0)
 	                    dotfreq = checkpoints/(blank_freq_r+0.48);
 	                else
-	                    dotfreq = blank_period_r/512;
+	                    dotfreq = blank_period_r/resolution;
 	                if (dotfreq < 1)
 	                    dotfreq = 1;
 	            }
@@ -445,7 +439,7 @@ function reapply_properties() {
 	                if (colormode2 == 0)
 	                    colorfreq = checkpoints/(color_freq_r+0.48);
 	                else
-	                    colorfreq = color_period_r/512;
+	                    colorfreq = color_period_r/resolution;
 	                if (colorfreq < 1)
 	                    colorfreq = 1;
 	            }

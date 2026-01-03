@@ -215,7 +215,7 @@ function make_frame() {
 	                    ds_list_add(list_raw,(c_prev == 0));
 	                    ds_list_add(list_raw,c_prev);
 	                }
-	                repeat (t_true_dwell_falling - (controller.opt_maxdwell_blank*2+1) )
+	                repeat (t_true_dwell_falling - (controller.opt_maxdwell_blank*2+1) ) // todo remove lit points at these corners? Normal corners dont have them
 	                {
 	                    ds_list_add(list_raw,xp_prev);
 	                    ds_list_add(list_raw,ypp);
