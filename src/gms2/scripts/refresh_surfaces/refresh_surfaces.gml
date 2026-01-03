@@ -143,7 +143,7 @@ function refresh_surfaces() {
 	            {
 	                var t_lengthwanted = abs(lit_length/t_litpointswanted);
                 
-	                if (t_lengthwanted > controller.opt_maxdist/0.1)
+	                if (t_lengthwanted > controller.opt_maxdist/0.1 || t_litpointswanted < 0)
 	                    frame_complexity = 1;
 	                else if (t_lengthwanted > controller.opt_maxdist/0.25)
 	                    frame_complexity = 2;
