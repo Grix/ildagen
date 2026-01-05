@@ -902,6 +902,7 @@
     {"id":{"name":"read_hershey_index_ini","path":"scripts/read_hershey_index_ini/read_hershey_index_ini.yy",},"order":27,},
     {"id":{"name":"read_hershey_createini","path":"scripts/read_hershey_createini/read_hershey_createini.yy",},"order":28,},
     {"id":{"name":"init_palette","path":"scripts/init_palette/init_palette.yy",},"order":29,},
+    {"id":{"name":"find_element_order","path":"scripts/find_element_order/find_element_order.yy",},"order":16,},
     {"id":{"name":"sMIDIPanic","path":"scripts/sMIDIPanic/sMIDIPanic.yy",},"order":1,},
     {"id":{"name":"mute","path":"scripts/mute/mute.yy",},"order":10,},
     {"id":{"name":"update_check","path":"scripts/update_check/update_check.yy",},"order":11,},
