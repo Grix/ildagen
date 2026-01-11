@@ -33,8 +33,8 @@ function prepare_output_bezier() {
 
 	a_ballistic = controller.opt_maxdist; //scanner acceleration
 
-	t_pol = 0;
-	t_order = 0;
+	var t_pol = 0;
+	var t_order = 0;
 	var t_lowestdist, t_dist;
 	var t_found = 0;
 	var t_list_empties = ds_list_create_pool();
