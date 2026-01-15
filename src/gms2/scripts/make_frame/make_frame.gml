@@ -204,8 +204,7 @@ function make_frame() {
 	                angle_next = point_direction(xp,yp, xpp,ypp);
 	                angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
                 
-	                t_true_dwell_falling =  round(controller.opt_maxdwell * 
-	                                        (1- abs(angle_difference( angle_prev, angle_next ))/180));
+	                t_true_dwell_falling =  round(controller.opt_maxdwell * (1- abs(angle_difference( angle_prev, angle_next ))/180));
                                             
 	                //dwell on blanking start
 	                repeat (controller.opt_maxdwell_blank)
@@ -243,8 +242,7 @@ function make_frame() {
 	                {
 	                    angle_next = point_direction(xpp,ypp, xp,yp);
                         
-	                    t_true_dwell_falling =  round(controller.opt_maxdwell * 
-	                                            (1- abs(angle_difference( angle_blank, angle_next ))/180));
+	                    t_true_dwell_falling =  round(controller.opt_maxdwell * (1- abs(angle_difference( angle_blank, angle_next ))/180));
 	                }
                     
 	                if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
@@ -255,8 +253,7 @@ function make_frame() {
 	                {
 	                    angle_prev = point_direction(xp_prev_prev,yp_prev_prev, xp_prev,yp_prev);
                 
-	                    t_true_dwell_rising =  round(controller.opt_maxdwell * 
-	                                            (1- abs(angle_difference( angle_prev, angle_blank ))/180));
+	                    t_true_dwell_rising =  round(controller.opt_maxdwell * (1- abs(angle_difference( angle_prev, angle_blank ))/180));
 	                }
                 
 	                //dwell on blanking start, unless it's the start of frame in the middle

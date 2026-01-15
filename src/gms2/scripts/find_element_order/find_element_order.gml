@@ -32,6 +32,7 @@ function find_element_order(){
 		var t_superelement_polarity_list = ds_list_create_pool();
 		ds_list_add(t_superelement_order_list, t_i);
 		ds_list_add(t_superelement_polarity_list, 0);
+		t_element_found[t_i] = true;
 
 		// find chain of connected elements to start
 		var t_j;
@@ -75,13 +76,13 @@ function find_element_order(){
 			
 					if (point_distance(t_prev_xp, t_prev_yp, t_next_xp_end, t_next_yp_end) < 280)
 					{
-						ds_list_insert(t_superelement_order_list, 0, t_next_list_id);
+						ds_list_insert(t_superelement_order_list, 0, t_j);
 						ds_list_insert(t_superelement_polarity_list, 0, 0);
 						t_element_found[t_j] = true;
 						t_prev_xp = t_next_xp_start;
 						t_prev_yp = t_next_yp_start;
 						t_end = false;
-						return;
+						break;
 					}
 				}
 			}
@@ -131,13 +132,13 @@ function find_element_order(){
 			
 					if (point_distance(t_prev_xp, t_prev_yp, t_next_xp_end, t_next_yp_end) < 280)
 					{
-						ds_list_add(t_superelement_order_list, t_next_list_id);
+						ds_list_add(t_superelement_order_list, t_j);
 						ds_list_add(t_superelement_polarity_list, 1);
 						t_element_found[t_j] = true;
 						t_prev_xp = t_next_xp_start;
 						t_prev_yp = t_next_yp_start;
 						t_end = false;
-						return;
+						break;
 					}
 				}
 			}
@@ -173,7 +174,7 @@ function find_element_order(){
 				if (t_superelement_order_list < 0)
 					continue;
 				
-				var t_superelement_polarity_list = t_superelement_polarity_list[| t_i];
+				var t_superelement_polarity_list = t_superelements_polarity_lists[| t_i];
 			
 				// checking distance to start point of superelement
 		        var t_start_list_id = el_list[| (t_superelement_order_list[| 0])];
@@ -247,7 +248,7 @@ function find_element_order(){
 			
 			if (t_i == t_superelement_size - 1)
 			{
-				var t_list_id = t_superelement_order_list[| t_index];
+				var t_list_id = el_list[| t_superelement_order_list[| t_index]];
 				if (t_pol xor t_superelement_polarity_list[| t_index])
 			        currentpos = ds_list_size(t_list_id)-4;
 			    else
