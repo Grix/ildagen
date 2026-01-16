@@ -1,21 +1,21 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function find_element_order(){
-	// input: local variable el_list with elements
-	// output: local variables order_list and polarity_list with indexes of el_list
+function find_element_order(t_original_list){
+	// input: t_original_list with elements
+	// output: local variables order_list and polarity_list with indexes of t_original_list (lists must be created first!)
 	
 	// find superelements (groups of connected elements)
 	var t_superelements_order_lists = ds_list_create_pool();
 	var t_superelements_polarity_lists = ds_list_create_pool();
-	var t_element_found = array_create(ds_list_size(el_list), false);
+	var t_element_found = array_create(ds_list_size(t_original_list), false);
 	
 	var t_i;
-	for (t_i = 0; t_i < ds_list_size(el_list); t_i++)
+	for (t_i = 0; t_i < ds_list_size(t_original_list); t_i++)
 	{
 		if (t_element_found[t_i])
 	        continue;
 			
-		list_id = el_list[| t_i];
+		list_id = t_original_list[| t_i];
 			
 		if (ds_list_size(list_id) <= 22)
 		{
@@ -40,12 +40,12 @@ function find_element_order(){
 		while (!t_end)
 		{
 			t_end = true;
-			for (t_j = 0; t_j < ds_list_size(el_list); t_j++)
+			for (t_j = 0; t_j < ds_list_size(t_original_list); t_j++)
 			{
 				if (t_element_found[t_j])
 					continue;
 				
-				var t_next_list_id = el_list[| t_j];
+				var t_next_list_id = t_original_list[| t_j];
 				
 				if (ds_list_size(t_next_list_id) <= 22)
 				{
@@ -96,12 +96,12 @@ function find_element_order(){
 		while (!t_end)
 		{
 			t_end = true;
-			for (t_j = 0; t_j < ds_list_size(el_list); t_j++)
+			for (t_j = 0; t_j < ds_list_size(t_original_list); t_j++)
 			{
 				if (t_element_found[t_j])
 					continue;
 				
-				var t_next_list_id = el_list[| t_j];
+				var t_next_list_id = t_original_list[| t_j];
 				
 				if (ds_list_size(t_next_list_id) <= 22)
 				{
@@ -177,7 +177,7 @@ function find_element_order(){
 				var t_superelement_polarity_list = t_superelements_polarity_lists[| t_i];
 			
 				// checking distance to start point of superelement
-		        var t_start_list_id = el_list[| (t_superelement_order_list[| 0])];
+		        var t_start_list_id = t_original_list[| (t_superelement_order_list[| 0])];
         
 		        xo = t_start_list_id[| 0];
 		        yo = t_start_list_id[| 1];
@@ -203,7 +203,7 @@ function find_element_order(){
 				}
 			
 				// checking distance to end point of superelement
-		        var t_end_list_id = el_list[| (t_superelement_order_list[| ds_list_size(t_superelement_order_list)-1])];
+		        var t_end_list_id = t_original_list[| (t_superelement_order_list[| ds_list_size(t_superelement_order_list)-1])];
         
 		        xo = t_end_list_id[| 0];
 		        yo = t_end_list_id[| 1];
@@ -248,7 +248,7 @@ function find_element_order(){
 			
 			if (t_i == t_superelement_size - 1)
 			{
-				var t_list_id = el_list[| t_superelement_order_list[| t_index]];
+				var t_list_id = t_original_list[| t_superelement_order_list[| t_index]];
 				if (t_pol xor t_superelement_polarity_list[| t_index])
 			        currentpos = ds_list_size(t_list_id)-4;
 			    else

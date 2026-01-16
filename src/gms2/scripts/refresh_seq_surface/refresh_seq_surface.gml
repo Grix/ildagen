@@ -382,7 +382,7 @@ function refresh_seq_surface() {
 
 	
 	//find point count
-	// too complex to find, not all layers is necessarily drawn at once, so misleading etc.
+	//too complex to find this way, not all layers is necessarily drawn at once, so it is misleading etc.
 	/*if (controller.exp_optimize && (!controller.laseron || !controller.preview_while_laser_on))
 	{
 	    if (!controller.opt_onlyblanking)

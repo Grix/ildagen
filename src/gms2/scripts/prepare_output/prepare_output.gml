@@ -32,7 +32,7 @@ function prepare_output() {
 	a_ballistic = controller.opt_maxdist; //scanner acceleration
 
 	//checking best element order
-	find_element_order();
+	find_element_order(el_list);
 
 	if (ds_list_empty(order_list))
 	{
