@@ -3,7 +3,7 @@ function dropdown_live_file() {
 	with (ddobj)
 	{
 	    num = 9;
-	    ds_list_add(desc_list,"Delete (Del)");
+	    ds_list_add(desc_list,"Delete ("+get_delete_string()+")");
 	    ds_list_add(desc_list,"Open in frame editor");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(sep_list,0);

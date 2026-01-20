@@ -4,16 +4,16 @@ function dropdown_object() {
 	{
 	    num = 6;
 	    event_user(1);
-	    ds_list_add(desc_list,"Copy");
-	    ds_list_add(desc_list,"Cut");
-	    ds_list_add(desc_list,"Delete");
-	    ds_list_add(desc_list,"Reapply Properties");
+	    ds_list_add(desc_list,"Cut ("+get_ctrl_string()+"+X)");
+	    ds_list_add(desc_list,"Copy ("+get_ctrl_string()+"+C)");
+	    ds_list_add(desc_list,"Delete ("+get_delete_string()+")");
+	    ds_list_add(desc_list,"Reapply Properties (Enter)");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(sep_list,0);
 	    ds_list_add(sep_list,0);
 	    ds_list_add(sep_list,1);
-	    ds_list_add(scr_list,copy_object);
 	    ds_list_add(scr_list,cut_object);
+	    ds_list_add(scr_list,copy_object);
 	    ds_list_add(scr_list,delete_object);
 	    ds_list_add(scr_list,reapply_properties);
 	    ds_list_add(hl_list,1);

@@ -23,7 +23,7 @@ function dropdown_menu_ilda_edit() {
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,paste_object);
 	    ds_list_add(hl_list,(controller.copy_list != -1));
-	    ds_list_add(desc_list,"Delete (Del)");
+	    ds_list_add(desc_list,"Delete ("+get_delete_string()+")");
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,delete_object);
 	    ds_list_add(hl_list,!ds_list_empty(controller.semaster_list));

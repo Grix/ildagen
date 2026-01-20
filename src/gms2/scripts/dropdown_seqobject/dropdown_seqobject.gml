@@ -6,7 +6,7 @@ function dropdown_seqobject() {
 	    event_user(1);
 	    ds_list_add(desc_list,"Cut ("+get_ctrl_string()+"+X)");
 	    ds_list_add(desc_list,"Copy ("+get_ctrl_string()+"+C)");
-	    ds_list_add(desc_list,"Delete (Del)");
+	    ds_list_add(desc_list,"Delete ("+get_delete_string()+")");
 	    ds_list_add(desc_list,"Open in frame editor");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(sep_list,0);

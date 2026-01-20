@@ -245,6 +245,7 @@
     {"id":{"name":"_ML_AddTernarySig","path":"scripts/_ML_AddTernarySig/_ML_AddTernarySig.yy",},"order":2,},
     {"id":{"name":"_ML_TernaryAddSecond","path":"scripts/_ML_TernaryAddSecond/_ML_TernaryAddSecond.yy",},"order":3,},
     {"id":{"name":"ML_ClearTernaryOper","path":"scripts/ML_ClearTernaryOper/ML_ClearTernaryOper.yy",},"order":4,},
+    {"id":{"name":"get_delete_string","path":"scripts/get_delete_string/get_delete_string.yy",},"order":42,},
     {"id":{"name":"ML_RemTernaryOper","path":"scripts/ML_RemTernaryOper/ML_RemTernaryOper.yy",},"order":5,},
     {"id":{"name":"ML_RemTernaryOperStr","path":"scripts/ML_RemTernaryOperStr/ML_RemTernaryOperStr.yy",},"order":6,},
     {"id":{"name":"_ML_OpRemRoots","path":"scripts/_ML_OpRemRoots/_ML_OpRemRoots.yy",},"order":4,},

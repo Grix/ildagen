@@ -2,9 +2,9 @@ function dropdown_layer() {
 	ddobj = instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-view_hport[3],"foreground",obj_dropdown);
 	with (ddobj)
 	{
-	    num = 8;
-	    ds_list_add(desc_list,"Paste object");
-	    ds_list_add(desc_list,"Import object from editor mode");
+	    num = 7;
+	    ds_list_add(desc_list,"Paste object ("+get_ctrl_string()+"V)");
+	    ds_list_add(desc_list,"Import object from editor mode (I)");
 	    ds_list_add(desc_list,"Add DMX event");
 		ds_list_add(desc_list,"Mute/unmute layer");
 	    ds_list_add(desc_list,"Add envelope");

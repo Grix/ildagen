@@ -11,7 +11,7 @@ function dropdown_menu_live_edit() {
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,redo_live);
 	    ds_list_add(hl_list,ds_list_size(livecontrol.redo_list));
-	    ds_list_add(desc_list,"Delete (Del)");
+	    ds_list_add(desc_list,"Delete ("+get_delete_string()+")");
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,live_delete_object);
 	    ds_list_add(hl_list,ds_list_size(livecontrol.selectedfile != -1));

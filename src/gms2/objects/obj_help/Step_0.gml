@@ -14,7 +14,7 @@ if (room == rm_ilda)
         "Tab)    Enter timeline mode\n"+
         "I)    Send frames from editor mode to timeline mode\n"+
 		"L)    Send frames from editor mode to the grid view\n"+
-        "Delete)    Delete selected object\n"+
+        ""+get_delete_string()+")    Delete selected object\n"+
         "P)    Toggle 3D frame previewing\n"+
         "Shift)    Force horizontal or vertical lines when drawing\n"+
         "Q)    Snap cursor to the nearest tip of object\n"+
@@ -63,7 +63,7 @@ else if (room == rm_seq)
 		"J)    Create a jump point (where you can press a button to jump to this timeline position)\n\n"+
 		""+get_ctrl_string()+"+1)    Set start positione\n"+
 		""+get_ctrl_string()+"+2)    Set end position\n\n"+
-        "Delete)    Delete selected object\n"+
+        ""+get_delete_string()+")    Delete selected object\n"+
         ""+get_ctrl_string()+"+Z)    Undo\n"+
 		""+get_ctrl_string()+"+Y)    Redo\n"+
         ""+get_ctrl_string()+"+C)    Copy selected objects\n"+
@@ -96,7 +96,7 @@ else if (room == rm_live)
         "Tab)    Enter editor mode\n"+
 		"L)    Send frames from editor mode to the grid view\n"+
         "I)    Send the selected frames from the grid view to the timeline mode\n"+
-        "Delete)    Delete selected object\n"+
+        ""+get_delete_string()+")    Delete selected object\n"+
 		"X)    Toggle exclusive playback of selected object\n"+
 		"O)    Toggle looping of selected object\n"+
 		"R)    Toggle restarting/resuming when playing selected object\n"+

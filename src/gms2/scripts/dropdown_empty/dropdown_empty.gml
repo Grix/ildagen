@@ -4,7 +4,7 @@ function dropdown_empty() {
 	{
 	    num = 3;
 	    event_user(1);
-	    ds_list_add(desc_list,"Paste");
+	    ds_list_add(desc_list,"Paste ("+get_ctrl_string()+"V)");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,paste_object);
 	    ds_list_add(hl_list,controller.copy_list != -1);
