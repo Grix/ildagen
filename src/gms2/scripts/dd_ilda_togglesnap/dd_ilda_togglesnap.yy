@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "dropdown_menu_ilda_tools",
+  "name": "dd_ilda_togglesnap",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

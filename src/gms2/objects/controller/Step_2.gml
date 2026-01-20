@@ -300,9 +300,12 @@ if (ds_list_size(el_list) > 0)
         }
     }
 	// snap to closest edge
-    else if (keyboard_check(ord("Q")))
+    else if (keyboard_check(ord("Q")) || snap_mode > 0)
     {
-        nearestdist = 32*dpi_multiplier;
+		if (keyboard_check(ord("Q")) || snap_mode > 1)
+			nearestdist = 32*dpi_multiplier;
+		else
+			nearestdist = 8*dpi_multiplier;
 		//log(mouse_x,mouse_y-camera_get_view_y(view_camera[4]));
         for (i = 0;i < ds_list_size(el_list);i++)
         {

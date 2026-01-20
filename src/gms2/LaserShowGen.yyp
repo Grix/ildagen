@@ -1073,6 +1073,7 @@
     {"id":{"name":"midi_get_note_name","path":"scripts/midi_get_note_name/midi_get_note_name.yy",},"order":5,},
     {"id":{"name":"obj_customsimulation","path":"objects/obj_customsimulation/obj_customsimulation.yy",},"order":19,},
     {"id":{"name":"obj_dacname","path":"objects/obj_dacname/obj_dacname.yy",},"order":20,},
+    {"id":{"name":"dd_ilda_togglesnap","path":"scripts/dd_ilda_togglesnap/dd_ilda_togglesnap.yy",},"order":36,},
     {"id":{"name":"obj_colorscale","path":"objects/obj_colorscale/obj_colorscale.yy",},"order":21,},
     {"id":{"name":"obj_scanrate","path":"objects/obj_scanrate/obj_scanrate.yy",},"order":22,},
     {"id":{"name":"obj_maxdwell","path":"objects/obj_maxdwell/obj_maxdwell.yy",},"order":23,},

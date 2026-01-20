@@ -21,6 +21,9 @@ function save_settings() {
 			ini_write_real("main", "use_bpm", use_bpm);
 			ini_write_real("main", "bpm", bpm);
 			ini_write_real("main", "beats_per_bar", beats_per_bar);
+			ini_write_real("main", "snap_mode", controller.snap_mode);
+			ini_write_real("main", "square_grid_show", controller.sgridshow);
+			ini_write_real("main", "square_grid_columns", controller.sgridnum);
 			/*ini_write_real("main", "window_width", window_get_width());
 			ini_write_real("main", "window_height", window_get_height());
 			ini_write_real("main", "window_x", window_get_x());

@@ -105,6 +105,9 @@ function load_settings() {
 			beats_per_bar = ini_read_real("main", "beats_per_bar", 4);
 			seqcontrol.projectfps = projectfps;
 			livecontrol.bpm_adjusted = bpm;
+			controller.snap_mode = ini_read_real("main", "snap_mode", 1);
+			controller.sgridshow = ini_read_real("main", "square_grid_show", 0);
+			controller.sgridnum = ini_read_real("main", "square_grid_columns", 16);
 		
 			/*if (!ini_read_real("main", "window_width", 0))
 			{

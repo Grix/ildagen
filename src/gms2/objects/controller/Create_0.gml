@@ -216,7 +216,7 @@ rgriddouble = 0;
 guidelineshow = 0;
 guidelinedouble = 0;
 sgridnum = 16;
-
+snap_mode = 1;
 
 mouse_yprevious = mouse_y;
 mouse_xprevious = mouse_x;
