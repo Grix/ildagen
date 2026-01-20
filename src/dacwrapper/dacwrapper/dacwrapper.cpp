@@ -26,10 +26,10 @@ GMEXPORT double InitDacwrapper()
 	
 	initialized = true;
 
-	ScanNetworkInterfaces();
+	DmxScanDevices();
 	dmxDevice = new Dmx();
-	if (interfaceIps.size() > 0)
-		dmxDevice->SetInterfaceIp(interfaceIps[0].c_str());
+	if (dmxDeviceIps.size() > 0)
+		dmxDevice->SetInterfaceIp(dmxDeviceIps[0].c_str());
 
 	return 1.0;
 }
@@ -535,9 +535,9 @@ GMEXPORT double DmxSetIp(char* ip)
 	return 1;
 }
 
-GMEXPORT double ScanNetworkInterfaces()
+GMEXPORT double DmxScanDevices()
 {
-	interfaceIps.clear();
+	dmxDeviceIps.clear();
 
 	struct addrinfo* servinfo;              // Will point to the results
 	struct addrinfo hints;                  // Hints about the caller-supported socket types
@@ -562,7 +562,7 @@ GMEXPORT double ScanNetworkInterfaces()
 
 		char* ipStr = inet_ntoa((ifSockAddr->sin_addr));
 
-		interfaceIps.push_back(ipStr);
+		dmxDeviceIps.push_back(ipStr);
 	}
 
 	// Interface list is dynamically allocated and must be freed
@@ -588,7 +588,7 @@ GMEXPORT double ScanNetworkInterfaces()
 
 		char* ipStr = inet_ntoa((ifSockAddr->sin_addr));
 
-		interfaceIps.push_back(ipStr);
+		dmxDeviceIps.push_back(ipStr);
 	}
 
 	// Interface list is dynamically allocated and must be freed
@@ -597,11 +597,20 @@ GMEXPORT double ScanNetworkInterfaces()
 
 }
 
-GMEXPORT char* GetNetworkInterfaceIp(double _index) 
+GMEXPORT char* DmxGetDeviceIp(double _index)
 {
 	int index = (int)round(_index);
-	if (index < 0 || index >= interfaceIps.size())
+	if (index < 0 || index >= dmxDeviceIps.size())
 		return "";
 	
-	return (char*)interfaceIps[index].c_str();
+	return (char*)dmxDeviceIps[index].c_str();
+}
+
+GMEXPORT char* DmxGetDeviceName(double _index)
+{
+	int index = (int)round(_index);
+	if (index < 0 || index >= dmxDeviceIps.size())
+		return "";
+
+	return (char*)dmxDeviceIps[index].c_str(); // Todo
 }

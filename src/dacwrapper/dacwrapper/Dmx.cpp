@@ -15,17 +15,17 @@ void Dmx::SetEnabled(bool enabled)
 {
 	std::lock_guard<std::mutex>lock(lock);
 
-	if (enabled && !artnet)
+	if (enabled && !artnet_output)
 	{
 		StartArtnet();
 	}
 	else if (!enabled)
 	{
-		if (artnet)
+		if (artnet_output)
 		{
-			artnet_stop(artnet);
-			artnet_destroy(artnet);
-			artnet = NULL;
+			artnet_stop(artnet_output);
+			artnet_destroy(artnet_output);
+			artnet_output = NULL;
 		}
 	}
 }
@@ -47,7 +47,7 @@ void Dmx::SetInterfaceIp(const char* newIp)
 	else
 		strncpy(ip, newIp, 32);
 
-	if (artnet)
+	if (artnet_output)
 		StartArtnet(); // Restart to apply
 }
 
@@ -55,32 +55,32 @@ int Dmx::StartArtnet()
 {
 	std::lock_guard<std::mutex>lock(lock);
 
-	if (artnet)
+	if (artnet_output)
 	{
-		artnet_stop(artnet);
-		artnet_destroy(artnet);
+		artnet_stop(artnet_output);
+		artnet_destroy(artnet_output);
 	}
 
-	artnet = artnet_new(ip[0] ? ip : NULL, 0);
-	if (artnet == NULL) {
+	artnet_output = artnet_new(ip[0] ? ip : NULL, 0);
+	if (artnet_output == NULL) {
 		fprintf(stderr, "Failed to create Art-Net node, new\n");
 		return -1;
 	}
 
-	artnet_set_short_name(artnet, "LaserShowGen");
-	artnet_set_long_name(artnet, "LaserShowGen Artnet Output");
-	artnet_set_node_type(artnet, ARTNET_SRV);
+	artnet_set_short_name(artnet_output, "LaserShowGen");
+	artnet_set_long_name(artnet_output, "LaserShowGen Artnet Output");
+	artnet_set_node_type(artnet_output, ARTNET_SRV);
 
 	// set the first port to input dmx data
-	artnet_set_port_type(artnet, 0, ARTNET_ENABLE_INPUT, ARTNET_PORT_DMX);
-	//artnet_set_subnet_addr(artnet, 0);
+	artnet_set_port_type(artnet_output, 0, ARTNET_ENABLE_INPUT, ARTNET_PORT_DMX);
+	//artnet_set_subnet_addr(artnet_output, 0);
 
 	// set the universe address of the first port
-	int ret = artnet_start(artnet);
+	int ret = artnet_start(artnet_output);
 	if (ret != ARTNET_EOK) {
 		fprintf(stderr, "Failed to start Art-Net node, start, %d\n", ret);
-		artnet_destroy(artnet);
-		artnet = NULL;
+		artnet_destroy(artnet_output);
+		artnet_output = NULL;
 		return ret;
 	}
 
@@ -103,7 +103,7 @@ void Dmx::TxThread()
 
 		std::lock_guard<std::mutex>lock(lock);
 
-		if (artnet)
+		if (artnet_output)
 		{
 			auto now = std::chrono::steady_clock::now();
 
@@ -111,7 +111,7 @@ void Dmx::TxThread()
 			{
 				if (isInUse[i] && (sendUpdate[i] > 0 || nextForcedUpdate[i] > now))
 				{
-					artnet_send_dmx(artnet, i, 512, data[i]);
+					artnet_send_dmx(artnet_output, i, 512, data[i]);
 
 					if (sendUpdate[i] > 0)
 						sendUpdate[i]--;
@@ -122,9 +122,9 @@ void Dmx::TxThread()
 	}
 
 	// Cleanup
-	if (artnet)
+	if (artnet_output)
 	{
-		artnet_stop(artnet);
-		artnet_destroy(artnet);
+		artnet_stop(artnet_output);
+		artnet_destroy(artnet_output);
 	}
 }

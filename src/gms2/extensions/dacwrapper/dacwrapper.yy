@@ -58,8 +58,8 @@
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_dmx_set_ip","externalName":"DmxSetIp","kind":1,"help":"dacwrapper_dmx_setip(ip_addr_string)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
           ],"documentation":"",},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_scan_interfaces","externalName":"ScanNetworkInterfaces","kind":1,"help":"ScanNetworkInterfaces()","hidden":false,"returnType":2,"argCount":0,"args":[],"documentation":"",},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_get_interface","externalName":"GetNetworkInterfaceIp","kind":1,"help":"dacwrapper_get_interface(index)","hidden":false,"returnType":1,"argCount":0,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_dmx_scan_interfaces","externalName":"DmxScanDevices","kind":1,"help":"dacwrapper_dmx_scan_interfaces()","hidden":false,"returnType":2,"argCount":0,"args":[],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_get_interface_ip","externalName":"DmxGetDeviceIp","kind":1,"help":"dacwrapper_get_interface_ip(index)","hidden":false,"returnType":1,"argCount":0,"args":[
             2,
           ],"documentation":"",},
       ],"constants":[],"ProxyFiles":[

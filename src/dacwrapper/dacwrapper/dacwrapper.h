@@ -55,7 +55,7 @@ typedef struct {
 DAC dacs[32];
 std::mutex dacMutex[32];
 
-std::vector<std::string> interfaceIps;
+std::vector<std::string> dmxDeviceIps;
 
 GMEXPORT double InitDacwrapper();
 GMEXPORT double FreeDacwrapper();
@@ -72,6 +72,6 @@ GMEXPORT double DmxSetValue(double address, double index, double value);
 GMEXPORT double DmxSetEnabled(double enabled);
 GMEXPORT double DmxSetIp(char* ip);
 //GMEXPORT double DmxSetUnicast(double ipAddr);
-GMEXPORT double ScanNetworkInterfaces();
-GMEXPORT char* GetNetworkInterfaceIp(double index);
-//GMEXPORT char* GetNetworkInterfaceName(double index);
+GMEXPORT double DmxScanDevices();
+GMEXPORT char* DmxGetDeviceIp(double index);
+GMEXPORT char* DmxGetDeviceName(double index);

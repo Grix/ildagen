@@ -24,7 +24,8 @@ public:
 private:
 
 	char ip[32] = { 0 };
-	artnet_node artnet = NULL;
+	artnet_node artnet_output = NULL;
+	artnet_node artnet_input = NULL;
 	bool closed = false;
 	std::mutex lock;
 	uint8_t data[MAX_UNIVERSES][512] = { 0 };
