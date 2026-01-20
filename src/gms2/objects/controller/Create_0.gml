@@ -238,6 +238,8 @@ else
 ini_close();
 default_window_w = 1350*dpi_multiplier;
 default_window_h = 735*dpi_multiplier;
+previous_windows_w = -1;
+previous_windows_h = -1;
 log("window size", default_window_w, default_window_h);
 
 tooltip = "";

@@ -4,7 +4,7 @@ if (room != rm_options)
 var t_windowwidth = window_get_width();
 var t_windowheight = window_get_height();
 	
-if (t_windowheight != (view_hport[3]+view_hport[0]) || t_windowwidth != view_wport[3])
+if (t_windowheight != controller.previous_windows_h || t_windowwidth != controller.previous_windows_w)
 && !(t_windowheight == 0 || t_windowwidth == 0)
 || controller.forceresize
 {
@@ -35,6 +35,9 @@ if (t_windowheight != (view_hport[3]+view_hport[0]) || t_windowwidth != view_wpo
 	camera_set_view_size(view_camera[1], view_wport[1]/controller.dpi_multiplier, view_hport[1]/controller.dpi_multiplier);
 	
 	free_scalable_surfaces();
+	
+	controller.previous_windows_h = t_windowheight;
+	controller.previous_windows_w = t_windowwidth;
 }
 
 if (keyboard_check_pressed(vk_tab))

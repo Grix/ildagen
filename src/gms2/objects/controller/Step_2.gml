@@ -70,7 +70,7 @@ if (room != rm_ilda)
 var t_windowwidth = window_get_width();
 var t_windowheight = window_get_height();
 	
-if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwidth != view_wport[3])
+if (t_windowheight != controller.previous_windows_h || t_windowwidth != controller.previous_windows_w)
 && !(t_windowheight == 0 || t_windowwidth == 0)
 || forceresize
 {
@@ -131,6 +131,9 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 	//view_wport[2] = t_windowwidth;
 	
 	free_scalable_surfaces();
+	
+	controller.previous_windows_h = t_windowheight;
+	controller.previous_windows_w = t_windowwidth;
 }
 
 if (frame >= ds_list_size(frame_list) || frame < 0)

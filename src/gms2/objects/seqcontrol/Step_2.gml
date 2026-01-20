@@ -31,7 +31,7 @@ doubleclick_mousexprevious = mouse_x;
 var t_windowwidth = window_get_width();
 var t_windowheight = window_get_height();
 
-if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwidth != view_wport[3])
+if (t_windowheight != controller.previous_windows_h || t_windowwidth != controller.previous_windows_w)
 && !(t_windowheight == 0 || t_windowwidth == 0)
 || controller.forceresize
 {
@@ -89,6 +89,9 @@ if (t_windowheight != (view_hport[3]+view_hport[4]+view_hport[1]) || t_windowwid
 		inst_quicktip_seq.y = camera_get_view_y(view_camera[1])+250;
 	
 	free_scalable_surfaces();
+	
+	controller.previous_windows_h = t_windowheight;
+	controller.previous_windows_w = t_windowwidth;
 }
 
 if (playlist_start_next_flag)
