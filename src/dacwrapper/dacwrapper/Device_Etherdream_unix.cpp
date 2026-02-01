@@ -31,8 +31,12 @@ bool Device_Etherdream::OpenDevice(int cardNum)
 		return false;
 
 	frameNum[cardNum] = 0;
+	
+	struct etherdream* ed = etherdream_get(cardNum);
+	if (ed == NULL)
+		return false;
 
-	return (etherdream_connect(etherdream_get(cardNum)) == 0);
+	return (etherdream_connect(ed) == 0);
 }
 
 bool Device_Etherdream::CloseDevice(int cardNum)
@@ -40,8 +44,12 @@ bool Device_Etherdream::CloseDevice(int cardNum)
 	if (!ready) 
 		return false;
 
-	etherdream_stop(etherdream_get(cardNum));
-	etherdream_disconnect(etherdream_get(cardNum));
+	struct etherdream* ed = etherdream_get(cardNum);
+	if (ed == NULL)
+		return false;
+
+	etherdream_stop(ed);
+	etherdream_disconnect(ed);
     return true;
 }
 
@@ -70,6 +78,8 @@ bool Device_Etherdream::Stop(int cardNum)
 	int thisFrameNum = ++frameNum[cardNum];
     
     struct etherdream* ed = etherdream_get(cardNum);
+	if (ed == NULL)
+		return false;
     struct etherdream_point* dat = new struct etherdream_point[100];
 	for (int i = 0; i < 100; i++)
 	{
@@ -106,6 +116,8 @@ bool Device_Etherdream::OutputFrame(int cardNum, const struct etherdream_point* 
 	int thisFrameNum = ++frameNum[cardNum];
     
     struct etherdream* ed = etherdream_get(cardNum);
+	if (ed == NULL)
+		return false;
 
 	std::lock_guard<std::mutex> lock(frameLock[cardNum]);
 
