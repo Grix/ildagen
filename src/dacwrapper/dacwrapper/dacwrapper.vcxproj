@@ -182,6 +182,7 @@
     <ClCompile Include="Device_OLSC_EzAudDac.cpp" />
     <ClCompile Include="Device_RIYA.cpp" />
     <ClCompile Include="Dmx.cpp" />
+    <ClCompile Include="e131.c" />
     <ClCompile Include="HeliosDac.cpp" />
     <ClCompile Include="idn.cpp" />
     <ClCompile Include="idnServerList.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="Device_OLSC_EzAudDac.h" />
     <ClInclude Include="Device_RIYA.h" />
     <ClInclude Include="Dmx.h" />
+    <ClInclude Include="e131.h" />
     <ClInclude Include="HeliosDac.h" />
     <ClInclude Include="idn-hello.h" />
     <ClInclude Include="idn-stream.h" />

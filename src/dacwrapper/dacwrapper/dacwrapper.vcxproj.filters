@@ -114,6 +114,9 @@
     <ClCompile Include="Dmx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="e131.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device_RIYA.h">
@@ -198,6 +201,9 @@
       <Filter>Header Files\Artnet</Filter>
     </ClInclude>
     <ClInclude Include="Dmx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="e131.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

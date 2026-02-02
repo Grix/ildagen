@@ -48,7 +48,8 @@
             2,
           ],"documentation":"",},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_returnone","externalName":"ReturnOne","kind":1,"help":"dacwrapper_returnone()","hidden":false,"returnType":2,"argCount":0,"args":[],"documentation":"",},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_dmx_setenable","externalName":"DmxSetEnabled","kind":1,"help":"dacwrapper_dmx_setenable(enabled)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_dmx_setenable","externalName":"DmxSetEnabled","kind":1,"help":"dacwrapper_dmx_setenable(enableArtnet, enableSacn)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
             2,
           ],"documentation":"",},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_dmx_setvalue","externalName":"DmxSetValue","kind":1,"help":"dacwrapper_dmx_setvalue(double address, double value)","hidden":false,"returnType":2,"argCount":0,"args":[

@@ -205,6 +205,25 @@ filelist
 		14 description (todo implement)
 		15 thumbnail frame number 
 		
+DMX channels
+- 0: master intensity / blackout, 0 - 30 is deadband
+- 1: mode (reserved, keep at 0 for forward compatibility)
+- 2: file 1: 0 - 30 is blackout, 31 = id 1 playing etc
+- 3: file 1 speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 128 = 100%, 255 = 400%
+- 4: file 1 intensity / blackout, 0 - 30 is deadband
+- 5: file 2: 0 - 30 is blackout, 31 = id 1 playing etc
+- 6: file 2 speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 128 = 100%, 255 = 400%
+- 7: file 2 intensity / blackout, 0 - 30 is deadband
+- 8: file 3: 0 - 30 is blackout, 31 = id 1 playing etc
+- 9: file 3 speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 128 = 100%, 255 = 400%
+- 10: file 3 intensity / blackout, 0 - 30 is deadband
+- 11: file 4: 0 - 30 is blackout, 31 = id 1 playing etc
+- 12: file 4 speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 128 = 100%, 255 = 400%
+- 13: file 4 intensity / blackout, 0 - 30 is deadband
+- 14: file 5: 0 - 30 is blackout, 31 = id 1 playing etc
+- 15: file 5 speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 128 = 100%, 255 = 400%
+- 16: file 5 intensity / blackout, 0 - 30 is deadband
+		
 Fonts
 Text tiles are drawn with paint.net, font Arial, sizes 10 and 12, color pure black
 text on buttons are capitalized segoe UI semibold size 7 med paint.net aliasing mode "sharp", color pure black (not sure but very similar)

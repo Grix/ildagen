@@ -520,9 +520,9 @@ GMEXPORT double DmxSetValue(double address, double index, double value)
 	return 1;
 }
 
-GMEXPORT double DmxSetEnabled(double enabled)
+GMEXPORT double DmxSetEnabled(double enableArtnet, double enableSacn)
 {
-	dmxDevice->SetEnabled(enabled > 0.5);
+	dmxDevice->SetEnabled(enableArtnet > 0.5, enableSacn > 0.5);
 	return 1;
 }
 
@@ -595,6 +595,7 @@ GMEXPORT double DmxScanDevices()
 	freeaddrinfo(servinfo);
 #endif
 
+	return 1;
 }
 
 GMEXPORT char* DmxGetDeviceIp(double _index)

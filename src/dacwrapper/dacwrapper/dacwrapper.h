@@ -69,7 +69,7 @@ GMEXPORT double SetName(double dacNum, char* name);
 GMEXPORT double GetFirmwareVersion(double dacNum);
 //GMEXPORT double UpdateSettings(uint8_t* bufferAddress);
 GMEXPORT double DmxSetValue(double address, double index, double value);
-GMEXPORT double DmxSetEnabled(double enabled);
+GMEXPORT double DmxSetEnabled(double enableArtnet, double enableSacn);
 GMEXPORT double DmxSetIp(char* ip);
 //GMEXPORT double DmxSetUnicast(double ipAddr);
 GMEXPORT double DmxScanDevices();
