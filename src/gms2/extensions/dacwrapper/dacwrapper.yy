@@ -63,6 +63,12 @@
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_get_interface_ip","externalName":"DmxGetDeviceIp","kind":1,"help":"dacwrapper_get_interface_ip(index)","hidden":false,"returnType":1,"argCount":0,"args":[
             2,
           ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_dmx_getvalue","externalName":"DmxGetValue","kind":1,"help":"dacwrapper_dmx_getvalue(index)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"dacwrapper_dmx_set_rx_universe","externalName":"DmxSetRxUniverse","kind":1,"help":"dacwrapper_dmx_set_rx_universe(universe)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+          ],"documentation":"",},
       ],"constants":[],"ProxyFiles":[
         {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"libdacwrapper.dylib","TargetMask":1,},
         {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"libdacwrapper.so","TargetMask":7,},

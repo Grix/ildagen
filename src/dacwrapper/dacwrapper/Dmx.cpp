@@ -4,8 +4,8 @@ Dmx::Dmx()
 {
 	//std::thread txThread(&Dmx::TxThread, this);
 	//txThread.detach();
-	std::thread rxThread(&Dmx::RxThread, this);
-	rxThread.detach();
+	//std::thread rxThread(&Dmx::RxThread, this);
+	//rxThread.detach();
 }
 
 Dmx::~Dmx()
@@ -37,25 +37,32 @@ void Dmx::SetEnabled(bool enableArtNet, bool enableSacn)
 	{
 		if (sacnSockfd != -1)
 		{
+			fprintf(stderr, "Closed sACN rx socket\n");
 #ifdef WIN32
 			shutdown(sacnSockfd, SD_BOTH);
 			closesocket(sacnSockfd);
 #else
 			close(sacnSockfd);
 #endif
+			std::lock_guard<std::mutex>lock(sacnLock);
 			sacnSockfd = -1;
 		}
 	}
 }
 
-void Dmx::SetValue(unsigned int address, unsigned int index, uint8_t value)
+void Dmx::SetOutputValue(unsigned int address, unsigned int index, uint8_t value)
 {
 	if (index >= 512)
 		return;
 
-	data[address & 0xFF][index] = value;
-	isInUse[address & 0xFF] = true;
+	outputData[address & 0xFF][index] = value;
+	isInOutputUse[address & 0xFF] = true;
 	sendUpdate[address & 0xFF] = 2;
+}
+
+uint8_t Dmx::GetInputValue(unsigned short index)
+{
+	return inputData[index];
 }
 
 void Dmx::SetInterfaceIp(const char* newIp)
@@ -73,13 +80,15 @@ void Dmx::SetInterfaceIp(const char* newIp)
 
 void Dmx::SetRxUniverse(const int universe)
 {
-	if (universe < 0 || universe == rxUniverse)
+	if (universe < 0 || universe == rxUniverse || universe > 0xFFFF)
 		return;
 
 	rxUniverse = universe;
 
 	if (artnet_output)
 		StartArtnet(); // Restart to apply
+	if (sacnSockfd != -1)
+		StartSacn();
 }
 
 int Dmx::GetRxUniverse()
@@ -120,13 +129,13 @@ int Dmx::StartArtnet()
 		return ret;
 	}
 
-	for (int i = 0; i < MAX_UNIVERSES; i++)
+	for (int i = 0; i < MAX_OUTPUT_UNIVERSES; i++)
 	{
-		isInUse[i] = false;
+		isInOutputUse[i] = false;
 		sendUpdate[i] = 2;
 		nextForcedUpdate[i] = std::chrono::steady_clock::now() + std::chrono::milliseconds(900);
 	}
-	memset(data, 0, 512 * MAX_UNIVERSES);
+	memset(outputData, 0, 512 * MAX_OUTPUT_UNIVERSES);
 
 	return 0;
 }
@@ -141,12 +150,17 @@ int Dmx::StartSacn()
 
 	if (sacnSockfd != -1)
 	{
+		closed = true;
+		fprintf(stderr, "Closed sACN rx socket\n");
 #ifdef WIN32
 		shutdown(sacnSockfd, SD_BOTH);
 		closesocket(sacnSockfd);
 #else
 		close(sacnSockfd);
 #endif
+		sacnSockfd = -1;
+		std::this_thread::sleep_for(std::chrono::milliseconds(100)); // TODO close and join the thread properly instead of this crap
+		closed = false;
 	}
 
 	// create a socket for E1.31
@@ -167,10 +181,13 @@ int Dmx::StartSacn()
 	}
 
 	// join the socket to multicast group for universe 1 on the default network interface
-	ret = e131_multicast_join_iface(sacnSockfd, rxUniverse, 0);
+	if (ip[0])
+		ret = e131_multicast_join_iface(sacnSockfd, rxUniverse, 0);
+	if (ret < 0)
+		ret = e131_multicast_join_ifaddr(sacnSockfd, rxUniverse, ip);
 	if (ret < 0)
 	{
-		fprintf(stderr, "ERROR: Failed to start sACN: e131_multicast_join_iface, %d\n", ret);
+		fprintf(stderr, "ERROR: Failed to start sACN: e131_multicast_join_iface/ifaddr, %d\n", ret);
 		sacnSockfd = -1;
 		return -1;
 	}
@@ -193,11 +210,11 @@ void Dmx::TxThread()
 		{
 			auto now = std::chrono::steady_clock::now();
 
-			for (int i = 0; i < MAX_UNIVERSES; i++)
+			for (int i = 0; i < MAX_OUTPUT_UNIVERSES; i++)
 			{
-				if (isInUse[i] && (sendUpdate[i] > 0 || nextForcedUpdate[i] > now))
+				if (isInOutputUse[i] && (sendUpdate[i] > 0 || nextForcedUpdate[i] > now))
 				{
-					artnet_send_dmx(artnet_output, i, 512, data[i]);
+					artnet_send_dmx(artnet_output, i, 512, outputData[i]);
 
 					if (sendUpdate[i] > 0)
 						sendUpdate[i]--;
@@ -232,9 +249,15 @@ void Dmx::SacnRxThread()
 		if (sacnSockfd != -1)
 		{
 			int ret = e131_recv(sacnSockfd, &packet);
+
 			if (ret < 0)
 			{
-				fprintf(stderr, "Warning: Failed sACN rx: e131_recv, %d\n", ret);
+#ifdef WIN32
+				int error = WSAGetLastError();
+#else
+				int error = errno;
+#endif
+				fprintf(stderr, "Warning: Failed sACN rx: e131_recv, %d %d\n", ret, error);
 				continue;
 			}
 			if ((error = e131_pkt_validate(&packet)) != E131_ERR_NONE)
@@ -251,8 +274,13 @@ void Dmx::SacnRxThread()
 #ifndef DEBUG
 			e131_pkt_dump(stderr, &packet);
 #endif
-
-			// todo Handle sACN packet
+			if (ntohs(packet.frame.universe) == GetRxUniverse() && !e131_get_option(&packet, E131_OPT_PREVIEW))
+			{
+				size_t channel = ntohs(packet.dmp.first_addr);
+				unsigned int increment = ntohs(packet.dmp.addr_inc);
+				for (size_t pos = 0, total = min(ntohs(packet.dmp.prop_val_cnt), 513); pos < total; pos++, channel += increment)
+					inputData[channel] = packet.dmp.prop_val[pos];
+			}
 
 			last_seq = packet.frame.seq_number;
 		}

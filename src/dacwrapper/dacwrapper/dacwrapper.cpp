@@ -516,8 +516,13 @@ GMEXPORT double GetFirmwareVersion(double doubleNum)
 
 GMEXPORT double DmxSetValue(double address, double index, double value)
 {
-	dmxDevice->SetValue((unsigned int)(address + 0.5), (unsigned int)(index + 0.5), (unsigned int)(value + 0.5));
+	dmxDevice->SetOutputValue((unsigned int)(address + 0.5), (unsigned int)(index + 0.5), (unsigned int)(value + 0.5));
 	return 1;
+}
+
+GMEXPORT double DmxGetValue(double index)
+{
+	return dmxDevice->GetInputValue((unsigned int)(index + 0.5));
 }
 
 GMEXPORT double DmxSetEnabled(double enableArtnet, double enableSacn)
@@ -532,6 +537,12 @@ GMEXPORT double DmxSetIp(char* ip)
 		return -1;
 
 	dmxDevice->SetInterfaceIp(ip);
+	return 1;
+}
+
+GMEXPORT double DmxSetRxUniverse(double universe)
+{
+	dmxDevice->SetRxUniverse((unsigned int)(universe + 0.5));
 	return 1;
 }
 
@@ -615,3 +626,4 @@ GMEXPORT char* DmxGetDeviceName(double _index)
 
 	return (char*)dmxDeviceIps[index].c_str(); // Todo
 }
+
