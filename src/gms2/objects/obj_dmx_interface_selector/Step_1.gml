@@ -1,7 +1,11 @@
 if (instance_exists(obj_dropdown))
     exit;
     
-if (mouse_x > x+80) and (mouse_x < (x+290)) and (mouse_y > y) and ((mouse_y < y+22))
+visible = (controller.enable_artnet || controller.enable_sacn);
+if (!visible) 
+	exit;
+	
+if (mouse_x > x+100) and (mouse_x < (x+250)) and (mouse_y > y) and ((mouse_y < y+22))
 {
     highlight = 1;
     controller.tooltip = "Choose which network interface to use for receiving Art-Net or sACN DMX data.";

@@ -171,6 +171,15 @@ function process_dialog_ilda() {
               
 	              break;
 	          }
+			  
+	            case "dmx_universe":
+	          {
+	              dmx_universe = clamp(ds_map_find_value(argument[0], "value"), 0, 65535);
+				  dacwrapper_dmx_set_rx_universe(dmx_universe);
+              
+	              break;
+	          }
+			  
 	            case "wavet":
 	          {
 	              wave_period = ds_map_find_value(argument[0], "value");

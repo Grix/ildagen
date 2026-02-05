@@ -1,8 +1,8 @@
 function dropdown_dmx_interface_selector() {
-	ddobj = instance_create_layer((obj_dmx_interface_selector.x + 80)*controller.dpi_multiplier,(obj_dmx_interface_selector.y)*controller.dpi_multiplier,"foreground",obj_dropdown);
+	ddobj = instance_create_layer((obj_dmx_interface_selector.x + 100)*controller.dpi_multiplier,(obj_dmx_interface_selector.y)*controller.dpi_multiplier,"foreground",obj_dropdown);
 	with (ddobj)
 	{
-		total_width = (290-80)*controller.dpi_multiplier;
+		total_width = (250-100)*controller.dpi_multiplier;
 		
 	    num = dacwrapper_dmx_scan_interfaces();
 		for (var t_i = 0; t_i < num; t_i++)

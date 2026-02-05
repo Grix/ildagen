@@ -208,6 +208,8 @@ use_bpm = true;
 bpm = 120;
 bpm_timeline_offset_frames = 0;
 beats_per_bar = 4;
+enable_artnet = false;
+enable_sacn = false;
 
 sgridshow = 0;
 rgridshow = 0;

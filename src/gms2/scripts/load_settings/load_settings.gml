@@ -1,4 +1,5 @@
 function load_settings() {
+	
 	with (controller)
 	{
 	    if (os_type != os_linux)
@@ -108,6 +109,9 @@ function load_settings() {
 			controller.snap_mode = ini_read_real("main", "snap_mode", 1);
 			controller.sgridshow = ini_read_real("main", "square_grid_show", 0);
 			controller.sgridnum = ini_read_real("main", "square_grid_columns", 16);
+			controller.dmx_universe = ini_read_real("main", "dmx_universe", 1);
+			controller.enable_artnet = ini_read_real("main", "enable_artnet", 0);
+			controller.enable_sacn = ini_read_real("main", "enable_sacn", 0);
 		
 			/*if (!ini_read_real("main", "window_width", 0))
 			{
@@ -126,7 +130,5 @@ function load_settings() {
 	}
 
 	load_profile();
-
-
 
 }

@@ -24,6 +24,9 @@ function save_settings() {
 			ini_write_real("main", "snap_mode", controller.snap_mode);
 			ini_write_real("main", "square_grid_show", controller.sgridshow);
 			ini_write_real("main", "square_grid_columns", controller.sgridnum);
+			ini_write_real("main", "dmx_universe", controller.dmx_universe);
+			ini_write_real("main", "enable_artnet", controller.enable_artnet);
+			ini_write_real("main", "enable_sacn", controller.enable_sacn);
 			/*ini_write_real("main", "window_width", window_get_width());
 			ini_write_real("main", "window_height", window_get_height());
 			ini_write_real("main", "window_x", window_get_x());

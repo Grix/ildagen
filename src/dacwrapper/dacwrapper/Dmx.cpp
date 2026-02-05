@@ -142,8 +142,6 @@ int Dmx::StartArtnet()
 
 int Dmx::StartSacn()
 {
-	std::lock_guard<std::mutex>lock(sacnLock);
-
 	e131_packet_t packet;
 	e131_error_t error;
 	uint8_t last_seq = 0x00;
@@ -158,8 +156,8 @@ int Dmx::StartSacn()
 #else
 		close(sacnSockfd);
 #endif
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 		sacnSockfd = -1;
-		std::this_thread::sleep_for(std::chrono::milliseconds(100)); // TODO close and join the thread properly instead of this crap
 		closed = false;
 	}
 
@@ -244,11 +242,11 @@ void Dmx::SacnRxThread()
 	{
 		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
-		std::lock_guard<std::mutex>lock(sacnLock);
+		int socket = sacnSockfd;
 
-		if (sacnSockfd != -1)
+		if (socket != -1)
 		{
-			int ret = e131_recv(sacnSockfd, &packet);
+			int ret = e131_recv(socket, &packet);
 
 			if (ret < 0)
 			{
@@ -271,7 +269,7 @@ void Dmx::SacnRxThread()
 				last_seq = packet.frame.seq_number;
 				continue;
 			}
-#ifndef DEBUG
+#ifndef NDEBUG
 			e131_pkt_dump(stderr, &packet);
 #endif
 			if (ntohs(packet.frame.universe) == GetRxUniverse() && !e131_get_option(&packet, E131_OPT_PREVIEW))
