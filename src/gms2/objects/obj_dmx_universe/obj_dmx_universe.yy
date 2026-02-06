@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "obj_dmx_universe",
   "spriteId": {
-    "name": "spr_funcv",
-    "path": "sprites/spr_funcv/spr_funcv.yy",
+    "name": "spr_blankselector",
+    "path": "sprites/spr_blankselector/spr_blankselector.yy",
   },
   "solid": false,
   "visible": true,

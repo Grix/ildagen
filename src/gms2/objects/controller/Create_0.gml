@@ -8,6 +8,7 @@ global.list_pool_is_alive = ds_list_create();
 
 test_numsteps = 0;
 test_time = 0;
+previous_dmx = 0;
 
 if (debug_mode)
 {

@@ -447,6 +447,7 @@
     {"id":{"name":"_ML_LiTOp_Create","path":"scripts/_ML_LiTOp_Create/_ML_LiTOp_Create.yy",},"order":3,},
     {"id":{"name":"_ML_LiAOp_Create","path":"scripts/_ML_LiAOp_Create/_ML_LiAOp_Create.yy",},"order":0,},
     {"id":{"name":"clear_timeline_jump_points","path":"scripts/clear_timeline_jump_points/clear_timeline_jump_points.yy",},"order":39,},
+    {"id":{"name":"spr_blankselector","path":"sprites/spr_blankselector/spr_blankselector.yy",},"order":74,},
     {"id":{"name":"_ML_LiAOp_Destroy","path":"scripts/_ML_LiAOp_Destroy/_ML_LiAOp_Destroy.yy",},"order":1,},
     {"id":{"name":"_ML_LiS_Destroy","path":"scripts/_ML_LiS_Destroy/_ML_LiS_Destroy.yy",},"order":0,},
     {"id":{"name":"_ML_LiS_GetScript","path":"scripts/_ML_LiS_GetScript/_ML_LiS_GetScript.yy",},"order":1,},

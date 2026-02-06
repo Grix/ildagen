@@ -6,4 +6,4 @@ controller.enable_artnet = !controller.enable_artnet;
 if (controller.enable_artnet)
 	controller.enable_sacn = false;
 	
-dacwrapper_dmx_setenable(controller.enable_artnet, controller.enable_artnet);
+dacwrapper_dmx_setenable(controller.enable_artnet, controller.enable_sacn);

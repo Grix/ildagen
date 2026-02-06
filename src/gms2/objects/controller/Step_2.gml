@@ -2,10 +2,10 @@ if (window_command_check(window_command_close)) // NB: Causes problems in HTML5 
     exit_confirm();
 	
 // DEBUG!!!!!
-log("Dmx channel 1 val: "+string(dacwrapper_dmx_getvalue(1)));
-log("Dmx channel 2 val: "+string(dacwrapper_dmx_getvalue(2)));
-log("Dmx channel 3 val: "+string(dacwrapper_dmx_getvalue(3)));
-log("Dmx channel 300 val: "+string(dacwrapper_dmx_getvalue(300)));
+dmx = dacwrapper_dmx_getvalue(1);
+if (dmx != previous_dmx)
+	log("Dmx channel 1 val: "+string(dacwrapper_dmx_getvalue(1)));
+previous_dmx = dmx;
     
 if (keyboard_check_pressed(ord("M")))
 {

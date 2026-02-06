@@ -167,3 +167,9 @@ menu_width_start[4] = menu_width_start[3]+menu_width[3];
 menu_width[4] = string_width("   About   ");
 menu_width_start[5] = menu_width_start[4]+menu_width[4];
 
+if (debug_mode)
+{
+	var dmx_interface_num = dacwrapper_dmx_scan_interfaces();
+	for (i = 0; i < dmx_interface_num; i++)
+		log("DMX interface: ", dacwrapper_get_interface_ip(i));
+}

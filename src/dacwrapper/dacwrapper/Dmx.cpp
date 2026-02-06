@@ -190,6 +190,8 @@ int Dmx::StartSacn()
 		return -1;
 	}
 
+	fprintf(stderr, "Started sACN rx socket\n");
+
 	std::thread sacnRxThread(&Dmx::SacnRxThread, this);
 	sacnRxThread.detach();
 
@@ -270,7 +272,7 @@ void Dmx::SacnRxThread()
 				continue;
 			}
 #ifndef NDEBUG
-			e131_pkt_dump(stderr, &packet);
+			//e131_pkt_dump(stderr, &packet);
 #endif
 			if (ntohs(packet.frame.universe) == GetRxUniverse() && !e131_get_option(&packet, E131_OPT_PREVIEW))
 			{
