@@ -628,11 +628,11 @@ int artnet_net_recv(node n, artnet_packet p, int delay) {
     return ARTNET_ENET;
   }
 
-  if (cliAddr.sin_addr.s_addr == n->state.ip_addr.s_addr ||
+  /*if (cliAddr.sin_addr.s_addr == n->state.ip_addr.s_addr ||
       ntohl(cliAddr.sin_addr.s_addr) == LOOPBACK_IP) {
     p->length = 0;
     return ARTNET_EOK;
-  }
+  }*/
 
   p->length = len;
   memcpy(&(p->from), &cliAddr.sin_addr, sizeof(struct in_addr));

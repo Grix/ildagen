@@ -824,6 +824,7 @@
     {"id":{"name":"prepare_output","path":"scripts/prepare_output/prepare_output.yy",},"order":2,},
     {"id":{"name":"prepare_output_points","path":"scripts/prepare_output_points/prepare_output_points.yy",},"order":3,},
     {"id":{"name":"make_frame","path":"scripts/make_frame/make_frame.yy",},"order":4,},
+    {"id":{"name":"obj_dmx_testmonitor","path":"objects/obj_dmx_testmonitor/obj_dmx_testmonitor.yy",},"order":46,},
     {"id":{"name":"dd_seq_env_duplicate","path":"scripts/dd_seq_env_duplicate/dd_seq_env_duplicate.yy",},"order":19,},
     {"id":{"name":"make_frame_onlyblank","path":"scripts/make_frame_onlyblank/make_frame_onlyblank.yy",},"order":5,},
     {"id":{"name":"prepare_output_onlyblank","path":"scripts/prepare_output_onlyblank/prepare_output_onlyblank.yy",},"order":6,},

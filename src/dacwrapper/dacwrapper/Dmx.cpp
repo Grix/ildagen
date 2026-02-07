@@ -1,11 +1,10 @@
 #include "Dmx.h"
+#include "artnet/packets.h"
 
 Dmx::Dmx()
 {
 	//std::thread txThread(&Dmx::TxThread, this);
 	//txThread.detach();
-	//std::thread rxThread(&Dmx::RxThread, this);
-	//rxThread.detach();
 }
 
 Dmx::~Dmx()
@@ -15,17 +14,19 @@ Dmx::~Dmx()
 
 void Dmx::SetEnabled(bool enableArtNet, bool enableSacn)
 {
-	if (enableArtNet && !artnet_output)
+	memset(inputData, 0, sizeof(inputData));
+
+	if (enableArtNet && !artnet_input)
 	{
 		StartArtnet();
 	}
 	else if (!enableArtNet)
 	{
-		if (artnet_output)
+		if (artnet_input)
 		{
-			artnet_stop(artnet_output);
-			artnet_destroy(artnet_output);
-			artnet_output = NULL;
+			artnet_stop(artnet_input);
+			artnet_destroy(artnet_input);
+			artnet_input = NULL;
 		}
 	}
 
@@ -72,7 +73,7 @@ void Dmx::SetInterfaceIp(const char* newIp)
 	else
 		strncpy(ip, newIp, 32);
 
-	if (artnet_output)
+	if (artnet_input)
 		StartArtnet(); // Restart to apply
 	if (sacnSockfd != -1)
 		StartSacn();
@@ -85,7 +86,7 @@ void Dmx::SetRxUniverse(const int universe)
 
 	rxUniverse = universe;
 
-	if (artnet_output)
+	if (artnet_input)
 		StartArtnet(); // Restart to apply
 	if (sacnSockfd != -1)
 		StartSacn();
@@ -96,7 +97,7 @@ int Dmx::GetRxUniverse()
 	return rxUniverse;
 }
 
-int Dmx::StartArtnet()
+/*int Dmx::StartArtnetOutput()
 {
 	std::lock_guard<std::mutex>lock(artnetLock);
 
@@ -138,14 +139,50 @@ int Dmx::StartArtnet()
 	memset(outputData, 0, 512 * MAX_OUTPUT_UNIVERSES);
 
 	return 0;
+}*/
+
+int dmx_handler(artnet_node node, int port, void* d) 
+{
+	((Dmx*)d)->ArtnetDmxCallback(node, port);
+
+	return 0;
+}
+
+
+int Dmx::StartArtnet()
+{
+	if (artnet_input)
+	{
+		artnet_stop(artnet_input);
+		artnet_destroy(artnet_input);
+		artnet_input = NULL;
+	}
+
+	artnet_input = artnet_new(ip[0] ? ip : NULL, 0);
+	if (artnet_input == NULL) {
+		fprintf(stderr, "Failed to create Art-Net input node: %s\n", artnet_strerror());
+		return -1;
+	}
+
+	artnet_set_short_name(artnet_input, "LaserShowGen");
+	artnet_set_long_name(artnet_input, "LaserShowGen Art-Net Input"); 
+	artnet_set_node_type(artnet_input, ARTNET_NODE);
+	artnet_set_dmx_handler(artnet_input, dmx_handler, this);
+	artnet_set_port_type(artnet_input, 0, ARTNET_ENABLE_OUTPUT, ARTNET_PORT_DMX);
+	artnet_set_subnet_addr(artnet_input, (rxUniverse - 1) / 16);
+	artnet_set_port_addr(artnet_input, 0, ARTNET_OUTPUT_PORT, (rxUniverse - 1) % 16);
+	artnet_start(artnet_input);
+
+	fprintf(stderr, "Started Art-Net rx\n");
+
+	std::thread artnetRxThread(&Dmx::ArtnetRxThread, this);
+	artnetRxThread.detach();
+
+	return 0;
 }
 
 int Dmx::StartSacn()
 {
-	e131_packet_t packet;
-	e131_error_t error;
-	uint8_t last_seq = 0x00;
-
 	if (sacnSockfd != -1)
 	{
 		closed = true;
@@ -156,7 +193,7 @@ int Dmx::StartSacn()
 #else
 		close(sacnSockfd);
 #endif
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		std::this_thread::sleep_for(std::chrono::milliseconds(10)); // todo close and join thread properly
 		sacnSockfd = -1;
 		closed = false;
 	}
@@ -287,12 +324,31 @@ void Dmx::SacnRxThread()
 	}
 }
 
-void Dmx::RxThread()
+void Dmx::ArtnetRxThread()
 {
-	while (!closed)
+	while (artnet_input && !closed)
 	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
-
-
+		artnet_read(artnet_input, 1);
+		int length;
+		uint8_t* data = artnet_read_dmx(artnet_input, 0, &length);
+		if (data == NULL)
+			continue;
+		for (int i = 0; i < length; i++)
+			inputData[i] = data[i];
 	}
+}
+
+int Dmx::ArtnetDmxCallback(artnet_node node, int port)
+{
+	if (port == 0) 
+	{
+		int len;
+		uint8_t* data;
+		data = artnet_read_dmx(node, port, &len);
+		memcpy(inputData, data, len);
+	}
+
+	//fprintf(stderr, "artnet %d - %d\n", packet->data.admx.universe, packet->data.admx.data[0]);
+
+	return 0;
 }

@@ -4,6 +4,7 @@
 #include <thread>
 #include <mutex>
 #include "artnet/artnet.h"
+#include "artnet/packets.h"
 #include "e131.h"
 
 #define MAX_OUTPUT_UNIVERSES 1
@@ -13,22 +14,15 @@ class Dmx
 public:
 
 	Dmx();
-
 	~Dmx();
-
 	void SetEnabled(bool enableArtNet, bool enableSacn);
-
 	void SetOutputValue(unsigned int address, unsigned int index, uint8_t value);
-
 	uint8_t GetInputValue(unsigned short index);
-
 	void SetInterfaceIp(const char* newIp);
-
 	void SetRxUniverse(const int universe);
-
-
-
 	int GetRxUniverse();
+
+	int ArtnetDmxCallback(artnet_node node, int port);
 
 private:
 
@@ -46,12 +40,13 @@ private:
 	std::chrono::steady_clock::time_point nextForcedUpdate[MAX_OUTPUT_UNIVERSES];
 	bool isInOutputUse[MAX_OUTPUT_UNIVERSES] = { 0 };
 
+	//int StartArtnetOutput();
 	int StartArtnet();
 	int StartSacn();
 
 	void TxThread();
 	void SacnRxThread();
-	void RxThread();
+	void ArtnetRxThread();
 
 };
 
