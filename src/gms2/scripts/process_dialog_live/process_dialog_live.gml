@@ -33,6 +33,19 @@ function process_dialog_live() {
             
 	            break;
 	        }  
+	        case "dmx_shortcut":
+	        {
+	            if (ds_list_size(filelist) > selectedfile_dialog)
+				{
+					var t_value = ds_map_find_value(argument[0], "value");
+					if (t_value < 1 || t_value > 239)
+						filelist[| selectedfile_dialog][| 14] = 0;
+					else
+						filelist[| selectedfile_dialog][| 14] = t_value;
+				}
+            
+	            break;
+	        }  
 			case "loadliveproject":
 			{
 				load_live_project(get_open_filename_ext("LSG Grid File|*.igl","","","Select LaserShowGen grid file"));

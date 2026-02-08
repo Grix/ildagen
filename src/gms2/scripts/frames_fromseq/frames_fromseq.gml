@@ -16,7 +16,7 @@ function frames_fromseq() {
 	    idbyte = buffer_read(load_buffer,buffer_u8);
 	    if (idbyte != 52)
 	    {
-	        show_message_new("Unexpected ID byte in frames_fromseq: "+string(idbyte)+", things might get ugly. Contact developer.");
+	        show_message_new("Unexpected ID byte in frames_fromseq: "+string(idbyte)+", things might break. Contact developer.");
 	        exit;
 	    }
     

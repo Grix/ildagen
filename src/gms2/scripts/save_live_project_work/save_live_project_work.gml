@@ -25,8 +25,8 @@ function save_live_project_work() {
 		buffer_write(save_buffer, buffer_bool, 0);
 		buffer_write(save_buffer, buffer_bool, 0);
 		buffer_write(save_buffer, buffer_u32, objectlist[| 13]);
-		buffer_write(save_buffer, buffer_u32, 0);
-		buffer_write(save_buffer, buffer_u32, 0);
+		buffer_write(save_buffer, buffer_u32, objectlist[| 14]);
+		buffer_write(save_buffer, buffer_u32, objectlist[| 16]);
 		buffer_write(save_buffer, buffer_string, objectlist[| 11]);
 		var t_thisdaclist = objectlist[| 12];
 	    buffer_write(save_buffer,buffer_u8,ds_list_size(t_thisdaclist));

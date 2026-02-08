@@ -34,6 +34,7 @@ redo_list = ds_list_create_pool();
 filelist = ds_list_create_pool();
 el_list = -1;
 midi_keys_pressed = ds_list_create_pool();
+previous_dmx_file_trigger_values = array_create(8, 0);
 
 masterx = 0;
 mastery = 0;

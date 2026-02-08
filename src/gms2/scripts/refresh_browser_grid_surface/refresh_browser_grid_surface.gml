@@ -38,7 +38,7 @@ function refresh_browser_grid_surface() {
 			t_row = i div t_cells_per_row;
 		
 			if (!surface_exists(objectlist[| 3]))
-				objectlist[| 3] = make_screenshot(objectlist[| 1], t_cell_size-1);
+				objectlist[| 3] = make_screenshot(objectlist[| 1], t_cell_size-1, objectlist[| 16]);
 			draw_surface_part(objectlist[| 3],0,0,t_cell_size-1,t_cell_size-1, t_column*t_cell_size+1, t_row*t_cell_size+1);
 		
 		}

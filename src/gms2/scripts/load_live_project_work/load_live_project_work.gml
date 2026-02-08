@@ -29,6 +29,8 @@ function load_live_project_work() {
 			ds_list_add(objectlist, buffer_read(load_buffer,buffer_bool));
 			
 			var t_midi_key = -2;
+			var t_dmx_index = 0;
+			var t_screenshot_frame = 0;
 		
 			if (idbyte >= 201)
 			{
@@ -41,8 +43,8 @@ function load_live_project_work() {
 				t_midi_key = buffer_read(load_buffer,buffer_u32);
 				if (!t_has_midi_key)
 					t_midi_key = -2;
-				buffer_read(load_buffer,buffer_u32);
-				buffer_read(load_buffer,buffer_u32);
+				t_dmx_index = buffer_read(load_buffer,buffer_u32);
+				t_screenshot_frame = buffer_read(load_buffer,buffer_u32);
 			}
 			else
 			{
@@ -74,9 +76,9 @@ function load_live_project_work() {
 			}
 			
 			ds_list_add(objectlist, t_midi_key);
-			ds_list_add(objectlist, -2);
+			ds_list_add(objectlist, t_dmx_index);
 			ds_list_add(objectlist, "");
-			ds_list_add(objectlist, 0);
+			ds_list_add(objectlist, t_screenshot_frame);
 		
 			ds_list_add(filelist, objectlist);
 		}

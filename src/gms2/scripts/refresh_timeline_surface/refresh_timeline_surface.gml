@@ -109,7 +109,7 @@ function refresh_timeline_surface() {
 							if ((duration+1)*tlwdivtlzoom > 3)
 							{
 			                    if (!surface_exists(objectlist[| 3]))
-			                        objectlist[| 3] = make_screenshot(objectlist[| 1], 27);
+			                        objectlist[| 3] = make_screenshot(objectlist[| 1], 27, 0);
 			                    draw_surface_part(objectlist[| 3],0,0,floor(clamp((duration+1)*tlwdivtlzoom,0,32))-1,32,framestartx+1,ypos_perm+8);
 							}
 							if (moving_object == 8) && (objecttomove == objectlist)

@@ -2,12 +2,12 @@
 /// @function make_screenshot
 /// @param buffer
 /// @param size
-function make_screenshot(argument0, argument1) {
+function make_screenshot(argument0, argument1, argument2) {
 	//returns a surface with a preview of argument0, which is a buffer containing laser frames
 
 	el_buffer = argument0;
 	var t_size = argument1;
-
+	var t_screenshot_frame = argument2;
 
 	temp_surf = surface_create(power(2, ceil(log2(t_size))),power(2, ceil(log2(t_size))));
 
@@ -16,11 +16,12 @@ function make_screenshot(argument0, argument1) {
 	if (buffer_ver != 52)
 	{
 		if (!controller.warning_suppress)
-			show_message_new("Error: Unexpected ID byte in make_screenshot. Things might get ugly. Please contact developer.");
+			show_message_new("Error: Unexpected ID byte in make_screenshot. Things might break. Please contact developer.");
 	    controller.warning_suppress = true;
 		return temp_surf;
 	}
 	buffer_maxframes = buffer_read(el_buffer,buffer_u32);
+	t_screenshot_frame = clamp(t_screenshot_frame, 0, buffer_maxframes-1);
 	buffer_maxelements = buffer_read(el_buffer,buffer_u32);
 
 	surface_set_target(temp_surf);

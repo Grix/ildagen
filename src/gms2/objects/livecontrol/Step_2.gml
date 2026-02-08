@@ -260,8 +260,8 @@ else
 	}
 }
 
+handle_dmx_input_live();
 handle_midi_input_live();
-    
 handle_mousecontrol_live();
 
 

@@ -24,7 +24,7 @@ function reverse_timelineobject() {
 		if (bufferformat != 52)
 		{
 			if (!controller.warning_suppress)
-				show_message_new("Error: Unexpected version id reading buffer while reversing object: "+string(bufferformat)+". Things might get ugly. Contact developer.");
+				show_message_new("Error: Unexpected version id reading buffer while reversing object: "+string(bufferformat)+". Things might break. Contact developer.");
 			controller.warning_suppress = true;
 			exit;
 		}

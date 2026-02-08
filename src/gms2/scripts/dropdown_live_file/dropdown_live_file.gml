@@ -2,7 +2,7 @@ function dropdown_live_file() {
 	ddobj = instance_create_layer(window_mouse_get_x(), window_mouse_get_y()-view_hport[3],"foreground",obj_dropdown);
 	with (ddobj)
 	{
-	    num = 9;
+	    num = 11;
 	    ds_list_add(desc_list,"Delete ("+get_delete_string()+")");
 	    ds_list_add(desc_list,"Open in frame editor");
 	    ds_list_add(sep_list,0);
@@ -11,6 +11,7 @@ function dropdown_live_file() {
 	    ds_list_add(scr_list,dd_live_toilda);
 	    ds_list_add(hl_list,1);
 	    ds_list_add(hl_list,1);
+		
 		var label = "Toggle looping ";
 		if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 7))
 			label += "off (O)";
@@ -20,6 +21,7 @@ function dropdown_live_file() {
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,live_toggle_loop);
 	    ds_list_add(hl_list,1);
+		
 		var label = "Toggle exclusive ";
 		if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 8))
 			label += "off (X)";
@@ -29,6 +31,7 @@ function dropdown_live_file() {
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,live_toggle_exclusive);
 	    ds_list_add(hl_list,1);
+		
 		var label = "";
 		if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 9))
 			label += "Set restart at play (R)";
@@ -38,6 +41,7 @@ function dropdown_live_file() {
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,live_toggle_resume);
 	    ds_list_add(hl_list,1);
+		
 		var label = "";
 		if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 10))
 			label += "Set toggle playing (H)";
@@ -46,23 +50,31 @@ function dropdown_live_file() {
 		ds_list_add(desc_list,label);
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,live_toggle_hold);
+		
 	    ds_list_add(hl_list,1);
 		ds_list_add(desc_list,"Change keyboard shortcut...");
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,live_change_shortcut);
+		
 	    ds_list_add(hl_list,1);
 		ds_list_add(desc_list,"Change MIDI shortcut...");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,live_change_midi_shortcut);
+		
+	    ds_list_add(hl_list,1);
+		ds_list_add(desc_list,"Change DMX trigger ID...");
+	    ds_list_add(sep_list,0);
+	    ds_list_add(scr_list,dd_live_change_dmx_shortcut);
+		
 	    ds_list_add(hl_list,1);
 		ds_list_add(desc_list,"Unbind shortcut");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,live_unbind_shortcut);
+		
 	    ds_list_add(hl_list,1);
 		ds_list_add(desc_list,"Set name...");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,live_change_tile_name);
-	    ds_list_add(hl_list,1);
 	
 	    event_user(1);
 	}

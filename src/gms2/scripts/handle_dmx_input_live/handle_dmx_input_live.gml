@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function handle_dmx_live(){
+function handle_dmx_input_live(){
 
 	if (controller.enable_artnet || controller.enable_sacn)
 	{
@@ -12,6 +12,50 @@ function handle_dmx_live(){
 		livecontrol.masterx = (deadband_middle(dacwrapper_dmx_getvalue(27))-128) / 128 * $8000;
 		livecontrol.mastery = (deadband_middle(dacwrapper_dmx_getvalue(28))-128) / 128 * $8000;
 		livecontrol.masterabsrot = deadband_middle(dacwrapper_dmx_getvalue(29)) / 256 * (pi*2);
+		
+		var t_dmx_file_trigger_values = array_create(8, 0);
+		var t_dmx_file_intensity_values = array_create(8, 0);
+		var t_dmx_file_speed_values = array_create(8, 0);
+		
+		for (i = 0; i < 8; i++)
+		{
+			t_dmx_file_trigger_values[i] = dacwrapper_dmx_getvalue(2 + i*3 + 0) - 15;
+			t_dmx_file_intensity_values[i] = deadband_highlow(dacwrapper_dmx_getvalue(2 + i*3 + 1));
+			t_dmx_file_speed_values[i] = dacwrapper_dmx_getvalue(2 + i*3 + 2);
+			if (t_dmx_file_speed_values[i] < 15)
+				t_dmx_file_speed_values[i] = 1;
+			else
+				t_dmx_file_speed_values[i] = t_dmx_file_speed_values[i] / 128; // todo
+		}
+		
+		for (i = 0; i < ds_list_size(filelist); i++)
+		{
+			var t_objectlist = filelist[| i];
+			var t_dmx_index = t_objectlist[| 14];
+			if (t_dmx_index > 0)
+			{
+				var t_channel_match = -1;
+				for (j = 0; j < 8; j++)
+				{
+					if (t_dmx_file_trigger_values[i] == t_dmx_index)
+					{
+						t_channel_match = j;
+						break;
+					}
+				}
+				if (t_channel_match == -1)
+					continue;
+					
+				// Found DMX channel selecting this file
+				
+				t_objectlist[| 10] = 2; // Mark as triggered in push to play
+				
+				// Todo apply speed and intensity
+				
+					//frame_surf_refresh = 1;
+			}
+		}
+		
 	}
 
 }

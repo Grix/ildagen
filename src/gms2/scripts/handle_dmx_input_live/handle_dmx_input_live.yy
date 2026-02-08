@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "handle_dmx_live",
+  "name": "handle_dmx_input_live",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
