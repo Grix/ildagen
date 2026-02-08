@@ -129,6 +129,7 @@
     {"id":{"name":"spr_anchor","path":"sprites/spr_anchor/spr_anchor.yy",},"order":45,},
     {"id":{"name":"spr_resize","path":"sprites/spr_resize/spr_resize.yy",},"order":46,},
     {"id":{"name":"spr_rotate","path":"sprites/spr_rotate/spr_rotate.yy",},"order":47,},
+    {"id":{"name":"handle_dmx_live","path":"scripts/handle_dmx_live/handle_dmx_live.yy",},"order":22,},
     {"id":{"name":"spr_colorblendmode_preview","path":"sprites/spr_colorblendmode_preview/spr_colorblendmode_preview.yy",},"order":48,},
     {"id":{"name":"spr_blankingblendmode_preview","path":"sprites/spr_blankingblendmode_preview/spr_blankingblendmode_preview.yy",},"order":49,},
     {"id":{"name":"spr_playcontrols","path":"sprites/spr_playcontrols/spr_playcontrols.yy",},"order":50,},

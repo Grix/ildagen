@@ -74,6 +74,9 @@ function load_live_project_work() {
 			}
 			
 			ds_list_add(objectlist, t_midi_key);
+			ds_list_add(objectlist, -2);
+			ds_list_add(objectlist, "");
+			ds_list_add(objectlist, 0);
 		
 			ds_list_add(filelist, objectlist);
 		}

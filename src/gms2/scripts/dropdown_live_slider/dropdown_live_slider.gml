@@ -8,7 +8,7 @@ function dropdown_live_slider(){
 	
 	with (ddobj)
 	{
-	    num = 2;
+	    num = 3;
 		ds_list_add(desc_list,"Change MIDI shortcut...");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,dd_live_slider_change_midi_shortcut);

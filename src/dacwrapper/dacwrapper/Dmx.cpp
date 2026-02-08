@@ -313,7 +313,9 @@ void Dmx::SacnRxThread()
 #endif
 			if (ntohs(packet.frame.universe) == GetRxUniverse() && !e131_get_option(&packet, E131_OPT_PREVIEW))
 			{
-				size_t channel = ntohs(packet.dmp.first_addr);
+				size_t channel = ntohs(packet.dmp.first_addr)-1;
+				if (channel < 0)
+					channel = 0;
 				unsigned int increment = ntohs(packet.dmp.addr_inc);
 				for (size_t pos = 0, total = min(ntohs(packet.dmp.prop_val_cnt), 513); pos < total; pos++, channel += increment)
 					inputData[channel] = packet.dmp.prop_val[pos];
