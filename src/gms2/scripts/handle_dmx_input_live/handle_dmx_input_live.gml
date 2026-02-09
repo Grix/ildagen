@@ -4,14 +4,14 @@ function handle_dmx_input_live(){
 
 	if (controller.enable_artnet || controller.enable_sacn)
 	{
-		livecontrol.masteralpha = deadband_highlow(dacwrapper_dmx_getvalue(0)) / 256;
-		livecontrol.masterred = deadband_highlow(dacwrapper_dmx_getvalue(23)) / 256;
-		livecontrol.mastergreen = deadband_highlow(dacwrapper_dmx_getvalue(24)) / 256;
-		livecontrol.masterblue = deadband_highlow(dacwrapper_dmx_getvalue(25)) / 256;
-		livecontrol.masterhue = deadband_highlow(dacwrapper_dmx_getvalue(26)) / 256;
-		livecontrol.masterx = (deadband_middle(dacwrapper_dmx_getvalue(27))-128) / 128 * $8000;
-		livecontrol.mastery = (deadband_middle(dacwrapper_dmx_getvalue(28))-128) / 128 * $8000;
-		livecontrol.masterabsrot = deadband_middle(dacwrapper_dmx_getvalue(29)) / 256 * (pi*2);
+		livecontrol.masteralpha = deadband_highlow(dacwrapper_dmx_getvalue(0)) / 255;
+		livecontrol.masterred = deadband_highlow(dacwrapper_dmx_getvalue(23)) / 255;
+		livecontrol.mastergreen = deadband_highlow(dacwrapper_dmx_getvalue(24)) / 255;
+		livecontrol.masterblue = deadband_highlow(dacwrapper_dmx_getvalue(25)) / 255;
+		livecontrol.masterhue = deadband_highlow(dacwrapper_dmx_getvalue(26));
+		livecontrol.masterx = (deadband_middle(dacwrapper_dmx_getvalue(27))-127) / 127 * $8000;
+		livecontrol.mastery = (deadband_middle(dacwrapper_dmx_getvalue(28))-127) / 127 * $8000;
+		livecontrol.masterabsrot = deadband_middle(dacwrapper_dmx_getvalue(29)) / 255 * (pi*2);
 		
 		var t_dmx_file_trigger_values = array_create(8, 0);
 		var t_dmx_file_intensity_values = array_create(8, 0);
@@ -30,6 +30,8 @@ function handle_dmx_input_live(){
 		
 		for (i = 0; i < ds_list_size(filelist); i++)
 		{
+			var t_play = false;
+			var t_stop = false;
 			var t_objectlist = filelist[| i];
 			var t_dmx_index = t_objectlist[| 14];
 			if (t_dmx_index > 0)
@@ -40,19 +42,49 @@ function handle_dmx_input_live(){
 					if (t_dmx_file_trigger_values[i] == t_dmx_index)
 					{
 						t_channel_match = j;
+						t_play = true;
 						break;
 					}
+					else if (previous_dmx_file_trigger_values[j] == t_dmx_index)
+						t_stop = true;
 				}
-				if (t_channel_match == -1)
+				if (!t_stop && !t_play)
 					continue;
 					
-				// Found DMX channel selecting this file
+				previous_dmx_file_trigger_values[j] = t_dmx_file_trigger_values[i];
 				
-				t_objectlist[| 10] = 2; // Mark as triggered in push to play
+				if (t_stop)
+				{
+					ds_list_set(filelist[| i], 0, false);
+				}
+				else if (t_play)
+				{
+					if (stop_at_play)
+					{
+						for (j = 0; j < ds_list_size(filelist); j++)
+						{
+							ds_list_set(filelist[| j], 0, false);
+						}
+					}
+					
+					if (!ds_list_find_value(filelist[| i], 0) && ds_list_find_value(filelist[| i], 9) == 0) // if restart instead of resume
+						ds_list_set(filelist[| i], 2, 0);
+					else 
+					{
+						if (ds_list_find_value(filelist[| i], 2) >= ds_list_find_value(filelist[| i], 4))
+							ds_list_set(filelist[| i], 2, 0);
+					}
+					
+					playing = 1;
+					ds_list_set(filelist[| i], 0, true);
+					filelist[| i][| 10] = 2; // Mark as triggered in push to play
+				}
+				frame_surf_refresh = 1;
+				
+				
 				
 				// Todo apply speed and intensity
 				
-					//frame_surf_refresh = 1;
 			}
 		}
 		
@@ -100,22 +132,22 @@ function handle_dmx_input_live(){
 
 function deadband_highlow(value)
 {
-	if (value < 124)
-		value = value/124*128;
-	else if (value > 132)
-		value = 128 + (value-132)/124*128;
+	if (value <= 3)
+		value = 0;
+	else if (value >= 252)
+		value = 255;
 	else
-		value = 128;
+		value = (value-3)/252*255;
 	return value;
 }
 
 function deadband_middle(value)
 {
-	if (value < 124)
-		value = value/124*128;
-	else if (value > 132)
-		value = 128 + (value-132)/124*128;
+	if (value <= 123)
+		value = value/123*127;
+	else if (value >= 131)
+		value = 127 + (value-131)/123*127;
 	else
-		value = 128;
+		value = 127;
 	return value;
 }
