@@ -824,6 +824,7 @@
     {"id":{"name":"optimize_middle_output","path":"scripts/optimize_middle_output/optimize_middle_output.yy",},"order":0,},
     {"id":{"name":"optimize_middle_export","path":"scripts/optimize_middle_export/optimize_middle_export.yy",},"order":1,},
     {"id":{"name":"prepare_output","path":"scripts/prepare_output/prepare_output.yy",},"order":2,},
+    {"id":{"name":"dd_live_slider_toggle_dmx_disable","path":"scripts/dd_live_slider_toggle_dmx_disable/dd_live_slider_toggle_dmx_disable.yy",},"order":8,},
     {"id":{"name":"prepare_output_points","path":"scripts/prepare_output_points/prepare_output_points.yy",},"order":3,},
     {"id":{"name":"make_frame","path":"scripts/make_frame/make_frame.yy",},"order":4,},
     {"id":{"name":"obj_dmx_testmonitor","path":"objects/obj_dmx_testmonitor/obj_dmx_testmonitor.yy",},"order":46,},

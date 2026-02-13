@@ -4,14 +4,34 @@ function handle_dmx_input_live(){
 
 	if (controller.enable_artnet || controller.enable_sacn)
 	{
-		livecontrol.masteralpha = deadband_highlow(dacwrapper_dmx_getvalue(0)) / 255;
-		livecontrol.masterred = deadband_highlow(dacwrapper_dmx_getvalue(23)) / 255;
-		livecontrol.mastergreen = deadband_highlow(dacwrapper_dmx_getvalue(24)) / 255;
-		livecontrol.masterblue = deadband_highlow(dacwrapper_dmx_getvalue(25)) / 255;
-		livecontrol.masterhue = deadband_highlow(dacwrapper_dmx_getvalue(26));
-		livecontrol.masterx = (deadband_middle(dacwrapper_dmx_getvalue(27))-127) / 127 * $8000;
-		livecontrol.mastery = (deadband_middle(dacwrapper_dmx_getvalue(28))-127) / 127 * $8000;
-		livecontrol.masterabsrot = deadband_middle(dacwrapper_dmx_getvalue(29)) / 255 * (pi*2);
+		if (!livecontrol.masteralpha_dmx_disable)
+			livecontrol.masteralpha = deadband_highlow(dacwrapper_dmx_getvalue(0)) / 255;
+		if (!livecontrol.masterred_dmx_disable)
+			livecontrol.masterred = deadband_highlow(dacwrapper_dmx_getvalue(23)) / 255;
+		if (!livecontrol.mastergreen_dmx_disable)
+			livecontrol.mastergreen = deadband_highlow(dacwrapper_dmx_getvalue(24)) / 255;
+		if (!livecontrol.masterblue_dmx_disable)
+			livecontrol.masterblue = deadband_highlow(dacwrapper_dmx_getvalue(25)) / 255;
+		if (!livecontrol.masterhue_dmx_disable)
+			livecontrol.masterhue = deadband_highlow(dacwrapper_dmx_getvalue(26));
+		if (!livecontrol.masterx_dmx_disable)
+			livecontrol.masterx = (deadband_middle(dacwrapper_dmx_getvalue(27))-127) / 127 * $8000;
+		if (!livecontrol.mastery_dmx_disable)
+			livecontrol.mastery = (deadband_middle(dacwrapper_dmx_getvalue(28))-127) / 127 * $8000;
+		if (!livecontrol.masterabsrot_dmx_disable)
+			livecontrol.masterabsrot = deadband_middle(dacwrapper_dmx_getvalue(29)) / 255 * (pi*2);
+		
+		if (!livecontrol.speed_adjusted_dmx_disable)
+		{
+			if (controller.use_bpm)
+			{
+				livecontrol.bpm_adjusted = max(controller.bpm * ((deadband_middle(lowishigh(dacwrapper_dmx_getvalue(30))) / 127) * 2), 5);
+			}
+			else
+			{
+				livecontrol.speed_adjusted = max(((deadband_middle(lowishigh(dacwrapper_dmx_getvalue(30))) / 127) * 2), 0.05);
+			}
+		}
 		
 		var t_dmx_file_trigger_values = array_create(8, 0);
 		var t_dmx_file_intensity_values = array_create(8, 0);
@@ -129,6 +149,15 @@ function handle_dmx_input_live(){
 - 29: Master Rotation ,  124-132 is deadband
 - 30: Master Speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 124-132 = 100%, 255 = 400%
 */
+
+function lowishigh(value)
+{
+	if (value >= 15)
+		value = 255;
+	else
+		value = (value-15)/(255-15)*255;
+	return value;
+}
 
 function deadband_highlow(value)
 {

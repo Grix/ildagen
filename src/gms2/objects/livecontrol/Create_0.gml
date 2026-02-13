@@ -55,6 +55,16 @@ mastergreen_midi_shortcut = -2;
 masterabsrot_midi_shortcut = -2;
 speed_adjusted_midi_shortcut = -2;
 
+masterx_dmx_disable = 0;
+mastery_dmx_disable = 0;
+masteralpha_dmx_disable = 0;
+masterhue_dmx_disable = 0;
+masterred_dmx_disable = 0;
+masterblue_dmx_disable = 0;
+mastergreen_dmx_disable = 0;
+masterabsrot_dmx_disable = 0;
+speed_adjusted_dmx_disable = 0;
+
 if (controller.has_midi)
 {
 	masteralpha_midi_shortcut = 7; // volume ID

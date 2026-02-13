@@ -60,6 +60,16 @@ function load_live_project(argument0) {
 	if (num_grid_columns == 0)
 		num_grid_columns = 8;
 	
+	masteralpha_dmx_disable = buffer_read(load_buffer,buffer_u8);
+	masterred_dmx_disable = buffer_read(load_buffer,buffer_u8);
+	mastergreen_dmx_disable = buffer_read(load_buffer,buffer_u8);
+	masterblue_dmx_disable = buffer_read(load_buffer,buffer_u8);
+	masterhue_dmx_disable = buffer_read(load_buffer,buffer_u8);
+	masterx_dmx_disable = buffer_read(load_buffer,buffer_u8);
+	mastery_dmx_disable = buffer_read(load_buffer,buffer_u8);
+	masterabsrot_dmx_disable = buffer_read(load_buffer,buffer_u8);
+	speed_adjusted_dmx_disable = buffer_read(load_buffer,buffer_u8);
+	
 	buffer_seek(load_buffer,buffer_seek_start,50);
     
 	global.loadingtimeprev = get_timer();

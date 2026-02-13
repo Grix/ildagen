@@ -8,7 +8,7 @@ function dropdown_live_slider(){
 	
 	with (ddobj)
 	{
-	    num = 3;
+	    num = 4;
 		ds_list_add(desc_list,"Change MIDI shortcut...");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,dd_live_slider_change_midi_shortcut);
@@ -17,6 +17,31 @@ function dropdown_live_slider(){
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,dd_live_slider_unbind_midi_shortcut);
 	    ds_list_add(hl_list,1);
+		
+		var t_dmx_disabled = true;
+		if (livecontrol.selected_slider == obj_live_masteralpha)
+			t_dmx_disabled = livecontrol.masteralpha_dmx_disable;
+		else if (livecontrol.selected_slider == obj_live_masterred)
+			t_dmx_disabled = livecontrol.masterred_dmx_disable;
+		else if (livecontrol.selected_slider == obj_live_mastergreen)
+			t_dmx_disabled = livecontrol.mastergreen_dmx_disable;
+		else if (livecontrol.selected_slider == obj_live_masterblue)
+			t_dmx_disabled = livecontrol.masterblue_dmx_disable;
+		else if (livecontrol.selected_slider == obj_live_masterhue)
+			t_dmx_disabled = livecontrol.masterhue_dmx_disable;
+		else if (livecontrol.selected_slider == obj_live_masterx)
+			t_dmx_disabled = livecontrol.masterx_dmx_disable;
+		else if (livecontrol.selected_slider == obj_live_mastery)
+			t_dmx_disabled = livecontrol.mastery_dmx_disable;
+		else if (livecontrol.selected_slider == obj_live_masterabsrot)
+			t_dmx_disabled = livecontrol.masterabsrot_dmx_disable;
+		else if (livecontrol.selected_slider == obj_bpm_adjust)
+			t_dmx_disabled = livecontrol.speed_adjusted_dmx_disable;
+		
+		ds_list_add(desc_list,"Toggle DMX input (Currently " + (t_dmx_disabled ? "disabled" : "enabled") + ")");
+	    ds_list_add(sep_list,0);
+	    ds_list_add(scr_list,dd_live_slider_toggle_dmx_disable);
+	    ds_list_add(hl_list,!t_dmx_disabled);
 		ds_list_add(desc_list,"Reset to default value");
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,dd_live_slider_reset_value);
