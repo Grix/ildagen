@@ -87,9 +87,6 @@
 ;..................................................................................................
 ;include the Uninstall log header
 !include AdvUninstLog.nsh
-
-; for ${GetSize} for EstimatedSize registry entry
-!include FileFunc.nsh
 ;..................................................................................................
 
 
@@ -178,22 +175,13 @@ Section `${APP_NAME}`
 
   !insertmacro UNINSTALL.LOG_CLOSE_INSTALL
 
-  ; get cumulative size of all files in and under install dir
-  ; report the total in KB (decimal)
-  ; place the answer into $0  (ignore $1 $2)
-  ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
-
-  ; Convert the decimal KB value in $0 to DWORD
-  ; put it right back into $0
-  IntFmt $0 "0x%08X" $0
-
   WriteRegStr ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}" "InstallDir" "$INSTDIR"
   WriteRegStr ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}" "DisplayName" "${APP_NAME}"
   ;Same as create shortcut you need to use ${UNINST_EXE} instead of anything else.
   WriteRegStr ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}" "UninstallString" "${UNINST_EXE}"
   WriteRegDWORD ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}"  "NoModify" 1
   WriteRegDWORD ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}"  "NoRepair" 1
-  WriteRegDWORD ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}"  "EstimatedSize" "$0"
+
 
 SectionEnd
 
@@ -201,11 +189,11 @@ Section "Visual C++ Redistributable" SEC_VCREDIST
 SectionIn RO
 
 SetOutPath "$TEMP"
-File "VC_redist.x64.exe"
-DetailPrint "Running Visual Studio v14 x64 Redistributable Setup..."
-ExecWait '"$TEMP\VC_redist.x64.exe" /quiet /norestart' $VCRedistSetupError
-DetailPrint "end VS14 x64"
-Delete "$TEMP\VC_redist.x64.exe"
+File "${MAKENSIS}\vcredist_x86_2015.exe"
+DetailPrint "Running Visual Studio 2015 x86 Redistributable Setup..."
+ExecWait '"$TEMP\vcredist_x86_2015.exe" /quiet /norestart' $VCRedistSetupError
+DetailPrint "end VS2015 x86"
+Delete "$TEMP\vcredist_x86_2015.exe"
 
 SetOutPath "$INSTDIR"
 SectionEnd
@@ -265,7 +253,7 @@ Section UnInstall
         Delete "$SMPROGRAMS\${APP_NAME}\uninstall.lnk"
         RmDir "$SMPROGRAMS\${APP_NAME}"
 
-        DeleteRegKey ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}"
+        DeleteRegKey /ifempty ${INSTDIR_REG_ROOT} "${INSTDIR_REG_KEY}"
 
 SectionEnd
 
