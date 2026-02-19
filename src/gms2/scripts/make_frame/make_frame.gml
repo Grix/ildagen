@@ -207,27 +207,34 @@ function make_frame() {
 	                t_true_dwell_falling =  round(controller.opt_maxdwell * (1- abs(angle_difference( angle_prev, angle_next ))/180));
                                             
 	                //dwell on blanking start
-	                repeat (controller.opt_maxdwell_blank)
+	                /*repeat (controller.opt_mindwell-1)
 	                {
 	                    ds_list_add(list_raw,xp_prev);
 	                    ds_list_add(list_raw,yp_prev);
 	                    ds_list_add(list_raw,(c_prev == 0));
 	                    ds_list_add(list_raw,c_prev);
-	                }
-	                repeat (t_true_dwell_falling - (controller.opt_maxdwell_blank*2+1) ) // todo remove lit points at these corners? Normal corners dont have them
+	                }*/
+	                repeat (floor(t_true_dwell_falling/2)) // - (min(0,(controller.opt_mindwell-1))*2/*+1*/) ) // todo remove lit points at these corners? Normal corners dont have them
 	                {
 	                    ds_list_add(list_raw,xp_prev);
 	                    ds_list_add(list_raw,ypp);
-	                    ds_list_add(list_raw,1);
-	                    ds_list_add(list_raw,0);
+	                    ds_list_add(list_raw,(c_prev == 0));  //1);
+	                    ds_list_add(list_raw,c_prev);  //0);
 	                }
-	                repeat (controller.opt_maxdwell_blank+1)
+					repeat (ceil(t_true_dwell_falling/2)) // - (min(0,(controller.opt_mindwell-1))*2/*+1*/) ) // todo remove lit points at these corners? Normal corners dont have them
+	                {
+	                    ds_list_add(list_raw,xp_prev);
+	                    ds_list_add(list_raw,ypp);
+	                    ds_list_add(list_raw,(t_c_first == 0));  //1);
+	                    ds_list_add(list_raw,t_c_first);  //0);
+	                }
+	                /*repeat (controller.opt_mindwell-1)//+1)
 	                {
 	                    ds_list_add(list_raw,xpp);
 	                    ds_list_add(list_raw,ypp);
 	                    ds_list_add(list_raw,0);
 	                    ds_list_add(list_raw,t_c_first);
-	                }
+	                }*/
 					//log("connecting on ", i, t_true_dwell_falling);
 	            }
 	            else //not connecting segments
@@ -259,14 +266,14 @@ function make_frame() {
 	                //dwell on blanking start, unless it's the start of frame in the middle
 					if (i != 0)
 					{
-		                repeat (controller.opt_maxdwell_blank)
+		                repeat (controller.opt_mindwell)
 		                {
 		                    ds_list_add(list_raw,xp_prev);
 		                    ds_list_add(list_raw,yp_prev);
 		                    ds_list_add(list_raw,(c_prev == 0));
 		                    ds_list_add(list_raw,c_prev);
 		                }
-		                repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank) )
+		                repeat ( max(controller.opt_mindwell, t_true_dwell_rising - controller.opt_mindwell) )
 		                {
 		                    ds_list_add(list_raw,xp_prev);
 		                    ds_list_add(list_raw,yp_prev);
@@ -295,14 +302,14 @@ function make_frame() {
 	                }
 					//if (i == 0)
 					//{
-		                repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_falling - (controller.opt_maxdwell_blank + 1)) )
+		                repeat ( max(controller.opt_mindwell, t_true_dwell_falling - (controller.opt_mindwell/* + 1*/)) )
 		                {
 		                    ds_list_add(list_raw,xpp);
 		                    ds_list_add(list_raw,ypp);
 		                    ds_list_add(list_raw,1);
 		                    ds_list_add(list_raw,0);
 		                }
-		                repeat (controller.opt_maxdwell_blank + 1)
+		                repeat (controller.opt_mindwell)// + 1)
 		                {
 		                    ds_list_add(list_raw,xpp);
 		                    ds_list_add(list_raw,ypp);
@@ -475,14 +482,14 @@ function make_frame() {
 	    t_true_dwell_falling = controller.opt_maxdwell; //worst case
                             
 	    //dwell on blanking start
-	    repeat (controller.opt_maxdwell_blank)
+	    repeat (controller.opt_mindwell)
 	    {
 	        ds_list_add(list_raw,xp_prev);
 	        ds_list_add(list_raw,yp_prev);
 	        ds_list_add(list_raw,0);
 	        ds_list_add(list_raw,c_prev);
 	    }
-	    repeat (t_true_dwell_falling - controller.opt_maxdwell_blank )
+	    repeat (t_true_dwell_falling - controller.opt_mindwell )
 	    {
 	        ds_list_add(list_raw,xp);
 	        ds_list_add(list_raw,yp);
@@ -501,19 +508,18 @@ function make_frame() {
 	        angle_blank = point_direction(xp,yp, xp_prev,yp_prev);
 	        angle_prev = point_direction(xp_prev_prev,yp_prev_prev, xp_prev,yp_prev);
 
-	        t_true_dwell_rising =  round(controller.opt_maxdwell * 
-	                                (1- abs(angle_difference( angle_prev, angle_blank ))/180));
+	        t_true_dwell_rising =  round(controller.opt_maxdwell * (1- abs(angle_difference( angle_prev, angle_blank ))/180));
 	    }
     
 	    //dwell on blanking start
-	    repeat (controller.opt_maxdwell_blank)
+	    repeat (controller.opt_mindwell)
 	    {
 	        ds_list_add(list_raw,xp_prev);
 	        ds_list_add(list_raw,yp_prev);
 	        ds_list_add(list_raw,0);
 	        ds_list_add(list_raw,c_prev);
 	    }
-	    repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank) )
+	    repeat ( max(controller.opt_mindwell, t_true_dwell_rising - controller.opt_mindwell) )
 	    {
 	        ds_list_add(list_raw,xp_prev);
 	        ds_list_add(list_raw,yp_prev);

@@ -1,3 +1,3 @@
 draw_self();
 
-draw_text(x+60,y+3,"Dwell: "+string(controller.opt_maxdwell));
+draw_text(x+60,y+3,"Max. dwell: "+string(controller.opt_maxdwell));

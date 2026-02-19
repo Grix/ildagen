@@ -136,21 +136,21 @@ function make_frame_onlyblank() {
 	                                        (1- abs(angle_difference( angle_prev, angle_next ))/180));
                                         
 	                //dwell on blanking start
-	                repeat (controller.opt_maxdwell_blank)
+	                repeat (controller.opt_mindwell)
 	                {
 	                    ds_list_add(list_raw,xp_prev);
 	                    ds_list_add(list_raw,yp_prev);
 	                    ds_list_add(list_raw,(c_prev == 0));
 	                    ds_list_add(list_raw,c_prev);
 	                }
-	                repeat (t_true_dwell_falling - controller.opt_maxdwell_blank*2 )
+	                repeat (t_true_dwell_falling - controller.opt_mindwell*2 )
 	                {
 	                    ds_list_add(list_raw,xp_prev);
 	                    ds_list_add(list_raw,ypp);
 	                    ds_list_add(list_raw,1);
 	                    ds_list_add(list_raw,0);
 	                }
-	                repeat (controller.opt_maxdwell_blank)
+	                repeat (controller.opt_mindwell)
 	                {
 	                    ds_list_add(list_raw,xpp);
 	                    ds_list_add(list_raw,ypp);
@@ -187,14 +187,14 @@ function make_frame_onlyblank() {
 	                }
             
 	                //dwell on blanking start
-	                repeat (controller.opt_maxdwell_blank)
+	                repeat (controller.opt_mindwell)
 	                {
 	                    ds_list_add(list_raw,xp_prev);
 	                    ds_list_add(list_raw,yp_prev);
 	                    ds_list_add(list_raw,(c_prev == 0));
 	                    ds_list_add(list_raw,c_prev);
 	                }
-	                repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank) )
+	                repeat ( max(controller.opt_mindwell, t_true_dwell_rising - controller.opt_mindwell) )
 	                {
 	                    ds_list_add(list_raw,xp_prev);
 	                    ds_list_add(list_raw,yp_prev);
@@ -247,14 +247,14 @@ function make_frame_onlyblank() {
 	                    ds_list_add(list_raw,0);
 	                }
                 
-	                repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank) )
+	                repeat ( max(controller.opt_mindwell, t_true_dwell_falling - controller.opt_mindwell) )
 	                {
 	                    ds_list_add(list_raw,xpp);
 	                    ds_list_add(list_raw,ypp);
 	                    ds_list_add(list_raw,1);
 	                    ds_list_add(list_raw,0);
 	                }
-	                repeat (controller.opt_maxdwell_blank)
+	                repeat (controller.opt_mindwell)
 	                {
 	                    ds_list_add(list_raw,xpp);
 	                    ds_list_add(list_raw,ypp);
@@ -300,14 +300,14 @@ function make_frame_onlyblank() {
 	    t_true_dwell_falling = controller.opt_maxdwell; //worst case
                             
 	    //dwell on blanking start
-	    repeat (controller.opt_maxdwell_blank)
+	    repeat (controller.opt_mindwell)
 	    {
 	        ds_list_add(list_raw,xp_prev);
 	        ds_list_add(list_raw,yp_prev);
 	        ds_list_add(list_raw,bl);
 	        ds_list_add(list_raw,c_prev);
 	    }
-	    repeat (t_true_dwell_falling - controller.opt_maxdwell_blank )
+	    repeat (t_true_dwell_falling - controller.opt_mindwell )
 	    {
 	        ds_list_add(list_raw,xp_prev);
 	        ds_list_add(list_raw,yp_prev);
@@ -331,14 +331,14 @@ function make_frame_onlyblank() {
 	    }
     
 	    //dwell on blanking start
-	    repeat (controller.opt_maxdwell_blank)
+	    repeat (controller.opt_mindwell)
 	    {
 	        ds_list_add(list_raw,xp_prev);
 	        ds_list_add(list_raw,yp_prev);
 	        ds_list_add(list_raw,bl);
 	        ds_list_add(list_raw,c_prev);
 	    }
-	    repeat ( max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank) )
+	    repeat ( max(controller.opt_mindwell, t_true_dwell_rising - controller.opt_mindwell) )
 	    {
 	        ds_list_add(list_raw,xp_prev);
 	        ds_list_add(list_raw,yp_prev);

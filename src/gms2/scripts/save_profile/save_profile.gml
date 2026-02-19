@@ -7,7 +7,7 @@ function save_profile() {
 	    var t_profilemap = profile_list[| projector];
 	    t_profilemap[? "scanrate"] = opt_scanspeed;
 	    t_profilemap[? "maxdwell"] = opt_maxdwell;
-	    t_profilemap[? "maxdwell_blank"] = opt_maxdwell_blank;
+	    t_profilemap[? "maxdwell_blank"] = opt_mindwell;
 	    t_profilemap[? "blankshift"] = opt_blankshift;
 	    t_profilemap[? "redshift"] = opt_redshift;
 	    t_profilemap[? "greenshift"] = opt_greenshift;

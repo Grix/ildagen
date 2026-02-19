@@ -167,6 +167,7 @@ function find_element_order(t_original_list){
 		{
 		    t_lowestdist = $fffff;
 			// find next closest superelement
+			// todo take angle dwell into account
 		    for (t_i = 0; t_i < ds_list_size(t_superelements_order_lists); t_i++)
 		    {
 				var t_superelement_order_list = t_superelements_order_lists[| t_i];

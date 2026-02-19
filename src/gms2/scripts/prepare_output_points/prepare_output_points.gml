@@ -97,8 +97,8 @@ function prepare_output_points() {
 	                                    (1- abs(angle_difference( angle_prev, angle_next ))/180));
         
                 
-	            maxpoints_static += ( (controller.opt_maxdwell_blank)*2+1
-	                                   + max(0, t_true_dwell_falling - (controller.opt_maxdwell_blank*2+1)) );
+	            maxpoints_static += ( (controller.opt_mindwell)*2+1
+	                                   + max(0, t_true_dwell_falling - (controller.opt_mindwell*2+1)) );
 									   
 	        }
 	        else //not connecting segments
@@ -134,15 +134,15 @@ function prepare_output_points() {
 				
 				if (i == 0)
 				{
-					maxpoints_static += (  (controller.opt_maxdwell_blank) 
-	                                    +  max(controller.opt_maxdwell_blank, t_true_dwell_falling - controller.opt_maxdwell_blank)
+					maxpoints_static += (  (controller.opt_mindwell) 
+	                                    +  max(controller.opt_mindwell, t_true_dwell_falling - controller.opt_mindwell)
 	                                    +  t_quantumstepssqrt * 2 );
 				}
 				else
 				{
-					 maxpoints_static += (   2*(controller.opt_maxdwell_blank)+1 
-	                                    +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
-	                                    +  max(controller.opt_maxdwell_blank, t_true_dwell_falling - (controller.opt_maxdwell_blank+1))
+					 maxpoints_static += (   2*(controller.opt_mindwell)+1 
+	                                    +  max(controller.opt_mindwell, t_true_dwell_rising - controller.opt_mindwell)
+	                                    +  max(controller.opt_mindwell, t_true_dwell_falling - (controller.opt_mindwell+1))
 	                                    +  t_quantumstepssqrt * 2 );
 				}
 				maxpoints_static += 1; // Don't know why but this makes it more accurate.

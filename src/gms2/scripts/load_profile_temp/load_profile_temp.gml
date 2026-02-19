@@ -9,7 +9,7 @@ function load_profile_temp() {
 	    var t_profilemap = profile_list[| t_profile];
 	    opt_scanspeed = t_profilemap[? "scanrate"];
 	    opt_maxdwell = t_profilemap[? "maxdwell"];
-	    opt_maxdwell_blank = t_profilemap[? "maxdwell_blank"];
+	    opt_mindwell = t_profilemap[? "maxdwell_blank"];
 	    opt_blankshift = t_profilemap[? "blankshift"];
 	    opt_redshift = t_profilemap[? "redshift"];
 	    opt_greenshift = t_profilemap[? "greenshift"];

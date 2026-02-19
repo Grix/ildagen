@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_maxdwell",
+  "name": "obj_mindwell",
   "spriteId": {
     "name": "spr_plusminusbutton",
     "path": "sprites/spr_plusminusbutton/spr_plusminusbutton.yy",

@@ -1087,7 +1087,7 @@
     {"id":{"name":"obj_colorscale","path":"objects/obj_colorscale/obj_colorscale.yy",},"order":21,},
     {"id":{"name":"obj_scanrate","path":"objects/obj_scanrate/obj_scanrate.yy",},"order":22,},
     {"id":{"name":"obj_maxdwell","path":"objects/obj_maxdwell/obj_maxdwell.yy",},"order":23,},
-    {"id":{"name":"obj_maxdwell_blank","path":"objects/obj_maxdwell_blank/obj_maxdwell_blank.yy",},"order":24,},
+    {"id":{"name":"obj_mindwell","path":"objects/obj_mindwell/obj_mindwell.yy",},"order":24,},
     {"id":{"name":"obj_blankshift","path":"objects/obj_blankshift/obj_blankshift.yy",},"order":25,},
     {"id":{"name":"obj_redshift","path":"objects/obj_redshift/obj_redshift.yy",},"order":26,},
     {"id":{"name":"obj_greenshift","path":"objects/obj_greenshift/obj_greenshift.yy",},"order":27,},

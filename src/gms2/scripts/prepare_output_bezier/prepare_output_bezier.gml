@@ -162,8 +162,8 @@ function prepare_output_bezier() {
 	    if (opt_dist < 280) //connecting segments
 	    {
 	        var t_true_dwell = controller.opt_maxdwell;
-	        maxpoints_static += (   (controller.opt_maxdwell_blank)
-	                                +  abs(t_true_dwell - controller.opt_maxdwell_blank) );
+	        maxpoints_static += (   (controller.opt_mindwell)
+	                                +  abs(t_true_dwell - controller.opt_mindwell) );
 	    }
 	    else
 	    {
@@ -230,8 +230,8 @@ function prepare_output_bezier() {
                  
 	        var t_quantumsteps = ceil(opt_dist / (a_ballistic*6));
              
-	        maxpoints_static += (   (controller.opt_maxdwell_blank) 
-	                                +  max(controller.opt_maxdwell_blank, t_true_dwell - controller.opt_maxdwell_blank)
+	        maxpoints_static += (   (controller.opt_mindwell) 
+	                                +  max(controller.opt_mindwell, t_true_dwell - controller.opt_mindwell)
 	                                +  t_quantumsteps);
 	    }
 	}

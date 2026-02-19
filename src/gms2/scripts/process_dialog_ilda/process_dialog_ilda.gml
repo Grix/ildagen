@@ -159,7 +159,7 @@ function process_dialog_ilda() {
 	          }  
 	            case "maxdwell_blank":
 	          {
-	              opt_maxdwell_blank = ds_map_find_value(argument[0], "value");
+	              opt_mindwell = ds_map_find_value(argument[0], "value");
 	              save_profile();
               
 	              break;

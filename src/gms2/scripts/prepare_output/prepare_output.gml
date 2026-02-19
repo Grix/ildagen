@@ -107,8 +107,8 @@ function prepare_output() {
 	    if (opt_dist < 280) //connecting segments
 	    {
 	        var t_true_dwell = controller.opt_maxdwell;
-	        maxpoints_static += (   (controller.opt_maxdwell_blank)
-	                                +  max(0, t_true_dwell - controller.opt_maxdwell_blank) );
+	        maxpoints_static += (   (controller.opt_mindwell)
+	                                +  max(0, t_true_dwell - controller.opt_mindwell) );
 	    }
 	    else
 	    {
@@ -129,8 +129,8 @@ function prepare_output() {
 	        var t_trav_dist = a_ballistic;
 	        var t_quantumstepssqrt = ceil(sqrt(opt_dist/t_trav_dist));
              
-	        maxpoints_static += (   (controller.opt_maxdwell_blank) 
-	                                +  max(controller.opt_maxdwell_blank, t_true_dwell_rising - controller.opt_maxdwell_blank)
+	        maxpoints_static += (   (controller.opt_mindwell) 
+	                                +  max(controller.opt_mindwell, t_true_dwell_rising - controller.opt_mindwell)
 	                                +  t_quantumstepssqrt * 2);
 	    }
 	}
