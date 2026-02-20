@@ -44,7 +44,8 @@ function save_project() {
 	buffer_write(save_buffer,buffer_u8,controller.beats_per_bar);
 	buffer_write(save_buffer,buffer_f32,beats_shift);
 	buffer_write(save_buffer,buffer_u8,volume);
-	repeat (25)
+	buffer_write(save_buffer,buffer_u8,!masteralpha_dmx_disable);
+	repeat (24)
 	    buffer_write(save_buffer,buffer_u8,0);
 	buffer_write(save_buffer,buffer_u32,ds_list_size(layer_list)); //pos 50
 

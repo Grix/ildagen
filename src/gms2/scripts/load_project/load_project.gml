@@ -61,6 +61,8 @@ function load_project(argument0) {
 	volume = buffer_read(load_buffer,buffer_u8);
 	if (volume == 0 || volume > 100)
 		volume = 100;
+	
+	masteralpha_dmx_disable = !buffer_read(load_buffer,buffer_u8);
 		
 	length = endframe+50;
 	buffer_seek(load_buffer,buffer_seek_start,50);

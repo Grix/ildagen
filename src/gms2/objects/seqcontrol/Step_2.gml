@@ -338,6 +338,7 @@ if (largepreview)
     
 handle_mousecontrol_seq();
 
+handle_dmx_input_seq();
 handle_midi_input_seq();
 
 

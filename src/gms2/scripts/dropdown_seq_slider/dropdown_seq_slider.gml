@@ -8,7 +8,7 @@ function dropdown_seq_slider(){
 	
 	with (ddobj)
 	{
-	    num = 2;
+	    num = 4;
 		ds_list_add(desc_list,"Change MIDI shortcut...");
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,dd_seq_slider_change_midi_shortcut);
@@ -17,6 +17,16 @@ function dropdown_seq_slider(){
 	    ds_list_add(sep_list,0);
 	    ds_list_add(scr_list,dd_seq_slider_unbind_midi_shortcut);
 	    ds_list_add(hl_list,1);
+		
+		var t_dmx_disabled = true;
+		if (seqcontrol.selected_slider == obj_tl_intensity_scale)
+			t_dmx_disabled = seqcontrol.masteralpha_dmx_disable;
+		
+		ds_list_add(desc_list,"Toggle DMX input (Currently " + (t_dmx_disabled ? "disabled" : "enabled") + ")");
+	    ds_list_add(sep_list,0);
+	    ds_list_add(scr_list,dd_seq_slider_toggle_dmx_disable);
+	    ds_list_add(hl_list,!t_dmx_disabled);
+		
 	    ds_list_add(desc_list,"Reset to default value");
 	    ds_list_add(sep_list,1);
 	    ds_list_add(scr_list,dd_seq_slider_reset_value);

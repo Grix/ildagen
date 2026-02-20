@@ -107,6 +107,7 @@ doubleclick_mousexprevious = mouse_x;
 envelope_copy_duration = -1;
 song_sync_bad_prev = false;
 layer_new_id = 1;
+masteralpha_dmx_disable = true;
 
 tlsurf_y = 137;
 tlw = 983; //width of timeline
