@@ -164,6 +164,8 @@ int Dmx::StartArtnet()
 		return -1;
 	}
 
+	artnet_setesta(artnet_input, RDM_ESTA_ID >> 8, RDM_ESTA_ID & 0xFF);
+	//artnet_setoem() todo
 	artnet_set_short_name(artnet_input, "LaserShowGen");
 	artnet_set_long_name(artnet_input, "LaserShowGen Art-Net Input"); 
 	artnet_set_node_type(artnet_input, ARTNET_NODE);

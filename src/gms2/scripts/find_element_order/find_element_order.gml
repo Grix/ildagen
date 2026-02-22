@@ -222,7 +222,7 @@ function find_element_order(t_original_list){
 				}
         
 				t_dist = point_distance(xp_prev,yp_prev,xp,yp);
-				if (t_dist < t_lowestdist)
+				if (t_dist < (t_lowestdist-10))
 				{
 				    t_order = t_i;
 				    t_pol = 1;

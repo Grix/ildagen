@@ -8,6 +8,8 @@
 #include "e131.h"
 
 #define MAX_OUTPUT_UNIVERSES 1
+#define RDM_ESTA_ID 0x09B9
+#define RDM_DEVICE_ID 0x00000001
 
 class Dmx
 {
