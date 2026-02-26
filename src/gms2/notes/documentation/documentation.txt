@@ -202,11 +202,13 @@ filelist
                 name
                 profile name
 		13 midi key shortcut( = -2 if not in use)
-		14 dmx index, <= 0 if not in use
+		14 dmx index, <16 if not in use
 		15 description (todo implement)
 		16 thumbnail frame number 
 		
+		
 DMX channels
+(deadbands last around 4 units, unlike what is described below)
 - 0: master intensity / blackout, 0 - 15 and 248-256 are deadbands
 - 1: reserved, keep at 0 for forward compatibility
 - 2: file 1: 0 - 15 is blackout, 16 = cell id 1 playing etc
@@ -224,23 +226,23 @@ DMX channels
 - 14: file 5: 0 - 15 is blackout, 16 = cell id 1 playing etc
 - 15: file 5 speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 124-132 = 100%, 255 = 400%
 - 16: file 5 intensity / blackout, 0 - 15 and 248-256 are deadbands
-- 14: file 6: 0 - 15 is blackout, 16 = cell id 1 playing etc
-- 15: file 6 speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 124-132 = 100%, 255 = 400%
-- 16: file 6 intensity / blackout, 0 - 15 and 248-256 are deadbands
-- 17: file 7: 0 - 15 is blackout, 16 = cell id 1 playing etc
-- 18: file 7 speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 124-132 = 100%, 255 = 400%
-- 19: file 7 intensity / blackout, 0 - 15 and 248-256 are deadbands
-- 20: file 8: 0 - 15 is blackout, 16 = cell id 1 playing etc
-- 21: file 8 speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 124-132 = 100%, 255 = 400%
-- 22: file 8 intensity / blackout, 0 - 15 and 248-256 are deadbands
-- 23: Master Red color intensity , 0 - 15 and 248-256 are deadbands
-- 24: Master Green color intensity , 0 - 15 and 248-256 are deadbands
-- 25: Master Blue color intensity , 0 - 15 and 248-256 are deadbands
-- 26: Master Hue color shift, 0 - 15 and 248-256 are deadbands
-- 27: Master X offset ,  124-132 is deadband
-- 28: Master Y offset ,  124-132 is deadband
-- 29: Master Rotation ,  124-132 is deadband
-- 30: Master Speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 124-132 = 100%, 255 = 400%
+- 17: file 6: 0 - 15 is blackout, 16 = cell id 1 playing etc
+- 18: file 6 speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 124-132 = 100%, 255 = 400%
+- 19: file 6 intensity / blackout, 0 - 15 and 248-256 are deadbands
+- 20: file 7: 0 - 15 is blackout, 16 = cell id 1 playing etc
+- 21: file 7 speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 124-132 = 100%, 255 = 400%
+- 22: file 7 intensity / blackout, 0 - 15 and 248-256 are deadbands
+- 23: file 8: 0 - 15 is blackout, 16 = cell id 1 playing etc
+- 24: file 8 speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 124-132 = 100%, 255 = 400%
+- 25: file 8 intensity / blackout, 0 - 15 and 248-256 are deadbands
+- 26: Master Red color intensity , 0 - 8 and 248-256 are deadbands
+- 27: Master Green color intensity , 0 - 8 and 248-256 are deadbands
+- 28: Master Blue color intensity , 0 - 8 and 248-256 are deadbands
+- 29: Master Hue color shift, 0 - 8 and 248-256 are deadbands
+- 30: Master X offset ,  124-132 is deadband
+- 31: Master Y offset ,  124-132 is deadband
+- 32: Master Rotation ,  124-132 is deadband
+- 33: Master Speed, 0 - 15 is 100%, 16-31 = pause, 32 = 25%, 124-132 = 100%, 255 = 400%
 
 		
 Fonts

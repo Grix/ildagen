@@ -1,7 +1,7 @@
 function draw_browser_grid() {
 	draw_set_alpha(1);
 	draw_set_color(c_black);
-	draw_set_font(fnt_bold);
+	draw_set_font(fnt_tooltip);
 	draw_surface_part(browser_surf, 0, scrollbary, camera_get_view_width(view_camera[1]), camera_get_view_height(view_camera[1]), camera_get_view_x(view_camera[1]), camera_get_view_y(view_camera[1]));
 
 	var t_width = max(1, camera_get_view_width(view_camera[1])-scrollbarwidth+1);
@@ -56,7 +56,7 @@ function draw_browser_grid() {
 		{
 			var t_positionratio = (objectlist[| 2]+1) / objectlist[| 4];
 			draw_set_color(c_green);
-			draw_rectangle(t_column*t_cell_size+1, t_ystart+t_row*t_cell_size+t_cell_size-7, t_column*t_cell_size+(t_cell_size-2)*t_positionratio, t_ystart+t_row*t_cell_size+t_cell_size-1, 0);
+			draw_rectangle(t_column*t_cell_size+1, t_ystart+t_row*t_cell_size+t_cell_size-7, t_column*t_cell_size+5+(t_cell_size-7)*t_positionratio, t_ystart+t_row*t_cell_size+t_cell_size-1, 0);
 		}
 		
 		if (selectedfile == i)
@@ -84,7 +84,6 @@ function draw_browser_grid() {
 		if (objectlist[| 11] != "")
 		{
 			draw_set_color(c_ltgray);
-			draw_set_font(fnt_tooltip);
 			draw_text(t_column*t_cell_size+4, t_ystart+t_row*t_cell_size+19, objectlist[| 11]);
 		}
 		
@@ -92,14 +91,21 @@ function draw_browser_grid() {
 		{
 			draw_set_color(controller.c_gold);
 			draw_set_halign(fa_right);
-			draw_text(t_column*t_cell_size+t_cell_size - 4, t_ystart+t_row*t_cell_size+4, "Press MIDI key..");
+			draw_text(t_column*t_cell_size+t_cell_size - 4, t_ystart+t_row*t_cell_size + 19, "Press MIDI key..");
 			draw_set_halign(fa_left);
 		}
 		else if (objectlist[| 13] > 0 && !t_skip_drawing_shortcut)
 		{
-			draw_set_color(c_teal);
+			draw_set_color(c_aqua);
 			draw_set_halign(fa_right);
-			draw_text(t_column*t_cell_size+t_cell_size - 4, t_ystart+t_row*t_cell_size+4, string(objectlist[| 13] >> 8) + midi_get_note_name(objectlist[| 13] & $FF));
+			draw_text(t_column*t_cell_size+t_cell_size - 4, t_ystart+t_row*t_cell_size + 19, string(objectlist[| 13] >> 8) + midi_get_note_name(objectlist[| 13] & $FF));
+			draw_set_halign(fa_left);
+		}
+		if (objectlist[| 14] >= 16)
+		{
+			draw_set_color(c_orange);
+			draw_set_halign(fa_right);
+			draw_text(t_column*t_cell_size+t_cell_size - 4, t_ystart+t_row*t_cell_size + 4, string(objectlist[| 14]));
 			draw_set_halign(fa_left);
 		}
 	}
