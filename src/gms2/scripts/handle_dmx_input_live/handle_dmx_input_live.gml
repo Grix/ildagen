@@ -64,16 +64,16 @@ function handle_dmx_input_live(){
 						if (previous_dmx_file_trigger_values[j] != t_dmx_index)
 						{
 							t_play = true;
-							log("PLAY file " + string(t_dmx_index));
 							t_dmx_file_trigger_values_handled[j] = true;
+							//log("PLAY file " + string(t_dmx_index));
 						}
 						break;
 					}
 					else if (previous_dmx_file_trigger_values[j] == t_dmx_index)
 					{
-						log("STOP file " + string(t_dmx_index));
 						t_stop = true;
 						t_dmx_file_trigger_values_handled[j] = true;
+						//log("STOP file " + string(t_dmx_index));
 					}
 				}
 				if (!t_stop && !t_play)

@@ -55,15 +55,16 @@ mastergreen_midi_shortcut = -2;
 masterabsrot_midi_shortcut = -2;
 speed_adjusted_midi_shortcut = -2;
 
-masterx_dmx_disable = 0;
-mastery_dmx_disable = 0;
+
+masterx_dmx_disable = 1;
+mastery_dmx_disable = 1;
 masteralpha_dmx_disable = 0;
-masterhue_dmx_disable = 0;
-masterred_dmx_disable = 0;
-masterblue_dmx_disable = 0;
-mastergreen_dmx_disable = 0;
-masterabsrot_dmx_disable = 0;
-speed_adjusted_dmx_disable = 0;
+masterhue_dmx_disable = 1;
+masterred_dmx_disable = 1;
+masterblue_dmx_disable = 1;
+mastergreen_dmx_disable = 1;
+masterabsrot_dmx_disable = 1;
+speed_adjusted_dmx_disable = 1;
 
 if (controller.has_midi)
 {

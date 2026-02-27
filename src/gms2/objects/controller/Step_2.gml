@@ -161,7 +161,7 @@ object_select_hovering = 0;
 canrightclick = 1;
 
 check_mouseactions();
-rtmidi_check_message(); // clear midi queue, messages not used in this mode
+handle_midi_ilda(); // clear midi queue, messages not used in this mode
 
 if (keyboard_check_pressed(vk_space))
 {
@@ -484,7 +484,7 @@ if (keyboard_check_pressed(vk_tab))
     if (seqcontrol.song != -1)
         FMODGMS_Chan_PauseChannel(seqcontrol.play_sndchannel);
         
-if (controller.tab_cycles_all == 1)
+	if (controller.tab_cycles_all == 1)
 		room_goto(rm_seq);
 	else
 		room_goto(controller.last_room_2);

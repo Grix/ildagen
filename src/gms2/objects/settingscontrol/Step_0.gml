@@ -40,6 +40,8 @@ if (t_windowheight != controller.previous_windows_h || t_windowwidth != controll
 	controller.previous_windows_w = t_windowwidth;
 }
 
+handle_midi_ilda();
+
 if (keyboard_check_pressed(vk_tab))
 {
 	if (controller.tab_cycles_all == 1)

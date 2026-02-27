@@ -22,8 +22,21 @@ function handle_midi_input_seq(){
 		{
 			// MIDI key pressed
 			var t_note = rtmidi_get_message(1) | ((rtmidi_get_message(0) & $0F) << 8);
-			ds_list_add(t_keys, t_note);
-			ds_list_add(midi_keys_pressed, t_note);
+			
+			if (controller.laseron_midi_trigger == -1)
+				controller.laseron_midi_trigger = t_note;
+			else if (t_note == controller.laseron_midi_trigger)
+			{
+				with (obj_laseron)
+				{
+					event_perform(ev_mouse, ev_left_press);
+				}
+			}
+			else
+			{
+				ds_list_add(t_keys, t_note);
+				ds_list_add(midi_keys_pressed, t_note);
+			}
 		}
 		if (t_type == 128 || (t_type == 144 && rtmidi_get_message(2) == 0))
 		{

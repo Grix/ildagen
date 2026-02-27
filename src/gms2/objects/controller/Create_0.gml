@@ -203,6 +203,7 @@ bug_report_suppress = false;
 force_io_reset = false;
 known_filename_of_load = "";
 has_midi = false;
+laseron_midi_trigger = -2;
 midi_input_device = 0;
 midi_output_device = 0;
 use_bpm = true;
