@@ -93,12 +93,9 @@ function prepare_output_points() {
 	            angle_next = point_direction(xp,yp, xpp,ypp);
 	            angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
         
-	            t_true_dwell_falling =  round(controller.opt_maxdwell * 
-	                                    (1- abs(angle_difference( angle_prev, angle_next ))/180));
+	            t_true_dwell_falling = round(controller.opt_maxdwell * (1- abs(angle_difference( angle_prev, angle_next ))/180));
         
-                
-	            maxpoints_static += ( (controller.opt_mindwell)*2+1
-	                                   + max(0, t_true_dwell_falling - (controller.opt_mindwell*2+1)) );
+	            maxpoints_static += t_true_dwell_falling;
 									   
 	        }
 	        else //not connecting segments
@@ -113,8 +110,7 @@ function prepare_output_points() {
 	            {
 	                angle_next = point_direction(xpp,ypp, xp,yp);
                 
-	                t_true_dwell_falling =  round(controller.opt_maxdwell * 
-	                                        (1- abs(angle_difference( angle_blank, angle_next ))/180));
+	                t_true_dwell_falling =  round(controller.opt_maxdwell * (1- abs(angle_difference( angle_blank, angle_next ))/180));
 	            }
             
 	            if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
@@ -125,8 +121,7 @@ function prepare_output_points() {
 	            {
 	                angle_prev = point_direction(xp_prev_prev,yp_prev_prev, xp_prev,yp_prev);
         
-	                t_true_dwell_rising =  round(controller.opt_maxdwell * 
-	                                        (1- abs(angle_difference( angle_prev, angle_blank ))/180));
+	                t_true_dwell_rising =  round(controller.opt_maxdwell * (1- abs(angle_difference( angle_prev, angle_blank ))/180));
 	            }
         
 	            var t_trav_dist = a_ballistic;
@@ -140,9 +135,9 @@ function prepare_output_points() {
 				}
 				else
 				{
-					 maxpoints_static += (   2*(controller.opt_mindwell)+1 
+					 maxpoints_static += (  controller.opt_mindwell + controller.opt_mindwell
 	                                    +  max(controller.opt_mindwell, t_true_dwell_rising - controller.opt_mindwell)
-	                                    +  max(controller.opt_mindwell, t_true_dwell_falling - (controller.opt_mindwell+1))
+	                                    +  max(controller.opt_mindwell, t_true_dwell_falling - controller.opt_mindwell)
 	                                    +  t_quantumstepssqrt * 2 );
 				}
 				maxpoints_static += 1; // Don't know why but this makes it more accurate.
@@ -163,7 +158,7 @@ function prepare_output_points() {
         
 			    var t_corner_dwell =  round(controller.opt_maxdwell * abs(angle_difference( angle_prev, angle_next )/180));
 				
-				maxpoints_static += floor(t_corner_dwell);
+				maxpoints_static += t_corner_dwell;
 			}
 		}
 	

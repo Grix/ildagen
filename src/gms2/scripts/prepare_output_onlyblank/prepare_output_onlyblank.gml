@@ -30,86 +30,13 @@ function prepare_output_onlyblank() {
 
 	a_ballistic = controller.opt_maxdist; //scanner acceleration
 
-	var t_pol = 0;
-	var t_order = 0;
-	var t_lowestdist, t_dist;
-	var t_found = 0;
-	var t_list_empties = ds_list_create_pool();
-
 	//checking best element order
-	while (ds_list_size(order_list) < (ds_list_size(el_list)-ds_list_size(t_list_empties)))
-	{
-	    t_lowestdist = $fffff;
-	    for (i = 0; i < ds_list_size(el_list); i++)
-	    {
-	        if (ds_list_find_index(order_list,i) != -1)
-	            continue;
-            
-	        list_id = el_list[| i];
-        
-	        if (ds_list_find_index(t_list_empties, list_id) != -1)
-	            continue;
-			
-			if (ds_list_size(list_id) <= 22)
-			{
-				ds_list_add(t_list_empties, list_id);
-				continue;
-			}
-        
-	        xo = list_id[| 0];
-	        yo = list_id[| 1];
-	        t_found = 0;
-        
-	        xp = xo+list_id[| 20];
-	        yp = yo+list_id[| 21];
-        
-	        t_dist = point_distance(xp_prev,yp_prev,xp,yp);
-	        if (t_dist < t_lowestdist)
-	        {
-	            t_order = i;
-	            t_pol = 0;
-	            if (t_dist < 250)
-	                break;
-	            t_lowestdist = t_dist;
-	        }
-        
-	        if (!list_id[| 11])
-	        {
-	            currentpos = ds_list_size(list_id)-4;
-	            xp = xo+list_id[| currentpos+0];
-	            yp = yo+list_id[| currentpos+1];
-            
-	            t_dist = point_distance(xp_prev,yp_prev,xp,yp);
-	            if (t_dist < t_lowestdist)
-	            {
-	                t_order = i;
-	                t_pol = 1;
-	                if (t_dist < 250)
-	                    break;
-	                t_lowestdist = t_dist;
-	            }
-	        }
-	    }
-	    if ((ds_list_size(el_list)-ds_list_size(t_list_empties)) > 0)
-	    {
-	        list_id = el_list[| t_order];
-	        if (t_pol)
-	            currentpos = 20;
-	        else
-	            currentpos = ds_list_size(list_id)-4;
-            
-	        xp_prev = list_id[| 0]+list_id[| currentpos+0];
-	        yp_prev = list_id[| 1]+list_id[| currentpos+1];
-	        ds_list_add(order_list,t_order);
-	        ds_list_add(polarity_list,t_pol);
-	    }
-	}
+	find_element_order(el_list);
 
-	if ((ds_list_size(el_list)-ds_list_size(t_list_empties)) <= 0)
+	if (ds_list_empty(order_list))
 	{
 	    ds_list_free_pool(order_list); order_list = -1;
 		ds_list_free_pool(polarity_list); polarity_list =-1;
-		ds_list_free_pool(t_list_empties); t_list_empties = -1;
 		ds_list_free_pool(list_raw); list_raw = -1;
 	    return 0;
 	}
@@ -141,8 +68,6 @@ function prepare_output_onlyblank() {
        
 	    bl_prev = 1;
 	}
-
-	ds_list_free_pool(t_list_empties); t_list_empties = -1;
 
 	return 1;
 

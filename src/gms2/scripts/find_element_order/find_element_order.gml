@@ -125,7 +125,7 @@ function find_element_order(t_original_list){
 					break;
 				}
 			
-				if (!t_next_list_id[| 11])
+				if (!t_next_list_id[| 11] && !controller.opt_onlyblanking)
 				{
 					var t_next_xp_end = t_next_xo+t_next_list_id[| ds_list_size(t_next_list_id)-4+0];
 					var t_next_yp_end = t_next_yo+t_next_list_id[| ds_list_size(t_next_list_id)-4+1];

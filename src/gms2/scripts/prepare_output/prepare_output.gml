@@ -84,8 +84,9 @@ function prepare_output() {
 				var t_bl_last = list_id[| t_lastindex+2];
 				if (t_bl_first == 0 && t_bl_last == 0 && abs(angle_difference(point_direction(t_x_first, t_y_first, t_x_first2, t_y_first2), point_direction(t_x_last2, t_y_last2, t_x_last, t_y_last))) < 30)
 				{
-					list_id[| 12] = min(t_lit_length_element / 2, 6000);
-					lit_length += list_id[| 12];
+					list_id[| 12] = min(t_lit_length_element / 3, 3000);
+					lit_length += list_id[| 12] * 2;
+					maxpoints_static++;
 				}
 			}
 		}
@@ -106,9 +107,9 @@ function prepare_output() {
     
 	    if (opt_dist < 280) //connecting segments
 	    {
-	        var t_true_dwell = controller.opt_maxdwell;
-	        maxpoints_static += (   (controller.opt_mindwell)
-	                                +  max(0, t_true_dwell - controller.opt_mindwell) );
+	        var t_true_dwell = round(controller.opt_maxdwell*0.5);
+	        maxpoints_static += ( controller.opt_mindwell 
+								+  max(controller.opt_mindwell, t_true_dwell - controller.opt_mindwell) );
 	    }
 	    else
 	    {
@@ -122,8 +123,7 @@ function prepare_output() {
 	            angle_blank = point_direction(xp,yp, xp_prev,yp_prev);
 	            angle_prev = point_direction(xp_prev_prev,yp_prev_prev, xp_prev,yp_prev);
     
-	            t_true_dwell_rising =  round(controller.opt_maxdwell * 
-	                                    (1- abs(angle_difference( angle_prev, angle_blank ))/180));
+	            t_true_dwell_rising =  round(controller.opt_maxdwell * (1- abs(angle_difference( angle_prev, angle_blank ))/180));
 	        }       
                  
 	        var t_trav_dist = a_ballistic;

@@ -132,29 +132,21 @@ function make_frame_onlyblank() {
 	                angle_next = point_direction(xp,yp, xpp,ypp);
 	                angle_prev = point_direction(xp_prev,yp_prev, xp_prev_prev,yp_prev_prev);
             
-	                t_true_dwell_falling =  round(controller.opt_maxdwell * 
-	                                        (1- abs(angle_difference( angle_prev, angle_next ))/180));
-                                        
+	                t_true_dwell_falling =  round(controller.opt_maxdwell * (1- abs(angle_difference( angle_prev, angle_next ))/180));
+                                            
 	                //dwell on blanking start
-	                repeat (controller.opt_mindwell)
+	                repeat (floor(t_true_dwell_falling/2))
 	                {
 	                    ds_list_add(list_raw,xp_prev);
-	                    ds_list_add(list_raw,yp_prev);
+	                    ds_list_add(list_raw,ypp);
 	                    ds_list_add(list_raw,(c_prev == 0));
 	                    ds_list_add(list_raw,c_prev);
 	                }
-	                repeat (t_true_dwell_falling - controller.opt_mindwell*2 )
+					repeat (ceil(t_true_dwell_falling/2))
 	                {
 	                    ds_list_add(list_raw,xp_prev);
 	                    ds_list_add(list_raw,ypp);
-	                    ds_list_add(list_raw,1);
-	                    ds_list_add(list_raw,0);
-	                }
-	                repeat (controller.opt_mindwell)
-	                {
-	                    ds_list_add(list_raw,xpp);
-	                    ds_list_add(list_raw,ypp);
-	                    ds_list_add(list_raw,bl);
+	                    ds_list_add(list_raw,(c == 0));
 	                    ds_list_add(list_raw,c);
 	                }
 	            }
@@ -170,8 +162,7 @@ function make_frame_onlyblank() {
 	                {
 	                    angle_next = point_direction(xpp,ypp, xp,yp);
                     
-	                    t_true_dwell_falling =  round(controller.opt_maxdwell * 
-	                                            (1- abs(angle_difference( angle_blank, angle_next ))/180));
+	                    t_true_dwell_falling =  round(controller.opt_maxdwell * (1- abs(angle_difference( angle_blank, angle_next ))/180));
 	                }
                 
 	                if ((xp_prev_prev == xp_prev) && (yp_prev_prev == yp_prev))
@@ -182,8 +173,7 @@ function make_frame_onlyblank() {
 	                {
 	                    angle_prev = point_direction(xp_prev_prev,yp_prev_prev, xp_prev,yp_prev);
             
-	                    t_true_dwell_rising =  round(controller.opt_maxdwell * 
-	                                            (1- abs(angle_difference( angle_prev, angle_blank ))/180));
+	                    t_true_dwell_rising =  round(controller.opt_maxdwell * (1- abs(angle_difference( angle_prev, angle_blank ))/180));
 	                }
             
 	                //dwell on blanking start

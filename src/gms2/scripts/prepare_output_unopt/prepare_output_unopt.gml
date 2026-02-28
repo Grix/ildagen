@@ -23,17 +23,10 @@ function prepare_output_unopt() {
 	c_prev = 0;
 	new_dot = 1;
 
-	var t_pol = 0;
-	var t_order = 0;
-	var t_lowestdist, t_dist, t_tempxp_prev_other, t_tempyp_prev_other, t_tempxp_prev, t_tempyp_prev;
-	var t_found = 0;
-	var t_list_empties = ds_list_create_pool(); //todo remove, waste of performance?
-
-	if ((ds_list_size(el_list)-ds_list_size(t_list_empties)) <= 0)
+	if (ds_list_size(el_list) <= 0)
 	{
 	    ds_list_free_pool(order_list); order_list = -1;
 		ds_list_free_pool(polarity_list); polarity_list =-1;
-	    ds_list_free_pool(t_list_empties); t_list_empties = -1;
 	    ds_list_free_pool(list_raw); list_raw = -1;
 	    return 0;
 	}
@@ -55,16 +48,12 @@ function prepare_output_unopt() {
 	    {
 	        ds_list_free_pool(order_list); order_list = -1;
 			ds_list_free_pool(polarity_list); polarity_list =-1;
-		    ds_list_free_pool(t_list_empties); t_list_empties = -1;
 		    ds_list_free_pool(list_raw); list_raw = -1;
 	        return 0;
 	    }
        
 	    bl_prev = 1;
 	}
-
-
-	ds_list_free_pool(t_list_empties); t_list_empties = -1;
 
 	return 1;
 

@@ -192,11 +192,13 @@ function make_frame() {
 						if (t_ratio < 0.5)
 							t_ratio = 0;
 						else
-							t_ratio = 0.5+t_ratio/2;
+							t_ratio = 0.5+t_ratio*2;
 						t_c_first = merge_color(c, c_black, t_ratio);
 					}
 					else
 						t_c_first = merge_color(c, c_black, 1 - t_ratio);
+						
+					log("r", t_ratio);
 				}
                 
 	            if (opt_dist < 280) //connecting segments
@@ -207,34 +209,20 @@ function make_frame() {
 	                t_true_dwell_falling =  round(controller.opt_maxdwell * (1- abs(angle_difference( angle_prev, angle_next ))/180));
                                             
 	                //dwell on blanking start
-	                /*repeat (controller.opt_mindwell-1)
+	                repeat (floor(t_true_dwell_falling/2))
 	                {
 	                    ds_list_add(list_raw,xp_prev);
-	                    ds_list_add(list_raw,yp_prev);
+	                    ds_list_add(list_raw,ypp);
 	                    ds_list_add(list_raw,(c_prev == 0));
 	                    ds_list_add(list_raw,c_prev);
-	                }*/
-	                repeat (floor(t_true_dwell_falling/2)) // - (min(0,(controller.opt_mindwell-1))*2/*+1*/) ) // todo remove lit points at these corners? Normal corners dont have them
+	                }
+					repeat (ceil(t_true_dwell_falling/2))
 	                {
 	                    ds_list_add(list_raw,xp_prev);
 	                    ds_list_add(list_raw,ypp);
-	                    ds_list_add(list_raw,(c_prev == 0));  //1);
-	                    ds_list_add(list_raw,c_prev);  //0);
-	                }
-					repeat (ceil(t_true_dwell_falling/2)) // - (min(0,(controller.opt_mindwell-1))*2/*+1*/) ) // todo remove lit points at these corners? Normal corners dont have them
-	                {
-	                    ds_list_add(list_raw,xp_prev);
-	                    ds_list_add(list_raw,ypp);
-	                    ds_list_add(list_raw,(t_c_first == 0));  //1);
-	                    ds_list_add(list_raw,t_c_first);  //0);
-	                }
-	                /*repeat (controller.opt_mindwell-1)//+1)
-	                {
-	                    ds_list_add(list_raw,xpp);
-	                    ds_list_add(list_raw,ypp);
-	                    ds_list_add(list_raw,0);
+	                    ds_list_add(list_raw,(t_c_first == 0));
 	                    ds_list_add(list_raw,t_c_first);
-	                }*/
+	                }
 					//log("connecting on ", i, t_true_dwell_falling);
 	            }
 	            else //not connecting segments
@@ -272,6 +260,7 @@ function make_frame() {
 		                    ds_list_add(list_raw,yp_prev);
 		                    ds_list_add(list_raw,(c_prev == 0));
 		                    ds_list_add(list_raw,c_prev);
+							//log("d ", c_prev);
 		                }
 		                repeat ( max(controller.opt_mindwell, t_true_dwell_rising - controller.opt_mindwell) )
 		                {
@@ -315,6 +304,7 @@ function make_frame() {
 		                    ds_list_add(list_raw,ypp);
 		                    ds_list_add(list_raw,0);
 		                    ds_list_add(list_raw,t_c_first);
+							//log("b ", t_c_first);
 		                }
 					//}
                     
@@ -337,7 +327,7 @@ function make_frame() {
         
 			        var t_corner_dwell =  round(controller.opt_maxdwell * abs(angle_difference( angle_prev, angle_next )/180));
 				
-					repeat (floor(t_corner_dwell))
+					repeat (t_corner_dwell)
 					{
 						ds_list_add(list_raw,xp_prev);
 				        ds_list_add(list_raw,yp_prev);
@@ -355,6 +345,7 @@ function make_frame() {
 			if (t_edge_overlap_length_so_far < t_edge_overlap_length)
 			{
 				var t_ratio = t_edge_overlap_length_so_far / t_edge_overlap_length;
+				log("t     ", t_ratio, t_is_overlapping);
 				if (t_is_overlapping)
 				{
 					if (t_ratio < 0.5)
@@ -367,6 +358,7 @@ function make_frame() {
 					c = merge_color(c, c_black, 1 - t_ratio);
 					
 				t_edge_overlap_length_so_far += opt_dist;
+				log("t", t_ratio);
 			}
 			else if (t_is_overlapping)
 			{
@@ -399,6 +391,7 @@ function make_frame() {
 	                ds_list_add(list_raw,yp_prev+t_vectory*(u));
 	                ds_list_add(list_raw,0);
 	                ds_list_add(list_raw,c); // todo merge_color to interpolate?
+					//log("a ", c);
 	            }
 	            /*t_totalrem += t_lengthwanted - (opt_dist % t_lengthwanted);
 	            if (t_totalrem > t_lengthwanted)
@@ -430,6 +423,7 @@ function make_frame() {
 	        ds_list_add(list_raw,yp);
 	        ds_list_add(list_raw,0);
 	        ds_list_add(list_raw,c);
+			//log("c ", c);
         
 	        xp_prev_prev = xp_prev;
 	        yp_prev_prev = yp_prev;
@@ -479,7 +473,7 @@ function make_frame() {
 	if (opt_dist < 280) //connecting segments
 	{
 		//log("connecting on last");
-	    t_true_dwell_falling = controller.opt_maxdwell; //worst case
+	    t_true_dwell_falling = round(controller.opt_maxdwell*0.5);
                             
 	    //dwell on blanking start
 	    repeat (controller.opt_mindwell)
@@ -489,7 +483,7 @@ function make_frame() {
 	        ds_list_add(list_raw,0);
 	        ds_list_add(list_raw,c_prev);
 	    }
-	    repeat (t_true_dwell_falling - controller.opt_mindwell )
+	    repeat (max(controller.opt_mindwell, t_true_dwell_falling - controller.opt_mindwell))
 	    {
 	        ds_list_add(list_raw,xp);
 	        ds_list_add(list_raw,yp);

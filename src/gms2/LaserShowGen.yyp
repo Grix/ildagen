@@ -1269,7 +1269,6 @@
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"font_arial.ild","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"hershey.ini","CopyToMask":-1,"filePath":"datafiles",},
-    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"help.pdf","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"LaserBoy_Current.zip","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"lsgtestpattern.igf","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"settings_default.ini","CopyToMask":3035426170322551022,"filePath":"datafiles",},
@@ -1287,6 +1286,7 @@
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Impact.ild","CopyToMask":-1,"filePath":"datafiles/fonts",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Lucida.ild","CopyToMask":-1,"filePath":"datafiles/fonts",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"demo_show.igp","CopyToMask":-1,"filePath":"datafiles",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"help.pdf","CopyToMask":-1,"filePath":"datafiles",},
   ],
   "MetaData": {
     "IDEVersion": "2022.0.3.85",
