@@ -8,6 +8,11 @@ if (t_windowheight != controller.previous_windows_h || t_windowwidth != controll
 && !(t_windowheight == 0 || t_windowwidth == 0)
 || controller.forceresize
 {
+	if (t_windowwidth < 1000)
+		t_windowwidth = 1000;
+	if (t_windowheight < 600)
+		t_windowheight = 600;
+		
 	//if (window_get_height() < controller.default_window_h || window_get_width() < controller.default_window_w)
 	//	window_set_size(controller.default_window_w, controller.default_window_h);
 	

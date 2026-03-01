@@ -2,7 +2,11 @@ if (view_current != 0)
     exit;
 
 draw_self();
-draw_sprite(spr_knob,(moving > 0),x+clamp(livecontrol.masterabsrot,0,pi*2)/(pi*2)*72,y+16);
+
+if (!livecontrol.masterabsrot_dmx_disable)
+	draw_sprite_ext(spr_knob,(moving > 0),x+clamp(livecontrol.masterabsrot,0,pi*2)/(pi*2)*72,y+16, 1, 1, 0, c_orange, 1);
+else
+	draw_sprite(spr_knob,(moving > 0),x+clamp(livecontrol.masterabsrot,0,pi*2)/(pi*2)*72,y+16);
 
 draw_text(x+80,y+9,"Rotation");
 

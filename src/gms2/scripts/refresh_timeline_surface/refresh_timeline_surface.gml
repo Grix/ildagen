@@ -1,15 +1,22 @@
 function refresh_timeline_surface() {
 	//redraws the surface containing the layer list and audio visualization in the timeline mode
 
+	var t_wport = tlw+512;
+	if (t_wport <= 0)
+		t_wport = 1;
+	var t_hport = view_hport[1]/controller.dpi_multiplier;
+	if (t_hport <= 0)
+		t_hport = 1;
+
 	if (!surface_exists(timeline_surf))
 	{
-	    timeline_surf = surface_create(clamp(power(2, ceil(log2(tlw+512))), 1, 8192), clamp(power(2, ceil(log2(view_hport[1]/controller.dpi_multiplier))), 1, 8192));
+	    timeline_surf = surface_create(clamp(power(2, ceil(log2(t_wport))), 1, 8192), clamp(power(2, ceil(log2(t_hport))), 1, 8192));
 		timeline_surf_pos = tlx;
 		timeline_surf_length = 0;
 	}
 	if (!surface_exists(timeline_surf_audio))
 	{
-	    timeline_surf_audio = surface_create(clamp(power(2, ceil(log2(tlw+512))), 1, 8192), 128);
+	    timeline_surf_audio = surface_create(clamp(power(2, ceil(log2(t_wport))), 1, 8192), 128);
 		timeline_surf_pos = tlx;
 		timeline_surf_length = 0;
 	}
@@ -30,9 +37,9 @@ function refresh_timeline_surface() {
 	if (tlx+tlzoom-t_tlx > -50/tlwdivtlzoom)
 	{
 		if (!surface_exists(timeline_surf_temp))
-			timeline_surf_temp = surface_create(clamp(power(2, ceil(log2(tlw+512))), 1, 8192), clamp(power(2, ceil(log2(view_hport[1]/controller.dpi_multiplier))), 1, 8192));
+			timeline_surf_temp = surface_create(clamp(power(2, ceil(log2(t_wport))), 1, 8192), clamp(power(2, ceil(log2(t_hport))), 1, 8192));
 		if (!surface_exists(timeline_surf_audio_temp))
-			timeline_surf_audio_temp = surface_create(clamp(power(2, ceil(log2(tlw+512))), 1, 8192), 128);
+			timeline_surf_audio_temp = surface_create(clamp(power(2, ceil(log2(t_wport))), 1, 8192), 128);
 	
 		if (timeline_surf_length*tlwdivtlzoom + t_tlw > surface_get_width(timeline_surf))
 		{

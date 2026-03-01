@@ -74,6 +74,11 @@ if (t_windowheight != controller.previous_windows_h || t_windowwidth != controll
 && !(t_windowheight == 0 || t_windowwidth == 0)
 || forceresize
 {
+	if (t_windowwidth < 1000)
+		t_windowwidth = 1000;
+	if (t_windowheight < 600)
+		t_windowheight = 600;
+	
 	if (dpi_scaling == 0 || dpi_scaling == -1)
 	{
 		dpi_multiplier = clamp(min( ceil(t_windowheight/(735*2.05)), ceil(t_windowwidth/(1350*2)) ),1,3);

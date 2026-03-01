@@ -1,6 +1,14 @@
 function refresh_minitimeline_surf() {
+	
+	var t_wport = view_wport[4]/dpi_multiplier;
+	if (t_wport <= 0)
+		t_wport = 1;
+	var t_hport = view_wport[4]/512*42/dpi_multiplier;
+	if (t_hport <= 0)
+		t_hport = 1;
+		
 	if (!surface_exists(minitimeline_surf))
-	    minitimeline_surf = surface_create(clamp(power(2, ceil(log2(view_wport[4]/dpi_multiplier))), 1, 8192), clamp(power(2, ceil(log2(view_wport[4]/512*42/dpi_multiplier))), 1, 8192));
+	    minitimeline_surf = surface_create(clamp(power(2, ceil(log2(t_wport))), 1, 8192), clamp(power(2, ceil(log2(t_hport))), 1, 8192));
     
 	var t_tlw = tlw / dpi_multiplier;
 	var t_tlh = tlh / dpi_multiplier;

@@ -1,9 +1,17 @@
 function refresh_seq_surface_large() {
 	//refreshes the laser show preview surface in the sequencer mode room
+	
+	var t_wport = view_wport[4];
+	if (t_wport <= 0)
+		t_wport = 1;
+	var t_hport = view_hport[4]+view_hport[1];
+	if (t_hport <= 0)
+		t_hport = 1;
+	
 	if (!surface_exists(frame_surf_large))
-	    frame_surf_large = surface_create(clamp(power(2, ceil(log2(view_wport[4]))), 1, 8192), clamp(power(2, ceil(log2(view_hport[4]+view_hport[1]))), 1, 8192));
+	    frame_surf_large = surface_create(clamp(power(2, ceil(log2(t_wport))), 1, 8192), clamp(power(2, ceil(log2(t_hport))), 1, 8192));
 	if (!surface_exists(frame3d_surf_large))
-	    frame3d_surf_large = surface_create(clamp(power(2, ceil(log2(view_wport[4]))), 1, 8192), clamp(power(2, ceil(log2(view_hport[4]+view_hport[1]))), 1, 8192));
+	    frame3d_surf_large = surface_create(clamp(power(2, ceil(log2(t_wport))), 1, 8192), clamp(power(2, ceil(log2(t_hport))), 1, 8192));
 
 	if (viewmode != 1)
 	{
@@ -24,7 +32,7 @@ function refresh_seq_surface_large() {
 	var t_scaley = 1/$FFFF*(view_hport[4]+view_hport[1]);
 	var t_centerx = view_wport[4]/2;
 	var t_centery = (view_hport[4]+view_hport[1])/2;
-	var t_scalediag = sqrt((view_hport[4]+view_hport[1])*(view_hport[4]+view_hport[1])+view_wport[4]*view_wport[4])/2;
+	var t_scalediag = sqrt((t_hport)*(t_hport)+t_wport*t_wport)/2;
     
 	//check which should be drawn
 	for (j = 0; j < ds_list_size(layer_list); j++)

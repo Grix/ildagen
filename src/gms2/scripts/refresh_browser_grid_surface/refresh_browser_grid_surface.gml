@@ -1,7 +1,13 @@
 function refresh_browser_grid_surface() {
 	if (!surface_exists(browser_surf))
 	{
-	    browser_surf = surface_create(clamp(power(2, ceil(log2(camera_get_view_width(view_get_camera(1))))), 1, 8192), clamp(power(2, ceil(log2(ypos_perm+camera_get_view_height(view_get_camera(1))))), 1, 8192));
+		var t_wport = camera_get_view_width(view_get_camera(1));
+		if (t_wport <= 0)
+			t_wport = 1;
+		var t_hport = ypos_perm+camera_get_view_height(view_get_camera(1));
+		if (t_hport <= 0)
+			t_hport = 1;
+	    browser_surf = surface_create(clamp(power(2, ceil(log2(t_wport))), 1, 8192), clamp(power(2, ceil(log2(t_hport))), 1, 8192));
 	}
 	else
 		exit; // Don't need to refresh

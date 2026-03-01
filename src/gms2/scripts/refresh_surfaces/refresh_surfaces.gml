@@ -5,10 +5,14 @@ function refresh_surfaces() {
 	frame_complexity = 0;
 	el_list = ds_list_find_value(frame_list,frame);
 
+	var t_wport = view_wport[4];
+	if (t_wport <= 0)
+		t_wport = 1;
+
 	if (!surface_exists(frame_surf))
-	    frame_surf = surface_create(clamp(power(2, ceil(log2(view_wport[4]))), 1, 8192), clamp(power(2, ceil(log2(view_wport[4]))), 1, 8192));
+	    frame_surf = surface_create(clamp(power(2, ceil(log2(t_wport))), 1, 8192), clamp(power(2, ceil(log2(t_wport))), 1, 8192));
 	if (!surface_exists(frame3d_surf))
-	    frame3d_surf = surface_create(clamp(power(2, ceil(log2(view_wport[4]))), 1, 8192), clamp(power(2, ceil(log2(view_wport[4]))), 1, 8192));
+	    frame3d_surf = surface_create(clamp(power(2, ceil(log2(t_wport))), 1, 8192), clamp(power(2, ceil(log2(t_wport))), 1, 8192));
 
 	var t_div = $ffff/max(1, view_wport[4]);
 

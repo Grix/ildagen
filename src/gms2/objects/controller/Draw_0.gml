@@ -110,7 +110,10 @@ if (view_current == 4 || view_current == 5)
         {
             if (!surface_exists(squaregrid_surf))
             {
-                squaregrid_surf = surface_create(clamp(power(2, ceil(log2(view_wport[4]))), 1, 8192), clamp(power(2, ceil(log2(view_wport[4]))), 1, 8192));
+				var t_wport = view_wport[4];
+				if (t_wport <= 0)
+					t_wport = 1;
+                squaregrid_surf = surface_create(clamp(power(2, ceil(log2(t_wport))), 1, 8192), clamp(power(2, ceil(log2(t_wport))), 1, 8192));
                 surface_set_target(squaregrid_surf);
                     draw_grid();
                 surface_reset_target();
@@ -121,7 +124,10 @@ if (view_current == 4 || view_current == 5)
         {
             if (!surface_exists(radialgrid_surf))
             {
-                radialgrid_surf = surface_create(clamp(power(2, ceil(log2(view_wport[4]))), 1, 8192), clamp(power(2, ceil(log2(view_wport[4]))), 1, 8192));
+				var t_wport = view_wport[4];
+				if (t_wport <= 0)
+					t_wport = 1;
+                radialgrid_surf = surface_create(clamp(power(2, ceil(log2(t_wport))), 1, 8192), clamp(power(2, ceil(log2(t_wport))), 1, 8192));
                 surface_set_target(radialgrid_surf);
                     draw_radialgrid();
                 surface_reset_target();
