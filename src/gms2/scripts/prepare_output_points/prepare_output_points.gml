@@ -16,6 +16,11 @@ function prepare_output_points() {
 	    currentpos = ds_list_size(list_id)-4;
 	    currentposadjust = -4;
 	}
+	
+	var t_lit_length_start = lit_length;
+	var t_is_overlapping = false;
+	var t_edge_overlap_length = 0;
+	var t_edge_overlap_length_so_far = 0;
 
 	//walk through list to get lit length and static point count
 	for (var t_i = 1; t_i < listsize; t_i++)
@@ -173,12 +178,71 @@ function prepare_output_points() {
 			lit_length += opt_dist;
 			numrawpoints++;
 	    }
+		
+		if (t_edge_overlap_length_so_far < t_edge_overlap_length)
+		{
+			t_edge_overlap_length_so_far += opt_dist;
+		}
     
 	    xp_prev_prev = xp_prev;
 	    yp_prev_prev = yp_prev;
 	    xp_prev = xp;
 	    yp_prev = yp;
 	    //c_prev = c;
+		
+		// Do overlapping on smooth closed shapes like circles
+		if (t_i == listsize-1 && !t_is_overlapping)
+		{
+			var t_lit_length_element = lit_length - t_lit_length_start;
+			list_id[| 12] = 0;
+			if (t_lit_length_element > 2000 && listsize > 4)
+			{
+				var t_lastindex = ds_list_size(list_id)-4;
+				var t_x_first = xo+list_id[| 20+0];
+				var t_y_first = yo+list_id[| 20+1];
+				var t_x_last = xo+list_id[| t_lastindex+0];
+				var t_y_last = yo+list_id[| t_lastindex+1];
+				if (point_distance(t_x_first, t_y_first, t_x_last, t_y_last) < 200)
+				{
+					var t_x_first2 = xo+list_id[| 24+0];
+					var t_y_first2 = yo+list_id[| 24+1];
+					var t_bl_first = list_id[| 20+2];
+					var t_x_last2 = xo+list_id[| t_lastindex-4+0];
+					var t_y_last2 = yo+list_id[| t_lastindex-4+1];
+					var t_bl_last = list_id[| t_lastindex+2];
+					if (t_bl_first == 0 && t_bl_last == 0 && abs(angle_difference(point_direction(t_x_first, t_y_first, t_x_first2, t_y_first2), point_direction(t_x_last2, t_y_last2, t_x_last, t_y_last))) < 30)
+					{
+						t_edge_overlap_length = min(t_lit_length_element / 3, 3000);
+						list_id[| 12] = t_edge_overlap_length;
+						//lit_length += list_id[| 12] * 2;
+						//maxpoints_static++;
+					}
+				}
+			}
+		}
+		
+		if (t_edge_overlap_length > 0)
+		{
+			if (t_is_overlapping)
+			{
+				if (t_edge_overlap_length_so_far >= t_edge_overlap_length)
+				{
+					break;
+				}
+			}
+			else if (t_i == listsize-1)
+			{
+				t_is_overlapping = true;
+				t_edge_overlap_length *= 2;
+				t_edge_overlap_length_so_far = 0;
+				t_i = 0;
+				if (polarity_list[| i] == 0)
+				    currentpos = 20;
+				else
+				    currentpos = ds_list_size(list_id)-4;
+			}
+		}
+		
 	}
 
 

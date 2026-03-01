@@ -61,35 +61,7 @@ function prepare_output() {
 	    xo = ds_list_find_value(list_id,0);
 	    yo = ds_list_find_value(list_id,1);
 		
-		var t_lit_length_start = lit_length;
-        
 	    prepare_output_points();
-    
-		var t_lit_length_element = lit_length - t_lit_length_start;
-		list_id[| 12] = 0;
-		if (t_lit_length_element > 2000 && listsize > 4)
-		{
-			var t_lastindex = ds_list_size(list_id)-4;
-			var t_x_first = xo+list_id[| 20+0];
-			var t_y_first = yo+list_id[| 20+1];
-			var t_x_last = xo+list_id[| t_lastindex+0];
-			var t_y_last = yo+list_id[| t_lastindex+1];
-			if (point_distance(t_x_first, t_y_first, t_x_last, t_y_last) < 200)
-			{
-				var t_x_first2 = xo+list_id[| 24+0];
-				var t_y_first2 = yo+list_id[| 24+1];
-				var t_bl_first = list_id[| 20+2];
-				var t_x_last2 = xo+list_id[| t_lastindex-4+0];
-				var t_y_last2 = yo+list_id[| t_lastindex-4+1];
-				var t_bl_last = list_id[| t_lastindex+2];
-				if (t_bl_first == 0 && t_bl_last == 0 && abs(angle_difference(point_direction(t_x_first, t_y_first, t_x_first2, t_y_first2), point_direction(t_x_last2, t_y_last2, t_x_last, t_y_last))) < 30)
-				{
-					list_id[| 12] = min(t_lit_length_element / 3, 3000);
-					lit_length += list_id[| 12] * 2;
-					maxpoints_static++;
-				}
-			}
-		}
 	
 	    //maxpoints_static++;
        

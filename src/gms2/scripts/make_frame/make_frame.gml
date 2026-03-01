@@ -198,7 +198,7 @@ function make_frame() {
 					else
 						t_c_first = merge_color(c, c_black, 1 - t_ratio);
 						
-					log("r", t_ratio);
+					//log("r", t_ratio);
 				}
                 
 	            if (opt_dist < 280) //connecting segments
@@ -345,7 +345,7 @@ function make_frame() {
 			if (t_edge_overlap_length_so_far < t_edge_overlap_length)
 			{
 				var t_ratio = t_edge_overlap_length_so_far / t_edge_overlap_length;
-				log("t     ", t_ratio, t_is_overlapping);
+				//log("t     ", t_ratio, t_is_overlapping);
 				if (t_is_overlapping)
 				{
 					if (t_ratio < 0.5)
@@ -358,7 +358,7 @@ function make_frame() {
 					c = merge_color(c, c_black, 1 - t_ratio);
 					
 				t_edge_overlap_length_so_far += opt_dist;
-				log("t", t_ratio);
+				//log("t", t_ratio);
 			}
 			else if (t_is_overlapping)
 			{
