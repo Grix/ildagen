@@ -310,7 +310,7 @@ if (ds_list_size(el_list) > 0)
 		if (keyboard_check(ord("Q")) || snap_mode > 1)
 			nearestdist = 32*dpi_multiplier;
 		else
-			nearestdist = 8*dpi_multiplier;
+			nearestdist = 6*dpi_multiplier;
 		//log(mouse_x,mouse_y-camera_get_view_y(view_camera[4]));
         for (i = 0;i < ds_list_size(el_list);i++)
         {

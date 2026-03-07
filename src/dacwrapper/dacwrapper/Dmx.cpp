@@ -165,14 +165,14 @@ int Dmx::StartArtnet()
 	}
 
 	artnet_setesta(artnet_input, RDM_ESTA_ID >> 8, RDM_ESTA_ID & 0xFF);
-	//artnet_setoem() todo
+	//artnet_setoem(artnet_input, );
 	artnet_set_short_name(artnet_input, "LaserShowGen");
 	artnet_set_long_name(artnet_input, "LaserShowGen Art-Net Input"); 
 	artnet_set_node_type(artnet_input, ARTNET_NODE);
 	artnet_set_dmx_handler(artnet_input, dmx_handler, this);
 	artnet_set_port_type(artnet_input, 0, ARTNET_ENABLE_OUTPUT, ARTNET_PORT_DMX);
-	artnet_set_subnet_addr(artnet_input, (rxUniverse - 1) / 16);
-	artnet_set_port_addr(artnet_input, 0, ARTNET_OUTPUT_PORT, (rxUniverse - 1) % 16);
+	artnet_set_subnet_addr(artnet_input, (rxUniverse) / 16);
+	artnet_set_port_addr(artnet_input, 0, ARTNET_OUTPUT_PORT, (rxUniverse) % 16);
 	artnet_start(artnet_input);
 
 	fprintf(stderr, "Started Art-Net rx\n");

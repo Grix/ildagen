@@ -38,7 +38,7 @@ function process_dialog_live() {
 	            if (ds_list_size(filelist) > selectedfile_dialog)
 				{
 					var t_value = ds_map_find_value(argument[0], "value");
-					if (t_value < 1 || t_value > 239)
+					if (t_value < 16 || t_value > 255)
 						filelist[| selectedfile_dialog][| 14] = 0;
 					else
 						filelist[| selectedfile_dialog][| 14] = t_value;

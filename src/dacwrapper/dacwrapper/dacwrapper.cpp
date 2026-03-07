@@ -606,7 +606,7 @@ GMEXPORT double DmxScanDevices()
 	freeaddrinfo(servinfo);
 #endif
 
-	return 1;
+	return dmxDeviceIps.size();
 }
 
 GMEXPORT char* DmxGetDeviceIp(double _index)

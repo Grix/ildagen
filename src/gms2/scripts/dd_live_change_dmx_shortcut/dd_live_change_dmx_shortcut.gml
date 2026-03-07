@@ -3,5 +3,5 @@
 function dd_live_change_dmx_shortcut(){
 
 	livecontrol.selectedfile_dialog = livecontrol.selectedfile;
-	live_dialog_num("dmx_shortcut","Enter the DMX trigger ID for this file (from 1 to 239) ", livecontrol.filelist[| livecontrol.selectedfile][| 14]);
+	live_dialog_num("dmx_shortcut","Enter the DMX trigger ID for this file (from 16 to 256) ", livecontrol.filelist[| livecontrol.selectedfile][| 14]);
 }

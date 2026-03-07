@@ -1,5 +1,5 @@
-version = "2.1.0";
-versiondate = "2025-01-18";
+version = "2.2.0";
+versiondate = "2026-03-01";
 
 global.list_pool_id = ds_list_create();
 global.list_pool_is_alive = ds_list_create();
