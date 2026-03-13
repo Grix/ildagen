@@ -80,7 +80,11 @@ frame3d_surf = -1;
 target_width_per_cell = 128;
 num_grid_columns = 8;
 bpm_adjusted = 120;
+bpm_adjusted_round = true;
 speed_adjusted = 1;
+bpm_previous_tap_time = get_timer();
+bpm_start_tap_time = get_timer()-1;
+bpm_tap_number = 0;
 
 tlw = 983; //width of grid area
 tlh = 570; // height of grid area

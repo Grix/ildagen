@@ -325,7 +325,7 @@ int HeliosDac::_OpenIdnDevices(bool inPlace)
 
 #ifndef WIN32 
 	// Unix
-	unsigned msTimeout = 600;
+	unsigned msTimeout = 700;
 	IDNSL_SERVER_INFO* firstServerInfo;
 	int rcGetList = getIDNServerList(&firstServerInfo, 0, msTimeout);
 	if (rcGetList != 0)
@@ -383,8 +383,8 @@ int HeliosDac::_OpenIdnDevices(bool inPlace)
 	}
 #else
 	// Windows
-	timeBeginPeriod(2);
-	unsigned msTimeout = 600;
+	timeBeginPeriod(1);
+	unsigned msTimeout = 700;
 	IDNSL_SERVER_INFO* firstServerInfo;
 	int rcGetList = getIDNServerList(&firstServerInfo, 0, msTimeout);
 	if (rcGetList != 0)

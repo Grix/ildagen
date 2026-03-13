@@ -111,6 +111,8 @@ function handle_midi_input_live(){
 					bpm_adjusted = max(controller.bpm * ((rtmidi_get_message(2) / 127) * 2), 5);
 					if (abs(bpm_adjusted - controller.bpm) < 2)
 						bpm_adjusted = controller.bpm;
+					if (bpm_adjusted_round)
+						bpm_adjusted = round(bpm_adjusted);
 				}
 				else
 				{

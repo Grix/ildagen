@@ -17,6 +17,12 @@ if (room == rm_loading)
     }
 }
 
+if (bpm_tap_number > 0)
+{
+	if ((get_timer() - bpm_previous_tap_time) > 3000000)
+		bpm_tap_number = 0;
+}
+
 if (room != rm_live) exit;
 
 if (global.loading_importfolderlive == 1)

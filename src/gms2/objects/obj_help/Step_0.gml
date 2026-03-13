@@ -93,6 +93,7 @@ else if (room == rm_live)
         "Mouse)    Select file\n"+
         "Space)    Play/Pause\n"+
 		"0)    Pause and reset position of all objects\n" +
+		"T)    Tap to beat to adjust BPM (only when BPM timing is enabled)\n" +
         "Tab)    Enter editor mode\n"+
 		"L)    Send frames from editor mode to the grid view\n"+
         "I)    Send the selected frames from the grid view to the timeline mode\n"+
