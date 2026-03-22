@@ -53,6 +53,23 @@ else
 		file_copy("settings_default.ini", game_save_id + "settings.ini");
 }
 
+
+var t_should_update_version_file = true;
+if (file_exists(game_save_id + "version"))
+{
+	var t_file = file_text_open_read(game_save_id + "version");
+	var t_oldversion = file_text_read_string(t_file);
+	if (t_oldversion == controller.version)
+		t_should_update_version_file = false;
+	file_text_close(t_file);
+}
+if (t_should_update_version_file)
+{
+	var t_file = file_text_open_write(game_save_id + "version");
+	file_text_write_string(t_file, controller.version);
+	file_text_close(t_file);
+}
+
 log("save location:",FStemp);
 
 file_dropper_init();  // Causes problems in HTML5 export

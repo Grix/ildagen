@@ -83,7 +83,7 @@ function handle_mousecontrol_live() {
 				t_shortcut += (string(objectlist[| 13] >> 8) + midi_get_note_name(objectlist[| 13] & $FF));
 			}
 		
-			controller.tooltip = "Click to select and play this file ("+t_shortcut+").\nDouble-click to open in editor mode.\nRight click for options, such as assigning keyboard or MIDI trigger key, and changing playback modes.";
+			controller.tooltip = "Click to select and play this file ("+t_shortcut+").\nDouble-click to open in editor mode.\nRight click for options, such as assigning keyboard\nor MIDI trigger key, and changing playback modes.";
 		
 			if (mouse_check_button_pressed(mb_left))
 			{

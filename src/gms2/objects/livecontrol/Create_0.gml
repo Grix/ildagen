@@ -16,6 +16,7 @@ ypos_perm = 0;
 scrollbarwidth = 18;
 scroll_moving = 0;
 selected_slider = -1;
+has_loaded_default = false;
 
 alarm[4] = 300;
 
@@ -102,4 +103,3 @@ menu_width[2] = string_width("   View   ");
 menu_width_start[3] = menu_width_start[2]+menu_width[2];
 menu_width[3] = string_width("   About   ");
 menu_width_start[4] = menu_width_start[3]+menu_width[3];
-

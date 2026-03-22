@@ -1,14 +1,19 @@
-v2.1.0
-- Ability to cut/copy/paste from timeline envelopes freely, including across layers.
-- Improved output graphic optimization, including smoother circles and certain sharper tips/corners.
-- More smooth animation playback, avoiding skipped or duplicated frames in certain situations.
-- macOS now uses native file and message dialogs, fixing a few bugs relating to the old dialogs on macOS.
-- Improvements for IDN DACs, such as the Helios network adapter. (Using IDN wave mode)
-- The outside of the projection window now counts as a blind zone, turning off the laser outside bounds.
-- Fix being able to freeze the software if trying to close it from the taskbar in Windows.
-- Fix spurious error message after loading certain music to timeline.
-
-v2.0.3
-- Fix exclusive mode for Grid Mode tiles blocking other tiles even when not playing.
-- Fix possible crash in Timeline Mode when splitting item after moving it if BPM-based timing is enabled.
-- Fix undoing after moving/resizing multiple timeline objects at once only undo-ing one of them.
+v2.2.0
+- Support for Art-Net and sACN DMX input, for playing files in the Grid View and adjusting sliders.
+- Improved laser optimization, for more accurate graphics and smoother animations.
+- Added BPM tap button for easy BPM adjustment in Grid View.
+- MIDI key can now be bound to the Laser ON/OFF button.
+- Cursor in editor mode automatically snaps to the start/end of other objects when close.
+- Fix reapplying colors/blanking with certain dashed/dotted modes incorrectly modifying the object.
+- Remember more settings between program restarts. 
+- Fix timeline mode jump points not being saved in projects. 
+- Fix potential issue causing pop-up dialogs not to appear in Windows, or even freeze the application.
+- Fix potential crash that could happen when manipulating the application window.
+- Fix potential crash when using Ether Dream on macOS/Linux. 
+- Fix certain secondary IDN services not working, like DACs connected to the HeliosPRO aux port.
+- Attempted fix for the application sometimes using too much CPU power.
+- Fix point counter warning coloring being wrong on frames with too many dots.
+- Rename beats in BPM timing mode to start on beat 1 instead of 0.
+- Fix wrong tooltips in macOS referring to the "Fn+Del" key combination as just "Del".
+- Warn the user if a file fails to save correctly.
+- Updated manual.

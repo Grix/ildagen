@@ -134,7 +134,7 @@ function handle_trans() {
 	    if	(t_mouse_x == clamp(t_mouse_x, clamp(anchorx, 0, $ffff-8*t_scale)/t_scale-10*dpi_multiplier, clamp(anchorx, 0, $ffff-8*t_scale)/t_scale+10*dpi_multiplier)) and 
 			(t_mouse_y == clamp(t_mouse_y, clamp(anchory, 0, $ffff-8*t_scale)/t_scale-10*dpi_multiplier, clamp(anchory, 0, $ffff-8*t_scale)/t_scale+10*dpi_multiplier))
 	    {
-	        tooltip = "Click and drag to move the rotation/scaling anchor point.\nRight click to move to center of object.";
+	        tooltip = "Click and drag to move the rotation/scaling anchor point.\nRight click to move the anchor to the center of the selected object.";
 			if (mouse_check_button_pressed(mb_left)) 
 	        {
 	            objmoving = 2;
