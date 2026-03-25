@@ -2,6 +2,7 @@ v2.2.0
 - Support for Art-Net and sACN DMX input, for playing files in the Grid View and adjusting sliders.
 - Improved laser optimization, for more accurate graphics and smoother animations.
 - Added BPM tap button for easy BPM adjustment in Grid View.
+- Included some default animations in the Grid View. 
 - MIDI key can now be bound to the Laser ON/OFF button.
 - Cursor in editor mode automatically snaps to the start/end of other objects when close.
 - Fix reapplying colors/blanking with certain dashed/dotted modes incorrectly modifying the object.
