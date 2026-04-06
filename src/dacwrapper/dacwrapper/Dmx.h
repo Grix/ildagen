@@ -10,6 +10,7 @@
 #define MAX_OUTPUT_UNIVERSES 1
 #define RDM_ESTA_ID 0x09B9
 #define RDM_DEVICE_ID 0x00000001
+#define ARTNET_OEM_ID 0x2E65
 
 class Dmx
 {
