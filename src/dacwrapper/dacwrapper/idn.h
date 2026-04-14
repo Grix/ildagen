@@ -10,6 +10,7 @@
 
 #include "idn-stream.h"
 #include "idn-hello.h"
+#include <cstdarg>
 #include <vector>
 #include <string>
 

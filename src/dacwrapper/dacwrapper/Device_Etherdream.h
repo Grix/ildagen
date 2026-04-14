@@ -5,6 +5,7 @@
 #include <thread>
 #include <chrono>
 #include <mutex>
+#include <cstdio>
 
 class Device_Etherdream
 {

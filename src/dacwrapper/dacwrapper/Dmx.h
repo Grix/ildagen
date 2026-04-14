@@ -6,6 +6,7 @@
 #ifndef WIN32
 #include <unistd.h>
 #endif
+#include <cstring>
 #include "artnet/artnet.h"
 #include "artnet/packets.h"
 #include "e131.h"

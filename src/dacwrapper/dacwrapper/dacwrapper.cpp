@@ -611,7 +611,7 @@ GMEXPORT double DmxScanDevices()
 
 GMEXPORT char* DmxGetDeviceIp(double _index)
 {
-	int index = (int)round(_index);
+	int index = (int)(_index + 0.5);
 	if (index < 0 || index >= dmxDeviceIps.size())
 		return "";
 	
@@ -620,7 +620,7 @@ GMEXPORT char* DmxGetDeviceIp(double _index)
 
 GMEXPORT char* DmxGetDeviceName(double _index)
 {
-	int index = (int)round(_index);
+	int index = (int)(_index + 0.5);
 	if (index < 0 || index >= dmxDeviceIps.size())
 		return "";
 

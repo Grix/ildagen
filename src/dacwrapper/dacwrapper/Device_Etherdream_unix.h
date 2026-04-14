@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <thread>
 #include <chrono>
+#include <cstdio>
 #include <mutex>
 
 class Device_Etherdream
