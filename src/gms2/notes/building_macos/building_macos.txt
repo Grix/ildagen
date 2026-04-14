@@ -1,4 +1,4 @@
-1. run build in gms (create executable)
+1. run build in gms (create executable, doesn't matter which type)
 2. open xcode project in /Users/gitle2/GameMakerStudio2/ildagen/GM_MAC/LaserShowGen/LaserShowGen
 3. add hardened runtime capability
 5. Fix bundle identifier setting if there is a warning when compiling.

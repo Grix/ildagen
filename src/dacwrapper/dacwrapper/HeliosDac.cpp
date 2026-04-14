@@ -467,7 +467,7 @@ int HeliosDac::_OpenIdnDevices(bool inPlace)
 
 				if (memcmp(id, idnContext->unitId, IDNSL_UNITID_LENGTH) == 0)
 				{
-					logInfo("Found previous IDN DAC that was reconnected: %s\n", idnContext->name);
+					logInfo("Found previous IDN DAC that was reconnected: %s\n", idnContext->name.c_str());
 					deviceList[j] = std::make_unique<HeliosDacIdnDevice>(idnContext);
 					found = true;
 					break;

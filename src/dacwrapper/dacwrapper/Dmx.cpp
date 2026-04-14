@@ -319,7 +319,10 @@ void Dmx::SacnRxThread()
 				if (channel < 0)
 					channel = 0;
 				unsigned int increment = ntohs(packet.dmp.addr_inc);
-				for (size_t pos = 0, total = min(ntohs(packet.dmp.prop_val_cnt), 513); pos < total; pos++, channel += increment)
+				size_t total = ntohs(packet.dmp.prop_val_cnt);
+				if (total > 513)
+					total = 513;
+				for (size_t pos = 0; pos < total; pos++, channel += increment)
 					inputData[channel] = packet.dmp.prop_val[pos];
 			}
 

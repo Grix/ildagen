@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <thread>
 #include <mutex>
+#ifndef WIN32
+#include <unistd.h>
+#endif
 #include "artnet/artnet.h"
 #include "artnet/packets.h"
 #include "e131.h"

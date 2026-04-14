@@ -37,6 +37,22 @@
 		8EE0D88D23242693006267DE /* plt-posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EE0D88B23242693006267DE /* plt-posix.h */; };
 		B6A4EF7C2AD424DF00B845BB /* idnServerList.h in Headers */ = {isa = PBXBuildFile; fileRef = B6A4EF7A2AD424DF00B845BB /* idnServerList.h */; };
 		B6A4EF7D2AD424DF00B845BB /* idnServerList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6A4EF7B2AD424DF00B845BB /* idnServerList.cpp */; };
+		B6B35AAC2F8D6A7C00F5E9F5 /* Dmx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6B35AAA2F8D6A7C00F5E9F5 /* Dmx.cpp */; };
+		B6B35AAD2F8D6A7C00F5E9F5 /* Dmx.h in Headers */ = {isa = PBXBuildFile; fileRef = B6B35AAB2F8D6A7C00F5E9F5 /* Dmx.h */; };
+		B6B35AB02F8D6A8C00F5E9F5 /* e131.c in Sources */ = {isa = PBXBuildFile; fileRef = B6B35AAE2F8D6A8C00F5E9F5 /* e131.c */; };
+		B6B35AB12F8D6A8C00F5E9F5 /* e131.h in Headers */ = {isa = PBXBuildFile; fileRef = B6B35AAF2F8D6A8C00F5E9F5 /* e131.h */; };
+		B6B35ABF2F8D6FE900F5E9F5 /* common.h in Headers */ = {isa = PBXBuildFile; fileRef = B6B35AB32F8D6FE800F5E9F5 /* common.h */; };
+		B6B35AC02F8D6FE900F5E9F5 /* tod.c in Sources */ = {isa = PBXBuildFile; fileRef = B6B35AB42F8D6FE800F5E9F5 /* tod.c */; };
+		B6B35AC12F8D6FE900F5E9F5 /* tod.h in Headers */ = {isa = PBXBuildFile; fileRef = B6B35AB52F8D6FE900F5E9F5 /* tod.h */; };
+		B6B35AC22F8D6FE900F5E9F5 /* transmit.c in Sources */ = {isa = PBXBuildFile; fileRef = B6B35AB62F8D6FE900F5E9F5 /* transmit.c */; };
+		B6B35AC32F8D6FE900F5E9F5 /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = B6B35AB72F8D6FE900F5E9F5 /* misc.c */; };
+		B6B35AC42F8D6FE900F5E9F5 /* misc.h in Headers */ = {isa = PBXBuildFile; fileRef = B6B35AB82F8D6FE900F5E9F5 /* misc.h */; };
+		B6B35AC52F8D6FE900F5E9F5 /* artnet.h in Headers */ = {isa = PBXBuildFile; fileRef = B6B35AB92F8D6FE900F5E9F5 /* artnet.h */; };
+		B6B35AC62F8D6FE900F5E9F5 /* receive.c in Sources */ = {isa = PBXBuildFile; fileRef = B6B35ABA2F8D6FE900F5E9F5 /* receive.c */; };
+		B6B35AC72F8D6FE900F5E9F5 /* private.h in Headers */ = {isa = PBXBuildFile; fileRef = B6B35ABB2F8D6FE900F5E9F5 /* private.h */; };
+		B6B35AC82F8D6FE900F5E9F5 /* network.c in Sources */ = {isa = PBXBuildFile; fileRef = B6B35ABC2F8D6FE900F5E9F5 /* network.c */; };
+		B6B35AC92F8D6FE900F5E9F5 /* artnet.c in Sources */ = {isa = PBXBuildFile; fileRef = B6B35ABD2F8D6FE900F5E9F5 /* artnet.c */; };
+		B6B35ACA2F8D6FE900F5E9F5 /* packets.h in Headers */ = {isa = PBXBuildFile; fileRef = B6B35ABE2F8D6FE900F5E9F5 /* packets.h */; };
 		F1919EF1269B510D00E5A1D2 /* LaserCubeNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1919EF0269B510C00E5A1D2 /* LaserCubeNetwork.cpp */; };
 		F1919EF2269B510D00E5A1D2 /* Device_LaserDockNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1919EED269B510900E5A1D2 /* Device_LaserDockNetwork.cpp */; };
 /* End PBXBuildFile section */
@@ -74,6 +90,22 @@
 		8EE0D88B23242693006267DE /* plt-posix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "plt-posix.h"; path = "../dacwrapper/plt-posix.h"; sourceTree = "<group>"; };
 		B6A4EF7A2AD424DF00B845BB /* idnServerList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = idnServerList.h; path = ../dacwrapper/idnServerList.h; sourceTree = "<group>"; };
 		B6A4EF7B2AD424DF00B845BB /* idnServerList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = idnServerList.cpp; path = ../dacwrapper/idnServerList.cpp; sourceTree = "<group>"; };
+		B6B35AAA2F8D6A7C00F5E9F5 /* Dmx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dmx.cpp; path = ../dacwrapper/Dmx.cpp; sourceTree = "<group>"; };
+		B6B35AAB2F8D6A7C00F5E9F5 /* Dmx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dmx.h; path = ../dacwrapper/Dmx.h; sourceTree = "<group>"; };
+		B6B35AAE2F8D6A8C00F5E9F5 /* e131.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = e131.c; path = ../dacwrapper/e131.c; sourceTree = "<group>"; };
+		B6B35AAF2F8D6A8C00F5E9F5 /* e131.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = e131.h; path = ../dacwrapper/e131.h; sourceTree = "<group>"; };
+		B6B35AB32F8D6FE800F5E9F5 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = common.h; path = ../dacwrapper/artnet/common.h; sourceTree = "<group>"; };
+		B6B35AB42F8D6FE800F5E9F5 /* tod.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tod.c; path = ../dacwrapper/artnet/tod.c; sourceTree = "<group>"; };
+		B6B35AB52F8D6FE900F5E9F5 /* tod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tod.h; path = ../dacwrapper/artnet/tod.h; sourceTree = "<group>"; };
+		B6B35AB62F8D6FE900F5E9F5 /* transmit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = transmit.c; path = ../dacwrapper/artnet/transmit.c; sourceTree = "<group>"; };
+		B6B35AB72F8D6FE900F5E9F5 /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = misc.c; path = ../dacwrapper/artnet/misc.c; sourceTree = "<group>"; };
+		B6B35AB82F8D6FE900F5E9F5 /* misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = misc.h; path = ../dacwrapper/artnet/misc.h; sourceTree = "<group>"; };
+		B6B35AB92F8D6FE900F5E9F5 /* artnet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = artnet.h; path = ../dacwrapper/artnet/artnet.h; sourceTree = "<group>"; };
+		B6B35ABA2F8D6FE900F5E9F5 /* receive.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = receive.c; path = ../dacwrapper/artnet/receive.c; sourceTree = "<group>"; };
+		B6B35ABB2F8D6FE900F5E9F5 /* private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = private.h; path = ../dacwrapper/artnet/private.h; sourceTree = "<group>"; };
+		B6B35ABC2F8D6FE900F5E9F5 /* network.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = network.c; path = ../dacwrapper/artnet/network.c; sourceTree = "<group>"; };
+		B6B35ABD2F8D6FE900F5E9F5 /* artnet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = artnet.c; path = ../dacwrapper/artnet/artnet.c; sourceTree = "<group>"; };
+		B6B35ABE2F8D6FE900F5E9F5 /* packets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = packets.h; path = ../dacwrapper/artnet/packets.h; sourceTree = "<group>"; };
 		F1919EED269B510900E5A1D2 /* Device_LaserDockNetwork.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Device_LaserDockNetwork.cpp; path = ../dacwrapper/Device_LaserDockNetwork.cpp; sourceTree = "<group>"; };
 		F1919EEE269B510A00E5A1D2 /* Device_LaserDockNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Device_LaserDockNetwork.h; path = ../dacwrapper/Device_LaserDockNetwork.h; sourceTree = "<group>"; };
 		F1919EEF269B510B00E5A1D2 /* LaserCubeNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LaserCubeNetwork.h; path = ../dacwrapper/LaserCubeNetwork.h; sourceTree = "<group>"; };
@@ -95,6 +127,22 @@
 		8E7A317F2083D57300416B44 = {
 			isa = PBXGroup;
 			children = (
+				B6B35ABD2F8D6FE900F5E9F5 /* artnet.c */,
+				B6B35AB92F8D6FE900F5E9F5 /* artnet.h */,
+				B6B35AB32F8D6FE800F5E9F5 /* common.h */,
+				B6B35AB72F8D6FE900F5E9F5 /* misc.c */,
+				B6B35AB82F8D6FE900F5E9F5 /* misc.h */,
+				B6B35ABC2F8D6FE900F5E9F5 /* network.c */,
+				B6B35ABE2F8D6FE900F5E9F5 /* packets.h */,
+				B6B35ABB2F8D6FE900F5E9F5 /* private.h */,
+				B6B35ABA2F8D6FE900F5E9F5 /* receive.c */,
+				B6B35AB42F8D6FE800F5E9F5 /* tod.c */,
+				B6B35AB52F8D6FE900F5E9F5 /* tod.h */,
+				B6B35AB62F8D6FE900F5E9F5 /* transmit.c */,
+				B6B35AAE2F8D6A8C00F5E9F5 /* e131.c */,
+				B6B35AAF2F8D6A8C00F5E9F5 /* e131.h */,
+				B6B35AAA2F8D6A7C00F5E9F5 /* Dmx.cpp */,
+				B6B35AAB2F8D6A7C00F5E9F5 /* Dmx.h */,
 				B6A4EF7B2AD424DF00B845BB /* idnServerList.cpp */,
 				B6A4EF7A2AD424DF00B845BB /* idnServerList.h */,
 				8E7A31892083D57300416B44 /* Products */,
@@ -151,19 +199,27 @@
 			files = (
 				8EE0D8872324267D006267DE /* idn-stream.h in Headers */,
 				8EE0D88D23242693006267DE /* plt-posix.h in Headers */,
+				B6B35ACA2F8D6FE900F5E9F5 /* packets.h in Headers */,
+				B6B35AAD2F8D6A7C00F5E9F5 /* Dmx.h in Headers */,
 				8EA62EDA209F80860087E229 /* etherdream.h in Headers */,
 				B6A4EF7C2AD424DF00B845BB /* idnServerList.h in Headers */,
 				8E7A31962083D6BF00416B44 /* Device_Helios.h in Headers */,
 				8EE0D8892324267D006267DE /* idn.h in Headers */,
 				8E4FF6DE209F792D0088C085 /* Device_Etherdream_unix.h in Headers */,
+				B6B35AC52F8D6FE900F5E9F5 /* artnet.h in Headers */,
 				8E7A31AE2083D6DC00416B44 /* LaserdockDeviceManager.h in Headers */,
 				8E7A31B02083D6E400416B44 /* libusb.h in Headers */,
+				B6B35AC42F8D6FE900F5E9F5 /* misc.h in Headers */,
+				B6B35AC12F8D6FE900F5E9F5 /* tod.h in Headers */,
 				8E7A31A62083D6DC00416B44 /* HeliosDac.h in Headers */,
+				B6B35ABF2F8D6FE900F5E9F5 /* common.h in Headers */,
 				8E7A31AC2083D6DC00416B44 /* LaserdockDeviceManager_p.h in Headers */,
 				8E7A319A2083D6CC00416B44 /* Device_LaserDock.h in Headers */,
 				8EE0D8862324267D006267DE /* idn-hello.h in Headers */,
+				B6B35AB12F8D6A8C00F5E9F5 /* e131.h in Headers */,
 				8E7A31AA2083D6DC00416B44 /* LaserdockDevice.h in Headers */,
 				8E7A31922083D68900416B44 /* dacwrapper.h in Headers */,
+				B6B35AC72F8D6FE900F5E9F5 /* private.h in Headers */,
 				8E7A31A82083D6DC00416B44 /* LaserdockDevice_p.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,19 +284,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6A4EF7D2AD424DF00B845BB /* idnServerList.cpp in Sources */,
+				B6B35AAC2F8D6A7C00F5E9F5 /* Dmx.cpp in Sources */,
+				B6B35AC92F8D6FE900F5E9F5 /* artnet.c in Sources */,
 				F1919EF2269B510D00E5A1D2 /* Device_LaserDockNetwork.cpp in Sources */,
+				B6B35AC02F8D6FE900F5E9F5 /* tod.c in Sources */,
+				B6B35AC62F8D6FE900F5E9F5 /* receive.c in Sources */,
 				8E7A31912083D68900416B44 /* dacwrapper.cpp in Sources */,
 				8E4FF6DD209F792D0088C085 /* Device_Etherdream_unix.cpp in Sources */,
 				8E7A31A72083D6DC00416B44 /* LaserdockDevice_desktop.cpp in Sources */,
+				B6B35AC82F8D6FE900F5E9F5 /* network.c in Sources */,
 				8EE0D8882324267D006267DE /* idn.cpp in Sources */,
 				8E7A31992083D6CC00416B44 /* Device_LaserDock.cpp in Sources */,
+				B6B35AB02F8D6A8C00F5E9F5 /* e131.c in Sources */,
 				8E7A31A52083D6DC00416B44 /* HeliosDac.cpp in Sources */,
 				8EE0D88C23242693006267DE /* plt-posix.c in Sources */,
 				8E7A31AB2083D6DC00416B44 /* LaserdockDeviceManager_desktop.cpp in Sources */,
 				8E7A31A92083D6DC00416B44 /* LaserdockDevice.cpp in Sources */,
 				8E7A31AD2083D6DC00416B44 /* LaserdockDeviceManager.cpp in Sources */,
+				B6B35AC32F8D6FE900F5E9F5 /* misc.c in Sources */,
 				8EA62ED9209F80860087E229 /* etherdream.c in Sources */,
 				F1919EF1269B510D00E5A1D2 /* LaserCubeNetwork.cpp in Sources */,
+				B6B35AC22F8D6FE900F5E9F5 /* transmit.c in Sources */,
 				8E7A31952083D6BF00416B44 /* Device_Helios.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,12 +409,15 @@
 				DYLIB_CURRENT_VERSION = 2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_PREFIX = lib;
-				HEADER_SEARCH_PATHS = "/Users/gitle/Documents/ildagen/src/dacwrapper/dacwrapper_xcode/**";
+				HEADER_SEARCH_PATHS = (
+					/Users/gitle/Documents/ildagen/src/dacwrapper/dacwrapper,
+					/Users/gitle/Documents/ildagen/src/dacwrapper/dacwrapper_xcode,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -365,12 +432,15 @@
 				DYLIB_CURRENT_VERSION = 2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_PREFIX = lib;
-				HEADER_SEARCH_PATHS = "/Users/gitle/Documents/ildagen/src/dacwrapper/dacwrapper_xcode/**";
+				HEADER_SEARCH_PATHS = (
+					/Users/gitle/Documents/ildagen/src/dacwrapper/dacwrapper,
+					/Users/gitle/Documents/ildagen/src/dacwrapper/dacwrapper_xcode,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
