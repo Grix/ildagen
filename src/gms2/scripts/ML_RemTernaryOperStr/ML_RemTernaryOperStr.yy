@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Ternary",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Ternary.yy",
+  "$GMScript":"v1",
+  "%Name":"ML_RemTernaryOperStr",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ML_RemTernaryOperStr",
+  "parent":{
+    "name":"Ternary",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Ternary.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "ML_RemTernaryOperStr",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

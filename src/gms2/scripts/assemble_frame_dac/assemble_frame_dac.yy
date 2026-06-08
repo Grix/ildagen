@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "assemble_frame_dac",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dacs",
-    "path": "folders/Scripts/dacs.yy",
+  "$GMScript":"v1",
+  "%Name":"assemble_frame_dac",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"assemble_frame_dac",
+  "parent":{
+    "name":"dacs",
+    "path":"folders/Scripts/dacs.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

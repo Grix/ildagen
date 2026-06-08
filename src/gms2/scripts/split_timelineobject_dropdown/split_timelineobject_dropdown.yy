@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "seq",
-    "path": "folders/Scripts/seq.yy",
+  "$GMScript":"v1",
+  "%Name":"split_timelineobject_dropdown",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"split_timelineobject_dropdown",
+  "parent":{
+    "name":"seq",
+    "path":"folders/Scripts/seq.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "split_timelineobject_dropdown",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

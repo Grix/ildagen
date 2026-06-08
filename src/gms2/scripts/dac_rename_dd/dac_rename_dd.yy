@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "dac_rename_dd",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dd_options",
-    "path": "folders/Scripts/dropdown/dd_options.yy",
+  "$GMScript":"v1",
+  "%Name":"dac_rename_dd",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dac_rename_dd",
+  "parent":{
+    "name":"dd_options",
+    "path":"folders/Scripts/dropdown/dd_options.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

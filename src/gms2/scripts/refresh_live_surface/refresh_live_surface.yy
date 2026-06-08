@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "refresh_live_surface",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "live",
-    "path": "folders/Scripts/live.yy",
+  "$GMScript":"v1",
+  "%Name":"refresh_live_surface",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"refresh_live_surface",
+  "parent":{
+    "name":"live",
+    "path":"folders/Scripts/live.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

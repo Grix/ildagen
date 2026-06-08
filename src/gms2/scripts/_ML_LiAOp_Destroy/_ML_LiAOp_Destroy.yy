@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "assign",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions/operators/assign.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_LiAOp_Destroy",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_LiAOp_Destroy",
+  "parent":{
+    "name":"assign",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions/operators/assign.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_LiAOp_Destroy",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

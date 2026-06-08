@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "refresh_minitimeline_surf",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "ilda",
-    "path": "folders/Scripts/ilda.yy",
+  "$GMScript":"v1",
+  "%Name":"refresh_minitimeline_surf",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"refresh_minitimeline_surf",
+  "parent":{
+    "name":"ilda",
+    "path":"folders/Scripts/ilda.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

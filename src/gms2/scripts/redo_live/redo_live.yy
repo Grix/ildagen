@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "redo_live",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "live",
-    "path": "folders/Scripts/live.yy",
+  "$GMScript":"v1",
+  "%Name":"redo_live",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"redo_live",
+  "parent":{
+    "name":"live",
+    "path":"folders/Scripts/live.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

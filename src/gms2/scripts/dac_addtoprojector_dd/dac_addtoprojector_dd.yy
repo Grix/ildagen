@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dd_options",
-    "path": "folders/Scripts/dropdown/dd_options.yy",
+  "$GMScript":"v1",
+  "%Name":"dac_addtoprojector_dd",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dac_addtoprojector_dd",
+  "parent":{
+    "name":"dd_options",
+    "path":"folders/Scripts/dropdown/dd_options.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "dac_addtoprojector_dd",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

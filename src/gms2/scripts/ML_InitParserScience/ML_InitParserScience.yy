@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Helperfunctions",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions.yy",
+  "$GMScript":"v1",
+  "%Name":"ML_InitParserScience",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ML_InitParserScience",
+  "parent":{
+    "name":"Helperfunctions",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "ML_InitParserScience",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

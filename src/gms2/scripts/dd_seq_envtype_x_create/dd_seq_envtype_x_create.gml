@@ -9,7 +9,7 @@ function dd_seq_envtype_x_create() {
 	seqcontrol.timeline_surf_length = 0;
 	clean_redo_list_seq();
 	
-	ds_list_add(seqcontrol.undo_list, "p"+string(envelope));
+	ds_list_add(seqcontrol.undo_list, make_undo("p", envelope));
 	
 	add_action_history_ilda("SEQ_create_envelope");
 }

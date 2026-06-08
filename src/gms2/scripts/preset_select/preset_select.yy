@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dd_options",
-    "path": "folders/Scripts/dropdown/dd_options.yy",
+  "$GMScript":"v1",
+  "%Name":"preset_select",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"preset_select",
+  "parent":{
+    "name":"dd_options",
+    "path":"folders/Scripts/dropdown/dd_options.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "preset_select",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

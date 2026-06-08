@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scan_dacs",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dacs",
-    "path": "folders/Scripts/dacs.yy",
+  "$GMScript":"v1",
+  "%Name":"scan_dacs",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scan_dacs",
+  "parent":{
+    "name":"dacs",
+    "path":"folders/Scripts/dacs.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

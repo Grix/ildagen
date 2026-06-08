@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"make_undo",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"make_undo",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

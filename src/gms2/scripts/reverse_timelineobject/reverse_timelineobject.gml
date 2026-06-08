@@ -73,7 +73,7 @@ function reverse_timelineobject() {
 	
 		if (argument_count < 1 || argument[0] == true) // don't save undo if arg1 = false
 		{
-			ds_list_add(undo_list, "a"+string(objectlist));
+			ds_list_add(undo_list, make_undo("a", objectlist));
 		}
 	}
 

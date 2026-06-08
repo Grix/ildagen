@@ -88,7 +88,7 @@ function frames_tolive() {
 	
 		add_action_history_ilda("LIVE_frames_tolive");
 	
-		ds_list_add(undo_list, "c"+string(selectedfile));
+		ds_list_add(undo_list, make_undo("c", selectedfile));
 	
 		frame_surf_refresh = 1;
 		if (surface_exists(browser_surf))

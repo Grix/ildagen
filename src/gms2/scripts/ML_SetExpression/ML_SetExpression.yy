@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "BuildFunctions",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions.yy",
+  "$GMScript":"v1",
+  "%Name":"ML_SetExpression",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ML_SetExpression",
+  "parent":{
+    "name":"BuildFunctions",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "ML_SetExpression",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dd_seq",
-    "path": "folders/Scripts/dropdown/dd_seq.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_seq_env_delete",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_seq_env_delete",
+  "parent":{
+    "name":"dd_seq",
+    "path":"folders/Scripts/dropdown/dd_seq.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "dd_seq_env_delete",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

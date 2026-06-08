@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "clear_timeline_jump_points",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "seq",
-    "path": "folders/Scripts/seq.yy",
+  "$GMScript":"v1",
+  "%Name":"clear_timeline_jump_points",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"clear_timeline_jump_points",
+  "parent":{
+    "name":"seq",
+    "path":"folders/Scripts/seq.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

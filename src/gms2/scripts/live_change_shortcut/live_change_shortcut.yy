@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "live_change_shortcut",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "live",
-    "path": "folders/Scripts/live.yy",
+  "$GMScript":"v1",
+  "%Name":"live_change_shortcut",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"live_change_shortcut",
+  "parent":{
+    "name":"live",
+    "path":"folders/Scripts/live.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

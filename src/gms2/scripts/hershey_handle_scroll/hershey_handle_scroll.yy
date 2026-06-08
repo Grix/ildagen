@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "ilda",
-    "path": "folders/Scripts/ilda.yy",
+  "$GMScript":"v1",
+  "%Name":"hershey_handle_scroll",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"hershey_handle_scroll",
+  "parent":{
+    "name":"ilda",
+    "path":"folders/Scripts/ilda.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "hershey_handle_scroll",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

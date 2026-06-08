@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "merge_elements",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "ilda",
-    "path": "folders/Scripts/ilda.yy",
+  "$GMScript":"v1",
+  "%Name":"merge_elements",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"merge_elements",
+  "parent":{
+    "name":"ilda",
+    "path":"folders/Scripts/ilda.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

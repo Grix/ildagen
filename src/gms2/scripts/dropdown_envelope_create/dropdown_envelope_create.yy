@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dd_seq",
-    "path": "folders/Scripts/dropdown/dd_seq.yy",
+  "$GMScript":"v1",
+  "%Name":"dropdown_envelope_create",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dropdown_envelope_create",
+  "parent":{
+    "name":"dd_seq",
+    "path":"folders/Scripts/dropdown/dd_seq.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "dropdown_envelope_create",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

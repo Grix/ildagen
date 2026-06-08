@@ -60,7 +60,7 @@ if ((keyboard_check(ord("E"))) and (placing_status != 2))
     ds_list_add(t_tempundolist,controller.enddotscolor);
     ds_list_add(t_tempundolist,controller.color2);
     ds_list_add(t_tempundolist,controller.color1);
-    ds_list_add(controller.undo_list,"b"+string(t_tempundolist));
+    ds_list_add(controller.undo_list,make_undo("b", t_tempundolist));
 	
     color1 = draw_getpixel(obj_cursor.x,obj_cursor.y+23);
     update_colors();

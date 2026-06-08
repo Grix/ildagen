@@ -28,7 +28,7 @@ function seq_delete_event() {
 	            undolisttemp = ds_list_create_pool();
 	            ds_list_add(undolisttemp,layerlisttemp);
 	            ds_list_add(undolisttemp,objectlist);
-	            ds_list_add(undo_list,"V"+string(undolisttemp));
+	            ds_list_add(undo_list,make_undo("V", undolisttemp));
             
 	            ds_list_delete(layerlisttemp,ds_list_find_index(layerlisttemp,objectlist));
             

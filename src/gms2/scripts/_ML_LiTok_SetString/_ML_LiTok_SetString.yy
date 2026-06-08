@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "token",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/token.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_LiTok_SetString",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_LiTok_SetString",
+  "parent":{
+    "name":"token",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/data_containers/token.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_LiTok_SetString",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

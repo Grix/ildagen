@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "exportilda",
-    "path": "folders/Scripts/files/exportilda.yy",
+  "$GMScript":"v1",
+  "%Name":"export_project",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"export_project",
+  "parent":{
+    "name":"exportilda",
+    "path":"folders/Scripts/files/exportilda.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "export_project",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

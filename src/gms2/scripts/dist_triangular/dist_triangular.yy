@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "ilda",
-    "path": "folders/Scripts/ilda.yy",
+  "$GMScript":"v1",
+  "%Name":"dist_triangular",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dist_triangular",
+  "parent":{
+    "name":"ilda",
+    "path":"folders/Scripts/ilda.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "dist_triangular",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

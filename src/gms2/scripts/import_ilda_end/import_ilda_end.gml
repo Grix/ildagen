@@ -58,7 +58,7 @@ function import_ilda_end() {
 	            ds_list_free_pool(ds_list_find_value(ild_list,i)); ild_list[| i] = -1;
 	        }
 	    }
-	    ds_list_add(undo_list,el_id);
+	    ds_list_add(undo_list,make_undo("", el_id));
 	    el_id++;
 	    frame_surf_refresh = 1;
 	    refresh_minitimeline_flag = 1;

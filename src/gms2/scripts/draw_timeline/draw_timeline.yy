@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "draw_timeline",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "seq",
-    "path": "folders/Scripts/seq.yy",
+  "$GMScript":"v1",
+  "%Name":"draw_timeline",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"draw_timeline",
+  "parent":{
+    "name":"seq",
+    "path":"folders/Scripts/seq.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

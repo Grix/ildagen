@@ -9,15 +9,21 @@ function clean_redo_live(){
     
 	    redo = ds_list_find_value(redo_list,0);
 	    ds_list_delete(redo_list,0);
+		
+		if (!is_struct(redo))
+		{
+			show_debug_message("CLEANREDO BUG LIVE, NOT A STRUCT: " + string(redo));
+			return;
+		}
     
-	    if (string_char_at(redo,0) == "c")
+	    if (string_char_at(redo.undo_id,0) == "c")
 	    {
 	        // nothing to do
 	    }
-	    else if (string_char_at(redo,0) == "d")
+	    else if (string_char_at(redo.undo_id,0) == "d")
 	    {
 	        //redo delete object
-	        redolisttemp = real(string_digits(redo));
+	        redolisttemp = redo.data;
 			if (!ds_list_exists_pool(redolisttemp))
 	            exit;
 	        var t_objectlist = ds_list_find_value(redolisttemp,0);

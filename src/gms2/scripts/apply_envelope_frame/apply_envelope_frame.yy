@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "seq",
-    "path": "folders/Scripts/seq.yy",
+  "$GMScript":"v1",
+  "%Name":"apply_envelope_frame",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"apply_envelope_frame",
+  "parent":{
+    "name":"seq",
+    "path":"folders/Scripts/seq.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "apply_envelope_frame",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

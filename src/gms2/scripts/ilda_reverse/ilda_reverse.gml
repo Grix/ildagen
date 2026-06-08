@@ -22,7 +22,7 @@ function ilda_reverse(is_undoing = false) {
 		if (!is_undoing)
 		{
 			clean_redo_list();
-			ds_list_add(undo_list,"e");
+			ds_list_add(undo_list,make_undo("e", 0));
 		}
 	}
 

@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "importilda",
-    "path": "folders/Scripts/files/importilda.yy",
+  "$GMScript":"v1",
+  "%Name":"get_bytes",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_bytes",
+  "parent":{
+    "name":"importilda",
+    "path":"folders/Scripts/files/importilda.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "get_bytes",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dd_ilda",
-    "path": "folders/Scripts/dropdown/dd_ilda.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_ed_high",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_ed_high",
+  "parent":{
+    "name":"dd_ilda",
+    "path":"folders/Scripts/dropdown/dd_ilda.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "dd_ed_high",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

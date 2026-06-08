@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "func_startofframe",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "ilda",
-    "path": "folders/Scripts/ilda.yy",
+  "$GMScript":"v1",
+  "%Name":"func_startofframe",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"func_startofframe",
+  "parent":{
+    "name":"ilda",
+    "path":"folders/Scripts/ilda.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "import_font_end",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "importilda",
-    "path": "folders/Scripts/files/importilda.yy",
+  "$GMScript":"v1",
+  "%Name":"import_font_end",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"import_font_end",
+  "parent":{
+    "name":"importilda",
+    "path":"folders/Scripts/files/importilda.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

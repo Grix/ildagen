@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "seq",
-    "path": "folders/Scripts/seq.yy",
+  "$GMScript":"v1",
+  "%Name":"layer_mute",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"layer_mute",
+  "parent":{
+    "name":"seq",
+    "path":"folders/Scripts/seq.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "layer_mute",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -58,6 +58,12 @@ TODO
 - Fonts with more glyphs in the text tool (japanese, chinese, korean, cyrillic, hindi, etc)
 
 
+UNDO/REDO STRUCT
+{
+	undo_id
+	data
+}
+
 SETTINGSCONTROL
 
 

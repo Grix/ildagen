@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "envelope_copy_all",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "seq",
-    "path": "folders/Scripts/seq.yy",
+  "$GMScript":"v1",
+  "%Name":"envelope_copy_all",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"envelope_copy_all",
+  "parent":{
+    "name":"seq",
+    "path":"folders/Scripts/seq.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

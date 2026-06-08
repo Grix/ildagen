@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "seq",
-    "path": "folders/Scripts/seq.yy",
+  "$GMScript":"v1",
+  "%Name":"add_marker",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"add_marker",
+  "parent":{
+    "name":"seq",
+    "path":"folders/Scripts/seq.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "add_marker",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -10,10 +10,15 @@ function undo_ilda() {
 		undo = ds_list_find_value(undo_list,ds_list_size(undo_list)-1);
 		ds_list_delete(undo_list,ds_list_size(undo_list)-1);
 		
+		if (!is_struct(undo))
+		{
+			show_debug_message("UNDO BUG ILD, NOT A STRUCT: " + string(undo));
+			return;
+		}
 		
-		add_action_history_ilda("ILDA_undo_"+string(undo));
+		add_action_history_ilda("ILDA_undo_"+string(undo.undo_id));
 
-		if (is_real(undo)) //undo create
+		if (undo.undo_id == "" && is_real(undo.data)) //undo create
 		{
 			temp_redof_list = ds_list_create_pool();
 			
@@ -22,7 +27,7 @@ function undo_ilda() {
 		        el_list = ds_list_find_value(frame_list,j);
 		        for (i = 0;i < ds_list_size(el_list);i++)
 		        {
-		            if (ds_list_find_value(ds_list_find_value(el_list,i),9) == undo)
+		            if (ds_list_find_value(ds_list_find_value(el_list,i),9) == undo.data)
 		            {
 		                list_id = ds_list_find_value(el_list,i);
 						temp_redo_list = ds_list_create_pool();
@@ -35,13 +40,13 @@ function undo_ilda() {
 		        }
 		    }
 			
-			ds_list_add(redo_list,"l"+string(temp_redof_list));
+			ds_list_add(redo_list, make_undo("l", temp_redof_list));
 		}
-		else if (string_char_at(undo,0) == "a")
+		else if (string_char_at(undo.undo_id,0) == "a")
 		{
-			ds_list_add(redo_list,"a"+string(maxframes))
+			ds_list_add(redo_list, make_undo("a", maxframes));
 			
-		    maxframes = real(string_digits(undo));
+		    maxframes = undo.data;
 		    if (frame >= maxframes) 
 			{
 				frame = maxframes-1;
@@ -50,66 +55,66 @@ function undo_ilda() {
 			if (scope_end > maxframes)
 				scope_end = maxframes-1;
 		}
-		else if (string_char_at(undo,0) == "r")
+		else if (string_char_at(undo.undo_id,0) == "r")
 		{
-			ds_list_add(redo_list,"r"+string(resolution))
+			ds_list_add(redo_list,make_undo("r", string(resolution)));
 			
-		    if (string_digits(undo) == "rauto")
-		        resolution = clamp(real(string_digits(undo)),4,$ffff);
+		    if (string_digits(undo.data) != "")
+		        resolution = clamp(real(string_digits(undo.data)),4,$ffff);
 		    else
 		        resolution = "auto";
 		}
-		else if (string_char_at(undo,0) == "d")
+		else if (string_char_at(undo.undo_id,0) == "d")
 		{
-			ds_list_add(redo_list,"d"+string(dotmultiply))
+			ds_list_add(redo_list,make_undo("d", dotmultiply));
 			
-		    dotmultiply = real(string_digits(undo));
+		    dotmultiply = undo.data;
 		}
-		else if (string_char_at(undo,0) == "v")
+		else if (string_char_at(undo.undo_id,0) == "v")
 		{
-		    if (!ds_list_exists_pool(real(string_digits(undo))))
+		    if (!ds_list_exists_pool(undo.data))
 		        exit;
 				
 			tempredolist = ds_list_create_pool();
 		    ds_list_add(tempredolist, anienddotscolor);
 		    ds_list_add(tempredolist, anicolor2);
 		    ds_list_add(tempredolist, anicolor1);
-		    ds_list_add(redo_list, "v"+string(tempredolist));
+		    ds_list_add(redo_list, make_undo("v", tempredolist));
 			
-		    tempundolist = real(string_digits(undo));
+		    tempundolist = undo.data;
 		    anicolor1 = ds_list_find_value(tempundolist,2);
 		    anicolor2 = ds_list_find_value(tempundolist,1);
 		    anienddotscolor = ds_list_find_value(tempundolist,0);
 		    ds_list_free_pool(tempundolist);  tempundolist = -1;
 		    update_anicolors();
 		}
-		else if (string_char_at(undo,0) == "b")
+		else if (string_char_at(undo.undo_id,0) == "b")
 		{
-		    if (!ds_list_exists_pool(real(string_digits(undo))))
+		    if (!ds_list_exists_pool(undo.data))
 		        exit;
 				
 			tempredolist = ds_list_create_pool();
 			ds_list_add(tempredolist,enddotscolor);
 			ds_list_add(tempredolist,color2);
 			ds_list_add(tempredolist,color1);
-			ds_list_add(redo_list,"b"+string(tempredolist));
+			ds_list_add(redo_list, make_undo("b", tempredolist));
 				
-		    tempundolist = real(string_digits(undo));
+		    tempundolist = undo.data;
 		    color1 = ds_list_find_value(tempundolist,2);
 		    color2 = ds_list_find_value(tempundolist,1);
 		    enddotscolor = ds_list_find_value(tempundolist,0);
 		    ds_list_free_pool(tempundolist);
 		    update_colors();
 		}
-		else if (string_char_at(undo,0) == "k")
+		else if (string_char_at(undo.undo_id,0) == "k")
 		{
 		    //undo reapply elements
-		    if (!ds_list_exists_pool(real(string_digits(undo))))
+		    if (!ds_list_exists_pool(undo.data))
 		        exit;
 				
 			temp_redof_list = ds_list_create_pool();
 				
-		    tempundolist = real(string_digits(undo));
+		    tempundolist = undo.data;
 		    for (u = 0;u < ds_list_size(tempundolist);u++)
 		    {
 		        list = ds_list_find_value(tempundolist,u);
@@ -138,15 +143,15 @@ function undo_ilda() {
 		    }
 		    ds_list_free_pool(tempundolist); tempundolist = -1;
 			
-			ds_list_add(redo_list,"k"+string(temp_redof_list));
+			ds_list_add(redo_list, make_undo("k", temp_redof_list));
 		}
-		else if (string_char_at(undo,0) == "l")
+		else if (string_char_at(undo.undo_id,0) == "l")
 		{
-		    if (!ds_list_exists_pool(real(string_digits(undo))))
+		    if (!ds_list_exists_pool(undo.data))
 		        exit;
 		    //undo delete
 			var tempelid = -1;
-		    tempundolist = real(string_digits(undo));
+		    tempundolist = undo.data;
 		    for (u = 0;u < ds_list_size(tempundolist);u++)
 		    {
 		        list = ds_list_find_value(tempundolist,u);
@@ -162,26 +167,26 @@ function undo_ilda() {
 					
 					if (list[| 9] != tempelid)
 					{
-						ds_list_add(redo_list, list[| 9]);
+						ds_list_add(redo_list, make_undo("", list[| 9]));
 						tempelid = list[| 9];
 					}
 		        }
 		    }
 		    ds_list_free_pool(tempundolist); tempundolist = -1;
 		}
-		else if (string_char_at(undo,0) == "s")
+		else if (string_char_at(undo.undo_id,0) == "s")
 		{
 		    //undo stretch maxframes
 			exit; // TODO
 			
-		    /*var t_framelistbuffer = real(string_digits(undo));	
+		    /*var t_framelistbuffer = undo.data;	
 			if (!buffer_exists(t_framelistbuffer))
 				exit;
 				
 			var t_redo_buffer = buffer_create(2, buffer_grow, 1);
 			buffer_write(t_redo_buffer, buffer_string, string(frame_list));
 			var t_compressed_buffer = buffer_compress(t_redo_buffer, 0, buffer_tell(t_redo_buffer));
-		    ds_list_add(redo_list,"s"+string(t_compressed_buffer));
+		    ds_list_add(redo_list, make_undo("s", t_compressed_buffer));
 			buffer_delete(t_redo_buffer);
 			
 			for (j = 0;j < ds_list_size(frame_list);j++)
@@ -202,23 +207,23 @@ function undo_ilda() {
 	
 			refresh_minitimeline_flag = 1;
 		}
-		else if (string_char_at(undo,0) == "e")
+		else if (string_char_at(undo.undo_id,0) == "e")
 		{
 		    //undo reverse
 			ilda_reverse(true);
-			ds_list_add(redo_list,"e");
+			ds_list_add(redo_list, make_undo("e", 0));
 		}
-		else if (string_char_at(undo,0) == "c")
+		else if (string_char_at(undo.undo_id,0) == "c")
 		{
 		    //undo set scope
-			if (!ds_list_exists_pool(real(string_digits(undo))))
+			if (!ds_list_exists_pool(undo.data))
 		        exit;
-		    tempundolist = real(string_digits(undo));
+		    tempundolist = undo.data;
 			
 			var t_redolist = ds_list_create_pool();
 			ds_list_add(t_redolist, scope_start);
 			ds_list_add(t_redolist, scope_end);
-			ds_list_add(redo_list,"c"+string(t_redolist));
+			ds_list_add(redo_list, make_undo("c", t_redolist));
 			
 			scope_start = clamp(tempundolist[| 0], 0, maxframes-1);
 			scope_end = clamp(tempundolist[| 1], scope_start, maxframes-1);

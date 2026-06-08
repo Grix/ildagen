@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dd_ilda",
-    "path": "folders/Scripts/dropdown/dd_ilda.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_reap_blank",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_reap_blank",
+  "parent":{
+    "name":"dd_ilda",
+    "path":"folders/Scripts/dropdown/dd_ilda.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "dd_reap_blank",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

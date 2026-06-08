@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "optimize_middle_output",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "output",
-    "path": "folders/Scripts/output.yy",
+  "$GMScript":"v1",
+  "%Name":"optimize_middle_output",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"optimize_middle_output",
+  "parent":{
+    "name":"output",
+    "path":"folders/Scripts/output.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

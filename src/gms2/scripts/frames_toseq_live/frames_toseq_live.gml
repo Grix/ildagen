@@ -43,7 +43,7 @@ function frames_toseq_live() {
 		
 			undolisttemp = ds_list_create_pool();
 			ds_list_add(undolisttemp,t_objectlist);
-			ds_list_add(seqcontrol.undo_list,"c"+string(undolisttemp));
+			ds_list_add(seqcontrol.undo_list,make_undo("c", undolisttemp));
 		}
 	}
 	else

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "parse_audio",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "seq",
-    "path": "folders/Scripts/seq.yy",
+  "$GMScript":"v1",
+  "%Name":"parse_audio",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"parse_audio",
+  "parent":{
+    "name":"seq",
+    "path":"folders/Scripts/seq.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

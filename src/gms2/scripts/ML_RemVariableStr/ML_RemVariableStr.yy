@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Variable",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Variable.yy",
+  "$GMScript":"v1",
+  "%Name":"ML_RemVariableStr",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ML_RemVariableStr",
+  "parent":{
+    "name":"Variable",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Variable.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "ML_RemVariableStr",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -125,7 +125,7 @@ function colors_compare_cie94(argument0, argument1) {
 
 	var chqL1 = (116 * chqY1) - 16;
 	var chqA1 = 500 * (chqX1 - chqY1);
-	var chqB1 = 200 * (chqY1 - chqZ1);
+	chqB1 = 200 * (chqY1 - chqZ1);
 
 	// CONVERT XYZ2 to CIE-LAB2
 
@@ -153,7 +153,7 @@ function colors_compare_cie94(argument0, argument1) {
 
 	var chqL2 = (116 * chqY2) - 16;
 	var chqA2 = 500 * (chqX2 - chqY2);
-	var chqB2 = 200 * (chqY2 - chqZ2);
+	chqB2 = 200 * (chqY2 - chqZ2);
 
 	// FINALLY, RUN THE COLOR COMPARISON USING CIE94
 

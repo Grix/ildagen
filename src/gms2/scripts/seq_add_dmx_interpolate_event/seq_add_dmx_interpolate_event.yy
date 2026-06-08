@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "seq_add_dmx_interpolate_event",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "seq",
-    "path": "folders/Scripts/seq.yy",
+  "$GMScript":"v1",
+  "%Name":"seq_add_dmx_interpolate_event",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"seq_add_dmx_interpolate_event",
+  "parent":{
+    "name":"seq",
+    "path":"folders/Scripts/seq.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

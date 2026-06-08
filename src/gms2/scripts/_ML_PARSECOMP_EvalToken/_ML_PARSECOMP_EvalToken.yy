@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Parsing",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/Parsing.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_PARSECOMP_EvalToken",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_PARSECOMP_EvalToken",
+  "parent":{
+    "name":"Parsing",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/detail/Parsing.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_PARSECOMP_EvalToken",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -219,7 +219,7 @@ function load_frames_seq(argument0) {
 	
 	undolisttemp = ds_list_create_pool();
 	ds_list_add(undolisttemp,objectlist);
-	ds_list_add(undo_list,"c"+string(undolisttemp));
+	ds_list_add(undo_list,make_undo("c", undolisttemp));
      
 	ds_list_free_pool(temp_list); temp_list=-1;
 

@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "compile",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/compile.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_COMP_Function",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_COMP_Function",
+  "parent":{
+    "name":"compile",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/detail/compile.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_COMP_Function",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

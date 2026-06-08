@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "menu",
-    "path": "folders/Scripts/dropdown/dd_seq/menu.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_seq_importframes",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_seq_importframes",
+  "parent":{
+    "name":"menu",
+    "path":"folders/Scripts/dropdown/dd_seq/menu.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "dd_seq_importframes",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

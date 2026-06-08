@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "ML_Compile",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Compilation",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Compilation.yy",
+  "$GMScript":"v1",
+  "%Name":"ML_Compile",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ML_Compile",
+  "parent":{
+    "name":"Compilation",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/Compilation.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

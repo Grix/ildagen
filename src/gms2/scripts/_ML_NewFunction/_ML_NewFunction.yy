@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Functions",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Functions.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_NewFunction",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_NewFunction",
+  "parent":{
+    "name":"Functions",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Functions.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_NewFunction",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

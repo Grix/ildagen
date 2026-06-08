@@ -35,6 +35,6 @@ function dd_seq_env_deletesection() {
 		timeline_surf_length = 0;
 		clean_redo_list_seq();
 		
-		ds_list_add(seqcontrol.undo_list,"e"+string(t_undolist));
+		ds_list_add(seqcontrol.undo_list,make_undo("e", t_undolist));
 	}
 }

@@ -19,7 +19,7 @@ function add_layer(){
 		ds_list_add(newlayer,0); 
 		ds_list_add(newlayer,0);
 		ds_list_add(newlayer,ds_list_create_pool()); //event list
-		ds_list_add(undo_list, "q"+string(newlayer));
+		ds_list_add(undo_list, make_undo("q", newlayer));
 		timeline_surf_length = 0;
 		update_dac_list_isused();
 	}

@@ -212,7 +212,7 @@ function load_frames_live(argument0) {
     
 	selectedfile = ds_list_size(filelist)-1;
 	
-	ds_list_add(undo_list, "c"+string(selectedfile));
+	ds_list_add(undo_list, make_undo("c", selectedfile));
 	
 	add_action_history_ilda("LIVE_loadframes");
 	

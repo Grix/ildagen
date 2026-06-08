@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "clean_redo_list",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "ilda",
-    "path": "folders/Scripts/ilda.yy",
+  "$GMScript":"v1",
+  "%Name":"clean_redo_list",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"clean_redo_list",
+  "parent":{
+    "name":"ilda",
+    "path":"folders/Scripts/ilda.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -82,6 +82,7 @@ if (os_type == os_macosx || os_type == os_linux)
 //declarations and setup
 //math_set_epsilon(0.00001);
 //ds_set_precision(0.00001); 
+ds_set_precision(0.00001);
 draw_set_circle_precision(24);
 application_surface_enable(false);
 draw_set_font(fnt_tooltip);

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "output_framelist_to_buffer",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "output",
-    "path": "folders/Scripts/output.yy",
+  "$GMScript":"v1",
+  "%Name":"output_framelist_to_buffer",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"output_framelist_to_buffer",
+  "parent":{
+    "name":"output",
+    "path":"folders/Scripts/output.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

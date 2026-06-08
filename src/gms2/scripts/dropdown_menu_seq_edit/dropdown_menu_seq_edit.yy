@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "dropdown_menu_seq_edit",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "menu",
-    "path": "folders/Scripts/dropdown/dd_seq/menu.yy",
+  "$GMScript":"v1",
+  "%Name":"dropdown_menu_seq_edit",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dropdown_menu_seq_edit",
+  "parent":{
+    "name":"menu",
+    "path":"folders/Scripts/dropdown/dd_seq/menu.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

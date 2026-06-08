@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Variable Map",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Variable Map.yy",
+  "$GMScript":"v1",
+  "%Name":"ML_VM_GetVarReal",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ML_VM_GetVarReal",
+  "parent":{
+    "name":"Variable Map",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Variable Map.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "ML_VM_GetVarReal",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

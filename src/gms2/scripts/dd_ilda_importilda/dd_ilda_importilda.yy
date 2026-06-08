@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "menu",
-    "path": "folders/Scripts/dropdown/dd_ilda/menu.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_ilda_importilda",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_ilda_importilda",
+  "parent":{
+    "name":"menu",
+    "path":"folders/Scripts/dropdown/dd_ilda/menu.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "dd_ilda_importilda",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

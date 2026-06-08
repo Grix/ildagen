@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Functions",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Functions.yy",
+  "$GMScript":"v1",
+  "%Name":"ML_RemFunction",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ML_RemFunction",
+  "parent":{
+    "name":"Functions",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Functions.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "ML_RemFunction",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

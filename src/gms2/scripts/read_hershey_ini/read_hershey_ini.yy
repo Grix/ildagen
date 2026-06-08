@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "files",
-    "path": "folders/Scripts/files.yy",
+  "$GMScript":"v1",
+  "%Name":"read_hershey_ini",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"read_hershey_ini",
+  "parent":{
+    "name":"files",
+    "path":"folders/Scripts/files.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "read_hershey_ini",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

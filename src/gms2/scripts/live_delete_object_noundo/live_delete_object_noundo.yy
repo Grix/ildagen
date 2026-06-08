@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "live_delete_object_noundo",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "live",
-    "path": "folders/Scripts/live.yy",
+  "$GMScript":"v1",
+  "%Name":"live_delete_object_noundo",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"live_delete_object_noundo",
+  "parent":{
+    "name":"live",
+    "path":"folders/Scripts/live.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

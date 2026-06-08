@@ -75,7 +75,7 @@ function frames_toseq_importedilda() {
 	
 	    undolisttemp = ds_list_create_pool();
 	    ds_list_add(undolisttemp,objectlist);
-	    ds_list_add(undo_list,"c"+string(undolisttemp));
+	    ds_list_add(undo_list,make_undo("c", undolisttemp));
 	
 		timeline_surf_length = 0;
 		clean_redo_list_seq();

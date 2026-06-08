@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Unary",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Unary.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_NewUnaryOper",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_NewUnaryOper",
+  "parent":{
+    "name":"Unary",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Unary.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_NewUnaryOper",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

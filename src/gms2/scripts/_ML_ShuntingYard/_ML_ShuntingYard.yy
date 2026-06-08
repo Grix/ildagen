@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "shunting_yard",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/shunting_yard.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_ShuntingYard",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_ShuntingYard",
+  "parent":{
+    "name":"shunting_yard",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/detail/shunting_yard.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_ShuntingYard",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

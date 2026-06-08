@@ -11,15 +11,21 @@ with (livecontrol)
     
 	    undo = ds_list_find_value(undo_list,0);
 	    ds_list_delete(undo_list,0);
+		
+		if (!is_struct(undo))
+		{
+			show_debug_message("CLEANUNDO BUG LIVE, NOT A STRUCT: " + string(undo));
+			return;
+		}
     
-	    if (string_char_at(undo,0) == "c")
+	    if (string_char_at(undo.undo_id,0) == "c")
 	    {
 	        // nothing to do
 	    }
-	    else if (string_char_at(undo,0) == "d")
+	    else if (string_char_at(undo.undo_id,0) == "d")
 	    {
 	        //undo delete object
-	        undolisttemp = real(string_digits(undo));
+	        undolisttemp = undo.data;
 			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        var t_objectlist = ds_list_find_value(undolisttemp,0);

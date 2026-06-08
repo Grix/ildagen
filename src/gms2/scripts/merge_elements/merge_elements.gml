@@ -129,11 +129,11 @@ function merge_elements() {
 
 	add_action_history_ilda("ILDA_merge");
 
-	ds_list_add(undo_list,"l"+string(temp_undof_list));
+	ds_list_add(undo_list,make_undo("l", temp_undof_list));
 
 	ds_list_clear(semaster_list);
 	ds_list_add(semaster_list, el_id);
-	ds_list_add(undo_list,el_id);
+	ds_list_add(undo_list,make_undo("", el_id));
 	el_id++;
 
 	el_list = frame_list[| frame];

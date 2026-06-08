@@ -60,7 +60,7 @@ function cut_object() {
 	    }
 	}
     
-	ds_list_add(undo_list,"l"+string(temp_undof_list));
+	ds_list_add(undo_list,make_undo("l", temp_undof_list));
 
 	ds_list_clear(semaster_list);
 	frame_surf_refresh = 1;

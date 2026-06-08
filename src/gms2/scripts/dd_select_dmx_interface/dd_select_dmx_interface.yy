@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "dd_select_dmx_interface",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dd_options",
-    "path": "folders/Scripts/dropdown/dd_options.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_select_dmx_interface",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_select_dmx_interface",
+  "parent":{
+    "name":"dd_options",
+    "path":"folders/Scripts/dropdown/dd_options.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

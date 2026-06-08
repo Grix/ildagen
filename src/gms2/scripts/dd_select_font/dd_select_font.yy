@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "dd_select_font",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dd_ilda",
-    "path": "folders/Scripts/dropdown/dd_ilda.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_select_font",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_select_font",
+  "parent":{
+    "name":"dd_ilda",
+    "path":"folders/Scripts/dropdown/dd_ilda.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

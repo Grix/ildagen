@@ -48,7 +48,7 @@ function process_dialog_seq() {
 	            undolisttemp = ds_list_create_pool();
 	            ds_list_add(undolisttemp,objectlist);
 	            ds_list_add(undolisttemp,objectlist[| 2]);
-	            ds_list_add(undo_list,"r"+string(undolisttemp));
+	            ds_list_add(undo_list,make_undo("r", undolisttemp));
             
 	            ds_list_replace(objectlist, 2, newduration);
             
@@ -290,7 +290,7 @@ function process_dialog_seq() {
 					ds_list_insert(t_timelist, t_index, t_start);
 					ds_list_insert(t_datalist, t_index, t_valuestart);
 				
-					ds_list_add(seqcontrol.undo_list,"e"+string(t_undolist));
+					ds_list_add(seqcontrol.undo_list,make_undo("e", t_undolist));
 				}
 			
 				seqcontrol.timeline_surf_length = 0;
@@ -355,7 +355,7 @@ function process_dialog_seq() {
 				var t_undo_list = ds_list_create_pool();
 				ds_list_add(t_undo_list, selectedenvelope);
 				ds_list_add(t_undo_list, env_list_to_delete);
-				ds_list_add(undo_list, "x"+string(t_undo_list));
+				ds_list_add(undo_list, make_undo("x", t_undo_list));
             
 	            ds_list_delete(env_list_to_delete,selectedenvelope_index);
 				timeline_surf_length = 0;

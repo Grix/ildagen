@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "seq",
-    "path": "folders/Scripts/seq.yy",
+  "$GMScript":"v1",
+  "%Name":"apply_audio_settings",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"apply_audio_settings",
+  "parent":{
+    "name":"seq",
+    "path":"folders/Scripts/seq.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "apply_audio_settings",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

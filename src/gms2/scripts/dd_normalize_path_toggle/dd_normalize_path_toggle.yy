@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dd_ilda",
-    "path": "folders/Scripts/dropdown/dd_ilda.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_normalize_path_toggle",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_normalize_path_toggle",
+  "parent":{
+    "name":"dd_ilda",
+    "path":"folders/Scripts/dropdown/dd_ilda.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "dd_normalize_path_toggle",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

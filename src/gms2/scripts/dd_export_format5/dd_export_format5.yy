@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dd_ilda",
-    "path": "folders/Scripts/dropdown/dd_ilda.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_export_format5",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_export_format5",
+  "parent":{
+    "name":"dd_ilda",
+    "path":"folders/Scripts/dropdown/dd_ilda.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "dd_export_format5",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

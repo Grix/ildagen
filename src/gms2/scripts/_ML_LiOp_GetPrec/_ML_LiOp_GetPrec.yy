@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "operators",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions/operators.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_LiOp_GetPrec",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_LiOp_GetPrec",
+  "parent":{
+    "name":"operators",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions/operators.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_LiOp_GetPrec",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

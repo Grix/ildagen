@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "unary_operators",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions/operators/unary_operators.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_LiUOp_GetAffix",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_LiUOp_GetAffix",
+  "parent":{
+    "name":"unary_operators",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions/operators/unary_operators.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_LiUOp_GetAffix",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

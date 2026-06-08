@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "bufferdecode",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Compilation/detail/bufferdecode.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_BD_DecodeStack",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_BD_DecodeStack",
+  "parent":{
+    "name":"bufferdecode",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/Compilation/detail/bufferdecode.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_BD_DecodeStack",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Parsing",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/Parsing.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_PARSE_Assign",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_PARSE_Assign",
+  "parent":{
+    "name":"Parsing",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/detail/Parsing.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_PARSE_Assign",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

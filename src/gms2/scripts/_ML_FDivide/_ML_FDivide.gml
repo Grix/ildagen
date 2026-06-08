@@ -5,7 +5,7 @@ function _ML_FDivide() {
 	}
 
 
-	return argument0 / argument[1];
+	return argument0 / argument1;
 
 
 

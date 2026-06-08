@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "detail",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_TokCleanUp",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_TokCleanUp",
+  "parent":{
+    "name":"detail",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/detail.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_TokCleanUp",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

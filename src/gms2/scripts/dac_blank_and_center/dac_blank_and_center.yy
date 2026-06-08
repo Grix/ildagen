@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "dac_blank_and_center",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dacs",
-    "path": "folders/Scripts/dacs.yy",
+  "$GMScript":"v1",
+  "%Name":"dac_blank_and_center",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dac_blank_and_center",
+  "parent":{
+    "name":"dacs",
+    "path":"folders/Scripts/dacs.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

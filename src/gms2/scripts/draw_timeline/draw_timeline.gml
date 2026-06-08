@@ -357,7 +357,7 @@ function draw_timeline() {
 		            }
 		        }
 		        gpu_set_blendenable(0);
-		        mouse_on_button_ver = (mouse_y == clamp(mouse_y,8+t_ypos,40+t_ypos));
+		        var mouse_on_button_ver = (mouse_y == clamp(mouse_y,8+t_ypos,40+t_ypos));
 		        draw_sprite(spr_deletelayer,
 		                    mouse_on_button_ver and mouse_on_button_hor,
 		                    tlw-56,t_ypos+8);

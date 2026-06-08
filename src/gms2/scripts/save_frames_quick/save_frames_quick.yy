@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "files",
-    "path": "folders/Scripts/files.yy",
+  "$GMScript":"v1",
+  "%Name":"save_frames_quick",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"save_frames_quick",
+  "parent":{
+    "name":"files",
+    "path":"folders/Scripts/files.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "save_frames_quick",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

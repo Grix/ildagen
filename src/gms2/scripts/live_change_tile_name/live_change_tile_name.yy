@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "live_change_tile_name",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "live",
-    "path": "folders/Scripts/live.yy",
+  "$GMScript":"v1",
+  "%Name":"live_change_tile_name",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"live_change_tile_name",
+  "parent":{
+    "name":"live",
+    "path":"folders/Scripts/live.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

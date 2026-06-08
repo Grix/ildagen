@@ -170,7 +170,7 @@ if (keyboard_check_control())
 		var t_undolist = ds_list_create_pool();
 		ds_list_add(t_undolist, startframe);
 		ds_list_add(t_undolist, endframe);
-		ds_list_add(undo_list,"i"+string(t_undolist));
+		ds_list_add(undo_list,make_undo("i", t_undolist));
 		
 		startframe = tlx + mouse_x*tlzoom/tlw;//tlpos*projectfps/1000;
 		if (startframe < 0)
@@ -183,7 +183,7 @@ if (keyboard_check_control())
 		var t_undolist = ds_list_create_pool();
 		ds_list_add(t_undolist, startframe);
 		ds_list_add(t_undolist, endframe);
-		ds_list_add(undo_list,"i"+string(t_undolist));
+		ds_list_add(undo_list,make_undo("i", t_undolist));
 		
 		endframe = tlx + mouse_x*tlzoom/tlw;//tlpos*projectfps/1000;
 		if (endframe <= startframe)
