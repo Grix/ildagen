@@ -611,7 +611,7 @@ void LaserCubeNetwork::LaserCubeNetworkDevice::FrameHandler()
 					while (dataLeft > 0)
 					{
 						auto sendTime = std::chrono::system_clock::now();
-						char buffer[1500] = { (char)LDN_CMD_SAMPLE_DATA, 0x00, (char)(messageNumber++ % 255), (char)(frameNumber % 255) };
+						char buffer[1500] = { (char)LDN_CMD_SAMPLE_DATA, 0x00, (char)(messageNumber++ % 256), (char)(frameNumber % 256) };
 						int pointsToSend = dataLeft > 140 ? 140 : dataLeft;
 						std::memcpy(buffer + 4, &frame->dataBuffer[frame->numPoints - dataLeft], pointsToSend * sizeof(LaserCubeNetworkSample));
 						int sentBytes = sendto(dataSocketFd, buffer, 4 + pointsToSend * sizeof(LaserCubeNetworkSample), 0, (const sockaddr*)&dataSocketAddr, sizeof(dataSocketAddr));
