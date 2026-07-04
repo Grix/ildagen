@@ -77,7 +77,7 @@ file_dropper_init();  // Causes problems in HTML5 export
 // Dialog module settings, causes crash?
 //widget_set_caption("LaserShowGen");
 //if (os_type == os_macosx || os_type == os_linux)
-	widget_set_owner(string(int64(window_handle())));
+widget_set_owner(string(int64(window_handle())));
 
 //declarations and setup
 //math_set_epsilon(0.00001);

@@ -15,6 +15,7 @@ void logError(const char* fmt, ...)
 	va_list arg_ptr;
 	va_start(arg_ptr, fmt);
 	vprintf(fmt, arg_ptr);
+	va_end(arg_ptr);
 
 	return; // skip
 
@@ -35,6 +36,7 @@ void logInfo(const char* fmt, ...)
 	va_list arg_ptr;
 	va_start(arg_ptr, fmt);
 	vprintf(fmt, arg_ptr);
+	va_end(arg_ptr);
 #endif
 
 	return; // skip
@@ -337,8 +339,8 @@ int idnPushFrame(IDNCONTEXT* context)
 		}
 		else
 		{
-			// No new frame in queue, underrun. Timeout if this persists for 30+ ms
-			if (!ctx->isStoppedOrTimeout && ctx->scanSpeed > 0 && (plt_getMonoTimeUS() > (ctx->frameTimestamp + ((uint64_t)ctx->sampleCnt * 1000000ull) / (uint64_t)ctx->scanSpeed + 30000)))
+			// No new frame in queue, underrun. Timeout if this persists for 100+ ms
+			if (!ctx->isStoppedOrTimeout && ctx->scanSpeed > 0 && (plt_getMonoTimeUS() > (ctx->frameTimestamp + ((uint64_t)ctx->sampleCnt * 1000000ull) / (uint64_t)ctx->scanSpeed + 100000)))
 			{
 				ctx->isStoppedOrTimeout = true;
 				logError("[IDN] Buffer underrun. Send frames faster, or make them bigger to get more leeway.\n");
@@ -421,12 +423,17 @@ int idnPushFrame(IDNCONTEXT* context)
 	ctx->sendBufferPosition += samplesInPacket * ctx->bytesPerSample;
 	ctx->frameCnt++;
 
-	// Send the packet
-	if (idnSend(ctx, packetHeader, msgLength) != 0)
+	//if (ctx->frameCnt % 27 != 5) // packet loss simulation for testing
 	{
-		ctx->sendBufferPosition = (uint8_t*)0;
-		return -1;
+		// Send the packet
+		if (idnSend(ctx, packetHeader, msgLength) != 0)
+		{
+			ctx->sendBufferPosition = (uint8_t*)0;
+			return -1;
+		}
 	}
+	//else
+	//	ctx->sendBufferPosition = (uint8_t*)0;
 
 	if (ctx->sampleCnt <= 0 || (ctx->sendBufferPosition + ctx->sampleCnt * ctx->bytesPerSample) > (ctx->bufferPtr + ctx->bufferLen))
 	{
@@ -465,7 +472,7 @@ int idnPushFrame(IDNCONTEXT* context)
 	// Send the packet
 	if (idnSend(context, packetHdr, ctx->payload - (uint8_t*)packetHdr))
 		return -1;
-
+		
 	return 0;
 }*/
 
@@ -513,7 +520,7 @@ int idnSendClose(IDNCONTEXT* context)
 	// Send the packet (gracefully close session)
 	if (idnSend(context, packetHdr, sizeof(IDNHDR_PACKET)))
 		return -1;
-
+		
 	return 0;
 }
 
