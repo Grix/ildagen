@@ -48,7 +48,7 @@ function handle_mousecontrol_live() {
 	    if (scroll_moving == 0) && mouse_check_button_pressed(mb_left)
 	    {
 	        scroll_moving = 2;
-	        mouse_yprevious = device_mouse_raw_y(0);;
+	        mouse_yprevious = device_mouse_raw_y(0);
 	    }
 		exit;
 	}

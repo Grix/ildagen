@@ -211,7 +211,7 @@ function make_frame_bezier() {
                         
 	                var t_bezier_prev_x;
 	                var t_bezier_prev_y;
-					var t_true_dwell_rising = 0;
+					t_true_dwell_rising = 0;
 					
 					if (t_dist_prev >= 1)
 					{
@@ -252,7 +252,7 @@ function make_frame_bezier() {
 					
 					var t_bezier_next_x;
 	                var t_bezier_next_y;
-					var t_true_dwell_falling = 0;
+					t_true_dwell_falling = 0;
 					
 					if (t_dist_next >= 1)
 					{

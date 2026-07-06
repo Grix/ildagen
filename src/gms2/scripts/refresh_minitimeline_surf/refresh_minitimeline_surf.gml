@@ -51,7 +51,7 @@ function refresh_minitimeline_surf() {
 				tlx = t_objectlist[| 0];
 			}
 		}
-	    projectfps = seqcontrol.projectfps;;
+	    projectfps = seqcontrol.projectfps;
 	    //var drawtime = ceil(tlx/projectfps);
 	    tlzoom = maxframes;
 		

@@ -329,7 +329,7 @@ function process_dialog_seq() {
 				load_project(t_dir+"demo_show.igp");
 				seqcontrol.show_is_demo = true;
 	            break;
-	        };
+	        }
           
 	        case "fromseq":
 	        {
