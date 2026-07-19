@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "detail",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Compilation/detail.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_EC_RPNtoBuff",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_EC_RPNtoBuff",
+  "parent":{
+    "name":"detail",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/Compilation/detail.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_EC_RPNtoBuff",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

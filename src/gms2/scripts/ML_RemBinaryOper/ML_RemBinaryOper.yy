@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Binary",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Binary.yy",
+  "$GMScript":"v1",
+  "%Name":"ML_RemBinaryOper",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ML_RemBinaryOper",
+  "parent":{
+    "name":"Binary",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Binary.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "ML_RemBinaryOper",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

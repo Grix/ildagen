@@ -518,7 +518,7 @@ function process_dialog_ilda() {
             
 	            case "dotintensity":
 	          {
-	              ds_list_add(undo_list,"d"+string(dotmultiply))
+	              ds_list_add(undo_list,make_undo("d", dotmultiply));
             
 	              dotmultiply = ds_map_find_value(argument[0], "value");
 	              dotmultiply = clamp(dotmultiply,1,500);
@@ -559,7 +559,7 @@ function process_dialog_ilda() {
               
 	            case "res":
 	          {
-	              ds_list_add(undo_list,"r"+string(resolution))
+	              ds_list_add(undo_list,make_undo("r", string(resolution)));
             
 	              resolution = ds_map_find_value(argument[0], "value");
 	              if (resolution < 4) resolution = 4;
@@ -581,7 +581,7 @@ function process_dialog_ilda() {
 					var t_undolist = ds_list_create_pool();
 					ds_list_add(t_undolist, scope_start);
 					ds_list_add(t_undolist, scope_end);
-					ds_list_add(undo_list,"c"+string(t_undolist));
+					ds_list_add(undo_list,make_undo("c", t_undolist));
 					
 	              scope_start = clamp(t_newscope,0,scope_end);
 	              frame = scope_start;
@@ -605,7 +605,7 @@ function process_dialog_ilda() {
 					var t_undolist = ds_list_create_pool();
 					ds_list_add(t_undolist, scope_start);
 					ds_list_add(t_undolist, scope_end);
-					ds_list_add(undo_list,"c"+string(t_undolist));
+					ds_list_add(undo_list,make_undo("c", t_undolist));
 				
 	              scope_end = clamp(t_newscope,scope_start,maxframes-1);
 	              refresh_minitimeline_flag = 1;
@@ -637,7 +637,7 @@ function process_dialog_ilda() {
               
 	            case "maxframes":
 	          {
-	              ds_list_add(undo_list,"a"+string(maxframes))
+	              ds_list_add(undo_list,make_undo("a", maxframes));
               
 	              refresh_minitimeline_flag = 1;
               
@@ -692,7 +692,7 @@ function process_dialog_ilda() {
 				  /*var t_undo_buffer = buffer_create(2, buffer_grow, 1);
 				  buffer_write(t_undo_buffer, buffer_string, string(frame_list));
 				  var t_compressed_buffer = buffer_compress(t_undo_buffer, 0, buffer_tell(t_undo_buffer));
-	              ds_list_add(undo_list,"s"+string(t_compressed_buffer));
+	              ds_list_add(undo_list,make_undo("s", t_compressed_buffer));
 				  buffer_delete(t_undo_buffer);*/ //TODO
               
 	              refresh_minitimeline_flag = 1;
@@ -700,10 +700,11 @@ function process_dialog_ilda() {
 				  update_semasterlist_flag = 1;
 				  clean_redo_list();
               
+			      var t_newmaxframes;
 				  if (controller.use_bpm)
-					var t_newmaxframes = round(ds_map_find_value(argument[0], "value") / (controller.bpm / 60) * controller.projectfps);
+					t_newmaxframes = round(ds_map_find_value(argument[0], "value") / (controller.bpm / 60) * controller.projectfps);
 				  else
-					var t_newmaxframes = round(ds_map_find_value(argument[0], "value"));
+					t_newmaxframes = round(ds_map_find_value(argument[0], "value"));
               
 	              if (t_newmaxframes < 1) 
 					t_newmaxframes = 1;

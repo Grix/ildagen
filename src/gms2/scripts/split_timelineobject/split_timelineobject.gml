@@ -123,7 +123,7 @@ function split_timelineobject() {
 	                    ds_list_add(undolisttemp, objectlist);
 	                    ds_list_add(undolisttemp, objectlist1);
 	                    ds_list_add(undolisttemp, objectlist2);
-	                    ds_list_add(undo_list, "s"+string(undolisttemp));
+	                    ds_list_add(undo_list, make_undo("s", undolisttemp));
 	                }
 	            }
 	        }

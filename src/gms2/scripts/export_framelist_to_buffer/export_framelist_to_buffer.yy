@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "output",
-    "path": "folders/Scripts/output.yy",
+  "$GMScript":"v1",
+  "%Name":"export_framelist_to_buffer",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"export_framelist_to_buffer",
+  "parent":{
+    "name":"output",
+    "path":"folders/Scripts/output.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "export_framelist_to_buffer",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

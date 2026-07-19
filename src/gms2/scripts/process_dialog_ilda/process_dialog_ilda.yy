@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "process_dialog_ilda",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dialogs",
-    "path": "folders/Scripts/dialogs.yy",
+  "$GMScript":"v1",
+  "%Name":"process_dialog_ilda",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"process_dialog_ilda",
+  "parent":{
+    "name":"dialogs",
+    "path":"folders/Scripts/dialogs.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

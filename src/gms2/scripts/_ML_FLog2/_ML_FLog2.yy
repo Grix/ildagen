@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "math",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions/math.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_FLog2",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_FLog2",
+  "parent":{
+    "name":"math",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions/math.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_FLog2",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

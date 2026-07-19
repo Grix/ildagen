@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "dd_select_midi_input",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dd_options",
-    "path": "folders/Scripts/dropdown/dd_options.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_select_midi_input",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_select_midi_input",
+  "parent":{
+    "name":"dd_options",
+    "path":"folders/Scripts/dropdown/dd_options.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

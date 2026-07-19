@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "files",
-    "path": "folders/Scripts/files.yy",
+  "$GMScript":"v1",
+  "%Name":"init_palette",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"init_palette",
+  "parent":{
+    "name":"files",
+    "path":"folders/Scripts/files.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "init_palette",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

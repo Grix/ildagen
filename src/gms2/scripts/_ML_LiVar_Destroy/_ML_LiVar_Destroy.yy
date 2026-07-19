@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "variables",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/variables.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_LiVar_Destroy",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_LiVar_Destroy",
+  "parent":{
+    "name":"variables",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/data_containers/variables.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_LiVar_Destroy",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

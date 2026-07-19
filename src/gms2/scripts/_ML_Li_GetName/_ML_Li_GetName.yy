@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "data_containers",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_Li_GetName",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_Li_GetName",
+  "parent":{
+    "name":"data_containers",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/data_containers.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_Li_GetName",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

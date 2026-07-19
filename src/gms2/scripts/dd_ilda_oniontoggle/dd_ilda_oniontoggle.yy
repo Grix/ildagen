@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "menu",
-    "path": "folders/Scripts/dropdown/dd_ilda/menu.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_ilda_oniontoggle",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_ilda_oniontoggle",
+  "parent":{
+    "name":"menu",
+    "path":"folders/Scripts/dropdown/dd_ilda/menu.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "dd_ilda_oniontoggle",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

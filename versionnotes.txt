@@ -1,20 +1,13 @@
+v2.2.1
+- Fix bug in LaserCube network protocol causing streaming problems on newer devices.
+- Fix dialog windows not returning keyboard focus to LSG window after closing.
+- Various small improvements in Helios DAC handling.
+- Fix square grid in editor mode on macOS not scaling correctly when windows is resized. 
+- Update to development engine, should not affect behavior but please report any bugs.
+
 v2.2.0
 - Support for Art-Net and sACN DMX input, for playing files in the Grid View and adjusting sliders.
 - Improved laser optimization, for more accurate graphics and smoother animations.
 - Added BPM tap button for easy BPM adjustment in Grid View.
 - Included some default animations in the Grid View. 
-- MIDI key can now be bound to the Laser ON/OFF button.
-- Cursor in editor mode automatically snaps to the start/end of other objects when close.
-- Fix reapplying colors/blanking with certain dashed/dotted modes incorrectly modifying the object.
-- Remember more settings between program restarts. 
-- Fix timeline mode jump points not being saved in projects. 
-- Fix potential issue causing pop-up dialogs not to appear in Windows, or even freeze the application.
-- Fix potential crash that could happen when manipulating the application window.
-- Fix potential crash when using Ether Dream on macOS/Linux. 
-- Fix certain secondary IDN services not working, like DACs connected to the HeliosPRO aux port.
-- Attempted fix for the application sometimes using too much CPU power.
-- Fix point counter warning coloring being wrong on frames with too many dots.
-- Rename beats in BPM timing mode to start on beat 1 instead of 0.
-- Fix wrong tooltips in macOS referring to the "Fn+Del" key combination as just "Del".
-- Warn the user if a file fails to save correctly.
-- Updated manual.
+...and more, refer to full changelog.

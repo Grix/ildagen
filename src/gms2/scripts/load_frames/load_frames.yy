@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "load_frames",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "files",
-    "path": "folders/Scripts/files.yy",
+  "$GMScript":"v1",
+  "%Name":"load_frames",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"load_frames",
+  "parent":{
+    "name":"files",
+    "path":"folders/Scripts/files.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

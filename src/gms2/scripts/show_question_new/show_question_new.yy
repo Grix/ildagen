@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "show_question_new",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dialogs",
-    "path": "folders/Scripts/dialogs.yy",
+  "$GMScript":"v1",
+  "%Name":"show_question_new",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"show_question_new",
+  "parent":{
+    "name":"dialogs",
+    "path":"folders/Scripts/dialogs.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

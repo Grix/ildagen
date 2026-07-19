@@ -10,7 +10,7 @@ function create_element() {
         
 	if (maxframes == 1) and (anienable) // if you change this, also change same check in case ("text") in process_dialog_ilda
 	{
-	    //ds_list_add(controller.undo_list,"a"+string(controller.maxframes))
+	    //ds_list_add(controller.undo_list,make_undo("a", controller.maxframes))
 		if (controller.use_bpm)
 			maxframes = round(controller.projectfps / (controller.bpm / 60 / controller.beats_per_bar)); // one bar
 		else
@@ -828,7 +828,7 @@ function create_element() {
 
 	ilda_cancel();
 	add_action_history_ilda("ILDA_create_"+placing);
-	ds_list_add(undo_list,el_id);
+	ds_list_add(undo_list,make_undo("",el_id));
 
 	if (func_doaudio)
 	{

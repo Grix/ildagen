@@ -13,7 +13,7 @@ function _ML_COMP_Function(argument0, argument1) {
 	var argstring = "";
 	var lhs, lhs_type;
 	var argc = _ML_LiTok_GetArgcount(token);
-	var tokentype, lhs_type;
+	var tokentype;
 	for (var i = argc -1; i >= 0; --i) {
 	    lhs = ds_stack_pop(argstack);
 	    lhs_type = lhs[0];

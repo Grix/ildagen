@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "save_live_project",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "files",
-    "path": "folders/Scripts/files.yy",
+  "$GMScript":"v1",
+  "%Name":"save_live_project",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"save_live_project",
+  "parent":{
+    "name":"files",
+    "path":"folders/Scripts/files.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

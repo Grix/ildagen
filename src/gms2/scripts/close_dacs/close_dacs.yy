@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dacs",
-    "path": "folders/Scripts/dacs.yy",
+  "$GMScript":"v1",
+  "%Name":"close_dacs",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"close_dacs",
+  "parent":{
+    "name":"dacs",
+    "path":"folders/Scripts/dacs.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "close_dacs",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

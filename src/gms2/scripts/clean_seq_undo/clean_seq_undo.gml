@@ -10,38 +10,44 @@ with (seqcontrol)
 	    log("cleaning undo list");
 	    undo = ds_list_find_value(undo_list,0);
 	    ds_list_delete(undo_list,0);
+		
+		if (!is_struct(undo))
+		{
+			show_debug_message("CLEANUNDO BUG SEQ, NOT A STRUCT: " + string(undo));
+			return;
+		}
 
-	    if (string_char_at(undo,0) == "c")
+	    if (string_char_at(undo.undo_id,0) == "c")
 	    {
 	        //undo create object (delete)
-	        undolisttemp = real(string_digits(undo));
+	        undolisttemp = undo.data;
 	        if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        ds_list_free_pool(undolisttemp);
 	    }
-	    else if (string_char_at(undo,0) == "s")
+	    else if (string_char_at(undo.undo_id,0) == "s")
 	    {
 	        //undo split
-	        undolisttemp = real(string_digits(undo));
+	        undolisttemp = undo.data;
 			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        ds_list_free_pool(ds_list_find_value(undolisttemp,0));
 	        ds_list_free_pool(undolisttemp);
 	    }
-		else if (string_char_at(undo,0) == "z")
+		else if (string_char_at(undo.undo_id,0) == "z")
 		{
 			//undo merge (only in redo now, opposite of split)
-			undolisttemp = real(string_digits(undo));
+			undolisttemp = undo.data;
 			if (!ds_list_exists_pool(undolisttemp))
 			    exit;
 			ds_list_free_pool(ds_list_find_value(undolisttemp,1));
 			ds_list_free_pool(ds_list_find_value(undolisttemp,2));
 	        ds_list_free_pool(undolisttemp);
 		}
-	    else if (string_char_at(undo,0) == "d")
+	    else if (string_char_at(undo.undo_id,0) == "d")
 	    {
 	        //undo delete object
-	        undolisttemp = real(string_digits(undo));
+	        undolisttemp = undo.data;
 	        if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        var t_objectlist = ds_list_find_value(undolisttemp,1);
@@ -52,34 +58,34 @@ with (seqcontrol)
 	        ds_list_free_pool(t_objectlist);
 	        ds_list_free_pool(undolisttemp);
 	    }
-	    else if (string_char_at(undo,0) == "r")
+	    else if (string_char_at(undo.undo_id,0) == "r")
 	    {
 	        //undo resize object
-	        undolisttemp = real(string_digits(undo));
+	        undolisttemp = undo.data;
 	        if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        ds_list_free_pool(undolisttemp);
 	    }
-	    else if (string_char_at(undo,0) == "m")
+	    else if (string_char_at(undo.undo_id,0) == "m")
 	    {
 	        //undo move object
-	        undolisttemp = real(string_digits(undo));
+	        undolisttemp = undo.data;
 	        if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        ds_list_free_pool(undolisttemp);
 	    }
-	    else if (string_char_at(undo,0) == "l")
+	    else if (string_char_at(undo.undo_id,0) == "l")
 	    {
 	        //undo marker clear
-	        undolisttemp = real(string_digits(undo));
+	        undolisttemp = undo.data;
 	        if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 	        ds_list_free_pool(undolisttemp);
 	    }
-	    else if (string_char_at(undo,0) == "e")
+	    else if (string_char_at(undo.undo_id,0) == "e")
 	    {
 	        //undo envelope data clear
-	        undolisttemp = real(string_digits(undo));
+	        undolisttemp = undo.data;
 			if (!ds_list_exists_pool(undolisttemp))
 	            exit;
 			if (!ds_list_exists_pool(ds_list_find_value(undolisttemp,0)))
@@ -90,34 +96,34 @@ with (seqcontrol)
 	        ds_list_free_pool( ds_list_find_value(undolisttemp,1) );
 	        ds_list_free_pool( undolisttemp);
 	    }
-		else if (string_char_at(undo,0) == "a")
+		else if (string_char_at(undo.undo_id,0) == "a")
 		{
 			// nothing
 		}
-		else if (string_char_at(undo,0) == "k")
+		else if (string_char_at(undo.undo_id,0) == "k")
 		{
 			// nothing
 		}
-		else if (string_char_at(undo,0) == "j")
+		else if (string_char_at(undo.undo_id,0) == "j")
 		{
 			// nothing
 		}
-		else if (string_char_at(undo,0) == "h")
+		else if (string_char_at(undo.undo_id,0) == "h")
 		{
 		    //undo move marker
-		    undolisttemp = real(string_digits(undo));
+		    undolisttemp = undo.data;
 			if (!ds_list_exists_pool(undolisttemp))
 		        exit;
 			ds_list_free_pool(undolisttemp);
 		}
-		else if (string_char_at(undo,0) == "p")
+		else if (string_char_at(undo.undo_id,0) == "p")
 		{
 			// nothing
 		}
-		else if (string_char_at(undo,0) == "x")
+		else if (string_char_at(undo.undo_id,0) == "x")
 		{
 			// undo delete envelope
-			undolisttemp = real(string_digits(undo));
+			undolisttemp = undo.data;
 			if (!ds_list_exists_pool(undolisttemp))
 		        exit;
 			
@@ -131,19 +137,19 @@ with (seqcontrol)
 		
 			ds_list_free_pool(undolisttemp);
 		}
-		else if (string_char_at(undo,0) == "q")
+		else if (string_char_at(undo.undo_id,0) == "q")
 		{
 			// nothing
 		}
-		else if (string_char_at(undo,0) == "w")
+		else if (string_char_at(undo.undo_id,0) == "w")
 		{
 			// nothing
 		}
-		else if (string_char_at(undo,0) == "i")
+		else if (string_char_at(undo.undo_id,0) == "i")
 		{
-	        if (!ds_list_exists_pool(real(string_digits(undo))))
+	        if (!ds_list_exists_pool(undo.data))
 	            continue;
-	        ds_list_free_pool(real(string_digits(undo)));
+	        ds_list_free_pool(undo.data);
 	    }
 	}
 }

@@ -53,7 +53,7 @@ function seq_paste_object() {
         
 	        undolisttemp = ds_list_create_pool();
 	        ds_list_add(undolisttemp,new_objectlist);
-	        ds_list_add(undo_list,"c"+string(undolisttemp));
+	        ds_list_add(undo_list,make_undo("c", undolisttemp));
         
 	        if (i == 0)
 	            selectedxbump = (ds_list_find_value(copy_list_new,2)+1);

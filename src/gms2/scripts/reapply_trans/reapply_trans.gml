@@ -287,7 +287,7 @@ function reapply_trans() {
 	
 	add_action_history_ilda("ILDA_reapplytrans");
 	
-	ds_list_add(undo_list,"k"+string(temp_undof_list));
+	ds_list_add(undo_list,make_undo("k", temp_undof_list));
 
 
 }

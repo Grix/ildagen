@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Helperfunctions",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_FAndassign",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_FAndassign",
+  "parent":{
+    "name":"Helperfunctions",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/Helperfunctions.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_FAndassign",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

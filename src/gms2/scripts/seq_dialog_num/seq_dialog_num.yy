@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dialogs",
-    "path": "folders/Scripts/dialogs.yy",
+  "$GMScript":"v1",
+  "%Name":"seq_dialog_num",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"seq_dialog_num",
+  "parent":{
+    "name":"dialogs",
+    "path":"folders/Scripts/dialogs.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "seq_dialog_num",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

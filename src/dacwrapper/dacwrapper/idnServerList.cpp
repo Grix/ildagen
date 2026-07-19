@@ -229,7 +229,7 @@ static void createInterfaceNode(void* callbackArg, const char* ifName, uint32_t 
         ifNode->ipMask = ifIP4Mask;
 
         // Remember interface name
-        snprintf(ifNode->ifName, sizeof(ifNode->ifName), ifName ? ifName : "<?>");
+		snprintf(ifNode->ifName, sizeof(ifNode->ifName), "%s", ifName ? ifName : "<?>");
 
         // Allow broadcast on socket
         if (plt_sockSetBroadcast(ifNode->fdSocket) < 0)
@@ -240,7 +240,7 @@ static void createInterfaceNode(void* callbackArg, const char* ifName, uint32_t 
 
         // Bind to local interface (any! port)
         // Note: This bind is needed to send the broadcast on the specific (virtual) interface,
-        struct sockaddr_in bindSockAddr = { 0 };
+        struct sockaddr_in bindSockAddr = { 0, 0, 0, 0 };
         bindSockAddr.sin_family = AF_INET;
         bindSockAddr.sin_port = 0;
         bindSockAddr.sin_addr.s_addr = ifIP4Addr;
@@ -1158,13 +1158,6 @@ int getIDNServerList(IDNSL_SERVER_INFO** ppFirstServerInfo, uint8_t clientGroup,
     if (clientGroup > 15) 
         return -1;
 
-    // Validate monotonic time reference
-    if (plt_validateMonoTime() != 0)
-    {
-        logError("Monotonic time init failed");
-        return -1;
-    }
-
     // Allocate a context to keep variables for this scan. Note: Contains receive packet buffer
     SCAN_CONTEXT* scanCtx = (SCAN_CONTEXT*)calloc(1, sizeof(SCAN_CONTEXT));
     if (scanCtx == (SCAN_CONTEXT*)0)
@@ -1303,4 +1296,3 @@ void freeIDNServerList(IDNSL_SERVER_INFO* firstServerInfo)
         free(serverInfo);
     }
 }
-

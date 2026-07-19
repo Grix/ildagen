@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "create_func",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "createobject",
-    "path": "folders/Scripts/ilda/createobject.yy",
+  "$GMScript":"v1",
+  "%Name":"create_func",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"create_func",
+  "parent":{
+    "name":"createobject",
+    "path":"folders/Scripts/ilda/createobject.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

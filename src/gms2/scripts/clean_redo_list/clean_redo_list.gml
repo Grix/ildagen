@@ -6,41 +6,47 @@ while (ds_list_size(redo_list) > 0)
     show_debug_message("cleaning redo list");
     var redo = ds_list_find_value(redo_list,0);
     ds_list_delete(redo_list,0);
+	
+	if (!is_struct(redo))
+	{
+		show_debug_message("CLEANREDO BUG ILD, NOT A STRUCT: " + string(redo));
+		return;
+	}
 
-    if (is_real(redo))
+    if (redo.undo_id == "")
     {
         //nothing
     }
-    else if (string_char_at(redo,0) == "a")
+    else if (string_char_at(redo.undo_id,0) == "a")
     {
         //nothing
 	}
-    else if (string_char_at(redo,0) == "r")
+    else if (string_char_at(redo.undo_id,0) == "r")
     {
         //nothing
     }
-    else if (string_char_at(redo,0) == "d")
+    else if (string_char_at(redo.undo_id,0) == "d")
     {
         //nothing
     }
-    else if (string_char_at(redo,0) == "v")
+    else if (string_char_at(redo.undo_id,0) == "v")
     {
-        if (!ds_list_exists_pool(real(string_digits(redo))))
+        if (!ds_list_exists_pool(redo.data))
             continue;
-        ds_list_free_pool(real(string_digits(redo)));
+        ds_list_free_pool(redo.data);
     }
-    else if (string_char_at(redo,0) == "b")
+    else if (string_char_at(redo.undo_id,0) == "b")
     {
-        if (!ds_list_exists_pool(real(string_digits(redo))))
+        if (!ds_list_exists_pool(redo.data))
             continue;
-        ds_list_free_pool(real(string_digits(redo)));
+        ds_list_free_pool(redo.data);
     }
-    else if (string_char_at(redo,0) == "k")
+    else if (string_char_at(redo.undo_id,0) == "k")
     {
         //redo reapply elements
-        if (!ds_list_exists_pool(real(string_digits(redo))))
+        if (!ds_list_exists_pool(redo.data))
             continue;
-        tempredolist = real(string_digits(redo));
+        tempredolist = redo.data;
         for (u = 0;u < ds_list_size(tempredolist);u++)
         {
             list = ds_list_find_value(tempredolist,u);
@@ -51,12 +57,12 @@ while (ds_list_size(redo_list) > 0)
         }
         ds_list_free_pool(tempredolist);
     }
-    else if (string_char_at(redo,0) == "l")
+    else if (string_char_at(redo.undo_id,0) == "l")
     {
         //redo delete
-        if (!ds_list_exists_pool(real(string_digits(redo))))
+        if (!ds_list_exists_pool(redo.data))
             continue;
-        tempredolist = real(string_digits(redo));
+        tempredolist = redo.data;
         for (u = 0;u < ds_list_size(tempredolist);u++)
         {
             list = ds_list_find_value(tempredolist,u);
@@ -67,12 +73,12 @@ while (ds_list_size(redo_list) > 0)
         }
         ds_list_free_pool(tempredolist);
     }
-	else if (string_char_at(redo,0) == "s")
+	else if (string_char_at(redo.undo_id,0) == "s")
 	{
-		if (!ds_list_exists_pool(real(string_digits(redo))))
+		if (!ds_list_exists_pool(redo.data))
 	        exit;
 	    //redo stretch maxframes
-	    tempredolist = real(string_digits(redo));	
+	    tempredolist = redo.data;	
 	
 		for (u = 0; u < ds_list_size(tempredolist); u++)
 			ds_list_free_pool(tempredolist[| u]);
@@ -80,11 +86,11 @@ while (ds_list_size(redo_list) > 0)
 	
 		refresh_minitimeline_flag = 1;
 	}
-	else if (string_char_at(redo,0) == "c")
+	else if (string_char_at(redo.undo_id,0) == "c")
     {
-        if (!ds_list_exists_pool(real(string_digits(redo))))
+        if (!ds_list_exists_pool(redo.data))
             continue;
-        ds_list_free_pool(real(string_digits(redo)));
+        ds_list_free_pool(redo.data);
     }
 }
 

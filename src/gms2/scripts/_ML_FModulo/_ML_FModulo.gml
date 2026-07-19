@@ -4,7 +4,7 @@ function _ML_FModulo() {
 	    return argument0;
 	}
 
-	return argument0 mod argument[1];
+	return argument0 mod argument1;
 
 
 

@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "BuildFunctions",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions.yy",
+  "$GMScript":"v1",
+  "%Name":"ML_DestroyParser",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ML_DestroyParser",
+  "parent":{
+    "name":"BuildFunctions",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "ML_DestroyParser",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

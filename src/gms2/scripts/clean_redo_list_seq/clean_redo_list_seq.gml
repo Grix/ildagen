@@ -5,38 +5,44 @@ function clean_redo_list_seq(){
 	{
 	    redo = ds_list_find_value(redo_list,0);
 	    ds_list_delete(redo_list,0);
+		
+		if (!is_struct(redo))
+		{
+			show_debug_message("CLEANREDO BUG SEQ, NOT A STRUCT: " + string(redo));
+			return;
+		}
 
-	    if (string_char_at(redo,0) == "c")
+	    if (string_char_at(redo.undo_id,0) == "c")
 	    {
 	        //redo create object (delete)
-	        redolisttemp = real(string_digits(redo));
+	        redolisttemp = redo.data;
 	        if (!ds_list_exists_pool(redolisttemp))
 	            exit;
 	        ds_list_free_pool(redolisttemp); redolisttemp = -1;
 	    }
-	    else if (string_char_at(redo,0) == "s")
+	    else if (string_char_at(redo.undo_id,0) == "s")
 	    {
 	        //redo split
-	        redolisttemp = real(string_digits(redo));
+	        redolisttemp = redo.data;
 			if (!ds_list_exists_pool(redolisttemp))
 	            exit;
 	        ds_list_free_pool(ds_list_find_value(redolisttemp,0));
 	        ds_list_free_pool(redolisttemp); redolisttemp = -1;
 	    }
-		else if (string_char_at(redo,0) == "z")
+		else if (string_char_at(redo.undo_id,0) == "z")
 		{
 			//redo merge (only in redo now, opposite of split)
-			redolisttemp = real(string_digits(redo));
+			redolisttemp = redo.data;
 			if (!ds_list_exists_pool(redolisttemp))
 			    exit;
 			ds_list_free_pool(ds_list_find_value(redolisttemp,1));
 			ds_list_free_pool(ds_list_find_value(redolisttemp,2));
 	        ds_list_free_pool(redolisttemp); redolisttemp = -1;
 		}
-	    else if (string_char_at(redo,0) == "d")
+	    else if (string_char_at(redo.undo_id,0) == "d")
 	    {
 	        //redo delete object
-	        redolisttemp = real(string_digits(redo));
+	        redolisttemp = redo.data;
 	        if (!ds_list_exists_pool(redolisttemp))
 	            exit;
 	        var t_objectlist = ds_list_find_value(redolisttemp,1);
@@ -47,34 +53,34 @@ function clean_redo_list_seq(){
 	        ds_list_free_pool(t_objectlist); t_objectlist = -1;
 	        ds_list_free_pool(redolisttemp); redolisttemp = -1;
 	    }
-	    else if (string_char_at(redo,0) == "r")
+	    else if (string_char_at(redo.undo_id,0) == "r")
 	    {
 	        //redo resize object
-	        redolisttemp = real(string_digits(redo));
+	        redolisttemp = redo.data;
 	        if (!ds_list_exists_pool(redolisttemp))
 	            exit;
 	        ds_list_free_pool(redolisttemp);
 	    }
-	    else if (string_char_at(redo,0) == "m")
+	    else if (string_char_at(redo.undo_id,0) == "m")
 	    {
 	        //redo move object
-	        redolisttemp = real(string_digits(redo));
+	        redolisttemp = redo.data;
 	        if (!ds_list_exists_pool(redolisttemp))
 	            exit;
 	        ds_list_free_pool(redolisttemp);
 	    }
-	    else if (string_char_at(redo,0) == "l")
+	    else if (string_char_at(redo.undo_id,0) == "l")
 	    {
 	        //redo marker clear
-	        redolisttemp = real(string_digits(redo));
+	        redolisttemp = redo.data;
 	        if (!ds_list_exists_pool(redolisttemp))
 	            exit;
 	        ds_list_free_pool(redolisttemp);
 	    }
-	    else if (string_char_at(redo,0) == "e")
+	    else if (string_char_at(redo.undo_id,0) == "e")
 	    {
 	        //redo envelope data clear
-	        redolisttemp = real(string_digits(redo));
+	        redolisttemp = redo.data;
 			if (!ds_list_exists_pool(redolisttemp))
 	            exit;
 			if (!ds_list_exists_pool(ds_list_find_value(redolisttemp,0)))
@@ -85,34 +91,34 @@ function clean_redo_list_seq(){
 	        ds_list_free_pool( ds_list_find_value(redolisttemp,1) );
 	        ds_list_free_pool( redolisttemp);
 	    }
-		else if (string_char_at(redo,0) == "a")
+		else if (string_char_at(redo.undo_id,0) == "a")
 		{
 			// nothing
 		}
-		else if (string_char_at(redo,0) == "k")
+		else if (string_char_at(redo.undo_id,0) == "k")
 		{
 			// nothing
 		}
-		else if (string_char_at(redo,0) == "j")
+		else if (string_char_at(redo.undo_id,0) == "j")
 		{
 			// nothing
 		}
-		else if (string_char_at(redo,0) == "h")
+		else if (string_char_at(redo.undo_id,0) == "h")
 		{
 		    //redo move marker
-		    redolisttemp = real(string_digits(redo));
+		    redolisttemp = redo.data;
 			if (!ds_list_exists_pool(redolisttemp))
 		        exit;
 			ds_list_free_pool(redolisttemp);
 		}
-		else if (string_char_at(redo,0) == "p")
+		else if (string_char_at(redo.undo_id,0) == "p")
 		{
 			// nothing
 		}
-		else if (string_char_at(redo,0) == "x")
+		else if (string_char_at(redo.undo_id,0) == "x")
 		{
 			// redo delete envelope
-			redolisttemp = real(string_digits(redo));
+			redolisttemp = redo.data;
 			if (!ds_list_exists_pool(redolisttemp))
 		        exit;
 			
@@ -126,19 +132,19 @@ function clean_redo_list_seq(){
 		
 			ds_list_free_pool(redolisttemp);
 		}
-		else if (string_char_at(redo,0) == "q")
+		else if (string_char_at(redo.undo_id,0) == "q")
 		{
 			// nothing
 		}
-		else if (string_char_at(redo,0) == "w")
+		else if (string_char_at(redo.undo_id,0) == "w")
 		{
 			// nothing
 		}
-		else if (string_char_at(redo,0) == "i")
+		else if (string_char_at(redo.undo_id,0) == "i")
 		{
-	        if (!ds_list_exists_pool(real(string_digits(redo))))
+	        if (!ds_list_exists_pool(redo.data))
 	            continue;
-	        ds_list_free_pool(real(string_digits(redo)));
+	        ds_list_free_pool(redo.data);
 	    }
 	}
 }

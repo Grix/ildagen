@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "find_element_order",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "output",
-    "path": "folders/Scripts/output.yy",
+  "$GMScript":"v1",
+  "%Name":"find_element_order",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"find_element_order",
+  "parent":{
+    "name":"output",
+    "path":"folders/Scripts/output.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

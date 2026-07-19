@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "MATH_LOGICAL_PARSER",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER.yy",
+  "$GMScript":"v1",
+  "%Name":"ML_ResObj_GetAnswerType",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ML_ResObj_GetAnswerType",
+  "parent":{
+    "name":"MATH_LOGICAL_PARSER",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "ML_ResObj_GetAnswerType",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

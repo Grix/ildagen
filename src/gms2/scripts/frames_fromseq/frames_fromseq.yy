@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "frames_fromseq",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "files",
-    "path": "folders/Scripts/files.yy",
+  "$GMScript":"v1",
+  "%Name":"frames_fromseq",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"frames_fromseq",
+  "parent":{
+    "name":"files",
+    "path":"folders/Scripts/files.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "MATH_LOGICAL_PARSER",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER.yy",
+  "$GMScript":"v1",
+  "%Name":"ML_GetAnswerNum",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ML_GetAnswerNum",
+  "parent":{
+    "name":"MATH_LOGICAL_PARSER",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "ML_GetAnswerNum",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

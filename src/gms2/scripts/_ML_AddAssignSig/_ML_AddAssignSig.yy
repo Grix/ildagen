@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Assign",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Assign.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_AddAssignSig",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_AddAssignSig",
+  "parent":{
+    "name":"Assign",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Assign.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_AddAssignSig",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

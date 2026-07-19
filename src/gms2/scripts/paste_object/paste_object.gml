@@ -32,7 +32,7 @@ function paste_object() {
 	        el_id++;
 	        ds_list_add(semaster_list,el_id);
 	        tempelid = ds_list_find_value(list,9);
-	        ds_list_add(undo_list,el_id);
+	        ds_list_add(undo_list,make_undo("", el_id));
 	    }
 	    ds_list_replace(list,9,el_id);
 	    el_list = ds_list_find_value(frame_list,framei);

@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "FMODGMS",
-    "path": "folders/Scripts/FMODGMS.yy",
+  "$GMScript":"v1",
+  "%Name":"fmod_get_length",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"fmod_get_length",
+  "parent":{
+    "name":"FMODGMS",
+    "path":"folders/Scripts/FMODGMS.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "fmod_get_length",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

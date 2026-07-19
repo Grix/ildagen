@@ -84,7 +84,7 @@ function frames_toseq() {
 			
 			undolisttemp = ds_list_create_pool();
 			ds_list_add(undolisttemp,objectlist);
-			ds_list_add(undo_list,"c"+string(undolisttemp));
+			ds_list_add(undo_list,make_undo("c", undolisttemp));
 	    }
 	    else
 	    {

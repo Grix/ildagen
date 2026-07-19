@@ -7,18 +7,23 @@ function redo_live() {
 	    redo = ds_list_find_value(redo_list,ds_list_size(redo_list)-1);
 	    ds_list_delete(redo_list,ds_list_size(redo_list)-1);
 		
+		if (!is_struct(redo))
+		{
+			show_debug_message("REDO BUG LIVE, NOT A STRUCT: " + string(redo));
+			return;
+		}
 		
-		add_action_history_ilda("LIVE_redo_"+string(redo));
+		add_action_history_ilda("LIVE_redo_"+string(redo.undo_id));
     
-	    if (string_char_at(redo,0) == "c")
+	    if (string_char_at(redo.undo_id,0) == "c")
 	    {
 	        //redo create object (delete)
-	        selectedfile = real(string_digits(redo));
+	        selectedfile = redo.data;
 	
 			undolisttemp = ds_list_create_pool();
 			ds_list_add(undolisttemp,filelist[| selectedfile]);
 			ds_list_add(undolisttemp,selectedfile);
-			ds_list_add(undo_list,"d"+string(undolisttemp));
+			ds_list_add(undo_list,make_undo("d", undolisttemp));
 	
 			ds_list_delete(filelist, selectedfile);
 	
@@ -29,10 +34,10 @@ function redo_live() {
 			playing = 0;
 			frame_surf_refresh = 1;
 	    }
-	    else if (string_char_at(redo,0) == "d")
+	    else if (string_char_at(redo.undo_id,0) == "d")
 	    {
 	        //redo delete object
-	        redolisttemp = real(string_digits(redo));
+	        redolisttemp = redo.data;
 			if (!ds_list_exists_pool(redolisttemp))
 	            exit;
 	        objectlist = ds_list_find_value(redolisttemp,0);
@@ -40,7 +45,7 @@ function redo_live() {
 
 	        ds_list_insert(filelist,t_index,objectlist);
 			
-			ds_list_add(undo_list, "c"+string(t_index));
+			ds_list_add(undo_list, make_undo("c", t_index));
 			
 	        ds_list_free_pool(redolisttemp);
 	    }

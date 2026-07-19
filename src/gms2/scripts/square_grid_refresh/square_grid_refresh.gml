@@ -9,6 +9,4 @@ function square_grid_refresh() {
 	    draw_grid();
 	surface_reset_target();
 
-
-
 }

@@ -173,19 +173,22 @@ function create_free() {
 	    }
 	    else if (colormode == "gradient")
 	    {
+			var colorresult;
 	        if (colormode2 == 0)
 	        {
 	            var tt = color_offset_r/(2*pi)+ (checkpoints-n)*color_freq_r/checkpoints;
 	            tt = (tt*2) mod 2;
-	            if (tt > 1) tt = 2-tt;
-	            var colorresult = merge_colour(color1_r,color2_r,tt);
+	            if (tt > 1) 
+					tt = 2-tt;
+	            colorresult = merge_colour(color1_r,color2_r,tt);
 	        }
 	        else
 	        {
 	            var tt = color_offset_r/(2*pi)+ (checkpoints-n)*resolution/color_period_r;
 	            tt = (tt*2) mod 2;
-	            if (tt > 1) tt = 2-tt;
-	            var colorresult = merge_colour(color1_r,color2_r,tt);
+	            if (tt > 1) 
+					tt = 2-tt;
+	            colorresult = merge_colour(color1_r,color2_r,tt);
 	        }
 	        c = colorresult;
 	    }

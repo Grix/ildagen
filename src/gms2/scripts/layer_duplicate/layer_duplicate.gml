@@ -73,7 +73,7 @@ function layer_duplicate() {
 	var t_new_undo_list = ds_list_create_pool();
 	ds_list_add(t_new_undo_list, newlayer);
 	ds_list_add(t_new_undo_list, selectedlayer);
-	ds_list_add(undo_list, "g"+string(t_new_undo_list));
+	ds_list_add(undo_list, make_undo("g", t_new_undo_list));
 	
 	add_action_history_ilda("SEQ_duplicatelayer");
 	

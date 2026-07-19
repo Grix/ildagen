@@ -228,7 +228,7 @@ function handle_mousecontrol_seq() {
 				add_action_history_ilda("SEQ_move");
 	
 				if (i < ds_list_size(multiple_undo_list))
-					ds_list_add(undo_list,"m"+string(multiple_undo_list[| i]));
+					ds_list_add(undo_list,make_undo("m", multiple_undo_list[| i]));
             
 	            ds_list_replace(objecttomove,0,tempxstart);
 	            moving_object = 0;
@@ -306,7 +306,7 @@ function handle_mousecontrol_seq() {
 				add_action_history_ilda("SEQ_move_event");
 	
 				if (i < ds_list_size(multiple_undo_list_event))
-					ds_list_add(undo_list,"M"+string(multiple_undo_list_event[| i]));
+					ds_list_add(undo_list,make_undo("M", multiple_undo_list_event[| i]));
             
 	            ds_list_replace(objecttomove,0,tempxstart);
 	            moving_object = 0;
@@ -421,7 +421,7 @@ function handle_mousecontrol_seq() {
 	            ds_list_replace(objecttomove, 2, templength);
 					
 				if (i < ds_list_size(multiple_undo_list))
-					ds_list_add(undo_list,"r"+string(multiple_undo_list[| i]));
+					ds_list_add(undo_list,make_undo("r", multiple_undo_list[| i]));
             
 	            moving_object = 0;
 	        }
@@ -486,7 +486,7 @@ function handle_mousecontrol_seq() {
 	            ds_list_replace(objecttomove, 2, templength);
 					
 				if (i < ds_list_size(multiple_undo_list_event))
-					ds_list_add(undo_list,"r"+string(multiple_undo_list_event[| i]));
+					ds_list_add(undo_list,make_undo("r", multiple_undo_list_event[| i]));
             
 	            moving_object = 0;
 	        }
@@ -635,7 +635,7 @@ function handle_mousecontrol_seq() {
 			
 	            undolisttemp = ds_list_create_pool();
 		        ds_list_add(undolisttemp,new_objectlist);
-		        ds_list_add(undo_list,"c"+string(undolisttemp));
+		        ds_list_add(undo_list,make_undo("c", undolisttemp));
 			
 				ds_list_add(layertomove, new_objectlist);
 			
@@ -689,7 +689,7 @@ function handle_mousecontrol_seq() {
 			var t_undolist = ds_list_create_pool();
 			ds_list_add(t_undolist, round(ds_list_find_value(marker_list,markertomove)));
 			ds_list_add(t_undolist, previous_marker_pos);
-			ds_list_add(undo_list, "h"+string(t_undolist));
+			ds_list_add(undo_list, make_undo("h", t_undolist));
 	        moving_object = 0;
 	    }
 	    exit;
@@ -792,7 +792,7 @@ function handle_mousecontrol_seq() {
 		{
 	        moving_object = 0;
 			if (ds_list_exists_pool(envelope_undolist))
-				ds_list_add(seqcontrol.undo_list,"e"+string(envelope_undolist));
+				ds_list_add(seqcontrol.undo_list,make_undo("e", envelope_undolist));
 		}
 		
 	    exit;
@@ -840,7 +840,7 @@ function handle_mousecontrol_seq() {
 	            }
 	        moving_object = 0;
 		
-			ds_list_add(seqcontrol.undo_list,"e"+string(t_undolist));
+			ds_list_add(seqcontrol.undo_list,make_undo("e", t_undolist));
 	    }
 	    exit;
 	}
@@ -946,7 +946,7 @@ function handle_mousecontrol_seq() {
 			timeline_surf_length = 0;
 		
 			clean_redo_list_seq();
-			ds_list_add(seqcontrol.undo_list,"e"+string(t_undolist));
+			ds_list_add(seqcontrol.undo_list,make_undo("e", t_undolist));
 		}
 		moving_object_ready = true;
 		exit;
@@ -1004,7 +1004,7 @@ function handle_mousecontrol_seq() {
 			timeline_surf_length = 0;
 		
 			clean_redo_list_seq();
-			ds_list_add(seqcontrol.undo_list,"e"+string(t_undolist));
+			ds_list_add(seqcontrol.undo_list,make_undo("e", t_undolist));
 		}
 		moving_object_ready = true;
 		exit;
@@ -1698,7 +1698,7 @@ function handle_mousecontrol_seq() {
 			var t_undolist = ds_list_create_pool();
 			ds_list_add(t_undolist, startframe);
 			ds_list_add(t_undolist, endframe);
-			ds_list_add(undo_list,"i"+string(t_undolist));
+			ds_list_add(undo_list,make_undo("i", t_undolist));
 	        mouse_xprevious = mouse_x;
 	        moving_object = 4;
 	    }
@@ -1720,7 +1720,7 @@ function handle_mousecontrol_seq() {
 	            if (keyboard_check_control())
 				{
 					add_action_history_ilda("SEQ_deletemarker");
-					ds_list_add(undo_list, "j"+string(marker_list[| i]));
+					ds_list_add(undo_list, make_undo("j", marker_list[| i]));
 	                ds_list_delete(marker_list,i);
 				}
 	            else
@@ -1748,7 +1748,7 @@ function handle_mousecontrol_seq() {
 			var t_undolist = ds_list_create_pool();
 			ds_list_add(t_undolist, startframe);
 			ds_list_add(t_undolist, endframe);
-			ds_list_add(undo_list,"i"+string(t_undolist));
+			ds_list_add(undo_list,make_undo("i", t_undolist));
 	        mouse_xprevious = mouse_x;
 	        moving_object = 3;
 	    }

@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "ResultObject",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/ResultObject.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_LiRO_AddToken",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_LiRO_AddToken",
+  "parent":{
+    "name":"ResultObject",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/data_containers/ResultObject.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_LiRO_AddToken",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "frames_tolive_importedilda",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "files",
-    "path": "folders/Scripts/files.yy",
+  "$GMScript":"v1",
+  "%Name":"frames_tolive_importedilda",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"frames_tolive_importedilda",
+  "parent":{
+    "name":"files",
+    "path":"folders/Scripts/files.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

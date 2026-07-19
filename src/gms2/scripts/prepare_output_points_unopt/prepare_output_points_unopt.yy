@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "output",
-    "path": "folders/Scripts/output.yy",
+  "$GMScript":"v1",
+  "%Name":"prepare_output_points_unopt",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"prepare_output_points_unopt",
+  "parent":{
+    "name":"output",
+    "path":"folders/Scripts/output.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "prepare_output_points_unopt",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

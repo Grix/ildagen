@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "createobject",
-    "path": "folders/Scripts/ilda/createobject.yy",
+  "$GMScript":"v1",
+  "%Name":"create_line",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"create_line",
+  "parent":{
+    "name":"createobject",
+    "path":"folders/Scripts/ilda/createobject.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "create_line",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

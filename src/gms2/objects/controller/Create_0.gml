@@ -1,5 +1,5 @@
-version = "2.2.0";
-versiondate = "2026-03-01";
+version = "2.2.1";
+versiondate = "2026-07-04";
 
 global.list_pool_id = ds_list_create();
 global.list_pool_is_alive = ds_list_create();
@@ -76,12 +76,13 @@ file_dropper_init();  // Causes problems in HTML5 export
 
 // Dialog module settings, causes crash?
 //widget_set_caption("LaserShowGen");
-if (os_type == os_macosx || os_type == os_linux)
-	widget_set_owner(string(int64(window_handle())));
+//if (os_type == os_macosx || os_type == os_linux)
+widget_set_owner(string(int64(window_handle())));
 
 //declarations and setup
 //math_set_epsilon(0.00001);
 //ds_set_precision(0.00001); 
+ds_set_precision(0.00001);
 draw_set_circle_precision(24);
 application_surface_enable(false);
 draw_set_font(fnt_tooltip);

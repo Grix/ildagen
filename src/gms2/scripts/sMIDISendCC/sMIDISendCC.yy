@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "sMIDISendCC",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "helper scripts",
-    "path": "folders/Scripts/GMSSimpleMIDI/helper scripts.yy",
+  "$GMScript":"v1",
+  "%Name":"sMIDISendCC",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sMIDISendCC",
+  "parent":{
+    "name":"helper scripts",
+    "path":"folders/Scripts/GMSSimpleMIDI/helper scripts.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

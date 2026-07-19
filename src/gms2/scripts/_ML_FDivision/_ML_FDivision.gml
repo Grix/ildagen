@@ -5,7 +5,7 @@ function _ML_FDivision() {
 	}
 
 
-	return argument0 div argument[1];
+	return argument0 div argument1;
 
 
 

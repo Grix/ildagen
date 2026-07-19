@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "make_frame_bezier",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "output",
-    "path": "folders/Scripts/output.yy",
+  "$GMScript":"v1",
+  "%Name":"make_frame_bezier",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"make_frame_bezier",
+  "parent":{
+    "name":"output",
+    "path":"folders/Scripts/output.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

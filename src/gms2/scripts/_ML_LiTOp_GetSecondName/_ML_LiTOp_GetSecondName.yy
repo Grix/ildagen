@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "ternary",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions/operators/ternary.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_LiTOp_GetSecondName",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_LiTOp_GetSecondName",
+  "parent":{
+    "name":"ternary",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions/operators/ternary.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_LiTOp_GetSecondName",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

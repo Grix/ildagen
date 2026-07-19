@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Binary",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Binary.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_AddBinarySig",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_AddBinarySig",
+  "parent":{
+    "name":"Binary",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/BuildFunctions/Operators/Binary.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_AddBinarySig",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

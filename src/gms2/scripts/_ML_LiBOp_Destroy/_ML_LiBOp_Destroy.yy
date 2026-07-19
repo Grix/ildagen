@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "binary_operators",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions/operators/binary_operators.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_LiBOp_Destroy",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_LiBOp_Destroy",
+  "parent":{
+    "name":"binary_operators",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/data_containers/functions/operators/binary_operators.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_LiBOp_Destroy",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "read_ilda_frame",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "importilda",
-    "path": "folders/Scripts/files/importilda.yy",
+  "$GMScript":"v1",
+  "%Name":"read_ilda_frame",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"read_ilda_frame",
+  "parent":{
+    "name":"importilda",
+    "path":"folders/Scripts/files/importilda.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

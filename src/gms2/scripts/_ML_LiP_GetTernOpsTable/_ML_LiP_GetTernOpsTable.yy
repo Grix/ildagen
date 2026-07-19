@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "getters",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/data_containers/parser/getters.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_LiP_GetTernOpsTable",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_LiP_GetTernOpsTable",
+  "parent":{
+    "name":"getters",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/data_containers/parser/getters.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_LiP_GetTernOpsTable",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

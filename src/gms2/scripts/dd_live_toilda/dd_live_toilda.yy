@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "dd_live",
-    "path": "folders/Scripts/dropdown/dd_live.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_live_toilda",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_live_toilda",
+  "parent":{
+    "name":"dd_live",
+    "path":"folders/Scripts/dropdown/dd_live.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "dd_live_toilda",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

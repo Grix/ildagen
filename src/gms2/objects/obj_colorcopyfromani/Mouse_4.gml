@@ -6,7 +6,7 @@ tempundolist = ds_list_create_pool();
 ds_list_add(tempundolist,controller.enddotscolor);
 ds_list_add(tempundolist,controller.color2);
 ds_list_add(tempundolist,controller.color1);
-ds_list_add(controller.undo_list,"b"+string(tempundolist));
+ds_list_add(controller.undo_list,make_undo("b", tempundolist));
 
 controller.color1 = controller.anicolor1;
 controller.enddotscolor = controller.anienddotscolor;

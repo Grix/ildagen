@@ -10,7 +10,6 @@
 
 #include "idn-stream.h"
 #include "idn-hello.h"
-#include <cstdarg>
 #include <vector>
 #include <string>
 
@@ -56,6 +55,7 @@ typedef struct
 #endif
 
 #include <time.h>
+#include <stdarg.h>
 
 #if defined(_WIN32) || defined(WIN32)
 
@@ -140,9 +140,6 @@ typedef struct
 
 void logError(const char* fmt, ...);
 void logInfo(const char* fmt, ...);
-static char int2Hex(unsigned i);
-//void binDump(void* buffer, unsigned length);
-static int idnSend(void* context, IDNHDR_PACKET* packetHdr, unsigned packetLen);
 int idnOpenFrameGeneric(IDNCONTEXT* context, uint16_t* channelDescriptors, size_t numChannelDescriptors, bool forceNewConfig);
 int idnPutSampleGeneric(IDNCONTEXT* context, int8_t* sampleBuffer, size_t sampleBufferSize);
 int idnOpenFrameXYRGB(IDNCONTEXT* context, bool forceNewConfig);

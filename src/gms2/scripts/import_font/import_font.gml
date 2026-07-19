@@ -4,7 +4,7 @@ function import_font() {
 
 	with(controller)
 	{
-		if (argument_count == 0 || !file_exists(argument0))
+		if (argument_count == 0 || argument0 == "" || !file_exists(argument0))
 			filename = get_open_filename_ext("ILDA font file|*.ild|All files|*","",program_directory,"Select ILDA font file")
 	    else
 			filename = argument0;

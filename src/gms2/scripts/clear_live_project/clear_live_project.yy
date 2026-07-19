@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "live",
-    "path": "folders/Scripts/live.yy",
+  "$GMScript":"v1",
+  "%Name":"clear_live_project",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"clear_live_project",
+  "parent":{
+    "name":"live",
+    "path":"folders/Scripts/live.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "clear_live_project",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

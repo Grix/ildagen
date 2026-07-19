@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "lexer",
-    "path": "folders/Scripts/MATH_LOGICAL_PARSER/detail/lexer.yy",
+  "$GMScript":"v1",
+  "%Name":"_ML_LEX_Xdigit",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"_ML_LEX_Xdigit",
+  "parent":{
+    "name":"lexer",
+    "path":"folders/Scripts/MATH_LOGICAL_PARSER/detail/lexer.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_ML_LEX_Xdigit",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

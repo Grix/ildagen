@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "menu",
-    "path": "folders/Scripts/dropdown/dd_live/menu.yy",
+  "$GMScript":"v1",
+  "%Name":"dropdown_menu_live_file",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dropdown_menu_live_file",
+  "parent":{
+    "name":"menu",
+    "path":"folders/Scripts/dropdown/dd_live/menu.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "dropdown_menu_live_file",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

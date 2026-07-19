@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "dd_seq_envtype_hue_create",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "envelopetypes",
-    "path": "folders/Scripts/dropdown/dd_seq/envelopetypes.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_seq_envtype_hue_create",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_seq_envtype_hue_create",
+  "parent":{
+    "name":"envelopetypes",
+    "path":"folders/Scripts/dropdown/dd_seq/envelopetypes.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

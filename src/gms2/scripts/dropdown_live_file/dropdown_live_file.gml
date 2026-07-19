@@ -22,7 +22,7 @@ function dropdown_live_file() {
 	    ds_list_add(scr_list,live_toggle_loop);
 	    ds_list_add(hl_list,1);
 		
-		var label = "Toggle exclusive ";
+		label = "Toggle exclusive ";
 		if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 8))
 			label += "off (X)";
 		else
@@ -32,7 +32,7 @@ function dropdown_live_file() {
 	    ds_list_add(scr_list,live_toggle_exclusive);
 	    ds_list_add(hl_list,1);
 		
-		var label = "";
+		label = "";
 		if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 9))
 			label += "Set restart at play (R)";
 		else
@@ -42,7 +42,7 @@ function dropdown_live_file() {
 	    ds_list_add(scr_list,live_toggle_resume);
 	    ds_list_add(hl_list,1);
 		
-		var label = "";
+		label = "";
 		if (ds_list_find_value(livecontrol.filelist[| livecontrol.selectedfile], 10))
 			label += "Set toggle playing (H)";
 		else

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "dd_ilda_maxframes_stretch",
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "menu",
-    "path": "folders/Scripts/dropdown/dd_ilda/menu.yy",
+  "$GMScript":"v1",
+  "%Name":"dd_ilda_maxframes_stretch",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dd_ilda_maxframes_stretch",
+  "parent":{
+    "name":"menu",
+    "path":"folders/Scripts/dropdown/dd_ilda/menu.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
