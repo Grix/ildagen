@@ -1,3 +1,6 @@
+v2.2.2
+- Fix moving/resizing/rotating object in editor mode in macOS would freeze the program.
+
 v2.2.1
 - Fix bug in LaserCube network protocol causing streaming problems on newer devices.
 - Fix dialog windows not returning keyboard focus to LSG window after closing.

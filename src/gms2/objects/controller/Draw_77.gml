@@ -14,7 +14,6 @@ if (instance_exists(obj_dropdown) && !instance_exists(obj_ad))
 	exit;
 }
 
-
 if (scrollcursor_flag == 1)
     window_check_set_cursor(cr_size_we);
 else if (scrollcursor_flag == 2)
@@ -25,13 +24,15 @@ else
 {
     if (placing == "text") && (room == rm_ilda)
         window_check_set_cursor(cr_beam);
+	else if (room == rm_ilda && (objmoving != 0 || (keyboard_check(ord("E")) && (placing_status != 2))))
+		window_check_set_cursor(cr_handpoint);
 	else
 		window_check_set_cursor(cr_default);
 		
-    if (objmoving)
-		window_check_set_cursor(cr_handpoint);
-    if (room == rm_ilda) && (keyboard_check(ord("E")) && (placing_status != 2))
-        window_check_set_cursor(cr_handpoint);
+    //if (objmoving)
+	//	window_check_set_cursor(cr_handpoint);
+    //if (room == rm_ilda) && (keyboard_check(ord("E")) && (placing_status != 2))
+    //    window_check_set_cursor(cr_handpoint);
 }
 	
 if (tooltip != "" || tooltip_warning != "")
