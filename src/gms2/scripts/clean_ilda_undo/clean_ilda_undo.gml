@@ -94,7 +94,7 @@ with (controller)
 	    {
 	        if (!ds_list_exists_pool(undo.data))
 	            continue;
-	        ds_list_free_pool(undo.undo_id);
+	        ds_list_free_pool(undo.data);
 	    }
 	}
 }
