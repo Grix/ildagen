@@ -1,3 +1,6 @@
+v2.2.3
+- Fix crash that could occur randomly since v2.2.1
+
 v2.2.2
 - Fix moving/resizing/rotating object in editor mode in macOS would freeze the program.
 
@@ -7,10 +10,3 @@ v2.2.1
 - Various small improvements in Helios DAC handling.
 - Fix square grid in editor mode on macOS not scaling correctly when windows is resized. 
 - Update to development engine, should not affect behavior but please report any bugs.
-
-v2.2.0
-- Support for Art-Net and sACN DMX input, for playing files in the Grid View and adjusting sliders.
-- Improved laser optimization, for more accurate graphics and smoother animations.
-- Added BPM tap button for easy BPM adjustment in Grid View.
-- Included some default animations in the Grid View. 
-...and more, refer to full changelog.
