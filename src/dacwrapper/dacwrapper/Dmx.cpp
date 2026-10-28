@@ -1,3 +1,8 @@
+#include <cstring>
+#ifndef _WIN32
+#include <unistd.h>
+#endif
+
 #include "Dmx.h"
 #include "artnet/packets.h"
 
